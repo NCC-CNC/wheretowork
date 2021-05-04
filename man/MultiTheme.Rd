@@ -70,7 +70,8 @@ Create a MultiTheme object.
   group_step_goal,
   group_current_label,
   initial_status,
-  round
+  round,
+  icon
 )}\if{html}{\out{</div>}}
 }
 
@@ -98,6 +99,8 @@ Create a MultiTheme object.
 \item{\code{initial_status}}{\code{logical} value.}
 
 \item{\code{round}}{\code{logical} value.}
+
+\item{\code{icon}}{\code{shiny.tag} object.}
 }
 \if{html}{\out{</div>}}
 }

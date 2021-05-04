@@ -8,7 +8,7 @@ NULL
 #' @seealso [new_weight()]
 #'
 #' @export
-Weight <- R6Class(
+Weight <- R6::R6Class(
   "Weight",
   public = list(
     #' @field id `character` value.
@@ -60,36 +60,37 @@ Weight <- R6Class(
       assertthat::assert_that(
         #### id
         assertthat::is.string(id),
-        assertthat::is.noNA(id),
+        assertthat::noNA(id),
         #### name
         assertthat::is.string(name),
-        assertthat::is.noNA(name),
+        assertthat::noNA(name),
         ### layer
         inherits(layer, "Layer"),
         #### initial_status
         assertthat::is.flag(initial_status),
-        assertthat::is.noNA(initial_status),
+        assertthat::noNA(initial_status),
         #### initial_factor
         assertthat::is.number(initial_factor),
-        assertthat::is.noNA(initial_factor),
+        assertthat::noNA(initial_factor),
         initial_factor >= min_factor,
         initial_factor <= max_factor,
         #### min_factor
         assertthat::is.number(min_factor),
-        assertthat::is.noNA(min_factor),
+        assertthat::noNA(min_factor),
         min_factor <= max_factor,
         #### max_factor
         assertthat::is.number(max_factor),
-        assertthat::is.noNA(max_factor),
-        mix_factor >= min_factor,
+        assertthat::noNA(max_factor),
+        max_factor >= min_factor,
         #### step_factor
         assertthat::is.number(step_factor),
-        assertthat::is.noNA(step_factor),
+        assertthat::noNA(step_factor),
         step_factor <= max_factor
       )
       ### set fields
       self$id <- id
       self$layer <- layer
+      self$name <- name
       self$status <- initial_status
       self$initial_status <- initial_status
       self$factor <- initial_factor
@@ -119,7 +120,7 @@ Weight <- R6Class(
     set_factor = function(value) {
       assertthat::assert_that(
         assertthat::is.number(value),
-        assertthat::is.noNA(value))
+        assertthat::noNA(value))
       self$factor <- value
       invisible(self)
     },
@@ -130,7 +131,7 @@ Weight <- R6Class(
     set_status = function(value) {
       assertthat::assert_that(
         assertthat::is.flag(value),
-        assertthat::is.noNA(value))
+        assertthat::noNA(value))
       self$status <- value
       invisible(self)
     },
@@ -166,10 +167,6 @@ Weight <- R6Class(
 #'
 #' Create a new [Weight] object.
 #'
-#' @param name `character` name.
-#'
-#' @param layer [Layer] object.
-#'
 #' @param min_factor `numeric` minimum factor value.
 #'   Defaults to 0.
 #'
@@ -182,8 +179,8 @@ Weight <- R6Class(
 #' @param step_factor `numeric` step factor value.
 #'   Defaults to 1.
 #'
-#' @param id `character` identifier.
-#'   Defaults to a unique identifier ([uuid::UUIDgenerate()]).
+#' @inheritParams new_multi_theme
+#' @inheritParams new_feature
 #'
 #' @return A [Weight] object.
 #'
@@ -199,8 +196,10 @@ Weight <- R6Class(
 #'
 #' @export
 new_weight <- function(
-  name, layer, min_factor = 0, max_factor = 100, initial_factor = 0,
-  step_factor = 1, id = uuid::UUIDgenerate()) {
+  name, layer,
+  initial_status = TRUE, initial_factor = 0,
+  min_factor = 0, max_factor = 100, step_factor = 1,
+  id = uuid::UUIDgenerate()) {
   Weight$new(
     id = id,
     name = name,
@@ -208,5 +207,6 @@ new_weight <- function(
     min_factor = min_factor,
     max_factor = max_factor,
     initial_factor = initial_factor,
-    step_factor = step_factor)
+    step_factor = step_factor,
+    initial_status = initial_status)
 }

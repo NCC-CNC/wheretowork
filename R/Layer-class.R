@@ -6,7 +6,7 @@ NULL
 #' Definition for the Layer class.
 #'
 #' @seealso [new_layer()]
-Layer <- R6Class(
+Layer <- R6::R6Class(
   "Layer",
   public = list(
 
@@ -35,19 +35,19 @@ Layer <- R6Class(
       assertthat::assert_that(
         #### source
         assertthat::is.string(source),
-        assertthat::is.noNA(source),
+        assertthat::noNA(source),
         #### current
         assertthat::is.number(current),
-        assertthat::is.noNA(current),
+        assertthat::noNA(current),
         isTRUE(current >= 0),
         isTRUE(current <= 1),
         #### total
         assertthat::is.number(total),
-        assertthat::is.noNA(total),
+        assertthat::noNA(total),
         isTRUE(total >= 0),
         #### units
         assertthat::is.string(units),
-        assertthat::is.noNA(units))
+        assertthat::noNA(units))
       ### set fields
       self$source <- source
       self$current <- current
@@ -81,5 +81,5 @@ Layer <- R6Class(
 #'
 #' @export
 new_layer <- function(source, current, total, units) {
-  Layer$new(source = source, current = current, total = toal, units = units)
+  Layer$new(source = source, current = current, total = total, units = units)
 }

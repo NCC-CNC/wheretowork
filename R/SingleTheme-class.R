@@ -26,23 +26,22 @@ SingleTheme <- R6::R6Class(
       assertthat::assert_that(
         #### id
         assertthat::is.string(id),
-        assertthat::is.noNA(id),
+        assertthat::noNA(id),
         #### name
         assertthat::is.string(name),
-        assertthat::is.noNA(name),
+        assertthat::noNA(name),
         #### feature
         is.list(feature),
         length(feature) == 1,
         inherits(feature[[1]], "Feature"),
         #### initial_status
         assertthat::is.flag(initial_status),
-        assertthat::is.noNA(initial_status),
+        assertthat::noNA(initial_status),
         #### round
         assertthat::is.flag(round),
-        assertthat::is.noNA(round),
+        assertthat::noNA(round),
         #### icon
-        assertthat::is.string(icon),
-        assertthat::is.noNA(icon))
+        inherits(icon, "shiny.tag"))
       ## set fields
       self$id = id
       self$name = name
@@ -63,18 +62,18 @@ SingleTheme <- R6::R6Class(
         name = self$name,
         feature_name = self$feature[[1]]$name,
         feature_id = self$feature[[1]]$id,
-        feature_total_amount = self$feature[[1]]$total,
-        feature_current_held = self$feature[[1]]$current,
+        feature_total_amount = self$feature[[1]]$layer$total,
+        feature_current_held = self$feature[[1]]$layer$current,
         feature_min_goal = self$feature[[1]]$min_goal,
         feature_max_goal = self$feature[[1]]$max_goal,
         feature_initial_goal = self$feature[[1]]$goal,
         feature_limit_goal = self$feature[[1]]$limit_goal,
         feature_step_goal = self$feature[[1]]$step_goal,
-        feature_current_label = self$feature[[1]]$current_label,,
-        feature_units = self$feature[[1]]$units,
+        feature_current_label = self$feature[[1]]$current_label,
+        units = self$feature[[1]]$layer$units,
         initial_status = self$status,
         round = self$round,
-        icon = self$icon,
+        icon = as.character(self$icon)
       )
     },
 
@@ -124,6 +123,10 @@ new_single_theme <- function(
   # convert icon to shiny.tag if needed
   if (is.character(icon))
     icon <- shiny::icon(icon)
+  # convert to list
+  if (inherits(feature, "Feature")) {
+    feature <- list(feature)
+  }
   # return new feature
   SingleTheme$new(
     id = id,

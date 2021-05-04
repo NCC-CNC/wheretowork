@@ -6,7 +6,7 @@ NULL
 #' Definition for the MultiTheme class.
 #'
 #' @seealso [new_multi_theme()].
-MultiTheme <- R6Class(
+MultiTheme <- R6::R6Class(
   "MultiTheme",
   inherit = Theme,
   public = list(
@@ -42,53 +42,55 @@ MultiTheme <- R6Class(
     #' @param group_current_label `character` value.
     #' @param initial_status `logical` value.
     #' @param round `logical` value.
+    #' @param icon `shiny.tag` object.
     #' @return A new MultiTheme object.
     initialize = function(
       id, name, feature,
       group_min_goal, group_max_goal, group_initial_goal, group_limit_goal,
       group_step_goal, group_current_label,
-      initial_status, round) {
+      initial_status, round, icon) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
         assertthat::is.string(id),
-        assertthat::is.noNA(id),
+        assertthat::noNA(id),
         #### name
         assertthat::is.string(name),
-        assertthat::is.noNA(name),
+        assertthat::noNA(name),
         #### feature
         is.list(feature),
         all(vapply(feature, inherits, logical(1), "Feature")),
         #### group_min_goal
         assertthat::is.number(group_min_goal),
-        assertthat::is.noNA(group_min_goal),
+        assertthat::noNA(group_min_goal),
         #### group_max_goal
         assertthat::is.number(group_max_goal),
-        assertthat::is.noNA(group_max_goal),
+        assertthat::noNA(group_max_goal),
         #### group_initial_goal
         assertthat::is.number(group_initial_goal),
-        assertthat::is.noNA(group_initial_goal),
+        assertthat::noNA(group_initial_goal),
         #### group_limit_goal
         assertthat::is.number(group_limit_goal),
-        assertthat::is.noNA(group_limit_goal),
+        assertthat::noNA(group_limit_goal),
         #### group_step_goal
         assertthat::is.number(group_step_goal),
-        assertthat::is.noNA(group_step_goal),
+        assertthat::noNA(group_step_goal),
         #### group_current_label
         assertthat::is.string(group_current_label),
-        assertthat::is.noNA(group_current_label),
+        assertthat::noNA(group_current_label),
         #### initial_status
         assertthat::is.flag(initial_status),
-        assertthat::is.noNA(initial_status),
+        assertthat::noNA(initial_status),
         #### round
         assertthat::is.flag(round),
-        assertthat::is.noNA(round),
+        assertthat::noNA(round),
         #### icon
         inherits(icon, "shiny.tag"))
       ## assert all feature have ame units
       assertthat::assert_that(
         dplyr::n_distinct(
-          vapply(feature, FUN.VALUE = character(1), function(x) x$units)) == 1,
+          vapply(
+            feature, FUN.VALUE = character(1), function(x) x$layer$units)) == 1,
         msg = "argument to `feature` contains elements with different units")
       ## set fields
       self$id <- id
@@ -117,11 +119,11 @@ MultiTheme <- R6Class(
         feature_name =
           vapply(self$feature, function(x) x$name, character(1)),
         feature_id =
-          vapply(self$feature, function(x) x$name, character(1)),
+          vapply(self$feature, function(x) x$id, character(1)),
         feature_total_amount =
-          vapply(self$feature, function(x) x$total, numeric(1)),
+          vapply(self$feature, function(x) x$layer$total, numeric(1)),
         feature_current_held =
-          vapply(self$feature, function(x) x$current, numeric(1)),
+          vapply(self$feature, function(x) x$layer$current, numeric(1)),
         group_min_goal = self$group_min_goal,
         group_max_goal = self$group_max_goal,
         group_initial_goal = self$group_initial_goal,
@@ -142,12 +144,14 @@ MultiTheme <- R6Class(
           vapply(self$feature, function(x) x$current_label, character(1)),
         feature_initial_status =
           vapply(self$feature, function(x) x$status, logical(1)),
-        feature_units = self$feature[[1]]$units,
+        feature_icon =
+          vapply(
+            self$feature, function(x) as.character(x$icon),
+            character(1)),
+        units = self$feature[[1]]$layer$units,
         initial_status = self$status,
         round = self$round,
-        icon = self$icon,
-        feature_icon =
-          vapply(self$feature, function(x) x$feature_icon, character(1))
+        icon = self$icon
       )
     },
 
@@ -165,7 +169,7 @@ MultiTheme <- R6Class(
 #'
 #' Create a new [MultiTheme] object.
 #'
-#' @param name `character` Name of the theme.
+#' @param name `character` Name to display.
 #'
 #' @param feature `list` of [Feature] objects.
 #'
@@ -244,16 +248,16 @@ MultiTheme <- R6Class(
 new_multi_theme <- function(
   name,
   feature,
+  initial_status = TRUE,
+  round = TRUE,
+  icon = "map-marked-alt",
+  id = uuid::UUIDgenerate(),
   group_min_goal = 0,
   group_max_goal = 1,
   group_initial_goal = 0.3,
   group_limit_goal = 0.1,
   group_step_goal = 0.01,
-  group_current_label = "Current",
-  initial_status = TRUE,
-  round = TRUE,
-  icon = "map-marked-alt",
-  id = uuid::UUIDgenerate()) {
+  group_current_label = "Current") {
   # convert icon to shiny.tag if needed
   if (is.character(icon))
     icon <- shiny::icon(icon)
@@ -264,7 +268,7 @@ new_multi_theme <- function(
     feature = feature,
     group_min_goal = group_min_goal,
     group_max_goal = group_max_goal,
-    group_initial_goal = group_max_goal,
+    group_initial_goal = group_initial_goal,
     group_limit_goal = group_limit_goal,
     group_step_goal = group_step_goal,
     group_current_label = group_current_label,

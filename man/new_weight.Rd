@@ -7,31 +7,37 @@
 new_weight(
   name,
   layer,
+  initial_status = TRUE,
+  initial_factor = 0,
   min_factor = 0,
   max_factor = 100,
-  initial_factor = 0,
   step_factor = 1,
   id = uuid::UUIDgenerate()
 )
 }
 \arguments{
-\item{name}{\code{character} name.}
+\item{name}{\code{character} Name to display.}
 
 \item{layer}{\link{Layer} object.}
+
+\item{initial_status}{\code{logical} The initial status.
+This is used to display information on whether the theme is
+selected (or not) for subsequent analysis.
+Defaults to \code{TRUE}}
+
+\item{initial_factor}{\code{numeric} initial factor value.
+Defaults to 0.}
 
 \item{min_factor}{\code{numeric} minimum factor value.
 Defaults to 0.}
 
 \item{max_factor}{\code{numeric} maximum factor value.}
 
-\item{initial_factor}{\code{numeric} initial factor value.
-Defaults to 0.}
-
 \item{step_factor}{\code{numeric} step factor value.
 Defaults to 1.}
 
-\item{id}{\code{character} identifier.
-Defaults to a unique identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}
+\item{id}{\code{character} unique identifier.
+Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}
 }
 \value{
 A \link{Weight} object.

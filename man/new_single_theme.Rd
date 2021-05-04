@@ -14,7 +14,7 @@ new_single_theme(
 )
 }
 \arguments{
-\item{name}{\code{character} Name of the theme.}
+\item{name}{\code{character} Name to display.}
 
 \item{feature}{\link{Feature} object.
 For compatibility with \code{\link[=new_multi_theme]{new_multi_theme()}}, a \code{list} object

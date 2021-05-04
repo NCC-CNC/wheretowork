@@ -6,7 +6,7 @@ NULL
 #' Definition for the Feature class.
 #'
 #' @seealso [new_feature()], [new_layer()].
-Feature <- R6Class(
+Feature <- R6::R6Class(
   "Feature",
   public = list(
     #' @field id `character` unique identifier.
@@ -70,36 +70,36 @@ Feature <- R6Class(
       assertthat::assert_that(
         #### id
         assertthat::is.string(id),
-        assertthat::is.noNA(id),
+        assertthat::noNA(id),
         #### name
         assertthat::is.string(name),
-        assertthat::is.noNA(name),
+        assertthat::noNA(name),
         #### layer
         inherits(layer, "Layer"),
         #### initial_status
         assertthat::is.flag(initial_status),
-        assertthat::is.noNA(initial_status),
+        assertthat::noNA(initial_status),
         #### initial_goal
         assertthat::is.number(initial_goal),
-        assertthat::is.noNA(initial_goal),
+        assertthat::noNA(initial_goal),
         initial_goal >= min_goal,
         initial_goal <= max_goal,
         initial_goal >= limit_goal,
         #### min_goal
         assertthat::is.number(min_goal),
-        assertthat::is.noNA(min_goal),
+        assertthat::noNA(min_goal),
         min_goal <= max_goal,
         #### max_goal
         assertthat::is.number(max_goal),
-        assertthat::is.noNA(max_goal),
+        assertthat::noNA(max_goal),
         max_goal >= min_goal,
         #### step_goal
         assertthat::is.number(step_goal),
-        assertthat::is.noNA(step_goal),
+        assertthat::noNA(step_goal),
         step_goal <= max_goal,
         #### current_label
         assertthat::is.string(current_label),
-        assertthat::is.noNA(current_label),
+        assertthat::noNA(current_label),
         #### icon
         inherits(icon, "shiny.tag"))
       ### set fields
@@ -113,6 +113,7 @@ Feature <- R6Class(
       self$min_goal <- min_goal
       self$max_goal <- max_goal
       self$step_goal <- step_goal
+      self$limit_goal <- limit_goal
       self$current_label <- current_label
       self$icon <- icon
     },
@@ -137,7 +138,7 @@ Feature <- R6Class(
     set_goal = function(value) {
       assertthat::assert_that(
         assertthat::is.number(value),
-        assertthat::is.noNA(value))
+        assertthat::noNA(value))
       self$goal <- value
       invisible(self)
     },
@@ -148,7 +149,7 @@ Feature <- R6Class(
     set_status = function(value) {
       assertthat::assert_that(
         assertthat::is.flag(value),
-        assertthat::is.noNA(value))
+        assertthat::noNA(value))
       self$status = value
       invisible(self)
     }

@@ -7,7 +7,7 @@ NULL
 #' interacted with directly.
 #'
 #' @seealso [new_single_theme], [new_multi_theme].
-Theme <- R6Class(
+Theme <- R6::R6Class(
   "Theme",
   public = list(
 
@@ -60,7 +60,7 @@ Theme <- R6Class(
     set_feature_goals = function(value) {
       assertthat::assert_that(
         is.numeric(value),
-        assertthat:noNA(value),
+        assertthat::noNA(value),
         length(value) == length(self$feature))
       for (i in seq_along(value)) {
         self$feature[[i]]$set_goal(value[i])
@@ -73,11 +73,11 @@ Theme <- R6Class(
     #' @param value `logical` vector of new values.
     set_feature_statuses = function(value) {
       assertthat::assert_that(
-        is.numeric(value),
-        assertthat:noNA(value),
+        is.logical(value),
+        assertthat::noNA(value),
         length(value) == length(self$feature))
       for (i in seq_along(value)) {
-        self$feature[[i]]$set_goal(value[i])
+        self$feature[[i]]$set_status(value[i])
       }
       invisible(self)
     }
@@ -113,11 +113,11 @@ new_theme <- function(...) {
   assertthat::assert_that(
     !is.null(args$feature),
     msg = "missing `feature` argument")
-  if (inherits(args$feature) ||
+  if (inherits(args$feature, "Feature") ||
      (is.list(args$feature) && length(args$feature) == 1)) {
-    out <- do.call(new_single_theme, args)
+    out <- do.call(what = new_single_theme, args = args)
   } else {
-    out <- do.call(new_multi_theme, args)
+    out <- do.call(what = new_multi_theme, args = args)
   }
   out
 }

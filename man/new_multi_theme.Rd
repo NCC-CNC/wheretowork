@@ -7,22 +7,39 @@
 new_multi_theme(
   name,
   feature,
+  initial_status = TRUE,
+  round = TRUE,
+  icon = "map-marked-alt",
+  id = uuid::UUIDgenerate(),
   group_min_goal = 0,
   group_max_goal = 1,
   group_initial_goal = 0.3,
   group_limit_goal = 0.1,
   group_step_goal = 0.01,
-  group_current_label = "Current",
-  initial_status = TRUE,
-  round = TRUE,
-  icon = "map-marked-alt",
-  id = uuid::UUIDgenerate()
+  group_current_label = "Current"
 )
 }
 \arguments{
-\item{name}{\code{character} Name of the theme.}
+\item{name}{\code{character} Name to display.}
 
 \item{feature}{\code{list} of \link{Feature} objects.}
+
+\item{initial_status}{\code{logical} The initial status.
+This is used to display information on whether the theme is
+selected (or not) for subsequent analysis.
+Defaults to \code{TRUE}}
+
+\item{round}{\code{logical} should all numbers be rounded to the nearest integer?
+Defaults to \code{TRUE}.}
+
+\item{icon}{\code{character} or \code{shiny.tag} Icon to display for the feature
+This icon should indicate the type of data that underpin the feature.
+If the argument to \code{icon} is a \code{character}, it is used with
+\code{\link[shiny:icon]{shiny::icon()}} to generate an \code{shiny.tag} icon.
+Defaults to \code{"map-marked-alt"}.}
+
+\item{id}{\code{character} unique identifier.
+Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}
 
 \item{group_min_goal}{\code{numeric} The minimum goal (inclusive)
 shown for the features under the group view.
@@ -57,23 +74,6 @@ Defaults to 0.01 (i.e. 1\%).}
 \item{group_current_label}{\code{character} The display label for the current
 level of representation for the features under the group view.
 Defaults to \code{Current}.}
-
-\item{initial_status}{\code{logical} The initial status.
-This is used to display information on whether the theme is
-selected (or not) for subsequent analysis.
-Defaults to \code{TRUE}}
-
-\item{round}{\code{logical} should all numbers be rounded to the nearest integer?
-Defaults to \code{TRUE}.}
-
-\item{icon}{\code{character} or \code{shiny.tag} Icon to display for the feature
-This icon should indicate the type of data that underpin the feature.
-If the argument to \code{icon} is a \code{character}, it is used with
-\code{\link[shiny:icon]{shiny::icon()}} to generate an \code{shiny.tag} icon.
-Defaults to \code{"map-marked-alt"}.}
-
-\item{id}{\code{character} unique identifier.
-Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}
 }
 \value{
 A \link{SingleTheme} object.
