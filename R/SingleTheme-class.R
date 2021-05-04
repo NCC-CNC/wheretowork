@@ -46,17 +46,15 @@ SingleTheme <- R6::R6Class(
       self$id = id
       self$name = name
       self$feature = feature
-      self$status = initial_status
       self$initial_status = initial_status
       self$round = round
       self$icon = icon
     },
 
     #' @description
-    #' Get data for displaying the theme in a [newSolutionManager] widget.
-    #' @return `list` with data for
-    #'   displaying the object in a [newSolutionManager()] widget.
-    get_new_solution_manager_data = function() {
+    #' Get data for displaying the theme in a [solutionSettings] widget.
+    #' @return `list` with widget data.
+    get_solution_settings_widget_data = function() {
       list(
         id = self$id,
         name = self$name,
@@ -71,17 +69,16 @@ SingleTheme <- R6::R6Class(
         feature_step_goal = self$feature[[1]]$step_goal,
         feature_current_label = self$feature[[1]]$current_label,
         units = self$feature[[1]]$layer$units,
-        initial_status = self$status,
+        initial_status = self$initial_status,
         round = self$round,
         icon = as.character(self$icon)
       )
     },
 
     #' @description
-    #' Get data for displaying the theme in a [mapManager] widget.
-    #' @return `list` with data for displaying the object in a [mapManager()]
-    #'   widget.
-    get_map_manager_data = function() {
+    #' Get data for displaying the theme in a [mapManager()] widget.
+    #' @return `list` with widget data.
+    get_map_manager_widget_data = function() {
       stop("TODO")
     }
   )

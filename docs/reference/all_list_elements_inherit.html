@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Shiny bindings for newSolutionManager — newSolutionManager-shiny • locationmisc</title>
+<title>All elements inherit — all_list_elements_inherit • locationmisc</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,8 @@
 
 
 
-<meta property="og:title" content="Shiny bindings for newSolutionManager — newSolutionManager-shiny" />
-<meta property="og:description" content="Use newSolutionManagerOutput() to create a user interface element,
-and renderNewSolutionManager() to render the widget." />
+<meta property="og:title" content="All elements inherit — all_list_elements_inherit" />
+<meta property="og:description" content="Check if all elements in a list object inherit from a class." />
 
 
 
@@ -110,48 +109,33 @@ and renderNewSolutionManager() to render the widget." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Shiny bindings for newSolutionManager</h1>
+    <h1>All elements inherit</h1>
     
-    <div class="hidden name"><code>newSolutionManager-shiny.Rd</code></div>
+    <div class="hidden name"><code>all_list_elements_inherit.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Use <code>newSolutionManagerOutput()</code> to create a user interface element,
-and <code>renderNewSolutionManager()</code> to render the widget.</p>
+    <p>Check if all elements in a <code>list</code> object inherit from a class.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>newSolutionManagerOutput</span><span class='op'>(</span><span class='va'>outputId</span>, width <span class='op'>=</span> <span class='st'>"100%"</span>, height <span class='op'>=</span> <span class='st'>"auto"</span><span class='op'>)</span>
-
-<span class='fu'>renderNewSolutionManager</span><span class='op'>(</span><span class='va'>expr</span>, env <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span>, quoted <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>all_list_elements_inherit</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>class</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>outputId</th>
-      <td><p>output variable to read from</p></td>
+      <th>x</th>
+      <td><p><code>list</code> object.</p></td>
     </tr>
     <tr>
-      <th>width, height</th>
-      <td><p>Must be a valid CSS unit (like <code>"100%"</code>,
-<code>"400px"</code>, <code>"auto"</code>) or a number, which will be coerced to a
-string and have <code>"px"</code> appended.</p></td>
-    </tr>
-    <tr>
-      <th>expr</th>
-      <td><p>An expression that generates a <code><a href='newSolutionManager.html'>newSolutionManager()</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>env</th>
-      <td><p>The environment in which to evaluate <code>expr</code>.</p></td>
-    </tr>
-    <tr>
-      <th>quoted</th>
-      <td><p>Is <code>expr</code> a quoted expression (with <code><a href='https://rdrr.io/r/base/substitute.html'>quote()</a></code>)? This
-is useful if you want to save an expression in a variable.</p></td>
+      <th>class</th>
+      <td><p><code>character</code> class name.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p><code>logical</code> indicating if all elements in <code>x</code> inherit from <code>class</code>.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

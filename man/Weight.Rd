@@ -45,10 +45,12 @@ Definition for the Weight class.
 \item \href{#method-new}{\code{Weight$new()}}
 \item \href{#method-get_factor}{\code{Weight$get_factor()}}
 \item \href{#method-get_status}{\code{Weight$get_status()}}
+\item \href{#method-get_parameter}{\code{Weight$get_parameter()}}
 \item \href{#method-set_factor}{\code{Weight$set_factor()}}
 \item \href{#method-set_status}{\code{Weight$set_status()}}
-\item \href{#method-get_new_solution_manager_data}{\code{Weight$get_new_solution_manager_data()}}
-\item \href{#method-get_map_manager_data}{\code{Weight$get_map_manager_data()}}
+\item \href{#method-set_parameter}{\code{Weight$set_parameter()}}
+\item \href{#method-get_solution_settings_widget_data}{\code{Weight$get_solution_settings_widget_data()}}
+\item \href{#method-get_map_manager_widget_data}{\code{Weight$get_map_manager_widget_data()}}
 \item \href{#method-clone}{\code{Weight$clone()}}
 }
 }
@@ -122,6 +124,27 @@ Get status.
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_parameter"></a>}}
+\if{latex}{\out{\hypertarget{method-get_parameter}{}}}
+\subsection{Method \code{get_parameter()}}{
+Get parameter.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Weight$get_parameter(name)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{name}}{\code{character} parameter name.
+Available options are \code{"status"} or \code{"factor"}.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+Value.
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-set_factor"></a>}}
 \if{latex}{\out{\hypertarget{method-set_factor}{}}}
 \subsection{Method \code{set_factor()}}{
@@ -156,31 +179,49 @@ Set status.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_new_solution_manager_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_new_solution_manager_data}{}}}
-\subsection{Method \code{get_new_solution_manager_data()}}{
-Get data for displaying the theme in a \link{newSolutionManager} widget.
+\if{html}{\out{<a id="method-set_parameter"></a>}}
+\if{latex}{\out{\hypertarget{method-set_parameter}{}}}
+\subsection{Method \code{set_parameter()}}{
+Set parameter.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Weight$get_new_solution_manager_data()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Weight$set_parameter(name, value)}\if{html}{\out{</div>}}
 }
 
-\subsection{Returns}{
-\code{list} with data for
-displaying the object in a \code{\link[=newSolutionManager]{newSolutionManager()}} widget.
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{name}}{\code{character} parameter name.
+Available options are \code{"status"} or \code{"factor"}.}
+
+\item{\code{value}}{\code{ANY} new value.}
+}
+\if{html}{\out{</div>}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_map_manager_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_map_manager_data}{}}}
-\subsection{Method \code{get_map_manager_data()}}{
-Get data for displaying the theme in a \link{mapManager} widget.
+\if{html}{\out{<a id="method-get_solution_settings_widget_data"></a>}}
+\if{latex}{\out{\hypertarget{method-get_solution_settings_widget_data}{}}}
+\subsection{Method \code{get_solution_settings_widget_data()}}{
+Get data for displaying the theme in a \code{\link[=solutionSettings]{solutionSettings()}} widget.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Weight$get_map_manager_data()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Weight$get_solution_settings_widget_data()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-\code{list} with data for displaying the object in a \code{\link[=mapManager]{mapManager()}}
-widget.
+\code{list} with widget data.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_map_manager_widget_data"></a>}}
+\if{latex}{\out{\hypertarget{method-get_map_manager_widget_data}{}}}
+\subsection{Method \code{get_map_manager_widget_data()}}{
+Get data for displaying the theme in a \code{\link[=mapManager]{mapManager()}} widget.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Weight$get_map_manager_widget_data()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{list} with widget data.
 }
 }
 \if{html}{\out{<hr>}}

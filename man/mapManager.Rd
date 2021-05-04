@@ -4,15 +4,10 @@
 \alias{mapManager}
 \title{Map manager}
 \usage{
-mapManager(mapElementId, items, width = NULL, height = NULL, elementId = NULL)
+mapManager(x, width = NULL, height = NULL, elementId = NULL)
 }
 \arguments{
-\item{mapElementId}{\code{character} HTML identifer for Leaflet map.
-This should be the argument supplied to the \code{outputId} parameter in
-the \code{\link[leaflet:map-shiny]{leaflet::leafletOutput()}}.}
-
-\item{items}{\code{list} of objects to display on the map. These objects can
-include \link{Weight}, \link{SingleTheme}, \link{MultiTheme} objects.}
+\item{x}{\link{MapManager} object.}
 
 \item{width}{\code{character} width of the displayed widget.
 Defaults to \code{NULL} such that the widget is automatically sized.}
@@ -31,24 +26,12 @@ Leaflet Map within a Shiny web application.
 \section{Server value}{
 
 The widget sends the following values to the server
-(where \code{eId} corresponds to the \code{elementId}):
+(where \code{elementId} corresponds to the \code{elementId}):
 
 \describe{
 
-\item{id_run}{\code{character} name to use for a new solution.
-This value is updated when the user clicks the button to generate
-a new solution.}
+\item{TODO}{\code{TODO}}
 
-\item{id_setting}{\code{list} containng updated weight settings.
-Specifically, this object contains the following elements:
-
-\describe{
-\item{id}{\code{character} identifier for the theme or weight.}
-\item{parameter}{\code{character} name of the updated parameter.
-Available options include: \code{"status"}, \code{"factor"}, or \code{"goal"}.}
-\item{value}{\code{numeric} new setting value.}
-}
-}
 }
 }
 

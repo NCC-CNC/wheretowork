@@ -6,7 +6,7 @@ NULL
 #' Definition for the Theme class. This is a parent class that contains
 #' shared fields and methods for the [SingleTheme] and [MultiTheme] classes.
 #'
-#' @seealso [new_single_theme], [new_multi_theme].
+#' @seealso [new_single_theme()], [new_multi_theme()].
 Theme <- R6::R6Class(
   "Theme",
   public = list(
@@ -19,9 +19,6 @@ Theme <- R6::R6Class(
 
     #' @field feature `list` of [Feature] objects.
     feature = list(),
-
-    #' @field status `logical` value.
-    status = NA,
 
     #' @field initial_status `logical` value.
     initial_status = NA,
@@ -41,23 +38,41 @@ Theme <- R6::R6Class(
     },
 
     #' @description
-    #' Get feature goals.
-    #' @return `numeric` vector of goal values.
-    get_feature_goals = function() {
+    #' Get feature goal values.
+    #' @return `numeric` vector with goal value(s).
+    get_feature_goal = function() {
       vapply(self$feature, FUN.VALUE = numeric(1), function(x) x$get_goal())
     },
 
     #' @description
-    #' Get feature statuses.
-    #' @return `logical` vector of status values.
-    get_feature_statuses = function() {
+    #' Get feature status values.
+    #' @return `logical` vector with status value(s).
+    get_feature_status = function() {
       vapply(self$feature, FUN.VALUE = logical(1), function(x) x$get_status())
     },
 
     #' @description
-    #' Set feature goals.
-    #' @param value `numeric` vector of new values.
-    set_feature_goals = function(value) {
+    #' Get parameter.
+    #' @param name `character` parameter name.
+    #' Available options are `"feature_status"` or `"feature_goal"`.
+    #' @return Value.
+    get_parameter = function(name) {
+      assertthat::assert_that(
+        assertthat::is.string(name),
+        assertthat::noNA(name),
+        name %in% c("feature_status", "feature_goal"))
+      if (identical(name, "feature_status")) {
+        out <- self$get_feature_status()
+      } else if (identical(name, "feature_goal")) {
+        out <- self$get_feature_goal()
+      }
+      out
+    },
+
+    #' @description
+    #' Set feature goal values.
+    #' @param value `numeric` vector containing a value for each feature.
+    set_feature_goal = function(value) {
       assertthat::assert_that(
         is.numeric(value),
         assertthat::noNA(value),
@@ -69,9 +84,9 @@ Theme <- R6::R6Class(
     },
 
     #' @description
-    #' Set feature goals.
-    #' @param value `logical` vector of new values.
-    set_feature_statuses = function(value) {
+    #' Set feature status values.
+    #' @param value `logical` vector containing a value for each feature.
+    set_feature_status = function(value) {
       assertthat::assert_that(
         is.logical(value),
         assertthat::noNA(value),
@@ -80,8 +95,25 @@ Theme <- R6::R6Class(
         self$feature[[i]]$set_status(value[i])
       }
       invisible(self)
-    }
+    },
 
+    #' @description
+    #' Set parameter.
+    #' @param name `character` parameter name.
+    #' Available options are `"feature_status"` or `"feature_goal"`.
+    #' @param value vector containing a value for each feature.
+    set_parameter = function(name, value) {
+      assertthat::assert_that(
+        assertthat::is.string(name),
+        assertthat::noNA(name),
+        name %in% c("feature_status", "feature_goal"))
+      if (identical(name, "feature_status")) {
+        self$set_feature_status(value)
+      } else if (identical(name, "feature_goal")) {
+        self$set_feature_goal(value)
+      }
+      invisible(self)
+    }
   )
 )
 

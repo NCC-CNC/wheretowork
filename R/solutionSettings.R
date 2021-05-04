@@ -1,11 +1,8 @@
-#' New solution manager
+#' Solution settings widget
 #'
-#' Constructs a widget for generating new solutions and managing their
-#' associated settings.
+#' Constructs a widget for maanging the settings for generating solutions.
 #'
-#' @param themes `list` of `Theme` objects to include in the manager.
-#'
-#' @param weights `list` of `Weight` objects to include in the manager.
+#' @param x [SolutionSettings] object.
 #'
 #' @param elementId `character` HTML identifier for the widget.
 #'   Defaults to `NULL`.
@@ -46,20 +43,15 @@
 #' # TODO.
 #'
 #' @export
-newSolutionManager <- function(
-  themes, weights, width = NULL, height = NULL, elementId = NULL) {
+solutionSettings <- function(
+  x, width = NULL, height = NULL, elementId = NULL) {
   # assert arguments are valid
-  TODO
-
-  # forward options using x
-  p = list(
-    message = message
-  )
+  assertthat::assert_that(inherits(x, "SolutionSettings"))
 
   # create widget
   htmlwidgets::createWidget(
-    name = "newSolutionManager",
-    p,
+    name = "solutionSettings",
+    x$get_widget_data,
     width = width,
     height = height,
     package = "locationmisc",
@@ -67,10 +59,10 @@ newSolutionManager <- function(
   )
 }
 
-#' Shiny bindings for newSolutionManager
+#' Shiny bindings for solutionSettings
 #'
-#' Use `newSolutionManagerOutput()` to create a user interface element,
-#' and `renderNewSolutionManager()` to render the widget.
+#' Use `solutionSettingsOutput()` to create a user interface element,
+#' and `renderSolutionSettings()` to render the widget.
 #'
 #' @param outputId output variable to read from
 #'
@@ -78,32 +70,32 @@ newSolutionManager <- function(
 #'   \code{"400px"}, \code{"auto"}) or a number, which will be coerced to a
 #'   string and have \code{"px"} appended.
 #'
-#' @param expr An expression that generates a [newSolutionManager()].
+#' @param expr An expression that generates a [solutionSettings()].
 #'
 #' @param env The environment in which to evaluate \code{expr}.
 #'
 #' @param quoted Is \code{expr} a quoted expression (with \code{quote()})? This
 #'   is useful if you want to save an expression in a variable.
 #'
-#' @name newSolutionManager-shiny
+#' @name solutionSettings-shiny
 #'
 #' @export
-newSolutionManagerOutput <- function(
+solutionSettingsOutput <- function(
   outputId, width = "100%", height = "auto"){
   htmlwidgets::shinyWidgetOutput(
-    outputId, "newSolutionManager", width, height, package = "locationmisc")
+    outputId, "solutionSettings", width, height, package = "locationmisc")
 }
 
-#' @rdname newSolutionManager-shiny
+#' @rdname solutionSettings-shiny
 #' @export
-renderNewSolutionManager <- function(expr, env = parent.frame(), quoted = FALSE) {
+renderSolutionSettings <- function(expr, env = parent.frame(), quoted = FALSE) {
   if (!quoted) { expr <- substitute(expr) } # force quoted
   htmlwidgets::shinyRenderWidget(
-    expr, newSolutionManagerOutput, env, quoted = TRUE)
+    expr, solutionSettingsOutput, env, quoted = TRUE)
 }
 
 # Add custom HTML for the widget (automatically used by htmlwidgets)
-newSolutionManager_html <- function(id, style, class, ...) {
+solutionSettings_html <- function(id, style, class, ...) {
   htmltools::tags$div( id = id, class = class, style = style)
   # TODO
 }

@@ -26,7 +26,6 @@ test_that("initialization", {
   expect_identical(x$id, "FS1")
   expect_identical(x$name, "FS")
   expect_identical(x$feature, list(f))
-  expect_identical(x$status, FALSE)
   expect_identical(x$initial_status, FALSE)
   expect_identical(x$round, FALSE)
   expect_identical(x$icon, shiny::icon("atom"))
@@ -55,8 +54,10 @@ test_that("get methods", {
     icon = "atom",
     id = "FS1")
   # run tests
-  expect_identical(x$get_feature_goals(), 0.2)
-  expect_identical(x$get_feature_statuses(), FALSE)
+  expect_identical(x$get_feature_goal(), 0.2)
+  expect_identical(x$get_feature_status(), FALSE)
+  expect_identical(x$get_parameter("feature_goal"), x$get_feature_goal())
+  expect_identical(x$get_parameter("feature_status"), x$get_feature_status())
 })
 
 test_that("set methods", {
@@ -82,13 +83,17 @@ test_that("set methods", {
     icon = "atom",
     id = "FS1")
   # run tests
-  x$set_feature_goals(0.8)
-  x$set_feature_statuses(TRUE)
-  expect_identical(x$get_feature_goals(), 0.8)
-  expect_identical(x$get_feature_statuses(), TRUE)
+  x$set_feature_goal(0.8)
+  x$set_feature_status(TRUE)
+  expect_identical(x$get_feature_goal(), 0.8)
+  expect_identical(x$get_feature_status(), TRUE)
+  x$set_parameter("feature_goal", 0.5)
+  x$set_parameter("feature_status", FALSE)
+  expect_identical(x$get_feature_goal(), 0.5)
+  expect_identical(x$get_feature_status(), FALSE)
 })
 
-test_that("render methods", {
+test_that("widget methods", {
   # create object
   l <- new_layer(source = "l1.tif", current = 0.034, total = 100, units = "ha")
   f <- new_feature(
@@ -112,7 +117,7 @@ test_that("render methods", {
     id = "FS1")
   # run tests
   expect_identical(
-    x$get_new_solution_manager_data(),
+    x$get_solution_settings_widget_data(),
     list(
       id = "FS1",
       name = "FS",

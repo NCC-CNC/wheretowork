@@ -45,7 +45,6 @@ test_that("initialization", {
   expect_identical(x$id, "MF1")
   expect_identical(x$name, "MF")
   expect_identical(x$feature, list(f1, f2))
-  expect_identical(x$status, FALSE)
   expect_identical(x$initial_status, FALSE)
   expect_identical(x$round, FALSE)
   expect_identical(x$group_min_goal, 0.01)
@@ -98,8 +97,10 @@ test_that("get methods", {
     group_step_goal = 0.002,
     group_current_label = "Hence")
   # run tests
-  expect_identical(x$get_feature_goals(), c(0.2, 0.21))
-  expect_identical(x$get_feature_statuses(), c(FALSE, TRUE))
+  expect_identical(x$get_feature_goal(), c(0.2, 0.21))
+  expect_identical(x$get_feature_status(), c(FALSE, TRUE))
+  expect_identical(x$get_feature_goal(), x$get_parameter("feature_goal"))
+  expect_identical(x$get_feature_status(), x$get_parameter("feature_status"))
 })
 
 test_that("set methods", {
@@ -144,13 +145,18 @@ test_that("set methods", {
     group_step_goal = 0.002,
     group_current_label = "Hence")
   # run tests
-  x$set_feature_goals(c(0.89, 0.26))
-  x$set_feature_statuses(c(TRUE, FALSE))
-  expect_identical(x$get_feature_goals(), c(0.89, 0.26))
-  expect_identical(x$get_feature_statuses(), c(TRUE, FALSE))
+  x$set_feature_goal(c(0.89, 0.26))
+  x$set_feature_status(c(TRUE, FALSE))
+  expect_identical(x$get_feature_goal(), c(0.89, 0.26))
+  expect_identical(x$get_feature_status(), c(TRUE, FALSE))
+  x$set_parameter("feature_goal", c(0.33, 0.67))
+  x$set_parameter("feature_status", c(FALSE, FALSE))
+  expect_identical(x$get_feature_goal(), c(0.33, 0.67))
+  expect_identical(x$get_feature_status(), c(FALSE, FALSE))
+
 })
 
-test_that("render methods", {
+test_that("widget methods", {
   # create object
   l1 <- new_layer(source = "l1.txt", current = 0.2, total = 100, units = "ha")
   l2 <- new_layer(source = "l2.txt", current = 0.5, total = 30, units = "ha")
@@ -193,7 +199,7 @@ test_that("render methods", {
     group_current_label = "Hence")
   # run tests
   expect_identical(
-    x$get_new_solution_manager_data(),
+    x$get_solution_settings_widget_data(),
     list(
         id = "MF1",
         name = "MF",

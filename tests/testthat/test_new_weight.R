@@ -33,6 +33,8 @@ test_that("get methods", {
   # run tests
   expect_identical(x$get_factor(), 0.2)
   expect_identical(x$get_status(), FALSE)
+  expect_identical(x$get_parameter("factor"), x$get_factor())
+  expect_identical(x$get_parameter("status"), x$get_status())
 })
 
 test_that("set methods", {
@@ -52,9 +54,13 @@ test_that("set methods", {
   x$set_status(TRUE)
   expect_identical(x$get_factor(), 0.8)
   expect_identical(x$get_status(), TRUE)
+  x$set_parameter("factor", 0.3)
+  x$set_parameter("status", FALSE)
+  expect_identical(x$get_factor(), 0.3)
+  expect_identical(x$get_status(), FALSE)
 })
 
-test_that("render methods", {
+test_that("widget methods", {
   # create object
   l <- new_layer(source = "asdf.tif", current = 0.2, total = 200, units = "ha")
   x <- new_weight(
@@ -68,7 +74,7 @@ test_that("render methods", {
     id = "FID1")
   # run tests
   expect_identical(
-    x$get_new_solution_manager_data(),
+    x$get_solution_settings_widget_data(),
     list(
       id = "FID1",
       name = "Human Footprint Index",

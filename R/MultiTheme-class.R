@@ -59,7 +59,7 @@ MultiTheme <- R6::R6Class(
         assertthat::noNA(name),
         #### feature
         is.list(feature),
-        all(vapply(feature, inherits, logical(1), "Feature")),
+        all_list_elements_inherit(feature, "Feature"),
         #### group_min_goal
         assertthat::is.number(group_min_goal),
         assertthat::noNA(group_min_goal),
@@ -102,17 +102,15 @@ MultiTheme <- R6::R6Class(
       self$group_limit_goal <- group_limit_goal
       self$group_step_goal <- group_step_goal
       self$group_current_label <- group_current_label
-      self$status <- initial_status
       self$initial_status <- initial_status
       self$round <- round
       self$icon <- icon
     },
 
     #' @description
-    #' Get data for displaying the theme in a [newSolutionManager] widget.
-    #' @return `list` with data for
-    #'   displaying the object in a [newSolutionManager()] widget.
-    get_new_solution_manager_data = function() {
+    #' Get data for displaying the theme in a [solutionSettings()] widget.
+    #' @return `list` with widget data.
+    get_solution_settings_widget_data = function() {
       list(
         id = self$id,
         name = self$name,
@@ -149,17 +147,16 @@ MultiTheme <- R6::R6Class(
             self$feature, function(x) as.character(x$icon),
             character(1)),
         units = self$feature[[1]]$layer$units,
-        initial_status = self$status,
+        initial_status = self$initial_status,
         round = self$round,
         icon = self$icon
       )
     },
 
     #' @description
-    #' Get data for displaying the theme in a [mapManager] widget.
-    #' @return `list` with data for displaying the object in a [mapManager()]
-    #'   widget.
-    get_map_manager_data = function() {
+    #' Get data for displaying the theme in a [mapManager()] widget.
+    #' @return `list` with widget data.
+    get_map_manager_widget_data = function() {
       stop("TODO")
     }
   )

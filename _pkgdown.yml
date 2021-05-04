@@ -1,5 +1,3 @@
-url: https://prioritizr.net
-
 home:
 
 authors:
@@ -20,23 +18,23 @@ reference:
 
   - title: Widgets
     desc: >
-      These pages document functions for adding and using widgets within the Shiny web application framework
+      These pages document functions for adding and using widgets within the Shiny web application framework.
     contents:
-      - newSolutionManager
-      - newSolutionManager-shiny
+      - solutionSettings
+      - solutionSettings-shiny
       - mapManager
       - mapManager-shiny
       - runExample
 
   - title: Class constructors
     desc: >
-      These pages document functions for generating new objects based on package's data structures
+      These pages document functions for generating new objects based on package's data structures.
     contents:
       - starts_with("new_")
 
   - title: Class definitions
     desc: >
-      These pages document the organization of the package's data structures
+      These pages document the organization of the package's data structures. Note that all classes begin with an upper-case letter.
     contents:
       - Layer
       - Feature
@@ -44,3 +42,4 @@ reference:
       - SingleTheme
       - MultiTheme
       - Theme
+      - SolutionSettings

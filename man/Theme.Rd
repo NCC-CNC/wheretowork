@@ -15,7 +15,7 @@ shared fields and methods for the \link{SingleTheme} and \link{MultiTheme} class
 This method intentionally throws an error.
 }
 \seealso{
-\link{new_single_theme}, \link{new_multi_theme}.
+\code{\link[=new_single_theme]{new_single_theme()}}, \code{\link[=new_multi_theme]{new_multi_theme()}}.
 }
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
@@ -25,8 +25,6 @@ This method intentionally throws an error.
 \item{\code{name}}{\code{character} value.}
 
 \item{\code{feature}}{\code{list} of \link{Feature} objects.}
-
-\item{\code{status}}{\code{logical} value.}
 
 \item{\code{initial_status}}{\code{logical} value.}
 
@@ -40,10 +38,12 @@ This method intentionally throws an error.
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-new}{\code{Theme$new()}}
-\item \href{#method-get_feature_goals}{\code{Theme$get_feature_goals()}}
-\item \href{#method-get_feature_statuses}{\code{Theme$get_feature_statuses()}}
-\item \href{#method-set_feature_goals}{\code{Theme$set_feature_goals()}}
-\item \href{#method-set_feature_statuses}{\code{Theme$set_feature_statuses()}}
+\item \href{#method-get_feature_goal}{\code{Theme$get_feature_goal()}}
+\item \href{#method-get_feature_status}{\code{Theme$get_feature_status()}}
+\item \href{#method-get_parameter}{\code{Theme$get_parameter()}}
+\item \href{#method-set_feature_goal}{\code{Theme$set_feature_goal()}}
+\item \href{#method-set_feature_status}{\code{Theme$set_feature_status()}}
+\item \href{#method-set_parameter}{\code{Theme$set_parameter()}}
 \item \href{#method-clone}{\code{Theme$clone()}}
 }
 }
@@ -65,61 +65,102 @@ Create a Theme object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_feature_goals"></a>}}
-\if{latex}{\out{\hypertarget{method-get_feature_goals}{}}}
-\subsection{Method \code{get_feature_goals()}}{
-Get feature goals.
+\if{html}{\out{<a id="method-get_feature_goal"></a>}}
+\if{latex}{\out{\hypertarget{method-get_feature_goal}{}}}
+\subsection{Method \code{get_feature_goal()}}{
+Get feature goal values.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Theme$get_feature_goals()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Theme$get_feature_goal()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-\code{numeric} vector of goal values.
+\code{numeric} vector with goal value(s).
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_feature_statuses"></a>}}
-\if{latex}{\out{\hypertarget{method-get_feature_statuses}{}}}
-\subsection{Method \code{get_feature_statuses()}}{
-Get feature statuses.
+\if{html}{\out{<a id="method-get_feature_status"></a>}}
+\if{latex}{\out{\hypertarget{method-get_feature_status}{}}}
+\subsection{Method \code{get_feature_status()}}{
+Get feature status values.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Theme$get_feature_statuses()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Theme$get_feature_status()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-\code{logical} vector of status values.
+\code{logical} vector with status value(s).
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_feature_goals"></a>}}
-\if{latex}{\out{\hypertarget{method-set_feature_goals}{}}}
-\subsection{Method \code{set_feature_goals()}}{
-Set feature goals.
+\if{html}{\out{<a id="method-get_parameter"></a>}}
+\if{latex}{\out{\hypertarget{method-get_parameter}{}}}
+\subsection{Method \code{get_parameter()}}{
+Get parameter.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Theme$set_feature_goals(value)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Theme$get_parameter(name)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{value}}{\code{numeric} vector of new values.}
+\item{\code{name}}{\code{character} parameter name.
+Available options are \code{"feature_status"} or \code{"feature_goal"}.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+Value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_feature_goal"></a>}}
+\if{latex}{\out{\hypertarget{method-set_feature_goal}{}}}
+\subsection{Method \code{set_feature_goal()}}{
+Set feature goal values.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$set_feature_goal(value)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{value}}{\code{numeric} vector containing a value for each feature.}
 }
 \if{html}{\out{</div>}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_feature_statuses"></a>}}
-\if{latex}{\out{\hypertarget{method-set_feature_statuses}{}}}
-\subsection{Method \code{set_feature_statuses()}}{
-Set feature goals.
+\if{html}{\out{<a id="method-set_feature_status"></a>}}
+\if{latex}{\out{\hypertarget{method-set_feature_status}{}}}
+\subsection{Method \code{set_feature_status()}}{
+Set feature status values.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Theme$set_feature_statuses(value)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Theme$set_feature_status(value)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{value}}{\code{logical} vector of new values.}
+\item{\code{value}}{\code{logical} vector containing a value for each feature.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_parameter"></a>}}
+\if{latex}{\out{\hypertarget{method-set_parameter}{}}}
+\subsection{Method \code{set_parameter()}}{
+Set parameter.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$set_parameter(name, value)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{name}}{\code{character} parameter name.
+Available options are \code{"feature_status"} or \code{"feature_goal"}.}
+
+\item{\code{value}}{vector containing a value for each feature.}
 }
 \if{html}{\out{</div>}}
 }

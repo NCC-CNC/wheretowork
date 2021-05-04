@@ -21,18 +21,20 @@ Definition for the SingleTheme class.
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-new}{\code{SingleTheme$new()}}
-\item \href{#method-get_new_solution_manager_data}{\code{SingleTheme$get_new_solution_manager_data()}}
-\item \href{#method-get_map_manager_data}{\code{SingleTheme$get_map_manager_data()}}
+\item \href{#method-get_solution_settings_widget_data}{\code{SingleTheme$get_solution_settings_widget_data()}}
+\item \href{#method-get_map_manager_widget_data}{\code{SingleTheme$get_map_manager_widget_data()}}
 \item \href{#method-clone}{\code{SingleTheme$clone()}}
 }
 }
 \if{html}{
-\out{<details open ><summary>Inherited methods</summary>}
+\out{<details ><summary>Inherited methods</summary>}
 \itemize{
-\item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="get_feature_goals">}\href{../../locationmisc/html/Theme.html#method-get_feature_goals}{\code{locationmisc::Theme$get_feature_goals()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="get_feature_statuses">}\href{../../locationmisc/html/Theme.html#method-get_feature_statuses}{\code{locationmisc::Theme$get_feature_statuses()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="set_feature_goals">}\href{../../locationmisc/html/Theme.html#method-set_feature_goals}{\code{locationmisc::Theme$set_feature_goals()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="set_feature_statuses">}\href{../../locationmisc/html/Theme.html#method-set_feature_statuses}{\code{locationmisc::Theme$set_feature_statuses()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="get_feature_goal">}\href{../../locationmisc/html/Theme.html#method-get_feature_goal}{\code{locationmisc::Theme$get_feature_goal()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="get_feature_status">}\href{../../locationmisc/html/Theme.html#method-get_feature_status}{\code{locationmisc::Theme$get_feature_status()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="get_parameter">}\href{../../locationmisc/html/Theme.html#method-get_parameter}{\code{locationmisc::Theme$get_parameter()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="set_feature_goal">}\href{../../locationmisc/html/Theme.html#method-set_feature_goal}{\code{locationmisc::Theme$set_feature_goal()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="set_feature_status">}\href{../../locationmisc/html/Theme.html#method-set_feature_status}{\code{locationmisc::Theme$set_feature_status()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="set_parameter">}\href{../../locationmisc/html/Theme.html#method-set_parameter}{\code{locationmisc::Theme$set_parameter()}}\out{</span>}
 }
 \out{</details>}
 }
@@ -67,31 +69,29 @@ A new SingleTheme object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_new_solution_manager_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_new_solution_manager_data}{}}}
-\subsection{Method \code{get_new_solution_manager_data()}}{
-Get data for displaying the theme in a \link{newSolutionManager} widget.
+\if{html}{\out{<a id="method-get_solution_settings_widget_data"></a>}}
+\if{latex}{\out{\hypertarget{method-get_solution_settings_widget_data}{}}}
+\subsection{Method \code{get_solution_settings_widget_data()}}{
+Get data for displaying the theme in a \link{solutionSettings} widget.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SingleTheme$get_new_solution_manager_data()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SingleTheme$get_solution_settings_widget_data()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-\code{list} with data for
-displaying the object in a \code{\link[=newSolutionManager]{newSolutionManager()}} widget.
+\code{list} with widget data.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_map_manager_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_map_manager_data}{}}}
-\subsection{Method \code{get_map_manager_data()}}{
-Get data for displaying the theme in a \link{mapManager} widget.
+\if{html}{\out{<a id="method-get_map_manager_widget_data"></a>}}
+\if{latex}{\out{\hypertarget{method-get_map_manager_widget_data}{}}}
+\subsection{Method \code{get_map_manager_widget_data()}}{
+Get data for displaying the theme in a \code{\link[=mapManager]{mapManager()}} widget.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SingleTheme$get_map_manager_data()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SingleTheme$get_map_manager_widget_data()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-\code{list} with data for displaying the object in a \code{\link[=mapManager]{mapManager()}}
-widget.
+\code{list} with widget data.
 }
 }
 \if{html}{\out{<hr>}}

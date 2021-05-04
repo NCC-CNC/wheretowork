@@ -1,72 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://prioritizr.net/404.html</loc>
+    <loc>/404.html</loc>
   </url>
   <url>
-    <loc>https://prioritizr.net/authors.html</loc>
+    <loc>/authors.html</loc>
   </url>
   <url>
-    <loc>https://prioritizr.net/index.html</loc>
+    <loc>/index.html</loc>
   </url>
   <url>
-    <loc>https://prioritizr.net/news/index.html</loc>
+    <loc>/news/index.html</loc>
   </url>
   <url>
-    <loc>https://prioritizr.net/reference/Feature.html</loc>
+    <loc>/reference/Feature.html</loc>
   </url>
   <url>
-    <loc>https://prioritizr.net/reference/Layer.html</loc>
+    <loc>/reference/Layer.html</loc>
   </url>
   <url>
-    <loc>https://prioritizr.net/reference/MultiTheme.html</loc>
+    <loc>/reference/MultiTheme.html</loc>
   </url>
   <url>
-    <loc>https://prioritizr.net/reference/SingleTheme.html</loc>
+    <loc>/reference/SingleTheme.html</loc>
   </url>
   <url>
-    <loc>https://prioritizr.net/reference/Theme.html</loc>
+    <loc>/reference/SolutionSettings.html</loc>
   </url>
   <url>
-    <loc>https://prioritizr.net/reference/Weight.html</loc>
+    <loc>/reference/Theme.html</loc>
   </url>
   <url>
-    <loc>https://prioritizr.net/reference/index.html</loc>
+    <loc>/reference/Weight.html</loc>
   </url>
   <url>
-    <loc>https://prioritizr.net/reference/locationmisc.html</loc>
+    <loc>/reference/all_list_elements_inherit.html</loc>
   </url>
   <url>
-    <loc>https://prioritizr.net/reference/mapManager-shiny.html</loc>
+    <loc>/reference/index.html</loc>
   </url>
   <url>
-    <loc>https://prioritizr.net/reference/mapManager.html</loc>
+    <loc>/reference/locationmisc.html</loc>
   </url>
   <url>
-    <loc>https://prioritizr.net/reference/newSolutionManager-shiny.html</loc>
+    <loc>/reference/mapManager-shiny.html</loc>
   </url>
   <url>
-    <loc>https://prioritizr.net/reference/newSolutionManager.html</loc>
+    <loc>/reference/mapManager.html</loc>
   </url>
   <url>
-    <loc>https://prioritizr.net/reference/new_feature.html</loc>
+    <loc>/reference/new_feature.html</loc>
   </url>
   <url>
-    <loc>https://prioritizr.net/reference/new_layer.html</loc>
+    <loc>/reference/new_layer.html</loc>
   </url>
   <url>
-    <loc>https://prioritizr.net/reference/new_multi_theme.html</loc>
+    <loc>/reference/new_multi_theme.html</loc>
   </url>
   <url>
-    <loc>https://prioritizr.net/reference/new_single_theme.html</loc>
+    <loc>/reference/new_single_theme.html</loc>
   </url>
   <url>
-    <loc>https://prioritizr.net/reference/new_theme.html</loc>
+    <loc>/reference/new_solution_settings.html</loc>
   </url>
   <url>
-    <loc>https://prioritizr.net/reference/new_weight.html</loc>
+    <loc>/reference/new_theme.html</loc>
   </url>
   <url>
-    <loc>https://prioritizr.net/reference/runExample.html</loc>
+    <loc>/reference/new_weight.html</loc>
+  </url>
+  <url>
+    <loc>/reference/runExample.html</loc>
+  </url>
+  <url>
+    <loc>/reference/solutionSettings-shiny.html</loc>
+  </url>
+  <url>
+    <loc>/reference/solutionSettings.html</loc>
   </url>
 </urlset>

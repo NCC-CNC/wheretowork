@@ -4,52 +4,30 @@
 #' This widget is designed to be used in conjunction with an existing
 #' Leaflet Map within a Shiny web application.
 #'
-#' @param mapElementId `character` HTML identifer for Leaflet map.
-#'   This should be the argument supplied to the `outputId` parameter in
-#'   the [leaflet::leafletOutput()].
+#' @param x [MapManager] object.
 #'
-#' @param items `list` of objects to display on the map. These objects can
-#'  include [Weight], [SingleTheme], [MultiTheme] objects.
-#'
-#' @inheritParams newSolutionManager
+#' @inheritParams solutionSettings
 #'
 #' @section Server value:
 #' The widget sends the following values to the server
-#' (where `eId` corresponds to the `elementId`):
+#' (where `elementId` corresponds to the `elementId`):
 #'
 #' \describe{
 #'
-#'   \item{id_run}{`character` name to use for a new solution.
-#'     This value is updated when the user clicks the button to generate
-#'     a new solution.}
+#'   \item{TODO}{`TODO`}
 #'
-#'   \item{id_setting}{`list` containng updated weight settings.
-#'     Specifically, this object contains the following elements:
-#'
-#'   \describe{
-#'     \item{id}{`character` identifier for the theme or weight.}
-#'     \item{parameter}{`character` name of the updated parameter.
-#'       Available options include: `"status"`, `"factor"`, or `"goal"`.}
-#'     \item{value}{`numeric` new setting value.}
-#'   }
-#' }
 #' }
 #'
 #' @export
 mapManager <- function(
-  mapElementId, items, width = NULL, height = NULL, elementId = NULL) {
-  # TODO
-  stop("not implemented")
-
-  # forward options using x
-  p = list(
-    message = message
-  )
+  x, width = NULL, height = NULL, elementId = NULL) {
+  # assert that arguments are valid
+  assertthat::assert_that(inherits(x, "MapManager"))
 
   # create widget
   htmlwidgets::createWidget(
     name = 'mapManager',
-    p,
+    x$get_map_manager_widget_data(),
     width = width,
     height = height,
     package = 'locationmisc',

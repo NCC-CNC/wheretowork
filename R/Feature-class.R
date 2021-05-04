@@ -138,7 +138,10 @@ Feature <- R6::R6Class(
     set_goal = function(value) {
       assertthat::assert_that(
         assertthat::is.number(value),
-        assertthat::noNA(value))
+        assertthat::noNA(value),
+        value >= self$min_goal,
+        value <= self$max_goal,
+        value >= self$limit_goal)
       self$goal <- value
       invisible(self)
     },

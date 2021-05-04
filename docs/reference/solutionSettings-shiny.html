@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>New layer — new_layer • locationmisc</title>
+<title>Shiny bindings for solutionSettings — solutionSettings-shiny • locationmisc</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,9 @@
 
 
 
-<meta property="og:title" content="New layer — new_layer" />
-<meta property="og:description" content="Create a new Layer object." />
+<meta property="og:title" content="Shiny bindings for solutionSettings — solutionSettings-shiny" />
+<meta property="og:description" content="Use solutionSettingsOutput() to create a user interface element,
+and renderSolutionSettings() to render the widget." />
 
 
 
@@ -57,8 +58,6 @@
 <![endif]-->
 
 
-
-<!-- dependencies from examples -->
 
 
   
@@ -111,58 +110,49 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>New layer</h1>
+    <h1>Shiny bindings for solutionSettings</h1>
     
-    <div class="hidden name"><code>new_layer.Rd</code></div>
+    <div class="hidden name"><code>solutionSettings-shiny.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Create a new <a href='Layer.html'>Layer</a> object.</p>
+    <p>Use <code>solutionSettingsOutput()</code> to create a user interface element,
+and <code>renderSolutionSettings()</code> to render the widget.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>new_layer</span><span class='op'>(</span><span class='va'>source</span>, <span class='va'>current</span>, <span class='va'>total</span>, <span class='va'>units</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>solutionSettingsOutput</span><span class='op'>(</span><span class='va'>outputId</span>, width <span class='op'>=</span> <span class='st'>"100%"</span>, height <span class='op'>=</span> <span class='st'>"auto"</span><span class='op'>)</span>
+
+<span class='fu'>renderSolutionSettings</span><span class='op'>(</span><span class='va'>expr</span>, env <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span>, quoted <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>source</th>
-      <td><p><code>character</code> file path for the underlying data.</p></td>
+      <th>outputId</th>
+      <td><p>output variable to read from</p></td>
     </tr>
     <tr>
-      <th>current</th>
-      <td><p><code>numeric</code> current proportion of values held in existing
-conservation areas (e.g. 0.1 = 10%).</p></td>
+      <th>width, height</th>
+      <td><p>Must be a valid CSS unit (like <code>"100%"</code>,
+<code>"400px"</code>, <code>"auto"</code>) or a number, which will be coerced to a
+string and have <code>"px"</code> appended.</p></td>
     </tr>
     <tr>
-      <th>total</th>
-      <td><p><code>numeric</code> total amount of all values in the underlying data.</p></td>
+      <th>expr</th>
+      <td><p>An expression that generates a <code><a href='solutionSettings.html'>solutionSettings()</a></code>.</p></td>
     </tr>
     <tr>
-      <th>units</th>
-      <td><p><code>character</code> units for the values in the underlying data.</p></td>
+      <th>env</th>
+      <td><p>The environment in which to evaluate <code>expr</code>.</p></td>
+    </tr>
+    <tr>
+      <th>quoted</th>
+      <td><p>Is <code>expr</code> a quoted expression (with <code><a href='https://rdrr.io/r/base/substitute.html'>quote()</a></code>)? This
+is useful if you want to save an expression in a variable.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <a href='Layer.html'>Layer</a> object.</p>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># create new object</span>
-<span class='va'>l</span> <span class='op'>&lt;-</span> <span class='fu'>new_layer</span><span class='op'>(</span>source <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span><span class='op'>)</span>, current <span class='op'>=</span> <span class='fl'>0.1</span>, total <span class='op'>=</span> <span class='fl'>12</span>, units <span class='op'>=</span> <span class='st'>"ha"</span><span class='op'>)</span>
-
-<span class='co'># print object</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>l</span><span class='op'>)</span>
-</div><div class='co'>#&gt; &lt;Layer&gt;
-#&gt;   Public:
-#&gt;     clone: function (deep = FALSE) 
-#&gt;     current: 0.1
-#&gt;     initialize: function (source, current, total, units) 
-#&gt;     source: /tmp/RtmpGe1pxJ/file3bd419f331f4
-#&gt;     total: 12
-#&gt;     units: ha</div><div class='input'>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

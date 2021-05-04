@@ -115,12 +115,32 @@ Weight <- R6::R6Class(
     },
 
     #' @description
+    #' Get parameter.
+    #' @param name `character` parameter name.
+    #' Available options are `"status"` or `"factor"`.
+    #' @return Value.
+    get_parameter = function(name) {
+      assertthat::assert_that(
+        assertthat::is.string(name),
+        assertthat::noNA(name),
+        name %in% c("status", "factor"))
+      if (identical(name, "status")) {
+        out <- self$get_status()
+      } else if (identical(name, "factor")) {
+        out <- self$get_factor()
+      }
+      out
+    },
+
+    #' @description
     #' Set factor.
     #' @param value `numeric` new value.
     set_factor = function(value) {
       assertthat::assert_that(
         assertthat::is.number(value),
-        assertthat::noNA(value))
+        assertthat::noNA(value),
+        value >= self$min_factor,
+        value <= self$max_factor)
       self$factor <- value
       invisible(self)
     },
@@ -137,10 +157,27 @@ Weight <- R6::R6Class(
     },
 
     #' @description
-    #' Get data for displaying the theme in a [newSolutionManager] widget.
-    #' @return `list` with data for
-    #'   displaying the object in a [newSolutionManager()] widget.
-    get_new_solution_manager_data = function() {
+    #' Set parameter.
+    #' @param name `character` parameter name.
+    #' Available options are `"status"` or `"factor"`.
+    #' @param value `ANY` new value.
+    set_parameter = function(name, value) {
+      assertthat::assert_that(
+        assertthat::is.string(name),
+        assertthat::noNA(name),
+        name %in% c("status", "factor"))
+      if (identical(name, "status")) {
+        self$set_status(value)
+      } else if (identical(name, "factor")) {
+        self$set_factor(value)
+      }
+      invisible(self)
+    },
+
+    #' @description
+    #' Get data for displaying the theme in a [solutionSettings()] widget.
+    #' @return `list` with widget data.
+    get_solution_settings_widget_data = function() {
       list(
         id = self$id,
         name = self$name,
@@ -153,10 +190,9 @@ Weight <- R6::R6Class(
     },
 
     #' @description
-    #' Get data for displaying the theme in a [mapManager] widget.
-    #' @return `list` with data for displaying the object in a [mapManager()]
-    #'   widget.
-    get_map_manager_data = function() {
+    #' Get data for displaying the theme in a [mapManager()] widget.
+    #' @return `list` with widget data.
+    get_map_manager_widget_data = function() {
       stop("TODO")
     }
 
