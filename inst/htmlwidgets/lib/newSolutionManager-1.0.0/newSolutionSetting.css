@@ -1,0 +1,291 @@
+/* overall widget */
+.new-solution-setting {
+  width: 100%;
+  border: 1px var(--border) solid;
+  border-radius: 5px 5px 5px 5px;
+}
+
+/* view containers */
+.new-solution-setting .single-view {
+  overflow-y: auto;
+  max-height: 30vh;
+}
+
+/* header and sub-header containers */
+.new-solution-setting .header,
+.new-solution-setting .sub-header {
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-bottom: 0px;
+  display: flex;
+  align-items: center;
+}
+
+/* header container */
+.new-solution-setting .status {
+  margin-top: 0px;
+}
+
+.new-solution-setting .header .name-label {
+  font-size: 14px;
+  margin-left: 5px;
+  margin-bottom: 0px;
+  margin-bottom: -4px;
+}
+
+.new-solution-setting .header .el-switch {
+  font-size: 14px;
+  font-weight: 700;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+/* sub-header container */
+.new-solution-setting .sub-header .name-label {
+  font-size: 12px;
+  font-weight: 700;
+  margin-left: 5px;
+  margin-bottom: 0px;
+  margin-bottom: -3px;
+}
+
+.new-solution-setting .sub-header .el-switch {
+  font-size: 11px;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* icon and sub-icon containers */
+.new-solution-setting .icon,
+.new-solution-setting .sub-icon {
+  float: right;
+  padding-right: 10px;
+  padding-bottom: 0px;
+  padding-top: 0px;
+}
+
+.new-solution-setting .icon {
+  color: var(--icon);
+  font-size: 30px;
+}
+
+.new-solution-setting .sub-icon {
+  color: var(--sub-icon);
+  font-size: 25px;
+}
+
+/* tabs */
+.new-solution-setting .tabbable {
+  padding-top: 2px;
+}
+
+.new-solution-setting a[role = "tab"] {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+/* info */
+/* -- containers */
+.new-solution-setting .info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0px;
+  padding-top: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.new-solution-setting .single-container .info {
+  padding-top: 0px;
+}
+
+
+.new-solution-setting .sub-info {
+  display: flex;
+  align-items: center;
+  flex-basis: 50%;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* --  labels */
+.new-solution-setting .info label {
+  font-size: 12px;
+  font-weight: 400;
+  vertical-align: middle;
+  margin-left: 2px;
+  margin-bottom: -4px;
+}
+
+/* --  symbols */
+.new-solution-setting .current-symbol,
+.new-solution-setting .slider-symbol {
+  width: 12px;
+  height: 12px;
+  display:inline-block;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 1px solid var(--symbol-border);
+  box-sizing: border-box;
+}
+
+.new-solution-setting .slider-symbol {
+  background-color: var(--slider);
+  color: var(--slider);
+}
+
+.new-solution-setting .current-symbol {
+  background-color: var(--current);
+  color: var(--current);
+}
+
+/* -- inactive styling */
+.new-solution-setting label[disabled],
+.new-solution-setting i[disabled] {
+  color: var(--inactive) !important;
+}
+
+.new-solution-setting .info div[disabled] {
+  background-color: var(--inactive) !important;
+  color: var(--inactive) !important;
+}
+
+/* slider styling (current bar and widget) */
+.new-solution-setting .slider {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  padding-top: 12px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+}
+
+.new-solution-setting .bar-cap,
+.new-solution-setting .current-bar,
+.new-solution-setting .current-min-bar,
+.new-solution-setting .current-max-bar {
+  width: 0%;
+  height: 12px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.new-solution-setting .current-bar,
+.new-solution-setting .current-min-bar,
+.new-solution-setting .current-max-bar {
+  position: absolute;
+}
+
+.new-solution-setting .bar-cap {
+  color: var(--current);
+  background-color: var(--current);
+  padding-left: 5px;
+  border-radius: 5px 0px 0px 5px;
+}
+
+.new-solution-setting .current-bar,
+.new-solution-setting .current-min-bar {
+  color: var(--current);
+  background-color: var(--current);
+}
+
+.new-solution-setting .current-max-bar {
+  background-color: var(--current-transparent);
+}
+
+.new-solution-setting .bars,
+.new-solution-setting .widget {
+  width: 95%;
+  position: absolute;
+  padding-right: 0px;
+  margin-right: 0px;
+}
+
+.new-solution-setting .bars {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* add extra padding if there is a current bar */
+.new-solution-setting .has-current-bar {
+  margin-left: 5px;
+}
+
+/* noUiSlider settings */
+.new-solution-setting .noUi-connect {
+  background: var(--slider);
+}
+
+/* add extra padding if there is a current bar */
+.new-solution-setting .noUiSlider-widget {
+  width: 100%;
+  z-index: 10;
+}
+
+.new-solution-setting [disabled] .noUi-connect {
+  background: #B8B8B8 !important;
+}
+
+/* -- main bar */
+.noUi-horizontal {
+  height: 10px;
+}
+
+/* -- handle */
+.noUi-horizontal .noUi-handle {
+  width: 14px;
+  height: 20px;
+  right: -7px;
+}
+
+/* -- notches */
+.noUi-handle:before,
+.noUi-handle:after {
+  height: 6px;
+  left: 4px;
+}
+.noUi-handle:after {
+  left: 7px;
+}
+
+/* el-widget styling */
+.el-switch.el-switch > input[type="checkbox"]:checked + .el-switch-style {
+  background-color: var(--active);
+}
+.el-switch.el-switch > input[type="checkbox"]:checked[disabled] + .el-switch-style {
+  background-color: var(--inactive);
+}
+.el-switch > input[type="checkbox"]:checked[disabled] + .el-switch-style {
+  background-color: var(--inactive);
+}
+.el-switch > input[type="checkbox"][disabled] + .el-switch-style {
+  background-color: var(--inactive);
+}
+.el-radio.el-radio > input[type="radio"] + label:hover:before,
+.el-checkbox.el-checkbox > input[type="checkbox"] + label:hover:before,
+.el-radio.el-radio > input[type="radio"]:checked + label:before,
+.el-checkbox.el-checkbox > input[type="checkbox"]:checked + label:before {
+  border-color: var(--active);
+}
+.el-checkbox.el-checkbox > input[type="checkbox"]:checked + label:before,
+.el-radio.el-radio > input[type="radio"] + label:after {
+  background: var(--active);
+}
+.el-radio.el-radio > input[type="radio"][disabled] + label:hover:before,
+.el-checkbox.el-checkbox > input[type="checkbox"][disabled] + label:hover:before {
+  border-color: var(--inactive);
+}
+.el-checkbox.el-checkbox > input[type="checkbox"]:checked[disabled] + label:before,
+.el-radio.el-radio > input[type="radio"]:checked[disabled] + label:before {
+  border-color: var(--inactive);
+}
+.el-checkbox.el-checkbox > input[type="checkbox"][disabled]:checked + label:before,
+.el-radio.el-radio > input[type="radio"]:checked[disabled] + label:after {
+  background: var(--inactive);
+}
+.el-switch .el-switch-style {
+  background: var(--inactive);
+}

@@ -1,0 +1,39 @@
+all: man readme test check spellcheck
+
+clean:
+	rm -rf man/*
+	rm -rf data/*
+	rm -rf docs/*
+	rm -rf inst/doc/*
+
+docs: man readme
+
+man:
+	R --slave -e "devtools::document()"
+
+readme:
+	R --slave -e "rmarkdown::render('README.Rmd')"
+
+test:
+	R --slave -e "devtools::test()" > test.log 2>&1
+	rm -f tests/testthat/Rplots.pdf
+
+check:
+	echo "\n===== R CMD CHECK =====\n" > check.log 2>&1
+	R --slave -e "devtools::check(build_args = '--no-build-vignettes', args = '--no-build-vignettes', run_dont_test = TRUE, vignettes = FALSE)" >> check.log 2>&1
+
+install:
+	R --slave -e "devtools::install_local(getwd())"
+
+spellcheck:
+	echo "\n===== SPELL CHECK =====\n" > spell.log 2>&1
+	R --slave -e "devtools::spell_check()" >> spell.log 2>&1
+
+examples:
+	R --slave -e "devtools::run_examples(test = TRUE, run = TRUE);warnings()"  >> examples.log
+	rm -f Rplots.pdf
+
+demo:
+	R --slave -e "devtools::load_all();options(shiny.launch.browser=TRUE);locationmisc::runExample()"
+
+.PHONY: clean data readme test check install man spellcheck examples demo

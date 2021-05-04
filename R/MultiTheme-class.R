@@ -1,0 +1,274 @@
+#' @include internal.R Feature-class.R Theme-class.R
+NULL
+
+#' MultiTheme class
+#'
+#' Definition for the MultiTheme class.
+#'
+#' @seealso [new_multi_theme()].
+MultiTheme <- R6Class(
+  "MultiTheme",
+  inherit = Theme,
+  public = list(
+
+    #' @field group_min_goal `numeric` value.
+    group_min_goal = NA_real_,
+
+    #' @field group_max_goal `numeric` value.
+    group_max_goal = NA_real_,
+
+    #' @field group_initial_goal `numeric` value.
+    group_initial_goal = NA_real_,
+
+    #' @field group_limit_goal `numeric` value.
+    group_limit_goal = NA_real_,
+
+    #' @field group_step_goal `numeric` value.
+    group_step_goal = NA_real_,
+
+    #' @field group_current_label `character` value.
+    group_current_label = NA_character_,
+
+    #' @description
+    #' Create a MultiTheme object.
+    #' @param id `character` value.
+    #' @param name `character` value.
+    #' @param feature `list` of [Feature] objects.
+    #' @param group_min_goal `numeric` value.
+    #' @param group_max_goal `numeric` value.
+    #' @param group_initial_goal `numeric` value.
+    #' @param group_limit_goal `numeric` value.
+    #' @param group_step_goal `numeric` value.
+    #' @param group_current_label `character` value.
+    #' @param initial_status `logical` value.
+    #' @param round `logical` value.
+    #' @return A new MultiTheme object.
+    initialize = function(
+      id, name, feature,
+      group_min_goal, group_max_goal, group_initial_goal, group_limit_goal,
+      group_step_goal, group_current_label,
+      initial_status, round) {
+      ### assert that arguments are valid
+      assertthat::assert_that(
+        #### id
+        assertthat::is.string(id),
+        assertthat::is.noNA(id),
+        #### name
+        assertthat::is.string(name),
+        assertthat::is.noNA(name),
+        #### feature
+        is.list(feature),
+        all(vapply(feature, inherits, logical(1), "Feature")),
+        #### group_min_goal
+        assertthat::is.number(group_min_goal),
+        assertthat::is.noNA(group_min_goal),
+        #### group_max_goal
+        assertthat::is.number(group_max_goal),
+        assertthat::is.noNA(group_max_goal),
+        #### group_initial_goal
+        assertthat::is.number(group_initial_goal),
+        assertthat::is.noNA(group_initial_goal),
+        #### group_limit_goal
+        assertthat::is.number(group_limit_goal),
+        assertthat::is.noNA(group_limit_goal),
+        #### group_step_goal
+        assertthat::is.number(group_step_goal),
+        assertthat::is.noNA(group_step_goal),
+        #### group_current_label
+        assertthat::is.string(group_current_label),
+        assertthat::is.noNA(group_current_label),
+        #### initial_status
+        assertthat::is.flag(initial_status),
+        assertthat::is.noNA(initial_status),
+        #### round
+        assertthat::is.flag(round),
+        assertthat::is.noNA(round),
+        #### icon
+        inherits(icon, "shiny.tag"))
+      ## assert all feature have ame units
+      assertthat::assert_that(
+        dplyr::n_distinct(
+          vapply(feature, FUN.VALUE = character(1), function(x) x$units)) == 1,
+        msg = "argument to `feature` contains elements with different units")
+      ## set fields
+      self$id <- id
+      self$name <- name
+      self$feature <- feature
+      self$group_min_goal <- group_min_goal
+      self$group_max_goal <- group_max_goal
+      self$group_initial_goal <- group_initial_goal
+      self$group_limit_goal <- group_limit_goal
+      self$group_step_goal <- group_step_goal
+      self$group_current_label <- group_current_label
+      self$status <- initial_status
+      self$initial_status <- initial_status
+      self$round <- round
+      self$icon <- icon
+    },
+
+    #' @description
+    #' Get data for displaying the theme in a [newSolutionManager] widget.
+    #' @return `list` with data for
+    #'   displaying the object in a [newSolutionManager()] widget.
+    get_new_solution_manager_data = function() {
+      list(
+        id = self$id,
+        name = self$name,
+        feature_name =
+          vapply(self$feature, function(x) x$name, character(1)),
+        feature_id =
+          vapply(self$feature, function(x) x$name, character(1)),
+        feature_total_amount =
+          vapply(self$feature, function(x) x$total, numeric(1)),
+        feature_current_held =
+          vapply(self$feature, function(x) x$current, numeric(1)),
+        group_min_goal = self$group_min_goal,
+        group_max_goal = self$group_max_goal,
+        group_initial_goal = self$group_initial_goal,
+        group_limit_goal = self$group_limit_goal,
+        group_step_goal = self$group_step_goal,
+        group_current_label = self$group_current_label,
+        feature_min_goal =
+          vapply(self$feature, function(x) x$min_goal, numeric(1)),
+        feature_max_goal =
+          vapply(self$feature, function(x) x$max_goal, numeric(1)),
+        feature_initial_goal =
+          vapply(self$feature, function(x) x$goal, numeric(1)),
+        feature_limit_goal =
+          vapply(self$feature, function(x) x$limit_goal, numeric(1)),
+        feature_step_goal =
+          vapply(self$feature, function(x) x$step_goal, numeric(1)),
+        feature_current_label =
+          vapply(self$feature, function(x) x$current_label, character(1)),
+        feature_initial_status =
+          vapply(self$feature, function(x) x$status, logical(1)),
+        feature_units = self$feature[[1]]$units,
+        initial_status = self$status,
+        round = self$round,
+        icon = self$icon,
+        feature_icon =
+          vapply(self$feature, function(x) x$feature_icon, character(1))
+      )
+    },
+
+    #' @description
+    #' Get data for displaying the theme in a [mapManager] widget.
+    #' @return `list` with data for displaying the object in a [mapManager()]
+    #'   widget.
+    get_map_manager_data = function() {
+      stop("TODO")
+    }
+  )
+)
+
+#' New multi-theme
+#'
+#' Create a new [MultiTheme] object.
+#'
+#' @param name `character` Name of the theme.
+#'
+#' @param feature `list` of [Feature] objects.
+#'
+#' @param group_min_goal `numeric` The minimum goal (inclusive)
+#'   shown for the features under the group view.
+#'   Note that goal values are specified as proportions, such that a
+#'   value of 0.1 corresponds to 10%.
+#'   Defaults to 0 (i.e. 0%).
+#'
+#' @param group_max_goal `numeric` The maximum goal (inclusive)
+#'   shown for the features under the group view.
+#'   Note that goal values are specified as proportions, such that a
+#'   value of 0.1 corresponds to 10%.
+#'   Defaults to 1 (i.e. 100%).
+#'
+#' @param group_initial_goal `numeric` The initial goal
+#'   for the features under the group view.
+#'   Note that goal values are specified as proportions, such that a
+#'   value of 0.1 corresponds to 10%.
+#'   Defaults to 0.3 (i.e. 30%).
+#'
+#' @param group_limit_goal `numeric`  The minimum increment for setting goals
+#'   for the features under the group view.
+#'   Note that goal are specified as proportions, such that a
+#'   value of 0.01 corresponds to 1%.
+#'   Defaults to 0.01 (i.e. 1%).
+#'
+#' @param group_step_goal `numeric` The minimum increment for setting goals
+#'   for the features under the group view.
+#'   Note that goal are specified as proportions, such that a
+#'   value of 0.01 corresponds to 1%.
+#'   Defaults to 0.01 (i.e. 1%).
+#'
+#' @param group_current_label `character` The display label for the current
+#'  level of representation for the features under the group view.
+#'  Defaults to `Current`.
+#'
+#' @param initial_status `logical` The initial status.
+#'   This is used to display information on whether the theme is
+#'   selected (or not) for subsequent analysis.
+#'   Defaults to `TRUE`
+#'
+#' @param round `logical` should all numbers be rounded to the nearest integer?
+#'   Defaults to `TRUE`.
+#'
+#' @param icon `character` or `shiny.tag` Icon to display for the feature
+#'  This icon should indicate the type of data that underpin the feature.
+#'  If the argument to `icon` is a `character`, it is used with
+#'  [shiny::icon()] to generate an `shiny.tag` icon.
+#'  Defaults to `"map-marked-alt"`.
+#'
+#' @param id `character` unique identifier.
+#'   Defaults to a random identifier ([uuid::UUIDgenerate()]).
+#'
+#' @return A [SingleTheme] object.
+#'
+#' @examples
+#' # create layers
+#' l1 <- new_layer(source = tempfile(), current = 0.1, total = 12, units = "ha")
+#' l2 <- new_layer(source = tempfile(), current = 0.2, total = 15, units = "ha")
+#' l3 <- new_layer(source = tempfile(), current = 0.4, total = 20, units = "ha")
+#'
+#' # create features the layers
+#' f1 <- new_feature(name = "Pangolin", layer = l)
+#' f2 <- new_feature(name = "Panda", layer = l)
+#' f3 <- new_feature(name = "Palms", layer = l)
+#'
+#' # create a multi-theme using the features
+#' mt <- new_single_theme(
+#'   name = "Endangered species", feature = list(f1, f2, f3))
+#'
+#' # print object
+#' print(mt)
+#'
+#' @export
+new_multi_theme <- function(
+  name,
+  feature,
+  group_min_goal = 0,
+  group_max_goal = 1,
+  group_initial_goal = 0.3,
+  group_limit_goal = 0.1,
+  group_step_goal = 0.01,
+  group_current_label = "Current",
+  initial_status = TRUE,
+  round = TRUE,
+  icon = "map-marked-alt",
+  id = uuid::UUIDgenerate()) {
+  # convert icon to shiny.tag if needed
+  if (is.character(icon))
+    icon <- shiny::icon(icon)
+  # return new feature
+  MultiTheme$new(
+    id = id,
+    name = name,
+    feature = feature,
+    group_min_goal = group_min_goal,
+    group_max_goal = group_max_goal,
+    group_initial_goal = group_max_goal,
+    group_limit_goal = group_limit_goal,
+    group_step_goal = group_step_goal,
+    group_current_label = group_current_label,
+    initial_status = initial_status,
+    round = round,
+    icon = icon)
+}
