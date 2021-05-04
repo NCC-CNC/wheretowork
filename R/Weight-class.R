@@ -186,7 +186,7 @@ Weight <- R6::R6Class(
 #'
 #' @examples
 #' # create a new layer
-#' l <- new_layer(source = tempfile(), total = 12, units = "ha")
+#' l <- new_layer(source = tempfile(), current = 0.2, total = 12, units = "ha")
 #'
 #' # create a new weight
 #' w <- new_weight(name = "NDVI", layer = l)

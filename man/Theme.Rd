@@ -9,8 +9,8 @@ Theme class
 Theme class
 }
 \details{
-Definition for the Themeclass. Note that this class should not be
-interacted with directly.
+Definition for the Theme class. This is a parent class that contains
+shared fields and methods for the \link{SingleTheme} and \link{MultiTheme} classes.
 
 This method intentionally throws an error.
 }

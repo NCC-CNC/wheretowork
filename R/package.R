@@ -7,8 +7,8 @@ NULL
 
 #' locationmisc: Classes, Widgets, and Functions for the Location App
 #'
-#' This package provides classes, widgets, and functions for building
-#' the Location App.
+#' This package provides classes, widgets, and functions for the
+#' [Location App](https://github.com/NCC-CNC/location-app).
 #'
 #' @name locationmisc
 #' @docType package

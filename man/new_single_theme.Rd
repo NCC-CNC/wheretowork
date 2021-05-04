@@ -28,10 +28,10 @@ Defaults to \code{TRUE}}
 \item{round}{\code{logical} should all numbers be rounded to the nearest integer?
 Defaults to \code{TRUE}.}
 
-\item{icon}{\code{character} or \code{shiny.tag} Icon to display for the feature
+\item{icon}{\code{shiny.tag} Icon to display for the feature
 This icon should indicate the type of data that underpin the feature.
-If the argument to \code{icon} is a \code{character}, it is used with
-\code{\link[shiny:icon]{shiny::icon()}} to generate an \code{shiny.tag} icon.
+Alternatively, the argument can be a \code{character} to automactially
+generate a \code{shiny.tag} icon (using \code{\link[shiny:icon]{shiny::icon()}}).
 Defaults to \code{"map-marked-alt"}.}
 
 \item{id}{\code{character} unique identifier.

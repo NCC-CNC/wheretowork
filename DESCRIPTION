@@ -1,8 +1,8 @@
 Package: locationmisc
-Title: 'Shiny' widgets for systematic conservation planning
+Title: Classes, widgets, and functions for the Location App.
 Version: 0.0.0.9000
 Description:
-  This package provides widgets for building web applications for systematic conservation planning under the 'Shiny' framework.
+  This package provides classes, widgets, and functions for the Location App.
 Authors@R: c(
   person(c('Jeffrey', 'O'), 'Hanson',
     email='jeffrey.hanson@uqconnect.edu.au', role = c('aut', 'cre'),

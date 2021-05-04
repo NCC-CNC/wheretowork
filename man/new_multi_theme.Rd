@@ -32,10 +32,10 @@ Defaults to \code{TRUE}}
 \item{round}{\code{logical} should all numbers be rounded to the nearest integer?
 Defaults to \code{TRUE}.}
 
-\item{icon}{\code{character} or \code{shiny.tag} Icon to display for the feature
+\item{icon}{\code{shiny.tag} Icon to display for the feature
 This icon should indicate the type of data that underpin the feature.
-If the argument to \code{icon} is a \code{character}, it is used with
-\code{\link[shiny:icon]{shiny::icon()}} to generate an \code{shiny.tag} icon.
+Alternatively, the argument can be a \code{character} to automactially
+generate a \code{shiny.tag} icon (using \code{\link[shiny:icon]{shiny::icon()}}).
 Defaults to \code{"map-marked-alt"}.}
 
 \item{id}{\code{character} unique identifier.
@@ -76,7 +76,7 @@ level of representation for the features under the group view.
 Defaults to \code{Current}.}
 }
 \value{
-A \link{SingleTheme} object.
+A \link{MultiTheme} object.
 }
 \description{
 Create a new \link{MultiTheme} object.
@@ -88,12 +88,12 @@ l2 <- new_layer(source = tempfile(), current = 0.2, total = 15, units = "ha")
 l3 <- new_layer(source = tempfile(), current = 0.4, total = 20, units = "ha")
 
 # create features the layers
-f1 <- new_feature(name = "Pangolin", layer = l)
-f2 <- new_feature(name = "Panda", layer = l)
-f3 <- new_feature(name = "Palms", layer = l)
+f1 <- new_feature(name = "Pangolin", layer = l1)
+f2 <- new_feature(name = "Panda", layer = l2)
+f3 <- new_feature(name = "Palms", layer = l3)
 
 # create a multi-theme using the features
-mt <- new_single_theme(
+mt <- new_multi_theme(
   name = "Endangered species", feature = list(f1, f2, f3))
 
 # print object

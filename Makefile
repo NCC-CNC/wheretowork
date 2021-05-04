@@ -33,7 +33,14 @@ examples:
 	R --slave -e "devtools::run_examples(test = TRUE, run = TRUE);warnings()"  >> examples.log
 	rm -f Rplots.pdf
 
+quicksite:
+	R --slave -e "pkgdown::build_site(run_dont_run = TRUE, lazy = TRUE)"
+
+site:
+	R --slave -e "pkgdown::clean_site()"
+	R --slave -e "pkgdown::build_site(run_dont_run = TRUE, lazy = FALSE)"
+
 demo:
 	R --slave -e "devtools::load_all();options(shiny.launch.browser=TRUE);locationmisc::runExample()"
 
-.PHONY: clean data readme test check install man spellcheck examples demo
+.PHONY: clean data readme test check install man spellcheck examples demo site quicksite

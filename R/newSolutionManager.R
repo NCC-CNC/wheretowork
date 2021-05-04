@@ -18,15 +18,15 @@
 #'
 #' @section Server value:
 #' The widget sends the following values to the server
-#' (where `eId` corresponds to the `elementId`):
+#' (where `elementId` corresponds to the `elementId`):
 #'
 #' \describe{
 #'
-#'   \item{eIdrun}{`character` name to use for a new solution.
+#'   \item{elementId_run}{`character` name to use for a new solution.
 #'     This value is updated when the user clicks the button to generate
 #'     a new solution.}
 #'
-#'   \item{eId_setting}{`list` containing updated settings.
+#'   \item{elementId_setting}{`list` containing updated settings.
 #'     This value is updated when the user updates the settings
 #'     (e.g. status, factor, goal) for a [Weight] or [Theme].
 #'     Specifically, the `list` contains the following elements:
@@ -34,7 +34,7 @@
 #'   \describe{
 #'     \item{id}{`character` identifier for the theme or weight.}
 #'     \item{parameter}{`character` name of the updated parameter.
-#'       Available options include: `"status"`, `"factor"`, or "goal".}
+#'       Available options include: `"status"`, `"factor"`, or `"goal"`.}
 #'     \item{value}{new `numeric` or `logical` values.}
 #'     \item{type}{`character` indicating if the updated parameter corresponds
 #'       to a `theme` or `weight`.}

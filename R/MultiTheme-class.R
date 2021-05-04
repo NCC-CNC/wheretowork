@@ -215,16 +215,16 @@ MultiTheme <- R6::R6Class(
 #' @param round `logical` should all numbers be rounded to the nearest integer?
 #'   Defaults to `TRUE`.
 #'
-#' @param icon `character` or `shiny.tag` Icon to display for the feature
+#' @param icon `shiny.tag` Icon to display for the feature
 #'  This icon should indicate the type of data that underpin the feature.
-#'  If the argument to `icon` is a `character`, it is used with
-#'  [shiny::icon()] to generate an `shiny.tag` icon.
+#'  Alternatively, the argument can be a `character` to automactially
+#'  generate a `shiny.tag` icon (using [shiny::icon()]).
 #'  Defaults to `"map-marked-alt"`.
 #'
 #' @param id `character` unique identifier.
 #'   Defaults to a random identifier ([uuid::UUIDgenerate()]).
 #'
-#' @return A [SingleTheme] object.
+#' @return A [MultiTheme] object.
 #'
 #' @examples
 #' # create layers
@@ -233,12 +233,12 @@ MultiTheme <- R6::R6Class(
 #' l3 <- new_layer(source = tempfile(), current = 0.4, total = 20, units = "ha")
 #'
 #' # create features the layers
-#' f1 <- new_feature(name = "Pangolin", layer = l)
-#' f2 <- new_feature(name = "Panda", layer = l)
-#' f3 <- new_feature(name = "Palms", layer = l)
+#' f1 <- new_feature(name = "Pangolin", layer = l1)
+#' f2 <- new_feature(name = "Panda", layer = l2)
+#' f3 <- new_feature(name = "Palms", layer = l3)
 #'
 #' # create a multi-theme using the features
-#' mt <- new_single_theme(
+#' mt <- new_multi_theme(
 #'   name = "Endangered species", feature = list(f1, f2, f3))
 #'
 #' # print object

@@ -5,6 +5,6 @@
 \alias{locationmisc}
 \title{locationmisc: Classes, Widgets, and Functions for the Location App}
 \description{
-This package provides classes, widgets, and functions for building
-the Location App.
+This package provides classes, widgets, and functions for the
+\href{https://github.com/NCC-CNC/location-app}{Location App}.
 }

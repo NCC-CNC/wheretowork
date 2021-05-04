@@ -1,0 +1,46 @@
+url: https://prioritizr.net
+
+home:
+
+authors:
+  Jeffrey O Hanson:
+    href: https://jeffrey-hanson.com
+  Richard Schuster:
+    href: http://www.richard-schuster.com
+
+template:
+  params:
+    bootswatch: flatly
+
+reference:
+  - title: Summary
+    desc: Summary of the package
+    contents:
+      - locationmisc
+
+  - title: Widgets
+    desc: >
+      These pages document functions for adding and using widgets within the Shiny web application framework
+    contents:
+      - newSolutionManager
+      - newSolutionManager-shiny
+      - mapManager
+      - mapManager-shiny
+      - runExample
+
+  - title: Class constructors
+    desc: >
+      These pages document functions for generating new objects based on package's data structures
+    contents:
+      - starts_with("new_")
+
+  - title: Class definitions
+    desc: >
+      These pages document the organization of the package's data structures
+    contents:
+      - Layer
+      - Feature
+      - Weight
+      - SingleTheme
+      - MultiTheme
+      - Theme

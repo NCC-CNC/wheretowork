@@ -3,8 +3,8 @@ NULL
 
 #' Theme class
 #'
-#' Definition for the Themeclass. Note that this class should not be
-#' interacted with directly.
+#' Definition for the Theme class. This is a parent class that contains
+#' shared fields and methods for the [SingleTheme] and [MultiTheme] classes.
 #'
 #' @seealso [new_single_theme], [new_multi_theme].
 Theme <- R6::R6Class(
@@ -87,7 +87,8 @@ Theme <- R6::R6Class(
 
 #' New theme
 #'
-#' Create a new [Theme] object.
+#' Create a new [Theme] object. This is a convience wrapper for
+#' the [new_single_theme()] and [new_multi_theme()] functions.
 #'
 #' @param ... arguments to be passed to [new_single_theme()]
 #'  or [new_multi_theme()].
@@ -102,7 +103,7 @@ Theme <- R6::R6Class(
 #' f <- new_feature(name = "Intact Alvar Occurrence", layer = l)
 #'
 #' # create a theme using the single feature
-#' st <- new_stheme(name = "Inact Alvar", feature = f)
+#' st <- new_theme(name = "Inact Alvar", feature = f)
 #'
 #' # print object
 #' print(st)

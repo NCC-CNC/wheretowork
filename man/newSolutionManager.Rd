@@ -33,15 +33,15 @@ associated settings.
 \section{Server value}{
 
 The widget sends the following values to the server
-(where \code{eId} corresponds to the \code{elementId}):
+(where \code{elementId} corresponds to the \code{elementId}):
 
 \describe{
 
-\item{eIdrun}{\code{character} name to use for a new solution.
+\item{elementId_run}{\code{character} name to use for a new solution.
 This value is updated when the user clicks the button to generate
 a new solution.}
 
-\item{eId_setting}{\code{list} containing updated settings.
+\item{elementId_setting}{\code{list} containing updated settings.
 This value is updated when the user updates the settings
 (e.g. status, factor, goal) for a \link{Weight} or \link{Theme}.
 Specifically, the \code{list} contains the following elements:
@@ -49,7 +49,7 @@ Specifically, the \code{list} contains the following elements:
 \describe{
 \item{id}{\code{character} identifier for the theme or weight.}
 \item{parameter}{\code{character} name of the updated parameter.
-Available options include: \code{"status"}, \code{"factor"}, or "goal".}
+Available options include: \code{"status"}, \code{"factor"}, or \code{"goal"}.}
 \item{value}{new \code{numeric} or \code{logical} values.}
 \item{type}{\code{character} indicating if the updated parameter corresponds
 to a \code{theme} or \code{weight}.}
