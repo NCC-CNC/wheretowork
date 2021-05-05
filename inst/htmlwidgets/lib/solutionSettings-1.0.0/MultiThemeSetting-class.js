@@ -28,6 +28,7 @@ class MultiThemeSetting {
     icon
   ) {
     // class fields
+    /// HTML container
     this.el =
       document.importNode(
         document
@@ -35,22 +36,21 @@ class MultiThemeSetting {
         .querySelector(".multi-theme-setting-template")
         .content,
       true);
+
+    /// internal variables
+    this.n_features = feature_id.length;
     this.single_goal_values = feature_initial_goal;
     this.single_status_values = feature_initial_status;
-    this.n_features = feature_id.length;
 
+    /// declare fields that correspond to HTML elements
     this.status_el = undefined;
+    this.single_status_el = undefined;
+
+    this.group_goal_el = undefined;
+    this.single_goal_el = undefined;
 
     this.group_tab_el = undefined;
-    this.group_goal_el = undefined;
-
     this.single_tab_el = undefined;
-    this.single_name_el = undefined;
-    this.single_goal_el = undefined;
-    this.single_goal_label_el = undefined;
-    this.single_goal_symbol_el = undefined;
-    this.single_status_el = undefined;
-    this.single_icon_el = undefined;
 
     // local variables
     let that = this;
@@ -65,7 +65,7 @@ class MultiThemeSetting {
     let single_panel_el = main_el.querySelector(".single-view");
 
     /// group view HTML nodes
-    this.group_tab_el =
+    let group_tab_el =
       this.el.querySelector("[data-value='group']");
     this.group_goal_el =
       group_panel_el.querySelector(".noUiSlider-widget");
@@ -97,17 +97,15 @@ class MultiThemeSetting {
     /// single view HTML nodes
     this.single_tab_el =
       this.el.querySelector("[data-value='single']");
-    this.single_name_el =
+    let single_name_el =
       single_panel_el.querySelectorAll(".name-label");
     this.single_status_el =
       single_panel_el.querySelectorAll(".status-checkbox");
     this.single_goal_el =
       single_panel_el.querySelectorAll(".noUiSlider-widget");
-    this.single_goal_label_el =
+    let single_goal_label_el =
       single_panel_el.querySelectorAll(".slider-label");
-    this.single_goal_symbol_el =
-      single_panel_el.querySelectorAll(".slider-symbol");
-    this.single_icon_el =
+    let single_icon_el =
       single_panel_el.querySelectorAll(".sub-icon");
     let single_current_label_el =
       single_panel_el.querySelectorAll(".current-label");
@@ -156,10 +154,9 @@ class MultiThemeSetting {
     // set initial single values
     for (let i = 0; i < this.n_features; ++i) {
       /// icon
-      this.single_icon_el[i].insertAdjacentHTML(
-        "beforeend", feature_icon[i]);
+      single_icon_el[i].insertAdjacentHTML("beforeend", feature_icon[i]);
       /// name text
-      this.single_name_el[i].innerText = feature_name[i];
+      single_name_el[i].innerText = feature_name[i];
       /// status
       this.single_status_el[i].checked = feature_initial_status[i];
       /// current text
@@ -227,7 +224,7 @@ class MultiThemeSetting {
         //// update goal label
         this.single_goal_el[i].noUiSlider.on(
           "update", function (values, handle) {
-          that.single_goal_label_el[i].innerText =
+          single_goal_label_el[i].innerText =
             single_goal_label_text(
               values[handle], feature_total_amount[i], round,
               "Goal", units);
@@ -255,7 +252,7 @@ class MultiThemeSetting {
     if (HTMLWidgets.shinyMode) {
       /// group view
       //// tab
-      this.group_tab_el.addEventListener("click", function() {
+      group_tab_el.addEventListener("click", function() {
         let checked = this.checked;
         let v = that.group_goal_el.noUiSlider.get();
         Shiny.setInputValue(manager, {
