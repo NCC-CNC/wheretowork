@@ -72,13 +72,16 @@ Theme <- R6::R6Class(
     #' @description
     #' Set feature goal values.
     #' @param value `numeric` vector containing a value for each feature.
+    #'   A `list` of `numeric` values can also be supplied.
     set_feature_goal = function(value) {
+      if (is.list(value))
+        value <- unlist(value, recursive = TRUE, use.names = TRUE)
       assertthat::assert_that(
         is.numeric(value),
         assertthat::noNA(value),
         length(value) == length(self$feature))
       for (i in seq_along(value)) {
-        self$feature[[i]]$set_goal(value[i])
+        self$feature[[i]]$set_goal(value[[i]])
       }
       invisible(self)
     },
@@ -86,13 +89,16 @@ Theme <- R6::R6Class(
     #' @description
     #' Set feature status values.
     #' @param value `logical` vector containing a value for each feature.
+    #'   A `list` of `logical` values can also be supplied.
     set_feature_status = function(value) {
+      if (is.list(value))
+        value <- unlist(value, recursive = TRUE, use.names = TRUE)
       assertthat::assert_that(
         is.logical(value),
         assertthat::noNA(value),
         length(value) == length(self$feature))
       for (i in seq_along(value)) {
-        self$feature[[i]]$set_status(value[i])
+        self$feature[[i]]$set_status(value[[i]])
       }
       invisible(self)
     },

@@ -102,9 +102,9 @@ class SingleThemeSetting {
       this.goal_el.noUiSlider.on("update", function (values, handle) {
         Shiny.setInputValue(manager, {
           id: id,
-          parameter: "theme",
-          value: values[handle],
-          type: "goal"
+          parameter: "feature_goal",
+          value: parseFloat(values[handle]),
+          type: "theme"
         });
       });
       /// status
@@ -112,7 +112,7 @@ class SingleThemeSetting {
         let checked = this.checked;
         Shiny.setInputValue(manager, {
           id: id,
-          parameter: "status",
+          parameter: "feature_status",
           value: checked,
           type: "theme"
         });

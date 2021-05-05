@@ -39,10 +39,11 @@ function(input, output, session) {
   #     c(input$mt1_goal_input, input$mt2_goal_input))
   # })
 
-  ## update internal object based on widget
-  # observeEvent(input$widget, {
-  #   ss$set_parameter(input$widget)
-  # })
+  # update internal object based on widget
+  observeEvent(input$widget, {
+    print(input$widget)
+    ss$set_parameter(input$widget)
+  })
 
   ## update text box based on widget status
   observeEvent(input$widget, {

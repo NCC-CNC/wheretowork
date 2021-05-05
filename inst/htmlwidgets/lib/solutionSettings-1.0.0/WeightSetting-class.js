@@ -67,7 +67,7 @@ class WeightSetting {
         Shiny.setInputValue(manager, {
           id: id,
           parameter: "factor",
-          value: values[handle],
+          value: parseFloat(values[handle]),
           type: "weight"
         });
       });
