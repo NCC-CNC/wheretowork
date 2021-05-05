@@ -104,33 +104,24 @@ solutionSettings_html <- function(id, style, class, ...) {
     htmltools::tags$div(
       id = id, class = class, style = style,
       htmltools::div(
-        htmltools::tags$div(class = "themes"),
-        htmltools::tags$div(class = "weights")
+        class = "solution-settings",
+        shinyBS::bsCollapse(
+          id = paste0(id, "_collapse"),
+          multiple = TRUE,
+          open = paste0(id, c("_collapseThemePanel", "_collapseWeightPanel")),
+          shinyBS::bsCollapsePanel(
+            title = "Themes",
+            value = paste0(id, "_collapseThemePanel"),
+            htmltools::tags$div(class = "themes")
+          ),
+          shinyBS::bsCollapsePanel(
+            title = "Weights",
+            value = paste0(id, "_collapseWeightPanel"),
+            htmltools::tags$div(class = "weights")
+          )
+        )
       )
     )
-
-  # x <-
-  #   htmltools::tags$div(
-  #     id = id, class = class, style = style,
-  #     htmltools::div(
-  #       class = "solution-settings",
-  #       shinyBS::bsCollapse(
-  #         id = paste0(id, "_collapse"),
-  #         multiple = TRUE,
-  #         open = paste0(id, c("_collapseThemePanel", "_collapseWeightPanel")),
-  #         shinyBS::bsCollapsePanel(
-  #           title = "Themes",
-  #           value = paste0(id, "_collapseThemePanel"),
-  #           htmltools::tags$div(class = "themes")
-  #         ),
-  #         shinyBS::bsCollapsePanel(
-  #           title = "Weights",
-  #           value = paste0(id, "_collapseWeightPanel"),
-  #           htmltools::tags$div(class = "weights")
-  #         )
-  #       )
-  #     )
-  #   )
 
 
   # add HTML template scaffolds for dynamic content
@@ -143,7 +134,10 @@ solutionSettings_html <- function(id, style, class, ...) {
         htmltools::tags$div(
           class = paste("weight-setting solution-setting"),
           header_component_scaffold(),
-          slider_component_scaffold()
+          htmltools::tags$div(
+            class = "weight-slider",
+            slider_component_scaffold()
+          )
         )
       )
     )

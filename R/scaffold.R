@@ -113,7 +113,7 @@ slider_component_scaffold <- function(bar = NULL) {
     htmltools::tags$div(
       class =
         paste("widget",
-          ifelse(!is.null(bar), "has-current-bar", "")),
+          ifelse(!is.null(bar), "has-current-bar", "no-current-bar")),
       htmltools::tags$div(class = "noUiSlider-widget disable-if-inactive")
     )
   )

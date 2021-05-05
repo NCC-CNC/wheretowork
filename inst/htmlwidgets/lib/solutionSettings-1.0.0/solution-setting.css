@@ -156,8 +156,7 @@
   display: inline-flex;
   align-items: center;
   position: relative;
-  padding-top: 12px;
-  padding-bottom: 8px;
+  padding-top: 2px;
   padding-left: 5px;
 }
 
@@ -209,14 +208,28 @@
   align-items: center;
 }
 
-/* add extra padding if there is a current bar */
-.solution-setting .has-current-bar {
+/* specify padding if there is a current bar */
+.solution-setting .slider .has-current-bar {
   margin-left: 5px;
+}
+
+/* specify padding if there isn't a current bar */
+.solution-setting .widget.no-current-bar {
+  margin-left: 5px;
+}
+
+.solution-setting .weight-slider {
+  margin-top: 0px;
+  margin-bottom: 5px;
 }
 
 /* noUiSlider settings */
 .solution-setting .noUi-connect {
   background: var(--slider);
+}
+
+.solution-setting .nav > li > a {
+  padding: 2px 5px;
 }
 
 /* add extra padding if there is a current bar */
