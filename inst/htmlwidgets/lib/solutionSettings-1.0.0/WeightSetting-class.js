@@ -25,11 +25,8 @@ class WeightSetting {
     // local variables
     let that = this;
 
-    // attach metadata to DOM
-    this.el.querySelector(".solution-setting")
-      .setAttribute("setting-id", id);
-    this.el.querySelector(".solution-setting")
-      .setAttribute("setting-name", name);
+    // attach id to element
+    this.el.querySelector(".solution-setting").id = id;
 
     // set initial values
     /// name
@@ -52,12 +49,13 @@ class WeightSetting {
     if (HTMLWidgets.shinyMode) {
       this.status_el.addEventListener("change", function () {
         let checked = this.checked;
+        let els =
+          document.getElementById(id).querySelectorAll(
+            ".disable-if-inactive");
         if (checked) {
-          that.name_el.removeAttribute("disabled");
-          that.factor_el.removeAttribute("disabled");
+          els.forEach((x) => x.removeAttribute("disabled"));
         } else {
-          that.name_el.setAttribute("disabled", "");
-          that.factor_el.setAttribute("disabled", "");
+          els.forEach((x) => x.setAttribute("disabled", ""));
         }
       });
     }

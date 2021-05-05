@@ -21,10 +21,10 @@ goal_component_scaffold <- function() {
       htmltools::tags$div(
         class = "sub-info",
         htmltools::tags$div(
-          class = "slider-symbol",
+          class = "slider-symbol disable-if-inactive",
         ),
         htmltools::tags$label(
-          class = "slider-label")
+          class = "slider-label disable-if-inactive")
       ),
     ),
     slider_component_scaffold(bar = "current-bar")
@@ -54,10 +54,10 @@ group_goal_component_scaffold <- function() {
       htmltools::tags$div(
         class = "sub-info",
         htmltools::tags$div(
-          class = "slider-symbol",
+          class = "slider-symbol disable-if-inactive",
         ),
         htmltools::tags$label(
-          class = "slider-label")
+          class = "slider-label disable-if-inactive")
       ),
     ),
     slider_component_scaffold(bar = c(
@@ -114,7 +114,7 @@ slider_component_scaffold <- function(bar = NULL) {
       class =
         paste("widget",
           ifelse(!is.null(bar), "has-current-bar", "")),
-      htmltools::tags$div(class = "noUiSlider-widget")
+      htmltools::tags$div(class = "noUiSlider-widget disable-if-inactive")
     )
   )
   # return result
@@ -130,7 +130,7 @@ slider_component_scaffold <- function(bar = NULL) {
 #'
 #' @noRd
 icon_component_scaffold <- function() {
-  htmltools::tags$div(class = "icon")
+  htmltools::tags$div(class = "icon disable-if-inactive")
 }
 
 #' Scaffold for the sub-icon component of a widget
@@ -141,7 +141,7 @@ icon_component_scaffold <- function() {
 #'
 #' @noRd
 subicon_component_scaffold <- function() {
-  htmltools::tags$div(class = "sub-icon")
+  htmltools::tags$div(class = "sub-icon disable-if-inactive")
 }
 
 #' Scaffold for the header component of a widget
@@ -167,7 +167,7 @@ header_component_scaffold <- function(id = uuid::UUIDgenerate()) {
       )
     ),
     htmltools::tags$label(
-      class = "name-label"
+      class = "name-label disable-if-inactive"
     )
   )
 }
@@ -195,7 +195,7 @@ subheader_component_scaffold <- function(id = uuid::UUIDgenerate()) {
       )
     ),
     htmltools::tags$label(
-      class = "name-label"
+      class = "name-label disable-if-inactive"
     )
   )
 }

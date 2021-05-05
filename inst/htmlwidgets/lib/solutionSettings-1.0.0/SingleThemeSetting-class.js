@@ -40,11 +40,8 @@ class SingleThemeSetting {
     let current_label_el = this.el.querySelector(".current-label");
     let current_bar_el = this.el.querySelector(".current-bar");
 
-    // attach metadata to DOM
-    this.el.querySelector(".solution-setting")
-      .setAttribute("setting-id", id);
-    this.el.querySelector(".solution-setting")
-      .setAttribute("setting-name", name);
+    // attach id to element
+    this.el.querySelector(".solution-setting").id = id;
 
     // set initial values
     /// icon
@@ -88,18 +85,13 @@ class SingleThemeSetting {
       /// enable/disable widget on click
       this.status_el.addEventListener("change", function () {
         let checked = this.checked;
+        let els =
+          document.getElementById(id).querySelectorAll(
+            ".disable-if-inactive, .disable-if-inactive.icon i");
         if (checked) {
-          that.name_el.removeAttribute("disabled");
-          that.goal_el.removeAttribute("disabled");
-          goal_label_el.removeAttribute("disabled");
-          goal_symbol_el.removeAttribute("disabled");
-          icon_el.firstChild.removeAttribute("disabled");
+          els.forEach((x) => x.removeAttribute("disabled"));
         } else {
-          that.name_el.setAttribute("disabled", "");
-          that.goal_el.setAttribute("disabled", "");
-          goal_label_el.setAttribute("disabled", "");
-          goal_symbol_el.setAttribute("disabled", "");
-          icon_el.firstChild.setAttribute("disabled", "");
+          els.forEach((x) => x.setAttribute("disabled", ""));
         }
       });
     }
@@ -126,7 +118,6 @@ class SingleThemeSetting {
         });
       });
     }
-
   }
 
   /* update HTML components */

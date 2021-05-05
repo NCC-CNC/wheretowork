@@ -116,11 +116,11 @@ class MultiThemeSetting {
     let single_widget_el =
       single_panel_el.querySelectorAll(".widget");
 
-    // attach metadata to DOM
-    this.el.querySelector(".solution-setting")
-      .setAttribute("setting-id", id);
-    this.el.querySelector(".solution-setting")
-      .setAttribute("setting-name", name);
+    // attach id to element
+    this.el.querySelector(".solution-setting").id = id;
+    for (let i = 0; i < this.n_features; ++i) {
+      single_panel_el.children[i].id = feature_id[i];
+    }
 
     // set initial theme values
     /// icon
@@ -202,48 +202,17 @@ class MultiThemeSetting {
       this.status_el.addEventListener("change", function () {
         let checked = this.checked;
         that.single_status_el.forEach((x) => x.checked = checked);
+        let els =
+          document
+          .getElementById(id)
+          .querySelectorAll(
+            `.disable-if-inactive, ` +
+            `.disable-if-inactive.icon i, ` +
+            `.disable-if-inactive.sub-icon i`);
         if (checked) {
-          //// theme elements
-          that.name_el.removeAttribute("disabled");
-          //// group view elements
-          that.group_goal_el.removeAttribute("disabled");
-          group_goal_label_el.removeAttribute("disabled");
-          group_goal_symbol_el.removeAttribute("disabled");
-          icon_el.firstChild.removeAttribute("disabled");
-          //// single view elements
-          that.single_status_el
-            .forEach((x) => x.removeAttribute("disabled"));
-          that.single_name_el
-            .forEach((x) => x.removeAttribute("disabled"));
-          that.single_goal_el
-            .forEach((x) => x.removeAttribute("disabled"));
-          that.single_goal_label_el
-            .forEach((x) => x.removeAttribute("disabled"));
-          that.single_goal_symbol_el
-            .forEach((x) => x.removeAttribute("disabled"));
-          that.single_icon_el
-            .forEach((x) => x.removeAttribute("disabled"));
+          els.forEach((x) => x.removeAttribute("disabled"));
         } else {
-          //// theme elements
-          that.name_el.setAttribute("disabled", "");
-          //// group view elements
-          that.group_goal_el.setAttribute("disabled", "");
-          group_goal_label_el.setAttribute("disabled", "");
-          group_goal_symbol_el.setAttribute("disabled", "");
-          icon_el.firstChild.setAttribute("disabled", "");
-          //// single view elements
-          that.single_status_el
-            .forEach((x) => x.setAttribute("disabled", ""));
-          that.single_name_el
-            .forEach((x) => x.setAttribute("disabled", ""));
-          that.single_goal_el
-            .forEach((x) => x.setAttribute("disabled", ""));
-          that.single_goal_label_el
-            .forEach((x) => x.setAttribute("disabled", ""));
-          that.single_goal_symbol_el
-            .forEach((x) => x.setAttribute("disabled", ""));
-          that.single_icon_el
-            .forEach((x) => x.setAttribute("disabled", ""));
+          els.forEach((x) => x.setAttribute("disabled", ""));
         }
       });
       /// single view
@@ -267,18 +236,16 @@ class MultiThemeSetting {
         this.single_status_el[i].addEventListener("change", function () {
           let checked = this.checked;
           that.single_status_values[i] = checked;
+          let els =
+            document
+            .getElementById(id)
+            .querySelectorAll(
+              `[id="${feature_id[i]}"] .disable-if-inactive, ` +
+              `[id="${feature_id[i]}"] .disable-if-inactive.sub-icon i`);
           if (checked) {
-            that.single_name_el[i].removeAttribute("disabled");
-            that.single_goal_el[i].removeAttribute("disabled");
-            that.single_goal_label_el[i].removeAttribute("disabled");
-            that.single_goal_symbol_el[i].removeAttribute("disabled");
-            that.single_icon_el[i].firstChild.removeAttribute("disabled");
+            els.forEach((x) => x.removeAttribute("disabled"));
           } else {
-            that.single_name_el[i].setAttribute("disabled", "");
-            that.single_goal_el[i].setAttribute("disabled", "");
-            that.single_goal_label_el[i].setAttribute("disabled", "");
-            that.single_goal_symbol_el[i].setAttribute("disabled", "");
-            that.single_icon_el[i].firstChild.setAttribute("disabled", "");
+            els.forEach((x) => x.setAttribute("disabled", ""));
           }
         });
       }
@@ -410,20 +377,21 @@ class MultiThemeSetting {
     }
     // update status variable
     this.single_status_values = value;
+    // set elements as active/inactive
+    let els = undefined;
     for (let i = 0; i < n_features; ++i) {
       this.single_status[i].checked = value[i];
+      let els =
+        document
+        .getElementById(id)
+        .querySelectorAll(
+          `[id="${feature_id[i]}"] .disable-if-inactive, ` +
+          `[id="${feature_id[i]}"] .disable-if-inactive.icon i`
+        );
       if (value[i]) {
-        this.single_name_el[i].removeAttribute("disabled");
-        this.single_goal_el[i].removeAttribute("disabled");
-        this.single_goal_label_el[i].removeAttribute("disabled");
-        this.single_goal_symbol_el[i].removeAttribute("disabled");
-        this.single_icon_el[i].firstChild.removeAttribute("disabled");
+        els.forEach((x) => x.removeAttribute("disabled"));
       } else {
-        this.single_name_el[i].setAttribute("disabled", "");
-        this.single_goal_el[i].setAttribute("disabled", "");
-        this.single_goal_label_el[i].setAttribute("disabled", "");
-        this.single_goal_symbol_el[i].setAttribute("disabled", "");
-        this.single_icon_el[i].firstChild.setAttribute("disabled", "");
+        els.forEach((x) => x.setAttribute("disabled", ""));
       }
     }
   }
