@@ -1,0 +1,31 @@
+dependencies:
+  - name: noUiSlider
+    version: 14.7.0
+    src: htmlwidgets/lib/noUiSlider-14.7.0
+    script: nouislider.js
+    stylesheet: nouislider.min.css
+
+  - name: el-checkbox
+    version: 1.0.0
+    src: htmlwidgets/lib/el-checkbox-1.0.0
+    stylesheet: checkbox.min.css
+
+  - name: solutionSettings
+    version: 1.0-0
+    src: htmlwidgets/lib/solutionSettings-1.0.0
+    script:
+      - MultiThemeSetting-class.js
+      - SingleThemeSetting-class.js
+      - WeightSetting-class.js
+      - label-text.js
+      - utils.js
+      - SolutionSettings-class.js
+    stylesheet:
+      - solution-settings.css
+      - solution-setting.css
+
+  - name: solutionSettings-style
+    version: 1.0-0
+    src: htmlwidgets
+    stylesheet:
+      - solutionSettings.css

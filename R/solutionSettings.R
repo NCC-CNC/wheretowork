@@ -19,24 +19,16 @@
 #'
 #' \describe{
 #'
-#'   \item{elementId_run}{`character` name to use for a new solution.
-#'     This value is updated when the user clicks the button to generate
-#'     a new solution.}
+#' \item{id}{`character` identifier for the theme or weight.}
 #'
-#'   \item{elementId_setting}{`list` containing updated settings.
-#'     This value is updated when the user updates the settings
-#'     (e.g. status, factor, goal) for a [Weight] or [Theme].
-#'     Specifically, the `list` contains the following elements:
+#' \item{parameter}{`character` name of the updated parameter.
+#'   Available options include: `"status"`, `"factor"`, or `"goal"`.}
 #'
-#'   \describe{
-#'     \item{id}{`character` identifier for the theme or weight.}
-#'     \item{parameter}{`character` name of the updated parameter.
-#'       Available options include: `"status"`, `"factor"`, or `"goal"`.}
-#'     \item{value}{new `numeric` or `logical` values.}
-#'     \item{type}{`character` indicating if the updated parameter corresponds
-#'       to a `theme` or `weight`.}
-#'   }
-#' }
+#' \item{value}{new `numeric` or `logical` values.}
+#'
+#' \item{type}{`character` indicating if the updated parameter corresponds
+#'   to a `theme` or `weight`.}
+#'
 #' }
 #'
 #' @examples
@@ -48,14 +40,25 @@ solutionSettings <- function(
   # assert arguments are valid
   assertthat::assert_that(inherits(x, "SolutionSettings"))
 
+  # prepare data
+  p <- x$get_widget_data()
+  p$api = list() # enable API
+
   # create widget
   htmlwidgets::createWidget(
     name = "solutionSettings",
-    x$get_widget_data,
+    p,
     width = width,
     height = height,
     package = "locationmisc",
-    elementId = elementId
+    elementId = elementId,
+    dependencies =
+      c(
+        htmltools::htmlDependencies(shiny::icon("map-marked-alt")),
+        htmltools::htmlDependencies(
+          shinyBS::bsCollapse(shinyBS::bsCollapsePanel("id"))),
+        htmltools::htmlDependencies(
+          shinyBS::bsCollapse(shinyBS::bsCollapsePanel("id"))))
   )
 }
 
@@ -96,6 +99,122 @@ renderSolutionSettings <- function(expr, env = parent.frame(), quoted = FALSE) {
 
 # Add custom HTML for the widget (automatically used by htmlwidgets)
 solutionSettings_html <- function(id, style, class, ...) {
-  htmltools::tags$div( id = id, class = class, style = style)
-  # TODO
+  # HTML scaffold
+  x <-
+    htmltools::tags$div(
+      id = id, class = class, style = style,
+      htmltools::div(
+        htmltools::tags$div(class = "themes"),
+        htmltools::tags$div(class = "weights")
+      )
+    )
+
+  # x <-
+  #   htmltools::tags$div(
+  #     id = id, class = class, style = style,
+  #     htmltools::div(
+  #       class = "solution-settings",
+  #       shinyBS::bsCollapse(
+  #         id = paste0(id, "_collapse"),
+  #         multiple = TRUE,
+  #         open = paste0(id, c("_collapseThemePanel", "_collapseWeightPanel")),
+  #         shinyBS::bsCollapsePanel(
+  #           title = "Themes",
+  #           value = paste0(id, "_collapseThemePanel"),
+  #           htmltools::tags$div(class = "themes")
+  #         ),
+  #         shinyBS::bsCollapsePanel(
+  #           title = "Weights",
+  #           value = paste0(id, "_collapseWeightPanel"),
+  #           htmltools::tags$div(class = "weights")
+  #         )
+  #       )
+  #     )
+  #   )
+
+
+  # add HTML template scaffolds for dynamic content
+  ## weightFactor
+  x <-
+    htmltools::tagAppendChild(
+      x,
+      htmltools::tags$template(
+        class = "weight-setting-template",
+        htmltools::tags$div(
+          class = paste("weight-setting solution-setting"),
+          header_component_scaffold(),
+          slider_component_scaffold()
+        )
+      )
+    )
+
+  ## singleThemeGoal
+  x <-
+    htmltools::tagAppendChild(
+      x,
+      htmltools::tags$template(
+        class = "single-theme-setting-template",
+        htmltools::tags$div(
+          class = "single-theme-setting solution-setting",
+          icon_component_scaffold(),
+          header_component_scaffold(),
+          goal_component_scaffold()
+        )
+      )
+    )
+
+  ## multiThemeGoal
+  ### main container
+  x <-
+    htmltools::tagAppendChild(
+      x,
+      htmltools::tags$template(
+        class = "multi-theme-setting-template",
+        htmltools::tags$div(
+          class = "multi-theme-setting solution-setting",
+          icon_component_scaffold(),
+          header_component_scaffold(),
+          htmltools::tags$div(
+            class = "main",
+            shiny::tabsetPanel(
+              type = "tabs",
+              id = "view",
+              ## group view panel
+              shiny::tabPanel(
+                "group",
+                htmltools::tags$div(
+                  class = "group-view",
+                  group_goal_component_scaffold()
+                )
+              ),
+              ## single view
+              shiny::tabPanel(
+                "single",
+                htmltools::tags$div(
+                  class = "single-view"
+                )
+              )
+            )
+          )
+        )
+      )
+    )
+
+  ### sub container
+  x <-
+    htmltools::tagAppendChild(
+      x,
+      htmltools::tags$template(
+        class = "multi-theme-single-setting-template",
+        htmltools::tags$div(
+          class = "single-container",
+          subicon_component_scaffold(),
+          subheader_component_scaffold(),
+          goal_component_scaffold()
+        )
+      )
+    )
+
+  # return HTML
+  x
 }

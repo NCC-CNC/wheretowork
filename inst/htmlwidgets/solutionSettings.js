@@ -1,7 +1,7 @@
 // define HTML widgets interface
 HTMLWidgets.widget({
-  name: 'newSolutionManager',
-  type: 'output',
+  name: "solutionSettings",
+  type: "output",
   factory: function(el, width, height) {
     // top-level variables
     var elementId = el.id;
@@ -12,45 +12,23 @@ HTMLWidgets.widget({
     return {
 
       renderValue: function(opts) {
-
         if (!initialized) {
-          // initialize manager
-          handle = new NewSolutionManager(
-            elementId, container, x.themes, x.weights);
-          // render manager
+          // set initialized
+          initialized = true;
+          // initialize solution settings manaer
+          handle = new SolutionSettings(
+            elementId, container, opts.themes, opts.weights);
+          // render HTML elements
           handle.render();
-
-          // local variables
-          let name_input = container.querySelector(".new-solution-name");
-          let button = container.querySelector(".new-solution-button");
-
-          // set listeners to update user interfance
-          if (HTMLWidgets.shinyMode) {
-            /// disable button if new input has no characters in it
-            name_input.addEventListener("change", function () {
-              if (this.value.length === 0) {
-                button.setAttribute("disabled", "");
-              } else {
-                button.removeAttribute("disabled");
-              }
-            })
-          }
-
-          // set listeners to pass data to Shiny
-          if (HTMLWidgets.shinyMode) {
-            button.addEventListener("click", function() {
-              Shiny.setInputValue(manager + "_run", name_input.value);
-            });
-          }
-
+        }
       },
 
       resize: function(width, height) {
         // widget automatically resizes
-      }
+      },
 
       // export object for extensibility
-      object: container,
+      solutionSettings: container,
 
       /* API functions to manipulate widget */
       // theme functions
@@ -100,7 +78,7 @@ if (HTMLWidgets.shinyMode) {
   var fxns =
     ["updateThemeName", "updateThemeStatus", "updateThemeView",
      "updateThemeGroupGoal",
-     "updateThemeFeatureGoals", "updateThemeFeatureStatuses",
+     "updateThemeFeatureGoal", "updateThemeFeatureStatus",
      "updateWeightName", "updateWeightStatus", "updateWeightFactor"];
 
   var addShinyHandler = function(fxn) {

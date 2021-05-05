@@ -1,13 +1,13 @@
-class NewSolutionManager {
+class SolutionSettings {
   /* constructor */
   constructor(id, container, themes, weights) {
     // set container
     this.id = id,
     this.container = container;
     // initialize themes
-    this.themes = themes.forEach((x) => newThemeGoal(id, x));
+    this.themes = themes.map((x) => newThemeSetting(id, x));
     // initialize weights
-    this.weights = themes.forEach((x) => newWeightFactor(id, x));
+    this.weights = weights.map((x) => newWeightSetting(id, x));
   }
 
   /* setters */
@@ -62,14 +62,10 @@ class NewSolutionManager {
   render() {
     // themes
     const theme_panel = this.container.querySelector(".themes");
-    for (x of this.themes) {
-      theme_panel.appendChild(x.render());
-    }
+    this.themes.forEach((x) => theme_panel.appendChild(x.render()))
+
     // weights
     const weight_panel = this.container.querySelector(".weights");
-    for (x of this.weights) {
-      weight_panel.appendChild(x.render());
-    }
+    this.weights.forEach((x) => weight_panel.appendChild(x.render()));
   }
-
 }

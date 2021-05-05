@@ -16,6 +16,7 @@ Imports:
     htmlwidgets (>= 1.5.3),
     htmltools (>= 0.5.1.1),
     shiny (>= 1.6.0),
+    shinyBS (>= 0.6.1),
     tools (>= 4.0.5),
 Suggests:
     testthat (>= 2.0.1),

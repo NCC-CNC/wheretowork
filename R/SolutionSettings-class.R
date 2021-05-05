@@ -6,7 +6,7 @@ NULL
 #'
 #' Definition for the SolutionSettings class.
 SolutionSettings <- R6::R6Class(
-  "SolutionSettingsManager",
+  "SolutionSettings",
   public = list(
 
     #' @field theme_ids `character` vector of identifiers for the themes.

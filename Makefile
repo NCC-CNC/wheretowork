@@ -40,7 +40,7 @@ site:
 	R --slave -e "pkgdown::clean_site()"
 	R --slave -e "pkgdown::build_site(run_dont_run = TRUE, lazy = FALSE)"
 
-demo:
-	R --slave -e "devtools::load_all();options(shiny.launch.browser=TRUE);locationmisc::runExample()"
+demo-solutionSettings:
+	R --slave -e "devtools::load_all();options(shiny.launch.browser=TRUE);locationmisc::runExample('solutionSettings')"
 
-.PHONY: clean data readme test check install man spellcheck examples demo site quicksite
+.PHONY: clean data readme test check install man spellcheck examples demo-solutionSettings site quicksite

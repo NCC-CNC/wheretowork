@@ -1,19 +1,19 @@
 /* overall widget */
-.new-solution-setting {
+.solution-setting {
   width: 100%;
   border: 1px var(--border) solid;
   border-radius: 5px 5px 5px 5px;
 }
 
 /* view containers */
-.new-solution-setting .single-view {
+.solution-setting .single-view {
   overflow-y: auto;
   max-height: 30vh;
 }
 
 /* header and sub-header containers */
-.new-solution-setting .header,
-.new-solution-setting .sub-header {
+.solution-setting .header,
+.solution-setting .sub-header {
   padding-top: 5px;
   padding-left: 5px;
   padding-bottom: 0px;
@@ -22,18 +22,18 @@
 }
 
 /* header container */
-.new-solution-setting .status {
+.solution-setting .status {
   margin-top: 0px;
 }
 
-.new-solution-setting .header .name-label {
+.solution-setting .header .name-label {
   font-size: 14px;
   margin-left: 5px;
   margin-bottom: 0px;
   margin-bottom: -4px;
 }
 
-.new-solution-setting .header .el-switch {
+.solution-setting .header .el-switch {
   font-size: 14px;
   font-weight: 700;
   padding-bottom: 0;
@@ -41,7 +41,7 @@
 }
 
 /* sub-header container */
-.new-solution-setting .sub-header .name-label {
+.solution-setting .sub-header .name-label {
   font-size: 12px;
   font-weight: 700;
   margin-left: 5px;
@@ -49,44 +49,44 @@
   margin-bottom: -3px;
 }
 
-.new-solution-setting .sub-header .el-switch {
+.solution-setting .sub-header .el-switch {
   font-size: 11px;
   margin-bottom: 0;
   padding-bottom: 0;
 }
 
 /* icon and sub-icon containers */
-.new-solution-setting .icon,
-.new-solution-setting .sub-icon {
+.solution-setting .icon,
+.solution-setting .sub-icon {
   float: right;
   padding-right: 10px;
   padding-bottom: 0px;
   padding-top: 0px;
 }
 
-.new-solution-setting .icon {
+.solution-setting .icon {
   color: var(--icon);
   font-size: 30px;
 }
 
-.new-solution-setting .sub-icon {
+.solution-setting .sub-icon {
   color: var(--sub-icon);
   font-size: 25px;
 }
 
 /* tabs */
-.new-solution-setting .tabbable {
+.solution-setting .tabbable {
   padding-top: 2px;
 }
 
-.new-solution-setting a[role = "tab"] {
+.solution-setting a[role = "tab"] {
   padding-top: 2px;
   padding-bottom: 2px;
 }
 
 /* info */
 /* -- containers */
-.new-solution-setting .info {
+.solution-setting .info {
   display: flex;
   align-items: center;
   margin-bottom: 0px;
@@ -95,12 +95,12 @@
   padding-right: 5px;
 }
 
-.new-solution-setting .single-container .info {
+.solution-setting .single-container .info {
   padding-top: 0px;
 }
 
 
-.new-solution-setting .sub-info {
+.solution-setting .sub-info {
   display: flex;
   align-items: center;
   flex-basis: 50%;
@@ -109,7 +109,7 @@
 }
 
 /* --  labels */
-.new-solution-setting .info label {
+.solution-setting .info label {
   font-size: 12px;
   font-weight: 400;
   vertical-align: middle;
@@ -118,8 +118,8 @@
 }
 
 /* --  symbols */
-.new-solution-setting .current-symbol,
-.new-solution-setting .slider-symbol {
+.solution-setting .current-symbol,
+.solution-setting .slider-symbol {
   width: 12px;
   height: 12px;
   display:inline-block;
@@ -129,29 +129,29 @@
   box-sizing: border-box;
 }
 
-.new-solution-setting .slider-symbol {
+.solution-setting .slider-symbol {
   background-color: var(--slider);
   color: var(--slider);
 }
 
-.new-solution-setting .current-symbol {
+.solution-setting .current-symbol {
   background-color: var(--current);
   color: var(--current);
 }
 
 /* -- inactive styling */
-.new-solution-setting label[disabled],
-.new-solution-setting i[disabled] {
+.solution-setting label[disabled],
+.solution-setting i[disabled] {
   color: var(--inactive) !important;
 }
 
-.new-solution-setting .info div[disabled] {
+.solution-setting .info div[disabled] {
   background-color: var(--inactive) !important;
   color: var(--inactive) !important;
 }
 
 /* slider styling (current bar and widget) */
-.new-solution-setting .slider {
+.solution-setting .slider {
   width: 100%;
   display: inline-flex;
   align-items: center;
@@ -161,10 +161,10 @@
   padding-left: 5px;
 }
 
-.new-solution-setting .bar-cap,
-.new-solution-setting .current-bar,
-.new-solution-setting .current-min-bar,
-.new-solution-setting .current-max-bar {
+.solution-setting .bar-cap,
+.solution-setting .current-bar,
+.solution-setting .current-min-bar,
+.solution-setting .current-max-bar {
   width: 0%;
   height: 12px;
   padding-top: 12px;
@@ -173,59 +173,59 @@
   padding-right: 0px;
 }
 
-.new-solution-setting .current-bar,
-.new-solution-setting .current-min-bar,
-.new-solution-setting .current-max-bar {
+.solution-setting .current-bar,
+.solution-setting .current-min-bar,
+.solution-setting .current-max-bar {
   position: absolute;
 }
 
-.new-solution-setting .bar-cap {
+.solution-setting .bar-cap {
   color: var(--current);
   background-color: var(--current);
   padding-left: 5px;
   border-radius: 5px 0px 0px 5px;
 }
 
-.new-solution-setting .current-bar,
-.new-solution-setting .current-min-bar {
+.solution-setting .current-bar,
+.solution-setting .current-min-bar {
   color: var(--current);
   background-color: var(--current);
 }
 
-.new-solution-setting .current-max-bar {
+.solution-setting .current-max-bar {
   background-color: var(--current-transparent);
 }
 
-.new-solution-setting .bars,
-.new-solution-setting .widget {
+.solution-setting .bars,
+.solution-setting .widget {
   width: 95%;
   position: absolute;
   padding-right: 0px;
   margin-right: 0px;
 }
 
-.new-solution-setting .bars {
+.solution-setting .bars {
   display: inline-flex;
   align-items: center;
 }
 
 /* add extra padding if there is a current bar */
-.new-solution-setting .has-current-bar {
+.solution-setting .has-current-bar {
   margin-left: 5px;
 }
 
 /* noUiSlider settings */
-.new-solution-setting .noUi-connect {
+.solution-setting .noUi-connect {
   background: var(--slider);
 }
 
 /* add extra padding if there is a current bar */
-.new-solution-setting .noUiSlider-widget {
+.solution-setting .noUiSlider-widget {
   width: 100%;
   z-index: 10;
 }
 
-.new-solution-setting [disabled] .noUi-connect {
+.solution-setting [disabled] .noUi-connect {
   background: #B8B8B8 !important;
 }
 

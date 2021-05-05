@@ -149,7 +149,7 @@ MultiTheme <- R6::R6Class(
         units = self$feature[[1]]$layer$units,
         initial_status = self$initial_status,
         round = self$round,
-        icon = self$icon
+        icon = as.character(self$icon)
       )
     },
 

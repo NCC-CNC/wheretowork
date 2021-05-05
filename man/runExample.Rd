@@ -4,15 +4,19 @@
 \alias{runExample}
 \title{Run examples}
 \usage{
-runExample()
+runExample(name)
+}
+\arguments{
+\item{name}{\code{character} name of widget.
+Available options include \code{"solutionSettings"} and \code{"mapManager"}.}
 }
 \description{
-Run a 'Shiny' application containing showcasing the widgets implemented
+Run a 'Shiny' application containing showcasing widgets implemented
 in the \pkg{locationmisc} package.
 }
 \examples{
 if (interactive()) {
-  runExample()
+  runExample("solutionSettings")
 }
 
 }
