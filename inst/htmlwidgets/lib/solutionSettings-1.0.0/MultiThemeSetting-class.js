@@ -283,13 +283,15 @@ class MultiThemeSetting {
       });
       //// goal
       this.group_goal_el.noUiSlider.on("update", function (values, handle) {
-        let v = that.group_goal_el.noUiSlider.get();
-        Shiny.setInputValue(manager, {
-          id: id,
-          parameter: "feature_goal",
-          value: Array(that.n_features).fill(parseFloat(v)),
-          type: "theme"
-        });
+        let v = parseFloat(values[handle]);
+        if (v >= group_limit_goal) {
+          Shiny.setInputValue(manager, {
+            id: id,
+            parameter: "feature_goal",
+            value: Array(that.n_features).fill(v),
+            type: "theme"
+          });
+        }
       });
 
       /// single view
@@ -322,13 +324,16 @@ class MultiThemeSetting {
         //// slider
         this.single_goal_el[i].noUiSlider.on(
           "update", function (values, handle) {
-          that.single_goal_values[i] = parseFloat(values[handle]);
-          Shiny.setInputValue(manager, {
-            id: id,
-            parameter: "feature_goal",
-            value: that.single_goal_values,
-            type: "theme"
-          });
+          let v = parseFloat(values[handle]);
+          if (v >= feature_limit_goal[i]) {
+            that.single_goal_values[i] = v;
+            Shiny.setInputValue(manager, {
+              id: id,
+              parameter: "feature_goal",
+              value: that.single_goal_values,
+              type: "theme"
+            });
+          }
         });
       }
     }

@@ -100,12 +100,15 @@ class SingleThemeSetting {
     if (HTMLWidgets.shinyMode) {
       /// goal
       this.goal_el.noUiSlider.on("update", function (values, handle) {
-        Shiny.setInputValue(manager, {
-          id: id,
-          parameter: "feature_goal",
-          value: parseFloat(values[handle]),
-          type: "theme"
-        });
+        let v = parseFloat(values[handle]);
+        if (v >= feature_limit_goal) {
+          Shiny.setInputValue(manager, {
+            id: id,
+            parameter: "feature_goal",
+            value: v,
+            type: "theme"
+          });
+        }
       });
       /// status
       this.status_el.addEventListener("change", function () {
