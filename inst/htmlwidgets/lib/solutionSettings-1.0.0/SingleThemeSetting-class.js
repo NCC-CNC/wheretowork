@@ -15,6 +15,7 @@ class SingleThemeSetting {
     feature_step_goal,
     feature_current_label,
     units,
+    mandatory,
     initial_status,
     round,
     icon
@@ -42,6 +43,15 @@ class SingleThemeSetting {
 
     // attach id to element
     this.el.querySelector(".solution-setting").id = id;
+
+    // disable switches if theme is mandatory
+    if (mandatory) {
+      this.status_el.parentElement.classList.add("disable-mouse");
+      this.status_el.addEventListener("click", function (e) {
+        e.preventDefault();
+        return false;
+      });
+    }
 
     // set initial values
     /// icon

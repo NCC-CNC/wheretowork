@@ -33,6 +33,7 @@ test_that("initialization", {
   x <- new_multi_theme(
     name = "MF",
     feature = list(f1, f2),
+    mandatory = FALSE,
     initial_status = FALSE,
     round = FALSE,
     icon = "atom",
@@ -49,6 +50,7 @@ test_that("initialization", {
   expect_identical(x$id, "MF1")
   expect_identical(x$name, "MF")
   expect_identical(x$feature, list(f1, f2))
+  expect_identical(x$mandatory, FALSE)
   expect_identical(x$initial_status, FALSE)
   expect_identical(x$round, FALSE)
   expect_identical(x$group_min_goal, 0.01)
@@ -93,6 +95,7 @@ test_that("get methods", {
     name = "MF",
     feature = list(f1, f2),
     initial_status = FALSE,
+    mandatory = TRUE,
     round = FALSE,
     icon = "atom",
     id = "MF1",
@@ -142,6 +145,7 @@ test_that("set methods", {
   x <- new_multi_theme(
     name = "MF",
     feature = list(f1, f2),
+    mandatory = TRUE,
     initial_status = FALSE,
     round = FALSE,
     icon = "atom",
@@ -197,6 +201,7 @@ test_that("widget methods", {
   x <- new_multi_theme(
     name = "MF",
     feature = list(f1, f2),
+    mandatory = TRUE,
     initial_status = FALSE,
     round = FALSE,
     icon = "atom",
@@ -233,6 +238,7 @@ test_that("widget methods", {
         feature_icon = c(
           as.character(shiny::icon("bell")), as.character(shiny::icon("adn"))),
         units = "ha",
+        mandatory = TRUE,
         initial_status = FALSE,
         round = FALSE,
         icon = as.character(shiny::icon("atom"))

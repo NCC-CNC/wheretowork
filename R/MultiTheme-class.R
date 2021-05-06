@@ -45,7 +45,7 @@ MultiTheme <- R6::R6Class(
     #' @param icon `shiny.tag` object.
     #' @return A new MultiTheme object.
     initialize = function(
-      id, name, feature,
+      id, name, feature, mandatory,
       group_min_goal, group_max_goal, group_initial_goal, group_limit_goal,
       group_step_goal, group_current_label,
       initial_status, round, icon) {
@@ -60,6 +60,9 @@ MultiTheme <- R6::R6Class(
         #### feature
         is.list(feature),
         all_list_elements_inherit(feature, "Feature"),
+        #### mandatory
+        assertthat::is.flag(mandatory),
+        assertthat::noNA(mandatory),
         #### group_min_goal
         assertthat::is.number(group_min_goal),
         assertthat::noNA(group_min_goal),
@@ -96,6 +99,7 @@ MultiTheme <- R6::R6Class(
       self$id <- id
       self$name <- name
       self$feature <- feature
+      self$mandatory <- mandatory
       self$group_min_goal <- group_min_goal
       self$group_max_goal <- group_max_goal
       self$group_initial_goal <- group_initial_goal
@@ -147,6 +151,7 @@ MultiTheme <- R6::R6Class(
             self$feature, function(x) as.character(x$icon),
             character(1)),
         units = self$feature[[1]]$layer$units,
+        mandatory = self$mandatory,
         initial_status = self$initial_status,
         round = self$round,
         icon = as.character(self$icon)
@@ -169,6 +174,9 @@ MultiTheme <- R6::R6Class(
 #' @param name `character` Name to display.
 #'
 #' @param feature `list` of [Feature] objects.
+#'
+#' @param mandatory `logical` Is the theme mandatory for generating solutions?
+#'   Defaults to `FALSE`.
 #'
 #' @param group_min_goal `numeric` The minimum goal (inclusive)
 #'   shown for the features under the group view.
@@ -245,6 +253,7 @@ MultiTheme <- R6::R6Class(
 new_multi_theme <- function(
   name,
   feature,
+  mandatory = FALSE,
   initial_status = TRUE,
   round = TRUE,
   icon = "map-marked-alt",
@@ -263,6 +272,7 @@ new_multi_theme <- function(
     id = id,
     name = name,
     feature = feature,
+    mandatory = mandatory,
     group_min_goal = group_min_goal,
     group_max_goal = group_max_goal,
     group_initial_goal = group_initial_goal,

@@ -20,6 +20,9 @@ Theme <- R6::R6Class(
     #' @field feature `list` of [Feature] objects.
     feature = list(),
 
+    #' @field `logical` value.
+    mandatory = FALSE,
+
     #' @field initial_status `logical` value.
     initial_status = NA,
 
@@ -42,8 +45,9 @@ Theme <- R6::R6Class(
     #' @param ... not used.
     print = function(...) {
       message("Theme")
-      message("  id:      ", self$id)
-      message("  name:    ", self$name)
+      message("  id:        ", self$id)
+      message("  name:      ", self$name)
+      message("  mandatory: ", self$mandatory)
       message("  feature: ")
       for (x in vapply(self$feature, function(x) x$repr(), character(1))) {
         message("    " , x)
@@ -57,7 +61,8 @@ Theme <- R6::R6Class(
     #' @return `character` value.
     repr = function(...) {
       paste0(
-        self$name, ":",
+        self$name,
+        ifelse(self$mandatory, " (mandatory):", ":"),
         nl(),
         paste(
           paste0(

@@ -21,7 +21,7 @@ SingleTheme <- R6::R6Class(
     #' @param round `logical` value.
     #' @return A new SingleTheme object.
     initialize = function(
-      id, name, feature, initial_status, round, icon) {
+      id, name, feature, mandatory, initial_status, round, icon) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -34,6 +34,9 @@ SingleTheme <- R6::R6Class(
         is.list(feature),
         length(feature) == 1,
         inherits(feature[[1]], "Feature"),
+        #### mandatory
+        assertthat::is.flag(mandatory),
+        assertthat::noNA(mandatory),
         #### initial_status
         assertthat::is.flag(initial_status),
         assertthat::noNA(initial_status),
@@ -46,6 +49,7 @@ SingleTheme <- R6::R6Class(
       self$id = id
       self$name = name
       self$feature = feature
+      self$mandatory = mandatory
       self$initial_status = initial_status
       self$round = round
       self$icon = icon
@@ -69,6 +73,7 @@ SingleTheme <- R6::R6Class(
         feature_step_goal = self$feature[[1]]$step_goal,
         feature_current_label = self$feature[[1]]$current_label,
         units = self$feature[[1]]$layer$units,
+        mandatory = self$mandatory,
         initial_status = self$initial_status,
         round = self$round,
         icon = as.character(self$icon)
@@ -113,6 +118,7 @@ SingleTheme <- R6::R6Class(
 new_single_theme <- function(
   name,
   feature,
+  mandatory = FALSE,
   initial_status = TRUE,
   round = TRUE,
   icon = "map-marked-alt",
@@ -129,6 +135,7 @@ new_single_theme <- function(
     id = id,
     feature = feature,
     name = name,
+    mandatory = mandatory,
     initial_status = initial_status,
     round = round,
     icon = icon)

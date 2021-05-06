@@ -19,6 +19,7 @@ test_that("initialization", {
   x <- new_single_theme(
     name = "FS",
     feature = f,
+    mandatory = FALSE,
     initial_status = FALSE,
     round = FALSE,
     icon = "atom",
@@ -30,6 +31,7 @@ test_that("initialization", {
   expect_identical(x$name, "FS")
   expect_identical(x$feature, list(f))
   expect_identical(x$initial_status, FALSE)
+  expect_identical(x$mandatory, FALSE)
   expect_identical(x$round, FALSE)
   expect_identical(x$icon, shiny::icon("atom"))
 })
@@ -54,6 +56,7 @@ test_that("get methods", {
     name = "FS",
     feature = f,
     initial_status = FALSE,
+    mandatory = TRUE,
     round = FALSE,
     icon = "atom",
     id = "FS1")
@@ -84,6 +87,7 @@ test_that("set methods", {
     name = "FS",
     feature = f,
     initial_status = FALSE,
+    mandatory = TRUE,
     round = FALSE,
     icon = "atom",
     id = "FS1")
@@ -117,6 +121,7 @@ test_that("widget methods", {
   x <- new_single_theme(
     name = "FS",
     feature = f,
+    mandatory = TRUE,
     initial_status = FALSE,
     round = FALSE,
     icon = "atom",
@@ -138,6 +143,7 @@ test_that("widget methods", {
       feature_step_goal = 0.02,
       feature_current_label = "Now",
       units = "ha",
+      mandatory = TRUE,
       initial_status = FALSE,
       round = FALSE,
       icon = as.character(shiny::icon("atom")))

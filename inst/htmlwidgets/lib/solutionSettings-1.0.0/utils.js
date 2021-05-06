@@ -28,6 +28,7 @@ function newThemeSetting(manager, x) {
       x.feature_step_goal,
       x.feature_current_label,
       x.units,
+      x.mandatory,
       x.initial_status,
       x.round,
       x.icon
@@ -56,6 +57,7 @@ function newThemeSetting(manager, x) {
       x.feature_initial_status,
       x.feature_icon,
       x.units,
+      x.mandatory,
       x.initial_status,
       x.round,
       x.icon

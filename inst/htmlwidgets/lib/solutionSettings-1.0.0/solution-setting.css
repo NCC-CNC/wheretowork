@@ -5,6 +5,10 @@
   border-radius: 5px 5px 5px 5px;
 }
 
+.solution-setting .disable-mouse *:hover {
+  cursor: not-allowed;
+}
+
 /* view containers */
 .solution-setting .single-view {
   overflow-y: auto;

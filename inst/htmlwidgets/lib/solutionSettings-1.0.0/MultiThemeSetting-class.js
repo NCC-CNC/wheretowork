@@ -23,6 +23,7 @@ class MultiThemeSetting {
     feature_initial_status,
     feature_icon,
     units,
+    mandatory,
     initial_status,
     round,
     icon
@@ -140,6 +141,24 @@ class MultiThemeSetting {
     this.el
       .querySelector(".tabbable .tab-content [data-value='single']")
       .setAttribute("id", `tabs-${id}-2`);
+
+    // disable switches if theme is mandatory (and keep colors as toggled on)
+    if (mandatory) {
+      /// status switch
+      this.status_el.parentElement.classList.add("disable-mouse");
+      this.status_el.addEventListener("click", function (e) {
+        e.preventDefault();
+        return false;
+      });
+      /// single sswitches
+      this.single_status_el.forEach((x) => {
+        x.parentElement.classList.add("disable-mouse");
+        x.addEventListener("click", function (e) {
+          e.preventDefault();
+          return false;
+        });
+      });
+    }
 
     // set initial theme values
     /// icon
