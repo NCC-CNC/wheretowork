@@ -20,8 +20,8 @@ fluidPage(
   div(
     class = "panel",
     wellPanel(
-      h3("widget"),
-      p("This panel contains a minimal version of the solution settings widget. Note that it has minimal styling so that we make easily customize it later within the Location-App. The red outline shows the widget."),
+      h3("Widget"),
+      p("This panel contains a minimal version of the solution settings widget. Note that it has minimal styling so that we make easily customize it within the Location App. The red outline shows its extent."),
       solutionSettingsOutput("widget")
     )
   ),
@@ -29,17 +29,19 @@ fluidPage(
   div(
     class = "panel",
     wellPanel(
-      h3("state"),
+      h3("State"),
       tabsetPanel(
         type = "tabs",
         tabPanel(
           "R's internal memory",
+          br(),
           p("This tab depicts R's internal representation of the solution settings widget."),
           verbatimTextOutput("show")
         ),
         tabPanel(
           "Message from widget",
-          p("This tab shows the messages that the widget is sending to R through the power of Shiny and JavaScript."),
+          br(),
+          p("This tab shows the messages that the widget is sending to R to update R's internal representation of the solution settings."),
           verbatimTextOutput("message"),
         )
       )
@@ -49,8 +51,8 @@ fluidPage(
   div(
     class = "panel",
     wellPanel(
-      h3("controls"),
-        p("This tab contains controls to manually update the appearance of the widget. For brevity, controls have not been included for the different Turnip features."),
+      h3("Controls"),
+        p("This tab contains controls to manually update the appearance of the widget. Note that these controls (mostly) do not alter R's internal representation of solution settings. This is because they are designed to be used within an R Shiny to update the widget automatically for the user. For brevity, controls have not been included for the different Turnip features."),
       tabsetPanel(
         type = "tabs",
         ## single theme
