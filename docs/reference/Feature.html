@@ -143,6 +143,8 @@ Feature class" />
 
 <dt><code>goal</code></dt><dd><p><code>numeric</code> value.</p></dd>
 
+<dt><code>current</code></dt><dd><p><code>numeric</code> value.</p></dd>
+
 <dt><code>initial_goal</code></dt><dd><p><code>numeric</code> initial goal value.</p></dd>
 
 <dt><code>min_goal</code></dt><dd><p><code>numeric</code> minimum goal value.</p></dd>
@@ -165,6 +167,8 @@ Feature class" />
 
 <ul>
 <li><p><a href='#method-new'><code>Feature$new()</code></a></p></li>
+<li><p><a href='#method-print'><code>Feature$print()</code></a></p></li>
+<li><p><a href='#method-repr'><code>Feature$repr()</code></a></p></li>
 <li><p><a href='#method-get_goal'><code>Feature$get_goal()</code></a></p></li>
 <li><p><a href='#method-get_status'><code>Feature$get_status()</code></a></p></li>
 <li><p><a href='#method-set_goal'><code>Feature$set_goal()</code></a></p></li>
@@ -184,6 +188,7 @@ Feature class" />
   <span class='va'>max_goal</span>,
   <span class='va'>step_goal</span>,
   <span class='va'>limit_goal</span>,
+  <span class='va'>current</span>,
   <span class='va'>current_label</span>,
   <span class='va'>icon</span>
 <span class='op'>)</span></pre><p></div></p>
@@ -207,6 +212,8 @@ Feature class" />
 <dt><code>step_goal</code></dt><dd><p><code>numeric</code> value.</p></dd>
 
 <dt><code>limit_goal</code></dt><dd><p><code>numeric</code> value.</p></dd>
+
+<dt><code>current</code></dt><dd><p><code>numeric</code> value.</p></dd>
 
 <dt><code>current_label</code></dt><dd><p><code>character</code> value.</p></dd>
 
@@ -227,6 +234,7 @@ Feature class" />
   <span class='va'>max_goal</span>,
   <span class='va'>step_goal</span>,
   <span class='va'>limit_goal</span>,
+  <span class='va'>current</span>,
   <span class='va'>current_label</span>,
   <span class='va'>icon</span>
 <span class='op'>)</span></pre><p></div></p>
@@ -251,6 +259,8 @@ Feature class" />
 
 <dt><code>limit_goal</code></dt><dd><p><code>numeric</code> value.</p></dd>
 
+<dt><code>current</code></dt><dd><p><code>numeric</code> value.</p></dd>
+
 <dt><code>current_label</code></dt><dd><p><code>character</code> value.</p></dd>
 
 <dt><code>icon</code></dt><dd><p><code>shiny.tag</code> object.</p></dd>
@@ -258,6 +268,56 @@ Feature class" />
 </dl><p></div></p>
 <h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
 <p>A new Feature object.</p>
+<p><hr>
+<a id="method-print"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code><a href='https://rdrr.io/r/base/print.html'>print()</a></code></h3>
+<p>Print the object.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>Feature</span><span class='op'>$</span><span class='fu'>print</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>...</code></dt><dd><p>not used.</p></dd>
+
+</dl><p></div></p>
+<h3 class='hasAnchor' id='list-print-'><a class='anchor' aria-hidden='true' href='#list-print-'></a>Method <code><a href='https://rdrr.io/r/base/print.html'>print()</a></code></h3>
+<p>Print the object.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>Feature</span><span class='op'>$</span><span class='fu'>print</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>...</code></dt><dd><p>not used.</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-repr"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>repr()</code></h3>
+<p>Generate a <code>character</code> summarizing the representation of the object.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>Feature</span><span class='op'>$</span><span class='fu'>repr</span><span class='op'>(</span>start <span class='op'>=</span> <span class='st'>"["</span>, end <span class='op'>=</span> <span class='st'>"]"</span><span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>start</code></dt><dd><p><code>character</code> symbol used to start the parameter list.
+Defaults to <code>"["</code>.</p></dd>
+
+<dt><code>end</code></dt><dd><p><code>character</code> symbol used to start the parameter list.
+Defaults to <code>"]"</code>.</p></dd>
+
+</dl><p></div></p>
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>character</code> value.</p>
+<h3 class='hasAnchor' id='list-repr-'><a class='anchor' aria-hidden='true' href='#list-repr-'></a>Method <code>repr()</code></h3>
+<p>Generate a <code>character</code> summarizing the representation of the object.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>Feature</span><span class='op'>$</span><span class='fu'>repr</span><span class='op'>(</span>start <span class='op'>=</span> <span class='st'>"["</span>, end <span class='op'>=</span> <span class='st'>"]"</span><span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>start</code></dt><dd><p><code>character</code> symbol used to start the parameter list.
+Defaults to <code>"["</code>.</p></dd>
+
+<dt><code>end</code></dt><dd><p><code>character</code> symbol used to start the parameter list.
+Defaults to <code>"]"</code>.</p></dd>
+
+</dl><p></div></p>
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>character</code> value.</p>
 <p><hr>
 <a id="method-get_goal"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>get_goal()</code></h3>
 <p>Get goal.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>

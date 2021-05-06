@@ -88,7 +88,7 @@ MultiTheme <- R6::R6Class(
         inherits(icon, "shiny.tag"))
       ## assert all feature have ame units
       assertthat::assert_that(
-        dplyr::n_distinct(
+        n_distinct(
           vapply(
             feature, FUN.VALUE = character(1), function(x) x$layer$units)) == 1,
         msg = "argument to `feature` contains elements with different units")

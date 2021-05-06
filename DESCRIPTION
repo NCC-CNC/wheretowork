@@ -1,5 +1,5 @@
 Package: locationmisc
-Title: Classes, widgets, and functions for the Location App.
+Title: Classes, widgets, and functions for the Location App
 Version: 0.0.0.9000
 Description:
   This package provides classes, widgets, and functions for the Location App.
@@ -18,13 +18,14 @@ Imports:
     shiny (>= 1.6.0),
     shinyBS (>= 0.6.1),
     tools (>= 4.0.5),
+    uuid (>= 0.1.4),
 Suggests:
     testthat (>= 2.0.1),
     knitr (>= 1.2.0),
     roxygen2 (>= 6.1.1),
     rmarkdown (>= 1.10),
 Depends:
-    R (>= 4.0.4),
+    R (>= 4.0.0),
     R6 (>= 2.5.0)
 License: GPL-3
 Encoding: UTF-8

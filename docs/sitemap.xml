@@ -34,9 +34,6 @@
     <loc>/reference/Weight.html</loc>
   </url>
   <url>
-    <loc>/reference/all_list_elements_inherit.html</loc>
-  </url>
-  <url>
     <loc>/reference/index.html</loc>
   </url>
   <url>
@@ -76,12 +73,9 @@
     <loc>/reference/solutionSettings-shiny.html</loc>
   </url>
   <url>
-    <loc>/reference/solutionSettings.html</loc>
+    <loc>/reference/solutionSettings-widget.html</loc>
   </url>
   <url>
     <loc>/reference/updateSolutionSettings.html</loc>
-  </url>
-  <url>
-    <loc>/reference/updateThemeName.html</loc>
   </url>
 </urlset>

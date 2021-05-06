@@ -7,10 +7,11 @@
 #'   Available options include `"solutionSettings"` and `"mapManager"`.
 #'
 #' @examples
+#' \dontrun{
 #' if (interactive()) {
 #'   runExample("solutionSettings")
 #' }
-#'
+#' }
 #' @export
 runExample <- function(name) {
   # assert arguments are valid

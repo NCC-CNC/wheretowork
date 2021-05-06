@@ -209,12 +209,12 @@ SolutionSettings <- R6::R6Class(
 #'
 #' # create features using layers
 #' f1 <- new_feature(name = "Possum Occurrence", layer = l2)
-#' f2 <- new_feature(name = "Forests", layer = 3)
+#' f2 <- new_feature(name = "Forests", layer = l3)
 #' f3 <- new_feature(name = "Shurblands", layer = l4)
 #'
 #' # create themes using the features
-#' t1 <- new_single_theme(f1)
-#' t2 <- new_multi_theme_theme(f1)
+#' t1 <- new_single_theme(name = "Species", f1)
+#' t2 <- new_multi_theme(name = "Ecoregions", list(f1, f2))
 #'
 #' # create solution settings using the themes and weight
 #' ss <- new_solution_settings(themes = list(t1, t2), weights = list(w))

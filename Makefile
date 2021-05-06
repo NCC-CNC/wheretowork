@@ -43,4 +43,8 @@ site:
 demo-solutionSettings:
 	R --slave -e "devtools::load_all();options(shiny.launch.browser=TRUE);locationmisc::runExample('solutionSettings')"
 
+deploy-solutionSettings:
+	R -e "devtools::install_github('NCC-CNC/locationmisc')"
+	R -e "rsconnect::deployApp('inst/example/solutionSettings', appName = 'solutionSettings', launch.browser = TRUE)"
+
 .PHONY: clean data readme test check install man spellcheck examples demo-solutionSettings site quicksite

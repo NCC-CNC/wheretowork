@@ -48,6 +48,8 @@ Available options are: \code{"theme"} or \code{"weight"}.}
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-new}{\code{SolutionSettings$new()}}
+\item \href{#method-print}{\code{SolutionSettings$print()}}
+\item \href{#method-repr}{\code{SolutionSettings$repr()}}
 \item \href{#method-get_theme}{\code{SolutionSettings$get_theme()}}
 \item \href{#method-get_weight}{\code{SolutionSettings$get_weight()}}
 \item \href{#method-get_parameter}{\code{SolutionSettings$get_parameter()}}
@@ -77,6 +79,47 @@ Create a SolutionSettings object.
 }
 \subsection{Returns}{
 A new SolutionSettings object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-print"></a>}}
+\if{latex}{\out{\hypertarget{method-print}{}}}
+\subsection{Method \code{print()}}{
+Print the object.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$print(...)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{...}}{not used.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-repr"></a>}}
+\if{latex}{\out{\hypertarget{method-repr}{}}}
+\subsection{Method \code{repr()}}{
+Generate a \code{character} summarizing the representation of the object.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$repr(start = "[", end = "]")}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{start}}{\code{character} symbol used to start the parameter list.
+Defaults to \code{"["}.}
+
+\item{\code{end}}{\code{character} symbol used to start the parameter list.
+Defaults to \code{"]"}.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+\code{character} value.
 }
 }
 \if{html}{\out{<hr>}}

@@ -15,8 +15,9 @@ Run a 'Shiny' application containing showcasing widgets implemented
 in the \pkg{locationmisc} package.
 }
 \examples{
+\dontrun{
 if (interactive()) {
   runExample("solutionSettings")
 }
-
+}
 }

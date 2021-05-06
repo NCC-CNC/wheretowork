@@ -19,22 +19,22 @@ Create a new \link{SolutionSettings} object.
 }
 \examples{
 # create layers
-l1 <- new_layer(source = tempfile(), current = 0.1, total = 12, units = "ha")
-l2 <- new_layer(source = tempfile(), current = 0.5, total = 14, units = "ha")
-l3 <- new_layer(source = tempfile(), current = 0.9, total = 78, units = "ha")
-l4 <- new_layer(source = tempfile(), current = 0.4, total = 90, units = "ha")
+l1 <- new_layer(source = tempfile(), total = 12, units = "ha")
+l2 <- new_layer(source = tempfile(), total = 14, units = "ha")
+l3 <- new_layer(source = tempfile(), total = 78, units = "ha")
+l4 <- new_layer(source = tempfile(), total = 90, units = "ha")
 
 # create a weight using a layer
 w <- new_weight(name = "Human Footprint Index", layer = l1)
 
 # create features using layers
 f1 <- new_feature(name = "Possum Occurrence", layer = l2)
-f2 <- new_feature(name = "Forests", layer = 3)
+f2 <- new_feature(name = "Forests", layer = l3)
 f3 <- new_feature(name = "Shurblands", layer = l4)
 
 # create themes using the features
-t1 <- new_single_theme(f1)
-t2 <- new_multi_theme_theme(f1)
+t1 <- new_single_theme(name = "Species", f1)
+t2 <- new_multi_theme(name = "Ecoregions", list(f1, f2))
 
 # create solution settings using the themes and weight
 ss <- new_solution_settings(themes = list(t1, t2), weights = list(w))

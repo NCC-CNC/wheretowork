@@ -120,7 +120,7 @@
     <p>Create a new <a href='Layer.html'>Layer</a> object.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>new_layer</span><span class='op'>(</span><span class='va'>source</span>, <span class='va'>current</span>, <span class='va'>total</span>, <span class='va'>units</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>new_layer</span><span class='op'>(</span><span class='va'>source</span>, <span class='va'>total</span>, <span class='va'>units</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -128,11 +128,6 @@
     <tr>
       <th>source</th>
       <td><p><code>character</code> file path for the underlying data.</p></td>
-    </tr>
-    <tr>
-      <th>current</th>
-      <td><p><code>numeric</code> current proportion of values held in existing
-conservation areas (e.g. 0.1 = 10%).</p></td>
     </tr>
     <tr>
       <th>total</th>
@@ -150,18 +145,11 @@ conservation areas (e.g. 0.1 = 10%).</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># create new object</span>
-<span class='va'>l</span> <span class='op'>&lt;-</span> <span class='fu'>new_layer</span><span class='op'>(</span>source <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span><span class='op'>)</span>, current <span class='op'>=</span> <span class='fl'>0.1</span>, total <span class='op'>=</span> <span class='fl'>12</span>, units <span class='op'>=</span> <span class='st'>"ha"</span><span class='op'>)</span>
+<span class='va'>l</span> <span class='op'>&lt;-</span> <span class='fu'>new_layer</span><span class='op'>(</span>source <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span><span class='op'>)</span>, total <span class='op'>=</span> <span class='fl'>12</span>, units <span class='op'>=</span> <span class='st'>"ha"</span><span class='op'>)</span>
 
 <span class='co'># print object</span>
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>l</span><span class='op'>)</span>
-</div><div class='co'>#&gt; &lt;Layer&gt;
-#&gt;   Public:
-#&gt;     clone: function (deep = FALSE) 
-#&gt;     current: 0.1
-#&gt;     initialize: function (source, current, total, units) 
-#&gt;     source: /tmp/RtmpGe1pxJ/file3bd419f331f4
-#&gt;     total: 12
-#&gt;     units: ha</div><div class='input'>
+</div><div class='co'>#&gt; Layer</div><div class='co'>#&gt;   source: /tmp/Rtmp5OIHHl/file1d4c72a2f55a7</div><div class='co'>#&gt;   total:  12</div><div class='co'>#&gt;   units:  ha</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

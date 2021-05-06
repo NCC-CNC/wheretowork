@@ -133,8 +133,6 @@ Layer class" />
     <p><div class="r6-fields"></p><dl>
 <dt><code>source</code></dt><dd><p><code>character</code> value.</p></dd>
 
-<dt><code>current</code></dt><dd><p><code>numeric</code> value.</p></dd>
-
 <dt><code>total</code></dt><dd><p><code>numeric</code> value.</p></dd>
 
 <dt><code>units</code></dt><dd><p><code>character</code> value.</p></dd>
@@ -147,18 +145,18 @@ Layer class" />
 
 <ul>
 <li><p><a href='#method-new'><code>Layer$new()</code></a></p></li>
+<li><p><a href='#method-print'><code>Layer$print()</code></a></p></li>
+<li><p><a href='#method-repr'><code>Layer$repr()</code></a></p></li>
 <li><p><a href='#method-clone'><code>Layer$clone()</code></a></p></li>
 </ul>
 <p><hr>
 <a id="method-new"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>new()</code></h3>
 <p>Create a Layer object.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
-<p><div class="r"></p><pre><span class='va'>Layer</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>source</span>, <span class='va'>current</span>, <span class='va'>total</span>, <span class='va'>units</span><span class='op'>)</span></pre><p></div></p>
+<p><div class="r"></p><pre><span class='va'>Layer</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>source</span>, <span class='va'>total</span>, <span class='va'>units</span><span class='op'>)</span></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
 <p><div class="arguments"></p><dl>
 <dt><code>source</code></dt><dd><p><code>character</code> value.</p></dd>
-
-<dt><code>current</code></dt><dd><p><code>numeric</code> value.</p></dd>
 
 <dt><code>total</code></dt><dd><p><code>numeric</code> value.</p></dd>
 
@@ -169,13 +167,11 @@ Layer class" />
 <p>A new Layer object.</p>
 <h3 class='hasAnchor' id='list-new-'><a class='anchor' aria-hidden='true' href='#list-new-'></a>Method <code>new()</code></h3>
 <p>Create a Layer object.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
-<p><div class="r"></p><pre><span class='va'>Layer</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>source</span>, <span class='va'>current</span>, <span class='va'>total</span>, <span class='va'>units</span><span class='op'>)</span></pre><p></div></p>
+<p><div class="r"></p><pre><span class='va'>Layer</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>source</span>, <span class='va'>total</span>, <span class='va'>units</span><span class='op'>)</span></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
 <p><div class="arguments"></p><dl>
 <dt><code>source</code></dt><dd><p><code>character</code> value.</p></dd>
-
-<dt><code>current</code></dt><dd><p><code>numeric</code> value.</p></dd>
 
 <dt><code>total</code></dt><dd><p><code>numeric</code> value.</p></dd>
 
@@ -184,6 +180,56 @@ Layer class" />
 </dl><p></div></p>
 <h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
 <p>A new Layer object.</p>
+<p><hr>
+<a id="method-print"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code><a href='https://rdrr.io/r/base/print.html'>print()</a></code></h3>
+<p>Print the object.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>Layer</span><span class='op'>$</span><span class='fu'>print</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>...</code></dt><dd><p>not used.</p></dd>
+
+</dl><p></div></p>
+<h3 class='hasAnchor' id='list-print-'><a class='anchor' aria-hidden='true' href='#list-print-'></a>Method <code><a href='https://rdrr.io/r/base/print.html'>print()</a></code></h3>
+<p>Print the object.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>Layer</span><span class='op'>$</span><span class='fu'>print</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>...</code></dt><dd><p>not used.</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-repr"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>repr()</code></h3>
+<p>Generate a <code>character</code> summarizing the representation of the object.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>Layer</span><span class='op'>$</span><span class='fu'>repr</span><span class='op'>(</span>start <span class='op'>=</span> <span class='st'>"["</span>, end <span class='op'>=</span> <span class='st'>"]"</span><span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>start</code></dt><dd><p><code>character</code> symbol used to start the parameter list.
+Defaults to <code>"["</code>.</p></dd>
+
+<dt><code>end</code></dt><dd><p><code>character</code> symbol used to start the parameter list.
+Defaults to <code>"]"</code>.</p></dd>
+
+</dl><p></div></p>
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>character</code> value.</p>
+<h3 class='hasAnchor' id='list-repr-'><a class='anchor' aria-hidden='true' href='#list-repr-'></a>Method <code>repr()</code></h3>
+<p>Generate a <code>character</code> summarizing the representation of the object.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>Layer</span><span class='op'>$</span><span class='fu'>repr</span><span class='op'>(</span>start <span class='op'>=</span> <span class='st'>"["</span>, end <span class='op'>=</span> <span class='st'>"]"</span><span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>start</code></dt><dd><p><code>character</code> symbol used to start the parameter list.
+Defaults to <code>"["</code>.</p></dd>
+
+<dt><code>end</code></dt><dd><p><code>character</code> symbol used to start the parameter list.
+Defaults to <code>"]"</code>.</p></dd>
+
+</dl><p></div></p>
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>character</code> value.</p>
 <p><hr>
 <a id="method-clone"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>clone()</code></h3>
 <p>The objects of this class are cloneable with this method.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>

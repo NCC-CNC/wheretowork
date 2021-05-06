@@ -158,7 +158,7 @@ Defaults to <code>TRUE</code>.</p></td>
       <th>icon</th>
       <td><p><code>shiny.tag</code> Icon to display for the feature
 This icon should indicate the type of data that underpin the feature.
-Alternatively, the argument can be a <code>character</code> to automactially
+Alternatively, the argument can be a <code>character</code> to automatically
 generate a <code>shiny.tag</code> icon (using <code><a href='https://rdrr.io/pkg/shiny/man/icon.html'>shiny::icon()</a></code>).
 Defaults to <code>"map-marked-alt"</code>.</p></td>
     </tr>
@@ -175,7 +175,7 @@ Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUI
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># create new layer</span>
-<span class='va'>l</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_layer.html'>new_layer</a></span><span class='op'>(</span>source <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span><span class='op'>)</span>, current <span class='op'>=</span> <span class='fl'>0.1</span>, total <span class='op'>=</span> <span class='fl'>12</span>, units <span class='op'>=</span> <span class='st'>"ha"</span><span class='op'>)</span>
+<span class='va'>l</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_layer.html'>new_layer</a></span><span class='op'>(</span>source <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span><span class='op'>)</span>, total <span class='op'>=</span> <span class='fl'>12</span>, units <span class='op'>=</span> <span class='st'>"ha"</span><span class='op'>)</span>
 
 <span class='co'># create feature using the layer</span>
 <span class='va'>f</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_feature.html'>new_feature</a></span><span class='op'>(</span>name <span class='op'>=</span> <span class='st'>"Intact Alvar Occurrence"</span>, layer <span class='op'>=</span> <span class='va'>l</span><span class='op'>)</span>
@@ -185,25 +185,8 @@ Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUI
 
 <span class='co'># print object</span>
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>st</span><span class='op'>)</span>
-</div><div class='co'>#&gt; &lt;SingleTheme&gt;
-#&gt;   Inherits from: &lt;Theme&gt;
-#&gt;   Public:
-#&gt;     clone: function (deep = FALSE) 
-#&gt;     feature: list
-#&gt;     get_feature_goal: function () 
-#&gt;     get_feature_status: function () 
-#&gt;     get_map_manager_widget_data: function () 
-#&gt;     get_parameter: function (name) 
-#&gt;     get_solution_settings_widget_data: function () 
-#&gt;     icon: shiny.tag
-#&gt;     id: cc86ef72-e8d0-4884-8899-8a1b3260b57f
-#&gt;     initial_status: TRUE
-#&gt;     initialize: function (id, name, feature, initial_status, round, icon) 
-#&gt;     name: Inact Alvar
-#&gt;     round: TRUE
-#&gt;     set_feature_goal: function (value) 
-#&gt;     set_feature_status: function (value) 
-#&gt;     set_parameter: function (name, value) </div><div class='input'>
+</div><div class='co'>#&gt; Theme</div><div class='co'>#&gt;   id:      de06b5ae-1813-430f-b57f-f28f7ac76264</div><div class='co'>#&gt;   name:    Inact Alvar</div><div class='co'>#&gt;   feature: </div><div class='co'>#&gt;     Intact Alvar Occurrence [status: TRUE, current: 0, goal: 0.1]
+#&gt;   layer: .../file1d4c713aed34a [total: 12 ha]</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

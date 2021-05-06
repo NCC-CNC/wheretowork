@@ -26,3 +26,5 @@ pkgdown
 .covrignore
 ^\.github$
 ^LICENSE\.md$
+rsconnect
+^rsconnect

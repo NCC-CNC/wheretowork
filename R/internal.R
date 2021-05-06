@@ -25,3 +25,8 @@ assertthat::on_failure(all_list_elements_inherit) <- function(call, env) {
 nl <- function() {
   ifelse(identical(.Platform$OS.type, "unix"), "\n", "\n\r")
 }
+
+# alias for dplr::n_distinct()
+n_distinct <- function(x) {
+  length(unique(x))
+}

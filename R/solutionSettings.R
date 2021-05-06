@@ -34,6 +34,8 @@
 #' @examples
 #' # TODO.
 #'
+#' @rdname solutionSettings-widget
+#'
 #' @export
 solutionSettings <- function(
   x, width = NULL, height = NULL, elementId = NULL) {

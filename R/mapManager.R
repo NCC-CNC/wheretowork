@@ -4,7 +4,7 @@
 #' This widget is designed to be used in conjunction with an existing
 #' Leaflet Map within a Shiny web application.
 #'
-#' @param x [MapManager] object.
+#' @param x MapManager object.
 #'
 #' @inheritParams solutionSettings
 #'

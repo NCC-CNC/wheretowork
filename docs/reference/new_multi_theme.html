@@ -162,7 +162,7 @@ Defaults to <code>TRUE</code>.</p></td>
       <th>icon</th>
       <td><p><code>shiny.tag</code> Icon to display for the feature
 This icon should indicate the type of data that underpin the feature.
-Alternatively, the argument can be a <code>character</code> to automactially
+Alternatively, the argument can be a <code>character</code> to automatically
 generate a <code>shiny.tag</code> icon (using <code><a href='https://rdrr.io/pkg/shiny/man/icon.html'>shiny::icon()</a></code>).
 Defaults to <code>"map-marked-alt"</code>.</p></td>
     </tr>
@@ -225,9 +225,9 @@ Defaults to <code>Current</code>.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># create layers</span>
-<span class='va'>l1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_layer.html'>new_layer</a></span><span class='op'>(</span>source <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span><span class='op'>)</span>, current <span class='op'>=</span> <span class='fl'>0.1</span>, total <span class='op'>=</span> <span class='fl'>12</span>, units <span class='op'>=</span> <span class='st'>"ha"</span><span class='op'>)</span>
-<span class='va'>l2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_layer.html'>new_layer</a></span><span class='op'>(</span>source <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span><span class='op'>)</span>, current <span class='op'>=</span> <span class='fl'>0.2</span>, total <span class='op'>=</span> <span class='fl'>15</span>, units <span class='op'>=</span> <span class='st'>"ha"</span><span class='op'>)</span>
-<span class='va'>l3</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_layer.html'>new_layer</a></span><span class='op'>(</span>source <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span><span class='op'>)</span>, current <span class='op'>=</span> <span class='fl'>0.4</span>, total <span class='op'>=</span> <span class='fl'>20</span>, units <span class='op'>=</span> <span class='st'>"ha"</span><span class='op'>)</span>
+<span class='va'>l1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_layer.html'>new_layer</a></span><span class='op'>(</span>source <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span><span class='op'>)</span>, total <span class='op'>=</span> <span class='fl'>12</span>, units <span class='op'>=</span> <span class='st'>"ha"</span><span class='op'>)</span>
+<span class='va'>l2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_layer.html'>new_layer</a></span><span class='op'>(</span>source <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span><span class='op'>)</span>, total <span class='op'>=</span> <span class='fl'>15</span>, units <span class='op'>=</span> <span class='st'>"ha"</span><span class='op'>)</span>
+<span class='va'>l3</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_layer.html'>new_layer</a></span><span class='op'>(</span>source <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span><span class='op'>)</span>, total <span class='op'>=</span> <span class='fl'>20</span>, units <span class='op'>=</span> <span class='st'>"ha"</span><span class='op'>)</span>
 
 <span class='co'># create features the layers</span>
 <span class='va'>f1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_feature.html'>new_feature</a></span><span class='op'>(</span>name <span class='op'>=</span> <span class='st'>"Pangolin"</span>, layer <span class='op'>=</span> <span class='va'>l1</span><span class='op'>)</span>
@@ -240,31 +240,10 @@ Defaults to <code>Current</code>.</p></td>
 
 <span class='co'># print object</span>
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>mt</span><span class='op'>)</span>
-</div><div class='co'>#&gt; &lt;MultiTheme&gt;
-#&gt;   Inherits from: &lt;Theme&gt;
-#&gt;   Public:
-#&gt;     clone: function (deep = FALSE) 
-#&gt;     feature: list
-#&gt;     get_feature_goal: function () 
-#&gt;     get_feature_status: function () 
-#&gt;     get_map_manager_widget_data: function () 
-#&gt;     get_parameter: function (name) 
-#&gt;     get_solution_settings_widget_data: function () 
-#&gt;     group_current_label: Current
-#&gt;     group_initial_goal: 0.3
-#&gt;     group_limit_goal: 0.1
-#&gt;     group_max_goal: 1
-#&gt;     group_min_goal: 0
-#&gt;     group_step_goal: 0.01
-#&gt;     icon: shiny.tag
-#&gt;     id: 93956b2d-1ad6-4961-9b41-e31fb90f4cb4
-#&gt;     initial_status: TRUE
-#&gt;     initialize: function (id, name, feature, group_min_goal, group_max_goal, 
-#&gt;     name: Endangered species
-#&gt;     round: TRUE
-#&gt;     set_feature_goal: function (value) 
-#&gt;     set_feature_status: function (value) 
-#&gt;     set_parameter: function (name, value) </div><div class='input'>
+</div><div class='co'>#&gt; Theme</div><div class='co'>#&gt;   id:      d366fbd6-e8de-4683-9da5-cef54e4a626f</div><div class='co'>#&gt;   name:    Endangered species</div><div class='co'>#&gt;   feature: </div><div class='co'>#&gt;     Pangolin [status: TRUE, current: 0, goal: 0.1]
+#&gt;   layer: .../file1d4c781cda61 [total: 12 ha]</div><div class='co'>#&gt;     Panda [status: TRUE, current: 0, goal: 0.1]
+#&gt;   layer: .../file1d4c717e894ca [total: 15 ha]</div><div class='co'>#&gt;     Palms [status: TRUE, current: 0, goal: 0.1]
+#&gt;   layer: .../file1d4c728821fa3 [total: 20 ha]</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
