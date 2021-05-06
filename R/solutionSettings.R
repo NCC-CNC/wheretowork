@@ -106,20 +106,23 @@ solutionSettings_html <- function(id, style, class, ...) {
     htmltools::tags$div(
       id = id, class = class, style = style,
       htmltools::div(
-        class = "solution-settings",
-        shinyBS::bsCollapse(
-          id = paste0(id, "_collapse"),
-          multiple = TRUE,
-          open = paste0(id, c("_collapseThemePanel", "_collapseWeightPanel")),
-          shinyBS::bsCollapsePanel(
-            title = "Themes",
-            value = paste0(id, "_collapseThemePanel"),
-            htmltools::tags$div(class = "themes")
-          ),
-          shinyBS::bsCollapsePanel(
-            title = "Weights",
-            value = paste0(id, "_collapseWeightPanel"),
-            htmltools::tags$div(class = "weights")
+        class = "solution-settings-container",
+        htmltools::div(
+          class = "solution-settings",
+          shinyBS::bsCollapse(
+            id = paste0(id, "_collapse"),
+            multiple = TRUE,
+            open = paste0(id, c("_collapseThemePanel", "_collapseWeightPanel")),
+            shinyBS::bsCollapsePanel(
+              title = "Themes",
+              value = paste0(id, "_collapseThemePanel"),
+              htmltools::tags$div(class = "themes")
+            ),
+            shinyBS::bsCollapsePanel(
+              title = "Weights",
+              value = paste0(id, "_collapseWeightPanel"),
+              htmltools::tags$div(class = "weights")
+            )
           )
         )
       )

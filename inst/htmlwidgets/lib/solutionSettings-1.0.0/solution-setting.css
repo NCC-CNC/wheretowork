@@ -1,10 +1,22 @@
 /* overall widget */
+/* -- style widget contents */
 .solution-setting {
   width: 100%;
   border: 1px var(--border) solid;
   border-radius: 5px 5px 5px 5px;
 }
 
+/* -- ensure widget doesn't expand past the parent container */
+.solution-settings-container {
+  overflow-y: auto;
+  max-height: 100%;
+}
+
+.solution-settings .panel.panel-default {
+  max-height: 100%;
+}
+
+/* -- add disabled mouse cursor to any element with the .disable-mouse class */
 .solution-setting .disable-mouse *:hover {
   cursor: not-allowed;
 }
@@ -12,7 +24,11 @@
 /* view containers */
 .solution-setting .single-view {
   overflow-y: auto;
-  max-height: 30vh;
+  max-height: 150px;
+}
+
+.solution-setting .main {
+  max-height: 100%;
 }
 
 /* header and sub-header containers */
@@ -102,7 +118,6 @@
 .solution-setting .single-container .info {
   padding-top: 0px;
 }
-
 
 .solution-setting .sub-info {
   display: flex;
@@ -236,7 +251,7 @@
   padding: 2px 5px;
 }
 
-/* add extra padding if there is a current bar */
+/* -- add extra padding if there is a current bar */
 .solution-setting .noUiSlider-widget {
   width: 100%;
   z-index: 10;

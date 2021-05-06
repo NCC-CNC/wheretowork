@@ -8,10 +8,10 @@ fluidPage(
 
   # manual styling for widget
   htmltools::tags$style(
-    ".panel {flex: 1 1 33.33%; max-height: 80vh}"
+    ".panel {flex: 1 1 33.33%; max-height: 400px}"
   ),
   htmltools::tags$style(
-    ".solution-settings {border: 3px solid red; !important}"
+    ".solutionSettings {border: 3px solid red; !important}"
   ),
 
   # body
@@ -22,7 +22,7 @@ fluidPage(
     wellPanel(
       h3("Widget"),
       p("This panel contains a minimal version of the solution settings widget. Note that it has minimal styling so that we make easily customize it within the Location App. The red outline shows its extent."),
-      solutionSettingsOutput("widget")
+      solutionSettingsOutput("widget", height = "60vh")
     )
   ),
 
