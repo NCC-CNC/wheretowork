@@ -34,10 +34,12 @@ This package provides the following widgets:
         specified below and standard `shiny` widgets) that have related
         functionality (e.g. a side bar tab could contain widgets for
         controlling the appearance of a `leaflet` map).
--   `newSolutionManager()`: Constructs a widget for creating new
-    solutions. It forms a panel that contains – in addition to standard
-    `shiny` widgets (e.g. a button to generate a new solution) – the
-    following widgets for setting goals and weights:
+-   `solutionManager()`: Constructs a widget for creating new solutions.
+    It forms a panel that contains – in addition to standard `shiny`
+    widgets (e.g. a button to generate a new solution) – the following
+    widget:
+    -   `solutionSettings()`: Constructs a widget for setting goals for
+        themes, setting factors for weights.
 -   `mapManager()`: Constructs a widget for controlling the overall
     appearance of a `leaflet` map. It forms a panel that contains – in
     addition to standard `shiny` widgets (e.g. a button to hide all
