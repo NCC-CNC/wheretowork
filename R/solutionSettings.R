@@ -42,7 +42,7 @@ solutionSettings <- function(
 
   # prepare data
   p <- x$get_widget_data()
-  p$api = list() # enable API
+  p$api <- list() # enable API
 
   # create widget
   htmlwidgets::createWidget(

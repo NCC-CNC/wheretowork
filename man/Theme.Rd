@@ -123,7 +123,8 @@ Set feature goal values.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{value}}{\code{numeric} vector containing a value for each feature.}
+\item{\code{value}}{\code{numeric} vector containing a value for each feature.
+A \code{list} of \code{numeric} values can also be supplied.}
 }
 \if{html}{\out{</div>}}
 }
@@ -140,7 +141,8 @@ Set feature status values.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{value}}{\code{logical} vector containing a value for each feature.}
+\item{\code{value}}{\code{logical} vector containing a value for each feature.
+A \code{list} of \code{logical} values can also be supplied.}
 }
 \if{html}{\out{</div>}}
 }

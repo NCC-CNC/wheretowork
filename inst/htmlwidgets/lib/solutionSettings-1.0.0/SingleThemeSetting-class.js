@@ -20,6 +20,7 @@ class SingleThemeSetting {
     icon
   ) {
     // class fields
+    this.id = id;
     this.el =
       document.importNode(
         document
@@ -27,7 +28,6 @@ class SingleThemeSetting {
         .querySelector(".single-theme-setting-template")
         .content,
       true);
-
     this.name_el = this.el.querySelector(".name-label");
     this.status_el = this.el.querySelector(".status-checkbox");
     this.goal_el = this.el.querySelector(".noUiSlider-widget");
@@ -120,40 +120,48 @@ class SingleThemeSetting {
     }
   }
 
-  /* update HTML components */
+  /* update methods */
+  updateParameter(parameter, value) {
+    if (parameter === "name") {
+      this.updateName(value);
+    } else if (parameter === "status" || parameter === "feature_status") {
+      this.updateStatus(value);
+    } else if (parameter === "feature_goal") {
+      this.updateFeatureGoal(value);
+    }
+  }
+
   updateName(value) {
     this.name_el.innerText = value;
   }
 
   updateStatus(value) {
-    let event = document.createEvent("HTMLEvents");
-    event.initEvent(".change", false, true);
     this.status_el.checked = value;
-    this.status_el.dispatchEvent(event);
-  }
-
-  render() {
-    return this.el;
-  }
-
-  /// functions for compatibility with multiThemeGoal
-  updateView(value) {
-    // for compatibility with functions for multiple themes
-    // no effect because the widget doesn't support multiple views
-  }
-
-  updateGroupGoal(value) {
-    // for compatibility with functions for multiple themes
-    this.updateFeatureGoals(value);
+    let els =
+      document.getElementById(this.id).querySelectorAll(
+        ".disable-if-inactive, .disable-if-inactive.icon i");
+    if (value) {
+      els.forEach((x) => x.removeAttribute("disabled"));
+    } else {
+      els.forEach((x) => x.setAttribute("disabled", ""));
+    }
   }
 
   updateFeatureGoal(value) {
-    this.goal_el.noUiSlider.set(value[0]);
+    this.goal_el.noUiSlider.set(value);
   }
 
+  /* dummy methods included for compatibility with MultiThemeSetting  */
+  updateView(value) {
+    // no effect
+  }
   updateFeatureStatus(value) {
-    // for compatibility with functions for multiple themes
-    this.updateStatus(value);
+    self.updateStatus(value);
+  }
+
+  /* render method */
+  render() {
+    return this.el;
   }
 
 };

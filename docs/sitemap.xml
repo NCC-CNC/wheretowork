@@ -78,4 +78,10 @@
   <url>
     <loc>/reference/solutionSettings.html</loc>
   </url>
+  <url>
+    <loc>/reference/updateSolutionSettings.html</loc>
+  </url>
+  <url>
+    <loc>/reference/updateThemeName.html</loc>
+  </url>
 </urlset>

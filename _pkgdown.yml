@@ -18,9 +18,10 @@ reference:
 
   - title: Widgets
     desc: >
-      These pages document functions for adding and using widgets within the Shiny web application framework.
+      These pages document functions for creating and updating Shiny widgets.
     contents:
       - solutionSettings
+      - updateSolutionSettings
       - solutionSettings-shiny
       - mapManager
       - mapManager-shiny

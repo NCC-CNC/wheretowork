@@ -45,3 +45,4 @@ Collate:
     'runExample.R'
     'scaffold.R'
     'solutionSettings.R'
+    'updateSolutionSettings.R'

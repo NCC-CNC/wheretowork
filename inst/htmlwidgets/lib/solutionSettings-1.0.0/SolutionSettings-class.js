@@ -10,55 +10,30 @@ class SolutionSettings {
     this.weights = weights.map((x) => newWeightSetting(id, x));
   }
 
-  /* setters */
-  // themes
-  updateThemeName(id, value) {
-    const pos = this.themes.findIndex((x.id) == id);
-    this.themes[pos].updateName(value);
+  /* update method */
+  updateSetting(id, parameter, value, type) {
+    if (type === "theme") {
+      const pos = this.themes.findIndex((x) => x.id === id);
+      if (pos < 0) {
+        console.warn(
+          `SolutionSettings.updateSetting(...) failed due to ` +
+          `no theme with id: ${id}`);
+      } else {
+        this.themes[pos].updateParameter(parameter, value);
+      }
+    } else if (type === "weight") {
+      const pos = this.weights.findIndex((x) => x.id === id);
+      if (pos < 0) {
+        console.warn(
+          `SolutionSettings.updateSetting(...) failed due to ` +
+          `no weight with id: ${id}`);
+      } else {
+        this.weights[pos].updateParameter(parameter, value);
+      }
+    }
   }
 
-  updateThemeStatus(id, value) {
-    const pos = this.themes.findIndex((x.id) == id);
-    this.themes[pos].updateStatus(value);
-  }
-
-  updateThemeView(id, value) {
-    const pos = this.themes.findIndex((x.id) == id);
-    this.themes[pos].updateView(value);
-  }
-
-  updateThemeGroupGoal(id, value) {
-    const pos = this.themes.findIndex((x.id) == id);
-    this.themes[pos].updateGroupGoal(value);
-  }
-
-  updateThemeFeatureGoals(id, value) {
-    const pos = this.themes.findIndex((x.id) == id);
-    this.themes[pos].updateFeatureGoals(value);
-  }
-
-  updateThemeFeatureStatuses(id, value) {
-    const pos = this.themes.findIndex((x.id) == id);
-    this.themes[pos].updateFeatureStatuses(value);
-  }
-
-  // weights
-  updateWeightName(id, value) {
-    const pos = this.weights.findIndex((x.id) == id);
-    this.weights[pos].updateName(value);
-  }
-
-  updateWeightStatus(id, value) {
-    const pos = this.weights.findIndex((x.id) == id);
-    this.weights[pos].updateStatus(value);
-  }
-
-  updateWeightFactor(id, value) {
-    const pos = this.weights.findIndex((x.id) == id);
-    this.weights[pos].updateFactor(value);
-  }
-
-  /* render */
+  /* render method */
   render() {
     // themes
     const theme_panel = this.container.querySelector(".themes");

@@ -3,7 +3,7 @@ HTMLWidgets.widget({
   name: "solutionSettings",
   type: "output",
   factory: function(el, width, height) {
-    // top-level variables
+    // shared variables
     var elementId = el.id;
     var initialized = false;
     var container = document.getElementById(elementId);
@@ -12,9 +12,15 @@ HTMLWidgets.widget({
     return {
 
       renderValue: function(opts) {
+        // alias this
+        var that = this;
+
+        // initialize widget
         if (!initialized) {
-          // set initialized
+          // set state to initialized
           initialized = true;
+          // attach the widget to the DOM
+          container.widget = that;
           // initialize solution settings manaer
           handle = new SolutionSettings(
             elementId, container, opts.themes, opts.weights);
@@ -31,42 +37,10 @@ HTMLWidgets.widget({
       solutionSettings: container,
 
       /* API functions to manipulate widget */
-      // theme functions
-      updateThemeName: function(params) {
-        handle.updateThemeName(params.id, params.value);
-      },
-
-      updateThemeStatus: function(params) {
-        handle.updateThemeStatus(params.id, params.value);
-      },
-
-      updateThemeView: function(params) {
-        handle.updateThemeView(params.id, params.value);
-      },
-
-      updateThemeGroupGoal: function(params) {
-        handle.updateThemeGroupGoal(params.id, params.value);
-      },
-
-      updateThemeFeatureGoals: function(params) {
-        handle.updateThemeFeatureGoals(params.id, params.value);
-      },
-
-      updateThemeFeatureStatuses: function(params) {
-        handle.updateThemeFeatureStatuses(params.id, params.value);
-      },
-
-      // weight functions
-      updateWeightName: function(params) {
-        handle.updateWeightName(params.id, params.value);
-      },
-
-      updateWeightStatus: function(params) {
-        handle.updateWeightStatus(params.id, params.value);
-      },
-
-      updateWeightFactor: function(params) {
-        handle.updateWeightFactor(params.id, params.value);
+      updateSetting: function(params) {
+        handle.updateSetting(
+          params.value.id, params.value.parameter,
+          params.value.value, params.value.type);
       }
 
     };
@@ -75,16 +49,12 @@ HTMLWidgets.widget({
 
 // Attach message handlers if in Shiny mode (these correspond to API)
 if (HTMLWidgets.shinyMode) {
-  var fxns =
-    ["updateThemeName", "updateThemeStatus", "updateThemeView",
-     "updateThemeGroupGoal",
-     "updateThemeFeatureGoal", "updateThemeFeatureStatus",
-     "updateWeightName", "updateWeightStatus", "updateWeightFactor"];
+  var fxns = ["updateSetting"];
 
   var addShinyHandler = function(fxn) {
     return function() {
       Shiny.addCustomMessageHandler(
-        "theme:goal:" + fxn, function(message) {
+        "solutionSettings:" + fxn, function(message) {
           var el = document.getElementById(message.id);
           if (el) {
             delete message["id"];

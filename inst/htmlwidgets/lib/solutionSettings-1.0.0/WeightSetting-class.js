@@ -11,6 +11,7 @@ class WeightSetting {
     initial_status
   ) {
     // class fields
+    this.id = id;
     this.el =
       document.importNode(
         document
@@ -84,22 +85,38 @@ class WeightSetting {
     }
   }
 
-  /* update HTML components */
+  /* update methods */
+  updateParameter(parameter, value) {
+    if (parameter === "name") {
+      this.updateName(value);
+    } else if (parameter === "status") {
+      this.updateStatus(value);
+    } else if (parameter === "factor") {
+      this.updateFactor(value);
+    }
+  }
+
   updateName(value) {
     this.name_el.innerText = value;
   }
 
   updateStatus(value) {
-    let event = document.createEvent("HTMLEvents");
     this.status_el.checked = value;
-    event.initEvent("change", false, true);
-    this.status_el.dispatchEvent(event);
+    let els =
+      document.getElementById(this.id).querySelectorAll(
+        ".disable-if-inactive, .disable-if-inactive.icon i");
+    if (value) {
+      els.forEach((x) => x.removeAttribute("disabled"));
+    } else {
+      els.forEach((x) => x.setAttribute("disabled", ""));
+    }
   }
 
   updateFactor(value) {
     this.factor_el.noUiSlider.set(value);
   }
 
+  /* render method */
   render() {
     return this.el;
   }

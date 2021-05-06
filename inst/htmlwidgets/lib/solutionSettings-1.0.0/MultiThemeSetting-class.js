@@ -28,6 +28,13 @@ class MultiThemeSetting {
     icon
   ) {
     // class fields
+    /// internal variables
+    this.id = id;
+    this.n_features = feature_id.length;
+    this.feature_id = feature_id;
+    this.single_goal_values = feature_initial_goal;
+    this.single_status_values = feature_initial_status;
+
     /// HTML container
     this.el =
       document.importNode(
@@ -36,11 +43,6 @@ class MultiThemeSetting {
         .querySelector(".multi-theme-setting-template")
         .content,
       true);
-
-    /// internal variables
-    this.n_features = feature_id.length;
-    this.single_goal_values = feature_initial_goal;
-    this.single_status_values = feature_initial_status;
 
     /// declare fields that correspond to HTML elements
     this.status_el = undefined;
@@ -65,7 +67,7 @@ class MultiThemeSetting {
     let single_panel_el = main_el.querySelector(".single-view");
 
     /// group view HTML nodes
-    let group_tab_el =
+    this.group_tab_el =
       this.el.querySelector("[data-value='group']");
     this.group_goal_el =
       group_panel_el.querySelector(".noUiSlider-widget");
@@ -201,11 +203,12 @@ class MultiThemeSetting {
         that.single_status_el.forEach((x) => x.checked = checked);
         let els =
           document
-          .getElementById(id)
+          .getElementById(that.id)
           .querySelectorAll(
             `.disable-if-inactive, ` +
             `.disable-if-inactive.icon i, ` +
-            `.disable-if-inactive.sub-icon i`);
+            `.disable-if-inactive.sub-icon i, ` +
+            `.sub-header .status-checkbox`);
         if (checked) {
           els.forEach((x) => x.removeAttribute("disabled"));
         } else {
@@ -252,7 +255,7 @@ class MultiThemeSetting {
     if (HTMLWidgets.shinyMode) {
       /// group view
       //// tab
-      group_tab_el.addEventListener("click", function() {
+      this.group_tab_el.addEventListener("click", function() {
         let checked = this.checked;
         let v = that.group_goal_el.noUiSlider.get();
         Shiny.setInputValue(manager, {
@@ -332,28 +335,51 @@ class MultiThemeSetting {
   }
 
   /* update HTML elements */
+  /* update methods */
+  updateParameter(parameter, value) {
+    if (parameter === "name") {
+      this.updateName(value);
+    } else if (parameter === "status") {
+      this.updateStatus(value);
+    } else if (parameter === "view") {
+      this.updateView(value);
+    } else if (parameter === "group_goal") {
+      this.updateGroupGoal(value);
+    } else if (parameter === "feature_status") {
+      this.updateFeatureStatus(value);
+    } else if (parameter === "feature_goal") {
+      this.updateFeatureGoal(value);
+    }
+  }
+
   updateName(value) {
     this.name_el.innerText = value;
   }
 
   updateStatus(value) {
-    let event = document.createEvent("HTMLEvents");
-    event.initEvent(".change", false, true);
     this.status_el.checked = value;
-    this.status_el.dispatchEvent(event);
-  }
-
-  render() {
-    return this.el;
+    this.single_status_el.forEach((x) => x.checked = value);
+    this.single_status_values.fill(value);
+    let els =
+      document
+      .getElementById(this.id)
+      .querySelectorAll(
+        `.disable-if-inactive, ` +
+        `.disable-if-inactive.icon i, ` +
+        `.disable-if-inactive.sub-icon i, ` +
+        `.sub-header .status-checkbox`);
+    if (value) {
+      els.forEach((x) => x.removeAttribute("disabled"));
+    } else {
+      els.forEach((x) => x.setAttribute("disabled", ""));
+    }
   }
 
   updateView(value) {
-    let event = document.createEvent("HTMLEvents");
-    event.initEvent("click", false, true);
-    if (value === "group") {
-      this.group_tab_el.dispatchEvent(event);
-    } else if (value === "single") {
-      this.single_tab_el.dispatchEvent(event);
+    if (value == "group") {
+      this.group_tab_el.click();
+    } else if (value == "single") {
+      this.single_tab_el.click();
     }
   }
 
@@ -361,29 +387,23 @@ class MultiThemeSetting {
     this.group_goal_el.noUiSlider.set(value);
   }
 
-  updateFeatureGoals(value) {
-    for (let i = 0; i < this.n_features; ++i) {
-      this.single_goal_el[i].noUiSlider.set(value[i]);
-    }
-  }
-
-  updateFeatureStatuses(value) {
+  updateFeatureStatus(value) {
     // manually override group status
-    if (value.value.some(x => x) && (!this.status_el.checked)) {
+    if (value.some(x => x) && (!this.status_el.checked)) {
       this.updateStatus(true);
     }
     // update status variable
     this.single_status_values = value;
     // set elements as active/inactive
     let els = undefined;
-    for (let i = 0; i < n_features; ++i) {
-      this.single_status[i].checked = value[i];
+    for (let i = 0; i < this.n_features; ++i) {
+      this.single_status_el[i].checked = value[i];
       let els =
         document
-        .getElementById(id)
+        .getElementById(this.id)
         .querySelectorAll(
-          `[id="${feature_id[i]}"] .disable-if-inactive, ` +
-          `[id="${feature_id[i]}"] .disable-if-inactive.icon i`
+          `[id="${this.feature_id[i]}"] .disable-if-inactive, ` +
+          `[id="${this.feature_id[i]}"] .disable-if-inactive.sub-icon i`
         );
       if (value[i]) {
         els.forEach((x) => x.removeAttribute("disabled"));
@@ -391,6 +411,17 @@ class MultiThemeSetting {
         els.forEach((x) => x.setAttribute("disabled", ""));
       }
     }
+  }
+
+  updateFeatureGoal(value) {
+    for (let i = 0; i < this.n_features; ++i) {
+      this.single_goal_el[i].noUiSlider.set(value[i]);
+    }
+  }
+
+  /* render method */
+  render() {
+    return this.el;
   }
 
 };

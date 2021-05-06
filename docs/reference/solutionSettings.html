@@ -154,20 +154,16 @@ Defaults to <code>NULL</code>.</p></td>
 (where <code>elementId</code> corresponds to the <code>elementId</code>):</p>
 <dl>
 
-<dt>elementId_run</dt><dd><p><code>character</code> name to use for a new solution.
-This value is updated when the user clicks the button to generate
-a new solution.</p></dd>
-
-<dt>elementId_setting</dt><dd><p><code>list</code> containing updated settings.
-This value is updated when the user updates the settings
-(e.g. status, factor, goal) for a <a href='Weight.html'>Weight</a> or <a href='Theme.html'>Theme</a>.
-Specifically, the <code>list</code> contains the following elements:<dl>
 <dt>id</dt><dd><p><code>character</code> identifier for the theme or weight.</p></dd>
+
 <dt>parameter</dt><dd><p><code>character</code> name of the updated parameter.
 Available options include: <code>"status"</code>, <code>"factor"</code>, or <code>"goal"</code>.</p></dd>
+
 <dt>value</dt><dd><p>new <code>numeric</code> or <code>logical</code> values.</p></dd>
+
 <dt>type</dt><dd><p><code>character</code> indicating if the updated parameter corresponds
-to a <code>theme</code> or <code>weight</code>.</p></dd></dl></p></dd>
+to a <code>theme</code> or <code>weight</code>.</p></dd>
+
 
 </dl>
 
