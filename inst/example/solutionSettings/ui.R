@@ -52,7 +52,7 @@ fluidPage(
     class = "panel",
     wellPanel(
       h3("Controls"),
-        p("This tab contains controls to manually update the appearance of the widget. Note that these controls (mostly) do not alter R's internal representation of solution settings. This is because they are designed to be used within an R Shiny to update the widget automatically for the user. For brevity, controls have not been included for the different Turnip features."),
+        p("This tab contains controls to manually update the appearance of the widget. Note that these controls (mostly) do not alter R's internal representation of solution settings. This is because they are designed to be used within an R Shiny session to update the widget automatically for the user. For brevity, controls have not been included for the different Turnip features."),
       tabsetPanel(
         type = "tabs",
         ## single theme
