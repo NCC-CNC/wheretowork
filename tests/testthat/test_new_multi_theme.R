@@ -2,8 +2,8 @@ context("new_multi_theme")
 
 test_that("initialization", {
   # create object
-  l1 <- new_layer(source = "l1.txt", current = 0.2, total = 100, units = "ha")
-  l2 <- new_layer(source = "l2.txt", current = 0.5, total = 30, units = "ha")
+  l1 <- new_layer(source = "l1.txt", total = 100, units = "ha")
+  l2 <- new_layer(source = "l2.txt", total = 30, units = "ha")
   f1 <- new_feature(
     name = "F1",
     layer = l1,
@@ -13,6 +13,7 @@ test_that("initialization", {
     max_goal = 0.99,
     limit_goal = 0.02,
     step_goal = 0.05,
+    current = 0.245,
     current_label = "Now",
     icon = "bell",
     id = "FID1")
@@ -25,6 +26,7 @@ test_that("initialization", {
     max_goal = 0.991,
     limit_goal = 0.021,
     step_goal = 0.051,
+    current = 0.5,
     current_label = "Here",
     icon = "adn",
     id = "FID2")
@@ -42,6 +44,8 @@ test_that("initialization", {
     group_step_goal = 0.002,
     group_current_label = "Hence")
   # run tests
+  print(x)
+  expect_is(x$repr(), "character")
   expect_identical(x$id, "MF1")
   expect_identical(x$name, "MF")
   expect_identical(x$feature, list(f1, f2))
@@ -57,8 +61,8 @@ test_that("initialization", {
 
 test_that("get methods", {
   # create object
-  l1 <- new_layer(source = "l1.txt", current = 0.2, total = 100, units = "ha")
-  l2 <- new_layer(source = "l2.txt", current = 0.5, total = 30, units = "ha")
+  l1 <- new_layer(source = "l1.txt", total = 100, units = "ha")
+  l2 <- new_layer(source = "l2.txt", total = 30, units = "ha")
   f1 <- new_feature(
     name = "F1",
     layer = l1,
@@ -68,6 +72,7 @@ test_that("get methods", {
     max_goal = 0.99,
     limit_goal = 0.02,
     step_goal = 0.05,
+    current = 0.2,
     current_label = "Now",
     icon = "bell",
     id = "FID1")
@@ -80,6 +85,7 @@ test_that("get methods", {
     max_goal = 0.991,
     limit_goal = 0.021,
     step_goal = 0.051,
+    current = 0.5,
     current_label = "Here",
     icon = "adn",
     id = "FID2")
@@ -105,8 +111,8 @@ test_that("get methods", {
 
 test_that("set methods", {
   # create object
-  l1 <- new_layer(source = "l1.txt", current = 0.2, total = 100, units = "ha")
-  l2 <- new_layer(source = "l2.txt", current = 0.5, total = 30, units = "ha")
+  l1 <- new_layer(source = "l1.txt", total = 100, units = "ha")
+  l2 <- new_layer(source = "l2.txt", total = 30, units = "ha")
   f1 <- new_feature(
     name = "F1",
     layer = l1,
@@ -116,6 +122,7 @@ test_that("set methods", {
     max_goal = 0.99,
     limit_goal = 0.02,
     step_goal = 0.05,
+    current = 0.2,
     current_label = "Now",
     icon = "bell",
     id = "FID1")
@@ -128,6 +135,7 @@ test_that("set methods", {
     max_goal = 0.991,
     limit_goal = 0.021,
     step_goal = 0.051,
+    current = 0.5,
     current_label = "Here",
     icon = "adn",
     id = "FID2")
@@ -158,8 +166,8 @@ test_that("set methods", {
 
 test_that("widget methods", {
   # create object
-  l1 <- new_layer(source = "l1.txt", current = 0.2, total = 100, units = "ha")
-  l2 <- new_layer(source = "l2.txt", current = 0.5, total = 30, units = "ha")
+  l1 <- new_layer(source = "l1.txt", total = 100, units = "ha")
+  l2 <- new_layer(source = "l2.txt", total = 30, units = "ha")
   f1 <- new_feature(
     name = "F1",
     layer = l1,
@@ -169,6 +177,7 @@ test_that("widget methods", {
     max_goal = 0.99,
     limit_goal = 0.02,
     step_goal = 0.05,
+    current = 0.245,
     current_label = "Now",
     icon = "bell",
     id = "FID1")
@@ -181,6 +190,7 @@ test_that("widget methods", {
     max_goal = 0.991,
     limit_goal = 0.021,
     step_goal = 0.051,
+    current = 0.523,
     current_label = "Here",
     icon = "adn",
     id = "FID2")
@@ -206,7 +216,7 @@ test_that("widget methods", {
         feature_name = c("F1", "F2"),
         feature_id = c("FID1", "FID2"),
         feature_total_amount = c(100, 30),
-        feature_current_held = c(0.2, 0.5),
+        feature_current_held = c(0.245, 0.523),
         group_min_goal = 0.01,
         group_max_goal = 0.99,
         group_initial_goal = 0.32,
@@ -225,7 +235,7 @@ test_that("widget methods", {
         units = "ha",
         initial_status = FALSE,
         round = FALSE,
-        icon = shiny::icon("atom")
+        icon = as.character(shiny::icon("atom"))
     )
   )
 })

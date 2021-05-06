@@ -29,6 +29,8 @@ Definition for the Feature class.
 
 \item{\code{goal}}{\code{numeric} value.}
 
+\item{\code{current}}{\code{numeric} value.}
+
 \item{\code{initial_goal}}{\code{numeric} initial goal value.}
 
 \item{\code{min_goal}}{\code{numeric} minimum goal value.}
@@ -49,6 +51,8 @@ Definition for the Feature class.
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-new}{\code{Feature$new()}}
+\item \href{#method-print}{\code{Feature$print()}}
+\item \href{#method-repr}{\code{Feature$repr()}}
 \item \href{#method-get_goal}{\code{Feature$get_goal()}}
 \item \href{#method-get_status}{\code{Feature$get_status()}}
 \item \href{#method-set_goal}{\code{Feature$set_goal()}}
@@ -72,6 +76,7 @@ Create a Feature object.
   max_goal,
   step_goal,
   limit_goal,
+  current,
   current_label,
   icon
 )}\if{html}{\out{</div>}}
@@ -98,6 +103,8 @@ Create a Feature object.
 
 \item{\code{limit_goal}}{\code{numeric} value.}
 
+\item{\code{current}}{\code{numeric} value.}
+
 \item{\code{current_label}}{\code{character} value.}
 
 \item{\code{icon}}{\code{shiny.tag} object.}
@@ -106,6 +113,47 @@ Create a Feature object.
 }
 \subsection{Returns}{
 A new Feature object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-print"></a>}}
+\if{latex}{\out{\hypertarget{method-print}{}}}
+\subsection{Method \code{print()}}{
+Print the object.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Feature$print(...)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{...}}{not used.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-repr"></a>}}
+\if{latex}{\out{\hypertarget{method-repr}{}}}
+\subsection{Method \code{repr()}}{
+Generate a \code{character} summarizing the representation of the object.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Feature$repr(start = "[", end = "]")}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{start}}{\code{character} symbol used to start the parameter list.
+Defaults to \code{"["}.}
+
+\item{\code{end}}{\code{character} symbol used to start the parameter list.
+Defaults to \code{"]"}.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+\code{character} value.
 }
 }
 \if{html}{\out{<hr>}}

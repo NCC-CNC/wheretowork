@@ -38,6 +38,8 @@ This method intentionally throws an error.
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-new}{\code{Theme$new()}}
+\item \href{#method-print}{\code{Theme$print()}}
+\item \href{#method-repr}{\code{Theme$repr()}}
 \item \href{#method-get_feature_goal}{\code{Theme$get_feature_goal()}}
 \item \href{#method-get_feature_status}{\code{Theme$get_feature_status()}}
 \item \href{#method-get_parameter}{\code{Theme$get_parameter()}}
@@ -62,6 +64,43 @@ Create a Theme object.
 \item{\code{...}}{not used.}
 }
 \if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-print"></a>}}
+\if{latex}{\out{\hypertarget{method-print}{}}}
+\subsection{Method \code{print()}}{
+Print the object.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$print(...)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{...}}{not used.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-repr"></a>}}
+\if{latex}{\out{\hypertarget{method-repr}{}}}
+\subsection{Method \code{repr()}}{
+Generate a \code{character} summarizing the representation of the object.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$repr(...)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{...}}{not used.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+\code{character} value.
 }
 }
 \if{html}{\out{<hr>}}

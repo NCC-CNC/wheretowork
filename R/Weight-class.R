@@ -101,6 +101,34 @@ Weight <- R6::R6Class(
     },
 
     #' @description
+    #' Print the object.
+    #' @param ... not used.
+    print = function(...) {
+      message("Weight")
+      message("  id:     ", self$id)
+      message("  name:   ", self$name)
+      message("  status: ", self$status)
+      message("  factor: ", round(self$factor, 2))
+      message("  layer: ", self$layer$repr())
+      invisible(self)
+    },
+
+    #' @description
+    #' Generate a `character` summarizing the representation of the object.
+    #' @param start `character` symbol used to start the parameter list.
+    #'   Defaults to `"["`.
+    #' @param end `character` symbol used to start the parameter list.
+    #'   Defaults to `"]"`.
+    #' @return `character` value.
+    repr = function(start = "[", end = "]") {
+      paste0(
+        self$name,
+        " ", start, "status: ", self$status,
+        ", factor: ", round(self$factor, 2), nl(),
+        "  layer:", self$layer$repr(), end)
+    },
+
+    #' @description
     #' Get factor.
     #' @return `numeric` value.
     get_factor = function() {
@@ -222,7 +250,7 @@ Weight <- R6::R6Class(
 #'
 #' @examples
 #' # create a new layer
-#' l <- new_layer(source = tempfile(), current = 0.2, total = 12, units = "ha")
+#' l <- new_layer(source = tempfile(), total = 12, units = "ha")
 #'
 #' # create a new weight
 #' w <- new_weight(name = "NDVI", layer = l)

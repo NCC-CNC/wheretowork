@@ -4,13 +4,10 @@
 \alias{new_layer}
 \title{New layer}
 \usage{
-new_layer(source, current, total, units)
+new_layer(source, total, units)
 }
 \arguments{
 \item{source}{\code{character} file path for the underlying data.}
-
-\item{current}{\code{numeric} current proportion of values held in existing
-conservation areas (e.g. 0.1 = 10\%).}
 
 \item{total}{\code{numeric} total amount of all values in the underlying data.}
 
@@ -24,7 +21,7 @@ Create a new \link{Layer} object.
 }
 \examples{
 # create new object
-l <- new_layer(source = tempfile(), current = 0.1, total = 12, units = "ha")
+l <- new_layer(source = tempfile(), total = 12, units = "ha")
 
 # print object
 print(l)

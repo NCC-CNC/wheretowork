@@ -38,6 +38,37 @@ Theme <- R6::R6Class(
     },
 
     #' @description
+    #' Print the object.
+    #' @param ... not used.
+    print = function(...) {
+      message("Theme")
+      message("  id:      ", self$id)
+      message("  name:    ", self$name)
+      message("  feature: ")
+      for (x in vapply(self$feature, function(x) x$repr(), character(1))) {
+        message("    " , x)
+      }
+      invisible(self)
+    },
+
+    #' @description
+    #' Generate a `character` summarizing the representation of the object.
+    #' @param ... not used.
+    #' @return `character` value.
+    repr = function(...) {
+      paste0(
+        self$name, ":",
+        nl(),
+        paste(
+          paste0(
+            "  ",
+            gsub(
+              nl(), paste0(nl(), "  "),
+              vapply(self$feature, function(x) x$repr(), character(1))),
+            collapse = nl())))
+    },
+
+    #' @description
     #' Get feature goal values.
     #' @return `numeric` vector with goal value(s).
     get_feature_goal = function() {
@@ -125,7 +156,7 @@ Theme <- R6::R6Class(
 
 #' New theme
 #'
-#' Create a new [Theme] object. This is a convience wrapper for
+#' Create a new [Theme] object. This is a convenience wrapper for
 #' the [new_single_theme()] and [new_multi_theme()] functions.
 #'
 #' @param ... arguments to be passed to [new_single_theme()]
@@ -135,13 +166,13 @@ Theme <- R6::R6Class(
 #'
 #' @examples
 #' # create new layer
-#' l <- new_layer(source = tempfile(), current = 0.1, total = 12, units = "ha")
+#' l <- new_layer(source = tempfile(), total = 12, units = "ha")
 #'
 #' # create feature using the layer
 #' f <- new_feature(name = "Intact Alvar Occurrence", layer = l)
 #'
 #' # create a theme using the single feature
-#' st <- new_theme(name = "Inact Alvar", feature = f)
+#' st <- new_theme(name = "Intact Alvar", feature = f)
 #'
 #' # print object
 #' print(st)

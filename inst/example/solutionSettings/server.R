@@ -125,7 +125,9 @@ function(input, output, session) {
   ## text with interal widget state
   observeEvent(input$widget, {
     output$show <-
-      renderText({ paste(capture.output(print(ss)), collapse = "\n") })
+      renderText({
+        paste(capture.output(print(ss), type = "message"), collapse = "\n")
+      })
   })
 
 }

@@ -121,7 +121,7 @@ MultiTheme <- R6::R6Class(
         feature_total_amount =
           vapply(self$feature, function(x) x$layer$total, numeric(1)),
         feature_current_held =
-          vapply(self$feature, function(x) x$layer$current, numeric(1)),
+          vapply(self$feature, function(x) x$current, numeric(1)),
         group_min_goal = self$group_min_goal,
         group_max_goal = self$group_max_goal,
         group_initial_goal = self$group_initial_goal,
@@ -214,7 +214,7 @@ MultiTheme <- R6::R6Class(
 #'
 #' @param icon `shiny.tag` Icon to display for the feature
 #'  This icon should indicate the type of data that underpin the feature.
-#'  Alternatively, the argument can be a `character` to automactially
+#'  Alternatively, the argument can be a `character` to automatically
 #'  generate a `shiny.tag` icon (using [shiny::icon()]).
 #'  Defaults to `"map-marked-alt"`.
 #'
@@ -225,9 +225,9 @@ MultiTheme <- R6::R6Class(
 #'
 #' @examples
 #' # create layers
-#' l1 <- new_layer(source = tempfile(), current = 0.1, total = 12, units = "ha")
-#' l2 <- new_layer(source = tempfile(), current = 0.2, total = 15, units = "ha")
-#' l3 <- new_layer(source = tempfile(), current = 0.4, total = 20, units = "ha")
+#' l1 <- new_layer(source = tempfile(), total = 12, units = "ha")
+#' l2 <- new_layer(source = tempfile(), total = 15, units = "ha")
+#' l3 <- new_layer(source = tempfile(), total = 20, units = "ha")
 #'
 #' # create features the layers
 #' f1 <- new_feature(name = "Pangolin", layer = l1)

@@ -39,6 +39,43 @@ SolutionSettings <- R6::R6Class(
     },
 
     #' @description
+    #' Print the object.
+    #' @param ... not used.
+    print = function(...) {
+      message("SolutionSettings")
+      # print themes
+      if (length(self$themes) > 0) {
+        message("  themes: ")
+        for (x in vapply(self$themes, function(x) x$repr(), character(1))) {
+          message("    " , gsub(nl(), paste0(nl(), "    "), x, fixed = TRUE))
+        }
+      } else {
+        message("  themes: none")
+      }
+      ## print weights
+      if (length(self$weights) > 0) {
+        message("  weights: ")
+        for (x in vapply(self$weights, function(x) x$repr(), character(1))) {
+          message("    " , gsub(nl(), paste0(nl(), "    "), x, fixed = TRUE))
+        }
+      } else {
+        message("  weights: none")
+      }
+      invisible(self)
+    },
+
+    #' @description
+    #' Generate a `character` summarizing the representation of the object.
+    #' @param start `character` symbol used to start the parameter list.
+    #'   Defaults to `"["`.
+    #' @param end `character` symbol used to start the parameter list.
+    #'   Defaults to `"]"`.
+    #' @return `character` value.
+    repr = function(start = "[", end = "]") {
+      "SolutionSettings object"
+    },
+
+    #' @description
     #' Get a theme.
     #' @param value `character` theme identifier.
     #' @return [Theme] object.
@@ -162,10 +199,10 @@ SolutionSettings <- R6::R6Class(
 #'
 #' @examples
 #' # create layers
-#' l1 <- new_layer(source = tempfile(), current = 0.1, total = 12, units = "ha")
-#' l2 <- new_layer(source = tempfile(), current = 0.5, total = 14, units = "ha")
-#' l3 <- new_layer(source = tempfile(), current = 0.9, total = 78, units = "ha")
-#' l4 <- new_layer(source = tempfile(), current = 0.4, total = 90, units = "ha")
+#' l1 <- new_layer(source = tempfile(), total = 12, units = "ha")
+#' l2 <- new_layer(source = tempfile(), total = 14, units = "ha")
+#' l3 <- new_layer(source = tempfile(), total = 78, units = "ha")
+#' l4 <- new_layer(source = tempfile(), total = 90, units = "ha")
 #'
 #' # create a weight using a layer
 #' w <- new_weight(name = "Human Footprint Index", layer = l1)

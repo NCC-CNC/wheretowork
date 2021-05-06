@@ -3,10 +3,10 @@ context("new_solution_settings")
 test_that("initialization", {
   # create object
   ## create layers
-  l1 <- new_layer(source = tempfile(), current = 0.1, total = 12, units = "ha")
-  l2 <- new_layer(source = tempfile(), current = 0.5, total = 14, units = "ha")
-  l3 <- new_layer(source = tempfile(), current = 0.9, total = 78, units = "ha")
-  l4 <- new_layer(source = tempfile(), current = 0.4, total = 90, units = "ha")
+  l1 <- new_layer(source = tempfile(), total = 12, units = "ha")
+  l2 <- new_layer(source = tempfile(), total = 14, units = "ha")
+  l3 <- new_layer(source = tempfile(), total = 78, units = "ha")
+  l4 <- new_layer(source = tempfile(), total = 90, units = "ha")
   ## create a weight using a layer
   w <- new_weight(
     name = "Human Footprint Index", initial_factor = 90, initial_status = FALSE,
@@ -14,19 +14,21 @@ test_that("initialization", {
   ## create features using layers
   f1 <- new_feature(
     name = "Possum", initial_goal = 0.2, initial_status = FALSE,
-    layer = l2, id = "F1")
+    current = 0.5, layer = l2, id = "F1")
   f2 <- new_feature(
     name = "Forests", initial_goal = 0.3, initial_status = FALSE,
-    layer = l3, id = "F2")
+     current = 0.9, layer = l3, id = "F2")
   f3 <- new_feature(
     name = "Shrubs", initial_goal = 0.6, initial_status = TRUE,
-    layer = l4, id = "F3")
+    current = 0.4, layer = l4, id = "F3")
   ## create themes using the features
   t1 <- new_single_theme("Species", f1, id = "T1")
   t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")
   ## create solution setting
   x <- new_solution_settings(themes = list(t1, t2), weights = list(w))
   # run tests
+  print(x)
+  expect_is(x$repr(), "character")
   expect_equal(x$themes, list(t1, t2))
   expect_equal(x$weights, list(w))
   expect_identical(x$theme_ids, c("T1", "T2"))
@@ -36,10 +38,10 @@ test_that("initialization", {
 test_that("get methods", {
   # create object
   ## create layers
-  l1 <- new_layer(source = tempfile(), current = 0.1, total = 12, units = "ha")
-  l2 <- new_layer(source = tempfile(), current = 0.5, total = 14, units = "ha")
-  l3 <- new_layer(source = tempfile(), current = 0.9, total = 78, units = "ha")
-  l4 <- new_layer(source = tempfile(), current = 0.4, total = 90, units = "ha")
+  l1 <- new_layer(source = tempfile(), total = 12, units = "ha")
+  l2 <- new_layer(source = tempfile(), total = 14, units = "ha")
+  l3 <- new_layer(source = tempfile(), total = 78, units = "ha")
+  l4 <- new_layer(source = tempfile(), total = 90, units = "ha")
   ## create a weight using a layer
   w <- new_weight(
     name = "Human Footprint Index", initial_factor = 90, initial_status = FALSE,
@@ -47,13 +49,13 @@ test_that("get methods", {
   ## create features using layers
   f1 <- new_feature(
     name = "Possum", initial_goal = 0.2, initial_status = FALSE,
-    layer = l2, id = "F1")
+    current = 0.5, layer = l2, id = "F1")
   f2 <- new_feature(
     name = "Forests", initial_goal = 0.3, initial_status = FALSE,
-    layer = l3, id = "F2")
+     current = 0.9, layer = l3, id = "F2")
   f3 <- new_feature(
     name = "Shrubs", initial_goal = 0.6, initial_status = TRUE,
-    layer = l4, id = "F3")
+    current = 0.4, layer = l4, id = "F3")
   ## create themes using the features
   t1 <- new_single_theme("Species", f1, id = "T1")
   t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")
@@ -100,23 +102,24 @@ test_that("get methods", {
 test_that("set methods", {
   # create object
   ## create layers
-  l1 <- new_layer(source = tempfile(), current = 0.1, total = 12, units = "ha")
-  l2 <- new_layer(source = tempfile(), current = 0.5, total = 14, units = "ha")
-  l3 <- new_layer(source = tempfile(), current = 0.9, total = 78, units = "ha")
-  l4 <- new_layer(source = tempfile(), current = 0.4, total = 90, units = "ha")
+  l1 <- new_layer(source = tempfile(), total = 12, units = "ha")
+  l2 <- new_layer(source = tempfile(), total = 14, units = "ha")
+  l3 <- new_layer(source = tempfile(), total = 78, units = "ha")
+  l4 <- new_layer(source = tempfile(), total = 90, units = "ha")
   ## create a weight using a layer
   w <- new_weight(
-    name = "Human Footprint Index", initial_factor = 90, layer = l1, id = "W1")
+    name = "Human Footprint Index", initial_factor = 90, initial_status = FALSE,
+    layer = l1, id = "W1")
   ## create features using layers
   f1 <- new_feature(
     name = "Possum", initial_goal = 0.2, initial_status = FALSE,
-    layer = l2, id = "F1")
+    current = 0.5, layer = l2, id = "F1")
   f2 <- new_feature(
     name = "Forests", initial_goal = 0.3, initial_status = FALSE,
-    layer = l3, id = "F2")
+     current = 0.9, layer = l3, id = "F2")
   f3 <- new_feature(
     name = "Shrubs", initial_goal = 0.6, initial_status = TRUE,
-    layer = l4, id = "F3")
+    current = 0.4, layer = l4, id = "F3")
   ## create themes using the features
   t1 <- new_single_theme("Species", f1, id = "T1")
   t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")
@@ -169,23 +172,26 @@ test_that("set methods", {
 })
 
 test_that("widget methods", {
-  l1 <- new_layer(source = tempfile(), current = 0.1, total = 12, units = "ha")
-  l2 <- new_layer(source = tempfile(), current = 0.5, total = 14, units = "ha")
-  l3 <- new_layer(source = tempfile(), current = 0.9, total = 78, units = "ha")
-  l4 <- new_layer(source = tempfile(), current = 0.4, total = 90, units = "ha")
+  # create object
+  ## create layers
+  l1 <- new_layer(source = tempfile(), total = 12, units = "ha")
+  l2 <- new_layer(source = tempfile(), total = 14, units = "ha")
+  l3 <- new_layer(source = tempfile(), total = 78, units = "ha")
+  l4 <- new_layer(source = tempfile(), total = 90, units = "ha")
   ## create a weight using a layer
   w <- new_weight(
-    name = "Human Footprint Index", initial_factor = 90, layer = l1, id = "W1")
+    name = "Human Footprint Index", initial_factor = 90, initial_status = FALSE,
+    layer = l1, id = "W1")
   ## create features using layers
   f1 <- new_feature(
     name = "Possum", initial_goal = 0.2, initial_status = FALSE,
-    layer = l2, id = "F1")
+    current = 0.5, layer = l2, id = "F1")
   f2 <- new_feature(
     name = "Forests", initial_goal = 0.3, initial_status = FALSE,
-    layer = l3, id = "F2")
+     current = 0.9, layer = l3, id = "F2")
   f3 <- new_feature(
     name = "Shrubs", initial_goal = 0.6, initial_status = TRUE,
-    layer = l4, id = "F3")
+    current = 0.4, layer = l4, id = "F3")
   ## create themes using the features
   t1 <- new_single_theme("Species", f1, id = "T1")
   t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")

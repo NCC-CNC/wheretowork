@@ -34,7 +34,7 @@ Defaults to \code{TRUE}.}
 
 \item{icon}{\code{shiny.tag} Icon to display for the feature
 This icon should indicate the type of data that underpin the feature.
-Alternatively, the argument can be a \code{character} to automactially
+Alternatively, the argument can be a \code{character} to automatically
 generate a \code{shiny.tag} icon (using \code{\link[shiny:icon]{shiny::icon()}}).
 Defaults to \code{"map-marked-alt"}.}
 
@@ -83,9 +83,9 @@ Create a new \link{MultiTheme} object.
 }
 \examples{
 # create layers
-l1 <- new_layer(source = tempfile(), current = 0.1, total = 12, units = "ha")
-l2 <- new_layer(source = tempfile(), current = 0.2, total = 15, units = "ha")
-l3 <- new_layer(source = tempfile(), current = 0.4, total = 20, units = "ha")
+l1 <- new_layer(source = tempfile(), total = 12, units = "ha")
+l2 <- new_layer(source = tempfile(), total = 15, units = "ha")
+l3 <- new_layer(source = tempfile(), total = 20, units = "ha")
 
 # create features the layers
 f1 <- new_feature(name = "Pangolin", layer = l1)

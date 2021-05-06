@@ -4,17 +4,24 @@ library(locationmisc)
 fluidPage(
   # header
   title = "solutionSettings demo",
-  htmltools::tags$style(".panel {flex: 1 1 33.33%; max-height: 80vh}"),
+  titlePanel("solutionSettings widget demo"),
+
+  # manual styling for widget
+  htmltools::tags$style(
+    ".panel {flex: 1 1 33.33%; max-height: 80vh}"
+  ),
+  htmltools::tags$style(
+    ".solution-settings {border: 3px solid red; !important}"
+  ),
 
   # body
-  titlePanel("solutionSettings widget demo"),
   htmltools::tags$div(style = "display: flex; justify-content: space-evenly",
-
 
   div(
     class = "panel",
     wellPanel(
       h3("widget"),
+      p("This panel contains a minimal version of the solution settings widget. Note that it has minimal styling so that we make easily customize it later within the Location-App. The red outline shows the widget."),
       solutionSettingsOutput("widget")
     )
   ),
@@ -23,11 +30,19 @@ fluidPage(
     class = "panel",
     wellPanel(
       h3("state"),
-      h5("message from widget"),
-      verbatimTextOutput("message"),
-      br(),
-      h5("R class"),
-      verbatimTextOutput("show")
+      tabsetPanel(
+        type = "tabs",
+        tabPanel(
+          "R's internal memory",
+          p("This tab depicts R's internal representation of the solution settings widget."),
+          verbatimTextOutput("show")
+        ),
+        tabPanel(
+          "Message from widget",
+          p("This tab shows the messages that the widget is sending to R through the power of Shiny and JavaScript."),
+          verbatimTextOutput("message"),
+        )
+      )
     )
   ),
 
@@ -35,6 +50,7 @@ fluidPage(
     class = "panel",
     wellPanel(
       h3("controls"),
+        p("This tab contains controls to manually update the appearance of the widget. For brevity, controls have not been included for the different Turnip features."),
       tabsetPanel(
         type = "tabs",
         ## single theme

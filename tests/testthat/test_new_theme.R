@@ -2,7 +2,7 @@ context("new_theme")
 
 test_that("SingleTheme", {
   # create object
-  l <- new_layer(source = "l1.tif", current = 0.034, total = 100, units = "ha")
+  l <- new_layer(source = "l1.tif", total = 100, units = "ha")
   f <- new_feature(
     name = "F1",
     layer = l,
@@ -12,6 +12,7 @@ test_that("SingleTheme", {
     max_goal = 0.99,
     step_goal = 0.02,
     limit_goal = 0.05,
+    current = 0.034,
     current_label = "Now",
     icon = "bell",
     id = "FID1")
@@ -35,8 +36,8 @@ test_that("SingleTheme", {
 
 test_that("MultiTheme", {
   # create object
-  l1 <- new_layer(source = "l1.txt", current = 0.2, total = 100, units = "ha")
-  l2 <- new_layer(source = "l2.txt", current = 0.5, total = 30, units = "ha")
+  l1 <- new_layer(source = "l1.txt", total = 100, units = "ha")
+  l2 <- new_layer(source = "l2.txt", total = 30, units = "ha")
   f1 <- new_feature(
     name = "F1",
     layer = l1,
@@ -46,6 +47,7 @@ test_that("MultiTheme", {
     max_goal = 0.99,
     limit_goal = 0.02,
     step_goal = 0.05,
+    current = 0.2,
     current_label = "Now",
     icon = "bell",
     id = "FID1")
@@ -58,6 +60,7 @@ test_that("MultiTheme", {
     max_goal = 0.991,
     limit_goal = 0.021,
     step_goal = 0.051,
+    current = 0.5,
     current_label = "Here",
     icon = "adn",
     id = "FID2")

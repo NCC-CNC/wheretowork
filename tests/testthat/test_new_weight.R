@@ -2,7 +2,7 @@ context("new_weight")
 
 test_that("initialization", {
   # create object
-  l <- new_layer(source = "asdf.tif", current = 0.2, total = 200, units = "ha")
+  l <- new_layer(source = "asdf.tif", total = 200, units = "ha")
   x <- new_weight(
     name = "Human Footprint Index",
     layer = l,
@@ -13,6 +13,8 @@ test_that("initialization", {
     step_factor = 0.03,
     id = "FID1")
   # run tests
+  print(x)
+  expect_is(x$repr(), "character")
   expect_equal(x$id, "FID1")
   expect_equal(x$name, "Human Footprint Index")
   expect_equal(x$layer, l)
@@ -27,9 +29,16 @@ test_that("initialization", {
 
 test_that("get methods", {
   # create object
-  l <- new_layer("asdf.txt", 0.2, 200, "ha")
+  l <- new_layer(source = "asdf.txt", total = 200, units = "ha")
   x <- new_weight(
-    "Human Footprint Index", l, FALSE, 0.2, 0.01, 0.9, 0.03, "FID1")
+    name = "Human Footprint Index",
+    layer = l,
+    initial_status = FALSE,
+    initial_factor = 0.2,
+    min_factor = 0.01,
+    max_factor = 0.9,
+    step_factor = 0.03,
+    id = "FID1")
   # run tests
   expect_identical(x$get_factor(), 0.2)
   expect_identical(x$get_status(), FALSE)
@@ -39,7 +48,7 @@ test_that("get methods", {
 
 test_that("set methods", {
   # create object
-  l <- new_layer(source = "asdf.tif", current = 0.2, total = 200, units = "ha")
+  l <- new_layer(source = "asdf.tif", total = 200, units = "ha")
   x <- new_weight(
     name = "Human Footprint Index",
     layer = l,
@@ -62,7 +71,7 @@ test_that("set methods", {
 
 test_that("widget methods", {
   # create object
-  l <- new_layer(source = "asdf.tif", current = 0.2, total = 200, units = "ha")
+  l <- new_layer(source = "asdf.tif", total = 200, units = "ha")
   x <- new_weight(
     name = "Human Footprint Index",
     layer = l,

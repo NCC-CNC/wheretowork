@@ -27,6 +27,9 @@ Feature <- R6::R6Class(
     #' @field  goal `numeric` value.
     goal = NA_real_,
 
+    #' @field current `numeric` value.
+    current = NA_real_,
+
     #' @field initial_goal `numeric` initial goal value.
     initial_goal = NA_real_,
 
@@ -59,13 +62,14 @@ Feature <- R6::R6Class(
     #' @param initial_goal `numeric` value.
     #' @param limit_goal `numeric` value.
     #' @param step_goal `numeric` value.
+    #' @param current `numeric` value.
     #' @param current_label `character` value.
     #' @param icon `shiny.tag` object.
     #' @return A new Feature object.
     initialize = function(
       id, name, layer, initial_status,
       initial_goal, min_goal, max_goal, step_goal, limit_goal,
-      current_label, icon) {
+      current, current_label, icon) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -97,6 +101,11 @@ Feature <- R6::R6Class(
         assertthat::is.number(step_goal),
         assertthat::noNA(step_goal),
         step_goal <= max_goal,
+        #### current
+        assertthat::is.number(current),
+        assertthat::noNA(current),
+        isTRUE(current >= 0),
+        isTRUE(current <= 1),
         #### current_label
         assertthat::is.string(current_label),
         assertthat::noNA(current_label),
@@ -115,7 +124,38 @@ Feature <- R6::R6Class(
       self$step_goal <- step_goal
       self$limit_goal <- limit_goal
       self$current_label <- current_label
+      self$current <- current
       self$icon <- icon
+    },
+
+    #' @description
+    #' Print the object.
+    #' @param ... not used.
+    print = function(...) {
+      message("Feature")
+      message("  id:      ", self$id)
+      message("  name:    ", self$name)
+      message("  status:  ", round(self$status, 2))
+      message("  current: ", round(self$current, 2))
+      message("  goal:    ", round(self$goal, 2))
+      message("  layer:   ", self$layer$repr())
+      invisible(self)
+    },
+
+    #' @description
+    #' Generate a `character` summarizing the representation of the object.
+    #' @param start `character` symbol used to start the parameter list.
+    #'   Defaults to `"["`.
+    #' @param end `character` symbol used to start the parameter list.
+    #'   Defaults to `"]"`.
+    #' @return `character` value.
+    repr = function(start = "[", end = "]") {
+      paste0(
+        self$name,
+        " ", start, "status: ", self$status,
+        ", current: ", round(self$current, 2),
+        ", goal: ", round(self$goal, 2), end, nl(),
+        "  layer: ", self$layer$repr())
     },
 
     #' @description
@@ -200,6 +240,9 @@ Feature <- R6::R6Class(
 #'   value of 0.01 corresponds to 1%.
 #'   Defaults to 0.01 (i.e. 1%).
 #'
+#' @param current `numeric` current proportion of values held in existing
+#'   conservation areas (e.g. 0.1 = 10%).
+#'
 #' @param current_label `character` The display label for the current
 #'  level of for the feature.
 #'  Defaults to `"Current"`.
@@ -217,7 +260,7 @@ Feature <- R6::R6Class(
 #'
 #' @examples
 #' # create new layer
-#' l <- new_layer(source = tempfile(), current = 0.1, total = 12, units = "ha")
+#' l <- new_layer(source = tempfile(), total = 12, units = "ha")
 #'
 #' # create feature using the layer
 #' f <- new_feature(name = "Intact Alvar", layer = l)
@@ -235,6 +278,7 @@ new_feature <- function(
     max_goal = 1.0,
     step_goal = 0.01,
     limit_goal = 0.1,
+    current = 0,
     current_label = "Current",
     icon = "map-marked-alt",
     id = uuid::UUIDgenerate()) {
@@ -252,6 +296,7 @@ new_feature <- function(
     max_goal = max_goal,
     step_goal = step_goal,
     limit_goal = limit_goal,
+    current = current,
     current_label = current_label,
     icon = icon)
 }

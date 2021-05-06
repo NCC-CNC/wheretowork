@@ -61,7 +61,7 @@ SingleTheme <- R6::R6Class(
         feature_name = self$feature[[1]]$name,
         feature_id = self$feature[[1]]$id,
         feature_total_amount = self$feature[[1]]$layer$total,
-        feature_current_held = self$feature[[1]]$layer$current,
+        feature_current_held = self$feature[[1]]$current,
         feature_min_goal = self$feature[[1]]$min_goal,
         feature_max_goal = self$feature[[1]]$max_goal,
         feature_initial_goal = self$feature[[1]]$goal,
@@ -98,7 +98,7 @@ SingleTheme <- R6::R6Class(
 #'
 #' @examples
 #' # create new layer
-#' l <- new_layer(source = tempfile(), current = 0.1, total = 12, units = "ha")
+#' l <- new_layer(source = tempfile(), total = 12, units = "ha")
 #'
 #' # create feature using the layer
 #' f <- new_feature(name = "Intact Alvar Occurrence", layer = l)

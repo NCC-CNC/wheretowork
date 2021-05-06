@@ -43,6 +43,8 @@ Definition for the Weight class.
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-new}{\code{Weight$new()}}
+\item \href{#method-print}{\code{Weight$print()}}
+\item \href{#method-repr}{\code{Weight$repr()}}
 \item \href{#method-get_factor}{\code{Weight$get_factor()}}
 \item \href{#method-get_status}{\code{Weight$get_status()}}
 \item \href{#method-get_parameter}{\code{Weight$get_parameter()}}
@@ -95,6 +97,47 @@ Create a new Weight object.
 }
 \subsection{Returns}{
 A new Weight object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-print"></a>}}
+\if{latex}{\out{\hypertarget{method-print}{}}}
+\subsection{Method \code{print()}}{
+Print the object.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Weight$print(...)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{...}}{not used.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-repr"></a>}}
+\if{latex}{\out{\hypertarget{method-repr}{}}}
+\subsection{Method \code{repr()}}{
+Generate a \code{character} summarizing the representation of the object.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Weight$repr(start = "[", end = "]")}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{start}}{\code{character} symbol used to start the parameter list.
+Defaults to \code{"["}.}
+
+\item{\code{end}}{\code{character} symbol used to start the parameter list.
+Defaults to \code{"]"}.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+\code{character} value.
 }
 }
 \if{html}{\out{<hr>}}

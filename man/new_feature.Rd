@@ -13,6 +13,7 @@ new_feature(
   max_goal = 1,
   step_goal = 0.01,
   limit_goal = 0.1,
+  current = 0,
   current_label = "Current",
   icon = "map-marked-alt",
   id = uuid::UUIDgenerate()
@@ -56,6 +57,9 @@ Note that goal values are specified as proportions, such that a
 value of 0.1 corresponds to 10\%.
 Defaults to 0 (i.e. 0\%).}
 
+\item{current}{\code{numeric} current proportion of values held in existing
+conservation areas (e.g. 0.1 = 10\%).}
+
 \item{current_label}{\code{character} The display label for the current
 level of for the feature.
 Defaults to \code{"Current"}.}
@@ -77,7 +81,7 @@ Create a new \link{Feature} object.
 }
 \examples{
 # create new layer
-l <- new_layer(source = tempfile(), current = 0.1, total = 12, units = "ha")
+l <- new_layer(source = tempfile(), total = 12, units = "ha")
 
 # create feature using the layer
 f <- new_feature(name = "Intact Alvar", layer = l)

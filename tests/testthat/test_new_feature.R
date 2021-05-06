@@ -2,7 +2,7 @@ context("new_feature")
 
 test_that("initialization", {
   # create object
-  l <- new_layer(source = "asdf.tif", current = 0.2, total = 200, units = "ha")
+  l <- new_layer(source = "asdf.tif", total = 200, units = "ha")
   x <- new_feature(
     name = "Intact Alvar",
     layer = l,
@@ -12,10 +12,13 @@ test_that("initialization", {
     max_goal = 0.9,
     step_goal = 0.03,
     limit_goal = 0.2,
+    current = 0.56,
     current_label = "Now",
     icon = "bell",
     id = "FID1")
   # run tests
+  print(x)
+  expect_is(x$repr(), "character")
   expect_identical(x$name, "Intact Alvar")
   expect_identical(x$layer, l)
   expect_identical(x$status, FALSE)
@@ -26,6 +29,7 @@ test_that("initialization", {
   expect_identical(x$max_goal, 0.9)
   expect_identical(x$step_goal, 0.03)
   expect_identical(x$limit_goal, 0.2)
+  expect_identical(x$current, 0.56)
   expect_identical(x$current_label, "Now")
   expect_identical(x$icon, shiny::icon("bell"))
   expect_identical(x$id, "FID1")
@@ -33,7 +37,7 @@ test_that("initialization", {
 
 test_that("get methods", {
   # create object
-  l <- new_layer(source = "asdf.tif", current = 0.2, total = 200, units = "ha")
+  l <- new_layer(source = "asdf.tif", total = 200, units = "ha")
   x <- new_feature(
     name = "Intact Alvar",
     layer = l,
@@ -43,6 +47,7 @@ test_that("get methods", {
     max_goal = 0.9,
     step_goal = 0.03,
     limit_goal = 0.2,
+    current = 0.56,
     current_label = "Now",
     icon = "bell",
     id = "FID1")
@@ -53,7 +58,7 @@ test_that("get methods", {
 
 test_that("set methods", {
   # create object
-  l <- new_layer(source = "asdf.tif", current = 0.2, total = 200, units = "ha")
+  l <- new_layer(source = "asdf.tif", total = 200, units = "ha")
   x <- new_feature(
     name = "Intact Alvar",
     layer = l,
@@ -63,6 +68,7 @@ test_that("set methods", {
     max_goal = 0.9,
     step_goal = 0.03,
     limit_goal = 0.2,
+    current = 0.56,
     current_label = "Now",
     icon = "bell",
     id = "FID1")

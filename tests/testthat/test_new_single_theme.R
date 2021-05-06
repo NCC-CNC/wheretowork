@@ -2,7 +2,7 @@ context("new_single_theme")
 
 test_that("initialization", {
   # create object
-  l <- new_layer(source = "l1.tif", current = 0.2, total = 100, units = "ha")
+  l <- new_layer(source = "l1.tif", total = 100, units = "ha")
   f <- new_feature(
     name = "F1",
     layer = l,
@@ -12,6 +12,7 @@ test_that("initialization", {
     max_goal = 0.99,
     step_goal = 0.02,
     limit_goal = 0.05,
+    current = 0.2567,
     current_label = "Now",
     icon = "bell",
     id = "FID1")
@@ -23,6 +24,8 @@ test_that("initialization", {
     icon = "atom",
     id = "FS1")
   # run tests
+  print(x)
+  expect_is(x$repr(), "character")
   expect_identical(x$id, "FS1")
   expect_identical(x$name, "FS")
   expect_identical(x$feature, list(f))
@@ -33,7 +36,7 @@ test_that("initialization", {
 
 test_that("get methods", {
   # create object
-  l <- new_layer(source = "l1.tif", current = 0.2, total = 100, units = "ha")
+  l <- new_layer(source = "l1.tif", total = 100, units = "ha")
   f <- new_feature(
     name = "F1",
     layer = l,
@@ -43,6 +46,7 @@ test_that("get methods", {
     max_goal = 0.99,
     step_goal = 0.02,
     limit_goal = 0.05,
+    current = 0.2567,
     current_label = "Now",
     icon = "bell",
     id = "FID1")
@@ -62,7 +66,7 @@ test_that("get methods", {
 
 test_that("set methods", {
   # create object
-  l <- new_layer(source = "l1.tif", current = 0.2, total = 100, units = "ha")
+  l <- new_layer(source = "l1.tif", total = 100, units = "ha")
   f <- new_feature(
     name = "F1",
     layer = l,
@@ -72,6 +76,7 @@ test_that("set methods", {
     max_goal = 0.99,
     step_goal = 0.02,
     limit_goal = 0.05,
+    current = 0.2567,
     current_label = "Now",
     icon = "bell",
     id = "FID1")
@@ -95,7 +100,7 @@ test_that("set methods", {
 
 test_that("widget methods", {
   # create object
-  l <- new_layer(source = "l1.tif", current = 0.034, total = 100, units = "ha")
+  l <- new_layer(source = "l1.tif", total = 100, units = "ha")
   f <- new_feature(
     name = "F1",
     layer = l,
@@ -105,6 +110,7 @@ test_that("widget methods", {
     max_goal = 0.99,
     step_goal = 0.02,
     limit_goal = 0.05,
+    current = 0.034,
     current_label = "Now",
     icon = "bell",
     id = "FID1")

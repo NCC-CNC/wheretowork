@@ -19,8 +19,6 @@ Definition for the Layer class.
 \describe{
 \item{\code{source}}{\code{character} value.}
 
-\item{\code{current}}{\code{numeric} value.}
-
 \item{\code{total}}{\code{numeric} value.}
 
 \item{\code{units}}{\code{character} value.}
@@ -31,6 +29,8 @@ Definition for the Layer class.
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-new}{\code{Layer$new()}}
+\item \href{#method-print}{\code{Layer$print()}}
+\item \href{#method-repr}{\code{Layer$repr()}}
 \item \href{#method-clone}{\code{Layer$clone()}}
 }
 }
@@ -40,15 +40,13 @@ Definition for the Layer class.
 \subsection{Method \code{new()}}{
 Create a Layer object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Layer$new(source, current, total, units)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Layer$new(source, total, units)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{source}}{\code{character} value.}
-
-\item{\code{current}}{\code{numeric} value.}
 
 \item{\code{total}}{\code{numeric} value.}
 
@@ -58,6 +56,47 @@ Create a Layer object.
 }
 \subsection{Returns}{
 A new Layer object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-print"></a>}}
+\if{latex}{\out{\hypertarget{method-print}{}}}
+\subsection{Method \code{print()}}{
+Print the object.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Layer$print(...)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{...}}{not used.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-repr"></a>}}
+\if{latex}{\out{\hypertarget{method-repr}{}}}
+\subsection{Method \code{repr()}}{
+Generate a \code{character} summarizing the representation of the object.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Layer$repr(start = "[", end = "]")}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{start}}{\code{character} symbol used to start the parameter list.
+Defaults to \code{"["}.}
+
+\item{\code{end}}{\code{character} symbol used to start the parameter list.
+Defaults to \code{"]"}.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+\code{character} value.
 }
 }
 \if{html}{\out{<hr>}}

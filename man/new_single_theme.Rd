@@ -30,7 +30,7 @@ Defaults to \code{TRUE}.}
 
 \item{icon}{\code{shiny.tag} Icon to display for the feature
 This icon should indicate the type of data that underpin the feature.
-Alternatively, the argument can be a \code{character} to automactially
+Alternatively, the argument can be a \code{character} to automatically
 generate a \code{shiny.tag} icon (using \code{\link[shiny:icon]{shiny::icon()}}).
 Defaults to \code{"map-marked-alt"}.}
 
@@ -45,7 +45,7 @@ Create a new \link{SingleTheme} object.
 }
 \examples{
 # create new layer
-l <- new_layer(source = tempfile(), current = 0.1, total = 12, units = "ha")
+l <- new_layer(source = tempfile(), total = 12, units = "ha")
 
 # create feature using the layer
 f <- new_feature(name = "Intact Alvar Occurrence", layer = l)
