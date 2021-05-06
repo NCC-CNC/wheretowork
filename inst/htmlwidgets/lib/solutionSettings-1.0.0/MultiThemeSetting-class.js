@@ -116,11 +116,30 @@ class MultiThemeSetting {
     let single_widget_el =
       single_panel_el.querySelectorAll(".widget");
 
-    // attach id to element
+    // attach id to elements
+    /// main container
     this.el.querySelector(".solution-setting").id = id;
+    /// single view containers
     for (let i = 0; i < this.n_features; ++i) {
       single_panel_el.children[i].id = feature_id[i];
     }
+    /// tab containers
+    this.el
+      .querySelector(".tabbable ul")
+      .setAttribute("data-tabsetid", `tabs-${id}`);
+    this.el
+      .querySelector(".tabbable .tab-content")
+      .setAttribute("data-tabsetid", `tabs-${id}`);
+    /// group tab
+    this.group_tab_el.setAttribute("href", `#tabs-${id}-1`);
+    this.el
+      .querySelector(".tabbable .tab-content [data-value='group']")
+      .setAttribute("id", `tabs-${id}-1`);
+    /// single tab
+    this.single_tab_el.setAttribute("href", `#tabs-${id}-2`);
+    this.el
+      .querySelector(".tabbable .tab-content [data-value='single']")
+      .setAttribute("id", `tabs-${id}-2`);
 
     // set initial theme values
     /// icon
