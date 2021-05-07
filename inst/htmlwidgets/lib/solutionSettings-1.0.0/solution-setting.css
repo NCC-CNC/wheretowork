@@ -6,14 +6,35 @@
   border-radius: 5px 5px 5px 5px;
 }
 
-/* -- ensure widget doesn't expand past the parent container */
-.solution-settings-container {
-  overflow-y: auto;
+.solution-settings,
+.solution-settings .panel-group.sbs-panel-group,
+.solution-settings-container,
+.solution-settings .panel-body,
+.solution-settings .collapse-panel {
+  height: 100%;
   max-height: 100%;
+  position: relative;
+  width: 100%;
 }
 
-.solution-settings .panel.panel-default {
+.solution-settings .panel-group.sbs-panel-group {
+  margin-bottom: 0px;
+}
+
+.solution-settings .panel-group.sbs-panel-group,
+.solution-settings .panel-collapse.collapse.in,
+.solution-settings .panel.panel-default,
+.solution-settings .panel-body,
+.solution-settings .collapse-panel {
   max-height: 100%;
+  position: relative;
+}
+
+/* -- ensure widget doesn't expand past the parent container */
+.solution-settings .themes,
+.solution-settings .weights{
+  overflow-y: auto;
+  max-height: 0vh;
 }
 
 /* -- add disabled mouse cursor to any element with the .disable-mouse class */
@@ -24,6 +45,7 @@
 /* view containers */
 .solution-setting .single-view {
   overflow-y: auto;
+  position :relative;
   max-height: 150px;
 }
 

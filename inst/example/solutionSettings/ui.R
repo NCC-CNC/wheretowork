@@ -22,7 +22,7 @@ fluidPage(
     wellPanel(
       h3("Widget"),
       p("This panel contains a minimal version of the solution settings widget. Note that it has minimal styling so that we make easily customize it within the Location App. The red outline shows its extent."),
-      solutionSettingsOutput("widget", height = "60vh")
+      solutionSettingsOutput("widget", height = "80vh")
     )
   ),
 

@@ -43,7 +43,10 @@ solutionSettings <- function(
   assertthat::assert_that(inherits(x, "SolutionSettings"))
 
   # prepare data
+  print(height)
+
   p <- x$get_widget_data()
+  p$height <- height
   p$api <- list() # enable API
 
   # create widget
@@ -51,7 +54,7 @@ solutionSettings <- function(
     name = "solutionSettings",
     p,
     width = width,
-    height = height,
+    height = "auto",
     package = "locationmisc",
     elementId = elementId,
     dependencies =
@@ -116,12 +119,18 @@ solutionSettings_html <- function(id, style, class, ...) {
             shinyBS::bsCollapsePanel(
               title = "Themes",
               value = paste0(id, "_collapseThemePanel"),
-              htmltools::tags$div(class = "themes")
+              htmltools::tags$div(
+                class = "collapse-panel",
+                htmltools::tags$div(class = "themes")
+              )
             ),
             shinyBS::bsCollapsePanel(
               title = "Weights",
               value = paste0(id, "_collapseWeightPanel"),
-              htmltools::tags$div(class = "weights")
+              htmltools::tags$div(
+                class = "collapse-panel",
+                htmltools::tags$div(class = "weights")
+              )
             )
           )
         )

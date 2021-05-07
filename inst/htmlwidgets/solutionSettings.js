@@ -26,6 +26,19 @@ HTMLWidgets.widget({
             elementId, container, opts.themes, opts.weights);
           // render HTML elements
           handle.render();
+          // over-write container height
+          let raw_h = container.style.height;
+          container.style.height = "auto";
+          // set max height for themes and weights containters
+          let h = `calc((${raw_h} - 17.6px) / 2)`;
+
+          console.log(h);
+
+          container
+          .querySelectorAll(
+            ".solution-settings .themes, .solution-settings .weights")
+          .forEach((x) => x.style.maxHeight = h);
+
         }
       },
 
