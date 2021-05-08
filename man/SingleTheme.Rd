@@ -46,7 +46,7 @@ Definition for the SingleTheme class.
 \subsection{Method \code{new()}}{
 Create a SingleTheme object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SingleTheme$new(id, name, feature, initial_status, round, icon)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SingleTheme$new(id, name, feature, mandatory, initial_status, round, icon)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -57,6 +57,8 @@ Create a SingleTheme object.
 \item{\code{name}}{\code{character} value.}
 
 \item{\code{feature}}{\code{list} of a single \link{Feature} object.}
+
+\item{\code{mandatory}}{\code{logical} value.}
 
 \item{\code{initial_status}}{\code{logical} value.}
 

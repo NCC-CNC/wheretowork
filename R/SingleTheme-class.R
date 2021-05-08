@@ -16,6 +16,7 @@ SingleTheme <- R6::R6Class(
     #' @param id `character` value.
     #' @param name `character` value.
     #' @param feature `list` of a single [Feature] object.
+    #' @param mandatory `logical` value.
     #' @param initial_status `logical` value.
     #' @param icon `shiny.tag` object.
     #' @param round `logical` value.

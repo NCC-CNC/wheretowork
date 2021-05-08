@@ -34,6 +34,7 @@ MultiTheme <- R6::R6Class(
     #' @param id `character` value.
     #' @param name `character` value.
     #' @param feature `list` of [Feature] objects.
+    #' @param mandatory `logical` value.
     #' @param group_min_goal `numeric` value.
     #' @param group_max_goal `numeric` value.
     #' @param group_initial_goal `numeric` value.

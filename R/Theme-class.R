@@ -20,7 +20,7 @@ Theme <- R6::R6Class(
     #' @field feature `list` of [Feature] objects.
     feature = list(),
 
-    #' @field `logical` value.
+    #' @field mandatory `logical` value.
     mandatory = FALSE,
 
     #' @field initial_status `logical` value.

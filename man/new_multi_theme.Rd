@@ -7,6 +7,7 @@
 new_multi_theme(
   name,
   feature,
+  mandatory = FALSE,
   initial_status = TRUE,
   round = TRUE,
   icon = "map-marked-alt",
@@ -23,6 +24,9 @@ new_multi_theme(
 \item{name}{\code{character} Name to display.}
 
 \item{feature}{\code{list} of \link{Feature} objects.}
+
+\item{mandatory}{\code{logical} Is the theme mandatory for generating solutions?
+Defaults to \code{FALSE}.}
 
 \item{initial_status}{\code{logical} The initial status.
 This is used to display information on whether the theme is

@@ -67,6 +67,7 @@ Create a MultiTheme object.
   id,
   name,
   feature,
+  mandatory,
   group_min_goal,
   group_max_goal,
   group_initial_goal,
@@ -87,6 +88,8 @@ Create a MultiTheme object.
 \item{\code{name}}{\code{character} value.}
 
 \item{\code{feature}}{\code{list} of \link{Feature} objects.}
+
+\item{\code{mandatory}}{\code{logical} value.}
 
 \item{\code{group_min_goal}}{\code{numeric} value.}
 

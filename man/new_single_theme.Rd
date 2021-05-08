@@ -7,6 +7,7 @@
 new_single_theme(
   name,
   feature,
+  mandatory = FALSE,
   initial_status = TRUE,
   round = TRUE,
   icon = "map-marked-alt",
@@ -19,6 +20,9 @@ new_single_theme(
 \item{feature}{\link{Feature} object.
 For compatibility with \code{\link[=new_multi_theme]{new_multi_theme()}}, a \code{list} object
 can also be supplied that contains a single \link{Feature} object.}
+
+\item{mandatory}{\code{logical} Is the theme mandatory for generating solutions?
+Defaults to \code{FALSE}.}
 
 \item{initial_status}{\code{logical} The initial status.
 This is used to display information on whether the theme is

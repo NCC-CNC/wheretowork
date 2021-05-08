@@ -1,6 +1,6 @@
 #' Solution settings widget
 #'
-#' Constructs a widget for maanging the settings for generating solutions.
+#' Constructs a widget for managing the settings for generating solutions.
 #'
 #' @param x [SolutionSettings] object.
 #'

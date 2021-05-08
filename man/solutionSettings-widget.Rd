@@ -19,7 +19,7 @@ Defaults to \code{NULL} such that the widget is automatically sized.}
 Defaults to \code{NULL}.}
 }
 \description{
-Constructs a widget for maanging the settings for generating solutions.
+Constructs a widget for managing the settings for generating solutions.
 }
 \section{Server value}{
 
