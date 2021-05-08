@@ -8,7 +8,7 @@ runExample(name)
 }
 \arguments{
 \item{name}{\code{character} name of widget.
-Available options include \code{"solutionSettings"} and \code{"mapManager"}.}
+Available options include \code{"solutionSettings"}, \code{"newSolutionPane"}.}
 }
 \description{
 Run a 'Shiny' application containing showcasing widgets implemented

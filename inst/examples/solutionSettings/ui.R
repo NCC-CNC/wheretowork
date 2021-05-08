@@ -1,6 +1,3 @@
-library(shiny)
-library(locationmisc)
-
 fluidPage(
   # header
   title = "solutionSettings demo",

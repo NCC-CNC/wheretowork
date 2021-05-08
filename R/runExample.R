@@ -4,7 +4,7 @@
 #' in the \pkg{locationmisc} package.
 #'
 #' @param name `character` name of widget.
-#'   Available options include `"solutionSettings"` and `"mapManager"`.
+#'   Available options include `"solutionSettings"`, `"newSolutionPane"`.
 #'
 #' @examples
 #' \dontrun{
@@ -19,7 +19,7 @@ runExample <- function(name) {
     assertthat::is.string(name),
     assertthat::noNA(name))
   # find source code for example
-  appDir <- system.file("example", name, package = "locationmisc")
+  appDir <- system.file("examples", name, package = "locationmisc")
   if (appDir == "") {
     stop("Could not find example directory. Try re-installing `locationmisc`.",
          call. = FALSE)

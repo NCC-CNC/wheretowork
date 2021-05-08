@@ -1,4 +1,5 @@
 # load package
+library(shiny)
 library(locationmisc)
 
 # create example solution settings object
