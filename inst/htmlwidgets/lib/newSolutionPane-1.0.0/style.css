@@ -1,0 +1,20 @@
+
+/* solutionSettings */
+
+
+
+/* footer */
+/* -- container*/
+.new-solution-pane .footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+
+}
+
+/* -- items*/
+.new-solution-pane .new-solution-footer-name,
+.new-solution-pane .new-solution-footer-button {
+  margin: 2em;
+}

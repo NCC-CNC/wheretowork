@@ -43,6 +43,9 @@ site:
 demo-solutionSettings:
 	R --slave -e "devtools::load_all();options(shiny.launch.browser=TRUE);locationmisc::runExample('solutionSettings')"
 
+demo-newSolutionPane:
+	R --slave -e "devtools::load_all();options(shiny.launch.browser=TRUE);locationmisc::runExample('newSolutionPane')"
+
 deploy-solutionSettings:
 	R -e "devtools::install_github('NCC-CNC/locationmisc')"
 	R -e "rsconnect::deployApp('inst/example/solutionSettings', appName = 'solutionSettings', launch.browser = TRUE)"
