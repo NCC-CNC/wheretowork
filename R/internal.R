@@ -30,3 +30,88 @@ nl <- function() {
 n_distinct <- function(x) {
   length(unique(x))
 }
+
+#' Example weight names
+#'
+#' Import example weight names for simulating weights.
+#'
+#' @return A [tibble()] object.
+#'
+#' @noRd
+example_weight_names <- function() {
+  tibble::tibble(
+    weight =
+      readLines(
+        system.file(
+          "extdata", "example-weights.txt", package = "locationmisc"))
+  )
+}
+
+#' Example theme names
+#'
+#' Import species data and prepare it for simulating themes.
+#'
+#' @return A [tibble()] object.
+#'
+#' @noRd
+example_theme_names <- function() {
+  # import data
+  suppressMessages({
+    d <-
+      readxl::read_excel(
+        system.file(
+          "extdata", "Clements-Checklist-v2019-August-2019.xlsx",
+          package = "locationmisc"),
+        sheet = 1)
+   })
+   # format column names
+   d <- setNames(d, gsub(" ", "_", tolower(names(d)), fixed = TRUE))
+   d <- tibble::as_tibble(d)
+   # select relevant columns
+   d <- d[, c("english_name", "family")]
+   # subset to include only species with English common names
+   d <- na.omit(d)
+   # remove duplicates
+   d <- d[!duplicated(d$english_name), ]
+   # extract English family names
+   d$family <-
+    gsub(
+      "[\\(\\)]", "",
+      regmatches(d$family, gregexpr("\\(.*?\\)", d$family)))
+  # rename columns for output
+  d <- setNames(d, c("feature", "theme"))
+  # return result
+  d
+}
+
+#' Example feature icon
+#'
+#' Randomly generate an icon for an example feature.
+#'
+#' @return A `shiny.tag` icon.
+#'
+#' @noRd
+example_feature_icon <- function() {
+  # define names for feature icons
+  x <- c(
+    "fa-map-marked-alt", "fa-atlas", "fa-map-pin", "fa-map", "fa-database",
+    "fa-hdd")
+  # return icon
+  shiny::icon(sample(x, 1))
+}
+
+#' Example theme icon
+#'
+#' Randomly generate an icon for an example theme.
+#'
+#' @return A `shiny.tag` icon.
+#'
+#' @noRd
+example_theme_icon <- function() {
+  # define names for theme icons
+  x <- c(
+    "fa-cat", "fa-crow", "fa-dog", "fa-dove", "fa-dragon", "fa-fish",
+    "fa-frog", "fa-hippo", "fa-horse", "fa-kiwi-bird", "fa-otter", "fa-spider")
+  # return icon
+  shiny::icon(sample(x, 1))
+}

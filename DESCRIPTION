@@ -19,6 +19,8 @@ Imports:
     shinyBS (>= 0.6.1),
     tools (>= 4.0.5),
     uuid (>= 0.1.4),
+    leaflet (>= 2.0.4.1),
+    leaflet.extras2 (>= 1.1.0),
 Suggests:
     testthat (>= 2.0.1),
     knitr (>= 1.2.0),
@@ -42,8 +44,10 @@ Collate:
     'Weight-class.R'
     'SolutionSettings-class.R'
     'mapManager.R'
+    'solutionSettings.R'
+    'newSolutionSidebarPane.R'
     'package.R'
     'runExample.R'
     'scaffold.R'
-    'solutionSettings.R'
+    'simulate_solution_settings.R'
     'updateSolutionSettings.R'
