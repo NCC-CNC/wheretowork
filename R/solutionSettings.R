@@ -54,11 +54,8 @@ solutionSettings <- function(
     height = height,
     package = "locationmisc",
     elementId = elementId,
-    dependencies =
-      c(
+    dependencies = c(
         htmltools::htmlDependencies(shiny::icon("map-marked-alt")),
-        htmltools::htmlDependencies(
-          shinyBS::bsCollapse(shinyBS::bsCollapsePanel("id"))),
         htmltools::htmlDependencies(
           shinyBS::bsCollapse(shinyBS::bsCollapsePanel("id"))))
   )

@@ -58,32 +58,39 @@ newSolutionSidebarPane <- function(
       title = "New solution",
       id = id,
       icon = NULL,
-
-      ## settings
-      solutionSettingsOutput(solutionSettingsId, height = "80vh"),
-
-      ## footer
+      ### container
       htmltools::tags$div(
-        class = "new-solution-footer",
+        class = "new-solution-pane",
+        ### settings
         htmltools::tags$div(
-          class = "new-solution-footer-name",
-          shiny::textInput(
-            nameId, NULL,
-            value = "",
-            width = "100%",
-            placeholder = "name for solution"
-          ),
+          class = "widget-container",
+          solutionSettingsOutput(solutionSettingsId, height = "100%")
         ),
+
+        ### footer
         htmltools::tags$div(
-          class = "new-solution-footer-button",
-          shinyBS::bsButton(
-            buttonId,
-            label = "Generate solution",
-            icon = NULL,
-            style = "primary",
-            type = "action"
+          class = "new-solution-footer",
+          htmltools::tags$div(
+            class = "new-solution-footer-name",
+            shiny::textInput(
+              nameId, NULL,
+              value = "",
+              width = "120%",
+              placeholder = "name for solution"
+            ),
+          ),
+          htmltools::tags$div(
+            class = "new-solution-footer-button",
+            shinyBS::bsButton(
+              buttonId,
+              label = "Generate solution",
+              icon = NULL,
+              style = "primary",
+              type = "action"
+            )
           )
         )
+
       )
     )
 

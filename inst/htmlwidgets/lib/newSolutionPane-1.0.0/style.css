@@ -1,20 +1,29 @@
+/* pane */
+.new-solution-pane {
+  margin-top: 3px;
+}
 
-/* solutionSettings */
+/* widget container */
+.widget-container {
+  overflow-y: auto;
+  max-height: 100%;
+}
 
-
+.sidebar-content {
+  overflow-y: visible;
+}
 
 /* footer */
 /* -- container*/
-.new-solution-pane .footer {
+.new-solution-pane .new-solution-footer {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-
+  margin: 0 -15px;
 }
 
 /* -- items*/
-.new-solution-pane .new-solution-footer-name,
-.new-solution-pane .new-solution-footer-button {
-  margin: 2em;
+.new-solution-pane .new-solution-footer .form-group.shiny-input-container {
+  margin-bottom: 0px;
 }

@@ -9,9 +9,9 @@ goal_component_scaffold <- function() {
   htmltools::tags$div(
     class = "goal",
     htmltools::tags$div(
-      class = "info",
+      class = "status-info",
       htmltools::tags$div(
-        class = "sub-info",
+        class = "sub-status-info",
         htmltools::tags$div(
           class = "current-symbol"
         ),
@@ -19,7 +19,7 @@ goal_component_scaffold <- function() {
           class = "current-label")
       ),
       htmltools::tags$div(
-        class = "sub-info",
+        class = "sub-status-info",
         htmltools::tags$div(
           class = "slider-symbol disable-if-inactive",
         ),
@@ -42,9 +42,9 @@ group_goal_component_scaffold <- function() {
   htmltools::tags$div(
     class = "goal",
     htmltools::tags$div(
-      class = "info",
+      class = "status-info",
       htmltools::tags$div(
-        class = "sub-info",
+        class = "sub-status-info",
         htmltools::tags$div(
           class = "current-symbol"
         ),
@@ -52,7 +52,7 @@ group_goal_component_scaffold <- function() {
           class = "current-label")
       ),
       htmltools::tags$div(
-        class = "sub-info",
+        class = "sub-status-info",
         htmltools::tags$div(
           class = "slider-symbol disable-if-inactive",
         ),

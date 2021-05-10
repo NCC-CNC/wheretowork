@@ -16,6 +16,10 @@
   max-height: 100%;
 }
 
+.solution-settings .panel-body {
+  padding: 0;
+}
+
 /* -- add disabled mouse cursor to any element with the .disable-mouse class */
 .solution-setting .disable-mouse *:hover {
   cursor: not-allowed;
@@ -104,9 +108,9 @@
   padding-bottom: 2px;
 }
 
-/* info */
+/* status info */
 /* -- containers */
-.solution-setting .info {
+.solution-setting .status-info {
   display: flex;
   align-items: center;
   margin-bottom: 0px;
@@ -115,11 +119,11 @@
   padding-right: 5px;
 }
 
-.solution-setting .single-container .info {
+.solution-setting .single-container .status-info {
   padding-top: 0px;
 }
 
-.solution-setting .sub-info {
+.solution-setting .sub-status-info {
   display: flex;
   align-items: center;
   flex-basis: 50%;
@@ -128,7 +132,7 @@
 }
 
 /* --  labels */
-.solution-setting .info label {
+.solution-setting .status-info label {
   font-size: 12px;
   font-weight: 400;
   vertical-align: middle;
@@ -164,7 +168,7 @@
   color: var(--inactive) !important;
 }
 
-.solution-setting .info div[disabled] {
+.solution-setting .status-info div[disabled] {
   background-color: var(--inactive) !important;
   color: var(--inactive) !important;
 }

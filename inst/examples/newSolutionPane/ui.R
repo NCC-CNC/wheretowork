@@ -1,10 +1,4 @@
-tagList(
-  # header
-  tags$style(
-    "body {padding: 0; margin: 0;}"
-  ),
-
-  # body
+fillPage(
   tagList(
     sidebar_tabs(
       id = "sidebar",
@@ -16,6 +10,6 @@ tagList(
         buttonId = "newSolutionPane_button"
       )
     ),
-    leafletOutput("map", width = "100vw", height = "100vh")
+    leafletOutput("map", width = "100%", height = "100%")
   )
 )

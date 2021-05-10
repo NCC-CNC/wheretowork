@@ -15,12 +15,8 @@ Imports:
     assertthat (>= 0.2.0),
     htmlwidgets (>= 1.5.3),
     htmltools (>= 0.5.1.1),
-    shiny (>= 1.6.0),
-    shinyBS (>= 0.6.1),
     tools (>= 4.0.5),
     uuid (>= 0.1.4),
-    leaflet (>= 2.0.4.1),
-    leaflet.extras2 (>= 1.1.0),
 Suggests:
     testthat (>= 2.0.1),
     knitr (>= 1.2.0),
@@ -28,7 +24,11 @@ Suggests:
     rmarkdown (>= 1.10),
 Depends:
     R (>= 4.0.0),
-    R6 (>= 2.5.0)
+    shiny (>= 1.6.0),
+    leaflet (>= 2.0.4.1),
+    leaflet.extras2 (>= 1.1.0),
+    shinyBS (>= 0.6.1),
+    R6 (>= 2.5.0),
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
