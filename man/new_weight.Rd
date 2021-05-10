@@ -6,7 +6,7 @@
 \usage{
 new_weight(
   name,
-  layer,
+  dataset,
   initial_status = TRUE,
   initial_factor = 0,
   min_factor = 0,
@@ -18,7 +18,7 @@ new_weight(
 \arguments{
 \item{name}{\code{character} Name to display.}
 
-\item{layer}{\link{Layer} object.}
+\item{dataset}{\link{Dataset} object.}
 
 \item{initial_status}{\code{logical} The initial status.
 This is used to display information on whether the theme is
@@ -46,11 +46,11 @@ A \link{Weight} object.
 Create a new \link{Weight} object.
 }
 \examples{
-# create a new layer
-l <- new_layer(source = tempfile(), total = 12, units = "ha")
+# create a new dataset
+l <- new_dataset(source = tempfile(), total = 12, units = "ha")
 
 # create a new weight
-w <- new_weight(name = "NDVI", layer = l)
+w <- new_weight(name = "NDVI", dataset = l)
 
 # print object
 print(w)

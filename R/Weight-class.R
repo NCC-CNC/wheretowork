@@ -1,4 +1,4 @@
-#' @include internal.R Layer-class.R
+#' @include internal.R Dataset-class.R
 NULL
 
 #' Weight class
@@ -17,8 +17,8 @@ Weight <- R6::R6Class(
     #' @field name `character` value.
     name = NA_character_,
 
-    #' @field layer [Layer] object.
-    layer = NULL,
+    #' @field dataset [Dataset] object.
+    dataset = NULL,
 
     #' @field status `logical` value.
     status = NA,
@@ -45,7 +45,7 @@ Weight <- R6::R6Class(
     #' Create a new Weight object.
     #' @param id `character` value.
     #' @param name `character` value.
-    #' @param layer [Layer] object.
+    #' @param dataset [Dataset] object.
     #' @param initial_status `logical` value.
     #' @param initial_factor `numeric` initial factor value.
     #' @param min_factor `numeric` minimum factor value.
@@ -54,7 +54,7 @@ Weight <- R6::R6Class(
     #' @return A new Weight object.
     ## constructor
     initialize = function(
-      id, name, layer, initial_status,
+      id, name, dataset, initial_status,
       initial_factor, min_factor, max_factor, step_factor) {
       ### assert that arguments are valid
       assertthat::assert_that(
@@ -64,8 +64,8 @@ Weight <- R6::R6Class(
         #### name
         assertthat::is.string(name),
         assertthat::noNA(name),
-        ### layer
-        inherits(layer, "Layer"),
+        ### dataset
+        inherits(dataset, "Dataset"),
         #### initial_status
         assertthat::is.flag(initial_status),
         assertthat::noNA(initial_status),
@@ -89,7 +89,7 @@ Weight <- R6::R6Class(
       )
       ### set fields
       self$id <- id
-      self$layer <- layer
+      self$dataset <- dataset
       self$name <- name
       self$status <- initial_status
       self$initial_status <- initial_status
@@ -109,7 +109,7 @@ Weight <- R6::R6Class(
       message("  name:   ", self$name)
       message("  status: ", self$status)
       message("  factor: ", round(self$factor, 2))
-      message("  layer: ", self$layer$repr())
+      message("  dataset: ", self$dataset$repr())
       invisible(self)
     },
 
@@ -125,7 +125,7 @@ Weight <- R6::R6Class(
         self$name,
         " ", start, "status: ", self$status,
         ", factor: ", round(self$factor, 2), nl(),
-        "  layer: ", self$layer$repr(), end)
+        "  dataset: ", self$dataset$repr(), end)
     },
 
     #' @description
@@ -249,25 +249,25 @@ Weight <- R6::R6Class(
 #' @return A [Weight] object.
 #'
 #' @examples
-#' # create a new layer
-#' l <- new_layer(source = tempfile(), total = 12, units = "ha")
+#' # create a new dataset
+#' l <- new_dataset(source = tempfile(), total = 12, units = "ha")
 #'
 #' # create a new weight
-#' w <- new_weight(name = "NDVI", layer = l)
+#' w <- new_weight(name = "NDVI", dataset = l)
 #'
 #' # print object
 #' print(w)
 #'
 #' @export
 new_weight <- function(
-  name, layer,
+  name, dataset,
   initial_status = TRUE, initial_factor = 0,
   min_factor = 0, max_factor = 100, step_factor = 1,
   id = uuid::UUIDgenerate()) {
   Weight$new(
     id = id,
     name = name,
-    layer = layer,
+    dataset = dataset,
     min_factor = min_factor,
     max_factor = max_factor,
     initial_factor = initial_factor,

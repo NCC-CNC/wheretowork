@@ -18,6 +18,9 @@
 #'
 #' }
 #'
+#' @rdname mapManager-widget
+#'
+#'
 #' @export
 mapManager <- function(
   x, width = NULL, height = NULL, elementId = NULL) {

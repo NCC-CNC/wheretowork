@@ -2,11 +2,11 @@ context("new_multi_theme")
 
 test_that("initialization", {
   # create object
-  l1 <- new_layer(source = "l1.txt", total = 100, units = "ha")
-  l2 <- new_layer(source = "l2.txt", total = 30, units = "ha")
+  l1 <- new_dataset(source = "l1.txt", total = 100, units = "ha")
+  l2 <- new_dataset(source = "l2.txt", total = 30, units = "ha")
   f1 <- new_feature(
     name = "F1",
-    layer = l1,
+    dataset = l1,
     initial_status = FALSE,
     initial_goal = 0.2,
     min_goal = 0.01,
@@ -19,7 +19,7 @@ test_that("initialization", {
     id = "FID1")
   f2 <- new_feature(
     name = "F2",
-    layer = l2,
+    dataset = l2,
     initial_status = TRUE,
     initial_goal = 0.21,
     min_goal = 0.011,
@@ -63,11 +63,11 @@ test_that("initialization", {
 
 test_that("get methods", {
   # create object
-  l1 <- new_layer(source = "l1.txt", total = 100, units = "ha")
-  l2 <- new_layer(source = "l2.txt", total = 30, units = "ha")
+  l1 <- new_dataset(source = "l1.txt", total = 100, units = "ha")
+  l2 <- new_dataset(source = "l2.txt", total = 30, units = "ha")
   f1 <- new_feature(
     name = "F1",
-    layer = l1,
+    dataset = l1,
     initial_status = FALSE,
     initial_goal = 0.2,
     min_goal = 0.01,
@@ -80,7 +80,7 @@ test_that("get methods", {
     id = "FID1")
   f2 <- new_feature(
     name = "F2",
-    layer = l2,
+    dataset = l2,
     initial_status = TRUE,
     initial_goal = 0.21,
     min_goal = 0.011,
@@ -114,11 +114,11 @@ test_that("get methods", {
 
 test_that("set methods", {
   # create object
-  l1 <- new_layer(source = "l1.txt", total = 100, units = "ha")
-  l2 <- new_layer(source = "l2.txt", total = 30, units = "ha")
+  l1 <- new_dataset(source = "l1.txt", total = 100, units = "ha")
+  l2 <- new_dataset(source = "l2.txt", total = 30, units = "ha")
   f1 <- new_feature(
     name = "F1",
-    layer = l1,
+    dataset = l1,
     initial_status = FALSE,
     initial_goal = 0.2,
     min_goal = 0.01,
@@ -131,7 +131,7 @@ test_that("set methods", {
     id = "FID1")
   f2 <- new_feature(
     name = "F2",
-    layer = l2,
+    dataset = l2,
     initial_status = TRUE,
     initial_goal = 0.21,
     min_goal = 0.011,
@@ -170,11 +170,11 @@ test_that("set methods", {
 
 test_that("widget methods", {
   # create object
-  l1 <- new_layer(source = "l1.txt", total = 100, units = "ha")
-  l2 <- new_layer(source = "l2.txt", total = 30, units = "ha")
+  l1 <- new_dataset(source = "l1.txt", total = 100, units = "ha")
+  l2 <- new_dataset(source = "l2.txt", total = 30, units = "ha")
   f1 <- new_feature(
     name = "F1",
-    layer = l1,
+    dataset = l1,
     initial_status = FALSE,
     initial_goal = 0.2,
     min_goal = 0.01,
@@ -187,7 +187,7 @@ test_that("widget methods", {
     id = "FID1")
   f2 <- new_feature(
     name = "F2",
-    layer = l2,
+    dataset = l2,
     initial_status = TRUE,
     initial_goal = 0.21,
     min_goal = 0.011,

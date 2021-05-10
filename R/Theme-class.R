@@ -170,11 +170,11 @@ Theme <- R6::R6Class(
 #' @return A [Theme] object.
 #'
 #' @examples
-#' # create new layer
-#' l <- new_layer(source = tempfile(), total = 12, units = "ha")
+#' # create new dataset
+#' l <- new_dataset(source = tempfile(), total = 12, units = "ha")
 #'
-#' # create feature using the layer
-#' f <- new_feature(name = "Intact Alvar Occurrence", layer = l)
+#' # create feature using the dataset
+#' f <- new_feature(name = "Intact Alvar Occurrence", dataset = l)
 #'
 #' # create a theme using the single feature
 #' st <- new_theme(name = "Intact Alvar", feature = f)

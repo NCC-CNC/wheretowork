@@ -65,12 +65,12 @@ example_theme_names <- function() {
         sheet = 1)
    })
    # format column names
-   d <- setNames(d, gsub(" ", "_", tolower(names(d)), fixed = TRUE))
+   d <- stats::setNames(d, gsub(" ", "_", tolower(names(d)), fixed = TRUE))
    d <- tibble::as_tibble(d)
    # select relevant columns
    d <- d[, c("english_name", "family")]
    # subset to include only species with English common names
-   d <- na.omit(d)
+   d <- stats::na.omit(d)
    # remove duplicates
    d <- d[!duplicated(d$english_name), ]
    # extract English family names
@@ -79,7 +79,7 @@ example_theme_names <- function() {
       "[\\(\\)]", "",
       regmatches(d$family, gregexpr("\\(.*?\\)", d$family)))
   # rename columns for output
-  d <- setNames(d, c("feature", "theme"))
+  d <- stats::setNames(d, c("feature", "theme"))
   # return result
   d
 }

@@ -86,15 +86,15 @@ A \link{MultiTheme} object.
 Create a new \link{MultiTheme} object.
 }
 \examples{
-# create layers
-l1 <- new_layer(source = tempfile(), total = 12, units = "ha")
-l2 <- new_layer(source = tempfile(), total = 15, units = "ha")
-l3 <- new_layer(source = tempfile(), total = 20, units = "ha")
+# create datasets
+l1 <- new_dataset(source = tempfile(), total = 12, units = "ha")
+l2 <- new_dataset(source = tempfile(), total = 15, units = "ha")
+l3 <- new_dataset(source = tempfile(), total = 20, units = "ha")
 
-# create features the layers
-f1 <- new_feature(name = "Pangolin", layer = l1)
-f2 <- new_feature(name = "Panda", layer = l2)
-f3 <- new_feature(name = "Palms", layer = l3)
+# create features the datasets
+f1 <- new_feature(name = "Pangolin", dataset = l1)
+f2 <- new_feature(name = "Panda", dataset = l2)
+f3 <- new_feature(name = "Palms", dataset = l3)
 
 # create a multi-theme using the features
 mt <- new_multi_theme(

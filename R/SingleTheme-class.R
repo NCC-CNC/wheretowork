@@ -65,7 +65,7 @@ SingleTheme <- R6::R6Class(
         name = self$name,
         feature_name = self$feature[[1]]$name,
         feature_id = self$feature[[1]]$id,
-        feature_total_amount = self$feature[[1]]$layer$total,
+        feature_total_amount = self$feature[[1]]$dataset$total,
         feature_current_held = self$feature[[1]]$current,
         feature_min_goal = self$feature[[1]]$min_goal,
         feature_max_goal = self$feature[[1]]$max_goal,
@@ -73,7 +73,7 @@ SingleTheme <- R6::R6Class(
         feature_limit_goal = self$feature[[1]]$limit_goal,
         feature_step_goal = self$feature[[1]]$step_goal,
         feature_current_label = self$feature[[1]]$current_label,
-        units = self$feature[[1]]$layer$units,
+        units = self$feature[[1]]$dataset$units,
         mandatory = self$mandatory,
         initial_status = self$initial_status,
         round = self$round,
@@ -103,11 +103,11 @@ SingleTheme <- R6::R6Class(
 #' @return A [SingleTheme] object.
 #'
 #' @examples
-#' # create new layer
-#' l <- new_layer(source = tempfile(), total = 12, units = "ha")
+#' # create new dataset
+#' l <- new_dataset(source = tempfile(), total = 12, units = "ha")
 #'
-#' # create feature using the layer
-#' f <- new_feature(name = "Intact Alvar Occurrence", layer = l)
+#' # create feature using the dataset
+#' f <- new_feature(name = "Intact Alvar Occurrence", dataset = l)
 #'
 #' # create a theme using the single feature
 #' st <- new_single_theme(name = "Inact Alvar", feature = f)

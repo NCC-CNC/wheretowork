@@ -12,7 +12,7 @@ Feature class
 Definition for the Feature class.
 }
 \seealso{
-\code{\link[=new_feature]{new_feature()}}, \code{\link[=new_layer]{new_layer()}}.
+\code{\link[=new_feature]{new_feature()}}, \code{\link[=new_dataset]{new_dataset()}}.
 }
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
@@ -21,7 +21,7 @@ Definition for the Feature class.
 
 \item{\code{name}}{\code{character} name.}
 
-\item{\code{layer}}{\link{Layer} object.}
+\item{\code{dataset}}{\link{Dataset} object.}
 
 \item{\code{status}}{\code{logical} value.}
 
@@ -69,7 +69,7 @@ Create a Feature object.
 \if{html}{\out{<div class="r">}}\preformatted{Feature$new(
   id,
   name,
-  layer,
+  dataset,
   initial_status,
   initial_goal,
   min_goal,
@@ -89,7 +89,7 @@ Create a Feature object.
 
 \item{\code{name}}{\code{character} value.}
 
-\item{\code{layer}}{\link{Layer} .}
+\item{\code{dataset}}{\link{Dataset} .}
 
 \item{\code{initial_status}}{\code{logical} value.}
 

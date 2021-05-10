@@ -3,6 +3,10 @@ NULL
 
 #' @import htmlwidgets
 #' @import R6
+#' @import shiny
+#' @import leaflet
+#' @import leaflet.extras2
+#' @import shinyBS
 NULL
 
 #' locationmisc: Classes, Widgets, and Functions for the Location App

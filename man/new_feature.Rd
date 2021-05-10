@@ -6,7 +6,7 @@
 \usage{
 new_feature(
   name,
-  layer,
+  dataset,
   initial_status = TRUE,
   initial_goal = 0.1,
   min_goal = 0,
@@ -22,7 +22,7 @@ new_feature(
 \arguments{
 \item{name}{\code{character} Name of the theme.}
 
-\item{layer}{\link{Layer} object.}
+\item{dataset}{\link{Dataset} object.}
 
 \item{initial_status}{\code{logical} The initial status.
 This is used to display information on whether the theme is
@@ -80,11 +80,11 @@ A \link{Feature} object.
 Create a new \link{Feature} object.
 }
 \examples{
-# create new layer
-l <- new_layer(source = tempfile(), total = 12, units = "ha")
+# create new dataset
+l <- new_dataset(source = tempfile(), total = 12, units = "ha")
 
-# create feature using the layer
-f <- new_feature(name = "Intact Alvar", layer = l)
+# create feature using the dataset
+f <- new_feature(name = "Intact Alvar", dataset = l)
 
 # print object
 print(f)

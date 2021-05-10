@@ -1,13 +1,13 @@
 #' @include internal.R
 NULL
 
-#' Layer class
+#' Dataset class
 #'
-#' Definition for the Layer class.
+#' Definition for the Dataset class.
 #'
-#' @seealso [new_layer()]
-Layer <- R6::R6Class(
-  "Layer",
+#' @seealso [new_dataset()]
+Dataset <- R6::R6Class(
+  "Dataset",
   public = list(
 
     #' @field source `character` value.
@@ -20,11 +20,11 @@ Layer <- R6::R6Class(
     units = NA_character_,
 
     #' @description
-    #' Create a Layer object.
+    #' Create a Dataset object.
     #' @param source `character` value.
     #' @param total `numeric` value.
     #' @param units `character` value.
-    #' @return A new Layer object.
+    #' @return A new Dataset object.
     initialize = function(source, total, units) {
       ### assert that arguments are valid
       assertthat::assert_that(
@@ -48,7 +48,7 @@ Layer <- R6::R6Class(
     #' Print the object.
     #' @param ... not used.
     print = function(...) {
-      message("Layer")
+      message("Dataset")
       message("  source: ", self$source)
       message("  total:  ", round(self$total, 2))
       message("  units:  ", self$units)
@@ -71,9 +71,9 @@ Layer <- R6::R6Class(
   )
 )
 
-#' New layer
+#' New dataset
 #'
-#' Create a new [Layer] object.
+#' Create a new [Dataset] object.
 #'
 #' @param source `character` file path for the underlying data.
 #'
@@ -81,16 +81,16 @@ Layer <- R6::R6Class(
 #'
 #' @param units `character` units for the values in the underlying data.
 #'
-#' @return A [Layer] object.
+#' @return A [Dataset] object.
 #'
 #' @examples
 #' # create new object
-#' l <- new_layer(source = tempfile(), total = 12, units = "ha")
+#' l <- new_dataset(source = tempfile(), total = 12, units = "ha")
 #'
 #' # print object
 #' print(l)
 #'
 #' @export
-new_layer <- function(source, total, units) {
-  Layer$new(source = source, total = total, units = units)
+new_dataset <- function(source, total, units) {
+  Dataset$new(source = source, total = total, units = units)
 }

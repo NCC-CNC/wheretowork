@@ -18,11 +18,11 @@ Create a new \link{Theme} object. This is a convenience wrapper for
 the \code{\link[=new_single_theme]{new_single_theme()}} and \code{\link[=new_multi_theme]{new_multi_theme()}} functions.
 }
 \examples{
-# create new layer
-l <- new_layer(source = tempfile(), total = 12, units = "ha")
+# create new dataset
+l <- new_dataset(source = tempfile(), total = 12, units = "ha")
 
-# create feature using the layer
-f <- new_feature(name = "Intact Alvar Occurrence", layer = l)
+# create feature using the dataset
+f <- new_feature(name = "Intact Alvar Occurrence", dataset = l)
 
 # create a theme using the single feature
 st <- new_theme(name = "Intact Alvar", feature = f)

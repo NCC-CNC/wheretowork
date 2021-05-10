@@ -94,7 +94,8 @@ MultiTheme <- R6::R6Class(
       assertthat::assert_that(
         n_distinct(
           vapply(
-            feature, FUN.VALUE = character(1), function(x) x$layer$units)) == 1,
+            feature, FUN.VALUE = character(1),
+            function(x) x$dataset$units)) == 1,
         msg = "argument to `feature` contains elements with different units")
       ## set fields
       self$id <- id
@@ -124,7 +125,7 @@ MultiTheme <- R6::R6Class(
         feature_id =
           vapply(self$feature, function(x) x$id, character(1)),
         feature_total_amount =
-          vapply(self$feature, function(x) x$layer$total, numeric(1)),
+          vapply(self$feature, function(x) x$dataset$total, numeric(1)),
         feature_current_held =
           vapply(self$feature, function(x) x$current, numeric(1)),
         group_min_goal = self$group_min_goal,
@@ -151,7 +152,7 @@ MultiTheme <- R6::R6Class(
           vapply(
             self$feature, function(x) as.character(x$icon),
             character(1)),
-        units = self$feature[[1]]$layer$units,
+        units = self$feature[[1]]$dataset$units,
         mandatory = self$mandatory,
         initial_status = self$initial_status,
         round = self$round,
@@ -233,15 +234,15 @@ MultiTheme <- R6::R6Class(
 #' @return A [MultiTheme] object.
 #'
 #' @examples
-#' # create layers
-#' l1 <- new_layer(source = tempfile(), total = 12, units = "ha")
-#' l2 <- new_layer(source = tempfile(), total = 15, units = "ha")
-#' l3 <- new_layer(source = tempfile(), total = 20, units = "ha")
+#' # create datasets
+#' l1 <- new_dataset(source = tempfile(), total = 12, units = "ha")
+#' l2 <- new_dataset(source = tempfile(), total = 15, units = "ha")
+#' l3 <- new_dataset(source = tempfile(), total = 20, units = "ha")
 #'
-#' # create features the layers
-#' f1 <- new_feature(name = "Pangolin", layer = l1)
-#' f2 <- new_feature(name = "Panda", layer = l2)
-#' f3 <- new_feature(name = "Palms", layer = l3)
+#' # create features the datasets
+#' f1 <- new_feature(name = "Pangolin", dataset = l1)
+#' f2 <- new_feature(name = "Panda", dataset = l2)
+#' f3 <- new_feature(name = "Palms", dataset = l3)
 #'
 #' # create a multi-theme using the features
 #' mt <- new_multi_theme(

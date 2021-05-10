@@ -65,7 +65,7 @@ simulate_solution_settings <- function(
   ## loop until data has been simulated
   while (still_need > 0.5) {
     ### simulate a set of integers
-    n <- rpois(n_multi_themes * 100, lambda)
+    n <- stats::rpois(n_multi_themes * 100, lambda)
     ### exclude values equal to 1
     n <- n[n > 1]
     ### append values to main variables
@@ -90,10 +90,10 @@ simulate_solution_settings <- function(
   w <- lapply(seq_len(n_weights), function(i) {
     new_weight(
       name = wn[i],
-      layer =
-        new_layer(
+      dataset =
+        new_dataset(
           source = tempfile(),
-          total = runif(1, 1e+2, 1e+4),
+          total = stats::runif(1, 1e+2, 1e+4),
           units = "???")
     )
   })
@@ -108,14 +108,14 @@ simulate_solution_settings <- function(
       name = st_names[i],
       new_feature(
         name = paste0(st_names[i], " habitat"),
-        initial_goal = runif(1, 0.5, 0.9),
-        current = runif(1, 0.1, 0.6),
-        limit_goal = runif(1, 0, 0.4),
+        initial_goal = stats::runif(1, 0.5, 0.9),
+        current = stats::runif(1, 0.1, 0.6),
+        limit_goal = stats::runif(1, 0, 0.4),
         icon = example_feature_icon(),
-        layer =
-          new_layer(
+        dataset =
+          new_dataset(
             source = tempfile(),
-            total = runif(1, 1e+2, 1e+4),
+            total = stats::runif(1, 1e+2, 1e+4),
             units = "ha")
       )
     )
@@ -127,8 +127,9 @@ simulate_solution_settings <- function(
   ## calculate number of features within each theme
   tn_meta <-
     tibble::as_tibble(
-      as.data.frame(aggregate(tn$theme, by = list(tn$theme), FUN = length)))
-  tn_meta <- setNames(tn_meta, c("theme", "n"))
+      as.data.frame(stats::aggregate(
+        tn$theme, by = list(tn$theme), FUN = length)))
+  tn_meta <- stats::setNames(tn_meta, c("theme", "n"))
   ## select names
   mt_idx <- numeric(n_multi_themes)
   mt_names <- character(n_multi_themes)
@@ -150,14 +151,14 @@ simulate_solution_settings <- function(
         function(x) {
           new_feature(
             name = x,
-            initial_goal = runif(1, 0.5, 0.9),
-            current = runif(1, 0.1, 0.6),
-            limit_goal = runif(1, 0, 0.4),
+            initial_goal = stats::runif(1, 0.5, 0.9),
+            current = stats::runif(1, 0.1, 0.6),
+            limit_goal = stats::runif(1, 0, 0.4),
             icon = example_feature_icon(),
-            layer =
-              new_layer(
+            dataset =
+              new_dataset(
                 source = tempfile(),
-                total = runif(1, 1e+2, 1e+4),
+                total = stats::runif(1, 1e+2, 1e+4),
                 units = "ha")
           )
         }

@@ -1,11 +1,11 @@
-#' @include internal.R Layer-class.R
+#' @include internal.R Dataset-class.R
 NULL
 
 #' Feature class
 #'
 #' Definition for the Feature class.
 #'
-#' @seealso [new_feature()], [new_layer()].
+#' @seealso [new_feature()], [new_dataset()].
 Feature <- R6::R6Class(
   "Feature",
   public = list(
@@ -15,8 +15,8 @@ Feature <- R6::R6Class(
     #' @field name `character` name.
     name = NA_character_,
 
-    #' @field layer [Layer] object.
-    layer = NULL,
+    #' @field dataset [Dataset] object.
+    dataset = NULL,
 
     #' @field status `logical` value.
     status = NA,
@@ -55,7 +55,7 @@ Feature <- R6::R6Class(
     #' Create a Feature object.
     #' @param id `character` value.
     #' @param name `character` value.
-    #' @param layer [Layer] .
+    #' @param dataset [Dataset] .
     #' @param initial_status `logical` value.
     #' @param min_goal `numeric` value.
     #' @param max_goal `numeric` value.
@@ -67,7 +67,7 @@ Feature <- R6::R6Class(
     #' @param icon `shiny.tag` object.
     #' @return A new Feature object.
     initialize = function(
-      id, name, layer, initial_status,
+      id, name, dataset, initial_status,
       initial_goal, min_goal, max_goal, step_goal, limit_goal,
       current, current_label, icon) {
       ### assert that arguments are valid
@@ -78,8 +78,8 @@ Feature <- R6::R6Class(
         #### name
         assertthat::is.string(name),
         assertthat::noNA(name),
-        #### layer
-        inherits(layer, "Layer"),
+        #### dataset
+        inherits(dataset, "Dataset"),
         #### initial_status
         assertthat::is.flag(initial_status),
         assertthat::noNA(initial_status),
@@ -114,7 +114,7 @@ Feature <- R6::R6Class(
       ### set fields
       self$id <- id
       self$name <- name
-      self$layer <- layer
+      self$dataset <- dataset
       self$status <- initial_status
       self$initial_status <- initial_status
       self$goal <- initial_goal
@@ -138,7 +138,7 @@ Feature <- R6::R6Class(
       message("  status:  ", round(self$status, 2))
       message("  current: ", round(self$current, 2))
       message("  goal:    ", round(self$goal, 2))
-      message("  layer:   ", self$layer$repr())
+      message("  dataset:   ", self$dataset$repr())
       invisible(self)
     },
 
@@ -155,7 +155,7 @@ Feature <- R6::R6Class(
         " ", start, "status: ", self$status,
         ", current: ", round(self$current, 2),
         ", goal: ", round(self$goal, 2), end, nl(),
-        "  layer: ", self$layer$repr())
+        "  dataset: ", self$dataset$repr())
     },
 
     #' @description
@@ -205,7 +205,7 @@ Feature <- R6::R6Class(
 #'
 #' @param name `character` Name of the theme.
 #'
-#' @param layer [Layer] object.
+#' @param dataset [Dataset] object.
 #'
 #' @param initial_status `logical` The initial status.
 #'   This is used to display information on whether the theme is
@@ -259,11 +259,11 @@ Feature <- R6::R6Class(
 #' @return A [Feature] object.
 #'
 #' @examples
-#' # create new layer
-#' l <- new_layer(source = tempfile(), total = 12, units = "ha")
+#' # create new dataset
+#' l <- new_dataset(source = tempfile(), total = 12, units = "ha")
 #'
-#' # create feature using the layer
-#' f <- new_feature(name = "Intact Alvar", layer = l)
+#' # create feature using the dataset
+#' f <- new_feature(name = "Intact Alvar", dataset = l)
 #'
 #' # print object
 #' print(f)
@@ -271,7 +271,7 @@ Feature <- R6::R6Class(
 #' @export
 new_feature <- function(
     name,
-    layer,
+    dataset,
     initial_status = TRUE,
     initial_goal = 0.1,
     min_goal = 0,
@@ -289,7 +289,7 @@ new_feature <- function(
   Feature$new(
     id = id,
     name = name,
-    layer = layer,
+    dataset = dataset,
     initial_status = initial_status,
     initial_goal = initial_goal,
     min_goal = min_goal,

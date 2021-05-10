@@ -2,10 +2,10 @@ context("new_feature")
 
 test_that("initialization", {
   # create object
-  l <- new_layer(source = "asdf.tif", total = 200, units = "ha")
+  l <- new_dataset(source = "asdf.tif", total = 200, units = "ha")
   x <- new_feature(
     name = "Intact Alvar",
-    layer = l,
+    dataset = l,
     initial_status = FALSE,
     initial_goal = 0.2,
     min_goal = 0.01,
@@ -20,7 +20,7 @@ test_that("initialization", {
   print(x)
   expect_is(x$repr(), "character")
   expect_identical(x$name, "Intact Alvar")
-  expect_identical(x$layer, l)
+  expect_identical(x$dataset, l)
   expect_identical(x$status, FALSE)
   expect_identical(x$initial_status, FALSE)
   expect_identical(x$goal, 0.2)
@@ -37,10 +37,10 @@ test_that("initialization", {
 
 test_that("get methods", {
   # create object
-  l <- new_layer(source = "asdf.tif", total = 200, units = "ha")
+  l <- new_dataset(source = "asdf.tif", total = 200, units = "ha")
   x <- new_feature(
     name = "Intact Alvar",
-    layer = l,
+    dataset = l,
     initial_status = FALSE,
     initial_goal = 0.2,
     min_goal = 0.01,
@@ -58,10 +58,10 @@ test_that("get methods", {
 
 test_that("set methods", {
   # create object
-  l <- new_layer(source = "asdf.tif", total = 200, units = "ha")
+  l <- new_dataset(source = "asdf.tif", total = 200, units = "ha")
   x <- new_feature(
     name = "Intact Alvar",
-    layer = l,
+    dataset = l,
     initial_status = FALSE,
     initial_goal = 0.2,
     min_goal = 0.01,

@@ -2,10 +2,10 @@ context("new_weight")
 
 test_that("initialization", {
   # create object
-  l <- new_layer(source = "asdf.tif", total = 200, units = "ha")
+  l <- new_dataset(source = "asdf.tif", total = 200, units = "ha")
   x <- new_weight(
     name = "Human Footprint Index",
-    layer = l,
+    dataset = l,
     initial_status = FALSE,
     initial_factor = 0.2,
     min_factor = 0.01,
@@ -17,7 +17,7 @@ test_that("initialization", {
   expect_is(x$repr(), "character")
   expect_equal(x$id, "FID1")
   expect_equal(x$name, "Human Footprint Index")
-  expect_equal(x$layer, l)
+  expect_equal(x$dataset, l)
   expect_equal(x$status, FALSE)
   expect_equal(x$initial_status, FALSE)
   expect_equal(x$factor, 0.2)
@@ -29,10 +29,10 @@ test_that("initialization", {
 
 test_that("get methods", {
   # create object
-  l <- new_layer(source = "asdf.txt", total = 200, units = "ha")
+  l <- new_dataset(source = "asdf.txt", total = 200, units = "ha")
   x <- new_weight(
     name = "Human Footprint Index",
-    layer = l,
+    dataset = l,
     initial_status = FALSE,
     initial_factor = 0.2,
     min_factor = 0.01,
@@ -48,10 +48,10 @@ test_that("get methods", {
 
 test_that("set methods", {
   # create object
-  l <- new_layer(source = "asdf.tif", total = 200, units = "ha")
+  l <- new_dataset(source = "asdf.tif", total = 200, units = "ha")
   x <- new_weight(
     name = "Human Footprint Index",
-    layer = l,
+    dataset = l,
     initial_status = FALSE,
     initial_factor = 0.2,
     min_factor = 0.01,
@@ -71,10 +71,10 @@ test_that("set methods", {
 
 test_that("widget methods", {
   # create object
-  l <- new_layer(source = "asdf.tif", total = 200, units = "ha")
+  l <- new_dataset(source = "asdf.tif", total = 200, units = "ha")
   x <- new_weight(
     name = "Human Footprint Index",
-    layer = l,
+    dataset = l,
     initial_status = FALSE,
     initial_factor = 0.2,
     min_factor = 0.01,

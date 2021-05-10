@@ -198,19 +198,19 @@ SolutionSettings <- R6::R6Class(
 #' @return A [SolutionSettings] object.
 #'
 #' @examples
-#' # create layers
-#' l1 <- new_layer(source = tempfile(), total = 12, units = "ha")
-#' l2 <- new_layer(source = tempfile(), total = 14, units = "ha")
-#' l3 <- new_layer(source = tempfile(), total = 78, units = "ha")
-#' l4 <- new_layer(source = tempfile(), total = 90, units = "ha")
+#' # create datasets
+#' l1 <- new_dataset(source = tempfile(), total = 12, units = "ha")
+#' l2 <- new_dataset(source = tempfile(), total = 14, units = "ha")
+#' l3 <- new_dataset(source = tempfile(), total = 78, units = "ha")
+#' l4 <- new_dataset(source = tempfile(), total = 90, units = "ha")
 #'
-#' # create a weight using a layer
-#' w <- new_weight(name = "Human Footprint Index", layer = l1)
+#' # create a weight using a dataset
+#' w <- new_weight(name = "Human Footprint Index", dataset = l1)
 #'
-#' # create features using layers
-#' f1 <- new_feature(name = "Possum Occurrence", layer = l2)
-#' f2 <- new_feature(name = "Forests", layer = l3)
-#' f3 <- new_feature(name = "Shurblands", layer = l4)
+#' # create features using datasets
+#' f1 <- new_feature(name = "Possum Occurrence", dataset = l2)
+#' f2 <- new_feature(name = "Forests", dataset = l3)
+#' f3 <- new_feature(name = "Shurblands", dataset = l4)
 #'
 #' # create themes using the features
 #' t1 <- new_single_theme(name = "Species", f1)
