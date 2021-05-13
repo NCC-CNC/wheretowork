@@ -6,22 +6,60 @@ HTMLWidgets.widget({
 
   factory: function(el, width, height) {
 
-    // TODO: define shared variables for this instance
+    // shared variables
+    var elementId = el.id;
+    var initialized = false;
+    var container = document.getElementById(elementId);
+    var handle = undefined;
 
     return {
 
       renderValue: function(x) {
+        // alias this
+        var that = this;
 
-        // TODO: code to render the widget, e.g.
-        el.innerText = x.message;
+        // initialize widget
+        if (!initialized) {
+          // set state to initialized
+          initialized = true;
+          // attach the widget to the DOM
+          container.widget = that;
+          // initialize solution settings manaer
+          handle = new MapManager(
+            elementId, container,
+            opts.ids, opts.visible, opts.order, opts.legend);
+          // render HTML elements
+          handle.render();
+        }
 
       },
 
       resize: function(width, height) {
-
-        // TODO: code to re-render the widget with a new size
-
+        // widget automatically resizes
       }
+
+      // export object for extensibility
+      mapManager: container,
+
+      /* API functions to manipulate widget */
+      updateLayer: function(params) {
+        handle.updateLayer(
+          params.value.id, params.value.parameter,
+          params.value.value);
+      }
+
+      addLayer: function(params) {
+        handle.addLayer(
+          params.value.id, );
+      }
+
+      updateSetting: function(params) {
+        handle.updateLayer(
+          params.value.id, params.value.parameter,
+          params.value.value);
+      }
+
+
 
     };
   }

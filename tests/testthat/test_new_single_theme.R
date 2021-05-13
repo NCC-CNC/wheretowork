@@ -2,7 +2,9 @@ context("new_single_theme")
 
 test_that("initialization", {
   # create object
-  l <- new_dataset(source = "l1.tif", total = 100, units = "ha")
+  l <- new_dataset(
+    source = "l1.tif", total = 100, units = "ha",
+    legend = simulate_continuous_legend())
   f <- new_feature(
     name = "F1",
     dataset = l,
@@ -38,7 +40,9 @@ test_that("initialization", {
 
 test_that("get methods", {
   # create object
-  l <- new_dataset(source = "l1.tif", total = 100, units = "ha")
+  l <- new_dataset(
+    source = "l1.tif", total = 100, units = "ha",
+    legend = simulate_continuous_legend())
   f <- new_feature(
     name = "F1",
     dataset = l,
@@ -69,7 +73,9 @@ test_that("get methods", {
 
 test_that("set methods", {
   # create object
-  l <- new_dataset(source = "l1.tif", total = 100, units = "ha")
+  l <- new_dataset(
+    source = "l1.tif", total = 100, units = "ha",
+    legend = simulate_continuous_legend())
   f <- new_feature(
     name = "F1",
     dataset = l,
@@ -104,7 +110,9 @@ test_that("set methods", {
 
 test_that("widget methods", {
   # create object
-  l <- new_dataset(source = "l1.tif", total = 100, units = "ha")
+  l <- new_dataset(
+    source = "l1.tif", total = 100, units = "ha",
+    legend = simulate_continuous_legend())
   f <- new_feature(
     name = "F1",
     dataset = l,

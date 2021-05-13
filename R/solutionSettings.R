@@ -14,8 +14,7 @@
 #'   Defaults to `NULL` such that the widget is automatically sized.
 #'
 #' @section Server value:
-#' The widget sends the following values to the server
-#' (where `elementId` corresponds to the `elementId`):
+#' The widget sends a `list` with the following values to the server:
 #'
 #' \describe{
 #'
@@ -135,10 +134,10 @@ solutionSettings_html <- function(id, style, class, ...) {
         class = "weight-setting-template",
         htmltools::tags$div(
           class = paste("weight-setting solution-setting"),
-          header_component_scaffold(),
+          ss_header_component_scaffold(),
           htmltools::tags$div(
             class = "weight-slider",
-            slider_component_scaffold()
+            ss_slider_component_scaffold()
           )
         )
       )
@@ -152,9 +151,9 @@ solutionSettings_html <- function(id, style, class, ...) {
         class = "single-theme-setting-template",
         htmltools::tags$div(
           class = "single-theme-setting solution-setting",
-          icon_component_scaffold(),
-          header_component_scaffold(),
-          goal_component_scaffold()
+          ss_icon_component_scaffold(),
+          ss_header_component_scaffold(),
+          ss_goal_component_scaffold()
         )
       )
     )
@@ -168,8 +167,8 @@ solutionSettings_html <- function(id, style, class, ...) {
         class = "multi-theme-setting-template",
         htmltools::tags$div(
           class = "multi-theme-setting solution-setting",
-          icon_component_scaffold(),
-          header_component_scaffold(),
+          ss_icon_component_scaffold(),
+          ss_header_component_scaffold(),
           htmltools::tags$div(
             class = "main",
             shiny::tabsetPanel(
@@ -180,7 +179,7 @@ solutionSettings_html <- function(id, style, class, ...) {
                 "group",
                 htmltools::tags$div(
                   class = "group-view",
-                  group_goal_component_scaffold()
+                  ss_group_goal_component_scaffold()
                 )
               ),
               ## single view
@@ -204,9 +203,9 @@ solutionSettings_html <- function(id, style, class, ...) {
         class = "multi-theme-single-setting-template",
         htmltools::tags$div(
           class = "single-container",
-          subicon_component_scaffold(),
-          subheader_component_scaffold(),
-          goal_component_scaffold()
+          ss_subicon_component_scaffold(),
+          ss_subheader_component_scaffold(),
+          ss_goal_component_scaffold()
         )
       )
     )

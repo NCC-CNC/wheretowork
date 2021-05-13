@@ -1,11 +1,12 @@
-#' Scaffold for a goal component of a widget
+#' Scaffold for a goal component of the solution settings widget
 #'
-#' Create a HTML scaffold for a goal component.
+#' Create a HTML scaffold for a goal component of
+#' the [solutionSettings()] widget.
 #'
 #' @return `shiny.tag` object.
 #'
 #' @noRd
-goal_component_scaffold <- function() {
+ss_goal_component_scaffold <- function() {
   htmltools::tags$div(
     class = "goal",
     htmltools::tags$div(
@@ -27,18 +28,19 @@ goal_component_scaffold <- function() {
           class = "slider-label disable-if-inactive")
       ),
     ),
-    slider_component_scaffold(bar = "current-bar")
+    ss_slider_component_scaffold(bar = "current-bar")
   )
 }
 
-#' Scaffold for a group goal component of a widget
+#' Scaffold for a group goal component of the solution settings widget
 #'
-#' Create a HTML scaffold for a goal component.
+#' Create a HTML scaffold for a goal component of
+#' the [solutionSettings()] widget.
 #'
 #' @return `shiny.tag` object.
 #'
 #' @noRd
-group_goal_component_scaffold <- function() {
+ss_group_goal_component_scaffold <- function() {
   htmltools::tags$div(
     class = "goal",
     htmltools::tags$div(
@@ -60,14 +62,15 @@ group_goal_component_scaffold <- function() {
           class = "slider-label disable-if-inactive")
       ),
     ),
-    slider_component_scaffold(bar = c(
+    ss_slider_component_scaffold(bar = c(
       "current-max-bar", "current-min-bar"))
   )
 }
 
-#' Scaffold for the slider component of a widget
+#' Scaffold for the slider component of the solution settings widget
 #'
-#' Create a HTML scaffold for a slider component.
+#' Create a HTML scaffold for a slider component of the
+#' the [solutionSettings()] widget.
 #'
 #' @param bar `character` names of classes for bars to include.
 #'  Defaults to `NULL` such that no bars are included.
@@ -83,7 +86,7 @@ group_goal_component_scaffold <- function() {
 #' @return `shiny.tag` object.
 #'
 #' @noRd
-slider_component_scaffold <- function(bar = NULL) {
+ss_slider_component_scaffold <- function(bar = NULL) {
   # assert arguments are valid
   if (!is.null(bar)) {
     assertthat::assert_that(
@@ -122,36 +125,39 @@ slider_component_scaffold <- function(bar = NULL) {
 }
 
 
-#' Scaffold for the icon component of a widget
+#' Scaffold for the icon component of the solution settings widget
 #'
-#' Create a HTML scaffold for an icon component.
+#' Create a HTML scaffold for an icon component of
+#' the [solutionSettings()] widget.
 #'
 #' @return `shiny.tag` object.
 #'
 #' @noRd
-icon_component_scaffold <- function() {
+ss_icon_component_scaffold <- function() {
   htmltools::tags$div(class = "icon disable-if-inactive")
 }
 
-#' Scaffold for the sub-icon component of a widget
+#' Scaffold for the sub-icon component of the solution settings widget
 #'
-#' Create a HTML scaffold for an sub-icon component.
+#' Create a HTML scaffold for an sub-icon component of
+#' the [solutionSettings()] widget.
 #'
 #' @return `shiny.tag` object.
 #'
 #' @noRd
-subicon_component_scaffold <- function() {
+ss_subicon_component_scaffold <- function() {
   htmltools::tags$div(class = "sub-icon disable-if-inactive")
 }
 
-#' Scaffold for the header component of a widget
+#' Scaffold for the header component of the solution settings widget
 #'
-#' Create a HTML scaffold for a header component.
+#' Create a HTML scaffold for a header component of
+#' the [solutionSettings()] widget.
 #'
 #' @return `shiny.tag` object.
 #'
 #' @noRd
-header_component_scaffold <- function(id = uuid::UUIDgenerate()) {
+ss_header_component_scaffold <- function(id = uuid::UUIDgenerate()) {
   htmltools::tags$div(
     class = "header",
     htmltools::tags$label(
@@ -172,14 +178,15 @@ header_component_scaffold <- function(id = uuid::UUIDgenerate()) {
   )
 }
 
-#' Scaffold for the subheader component of a widget
+#' Scaffold for the subheader component of the solution settings widget
 #'
-#' Create a HTML scaffold for a subheader component.
+#' Create a HTML scaffold for a subheader component of
+#' the [solutionSettings()] widget.
 #'
 #' @return `shiny.tag` object.
 #'
 #' @noRd
-subheader_component_scaffold <- function(id = uuid::UUIDgenerate()) {
+ss_subheader_component_scaffold <- function(id = uuid::UUIDgenerate()) {
   htmltools::tags$div(
     class = "sub-header",
     htmltools::tags$label(

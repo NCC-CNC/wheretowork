@@ -19,13 +19,17 @@ Dataset <- R6::R6Class(
     #' @field units `character` value.
     units = NA_character_,
 
+    #' @field legend `Legend` object.
+    legend = NULL,
+
     #' @description
     #' Create a Dataset object.
     #' @param source `character` value.
     #' @param total `numeric` value.
     #' @param units `character` value.
+    #' @param legend `Legend` object.
     #' @return A new Dataset object.
-    initialize = function(source, total, units) {
+    initialize = function(source, total, units, legend) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### source
@@ -37,11 +41,14 @@ Dataset <- R6::R6Class(
         isTRUE(total >= 0),
         #### units
         assertthat::is.string(units),
-        assertthat::noNA(units))
+        assertthat::noNA(units),
+        #### legend
+        inherits(legend, c("ContinuousLegend", "CategoricalLegend")))
       ### set fields
       self$source <- source
       self$total <- total
       self$units <- units
+      self$legend <- legend
     },
 
     #' @description
@@ -81,16 +88,20 @@ Dataset <- R6::R6Class(
 #'
 #' @param units `character` units for the values in the underlying data.
 #'
+#' @param legend `Legend` object.
+#'
 #' @return A [Dataset] object.
 #'
 #' @examples
 #' # create new object
-#' l <- new_dataset(source = tempfile(), total = 12, units = "ha")
+#' l <- new_dataset(
+#'   source = tempfile(), total = 12, units = "ha",
+#'   legend = new_continuous_legend(1, 100, c("#000000", "#AAAAAA")))
 #'
 #' # print object
 #' print(l)
 #'
 #' @export
-new_dataset <- function(source, total, units) {
-  Dataset$new(source = source, total = total, units = units)
+new_dataset <- function(source, total, units, legend) {
+  Dataset$new(source = source, total = total, units = units, legend = legend)
 }

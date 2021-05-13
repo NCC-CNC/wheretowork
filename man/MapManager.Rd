@@ -4,19 +4,287 @@
 \alias{MapManager}
 \title{Map manager class}
 \description{
+Map manager class
+
+Map manager class
+}
+\details{
 Definition for the MapManager class.
+
+The argument to \code{value} should be a \code{list} with the following elements:
+\describe{
+\item{parameter}{\code{character} name of parameter.
+Available options are: \code{"visible"} and \code{"order"}.}
+}
+
+The argument to \code{value} should be a \code{list} with the following elements:
+\describe{
+\item{id}{\code{character} identifier for theme or weight.}
+\item{parameter}{\code{character} name of parameter.
+Available options are: \code{"visible"} and \code{"order"}.}
+\item{value}{\code{numeric} or \code{logical} value for new parameter.}
+}
 }
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
-\item{\code{layers}}{\code{list} of Layer objects.}
+\item{\code{layers}}{\code{list} of \link{Theme} or \link{Weight} objects.}
+
+\item{\code{ids}}{\code{character} vector of identifiers for the layers.}
+
+\item{\code{visible}}{\code{logical} vector indicating if each layer should
+be visible or not.}
+
+\item{\code{order}}{\code{integer} vector indicating the order each layer should
+appear on them map. A value of 1 indicates that a layer should appear
+beneath every other layer.}
 }
 \if{html}{\out{</div>}}
 }
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
+\item \href{#method-new}{\code{MapManager$new()}}
+\item \href{#method-print}{\code{MapManager$print()}}
+\item \href{#method-repr}{\code{MapManager$repr()}}
+\item \href{#method-get_visible}{\code{MapManager$get_visible()}}
+\item \href{#method-get_order}{\code{MapManager$get_order()}}
+\item \href{#method-get_layer}{\code{MapManager$get_layer()}}
+\item \href{#method-get_parameter}{\code{MapManager$get_parameter()}}
+\item \href{#method-set_visible}{\code{MapManager$set_visible()}}
+\item \href{#method-set_order}{\code{MapManager$set_order()}}
+\item \href{#method-set_parameter}{\code{MapManager$set_parameter()}}
+\item \href{#method-add_layer}{\code{MapManager$add_layer()}}
+\item \href{#method-drop_layer}{\code{MapManager$drop_layer()}}
+\item \href{#method-get_widget_data}{\code{MapManager$get_widget_data()}}
+\item \href{#method-update_map}{\code{MapManager$update_map()}}
 \item \href{#method-clone}{\code{MapManager$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
+\subsection{Method \code{new()}}{
+Create a MapManager object.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MapManager$new(layers, visible, order)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{layers}}{\code{list} of Layer objects.}
+
+\item{\code{visible}}{\code{logical} vector.}
+
+\item{\code{order}}{\code{numeric} vector.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+A new MapManager object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-print"></a>}}
+\if{latex}{\out{\hypertarget{method-print}{}}}
+\subsection{Method \code{print()}}{
+Print the object.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MapManager$print(...)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{...}}{not used.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-repr"></a>}}
+\if{latex}{\out{\hypertarget{method-repr}{}}}
+\subsection{Method \code{repr()}}{
+Generate a \code{character} summarizing the representation of the object.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MapManager$repr()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_visible"></a>}}
+\if{latex}{\out{\hypertarget{method-get_visible}{}}}
+\subsection{Method \code{get_visible()}}{
+Get information on the visibility of each layer.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MapManager$get_visible()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_order"></a>}}
+\if{latex}{\out{\hypertarget{method-get_order}{}}}
+\subsection{Method \code{get_order()}}{
+Get information on the plot order of each layer.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MapManager$get_order()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_layer"></a>}}
+\if{latex}{\out{\hypertarget{method-get_layer}{}}}
+\subsection{Method \code{get_layer()}}{
+Get a layer.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MapManager$get_layer(value)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{value}}{\code{character} layer identifier.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+\link{Theme} object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_parameter"></a>}}
+\if{latex}{\out{\hypertarget{method-get_parameter}{}}}
+\subsection{Method \code{get_parameter()}}{
+Get a parameter for the object.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MapManager$get_parameter(value)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{value}}{\code{list} with new parameter information (see Details section)}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_visible"></a>}}
+\if{latex}{\out{\hypertarget{method-set_visible}{}}}
+\subsection{Method \code{set_visible()}}{
+Set information on the visibility of each layer.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MapManager$set_visible(value)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{value}}{\code{logical} vector indicating if each layer is visible or not.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_order"></a>}}
+\if{latex}{\out{\hypertarget{method-set_order}{}}}
+\subsection{Method \code{set_order()}}{
+Set information on the plot order of each layer.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MapManager$set_order(value)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{value}}{\code{logical} vector indicating if each layer is visible or not.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_parameter"></a>}}
+\if{latex}{\out{\hypertarget{method-set_parameter}{}}}
+\subsection{Method \code{set_parameter()}}{
+Set a parameter for the object.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MapManager$set_parameter(value)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{value}}{\code{list} with new parameter information (see Details section)}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-add_layer"></a>}}
+\if{latex}{\out{\hypertarget{method-add_layer}{}}}
+\subsection{Method \code{add_layer()}}{
+Add a new layer.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MapManager$add_layer(value)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{value}}{\code{Layer} object.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-drop_layer"></a>}}
+\if{latex}{\out{\hypertarget{method-drop_layer}{}}}
+\subsection{Method \code{drop_layer()}}{
+Remove a layer.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MapManager$drop_layer(value)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{value}}{\code{character} identifier of the layer to remove.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_widget_data"></a>}}
+\if{latex}{\out{\hypertarget{method-get_widget_data}{}}}
+\subsection{Method \code{get_widget_data()}}{
+Get data for displaying the theme in a \code{\link[=mapManager]{mapManager()}} widget.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MapManager$get_widget_data()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{list} with widget data.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-update_map"></a>}}
+\if{latex}{\out{\hypertarget{method-update_map}{}}}
+\subsection{Method \code{update_map()}}{
+Update map.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MapManager$update_map(map)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{map}}{\code{\link[leaflet:leafletProxy]{leaflet::leafletProxy()}} object.}
+}
+\if{html}{\out{</div>}}
 }
 }
 \if{html}{\out{<hr>}}

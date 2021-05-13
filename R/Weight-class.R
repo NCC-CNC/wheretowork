@@ -221,7 +221,12 @@ Weight <- R6::R6Class(
     #' Get data for displaying the theme in a [mapManager()] widget.
     #' @return `list` with widget data.
     get_map_manager_widget_data = function() {
-      stop("TODO")
+      list(
+        id = self$id,
+        name = self$name,
+        units = self$dataset$units,
+        legend = self$dataset$legend$get_widget_data()
+      )
     }
 
   )
@@ -250,7 +255,9 @@ Weight <- R6::R6Class(
 #'
 #' @examples
 #' # create a new dataset
-#' l <- new_dataset(source = tempfile(), total = 12, units = "ha")
+#' l <- new_dataset(
+#'  source = tempfile(), total = 12, units = "ha",
+#'  legend = new_continuous_legend(1, 100, c("#000000", "#1b9e77")))
 #'
 #' # create a new weight
 #' w <- new_weight(name = "NDVI", dataset = l)

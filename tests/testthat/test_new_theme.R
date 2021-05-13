@@ -2,7 +2,9 @@ context("new_theme")
 
 test_that("SingleTheme", {
   # create object
-  l <- new_dataset(source = "l1.tif", total = 100, units = "ha")
+  l <- new_dataset(
+    source = "l1.tif", total = 100, units = "ha",
+    legend = simulate_continuous_legend())
   f <- new_feature(
     name = "F1",
     dataset = l,
@@ -36,8 +38,12 @@ test_that("SingleTheme", {
 
 test_that("MultiTheme", {
   # create object
-  l1 <- new_dataset(source = "l1.txt", total = 100, units = "ha")
-  l2 <- new_dataset(source = "l2.txt", total = 30, units = "ha")
+  l1 <- new_dataset(
+    source = "l1.txt", total = 100, units = "ha",
+    legend = simulate_continuous_legend())
+  l2 <- new_dataset(
+    source = "l2.txt", total = 30, units = "ha",
+    legend = simulate_continuous_legend())
   f1 <- new_feature(
     name = "F1",
     dataset = l1,
@@ -92,5 +98,4 @@ test_that("MultiTheme", {
     group_current_label = "Hence")
   # run tests
   expect_equal(x, y)
-
 })

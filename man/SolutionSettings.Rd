@@ -14,7 +14,8 @@ Definition for the SolutionSettings class.
 The argument to \code{value} should be a \code{list} with the following elements:
 \describe{
 \item{id}{\code{character} identifier for theme or weight.}
-\item{parameter}{\code{numeric} or \code{logical} value for new parameter.}
+\item{parameter}{\code{character} name of parameter.
+Available options are: \code{"status"}, \code{"factor"}, or \code{"goal"}.}
 \item{type}{\code{character} indicating if the parameter is for a theme or
 weight.
 Available options are: \code{"theme"} or \code{"weight"}.}
@@ -23,9 +24,9 @@ Available options are: \code{"theme"} or \code{"weight"}.}
 The argument to \code{value} should be a \code{list} with the following elements:
 \describe{
 \item{id}{\code{character} identifier for theme or weight.}
-\item{parameter}{\code{numeric} or \code{logical} value for new parameter.}
-\item{value}{\code{character} name of parameter.
+\item{parameter}{\code{character} name of parameter.
 Available options are: \code{"status"}, \code{"factor"}, or \code{"goal"}.}
+\item{value}{\code{numeric} or \code{logical} value for new parameter.}
 \item{type}{\code{character} indicating if the parameter is for a theme or
 weight.
 Available options are: \code{"theme"} or \code{"weight"}.}
@@ -104,20 +105,9 @@ Print the object.
 \subsection{Method \code{repr()}}{
 Generate a \code{character} summarizing the representation of the object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$repr(start = "[", end = "]")}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$repr()}\if{html}{\out{</div>}}
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{start}}{\code{character} symbol used to start the parameter list.
-Defaults to \code{"["}.}
-
-\item{\code{end}}{\code{character} symbol used to start the parameter list.
-Defaults to \code{"]"}.}
-}
-\if{html}{\out{</div>}}
-}
 \subsection{Returns}{
 \code{character} value.
 }

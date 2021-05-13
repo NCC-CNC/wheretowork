@@ -1,4 +1,4 @@
-context("new_solution_settings")
+context("new_map_manager")
 
 test_that("initialization", {
   # create object
@@ -33,14 +33,17 @@ test_that("initialization", {
   t1 <- new_single_theme("Species", f1, id = "T1")
   t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")
   ## create solution setting
-  x <- new_solution_settings(themes = list(t1, t2), weights = list(w))
+  x <- new_map_manager(
+    layers = list(t1, t2, w),
+    visible = c(TRUE, FALSE, TRUE),
+    order = c(2, 1, 3))
   # run tests
   print(x)
   expect_is(x$repr(), "character")
-  expect_equal(x$themes, list(t1, t2))
-  expect_equal(x$weights, list(w))
-  expect_identical(x$theme_ids, c("T1", "T2"))
-  expect_identical(x$weight_ids, "W1")
+  expect_equal(x$layers, list(t1, t2, w))
+  expect_identical(x$ids, c("T1", "T2", "W1"))
+  expect_identical(x$visible, c(TRUE, FALSE, TRUE))
+  expect_identical(x$order, c(2, 1, 3))
 })
 
 test_that("get methods", {
@@ -76,43 +79,22 @@ test_that("get methods", {
   t1 <- new_single_theme("Species", f1, id = "T1")
   t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")
   ## create solution setting
-  x <- new_solution_settings(themes = list(t1, t2), weights = list(w))
+  x <- new_map_manager(
+    layers = list(t1, t2, w),
+    visible = c(TRUE, FALSE, TRUE),
+    order = c(2, 1, 3))
   # run tests
-  ## get theme
-  expect_equal(x$get_theme("T1"), t1)
-  expect_equal(x$get_theme("T2"), t2)
-  ## get weight
-  expect_equal(x$get_weight("W1"), w)
-  ## invalid themes and weights
-  expect_error(x$get_theme("NOT_EXISTANT"))
-  expect_error(x$get_weight("NOT_EXISTANT"))
-  ## get parameters for SingleTheme
+  ## get layer
+  expect_equal(x$get_layer("T1"), t1)
+  expect_equal(x$get_layer("T2"), t2)
+  expect_equal(x$get_order(), x$order)
+  expect_equal(x$get_visible(), x$visible)
   expect_equal(
-    x$get_parameter(
-      list(id = "T1", parameter = "feature_goal", type = "theme")),
-      0.2)
+    x$get_parameter(list(parameter = "order")),
+    x$get_order())
   expect_equal(
-    x$get_parameter(
-      list(id = "T1", parameter = "feature_status", type = "theme")),
-      FALSE)
-  ## get parameters for MultiTheme
-  expect_equal(
-    x$get_parameter(
-      list(id = "T2", parameter = "feature_goal", type = "theme")),
-      c(0.3, 0.6))
-  expect_equal(
-    x$get_parameter(
-      list(id = "T2", parameter = "feature_status", type = "theme")),
-      c(FALSE, TRUE))
-  ## get parameters for Weight
-  expect_equal(
-    x$get_parameter(
-      list(id = "W1", parameter = "factor", type = "weight")),
-      90)
-  expect_equal(
-    x$get_parameter(
-      list(id = "W1", parameter = "status", type = "weight")),
-      FALSE)
+    x$get_parameter(list(parameter = "visible")),
+    x$get_visible())
 })
 
 test_that("set methods", {
@@ -148,51 +130,21 @@ test_that("set methods", {
   t1 <- new_single_theme("Species", f1, id = "T1")
   t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")
   ## create solution setting
-  x <- new_solution_settings(themes = list(t1, t2), weights = list(w))
+  x <- new_map_manager(
+    layers = list(t1, t2, w),
+    visible = c(TRUE, FALSE, TRUE),
+    order = c(2, 1, 3))
   # run tests
-  ## singleTheme
+  ## visible
   x$set_parameter(
-    list(id = "T1", parameter = "feature_status", value = TRUE, type = "theme"))
+    list(parameter = "visible", value = c(FALSE, TRUE, TRUE)))
   expect_equal(
-    x$get_parameter(
-      list(id = "T1", parameter = "feature_status", type = "theme")),
-    TRUE)
+    x$get_visible(), c(FALSE, TRUE, TRUE))
+  ## order
   x$set_parameter(
-    list(id = "T1", parameter = "feature_goal", value = 0.91, type = "theme"))
+    list(parameter = "order", value = c(1, 3, 2)))
   expect_equal(
-    x$get_parameter(
-      list(id = "T1", parameter = "feature_goal", type = "theme")),
-    0.91)
-  ## multiTheme
-  x$set_parameter(
-    list(
-      id = "T2", parameter = "feature_status", value = c(TRUE, FALSE),
-      type = "theme"))
-  expect_equal(
-    x$get_parameter(
-      list(id = "T2", parameter = "feature_status", type = "theme")),
-    c(TRUE, FALSE))
-  x$set_parameter(
-    list(
-      id = "T2", parameter = "feature_goal", value = c(0.99, 0.21),
-      type = "theme"))
-  expect_equal(
-    x$get_parameter(
-      list(id = "T2", parameter = "feature_goal", type = "theme")),
-    c(0.99, 0.21))
-  ## Weight
-  x$set_parameter(
-    list(id = "W1", parameter = "status", value = TRUE, type = "weight"))
-  expect_equal(
-    x$get_parameter(
-      list(id = "W1", parameter = "status", type = "weight")),
-    TRUE)
-  x$set_parameter(
-    list(id = "W1", parameter = "factor", value = 90, type = "weight"))
-  expect_equal(
-    x$get_parameter(
-      list(id = "W1", parameter = "factor", type = "weight")),
-    90)
+    x$get_order(), c(1, 3, 2))
 })
 
 test_that("widget methods", {
@@ -228,15 +180,18 @@ test_that("widget methods", {
   t1 <- new_single_theme("Species", f1, id = "T1")
   t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")
   ## create solution setting
-  x <- new_solution_settings(themes = list(t1, t2), weights = list(w))
+  x <- new_map_manager(
+    layers = list(t1, t2, w),
+    visible = c(TRUE, FALSE, TRUE),
+    order = c(2, 1, 3))
   # run tests
   expect_equal(
     x$get_widget_data(),
     list(
-      themes = list(
-        t1$get_solution_settings_widget_data(),
-        t2$get_solution_settings_widget_data()),
-      weights = list(
-        w$get_solution_settings_widget_data()))
+      ids = c("T1", "T2", "W1"),
+      visible = c(TRUE, FALSE, TRUE),
+      order = c(2, 1, 3),
+      layers = lapply(x$layers, function(x) x$get_map_manager_widget_data())
+    )
   )
 })

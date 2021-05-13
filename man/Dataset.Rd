@@ -22,6 +22,8 @@ Definition for the Dataset class.
 \item{\code{total}}{\code{numeric} value.}
 
 \item{\code{units}}{\code{character} value.}
+
+\item{\code{legend}}{\code{Legend} object.}
 }
 \if{html}{\out{</div>}}
 }
@@ -40,7 +42,7 @@ Definition for the Dataset class.
 \subsection{Method \code{new()}}{
 Create a Dataset object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Dataset$new(source, total, units)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Dataset$new(source, total, units, legend)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -51,6 +53,8 @@ Create a Dataset object.
 \item{\code{total}}{\code{numeric} value.}
 
 \item{\code{units}}{\code{character} value.}
+
+\item{\code{legend}}{\code{Legend} object.}
 }
 \if{html}{\out{</div>}}
 }

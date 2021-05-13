@@ -87,9 +87,15 @@ Create a new \link{MultiTheme} object.
 }
 \examples{
 # create datasets
-l1 <- new_dataset(source = tempfile(), total = 12, units = "ha")
-l2 <- new_dataset(source = tempfile(), total = 15, units = "ha")
-l3 <- new_dataset(source = tempfile(), total = 20, units = "ha")
+l1 <- new_dataset(
+ source = tempfile(), total = 12, units = "ha",
+ legend = new_continuous_legend(1, 100, c("#000000", "#1b9e77")))
+l2 <- new_dataset(
+ source = tempfile(), total = 14, units = "ha",
+ legend = new_continuous_legend(1, 100, c("#000000", "#d95f02")))
+l3 <- new_dataset(
+ source = tempfile(), total = 78, units = "ha",
+ legend = new_continuous_legend(1, 100, c("#000000", "#7570b3")))
 
 # create features the datasets
 f1 <- new_feature(name = "Pangolin", dataset = l1)

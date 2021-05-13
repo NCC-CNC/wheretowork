@@ -164,7 +164,17 @@ MultiTheme <- R6::R6Class(
     #' Get data for displaying the theme in a [mapManager()] widget.
     #' @return `list` with widget data.
     get_map_manager_widget_data = function() {
-      stop("TODO")
+      list(
+        id = self$id,
+        name = self$name,
+        feature_name =
+          vapply(self$feature, function(x) x$name, character(1)),
+        feature_id =
+          vapply(self$feature, function(x) x$id, character(1)),
+        units = self$feature[[1]]$dataset$units,
+        legend =
+          lapply(self$feature, function(x) x$dataset$legend$get_widget_data())
+      )
     }
   )
 )
@@ -235,9 +245,15 @@ MultiTheme <- R6::R6Class(
 #'
 #' @examples
 #' # create datasets
-#' l1 <- new_dataset(source = tempfile(), total = 12, units = "ha")
-#' l2 <- new_dataset(source = tempfile(), total = 15, units = "ha")
-#' l3 <- new_dataset(source = tempfile(), total = 20, units = "ha")
+#' l1 <- new_dataset(
+#'  source = tempfile(), total = 12, units = "ha",
+#'  legend = new_continuous_legend(1, 100, c("#000000", "#1b9e77")))
+#' l2 <- new_dataset(
+#'  source = tempfile(), total = 14, units = "ha",
+#'  legend = new_continuous_legend(1, 100, c("#000000", "#d95f02")))
+#' l3 <- new_dataset(
+#'  source = tempfile(), total = 78, units = "ha",
+#'  legend = new_continuous_legend(1, 100, c("#000000", "#7570b3")))
 #'
 #' # create features the datasets
 #' f1 <- new_feature(name = "Pangolin", dataset = l1)

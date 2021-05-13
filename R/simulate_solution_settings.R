@@ -4,7 +4,7 @@ NULL
 #' Simulate a solution settings object
 #'
 #' This function simulates a solution settings object. It is primarily used
-#' for testing the Shiny widgets.
+#' for testing the package.
 #'
 #' @param n_single_themes `integer` number of themes with a single feature
 #'   to simulate. Defaults to 5.
@@ -94,7 +94,8 @@ simulate_solution_settings <- function(
         new_dataset(
           source = tempfile(),
           total = stats::runif(1, 1e+2, 1e+4),
-          units = "???")
+          units = "???",
+          legend = simulate_continuous_legend())
     )
   })
 
@@ -116,7 +117,8 @@ simulate_solution_settings <- function(
           new_dataset(
             source = tempfile(),
             total = stats::runif(1, 1e+2, 1e+4),
-            units = "ha")
+            units = "ha",
+            legend = simulate_continuous_legend())
       )
     )
   })
@@ -159,7 +161,8 @@ simulate_solution_settings <- function(
               new_dataset(
                 source = tempfile(),
                 total = stats::runif(1, 1e+2, 1e+4),
-                units = "ha")
+                units = "ha",
+                legend = simulate_continuous_legend())
           )
         }
       )

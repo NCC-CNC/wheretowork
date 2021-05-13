@@ -9,12 +9,14 @@
 #' @inheritParams solutionSettings
 #'
 #' @section Server value:
-#' The widget sends the following values to the server
-#' (where `elementId` corresponds to the `elementId`):
+#' The widget sends a `list` with the following values to the server:
 #'
 #' \describe{
 #'
-#'   \item{TODO}{`TODO`}
+#'   \item{parameter}{`character` name of the updated parameter.
+#'     Available options are: `"visible"` and `"order"`.}
+#'
+#'   \item{value}{`numeric` or `logical` values.}
 #'
 #' }
 #'
@@ -29,11 +31,11 @@ mapManager <- function(
 
   # create widget
   htmlwidgets::createWidget(
-    name = 'mapManager',
-    x$get_map_manager_widget_data(),
+    name = "mapManager",
+    x$get_widget_data(),
     width = width,
     height = height,
-    package = 'locationmisc',
+    package = "locationmisc",
     elementId = elementId
   )
 }
@@ -73,6 +75,45 @@ renderMapManager <- function(expr, env = parent.frame(), quoted = FALSE) {
 
 # Add custom HTML for the widget (automatically used by htmlwidgets)
 mapManager_html <- function(id, style, class, ...) {
-  htmltools::tags$div( id = id, class = class, style = style)
-  # TODO
+  # HTML scaffold
+  x <-
+    htmltools::tags$div(
+      id = id, class = class, style = style,
+      htmltools::div(
+        class = "map-manager-container",
+        htmltools::div(
+          class = "map-manager",
+          htmltools::tags$div(
+            class = "layers"
+          )
+        )
+      )
+    )
+
+  # add HTML template scaffolds for dynamic content
+  ## weight
+  x <-
+    htmltools::tagAppendChild(
+      x,
+      htmltools::tags$template(
+        class = "weight-layer-template",
+        htmltools::tags$div(
+          class = paste("weight-layer layer"),
+          mm_header_component_scaffold(),
+          htmltools::tags$div(
+            class = "layer-legend-container",
+            mm_legend_component_scaffold()
+          )
+        )
+      )
+    )
+
+  ## singleTheme
+  ### TODO
+
+  ## multiTheme
+  ### TODO
+
+  # return result
+  x
 }

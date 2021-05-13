@@ -31,7 +31,7 @@ A \link{SolutionSettings} object.
 }
 \description{
 This function simulates a solution settings object. It is primarily used
-for testing the Shiny widgets.
+for testing the package.
 }
 \examples{
 # simulate solution settings

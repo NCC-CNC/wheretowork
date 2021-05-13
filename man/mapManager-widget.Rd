@@ -25,12 +25,14 @@ Leaflet Map within a Shiny web application.
 }
 \section{Server value}{
 
-The widget sends the following values to the server
-(where \code{elementId} corresponds to the \code{elementId}):
+The widget sends a \code{list} with the following values to the server:
 
 \describe{
 
-\item{TODO}{\code{TODO}}
+\item{parameter}{\code{character} name of the updated parameter.
+Available options are: \code{"visible"} and \code{"order"}.}
+
+\item{value}{\code{numeric} or \code{logical} values.}
 
 }
 }

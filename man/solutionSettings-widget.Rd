@@ -23,8 +23,7 @@ Constructs a widget for managing the settings for generating solutions.
 }
 \section{Server value}{
 
-The widget sends the following values to the server
-(where \code{elementId} corresponds to the \code{elementId}):
+The widget sends a \code{list} with the following values to the server:
 
 \describe{
 

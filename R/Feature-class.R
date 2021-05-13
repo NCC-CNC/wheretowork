@@ -260,7 +260,9 @@ Feature <- R6::R6Class(
 #'
 #' @examples
 #' # create new dataset
-#' l <- new_dataset(source = tempfile(), total = 12, units = "ha")
+#' l <- new_dataset(
+#'  source = tempfile(), total = 12, units = "ha",
+#'  legend = new_continuous_legend(1, 100, c("#000000", "#AAAAAA")))
 #'
 #' # create feature using the dataset
 #' f <- new_feature(name = "Intact Alvar", dataset = l)

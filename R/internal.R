@@ -12,7 +12,7 @@
 all_list_elements_inherit <- function(x, class) {
   assertthat::assert_that(
     is.list(x),
-    assertthat::is.string(class),
+    is.character(class),
     assertthat::noNA(class))
   all(vapply(x, inherits, logical(1), class))
 }

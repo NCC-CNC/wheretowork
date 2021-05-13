@@ -19,7 +19,9 @@ the \code{\link[=new_single_theme]{new_single_theme()}} and \code{\link[=new_mul
 }
 \examples{
 # create new dataset
-l <- new_dataset(source = tempfile(), total = 12, units = "ha")
+l <- new_dataset(
+ source = tempfile(), total = 12, units = "ha",
+ legend = new_continuous_legend(1, 100, c("#000000", "#1b9e77")))
 
 # create feature using the dataset
 f <- new_feature(name = "Intact Alvar Occurrence", dataset = l)

@@ -2,7 +2,9 @@ context("new_feature")
 
 test_that("initialization", {
   # create object
-  l <- new_dataset(source = "asdf.tif", total = 200, units = "ha")
+  l <- new_dataset(
+    source = "asdf.tif", total = 200, units = "ha",
+    legend = simulate_continuous_legend())
   x <- new_feature(
     name = "Intact Alvar",
     dataset = l,
@@ -37,7 +39,9 @@ test_that("initialization", {
 
 test_that("get methods", {
   # create object
-  l <- new_dataset(source = "asdf.tif", total = 200, units = "ha")
+  l <- new_dataset(
+    source = "asdf.tif", total = 200, units = "ha",
+    legend = simulate_continuous_legend())
   x <- new_feature(
     name = "Intact Alvar",
     dataset = l,
@@ -58,7 +62,9 @@ test_that("get methods", {
 
 test_that("set methods", {
   # create object
-  l <- new_dataset(source = "asdf.tif", total = 200, units = "ha")
+  l <- new_dataset(
+    source = "asdf.tif", total = 200, units = "ha",
+    legend = simulate_continuous_legend())
   x <- new_feature(
     name = "Intact Alvar",
     dataset = l,

@@ -2,8 +2,12 @@ context("new_multi_theme")
 
 test_that("initialization", {
   # create object
-  l1 <- new_dataset(source = "l1.txt", total = 100, units = "ha")
-  l2 <- new_dataset(source = "l2.txt", total = 30, units = "ha")
+  l1 <- new_dataset(
+    source = "l1.txt", total = 100, units = "ha",
+    legend = simulate_continuous_legend())
+  l2 <- new_dataset(
+    source = "l2.txt", total = 30, units = "ha",
+    legend = simulate_continuous_legend())
   f1 <- new_feature(
     name = "F1",
     dataset = l1,
@@ -63,8 +67,12 @@ test_that("initialization", {
 
 test_that("get methods", {
   # create object
-  l1 <- new_dataset(source = "l1.txt", total = 100, units = "ha")
-  l2 <- new_dataset(source = "l2.txt", total = 30, units = "ha")
+  l1 <- new_dataset(
+    source = "l1.txt", total = 100, units = "ha",
+    legend = simulate_continuous_legend())
+  l2 <- new_dataset(
+    source = "l2.txt", total = 30, units = "ha",
+    legend = simulate_continuous_legend())
   f1 <- new_feature(
     name = "F1",
     dataset = l1,
@@ -114,8 +122,12 @@ test_that("get methods", {
 
 test_that("set methods", {
   # create object
-  l1 <- new_dataset(source = "l1.txt", total = 100, units = "ha")
-  l2 <- new_dataset(source = "l2.txt", total = 30, units = "ha")
+  l1 <- new_dataset(
+    source = "l1.txt", total = 100, units = "ha",
+    legend = simulate_continuous_legend())
+  l2 <- new_dataset(
+    source = "l2.txt", total = 30, units = "ha",
+    legend = simulate_continuous_legend())
   f1 <- new_feature(
     name = "F1",
     dataset = l1,
@@ -170,8 +182,12 @@ test_that("set methods", {
 
 test_that("widget methods", {
   # create object
-  l1 <- new_dataset(source = "l1.txt", total = 100, units = "ha")
-  l2 <- new_dataset(source = "l2.txt", total = 30, units = "ha")
+  l1 <- new_dataset(
+    source = "l1.txt", total = 100, units = "ha",
+    legend = simulate_continuous_legend())
+  l2 <- new_dataset(
+    source = "l2.txt", total = 30, units = "ha",
+    legend = simulate_continuous_legend())
   f1 <- new_feature(
     name = "F1",
     dataset = l1,
