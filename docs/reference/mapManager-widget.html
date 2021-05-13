@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>New layer — new_layer • locationmisc</title>
+<title>Map manager — mapManager • locationmisc</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,10 @@
 
 
 
-<meta property="og:title" content="New layer — new_layer" />
-<meta property="og:description" content="Create a new Layer object." />
+<meta property="og:title" content="Map manager — mapManager" />
+<meta property="og:description" content="Constructs a widget for managing items on a Leaflet map.
+This widget is designed to be used in conjunction with an existing
+Leaflet Map within a Shiny web application." />
 
 
 
@@ -57,8 +59,6 @@
 <![endif]-->
 
 
-
-<!-- dependencies from examples -->
 
 
   
@@ -111,46 +111,59 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>New layer</h1>
+    <h1>Map manager</h1>
     
-    <div class="hidden name"><code>new_layer.Rd</code></div>
+    <div class="hidden name"><code>mapManager-widget.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Create a new <a href='Layer.html'>Layer</a> object.</p>
+    <p>Constructs a widget for managing items on a Leaflet map.
+This widget is designed to be used in conjunction with an existing
+Leaflet Map within a Shiny web application.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>new_layer</span><span class='op'>(</span><span class='va'>source</span>, <span class='va'>total</span>, <span class='va'>units</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>mapManager</span><span class='op'>(</span><span class='va'>x</span>, width <span class='op'>=</span> <span class='cn'>NULL</span>, height <span class='op'>=</span> <span class='cn'>NULL</span>, elementId <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>source</th>
-      <td><p><code>character</code> file path for the underlying data.</p></td>
+      <th>x</th>
+      <td><p>MapManager object.</p></td>
     </tr>
     <tr>
-      <th>total</th>
-      <td><p><code>numeric</code> total amount of all values in the underlying data.</p></td>
+      <th>width</th>
+      <td><p><code>character</code> width of the displayed widget.
+Defaults to <code>NULL</code> such that the widget is automatically sized.</p></td>
     </tr>
     <tr>
-      <th>units</th>
-      <td><p><code>character</code> units for the values in the underlying data.</p></td>
+      <th>height</th>
+      <td><p><code>character</code> width of the displayed widget.
+Defaults to <code>NULL</code> such that the widget is automatically sized.</p></td>
+    </tr>
+    <tr>
+      <th>elementId</th>
+      <td><p><code>character</code> HTML identifier for the widget.
+Defaults to <code>NULL</code>.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="server-value"><a class="anchor" href="#server-value"></a>Server value</h2>
 
-    <p>A <a href='Layer.html'>Layer</a> object.</p>
+    
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># create new object</span>
-<span class='va'>l</span> <span class='op'>&lt;-</span> <span class='fu'>new_layer</span><span class='op'>(</span>source <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span><span class='op'>)</span>, total <span class='op'>=</span> <span class='fl'>12</span>, units <span class='op'>=</span> <span class='st'>"ha"</span><span class='op'>)</span>
+<p>The widget sends a <code>list</code> with the following values to the server:</p>
+<dl>
 
-<span class='co'># print object</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>l</span><span class='op'>)</span>
-</div><div class='co'>#&gt; Layer</div><div class='co'>#&gt;   source: /tmp/Rtmp5OIHHl/file1d4c72a2f55a7</div><div class='co'>#&gt;   total:  12</div><div class='co'>#&gt;   units:  ha</div><div class='input'>
-</div></pre>
+<dt>parameter</dt><dd><p><code>character</code> name of the updated parameter.
+Available options are: <code>"visible"</code> and <code>"order"</code>.</p></dd>
+
+<dt>value</dt><dd><p><code>numeric</code> or <code>logical</code> values.</p></dd>
+
+
+</dl>
+
+
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

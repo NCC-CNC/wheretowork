@@ -83,22 +83,26 @@
 <p>This package provides the following widgets:</p>
 <ul>
 <li>
-<code>sidebar()</code>: Constructs a widget that forms a sidebar on a <code>leaflet</code> map. It contains the following widgets for customizing its appearance:
+<code><a href="reference/newSolutionSidebarPane.html">newSolutionSidebarPane()</a></code>: Constructs a sidebar pane for creating new solutions. It forms a panel that contains – in addition to standard <code>shiny</code> widgets (e.g. a button to generate a new solution) – the following widget:
 <ul>
 <li>
-<code>sidebarTab()</code> Constructs a widget that forms a tab in a sidebar. This is used to group together widgets (e.g. those specified below and standard <code>shiny</code> widgets) that have related functionality (e.g. a side bar tab could contain widgets for controlling the appearance of a <code>leaflet</code> map).</li>
+<code><a href="reference/solutionSettings-widget.html">solutionSettings()</a></code>: Constructs a widget for controlling goals and factors for the themes and weights (respectively).</li>
 </ul>
 </li>
 <li>
-<code>solutionManager()</code>: Constructs a widget for creating new solutions. It forms a panel that contains – in addition to standard <code>shiny</code> widgets (e.g. a button to generate a new solution) – the following widget:
+<code>mapManagerSidebarPane()</code>: Constructs a sidebar pane for controlling the overall appearance of a <code>leaflet</code> map. It forms a panel that contains – in addition to standard <code>shiny</code> widgets – the widgets for controlling the appearance of weights, themes, and solutions.
 <ul>
 <li>
-<code><a href="reference/solutionSettings-widget.html">solutionSettings()</a></code>: Constructs a widget for setting goals for themes, setting factors for weights.</li>
+<code><a href="reference/mapManager-widget.html">mapManager()</a></code>: Constructs a widget for controlling the appearance of themes, weights, and solutions on a <code>leaflet</code> map.</li>
 </ul>
 </li>
-<li>
-<code><a href="reference/mapManager.html">mapManager()</a></code>: Constructs a widget for controlling the overall appearance of a <code>leaflet</code> map. It forms a panel that contains – in addition to standard <code>shiny</code> widgets (e.g. a button to hide all solutions) – the widgets for controlling the appearnace of weights, themes, and solutions.</li>
 </ul>
+<p>The following example Shiny apps are available to visualize and test the widgets. They can be viewed with the following system commands:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># demo the newSolutionSidebarPane() widget</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>make demo<span class="sc">-</span>solutionSettings</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># demo the mapManager() widget</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>make demo<span class="sc">-</span>newSolutionPane</span></code></pre></div>
 </div>
 </div>
   </div>

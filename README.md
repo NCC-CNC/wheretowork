@@ -30,16 +30,14 @@ This package provides the following widgets:
     new solutions. It forms a panel that contains – in addition to
     standard `shiny` widgets (e.g. a button to generate a new solution)
     – the following widget:
-    -   `solutionManager()`: Constructs a widget for controlling goals
+    -   `solutionSettings()`: Constructs a widget for controlling goals
         and factors for the themes and weights (respectively).
-    -   `mapManagerSidebarPane()`: Constructs a sidebar pane for
-        controlling the overall appearance of a `leaflet` map. It forms
-        a panel that contains – in addition to standard `shiny` widgets
-        – the widgets for controlling the appearance of weights, themes,
-        and solutions.
-        -   `mapManager()`: Constructs a widget for controlling the
-            appearance of themes, weights, and solutions on a `leaflet`
-            map.
+-   `mapManagerSidebarPane()`: Constructs a sidebar pane for controlling
+    the overall appearance of a `leaflet` map. It forms a panel that
+    contains – in addition to standard `shiny` widgets – the widgets for
+    controlling the appearance of weights, themes, and solutions.
+    -   `mapManager()`: Constructs a widget for controlling the
+        appearance of themes, weights, and solutions on a `leaflet` map.
 
 The following example Shiny apps are available to visualize and test the
 widgets. They can be viewed with the following system commands:

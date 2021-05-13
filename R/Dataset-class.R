@@ -6,6 +6,7 @@ NULL
 #' Definition for the Dataset class.
 #'
 #' @seealso [new_dataset()]
+
 Dataset <- R6::R6Class(
   "Dataset",
   public = list(

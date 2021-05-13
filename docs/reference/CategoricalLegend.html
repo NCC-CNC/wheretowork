@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Layer class — Layer • locationmisc</title>
+<title>CategoricalLegend class — CategoricalLegend • locationmisc</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,9 @@
 
 
 
-<meta property="og:title" content="Layer class — Layer" />
-<meta property="og:description" content="Layer class
-Layer class" />
+<meta property="og:title" content="CategoricalLegend class — CategoricalLegend" />
+<meta property="og:description" content="CategoricalLegend class
+CategoricalLegend class" />
 
 
 
@@ -110,32 +110,27 @@ Layer class" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Layer class</h1>
+    <h1>CategoricalLegend class</h1>
     
-    <div class="hidden name"><code>Layer.Rd</code></div>
+    <div class="hidden name"><code>CategoricalLegend.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Layer class</p>
-<p>Layer class</p>
+    <p>CategoricalLegend class</p>
+<p>CategoricalLegend class</p>
     </div>
 
 
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Definition for the Layer class.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='new_layer.html'>new_layer()</a></code></p></div>
+    <p>Definition for the CategoricalLegend class.</p>
     <h2 class="hasAnchor" id="public-fields"><a class="anchor" href="#public-fields"></a>Public fields</h2>
 
     <p><div class="r6-fields"></p><dl>
-<dt><code>source</code></dt><dd><p><code>character</code> value.</p></dd>
+<dt><code>values</code></dt><dd><p><code>numeric</code> vector.</p></dd>
 
-<dt><code>total</code></dt><dd><p><code>numeric</code> value.</p></dd>
-
-<dt><code>units</code></dt><dd><p><code>character</code> value.</p></dd>
+<dt><code>colors</code></dt><dd><p><code>character</code> vector.</p></dd>
 
 </dl><p></div></p>
     <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
@@ -144,96 +139,54 @@ Layer class" />
 <h3 class='hasAnchor' id='public-methods'><a class='anchor' aria-hidden='true' href='#public-methods'></a>Public methods</h3>
 
 <ul>
-<li><p><a href='#method-new'><code>Layer$new()</code></a></p></li>
-<li><p><a href='#method-print'><code>Layer$print()</code></a></p></li>
-<li><p><a href='#method-repr'><code>Layer$repr()</code></a></p></li>
-<li><p><a href='#method-clone'><code>Layer$clone()</code></a></p></li>
+<li><p><a href='#method-new'><code>CategoricalLegend$new()</code></a></p></li>
+<li><p><a href='#method-get_widget_data'><code>CategoricalLegend$get_widget_data()</code></a></p></li>
+<li><p><a href='#method-clone'><code>CategoricalLegend$clone()</code></a></p></li>
 </ul>
 <p><hr>
 <a id="method-new"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>new()</code></h3>
-<p>Create a Layer object.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
-<p><div class="r"></p><pre><span class='va'>Layer</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>source</span>, <span class='va'>total</span>, <span class='va'>units</span><span class='op'>)</span></pre><p></div></p>
+<p>Create a CategoricalLegend object.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>CategoricalLegend</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>values</span>, <span class='va'>colors</span><span class='op'>)</span></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
 <p><div class="arguments"></p><dl>
-<dt><code>source</code></dt><dd><p><code>character</code> value.</p></dd>
+<dt><code>values</code></dt><dd><p><code>numeric</code> value.</p></dd>
 
-<dt><code>total</code></dt><dd><p><code>numeric</code> value.</p></dd>
-
-<dt><code>units</code></dt><dd><p><code>character</code> value.</p></dd>
+<dt><code>colors</code></dt><dd><p><code>character</code> vector of colors.</p></dd>
 
 </dl><p></div></p>
 <h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
-<p>A new Layer object.</p>
+<p>A new CategoricalLegend object.</p>
 <h3 class='hasAnchor' id='list-new-'><a class='anchor' aria-hidden='true' href='#list-new-'></a>Method <code>new()</code></h3>
-<p>Create a Layer object.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
-<p><div class="r"></p><pre><span class='va'>Layer</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>source</span>, <span class='va'>total</span>, <span class='va'>units</span><span class='op'>)</span></pre><p></div></p>
+<p>Create a CategoricalLegend object.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>CategoricalLegend</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>values</span>, <span class='va'>colors</span><span class='op'>)</span></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
 <p><div class="arguments"></p><dl>
-<dt><code>source</code></dt><dd><p><code>character</code> value.</p></dd>
+<dt><code>values</code></dt><dd><p><code>numeric</code> value.</p></dd>
 
-<dt><code>total</code></dt><dd><p><code>numeric</code> value.</p></dd>
-
-<dt><code>units</code></dt><dd><p><code>character</code> value.</p></dd>
+<dt><code>colors</code></dt><dd><p><code>character</code> vector of colors.</p></dd>
 
 </dl><p></div></p>
 <h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
-<p>A new Layer object.</p>
+<p>A new CategoricalLegend object.</p>
 <p><hr>
-<a id="method-print"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code><a href='https://rdrr.io/r/base/print.html'>print()</a></code></h3>
-<p>Print the object.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
-<p><div class="r"></p><pre><span class='va'>Layer</span><span class='op'>$</span><span class='fu'>print</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span></pre><p></div></p>
+<a id="method-get_widget_data"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>get_widget_data()</code></h3>
+<p>Get data for creating a widget.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>CategoricalLegend</span><span class='op'>$</span><span class='fu'>get_widget_data</span><span class='op'>(</span><span class='op'>)</span></pre><p></div></p>
 
-<h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
-<p><div class="arguments"></p><dl>
-<dt><code>...</code></dt><dd><p>not used.</p></dd>
-
-</dl><p></div></p>
-<h3 class='hasAnchor' id='list-print-'><a class='anchor' aria-hidden='true' href='#list-print-'></a>Method <code><a href='https://rdrr.io/r/base/print.html'>print()</a></code></h3>
-<p>Print the object.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
-<p><div class="r"></p><pre><span class='va'>Layer</span><span class='op'>$</span><span class='fu'>print</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span></pre><p></div></p>
-
-<h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
-<p><div class="arguments"></p><dl>
-<dt><code>...</code></dt><dd><p>not used.</p></dd>
-
-</dl><p></div></p>
-<p><hr>
-<a id="method-repr"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>repr()</code></h3>
-<p>Generate a <code>character</code> summarizing the representation of the object.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
-<p><div class="r"></p><pre><span class='va'>Layer</span><span class='op'>$</span><span class='fu'>repr</span><span class='op'>(</span>start <span class='op'>=</span> <span class='st'>"["</span>, end <span class='op'>=</span> <span class='st'>"]"</span><span class='op'>)</span></pre><p></div></p>
-
-<h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
-<p><div class="arguments"></p><dl>
-<dt><code>start</code></dt><dd><p><code>character</code> symbol used to start the parameter list.
-Defaults to <code>"["</code>.</p></dd>
-
-<dt><code>end</code></dt><dd><p><code>character</code> symbol used to start the parameter list.
-Defaults to <code>"]"</code>.</p></dd>
-
-</dl><p></div></p>
 <h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
-<p><code>character</code> value.</p>
-<h3 class='hasAnchor' id='list-repr-'><a class='anchor' aria-hidden='true' href='#list-repr-'></a>Method <code>repr()</code></h3>
-<p>Generate a <code>character</code> summarizing the representation of the object.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
-<p><div class="r"></p><pre><span class='va'>Layer</span><span class='op'>$</span><span class='fu'>repr</span><span class='op'>(</span>start <span class='op'>=</span> <span class='st'>"["</span>, end <span class='op'>=</span> <span class='st'>"]"</span><span class='op'>)</span></pre><p></div></p>
+<p>A new CategoricalLegend object.</p>
+<h3 class='hasAnchor' id='list-get-widget-data-'><a class='anchor' aria-hidden='true' href='#list-get-widget-data-'></a>Method <code>get_widget_data()</code></h3>
+<p>Get data for creating a widget.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>CategoricalLegend</span><span class='op'>$</span><span class='fu'>get_widget_data</span><span class='op'>(</span><span class='op'>)</span></pre><p></div></p>
 
-<h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
-<p><div class="arguments"></p><dl>
-<dt><code>start</code></dt><dd><p><code>character</code> symbol used to start the parameter list.
-Defaults to <code>"["</code>.</p></dd>
-
-<dt><code>end</code></dt><dd><p><code>character</code> symbol used to start the parameter list.
-Defaults to <code>"]"</code>.</p></dd>
-
-</dl><p></div></p>
 <h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
-<p><code>character</code> value.</p>
+<p>A new CategoricalLegend object.</p>
 <p><hr>
 <a id="method-clone"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>clone()</code></h3>
 <p>The objects of this class are cloneable with this method.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
-<p><div class="r"></p><pre><span class='va'>Layer</span><span class='op'>$</span><span class='fu'>clone</span><span class='op'>(</span>deep <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre><p></div></p>
+<p><div class="r"></p><pre><span class='va'>CategoricalLegend</span><span class='op'>$</span><span class='fu'>clone</span><span class='op'>(</span>deep <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
 <p><div class="arguments"></p><dl>
@@ -242,7 +195,7 @@ Defaults to <code>"]"</code>.</p></dd>
 </dl><p></div></p>
 <h3 class='hasAnchor' id='list-clone-'><a class='anchor' aria-hidden='true' href='#list-clone-'></a>Method <code>clone()</code></h3>
 <p>The objects of this class are cloneable with this method.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
-<p><div class="r"></p><pre><span class='va'>Layer</span><span class='op'>$</span><span class='fu'>clone</span><span class='op'>(</span>deep <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre><p></div></p>
+<p><div class="r"></p><pre><span class='va'>CategoricalLegend</span><span class='op'>$</span><span class='fu'>clone</span><span class='op'>(</span>deep <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
 <p><div class="arguments"></p><dl>

@@ -1,5 +1,3 @@
-home:
-
 authors:
   Jeffrey O Hanson:
     href: https://jeffrey-hanson.com
@@ -15,32 +13,43 @@ reference:
     desc: Summary of the package
     contents:
       - locationmisc
+      - runExample
 
   - title: Widgets
     desc: >
-      These pages document functions for creating and updating Shiny widgets.
+      These functions for create and update Shiny widgets.
     contents:
       - solutionSettings
       - updateSolutionSettings
       - solutionSettings-shiny
       - mapManager
       - mapManager-shiny
-      - runExample
+      - newSolutionSidebarPane
 
   - title: Class constructors
     desc: >
-      These pages document functions for generating new objects based on package's data structures.
+      These functions for generate new objects based on package's data structures.
     contents:
       - starts_with("new_")
+
+
+  - title: Simulate objects
+    desc: >
+      These functions for simulate new objects using semi-realistic data.
+    contents:
+      - starts_with("simulate_")
 
   - title: Class definitions
     desc: >
       These pages document the organization of the package's data structures. Note that all classes begin with an upper-case letter.
     contents:
-      - Layer
+      - ContinuousLegend
+      - CategoricalLegend
+      - Dataset
       - Feature
       - Weight
+      - Theme
       - SingleTheme
       - MultiTheme
-      - Theme
       - SolutionSettings
+      - MapManager

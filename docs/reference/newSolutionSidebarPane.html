@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Map manager — mapManager • locationmisc</title>
+<title>New solution sidebar pane — newSolutionSidebarPane • locationmisc</title>
 
 
 <!-- jquery -->
@@ -39,10 +39,10 @@
 
 
 
-<meta property="og:title" content="Map manager — mapManager" />
-<meta property="og:description" content="Constructs a widget for managing items on a Leaflet map.
-This widget is designed to be used in conjunction with an existing
-Leaflet Map within a Shiny web application." />
+<meta property="og:title" content="New solution sidebar pane — newSolutionSidebarPane" />
+<meta property="og:description" content="Constructs a sidebar pane for generating new solutions. This is designed to
+be used as an argument to leaflet.extras2::sidebar_tabs when specifying
+the user interface for a Shiny web application." />
 
 
 
@@ -59,6 +59,8 @@ Leaflet Map within a Shiny web application." />
 <![endif]-->
 
 
+
+<!-- dependencies from examples -->
 
 
   
@@ -111,57 +113,64 @@ Leaflet Map within a Shiny web application." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Map manager</h1>
+    <h1>New solution sidebar pane</h1>
     
-    <div class="hidden name"><code>mapManager.Rd</code></div>
+    <div class="hidden name"><code>newSolutionSidebarPane.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Constructs a widget for managing items on a Leaflet map.
-This widget is designed to be used in conjunction with an existing
-Leaflet Map within a Shiny web application.</p>
+    <p>Constructs a sidebar pane for generating new solutions. This is designed to
+be used as an argument to <a href='https://trafficonese.github.io/leaflet.extras2/reference/sidebar_tabs.html'>leaflet.extras2::sidebar_tabs</a> when specifying
+the user interface for a Shiny web application.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>mapManager</span><span class='op'>(</span><span class='va'>x</span>, width <span class='op'>=</span> <span class='cn'>NULL</span>, height <span class='op'>=</span> <span class='cn'>NULL</span>, elementId <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>newSolutionSidebarPane</span><span class='op'>(</span>
+  <span class='va'>id</span>,
+  solutionSettingsId <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>id</span>, <span class='st'>"_settings"</span><span class='op'>)</span>,
+  nameId <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>id</span>, <span class='st'>"_name"</span><span class='op'>)</span>,
+  buttonId <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>id</span>, <span class='st'>"_button"</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>MapManager object.</p></td>
+      <th>id</th>
+      <td><p><code>character</code> identifier for the sidebar pane.
+<code><a href='solutionSettings-widget.html'>solutionSettings()</a></code> widget to create within the sidebar pane.</p></td>
     </tr>
     <tr>
-      <th>width</th>
-      <td><p><code>character</code> width of the displayed widget.
-Defaults to <code>NULL</code> such that the widget is automatically sized.</p></td>
+      <th>solutionSettingsId</th>
+      <td><p><code>character</code> identifier for the
+<code><a href='solutionSettings-widget.html'>solutionSettings()</a></code> widget to create within the sidebar pane.
+This widget is used to control the settings for new solutions.
+Defaults to <code>paste0(id, "_settings")</code>.</p></td>
     </tr>
     <tr>
-      <th>height</th>
-      <td><p><code>character</code> width of the displayed widget.
-Defaults to <code>NULL</code> such that the widget is automatically sized.</p></td>
+      <th>nameId</th>
+      <td><p><code>character</code> identifier for the <code><a href='https://rdrr.io/pkg/shiny/man/textInput.html'>shiny::textInput()</a></code>
+widget to create within the sidebar pane.
+This text input widget is used to specify the name for new solutions.
+Defaults to <code>paste0(id, "_name")</code>.</p></td>
     </tr>
     <tr>
-      <th>elementId</th>
-      <td><p><code>character</code> HTML identifier for the widget.
-Defaults to <code>NULL</code>.</p></td>
+      <th>buttonId</th>
+      <td><p><code>character</code> identifier for the <code><a href='https://rdrr.io/pkg/shiny/man/actionButton.html'>shiny::actionButton()</a></code>
+widget to create within the sidebar pane.
+This button widget is used to create new solutions.
+Defaults to <code>paste0(id, "_button")</code>.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="server-value"><a class="anchor" href="#server-value"></a>Server value</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    
+    <p>A <code>shiny.tag</code> object with the sidebar pane.</p>
 
-<p>The widget sends the following values to the server
-(where <code>elementId</code> corresponds to the <code>elementId</code>):</p>
-<dl>
-
-<dt>TODO</dt><dd><p><code>TODO</code></p></dd>
-
-
-</dl>
-
-
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><span class='r-in'><span class='co'># TODO.</span></span>
+<span class='r-in'></span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Run examples — runExample • locationmisc</title>
+<title>New continuous legend — new_continuous_legend • locationmisc</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,8 @@
 
 
 
-<meta property="og:title" content="Run examples — runExample" />
-<meta property="og:description" content="Run a 'Shiny' application containing showcasing widgets implemented
-in the locationmisc package." />
+<meta property="og:title" content="New continuous legend — new_continuous_legend" />
+<meta property="og:description" content="Create a new ContinuousLegend object." />
 
 
 
@@ -112,35 +111,55 @@ in the locationmisc package." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Run examples</h1>
+    <h1>New continuous legend</h1>
     
-    <div class="hidden name"><code>runExample.Rd</code></div>
+    <div class="hidden name"><code>new_continuous_legend.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Run a 'Shiny' application containing showcasing widgets implemented
-in the <span class="pkg">locationmisc</span> package.</p>
+    <p>Create a new <a href='ContinuousLegend.html'>ContinuousLegend</a> object.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>runExample</span><span class='op'>(</span><span class='va'>name</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>new_continuous_legend</span><span class='op'>(</span><span class='va'>min_value</span>, <span class='va'>max_value</span>, <span class='va'>colors</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>name</th>
-      <td><p><code>character</code> name of widget.
-Available options include <code>"solutionSettings"</code>, <code>"newSolutionPane"</code>.</p></td>
+      <th>min_value</th>
+      <td><p><code>numeric</code> Minimum value to show in the legend.</p></td>
+    </tr>
+    <tr>
+      <th>max_value</th>
+      <td><p><code>numeric</code> Maximum value to show in the legend.</p></td>
+    </tr>
+    <tr>
+      <th>colors</th>
+      <td><p><code>character</code> Colors to show in the legend.
+These colors should be in hex format (e.g. <code>"#AABBCC"</code>) and
+are used to generate the color bar.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A <a href='ContinuousLegend.html'>ContinuousLegend</a> object.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='r-in'><span class='co'># \dontrun{</span></span>
-<span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span></span>
-<span class='r-in'>  <span class='fu'>runExample</span><span class='op'>(</span><span class='st'>"solutionSettings"</span><span class='op'>)</span></span>
-<span class='r-in'><span class='op'>}</span></span>
-<span class='r-in'><span class='co'># }</span></span>
+    <pre class="examples"><span class='r-in'><span class='co'># create new object</span></span>
+<span class='r-in'><span class='va'>l</span> <span class='op'>&lt;-</span> <span class='fu'>new_continuous_legend</span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"#000000"</span>, <span class='st'>"#DDDDDD"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># print object</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>l</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;ContinuousLegend&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Public:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     clone: function (deep = FALSE) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     colors: #000000 #DDDDDD</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     get_widget_data: function () </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     initialize: function (min_value, max_value, colors) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     max_value: 1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     min_value: 0</span>
+<span class='r-in'></span>
 </pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

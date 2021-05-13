@@ -122,7 +122,7 @@
 
     <pre class="usage"><span class='fu'>new_weight</span><span class='op'>(</span>
   <span class='va'>name</span>,
-  <span class='va'>layer</span>,
+  <span class='va'>dataset</span>,
   initial_status <span class='op'>=</span> <span class='cn'>TRUE</span>,
   initial_factor <span class='op'>=</span> <span class='fl'>0</span>,
   min_factor <span class='op'>=</span> <span class='fl'>0</span>,
@@ -139,8 +139,8 @@
       <td><p><code>character</code> Name to display.</p></td>
     </tr>
     <tr>
-      <th>layer</th>
-      <td><p><a href='Layer.html'>Layer</a> object.</p></td>
+      <th>dataset</th>
+      <td><p><a href='Dataset.html'>Dataset</a> object.</p></td>
     </tr>
     <tr>
       <th>initial_status</th>
@@ -180,16 +180,24 @@ Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUI
     <p>A <a href='Weight.html'>Weight</a> object.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># create a new layer</span>
-<span class='va'>l</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_layer.html'>new_layer</a></span><span class='op'>(</span>source <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span><span class='op'>)</span>, total <span class='op'>=</span> <span class='fl'>12</span>, units <span class='op'>=</span> <span class='st'>"ha"</span><span class='op'>)</span>
-
-<span class='co'># create a new weight</span>
-<span class='va'>w</span> <span class='op'>&lt;-</span> <span class='fu'>new_weight</span><span class='op'>(</span>name <span class='op'>=</span> <span class='st'>"NDVI"</span>, layer <span class='op'>=</span> <span class='va'>l</span><span class='op'>)</span>
-
-<span class='co'># print object</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>w</span><span class='op'>)</span>
-</div><div class='co'>#&gt; Weight</div><div class='co'>#&gt;   id:     17f252fb-5945-4547-9fd2-082ca7c9e6a8</div><div class='co'>#&gt;   name:   NDVI</div><div class='co'>#&gt;   status: TRUE</div><div class='co'>#&gt;   factor: 0</div><div class='co'>#&gt;   layer: .../file1d4c74b8098c2 [total: 12 ha]</div><div class='input'>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># create a new dataset</span></span>
+<span class='r-in'><span class='va'>l</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_dataset.html'>new_dataset</a></span><span class='op'>(</span></span>
+<span class='r-in'> source <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span><span class='op'>)</span>, total <span class='op'>=</span> <span class='fl'>12</span>, units <span class='op'>=</span> <span class='st'>"ha"</span>,</span>
+<span class='r-in'> legend <span class='op'>=</span> <span class='fu'><a href='new_continuous_legend.html'>new_continuous_legend</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>100</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"#000000"</span>, <span class='st'>"#1b9e77"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># create a new weight</span></span>
+<span class='r-in'><span class='va'>w</span> <span class='op'>&lt;-</span> <span class='fu'>new_weight</span><span class='op'>(</span>name <span class='op'>=</span> <span class='st'>"NDVI"</span>, dataset <span class='op'>=</span> <span class='va'>l</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># print object</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>w</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Weight</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:     4ac76f85-39eb-478f-aeed-7cbe26a5cc98</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:   NDVI</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   status: TRUE</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   factor: 0</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   dataset: .../file57cc518d8b61 [total: 12 ha]</span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

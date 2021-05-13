@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Run examples — runExample • locationmisc</title>
+<title>Simulate categorical legend — simulate_categorical_legend • locationmisc</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,9 @@
 
 
 
-<meta property="og:title" content="Run examples — runExample" />
-<meta property="og:description" content="Run a 'Shiny' application containing showcasing widgets implemented
-in the locationmisc package." />
+<meta property="og:title" content="Simulate categorical legend — simulate_categorical_legend" />
+<meta property="og:description" content="This function simulates a categorical legend (CategoricalLegend) object.
+It is primarily used for testing the package." />
 
 
 
@@ -112,35 +112,37 @@ in the locationmisc package." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Run examples</h1>
+    <h1>Simulate categorical legend</h1>
     
-    <div class="hidden name"><code>runExample.Rd</code></div>
+    <div class="hidden name"><code>simulate_categorical_legend.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Run a 'Shiny' application containing showcasing widgets implemented
-in the <span class="pkg">locationmisc</span> package.</p>
+    <p>This function simulates a categorical legend (<a href='CategoricalLegend.html'>CategoricalLegend</a>) object.
+It is primarily used for testing the package.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>runExample</span><span class='op'>(</span><span class='va'>name</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>simulate_categorical_legend</span><span class='op'>(</span><span class='op'>)</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>name</th>
-      <td><p><code>character</code> name of widget.
-Available options include <code>"solutionSettings"</code>, <code>"newSolutionPane"</code>.</p></td>
-    </tr>
-    </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A <a href='CategoricalLegend.html'>CategoricalLegend</a> object.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code><a href='new_categorical_legend.html'>new_categorical_legend()</a></code>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='r-in'><span class='co'># \dontrun{</span></span>
-<span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span></span>
-<span class='r-in'>  <span class='fu'>runExample</span><span class='op'>(</span><span class='st'>"solutionSettings"</span><span class='op'>)</span></span>
-<span class='r-in'><span class='op'>}</span></span>
-<span class='r-in'><span class='co'># }</span></span>
+    <pre class="examples"><span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='simulate_continuous_legend.html'>simulate_continuous_legend</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;ContinuousLegend&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Public:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     clone: function (deep = FALSE) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     colors: #FFF7F3 #FDE0DD #FCC5C0 #FA9FB5 #F768A1 #DD3497 #AE017E  ...</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     get_widget_data: function () </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     initialize: function (min_value, max_value, colors) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     max_value: 80.4372834244277</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     min_value: 41.7166518629529</span>
+<span class='r-in'></span>
 </pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

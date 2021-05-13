@@ -13,10 +13,19 @@
     <loc>/news/index.html</loc>
   </url>
   <url>
+    <loc>/reference/CategoricalLegend.html</loc>
+  </url>
+  <url>
+    <loc>/reference/ContinuousLegend.html</loc>
+  </url>
+  <url>
+    <loc>/reference/Dataset.html</loc>
+  </url>
+  <url>
     <loc>/reference/Feature.html</loc>
   </url>
   <url>
-    <loc>/reference/Layer.html</loc>
+    <loc>/reference/MapManager.html</loc>
   </url>
   <url>
     <loc>/reference/MultiTheme.html</loc>
@@ -43,13 +52,25 @@
     <loc>/reference/mapManager-shiny.html</loc>
   </url>
   <url>
-    <loc>/reference/mapManager.html</loc>
+    <loc>/reference/mapManager-widget.html</loc>
+  </url>
+  <url>
+    <loc>/reference/newSolutionSidebarPane.html</loc>
+  </url>
+  <url>
+    <loc>/reference/new_categorical_legend.html</loc>
+  </url>
+  <url>
+    <loc>/reference/new_continuous_legend.html</loc>
+  </url>
+  <url>
+    <loc>/reference/new_dataset.html</loc>
   </url>
   <url>
     <loc>/reference/new_feature.html</loc>
   </url>
   <url>
-    <loc>/reference/new_layer.html</loc>
+    <loc>/reference/new_map_manager.html</loc>
   </url>
   <url>
     <loc>/reference/new_multi_theme.html</loc>
@@ -68,6 +89,15 @@
   </url>
   <url>
     <loc>/reference/runExample.html</loc>
+  </url>
+  <url>
+    <loc>/reference/simulate_categorical_legend.html</loc>
+  </url>
+  <url>
+    <loc>/reference/simulate_continuous_legend.html</loc>
+  </url>
+  <url>
+    <loc>/reference/simulate_solution_settings.html</loc>
   </url>
   <url>
     <loc>/reference/solutionSettings-shiny.html</loc>
