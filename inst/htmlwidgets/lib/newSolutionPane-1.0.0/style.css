@@ -10,7 +10,7 @@
 }
 
 .sidebar-content {
-  overflow-y: visible;
+  overflow-y: hidden !important;
 }
 
 /* footer */
