@@ -124,8 +124,8 @@ Weight <- R6::R6Class(
       paste0(
         self$name,
         " ", start, "status: ", self$status,
-        ", factor: ", round(self$factor, 2), nl(),
-        "  dataset: ", self$dataset$repr(), end)
+        ", factor: ", round(self$factor, 2), end, nl(),
+        "  dataset: ", self$dataset$repr())
     },
 
     #' @description
