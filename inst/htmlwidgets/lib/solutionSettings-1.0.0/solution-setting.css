@@ -8,12 +8,13 @@
 
 /* -- ensure widget doesn't expand past the parent container */
 .solution-settings-container {
-  overflow-y: auto;
+  overflow-y: hidden;
   max-height: 100%;
 }
 
 .solution-settings .panel.panel-default {
-  max-height: 100%;
+  max-height: 45vh;
+  overflow-y: scroll;
 }
 
 .solution-settings .panel-body {

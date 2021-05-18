@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "fillPage(\n  tagList(\n    sidebar_tabs(\n      id = \"sidebar\",\n      iconList = list(icon(\"rocket\")),\n      newSolutionSidebarPane(\n        id = \"newSolutionPane\",\n        solutionSettingsId = \"newSolutionPane_settings\",\n        nameId = \"newSolutionPane_name\",\n        buttonId = \"newSolutionPane_button\"\n      )\n    ),\n    leafletOutput(\"map\", width = \"100%\", height = \"100%\")\n  )\n)\n",
+    "created" : 1621347212212.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2951479467",
+    "id" : "58373038",
+    "lastKnownWriteTime" : 1621346764,
+    "last_content_update" : 1621346764,
+    "path" : "~/PycharmProjects/locationmisc/inst/examples/newSolutionPane/ui.R",
+    "project_path" : "inst/examples/newSolutionPane/ui.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
