@@ -8,4 +8,4 @@ library(locationmisc)
 set.seed(500)
 
 # create solution settings object
-ss <- simulate_solution_settings(3, 3, 4)
+ss <- simulate_solution_settings(5, 5, 8)
