@@ -4,12 +4,12 @@
 }
 
 /* widget container */
-.widget-container {
+.new-solution-pane .widget-container {
   overflow-y: auto;
   max-height: 100%;
 }
 
-.sidebar-content {
+.new-solution-pane .sidebar-content {
   overflow-y: hidden !important;
 }
 
