@@ -9,6 +9,10 @@ doc
 *.Rproj.user
 *.Rhistory
 .Rproj.user
+^.Rproj.user
+.Rproj.user/*
+/.Rproj.user/
+
 # log files
 gurobi.log
 test.log
@@ -25,6 +29,7 @@ examples.log
 !inst/doc/*.html
 !inst/doc/*.Rmd
 !inst/doc/.gitkeep
+
 # devtools files
 doc/*
 Meta/*
