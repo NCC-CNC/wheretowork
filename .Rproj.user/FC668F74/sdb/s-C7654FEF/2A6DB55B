@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "function(input, output, session) {\n  # initialize solution settings widget\n  output$mapManagerPane_settings <- renderMapManager({\n    mapManager(mm)\n  })\n\n  # initialize map\n  output$map <- renderLeaflet({\n    leaflet() %>%\n      addTiles() %>%\n      addSidebar(\n        id = \"sidebar\",\n        options = list(position = \"left\", fit = FALSE)\n      )\n  })\n\n}\n",
+    "created" : 1621455945144.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4527267",
+    "id" : "2A6DB55B",
+    "lastKnownWriteTime" : 1621428867,
+    "last_content_update" : 1621428867,
+    "path" : "~/PycharmProjects/locationmisc/inst/examples/mapManager/server.R",
+    "project_path" : "inst/examples/mapManager/server.R",
+    "properties" : {
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

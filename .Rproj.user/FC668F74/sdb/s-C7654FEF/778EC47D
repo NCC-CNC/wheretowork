@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "fluidPage(\n  h4(\"Leaflet Sidebar Plugin\"),\n  tagList(\n    sidebar_tabs(\n      id = \"mysidebarid\",\n      iconList = list(icon(\"car\")),\n      sidebar_pane(\n        title = \"New solution\",\n        id = \"paneid\",\n        icon = NULL,\n        solutionSettingsOutput(\"widget\", height = \"80vh\")\n      )\n    ),\n    leafletOutput(\"map\", height = \"700px\")\n  )\n)\n",
+    "created" : 1621455189261.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "394549618",
+    "id" : "778EC47D",
+    "lastKnownWriteTime" : 1621346764,
+    "last_content_update" : 1621346764,
+    "path" : "~/PycharmProjects/locationmisc/inst/examples/debug/ui.R",
+    "project_path" : "inst/examples/debug/ui.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

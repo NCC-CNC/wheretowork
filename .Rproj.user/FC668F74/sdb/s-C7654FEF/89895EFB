@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "fillPage(\n  tagList(\n    sidebar_tabs(\n      id = \"sidebar\",\n      iconList = list(icon(\"rocket\")),\n      mapManagerPane(\n        id = \"mapManagerPane\"\n      )\n    ),\n    leafletOutput(\"map\", width = \"100%\", height = \"100%\")\n  )\n)\n",
+    "created" : 1621455207216.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "366083594",
+    "id" : "89895EFB",
+    "lastKnownWriteTime" : 1621428867,
+    "last_content_update" : 1621428867,
+    "path" : "~/PycharmProjects/locationmisc/inst/examples/mapManager/ui.R",
+    "project_path" : "inst/examples/mapManager/ui.R",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
