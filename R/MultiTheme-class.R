@@ -173,7 +173,8 @@ MultiTheme <- R6::R6Class(
           vapply(self$feature, function(x) x$id, character(1)),
         units = self$feature[[1]]$dataset$units,
         legend =
-          lapply(self$feature, function(x) x$dataset$legend$get_widget_data())
+          lapply(self$feature, function(x) x$dataset$legend$get_widget_data()),
+        type = "theme"
       )
     }
   )

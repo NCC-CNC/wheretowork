@@ -91,7 +91,8 @@ SingleTheme <- R6::R6Class(
         feature_name = self$feature[[1]]$name,
         feature_id = self$feature[[1]]$id,
         units = self$feature[[1]]$dataset$units,
-        legend = self$feature[[1]]$dataset$legend$get_widget_data()
+        legend = self$feature[[1]]$dataset$legend$get_widget_data(),
+        type = "theme"
       )
     }
   )

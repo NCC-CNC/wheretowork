@@ -1,0 +1,29 @@
+.categorical-legend {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-flow: row wrap;
+  align-content: flex-end;
+}
+
+.categorical-legend .item {
+  padding: 2px;
+}
+
+.categorical-legend .item label {
+  font-size: 12px;
+  font-weight: 400;
+  vertical-align: middle;
+}
+
+.categorical-legend .item .item-symbol{
+  height: 12px;
+  width: 12px;
+  display: inline-block;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 1px solid var(--symbol-border);
+}

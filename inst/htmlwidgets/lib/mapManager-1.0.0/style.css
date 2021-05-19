@@ -1,0 +1,5 @@
+.map-manager-layer {
+  width: 100%;
+  border: 1px var(--border) solid;
+  border-radius: 5px 5px 5px 5px;
+}

@@ -19,6 +19,8 @@ Definition for the ContinuousLegend class.
 \item{\code{max_value}}{\code{numeric} value.}
 
 \item{\code{colors}}{\code{character} vector.}
+
+\item{\code{n}}{\code{numeric} value.}
 }
 \if{html}{\out{</div>}}
 }
@@ -36,7 +38,7 @@ Definition for the ContinuousLegend class.
 \subsection{Method \code{new()}}{
 Create a ContinuousLegend object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ContinuousLegend$new(min_value, max_value, colors)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{ContinuousLegend$new(min_value, max_value, colors, n)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -47,6 +49,8 @@ Create a ContinuousLegend object.
 \item{\code{max_value}}{\code{numeric} value.}
 
 \item{\code{colors}}{\code{character} vector of colors.}
+
+\item{\code{n}}{\code{numeric} value.}
 }
 \if{html}{\out{</div>}}
 }

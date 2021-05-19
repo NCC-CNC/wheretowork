@@ -98,11 +98,14 @@ mapManager_html <- function(id, style, class, ...) {
       htmltools::tags$template(
         class = "weight-layer-template",
         htmltools::tags$div(
-          class = paste("weight-layer layer"),
-          mm_header_component_scaffold(),
+          class  = "map-manager-layer",
           htmltools::tags$div(
-            class = "layer-legend-container",
-            mm_legend_component_scaffold()
+            class = "weight-layer",
+            mm_header_component_scaffold(),
+            htmltools::tags$div(
+              class = "layer-legend-container",
+              mm_legend_component_scaffold()
+            )
           )
         )
       )

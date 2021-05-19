@@ -43,18 +43,12 @@ mm_legend_component_scaffold <- function() {
 mm_header_component_scaffold <- function(id = uuid::UUIDgenerate()) {
   htmltools::tags$div(
     class = "header",
-    htmltools::tags$label(
-      class = "el-switch",
-      htmltools::tags$input(
-        type = "checkbox",
-        class = "status-checkbox status",
-        id = id
-      ),
-      htmltools::tags$span(
-        class = "el-switch-style",
-        `for` = id
-      )
-    ),
+    htmltools::tags$input(
+      class = "view-checkbox",
+      type = "checkbox"),
+    htmltools::tags$input(
+      class = "visible-checkbox",
+      type = "checkbox"),
     htmltools::tags$label(
       class = "name-label disable-if-inactive"
     )

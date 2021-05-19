@@ -54,6 +54,7 @@ Collate:
     'mapManager-components.R'
     'mapManager.R'
     'solutionSettings.R'
+    'mapManagerSidebarPane.R'
     'newSolutionSidebarPane.R'
     'package.R'
     'runExample.R'

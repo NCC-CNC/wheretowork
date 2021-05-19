@@ -225,7 +225,8 @@ Weight <- R6::R6Class(
         id = self$id,
         name = self$name,
         units = self$dataset$units,
-        legend = self$dataset$legend$get_widget_data()
+        legend = self$dataset$legend$get_widget_data(),
+        type = "weight"
       )
     }
 

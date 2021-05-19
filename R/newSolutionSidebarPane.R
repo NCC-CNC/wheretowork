@@ -8,7 +8,6 @@ NULL
 #' the user interface for a Shiny web application.
 #'
 #' @param id `character` identifier for the sidebar pane.
-#'   [solutionSettings()] widget to create within the sidebar pane.
 #'
 #' @param solutionSettingsId `character` identifier for the
 #'   [solutionSettings()] widget to create within the sidebar pane.

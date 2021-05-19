@@ -3,6 +3,7 @@
 export(Weight)
 export(mapManager)
 export(mapManagerOutput)
+export(mapManagerSidebarPane)
 export(newSolutionSidebarPane)
 export(new_categorical_legend)
 export(new_continuous_legend)

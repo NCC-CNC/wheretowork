@@ -12,8 +12,7 @@ newSolutionSidebarPane(
 )
 }
 \arguments{
-\item{id}{\code{character} identifier for the sidebar pane.
-\code{\link[=solutionSettings]{solutionSettings()}} widget to create within the sidebar pane.}
+\item{id}{\code{character} identifier for the sidebar pane.}
 
 \item{solutionSettingsId}{\code{character} identifier for the
 \code{\link[=solutionSettings]{solutionSettings()}} widget to create within the sidebar pane.

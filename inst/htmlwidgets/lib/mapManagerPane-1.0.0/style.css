@@ -1,0 +1,14 @@
+/* pane */
+.map-manager-pane {
+  margin-top: 3px;
+}
+
+/* widget container */
+.map-manager-pane .widget-container {
+  overflow-y: auto;
+  max-height: 100%;
+}
+
+.map-manager-pane .sidebar-content {
+  overflow-y: hidden !important;
+}

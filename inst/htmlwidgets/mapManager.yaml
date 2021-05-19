@@ -1,7 +1,30 @@
-# (uncomment to add a dependency)
-# dependencies:
-#  - name:
-#    version:
-#    src:
-#    script:
-#    stylesheet:
+dependencies:
+
+  - name: legends
+    version: 1.0.0
+    src: htmlwidgets/lib/legends-1.0.0
+    script:
+      - continuousLegend.js
+      - categoricalLegend.js
+      - main.js
+    stylesheet:
+      - continuousLegend.css
+      - categoricalLegend.css
+
+  - name: mapManager
+    version: 1.0.0
+    src: htmlwidgets/lib/mapManager-1.0.0
+    script:
+      - utils.js
+      - WeightLayer-class.js
+      - SingleThemeLayer-class.js
+      - MultiThemeLayer-class.js
+      - mapManager-class.js
+    stylesheet:
+      - style.css
+
+  - name: mapManager-style
+    version: 1.0.0
+    src: htmlwidgets
+    stylesheet:
+      - mapManager.css

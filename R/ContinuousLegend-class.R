@@ -17,26 +17,33 @@ ContinuousLegend <- R6::R6Class(
     #' @field colors `character` vector.
     colors = NA_character_,
 
+    #' @field n `numeric` value.
+    n = NA_real_,
+
     #' @description
     #' Create a ContinuousLegend object.
     #' @param min_value `numeric` value.
     #' @param max_value `numeric` value.
     #' @param colors `character` vector of colors.
+    #' @param n `numeric` value.
     #' @return A new ContinuousLegend object.
-    initialize = function(min_value, max_value, colors) {
+    initialize = function(min_value, max_value, colors, n) {
       assertthat::assert_that(
         assertthat::is.number(min_value),
         assertthat::noNA(min_value),
         assertthat::is.number(max_value),
         assertthat::noNA(max_value),
+        assertthat::is.count(n),
+        assertthat::noNA(n),
         max_value >= min_value,
         is.character(colors),
         assertthat::noNA(min_value),
         all(nchar(colors) == 7),
         all(substr(colors, 1, 1) == "#"))
-      self$min_value = min_value
-      self$max_value = max_value
-      self$colors = colors
+      self$min_value <- min_value
+      self$max_value <- max_value
+      self$colors <- colors
+      self$n <- n
     },
 
     #' @description
@@ -47,6 +54,9 @@ ContinuousLegend <- R6::R6Class(
         min_value = self$min_value,
         max_value = self$max_value,
         colors = self$colors,
+        values =
+          scales::breaks_extended(n = self$n)(
+            c(self$min_value, self$max_value)),
         type = "ContinuousLegend"
       )
     }
@@ -61,7 +71,11 @@ ContinuousLegend <- R6::R6Class(
 #'
 #' @param max_value `numeric` Maximum value to show in the legend.
 #'
-#' @param colors `character` Colors to show in the legend.
+#' @param values `integer` Number of labels to display in the color bar.
+#'   Default to 5.
+#'
+#' @param colors `character` Colors to show in the color the legend.
+#'
 #'   These colors should be in hex format (e.g. `"#AABBCC"`) and
 #'   are used to generate the color bar.
 #'
@@ -75,7 +89,7 @@ ContinuousLegend <- R6::R6Class(
 #' print(l)
 #'
 #' @export
-new_continuous_legend <- function(min_value, max_value, colors) {
+new_continuous_legend <- function(min_value, max_value, colors, n = 5) {
   ContinuousLegend$new(
-    min_value = min_value, max_value = max_value, colors = colors)
+    min_value = min_value, max_value = max_value, colors = colors, n = n)
 }
