@@ -94,8 +94,8 @@ example_theme_names <- function() {
 example_feature_icon <- function() {
   # define names for feature icons
   x <- c(
-    "fa-map-marked-alt", "fa-atlas", "fa-map-pin", "fa-map", "fa-database",
-    "fa-hdd")
+    "map-marked-alt", "atlas", "map-pin", "map", "database",
+    "hdd")
   # return icon
   shiny::icon(sample(x, 1))
 }
@@ -110,8 +110,8 @@ example_feature_icon <- function() {
 example_theme_icon <- function() {
   # define names for theme icons
   x <- c(
-    "fa-cat", "fa-crow", "fa-dog", "fa-dove", "fa-dragon", "fa-fish",
-    "fa-frog", "fa-hippo", "fa-horse", "fa-kiwi-bird", "fa-otter", "fa-spider")
+    "cat", "crow", "dog", "dove", "dragon", "fish",
+    "frog", "hippo", "horse", "kiwi-bird", "otter", "spider")
   # return icon
   shiny::icon(sample(x, 1))
 }
