@@ -20,7 +20,13 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: 0 -15px;
+  margin: 0;
+  width: 100%;
+  padding-right: 40px;
+  flex-wrap: wrap;
+  position: absolute;
+  top: 90%;
+  left: 20px;
 }
 
 /* -- items*/
