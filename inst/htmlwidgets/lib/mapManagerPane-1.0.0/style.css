@@ -6,8 +6,8 @@
 /* widget container */
 .map-manager-pane .widget-container {
   max-height: 100%;
-  overflow-y: auto;
   overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .map-manager-pane .sidebar-content {
