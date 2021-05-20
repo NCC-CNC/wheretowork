@@ -50,13 +50,14 @@ ContinuousLegend <- R6::R6Class(
     #' Get data for creating a widget.
     #' @return A new ContinuousLegend object.
     get_widget_data = function() {
+      # calculate breaks
+      br <- scales::breaks_extended(n = self$n)(
+        c(self$min_value, self$max_value))
       list(
-        min_value = self$min_value,
-        max_value = self$max_value,
+        min_value = min(self$min_value, min(br)),
+        max_value = max(self$max_value, max(br)),
         colors = self$colors,
-        values =
-          scales::breaks_extended(n = self$n)(
-            c(self$min_value, self$max_value)),
+        values = br,
         type = "ContinuousLegend"
       )
     }
