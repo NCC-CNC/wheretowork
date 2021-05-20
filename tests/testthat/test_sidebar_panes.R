@@ -4,8 +4,7 @@ test_that("newSolutionSidebarPane", {
   # create object
   x <-
     newSolutionSidebarPane(
-      id = "sidebarid", solutionSettingsId = "ssId", nameId = "textId",
-      buttonId = "btnId")
+      id = "sidebarid", solutionSettingsId = "ssId")
   # run tests
   h <- rvest::read_html(as.character(x))
   ## sidebar
@@ -19,14 +18,4 @@ test_that("newSolutionSidebarPane", {
       attr = "class",
       x = rvest::html_elements(h, "#ssId")),
     "solutionSettings html-widget html-widget-output")
-  ## text input
-  expect_length(rvest::html_elements(h, "#textId"), 1)
-  expect_identical(
-    xml2::xml_name(rvest::html_elements(h, "#textId")),
-    "input")
-  ## button
-  expect_length(rvest::html_elements(h, "#btnId"), 1)
-  expect_identical(
-    xml2::xml_name(rvest::html_elements(h, "#btnId")),
-    "button")
 })
