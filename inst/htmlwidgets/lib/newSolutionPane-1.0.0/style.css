@@ -12,24 +12,3 @@
 .new-solution-pane .sidebar-content {
   overflow-y: hidden !important;
 }
-
-/* footer */
-/* -- container*/
-.new-solution-pane .new-solution-footer {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0;
-  width: 100%;
-  padding-right: 40px;
-  flex-wrap: wrap;
-  position: absolute;
-  top: 93%;
-  left: 20px;
-}
-
-/* -- items*/
-.new-solution-pane .new-solution-footer .form-group.shiny-input-container {
-  margin-bottom: 0px;
-}
