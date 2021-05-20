@@ -4,6 +4,7 @@ doc
 *.o
 *.so
 *.dll
+.DS_Store
 
 # R profile files
 *.Rproj.user
