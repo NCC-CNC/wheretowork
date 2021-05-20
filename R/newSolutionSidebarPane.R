@@ -14,16 +14,6 @@ NULL
 #'   This widget is used to control the settings for new solutions.
 #'   Defaults to `paste0(id, "_settings")`.
 #'
-#' @param nameId `character` identifier for the [shiny::textInput()]
-#'   widget to create within the sidebar pane.
-#'   This text input widget is used to specify the name for new solutions.
-#'   Defaults to `paste0(id, "_name")`.
-#'
-#' @param buttonId `character` identifier for the [shiny::actionButton()]
-#'   widget to create within the sidebar pane.
-#'   This button widget is used to create new solutions.
-#'   Defaults to `paste0(id, "_button")`.
-#'
 #' @return A `shiny.tag` object with the sidebar pane.
 #'
 #' @examples
@@ -32,9 +22,7 @@ NULL
 #' @export
 newSolutionSidebarPane <- function(
   id,
-  solutionSettingsId = paste0(id, "_settings"),
-  nameId = paste0(id, "_name"),
-  buttonId = paste0(id, "_button")) {
+  solutionSettingsId = paste0(id, "_settings")) {
   # assert arguments are valid
   assertthat::assert_that(
     ### id
@@ -42,13 +30,7 @@ newSolutionSidebarPane <- function(
     assertthat::noNA(id),
     ### solutionSettingsId
     assertthat::is.string(solutionSettingsId),
-    assertthat::noNA(solutionSettingsId),
-    ### nameId
-    assertthat::noNA(nameId),
-    assertthat::is.string(nameId),
-    ### buttonId
-    assertthat::noNA(buttonId),
-    assertthat::is.string(buttonId))
+    assertthat::noNA(solutionSettingsId))
 
   # create sidebar widget
   ## create sidebar
@@ -60,36 +42,10 @@ newSolutionSidebarPane <- function(
       ### container
       htmltools::tags$div(
         class = "new-solution-pane",
-        ### settings
         htmltools::tags$div(
           class = "widget-container",
           solutionSettingsOutput(solutionSettingsId, height = "100%")
-        ),
-
-        ### footer
-        htmltools::tags$div(
-          class = "new-solution-footer",
-          htmltools::tags$div(
-            class = "new-solution-footer-name",
-            shiny::textInput(
-              nameId, NULL,
-              value = "",
-              width = "120%",
-              placeholder = "name for solution"
-            ),
-          ),
-          htmltools::tags$div(
-            class = "new-solution-footer-button",
-            shinyBS::bsButton(
-              buttonId,
-              label = "Generate solution",
-              icon = NULL,
-              style = "primary",
-              type = "action"
-            )
-          )
         )
-
       )
     )
 

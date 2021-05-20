@@ -1,11 +1,4 @@
 /* overall widget */
-/* -- style widget contents */
-.solution-setting {
-  width: 100%;
-  border: 1px var(--border) solid;
-  border-radius: 5px 5px 5px 5px;
-}
-
 /* -- ensure widget doesn't expand past the parent container */
 .solution-settings-container {
   overflow-y: hidden;
@@ -21,12 +14,39 @@
   padding: 0;
 }
 
+/* footer */
+/* -- container*/
+.solution-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  width: 100%;
+  padding-right: 40px;
+  flex-wrap: wrap;
+  position: absolute;
+  top: 93%;
+  left: 20px;
+}
+
+/* -- items*/
+.solution-footer .form-group.shiny-input-container {
+  margin-bottom: 0px;
+}
+
+/* view containers */
+.solution-setting {
+  width: 100%;
+  border: 1px var(--border) solid;
+  border-radius: 5px 5px 5px 5px;
+}
+
 /* -- add disabled mouse cursor to any element with the .disable-mouse class */
 .solution-setting .disable-mouse *:hover {
   cursor: not-allowed;
 }
 
-/* view containers */
 .solution-setting .single-view {
   overflow-y: auto;
   max-height: 150px;

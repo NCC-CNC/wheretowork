@@ -30,6 +30,15 @@
 #'
 #' }
 #'
+#' The widget also contains a text box. The server value for this
+#' text box is a `character` string, and it can be queried using
+#' `id_name` where `id` is the argument to `elementId`.
+#'
+#' Additionally, the widget contains a button. The server value for this
+#' button is an `integer` indicating the number of times the button
+#' has been clicked, and it can be queried using `id_button` where
+#' where `id` is the argument to `elementId`.
+#'
 #' @examples
 #' # TODO.
 #'
@@ -120,10 +129,33 @@ solutionSettings_html <- function(id, style, class, ...) {
               htmltools::tags$div(class = "weights")
             )
           )
+        ),
+        ### footer
+        htmltools::tags$div(
+          class = "solution-footer",
+          htmltools::tags$div(
+            class = "solution-footer-name",
+            shiny::textInput(
+              inputId = paste0(id, "_name"),
+              NULL,
+              value = "",
+              width = "100%",
+              placeholder = "name for solution"
+            ),
+          ),
+          htmltools::tags$div(
+            class = "solution-footer-button",
+            shinyBS::bsButton(
+              inputId = paste0(id, "_button"),
+              label = "Generate solution",
+              icon = NULL,
+              style = "primary",
+              type = "action"
+            )
+          )
         )
       )
     )
-
 
   # add HTML template scaffolds for dynamic content
   ## weightFactor
