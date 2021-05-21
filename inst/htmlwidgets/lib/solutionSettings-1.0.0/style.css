@@ -1,12 +1,32 @@
 /* overall widget */
 /* -- ensure widget doesn't expand past the parent container */
+.solutionSettings {
+  height: 100%;
+  width: 100%;
+  min-height: 91.5vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .solution-settings-container {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
   overflow-y: hidden;
-  max-height: 100%;
+}
+
+.solution-settings {
+  flex: 3;
+  display: flex;
+}
+
+.solution-settings .panel-group {
+  margin-bottom: 2px !important;
 }
 
 .solution-settings .panel.panel-default {
-  max-height: 41vh;
+  max-height: 43vh;
   overflow-y: scroll;
 }
 
@@ -25,8 +45,6 @@
   width: 100%;
   padding-right: 40px;
   flex-wrap: wrap;
-  position: absolute;
-  top: 93%;
   left: 20px;
 }
 
