@@ -14,6 +14,7 @@
   flex: 1 1 auto;
   flex-direction: column;
   overflow-y: hidden;
+  padding-right: 20px;
 }
 
 .solution-settings {
@@ -23,6 +24,9 @@
 
 .solution-settings .panel-group {
   margin-bottom: 2px !important;
+  flex: 1 1 auto;
+  flex-direction: column;
+  overflow-y: hidden;
 }
 
 .solution-settings .panel.panel-default {
@@ -43,7 +47,7 @@
   align-items: center;
   margin: 0;
   width: 100%;
-  padding-right: 40px;
+  padding-right: 0px;
   flex-wrap: wrap;
   left: 20px;
 }
