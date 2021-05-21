@@ -3,3 +3,7 @@
   border: 1px var(--border) solid;
   border-radius: 5px 5px 5px 5px;
 }
+
+.map-manager-layer .visible-checkbox{
+  /* please insert awesome CSS code here to fix #23 */
+}
