@@ -38,6 +38,15 @@ Available options include: \code{"status"}, \code{"factor"}, or \code{"goal"}.}
 to a \code{theme} or \code{weight}.}
 
 }
+
+The widget also contains a text box. The server value for this
+text box is a \code{character} string, and it can be queried using
+\code{id_name} where \code{id} is the argument to \code{elementId}.
+
+Additionally, the widget contains a button. The server value for this
+button is an \code{integer} indicating the number of times the button
+has been clicked, and it can be queried using \code{id_button} where
+where \code{id} is the argument to \code{elementId}.
 }
 
 \examples{

@@ -21,7 +21,7 @@ dependencies:
       - utils.js
       - SolutionSettings-class.js
     stylesheet:
-      - solution-setting.css
+      - style.css
 
   - name: solutionSettings-style
     version: 1.0-0

@@ -2,21 +2,27 @@
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: left;
   flex-direction: row;
   flex-wrap: wrap;
   flex-flow: row wrap;
   align-content: flex-end;
+  margin: -7px;
 }
 
 .categorical-legend .item {
   padding: 2px;
+  margin: 5px;
 }
 
 .categorical-legend .item label {
   font-size: 12px;
   font-weight: 400;
   vertical-align: middle;
+  margin-top: 3px;
+  margin-left: 3px;
+  margin-right: 3px;
+  margin-bottom: 5px;
 }
 
 .categorical-legend .item .item-symbol{

@@ -5,9 +5,7 @@ fillPage(
       iconList = list(icon("rocket")),
       newSolutionSidebarPane(
         id = "newSolutionPane",
-        solutionSettingsId = "newSolutionPane_settings",
-        nameId = "newSolutionPane_name",
-        buttonId = "newSolutionPane_button"
+        solutionSettingsId = "newSolutionPane_settings"
       )
     ),
     leafletOutput("map", width = "100%", height = "100%")
