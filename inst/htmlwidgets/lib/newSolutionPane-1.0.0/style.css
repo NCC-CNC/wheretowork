@@ -1,4 +1,9 @@
 /* pane */
+.sidebar-pane {
+  padding-right: 2px !important;
+  padding-bottom: 2px !important;
+}
+
 .new-solution-pane {
   margin-top: 3px;
 }
