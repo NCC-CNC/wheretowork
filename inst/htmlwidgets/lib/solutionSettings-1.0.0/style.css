@@ -3,7 +3,7 @@
 .solutionSettings {
   height: 100%;
   width: 100%;
-  min-height: 91.5vh;
+  min-height: 90.5vh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -30,7 +30,7 @@
 }
 
 .solution-settings .panel.panel-default {
-  max-height: 43vh;
+  max-height: 42.5vh;
   overflow-y: scroll;
 }
 
