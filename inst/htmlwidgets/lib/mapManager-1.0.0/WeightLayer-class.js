@@ -34,11 +34,28 @@ class WeightLayer {
     /// visible
     this.visible_el.checked = initial_visible;
     /// view (i.e. show legend?), defaults to false
-    this.view_el.checked = false;
+    this.view_el.checked = true;
     /// legend
     createLegend(this.legend_el, legend, units);
 
-    // set listeners to update user interfance
+    // set listeners to update user interfance, show/hide legends checkbox
+    if (HTMLWidgets.shinyMode) {
+      this.view_el.addEventListener("change", function () {
+        let checked = this.checked;
+        let els =
+          document.getElementById(id).querySelectorAll(
+            ".disable-if-inactive");
+        if (checked) {
+          els.forEach((x) => x.removeAttribute("disabled"));
+          els.forEach((x) => x.removeAttribute("style", "display:none"));
+        } else {
+          els.forEach((x) => x.setAttribute("disabled", ""));
+          els.forEach((x) => x.setAttribute("style", "display:none"));
+        }
+      });
+    }
+
+    // set listeners to update user interfance, icons for visible checkbox
     /// enable/disable widget on click
     if (HTMLWidgets.shinyMode) {
       this.visible_el.addEventListener("change", function () {
@@ -46,10 +63,21 @@ class WeightLayer {
         let els =
           document.getElementById(id).querySelectorAll(
             ".disable-if-inactive");
+        let elsIcon =
+          document.getElementById(id).querySelectorAll(
+            ".name-label");
         if (checked) {
           els.forEach((x) => x.removeAttribute("disabled"));
+          elsIcon.forEach((x) => x.classList.remove("fa"));
+          elsIcon.forEach((x) => x.classList.remove("fa-eye-slash"));
+          elsIcon.forEach((x) => x.classList.add("fa"));
+          elsIcon.forEach((x) => x.classList.add("fa-eye"));
         } else {
           els.forEach((x) => x.setAttribute("disabled", ""));
+          elsIcon.forEach((x) => x.classList.remove("fa"));
+          elsIcon.forEach((x) => x.classList.remove("fa-eye"));
+          elsIcon.forEach((x) => x.classList.add("fa"));
+          elsIcon.forEach((x) => x.classList.add("fa-eye-slash"));
         }
       });
     }
