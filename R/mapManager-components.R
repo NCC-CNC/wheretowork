@@ -46,9 +46,14 @@ mm_header_component_scaffold <- function(id = uuid::UUIDgenerate()) {
     htmltools::tags$input(
       class = "view-checkbox",
       type = "checkbox"),
-    htmltools::tags$input(
-      class = "visible-checkbox",
-      type = "checkbox"),
+    htmltools::tags$label(
+      class = "visible-container",
+      htmltools::tags$input(
+        class = "visible-checkbox",
+        type = "checkbox"),
+      htmltools::tags$i(class = "fa fa-eye checked"),
+      htmltools::tags$i(class = "fa fa-eye-slash unchecked")
+    ),
     htmltools::tags$label(
       class = "name-label disable-if-inactive"
     )

@@ -4,6 +4,17 @@
   border-radius: 5px 5px 5px 5px;
 }
 
-.map-manager-layer .visible-checkbox{
-  /* please insert awesome CSS code here to fix #23 */
+.map-manager-layer .visible-container input[type="checkbox"],
+.map-manager-layer .visible-container .checked {
+    display: none;
+}
+
+.map-manager-layer .visible-container input[type="checkbox"]:checked ~ .checked
+{
+    display: inline-block;
+}
+
+.map-manager-layer .visible-container input[type="checkbox"]:checked ~ .unchecked
+{
+    display: none;
 }

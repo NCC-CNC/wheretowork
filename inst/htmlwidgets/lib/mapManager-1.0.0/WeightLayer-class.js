@@ -33,12 +33,29 @@ class WeightLayer {
     this.name_el.innerText = name;
     /// visible
     this.visible_el.checked = initial_visible;
-    /// view (i.e. show legend?), defaults to false
-    this.view_el.checked = false;
+    /// view (i.e. show legend?), defaults to true
+    this.view_el.checked = true;
     /// legend
     createLegend(this.legend_el, legend, units);
 
-    // set listeners to update user interfance
+    // set listeners to update user interfance, show/hide legends checkbox
+    if (HTMLWidgets.shinyMode) {
+      this.view_el.addEventListener("change", function () {
+        let checked = this.checked;
+        let els =
+          document.getElementById(id).querySelectorAll(
+            ".disable-if-inactive");
+        if (checked) {
+          els.forEach((x) => x.removeAttribute("disabled"));
+          that.legend_el.style.display = "block";
+        } else {
+          els.forEach((x) => x.setAttribute("disabled", ""));
+          that.legend_el.style.display = "none";
+        }
+      });
+    }
+
+    // set listeners to update user interface, icons for visible checkbox
     /// enable/disable widget on click
     if (HTMLWidgets.shinyMode) {
       this.visible_el.addEventListener("change", function () {
