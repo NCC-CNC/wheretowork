@@ -33,7 +33,7 @@ class WeightLayer {
     this.name_el.innerText = name;
     /// visible
     this.visible_el.checked = initial_visible;
-    /// view (i.e. show legend?), defaults to false
+    /// view (i.e. show legend?), defaults to true
     this.view_el.checked = true;
     /// legend
     createLegend(this.legend_el, legend, units);
@@ -55,7 +55,7 @@ class WeightLayer {
       });
     }
 
-    // set listeners to update user interfance, icons for visible checkbox
+    // set listeners to update user interface, icons for visible checkbox
     /// enable/disable widget on click
     if (HTMLWidgets.shinyMode) {
       this.visible_el.addEventListener("change", function () {
@@ -63,21 +63,10 @@ class WeightLayer {
         let els =
           document.getElementById(id).querySelectorAll(
             ".disable-if-inactive");
-        let elsIcon =
-          document.getElementById(id).querySelectorAll(
-            ".name-label");
         if (checked) {
           els.forEach((x) => x.removeAttribute("disabled"));
-          elsIcon.forEach((x) => x.classList.remove("fa"));
-          elsIcon.forEach((x) => x.classList.remove("fa-eye-slash"));
-          elsIcon.forEach((x) => x.classList.add("fa"));
-          elsIcon.forEach((x) => x.classList.add("fa-eye"));
         } else {
           els.forEach((x) => x.setAttribute("disabled", ""));
-          elsIcon.forEach((x) => x.classList.remove("fa"));
-          elsIcon.forEach((x) => x.classList.remove("fa-eye"));
-          elsIcon.forEach((x) => x.classList.add("fa"));
-          elsIcon.forEach((x) => x.classList.add("fa-eye-slash"));
         }
       });
     }
