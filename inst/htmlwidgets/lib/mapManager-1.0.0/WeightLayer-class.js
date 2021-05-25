@@ -47,10 +47,10 @@ class WeightLayer {
             ".disable-if-inactive");
         if (checked) {
           els.forEach((x) => x.removeAttribute("disabled"));
-          els.forEach((x) => x.removeAttribute("style", "display:none"));
+          that.legend_el.style.display = "block";
         } else {
           els.forEach((x) => x.setAttribute("disabled", ""));
-          els.forEach((x) => x.setAttribute("style", "display:none"));
+          that.legend_el.style.display = "none";
         }
       });
     }
