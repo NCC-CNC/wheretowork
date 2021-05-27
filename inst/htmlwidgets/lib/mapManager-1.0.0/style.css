@@ -7,6 +7,11 @@
 .map-manager-layer .visible-container input[type="checkbox"],
 .map-manager-layer .visible-container .checked {
     display: none;
+    color: black;
+}
+
+.map-manager-layer .visible-container .unchecked {
+    color: red;
 }
 
 .map-manager-layer .visible-container input[type="checkbox"]:checked ~ .checked
