@@ -12,6 +12,18 @@ new_map_manager(
 }
 \arguments{
 \item{layers}{\code{list} of \link{Theme} and/or \link{Weight} objects.}
+
+\item{visible}{\code{logical} vector containing a value for each element in
+\code{layers}. These values indicate if (\code{TRUE}) each layer should be
+visible on the map or (\code{FALSE}) not.
+Defaults to a vector of \code{TRUE} values for each elements in \code{layers}.}
+
+\item{order}{\code{numeric} vector containing a value for each element in
+\code{layers}. These values indicate the order each layer should
+appear on them map. A value of 1 indicates that a layer should appear
+beneath every other layer.
+Defaults to an integer sequence of numbers based on the number of elements
+in \code{layers}.}
 }
 \value{
 A \link{MapManager} object.

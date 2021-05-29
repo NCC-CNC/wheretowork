@@ -23,9 +23,6 @@ Theme <- R6::R6Class(
     #' @field mandatory `logical` value.
     mandatory = FALSE,
 
-    #' @field initial_status `logical` value.
-    initial_status = NA,
-
     #' @field round `logical` value.
     round = NA,
 
@@ -74,10 +71,10 @@ Theme <- R6::R6Class(
     },
 
     #' @description
-    #' Get feature goal values.
-    #' @return `numeric` vector with goal value(s).
-    get_feature_goal = function() {
-      vapply(self$feature, FUN.VALUE = numeric(1), function(x) x$get_goal())
+    #' Get feature visible values.
+    #' @return `logical` vector with status value(s).
+    get_feature_visible = function() {
+      vapply(self$feature, FUN.VALUE = logical(1), function(x) x$get_visible())
     },
 
     #' @description
@@ -88,36 +85,46 @@ Theme <- R6::R6Class(
     },
 
     #' @description
+    #' Get feature goal values.
+    #' @return `numeric` vector with goal value(s).
+    get_feature_goal = function() {
+      vapply(self$feature, FUN.VALUE = numeric(1), function(x) x$get_goal())
+    },
+
+    #' @description
     #' Get parameter.
     #' @param name `character` parameter name.
-    #' Available options are `"feature_status"` or `"feature_goal"`.
+    #' Available options are `"feature_status"`, `"feature_goal"`, or
+    #' `"feature_visible"`.
     #' @return Value.
     get_parameter = function(name) {
       assertthat::assert_that(
         assertthat::is.string(name),
         assertthat::noNA(name),
-        name %in% c("feature_status", "feature_goal"))
+        name %in% c("feature_status", "feature_goal", "feature_visible"))
       if (identical(name, "feature_status")) {
         out <- self$get_feature_status()
       } else if (identical(name, "feature_goal")) {
         out <- self$get_feature_goal()
+      } else if (identical(name, "feature_visible")) {
+        out <- self$get_feature_visible()
       }
       out
     },
 
     #' @description
-    #' Set feature goal values.
-    #' @param value `numeric` vector containing a value for each feature.
-    #'   A `list` of `numeric` values can also be supplied.
-    set_feature_goal = function(value) {
+    #' Set feature visible values.
+    #' @param value `logical` vector containing a value for each feature.
+    #'   A `list` of `logical` values can also be supplied.
+    set_feature_visible = function(value) {
       if (is.list(value))
         value <- unlist(value, recursive = TRUE, use.names = TRUE)
       assertthat::assert_that(
-        is.numeric(value),
+        is.logical(value),
         assertthat::noNA(value),
         length(value) == length(self$feature))
       for (i in seq_along(value)) {
-        self$feature[[i]]$set_goal(value[[i]])
+        self$feature[[i]]$set_visible(value[[i]])
       }
       invisible(self)
     },
@@ -140,19 +147,39 @@ Theme <- R6::R6Class(
     },
 
     #' @description
+    #' Set feature goal values.
+    #' @param value `numeric` vector containing a value for each feature.
+    #'   A `list` of `numeric` values can also be supplied.
+    set_feature_goal = function(value) {
+      if (is.list(value))
+        value <- unlist(value, recursive = TRUE, use.names = TRUE)
+      assertthat::assert_that(
+        is.numeric(value),
+        assertthat::noNA(value),
+        length(value) == length(self$feature))
+      for (i in seq_along(value)) {
+        self$feature[[i]]$set_goal(value[[i]])
+      }
+      invisible(self)
+    },
+
+    #' @description
     #' Set parameter.
     #' @param name `character` parameter name.
-    #' Available options are `"feature_status"` or `"feature_goal"`.
+    #' Available options are `"feature_status"`, `"feature_goal"`, or
+    #' `"feature_visible"`.
     #' @param value vector containing a value for each feature.
     set_parameter = function(name, value) {
       assertthat::assert_that(
         assertthat::is.string(name),
         assertthat::noNA(name),
-        name %in% c("feature_status", "feature_goal"))
+        name %in% c("feature_status", "feature_goal", "feature_visible"))
       if (identical(name, "feature_status")) {
         self$set_feature_status(value)
       } else if (identical(name, "feature_goal")) {
         self$set_feature_goal(value)
+      } else if (identical(name, "feature_visible")) {
+        self$set_feature_visible(value)
       }
       invisible(self)
     }

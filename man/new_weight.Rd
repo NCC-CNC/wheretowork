@@ -7,6 +7,7 @@
 new_weight(
   name,
   dataset,
+  initial_visible = TRUE,
   initial_status = TRUE,
   initial_factor = 0,
   min_factor = 0,
@@ -20,8 +21,13 @@ new_weight(
 
 \item{dataset}{\link{Dataset} object.}
 
-\item{initial_status}{\code{logical} The initial status.
-This is used to display information on whether the theme is
+\item{initial_visible}{\code{logical} The initial visible value.
+This is used to determine if the feature is displayed (or not)
+or not the map.
+Defaults to \code{TRUE}}
+
+\item{initial_status}{\code{logical} The initial status value.
+This is used to display information on whether the feature is
 selected (or not) for subsequent analysis.
 Defaults to \code{TRUE}}
 

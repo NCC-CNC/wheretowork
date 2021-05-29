@@ -7,6 +7,7 @@
 new_feature(
   name,
   dataset,
+  initial_visible = TRUE,
   initial_status = TRUE,
   initial_goal = 0.1,
   min_goal = 0,
@@ -20,12 +21,17 @@ new_feature(
 )
 }
 \arguments{
-\item{name}{\code{character} Name of the theme.}
+\item{name}{\code{character} Name of the feature.}
 
 \item{dataset}{\link{Dataset} object.}
 
-\item{initial_status}{\code{logical} The initial status.
-This is used to display information on whether the theme is
+\item{initial_visible}{\code{logical} The initial visible value.
+This is used to determine if the feature is displayed (or not)
+or not the map.
+Defaults to \code{TRUE}}
+
+\item{initial_status}{\code{logical} The initial status value.
+This is used to display information on whether the feature is
 selected (or not) for subsequent analysis.
 Defaults to \code{TRUE}}
 

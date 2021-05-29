@@ -28,8 +28,6 @@ This method intentionally throws an error.
 
 \item{\code{mandatory}}{\code{logical} value.}
 
-\item{\code{initial_status}}{\code{logical} value.}
-
 \item{\code{round}}{\code{logical} value.}
 
 \item{\code{icon}}{\code{shiny.tag} value.}
@@ -42,11 +40,13 @@ This method intentionally throws an error.
 \item \href{#method-new}{\code{Theme$new()}}
 \item \href{#method-print}{\code{Theme$print()}}
 \item \href{#method-repr}{\code{Theme$repr()}}
-\item \href{#method-get_feature_goal}{\code{Theme$get_feature_goal()}}
+\item \href{#method-get_feature_visible}{\code{Theme$get_feature_visible()}}
 \item \href{#method-get_feature_status}{\code{Theme$get_feature_status()}}
+\item \href{#method-get_feature_goal}{\code{Theme$get_feature_goal()}}
 \item \href{#method-get_parameter}{\code{Theme$get_parameter()}}
-\item \href{#method-set_feature_goal}{\code{Theme$set_feature_goal()}}
+\item \href{#method-set_feature_visible}{\code{Theme$set_feature_visible()}}
 \item \href{#method-set_feature_status}{\code{Theme$set_feature_status()}}
+\item \href{#method-set_feature_goal}{\code{Theme$set_feature_goal()}}
 \item \href{#method-set_parameter}{\code{Theme$set_parameter()}}
 \item \href{#method-clone}{\code{Theme$clone()}}
 }
@@ -106,16 +106,16 @@ Generate a \code{character} summarizing the representation of the object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_feature_goal"></a>}}
-\if{latex}{\out{\hypertarget{method-get_feature_goal}{}}}
-\subsection{Method \code{get_feature_goal()}}{
-Get feature goal values.
+\if{html}{\out{<a id="method-get_feature_visible"></a>}}
+\if{latex}{\out{\hypertarget{method-get_feature_visible}{}}}
+\subsection{Method \code{get_feature_visible()}}{
+Get feature visible values.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Theme$get_feature_goal()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Theme$get_feature_visible()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-\code{numeric} vector with goal value(s).
+\code{logical} vector with status value(s).
 }
 }
 \if{html}{\out{<hr>}}
@@ -132,6 +132,19 @@ Get feature status values.
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_feature_goal"></a>}}
+\if{latex}{\out{\hypertarget{method-get_feature_goal}{}}}
+\subsection{Method \code{get_feature_goal()}}{
+Get feature goal values.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$get_feature_goal()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{numeric} vector with goal value(s).
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_parameter"></a>}}
 \if{latex}{\out{\hypertarget{method-get_parameter}{}}}
 \subsection{Method \code{get_parameter()}}{
@@ -144,7 +157,8 @@ Get parameter.
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{name}}{\code{character} parameter name.
-Available options are \code{"feature_status"} or \code{"feature_goal"}.}
+Available options are \code{"feature_status"}, \code{"feature_goal"}, or
+\code{"feature_visible"}.}
 }
 \if{html}{\out{</div>}}
 }
@@ -153,19 +167,19 @@ Value.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_feature_goal"></a>}}
-\if{latex}{\out{\hypertarget{method-set_feature_goal}{}}}
-\subsection{Method \code{set_feature_goal()}}{
-Set feature goal values.
+\if{html}{\out{<a id="method-set_feature_visible"></a>}}
+\if{latex}{\out{\hypertarget{method-set_feature_visible}{}}}
+\subsection{Method \code{set_feature_visible()}}{
+Set feature visible values.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Theme$set_feature_goal(value)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Theme$set_feature_visible(value)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{value}}{\code{numeric} vector containing a value for each feature.
-A \code{list} of \code{numeric} values can also be supplied.}
+\item{\code{value}}{\code{logical} vector containing a value for each feature.
+A \code{list} of \code{logical} values can also be supplied.}
 }
 \if{html}{\out{</div>}}
 }
@@ -189,6 +203,24 @@ A \code{list} of \code{logical} values can also be supplied.}
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_feature_goal"></a>}}
+\if{latex}{\out{\hypertarget{method-set_feature_goal}{}}}
+\subsection{Method \code{set_feature_goal()}}{
+Set feature goal values.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$set_feature_goal(value)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{value}}{\code{numeric} vector containing a value for each feature.
+A \code{list} of \code{numeric} values can also be supplied.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-set_parameter"></a>}}
 \if{latex}{\out{\hypertarget{method-set_parameter}{}}}
 \subsection{Method \code{set_parameter()}}{
@@ -201,7 +233,8 @@ Set parameter.
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{name}}{\code{character} parameter name.
-Available options are \code{"feature_status"} or \code{"feature_goal"}.}
+Available options are \code{"feature_status"}, \code{"feature_goal"}, or
+\code{"feature_visible"}.}
 
 \item{\code{value}}{vector containing a value for each feature.}
 }

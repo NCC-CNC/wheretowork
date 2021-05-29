@@ -44,6 +44,7 @@ test_that("initialization", {
   expect_identical(x$ids, c("T1", "T2", "W1"))
   expect_identical(x$visible, c(TRUE, FALSE, TRUE))
   expect_identical(x$order, c(2, 1, 3))
+  expect_identical(x$sub_order, list(1, c(2, 1), 1))
 })
 
 test_that("get methods", {
@@ -87,14 +88,18 @@ test_that("get methods", {
   ## get layer
   expect_equal(x$get_layer("T1"), t1)
   expect_equal(x$get_layer("T2"), t2)
-  expect_equal(x$get_order(), x$order)
   expect_equal(x$get_visible(), x$visible)
+  expect_equal(x$get_order(), x$order)
+  expect_equal(x$get_sub_order(), x$sub_order)
   expect_equal(
     x$get_parameter(list(parameter = "order")),
     x$get_order())
   expect_equal(
     x$get_parameter(list(parameter = "visible")),
     x$get_visible())
+  expect_equal(
+    x$get_parameter(list(parameter = "sub_order")),
+    x$get_sub_order())
 })
 
 test_that("set methods", {
@@ -145,6 +150,15 @@ test_that("set methods", {
     list(parameter = "order", value = c(1, 3, 2)))
   expect_equal(
     x$get_order(), c(1, 3, 2))
+  ## order
+  x$set_parameter(
+    list(parameter = "sub_order", id = "T1", value = 5))
+  expect_equal(
+    x$get_sub_order(), list(5, c(2, 1), 1))
+  x$set_parameter(
+    list(parameter = "sub_order", id = "T2", value = c(1, 2)))
+  expect_equal(
+    x$get_sub_order(), list(5, c(1, 2), 1))
 })
 
 test_that("widget methods", {

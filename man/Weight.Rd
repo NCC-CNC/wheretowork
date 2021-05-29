@@ -23,6 +23,10 @@ Definition for the Weight class.
 
 \item{\code{dataset}}{\link{Dataset} object.}
 
+\item{\code{visible}}{\code{logical} value.}
+
+\item{\code{initial_visible}}{\code{logical} value.}
+
 \item{\code{status}}{\code{logical} value.}
 
 \item{\code{initial_status}}{\code{logical} value.}
@@ -45,11 +49,13 @@ Definition for the Weight class.
 \item \href{#method-new}{\code{Weight$new()}}
 \item \href{#method-print}{\code{Weight$print()}}
 \item \href{#method-repr}{\code{Weight$repr()}}
-\item \href{#method-get_factor}{\code{Weight$get_factor()}}
+\item \href{#method-get_visible}{\code{Weight$get_visible()}}
 \item \href{#method-get_status}{\code{Weight$get_status()}}
+\item \href{#method-get_factor}{\code{Weight$get_factor()}}
 \item \href{#method-get_parameter}{\code{Weight$get_parameter()}}
-\item \href{#method-set_factor}{\code{Weight$set_factor()}}
+\item \href{#method-set_visible}{\code{Weight$set_visible()}}
 \item \href{#method-set_status}{\code{Weight$set_status()}}
+\item \href{#method-set_factor}{\code{Weight$set_factor()}}
 \item \href{#method-set_parameter}{\code{Weight$set_parameter()}}
 \item \href{#method-get_solution_settings_widget_data}{\code{Weight$get_solution_settings_widget_data()}}
 \item \href{#method-get_map_manager_widget_data}{\code{Weight$get_map_manager_widget_data()}}
@@ -66,6 +72,7 @@ Create a new Weight object.
   id,
   name,
   dataset,
+  initial_visible,
   initial_status,
   initial_factor,
   min_factor,
@@ -82,6 +89,8 @@ Create a new Weight object.
 \item{\code{name}}{\code{character} value.}
 
 \item{\code{dataset}}{\link{Dataset} object.}
+
+\item{\code{initial_visible}}{\code{logical} value.}
 
 \item{\code{initial_status}}{\code{logical} value.}
 
@@ -141,16 +150,16 @@ Defaults to \code{"]"}.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_factor"></a>}}
-\if{latex}{\out{\hypertarget{method-get_factor}{}}}
-\subsection{Method \code{get_factor()}}{
-Get factor.
+\if{html}{\out{<a id="method-get_visible"></a>}}
+\if{latex}{\out{\hypertarget{method-get_visible}{}}}
+\subsection{Method \code{get_visible()}}{
+Get visible.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Weight$get_factor()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Weight$get_visible()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-\code{numeric} value.
+\code{logical} value.
 }
 }
 \if{html}{\out{<hr>}}
@@ -167,6 +176,19 @@ Get status.
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_factor"></a>}}
+\if{latex}{\out{\hypertarget{method-get_factor}{}}}
+\subsection{Method \code{get_factor()}}{
+Get factor.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Weight$get_factor()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{numeric} value.
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_parameter"></a>}}
 \if{latex}{\out{\hypertarget{method-get_parameter}{}}}
 \subsection{Method \code{get_parameter()}}{
@@ -179,7 +201,7 @@ Get parameter.
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{name}}{\code{character} parameter name.
-Available options are \code{"status"} or \code{"factor"}.}
+Available options are \code{"status"} \code{"factor"}, or \code{"visible"}.}
 }
 \if{html}{\out{</div>}}
 }
@@ -188,18 +210,18 @@ Value.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_factor"></a>}}
-\if{latex}{\out{\hypertarget{method-set_factor}{}}}
-\subsection{Method \code{set_factor()}}{
-Set factor.
+\if{html}{\out{<a id="method-set_visible"></a>}}
+\if{latex}{\out{\hypertarget{method-set_visible}{}}}
+\subsection{Method \code{set_visible()}}{
+Set visible.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Weight$set_factor(value)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Weight$set_visible(value)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{value}}{\code{numeric} new value.}
+\item{\code{value}}{\code{logical} new value.}
 }
 \if{html}{\out{</div>}}
 }
@@ -222,6 +244,23 @@ Set status.
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_factor"></a>}}
+\if{latex}{\out{\hypertarget{method-set_factor}{}}}
+\subsection{Method \code{set_factor()}}{
+Set factor.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Weight$set_factor(value)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{value}}{\code{numeric} new value.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-set_parameter"></a>}}
 \if{latex}{\out{\hypertarget{method-set_parameter}{}}}
 \subsection{Method \code{set_parameter()}}{
@@ -234,7 +273,7 @@ Set parameter.
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{name}}{\code{character} parameter name.
-Available options are \code{"status"} or \code{"factor"}.}
+Available options are \code{"status"} \code{"factor"}, or \code{"visible"}.}
 
 \item{\code{value}}{\code{ANY} new value.}
 }

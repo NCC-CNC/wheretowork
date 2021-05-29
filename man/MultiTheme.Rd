@@ -20,17 +20,7 @@ Definition for the MultiTheme class.
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
-\item{\code{group_min_goal}}{\code{numeric} value.}
-
-\item{\code{group_max_goal}}{\code{numeric} value.}
-
-\item{\code{group_initial_goal}}{\code{numeric} value.}
-
-\item{\code{group_limit_goal}}{\code{numeric} value.}
-
-\item{\code{group_step_goal}}{\code{numeric} value.}
-
-\item{\code{group_current_label}}{\code{character} value.}
+\item{\code{current_label}}{\code{character} value.}
 }
 \if{html}{\out{</div>}}
 }
@@ -48,11 +38,13 @@ Definition for the MultiTheme class.
 \itemize{
 \item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="get_feature_goal">}\href{../../locationmisc/html/Theme.html#method-get_feature_goal}{\code{locationmisc::Theme$get_feature_goal()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="get_feature_status">}\href{../../locationmisc/html/Theme.html#method-get_feature_status}{\code{locationmisc::Theme$get_feature_status()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="get_feature_visible">}\href{../../locationmisc/html/Theme.html#method-get_feature_visible}{\code{locationmisc::Theme$get_feature_visible()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="get_parameter">}\href{../../locationmisc/html/Theme.html#method-get_parameter}{\code{locationmisc::Theme$get_parameter()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="print">}\href{../../locationmisc/html/Theme.html#method-print}{\code{locationmisc::Theme$print()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="repr">}\href{../../locationmisc/html/Theme.html#method-repr}{\code{locationmisc::Theme$repr()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="set_feature_goal">}\href{../../locationmisc/html/Theme.html#method-set_feature_goal}{\code{locationmisc::Theme$set_feature_goal()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="set_feature_status">}\href{../../locationmisc/html/Theme.html#method-set_feature_status}{\code{locationmisc::Theme$set_feature_status()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="set_feature_visible">}\href{../../locationmisc/html/Theme.html#method-set_feature_visible}{\code{locationmisc::Theme$set_feature_visible()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="set_parameter">}\href{../../locationmisc/html/Theme.html#method-set_parameter}{\code{locationmisc::Theme$set_parameter()}}\out{</span>}
 }
 \out{</details>}
@@ -63,21 +55,7 @@ Definition for the MultiTheme class.
 \subsection{Method \code{new()}}{
 Create a MultiTheme object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{MultiTheme$new(
-  id,
-  name,
-  feature,
-  mandatory,
-  group_min_goal,
-  group_max_goal,
-  group_initial_goal,
-  group_limit_goal,
-  group_step_goal,
-  group_current_label,
-  initial_status,
-  round,
-  icon
-)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{MultiTheme$new(id, name, feature, mandatory, current_label, round, icon)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -91,19 +69,7 @@ Create a MultiTheme object.
 
 \item{\code{mandatory}}{\code{logical} value.}
 
-\item{\code{group_min_goal}}{\code{numeric} value.}
-
-\item{\code{group_max_goal}}{\code{numeric} value.}
-
-\item{\code{group_initial_goal}}{\code{numeric} value.}
-
-\item{\code{group_limit_goal}}{\code{numeric} value.}
-
-\item{\code{group_step_goal}}{\code{numeric} value.}
-
-\item{\code{group_current_label}}{\code{character} value.}
-
-\item{\code{initial_status}}{\code{logical} value.}
+\item{\code{current_label}}{\code{character} value.}
 
 \item{\code{round}}{\code{logical} value.}
 

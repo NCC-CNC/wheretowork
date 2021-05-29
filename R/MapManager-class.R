@@ -19,10 +19,18 @@ MapManager <- R6::R6Class(
     #'   be visible or not.
     visible = NULL,
 
-    #' @field order `integer` vector indicating the order each layer should
-    #'  appear on them map. A value of 1 indicates that a layer should appear
-    #'  beneath every other layer.
+    #' @field order `integer` vector indicating the order each layer
+    #'  should appear on them map. A value of 1 indicates that a layer should
+    #'  appear beneath every other layer.
     order = NULL,
+
+    #' @field sub_order `list` object indicating the relative order each
+    #'  dataset within each layer.
+    #'  Each element should contain an `integer`
+    #'  vector that contains a value for each dataset within each layer.
+    #'  A value of 1 indicates that a layer dataset appear beneath every other
+    #'  dataset within a layer.
+    sub_order = NULL,
 
     #' @description
     #' Create a MapManager object.
@@ -33,12 +41,26 @@ MapManager <- R6::R6Class(
     initialize = function(layers, visible, order) {
       assertthat::assert_that(
         is.list(layers),
-        all_list_elements_inherit(layers, c("Theme", "Weight"))
+        all_list_elements_inherit(layers, c("Theme", "Weight")),
+        length(order) == length(layers),
+        is.numeric(order),
+        setequal(order, seq_along(layers)),
+        length(visible) == length(layers),
+        is.logical(visible),
+        assertthat::noNA(visible)
       )
       self$layers <- layers
       self$ids <- vapply(layers, function(x) x$id, character(1))
       self$visible <- visible
       self$order <- order
+      self$sub_order <-
+        lapply(layers, function(x) {
+          if (inherits(x, "MultiTheme")) {
+            return(as.double(rev(seq_along(x$feature))))
+          } else {
+            return(1)
+          }
+        })
     },
 
     #' @description
@@ -78,6 +100,12 @@ MapManager <- R6::R6Class(
     },
 
     #' @description
+    #' Get information on the plot order of each dataset within each layer.
+    get_sub_order = function() {
+      self$sub_order
+    },
+
+    #' @description
     #' Get a layer.
     #' @param value `character` layer identifier.
     #' @return [Theme] object.
@@ -109,6 +137,8 @@ MapManager <- R6::R6Class(
         return(self$get_visible())
       } else if (identical(value$parameter, "order")) {
         return(self$get_order())
+      } else if (identical(value$parameter, "sub_order")) {
+        return(self$get_sub_order())
       } else {
         stop("unknown parameter.")
       }
@@ -139,6 +169,35 @@ MapManager <- R6::R6Class(
     },
 
     #' @description
+    #' Set information on the plot order of each dataset within each layer.
+    set_sub_order = function(id, value) {
+      # validate arguments
+      assertthat::assert_that(
+        ## id
+        assertthat::is.string(id),
+        assertthat::noNA(id),
+        id %in% self$ids,
+        ## value
+        is.numeric(value),
+        assertthat::noNA(value),
+        anyDuplicated(value) == 0L)
+      # find index for layer based on id
+      idx <- which(id == self$ids)
+      # verify that layer with id exists
+      assertthat::assert_that(
+        length(idx) == 1,
+        assertthat::noNA(idx),
+        msg =
+          "cannot set sub_order for layer because no such layer exists")
+      assertthat::assert_that(
+        length(value) == length(self$sub_order[[idx]]),
+        msg =
+          "incorrect number of values specified for changing layer sub_order")
+      self$sub_order[[idx]] <- value
+      invisible(self)
+    },
+
+    #' @description
     #' Set a parameter for the object.
     #' @param value `list` with new parameter information (see Details section)
     #' @details
@@ -159,6 +218,8 @@ MapManager <- R6::R6Class(
         self$set_visible(value$value)
       } else if (identical(value$parameter, "order")) {
         self$set_order(value$value)
+      } else if (identical(value$parameter, "sub_order")) {
+        self$set_sub_order(value$id, value$value)
       } else {
         stop("unknown parameter.")
       }
@@ -179,6 +240,12 @@ MapManager <- R6::R6Class(
         self$ids <- c(self$ids, value$id)
         self$visible <- c(self$visible, FALSE)
         self$order <- c(self$order, max(self$order + 1))
+        if (inherits(value, "MultiTheme")) {
+          sub <- as.double(rev(seq_along(value$feature)))
+        } else {
+          sub <- 1
+        }
+        self$sub_order <- append(self$sub_order, list(sub))
         invisible(self)
     },
 
@@ -199,6 +266,7 @@ MapManager <- R6::R6Class(
         self$visible <- self$visible[idx]
         self$order <- self$order[idx]
         self$order <- rank(self$order)
+        self$sub_order <- self$sub_order[idx]
         invisible(self)
     },
 
@@ -231,6 +299,18 @@ MapManager <- R6::R6Class(
 #' Create a new [MapManager] object.
 #'
 #' @param layers `list` of [Theme] and/or [Weight] objects.
+#'
+#' @param visible `logical` vector containing a value for each element in
+#'  `layers`. These values indicate if (`TRUE`) each layer should be
+#'  visible on the map or (`FALSE`) not.
+#'  Defaults to a vector of `TRUE` values for each elements in `layers`.
+#'
+#' @param order `numeric` vector containing a value for each element in
+#'  `layers`. These values indicate the order each layer should
+#'  appear on them map. A value of 1 indicates that a layer should appear
+#'  beneath every other layer.
+#'  Defaults to an integer sequence of numbers based on the number of elements
+#'  in `layers`.
 #'
 #' @return A [MapManager] object.
 #'

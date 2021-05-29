@@ -6,9 +6,9 @@ class WeightSetting {
     name,
     min_factor,
     max_factor,
-    initial_factor,
+    factor,
     step_factor,
-    initial_status
+    status
   ) {
     // class fields
     this.id = id;
@@ -33,10 +33,10 @@ class WeightSetting {
     /// name
     this.name_el.innerText = name;
     /// status
-    this.status_el.checked = initial_status;
+    this.status_el.checked = status;
     /// factor
     noUiSlider.create(this.factor_el, {
-      start: initial_factor,
+      start: factor,
       step: step_factor,
       connect: "lower",
       range: {
