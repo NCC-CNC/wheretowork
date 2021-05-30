@@ -21,6 +21,8 @@ Definition for the MultiTheme class.
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
 \item{\code{current_label}}{\code{character} value.}
+
+\item{\code{feature_order}}{\code{numeric} value.}
 }
 \if{html}{\out{</div>}}
 }
@@ -28,6 +30,8 @@ Definition for the MultiTheme class.
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-new}{\code{MultiTheme$new()}}
+\item \href{#method-get_feature_order}{\code{MultiTheme$get_feature_order()}}
+\item \href{#method-set_feature_order}{\code{MultiTheme$set_feature_order()}}
 \item \href{#method-get_solution_settings_widget_data}{\code{MultiTheme$get_solution_settings_widget_data()}}
 \item \href{#method-get_map_manager_widget_data}{\code{MultiTheme$get_map_manager_widget_data()}}
 \item \href{#method-clone}{\code{MultiTheme$clone()}}
@@ -55,7 +59,16 @@ Definition for the MultiTheme class.
 \subsection{Method \code{new()}}{
 Create a MultiTheme object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{MultiTheme$new(id, name, feature, mandatory, current_label, round, icon)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{MultiTheme$new(
+  id,
+  name,
+  feature,
+  mandatory,
+  current_label,
+  feature_order,
+  round,
+  icon
+)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -71,6 +84,8 @@ Create a MultiTheme object.
 
 \item{\code{current_label}}{\code{character} value.}
 
+\item{\code{feature_order}}{\code{numeric} vector.}
+
 \item{\code{round}}{\code{logical} value.}
 
 \item{\code{icon}}{\code{shiny.tag} object.}
@@ -79,6 +94,33 @@ Create a MultiTheme object.
 }
 \subsection{Returns}{
 A new MultiTheme object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_feature_order"></a>}}
+\if{latex}{\out{\hypertarget{method-get_feature_order}{}}}
+\subsection{Method \code{get_feature_order()}}{
+Set relative order for displaying features on a map.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultiTheme$get_feature_order()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_feature_order"></a>}}
+\if{latex}{\out{\hypertarget{method-set_feature_order}{}}}
+\subsection{Method \code{set_feature_order()}}{
+Set relative order for displaying features on a map.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultiTheme$set_feature_order(value)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{value}}{\code{numeric} vector of new orders.}
+}
+\if{html}{\out{</div>}}
 }
 }
 \if{html}{\out{<hr>}}

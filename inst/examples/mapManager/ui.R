@@ -19,7 +19,7 @@ fluidPage(
     wellPanel(
       h3("Widget"),
       p("This panel contains a minimal version of the map manager widget. Note that it has minimal styling so that we make easily customize it within the Location App. The red outline shows its extent."),
-      solutionSettingsOutput("widget", height = "60vh")
+      mapManagerOutput("widget", height = "60vh")
     )
   ),
 
@@ -32,13 +32,13 @@ fluidPage(
         tabPanel(
           "R's internal memory",
           br(),
-          p("This tab depicts R's internal representation of the solution settings widget."),
+          p("This tab depicts R's internal representation of the widget."),
           verbatimTextOutput("show")
         ),
         tabPanel(
           "Message from widget",
           br(),
-          p("This tab shows the messages that the widget is sending to R to update R's internal representation of the solution settings."),
+          p("This tab shows the messages that the widget is sending to R to update R's internal representation of the widget."),
           verbatimTextOutput("message"),
         )
       )
@@ -49,9 +49,21 @@ fluidPage(
     class = "panel",
     wellPanel(
       h3("Controls"),
-        p("This tab contains controls to manually update the appearance of the widget. Note that these controls (mostly) do not alter R's internal representation of solution settings. This is because they are designed to be used within an R Shiny session to update the widget automatically for the user."),
+        p("This tab contains controls to manually update the appearance of the widget. Note that these controls (mostly) do not alter R's internal representation of the widget. This is because they are designed to be used within an R Shiny session to update the widget automatically for the user."),
       tabsetPanel(
         type = "tabs",
+
+        ## order
+        tabPanel(
+          "Order",
+          br(),
+          fluidRow(
+            column(1,
+              actionButton("order_button", label = "Reset order")
+            )
+          )
+        ),
+
         ## single theme
         tabPanel(
           "Species",
@@ -94,6 +106,12 @@ fluidPage(
             ),
             column(1,
               actionButton("mt_visible_button", label = "Update visible")
+            )
+          ),
+          fluidRow(
+            column(1,
+              actionButton(
+                "mt_order_button", label = "Reset order")
             )
           ),
           wellPanel(

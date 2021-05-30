@@ -1,13 +1,22 @@
 function(input, output, session) {
   # initialize widget
   output$widget <- renderMapManager({
-    mapManager(ss)
+    mapManager(mm)
   })
 
   # update widget state
+  ## ordering
+  observeEvent(input$order_button, {
+
+    updateMapManagerOrder(
+      session, "widget",
+      value = rev(seq_along(mm$layers))
+    )
+  })
+
   ## singleTheme
   observeEvent(input$st_name_button, {
-    updateMapManager(
+    updateMapManagerLayer(
       session, "widget",
       list(
         id = "SPECIES", parameter = "name",
@@ -15,7 +24,7 @@ function(input, output, session) {
     )
   })
   observeEvent(input$st_visible_button, {
-    updateMapManager(
+    updateMapManagerLayer(
       session, "widget",
       list(
         id = "SPECIES", parameter = "visible",
@@ -25,7 +34,7 @@ function(input, output, session) {
 
   ## multiTheme
   observeEvent(input$mt_name_button, {
-    updateMapManager(
+    updateMapManagerLayer(
       session, "widget",
       list(
         id = "ER", parameter = "name",
@@ -33,7 +42,7 @@ function(input, output, session) {
     )
   })
   observeEvent(input$mt_visible_button, {
-    updateMapManager(
+    updateMapManagerLayer(
       session, "widget",
       list(
         id = "ER", parameter = "visible",
@@ -41,18 +50,27 @@ function(input, output, session) {
     )
   })
   observeEvent(input$mt_feature_visible_button, {
-    updateMapManager(
+    updateMapManagerLayer(
       session, "widget",
       list(
-        id = "ER", parameter = "visible",
+        id = "ER", parameter = "feature_visible",
         value =
           c(input$mt1_feature_visible_input, input$mt2_feature_visible_input))
     )
   })
+  observeEvent(input$mt_order_button, {
+    updateMapManagerLayer(
+      session, "widget",
+      list(
+        id = "ER", parameter = "feature_order",
+        value = rev(seq_along(t2$feature)))
+    )
+  })
+
 
   ## weight
   observeEvent(input$w_name_button, {
-    updateMapManager(
+    updateMapManagerLayer(
       session, "widget",
       list(
         id = "HFP", parameter = "name",
@@ -60,7 +78,7 @@ function(input, output, session) {
     )
   })
   observeEvent(input$w_visible_button, {
-    updateMapManager(
+    updateMapManagerLayer(
       session, "widget",
       list(
         id = "HFP", parameter = "visible",
@@ -70,7 +88,7 @@ function(input, output, session) {
 
   # update internal object based on widget
   observeEvent(input$widget, {
-    ss$set_parameter(input$widget)
+    mm$set_parameter(input$widget)
   })
 
   # update text outputs
@@ -83,7 +101,7 @@ function(input, output, session) {
   observeEvent(input$widget, {
     output$show <-
       renderText({
-        paste(capture.output(print(ss), type = "message"), collapse = "\n")
+        paste(capture.output(print(mm), type = "message"), collapse = "\n")
       })
   })
 

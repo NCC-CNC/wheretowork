@@ -41,12 +41,13 @@ Theme <- R6::R6Class(
     #' Print the object.
     #' @param ... not used.
     print = function(...) {
+      po <- order(self$get_feature_order(), decreasing = TRUE)
       message("Theme")
       message("  id:        ", self$id)
       message("  name:      ", self$name)
       message("  mandatory: ", self$mandatory)
       message("  feature: ")
-      for (x in vapply(self$feature, function(x) x$repr(), character(1))) {
+      for (x in vapply(self$feature[po], function(x) x$repr(), character(1))) {
         message("    " , x)
       }
       invisible(self)
@@ -57,6 +58,7 @@ Theme <- R6::R6Class(
     #' @param ... not used.
     #' @return `character` value.
     repr = function(...) {
+      po <- order(self$get_feature_order(), decreasing = TRUE)
       paste0(
         self$name,
         ifelse(self$mandatory, " (mandatory):", ":"),
@@ -66,7 +68,8 @@ Theme <- R6::R6Class(
             "  ",
             gsub(
               nl(), paste0(nl(), "  "),
-              vapply(self$feature, function(x) x$repr(), character(1))),
+              vapply(self$feature[po], function(x) x$repr(), character(1))
+            ),
             collapse = nl())))
     },
 
@@ -94,20 +97,25 @@ Theme <- R6::R6Class(
     #' @description
     #' Get parameter.
     #' @param name `character` parameter name.
-    #' Available options are `"feature_status"`, `"feature_goal"`, or
-    #' `"feature_visible"`.
+    #' Available options are `"feature_status"`, `"feature_goal"`,
+    #' `"feature_visible"`, or `"feature_order"`.
     #' @return Value.
     get_parameter = function(name) {
       assertthat::assert_that(
         assertthat::is.string(name),
         assertthat::noNA(name),
-        name %in% c("feature_status", "feature_goal", "feature_visible"))
+        name %in% c("feature_status", "feature_goal", "feature_visible",
+                    "feature_order"))
       if (identical(name, "feature_status")) {
         out <- self$get_feature_status()
       } else if (identical(name, "feature_goal")) {
         out <- self$get_feature_goal()
       } else if (identical(name, "feature_visible")) {
         out <- self$get_feature_visible()
+      } else if (identical(name, "feature_order")) {
+        out <- self$get_feature_order()
+      } else {
+        stop(paste0("\"", name, "\" is not a parameter"))
       }
       out
     },
@@ -163,23 +171,30 @@ Theme <- R6::R6Class(
       invisible(self)
     },
 
+
     #' @description
     #' Set parameter.
     #' @param name `character` parameter name.
-    #' Available options are `"feature_status"`, `"feature_goal"`, or
-    #' `"feature_visible"`.
+    #' Available options are `"feature_status"`, `"feature_goal"`,
+    #' `"feature_visible"`, `"feature_order"`.
     #' @param value vector containing a value for each feature.
     set_parameter = function(name, value) {
       assertthat::assert_that(
         assertthat::is.string(name),
         assertthat::noNA(name),
-        name %in% c("feature_status", "feature_goal", "feature_visible"))
+        name %in%
+          c("feature_status", "feature_goal", "feature_visible",
+            "feature_order"))
       if (identical(name, "feature_status")) {
         self$set_feature_status(value)
       } else if (identical(name, "feature_goal")) {
         self$set_feature_goal(value)
       } else if (identical(name, "feature_visible")) {
         self$set_feature_visible(value)
+      } else if (identical(name, "feature_order")) {
+        self$set_feature_order(value)
+      } else {
+        stop(paste0("\"", name, "\" is not a parameter"))
       }
       invisible(self)
     }

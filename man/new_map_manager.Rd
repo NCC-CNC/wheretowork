@@ -4,19 +4,10 @@
 \alias{new_map_manager}
 \title{New map manager}
 \usage{
-new_map_manager(
-  layers,
-  visible = rep(TRUE, length(layers)),
-  order = seq_along(layers)
-)
+new_map_manager(layers, order = rev(seq_along(layers)))
 }
 \arguments{
 \item{layers}{\code{list} of \link{Theme} and/or \link{Weight} objects.}
-
-\item{visible}{\code{logical} vector containing a value for each element in
-\code{layers}. These values indicate if (\code{TRUE}) each layer should be
-visible on the map or (\code{FALSE}) not.
-Defaults to a vector of \code{TRUE} values for each elements in \code{layers}.}
 
 \item{order}{\code{numeric} vector containing a value for each element in
 \code{layers}. These values indicate the order each layer should

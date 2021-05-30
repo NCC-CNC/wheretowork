@@ -11,6 +11,7 @@ new_multi_theme(
   round = TRUE,
   icon = "map-marked-alt",
   current_label = "Current",
+  feature_order = as.double(rev(seq_along(feature))),
   id = uuid::UUIDgenerate()
 )
 }
@@ -34,6 +35,9 @@ Defaults to \code{"map-marked-alt"}.}
 \item{current_label}{\code{character} The display label for the current
 level of representation for the features under the group view.
 Defaults to \code{Current}.}
+
+\item{feature_order}{\code{numeric} Relative order for displaying each feature
+on a map. Defaults to a reverse sequence of integer values.}
 
 \item{id}{\code{character} unique identifier.
 Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}

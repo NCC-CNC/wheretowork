@@ -13,15 +13,19 @@ Definition for the MapManager class.
 
 The argument to \code{value} should be a \code{list} with the following elements:
 \describe{
+\item{id}{\code{character} (optional) name of layer.}
 \item{parameter}{\code{character} name of parameter.
-Available options are: \code{"visible"} and \code{"order"}.}
+Available options are: \code{"order"}, \code{"feature_order"} and \code{"visible"}.
+Note that the \code{"id"} element is required for \code{"feature_order"}
+and \code{"visible"} parameters.}
 }
 
-The argument to \code{value} should be a \code{list} with the following elements:
 \describe{
-\item{id}{\code{character} identifier for theme or weight.}
+\item{id}{\code{character} (optional) name of layer.}
 \item{parameter}{\code{character} name of parameter.
-Available options are: \code{"visible"} and \code{"order"}.}
+Available options are: \code{"order"}, \code{"feature_order"} and \code{"visible"}.
+Note that the \code{"id"} element is required for \code{"feature_order"}
+and \code{"visible"} parameters.}
 \item{value}{\code{numeric} or \code{logical} value for new parameter.}
 }
 }
@@ -32,12 +36,9 @@ Available options are: \code{"visible"} and \code{"order"}.}
 
 \item{\code{ids}}{\code{character} vector of identifiers for the layers.}
 
-\item{\code{visible}}{\code{logical} vector indicating if each layer should
-be visible or not.}
-
-\item{\code{order}}{\code{integer} vector indicating the order each layer should
-appear on them map. A value of 1 indicates that a layer should appear
-beneath every other layer.}
+\item{\code{order}}{\code{numeric} vector indicating the order each layer
+should appear on them map. A value of 1 indicates that a layer should
+appear beneath every other layer.}
 }
 \if{html}{\out{</div>}}
 }
@@ -47,11 +48,9 @@ beneath every other layer.}
 \item \href{#method-new}{\code{MapManager$new()}}
 \item \href{#method-print}{\code{MapManager$print()}}
 \item \href{#method-repr}{\code{MapManager$repr()}}
-\item \href{#method-get_visible}{\code{MapManager$get_visible()}}
 \item \href{#method-get_order}{\code{MapManager$get_order()}}
 \item \href{#method-get_layer}{\code{MapManager$get_layer()}}
 \item \href{#method-get_parameter}{\code{MapManager$get_parameter()}}
-\item \href{#method-set_visible}{\code{MapManager$set_visible()}}
 \item \href{#method-set_order}{\code{MapManager$set_order()}}
 \item \href{#method-set_parameter}{\code{MapManager$set_parameter()}}
 \item \href{#method-add_layer}{\code{MapManager$add_layer()}}
@@ -67,15 +66,13 @@ beneath every other layer.}
 \subsection{Method \code{new()}}{
 Create a MapManager object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{MapManager$new(layers, visible, order)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{MapManager$new(layers, order)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{layers}}{\code{list} of Layer objects.}
-
-\item{\code{visible}}{\code{logical} vector.}
 
 \item{\code{order}}{\code{numeric} vector.}
 }
@@ -114,16 +111,6 @@ Generate a \code{character} summarizing the representation of the object.
 \subsection{Returns}{
 \code{character} value.
 }
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_visible"></a>}}
-\if{latex}{\out{\hypertarget{method-get_visible}{}}}
-\subsection{Method \code{get_visible()}}{
-Get information on the visibility of each layer.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{MapManager$get_visible()}\if{html}{\out{</div>}}
-}
-
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_order"></a>}}
@@ -167,24 +154,7 @@ Get a parameter for the object.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{value}}{\code{list} with new parameter information (see Details section)}
-}
-\if{html}{\out{</div>}}
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_visible"></a>}}
-\if{latex}{\out{\hypertarget{method-set_visible}{}}}
-\subsection{Method \code{set_visible()}}{
-Set information on the visibility of each layer.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{MapManager$set_visible(value)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{value}}{\code{logical} vector indicating if each layer is visible or not.}
+\item{\code{value}}{\code{list} with parameter information (see Details section)}
 }
 \if{html}{\out{</div>}}
 }

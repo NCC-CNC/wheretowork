@@ -61,7 +61,7 @@ class SingleThemeLayer {
         let checked = this.checked;
         Shiny.setInputValue(manager, {
           id: id,
-          parameter: "visible",
+          parameter: "feature_visible",
           value: checked
         });
       });

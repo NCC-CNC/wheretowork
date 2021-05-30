@@ -157,8 +157,8 @@ Get parameter.
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{name}}{\code{character} parameter name.
-Available options are \code{"feature_status"}, \code{"feature_goal"}, or
-\code{"feature_visible"}.}
+Available options are \code{"feature_status"}, \code{"feature_goal"},
+\code{"feature_visible"}, or \code{"feature_order"}.}
 }
 \if{html}{\out{</div>}}
 }
@@ -233,8 +233,8 @@ Set parameter.
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{name}}{\code{character} parameter name.
-Available options are \code{"feature_status"}, \code{"feature_goal"}, or
-\code{"feature_visible"}.}
+Available options are \code{"feature_status"}, \code{"feature_goal"},
+\code{"feature_visible"}, \code{"feature_order"}.}
 
 \item{\code{value}}{vector containing a value for each feature.}
 }

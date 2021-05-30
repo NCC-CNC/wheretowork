@@ -273,7 +273,7 @@ Set parameter.
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{name}}{\code{character} parameter name.
-Available options are \code{"status"} \code{"factor"}, or \code{"visible"}.}
+Available options are \code{"status"} \code{"factor"}, or `"visible"``.}
 
 \item{\code{value}}{\code{ANY} new value.}
 }

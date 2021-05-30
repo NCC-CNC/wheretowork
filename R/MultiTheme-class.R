@@ -14,6 +14,9 @@ MultiTheme <- R6::R6Class(
     #' @field current_label `character` value.
     current_label = NA_character_,
 
+    #' @field feature_order `numeric` value.
+    feature_order = NA_real_,
+
     #' @description
     #' Create a MultiTheme object.
     #' @param id `character` value.
@@ -21,12 +24,13 @@ MultiTheme <- R6::R6Class(
     #' @param feature `list` of [Feature] objects.
     #' @param mandatory `logical` value.
     #' @param current_label `character` value.
+    #' @param feature_order `numeric` vector.
     #' @param round `logical` value.
     #' @param icon `shiny.tag` object.
     #' @return A new MultiTheme object.
     initialize = function(
       id, name, feature, mandatory,
-      current_label, round, icon) {
+      current_label, feature_order, round, icon) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -41,9 +45,14 @@ MultiTheme <- R6::R6Class(
         #### mandatory
         assertthat::is.flag(mandatory),
         assertthat::noNA(mandatory),
-        #### group_current_label
+        #### current_label
         assertthat::is.string(current_label),
         assertthat::noNA(current_label),
+        #### feature_order
+        is.numeric(feature_order),
+        assertthat::noNA(feature_order),
+        length(feature_order) == length(feature),
+        identical(anyDuplicated(feature_order), 0L),
         #### round
         assertthat::is.flag(round),
         assertthat::noNA(round),
@@ -62,8 +71,30 @@ MultiTheme <- R6::R6Class(
       self$feature <- feature
       self$mandatory <- mandatory
       self$current_label <- current_label
+      self$feature_order <- feature_order
       self$round <- round
       self$icon <- icon
+    },
+
+    #' @description
+    #' Set relative order for displaying features on a map.
+    get_feature_order = function() {
+      self$feature_order
+    },
+
+    #' @description
+    #' Set relative order for displaying features on a map.
+    #' @param value `numeric` vector of new orders.
+    set_feature_order = function(value) {
+      if (is.list(value))
+        value <- unlist(value, recursive = TRUE, use.names = TRUE)
+      assertthat::assert_that(
+        is.numeric(value),
+        assertthat::noNA(value),
+        length(value) == length(self$feature),
+        identical(anyDuplicated(value), 0L))
+      self$feature_order <- value
+      invisible(self)
     },
 
     #' @description
@@ -144,6 +175,9 @@ MultiTheme <- R6::R6Class(
 #'  level of representation for the features under the group view.
 #'  Defaults to `Current`.
 #'
+#' @param feature_order `numeric` Relative order for displaying each feature
+#'  on a map. Defaults to a reverse sequence of integer values.
+#'
 #' @param round `logical` should all numbers be rounded to the nearest integer?
 #'   Defaults to `TRUE`.
 #'
@@ -190,6 +224,7 @@ new_multi_theme <- function(
   round = TRUE,
   icon = "map-marked-alt",
   current_label = "Current",
+  feature_order = as.double(rev(seq_along(feature))),
   id = uuid::UUIDgenerate()) {
   # convert icon to shiny.tag if needed
   if (is.character(icon))
@@ -201,6 +236,7 @@ new_multi_theme <- function(
     feature = feature,
     mandatory = mandatory,
     current_label = current_label,
+    feature_order = feature_order,
     round = round,
     icon = icon)
 }

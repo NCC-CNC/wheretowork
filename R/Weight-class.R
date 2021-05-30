@@ -117,8 +117,8 @@ Weight <- R6::R6Class(
     #' @param ... not used.
     print = function(...) {
       message("Weight")
-      message("  id:     ", self$id)
-      message("  name:   ", self$name)
+      message("  id:      ", self$id)
+      message("  name:    ", self$name)
       message("  visible: ", self$visible)
       message("  status: ", self$status)
       message("  factor: ", round(self$factor, 2))
@@ -178,6 +178,8 @@ Weight <- R6::R6Class(
         out <- self$get_factor()
       } else if (identical(name, "visible")) {
         out <- self$get_visible()
+      } else {
+        stop(paste0("\"", name, "\" is not a parameter"))
       }
       out
     },
@@ -220,7 +222,7 @@ Weight <- R6::R6Class(
     #' @description
     #' Set parameter.
     #' @param name `character` parameter name.
-    #' Available options are `"status"` `"factor"`, or `"visible"`.
+    #' Available options are `"status"` `"factor"`, or `"visible"``.
     #' @param value `ANY` new value.
     set_parameter = function(name, value) {
       assertthat::assert_that(
@@ -233,6 +235,8 @@ Weight <- R6::R6Class(
         self$set_factor(value)
       } else if (identical(name, "visible")) {
         self$set_visible(value)
+      } else {
+        stop(paste0("\"", name, "\" is not a parameter"))
       }
       invisible(self)
     },

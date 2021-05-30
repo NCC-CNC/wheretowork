@@ -52,6 +52,23 @@ SingleTheme <- R6::R6Class(
     },
 
     #' @description
+    #' Get relative order for displaying each feature on a map.
+    #' @details
+    #' The relative order is fixed at 1 because each this class
+    #' only contains a single feature.
+    #' @return `numeric` value.
+    get_feature_order = function() {
+      1
+    },
+
+    #' @description
+    #' Set relative order for displaying features on a map.
+    #' @param ... not used.
+    set_feature_order = function(...) {
+      stop("This class has a fixed feature order.")
+    },
+
+    #' @description
     #' Get data for displaying the theme in a [solutionSettings] widget.
     #' @return `list` with widget data.
     get_solution_settings_widget_data = function() {

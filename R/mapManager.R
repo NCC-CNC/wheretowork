@@ -36,7 +36,9 @@ mapManager <- function(
     width = width,
     height = height,
     package = "locationmisc",
-    elementId = elementId
+    elementId = elementId,
+    dependencies = c(
+      htmltools::htmlDependencies(shiny::icon("map-marked-alt")))
   )
 }
 

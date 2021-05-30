@@ -18,6 +18,7 @@ class MultiThemeLayer {
     this.single_visible_values = feature_visible;
     this.single_visible_el = undefined;
     this.single_legend_el = undefined;
+    this.sortable = undefined;
 
     /// HTML container
     this.el =
@@ -62,18 +63,19 @@ class MultiThemeLayer {
       this.main_el.children[i].setAttribute("data-id", feature_id[i]);
     }
     /// enable sorting within main container
-    new Sortable(
+    this.sortable = new Sortable(
       this.main_el, {
       animation: 150,
       dataIdAttr: "data-id",
       ghostClass: "map-manager-layer-ghost",
       onUpdate: function(event) {
         if (HTMLWidgets.shinyMode) {
-          const new_ids = this.toArray();
-          const order = feature_id.map((x) => {
-            that.n_features - (new_ids.findIndex((z) => z === x))
+          let new_ids = this.toArray();
+          let order = feature_id.map(function(x) {
+            return that.n_features - (new_ids.findIndex((z) => z === x));
           });
-          Shiny.setInputValue(that.id, {
+          Shiny.setInputValue(manager, {
+            id: id,
             parameter: "feature_order",
             value: order
           });
@@ -140,7 +142,7 @@ class MultiThemeLayer {
         let checked = this.checked;
         Shiny.setInputValue(manager, {
           id: id,
-          parameter: "visible",
+          parameter: "feature_visible",
           value: Array(that.n_features).fill(checked),
         });
       });
@@ -151,7 +153,7 @@ class MultiThemeLayer {
           that.single_visible_values[i] = this.checked;
           Shiny.setInputValue(manager, {
             id: id,
-            parameter: "visible",
+            parameter: "feature_visible",
             value: that.single_visible_values
           });
         });
@@ -166,8 +168,10 @@ class MultiThemeLayer {
       this.updateName(value);
     } else if (parameter === "visible") {
       this.updateVisible(value);
-    } else if (parameter === "feature_visisble") {
+    } else if (parameter === "feature_visible") {
       this.updateFeatureVisible(value);
+    } else if (parameter === "feature_order") {
+      this.updateFeatureOrder(value);
     }
   }
 
@@ -192,6 +196,18 @@ class MultiThemeLayer {
       this.single_visible_el[i].checked = value[i];
     }
   }
+
+  updateFeatureOrder(value) {
+    // create array with ids in order
+    const new_ids = new Array(this.n_features);
+    for (let i = 0; i < new_ids.length; ++i) {
+      new_ids[this.n_features - value[i]] = this.feature_id[i];
+    }
+    // re-order layers in widget
+    this.sortable.sort(new_ids, true);
+  }
+
+
 
   /* render method */
   render() {

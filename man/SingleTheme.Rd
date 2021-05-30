@@ -10,6 +10,9 @@ SingleTheme class
 }
 \details{
 Definition for the SingleTheme class.
+
+The relative order is fixed at 1 because each this class
+only contains a single feature.
 }
 \seealso{
 \code{\link[=new_single_theme]{new_single_theme()}}.
@@ -21,6 +24,8 @@ Definition for the SingleTheme class.
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-new}{\code{SingleTheme$new()}}
+\item \href{#method-get_feature_order}{\code{SingleTheme$get_feature_order()}}
+\item \href{#method-set_feature_order}{\code{SingleTheme$set_feature_order()}}
 \item \href{#method-get_solution_settings_widget_data}{\code{SingleTheme$get_solution_settings_widget_data()}}
 \item \href{#method-get_map_manager_widget_data}{\code{SingleTheme$get_map_manager_widget_data()}}
 \item \href{#method-clone}{\code{SingleTheme$clone()}}
@@ -70,6 +75,36 @@ Create a SingleTheme object.
 }
 \subsection{Returns}{
 A new SingleTheme object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_feature_order"></a>}}
+\if{latex}{\out{\hypertarget{method-get_feature_order}{}}}
+\subsection{Method \code{get_feature_order()}}{
+Get relative order for displaying each feature on a map.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SingleTheme$get_feature_order()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{numeric} value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_feature_order"></a>}}
+\if{latex}{\out{\hypertarget{method-set_feature_order}{}}}
+\subsection{Method \code{set_feature_order()}}{
+Set relative order for displaying features on a map.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SingleTheme$set_feature_order(...)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{...}}{not used.}
+}
+\if{html}{\out{</div>}}
 }
 }
 \if{html}{\out{<hr>}}
