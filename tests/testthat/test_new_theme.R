@@ -8,6 +8,7 @@ test_that("SingleTheme", {
   f <- new_feature(
     name = "F1",
     dataset = l,
+    initial_visible = FALSE,
     initial_status = FALSE,
     initial_goal = 0.2,
     min_goal = 0.01,
@@ -45,6 +46,7 @@ test_that("MultiTheme", {
   f1 <- new_feature(
     name = "F1",
     dataset = l1,
+    initial_visible = FALSE,
     initial_status = FALSE,
     initial_goal = 0.2,
     min_goal = 0.01,
@@ -58,6 +60,7 @@ test_that("MultiTheme", {
   f2 <- new_feature(
     name = "F2",
     dataset = l2,
+    initial_visible = FALSE,
     initial_status = TRUE,
     initial_goal = 0.21,
     min_goal = 0.011,

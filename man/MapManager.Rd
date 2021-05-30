@@ -23,9 +23,10 @@ and \code{"visible"} parameters.}
 \describe{
 \item{id}{\code{character} (optional) name of layer.}
 \item{parameter}{\code{character} name of parameter.
-Available options are: \code{"order"}, \code{"feature_order"} and \code{"visible"}.
-Note that the \code{"id"} element is required for \code{"feature_order"}
-and \code{"visible"} parameters.}
+Available options are: \code{"order"}, \code{"visible"}, \code{"feature_order"},
+or \code{"feature_visible"}.
+Note that the \code{"id"} element is required for
+\code{"visible"}, \code{"feature_order"}, \code{"feature_visible"} parameters.}
 \item{value}{\code{numeric} or \code{logical} value for new parameter.}
 }
 }

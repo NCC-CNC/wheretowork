@@ -112,7 +112,7 @@ MapManager <- R6::R6Class(
         assertthat::assert_that(
           assertthat::has_name(value, "id"),
           assertthat::is.string(value$id),
-          value$id %in% ids)
+          value$id %in% self$ids)
           return(self$get_layer(value$id)$get_parameter(value$parameter))
       }
     },
@@ -138,9 +138,10 @@ MapManager <- R6::R6Class(
     #' \describe{
     #' \item{id}{`character` (optional) name of layer.}
     #' \item{parameter}{`character` name of parameter.
-    #'   Available options are: `"order"`, `"feature_order"` and `"visible"`.
-    #'   Note that the `"id"` element is required for `"feature_order"`
-    #'   and `"visible"` parameters.}
+    #'   Available options are: `"order"`, `"visible"`, `"feature_order"`,
+    #'   or `"feature_visible"`.
+    #'   Note that the `"id"` element is required for
+    #'   `"visible"`, `"feature_order"`, `"feature_visible"` parameters.}
     #' \item{value}{`numeric` or `logical` value for new parameter.}
     #' }
     set_parameter = function(value) {
