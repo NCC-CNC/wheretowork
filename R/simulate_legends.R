@@ -6,7 +6,7 @@ NULL
 #' This function simulates a continuous legend ([ContinuousLegend]) object.
 #' It is primarily used for testing the package.
 #'
-#' @return A [ContinuousLgend] object.
+#' @return A [ContinuousLegend] object.
 #'
 #' @seealso [new_continuous_legend()].
 #'
@@ -21,7 +21,9 @@ simulate_continuous_legend <- function() {
   col <- RColorBrewer::brewer.pal(n = 8, name = sample(rownames(d), 1))
   # return legend
   new_continuous_legend(
-    min_value = runif(1, 0, 50), max_value = runif(1, 51, 100), colors = col)
+    min_value = stats::runif(1, 0, 50),
+    max_value = stats::runif(1, 51, 100),
+    colors = col)
 }
 
 #' Simulate categorical legend

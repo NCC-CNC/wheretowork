@@ -4,14 +4,17 @@
 \alias{new_map_manager}
 \title{New map manager}
 \usage{
-new_map_manager(
-  layers,
-  visible = rep(TRUE, length(layers)),
-  order = seq_along(layers)
-)
+new_map_manager(layers, order = rev(seq_along(layers)))
 }
 \arguments{
 \item{layers}{\code{list} of \link{Theme} and/or \link{Weight} objects.}
+
+\item{order}{\code{numeric} vector containing a value for each element in
+\code{layers}. These values indicate the order each layer should
+appear on them map. A value of 1 indicates that a layer should appear
+beneath every other layer.
+Defaults to an integer sequence of numbers based on the number of elements
+in \code{layers}.}
 }
 \value{
 A \link{MapManager} object.

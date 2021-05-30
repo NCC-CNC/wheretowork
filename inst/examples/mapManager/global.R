@@ -41,7 +41,6 @@ fts <- lapply(seq_len(5), function(i) {
 ## create themes using the features
 t1 <- new_single_theme("Species", f1, id = "SPECIES")
 t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "ER")
-t3 <- new_multi_theme("Turnips", fts, mandatory = FALSE)
 
-## create solution setting
-ss <- new_solution_settings(themes = list(t1, t2, t3), weights = list(w))
+## create map manager
+mm <- new_map_manager(list(t1, t2, w))

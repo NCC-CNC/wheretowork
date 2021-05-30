@@ -8,6 +8,7 @@ test_that("initialization", {
   x <- new_feature(
     name = "Intact Alvar",
     dataset = l,
+    initial_visible = FALSE,
     initial_status = FALSE,
     initial_goal = 0.2,
     min_goal = 0.01,
@@ -23,6 +24,8 @@ test_that("initialization", {
   expect_is(x$repr(), "character")
   expect_identical(x$name, "Intact Alvar")
   expect_identical(x$dataset, l)
+  expect_identical(x$visible, FALSE)
+  expect_identical(x$initial_visible, FALSE)
   expect_identical(x$status, FALSE)
   expect_identical(x$initial_status, FALSE)
   expect_identical(x$goal, 0.2)
@@ -45,6 +48,7 @@ test_that("get methods", {
   x <- new_feature(
     name = "Intact Alvar",
     dataset = l,
+    initial_visible = TRUE,
     initial_status = FALSE,
     initial_goal = 0.2,
     min_goal = 0.01,
@@ -58,6 +62,7 @@ test_that("get methods", {
   # run tests
   expect_identical(x$get_goal(), 0.2)
   expect_identical(x$get_status(), FALSE)
+  expect_identical(x$get_visible(), TRUE)
 })
 
 test_that("set methods", {
@@ -68,6 +73,7 @@ test_that("set methods", {
   x <- new_feature(
     name = "Intact Alvar",
     dataset = l,
+    initial_visible = TRUE,
     initial_status = FALSE,
     initial_goal = 0.2,
     min_goal = 0.01,
@@ -81,6 +87,8 @@ test_that("set methods", {
   # run tests
   x$set_goal(0.8)
   x$set_status(TRUE)
+  x$set_visible(FALSE)
   expect_identical(x$get_goal(), 0.8)
   expect_identical(x$get_status(), TRUE)
+  expect_identical(x$get_visible(), FALSE)
 })

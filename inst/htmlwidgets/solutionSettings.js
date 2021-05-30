@@ -49,7 +49,7 @@ HTMLWidgets.widget({
 
 // Attach message handlers if in Shiny mode (these correspond to API)
 if (HTMLWidgets.shinyMode) {
-  var fxns = ["updateSetting"];
+  var fxns = ["update"];
 
   var addShinyHandler = function(fxn) {
     return function() {

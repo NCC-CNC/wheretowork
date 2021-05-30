@@ -26,7 +26,7 @@ HTMLWidgets.widget({
           container.widget = that;
           // initialize map manager
           handle = new MapManager(
-            elementId, container, opts.layers, opts.visible, opts.order);
+            elementId, container, opts.layers, opts.order);
           // render HTML elements
           handle.render();
         }
@@ -41,6 +41,10 @@ HTMLWidgets.widget({
       mapManager: container,
 
       /* API functions to manipulate widget */
+      updateOrder: function(params) {
+        handle.updateOrder(params.value);
+      },
+
       updateLayer: function(params) {
         handle.updateLayer(
           params.value.id, params.value.parameter,
@@ -61,12 +65,12 @@ HTMLWidgets.widget({
 
 // Attach message handlers if in Shiny mode (these correspond to API)
 if (HTMLWidgets.shinyMode) {
-  var fxns = ["updateLayer", "addLayer", "removeLayer"];
+  var fxns = ["updateOrder", "updateLayer", "addLayer", "removeLayer"];
 
   var addShinyHandler = function(fxn) {
     return function() {
       Shiny.addCustomMessageHandler(
-        "solutionSettings:" + fxn, function(message) {
+        "mapManager:" + fxn, function(message) {
           var el = document.getElementById(message.id);
           if (el) {
             delete message["id"];

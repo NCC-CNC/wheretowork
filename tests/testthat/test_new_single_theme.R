@@ -8,6 +8,7 @@ test_that("initialization", {
   f <- new_feature(
     name = "F1",
     dataset = l,
+    initial_visible = FALSE,
     initial_status = FALSE,
     initial_goal = 0.2,
     min_goal = 0.01,
@@ -22,7 +23,6 @@ test_that("initialization", {
     name = "FS",
     feature = f,
     mandatory = FALSE,
-    initial_status = FALSE,
     round = FALSE,
     icon = "atom",
     id = "FS1")
@@ -32,7 +32,6 @@ test_that("initialization", {
   expect_identical(x$id, "FS1")
   expect_identical(x$name, "FS")
   expect_identical(x$feature, list(f))
-  expect_identical(x$initial_status, FALSE)
   expect_identical(x$mandatory, FALSE)
   expect_identical(x$round, FALSE)
   expect_identical(x$icon, shiny::icon("atom"))
@@ -46,6 +45,7 @@ test_that("get methods", {
   f <- new_feature(
     name = "F1",
     dataset = l,
+    initial_visible = TRUE,
     initial_status = FALSE,
     initial_goal = 0.2,
     min_goal = 0.01,
@@ -59,16 +59,17 @@ test_that("get methods", {
   x <- new_single_theme(
     name = "FS",
     feature = f,
-    initial_status = FALSE,
     mandatory = TRUE,
     round = FALSE,
     icon = "atom",
     id = "FS1")
   # run tests
   expect_identical(x$get_feature_goal(), 0.2)
+  expect_identical(x$get_feature_visible(), TRUE)
   expect_identical(x$get_feature_status(), FALSE)
   expect_identical(x$get_parameter("feature_goal"), x$get_feature_goal())
   expect_identical(x$get_parameter("feature_status"), x$get_feature_status())
+  expect_identical(x$get_parameter("feature_visible"), x$get_feature_visible())
 })
 
 test_that("set methods", {
@@ -79,6 +80,7 @@ test_that("set methods", {
   f <- new_feature(
     name = "F1",
     dataset = l,
+    initial_visible = TRUE,
     initial_status = FALSE,
     initial_goal = 0.2,
     min_goal = 0.01,
@@ -92,20 +94,23 @@ test_that("set methods", {
   x <- new_single_theme(
     name = "FS",
     feature = f,
-    initial_status = FALSE,
     mandatory = TRUE,
     round = FALSE,
     icon = "atom",
     id = "FS1")
   # run tests
   x$set_feature_goal(0.8)
+  x$set_feature_visible(FALSE)
   x$set_feature_status(TRUE)
   expect_identical(x$get_feature_goal(), 0.8)
+  expect_identical(x$get_feature_visible(), FALSE)
   expect_identical(x$get_feature_status(), TRUE)
   x$set_parameter("feature_goal", 0.5)
   x$set_parameter("feature_status", FALSE)
+  x$set_parameter("feature_visible", TRUE)
   expect_identical(x$get_feature_goal(), 0.5)
   expect_identical(x$get_feature_status(), FALSE)
+  expect_identical(x$get_feature_visible(), TRUE)
 })
 
 test_that("widget methods", {
@@ -116,6 +121,7 @@ test_that("widget methods", {
   f <- new_feature(
     name = "F1",
     dataset = l,
+    initial_visible = FALSE,
     initial_status = FALSE,
     initial_goal = 0.2,
     min_goal = 0.01,
@@ -130,11 +136,11 @@ test_that("widget methods", {
     name = "FS",
     feature = f,
     mandatory = TRUE,
-    initial_status = FALSE,
     round = FALSE,
     icon = "atom",
     id = "FS1")
   # run tests
+  ## solution settings
   expect_identical(
     x$get_solution_settings_widget_data(),
     list(
@@ -142,18 +148,31 @@ test_that("widget methods", {
       name = "FS",
       feature_name = "F1",
       feature_id = "FID1",
+      feature_status = FALSE,
       feature_total_amount = 100,
       feature_current_held = 0.034,
       feature_min_goal = 0.01,
       feature_max_goal = 0.99,
-      feature_initial_goal = 0.2,
+      feature_goal = 0.2,
       feature_limit_goal = 0.05,
       feature_step_goal = 0.02,
       feature_current_label = "Now",
       units = "ha",
       mandatory = TRUE,
-      initial_status = FALSE,
       round = FALSE,
       icon = as.character(shiny::icon("atom")))
+  )
+  ## map manager
+  expect_identical(
+    x$get_map_manager_widget_data(),
+    list(
+      id = "FS1",
+      name = "FS",
+      feature_name = "F1",
+      feature_id = "FID1",
+      feature_visible = FALSE,
+      feature_legend = l$legend$get_widget_data(),
+      units = "ha",
+      type = "theme")
   )
 })

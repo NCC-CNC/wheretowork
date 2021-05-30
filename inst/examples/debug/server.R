@@ -1,13 +1,17 @@
 function(input, output, session) {
-  output$widget <- renderSolutionSettings({
-    solutionSettings(ss)
+  # initialize solution settings widget
+  output$mapManagerPane_settings <- renderMapManager({
+    mapManager(mm)
   })
+
+  # initialize map
   output$map <- renderLeaflet({
     leaflet() %>%
       addTiles() %>%
       addSidebar(
-        id = "mysidebarid",
+        id = "sidebar",
         options = list(position = "left", fit = FALSE)
       )
   })
+
 }

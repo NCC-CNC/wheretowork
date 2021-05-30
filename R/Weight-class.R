@@ -20,6 +20,12 @@ Weight <- R6::R6Class(
     #' @field dataset [Dataset] object.
     dataset = NULL,
 
+    #' @field visible `logical` value.
+    visible = NA,
+
+    #' @field initial_visible `logical` value.
+    initial_visible = NA,
+
     #' @field status `logical` value.
     status = NA,
 
@@ -46,6 +52,7 @@ Weight <- R6::R6Class(
     #' @param id `character` value.
     #' @param name `character` value.
     #' @param dataset [Dataset] object.
+    #' @param initial_visible `logical` value.
     #' @param initial_status `logical` value.
     #' @param initial_factor `numeric` initial factor value.
     #' @param min_factor `numeric` minimum factor value.
@@ -54,7 +61,7 @@ Weight <- R6::R6Class(
     #' @return A new Weight object.
     ## constructor
     initialize = function(
-      id, name, dataset, initial_status,
+      id, name, dataset, initial_visible, initial_status,
       initial_factor, min_factor, max_factor, step_factor) {
       ### assert that arguments are valid
       assertthat::assert_that(
@@ -66,6 +73,9 @@ Weight <- R6::R6Class(
         assertthat::noNA(name),
         ### dataset
         inherits(dataset, "Dataset"),
+        #### initial_visible
+        assertthat::is.flag(initial_visible),
+        assertthat::noNA(initial_visible),
         #### initial_status
         assertthat::is.flag(initial_status),
         assertthat::noNA(initial_status),
@@ -93,6 +103,8 @@ Weight <- R6::R6Class(
       self$name <- name
       self$status <- initial_status
       self$initial_status <- initial_status
+      self$visible <- initial_visible
+      self$initial_visible <- initial_visible
       self$factor <- initial_factor
       self$initial_factor <- initial_factor
       self$min_factor <- min_factor
@@ -105,8 +117,9 @@ Weight <- R6::R6Class(
     #' @param ... not used.
     print = function(...) {
       message("Weight")
-      message("  id:     ", self$id)
-      message("  name:   ", self$name)
+      message("  id:      ", self$id)
+      message("  name:    ", self$name)
+      message("  visible: ", self$visible)
       message("  status: ", self$status)
       message("  factor: ", round(self$factor, 2))
       message("  dataset: ", self$dataset$repr())
@@ -129,10 +142,10 @@ Weight <- R6::R6Class(
     },
 
     #' @description
-    #' Get factor.
-    #' @return `numeric` value.
-    get_factor = function() {
-      self$factor
+    #' Get visible.
+    #' @return `logical` value.
+    get_visible = function() {
+      self$visible
     },
 
     #' @description
@@ -143,21 +156,54 @@ Weight <- R6::R6Class(
     },
 
     #' @description
+    #' Get factor.
+    #' @return `numeric` value.
+    get_factor = function() {
+      self$factor
+    },
+
+    #' @description
     #' Get parameter.
     #' @param name `character` parameter name.
-    #' Available options are `"status"` or `"factor"`.
+    #' Available options are `"status"` `"factor"`, or `"visible"`.
     #' @return Value.
     get_parameter = function(name) {
       assertthat::assert_that(
         assertthat::is.string(name),
         assertthat::noNA(name),
-        name %in% c("status", "factor"))
+        name %in% c("status", "factor", "visible"))
       if (identical(name, "status")) {
         out <- self$get_status()
       } else if (identical(name, "factor")) {
         out <- self$get_factor()
+      } else if (identical(name, "visible")) {
+        out <- self$get_visible()
+      } else {
+        stop(paste0("\"", name, "\" is not a parameter"))
       }
       out
+    },
+
+    #' @description
+    #' Set visible.
+    #' @param value `logical` new value.
+    set_visible = function(value) {
+      assertthat::assert_that(
+        assertthat::is.flag(value),
+        assertthat::noNA(value))
+      self$visible <- value
+      invisible(self)
+    },
+
+    #' @description
+    #' Set status.
+    #' @param value `logical` new value.
+    set_status = function(value) {
+      assertthat::assert_that(
+        assertthat::is.flag(value),
+        assertthat::noNA(value))
+      self$status <- value
+      invisible(self)
     },
 
     #' @description
@@ -174,30 +220,23 @@ Weight <- R6::R6Class(
     },
 
     #' @description
-    #' Set status.
-    #' @param value `logical` new value.
-    set_status = function(value) {
-      assertthat::assert_that(
-        assertthat::is.flag(value),
-        assertthat::noNA(value))
-      self$status <- value
-      invisible(self)
-    },
-
-    #' @description
     #' Set parameter.
     #' @param name `character` parameter name.
-    #' Available options are `"status"` or `"factor"`.
+    #' Available options are `"status"` `"factor"`, or `"visible"``.
     #' @param value `ANY` new value.
     set_parameter = function(name, value) {
       assertthat::assert_that(
         assertthat::is.string(name),
         assertthat::noNA(name),
-        name %in% c("status", "factor"))
+        name %in% c("status", "factor", "visible"))
       if (identical(name, "status")) {
         self$set_status(value)
       } else if (identical(name, "factor")) {
         self$set_factor(value)
+      } else if (identical(name, "visible")) {
+        self$set_visible(value)
+      } else {
+        stop(paste0("\"", name, "\" is not a parameter"))
       }
       invisible(self)
     },
@@ -211,9 +250,9 @@ Weight <- R6::R6Class(
         name = self$name,
         min_factor = self$min_factor,
         max_factor = self$max_factor,
-        initial_factor = self$factor,
+        factor = self$factor,
         step_factor = self$step_factor,
-        initial_status = self$status
+        status = self$status
       )
     },
 
@@ -224,8 +263,9 @@ Weight <- R6::R6Class(
       list(
         id = self$id,
         name = self$name,
-        units = self$dataset$units,
+        visible = self$visible,
         legend = self$dataset$legend$get_widget_data(),
+        units = self$dataset$units,
         type = "weight"
       )
     }
@@ -269,16 +309,17 @@ Weight <- R6::R6Class(
 #' @export
 new_weight <- function(
   name, dataset,
-  initial_status = TRUE, initial_factor = 0,
-  min_factor = 0, max_factor = 100, step_factor = 1,
+  initial_visible = TRUE, initial_status = TRUE,
+  initial_factor = 0, min_factor = 0, max_factor = 100, step_factor = 1,
   id = uuid::UUIDgenerate()) {
   Weight$new(
     id = id,
     name = name,
     dataset = dataset,
+    initial_visible = initial_visible,
+    initial_status = initial_status,
     min_factor = min_factor,
     max_factor = max_factor,
     initial_factor = initial_factor,
-    step_factor = step_factor,
-    initial_status = initial_status)
+    step_factor = step_factor)
 }

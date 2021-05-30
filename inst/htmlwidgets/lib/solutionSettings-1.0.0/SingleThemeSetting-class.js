@@ -10,13 +10,13 @@ class SingleThemeSetting {
     feature_current_held,
     feature_min_goal,
     feature_max_goal,
-    feature_initial_goal,
+    feature_goal,
     feature_limit_goal,
     feature_step_goal,
     feature_current_label,
+    feature_status,
     units,
     mandatory,
-    initial_status,
     round,
     icon
   ) {
@@ -59,10 +59,10 @@ class SingleThemeSetting {
     /// name
     this.name_el.innerText = name;
     /// status
-    this.status_el.checked = initial_status;
+    this.status_el.checked = feature_status;
     /// goal
     noUiSlider.create(this.goal_el, {
-      start: feature_initial_goal,
+      start: feature_goal,
       step: feature_step_goal,
       connect: "lower",
       range: {

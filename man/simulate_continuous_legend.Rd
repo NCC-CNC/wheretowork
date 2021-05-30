@@ -7,7 +7,7 @@
 simulate_continuous_legend()
 }
 \value{
-A \link{ContinuousLgend} object.
+A \link{ContinuousLegend} object.
 }
 \description{
 This function simulates a continuous legend (\link{ContinuousLegend}) object.
