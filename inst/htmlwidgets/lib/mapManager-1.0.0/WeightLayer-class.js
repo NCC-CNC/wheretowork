@@ -4,9 +4,9 @@ class WeightLayer {
     manager,
     id,
     name,
-    initial_visible,
-    units,
-    legend
+    visible,
+    legend,
+    units
   ) {
     // class fields
     this.id = id;
@@ -26,13 +26,14 @@ class WeightLayer {
     let that = this;
 
     // attach id to element
+    this.el.querySelector(".map-manager-layer").setAttribute("data-id", id);
     this.el.querySelector(".map-manager-layer").id = id;
 
     // set initial values
     /// name
     this.name_el.innerText = name;
     /// visible
-    this.visible_el.checked = initial_visible;
+    this.visible_el.checked = visible;
     /// view (i.e. show legend?), defaults to true
     this.view_el.checked = true;
     /// legend
@@ -42,31 +43,10 @@ class WeightLayer {
     if (HTMLWidgets.shinyMode) {
       this.view_el.addEventListener("change", function () {
         let checked = this.checked;
-        let els =
-          document.getElementById(id).querySelectorAll(
-            ".disable-if-inactive");
         if (checked) {
-          els.forEach((x) => x.removeAttribute("disabled"));
           that.legend_el.style.display = "block";
         } else {
-          els.forEach((x) => x.setAttribute("disabled", ""));
           that.legend_el.style.display = "none";
-        }
-      });
-    }
-
-    // set listeners to update user interface, icons for visible checkbox
-    /// enable/disable widget on click
-    if (HTMLWidgets.shinyMode) {
-      this.visible_el.addEventListener("change", function () {
-        let checked = this.checked;
-        let els =
-          document.getElementById(id).querySelectorAll(
-            ".disable-if-inactive");
-        if (checked) {
-          els.forEach((x) => x.removeAttribute("disabled"));
-        } else {
-          els.forEach((x) => x.setAttribute("disabled", ""));
         }
       });
     }

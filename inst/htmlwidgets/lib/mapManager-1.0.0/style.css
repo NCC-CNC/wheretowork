@@ -1,12 +1,49 @@
+/* layer containers */
 .map-manager-layer {
   width: 100%;
   border: 1px var(--border) solid;
   border-radius: 5px 5px 5px 5px;
 }
 
+.map-manager-layer-ghost {
+  background: #C8EBFB;
+}
+
+/* layer containers */
+.map-manager-layer .single-container {
+  width: 100%;
+  border: 1px var(--border) solid;
+  border-radius: 5px 5px 5px 5px;
+}
+
+/* header and sub-header */
+.map-manager-layer .header,
+.map-manager-layer .sub-header {
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-bottom: 0px;
+}
+
+/* header container */
+.map-manager-layer .header .name-label {
+  font-size: 14px;
+}
+
+/* sub-header container */
+.map-manager-layer .sub-header .name-label {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* visible checkbox */
 .map-manager-layer .visible-container input[type="checkbox"],
 .map-manager-layer .visible-container .checked {
     display: none;
+    color: black;
+}
+
+.map-manager-layer .visible-container .unchecked {
+    color: red;
 }
 
 .map-manager-layer .visible-container input[type="checkbox"]:checked ~ .checked

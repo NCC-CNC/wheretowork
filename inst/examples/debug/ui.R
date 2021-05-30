@@ -1,16 +1,12 @@
-fluidPage(
-  h4("Leaflet Sidebar Plugin"),
+fillPage(
   tagList(
     sidebar_tabs(
-      id = "mysidebarid",
-      iconList = list(icon("car")),
-      sidebar_pane(
-        title = "New solution",
-        id = "paneid",
-        icon = NULL,
-        solutionSettingsOutput("widget", height = "80vh")
+      id = "sidebar",
+      iconList = list(icon("bars")),
+      mapManagerSidebarPane(
+        id = "mapManagerPane"
       )
     ),
-    leafletOutput("map", height = "700px")
+    leafletOutput("map", width = "100%", height = "100%")
   )
 )

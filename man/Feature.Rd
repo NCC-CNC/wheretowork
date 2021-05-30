@@ -23,6 +23,10 @@ Definition for the Feature class.
 
 \item{\code{dataset}}{\link{Dataset} object.}
 
+\item{\code{visible}}{\code{logical} value.}
+
+\item{\code{initial_visible}}{\code{logical} value.}
+
 \item{\code{status}}{\code{logical} value.}
 
 \item{\code{initial_status}}{\code{logical} value.}
@@ -53,10 +57,12 @@ Definition for the Feature class.
 \item \href{#method-new}{\code{Feature$new()}}
 \item \href{#method-print}{\code{Feature$print()}}
 \item \href{#method-repr}{\code{Feature$repr()}}
-\item \href{#method-get_goal}{\code{Feature$get_goal()}}
+\item \href{#method-get_visible}{\code{Feature$get_visible()}}
 \item \href{#method-get_status}{\code{Feature$get_status()}}
-\item \href{#method-set_goal}{\code{Feature$set_goal()}}
+\item \href{#method-get_goal}{\code{Feature$get_goal()}}
+\item \href{#method-set_visible}{\code{Feature$set_visible()}}
 \item \href{#method-set_status}{\code{Feature$set_status()}}
+\item \href{#method-set_goal}{\code{Feature$set_goal()}}
 \item \href{#method-clone}{\code{Feature$clone()}}
 }
 }
@@ -70,6 +76,7 @@ Create a Feature object.
   id,
   name,
   dataset,
+  initial_visible,
   initial_status,
   initial_goal,
   min_goal,
@@ -90,6 +97,8 @@ Create a Feature object.
 \item{\code{name}}{\code{character} value.}
 
 \item{\code{dataset}}{\link{Dataset} .}
+
+\item{\code{initial_visible}}{\code{logical} value.}
 
 \item{\code{initial_status}}{\code{logical} value.}
 
@@ -157,12 +166,12 @@ Defaults to \code{"]"}.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_goal"></a>}}
-\if{latex}{\out{\hypertarget{method-get_goal}{}}}
-\subsection{Method \code{get_goal()}}{
-Get goal.
+\if{html}{\out{<a id="method-get_visible"></a>}}
+\if{latex}{\out{\hypertarget{method-get_visible}{}}}
+\subsection{Method \code{get_visible()}}{
+Get visible.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Feature$get_goal()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Feature$get_visible()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
@@ -183,18 +192,31 @@ Get status.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_goal"></a>}}
-\if{latex}{\out{\hypertarget{method-set_goal}{}}}
-\subsection{Method \code{set_goal()}}{
-Set goal.
+\if{html}{\out{<a id="method-get_goal"></a>}}
+\if{latex}{\out{\hypertarget{method-get_goal}{}}}
+\subsection{Method \code{get_goal()}}{
+Get goal.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Feature$set_goal(value)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Feature$get_goal()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{numeric} value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_visible"></a>}}
+\if{latex}{\out{\hypertarget{method-set_visible}{}}}
+\subsection{Method \code{set_visible()}}{
+Set visible.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Feature$set_visible(value)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{value}}{\code{numeric} new value.}
+\item{\code{value}}{\code{logical} new value.}
 }
 \if{html}{\out{</div>}}
 }
@@ -212,6 +234,23 @@ Set status.
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{value}}{\code{logical} new value.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_goal"></a>}}
+\if{latex}{\out{\hypertarget{method-set_goal}{}}}
+\subsection{Method \code{set_goal()}}{
+Set goal.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Feature$set_goal(value)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{value}}{\code{numeric} new value.}
 }
 \if{html}{\out{</div>}}
 }

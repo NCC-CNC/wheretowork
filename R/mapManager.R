@@ -114,10 +114,61 @@ mapManager_html <- function(id, style, class, ...) {
     )
 
   ## singleTheme
-  ### TODO
+  x <-
+    htmltools::tagAppendChild(
+      x,
+      htmltools::tags$template(
+        class = "single-theme-layer-template",
+        htmltools::tags$div(
+          class  = "map-manager-layer",
+          htmltools::tags$div(
+            class = "theme-layer",
+            mm_header_component_scaffold(),
+            htmltools::tags$div(
+              class = "layer-legend-container",
+              mm_legend_component_scaffold()
+            )
+          )
+        )
+      )
+    )
 
   ## multiTheme
-  ### TODO
+  ### main container
+  x <-
+    htmltools::tagAppendChild(
+      x,
+      htmltools::tags$template(
+        class = "multi-theme-layer-template",
+        htmltools::tags$div(
+          class = "map-manager-layer",
+          htmltools::tags$div(
+            class = "theme-layer",
+            mm_header_component_scaffold(),
+            htmltools::tags$div(
+              class = "main"
+            )
+          )
+        )
+      )
+    )
+
+  ### sub container
+  x <-
+    htmltools::tagAppendChild(
+      x,
+      htmltools::tags$template(
+        class = "multi-theme-single-layer-template",
+        htmltools::tags$div(
+          class = "single-container",
+          mm_subheader_component_scaffold(),
+          htmltools::tags$div(
+            class = "layer-legend-container",
+            mm_legend_component_scaffold()
+          )
+        )
+      )
+    )
 
   # return result
   x

@@ -18,6 +18,12 @@ Feature <- R6::R6Class(
     #' @field dataset [Dataset] object.
     dataset = NULL,
 
+    #' @field visible `logical` value.
+    visible = NA,
+
+    #' @field initial_visible `logical` value.
+    initial_visible = NA,
+
     #' @field status `logical` value.
     status = NA,
 
@@ -56,6 +62,7 @@ Feature <- R6::R6Class(
     #' @param id `character` value.
     #' @param name `character` value.
     #' @param dataset [Dataset] .
+    #' @param initial_visible `logical` value.
     #' @param initial_status `logical` value.
     #' @param min_goal `numeric` value.
     #' @param max_goal `numeric` value.
@@ -67,7 +74,7 @@ Feature <- R6::R6Class(
     #' @param icon `shiny.tag` object.
     #' @return A new Feature object.
     initialize = function(
-      id, name, dataset, initial_status,
+      id, name, dataset, initial_visible, initial_status,
       initial_goal, min_goal, max_goal, step_goal, limit_goal,
       current, current_label, icon) {
       ### assert that arguments are valid
@@ -80,6 +87,9 @@ Feature <- R6::R6Class(
         assertthat::noNA(name),
         #### dataset
         inherits(dataset, "Dataset"),
+        #### initial_visible
+        assertthat::is.flag(initial_visible),
+        assertthat::noNA(initial_visible),
         #### initial_status
         assertthat::is.flag(initial_status),
         assertthat::noNA(initial_status),
@@ -115,6 +125,8 @@ Feature <- R6::R6Class(
       self$id <- id
       self$name <- name
       self$dataset <- dataset
+      self$visible <- initial_visible
+      self$initial_visible <- initial_visible
       self$status <- initial_status
       self$initial_status <- initial_status
       self$goal <- initial_goal
@@ -135,7 +147,8 @@ Feature <- R6::R6Class(
       message("Feature")
       message("  id:      ", self$id)
       message("  name:    ", self$name)
-      message("  status:  ", round(self$status, 2))
+      message("  visible:  ", self$visible)
+      message("  status:  ", self$status)
       message("  current: ", round(self$current, 2))
       message("  goal:    ", round(self$goal, 2))
       message("  dataset:   ", self$dataset$repr())
@@ -159,10 +172,10 @@ Feature <- R6::R6Class(
     },
 
     #' @description
-    #' Get goal.
+    #' Get visible.
     #' @return `numeric` value.
-    get_goal = function() {
-      self$goal
+    get_visible = function() {
+      self$visible
     },
 
     #' @description
@@ -170,6 +183,35 @@ Feature <- R6::R6Class(
     #' @return `logical` value.
     get_status = function() {
       self$status
+    },
+
+    #' @description
+    #' Get goal.
+    #' @return `numeric` value.
+    get_goal = function() {
+      self$goal
+    },
+
+    #' @description
+    #' Set visible.
+    #' @param value `logical` new value.
+    set_visible = function(value) {
+      assertthat::assert_that(
+        assertthat::is.flag(value),
+        assertthat::noNA(value))
+      self$visible = value
+      invisible(self)
+    },
+
+    #' @description
+    #' Set status.
+    #' @param value `logical` new value.
+    set_status = function(value) {
+      assertthat::assert_that(
+        assertthat::is.flag(value),
+        assertthat::noNA(value))
+      self$status = value
+      invisible(self)
     },
 
     #' @description
@@ -184,18 +226,8 @@ Feature <- R6::R6Class(
         value >= self$limit_goal)
       self$goal <- value
       invisible(self)
-    },
-
-    #' @description
-    #' Set status.
-    #' @param value `logical` new value.
-    set_status = function(value) {
-      assertthat::assert_that(
-        assertthat::is.flag(value),
-        assertthat::noNA(value))
-      self$status = value
-      invisible(self)
     }
+
   )
 )
 
@@ -203,12 +235,17 @@ Feature <- R6::R6Class(
 #'
 #' Create a new [Feature] object.
 #'
-#' @param name `character` Name of the theme.
+#' @param name `character` Name of the feature.
 #'
 #' @param dataset [Dataset] object.
 #'
-#' @param initial_status `logical` The initial status.
-#'   This is used to display information on whether the theme is
+#' @param initial_visible `logical` The initial visible value.
+#'   This is used to determine if the feature is displayed (or not)
+#'   or not the map.
+#'   Defaults to `TRUE`
+#'
+#' @param initial_status `logical` The initial status value.
+#'   This is used to display information on whether the feature is
 #'   selected (or not) for subsequent analysis.
 #'   Defaults to `TRUE`
 #'
@@ -274,6 +311,7 @@ Feature <- R6::R6Class(
 new_feature <- function(
     name,
     dataset,
+    initial_visible = TRUE,
     initial_status = TRUE,
     initial_goal = 0.1,
     min_goal = 0,
@@ -292,6 +330,7 @@ new_feature <- function(
     id = id,
     name = name,
     dataset = dataset,
+    initial_visible = initial_visible,
     initial_status = initial_status,
     initial_goal = initial_goal,
     min_goal = min_goal,

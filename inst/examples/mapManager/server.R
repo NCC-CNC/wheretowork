@@ -1,17 +1,108 @@
 function(input, output, session) {
-  # initialize solution settings widget
-  output$mapManagerPane_settings <- renderMapManager({
+  # initialize widget
+  output$widget <- renderMapManager({
     mapManager(mm)
   })
 
-  # initialize map
-  output$map <- renderLeaflet({
-    leaflet() %>%
-      addTiles() %>%
-      addSidebar(
-        id = "sidebar",
-        options = list(position = "left", fit = FALSE)
-      )
+  # update widget state
+  ## ordering
+  observeEvent(input$order_button, {
+
+    updateMapManagerOrder(
+      session, "widget",
+      value = rev(seq_along(mm$layers))
+    )
+  })
+
+  ## singleTheme
+  observeEvent(input$st_name_button, {
+    updateMapManagerLayer(
+      session, "widget",
+      list(
+        id = "SPECIES", parameter = "name",
+        value = input$st_name_input)
+    )
+  })
+  observeEvent(input$st_visible_button, {
+    updateMapManagerLayer(
+      session, "widget",
+      list(
+        id = "SPECIES", parameter = "visible",
+        value = input$st_visible_input)
+    )
+  })
+
+  ## multiTheme
+  observeEvent(input$mt_name_button, {
+    updateMapManagerLayer(
+      session, "widget",
+      list(
+        id = "ER", parameter = "name",
+        value = input$mt_name_input)
+    )
+  })
+  observeEvent(input$mt_visible_button, {
+    updateMapManagerLayer(
+      session, "widget",
+      list(
+        id = "ER", parameter = "visible",
+        value = input$mt_visible_input)
+    )
+  })
+  observeEvent(input$mt_feature_visible_button, {
+    updateMapManagerLayer(
+      session, "widget",
+      list(
+        id = "ER", parameter = "feature_visible",
+        value =
+          c(input$mt1_feature_visible_input, input$mt2_feature_visible_input))
+    )
+  })
+  observeEvent(input$mt_order_button, {
+    updateMapManagerLayer(
+      session, "widget",
+      list(
+        id = "ER", parameter = "feature_order",
+        value = rev(seq_along(t2$feature)))
+    )
+  })
+
+
+  ## weight
+  observeEvent(input$w_name_button, {
+    updateMapManagerLayer(
+      session, "widget",
+      list(
+        id = "HFP", parameter = "name",
+        value = input$w_name_input)
+    )
+  })
+  observeEvent(input$w_visible_button, {
+    updateMapManagerLayer(
+      session, "widget",
+      list(
+        id = "HFP", parameter = "visible",
+        value = input$w_visible_input)
+    )
+  })
+
+  # update internal object based on widget
+  observeEvent(input$widget, {
+    mm$set_parameter(input$widget)
+  })
+
+  # update text outputs
+  ## text with messages from widget
+  observeEvent(input$widget, {
+    output$message <-
+      renderText({ paste(capture.output(input$widget), collapse = "\n") })
+  })
+  ## text with internal widget state
+  observeEvent(input$widget, {
+    output$show <-
+      renderText({
+        paste(capture.output(print(mm), type = "message"), collapse = "\n")
+      })
   })
 
 }

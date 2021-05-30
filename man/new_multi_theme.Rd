@@ -8,16 +8,11 @@ new_multi_theme(
   name,
   feature,
   mandatory = FALSE,
-  initial_status = TRUE,
   round = TRUE,
   icon = "map-marked-alt",
-  id = uuid::UUIDgenerate(),
-  group_min_goal = 0,
-  group_max_goal = 1,
-  group_initial_goal = 0.3,
-  group_limit_goal = 0.1,
-  group_step_goal = 0.01,
-  group_current_label = "Current"
+  current_label = "Current",
+  feature_order = as.double(rev(seq_along(feature))),
+  id = uuid::UUIDgenerate()
 )
 }
 \arguments{
@@ -28,11 +23,6 @@ new_multi_theme(
 \item{mandatory}{\code{logical} Is the theme mandatory for generating solutions?
 Defaults to \code{FALSE}.}
 
-\item{initial_status}{\code{logical} The initial status.
-This is used to display information on whether the theme is
-selected (or not) for subsequent analysis.
-Defaults to \code{TRUE}}
-
 \item{round}{\code{logical} should all numbers be rounded to the nearest integer?
 Defaults to \code{TRUE}.}
 
@@ -42,42 +32,15 @@ Alternatively, the argument can be a \code{character} to automatically
 generate a \code{shiny.tag} icon (using \code{\link[shiny:icon]{shiny::icon()}}).
 Defaults to \code{"map-marked-alt"}.}
 
-\item{id}{\code{character} unique identifier.
-Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}
-
-\item{group_min_goal}{\code{numeric} The minimum goal (inclusive)
-shown for the features under the group view.
-Note that goal values are specified as proportions, such that a
-value of 0.1 corresponds to 10\%.
-Defaults to 0 (i.e. 0\%).}
-
-\item{group_max_goal}{\code{numeric} The maximum goal (inclusive)
-shown for the features under the group view.
-Note that goal values are specified as proportions, such that a
-value of 0.1 corresponds to 10\%.
-Defaults to 1 (i.e. 100\%).}
-
-\item{group_initial_goal}{\code{numeric} The initial goal
-for the features under the group view.
-Note that goal values are specified as proportions, such that a
-value of 0.1 corresponds to 10\%.
-Defaults to 0.3 (i.e. 30\%).}
-
-\item{group_limit_goal}{\code{numeric}  The minimum increment for setting goals
-for the features under the group view.
-Note that goal are specified as proportions, such that a
-value of 0.01 corresponds to 1\%.
-Defaults to 0.01 (i.e. 1\%).}
-
-\item{group_step_goal}{\code{numeric} The minimum increment for setting goals
-for the features under the group view.
-Note that goal are specified as proportions, such that a
-value of 0.01 corresponds to 1\%.
-Defaults to 0.01 (i.e. 1\%).}
-
-\item{group_current_label}{\code{character} The display label for the current
+\item{current_label}{\code{character} The display label for the current
 level of representation for the features under the group view.
 Defaults to \code{Current}.}
+
+\item{feature_order}{\code{numeric} Relative order for displaying each feature
+on a map. Defaults to a reverse sequence of integer values.}
+
+\item{id}{\code{character} unique identifier.
+Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}
 }
 \value{
 A \link{MultiTheme} object.

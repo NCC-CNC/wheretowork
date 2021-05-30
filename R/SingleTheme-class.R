@@ -17,12 +17,11 @@ SingleTheme <- R6::R6Class(
     #' @param name `character` value.
     #' @param feature `list` of a single [Feature] object.
     #' @param mandatory `logical` value.
-    #' @param initial_status `logical` value.
     #' @param icon `shiny.tag` object.
     #' @param round `logical` value.
     #' @return A new SingleTheme object.
     initialize = function(
-      id, name, feature, mandatory, initial_status, round, icon) {
+      id, name, feature, mandatory, round, icon) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -38,9 +37,6 @@ SingleTheme <- R6::R6Class(
         #### mandatory
         assertthat::is.flag(mandatory),
         assertthat::noNA(mandatory),
-        #### initial_status
-        assertthat::is.flag(initial_status),
-        assertthat::noNA(initial_status),
         #### round
         assertthat::is.flag(round),
         assertthat::noNA(round),
@@ -51,9 +47,25 @@ SingleTheme <- R6::R6Class(
       self$name = name
       self$feature = feature
       self$mandatory = mandatory
-      self$initial_status = initial_status
       self$round = round
       self$icon = icon
+    },
+
+    #' @description
+    #' Get relative order for displaying each feature on a map.
+    #' @details
+    #' The relative order is fixed at 1 because each this class
+    #' only contains a single feature.
+    #' @return `numeric` value.
+    get_feature_order = function() {
+      1
+    },
+
+    #' @description
+    #' Set relative order for displaying features on a map.
+    #' @param ... not used.
+    set_feature_order = function(...) {
+      stop("This class has a fixed feature order.")
     },
 
     #' @description
@@ -65,17 +77,17 @@ SingleTheme <- R6::R6Class(
         name = self$name,
         feature_name = self$feature[[1]]$name,
         feature_id = self$feature[[1]]$id,
+        feature_status = self$feature[[1]]$status,
         feature_total_amount = self$feature[[1]]$dataset$total,
         feature_current_held = self$feature[[1]]$current,
         feature_min_goal = self$feature[[1]]$min_goal,
         feature_max_goal = self$feature[[1]]$max_goal,
-        feature_initial_goal = self$feature[[1]]$goal,
+        feature_goal = self$feature[[1]]$goal,
         feature_limit_goal = self$feature[[1]]$limit_goal,
         feature_step_goal = self$feature[[1]]$step_goal,
         feature_current_label = self$feature[[1]]$current_label,
         units = self$feature[[1]]$dataset$units,
         mandatory = self$mandatory,
-        initial_status = self$initial_status,
         round = self$round,
         icon = as.character(self$icon)
       )
@@ -90,8 +102,9 @@ SingleTheme <- R6::R6Class(
         name = self$name,
         feature_name = self$feature[[1]]$name,
         feature_id = self$feature[[1]]$id,
+        feature_visible = self$feature[[1]]$visible,
+        feature_legend = self$feature[[1]]$dataset$legend$get_widget_data(),
         units = self$feature[[1]]$dataset$units,
-        legend = self$feature[[1]]$dataset$legend$get_widget_data(),
         type = "theme"
       )
     }
@@ -130,7 +143,6 @@ new_single_theme <- function(
   name,
   feature,
   mandatory = FALSE,
-  initial_status = TRUE,
   round = TRUE,
   icon = "map-marked-alt",
   id = uuid::UUIDgenerate()) {
@@ -147,7 +159,6 @@ new_single_theme <- function(
     feature = feature,
     name = name,
     mandatory = mandatory,
-    initial_status = initial_status,
     round = round,
     icon = icon)
 }

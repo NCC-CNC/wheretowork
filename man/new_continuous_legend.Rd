@@ -12,11 +12,10 @@ new_continuous_legend(min_value, max_value, colors, n = 4)
 \item{max_value}{\code{numeric} Maximum value to show in the legend.}
 
 \item{colors}{\code{character} Colors to show in the color the legend.
-
 These colors should be in hex format (e.g. \code{"#AABBCC"}) and
 are used to generate the color bar.}
 
-\item{values}{\code{integer} Number of labels to display in the color bar.
+\item{n}{\code{integer} Number of labels to display in the color bar.
 Default to 4.}
 }
 \value{

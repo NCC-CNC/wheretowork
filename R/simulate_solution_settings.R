@@ -169,10 +169,6 @@ simulate_solution_settings <- function(
     #### generate theme
     new_multi_theme(
       name = mt_names[i],
-      group_initial_goal =
-        max(vapply(fts, function(x) x$initial_goal, numeric(1))),
-      group_limit_goal =
-        max(vapply(fts, function(x) x$limit_goal, numeric(1))),
       feature = fts,
       icon = example_theme_icon(),
     )

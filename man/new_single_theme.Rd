@@ -8,7 +8,6 @@ new_single_theme(
   name,
   feature,
   mandatory = FALSE,
-  initial_status = TRUE,
   round = TRUE,
   icon = "map-marked-alt",
   id = uuid::UUIDgenerate()
@@ -23,11 +22,6 @@ can also be supplied that contains a single \link{Feature} object.}
 
 \item{mandatory}{\code{logical} Is the theme mandatory for generating solutions?
 Defaults to \code{FALSE}.}
-
-\item{initial_status}{\code{logical} The initial status.
-This is used to display information on whether the theme is
-selected (or not) for subsequent analysis.
-Defaults to \code{TRUE}}
 
 \item{round}{\code{logical} should all numbers be rounded to the nearest integer?
 Defaults to \code{TRUE}.}

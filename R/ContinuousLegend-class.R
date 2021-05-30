@@ -72,13 +72,12 @@ ContinuousLegend <- R6::R6Class(
 #'
 #' @param max_value `numeric` Maximum value to show in the legend.
 #'
-#' @param values `integer` Number of labels to display in the color bar.
-#'   Default to 4.
-#'
 #' @param colors `character` Colors to show in the color the legend.
-#'
 #'   These colors should be in hex format (e.g. `"#AABBCC"`) and
 #'   are used to generate the color bar.
+#'
+#' @param n `integer` Number of labels to display in the color bar.
+#'   Default to 4.
 #'
 #' @return A [ContinuousLegend] object.
 #'
