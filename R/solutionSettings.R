@@ -116,7 +116,7 @@ solutionSettings_html <- function(id, style, class, ...) {
           class = "solution-settings",
           shinyBS::bsCollapse(
             id = paste0(id, "_collapse"),
-            multiple = TRUE,
+            multiple = FALSE,
             open = paste0(id, c("_collapseThemePanel", "_collapseWeightPanel")),
             shinyBS::bsCollapsePanel(
               title = "Themes",
