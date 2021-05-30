@@ -4,7 +4,7 @@
 \alias{new_continuous_legend}
 \title{New continuous legend}
 \usage{
-new_continuous_legend(min_value, max_value, colors, n = 5)
+new_continuous_legend(min_value, max_value, colors, n = 4)
 }
 \arguments{
 \item{min_value}{\code{numeric} Minimum value to show in the legend.}
@@ -17,7 +17,7 @@ These colors should be in hex format (e.g. \code{"#AABBCC"}) and
 are used to generate the color bar.}
 
 \item{values}{\code{integer} Number of labels to display in the color bar.
-Default to 5.}
+Default to 4.}
 }
 \value{
 A \link{ContinuousLegend} object.

@@ -73,7 +73,7 @@ ContinuousLegend <- R6::R6Class(
 #' @param max_value `numeric` Maximum value to show in the legend.
 #'
 #' @param values `integer` Number of labels to display in the color bar.
-#'   Default to 5.
+#'   Default to 4.
 #'
 #' @param colors `character` Colors to show in the color the legend.
 #'
@@ -90,7 +90,7 @@ ContinuousLegend <- R6::R6Class(
 #' print(l)
 #'
 #' @export
-new_continuous_legend <- function(min_value, max_value, colors, n = 5) {
+new_continuous_legend <- function(min_value, max_value, colors, n = 4) {
   ContinuousLegend$new(
     min_value = min_value, max_value = max_value, colors = colors, n = n)
 }
