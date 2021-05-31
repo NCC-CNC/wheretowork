@@ -3,6 +3,7 @@
   width: 100%;
   border: 1px var(--border) solid;
   border-radius: 5px 5px 5px 5px;
+  margin-bottom: 8px;
 }
 
 .map-manager-layer-ghost {
@@ -11,9 +12,11 @@
 
 /* layer containers */
 .map-manager-layer .single-container {
-  width: 100%;
+  width: 95%;
   border: 1px var(--border) solid;
   border-radius: 5px 5px 5px 5px;
+  margin-bottom: 8px;
+  margin-left: 9px;
 }
 
 /* header and sub-header */
