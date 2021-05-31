@@ -4,10 +4,13 @@
 \alias{new_dataset}
 \title{New dataset}
 \usage{
-new_dataset(source, total, units, legend)
+new_dataset(source, subset, total, units, legend)
 }
 \arguments{
-\item{source}{\code{character} file path for the underlying data.}
+\item{source}{\code{character} file path for the dataset.}
+
+\item{subset}{\code{character} or \code{integer} indicating the field/layer with
+data within the dataset.}
 
 \item{total}{\code{numeric} total amount of all values in the underlying data.}
 
@@ -24,7 +27,7 @@ Create a new \link{Dataset} object.
 \examples{
 # create new object
 l <- new_dataset(
-  source = tempfile(), total = 12, units = "ha",
+  source = tempfile(), subset = 1, total = 12, units = "ha",
   legend = new_continuous_legend(1, 100, c("#000000", "#AAAAAA")))
 
 # print object

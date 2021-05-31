@@ -12,12 +12,15 @@ Dataset class
 Definition for the Dataset class.
 }
 \seealso{
-\code{\link[=new_dataset]{new_dataset()}}
+\code{\link[=new_dataset]{new_dataset()}}, \code{\link[=read_dataset]{read_dataset()}}, \code{\link[=read_dataset_with_metadata]{read_dataset_with_metadata()}}.
 }
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
 \item{\code{source}}{\code{character} value.}
+
+\item{\code{subset}}{\code{character} or \code{integer} value indicating the
+field/layer within the dataset with the data.}
 
 \item{\code{total}}{\code{numeric} value.}
 
@@ -42,13 +45,15 @@ Definition for the Dataset class.
 \subsection{Method \code{new()}}{
 Create a Dataset object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Dataset$new(source, total, units, legend)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Dataset$new(source, subset, total, units, legend)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{source}}{\code{character} value.}
+
+\item{\code{subset}}{\code{character} or \code{integer} value.}
 
 \item{\code{total}}{\code{numeric} value.}
 

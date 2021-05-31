@@ -193,6 +193,13 @@ Feature <- R6::R6Class(
     },
 
     #' @description
+    #' Get the data.
+    #' @return [sf::st_as_sf()] or [rater::raster()] object.
+    get_data = function() {
+      self$dataset$get_data()
+    },
+
+    #' @description
     #' Set visible.
     #' @param value `logical` new value.
     set_visible = function(value) {

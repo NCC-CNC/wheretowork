@@ -163,6 +163,13 @@ Weight <- R6::R6Class(
     },
 
     #' @description
+    #' Get the data.
+    #' @return [sf::st_as_sf()] or [rater::raster()] object.
+    get_data = function() {
+      self$dataset$get_data()
+    },
+
+    #' @description
     #' Get parameter.
     #' @param name `character` parameter name.
     #' Available options are `"status"` `"factor"`, or `"visible"`.
