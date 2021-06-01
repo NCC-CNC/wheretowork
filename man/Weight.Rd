@@ -52,6 +52,7 @@ Definition for the Weight class.
 \item \href{#method-get_visible}{\code{Weight$get_visible()}}
 \item \href{#method-get_status}{\code{Weight$get_status()}}
 \item \href{#method-get_factor}{\code{Weight$get_factor()}}
+\item \href{#method-get_data}{\code{Weight$get_data()}}
 \item \href{#method-get_parameter}{\code{Weight$get_parameter()}}
 \item \href{#method-set_visible}{\code{Weight$set_visible()}}
 \item \href{#method-set_status}{\code{Weight$set_status()}}
@@ -186,6 +187,19 @@ Get factor.
 
 \subsection{Returns}{
 \code{numeric} value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_data"></a>}}
+\if{latex}{\out{\hypertarget{method-get_data}{}}}
+\subsection{Method \code{get_data()}}{
+Get the data.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Weight$get_data()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{\link[sf:st_as_sf]{sf::st_as_sf()}} or \code{\link[raster:raster]{raster::raster()}} object.
 }
 }
 \if{html}{\out{<hr>}}

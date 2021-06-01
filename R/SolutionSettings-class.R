@@ -100,6 +100,12 @@ SolutionSettings <- R6::R6Class(
     },
 
     #' @description
+    #' Get feature (rij) matrix.
+    #' @param value `character` weight identifier.
+    #' @return [Weight] object.
+
+
+    #' @description
     #' Get a parameter for a weight or theme.
     #' @param value `list` with new parameter information (see Details section)
     #' @details

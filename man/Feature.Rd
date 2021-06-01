@@ -60,6 +60,7 @@ Definition for the Feature class.
 \item \href{#method-get_visible}{\code{Feature$get_visible()}}
 \item \href{#method-get_status}{\code{Feature$get_status()}}
 \item \href{#method-get_goal}{\code{Feature$get_goal()}}
+\item \href{#method-get_data}{\code{Feature$get_data()}}
 \item \href{#method-set_visible}{\code{Feature$set_visible()}}
 \item \href{#method-set_status}{\code{Feature$set_status()}}
 \item \href{#method-set_goal}{\code{Feature$set_goal()}}
@@ -202,6 +203,19 @@ Get goal.
 
 \subsection{Returns}{
 \code{numeric} value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_data"></a>}}
+\if{latex}{\out{\hypertarget{method-get_data}{}}}
+\subsection{Method \code{get_data()}}{
+Get the data.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Feature$get_data()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{\link[sf:st_as_sf]{sf::st_as_sf()}} or \code{\link[raster:raster]{raster::raster()}} object.
 }
 }
 \if{html}{\out{<hr>}}

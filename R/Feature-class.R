@@ -194,7 +194,7 @@ Feature <- R6::R6Class(
 
     #' @description
     #' Get the data.
-    #' @return [sf::st_as_sf()] or [rater::raster()] object.
+    #' @return [sf::st_as_sf()] or [raster::raster()] object.
     get_data = function() {
       self$dataset$get_data()
     },

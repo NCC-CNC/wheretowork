@@ -36,6 +36,9 @@ field/layer within the dataset with the data.}
 \item \href{#method-new}{\code{Dataset$new()}}
 \item \href{#method-print}{\code{Dataset$print()}}
 \item \href{#method-repr}{\code{Dataset$repr()}}
+\item \href{#method-import}{\code{Dataset$import()}}
+\item \href{#method-clean}{\code{Dataset$clean()}}
+\item \href{#method-get_data}{\code{Dataset$get_data()}}
 \item \href{#method-clone}{\code{Dataset$clone()}}
 }
 }
@@ -106,6 +109,39 @@ Defaults to \code{"]"}.}
 }
 \subsection{Returns}{
 \code{character} value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-import"></a>}}
+\if{latex}{\out{\hypertarget{method-import}{}}}
+\subsection{Method \code{import()}}{
+Import the dataset into memory.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Dataset$import()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clean"></a>}}
+\if{latex}{\out{\hypertarget{method-clean}{}}}
+\subsection{Method \code{clean()}}{
+Clean the dataset from memory.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Dataset$clean()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_data"></a>}}
+\if{latex}{\out{\hypertarget{method-get_data}{}}}
+\subsection{Method \code{get_data()}}{
+Get the data.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Dataset$get_data()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{\link[sf:st_as_sf]{sf::st_as_sf()}} or \code{\link[raster:raster]{raster::raster()}} object.
 }
 }
 \if{html}{\out{<hr>}}

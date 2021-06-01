@@ -84,15 +84,14 @@ Dataset <- R6::R6Class(
         ".../", basename(self$source),
         " ", start, "total: ", round(self$total, 2), " ",
         self$units, end)
-    }
+    },
 
     #' @description
-    #' Get the data.
-    #' @return [sf::st_as_sf()] or [rater::raster()] object.
-    get_data = function() {
-      out <- read_spatial_data(self$source)
+    #' Import the dataset into memory.
+    import = function() {
+      d <- read_spatial_data(self$source)
       if (is.character(self$subset)) {
-        i <- which(names(out) == self$subset)
+        i <- which(names(d) == self$subset)
         asserrthat::assert_that(
           length(i) == 1,
           msg = paste0(
@@ -106,7 +105,25 @@ Dataset <- R6::R6Class(
             "\""))
         i <- self$subset
       }
-      out[[i]]
+      self$data <- out[[i]]
+      invisible(self)
+    },
+
+    #' @description
+    #' Clean the dataset from memory.
+    clean = function() {
+      self$data <- NULL
+      invisible(self)
+    },
+
+    #' @description
+    #' Get the data.
+    #' @return [sf::st_as_sf()] or [raster::raster()] object.
+    get_data = function() {
+      if (is.null(self$data)) {
+        self$import()
+      }
+      self$data
     }
   )
 )
