@@ -8,6 +8,7 @@
   flex-flow: row wrap;
   align-content: flex-end;
   margin: -7px;
+  margin-left:17px;
 }
 
 .categorical-legend .item {
