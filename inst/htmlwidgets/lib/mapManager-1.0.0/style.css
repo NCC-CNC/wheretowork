@@ -38,6 +38,28 @@
   font-weight: 700;
 }
 
+/* view checkbox */
+.map-manager-layer .view-container input[type="checkbox"],
+.map-manager-layer .view-container .checked {
+    display: none;
+    color: black;
+}
+
+.map-manager-layer .view-container .unchecked {
+    color: black;
+}
+
+.map-manager-layer .view-container input[type="checkbox"]:checked ~ .checked
+{
+    display: inline-block;
+}
+
+.map-manager-layer .view-container input[type="checkbox"]:checked ~ .unchecked
+{
+    display: none;
+}
+
+
 /* visible checkbox */
 .map-manager-layer .visible-container input[type="checkbox"],
 .map-manager-layer .visible-container .checked {
