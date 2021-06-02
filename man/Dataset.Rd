@@ -10,23 +10,19 @@ Dataset class
 }
 \details{
 Definition for the Dataset class.
+
+Note that this method has no effect if the dataset does not have
+file path on disk.
 }
 \seealso{
-\code{\link[=new_dataset]{new_dataset()}}, \code{\link[=read_dataset]{read_dataset()}}, \code{\link[=read_dataset_with_metadata]{read_dataset_with_metadata()}}.
+\code{\link[=new_dataset]{new_dataset()}}.
 }
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
-\item{\code{source}}{\code{character} value.}
+\item{\code{source}}{\code{character}, \code{\link[sf:sf]{sf::st_sf()}}, or \code{\link[raster:stack]{raster::stack()}} object.}
 
-\item{\code{subset}}{\code{character} or \code{integer} value indicating the
-field/layer within the dataset with the data.}
-
-\item{\code{total}}{\code{numeric} value.}
-
-\item{\code{units}}{\code{character} value.}
-
-\item{\code{legend}}{\code{Legend} object.}
+\item{\code{data}}{\code{NULL}, \code{\link[sf:sf]{sf::st_sf()}}, or \code{\link[raster:stack]{raster::stack()}} object.}
 }
 \if{html}{\out{</div>}}
 }
@@ -39,6 +35,8 @@ field/layer within the dataset with the data.}
 \item \href{#method-import}{\code{Dataset$import()}}
 \item \href{#method-clean}{\code{Dataset$clean()}}
 \item \href{#method-get_data}{\code{Dataset$get_data()}}
+\item \href{#method-get_variable}{\code{Dataset$get_variable()}}
+\item \href{#method-has_variable}{\code{Dataset$has_variable()}}
 \item \href{#method-clone}{\code{Dataset$clone()}}
 }
 }
@@ -48,21 +46,13 @@ field/layer within the dataset with the data.}
 \subsection{Method \code{new()}}{
 Create a Dataset object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Dataset$new(source, subset, total, units, legend)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Dataset$new(source)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{source}}{\code{character} value.}
-
-\item{\code{subset}}{\code{character} or \code{integer} value.}
-
-\item{\code{total}}{\code{numeric} value.}
-
-\item{\code{units}}{\code{character} value.}
-
-\item{\code{legend}}{\code{Legend} object.}
+\item{\code{source}}{\code{character}, \code{\link[sf:sf]{sf::st_sf()}}, or \code{\link[raster:stack]{raster::stack()}} object.}
 }
 \if{html}{\out{</div>}}
 }
@@ -93,20 +83,9 @@ Print the object.
 \subsection{Method \code{repr()}}{
 Generate a \code{character} summarizing the representation of the object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Dataset$repr(start = "[", end = "]")}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Dataset$repr()}\if{html}{\out{</div>}}
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{start}}{\code{character} symbol used to start the parameter list.
-Defaults to \code{"["}.}
-
-\item{\code{end}}{\code{character} symbol used to start the parameter list.
-Defaults to \code{"]"}.}
-}
-\if{html}{\out{</div>}}
-}
 \subsection{Returns}{
 \code{character} value.
 }
@@ -142,6 +121,40 @@ Get the data.
 
 \subsection{Returns}{
 \code{\link[sf:st_as_sf]{sf::st_as_sf()}} or \code{\link[raster:raster]{raster::raster()}} object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_variable"></a>}}
+\if{latex}{\out{\hypertarget{method-get_variable}{}}}
+\subsection{Method \code{get_variable()}}{
+Get a variable from the data.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Dataset$get_variable(index)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{index}}{\code{character} or \code{integer} indicating the field/layer with
+the data.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+\code{\link[sf:st_as_sf]{sf::st_as_sf()}} or \code{\link[raster:raster]{raster::raster()}} object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-has_variable"></a>}}
+\if{latex}{\out{\hypertarget{method-has_variable}{}}}
+\subsection{Method \code{has_variable()}}{
+Check if the dataset has a variable.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Dataset$has_variable()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{logical} indicating if the variable is present or not.
 }
 }
 \if{html}{\out{<hr>}}

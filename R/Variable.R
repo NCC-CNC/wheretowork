@@ -1,0 +1,384 @@
+#' @include internal.R Dataset-class.R
+NULL
+
+#' Variable class
+#'
+#' Definition for the Variable class.
+#'
+#' @seealso [new_variable()].
+Variable <- R6::R6Class(
+  "Variable",
+  public = list(
+
+    #' @field dataset `Dataset` object.
+    dataset = NULL,
+
+    #' @field index `character` or `integer` value indicating the
+    #'  field/layer for extracting data.
+    index = NULL,
+
+    #' @field total `numeric` value.
+    total = NA_real_,
+
+    #' @field units `character` value.
+    units = NA_character_,
+
+    #' @field legend `Legend` object.
+    legend = NULL,
+
+    #' @description
+    #' Create a Variable object.
+    #' @param dataset `Dataset` value.
+    #' @param index `character` or `integer` value.
+    #' @param total `numeric` value.
+    #' @param units `character` value.
+    #' @param legend `Legend` object.
+    #' @return A new Variabe object.
+    initialize = function(dataset, index, total, units, legend) {
+      ### assert that arguments are valid
+      assertthat::assert_that(
+        #### source
+        assertthat::is.string(source),
+        assertthat::noNA(source),
+        ## index
+        assertthat::is.string(index) || assertthat::is.count(index),
+        assertthat::noNA(index),
+        #### total
+        assertthat::is.number(total),
+        assertthat::noNA(total),
+        isTRUE(total >= 0),
+        #### units
+        assertthat::is.string(units),
+        assertthat::noNA(units),
+        #### legend
+        inherits(legend, c("ContinuousLegend", "CategoricalLegend")))
+      ### set fields
+      self$dataset <- dataset
+      self$index <- index
+      self$total <- total
+      self$units <- units
+      self$legend <- legend
+    },
+
+    #' @description
+    #' Print the object.
+    #' @param ... not used.
+    print = function(...) {
+      message("Variable")
+      message("  dataset: ", self$dataset$repr())
+      message("  index:   ", self$index)
+      message("  total:   ", round(self$total, 2))
+      message("  units:   ", self$units)
+      invisible(self)
+    },
+
+    #' @description
+    #' Generate a `character` summarizing the representation of the object.
+    #' @param start `character` symbol used to start the parameter list.
+    #'   Defaults to `"["`.
+    #' @param end `character` symbol used to start the parameter list.
+    #'   Defaults to `"]"`.
+    #' @return `character` value.
+    repr = function(start = "[", end = "]") {
+      paste0(
+        self$dataset$repr(),
+        "#", self$index,
+        " ", start, "total: ", round(self$total, 2), " ",
+        self$units, end)
+    },
+
+    #' @description
+    #' Verify that the data can be extracted from the dataset.
+    verify = function() {
+      assertthat::assert_that(
+        self$data$has_variable(self$index),
+        msg = "dataset does not have variable at index \"", self$index, "\"")
+      invisible(self)
+    },
+
+    #' @description
+    #' Get the data.
+    #' @return [sf::st_as_sf()] or [raster::raster()] object.
+    get_data = function() {
+      self$data$get_variable(self$index)
+    }
+  )
+)
+
+#' New variable
+#'
+#' Create a new [Variable] object.
+#'
+#' @param dataset `Dataset` file path for the dataset.
+#'
+#' @param index `character` or `integer` indicating the field/layer with
+#'  the data.
+#'
+#' @param total `numeric` total amount of all values in the underlying data.
+#'
+#' @param units `character` units for the values in the underlying data.
+#'
+#' @param legend `Legend` object.
+#'
+#' @return A [Variable] object.
+#'
+#' @examples
+#' # load data
+#' data(sim_pu_raster, package = "prioritizr")
+#' r <- sim_pu_raster
+#'
+#' # create new dataset
+#' d <- new_dataset(r)
+#'
+#' # create new variable
+#' v <- new_variable(d, index = 1, total = 12, units = "ha",
+#'   legend = new_continuous_legend(1, 100, c("#000000", "#AAAAAA"))
+#'
+#' # print object
+#' print(v)
+#'
+#' @export
+new_variable <- function(dataset, index, units, total, legend) {
+  Variable$new(
+    dataset = dataset, index = index,
+    total = total, units = units, legend = legend)
+}
+
+#' New variable from automatic calculations
+#'
+#' Create a new [Variable] object by automatically calculating
+#' all metadata from the underlying data.
+#' This function is useful when pre-calculated metadata are not available.
+#' Note this function will take longer to create variables than other
+#' functions because it requires performing geospatial operations.
+#'
+#' @inheritParams new_variable
+#'
+#' @param type `character` indicating if the data contain
+#'   continuous (`"continuous"`) or categorical (`"categorical"`)
+#'   numerical values.
+#'   Defaults to `"auto"` such that data are automatically identified.
+#'
+#' @param colors `character` object containing the colors for visualization
+#'   (see Details for more information).
+#'   Defaults to `"random"` such that colors are randomly generated.
+#'
+#' @details
+#' The argument to `colors` can be a vector of different colors
+#' (in hexadecimal format, e.g. `"#112233"), or a single `character`
+#' containing the name of a color palette that is used to generate a vector
+#' of different colors (see [color_palette()] for more information).
+#' The color palette name `"random"` is also available, such that
+#' colors are generated using a randomly selected palette.
+#'
+#' @return A [Variable] object.
+#'
+#' @examples
+#' # load example raster
+#' data(sim_pu_raster, package = "prioritizr")
+#' r <- sim_pu_raster
+#'
+#' # create new dataset
+#' d <- new_dataset(r)
+#'
+#' # create new variable
+#' v <- new_variable_from_auto(d, index = 1)
+#'
+#' # print object
+#' print(v)
+#'
+#' @export
+new_variable_from_auto <- function(
+  dataset, index, units = "", type = "auto", colors = "random") {
+  # assert arguments are valid
+  assertthat::assert_that(
+    ## dataset
+    assertthat::is.string(dataset),
+    assertthat::noNA(dataset),
+    ## index
+    assertthat::is.string(index) || assertthat::is.count(index),
+    assertthat::noNA(index),
+    ## type
+    assertthat::is.string(type),
+    assertthat::noNA(type),
+    type %in% c("continuous", "categorical", "auto"),
+    ## units
+    assertthat::is.string(units),
+    assertthat::noNA(units),
+    ## colors
+    is.character(colors),
+    assertthat::noNA(colors),
+    length(colors) >= 1)
+
+  # import dataset
+  d <- dataset$get_variable(index)
+
+  # if needed, automatically determine data type
+  if (identical(type, "auto")) {
+    type <- spatial_data_type(d)
+  }
+
+  # compute statistics for data
+  s <- spatial_data_statistics(data, type)
+
+  # create new variable using automatically deduced parameters
+  new_variable_from_metadata(
+    dataset = dataset,
+    metadata =
+    append(
+      list(
+        index = index,
+        units = units,
+        type = type,
+        colors = colors),
+      s)
+  )
+}
+
+#' New variable from metadata
+#'
+#' Create a new [Variable] object using metadata.
+#' This function is useful when pre-calculated are available, so that
+#' previously calculated metadata can be used.
+#'
+#' @inheritParams new_variable
+#'
+#' @param metadata `list` object (see Details for more information).
+#'
+#' @details
+#' The argument to `metadata` should contain the following elements:
+#'
+#' \describe{
+#' \item{"index"}{`character` or `integer` indicating the field/layer
+#'   with the data within the dataset that has the data.}
+#' \item{"units"}{`character` units for the values in the underlying data.}
+#' \item{"type"}{`character` indicating if the data contain
+#'   continuous (`"continuous"`) or categorical (`"categorical"`)
+#'   numerical values.}
+#' \item{"colors"}{`character` vector containing colors for visualization.}
+#' \item{"total"}{`numeric` sum of all values in dataset.}
+#' \item{"min_value"}{`numeric` minimum value in dataset.
+#'   Required only for continuous data.}
+#' \item{"max_value"}{`numeric` maximum value in dataset.
+#'   Required only for continuous data.}
+#' \item{"values"}{`numeric` vector of unique value in dataset.
+#'   Required only for categorical data.}
+#' }
+#'
+#' @examples
+#' # load data
+#' data(sim_pu_raster, package = "prioritizr")
+#' r <- sim_pu_raster
+#'
+#' # create new dataset
+#' d <- new_dataset(r)
+#'
+#' # create new variable
+#' v <- new_variable_from_metadata(
+#'   d, list(index = 1, total = 12, units = "ha", statistics =
+#'   legend = new_continuous_legend(1, 100, c("#000000", "#AAAAAA"))
+#'
+#' # print object
+#' print(v)
+#'
+#'
+#' @export
+new_variable_from_metadata <- function(dataset, metadata) {
+  # assert arguments are valid
+  assertthat::assert_that(
+    ## dataset
+    inherits(dataset, "Dataset"),
+    ## metadata
+    assertthat::is.list(metadata))
+  assertthat::assert_that(
+    ## index
+    assertthat::is.string(metadata$index) ||
+      assertthat::is.count(metadata$index),
+    assertthat::noNA(metadata$index),
+    ## units
+    assertthat::is.string(metadata$units),
+    assertthat::noNA(metadata$units),
+    ## type
+    assertthat::is.string(metadata$type),
+    assertthat::noNA(metadata$type),
+    metadata$type %in% c("continuous", "categorical"),
+    ## colors
+    is.character(metadata$colors),
+    assertthat::noNA(metadata$colors),
+    ## total
+    assertthat::is.number(metadata$total),
+    assertthat::noNA(metadata$total))
+  if (identical(metadata$type, "continuous")) {
+    ## continuous metrics
+    assertthat::assert_that(
+      assertthat::is.number(metadata$min_value),
+      assertthat::noNA(metadata$min_value),
+      assertthat::is.number(metadata$max_value),
+      assertthat::noNA(metadata$max_value))
+  } else {
+    ## categorical metrics
+    assertthat::assert_that(
+      assertthat::is.numeric(metadata$values),
+      assertthat::noNA(metadata$values))
+  }
+
+  # validate colors
+  if (startsWith(metadata$colors[[1]], "#")) {
+    ## if first element of colors does not start with hash symbol,
+    ## then assume it should be the name of a palette
+    assertthat::assert_that(
+      length(metadata$colors) == 1)
+  } else {
+    ## if first element of colors does start with hash symbol,
+    ## then verify if colors are represented using hexadecimal format
+    assertthat::assert_that(
+      all(startsWith(metadata$colors, "#")),
+      all(nchar(metadata$colors) %in% c(7, 9)))
+  }
+
+  # prepare colors
+  if (length(metadata$colors) == 1) {
+    ## generate colors using palette name
+    if (identical(metadata$type, "categorical")) {
+      colors <-
+        color_palette(metadata$colors, length(metadata$values))
+    } else {
+      colors <- color_palette(metadata$colors, 20)
+    }
+  } else {
+    colors <- metadata$colors
+    if (identical(metadata$type, "categorical")) {
+      ## verify that correct number of colors supplied if categorical legend
+      asserrthat::assert_that(
+        length(colors) == length(metadata$values),
+        msg = paste0(
+          metadata$type, " data has ", length(metadata$values),
+          " unique values and so ",
+          "the argument to \"colors\" must contain this many elements."))
+    } else {
+      ## verify that at least two colors supplied for continuous legend
+      asserrthat::assert_that(
+        length(colors) >= 2,
+        msg = paste0(
+          metadata$type,
+          " data requires at least 2 colors to create a color ramp."))
+    }
+  }
+
+  # create legend
+  if (identical(type, "continuous")) {
+    legend <- new_continuous_legend(
+      min_value = metadata$min_value,
+      max_value = metadata$max_value,
+      colors = colors)
+  } else {
+    legend <- new_categorical_legend(
+      values = metadata$values,
+      colors = colors)
+  }
+
+  # create object
+  Variable$new(
+    dataset = dataset, index = index, total = total,
+    units = units, legend = legend)
+}

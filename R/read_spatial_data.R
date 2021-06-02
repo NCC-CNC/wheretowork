@@ -33,7 +33,9 @@ read_spatial_data <- function(x) {
   if (tools::file_ext(x) %in% rast_ext) {
     out <- raster::stack(x)
   } else {
-    out <- sf::read_sf(x)
+    suppressMessages({
+      out <- sf::read_sf(x)
+    })
   }
   out
 }

@@ -53,6 +53,7 @@ Collate:
     'Weight-class.R'
     'MapManager-class.R'
     'SolutionSettings-class.R'
+    'Variable.R'
     'color_palette.R'
     'mapManager-components.R'
     'mapManager.R'

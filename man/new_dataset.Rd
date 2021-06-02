@@ -4,19 +4,10 @@
 \alias{new_dataset}
 \title{New dataset}
 \usage{
-new_dataset(source, subset, total, units, legend)
+new_dataset(source)
 }
 \arguments{
-\item{source}{\code{character} file path for the dataset.}
-
-\item{subset}{\code{character} or \code{integer} indicating the field/layer with
-data within the dataset.}
-
-\item{total}{\code{numeric} total amount of all values in the underlying data.}
-
-\item{units}{\code{character} units for the values in the underlying data.}
-
-\item{legend}{\code{Legend} object.}
+\item{source}{\code{character}, \code{\link[sf:sf]{sf::st_sf()}}, or \code{\link[raster:stack]{raster::stack()}} object.}
 }
 \value{
 A \link{Dataset} object.
@@ -25,12 +16,14 @@ A \link{Dataset} object.
 Create a new \link{Dataset} object.
 }
 \examples{
-# create new object
-l <- new_dataset(
-  source = tempfile(), subset = 1, total = 12, units = "ha",
-  legend = new_continuous_legend(1, 100, c("#000000", "#AAAAAA")))
+# load data
+data(sim_pu_raster, package = "prioritizr")
+r <- sim_pu_raster
+
+# create new dataset
+d <- new_dataset(r)
 
 # print object
-print(l)
+print(d)
 
 }
