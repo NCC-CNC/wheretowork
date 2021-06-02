@@ -48,8 +48,8 @@ mm_header_component_scaffold <- function(id = uuid::UUIDgenerate()) {
       htmltools::tags$input(
         class = "view-checkbox",
         type = "checkbox"),
-      htmltools::tags$i(class = "far fa-plus-square checked"),
-      htmltools::tags$i(class = "far fa-minus-square unchecked")
+      htmltools::tags$i(class = "far fa-minus-square checked"),
+      htmltools::tags$i(class = "far fa-plus-square unchecked")
     ),
     htmltools::tags$label(
       class = "visible-container",
@@ -81,8 +81,8 @@ mm_subheader_component_scaffold <- function(id = uuid::UUIDgenerate()) {
       htmltools::tags$input(
         class = "view-checkbox",
         type = "checkbox"),
-      htmltools::tags$i(class = "far fa-plus-square checked"),
-      htmltools::tags$i(class = "far fa-minus-square unchecked")
+      htmltools::tags$i(class = "far fa-minus-square checked"),
+      htmltools::tags$i(class = "far fa-plus-square unchecked")
     ),
     htmltools::tags$label(
       class = "visible-container",
