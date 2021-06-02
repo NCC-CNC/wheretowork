@@ -27,6 +27,9 @@ w2 <- new_weight("Fire risk", d2)
 ## simulate themes and weights
 ss <- simulate_solution_settings(1, 1, 1)
 
+## add a categorical legend into the multi-themes
+ss$themes[[2]]$feature[[1]]$dataset <- d1
+
 ## create list of all map layers
 l <- append(append(ss$themes, ss$weights), list(w1, w2))
 
