@@ -3,6 +3,7 @@
   width: 100%;
   border: 1px var(--border) solid;
   border-radius: 5px 5px 5px 5px;
+  margin-bottom: 8px;
 }
 
 .map-manager-layer-ghost {
@@ -11,9 +12,11 @@
 
 /* layer containers */
 .map-manager-layer .single-container {
-  width: 100%;
+  width: 90%;
   border: 1px var(--border) solid;
   border-radius: 5px 5px 5px 5px;
+  margin-bottom: 8px;
+  margin-left: 17px;
 }
 
 /* header and sub-header */
@@ -34,6 +37,28 @@
   font-size: 12px;
   font-weight: 700;
 }
+
+/* view checkbox */
+.map-manager-layer .view-container input[type="checkbox"],
+.map-manager-layer .view-container .checked {
+    display: none;
+    color: black;
+}
+
+.map-manager-layer .view-container .unchecked {
+    color: black;
+}
+
+.map-manager-layer .view-container input[type="checkbox"]:checked ~ .checked
+{
+    display: inline-block;
+}
+
+.map-manager-layer .view-container input[type="checkbox"]:checked ~ .unchecked
+{
+    display: none;
+}
+
 
 /* visible checkbox */
 .map-manager-layer .visible-container input[type="checkbox"],

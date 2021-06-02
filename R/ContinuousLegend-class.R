@@ -77,7 +77,7 @@ ContinuousLegend <- R6::R6Class(
 #'   are used to generate the color bar.
 #'
 #' @param n `integer` Number of labels to display in the color bar.
-#'   Default to 5.
+#'   Default to 4.
 #'
 #' @return A [ContinuousLegend] object.
 #'
@@ -89,7 +89,7 @@ ContinuousLegend <- R6::R6Class(
 #' print(l)
 #'
 #' @export
-new_continuous_legend <- function(min_value, max_value, colors, n = 5) {
+new_continuous_legend <- function(min_value, max_value, colors, n = 4) {
   ContinuousLegend$new(
     min_value = min_value, max_value = max_value, colors = colors, n = n)
 }
