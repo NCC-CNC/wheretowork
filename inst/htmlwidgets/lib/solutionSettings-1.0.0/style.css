@@ -20,6 +20,7 @@
 .solution-settings {
   flex: 3;
   display: flex;
+  max-height: 86vh;
 }
 
 .solution-settings .panel-group {
