@@ -15,29 +15,26 @@ MapManager <- R6::R6Class(
     #' @field ids `character` vector of identifiers for the layers.
     ids = NULL,
 
-    #' @field visible `logical` vector indicating if each layer should
-    #'   be visible or not.
-    visible = NULL,
-
-    #' @field order `integer` vector indicating the order each layer should
-    #'  appear on them map. A value of 1 indicates that a layer should appear
-    #'  beneath every other layer.
-    order = NULL,
+    #' @field order `numeric` vector indicating the order each layer
+    #'  should appear on them map. A value of 1 indicates that a layer should
+    #'  appear beneath every other layer.
+    order = NA_real_,
 
     #' @description
     #' Create a MapManager object.
     #' @param layers `list` of Layer objects.
-    #' @param visible `logical` vector.
     #' @param order `numeric` vector.
     #' @return A new MapManager object.
-    initialize = function(layers, visible, order) {
+    initialize = function(layers, order) {
       assertthat::assert_that(
         is.list(layers),
-        all_list_elements_inherit(layers, c("Theme", "Weight"))
+        all_list_elements_inherit(layers, c("Theme", "Weight")),
+        length(order) == length(layers),
+        is.numeric(order),
+        setequal(order, seq_along(layers))
       )
       self$layers <- layers
       self$ids <- vapply(layers, function(x) x$id, character(1))
-      self$visible <- visible
       self$order <- order
     },
 
@@ -48,8 +45,9 @@ MapManager <- R6::R6Class(
       message("MapManager")
       # print layers
       if (length(self$layers) > 0) {
+        po <- order(self$get_order(), decreasing = TRUE)
         message("  layers: ")
-        for (x in vapply(self$layers, function(x) x$repr(), character(1))) {
+        for (x in vapply(self$layers[po], function(x) x$repr(), character(1))) {
           message("    " , gsub(nl(), paste0(nl(), "    "), x, fixed = TRUE))
         }
       } else {
@@ -63,12 +61,6 @@ MapManager <- R6::R6Class(
     #' @return `character` value.
     repr = function() {
       "MapManager object"
-    },
-
-    #' @description
-    #' Get information on the visibility of each layer.
-    get_visible = function() {
-      self$visible
     },
 
     #' @description
@@ -93,43 +85,44 @@ MapManager <- R6::R6Class(
 
     #' @description
     #' Get a parameter for the object.
-    #' @param value `list` with new parameter information (see Details section)
+    #' @param value `list` with parameter information (see Details section)
     #' @details
     #' The argument to `value` should be a `list` with the following elements:
     #' \describe{
+    #' \item{id}{`character` (optional) name of layer.}
     #' \item{parameter}{`character` name of parameter.
-    #'   Available options are: `"visible"` and `"order"`.}
+    #'   Available options are: `"order"`, `"feature_order"` and `"visible"`.
+    #'   Note that the `"id"` element is required for `"feature_order"`
+    #'   and `"visible"` parameters.}
     #' }
     get_parameter = function(value) {
       assertthat::assert_that(
         is.list(value),
         assertthat::has_name(value, "parameter"),
         assertthat::is.string(value$parameter))
-      if (identical(value$parameter, "visible")) {
-        return(self$get_visible())
-      } else if (identical(value$parameter, "order")) {
-        return(self$get_order())
+      if (is.null(value$id)) {
+        # map manager parameters
+        if (identical(value$parameter, "order")) {
+          return(self$get_order())
+        } else {
+          stop("unknown parameter.")
+        }
       } else {
-        stop("unknown parameter.")
+        # layer parameters
+        assertthat::assert_that(
+          assertthat::has_name(value, "id"),
+          assertthat::is.string(value$id),
+          value$id %in% self$ids)
+          return(self$get_layer(value$id)$get_parameter(value$parameter))
       }
-    },
-
-    #' @description
-    #' Set information on the visibility of each layer.
-    #' @param value `logical` vector indicating if each layer is visible or not.
-    set_visible = function(value) {
-      assertthat::assert_that(
-        is.logical(value),
-        assertthat::noNA(value),
-        length(value) == length(self$layers))
-      self$visible <- value
-      invisible(self)
     },
 
     #' @description
     #' Set information on the plot order of each layer.
     #' @param value `logical` vector indicating if each layer is visible or not.
     set_order = function(value) {
+      if (is.list(value))
+        value <- unlist(value, recursive = TRUE, use.names = TRUE)
       assertthat::assert_that(
         is.numeric(value),
         assertthat::noNA(value),
@@ -142,25 +135,34 @@ MapManager <- R6::R6Class(
     #' Set a parameter for the object.
     #' @param value `list` with new parameter information (see Details section)
     #' @details
-    #' The argument to `value` should be a `list` with the following elements:
     #' \describe{
-    #' \item{id}{`character` identifier for theme or weight.}
+    #' \item{id}{`character` (optional) name of layer.}
     #' \item{parameter}{`character` name of parameter.
-    #'   Available options are: `"visible"` and `"order"`.}
+    #'   Available options are: `"order"`, `"visible"`, `"feature_order"`,
+    #'   or `"feature_visible"`.
+    #'   Note that the `"id"` element is required for
+    #'   `"visible"`, `"feature_order"`, `"feature_visible"` parameters.}
     #' \item{value}{`numeric` or `logical` value for new parameter.}
     #' }
     set_parameter = function(value) {
       assertthat::assert_that(
         is.list(value),
         assertthat::has_name(value, "parameter"),
-        assertthat::is.string(value$parameter),
-        assertthat::has_name(value, "value"))
-      if (identical(value$parameter, "visible")) {
-        self$set_visible(value$value)
-      } else if (identical(value$parameter, "order")) {
-        self$set_order(value$value)
+        assertthat::is.string(value$parameter))
+      if (is.null(value$id)) {
+        # map manager parameters
+        if (identical(value$parameter, "order")) {
+          self$set_order(value$value)
+        } else {
+          stop("unknown parameter.")
+        }
       } else {
-        stop("unknown parameter.")
+        # layer parameters
+        assertthat::assert_that(
+          assertthat::has_name(value, "id"),
+          assertthat::is.string(value$id),
+          value$id %in% self$ids)
+          self$get_layer(value$id)$set_parameter(value$parameter, value$value)
       }
       invisible(self)
     },
@@ -177,7 +179,6 @@ MapManager <- R6::R6Class(
           "` already exists"))
         self$layers[[length(self$layers) + 1]] <- value
         self$ids <- c(self$ids, value$id)
-        self$visible <- c(self$visible, FALSE)
         self$order <- c(self$order, max(self$order + 1))
         invisible(self)
     },
@@ -196,7 +197,6 @@ MapManager <- R6::R6Class(
           "` doesn't exist"))
         idx <- which(self$ids != value)
         self$layers <- self$layers[idx]
-        self$visible <- self$visible[idx]
         self$order <- self$order[idx]
         self$order <- rank(self$order)
         invisible(self)
@@ -208,7 +208,6 @@ MapManager <- R6::R6Class(
     get_widget_data = function() {
       list(
         ids = self$ids,
-        visible = self$visible,
         order = self$order,
         layers =
           lapply(self$layers, function(x) x$get_map_manager_widget_data())
@@ -231,6 +230,13 @@ MapManager <- R6::R6Class(
 #' Create a new [MapManager] object.
 #'
 #' @param layers `list` of [Theme] and/or [Weight] objects.
+#'
+#' @param order `numeric` vector containing a value for each element in
+#'  `layers`. These values indicate the order each layer should
+#'  appear on them map. A value of 1 indicates that a layer should appear
+#'  beneath every other layer.
+#'  Defaults to an integer sequence of numbers based on the number of elements
+#'  in `layers`.
 #'
 #' @return A [MapManager] object.
 #'
@@ -269,6 +275,6 @@ MapManager <- R6::R6Class(
 #'
 #' @export
 new_map_manager <- function(
-  layers, visible = rep(TRUE, length(layers)), order = seq_along(layers)) {
-  MapManager$new(layers = layers, visible = visible, order = order)
+  layers, order = rev(seq_along(layers))) {
+  MapManager$new(layers = layers, order = order)
 }

@@ -8,23 +8,17 @@ class MultiThemeSetting {
     feature_id,
     feature_total_amount,
     feature_current_held,
-    group_min_goal,
-    group_max_goal,
-    group_initial_goal,
-    group_limit_goal,
-    group_step_goal,
-    group_current_label,
     feature_min_goal,
     feature_max_goal,
-    feature_initial_goal,
+    feature_goal,
     feature_limit_goal,
     feature_step_goal,
     feature_current_label,
-    feature_initial_status,
+    feature_status,
     feature_icon,
     units,
     mandatory,
-    initial_status,
+    current_label,
     round,
     icon
   ) {
@@ -33,9 +27,9 @@ class MultiThemeSetting {
     this.id = id;
     this.n_features = feature_id.length;
     this.feature_id = feature_id;
-    this.single_goal_values = feature_initial_goal;
-    this.single_status_values = feature_initial_status;
-
+    this.single_goal_values = feature_goal;
+    this.single_status_values = feature_status;
+    this.group_limit_goal = Math.max.apply(Math, feature_limit_goal);
     /// HTML container
     this.el =
       document.importNode(
@@ -166,14 +160,14 @@ class MultiThemeSetting {
     /// name
     this.name_el.innerText = name;
     /// status
-    this.status_el.checked = initial_status;
+    this.status_el.checked = feature_status.some((x) => x);
 
     // set initial group values
     /// current text
     group_current_label_el.innerText =
       group_current_label_text(
         feature_current_held, feature_total_amount, round,
-        group_current_label, units);
+        current_label, units);
     /// style current bar
     style_group_current_bars(
       group_current_min_bar_el,
@@ -182,12 +176,12 @@ class MultiThemeSetting {
       Math.max.apply(Math, feature_current_held));
     /// slider
     noUiSlider.create(this.group_goal_el, {
-      start: group_initial_goal,
-      step: group_step_goal,
+      start: Math.min.apply(Math, feature_current_held),
+      step: Math.min.apply(Math, feature_step_goal),
       connect: "lower",
       range: {
-        "min": group_min_goal,
-        "max": group_max_goal
+        "min": Math.min.apply(Math, feature_min_goal),
+        "max": Math.min.apply(Math, feature_max_goal)
       },
     });
 
@@ -198,7 +192,7 @@ class MultiThemeSetting {
       /// name text
       single_name_el[i].innerText = feature_name[i];
       /// status
-      this.single_status_el[i].checked = feature_initial_status[i];
+      this.single_status_el[i].checked = feature_status[i];
       /// current text
       single_current_label_el[i].innerText =
         single_current_label_text(
@@ -209,7 +203,7 @@ class MultiThemeSetting {
         single_current_bar_el[i], feature_current_held[i]);
       /// slider
       noUiSlider.create(this.single_goal_el[i], {
-        start: feature_initial_goal[i],
+        start: feature_goal[i],
         step: feature_step_goal[i],
         connect: "lower",
         range: {
@@ -224,8 +218,8 @@ class MultiThemeSetting {
       /// group view
       //// enforce minimum limit
       this.group_goal_el.noUiSlider.on('change', function (values, handle) {
-        if (values[handle] < group_limit_goal) {
-          that.group_goal_el.noUiSlider.set(group_limit_goal);
+        if (values[handle] < that.group_limit_goal) {
+          that.group_goal_el.noUiSlider.set(that.group_limit_goal);
         }
       });
       //// update goal label
@@ -322,7 +316,7 @@ class MultiThemeSetting {
       //// goal
       this.group_goal_el.noUiSlider.on("update", function (values, handle) {
         let v = parseFloat(values[handle]);
-        if (v >= group_limit_goal) {
+        if (v >= that.group_limit_goal) {
           Shiny.setInputValue(manager, {
             id: id,
             parameter: "feature_goal",

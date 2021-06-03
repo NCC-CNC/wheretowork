@@ -7,7 +7,7 @@
 #'
 #' @noRd
 mm_icon_component_scaffold <- function() {
-  htmltools::tags$div(class = "icon disable-if-inactive")
+  htmltools::tags$div(class = "icon")
 }
 
 #' Scaffold for the sub-icon component of the map manager widget
@@ -18,7 +18,7 @@ mm_icon_component_scaffold <- function() {
 #'
 #' @noRd
 mm_subicon_component_scaffold <- function() {
-  htmltools::tags$div(class = "sub-icon disable-if-inactive")
+  htmltools::tags$div(class = "sub-icon")
 }
 
 #' Scaffold for the legend component of the map manager widget
@@ -29,7 +29,7 @@ mm_subicon_component_scaffold <- function() {
 #'
 #' @noRd
 mm_legend_component_scaffold <- function() {
-  htmltools::tags$div(class = "legend disable-if-inactive")
+  htmltools::tags$div(class = "legend")
 }
 
 #' Scaffold for the header component of the map manager widget
@@ -55,7 +55,7 @@ mm_header_component_scaffold <- function(id = uuid::UUIDgenerate()) {
       htmltools::tags$i(class = "fa fa-eye-slash unchecked")
     ),
     htmltools::tags$label(
-      class = "name-label disable-if-inactive"
+      class = "name-label"
     )
   )
 }
@@ -71,20 +71,19 @@ mm_header_component_scaffold <- function(id = uuid::UUIDgenerate()) {
 mm_subheader_component_scaffold <- function(id = uuid::UUIDgenerate()) {
   htmltools::tags$div(
     class = "sub-header",
+    htmltools::tags$input(
+      class = "view-checkbox",
+      type = "checkbox"),
     htmltools::tags$label(
-      class = "el-switch el-switch-sm",
+      class = "visible-container",
       htmltools::tags$input(
-        type = "checkbox",
-        class = "status-checkbox status",
-        id = id
-      ),
-      htmltools::tags$span(
-        class = "el-switch-style",
-        `for` = id
-      )
+        class = "visible-checkbox",
+        type = "checkbox"),
+      htmltools::tags$i(class = "fa fa-eye checked"),
+      htmltools::tags$i(class = "fa fa-eye-slash unchecked")
     ),
     htmltools::tags$label(
-      class = "name-label disable-if-inactive"
+      class = "name-label"
     )
   )
 }

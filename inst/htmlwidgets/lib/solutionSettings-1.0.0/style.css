@@ -20,6 +20,7 @@
 .solution-settings {
   flex: 3;
   display: flex;
+  max-height: 86vh;
 }
 
 .solution-settings .panel-group {
@@ -30,7 +31,7 @@
 }
 
 .solution-settings .panel.panel-default {
-  max-height: 42.5vh;
+  max-height: 80vh;
   overflow-y: scroll;
 }
 

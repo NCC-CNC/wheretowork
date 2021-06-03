@@ -228,5 +228,5 @@ updateSolutionSettings <- function(
 
   # pass data to widget
   session$sendCustomMessage(
-    "solutionSettings:updateSetting", list(id = inputId, value = value))
+    "solutionSettings:update", list(id = inputId, value = value))
 }

@@ -11,6 +11,12 @@ dependencies:
       - continuousLegend.css
       - categoricalLegend.css
 
+  - name: Sortable
+    version: 1.13.0
+    src: htmlwidgets/lib/Sortable-1.13.0
+    script:
+      - Sortable.min.js
+
   - name: mapManager
     version: 1.0.0
     src: htmlwidgets/lib/mapManager-1.0.0
