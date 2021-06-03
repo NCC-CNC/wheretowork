@@ -6,8 +6,21 @@
   margin-bottom: 8px;
 }
 
-.map-manager-layer-ghost {
-  background: #C8EBFB;
+.theme-layer {
+  z-index: -1;
+}
+
+.weight-layer {
+  z-index: -1;
+}
+
+.map-manager-layer-ghost .ghost-overlay {
+  background: #C8EBFBAA !important;
+  background: red;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
 }
 
 /* layer containers */

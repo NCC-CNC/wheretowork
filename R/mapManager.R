@@ -101,6 +101,7 @@ mapManager_html <- function(id, style, class, ...) {
         class = "weight-layer-template",
         htmltools::tags$div(
           class  = "map-manager-layer",
+          htmltools::tags$div(class = "ghost-overlay"),
           htmltools::tags$div(
             class = "weight-layer",
             mm_header_component_scaffold(),
@@ -121,6 +122,7 @@ mapManager_html <- function(id, style, class, ...) {
         class = "single-theme-layer-template",
         htmltools::tags$div(
           class  = "map-manager-layer",
+          htmltools::tags$div(class = "ghost-overlay"),
           htmltools::tags$div(
             class = "theme-layer",
             mm_header_component_scaffold(),
@@ -142,6 +144,7 @@ mapManager_html <- function(id, style, class, ...) {
         class = "multi-theme-layer-template",
         htmltools::tags$div(
           class = "map-manager-layer",
+          htmltools::tags$div(class = "ghost-overlay"),
           htmltools::tags$div(
             class = "theme-layer",
             mm_header_component_scaffold(),
