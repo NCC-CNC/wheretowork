@@ -6,16 +6,16 @@
 \alias{spatial_data_type.Raster}
 \title{Spatial data type}
 \usage{
-spatial_data_type(x, subset = 1)
+spatial_data_type(x, index = 1)
 
-\method{spatial_data_type}{sf}(x, subset = 1)
+\method{spatial_data_type}{sf}(x, index = 1)
 
-\method{spatial_data_type}{Raster}(x, subset = 1, max_sample = 1000)
+\method{spatial_data_type}{Raster}(x, index = 1, max_sample = 1000)
 }
 \arguments{
 \item{x}{\code{\link[sf:sf]{sf::st_sf()}} or \code{\link[raster:stack]{raster::stack()}} dataset object.}
 
-\item{subset}{\code{integer} or \code{character} value indicating the
+\item{index}{\code{integer} or \code{character} value indicating the
 field or layer for which to calculate statistics.
 Defaults to 1, such that the first field/layer is used to calculate
 statistics.}

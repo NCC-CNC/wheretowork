@@ -92,11 +92,11 @@ Dataset <- R6::R6Class(
     },
 
     #' @description
-    #' Get a variable from the data.
+    #' Get a data from the dataset at an index.
     #' @param index `character` or `integer` indicating the field/layer with
     #'   the data.
     #' @return [sf::st_as_sf()] or [raster::raster()] object.
-    get_variable = function(index) {
+    get_index = function(index) {
       assertthat::assert_that(
         assertthat::is.string(index) || assertthat::is.count(index),
         assertthat::noNA(index))
@@ -112,10 +112,11 @@ Dataset <- R6::R6Class(
     },
 
     #' @description
-    #' Check if the dataset has a variable.
-    #' @inheritParams get_variable
-    #' @return `logical` indicating if the variable is present or not.
-    has_variable = function(index) {
+    #' Check if the dataset has an index.
+    #' @param index `character` or `integer` indicating the field/layer with
+    #'   the data.
+    #' @return `logical` indicating if data is present or not.
+    has_index = function(index) {
       assertthat::assert_that(
         assertthat::is.string(index) || assertthat::is.count(index),
         assertthat::noNA(index))

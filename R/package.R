@@ -7,6 +7,8 @@ NULL
 #' @import leaflet
 #' @import leaflet.extras2
 #' @import shinyBS
+#' @import raster
+#' @import sf
 NULL
 
 #' locationmisc: Classes, Widgets, and Functions for the Location App

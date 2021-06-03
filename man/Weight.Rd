@@ -21,7 +21,7 @@ Definition for the Weight class.
 
 \item{\code{name}}{\code{character} value.}
 
-\item{\code{dataset}}{\link{Dataset} object.}
+\item{\code{variable}}{\link{Variable} object.}
 
 \item{\code{visible}}{\code{logical} value.}
 
@@ -72,7 +72,7 @@ Create a new Weight object.
 \if{html}{\out{<div class="r">}}\preformatted{Weight$new(
   id,
   name,
-  dataset,
+  variable,
   initial_visible,
   initial_status,
   initial_factor,
@@ -89,7 +89,7 @@ Create a new Weight object.
 
 \item{\code{name}}{\code{character} value.}
 
-\item{\code{dataset}}{\link{Dataset} object.}
+\item{\code{variable}}{\link{Variable} object.}
 
 \item{\code{initial_visible}}{\code{logical} value.}
 

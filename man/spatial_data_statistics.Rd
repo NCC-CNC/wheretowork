@@ -6,11 +6,11 @@
 \alias{spatial_data_statistics.Raster}
 \title{Spatial data statistics}
 \usage{
-spatial_data_statistics(x, type, subset = 1)
+spatial_data_statistics(x, type, index = 1)
 
-\method{spatial_data_statistics}{sf}(x, type, subset = 1)
+\method{spatial_data_statistics}{sf}(x, type, index = 1)
 
-\method{spatial_data_statistics}{Raster}(x, type, subset = 1)
+\method{spatial_data_statistics}{Raster}(x, type, index = 1)
 }
 \arguments{
 \item{x}{\code{\link[sf:sf]{sf::st_sf()}} or \code{\link[raster:stack]{raster::stack()}} dataset object.}
@@ -19,7 +19,7 @@ spatial_data_statistics(x, type, subset = 1)
 continuous (i.e. \code{"continuous"}) or categorical (i.e. \code{"categorical"})
 data.}
 
-\item{subset}{\code{integer} or \code{character} value indicating the
+\item{index}{\code{integer} or \code{character} value indicating the
 field or layer for which to calculate statistics.
 Defaults to 1, such that the first field/layer is used to calculate
 statistics.}

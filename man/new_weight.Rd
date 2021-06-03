@@ -6,7 +6,7 @@
 \usage{
 new_weight(
   name,
-  dataset,
+  variable,
   initial_visible = TRUE,
   initial_status = TRUE,
   initial_factor = 0,
@@ -18,8 +18,6 @@ new_weight(
 }
 \arguments{
 \item{name}{\code{character} Name to display.}
-
-\item{dataset}{\link{Dataset} object.}
 
 \item{initial_visible}{\code{logical} The initial visible value.
 This is used to determine if the feature is displayed (or not)
@@ -52,13 +50,13 @@ A \link{Weight} object.
 Create a new \link{Weight} object.
 }
 \examples{
-# create a new dataset
-l <- new_dataset(
- source = tempfile(), total = 12, units = "ha",
+# create a new variable
+l <- new_variable(
+ dataset = new_dataset(tempfile()), total = 12, units = "ha",
  legend = new_continuous_legend(1, 100, c("#000000", "#1b9e77")))
 
 # create a new weight
-w <- new_weight(name = "NDVI", dataset = l)
+w <- new_weight(name = "NDVI", variable = l)
 
 # print object
 print(w)

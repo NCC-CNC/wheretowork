@@ -37,9 +37,8 @@ Variable <- R6::R6Class(
     initialize = function(dataset, index, total, units, legend) {
       ### assert that arguments are valid
       assertthat::assert_that(
-        #### source
-        assertthat::is.string(source),
-        assertthat::noNA(source),
+        #### dataset
+        inherits(dataset, "Dataset"),
         ## index
         assertthat::is.string(index) || assertthat::is.count(index),
         assertthat::noNA(index),
@@ -89,18 +88,20 @@ Variable <- R6::R6Class(
 
     #' @description
     #' Verify that the data can be extracted from the dataset.
+    #' @return invisible `TRUE` indicating success.
     verify = function() {
       assertthat::assert_that(
-        self$data$has_variable(self$index),
-        msg = "dataset does not have variable at index \"", self$index, "\"")
-      invisible(self)
+        self$dataset$has_index(self$index),
+        msg = paste0(
+          "dataset does not have variable at index \"", self$index, "\""))
+      invisible(TRUE)
     },
 
     #' @description
     #' Get the data.
     #' @return [sf::st_as_sf()] or [raster::raster()] object.
     get_data = function() {
-      self$data$get_variable(self$index)
+      self$dataset$get_index(self$index)
     }
   )
 )
@@ -193,8 +194,7 @@ new_variable_from_auto <- function(
   # assert arguments are valid
   assertthat::assert_that(
     ## dataset
-    assertthat::is.string(dataset),
-    assertthat::noNA(dataset),
+    inherits(dataset, "Dataset"),
     ## index
     assertthat::is.string(index) || assertthat::is.count(index),
     assertthat::noNA(index),
@@ -211,15 +211,15 @@ new_variable_from_auto <- function(
     length(colors) >= 1)
 
   # import dataset
-  d <- dataset$get_variable(index)
+  d <- dataset$get_index(index)
 
   # if needed, automatically determine data type
   if (identical(type, "auto")) {
-    type <- spatial_data_type(d)
+    type <- spatial_data_type(d, 1)
   }
 
   # compute statistics for data
-  s <- spatial_data_statistics(data, type)
+  s <- spatial_data_statistics(d, type, 1)
 
   # create new variable using automatically deduced parameters
   new_variable_from_metadata(
@@ -281,7 +281,6 @@ new_variable_from_auto <- function(
 #' # print object
 #' print(v)
 #'
-#'
 #' @export
 new_variable_from_metadata <- function(dataset, metadata) {
   # assert arguments are valid
@@ -289,7 +288,7 @@ new_variable_from_metadata <- function(dataset, metadata) {
     ## dataset
     inherits(dataset, "Dataset"),
     ## metadata
-    assertthat::is.list(metadata))
+    is.list(metadata))
   assertthat::assert_that(
     ## index
     assertthat::is.string(metadata$index) ||
@@ -318,22 +317,22 @@ new_variable_from_metadata <- function(dataset, metadata) {
   } else {
     ## categorical metrics
     assertthat::assert_that(
-      assertthat::is.numeric(metadata$values),
+      is.numeric(metadata$values),
       assertthat::noNA(metadata$values))
   }
 
   # validate colors
   if (startsWith(metadata$colors[[1]], "#")) {
-    ## if first element of colors does not start with hash symbol,
-    ## then assume it should be the name of a palette
-    assertthat::assert_that(
-      length(metadata$colors) == 1)
-  } else {
     ## if first element of colors does start with hash symbol,
     ## then verify if colors are represented using hexadecimal format
     assertthat::assert_that(
       all(startsWith(metadata$colors, "#")),
       all(nchar(metadata$colors) %in% c(7, 9)))
+  } else {
+    ## if first element of colors does not start with hash symbol,
+    ## then assume it should be the name of a palette
+    assertthat::assert_that(
+      length(metadata$colors) == 1)
   }
 
   # prepare colors
@@ -366,7 +365,7 @@ new_variable_from_metadata <- function(dataset, metadata) {
   }
 
   # create legend
-  if (identical(type, "continuous")) {
+  if (identical(metadata$type, "continuous")) {
     legend <- new_continuous_legend(
       min_value = metadata$min_value,
       max_value = metadata$max_value,
@@ -379,6 +378,6 @@ new_variable_from_metadata <- function(dataset, metadata) {
 
   # create object
   Variable$new(
-    dataset = dataset, index = index, total = total,
-    units = units, legend = legend)
+    dataset = dataset, index = metadata$index, total = metadata$total,
+    units = metadata$units, legend = legend)
 }

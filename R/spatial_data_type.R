@@ -7,7 +7,7 @@ NULL
 #'
 #' @param x [sf::st_sf()] or [raster::stack()] dataset object.
 #'
-#' @param subset `integer` or `character` value indicating the
+#' @param index `integer` or `character` value indicating the
 #'   field or layer for which to calculate statistics.
 #'   Defaults to 1, such that the first field/layer is used to calculate
 #'   statistics.
@@ -20,27 +20,27 @@ NULL
 #'   `"categorical"`.
 #'
 #' @export
-spatial_data_type <- function(x, subset = 1) {
+spatial_data_type <- function(x, index = 1) {
   UseMethod("spatial_data_type", x)
 }
 
 #' @rdname spatial_data_type
 #' @export
-spatial_data_type.sf <- function(x, subset = 1) {
+spatial_data_type.sf <- function(x, index = 1) {
   # assert valid arguments
-  asserthat::assert_that(
+  assertthat::assert_that(
     inherits(x, "sf"),
-    asserthat::is.string(subset) || asserthat::is.count(subset),
-    asserthat::noNA(subset))
-  if (is.character(subset)) {
-    asserthat::assert_that(
-      asserthat::has_name(x, subset))
+    assertthat::is.string(index) || assertthat::is.count(index),
+    assertthat::noNA(index))
+  if (is.character(index)) {
+    assertthat::assert_that(
+      assertthat::has_name(x, index))
   }
 
   # determine if data are continuous or categorical
   ## if there are more than 20 unique values, then we assume it's continuous
   out <-
-    ifelse(dplyr::n_distinct(x[[subset]]) > 20, "continuous", "categorical")
+    ifelse(dplyr::n_distinct(x[[index]]) > 20, "continuous", "categorical")
 
   # return result
   out
@@ -48,27 +48,24 @@ spatial_data_type.sf <- function(x, subset = 1) {
 
 #' @rdname spatial_data_type
 #' @export
-spatial_data_type.Raster <- function(x, subset = 1, max_sample = 1000) {
+spatial_data_type.Raster <- function(x, index = 1, max_sample = 1000) {
   # assert valid arguments
-  asserthat::assert_that(
+  assertthat::assert_that(
     inherits(x, "Raster"),
-    asserthat::is.string(type),
-    asserthat::noNA(type),
-    asserthat::is.count(max_sample),
-    asserthat::noNA(max_sample),
-    type %in% c("continuous", "categorical"),
-    asserthat::is.string(subset) || asserthat::is.count(subset),
-    asserthat::noNA(subset))
-  if (is.character(subset)) {
-    asserthat::assert_that(
-      subset %in% names(x))
+    assertthat::is.count(max_sample),
+    assertthat::noNA(max_sample),
+    assertthat::is.string(index) || assertthat::is.count(index),
+    assertthat::noNA(index))
+  if (is.character(index)) {
+    assertthat::assert_that(
+      index %in% names(x))
   }
 
-  # convert subset to integer if field name supplied
-  subset <- which(names(x) == subset)
+  # convert index to integer if field name supplied
+  index <- which(names(x) == index)
 
   # extract layer
-  x <- x[[subset]]
+  x <- x[[index]]
 
   # identify cells with no missing values
   cells <- raster::Which(!is.na(x), cells = TRUE)

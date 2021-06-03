@@ -35,8 +35,8 @@ file path on disk.
 \item \href{#method-import}{\code{Dataset$import()}}
 \item \href{#method-clean}{\code{Dataset$clean()}}
 \item \href{#method-get_data}{\code{Dataset$get_data()}}
-\item \href{#method-get_variable}{\code{Dataset$get_variable()}}
-\item \href{#method-has_variable}{\code{Dataset$has_variable()}}
+\item \href{#method-get_index}{\code{Dataset$get_index()}}
+\item \href{#method-has_index}{\code{Dataset$has_index()}}
 \item \href{#method-clone}{\code{Dataset$clone()}}
 }
 }
@@ -124,12 +124,12 @@ Get the data.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_variable"></a>}}
-\if{latex}{\out{\hypertarget{method-get_variable}{}}}
-\subsection{Method \code{get_variable()}}{
-Get a variable from the data.
+\if{html}{\out{<a id="method-get_index"></a>}}
+\if{latex}{\out{\hypertarget{method-get_index}{}}}
+\subsection{Method \code{get_index()}}{
+Get a data from the dataset at an index.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Dataset$get_variable(index)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Dataset$get_index(index)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -145,16 +145,24 @@ the data.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-has_variable"></a>}}
-\if{latex}{\out{\hypertarget{method-has_variable}{}}}
-\subsection{Method \code{has_variable()}}{
-Check if the dataset has a variable.
+\if{html}{\out{<a id="method-has_index"></a>}}
+\if{latex}{\out{\hypertarget{method-has_index}{}}}
+\subsection{Method \code{has_index()}}{
+Check if the dataset has an index.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Dataset$has_variable()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Dataset$has_index(index)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{index}}{\code{character} or \code{integer} indicating the field/layer with
+the data.}
+}
+\if{html}{\out{</div>}}
+}
 \subsection{Returns}{
-\code{logical} indicating if the variable is present or not.
+\code{logical} indicating if data is present or not.
 }
 }
 \if{html}{\out{<hr>}}

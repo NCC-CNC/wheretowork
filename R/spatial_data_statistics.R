@@ -11,7 +11,7 @@ NULL
 #'   continuous (i.e. `"continuous"`) or categorical (i.e. `"categorical"`)
 #'   data.
 #'
-#' @param subset `integer` or `character` value indicating the
+#' @param index `integer` or `character` value indicating the
 #'   field or layer for which to calculate statistics.
 #'   Defaults to 1, such that the first field/layer is used to calculate
 #'   statistics.
@@ -19,42 +19,44 @@ NULL
 #' @return A `list` containing statistics for the data.
 #'
 #' @export
-spatial_data_statistics <- function(x, type, subset = 1) {
+spatial_data_statistics <- function(x, type, index = 1) {
   UseMethod("spatial_data_statistics", x)
 }
 
 #' @rdname spatial_data_statistics
 #' @export
-spatial_data_statistics.sf <- function(x, type, subset = 1) {
+spatial_data_statistics.sf <- function(x, type, index = 1) {
   # assert valid arguments
-  asserthat::assert_that(
+  assertthat::assert_that(
     inherits(x, "sf"),
-    asserthat::is.string(type),
-    asserthat::noNA(type),
+    assertthat::is.string(type),
+    assertthat::noNA(type),
     type %in% c("continuous", "categorical"),
-    asserthat::is.string(subset) || asserthat::is.count(subset),
-    asserthat::noNA(subset)
+    assertthat::is.string(index) || assertthat::is.count(index),
+    assertthat::noNA(index)
   )
-  if (is.character(subset)) {
-    asserthat::assert_that(
-      asserthat::has_name(x, subset))
+  if (is.character(index)) {
+    assertthat::assert_that(
+      assertthat::has_name(x, index))
   }
 
-  # convert subset to integer if field name supplied
-  subset <- which(names(x) == subset)
+  # convert index to integer if field name supplied
+  if (is.character(index)) {
+    index <- which(names(x) == index)
+  }
 
   # calculate statistics
   if (identical(type, "continuous")) {
     ## continuous data
     out <- list(
-      total = sum(x[[subset]], na.rm = TRUE),
-      max_value = min(x[[subset]], na.rm = TRUE),
-      max_value = max(x[[subset]], na.rm = TRUE))
+      total = sum(x[[index]], na.rm = TRUE),
+      min_value = min(x[[index]], na.rm = TRUE),
+      max_value = max(x[[index]], na.rm = TRUE))
   } else {
     ## categorical data
     out <- list(
-      total = sum(x[[subset]], na.rm = TRUE),
-      values = unique(x[[subset]], na.rm = TRUE))
+      total = sum(x[[index]], na.rm = TRUE),
+      values = sort(unique(x[[index]], na.rm = TRUE)))
   }
 
   # return result
@@ -63,36 +65,38 @@ spatial_data_statistics.sf <- function(x, type, subset = 1) {
 
 #' @rdname spatial_data_statistics
 #' @export
-spatial_data_statistics.Raster <- function(x, type, subset = 1) {
+spatial_data_statistics.Raster <- function(x, type, index = 1) {
   # assert valid arguments
-  asserthat::assert_that(
+  assertthat::assert_that(
     inherits(x, "Raster"),
-    asserthat::is.string(type),
-    asserthat::noNA(type),
+    assertthat::is.string(type),
+    assertthat::noNA(type),
     type %in% c("continuous", "categorical"),
-    asserthat::is.string(subset) || asserthat::is.count(subset),
-    asserthat::noNA(subset)
+    assertthat::is.string(index) || assertthat::is.count(index),
+    assertthat::noNA(index)
   )
-  if (is.character(subset)) {
-    asserthat::assert_that(
-      subset %in% names(x))
+  if (is.character(index)) {
+    assertthat::assert_that(
+      index %in% names(x))
   }
 
-  # convert subset to integer if field name supplied
-  subset <- which(names(x) == subset)
+  # convert index to integer if field name supplied
+  if (is.character(index)) {
+    index <- which(names(x) == index)
+  }
 
   # calculate statistics
   if (identical(type, "continuous")) {
     ## continuous data
     out <- list(
-      total = raster::cellStats(x[[subset]], "sum"),
-      max_value = raster::cellStats(x[[subset]], "min"),
-      max_value = raster::cellStats(x[[subset]], "max"))
+      total = raster::cellStats(x[[index]], "sum"),
+      min_value = raster::cellStats(x[[index]], "min"),
+      max_value = raster::cellStats(x[[index]], "max"))
   } else {
     ## categorical data
     out <- list(
-      total = raster::cellStats(x[[subset]], "sum"),
-      values = raster::unique(x[[subset]], na.last = NA))
+      total = raster::cellStats(x[[index]], "sum"),
+      values = raster::unique(x[[index]], na.last = NA))
   }
 
   # return result
