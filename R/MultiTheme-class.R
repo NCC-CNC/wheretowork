@@ -63,7 +63,7 @@ MultiTheme <- R6::R6Class(
         n_distinct(
           vapply(
             feature, FUN.VALUE = character(1),
-            function(x) x$dataset$units)) == 1,
+            function(x) x$variable$units)) == 1,
         msg = "argument to `feature` contains elements with different units")
       ## set fields
       self$id <- id
@@ -111,7 +111,7 @@ MultiTheme <- R6::R6Class(
         feature_status =
           vapply(self$feature, function(x) x$status, logical(1)),
         feature_total_amount =
-          vapply(self$feature, function(x) x$dataset$total, numeric(1)),
+          vapply(self$feature, function(x) x$variable$total, numeric(1)),
         feature_current_held =
           vapply(self$feature, function(x) x$current, numeric(1)),
         feature_min_goal =
@@ -130,7 +130,7 @@ MultiTheme <- R6::R6Class(
           vapply(
             self$feature, function(x) as.character(x$icon),
             character(1)),
-        units = self$feature[[1]]$dataset$units,
+        units = self$feature[[1]]$variable$units,
         mandatory = self$mandatory,
         current_label = self$current_label,
         round = self$round,
@@ -152,8 +152,8 @@ MultiTheme <- R6::R6Class(
         feature_visible =
           vapply(self$feature, function(x) x$visible, logical(1)),
         feature_legend =
-          lapply(self$feature, function(x) x$dataset$legend$get_widget_data()),
-        units = self$feature[[1]]$dataset$units,
+          lapply(self$feature, function(x) x$variable$legend$get_widget_data()),
+        units = self$feature[[1]]$variable$units,
         type = "theme"
       )
     }

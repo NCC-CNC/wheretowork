@@ -5,7 +5,7 @@ NULL
 #'
 #' Definition for the Weight class.
 #'
-#' @seealso [new_weight()]
+#' @seealso [new_weight()].
 #'
 #' @export
 Weight <- R6::R6Class(

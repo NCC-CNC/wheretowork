@@ -2,7 +2,7 @@ context("new_feature")
 
 test_that("initialization", {
   # create object
-  l <- new_dataset(
+  d <- new_dataset(
     source = "asdf.tif", total = 200, units = "ha",
     legend = simulate_continuous_legend())
   x <- new_feature(

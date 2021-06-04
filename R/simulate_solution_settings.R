@@ -90,9 +90,10 @@ simulate_solution_settings <- function(
   w <- lapply(seq_len(n_weights), function(i) {
     new_weight(
       name = wn[i],
-      dataset =
-        new_dataset(
-          source = tempfile(),
+      variable =
+        new_variable(
+          dataset = new_dataset(tempfile()),
+          index = 1,
           total = stats::runif(1, 1e+2, 1e+4),
           units = "???",
           legend = simulate_continuous_legend())
@@ -113,9 +114,10 @@ simulate_solution_settings <- function(
         current = stats::runif(1, 0.1, 0.6),
         limit_goal = stats::runif(1, 0, 0.4),
         icon = example_feature_icon(),
-        dataset =
-          new_dataset(
-            source = tempfile(),
+        variable =
+          new_variable(
+            dataset = new_dataset(tempfile()),
+            index = 1,
             total = stats::runif(1, 1e+2, 1e+4),
             units = "ha",
             legend = simulate_continuous_legend())
@@ -157,9 +159,10 @@ simulate_solution_settings <- function(
             current = stats::runif(1, 0.1, 0.6),
             limit_goal = stats::runif(1, 0, 0.4),
             icon = example_feature_icon(),
-            dataset =
-              new_dataset(
-                source = tempfile(),
+            variable =
+              new_variable(
+                dataset = new_dataset(tempfile()),
+                index = 1,
                 total = stats::runif(1, 1e+2, 1e+4),
                 units = "ha",
                 legend = simulate_continuous_legend())
