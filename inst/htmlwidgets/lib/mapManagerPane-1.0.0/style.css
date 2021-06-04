@@ -14,3 +14,7 @@
 .map-manager-pane .sidebar-content {
   overflow-y: hidden !important;
 }
+
+.sidebar-content {
+  overflow-y: hidden !important;
+  }
