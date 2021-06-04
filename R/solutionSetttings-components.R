@@ -87,6 +87,9 @@ ss_group_goal_component_scaffold <- function() {
 #'
 #' @noRd
 ss_slider_component_scaffold <- function(bar = NULL) {
+  
+  slider_id <- uuid::UUIDgenerate()
+  
   # assert arguments are valid
   if (!is.null(bar)) {
     assertthat::assert_that(
@@ -94,7 +97,10 @@ ss_slider_component_scaffold <- function(bar = NULL) {
       assertthat::noNA(bar))
   }
   # initialize slider
-  out <- htmltools::tags$div(class = "slider")
+  out <- htmltools::tags$div(id = slider_id, class = "slider")
+  
+  #out <- htmltools::shinyBS::bsTooltip(id = slider_id, title = "slider tool tip", placement = "top", trigger = "hover")
+  
   # add bars if needed
   if (!is.null(bar)) {
     # add bar cap
