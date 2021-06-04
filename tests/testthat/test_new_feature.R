@@ -2,12 +2,14 @@ context("new_feature")
 
 test_that("initialization", {
   # create object
-  d <- new_dataset(
-    source = "asdf.tif", total = 200, units = "ha",
+  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+  d <- new_dataset(f)
+  v <- new_variable(
+    dataset = d, index = 1, total = 200, units = "ha",
     legend = simulate_continuous_legend())
   x <- new_feature(
     name = "Intact Alvar",
-    dataset = l,
+    variable = v,
     initial_visible = FALSE,
     initial_status = FALSE,
     initial_goal = 0.2,
@@ -23,7 +25,7 @@ test_that("initialization", {
   print(x)
   expect_is(x$repr(), "character")
   expect_identical(x$name, "Intact Alvar")
-  expect_identical(x$dataset, l)
+  expect_identical(x$variable, v)
   expect_identical(x$visible, FALSE)
   expect_identical(x$initial_visible, FALSE)
   expect_identical(x$status, FALSE)
@@ -42,12 +44,14 @@ test_that("initialization", {
 
 test_that("get methods", {
   # create object
-  l <- new_dataset(
-    source = "asdf.tif", total = 200, units = "ha",
+  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+  d <- new_dataset(f)
+  v <- new_variable(
+    dataset = d, index = 1, total = 200, units = "ha",
     legend = simulate_continuous_legend())
   x <- new_feature(
     name = "Intact Alvar",
-    dataset = l,
+    variable = v,
     initial_visible = TRUE,
     initial_status = FALSE,
     initial_goal = 0.2,
@@ -67,13 +71,15 @@ test_that("get methods", {
 
 test_that("set methods", {
   # create object
-  l <- new_dataset(
-    source = "asdf.tif", total = 200, units = "ha",
+  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+  d <- new_dataset(f)
+  v <- new_variable(
+    dataset = d, index = 1, total = 200, units = "ha",
     legend = simulate_continuous_legend())
   x <- new_feature(
     name = "Intact Alvar",
-    dataset = l,
-    initial_visible = TRUE,
+    variable = v,
+    initial_visible = FALSE,
     initial_status = FALSE,
     initial_goal = 0.2,
     min_goal = 0.01,

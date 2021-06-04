@@ -31,7 +31,11 @@ read_spatial_data <- function(x) {
   # deduce format automatically
   rast_ext <- c("grd", "asc", "sdat", "rst", "nc", "tif", "envi", "bil", "img")
   if (tools::file_ext(x) %in% rast_ext) {
-    out <- raster::stack(x)
+    if (file.exists(raster::extension(x, "txt"))) {
+      out <- readNamedRaster(x)
+    } else {
+      out <- raster::stack(x)
+    }
   } else {
     suppressMessages({
       out <- sf::read_sf(x)

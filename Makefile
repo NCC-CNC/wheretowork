@@ -11,6 +11,9 @@ docs: man readme
 man:
 	R --slave -e "devtools::document()"
 
+data:
+	R --slave -e "source('inst/scripts/simulate-data.R')"
+
 readme:
 	R --slave -e "rmarkdown::render('README.Rmd')"
 

@@ -2,8 +2,8 @@ context("new_variable")
 
 test_that("initialization", {
   # prepare data
-  data(sim_features, package = "prioritizr")
-  rd <- sim_features
+  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+  rd <- readNamedRaster(f)
   d <- new_dataset(rd)
   l <- new_continuous_legend(1, 100, c("#000000", "#AAAAAA"))
   # create object
@@ -21,8 +21,8 @@ test_that("initialization", {
 
 test_that("methods", {
   # prepare data
-  data(sim_features, package = "prioritizr")
-  rd <- sim_features
+  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+  rd <- readNamedRaster(f)
   d <- new_dataset(rd)
   l <- new_continuous_legend(1, 100, c("#000000", "#AAAAAA"))
   # create object
@@ -38,9 +38,10 @@ test_that("methods", {
 
 test_that("new_variable_from_auto (continuous)", {
   # prepare data
-  data(sim_features, package = "prioritizr")
-  rd <- sim_features
+  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+  rd <- readNamedRaster(f)
   d <- new_dataset(rd)
+  rd <- readNamedRaster(f)
   # create object
   x <- new_variable_from_auto(
     dataset = d, index = 2, units = "ha", colors = "viridis")
@@ -61,20 +62,17 @@ test_that("new_variable_from_auto (continuous)", {
 
 test_that("new_variable_from_auto (categorical)", {
   # prepare data
-  data(sim_features, package = "prioritizr")
-  rd <- sim_features
-  non_na <- raster::Which(!is.na(rd[[2]]), cells = TRUE)
-  rd[[2]][non_na] <-
-    as.double(sample(seq_len(5), length(non_na), replace = TRUE))
+  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+  rd <- readNamedRaster(f)
   d <- new_dataset(rd)
   # create object
   x <- new_variable_from_auto(
-    dataset = d, index = 2, units = "ha", colors = "viridis")
+    dataset = d, index = 1, units = "ha", colors = "viridis")
   # run tests
   expect_is(x, "Variable")
   expect_is(x$repr(), "character")
   expect_identical(x$dataset, d)
-  expect_identical(x$total, raster::cellStats(rd[[2]], "sum"))
+  expect_identical(x$total, raster::cellStats(rd[[1]], "sum"))
   expect_identical(x$units, "ha")
   expect_equal(
     x$legend,
@@ -84,9 +82,8 @@ test_that("new_variable_from_auto (categorical)", {
 
 test_that("new_variable_from_metadata (continuous)", {
   # prepare data
-  data(sim_features, package = "prioritizr")
-  rd <- sim_features
-  d <- new_dataset(rd)
+  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+  d <- new_dataset(f)
   # create object
   x <- new_variable_from_metadata(
     dataset = d,
@@ -109,21 +106,20 @@ test_that("new_variable_from_metadata (continuous)", {
 
 test_that("new_variable_from_metadata (categorical)", {
   # prepare data
-  data(sim_features, package = "prioritizr")
-  rd <- sim_features
-  d <- new_dataset(rd)
+  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+  d <- new_dataset(f)
   # create object
   x <- new_variable_from_metadata(
     dataset = d,
     metadata =
       list(
-        index = 2, type = "categorical", units = "ha", colors = "viridis",
+        index = 1, type = "categorical", units = "ha", colors = "viridis",
         total = 11, values = seq(1, 6)))
   # run tests
   expect_is(x, "Variable")
   expect_is(x$repr(), "character")
   expect_identical(x$dataset, d)
-  expect_identical(x$index, 2)
+  expect_identical(x$index, 1)
   expect_identical(x$total, 11)
   expect_identical(x$units, "ha")
   expect_equal(

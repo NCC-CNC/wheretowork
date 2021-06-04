@@ -2,8 +2,8 @@ context("new_dataset")
 
 test_that("raster (from memory)", {
   # create object
-  data(sim_features, package = "prioritizr")
-  d <- sim_features
+  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+  d <- readNamedRaster(f)
   x <- new_dataset(d)
   # run tests
   print(x)
@@ -12,36 +12,32 @@ test_that("raster (from memory)", {
   expect_identical(x$data, d)
   expect_identical(x$get_data(), d)
   expect_identical(x$get_index(1), d[[1]])
-  expect_identical(x$get_index("layer.2"), d[["layer.2"]])
+  expect_identical(x$get_index(names(d)[[2]]), d[[names(d)[[2]]]])
   expect_true(x$has_index(3))
-  expect_true(x$has_index("layer.3"))
+  expect_true(x$has_index(names(d)[[3]]))
+  expect_false(x$has_index("ASDFG"))
 })
 
 test_that("methods (sf from memory)", {
   # create object
-  data(sim_pu_polygons, package = "prioritizr")
-  d <- sim_pu_sf
+  f <- system.file("extdata", "sim_vector_data.gpkg", package = "locationmisc")
+  d <- suppressMessages(sf::read_sf(f))
   x <- new_dataset(d)
   # run tests
   expect_is(x$repr(), "character")
   expect_identical(x$source, "memory")
   expect_identical(x$data, d)
   expect_identical(x$get_data(), d)
-  expect_identical(x$get_index(1), d[, 1])
-  expect_identical(x$get_index("locked_in"), d[, "locked_in"])
+  expect_identical(x$get_index(names(d)[[2]]), d[, names(d)[[2]]])
   expect_true(x$has_index(3))
-  expect_true(x$has_index("locked_out"))
+  expect_true(x$has_index(names(d)[[3]]))
+  expect_false(x$has_index("ASDFG"))
 })
 
 test_that("raster (from file)", {
-  # prepare data
-  data(sim_features, package = "prioritizr")
-  f <- file.path(tempdir(), "layer.tif")
-  suppressWarnings({
-    raster::writeRaster(sim_features, f, NAflag = -9999, overwrite = TRUE)
-  })
-  d <- raster::stack(f)
   # create object
+  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+  d <- readNamedRaster(f)
   x <- new_dataset(f)
   # run tests
   print(x)
@@ -52,20 +48,16 @@ test_that("raster (from file)", {
   expect_identical(x$data, d)
   expect_identical(x$get_data(), d)
   expect_identical(x$get_index(1), d[[1]])
-  expect_identical(x$get_index("layer.2"), d[["layer.2"]])
+  expect_identical(x$get_index(names(d)[[2]]), d[[names(d)[[2]]]])
   expect_true(x$has_index(3))
-  expect_true(x$has_index("layer.3"))
+  expect_true(x$has_index(names(d)[[3]]))
+  expect_false(x$has_index("ASDFG"))
 })
 
 test_that("methods (sf from file)", {
-  # prepare data
-  data(sim_pu_sf, package = "prioritizr")
-  f <- tempfile(fileext = ".shp")
-  suppressMessages({
-    sf::write_sf(sim_pu_sf, f)
-    d <- sf::read_sf(f)
-  })
   # create object
+  f <- system.file("extdata", "sim_vector_data.gpkg", package = "locationmisc")
+  d <- suppressMessages(sf::read_sf(f))
   x <- new_dataset(f)
   # run tests
   expect_is(x$repr(), "character")
@@ -75,7 +67,8 @@ test_that("methods (sf from file)", {
   expect_identical(x$data, d)
   expect_identical(x$get_data(), d)
   expect_identical(x$get_index(1), d[, 1])
-  expect_identical(x$get_index("locked_in"), d[, "locked_in"])
+  expect_identical(x$get_index(names(d)[[2]]), d[, names(d)[[2]]])
   expect_true(x$has_index(3))
-  expect_true(x$has_index("locked_out"))
+  expect_true(x$has_index(names(d)[[3]]))
+  expect_false(x$has_index("ASDFG"))
 })

@@ -19,6 +19,8 @@ new_weight(
 \arguments{
 \item{name}{\code{character} Name to display.}
 
+\item{variable}{\link{Variable} object.}
+
 \item{initial_visible}{\code{logical} The initial visible value.
 This is used to determine if the feature is displayed (or not)
 or not the map.

@@ -12,7 +12,7 @@ Weight class
 Definition for the Weight class.
 }
 \seealso{
-\code{\link[=new_weight]{new_weight()}}
+\code{\link[=new_weight]{new_weight()}}.
 }
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}

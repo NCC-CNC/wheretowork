@@ -2,7 +2,8 @@ context("new_weight")
 
 test_that("initialization", {
   # create object
-  d <- new_dataset(tempfile(fileext = ".tif"))
+  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+  d <- new_dataset(f)
   v <- new_variable(
     dataset = d, index = 1, total = 200, units = "ha",
     legend = simulate_continuous_legend())
@@ -35,7 +36,8 @@ test_that("initialization", {
 
 test_that("get methods", {
   # create object
-  d <- new_dataset(tempfile(fileext = ".tif"))
+  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+  d <- new_dataset(f)
   v <- new_variable(
     dataset = d, index = 1, total = 200, units = "ha",
     legend = simulate_continuous_legend())
@@ -59,7 +61,8 @@ test_that("get methods", {
 
 test_that("set methods", {
   # create object
-  d <- new_dataset(tempfile(fileext = ".tif"))
+  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+  d <- new_dataset(f)
   v <- new_variable(
     dataset = d, index = 1, total = 200, units = "ha",
     legend = simulate_continuous_legend())
@@ -90,7 +93,8 @@ test_that("set methods", {
 
 test_that("widget methods", {
   # create object
-  d <- new_dataset(tempfile(fileext = ".tif"))
+  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+  d <- new_dataset(f)
   v <- new_variable(
     dataset = d, index = 1, total = 200, units = "ha",
     legend = simulate_continuous_legend())

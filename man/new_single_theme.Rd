@@ -51,7 +51,7 @@ l <- new_dataset(
 f <- new_feature(name = "Intact Alvar Occurrence", dataset = l)
 
 # create a theme using the single feature
-st <- new_single_theme(name = "Inact Alvar", feature = f)
+st <- new_single_theme(name = "Intact Alvar", feature = f)
 
 # print object
 print(st)

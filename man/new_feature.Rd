@@ -6,7 +6,7 @@
 \usage{
 new_feature(
   name,
-  dataset,
+  variable,
   initial_visible = TRUE,
   initial_status = TRUE,
   initial_goal = 0.1,
@@ -23,7 +23,7 @@ new_feature(
 \arguments{
 \item{name}{\code{character} Name of the feature.}
 
-\item{dataset}{\link{Dataset} object.}
+\item{variable}{\link{Variable} object.}
 
 \item{initial_visible}{\code{logical} The initial visible value.
 This is used to determine if the feature is displayed (or not)
@@ -86,13 +86,13 @@ A \link{Feature} object.
 Create a new \link{Feature} object.
 }
 \examples{
-# create new dataset
-l <- new_dataset(
+# create new variable
+l <- new_variable(
  source = tempfile(), total = 12, units = "ha",
  legend = new_continuous_legend(1, 100, c("#000000", "#AAAAAA")))
 
-# create feature using the dataset
-f <- new_feature(name = "Intact Alvar", dataset = l)
+# create feature using the variable
+f <- new_feature(name = "Intact Alvar", variable = l)
 
 # print object
 print(f)
