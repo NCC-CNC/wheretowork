@@ -1,26 +1,33 @@
 /* overall widget */
 .continuous-legend {
   width: 100%;
-  height: 80px;
+  min-height: 115px;
+  overflow:auto;
+  position:relative;
 }
 
 /* containers */
 .continuous-legend .color-bar {
-  position: relative;
-  height: 80px;
+  position: absolute;
+  min-height: 103px;
   width: 22px;
   display: inline-block;
   box-sizing: border-box;
-  border-radius: 4px;
+  border-radius: 5px;
   border: 1px solid var(--symbol-border);
+  bottom: 5px;
+  left: 22px;
 }
 
 .continuous-legend .items {
-  height: 80px;
+  position: absolute;
+  min-height: 100px;
   width: 60px;
   display: inline-block;
   box-sizing: border-box;
-  position: relative;
+  vertical-align: bottom;
+  bottom: 0px;
+  left: 43px;
 }
 
 .continuous-legend .item {
@@ -28,16 +35,18 @@
   box-sizing: border-box;
   position: absolute;
   box-sizing: border-box;
+  vertical-align: baseline;
 }
 
 /* labels */
 .continuous-legend .items label {
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 400;
   display: inline-block;
   padding: 0;
   margin: 0;
-  vertical-align: baseline;
+  padding-left:3px;
+  /*vertical-align: baseline;*/
 }
 
 /* ticks */

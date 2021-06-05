@@ -43,9 +43,14 @@ mm_legend_component_scaffold <- function() {
 mm_header_component_scaffold <- function(id = uuid::UUIDgenerate()) {
   htmltools::tags$div(
     class = "header",
-    htmltools::tags$input(
-      class = "view-checkbox",
-      type = "checkbox"),
+    htmltools::tags$label(
+      class = "view-container",
+      htmltools::tags$input(
+        class = "view-checkbox",
+        type = "checkbox"),
+      htmltools::tags$i(class = "far fa-minus-square checked"),
+      htmltools::tags$i(class = "far fa-plus-square unchecked")
+    ),
     htmltools::tags$label(
       class = "visible-container",
       htmltools::tags$input(
@@ -71,9 +76,14 @@ mm_header_component_scaffold <- function(id = uuid::UUIDgenerate()) {
 mm_subheader_component_scaffold <- function(id = uuid::UUIDgenerate()) {
   htmltools::tags$div(
     class = "sub-header",
-    htmltools::tags$input(
-      class = "view-checkbox",
-      type = "checkbox"),
+    htmltools::tags$label(
+      class = "view-container",
+      htmltools::tags$input(
+        class = "view-checkbox",
+        type = "checkbox"),
+      htmltools::tags$i(class = "far fa-minus-square checked"),
+      htmltools::tags$i(class = "far fa-plus-square unchecked")
+    ),
     htmltools::tags$label(
       class = "visible-container",
       htmltools::tags$input(

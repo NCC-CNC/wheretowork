@@ -38,9 +38,11 @@ function continuousLegend(el, x, units) {
   /// replace any NaN values with zero (caused by zero / zero)
   positions = positions.map((z) => isNaN(z) ? 0 : z);
 
-  console.log("x");
-  console.log(x);
-  console.log("positions");
+  console.log("numeric value at bottom (0%) of colorbar: " + x.min_value);
+  console.log("numeric value at top (100%) of colorbar: " + x.max_value);
+  console.log("numeric value of tick labels")
+  console.log(x.values);
+  console.log("percentage positions of ticks along the colorbar");
   console.log(positions);
 
   // create color bar
