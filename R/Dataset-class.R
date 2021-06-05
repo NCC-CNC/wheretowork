@@ -143,12 +143,11 @@ Dataset <- R6::R6Class(
 #' @return A [Dataset] object.
 #'
 #' @examples
-#' # load data
-#' data(sim_pu_raster, package = "prioritizr")
-#' r <- sim_pu_raster
+#' # find data path
+#' f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
 #'
 #' # create new dataset
-#' d <- new_dataset(r)
+#' d <- new_dataset(f)
 #'
 #' # print object
 #' print(d)

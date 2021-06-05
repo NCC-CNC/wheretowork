@@ -1,13 +1,18 @@
-#' Write a \code{Raster} object to disk
+#' Write a Raster object to disk
 #'
-#' @inheritParams raster::writeRaster
+#' Save a [raster::raster()] object to disk, along with a text file containing
+#' the names of each layer in the object.
 #'
-#' @param ... arguments passed to \code{\link[raster]{writeRaster}}.
+#' @param x [raster::raster()] object.
 #'
-#' @details This file saves a \code{\link{Raster}} object to disk along with
+#' @param filename `character` file path.
+#'
+#' @param ... arguments passed to [raster::writeRaster].
+#'
+#' @details This file saves a raster object to disk along with
 #'   a text file containing the layer names of the raster.
 #'
-#' @return result from  \code{\link[raster]{writeRaster}}.
+#' @return None.
 #'
 #' @export
 writeNamedRaster <- function(x, filename, ...) {
@@ -19,14 +24,19 @@ writeNamedRaster <- function(x, filename, ...) {
   raster::writeRaster(x, filename, ...)
 }
 
-#' Read a \code{Raster} object from disk
+#' Read a Raster object from disk
 #'
-#' @inheritParams raster::stack
+#' Read a [raster::raster()] object from disk, along with a text file containing
+#' the names of each layer in the object.
 #'
-#' @details This file reads a \code{\link{Raster}} object to disk along with
+#' @param x [raster::raster()] object.
+#'
+#' @param ... arguments passed to [raster::stack].
+#'
+#' @details This file reads a raster object to disk along with
 #'   a text file containing the layer names of the raster.
 #'
-#' @return result from \code{\link[raster]{stack}} with names.
+#' @return A raster object.
 #'
 #' @export
 readNamedRaster <- function(x, ...) {

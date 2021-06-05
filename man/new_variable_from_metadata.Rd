@@ -37,17 +37,17 @@ Required only for categorical data.}
 }
 }
 \examples{
-# load data
-data(sim_pu_raster, package = "prioritizr")
-r <- sim_pu_raster
+# find data path
+f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
 
 # create new dataset
-d <- new_dataset(r)
+d <- new_dataset(f)
 
 # create new variable
 v <- new_variable_from_metadata(
-  d, list(index = 1, total = 12, units = "ha", statistics =
-  legend = new_continuous_legend(1, 100, c("#000000", "#AAAAAA"))
+  d, list(index = 1, units = "ha", type = "continuous",
+          colors = c("#000000", "#AAAAAA"), total = 12,
+          min_value = 1, max_value = 3))
 
 # print object
 print(v)

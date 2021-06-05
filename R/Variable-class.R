@@ -124,16 +124,15 @@ Variable <- R6::R6Class(
 #' @return A [Variable] object.
 #'
 #' @examples
-#' # load data
-#' data(sim_pu_raster, package = "prioritizr")
-#' r <- sim_pu_raster
+#' # find data path
+#' f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
 #'
 #' # create new dataset
-#' d <- new_dataset(r)
+#' d <- new_dataset(f)
 #'
 #' # create new variable
 #' v <- new_variable(d, index = 1, total = 12, units = "ha",
-#'   legend = new_continuous_legend(1, 100, c("#000000", "#AAAAAA"))
+#'   legend = new_continuous_legend(1, 100, c("#000000", "#AAAAAA")))
 #'
 #' # print object
 #' print(v)
@@ -175,12 +174,11 @@ new_variable <- function(dataset, index, units, total, legend) {
 #' @return A [Variable] object.
 #'
 #' @examples
-#' # load example raster
-#' data(sim_pu_raster, package = "prioritizr")
-#' r <- sim_pu_raster
+#' # find data path
+#' f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
 #'
 #' # create new dataset
-#' d <- new_dataset(r)
+#' d <- new_dataset(f)
 #'
 #' # create new variable
 #' v <- new_variable_from_auto(d, index = 1)
@@ -266,17 +264,17 @@ new_variable_from_auto <- function(
 #' }
 #'
 #' @examples
-#' # load data
-#' data(sim_pu_raster, package = "prioritizr")
-#' r <- sim_pu_raster
+#' # find data path
+#' f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
 #'
 #' # create new dataset
-#' d <- new_dataset(r)
+#' d <- new_dataset(f)
 #'
 #' # create new variable
 #' v <- new_variable_from_metadata(
-#'   d, list(index = 1, total = 12, units = "ha", statistics =
-#'   legend = new_continuous_legend(1, 100, c("#000000", "#AAAAAA"))
+#'   d, list(index = 1, units = "ha", type = "continuous",
+#'           colors = c("#000000", "#AAAAAA"), total = 12,
+#'           min_value = 1, max_value = 3))
 #'
 #' # print object
 #' print(v)
@@ -342,13 +340,13 @@ new_variable_from_metadata <- function(dataset, metadata) {
       colors <-
         color_palette(metadata$colors, length(metadata$values))
     } else {
-      colors <- color_palette(metadata$colors, 20)
+      colors <- color_palette(metadata$colors, NULL)
     }
   } else {
     colors <- metadata$colors
     if (identical(metadata$type, "categorical")) {
       ## verify that correct number of colors supplied if categorical legend
-      asserrthat::assert_that(
+      assertthat::assert_that(
         length(colors) == length(metadata$values),
         msg = paste0(
           metadata$type, " data has ", length(metadata$values),
@@ -356,7 +354,7 @@ new_variable_from_metadata <- function(dataset, metadata) {
           "the argument to \"colors\" must contain this many elements."))
     } else {
       ## verify that at least two colors supplied for continuous legend
-      asserrthat::assert_that(
+      assertthat::assert_that(
         length(colors) >= 2,
         msg = paste0(
           metadata$type,

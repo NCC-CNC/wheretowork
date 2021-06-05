@@ -25,16 +25,15 @@ A \link{Variable} object.
 Create a new \link{Variable} object.
 }
 \examples{
-# load data
-data(sim_pu_raster, package = "prioritizr")
-r <- sim_pu_raster
+# find data path
+f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
 
 # create new dataset
-d <- new_dataset(r)
+d <- new_dataset(f)
 
 # create new variable
 v <- new_variable(d, index = 1, total = 12, units = "ha",
-  legend = new_continuous_legend(1, 100, c("#000000", "#AAAAAA"))
+  legend = new_continuous_legend(1, 100, c("#000000", "#AAAAAA")))
 
 # print object
 print(v)

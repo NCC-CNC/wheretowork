@@ -82,7 +82,7 @@ NULL
 #' color_palette("plasma", NULL)
 #'
 #' # obtain colors from a random palette
-#' color_palette("random", 20)
+#' color_palette("random", NULL)
 #' @export
 color_palette <- function(x, n = NULL) {
   # assert arguments are valid
@@ -95,13 +95,12 @@ color_palette <- function(x, n = NULL) {
       assertthat::noNA(n))
   }
   if (identical(x, "random")) {
-    assertthat::assert_that(
-      assertthat::is.count(n),
-      assertthat::noNA(n),
-      msg = paste0(
-        "the argument to \"n\" must be an integer when using a ",
-        "\"random\" palette"))
-    x <- paste(sample(rownames(RColorBrewer::brewer.pal.info)), collapse = ";")
+    if (is.null(n)) {
+      x <- sample(rownames(RColorBrewer::brewer.pal.info), 1)
+    } else {
+      x <-
+        paste(sample(rownames(RColorBrewer::brewer.pal.info)), collapse = ";")
+    }
   }
 
   # extract color brewer palette data
@@ -136,7 +135,7 @@ color_palette <- function(x, n = NULL) {
       # generate colors
       new_cols <- viridisLite::viridis(n = curr_n, option = pal)
     }
-    # store olors
+    # store colors
     cols <- c(cols, new_cols)
   }
 

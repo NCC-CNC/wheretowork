@@ -6,11 +6,11 @@
 \alias{spatial_data_type.Raster}
 \title{Spatial data type}
 \usage{
-spatial_data_type(x, index = 1)
+spatial_data_type(x, index = 1, ...)
 
-\method{spatial_data_type}{sf}(x, index = 1)
+\method{spatial_data_type}{sf}(x, index = 1, ...)
 
-\method{spatial_data_type}{Raster}(x, index = 1, max_sample = 1000)
+\method{spatial_data_type}{Raster}(x, index = 1, max_sample = 1000, ...)
 }
 \arguments{
 \item{x}{\code{\link[sf:sf]{sf::st_sf()}} or \code{\link[raster:stack]{raster::stack()}} dataset object.}
@@ -19,6 +19,8 @@ spatial_data_type(x, index = 1)
 field or layer for which to calculate statistics.
 Defaults to 1, such that the first field/layer is used to calculate
 statistics.}
+
+\item{...}{not used.}
 
 \item{max_sample}{\code{integer} maximum number of cells in a raster stack
 to sample when checking if the data are continuous or categorical.

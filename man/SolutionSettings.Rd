@@ -156,9 +156,6 @@ Get a weight.
 \if{html}{\out{<a id="method-get_parameter"></a>}}
 \if{latex}{\out{\hypertarget{method-get_parameter}{}}}
 \subsection{Method \code{get_parameter()}}{
-Get feature (rij) matrix.
-
-
 Get a parameter for a weight or theme.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$get_parameter(value)}\if{html}{\out{</div>}}
@@ -167,14 +164,9 @@ Get a parameter for a weight or theme.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{value}}{\code{character} weight identifier.}
-
 \item{\code{value}}{\code{list} with new parameter information (see Details section)}
 }
 \if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-\link{Weight} object.
 }
 }
 \if{html}{\out{<hr>}}

@@ -45,12 +45,11 @@ The argument to \code{colors} can be a vector of different colors
 colors are generated using a randomly selected palette.
 }
 \examples{
-# load example raster
-data(sim_pu_raster, package = "prioritizr")
-r <- sim_pu_raster
+# find data path
+f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
 
 # create new dataset
-d <- new_dataset(r)
+d <- new_dataset(f)
 
 # create new variable
 v <- new_variable_from_auto(d, index = 1)

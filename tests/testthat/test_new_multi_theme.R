@@ -2,15 +2,17 @@ context("new_multi_theme")
 
 test_that("initialization", {
   # create object
-  l1 <- new_dataset(
-    source = "l1.txt", total = 100, units = "ha",
+  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+  d <- new_dataset(f)
+  v1 <- new_variable(
+    dataset = d, index = 1, total = 100, units = "ha",
     legend = simulate_continuous_legend())
-  l2 <- new_dataset(
-    source = "l2.txt", total = 30, units = "ha",
+  v2 <- new_variable(
+    dataset = d, index = 2, total = 30, units = "ha",
     legend = simulate_continuous_legend())
   f1 <- new_feature(
     name = "F1",
-    dataset = l1,
+    variable = v1,
     initial_visible = TRUE,
     initial_status = FALSE,
     initial_goal = 0.2,
@@ -24,7 +26,7 @@ test_that("initialization", {
     id = "FID1")
   f2 <- new_feature(
     name = "F2",
-    dataset = l2,
+    variable = v2,
     initial_visible = FALSE,
     initial_status = TRUE,
     initial_goal = 0.21,
@@ -57,15 +59,17 @@ test_that("initialization", {
 
 test_that("get methods", {
   # create object
-  l1 <- new_dataset(
-    source = "l1.txt", total = 100, units = "ha",
+  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+  d <- new_dataset(f)
+  v1 <- new_variable(
+    dataset = d, index = 1, total = 100, units = "ha",
     legend = simulate_continuous_legend())
-  l2 <- new_dataset(
-    source = "l2.txt", total = 30, units = "ha",
+  v2 <- new_variable(
+    dataset = d, index = 2, total = 30, units = "ha",
     legend = simulate_continuous_legend())
   f1 <- new_feature(
     name = "F1",
-    dataset = l1,
+    variable = v1,
     initial_visible = TRUE,
     initial_status = FALSE,
     initial_goal = 0.2,
@@ -79,7 +83,7 @@ test_that("get methods", {
     id = "FID1")
   f2 <- new_feature(
     name = "F2",
-    dataset = l2,
+    variable = v2,
     initial_visible = FALSE,
     initial_status = TRUE,
     initial_goal = 0.21,
@@ -110,15 +114,17 @@ test_that("get methods", {
 
 test_that("set methods", {
   # create object
-  l1 <- new_dataset(
-    source = "l1.txt", total = 100, units = "ha",
+  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+  d <- new_dataset(f)
+  v1 <- new_variable(
+    dataset = d, index = 1, total = 100, units = "ha",
     legend = simulate_continuous_legend())
-  l2 <- new_dataset(
-    source = "l2.txt", total = 30, units = "ha",
+  v2 <- new_variable(
+    dataset = d, index = 2, total = 30, units = "ha",
     legend = simulate_continuous_legend())
   f1 <- new_feature(
     name = "F1",
-    dataset = l1,
+    variable = v1,
     initial_visible = TRUE,
     initial_status = FALSE,
     initial_goal = 0.2,
@@ -132,7 +138,7 @@ test_that("set methods", {
     id = "FID1")
   f2 <- new_feature(
     name = "F2",
-    dataset = l2,
+    variable = v2,
     initial_visible = FALSE,
     initial_status = TRUE,
     initial_goal = 0.21,
@@ -169,15 +175,17 @@ test_that("set methods", {
 
 test_that("widget methods", {
   # create object
-  l1 <- new_dataset(
-    source = "l1.txt", total = 100, units = "ha",
+  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+  d <- new_dataset(f)
+  v1 <- new_variable(
+    dataset = d, index = 1, total = 100, units = "ha",
     legend = simulate_continuous_legend())
-  l2 <- new_dataset(
-    source = "l2.txt", total = 30, units = "ha",
+  v2 <- new_variable(
+    dataset = d, index = 2, total = 30, units = "ha",
     legend = simulate_continuous_legend())
   f1 <- new_feature(
     name = "F1",
-    dataset = l1,
+    variable = v1,
     initial_visible = TRUE,
     initial_status = FALSE,
     initial_goal = 0.2,
@@ -191,7 +199,7 @@ test_that("widget methods", {
     id = "FID1")
   f2 <- new_feature(
     name = "F2",
-    dataset = l2,
+    variable = v2,
     initial_visible = FALSE,
     initial_status = TRUE,
     initial_goal = 0.21,
@@ -247,7 +255,7 @@ test_that("widget methods", {
         feature_id = c("FID1", "FID2"),
         feature_visible = c(TRUE, FALSE),
         feature_legend =
-          lapply(x$feature, function(x) x$dataset$legend$get_widget_data()),
+          lapply(x$feature, function(x) x$variable$legend$get_widget_data()),
           units = "ha",
         type = "theme")
   )

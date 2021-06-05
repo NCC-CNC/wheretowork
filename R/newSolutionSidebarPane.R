@@ -17,8 +17,12 @@ NULL
 #' @return A `shiny.tag` object with the sidebar pane.
 #'
 #' @examples
-#' # TODO.
-#'
+#' \dontrun{
+#' # run Shiny app to demo the sidebar pane
+#' if (interactive()) {
+#'   runExample("newSolutionSidebarPane")
+#' }
+#' }
 #' @export
 newSolutionSidebarPane <- function(
   id,

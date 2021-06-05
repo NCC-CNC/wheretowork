@@ -2,24 +2,25 @@
 % Please edit documentation in R/raster_io.R
 \name{writeNamedRaster}
 \alias{writeNamedRaster}
-\title{Write a \code{Raster} object to disk}
+\title{Write a Raster object to disk}
 \usage{
 writeNamedRaster(x, filename, ...)
 }
 \arguments{
-\item{x}{Raster* object}
+\item{x}{\code{\link[raster:raster]{raster::raster()}} object.}
 
-\item{filename}{Output filename}
+\item{filename}{\code{character} file path.}
 
-\item{...}{arguments passed to \code{\link[raster]{writeRaster}}.}
+\item{...}{arguments passed to \link[raster:writeRaster]{raster::writeRaster}.}
 }
 \value{
-result from  \code{\link[raster]{writeRaster}}.
+None.
 }
 \description{
-Write a \code{Raster} object to disk
+Save a \code{\link[raster:raster]{raster::raster()}} object to disk, along with a text file containing
+the names of each layer in the object.
 }
 \details{
-This file saves a \code{\link{Raster}} object to disk along with
+This file saves a raster object to disk along with
 a text file containing the layer names of the raster.
 }

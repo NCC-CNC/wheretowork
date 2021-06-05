@@ -44,7 +44,7 @@ cd_raster_data <-
 # Main processing
 ## simulate names for features, themes, and weights
 sim_names <-
-  simulate_solution_settings(
+  locationmisc::simulate_data(
     n_single_themes = n_single_themes,
     n_multi_themes = n_multi_themes,
     n_weights = n_weights)

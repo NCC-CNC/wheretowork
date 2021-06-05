@@ -16,17 +16,19 @@ NULL
 #'  to sample when checking if the data are continuous or categorical.
 #'  Defaults to 1000.
 #'
+#' @param ... not used.
+#'
 #' @return A `character` indicating if the data are `"continuous"` or
 #'   `"categorical"`.
 #'
 #' @export
-spatial_data_type <- function(x, index = 1) {
+spatial_data_type <- function(x, index = 1, ...) {
   UseMethod("spatial_data_type", x)
 }
 
 #' @rdname spatial_data_type
 #' @export
-spatial_data_type.sf <- function(x, index = 1) {
+spatial_data_type.sf <- function(x, index = 1, ...) {
   # assert valid arguments
   assertthat::assert_that(
     inherits(x, "sf"),
@@ -40,7 +42,7 @@ spatial_data_type.sf <- function(x, index = 1) {
   # determine if data are continuous or categorical
   ## if there are more than 20 unique values, then we assume it's continuous
   out <-
-    ifelse(dplyr::n_distinct(x[[index]]) > 20, "continuous", "categorical")
+    ifelse(n_distinct(x[[index]]) > 20, "continuous", "categorical")
 
   # return result
   out
@@ -48,7 +50,7 @@ spatial_data_type.sf <- function(x, index = 1) {
 
 #' @rdname spatial_data_type
 #' @export
-spatial_data_type.Raster <- function(x, index = 1, max_sample = 1000) {
+spatial_data_type.Raster <- function(x, index = 1, max_sample = 1000, ...) {
   # assert valid arguments
   assertthat::assert_that(
     inherits(x, "Raster"),
@@ -76,7 +78,7 @@ spatial_data_type.Raster <- function(x, index = 1, max_sample = 1000) {
   # determine if data are continuous or categorical
   ## if there are more than 20 unique values, then we assume it's continuous
   out <-
-    ifelse(dplyr::n_distinct(x[cells]) > 20, "continuous", "categorical")
+    ifelse(n_distinct(x[cells]) > 20, "continuous", "categorical")
 
   # return result
   out

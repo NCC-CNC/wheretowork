@@ -7,7 +7,7 @@ test_that("raster (continuous)", {
   non_na <- raster::Which(!is.na(rd), cells = TRUE)
   rd[non_na] <- runif(length(non_na))
   # run function
-  x <- spatial_data_statistics(rd)
+  x <- spatial_data_type(rd)
   # run tests
   expect_identical(x, "continuous")
 })

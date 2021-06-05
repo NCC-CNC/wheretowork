@@ -302,13 +302,17 @@ Weight <- R6::R6Class(
 #' @return A [Weight] object.
 #'
 #' @examples
-#' # create a new variable
-#' l <- new_variable(
-#'  dataset = new_dataset(tempfile()), total = 12, units = "ha",
-#'  legend = new_continuous_legend(1, 100, c("#000000", "#1b9e77")))
+#' # find data path
+#' f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+#'
+#' # create new dataset
+#' d <- new_dataset(f)
+#'
+#' # create new variable
+#' v <- new_variable_from_auto(d, index = 1)
 #'
 #' # create a new weight
-#' w <- new_weight(name = "NDVI", variable = l)
+#' w <- new_weight(name = "NDVI", variable = v)
 #'
 #' # print object
 #' print(w)

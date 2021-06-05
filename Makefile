@@ -46,11 +46,11 @@ site:
 demo-solutionSettings:
 	R --slave -e "devtools::load_all();options(shiny.launch.browser=TRUE);locationmisc::runExample('solutionSettings')"
 
-demo-newSolutionPane:
-	R --slave -e "devtools::load_all();options(shiny.launch.browser=TRUE);locationmisc::runExample('newSolutionPane')"
+demo-newSolutionSidebarPane:
+	R --slave -e "devtools::load_all();options(shiny.launch.browser=TRUE);locationmisc::runExample('newSolutionSidebarPane')"
 
-demo-mapManagerPane:
-	R --slave -e "devtools::load_all();options(shiny.launch.browser=TRUE);locationmisc::runExample('mapManagerPane')"
+demo-mapManagerSidebarPane:
+	R --slave -e "devtools::load_all();options(shiny.launch.browser=TRUE);locationmisc::runExample('mapManagerSidebarPane')"
 
 demo-mapManager:
 	R --slave -e "devtools::load_all();options(shiny.launch.browser=TRUE);locationmisc::runExample('mapManager')"

@@ -303,13 +303,17 @@ Feature <- R6::R6Class(
 #' @return A [Feature] object.
 #'
 #' @examples
+#' # find data path
+#' f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+#'
+#' # create new dataset
+#' d <- new_dataset(f)
+#'
 #' # create new variable
-#' l <- new_variable(
-#'  source = tempfile(), total = 12, units = "ha",
-#'  legend = new_continuous_legend(1, 100, c("#000000", "#AAAAAA")))
+#' v <- new_variable_from_auto(dataset = d, index = 1)
 #'
 #' # create feature using the variable
-#' f <- new_feature(name = "Intact Alvar", variable = l)
+#' f <- new_feature(name = "Intact Alvar", variable = v)
 #'
 #' # print object
 #' print(f)

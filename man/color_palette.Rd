@@ -89,5 +89,5 @@ color_palette("Set1;Pastel1", 15)
 color_palette("plasma", NULL)
 
 # obtain colors from a random palette
-color_palette("random", 20)
+color_palette("random", NULL)
 }

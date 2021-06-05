@@ -193,23 +193,23 @@ MultiTheme <- R6::R6Class(
 #' @return A [MultiTheme] object.
 #'
 #' @examples
-#' # create datasets
-#' l1 <- new_dataset(
-#'  source = tempfile(), total = 12, units = "ha",
-#'  legend = new_continuous_legend(1, 100, c("#000000", "#1b9e77")))
-#' l2 <- new_dataset(
-#'  source = tempfile(), total = 14, units = "ha",
-#'  legend = new_continuous_legend(1, 100, c("#000000", "#d95f02")))
-#' l3 <- new_dataset(
-#'  source = tempfile(), total = 78, units = "ha",
-#'  legend = new_continuous_legend(1, 100, c("#000000", "#7570b3")))
+#' # find data path
+#' f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
 #'
-#' # create features the datasets
-#' f1 <- new_feature(name = "Pangolin", dataset = l1)
-#' f2 <- new_feature(name = "Panda", dataset = l2)
-#' f3 <- new_feature(name = "Palms", dataset = l3)
+#' # create new dataset
+#' d <- new_dataset(f)
 #'
-#' # create a multi-theme using the features
+#' # create new variable
+#' v1 <- new_variable_from_auto(d, index = 1)
+#' v2 <- new_variable_from_auto(d, index = 2)
+#' v3 <- new_variable_from_auto(d, index = 3)
+#'
+#' # create new features
+#' f1 <- new_feature(name = "Pangolin", variable = v1)
+#' f2 <- new_feature(name = "Panda", variable = v2)
+#' f3 <- new_feature(name = "Palms", variable = v3)
+#'
+#' # create a theme using the features
 #' mt <- new_multi_theme(
 #'   name = "Endangered species", feature = list(f1, f2, f3))
 #'

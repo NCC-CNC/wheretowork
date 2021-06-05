@@ -42,13 +42,17 @@ A \link{SingleTheme} object.
 Create a new \link{SingleTheme} object.
 }
 \examples{
-# create new dataset
-l <- new_dataset(
- source = tempfile(), total = 12, units = "ha",
- legend = new_continuous_legend(1, 100, c("#000000", "#1b9e77")))
+# find data path
+f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
 
-# create feature using the dataset
-f <- new_feature(name = "Intact Alvar Occurrence", dataset = l)
+# create new dataset
+d <- new_dataset(f)
+
+# create new variable
+v <- new_variable_from_auto(d, index = 1)
+
+# create new feature
+f <- new_feature(name = "Intact Alvar", variable = v)
 
 # create a theme using the single feature
 st <- new_single_theme(name = "Intact Alvar", feature = f)

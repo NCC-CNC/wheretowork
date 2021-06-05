@@ -2,22 +2,23 @@
 % Please edit documentation in R/raster_io.R
 \name{readNamedRaster}
 \alias{readNamedRaster}
-\title{Read a \code{Raster} object from disk}
+\title{Read a Raster object from disk}
 \usage{
 readNamedRaster(x, ...)
 }
 \arguments{
-\item{x}{filename (character), Raster* object, missing (to create an empty RasterStack), SpatialGrid*, SpatialPixels*, or list (of filenames and/or Raster* objects). If \code{x} is a list, additional arguments \code{...} are ignored}
+\item{x}{\code{\link[raster:raster]{raster::raster()}} object.}
 
-\item{...}{additional filenames or Raster* objects}
+\item{...}{arguments passed to \link[raster:stack]{raster::stack}.}
 }
 \value{
-result from \code{\link[raster]{stack}} with names.
+A raster object.
 }
 \description{
-Read a \code{Raster} object from disk
+Read a \code{\link[raster:raster]{raster::raster()}} object from disk, along with a text file containing
+the names of each layer in the object.
 }
 \details{
-This file reads a \code{\link{Raster}} object to disk along with
+This file reads a raster object to disk along with
 a text file containing the layer names of the raster.
 }
