@@ -4,16 +4,21 @@
   padding-bottom: 2px !important;
 }
 
+.sidebar-content{
+  overflow-y: hidden !important;
+}
+
 .new-solution-pane {
   margin-top: 3px;
 }
 
 /* widget container */
 .new-solution-pane .widget-container {
-  overflow-y: auto;
+  overflow-y: hidden;
   max-height: 100%;
 }
 
 .new-solution-pane .sidebar-content {
   overflow-y: hidden !important;
 }
+
