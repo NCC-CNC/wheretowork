@@ -7,5 +7,9 @@ library(locationmisc)
 # set seed for reproducibility
 set.seed(500)
 
-# create solution settings object
-ss <- simulate_solution_settings(5, 5, 8)
+# simulate data
+sim_data <- simulate_data(5, 5, 8)
+
+# create new solution settings widget
+ss <- new_solution_settings(
+  themes = sim_data$themes, weights = sim_data$weights)
