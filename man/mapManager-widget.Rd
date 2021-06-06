@@ -37,3 +37,12 @@ Available options are: \code{"visible"} and \code{"order"}.}
 }
 }
 
+\examples{
+\dontrun{
+# run Shiny app to demo the sidebar pane
+if (interactive()) {
+  runExample("mapManager")
+}
+}
+
+}

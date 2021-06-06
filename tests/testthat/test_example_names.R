@@ -6,8 +6,9 @@ test_that("example_weight_names", {
   # run tests
   expect_is(x, "data.frame")
   expect_gt(nrow(x), 0)
-  expect_is(x$weight, "character")
-  expect_identical(anyDuplicated(x$weight), 0L)
+  expect_is(x$name, "character")
+  expect_is(x$unit, "character")
+  expect_identical(anyDuplicated(x$name), 0L)
 })
 
 test_that("example_theme_names", {

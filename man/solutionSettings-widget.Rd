@@ -50,6 +50,11 @@ where \code{id} is the argument to \code{elementId}.
 }
 
 \examples{
-# TODO.
+\dontrun{
+# run Shiny app to demo the sidebar pane
+if (interactive()) {
+  runExample("solutionSettings")
+}
+}
 
 }

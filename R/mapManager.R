@@ -22,6 +22,13 @@
 #'
 #' @rdname mapManager-widget
 #'
+#' @examples
+#' \dontrun{
+#' # run Shiny app to demo the sidebar pane
+#' if (interactive()) {
+#'   runExample("mapManager")
+#' }
+#' }
 #'
 #' @export
 mapManager <- function(

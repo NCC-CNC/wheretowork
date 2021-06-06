@@ -10,20 +10,19 @@ Dataset class
 }
 \details{
 Definition for the Dataset class.
+
+Note that this method has no effect if the dataset does not have
+file path on disk.
 }
 \seealso{
-\code{\link[=new_dataset]{new_dataset()}}
+\code{\link[=new_dataset]{new_dataset()}}.
 }
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
-\item{\code{source}}{\code{character} value.}
+\item{\code{source}}{\code{character}, \code{\link[sf:sf]{sf::st_sf()}}, or \code{\link[raster:stack]{raster::stack()}} object.}
 
-\item{\code{total}}{\code{numeric} value.}
-
-\item{\code{units}}{\code{character} value.}
-
-\item{\code{legend}}{\code{Legend} object.}
+\item{\code{data}}{\code{NULL}, \code{\link[sf:sf]{sf::st_sf()}}, or \code{\link[raster:stack]{raster::stack()}} object.}
 }
 \if{html}{\out{</div>}}
 }
@@ -33,6 +32,11 @@ Definition for the Dataset class.
 \item \href{#method-new}{\code{Dataset$new()}}
 \item \href{#method-print}{\code{Dataset$print()}}
 \item \href{#method-repr}{\code{Dataset$repr()}}
+\item \href{#method-import}{\code{Dataset$import()}}
+\item \href{#method-clean}{\code{Dataset$clean()}}
+\item \href{#method-get_data}{\code{Dataset$get_data()}}
+\item \href{#method-get_index}{\code{Dataset$get_index()}}
+\item \href{#method-has_index}{\code{Dataset$has_index()}}
 \item \href{#method-clone}{\code{Dataset$clone()}}
 }
 }
@@ -42,19 +46,13 @@ Definition for the Dataset class.
 \subsection{Method \code{new()}}{
 Create a Dataset object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Dataset$new(source, total, units, legend)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Dataset$new(source)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{source}}{\code{character} value.}
-
-\item{\code{total}}{\code{numeric} value.}
-
-\item{\code{units}}{\code{character} value.}
-
-\item{\code{legend}}{\code{Legend} object.}
+\item{\code{source}}{\code{character}, \code{\link[sf:sf]{sf::st_sf()}}, or \code{\link[raster:stack]{raster::stack()}} object.}
 }
 \if{html}{\out{</div>}}
 }
@@ -85,22 +83,86 @@ Print the object.
 \subsection{Method \code{repr()}}{
 Generate a \code{character} summarizing the representation of the object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Dataset$repr(start = "[", end = "]")}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Dataset$repr()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-import"></a>}}
+\if{latex}{\out{\hypertarget{method-import}{}}}
+\subsection{Method \code{import()}}{
+Import the dataset into memory.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Dataset$import()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clean"></a>}}
+\if{latex}{\out{\hypertarget{method-clean}{}}}
+\subsection{Method \code{clean()}}{
+Clean the dataset from memory.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Dataset$clean()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_data"></a>}}
+\if{latex}{\out{\hypertarget{method-get_data}{}}}
+\subsection{Method \code{get_data()}}{
+Get the data.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Dataset$get_data()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{\link[sf:st_as_sf]{sf::st_as_sf()}} or \code{\link[raster:raster]{raster::raster()}} object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_index"></a>}}
+\if{latex}{\out{\hypertarget{method-get_index}{}}}
+\subsection{Method \code{get_index()}}{
+Get a data from the dataset at an index.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Dataset$get_index(index)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{start}}{\code{character} symbol used to start the parameter list.
-Defaults to \code{"["}.}
-
-\item{\code{end}}{\code{character} symbol used to start the parameter list.
-Defaults to \code{"]"}.}
+\item{\code{index}}{\code{character} or \code{integer} indicating the field/layer with
+the data.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-\code{character} value.
+\code{\link[sf:st_as_sf]{sf::st_as_sf()}} or \code{\link[raster:raster]{raster::raster()}} object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-has_index"></a>}}
+\if{latex}{\out{\hypertarget{method-has_index}{}}}
+\subsection{Method \code{has_index()}}{
+Check if the dataset has an index.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Dataset$has_index(index)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{index}}{\code{character} or \code{integer} indicating the field/layer with
+the data.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+\code{logical} indicating if data is present or not.
 }
 }
 \if{html}{\out{<hr>}}

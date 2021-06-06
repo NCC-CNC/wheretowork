@@ -12,7 +12,7 @@ Weight class
 Definition for the Weight class.
 }
 \seealso{
-\code{\link[=new_weight]{new_weight()}}
+\code{\link[=new_weight]{new_weight()}}.
 }
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
@@ -21,7 +21,7 @@ Definition for the Weight class.
 
 \item{\code{name}}{\code{character} value.}
 
-\item{\code{dataset}}{\link{Dataset} object.}
+\item{\code{variable}}{\link{Variable} object.}
 
 \item{\code{visible}}{\code{logical} value.}
 
@@ -52,6 +52,7 @@ Definition for the Weight class.
 \item \href{#method-get_visible}{\code{Weight$get_visible()}}
 \item \href{#method-get_status}{\code{Weight$get_status()}}
 \item \href{#method-get_factor}{\code{Weight$get_factor()}}
+\item \href{#method-get_data}{\code{Weight$get_data()}}
 \item \href{#method-get_parameter}{\code{Weight$get_parameter()}}
 \item \href{#method-set_visible}{\code{Weight$set_visible()}}
 \item \href{#method-set_status}{\code{Weight$set_status()}}
@@ -71,7 +72,7 @@ Create a new Weight object.
 \if{html}{\out{<div class="r">}}\preformatted{Weight$new(
   id,
   name,
-  dataset,
+  variable,
   initial_visible,
   initial_status,
   initial_factor,
@@ -88,7 +89,7 @@ Create a new Weight object.
 
 \item{\code{name}}{\code{character} value.}
 
-\item{\code{dataset}}{\link{Dataset} object.}
+\item{\code{variable}}{\link{Variable} object.}
 
 \item{\code{initial_visible}}{\code{logical} value.}
 
@@ -186,6 +187,19 @@ Get factor.
 
 \subsection{Returns}{
 \code{numeric} value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_data"></a>}}
+\if{latex}{\out{\hypertarget{method-get_data}{}}}
+\subsection{Method \code{get_data()}}{
+Get the data.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Weight$get_data()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{\link[sf:st_as_sf]{sf::st_as_sf()}} or \code{\link[raster:raster]{raster::raster()}} object.
 }
 }
 \if{html}{\out{<hr>}}
