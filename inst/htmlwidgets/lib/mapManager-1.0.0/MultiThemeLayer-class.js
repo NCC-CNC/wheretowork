@@ -80,6 +80,12 @@ class MultiThemeLayer {
             value: order
           });
         }
+      },
+      onEnd: function(event) {
+        $(".layers").find(".single-container").eq(event.newIndex).addClass('map-manager-layer-ghost')
+        $("html").click(function(p){
+          $(".layers").find(".single-container").removeClass('map-manager-layer-ghost')
+        })
       }
     });
 

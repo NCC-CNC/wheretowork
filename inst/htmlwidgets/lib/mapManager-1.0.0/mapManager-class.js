@@ -54,6 +54,12 @@ class MapManager {
             value: order
           });
         }
+      },
+      onEnd: function(event) {
+        $(".layers").find(".map-manager-layer").eq(event.newIndex).addClass('map-manager-layer-ghost')
+        $("html").click(function(p){
+          $(".layers").find(".map-manager-layer").removeClass('map-manager-layer-ghost')
+        })
       }
     });
   }
