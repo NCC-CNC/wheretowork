@@ -44,11 +44,14 @@ mm_header_component_scaffold <- function(id = uuid::UUIDgenerate()) {
   # create ids
   name_label_id <- uuid::UUIDgenerate()
   visible_checkbox_id <- uuid::UUIDgenerate()
+  view_checkbox_id <- uuid::UUIDgenerate()
 
   # return scaffold
   htmltools::tags$div(
     class = "header",
+    
     htmltools::tags$label(
+      id = view_checkbox_id,
       class = "view-container",
       htmltools::tags$input(
         class = "view-checkbox",
@@ -56,6 +59,7 @@ mm_header_component_scaffold <- function(id = uuid::UUIDgenerate()) {
       htmltools::tags$i(class = "far fa-minus-square checked"),
       htmltools::tags$i(class = "far fa-plus-square unchecked")
     ),
+    
     htmltools::tags$label(
       id = visible_checkbox_id,
       class = "visible-container",
@@ -69,14 +73,22 @@ mm_header_component_scaffold <- function(id = uuid::UUIDgenerate()) {
       id = name_label_id,
       class = "name-label"
     ),
+    
     shinyBS::bsTooltip(
-      id = name_label_id,
-      title = "Name of the layer",
-      placement = "bottom", trigger = "hover"),
+      id = view_checkbox_id,
+      title = "Show/hide theme",
+      placement = "right", trigger = "hover"),
+    
     shinyBS::bsTooltip(
       id = visible_checkbox_id,
       title = "Show/hide layer",
+      placement = "bottom", trigger = "hover"),
+    
+    shinyBS::bsTooltip(
+      id = name_label_id,
+      title = "Name of the layer",
       placement = "bottom", trigger = "hover")
+    
   )
 }
 
@@ -89,9 +101,16 @@ mm_header_component_scaffold <- function(id = uuid::UUIDgenerate()) {
 #'
 #' @noRd
 mm_subheader_component_scaffold <- function(id = uuid::UUIDgenerate()) {
+  
+  # create ids
+  name_label_id <- uuid::UUIDgenerate()
+  visible_checkbox_id <- uuid::UUIDgenerate()
+  view_checkbox_id <- uuid::UUIDgenerate()
+  
   htmltools::tags$div(
     class = "sub-header",
     htmltools::tags$label(
+      id = view_checkbox_id,
       class = "view-container",
       htmltools::tags$input(
         class = "view-checkbox",
@@ -99,7 +118,9 @@ mm_subheader_component_scaffold <- function(id = uuid::UUIDgenerate()) {
       htmltools::tags$i(class = "far fa-minus-square checked"),
       htmltools::tags$i(class = "far fa-plus-square unchecked")
     ),
+    
     htmltools::tags$label(
+      id = visible_checkbox_id,
       class = "visible-container",
       htmltools::tags$input(
         class = "visible-checkbox",
@@ -107,8 +128,25 @@ mm_subheader_component_scaffold <- function(id = uuid::UUIDgenerate()) {
       htmltools::tags$i(class = "fa fa-eye checked"),
       htmltools::tags$i(class = "fa fa-eye-slash unchecked")
     ),
+    
     htmltools::tags$label(
+      id = name_label_id,
       class = "name-label"
-    )
+    ),
+    
+    shinyBS::bsTooltip(
+      id = view_checkbox_id,
+      title = "Show/hide theme",
+      placement = "right", trigger = "hover"),
+    
+    shinyBS::bsTooltip(
+      id = visible_checkbox_id,
+      title = "Show/hide layer",
+      placement = "bottom", trigger = "hover"),
+    
+    shinyBS::bsTooltip(
+      id = name_label_id,
+      title = "Name of the layer",
+      placement = "bottom", trigger = "hover")
   )
 }

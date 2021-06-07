@@ -56,6 +56,11 @@ function continuousLegend(el, x, units) {
   colorbar_background += ")";
   colorbar.style.backgroundColor = x.colors[0];
   colorbar.style.backgroundImage = colorbar_background;
+  colorbar.setAttribute('data-toggle', 'tooltip');
+  colorbar.setAttribute('data-placement', 'bottom');
+  colorbar.setAttribute('title', 'ContinuousLegend Tooltip');
+  colorbar.setAttribute('delay', '{ "show": 10, "hide": 5000 }');
+
 
   // create container for color bar ticks and labels
   let items = document.createElement("div");
@@ -89,4 +94,6 @@ function continuousLegend(el, x, units) {
 
   // add legend to parent container
   el.appendChild(l);
+  
+  
 }

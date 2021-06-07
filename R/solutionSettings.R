@@ -107,9 +107,16 @@ renderSolutionSettings <- function(expr, env = parent.frame(), quoted = FALSE) {
 # Add custom HTML for the widget (automatically used by htmlwidgets)
 solutionSettings_html <- function(id, style, class, ...) {
   # HTML scaffold
+  
+  # create ids
+  name_input_id <- uuid::UUIDgenerate()
+  button_id <- uuid::UUIDgenerate()
+  slider_id <- uuid::UUIDgenerate()
+  
   x <-
     htmltools::tags$div(
       id = id, class = class, style = style,
+  
       htmltools::div(
         class = "solution-settings-container",
         htmltools::div(
@@ -130,10 +137,12 @@ solutionSettings_html <- function(id, style, class, ...) {
             )
           )
         ),
+        
         ### footer
         htmltools::tags$div(
           class = "solution-footer",
           htmltools::tags$div(
+            id = name_input_id,
             class = "solution-footer-name",
             shiny::textInput(
               inputId = paste0(id, "_name"),
@@ -143,7 +152,14 @@ solutionSettings_html <- function(id, style, class, ...) {
               placeholder = "name for solution"
             ),
           ),
+          
+          shinyBS::bsTooltip(
+            id = name_input_id,
+            title = "Name tooltip",
+            placement = "top", trigger = "hover"),
+          
           htmltools::tags$div(
+            id = button_id, 
             class = "solution-footer-button",
             shinyBS::bsButton(
               inputId = paste0(id, "_button"),
@@ -152,7 +168,12 @@ solutionSettings_html <- function(id, style, class, ...) {
               style = "primary",
               type = "action"
             )
-          )
+          ),
+          
+          shinyBS::bsTooltip(
+            id = button_id,
+            title = "Button tooltip",
+            placement = "top", trigger = "hover"),
         )
       )
     )
@@ -168,9 +189,14 @@ solutionSettings_html <- function(id, style, class, ...) {
           class = paste("weight-setting solution-setting"),
           ss_header_component_scaffold(),
           htmltools::tags$div(
+            id = slider_id,
             class = "weight-slider",
             ss_slider_component_scaffold()
-          )
+          ),
+          shinyBS::bsTooltip(
+            id = slider_id, 
+            title = "slider tool tip", 
+            placement = "top", trigger = "hover")
         )
       )
     )
