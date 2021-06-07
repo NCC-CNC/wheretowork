@@ -17,7 +17,11 @@ ss_goal_component_scaffold <- function() {
           class = "current-symbol"
         ),
         htmltools::tags$label(
-          class = "current-label")
+          class = "current-label",
+          `data-toggle` = "tooltip",
+          `data-placement` = "top",
+          `delay` = "{'show': 10, 'hide': 5000 }",
+          title = "Current label tooltip")
       ),
       htmltools::tags$div(
         class = "sub-status-info",
@@ -25,7 +29,11 @@ ss_goal_component_scaffold <- function() {
           class = "slider-symbol disable-if-inactive",
         ),
         htmltools::tags$label(
-          class = "slider-label disable-if-inactive")
+          class = "slider-label disable-if-inactive", 
+          `data-toggle` = "tooltip",
+          `data-placement` = "top",
+          `delay` = "{'show': 10, 'hide': 5000 }",
+          title = "Goal label tooltip")
       ),
     ),
     ss_slider_component_scaffold(bar = "current-bar")
@@ -51,7 +59,11 @@ ss_group_goal_component_scaffold <- function() {
           class = "current-symbol"
         ),
         htmltools::tags$label(
-          class = "current-label")
+          class = "current-label",
+          `data-toggle` = "tooltip",
+          `data-placement` = "top",
+          `delay` = "{'show': 10, 'hide': 5000 }",
+          title = "Current-gr label tooltip")
       ),
       htmltools::tags$div(
         class = "sub-status-info",
@@ -59,7 +71,11 @@ ss_group_goal_component_scaffold <- function() {
           class = "slider-symbol disable-if-inactive",
         ),
         htmltools::tags$label(
-          class = "slider-label disable-if-inactive")
+          class = "slider-label disable-if-inactive",
+          `data-toggle` = "tooltip",
+          `data-placement` = "top",
+          `delay` = "{'show': 10, 'hide': 5000 }",
+          title = "Goal (gr) label tooltip")
       ),
     ),
     ss_slider_component_scaffold(bar = c(
@@ -97,9 +113,7 @@ ss_slider_component_scaffold <- function(bar = NULL) {
       assertthat::noNA(bar))
   }
   # initialize slider
-  out <- htmltools::tags$div(id = slider_id, class = "slider")
-  
-  #out <- htmltools::shinyBS::bsTooltip(id = slider_id, title = "slider tool tip", placement = "top", trigger = "hover")
+  out <- htmltools::tags$div(id = slider_id, class = "slider", `data-toggle` = "tooltip", `data-placement` = "top",`delay` = "{'show': 10, 'hide': 5000 }", title = "Slider label tooltip")
   
   # add bars if needed
   if (!is.null(bar)) {
@@ -168,6 +182,10 @@ ss_header_component_scaffold <- function(id = uuid::UUIDgenerate()) {
     class = "header",
     htmltools::tags$label(
       class = "el-switch",
+      `data-toggle` = "tooltip",
+      `data-placement` = "right",
+      `delay` = "{'show': 10, 'hide': 5000 }",
+      title = "Switch tooltip",
       htmltools::tags$input(
         type = "checkbox",
         class = "status-checkbox status",
@@ -179,7 +197,11 @@ ss_header_component_scaffold <- function(id = uuid::UUIDgenerate()) {
       )
     ),
     htmltools::tags$label(
-      class = "name-label disable-if-inactive"
+      class = "name-label disable-if-inactive",
+      `data-toggle` = "tooltip",
+      `data-placement` = "top",
+      `delay` = "{'show': 10, 'hide': 5000 }",
+      title = "Switch label tooltip",
     )
   )
 }
@@ -197,6 +219,10 @@ ss_subheader_component_scaffold <- function(id = uuid::UUIDgenerate()) {
     class = "sub-header",
     htmltools::tags$label(
       class = "el-switch el-switch-sm",
+      `data-toggle` = "tooltip",
+      `data-placement` = "right",
+      `delay` = "{'show': 10, 'hide': 5000 }",
+      title = "Small switch tooltip",
       htmltools::tags$input(
         type = "checkbox",
         class = "status-checkbox status",
@@ -208,7 +234,11 @@ ss_subheader_component_scaffold <- function(id = uuid::UUIDgenerate()) {
       )
     ),
     htmltools::tags$label(
-      class = "name-label disable-if-inactive"
+      class = "name-label disable-if-inactive",
+      `data-toggle` = "tooltip",
+      `data-placement` = "top",
+      `delay` = "{'show': 10, 'hide': 5000 }",
+      title = "Small Switch label tooltip",
     )
   )
 }

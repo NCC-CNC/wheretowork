@@ -29,6 +29,10 @@ function continuousLegend(el, x, units) {
   // initialize lenged
   let l = document.createElement("div");
   l.className = "continuous-legend";
+  l.setAttribute('data-toggle', 'tooltip');
+  l.setAttribute('data-placement', 'bottom');
+  l.setAttribute('title', 'Continuous Legend Tooltip');
+  l.setAttribute('delay', '{ "show": 10, "hide": 5000 }');
 
   // calculate label/ticks positions
   /// calculate percentages
@@ -56,16 +60,16 @@ function continuousLegend(el, x, units) {
   colorbar_background += ")";
   colorbar.style.backgroundColor = x.colors[0];
   colorbar.style.backgroundImage = colorbar_background;
-  colorbar.setAttribute('data-toggle', 'tooltip');
-  colorbar.setAttribute('data-placement', 'bottom');
-  colorbar.setAttribute('title', 'ContinuousLegend Tooltip');
-  colorbar.setAttribute('delay', '{ "show": 10, "hide": 5000 }');
-
-
+  
   // create container for color bar ticks and labels
   let items = document.createElement("div");
   items.className = "items";
+  //items.setAttribute('data-toggle', 'tooltip');
+  //items.setAttribute('data-placement', 'bottom');
+  //items.setAttribute('title', 'Continuous Legend Tooltip');
+  //items.setAttribute('delay', '{ "show": 10, "hide": 5000 }');
 
+  
   for (let i = 0; i < x.values.length; ++i) {
     // create container for i'th tick and label
     let item = document.createElement("div");

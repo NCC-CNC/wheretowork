@@ -53,6 +53,10 @@ mm_header_component_scaffold <- function(id = uuid::UUIDgenerate()) {
     htmltools::tags$label(
       id = view_checkbox_id,
       class = "view-container",
+      `data-toggle` = "tooltip",
+      `data-placement` = "right",
+      `delay` = "{'show': 10, 'hide': 5000 }",
+      title = "Show/hide theme",
       htmltools::tags$input(
         class = "view-checkbox",
         type = "checkbox"),
@@ -63,6 +67,10 @@ mm_header_component_scaffold <- function(id = uuid::UUIDgenerate()) {
     htmltools::tags$label(
       id = visible_checkbox_id,
       class = "visible-container",
+      `data-toggle` = "tooltip",
+      `data-placement` = "right",
+      `delay` = "{'show': 10, 'hide': 5000 }",
+      title = "Show/hide layer",
       htmltools::tags$input(
         class = "visible-checkbox",
         type = "checkbox"),
@@ -71,24 +79,12 @@ mm_header_component_scaffold <- function(id = uuid::UUIDgenerate()) {
     ),
     htmltools::tags$label(
       id = name_label_id,
-      class = "name-label"
-    ),
-    
-    shinyBS::bsTooltip(
-      id = view_checkbox_id,
-      title = "Show/hide theme",
-      placement = "right", trigger = "hover"),
-    
-    shinyBS::bsTooltip(
-      id = visible_checkbox_id,
-      title = "Show/hide layer",
-      placement = "bottom", trigger = "hover"),
-    
-    shinyBS::bsTooltip(
-      id = name_label_id,
+      class = "name-label",
+      `data-toggle` = "tooltip",
+      `data-placement` = "right",
+      `delay` = "{'show': 10, 'hide': 5000 }",
       title = "Name of the layer",
-      placement = "bottom", trigger = "hover")
-    
+    )
   )
 }
 
@@ -112,6 +108,10 @@ mm_subheader_component_scaffold <- function(id = uuid::UUIDgenerate()) {
     htmltools::tags$label(
       id = view_checkbox_id,
       class = "view-container",
+      `data-toggle` = "tooltip",
+      `data-placement` = "right",
+      `delay` = "{'show': 10, 'hide': 5000 }",
+      title = "Show/hide theme",
       htmltools::tags$input(
         class = "view-checkbox",
         type = "checkbox"),
@@ -122,6 +122,10 @@ mm_subheader_component_scaffold <- function(id = uuid::UUIDgenerate()) {
     htmltools::tags$label(
       id = visible_checkbox_id,
       class = "visible-container",
+      `data-toggle` = "tooltip",
+      `data-placement` = "right",
+      `delay` = "{'show': 10, 'hide': 5000 }",
+      title = "Show/hide layer",
       htmltools::tags$input(
         class = "visible-checkbox",
         type = "checkbox"),
@@ -131,22 +135,11 @@ mm_subheader_component_scaffold <- function(id = uuid::UUIDgenerate()) {
     
     htmltools::tags$label(
       id = name_label_id,
-      class = "name-label"
-    ),
-    
-    shinyBS::bsTooltip(
-      id = view_checkbox_id,
-      title = "Show/hide theme",
-      placement = "right", trigger = "hover"),
-    
-    shinyBS::bsTooltip(
-      id = visible_checkbox_id,
-      title = "Show/hide layer",
-      placement = "bottom", trigger = "hover"),
-    
-    shinyBS::bsTooltip(
-      id = name_label_id,
+      class = "name-label",
+      `data-toggle` = "tooltip",
+      `data-placement` = "right",
+      `delay` = "{'show': 10, 'hide': 5000 }",
       title = "Name of the layer",
-      placement = "bottom", trigger = "hover")
+    )
   )
 }
