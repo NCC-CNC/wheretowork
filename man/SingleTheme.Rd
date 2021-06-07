@@ -34,8 +34,11 @@ only contains a single feature.
 \if{html}{
 \out{<details ><summary>Inherited methods</summary>}
 \itemize{
+\item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="get_feature_current">}\href{../../locationmisc/html/Theme.html#method-get_feature_current}{\code{locationmisc::Theme$get_feature_current()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="get_feature_goal">}\href{../../locationmisc/html/Theme.html#method-get_feature_goal}{\code{locationmisc::Theme$get_feature_goal()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="get_feature_id">}\href{../../locationmisc/html/Theme.html#method-get_feature_id}{\code{locationmisc::Theme$get_feature_id()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="get_feature_status">}\href{../../locationmisc/html/Theme.html#method-get_feature_status}{\code{locationmisc::Theme$get_feature_status()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="get_feature_total">}\href{../../locationmisc/html/Theme.html#method-get_feature_total}{\code{locationmisc::Theme$get_feature_total()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="get_feature_visible">}\href{../../locationmisc/html/Theme.html#method-get_feature_visible}{\code{locationmisc::Theme$get_feature_visible()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="get_parameter">}\href{../../locationmisc/html/Theme.html#method-get_parameter}{\code{locationmisc::Theme$get_parameter()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="print">}\href{../../locationmisc/html/Theme.html#method-print}{\code{locationmisc::Theme$print()}}\out{</span>}

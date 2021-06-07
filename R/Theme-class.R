@@ -74,6 +74,34 @@ Theme <- R6::R6Class(
     },
 
     #' @description
+    #' Get feature identifiers.
+    #' @return `character` vector with identifier(s).
+    get_feature_id = function() {
+      vapply(self$feature, FUN.VALUE = character(1), function(x) x$id)
+    },
+
+    #' @description
+    #' Get feature names.
+    #' @return `character` vector with identifier(s).
+    get_feature_name = function() {
+      vapply(self$feature, FUN.VALUE = character(1), function(x) x$name)
+    },
+
+    #' @description
+    #' Get feature current.
+    #' @return `numeric` vector with value(s).
+    get_feature_current = function() {
+      vapply(self$feature, FUN.VALUE = numeric(1), function(x) x$current)
+    },
+
+    #' @description
+    #' Get feature current.
+    #' @return `numeric` vector with value(s).
+    get_feature_total = function() {
+      vapply(self$feature, FUN.VALUE = numeric(1), function(x) x$variable$total)
+    },
+
+    #' @description
     #' Get feature visible values.
     #' @return `logical` vector with status value(s).
     get_feature_visible = function() {

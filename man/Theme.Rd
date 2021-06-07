@@ -40,6 +40,9 @@ This method intentionally throws an error.
 \item \href{#method-new}{\code{Theme$new()}}
 \item \href{#method-print}{\code{Theme$print()}}
 \item \href{#method-repr}{\code{Theme$repr()}}
+\item \href{#method-get_feature_id}{\code{Theme$get_feature_id()}}
+\item \href{#method-get_feature_current}{\code{Theme$get_feature_current()}}
+\item \href{#method-get_feature_total}{\code{Theme$get_feature_total()}}
 \item \href{#method-get_feature_visible}{\code{Theme$get_feature_visible()}}
 \item \href{#method-get_feature_status}{\code{Theme$get_feature_status()}}
 \item \href{#method-get_feature_goal}{\code{Theme$get_feature_goal()}}
@@ -103,6 +106,45 @@ Generate a \code{character} summarizing the representation of the object.
 }
 \subsection{Returns}{
 \code{character} value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_feature_id"></a>}}
+\if{latex}{\out{\hypertarget{method-get_feature_id}{}}}
+\subsection{Method \code{get_feature_id()}}{
+Get feature identifiers.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$get_feature_id()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} vector with identifier(s).
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_feature_current"></a>}}
+\if{latex}{\out{\hypertarget{method-get_feature_current}{}}}
+\subsection{Method \code{get_feature_current()}}{
+Get feature current.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$get_feature_current()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{numeric} vector with value(s).
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_feature_total"></a>}}
+\if{latex}{\out{\hypertarget{method-get_feature_total}{}}}
+\subsection{Method \code{get_feature_total()}}{
+Get feature current.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$get_feature_total()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{numeric} vector with value(s).
 }
 }
 \if{html}{\out{<hr>}}

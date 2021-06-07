@@ -4,10 +4,13 @@
 \alias{new_dataset}
 \title{New dataset}
 \usage{
-new_dataset(source)
+new_dataset(source, id = uuid::UUIDgenerate())
 }
 \arguments{
 \item{source}{\code{character}, \code{\link[sf:sf]{sf::st_sf()}}, or \code{\link[raster:stack]{raster::stack()}} object.}
+
+\item{id}{\code{character} unique identifier.
+Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}
 }
 \value{
 A \link{Dataset} object.
