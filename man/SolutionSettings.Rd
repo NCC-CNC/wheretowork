@@ -58,6 +58,8 @@ Available options are: \code{"theme"} or \code{"weight"}.}
 \item \href{#method-get_widget_data}{\code{SolutionSettings$get_widget_data()}}
 \item \href{#method-get_theme_settings}{\code{SolutionSettings$get_theme_settings()}}
 \item \href{#method-get_weight_settings}{\code{SolutionSettings$get_weight_settings()}}
+\item \href{#method-get_rij_matrix}{\code{SolutionSettings$get_rij_matrix()}}
+\item \href{#method-get_wij_matrix}{\code{SolutionSettings$get_wij_matrix()}}
 \item \href{#method-clone}{\code{SolutionSettings$clone()}}
 }
 }
@@ -224,6 +226,32 @@ Get weight settings for generating a prioritization.
 
 \subsection{Returns}{
 \code{\link[tibble:tibble]{tibble::tibble()}} with data.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_rij_matrix"></a>}}
+\if{latex}{\out{\hypertarget{method-get_rij_matrix}{}}}
+\subsection{Method \code{get_rij_matrix()}}{
+Get rij data for the themes.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$get_rij_matrix()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{matrix} with data.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_wij_matrix"></a>}}
+\if{latex}{\out{\hypertarget{method-get_wij_matrix}{}}}
+\subsection{Method \code{get_wij_matrix()}}{
+Get wij data for the themes.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$get_wij_matrix()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{matrix} with data.
 }
 }
 \if{html}{\out{<hr>}}

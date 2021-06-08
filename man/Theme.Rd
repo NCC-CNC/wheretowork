@@ -41,6 +41,7 @@ This method intentionally throws an error.
 \item \href{#method-print}{\code{Theme$print()}}
 \item \href{#method-repr}{\code{Theme$repr()}}
 \item \href{#method-get_feature_id}{\code{Theme$get_feature_id()}}
+\item \href{#method-get_feature_name}{\code{Theme$get_feature_name()}}
 \item \href{#method-get_feature_current}{\code{Theme$get_feature_current()}}
 \item \href{#method-get_feature_total}{\code{Theme$get_feature_total()}}
 \item \href{#method-get_feature_visible}{\code{Theme$get_feature_visible()}}
@@ -115,6 +116,19 @@ Generate a \code{character} summarizing the representation of the object.
 Get feature identifiers.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Theme$get_feature_id()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} vector with identifier(s).
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_feature_name"></a>}}
+\if{latex}{\out{\hypertarget{method-get_feature_name}{}}}
+\subsection{Method \code{get_feature_name()}}{
+Get feature names.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$get_feature_name()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{

@@ -48,7 +48,7 @@ Theme <- R6::R6Class(
       message("  mandatory: ", self$mandatory)
       message("  feature: ")
       for (x in vapply(self$feature[po], function(x) x$repr(), character(1))) {
-        message("    " , x)
+        message("    " , gsub("\n", "\n    ", x))
       }
       invisible(self)
     },

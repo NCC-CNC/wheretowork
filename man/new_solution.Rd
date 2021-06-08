@@ -7,7 +7,7 @@
 new_solution(
   name,
   variable,
-  statistics_results,
+  statistics,
   theme_results,
   weight_results,
   id = uuid::UUIDgenerate()
@@ -18,7 +18,7 @@ new_solution(
 
 \item{variable}{\link{Variable} object with the solution.}
 
-\item{statistics_results}{\code{data.frame} object.}
+\item{statistics}{\code{data.frame} object.}
 
 \item{theme_results}{\code{list} object.}
 

@@ -1,0 +1,15 @@
+dependencies:
+
+  - name: solutionResults
+    version: 1.0.0
+    src: htmlwidgets/lib/solutionResults-1.0.0
+    script:
+      - utils.js
+    stylesheet:
+      - style.css
+
+  - name: solutionResults-style
+    version: 1.0.0
+    src: htmlwidgets
+    stylesheet:
+      - solutionResults.css

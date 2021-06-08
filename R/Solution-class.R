@@ -20,8 +20,8 @@ Solution <- R6::R6Class(
     #' @field variable [Variable] object.
     variable = NULL,
 
-    #' @field statistics_results `data.frame` object.
-    statistics_results = NULL,
+    #' @field statistics `data.frame` object.
+    statistics = NULL,
 
     #' @field theme_results `list` object.
     theme_results = NULL,
@@ -31,14 +31,15 @@ Solution <- R6::R6Class(
 
     #' @description
     #' Create a Solution object.
+    #' @param id `character` value.
     #' @param name `character` value.
     #' @param variable [Variable] object.
-    #' @param statistics_results `data.frame` object.
+    #' @param statistics `data.frame` object.
     #' @param theme_results `list` object.
     #' @param weight_results `list` object.
     #' @return A new Solution object.
     initialize = function(
-      id, name, variable, statistics_results, theme_results, weight_results) {
+      id, name, variable, statistics, theme_results, weight_results) {
       # assert arguments are valid
       assertthat::assert_that(
         assertthat::is.string(id),
@@ -46,14 +47,14 @@ Solution <- R6::R6Class(
         assertthat::is.string(name),
         assertthat::noNA(name),
         inherits(variable, "Variable"),
-        inherits(statistics_results, "data.frame"),
+        inherits(statistics, "data.frame"),
         is.list(theme_results),
         is.list(weight_results))
       # assign fields
       self$id <- id
       self$name <- name
       self$variable  <- variable
-      self$statistics_results  <- statistics_results
+      self$statistics  <- statistics
       self$theme_results <- theme_results
       self$weight_results <- weight_results
     },
@@ -82,9 +83,13 @@ Solution <- R6::R6Class(
       list(
         id = self$id,
         name = self$name,
-        statistics_results = as.list(self$statistics_results),
-        theme_results = self$theme_results,
-        weight_results = self$weight_results)
+        statistics = as.list(self$statistics),
+        theme_results = lapply(
+          self$theme_results,
+          function(x) x$get_widget_data()),
+        weight_results = lapply(
+          self$weight_results,
+          function(x) x$get_widget_data()))
     },
 
     #' @description
@@ -94,7 +99,7 @@ Solution <- R6::R6Class(
       list(
         id = self$id,
         name = self$name,
-        statistics_results = as.list(self$statistics_results),
+        statistics = as.list(self$statistics),
         legend = self$variable$legend$get_widget_data(),
         units = self$variable$units,
         type = "solution"
@@ -111,7 +116,7 @@ Solution <- R6::R6Class(
 #'
 #' @param variable [Variable] object with the solution.
 #'
-#' @param statistics_results `data.frame` object.
+#' @param statistics `data.frame` object.
 #'
 #' @param theme_results `list` object.
 #'
@@ -124,11 +129,11 @@ Solution <- R6::R6Class(
 #'
 #' @export
 new_solution <- function(
-  name, variable, statistics_results, theme_results, weight_results,
+  name, variable, statistics, theme_results, weight_results,
   id = uuid::UUIDgenerate()) {
   Solution$new(
     name = name, variable = variable,
-    statistics_results = statistics_results,
+    statistics = statistics,
     theme_results = theme_results,
     weight_results = weight_results,
     id = id)

@@ -17,11 +17,13 @@ Definition for the Solution class.
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
+\item{\code{id}}{\code{character} identifier.}
+
 \item{\code{name}}{\code{character} name of solution.}
 
 \item{\code{variable}}{\link{Variable} object.}
 
-\item{\code{statistics_results}}{\code{data.frame} object.}
+\item{\code{statistics}}{\code{data.frame} object.}
 
 \item{\code{theme_results}}{\code{list} object.}
 
@@ -34,7 +36,8 @@ Definition for the Solution class.
 \itemize{
 \item \href{#method-new}{\code{Solution$new()}}
 \item \href{#method-repr}{\code{Solution$repr()}}
-\item \href{#method-get_solution_widget_data}{\code{Solution$get_solution_widget_data()}}
+\item \href{#method-print}{\code{Solution$print()}}
+\item \href{#method-get_solution_results_widget_data}{\code{Solution$get_solution_results_widget_data()}}
 \item \href{#method-get_map_manager_widget_data}{\code{Solution$get_map_manager_widget_data()}}
 \item \href{#method-clone}{\code{Solution$clone()}}
 }
@@ -45,17 +48,19 @@ Definition for the Solution class.
 \subsection{Method \code{new()}}{
 Create a Solution object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Solution$new(name, variable, statistics_results, theme_results, weight_results)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Solution$new(id, name, variable, statistics, theme_results, weight_results)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
+\item{\code{id}}{\code{character} value.}
+
 \item{\code{name}}{\code{character} value.}
 
 \item{\code{variable}}{\link{Variable} object.}
 
-\item{\code{statistics_results}}{\code{data.frame} object.}
+\item{\code{statistics}}{\code{data.frame} object.}
 
 \item{\code{theme_results}}{\code{list} object.}
 
@@ -81,12 +86,29 @@ Generate a \code{character} summarizing the representation of the object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_solution_widget_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_solution_widget_data}{}}}
-\subsection{Method \code{get_solution_widget_data()}}{
-Get data for displaying the theme in a \link{solutionResults} widget.
+\if{html}{\out{<a id="method-print"></a>}}
+\if{latex}{\out{\hypertarget{method-print}{}}}
+\subsection{Method \code{print()}}{
+Print the object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Solution$get_solution_widget_data()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Solution$print(...)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{...}}{not used.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_solution_results_widget_data"></a>}}
+\if{latex}{\out{\hypertarget{method-get_solution_results_widget_data}{}}}
+\subsection{Method \code{get_solution_results_widget_data()}}{
+Get data for displaying the theme in a \code{\link[=solutionResults]{solutionResults()}} widget.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Solution$get_solution_results_widget_data()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{

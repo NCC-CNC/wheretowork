@@ -10,6 +10,7 @@ new_solution_from_prioritization(
   solution_settings,
   rij,
   wij,
+  boundary_data,
   gap = 0,
   boundary_penalty_gap = 0.1
 )
@@ -29,13 +30,13 @@ each planning unit.}
 This matrix specifies the value of each weight associated with each
 planning unit.}
 
+\item{boundary_data}{\code{\link[Matrix:sparseMatrix]{Matrix::sparseMatrix()}} object.
+This matrix specifies the boundary length data for the planning units.}
+
 \item{gap}{\code{numeric} relative optimality gap value. Defaults to 0.}
 
 \item{boundary_penalty_gap}{\code{numeric} gap value used to control
 the level of spatial fragmentation in the solution. Defaults to 0.1}
-
-\item{boundary_data}{\code{\link[Matrix:sparseMatrix]{Matrix::sparseMatrix()}} object.
-This matrix specifies the boundary length data for the planning units.}
 }
 \value{
 A \code{SolutionResults} object containing the solution.

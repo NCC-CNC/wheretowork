@@ -1,6 +1,6 @@
 HTMLWidgets.widget({
 
-  name: 'mapManager',
+  name: 'solutionResults',
 
   type: 'output',
 
@@ -25,8 +25,7 @@ HTMLWidgets.widget({
           // attach the widget to the DOM
           container.widget = that;
           // initialize map manager
-          handle = new MapManager(
-            elementId, container, opts.layers, opts.order);
+          handle = new SolutionResults();
           // render HTML elements
           handle.render();
         }
@@ -38,26 +37,23 @@ HTMLWidgets.widget({
       },
 
       // export object for extensibility
-      mapManager: container,
+      solutionResults: container,
 
       /* API functions to manipulate widget */
-      updateOrder: function(params) {
-        handle.updateOrder(params.value);
-      },
-
-      updateLayer: function(params) {
-        handle.updateLayer(
-          params.value.id, params.value.parameter,
-          params.value.value);
-      },
-
-      addLayer: function(params) {
+      addSolution: function(params) {
         // TODO
+        // handle.addSolution(params.value.id, params.value.solution);
       },
 
-      dropLayer: function(params) {
+      dropSolution: function(params) {
         // TODO
+        // handle.dropSolution(params.value.id);
       },
+
+      showSolution: function(params) {
+        // TODO
+        // handle.renderSolution(params.value.id);
+      }
 
     };
   }
@@ -65,12 +61,12 @@ HTMLWidgets.widget({
 
 // Attach message handlers if in Shiny mode (these correspond to API)
 if (HTMLWidgets.shinyMode) {
-  var fxns = ["updateOrder", "updateLayer", "addLayer", "dropLayer"];
+  var fxns = ["addSolution", "dropSolution", "addSolution", "dropSolution", "showSolution"];
 
   var addShinyHandler = function(fxn) {
     return function() {
       Shiny.addCustomMessageHandler(
-        "mapManager:" + fxn, function(message) {
+        "solutionResults:" + fxn, function(message) {
           var el = document.getElementById(message.id);
           if (el) {
             delete message["id"];

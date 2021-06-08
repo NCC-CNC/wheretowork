@@ -47,6 +47,8 @@ This is used to cache calculations for \code{\link[raster:stack]{raster::stack()
 \item \href{#method-get_index}{\code{Dataset$get_index()}}
 \item \href{#method-get_indices}{\code{Dataset$get_indices()}}
 \item \href{#method-has_index}{\code{Dataset$has_index()}}
+\item \href{#method-max_index}{\code{Dataset$max_index()}}
+\item \href{#method-add_index}{\code{Dataset$add_index()}}
 \item \href{#method-clone}{\code{Dataset$clone()}}
 }
 }
@@ -222,6 +224,39 @@ the data.}
 }
 \subsection{Returns}{
 \code{logical} indicating if data is present or not.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-max_index"></a>}}
+\if{latex}{\out{\hypertarget{method-max_index}{}}}
+\subsection{Method \code{max_index()}}{
+Maximum index.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Dataset$max_index()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{integer} largest index.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-add_index"></a>}}
+\if{latex}{\out{\hypertarget{method-add_index}{}}}
+\subsection{Method \code{add_index()}}{
+Add data at an index.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Dataset$add_index(index, values)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{index}}{\code{character} or \code{integer} indicating the field/layer with
+the data.}
+
+\item{\code{values}}{\code{numeric} vector.}
+}
+\if{html}{\out{</div>}}
 }
 }
 \if{html}{\out{<hr>}}
