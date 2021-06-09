@@ -23,6 +23,17 @@
   max-height: 86vh;
 }
 
+/* panels */
+.solution-settings .panel-body {
+  padding: 0;
+  background: #f8f9fa; /* bg-light, aka $gray-100 */
+}
+
+.solution-settings .panel.panel-default>.panel-heading {
+  border-top-right-radius: 0px;
+  background: #dee2e6; /* $gray-300 */
+}
+
 .solution-settings .panel-group {
   margin-bottom: 2px !important;
   flex: 1 1 auto;
@@ -33,13 +44,6 @@
 .solution-settings .panel.panel-default {
   max-height: 80vh;
   overflow-y: scroll;
-}
-
-.solution-settings .panel-body {
-  padding: 0;
-  /*background: #ddd;*/
-  /*background: #EEEEEE;*/
-  background: #ddd;
 }
 
 /* footer */
@@ -377,9 +381,3 @@
 .el-switch .el-switch-style {
   background: var(--inactive);
 }
-
-.solution-settings .panel.panel-default>.panel-heading{
-  /*background-color: #ddd; !important*/
-   background: #A6ACAF; !important
-}
-
