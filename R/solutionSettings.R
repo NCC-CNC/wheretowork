@@ -124,11 +124,6 @@ solutionSettings_html <- function(id, style, class, ...) {
               title = "Themes",
               value = paste0(id, "_collapseThemePanel"),
               htmltools::tags$div(class = "themes")
-              #htmltools::tags$div(class = "themes",
-              #                    `data-toggle` = "tooltip",
-              #                    `data-placement` = "right",
-              #                    `delay` = "{'show': 10, 'hide': 5000 }",
-              #                    title = "Themes Label Tooltip")
             ),
             shinyBS::bsCollapsePanel(
               title = "Weights",
@@ -146,7 +141,7 @@ solutionSettings_html <- function(id, style, class, ...) {
             `data-toggle` = "tooltip",
             `data-placement` = "top",
             `delay` = "{'show': 10, 'hide': 5000 }",
-            title = "Switch label tooltip",
+            title = "Name tooltip",
             shiny::textInput(
               inputId = paste0(id, "_name"),
               NULL,
@@ -161,7 +156,7 @@ solutionSettings_html <- function(id, style, class, ...) {
             `data-toggle` = "tooltip",
             `data-placement` = "top",
             `delay` = "{'show': 10, 'hide': 5000 }",
-            title = "Switch label tooltip",
+            title = "Button tooltip",
             shinyBS::bsButton(
               inputId = paste0(id, "_button"),
               label = "Generate solution",
@@ -183,10 +178,10 @@ solutionSettings_html <- function(id, style, class, ...) {
         class = "weight-setting-template",
         htmltools::tags$div(
           class = paste("weight-setting solution-setting"),
-          ss_header_component_scaffold(),
+          ss_header_component_scaffold(NULL, "weight"),
           htmltools::tags$div(
             class = "weight-slider",
-            ss_slider_component_scaffold()
+            ss_slider_component_scaffold(NULL, "weight")
           ),
         )
       )
@@ -201,8 +196,8 @@ solutionSettings_html <- function(id, style, class, ...) {
         htmltools::tags$div(
           class = "single-theme-setting solution-setting",
           ss_icon_component_scaffold(),
-          ss_header_component_scaffold(),
-          ss_goal_component_scaffold()
+          ss_header_component_scaffold(NULL, 'theme'),
+          ss_goal_component_scaffold('theme')
         )
       )
     )
@@ -217,7 +212,7 @@ solutionSettings_html <- function(id, style, class, ...) {
         htmltools::tags$div(
           class = "multi-theme-setting solution-setting",
           ss_icon_component_scaffold(),
-          ss_header_component_scaffold(),
+          ss_header_component_scaffold(NULL, 'theme'),
           htmltools::tags$div(
             class = "main",
             shiny::tabsetPanel(
@@ -228,7 +223,7 @@ solutionSettings_html <- function(id, style, class, ...) {
                 "group",
                 htmltools::tags$div(
                   class = "group-view",
-                  ss_group_goal_component_scaffold()
+                  ss_group_goal_component_scaffold('theme')
                 )
               ),
               ## single view
@@ -254,7 +249,7 @@ solutionSettings_html <- function(id, style, class, ...) {
           class = "single-container",
           ss_subicon_component_scaffold(),
           ss_subheader_component_scaffold(),
-          ss_goal_component_scaffold()
+          ss_goal_component_scaffold('theme')
         )
       )
     )

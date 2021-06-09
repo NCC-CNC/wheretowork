@@ -6,7 +6,7 @@
 #' @return `shiny.tag` object.
 #'
 #' @noRd
-ss_goal_component_scaffold <- function() {
+ss_goal_component_scaffold <- function(caller) {
   htmltools::tags$div(
     class = "goal",
     htmltools::tags$div(
@@ -36,7 +36,7 @@ ss_goal_component_scaffold <- function() {
           title = "Goal label tooltip")
       ),
     ),
-    ss_slider_component_scaffold(bar = "current-bar")
+    ss_slider_component_scaffold(bar = "current-bar", caller)
   )
 }
 
@@ -48,7 +48,7 @@ ss_goal_component_scaffold <- function() {
 #' @return `shiny.tag` object.
 #'
 #' @noRd
-ss_group_goal_component_scaffold <- function() {
+ss_group_goal_component_scaffold <- function(caller) {
   htmltools::tags$div(
     class = "goal",
     htmltools::tags$div(
@@ -79,7 +79,7 @@ ss_group_goal_component_scaffold <- function() {
       ),
     ),
     ss_slider_component_scaffold(bar = c(
-      "current-max-bar", "current-min-bar"))
+      "current-max-bar", "current-min-bar"), caller)
   )
 }
 
@@ -102,9 +102,20 @@ ss_group_goal_component_scaffold <- function() {
 #' @return `shiny.tag` object.
 #'
 #' @noRd
-ss_slider_component_scaffold <- function(bar = NULL) {
+ss_slider_component_scaffold <- function(bar = NULL, caller='') {
   
   slider_id <- uuid::UUIDgenerate()
+  sliderToolTip = "Slider label"
+ 
+  
+  if (caller=="weight")
+  {
+    sliderToolTip = "Weight slider"
+  }
+  if (caller=="theme")
+  {
+    sliderToolTip = "Theme slider"
+  }
   
   # assert arguments are valid
   if (!is.null(bar)) {
@@ -113,7 +124,7 @@ ss_slider_component_scaffold <- function(bar = NULL) {
       assertthat::noNA(bar))
   }
   # initialize slider
-  out <- htmltools::tags$div(id = slider_id, class = "slider", `data-toggle` = "tooltip", `data-placement` = "top",`delay` = "{'show': 10, 'hide': 5000 }", title = "Slider label tooltip")
+  out <- htmltools::tags$div(id = slider_id, class = "slider", `data-toggle` = "tooltip", `data-placement` = "top",`delay` = "{'show': 10, 'hide': 5000 }", title = sliderToolTip)
   
   # add bars if needed
   if (!is.null(bar)) {
@@ -177,7 +188,23 @@ ss_subicon_component_scaffold <- function() {
 #' @return `shiny.tag` object.
 #'
 #' @noRd
-ss_header_component_scaffold <- function(id = uuid::UUIDgenerate()) {
+ss_header_component_scaffold <- function(id, caller) {
+  
+  id = uuid::UUIDgenerate()
+  switchToolTip = "Switch"
+  labelToolTip = "Switch label"
+
+  if (caller=="weight")
+  {
+    switchToolTip = "Weight switch"
+    labelToolTip = "Weigth switch label"
+  }
+  if (caller=="theme")
+  {
+    switchToolTip = "Theme switch"
+    labelToolTip = "Theme switch label"
+  }
+  
   htmltools::tags$div(
     class = "header",
     htmltools::tags$label(
@@ -185,7 +212,7 @@ ss_header_component_scaffold <- function(id = uuid::UUIDgenerate()) {
       `data-toggle` = "tooltip",
       `data-placement` = "right",
       `delay` = "{'show': 10, 'hide': 5000 }",
-      title = "Switch tooltip",
+      title = switchToolTip,
       htmltools::tags$input(
         type = "checkbox",
         class = "status-checkbox status",
@@ -201,20 +228,12 @@ ss_header_component_scaffold <- function(id = uuid::UUIDgenerate()) {
       `data-toggle` = "tooltip",
       `data-placement` = "top",
       `delay` = "{'show': 10, 'hide': 5000 }",
-      title = "Switch label tooltip",
+      title = labelToolTip,
     )
   )
 }
 
-#' Scaffold for the subheader component of the solution settings widget
-#'
-#' Create a HTML scaffold for a subheader component of
-#' the [solutionSettings()] widget.
-#'
-#' @return `shiny.tag` object.
-#'
-#' @noRd
-ss_subheader_component_scaffold <- function(id = uuid::UUIDgenerate()) {
+ss_subheader_component_scaffold<- function(id = uuid::UUIDgenerate()) {
   htmltools::tags$div(
     class = "sub-header",
     htmltools::tags$label(
