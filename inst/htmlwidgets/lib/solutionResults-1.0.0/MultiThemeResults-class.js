@@ -26,8 +26,11 @@ class MultiThemeResults {
         .content,
       true);
 
-    // TODO
-
+    // TODO: add code to dipslay results for the object
+    // The current code just inserts a TODO into the DOM
+    const l = document.createElement("label");
+    l.innerText = "TODO";
+    this.el.appendChild(l);
   }
 
   /* render method */

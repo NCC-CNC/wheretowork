@@ -18,11 +18,11 @@ new_solution(
 
 \item{variable}{\link{Variable} object with the solution.}
 
-\item{statistics}{\code{data.frame} object.}
+\item{statistics}{\code{list} of \link{Statistic} objects.}
 
-\item{theme_results}{\code{list} object.}
+\item{theme_results}{\code{list} of \link{ThemeResults} objects.}
 
-\item{weight_results}{\code{list} object.}
+\item{weight_results}{\code{list} of \link{WeightResults} objects.}
 
 \item{id}{\code{character} unique identifier.
 Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}

@@ -73,13 +73,11 @@ ThemeResults <- R6::R6Class(
 #'
 #' Create a new [ThemeResults] object to store results for a solution.
 #'
-#' @param name `character` name of theme.
-#'
 #' @param theme [Theme] object.
 #'
 #' @param feature_results [FeatureResults] object or a `list` of such objects.
 #'
-#' @inheritParams new_theme
+#' @inheritParams new_single_theme
 #'
 #' @return A [ThemeResults] object.
 #'
@@ -88,7 +86,7 @@ ThemeResults <- R6::R6Class(
 #'
 #' @export
 new_theme_results <- function(
-  name, theme, feature_results, id = uuid::UUIDgenerate()) {
+  theme, feature_results, id = uuid::UUIDgenerate()) {
   assertthat::assert_that(
     is.list(feature_results) || inherits(feature_results, "FeatureResults"))
   if (inherits(feature_results, "FeatureResults")) {

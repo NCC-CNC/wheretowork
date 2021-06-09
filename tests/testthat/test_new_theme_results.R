@@ -227,7 +227,7 @@ test_that("widget methods (MultiTheme)", {
         fr[[1]]$feature$current, fr[[2]]$feature$current),
       feature_goal = c(fr[[1]]$goal, fr[[2]]$goal),
       feature_solution_held = c(fr[[1]]$held, fr[[2]]$held),
-      units = v$units,
+      units = v1$units,
       mandatory = th$mandatory,
       round = th$round,
       icon = as.character(th$icon),

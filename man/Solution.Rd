@@ -23,11 +23,11 @@ Definition for the Solution class.
 
 \item{\code{variable}}{\link{Variable} object.}
 
-\item{\code{statistics}}{\code{data.frame} object.}
+\item{\code{statistics}}{\code{list} of \link{Statistic} objects}
 
-\item{\code{theme_results}}{\code{list} object.}
+\item{\code{theme_results}}{\code{list} of \link{ThemeResults} objects.}
 
-\item{\code{weight_results}}{\code{list} object.}
+\item{\code{weight_results}}{\code{list} of \link{WeightResults} objects.}
 }
 \if{html}{\out{</div>}}
 }
@@ -60,11 +60,11 @@ Create a Solution object.
 
 \item{\code{variable}}{\link{Variable} object.}
 
-\item{\code{statistics}}{\code{data.frame} object.}
+\item{\code{statistics}}{\code{list} of \link{Statistic} objects.}
 
-\item{\code{theme_results}}{\code{list} object.}
+\item{\code{theme_results}}{\code{list} of \link{ThemeResults} objects.}
 
-\item{\code{weight_results}}{\code{list} object.}
+\item{\code{weight_results}}{\code{list} of \link{WeightResults} objects.}
 }
 \if{html}{\out{</div>}}
 }

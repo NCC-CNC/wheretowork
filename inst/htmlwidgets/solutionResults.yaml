@@ -4,6 +4,12 @@ dependencies:
     version: 1.0.0
     src: htmlwidgets/lib/solutionResults-1.0.0
     script:
+      - MultiThemeResults-class.js
+      - SingleThemeResults-class.js
+      - WeightResults-class.js
+      - Solution-class.js
+      - SolutionResults-class.js
+      - Statistic-class.js
       - utils.js
     stylesheet:
       - style.css

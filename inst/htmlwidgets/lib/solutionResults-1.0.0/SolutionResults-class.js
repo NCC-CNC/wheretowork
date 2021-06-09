@@ -1,23 +1,78 @@
 class SolutionResults {
   /* constructor */
   constructor(id, container) {
-    // set container
+    // set fields
     this.id = id,
-    this.container = container;
     this.solutions = new Array();
+    this.el = container;
+
+    // set fields to store HTML elements
+    this.select_el =
+      this.el.querySelector(".solution-select");
+    this.result_contatainer_el =
+      this.el.querySelector(".solution-result-container");
+
+    // alias this
+    const that = this;
+
+    // add event handle to select input
+    this.select_el.addEventListener("change", function (e) {
+      // suppress default form behavior
+      e.preventDefault();
+      // find id for selected solution
+      const id = this[this.selectedIndex].id;
+      // show selected solution
+      that.showSolution(id);
+    });
   }
 
   /* update methods */
-  addSolution(id, solution) {
-    // TODO
+  addSolution(solution) {
+    // store solution
+    this.solutions.push(solution);
+    // create option HTML node for the new solution
+    const option = document.createElement("option");
+    option.innerText = solution.name;
+    option.id = solution.id;
+    // add the option to the select input
+    this.select_el.appendChild(option);
   }
 
   dropSolution(id) {
-    // TODO
+    // find solution index
+    const idx = this.solutions.findIndex((x) => x.id === id);
+    // remove solution from widget
+    if (idx > -1) {
+      // if the solution is currently being shown,
+      // then show a different solution before deleting it
+      if (this.select_el.value === this.select_el.children[idx].innerText) {
+        if (idx === 0) {
+          // if deleting the first solution, then show the second one
+          ths.showSolution(this.solutions[1].id);
+        } else {
+          // if deleting a different solution, then show the previous one
+          this.showSolution(this.solutions[idx - 1].id);
+        }
+      }
+      // remove solution from internal memory
+      this.solutions.splice(idx, 1);
+      // remove solution from select input
+      this.select_el.removeChild(this.select_el.children[idx]);
+    }
   }
 
   showSolution(id) {
-    // TODO
+    // find solution index
+    const idx = this.solutions.findIndex((x) => x.id === id);
+    // if solution found, then show it in the widget
+    if (idx > -1) {
+      // clear solution from solution results container
+      removeAllChildNodes(this.result_contatainer_el);
+      // add new solution to solution results container
+      this.solutions[idx].render(this.result_contatainer_el);
+      // update select input
+      this.select_el.value = this.select_el.children[idx].innerText;
+    }
   }
 
   /* render method */

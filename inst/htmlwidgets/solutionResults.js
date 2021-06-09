@@ -1,11 +1,7 @@
 HTMLWidgets.widget({
-
-  name: 'solutionResults',
-
-  type: 'output',
-
+  name: "solutionResults",
+  type: "output",
   factory: function(el, width, height) {
-
     // shared variables
     var elementId = el.id;
     var initialized = false;
@@ -15,17 +11,14 @@ HTMLWidgets.widget({
     return {
 
       renderValue: function(opts) {
-        // alias this
-        var that = this;
-
         // initialize widget
         if (!initialized) {
           // set state to initialized
           initialized = true;
           // attach the widget to the DOM
-          container.widget = that;
+          container.widget = this;
           // initialize map manager
-          handle = new SolutionResults();
+          handle = new SolutionResults(elementId, container);
           // render HTML elements
           handle.render();
         }
@@ -41,18 +34,16 @@ HTMLWidgets.widget({
 
       /* API functions to manipulate widget */
       addSolution: function(params) {
-        // TODO
-        // handle.addSolution(params.value.id, params.value.solution);
+        const solution = newSolution(elementId, params.value);
+        handle.addSolution(solution);
       },
 
       dropSolution: function(params) {
-        // TODO
-        // handle.dropSolution(params.value.id);
+        handle.dropSolution(params.value);
       },
 
       showSolution: function(params) {
-        // TODO
-        // handle.renderSolution(params.value.id);
+        handle.showSolution(params.value);
       }
 
     };

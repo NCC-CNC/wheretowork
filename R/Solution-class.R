@@ -20,13 +20,13 @@ Solution <- R6::R6Class(
     #' @field variable [Variable] object.
     variable = NULL,
 
-    #' @field statistics `data.frame` object.
+    #' @field statistics `list` of [Statistic] objects
     statistics = NULL,
 
-    #' @field theme_results `list` object.
+    #' @field theme_results `list` of [ThemeResults] objects.
     theme_results = NULL,
 
-    #' @field weight_results `list` object.
+    #' @field weight_results `list` of [WeightResults] objects.
     weight_results = NULL,
 
     #' @description
@@ -34,9 +34,9 @@ Solution <- R6::R6Class(
     #' @param id `character` value.
     #' @param name `character` value.
     #' @param variable [Variable] object.
-    #' @param statistics `data.frame` object.
-    #' @param theme_results `list` object.
-    #' @param weight_results `list` object.
+    #' @param statistics `list` of [Statistic] objects.
+    #' @param theme_results `list` of [ThemeResults] objects.
+    #' @param weight_results `list` of [WeightResults] objects.
     #' @return A new Solution object.
     initialize = function(
       id, name, variable, statistics, theme_results, weight_results) {
@@ -47,9 +47,12 @@ Solution <- R6::R6Class(
         assertthat::is.string(name),
         assertthat::noNA(name),
         inherits(variable, "Variable"),
-        inherits(statistics, "data.frame"),
+        is.list(statistics),
+        all_list_elements_inherit(statistics, "Statistic"),
         is.list(theme_results),
-        is.list(weight_results))
+        all_list_elements_inherit(theme_results, "ThemeResults"),
+        is.list(weight_results),
+        all_list_elements_inherit(weight_results, "WeightResults"))
       # assign fields
       self$id <- id
       self$name <- name
@@ -83,7 +86,9 @@ Solution <- R6::R6Class(
       list(
         id = self$id,
         name = self$name,
-        statistics = as.list(self$statistics),
+        statistics = lapply(
+          self$statistics,
+          function(x) x$get_widget_data()),
         theme_results = lapply(
           self$theme_results,
           function(x) x$get_widget_data()),
@@ -99,7 +104,9 @@ Solution <- R6::R6Class(
       list(
         id = self$id,
         name = self$name,
-        statistics = as.list(self$statistics),
+        statistics = lapply(
+          self$statistics,
+          function(x) x$get_widget_data()),
         legend = self$variable$legend$get_widget_data(),
         units = self$variable$units,
         type = "solution"
@@ -116,11 +123,11 @@ Solution <- R6::R6Class(
 #'
 #' @param variable [Variable] object with the solution.
 #'
-#' @param statistics `data.frame` object.
+#' @param statistics `list` of [Statistic] objects.
 #'
-#' @param theme_results `list` object.
+#' @param theme_results `list` of [ThemeResults] objects.
 #'
-#' @param weight_results `list` object.
+#' @param weight_results `list` of [WeightResults] objects.
 #'
 #' @inheritParams new_multi_theme
 #'
@@ -222,14 +229,6 @@ new_solution_from_prioritization <- function(
   abs_targets <- floor(abs_targets * 1e+3) / 1e+3
   abs_targets <- abs_targets * feature_data$status
 
-
-  print("feature_data")
-  print(feature_data)
-  print("abs_targets")
-  print(abs_targets)
-  print("rij")
-  print(rij)
-
   # generate initial prioritization
   ## this simply just aims to minimize cost
   initial_problem <-
@@ -260,7 +259,7 @@ new_solution_from_prioritization <- function(
         features = tibble::tibble(
           id = seq_along(c(abs_targets, 1)),
           name = c(feature_data$id, "cost")),
-          dplyr::bind_rows(
+          rbind(
             feature_data[, c("id", "name")],
             tibble::tibble(id = "cost", name = "cost")),
         rij_matrix = rbind(rij, cost)) %>%
@@ -337,7 +336,7 @@ new_solution_from_prioritization <- function(
   # return solution object
   new_solution(
     name = name, variable = v,
-    statistics_results = statistics_results,
+    statistics = statistics,
     theme_results = theme_results,
     weight_results = weight_results,
     id = uuid::UUIDgenerate())

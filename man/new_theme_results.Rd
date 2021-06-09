@@ -4,14 +4,15 @@
 \alias{new_theme_results}
 \title{New theme results}
 \usage{
-new_theme_results(name, theme, feature_results, id = uuid::UUIDgenerate())
+new_theme_results(theme, feature_results, id = uuid::UUIDgenerate())
 }
 \arguments{
-\item{name}{\code{character} name of theme.}
-
 \item{theme}{\link{Theme} object.}
 
-\item{feature_results}{\code{FeatureResults} object or a \code{list} of such objects.}
+\item{feature_results}{\link{FeatureResults} object or a \code{list} of such objects.}
+
+\item{id}{\code{character} unique identifier.
+Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}
 }
 \value{
 A \link{ThemeResults} object.

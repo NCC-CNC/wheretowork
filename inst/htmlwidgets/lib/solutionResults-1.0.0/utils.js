@@ -1,5 +1,24 @@
+function newSolution(manager, x) {
+  return new Solution(
+    manager,
+    x.id,
+    x.name,
+    x.statistics,
+    x.theme_results,
+    x.weight_results
+  );
+}
+
+function newStatistic(manager, x) {
+  return new Statistic(
+    manager,
+    x.name,
+    x.value,
+    x.units);
+}
+
 function newWeightResults(manager, x) {
-  return new WeightSetting(
+  return new WeightResults(
     manager,
     x.id,
     x.name,
@@ -48,4 +67,12 @@ function newThemeResults(manager, x) {
     );
   }
   return y;
+}
+
+// obtained from
+// https://www.javascripttutorial.net/dom/manipulating/remove-all-child-nodes/
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
 }

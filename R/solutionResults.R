@@ -25,6 +25,7 @@ solutionResults <- function(
   # create widget
   htmlwidgets::createWidget(
     name = "solutionResults",
+    x = list(),
     width = width,
     height = height,
     package = "locationmisc",
@@ -79,39 +80,37 @@ solutionResults_html <- function(id, style, class, ...) {
         htmltools::div(
           class = "solution-results",
           # select input
-          htmltools::tags::div(
+          htmltools::tags$div(
             class = "solution-select-container",
-            htmltools::tags::label(
-              for = paste0(id, "_select"),
+            htmltools::tags$label(
               "Solution:"
             ),
-            htmltools::tags::select(
-              id = paste0(id, "_select"),
-
+            htmltools::tags$select(
+              class = "solution-select"
             )
-          htmltools::tags::label()
-<label for="cars">Choose a car:</label>
-
-<select name="cars" id="cars">
-  <option value="volvo">Volvo</option>
-  <option value="saab">Saab</option>
-  <option value="mercedes">Mercedes</option>
-  <option value="audi">Audi</option>
-</select>
-
-          shiny::selectInput(
-             inputId = id,
-             label = "Solution:",
-             choices = c())
+          ),
           # container to show results for a given solution
           htmltools::tags$div(
-            class = "result"
+            class = "solution-result-container"
           )
         )
       )
     )
 
   # add HTML template scaffolds for dynamic content
+  ## statistic
+  x <-
+    htmltools::tagAppendChild(
+      x,
+      htmltools::tags$template(
+        class = "statistic-template",
+        htmltools::tags$div(
+          class  = "statistic",
+          # TODO
+        )
+      )
+    )
+
   ## weight
   x <-
     htmltools::tagAppendChild(

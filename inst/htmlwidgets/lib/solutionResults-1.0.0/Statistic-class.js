@@ -1,29 +1,22 @@
-class WeightResults {
+class Statistic {
   /* constructor */
   constructor(
     manager,
-    id,
     name,
-    status,
-    total,
-    factor,
-    held,
-    units
-  ) {
-    // class fields
-    this.id = id;
+    value,
+    units) {
+    // initialize HTML element to display the results
     this.el =
       document.importNode(
         document
         .getElementById(manager)
-        .querySelector(".weight-results-template")
+        .querySelector(".statistic-template")
         .content,
       true);
 
-    // TODO: add code to dipslay results for the object
-    // The current code just inserts a TODO into the DOM
+    // append statistics to the HTML element
     const l = document.createElement("label");
-    l.innerText = "TODO";
+    l.innerText = `${name}: ${value} ${units}`;
     this.el.appendChild(l);
 
   }
