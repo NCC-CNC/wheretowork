@@ -44,7 +44,7 @@ class MapManager {
       layers_panel, {
       animation: 150,
       dataIdAttr: "data-id",
-      ghostClass: "map-manager-layer-ghost",
+      ghostClass: "ghost",
       onUpdate: function(event) {
         if (HTMLWidgets.shinyMode) {
           const new_ids = this.toArray();
@@ -54,13 +54,6 @@ class MapManager {
             value: order
           });
         }
-      },
-      onEnd: function(event) {
-        $(".layers").find(".map-manager-layer").eq(event.newIndex).find(".overlay").eq(0).addClass('map-manager-layer-ghost-bg')
-        //$(".layers").find(".map-manager-layer").eq(event.newIndex).addClass('map-manager-layer-ghost')
-        $("html").click(function(p){
-          $(".layers").find(".overlay").removeClass('map-manager-layer-ghost-bg')
-        })
       }
     });
   }

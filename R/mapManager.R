@@ -102,15 +102,12 @@ mapManager_html <- function(id, style, class, ...) {
         htmltools::tags$div(
           class  = "map-manager-layer",
           htmltools::tags$div(
-            class = "overlay",
-              htmltools::tags$div(
-                class = "weight-layer",
-                mm_header_component_scaffold(),
-                htmltools::tags$div(
-                  class = "layer-legend-container",
-                  mm_legend_component_scaffold()
-                )
-              )
+            class = "weight-layer",
+            mm_header_component_scaffold(),
+            htmltools::tags$div(
+              class = "layer-legend-container",
+              mm_legend_component_scaffold()
+            )
           )
         )
       )
@@ -125,15 +122,12 @@ mapManager_html <- function(id, style, class, ...) {
         htmltools::tags$div(
           class  = "map-manager-layer",
           htmltools::tags$div(
-            class = "overlay",
-              htmltools::tags$div(
-                class = "theme-layer",
-                mm_header_component_scaffold(),
-                htmltools::tags$div(
-                  class = "layer-legend-container",
-                  mm_legend_component_scaffold()
-                )
-              )
+            class = "theme-layer",
+            mm_header_component_scaffold(),
+            htmltools::tags$div(
+              class = "layer-legend-container",
+              mm_legend_component_scaffold()
+            )
           )
         )
       )
@@ -148,15 +142,12 @@ mapManager_html <- function(id, style, class, ...) {
         class = "multi-theme-layer-template",
         htmltools::tags$div(
           class = "map-manager-layer",
-          htmltools::tags$div(
-            class = "overlay",
+            htmltools::tags$div(
+              class = "theme-layer",
+              mm_header_component_scaffold(),
               htmltools::tags$div(
-                class = "theme-layer",
-                mm_header_component_scaffold(),
-                htmltools::tags$div(
-                  class = "main"
-                )
-              )
+                class = "main"
+            )
           )
         )
       )
@@ -172,15 +163,12 @@ mapManager_html <- function(id, style, class, ...) {
           class = "single-container",
           htmltools::tags$div(
             htmltools::tags$div(
-              class = "overlay",
-                htmltools::tags$div(
-                  class = "sub-layer",
-                  mm_subheader_component_scaffold(),
-                  htmltools::tags$div(
-                    class = "layer-legend-container",
-                    mm_legend_component_scaffold()
-                  )
-                )
+              class = "sub-layer",
+              mm_subheader_component_scaffold(),
+              htmltools::tags$div(
+                class = "layer-legend-container",
+                mm_legend_component_scaffold()
+              )
             )
           )
         )
