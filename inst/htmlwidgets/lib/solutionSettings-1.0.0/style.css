@@ -37,6 +37,9 @@
 
 .solution-settings .panel-body {
   padding: 0;
+  /*background: #ddd;*/
+  /*background: #EEEEEE;*/
+  background: #ddd;
 }
 
 /* footer */
@@ -60,11 +63,14 @@
 
 /* view containers */
 .solution-setting {
-  width: 100%;
+  width: 94%;
   border: 1px var(--border) solid;
   border-radius: 5px 5px 5px 5px;
-  border-bottom: 8px solid grey;
-  border-left: 8px solid grey;
+  /*border-bottom: 8px solid grey;
+  border-left: 8px solid grey;*/
+  margin : 10px;
+  padding-bottom: 4px;
+  background: white;
 }
 
 /* -- add disabled mouse cursor to any element with the .disable-mouse class */
@@ -371,3 +377,9 @@
 .el-switch .el-switch-style {
   background: var(--inactive);
 }
+
+.solution-settings .panel.panel-default>.panel-heading{
+  /*background-color: #ddd; !important*/
+   background: #A6ACAF; !important
+}
+
