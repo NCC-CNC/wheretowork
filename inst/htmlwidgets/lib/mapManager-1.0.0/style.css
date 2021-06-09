@@ -10,6 +10,12 @@
   background: #C8EBFB;
 }
 
+.map-manager-layer-ghost-bg {
+  background: #C8EBFB;
+  opacity: 0.5;
+}
+
+
 /* layer containers */
 .map-manager-layer .single-container {
   width: 90%;

@@ -82,9 +82,9 @@ class MultiThemeLayer {
         }
       },
       onEnd: function(event) {
-        $(".layers").find(".single-container").eq(event.newIndex).addClass('map-manager-layer-ghost')
+        $(".layers").find(".single-container").eq(event.newIndex).find(".overlay").eq(0).addClass('map-manager-layer-ghost-bg')
         $("html").click(function(p){
-          $(".layers").find(".single-container").removeClass('map-manager-layer-ghost')
+          $(".layers").find(".overlay").removeClass('map-manager-layer-ghost-bg')
         })
       }
     });
