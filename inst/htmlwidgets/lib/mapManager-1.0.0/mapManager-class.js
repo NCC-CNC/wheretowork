@@ -56,5 +56,7 @@ class MapManager {
         }
       }
     });
+    // initialize tooltips in widget
+    $(this.container).find(".has-tooltip").tooltip();
   }
 }

@@ -49,7 +49,7 @@ mm_header_component_scaffold <- function(id = uuid::UUIDgenerate()) {
   # return scaffold
   htmltools::tags$div(
     class = "header",
-    
+
     htmltools::tags$label(
       id = view_checkbox_id,
       class = "view-container",
@@ -63,7 +63,7 @@ mm_header_component_scaffold <- function(id = uuid::UUIDgenerate()) {
       htmltools::tags$i(class = "far fa-minus-square checked"),
       htmltools::tags$i(class = "far fa-plus-square unchecked")
     ),
-    
+
     htmltools::tags$label(
       id = visible_checkbox_id,
       class = "visible-container",
@@ -79,9 +79,9 @@ mm_header_component_scaffold <- function(id = uuid::UUIDgenerate()) {
     ),
     htmltools::tags$label(
       id = name_label_id,
-      class = "name-label",
+      class = "name-label has-tooltip",
       `data-toggle` = "tooltip",
-      `data-placement` = "right",
+      `data-placement` = "bottom",
       `delay` = "{'show': 10, 'hide': 5000 }",
       title = "Name of the layer",
     )
@@ -97,12 +97,12 @@ mm_header_component_scaffold <- function(id = uuid::UUIDgenerate()) {
 #'
 #' @noRd
 mm_subheader_component_scaffold <- function(id = uuid::UUIDgenerate()) {
-  
+
   # create ids
   name_label_id <- uuid::UUIDgenerate()
   visible_checkbox_id <- uuid::UUIDgenerate()
   view_checkbox_id <- uuid::UUIDgenerate()
-  
+
   htmltools::tags$div(
     class = "sub-header",
     htmltools::tags$label(
@@ -111,35 +111,35 @@ mm_subheader_component_scaffold <- function(id = uuid::UUIDgenerate()) {
       `data-toggle` = "tooltip",
       `data-placement` = "right",
       `delay` = "{'show': 10, 'hide': 5000 }",
-      title = "Show/hide theme",
+      title = "Show/hide feature",
       htmltools::tags$input(
         class = "view-checkbox",
         type = "checkbox"),
       htmltools::tags$i(class = "far fa-minus-square checked"),
       htmltools::tags$i(class = "far fa-plus-square unchecked")
     ),
-    
+
     htmltools::tags$label(
       id = visible_checkbox_id,
       class = "visible-container",
       `data-toggle` = "tooltip",
       `data-placement` = "right",
       `delay` = "{'show': 10, 'hide': 5000 }",
-      title = "Show/hide layer",
+      title = "Show/hide feature",
       htmltools::tags$input(
         class = "visible-checkbox",
         type = "checkbox"),
       htmltools::tags$i(class = "fa fa-eye checked"),
       htmltools::tags$i(class = "fa fa-eye-slash unchecked")
     ),
-    
+
     htmltools::tags$label(
       id = name_label_id,
       class = "name-label",
       `data-toggle` = "tooltip",
       `data-placement` = "right",
       `delay` = "{'show': 10, 'hide': 5000 }",
-      title = "Name of the layer",
+      title = "Name of the feature",
     )
   )
 }
