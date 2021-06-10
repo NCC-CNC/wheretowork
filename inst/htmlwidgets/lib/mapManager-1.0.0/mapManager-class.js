@@ -44,7 +44,7 @@ class MapManager {
       layers_panel, {
       animation: 150,
       dataIdAttr: "data-id",
-      ghostClass: "map-manager-layer-ghost",
+      ghostClass: "ghost",
       onUpdate: function(event) {
         if (HTMLWidgets.shinyMode) {
           const new_ids = this.toArray();

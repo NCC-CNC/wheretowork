@@ -149,11 +149,11 @@ mapManager_html <- function(id, style, class, ...) {
         class = "multi-theme-layer-template",
         htmltools::tags$div(
           class = "map-manager-layer",
-          htmltools::tags$div(
-            class = "theme-layer",
-            mm_header_component_scaffold(),
             htmltools::tags$div(
-              class = "main"
+              class = "theme-layer",
+              mm_header_component_scaffold(),
+              htmltools::tags$div(
+                class = "main"
             )
           )
         )
@@ -168,10 +168,15 @@ mapManager_html <- function(id, style, class, ...) {
         class = "multi-theme-single-layer-template",
         htmltools::tags$div(
           class = "single-container",
-          mm_subheader_component_scaffold(),
           htmltools::tags$div(
-            class = "layer-legend-container",
-            mm_legend_component_scaffold()
+            htmltools::tags$div(
+              class = "sub-layer",
+              mm_subheader_component_scaffold(),
+              htmltools::tags$div(
+                class = "layer-legend-container",
+                mm_legend_component_scaffold()
+              )
+            )
           )
         )
       )
