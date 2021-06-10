@@ -20,8 +20,11 @@ Solution <- R6::R6Class(
     #' @field variable [Variable] object.
     variable = NULL,
 
-    #' @field statistics `list` of [Statistic] objects
-    statistics = NULL,
+    #' @field primary_statistics `list` of [Statistic] objects
+    primary_statistics = NULL,
+
+    #' @field supplementary_statistics `list` of [Statistic] objects
+    supplementary_statistics = NULL,
 
     #' @field theme_results `list` of [ThemeResults] objects.
     theme_results = NULL,
@@ -34,12 +37,14 @@ Solution <- R6::R6Class(
     #' @param id `character` value.
     #' @param name `character` value.
     #' @param variable [Variable] object.
-    #' @param statistics `list` of [Statistic] objects.
+    #' @param primary_statistics `list` of [Statistic] objects.
+    #' @param supplementary_statistics `list` of [Statistic] objects.
     #' @param theme_results `list` of [ThemeResults] objects.
     #' @param weight_results `list` of [WeightResults] objects.
     #' @return A new Solution object.
     initialize = function(
-      id, name, variable, statistics, theme_results, weight_results) {
+      id, name, variable, primary_statistics, supplementary_statistics,
+      theme_results, weight_results) {
       # assert arguments are valid
       assertthat::assert_that(
         assertthat::is.string(id),
@@ -47,8 +52,10 @@ Solution <- R6::R6Class(
         assertthat::is.string(name),
         assertthat::noNA(name),
         inherits(variable, "Variable"),
-        is.list(statistics),
-        all_list_elements_inherit(statistics, "Statistic"),
+        is.list(primary_statistics),
+        all_list_elements_inherit(primary_statistics, "Statistic"),
+        is.list(supplementary_statistics),
+        all_list_elements_inherit(supplementary_statistics, "Statistic"),
         is.list(theme_results),
         all_list_elements_inherit(theme_results, "ThemeResults"),
         is.list(weight_results),
@@ -56,8 +63,9 @@ Solution <- R6::R6Class(
       # assign fields
       self$id <- id
       self$name <- name
-      self$variable  <- variable
-      self$statistics  <- statistics
+      self$variable <- variable
+      self$primary_statistics  <- primary_statistics
+      self$supplementary_statistics  <- supplementary_statistics
       self$theme_results <- theme_results
       self$weight_results <- weight_results
     },
@@ -86,9 +94,14 @@ Solution <- R6::R6Class(
       list(
         id = self$id,
         name = self$name,
-        statistics = lapply(
-          self$statistics,
-          function(x) x$get_widget_data()),
+        statistics =
+          append(
+            lapply(
+              self$primary_statistics,
+              function(x) x$get_widget_data()),
+            lapply(
+              self$supplementary_statistics,
+              function(x) x$get_widget_data())),
         theme_results = lapply(
           self$theme_results,
           function(x) x$get_widget_data()),
@@ -105,7 +118,7 @@ Solution <- R6::R6Class(
         id = self$id,
         name = self$name,
         statistics = lapply(
-          self$statistics,
+          self$primary_statistics,
           function(x) x$get_widget_data()),
         legend = self$variable$legend$get_widget_data(),
         units = self$variable$units,
@@ -123,7 +136,9 @@ Solution <- R6::R6Class(
 #'
 #' @param variable [Variable] object with the solution.
 #'
-#' @param statistics `list` of [Statistic] objects.
+#' @param primary_statistics `list` of [Statistic] objects.
+#'
+#' @param supplementary_statistics `list` of [Statistic] objects.
 #'
 #' @param theme_results `list` of [ThemeResults] objects.
 #'
@@ -136,11 +151,13 @@ Solution <- R6::R6Class(
 #'
 #' @export
 new_solution <- function(
-  name, variable, statistics, theme_results, weight_results,
-  id = uuid::UUIDgenerate()) {
+  name, variable, primary_statistics, supplementary_statistics,
+  theme_results, weight_results, id = uuid::UUIDgenerate()) {
   Solution$new(
-    name = name, variable = variable,
-    statistics = statistics,
+    name = name,
+    variable = variable,
+    primary_statistics = primary_statistics,
+    supplementary_statistics = supplementary_statistics,
     theme_results = theme_results,
     weight_results = weight_results,
     id = id)
@@ -335,7 +352,8 @@ new_solution_from_prioritization <- function(
 
   # return solution object
   new_solution(
-    name = name, variable = v,
+    name = name,
+    variable = v,
     statistics = statistics,
     theme_results = theme_results,
     weight_results = weight_results,

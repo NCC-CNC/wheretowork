@@ -23,7 +23,9 @@ Definition for the Solution class.
 
 \item{\code{variable}}{\link{Variable} object.}
 
-\item{\code{statistics}}{\code{list} of \link{Statistic} objects}
+\item{\code{primary_statistics}}{\code{list} of \link{Statistic} objects}
+
+\item{\code{supplementary_statistics}}{\code{list} of \link{Statistic} objects}
 
 \item{\code{theme_results}}{\code{list} of \link{ThemeResults} objects.}
 
@@ -48,7 +50,15 @@ Definition for the Solution class.
 \subsection{Method \code{new()}}{
 Create a Solution object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Solution$new(id, name, variable, statistics, theme_results, weight_results)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Solution$new(
+  id,
+  name,
+  variable,
+  primary_statistics,
+  supplementary_statistics,
+  theme_results,
+  weight_results
+)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -60,7 +70,9 @@ Create a Solution object.
 
 \item{\code{variable}}{\link{Variable} object.}
 
-\item{\code{statistics}}{\code{list} of \link{Statistic} objects.}
+\item{\code{primary_statistics}}{\code{list} of \link{Statistic} objects.}
+
+\item{\code{supplementary_statistics}}{\code{list} of \link{Statistic} objects.}
 
 \item{\code{theme_results}}{\code{list} of \link{ThemeResults} objects.}
 

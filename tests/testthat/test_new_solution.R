@@ -57,11 +57,13 @@ test_that("initialization", {
     theme = th,
     feature_results = fr,
     id = "RID2")
-  s <- new_statistic("Area", 12, "ha")
+  s1 <- new_statistic("Area", 12, "ha")
+  s2 <- new_statistic("Perimeter", 10, "km")
   x <- new_solution(
     name = "solution001",
     variable = v3,
-    statistics = list(s),
+    primary_statistics = list(s1),
+    supplementary_statistics = list(s2),
     theme_results = list(thr),
     weight_results = list(wr),
     id = "solution1")
@@ -69,7 +71,9 @@ test_that("initialization", {
   expect_is(x, "Solution")
   print(x)
   expect_identical(x$name, "solution001")
-  expect_identical(x$statistics, list(s))
+  expect_identical(x$variable, v3)
+  expect_identical(x$primary_statistics, list(s1))
+  expect_identical(x$supplementary_statistics, list(s2))
   expect_identical(x$theme_results, list(thr))
   expect_identical(x$weight_results, list(wr))
   expect_identical(x$id, "solution1")
@@ -132,11 +136,13 @@ test_that("widget methods", {
     theme = th,
     feature_results = fr,
     id = "RID2")
-  s <- new_statistic("Area", 12, "ha")
+  s1 <- new_statistic("Area", 12, "ha")
+  s2 <- new_statistic("Perimeter", 10, "km")
   x <- new_solution(
     name = "solution001",
     variable = v3,
-    statistics = list(s),
+    primary_statistics = list(s1),
+    supplementary_statistics = list(s2),
     theme_results = list(thr),
     weight_results = list(wr),
     id = "solution1")
@@ -147,7 +153,7 @@ test_that("widget methods", {
     list(
       id = "solution1",
       name = "solution001",
-      statistics = list(s$get_widget_data()),
+      statistics = list(s1$get_widget_data(), s2$get_widget_data()),
       theme_results = list(thr$get_widget_data()),
       weight_results = list(wr$get_widget_data())
     )
@@ -158,7 +164,7 @@ test_that("widget methods", {
     list(
       id = "solution1",
       name = "solution001",
-      statistics = list(s$get_widget_data()),
+      statistics = list(s1$get_widget_data()),
       legend = v3$legend$get_widget_data(),
       units = v3$units,
       type = "solution"

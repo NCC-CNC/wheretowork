@@ -4,9 +4,12 @@
 \alias{solutionResults}
 \title{Solution results}
 \usage{
-solutionResults(width = NULL, height = NULL, elementId = NULL)
+solutionResults(x = list(), width = NULL, height = NULL, elementId = NULL)
 }
 \arguments{
+\item{x}{\code{list} containing \link{Solution} objects.
+Defaults to an empty list object.}
+
 \item{width}{\code{character} width of the displayed widget.
 Defaults to \code{NULL} such that the widget is automatically sized.}
 

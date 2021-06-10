@@ -7,7 +7,8 @@
 new_solution(
   name,
   variable,
-  statistics,
+  primary_statistics,
+  supplementary_statistics,
   theme_results,
   weight_results,
   id = uuid::UUIDgenerate()
@@ -18,7 +19,9 @@ new_solution(
 
 \item{variable}{\link{Variable} object with the solution.}
 
-\item{statistics}{\code{list} of \link{Statistic} objects.}
+\item{primary_statistics}{\code{list} of \link{Statistic} objects.}
+
+\item{supplementary_statistics}{\code{list} of \link{Statistic} objects.}
 
 \item{theme_results}{\code{list} of \link{ThemeResults} objects.}
 

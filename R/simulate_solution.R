@@ -24,8 +24,9 @@ simulate_solution <- function(themes, weights) {
     all_list_elements_inherit(weights, "Weight"))
 
   # simulate statistics
-  statistics <- list(
-    new_statistic("Total area", stats::runif(1, 1, 1000), "ha"),
+  primary_statistics <- list(
+    new_statistic("Total area", stats::runif(1, 1, 1000), "ha"))
+  supplementary_statistics <- list(
     new_statistic("Total perimeter", stats::runif(1, 1, 1000), "km"))
 
   # simulate weight results
@@ -52,7 +53,8 @@ simulate_solution <- function(themes, weights) {
   new_solution(
     name = n,
     variable = v,
-    statistics = statistics,
+    primary_statistics = primary_statistics,
+    supplementary_statistics = supplementary_statistics,
     theme_results = theme_results,
     weight_results = weight_results)
 }
