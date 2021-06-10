@@ -2,36 +2,36 @@ context("new_map_manager")
 
 test_that("initialization", {
   # create object
-  ## create datasets
-  l1 <- new_dataset(
-    source = tempfile(), total = 12, units = "ha",
+  ## create dataset
+  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+  d <- new_dataset(f)
+  ## create variables
+  v1 <- new_variable(
+    dataset = d, index = 1, total = 12, units = "ha",
     legend = simulate_continuous_legend())
-  l2 <- new_dataset(
-    source = tempfile(), total = 14, units = "ha",
+  v2 <- new_variable(
+    dataset = d, index = 2, total = 14, units = "ha",
     legend = simulate_continuous_legend())
-  l3 <- new_dataset(
-    source = tempfile(), total = 78, units = "ha",
+  v3 <- new_variable(
+    dataset = d, index = 3, total = 78, units = "ha",
     legend = simulate_continuous_legend())
-  l4 <- new_dataset(
-    source = tempfile(), total = 90, units = "ha",
+  v4 <- new_variable(
+    dataset = d, index = 4, total = 90, units = "ha",
     legend = simulate_continuous_legend())
   ## create a weight using a dataset
   w <- new_weight(
-    name = "Human Footprint Index", initial_factor = 90, initial_status = FALSE,
-    dataset = l1, id = "W1")
+    name = "Human Footprint Index", variable = v1,
+    initial_factor = 90, initial_status = FALSE, id = "W1")
   ## create features using datasets
   f1 <- new_feature(
-    name = "Possum", initial_goal = 0.2,
-    initial_status = FALSE, initial_visible = TRUE,
-    current = 0.5, dataset = l2, id = "F1")
+    name = "Possum", variable = v2,
+    initial_goal = 0.2, initial_status = FALSE, current = 0.5, id = "F1")
   f2 <- new_feature(
-    name = "Forests", initial_goal = 0.3,
-    initial_status = FALSE, initial_visible = FALSE,
-     current = 0.9, dataset = l3, id = "F2")
+    name = "Forests", variable = v3,
+    initial_goal = 0.3, initial_status = FALSE, current = 0.9, id = "F2")
   f3 <- new_feature(
-    name = "Shrubs", initial_goal = 0.6,
-    initial_status = TRUE, initial_visible = TRUE,
-    current = 0.4, dataset = l4, id = "F3")
+    name = "Shrubs", variable = v4,
+    initial_goal = 0.6, initial_status = TRUE, current = 0.4, id = "F3")
   ## create themes using the features
   t1 <- new_single_theme("Species", f1, id = "T1")
   t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")
@@ -49,36 +49,36 @@ test_that("initialization", {
 
 test_that("get methods", {
   # create object
-  ## create datasets
-  l1 <- new_dataset(
-    source = tempfile(), total = 12, units = "ha",
+  ## create dataset
+  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+  d <- new_dataset(f)
+  ## create variables
+  v1 <- new_variable(
+    dataset = d, index = 1, total = 12, units = "ha",
     legend = simulate_continuous_legend())
-  l2 <- new_dataset(
-    source = tempfile(), total = 14, units = "ha",
+  v2 <- new_variable(
+    dataset = d, index = 2, total = 14, units = "ha",
     legend = simulate_continuous_legend())
-  l3 <- new_dataset(
-    source = tempfile(), total = 78, units = "ha",
+  v3 <- new_variable(
+    dataset = d, index = 3, total = 78, units = "ha",
     legend = simulate_continuous_legend())
-  l4 <- new_dataset(
-    source = tempfile(), total = 90, units = "ha",
+  v4 <- new_variable(
+    dataset = d, index = 4, total = 90, units = "ha",
     legend = simulate_continuous_legend())
   ## create a weight using a dataset
   w <- new_weight(
-    name = "Human Footprint Index", initial_factor = 90, initial_status = FALSE,
-    dataset = l1, id = "W1")
+    name = "Human Footprint Index", variable = v1,
+    initial_factor = 90, initial_status = FALSE, id = "W1")
   ## create features using datasets
   f1 <- new_feature(
-    name = "Possum", initial_goal = 0.2,
-    initial_status = FALSE, initial_visible = TRUE,
-    current = 0.5, dataset = l2, id = "F1")
+    name = "Possum", variable = v2,
+    initial_goal = 0.2, initial_status = FALSE, current = 0.5, id = "F1")
   f2 <- new_feature(
-    name = "Forests", initial_goal = 0.3,
-    initial_status = FALSE, initial_visible = FALSE,
-     current = 0.9, dataset = l3, id = "F2")
+    name = "Forests", variable = v3,
+    initial_goal = 0.3, initial_status = FALSE, current = 0.9, id = "F2")
   f3 <- new_feature(
-    name = "Shrubs", initial_goal = 0.6,
-    initial_status = TRUE, initial_visible = TRUE,
-    current = 0.4, dataset = l4, id = "F3")
+    name = "Shrubs", variable = v4,
+    initial_goal = 0.6, initial_status = TRUE, current = 0.4, id = "F3")
   ## create themes using the features
   t1 <- new_single_theme("Species", f1, id = "T1")
   t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")
@@ -110,36 +110,36 @@ test_that("get methods", {
 
 test_that("set methods", {
   # create object
-  ## create datasets
-  l1 <- new_dataset(
-    source = tempfile(), total = 12, units = "ha",
+  ## create dataset
+  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+  d <- new_dataset(f)
+  ## create variables
+  v1 <- new_variable(
+    dataset = d, index = 1, total = 12, units = "ha",
     legend = simulate_continuous_legend())
-  l2 <- new_dataset(
-    source = tempfile(), total = 14, units = "ha",
+  v2 <- new_variable(
+    dataset = d, index = 2, total = 14, units = "ha",
     legend = simulate_continuous_legend())
-  l3 <- new_dataset(
-    source = tempfile(), total = 78, units = "ha",
+  v3 <- new_variable(
+    dataset = d, index = 3, total = 78, units = "ha",
     legend = simulate_continuous_legend())
-  l4 <- new_dataset(
-    source = tempfile(), total = 90, units = "ha",
+  v4 <- new_variable(
+    dataset = d, index = 4, total = 90, units = "ha",
     legend = simulate_continuous_legend())
   ## create a weight using a dataset
   w <- new_weight(
-    name = "Human Footprint Index", initial_factor = 90, initial_status = FALSE,
-    dataset = l1, id = "W1")
+    name = "Human Footprint Index", variable = v1,
+    initial_factor = 90, initial_status = FALSE, id = "W1")
   ## create features using datasets
   f1 <- new_feature(
-    name = "Possum", initial_goal = 0.2,
-    initial_status = FALSE, initial_visible = TRUE,
-    current = 0.5, dataset = l2, id = "F1")
+    name = "Possum", variable = v2,
+    initial_goal = 0.2, initial_status = FALSE, current = 0.5, id = "F1")
   f2 <- new_feature(
-    name = "Forests", initial_goal = 0.3,
-    initial_status = FALSE, initial_visible = FALSE,
-     current = 0.9, dataset = l3, id = "F2")
+    name = "Forests", variable = v3,
+    initial_goal = 0.3, initial_status = FALSE, current = 0.9, id = "F2")
   f3 <- new_feature(
-    name = "Shrubs", initial_goal = 0.6,
-    initial_status = TRUE, initial_visible = TRUE,
-    current = 0.4, dataset = l4, id = "F3")
+    name = "Shrubs", variable = v4,
+    initial_goal = 0.6, initial_status = TRUE, current = 0.4, id = "F3")
   ## create themes using the features
   t1 <- new_single_theme("Species", f1, id = "T1")
   t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")
@@ -180,36 +180,36 @@ test_that("set methods", {
 
 test_that("widget methods", {
   # create object
-  ## create datasets
-  l1 <- new_dataset(
-    source = tempfile(), total = 12, units = "ha",
+  ## create dataset
+  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+  d <- new_dataset(f)
+  ## create variables
+  v1 <- new_variable(
+    dataset = d, index = 1, total = 12, units = "ha",
     legend = simulate_continuous_legend())
-  l2 <- new_dataset(
-    source = tempfile(), total = 14, units = "ha",
+  v2 <- new_variable(
+    dataset = d, index = 2, total = 14, units = "ha",
     legend = simulate_continuous_legend())
-  l3 <- new_dataset(
-    source = tempfile(), total = 78, units = "ha",
+  v3 <- new_variable(
+    dataset = d, index = 3, total = 78, units = "ha",
     legend = simulate_continuous_legend())
-  l4 <- new_dataset(
-    source = tempfile(), total = 90, units = "ha",
+  v4 <- new_variable(
+    dataset = d, index = 4, total = 90, units = "ha",
     legend = simulate_continuous_legend())
   ## create a weight using a dataset
   w <- new_weight(
-    name = "Human Footprint Index", initial_factor = 90, initial_status = FALSE,
-    dataset = l1, id = "W1")
+    name = "Human Footprint Index", variable = v1,
+    initial_factor = 90, initial_status = FALSE, id = "W1")
   ## create features using datasets
   f1 <- new_feature(
-    name = "Possum", initial_goal = 0.2,
-    initial_status = FALSE, initial_visible = TRUE,
-    current = 0.5, dataset = l2, id = "F1")
+    name = "Possum", variable = v2,
+    initial_goal = 0.2, initial_status = FALSE, current = 0.5, id = "F1")
   f2 <- new_feature(
-    name = "Forests", initial_goal = 0.3,
-    initial_status = FALSE, initial_visible = FALSE,
-     current = 0.9, dataset = l3, id = "F2")
+    name = "Forests", variable = v3,
+    initial_goal = 0.3, initial_status = FALSE, current = 0.9, id = "F2")
   f3 <- new_feature(
-    name = "Shrubs", initial_goal = 0.6,
-    initial_status = TRUE, initial_visible = TRUE,
-    current = 0.4, dataset = l4, id = "F3")
+    name = "Shrubs", variable = v4,
+    initial_goal = 0.6, initial_status = TRUE, current = 0.4, id = "F3")
   ## create themes using the features
   t1 <- new_single_theme("Species", f1, id = "T1")
   t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")

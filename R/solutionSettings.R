@@ -40,7 +40,12 @@
 #' where `id` is the argument to `elementId`.
 #'
 #' @examples
-#' # TODO.
+#' \dontrun{
+#' # run Shiny app to demo the sidebar pane
+#' if (interactive()) {
+#'   runExample("solutionSettings")
+#' }
+#' }
 #'
 #' @rdname solutionSettings-widget
 #'

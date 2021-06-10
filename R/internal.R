@@ -39,11 +39,13 @@ n_distinct <- function(x) {
 #'
 #' @noRd
 example_weight_names <- function() {
-  tibble::tibble(
-    weight =
-      readLines(
-        system.file(
-          "extdata", "example-weights.txt", package = "locationmisc"))
+  tibble::as_tibble(
+    utils::read.table(
+      system.file("extdata", "example-weights.csv", package = "locationmisc"),
+      stringsAsFactors = FALSE,
+      sep = ",",
+      header = TRUE
+    )
   )
 }
 

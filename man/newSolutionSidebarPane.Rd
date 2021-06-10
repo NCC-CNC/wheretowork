@@ -23,6 +23,10 @@ be used as an argument to \link[leaflet.extras2:sidebar_tabs]{leaflet.extras2::s
 the user interface for a Shiny web application.
 }
 \examples{
-# TODO.
-
+\dontrun{
+# run Shiny app to demo the sidebar pane
+if (interactive()) {
+  runExample("newSolutionSidebarPane")
+}
+}
 }

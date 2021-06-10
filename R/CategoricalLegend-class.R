@@ -25,7 +25,7 @@ CategoricalLegend <- R6::R6Class(
         assertthat::noNA(values),
         is.character(colors),
         assertthat::noNA(colors),
-        all(nchar(colors) == 7),
+        all(nchar(colors) %in% c(7, 9)),
         all(substr(colors, 1, 1) == "#"))
       self$values <- values
       self$colors <- colors

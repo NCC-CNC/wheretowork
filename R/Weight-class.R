@@ -1,11 +1,11 @@
-#' @include internal.R Dataset-class.R
+#' @include internal.R Variable-class.R
 NULL
 
 #' Weight class
 #'
 #' Definition for the Weight class.
 #'
-#' @seealso [new_weight()]
+#' @seealso [new_weight()].
 #'
 #' @export
 Weight <- R6::R6Class(
@@ -17,8 +17,8 @@ Weight <- R6::R6Class(
     #' @field name `character` value.
     name = NA_character_,
 
-    #' @field dataset [Dataset] object.
-    dataset = NULL,
+    #' @field variable [Variable] object.
+    variable = NULL,
 
     #' @field visible `logical` value.
     visible = NA,
@@ -51,7 +51,7 @@ Weight <- R6::R6Class(
     #' Create a new Weight object.
     #' @param id `character` value.
     #' @param name `character` value.
-    #' @param dataset [Dataset] object.
+    #' @param variable [Variable] object.
     #' @param initial_visible `logical` value.
     #' @param initial_status `logical` value.
     #' @param initial_factor `numeric` initial factor value.
@@ -61,7 +61,7 @@ Weight <- R6::R6Class(
     #' @return A new Weight object.
     ## constructor
     initialize = function(
-      id, name, dataset, initial_visible, initial_status,
+      id, name, variable, initial_visible, initial_status,
       initial_factor, min_factor, max_factor, step_factor) {
       ### assert that arguments are valid
       assertthat::assert_that(
@@ -71,8 +71,8 @@ Weight <- R6::R6Class(
         #### name
         assertthat::is.string(name),
         assertthat::noNA(name),
-        ### dataset
-        inherits(dataset, "Dataset"),
+        ### variable
+        inherits(variable, "Variable"),
         #### initial_visible
         assertthat::is.flag(initial_visible),
         assertthat::noNA(initial_visible),
@@ -99,7 +99,7 @@ Weight <- R6::R6Class(
       )
       ### set fields
       self$id <- id
-      self$dataset <- dataset
+      self$variable <- variable
       self$name <- name
       self$status <- initial_status
       self$initial_status <- initial_status
@@ -119,10 +119,10 @@ Weight <- R6::R6Class(
       message("Weight")
       message("  id:      ", self$id)
       message("  name:    ", self$name)
+      message("  variable: ", self$variable$repr())
       message("  visible: ", self$visible)
       message("  status: ", self$status)
       message("  factor: ", round(self$factor, 2))
-      message("  dataset: ", self$dataset$repr())
       invisible(self)
     },
 
@@ -138,7 +138,7 @@ Weight <- R6::R6Class(
         self$name,
         " ", start, "status: ", self$status,
         ", factor: ", round(self$factor, 2), end, nl(),
-        "  dataset: ", self$dataset$repr())
+        "  variable: ", self$variable$repr())
     },
 
     #' @description
@@ -160,6 +160,13 @@ Weight <- R6::R6Class(
     #' @return `numeric` value.
     get_factor = function() {
       self$factor
+    },
+
+    #' @description
+    #' Get the data.
+    #' @return [sf::st_as_sf()] or [raster::raster()] object.
+    get_data = function() {
+      self$variable$get_data()
     },
 
     #' @description
@@ -264,8 +271,8 @@ Weight <- R6::R6Class(
         id = self$id,
         name = self$name,
         visible = self$visible,
-        legend = self$dataset$legend$get_widget_data(),
-        units = self$dataset$units,
+        legend = self$variable$legend$get_widget_data(),
+        units = self$variable$units,
         type = "weight"
       )
     }
@@ -295,27 +302,31 @@ Weight <- R6::R6Class(
 #' @return A [Weight] object.
 #'
 #' @examples
-#' # create a new dataset
-#' l <- new_dataset(
-#'  source = tempfile(), total = 12, units = "ha",
-#'  legend = new_continuous_legend(1, 100, c("#000000", "#1b9e77")))
+#' # find data path
+#' f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+#'
+#' # create new dataset
+#' d <- new_dataset(f)
+#'
+#' # create new variable
+#' v <- new_variable_from_auto(d, index = 1)
 #'
 #' # create a new weight
-#' w <- new_weight(name = "NDVI", dataset = l)
+#' w <- new_weight(name = "NDVI", variable = v)
 #'
 #' # print object
 #' print(w)
 #'
 #' @export
 new_weight <- function(
-  name, dataset,
+  name, variable,
   initial_visible = TRUE, initial_status = TRUE,
   initial_factor = 0, min_factor = 0, max_factor = 100, step_factor = 1,
   id = uuid::UUIDgenerate()) {
   Weight$new(
     id = id,
     name = name,
-    dataset = dataset,
+    variable = variable,
     initial_visible = initial_visible,
     initial_status = initial_status,
     min_factor = min_factor,

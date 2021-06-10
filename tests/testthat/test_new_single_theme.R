@@ -2,12 +2,14 @@ context("new_single_theme")
 
 test_that("initialization", {
   # create object
-  l <- new_dataset(
-    source = "l1.tif", total = 100, units = "ha",
+  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+  d <- new_dataset(f)
+  v <- new_variable(
+    dataset = d, index = 1, total = 200, units = "ha",
     legend = simulate_continuous_legend())
   f <- new_feature(
     name = "F1",
-    dataset = l,
+    variable = v,
     initial_visible = FALSE,
     initial_status = FALSE,
     initial_goal = 0.2,
@@ -39,12 +41,14 @@ test_that("initialization", {
 
 test_that("get methods", {
   # create object
-  l <- new_dataset(
-    source = "l1.tif", total = 100, units = "ha",
+  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+  d <- new_dataset(f)
+  v <- new_variable(
+    dataset = d, index = 1, total = 200, units = "ha",
     legend = simulate_continuous_legend())
   f <- new_feature(
     name = "F1",
-    dataset = l,
+    variable = v,
     initial_visible = TRUE,
     initial_status = FALSE,
     initial_goal = 0.2,
@@ -74,12 +78,15 @@ test_that("get methods", {
 
 test_that("set methods", {
   # create object
-  l <- new_dataset(
-    source = "l1.tif", total = 100, units = "ha",
+  # create object
+  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+  d <- new_dataset(f)
+  v <- new_variable(
+    dataset = d, index = 1, total = 200, units = "ha",
     legend = simulate_continuous_legend())
   f <- new_feature(
     name = "F1",
-    dataset = l,
+    variable = v,
     initial_visible = TRUE,
     initial_status = FALSE,
     initial_goal = 0.2,
@@ -115,12 +122,15 @@ test_that("set methods", {
 
 test_that("widget methods", {
   # create object
-  l <- new_dataset(
-    source = "l1.tif", total = 100, units = "ha",
+  # create object
+  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+  d <- new_dataset(f)
+  v <- new_variable(
+    dataset = d, index = 1, total = 200, units = "ha",
     legend = simulate_continuous_legend())
   f <- new_feature(
     name = "F1",
-    dataset = l,
+    variable = v,
     initial_visible = FALSE,
     initial_status = FALSE,
     initial_goal = 0.2,
@@ -149,7 +159,7 @@ test_that("widget methods", {
       feature_name = "F1",
       feature_id = "FID1",
       feature_status = FALSE,
-      feature_total_amount = 100,
+      feature_total_amount = 200,
       feature_current_held = 0.034,
       feature_min_goal = 0.01,
       feature_max_goal = 0.99,
@@ -171,7 +181,7 @@ test_that("widget methods", {
       feature_name = "F1",
       feature_id = "FID1",
       feature_visible = FALSE,
-      feature_legend = l$legend$get_widget_data(),
+      feature_legend = v$legend$get_widget_data(),
       units = "ha",
       type = "theme")
   )

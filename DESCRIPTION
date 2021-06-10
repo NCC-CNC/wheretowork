@@ -22,6 +22,8 @@ Imports:
     tibble (>= 3.1.1),
     RColorBrewer (>= 1.1.2),
     scales (>= 1.1.1),
+    prioritizr (>= 7.0.1),
+    viridisLite (>= 0.4.0)
 Suggests:
     testthat (>= 2.0.1),
     knitr (>= 1.2.0),
@@ -29,6 +31,7 @@ Suggests:
     rmarkdown (>= 1.10),
     rvest (>= 1.0.0),
     xml2 (>= 1.3.2),
+    rgdal (>= 1.5.23)
 Depends:
     R (>= 4.0.0),
     shiny (>= 1.6.0),
@@ -36,6 +39,8 @@ Depends:
     leaflet.extras2 (>= 1.1.0),
     shinyBS (>= 0.6.1),
     R6 (>= 2.5.0),
+    raster (>= 3.4.10),
+    sf (>= 0.9.8),
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
@@ -46,6 +51,7 @@ Collate:
     'CategoricalLegend-class.R'
     'ContinuousLegend-class.R'
     'Dataset-class.R'
+    'Variable-class.R'
     'Feature-class.R'
     'Theme-class.R'
     'MultiTheme-class.R'
@@ -53,16 +59,23 @@ Collate:
     'Weight-class.R'
     'MapManager-class.R'
     'SolutionSettings-class.R'
+    'color_palette.R'
     'mapManager-components.R'
     'mapManager.R'
     'solutionSettings.R'
     'mapManagerSidebarPane.R'
     'newSolutionSidebarPane.R'
     'package.R'
+    'raster_io.R'
+    'read_spatial_data.R'
     'runExample.R'
+    'simulate_data.R'
     'simulate_legends.R'
-    'simulate_solution_settings.R'
     'solutionSetttings-components.R'
+    'spatial_data_statistics.R'
+    'spatial_data_type.R'
     'updateMapManagerLayer.R'
     'updateMapManagerOrder.R'
     'updateSolutionSettings.R'
+Remotes:
+    r-spatial/leafgl#58

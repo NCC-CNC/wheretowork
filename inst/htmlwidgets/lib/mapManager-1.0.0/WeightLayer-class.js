@@ -45,8 +45,10 @@ class WeightLayer {
         let checked = this.checked;
         if (checked) {
           that.legend_el.style.display = "block";
+          // TODO: insert JS to add animation for maximizing legend
         } else {
           that.legend_el.style.display = "none";
+          // TODO: insert JS to add animation for minimizing legend
         }
       });
     }
