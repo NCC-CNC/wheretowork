@@ -1,11 +1,7 @@
 HTMLWidgets.widget({
-
-  name: 'mapManager',
-
-  type: 'output',
-
+  name: "solutionResults",
+  type: "output",
   factory: function(el, width, height) {
-
     // shared variables
     var elementId = el.id;
     var initialized = false;
@@ -15,20 +11,24 @@ HTMLWidgets.widget({
     return {
 
       renderValue: function(opts) {
-        // alias this
-        var that = this;
-
         // initialize widget
         if (!initialized) {
           // set state to initialized
           initialized = true;
           // attach the widget to the DOM
-          container.widget = that;
+          container.widget = this;
           // initialize map manager
-          handle = new MapManager(
-            elementId, container, opts.layers, opts.order);
+          handle = new SolutionResults(elementId, container);
           // render HTML elements
           handle.render();
+          // if opts contains any data, then add solutions
+          if (opts.solutions.length > 0) {
+            opts.solutions.forEach((x) => {
+              const s = newSolution(elementId, x);
+              handle.addSolution(s);
+            });
+            handle.showSolution(opts.solutions[0].id);
+          }
         }
 
       },
@@ -38,26 +38,21 @@ HTMLWidgets.widget({
       },
 
       // export object for extensibility
-      mapManager: container,
+      solutionResults: container,
 
       /* API functions to manipulate widget */
-      updateOrder: function(params) {
-        handle.updateOrder(params.value);
+      addSolution: function(params) {
+        const solution = newSolution(elementId, params.value);
+        handle.addSolution(solution);
       },
 
-      updateLayer: function(params) {
-        handle.updateLayer(
-          params.value.id, params.value.parameter,
-          params.value.value);
+      dropSolution: function(params) {
+        handle.dropSolution(params.value);
       },
 
-      addLayer: function(params) {
-        // TODO
-      },
-
-      dropLayer: function(params) {
-        // TODO
-      },
+      showSolution: function(params) {
+        handle.showSolution(params.value);
+      }
 
     };
   }
@@ -65,13 +60,15 @@ HTMLWidgets.widget({
 
 // Attach message handlers if in Shiny mode (these correspond to API)
 if (HTMLWidgets.shinyMode) {
-  var fxns = ["updateOrder", "updateLayer", "addLayer", "dropLayer"];
+  var fxns = ["addSolution", "dropSolution", "addSolution", "showSolution"];
 
   var addShinyHandler = function(fxn) {
     return function() {
       Shiny.addCustomMessageHandler(
-        "mapManager:" + fxn, function(message) {
+        "solutionResults:" + fxn, function(message) {
           var el = document.getElementById(message.id);
+          console.log("el");
+          console.log(el);
           if (el) {
             delete message["id"];
             el.widget[fxn](message);

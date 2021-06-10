@@ -296,7 +296,7 @@ Feature <- R6::R6Class(
 #'  If the argument to `icon` is a `character`, it is used with
 #'  [shiny::icon()] to generate an `shiny.tag` icon.
 #'  Defaults to `"map-marked-alt"`.
-
+#'
 #' @param id `character` unique identifier.
 #'   Defaults to a random identifier ([uuid::UUIDgenerate()]).
 #'
