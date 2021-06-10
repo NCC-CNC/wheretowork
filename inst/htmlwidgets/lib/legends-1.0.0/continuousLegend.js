@@ -29,10 +29,10 @@ function continuousLegend(el, x, units) {
   // initialize lenged
   let l = document.createElement("div");
   l.className = "continuous-legend";
-  l.setAttribute('data-toggle', 'tooltip');
-  l.setAttribute('data-placement', 'bottom');
-  l.setAttribute('title', 'Continuous Legend Tooltip');
-  l.setAttribute('delay', '{ "show": 10, "hide": 5000 }');
+  //l.setAttribute('data-toggle', 'tooltip');
+  //l.setAttribute('data-placement', 'bottom');
+  //l.setAttribute('title', 'Continuous Legend Tooltip');
+  //l.setAttribute('delay', '{ "show": 10, "hide": 5000 }');
 
   // calculate label/ticks positions
   /// calculate percentages
@@ -64,9 +64,9 @@ function continuousLegend(el, x, units) {
   // create container for color bar ticks and labels
   let items = document.createElement("div");
   items.className = "items";
-  //items.setAttribute('data-toggle', 'tooltip');
-  //items.setAttribute('data-placement', 'bottom');
-  //items.setAttribute('title', 'Continuous Legend Tooltip');
+  items.setAttribute('data-toggle', 'tooltip');
+  items.setAttribute('data-placement', 'right');
+  items.setAttribute('title', 'Continuous Legend Tooltip');
   //items.setAttribute('delay', '{ "show": 10, "hide": 5000 }');
 
   

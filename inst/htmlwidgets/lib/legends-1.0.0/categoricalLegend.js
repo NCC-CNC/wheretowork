@@ -21,7 +21,7 @@ function categoricalLegend(el, x, units) {
   let l = document.createElement("div");
   l.className = "categorical-legend";
   l.setAttribute('data-toggle', 'tooltip');
-  l.setAttribute('data-placement', 'bottom');
+  l.setAttribute('data-placement', 'top');
   l.setAttribute('title', 'Categorical Legend Tooltip');
   l.setAttribute('delay', '{ "show": 10, "hide": 5000 }');
 

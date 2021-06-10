@@ -140,7 +140,7 @@ solutionSettings_html <- function(id, style, class, ...) {
             class = "solution-footer-name",
             `data-toggle` = "tooltip",
             `data-placement` = "top",
-            `delay` = "{'show': 10, 'hide': 5000 }",
+            #`delay` = "{'show': 10, 'hide': 5000 }",
             title = "Name tooltip",
             shiny::textInput(
               inputId = paste0(id, "_name"),
@@ -155,7 +155,7 @@ solutionSettings_html <- function(id, style, class, ...) {
             class = "solution-footer-button",
             `data-toggle` = "tooltip",
             `data-placement` = "top",
-            `delay` = "{'show': 10, 'hide': 5000 }",
+            #`delay` = "{'show': 10, 'hide': 5000 }",
             title = "Button tooltip",
             shinyBS::bsButton(
               inputId = paste0(id, "_button"),

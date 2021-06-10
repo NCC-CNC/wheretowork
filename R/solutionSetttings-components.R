@@ -20,7 +20,7 @@ ss_goal_component_scaffold <- function(caller) {
           class = "current-label",
           `data-toggle` = "tooltip",
           `data-placement` = "top",
-          `delay` = "{'show': 10, 'hide': 5000 }",
+          #`delay` = "{'show': 10, 'hide': 5000 }",
           title = "Current label tooltip")
       ),
       htmltools::tags$div(
@@ -32,7 +32,7 @@ ss_goal_component_scaffold <- function(caller) {
           class = "slider-label disable-if-inactive", 
           `data-toggle` = "tooltip",
           `data-placement` = "top",
-          `delay` = "{'show': 10, 'hide': 5000 }",
+          #`delay` = "{'show': 10, 'hide': 5000 }",
           title = "Goal label tooltip")
       ),
     ),
@@ -62,7 +62,7 @@ ss_group_goal_component_scaffold <- function(caller) {
           class = "current-label",
           `data-toggle` = "tooltip",
           `data-placement` = "top",
-          `delay` = "{'show': 10, 'hide': 5000 }",
+          #`delay` = "{'show': 10, 'hide': 5000 }",
           title = "Current-gr label tooltip")
       ),
       htmltools::tags$div(
@@ -74,7 +74,7 @@ ss_group_goal_component_scaffold <- function(caller) {
           class = "slider-label disable-if-inactive",
           `data-toggle` = "tooltip",
           `data-placement` = "top",
-          `delay` = "{'show': 10, 'hide': 5000 }",
+          #`delay` = "{'show': 10, 'hide': 5000 }",
           title = "Goal (gr) label tooltip")
       ),
     ),
@@ -124,7 +124,7 @@ ss_slider_component_scaffold <- function(bar = NULL, caller='') {
       assertthat::noNA(bar))
   }
   # initialize slider
-  out <- htmltools::tags$div(id = slider_id, class = "slider", `data-toggle` = "tooltip", `data-placement` = "top",`delay` = "{'show': 10, 'hide': 5000 }", title = sliderToolTip)
+  out <- htmltools::tags$div(id = slider_id, class = "slider", `data-toggle` = "tooltip", `data-placement` = "bottom", title = sliderToolTip)
   
   # add bars if needed
   if (!is.null(bar)) {
@@ -210,8 +210,8 @@ ss_header_component_scaffold <- function(id, caller) {
     htmltools::tags$label(
       class = "el-switch",
       `data-toggle` = "tooltip",
-      `data-placement` = "right",
-      `delay` = "{'show': 10, 'hide': 5000 }",
+      `data-placement` = "top",
+      #`delay` = "{'show': 10, 'hide': 5000 }",
       title = switchToolTip,
       htmltools::tags$input(
         type = "checkbox",
@@ -227,7 +227,7 @@ ss_header_component_scaffold <- function(id, caller) {
       class = "name-label disable-if-inactive",
       `data-toggle` = "tooltip",
       `data-placement` = "top",
-      `delay` = "{'show': 10, 'hide': 5000 }",
+      #`delay` = "{'show': 10, 'hide': 5000 }",
       title = labelToolTip,
     )
   )
@@ -239,8 +239,8 @@ ss_subheader_component_scaffold<- function(id = uuid::UUIDgenerate()) {
     htmltools::tags$label(
       class = "el-switch el-switch-sm",
       `data-toggle` = "tooltip",
-      `data-placement` = "right",
-      `delay` = "{'show': 10, 'hide': 5000 }",
+      `data-placement` = "top",
+      #`delay` = "{'show': 10, 'hide': 5000 }",
       title = "Small switch tooltip",
       htmltools::tags$input(
         type = "checkbox",
@@ -256,7 +256,7 @@ ss_subheader_component_scaffold<- function(id = uuid::UUIDgenerate()) {
       class = "name-label disable-if-inactive",
       `data-toggle` = "tooltip",
       `data-placement` = "top",
-      `delay` = "{'show': 10, 'hide': 5000 }",
+      #`delay` = "{'show': 10, 'hide': 5000 }",
       title = "Small Switch label tooltip",
     )
   )
