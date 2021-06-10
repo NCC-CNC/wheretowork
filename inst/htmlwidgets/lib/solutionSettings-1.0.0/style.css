@@ -26,12 +26,15 @@
 /* panels */
 .solution-settings .panel-body {
   padding: 0;
-  background: #f8f9fa; /* bg-light, aka $gray-100 */
+  /*background: #f8f9fa; /* bg-light, aka $gray-100 */
+  background: #e9ecef; /*  $gray-200 */
+  
 }
 
 .solution-settings .panel.panel-default>.panel-heading {
   border-top-right-radius: 0px;
-  background: #dee2e6; /* $gray-300 */
+  /*background: #dee2e6; /* $gray-300 */
+  background: #ced4da; /* $gray-400 */
 }
 
 .solution-settings .panel-group {
