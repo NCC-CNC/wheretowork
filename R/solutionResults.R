@@ -4,6 +4,9 @@
 #' This widget is designed to be used in conjunction with an existing
 #' Leaflet Map within a Shiny web application.
 #'
+#' @param x `list` containing [Solution] objects.
+#'   Defaults to an empty list object.
+#'
 #' @inheritParams solutionSettings
 #'
 #' @section Server value:
@@ -21,11 +24,26 @@
 #'
 #' @export
 solutionResults <- function(
-  width = NULL, height = NULL, elementId = NULL) {
+  x = list(), width = NULL, height = NULL, elementId = NULL) {
+  # assert arguments are valid
+  assertthat::assert_that(is.list(x))
+  if (length(x) > 0) {
+    assertthat::assert_that(all_list_elements_inherit(x, "Solution"))
+  }
+
+  # prepare parameters
+  if (length(x) > 0) {
+    p <- list(
+      api = list(),
+      solutions = lapply(x, function(x) x$get_solution_results_widget_data()))
+  } else {
+    p <- list(api = list(), solutions = list())
+  }
+
   # create widget
   htmlwidgets::createWidget(
     name = "solutionResults",
-    x = list(),
+    p,
     width = width,
     height = height,
     package = "locationmisc",

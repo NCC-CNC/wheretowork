@@ -58,6 +58,9 @@ demo-mapManager:
 demo-solutionResults:
 	R --slave -e "devtools::load_all();options(shiny.launch.browser=TRUE);locationmisc::runExample('solutionResults')"
 
+demo-solutionResultsSidebarPane:
+	R --slave -e "devtools::load_all();options(shiny.launch.browser=TRUE);locationmisc::runExample('solutionResultsSidebarPane')"
+
 demo-debug:
 	R --slave -e "devtools::load_all();options(shiny.launch.browser=TRUE);locationmisc::runExample('debug')"
 
