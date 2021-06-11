@@ -33,6 +33,11 @@
   font-size: 14px;
 }
 
+.map-manager-layer .header .remove-button {
+  float: right;
+  margin: 5px;
+}
+
 /* sub-header container */
 .map-manager-layer .sub-header .name-label {
   font-size: 12px;
@@ -81,3 +86,5 @@
 {
     display: none;
 }
+
+
