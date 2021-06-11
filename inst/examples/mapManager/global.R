@@ -45,5 +45,8 @@ fts <- lapply(seq_len(5), function(i) {
 t1 <- new_single_theme("Species", f1, id = "SPECIES")
 t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "ER")
 
+## create solution
+s <- simulate_solution(themes = list(t1, t2), weights = list(w))
+
 ## create map manager
-mm <- new_map_manager(list(t1, t2, w))
+mm <- new_map_manager(list(s, t1, t2, w))

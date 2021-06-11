@@ -52,11 +52,14 @@ HTMLWidgets.widget({
       },
 
       addLayer: function(params) {
-        // TODO
+        handle.addLayer(params.value);
       },
 
       dropLayer: function(params) {
-        // TODO
+        console.log("dropLayer");
+        console.log("params");
+        console.log(params);
+        handle.dropLayer(params.value);
       },
 
     };

@@ -21,11 +21,13 @@ Definition for the Solution class.
 
 \item{\code{name}}{\code{character} name of solution.}
 
+\item{\code{initial_visible}}{\code{logical} value.}
+
 \item{\code{variable}}{\link{Variable} object.}
 
-\item{\code{primary_statistics}}{\code{list} of \link{Statistic} objects}
+\item{\code{visible}}{\code{logical} value.}
 
-\item{\code{supplementary_statistics}}{\code{list} of \link{Statistic} objects}
+\item{\code{statistics}}{\code{list} of \link{Statistic} objects}
 
 \item{\code{theme_results}}{\code{list} of \link{ThemeResults} objects.}
 
@@ -54,8 +56,8 @@ Create a Solution object.
   id,
   name,
   variable,
-  primary_statistics,
-  supplementary_statistics,
+  initial_visible,
+  statistics,
   theme_results,
   weight_results
 )}\if{html}{\out{</div>}}
@@ -70,9 +72,9 @@ Create a Solution object.
 
 \item{\code{variable}}{\link{Variable} object.}
 
-\item{\code{primary_statistics}}{\code{list} of \link{Statistic} objects.}
+\item{\code{initial_visible}}{\code{logical} value.}
 
-\item{\code{supplementary_statistics}}{\code{list} of \link{Statistic} objects.}
+\item{\code{statistics}}{\code{list} of \link{Statistic} objects.}
 
 \item{\code{theme_results}}{\code{list} of \link{ThemeResults} objects.}
 
@@ -90,9 +92,20 @@ A new Solution object.
 \subsection{Method \code{repr()}}{
 Generate a \code{character} summarizing the representation of the object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Solution$repr()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Solution$repr(start = "[", end = "]")}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{start}}{\code{character} symbol used to start the parameter list.
+Defaults to \code{"["}.}
+
+\item{\code{end}}{\code{character} symbol used to start the parameter list.
+Defaults to \code{"]"}.}
+}
+\if{html}{\out{</div>}}
+}
 \subsection{Returns}{
 \code{character} value.
 }

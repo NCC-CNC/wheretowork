@@ -13,8 +13,9 @@
 #'
 #' \describe{
 #'
-#'   \item{parameter}{`character` name of the updated parameter.
-#'     Available options are: `"visible"` and `"order"`.}
+#'  \item{id}{`character` identifer for layer to update.}
+#'
+#'   \item{parameter}{`character` name of the updated parameter}.
 #'
 #'   \item{value}{`numeric` or `logical` values.}
 #'
@@ -100,6 +101,26 @@ mapManager_html <- function(id, style, class, ...) {
     )
 
   # add HTML template scaffolds for dynamic content
+  ## solution
+  x <-
+    htmltools::tagAppendChild(
+      x,
+      htmltools::tags$template(
+        class = "solution-layer-template",
+        htmltools::tags$div(
+          class  = "map-manager-layer",
+          htmltools::tags$div(
+            class = "solution-layer",
+            mm_header_component_scaffold(remove_button = TRUE),
+            htmltools::tags$div(
+              class = "layer-legend-container",
+              mm_legend_component_scaffold()
+            )
+          )
+        )
+      )
+    )
+
   ## weight
   x <-
     htmltools::tagAppendChild(

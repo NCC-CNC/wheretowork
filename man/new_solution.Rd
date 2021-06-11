@@ -7,8 +7,8 @@
 new_solution(
   name,
   variable,
-  primary_statistics,
-  supplementary_statistics,
+  initial_visible,
+  statistics,
   theme_results,
   weight_results,
   id = uuid::UUIDgenerate()
@@ -19,9 +19,9 @@ new_solution(
 
 \item{variable}{\link{Variable} object with the solution.}
 
-\item{primary_statistics}{\code{list} of \link{Statistic} objects.}
+\item{initial_visible}{\code{logical} should the solution be visible on a map?}
 
-\item{supplementary_statistics}{\code{list} of \link{Statistic} objects.}
+\item{statistics}{\code{list} of \link{Statistic} objects.}
 
 \item{theme_results}{\code{list} of \link{ThemeResults} objects.}
 
