@@ -105,6 +105,60 @@ Solution <- R6::R6Class(
     },
 
     #' @description
+    #' Get visible.
+    #' @return `logical` value.
+    get_visible = function() {
+      self$visible
+    },
+
+    #' @description
+    #' Get parameter.
+    #' @param name `character` parameter name.
+    #' Available options are `"visible"`.
+    #' @return Value.
+    get_parameter = function(name) {
+      assertthat::assert_that(
+        assertthat::is.string(name),
+        assertthat::noNA(name),
+        name %in% c("visible"))
+      if (identical(name, "visible")) {
+        out <- self$get_visible()
+      } else {
+        stop(paste0("\"", name, "\" is not a parameter"))
+      }
+      out
+    },
+
+    #' @description
+    #' Set visible.
+    #' @param value `logical` new value.
+    set_visible = function(value) {
+      assertthat::assert_that(
+        assertthat::is.flag(value),
+        assertthat::noNA(value))
+      self$visible <- value
+      invisible(self)
+    },
+
+    #' @description
+    #' Set parameter.
+    #' @param name `character` parameter name.
+    #' Available options are `"visible"``.
+    #' @param value `ANY` new value.
+    set_parameter = function(name, value) {
+      assertthat::assert_that(
+        assertthat::is.string(name),
+        assertthat::noNA(name),
+        name %in% c("visible"))
+      if (identical(name, "visible")) {
+        self$set_visible(value)
+      } else {
+        stop(paste0("\"", name, "\" is not a parameter"))
+      }
+      invisible(self)
+    },
+
+    #' @description
     #' Get data for displaying the theme in a [solutionResults()] widget.
     #' @return `list` with widget data.
     get_solution_results_widget_data = function() {

@@ -45,9 +45,8 @@ simulate_solution <- function(themes, weights) {
   n <- paste0("solution_", sample.int(1000, 1))
   v <- new_variable(
     dataset = weights[[1]]$variable$dataset,
-    index = n, units = "ha", total =  1005,
-    legend = new_categorical_legend(
-      values = c(0, 1),  colors = c("#FFFFFF", "#000000")))
+    index = n, units = "", total =  1005,
+    legend = simulate_solution_legend())
   new_solution(
     name = n,
     variable = v,

@@ -80,6 +80,150 @@ test_that("initialization", {
   expect_identical(x$id, "solution1")
 })
 
+test_that("get methods", {
+  # create object
+  d <- new_dataset(tempfile())
+  v1 <- new_variable(
+    d, index = 1, total = 45, units = "ha",
+    legend = new_continuous_legend(
+      min_value = 0, max_value = 100, colors = c("#FFFFFF", "#112233")))
+  v2 <- new_variable(
+    d, index = 2, total = 89, units = "ha",
+    legend = new_continuous_legend(
+      min_value = 0, max_value = 20, colors = c("#FFFFFF", "#445566")))
+  v3 <- new_variable(
+    d, index = "solution_1", total = 12, units = "ha",
+    legend = new_categorical_legend(
+      values = c(0, 1), colors = c("#FFFFFF", "#000000")))
+  w <- new_weight(
+    name = "Human Footprint Index",
+    variable = v1,
+    initial_visible = FALSE,
+    initial_status = FALSE,
+    initial_factor = 0.2,
+    min_factor = 0.01,
+    max_factor = 0.9,
+    step_factor = 0.03,
+    id = "FID1")
+  wr <- new_weight_results(
+    weight = w,
+    held = 0.9,
+    id = "RID1")
+  f <- new_feature(
+    name = "F1",
+    variable = v2,
+    initial_visible = FALSE,
+    initial_status = FALSE,
+    initial_goal = 0.2,
+    min_goal = 0.01,
+    max_goal = 0.99,
+    step_goal = 0.02,
+    limit_goal = 0.05,
+    current = 0.034,
+    current_label = "Now",
+    icon = "bell",
+    id = "FID1")
+  fr <- new_feature_results(
+    feature = f,
+    held = 0.9,
+    id = "RID1")
+  th <- new_theme(
+    name = "FS",
+    feature = f,
+    round = FALSE,
+    icon = "atom",
+    id = "FS1")
+  thr <- new_theme_results(
+    theme = th,
+    feature_results = fr,
+    id = "RID2")
+  s1 <- new_statistic("Area", 12, "ha")
+  s2 <- new_statistic("Perimeter", 10, "km")
+  x <- new_solution(
+    name = "solution001",
+    variable = v3,
+    initial_visible = FALSE,
+    statistics = list(s1, s2),
+    theme_results = list(thr),
+    weight_results = list(wr),
+    id = "solution1")
+  # run tests
+  expect_equal(x$get_visible(), FALSE)
+})
+
+test_that("set methods", {
+  # create object
+  d <- new_dataset(tempfile())
+  v1 <- new_variable(
+    d, index = 1, total = 45, units = "ha",
+    legend = new_continuous_legend(
+      min_value = 0, max_value = 100, colors = c("#FFFFFF", "#112233")))
+  v2 <- new_variable(
+    d, index = 2, total = 89, units = "ha",
+    legend = new_continuous_legend(
+      min_value = 0, max_value = 20, colors = c("#FFFFFF", "#445566")))
+  v3 <- new_variable(
+    d, index = "solution_1", total = 12, units = "ha",
+    legend = new_categorical_legend(
+      values = c(0, 1), colors = c("#FFFFFF", "#000000")))
+  w <- new_weight(
+    name = "Human Footprint Index",
+    variable = v1,
+    initial_visible = FALSE,
+    initial_status = FALSE,
+    initial_factor = 0.2,
+    min_factor = 0.01,
+    max_factor = 0.9,
+    step_factor = 0.03,
+    id = "FID1")
+  wr <- new_weight_results(
+    weight = w,
+    held = 0.9,
+    id = "RID1")
+  f <- new_feature(
+    name = "F1",
+    variable = v2,
+    initial_visible = FALSE,
+    initial_status = FALSE,
+    initial_goal = 0.2,
+    min_goal = 0.01,
+    max_goal = 0.99,
+    step_goal = 0.02,
+    limit_goal = 0.05,
+    current = 0.034,
+    current_label = "Now",
+    icon = "bell",
+    id = "FID1")
+  fr <- new_feature_results(
+    feature = f,
+    held = 0.9,
+    id = "RID1")
+  th <- new_theme(
+    name = "FS",
+    feature = f,
+    round = FALSE,
+    icon = "atom",
+    id = "FS1")
+  thr <- new_theme_results(
+    theme = th,
+    feature_results = fr,
+    id = "RID2")
+  s1 <- new_statistic("Area", 12, "ha")
+  s2 <- new_statistic("Perimeter", 10, "km")
+  x <- new_solution(
+    name = "solution001",
+    variable = v3,
+    initial_visible = FALSE,
+    statistics = list(s1, s2),
+    theme_results = list(thr),
+    weight_results = list(wr),
+    id = "solution1")
+  # run tests
+  expect_equal(x$get_visible(), FALSE)
+  x$set_visible(TRUE)
+  expect_equal(x$get_visible(), TRUE)
+})
+
 test_that("widget methods", {
   # create object
   d <- new_dataset(tempfile())

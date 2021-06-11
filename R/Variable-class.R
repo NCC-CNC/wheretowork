@@ -33,7 +33,7 @@ Variable <- R6::R6Class(
     #' @param total `numeric` value.
     #' @param units `character` value.
     #' @param legend `Legend` object.
-    #' @return A new Variabe object.
+    #' @return A new Variable object.
     initialize = function(dataset, index, total, units, legend) {
       ### assert that arguments are valid
       assertthat::assert_that(
@@ -50,7 +50,8 @@ Variable <- R6::R6Class(
         assertthat::is.string(units),
         assertthat::noNA(units),
         #### legend
-        inherits(legend, c("ContinuousLegend", "CategoricalLegend")))
+        inherits(legend,
+          c("ContinuousLegend", "CategoricalLegend", "SolutionLegend")))
       ### set fields
       self$dataset <- dataset
       self$index <- index

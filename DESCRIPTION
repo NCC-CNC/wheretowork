@@ -63,6 +63,7 @@ Collate:
     'MultiThemeResults.R'
     'SingleTheme-class.R'
     'SingleThemeResults.R'
+    'SolutionLegend-class.R'
     'SolutionSettings-class.R'
     'Statistic-class.R'
     'WeightResults-class.R'
