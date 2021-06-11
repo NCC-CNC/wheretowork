@@ -1,4 +1,4 @@
-#' @include internal.R Weight-class.R SingleTheme-class.R MultiTheme-class.R
+#' @include internal.R Weight-class.R Theme-class.R Solution-class.R
 NULL
 
 #' Map manager class
@@ -9,7 +9,7 @@ MapManager <- R6::R6Class(
   "MapManager",
   public = list(
 
-    #' @field layers `list` of [Theme] or [Weight] objects.
+    #' @field layers `list` of [Theme], [Weight], [Solution] objects.
     layers = list(),
 
     #' @field ids `character` vector of identifiers for the layers.
@@ -22,13 +22,13 @@ MapManager <- R6::R6Class(
 
     #' @description
     #' Create a MapManager object.
-    #' @param layers `list` of Layer objects.
+    #' @param layers `list` of [Theme], [Weight], [Solution] objects.
     #' @param order `numeric` vector.
     #' @return A new MapManager object.
     initialize = function(layers, order) {
       assertthat::assert_that(
         is.list(layers),
-        all_list_elements_inherit(layers, c("Theme", "Weight")),
+        all_list_elements_inherit(layers, c("Theme", "Weight", "Solution")),
         length(order) == length(layers),
         is.numeric(order),
         setequal(order, seq_along(layers))
@@ -136,20 +136,28 @@ MapManager <- R6::R6Class(
     #' @param value `list` with new parameter information (see Details section)
     #' @details
     #' \describe{
-    #' \item{id}{`character` (optional) name of layer.}
+    #' \item{id}{`character` (optional) identifier for layer.}
     #' \item{parameter}{`character` name of parameter.
-    #'   Available options are: `"order"`, `"visible"`, `"feature_order"`,
-    #'   or `"feature_visible"`.
+    #'   Available options are:
+    #'   `"order"`, "remove"`,
+    #'   `"visible"`, `"feature_order"`, `"feature_visible"`.
     #'   Note that the `"id"` element is required for
-    #'   `"visible"`, `"feature_order"`, `"feature_visible"` parameters.}
+    #'   `"remove"`, `"visible"`, `"feature_order"`, `"feature_visible"`
+    #'    parameters.}
     #' \item{value}{`numeric` or `logical` value for new parameter.}
     #' }
     set_parameter = function(value) {
+
+
+
       assertthat::assert_that(
         is.list(value),
         assertthat::has_name(value, "parameter"),
         assertthat::is.string(value$parameter))
-      if (is.null(value$id)) {
+      if (identical(value$parameter, "remove")) {
+        # remove layer from map manager
+        self$drop_layer(value$id)
+      } else if (is.null(value$id)) {
         # map manager parameters
         if (identical(value$parameter, "order")) {
           self$set_order(value$value)
@@ -171,7 +179,7 @@ MapManager <- R6::R6Class(
     #' Add a new layer.
     #' @param value `Layer` object.
     add_layer = function(value) {
-      assertthat::assert_that(inherits(value, c("Weight", "Theme")))
+      assertthat::assert_that(inherits(value, c("Weight", "Theme", "Solution")))
       assertthat::assert_that(
         !value$id %in% self$ids,
         msg = paste0(
@@ -179,27 +187,28 @@ MapManager <- R6::R6Class(
           "` already exists"))
         self$layers[[length(self$layers) + 1]] <- value
         self$ids <- c(self$ids, value$id)
-        self$order <- c(self$order, max(self$order + 1))
+        self$order <- c(self$order, max(self$order) + 1)
         invisible(self)
     },
 
     #' @description
     #' Remove a layer.
-    #' @param value `character` identifier of the layer to remove.
+    #' @param value `character` layer identifier.
     drop_layer = function(value) {
       assertthat::assert_that(
         assertthat::is.string(value),
         assertthat::noNA(value))
       assertthat::assert_that(
-        value$id %in% self$ids,
+        value %in% self$ids,
         msg = paste0(
-          "cannot drop layer because the id `", value$id,
+          "cannot drop layer because the id `", id,
           "` doesn't exist"))
-        idx <- which(self$ids != value)
-        self$layers <- self$layers[idx]
-        self$order <- self$order[idx]
-        self$order <- rank(self$order)
-        invisible(self)
+      idx <- which(self$ids != value)
+      self$layers <- self$layers[idx]
+      self$ids <- self$ids[idx]
+      self$order <- self$order[idx]
+      self$order <- rank(self$order)
+      invisible(self)
     },
 
     #' @description

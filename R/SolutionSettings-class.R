@@ -175,10 +175,61 @@ SolutionSettings <- R6::R6Class(
     },
 
     #' @description
-    #' Get data for generating a prioritization.
-    #' @return `list` with data.
-    get_prioritization_data = function() {
-      stop("TODO")
+    #' Get theme settings for generating a prioritization.
+    #' @return [tibble::tibble()] with data.
+    get_theme_settings = function() {
+      # extract data
+      ids <- lapply(self$themes, function(x) x$get_feature_id())
+      nms <- lapply(self$themes, function(x) x$get_feature_name())
+      currents <- lapply(self$themes, function(x) x$get_feature_current())
+      statuses <- lapply(self$themes, function(x) x$get_feature_status())
+      goals <- lapply(self$themes, function(x) x$get_feature_goal())
+      totals <- lapply(self$themes, function(x) x$get_feature_total())
+      # return result
+      tibble::tibble(
+        id = do.call(c, ids),
+        name = do.call(c, nms),
+        status = do.call(c, statuses),
+        goal = do.call(c, goals),
+        current = do.call(c, currents),
+        total = do.call(c, totals))
+    },
+
+    #' @description
+    #' Get weight settings for generating a prioritization.
+    #' @return [tibble::tibble()] with data.
+    get_weight_settings = function() {
+      tibble::tibble(
+        id = vapply(self$weights, function(x) x$id, character(1)),
+        name = vapply(self$weights, function(x) x$name, character(1)),
+        status = vapply(self$weights, function(x) x$status, logical(1)),
+        factor = vapply(self$weights, function(x) x$factor, numeric(1)))
+    },
+
+    #' @description
+    #' Get rij data for the themes.
+    #' @return `matrix` with data.
+    get_rij_matrix = function() {
+      v <- lapply(self$themes, function(x) {
+        lapply(x$feature, `[[`, "variable")
+      })
+      fid <- lapply(self$themes, function(x) {
+        lapply(x$feature, `[[`, "id")
+      })
+      fid <- base::unlist(fid, recursive = TRUE, use.names = FALSE)
+      out <- extract_data_matrix(do.call(c, v))
+      rownames(out) <- fid
+      out
+    },
+
+    #' @description
+    #' Get wij data for the themes.
+    #' @return `matrix` with data.
+    get_wij_matrix = function() {
+      v <- lapply(self$weights, `[[`, "variable")
+      out <- extract_data_matrix(v)
+      rownames(out) <- vapply(self$weights, `[[`, character(1), "id")
+      out
     }
 
   )

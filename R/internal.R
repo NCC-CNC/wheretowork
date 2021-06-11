@@ -31,6 +31,11 @@ n_distinct <- function(x) {
   length(unique(x))
 }
 
+# alias for dplyr::last()
+last <- function(x) {
+  x[[length(x)]]
+}
+
 #' Example weight names
 #'
 #' Import example weight names for simulating weights.

@@ -13,6 +13,8 @@ Definition for the Dataset class.
 
 Note that this method has no effect if the dataset does not have
 file path on disk.
+
+Note that this method only works for Raster data.
 }
 \seealso{
 \code{\link[=new_dataset]{new_dataset()}}.
@@ -20,9 +22,14 @@ file path on disk.
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
+\item{\code{id}}{\code{character} identifier.}
+
 \item{\code{source}}{\code{character}, \code{\link[sf:sf]{sf::st_sf()}}, or \code{\link[raster:stack]{raster::stack()}} object.}
 
 \item{\code{data}}{\code{NULL}, \code{\link[sf:sf]{sf::st_sf()}}, or \code{\link[raster:stack]{raster::stack()}} object.}
+
+\item{\code{cells}}{\code{integer} indices of grid cells.
+This is used to cache calculations for \code{\link[raster:stack]{raster::stack()}} data.}
 }
 \if{html}{\out{</div>}}
 }
@@ -35,8 +42,13 @@ file path on disk.
 \item \href{#method-import}{\code{Dataset$import()}}
 \item \href{#method-clean}{\code{Dataset$clean()}}
 \item \href{#method-get_data}{\code{Dataset$get_data()}}
+\item \href{#method-get_finite_cells}{\code{Dataset$get_finite_cells()}}
+\item \href{#method-get_planning_unit_areas}{\code{Dataset$get_planning_unit_areas()}}
 \item \href{#method-get_index}{\code{Dataset$get_index()}}
+\item \href{#method-get_indices}{\code{Dataset$get_indices()}}
 \item \href{#method-has_index}{\code{Dataset$has_index()}}
+\item \href{#method-max_index}{\code{Dataset$max_index()}}
+\item \href{#method-add_index}{\code{Dataset$add_index()}}
 \item \href{#method-clone}{\code{Dataset$clone()}}
 }
 }
@@ -46,12 +58,14 @@ file path on disk.
 \subsection{Method \code{new()}}{
 Create a Dataset object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Dataset$new(source)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Dataset$new(id, source)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
+\item{\code{id}}{\code{character} value.}
+
 \item{\code{source}}{\code{character}, \code{\link[sf:sf]{sf::st_sf()}}, or \code{\link[raster:stack]{raster::stack()}} object.}
 }
 \if{html}{\out{</div>}}
@@ -124,12 +138,59 @@ Get the data.
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_finite_cells"></a>}}
+\if{latex}{\out{\hypertarget{method-get_finite_cells}{}}}
+\subsection{Method \code{get_finite_cells()}}{
+Get indices of cells with data.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Dataset$get_finite_cells()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{integer} vector of indices.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_planning_unit_areas"></a>}}
+\if{latex}{\out{\hypertarget{method-get_planning_unit_areas}{}}}
+\subsection{Method \code{get_planning_unit_areas()}}{
+Get area values.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Dataset$get_planning_unit_areas()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{numeric} vector of values.
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_index"></a>}}
 \if{latex}{\out{\hypertarget{method-get_index}{}}}
 \subsection{Method \code{get_index()}}{
 Get a data from the dataset at an index.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Dataset$get_index(index)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{index}}{\code{character} or \code{integer} indicating the field/layer with
+the data.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+\code{\link[sf:st_as_sf]{sf::st_as_sf()}} or \code{\link[raster:raster]{raster::raster()}} object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_indices"></a>}}
+\if{latex}{\out{\hypertarget{method-get_indices}{}}}
+\subsection{Method \code{get_indices()}}{
+Get a data from the dataset at a set of indices.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Dataset$get_indices(index)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -163,6 +224,39 @@ the data.}
 }
 \subsection{Returns}{
 \code{logical} indicating if data is present or not.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-max_index"></a>}}
+\if{latex}{\out{\hypertarget{method-max_index}{}}}
+\subsection{Method \code{max_index()}}{
+Maximum index.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Dataset$max_index()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{integer} largest index.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-add_index"></a>}}
+\if{latex}{\out{\hypertarget{method-add_index}{}}}
+\subsection{Method \code{add_index()}}{
+Add data at an index.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Dataset$add_index(index, values)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{index}}{\code{character} or \code{integer} indicating the field/layer with
+the data.}
+
+\item{\code{values}}{\code{numeric} vector.}
+}
+\if{html}{\out{</div>}}
 }
 }
 \if{html}{\out{<hr>}}

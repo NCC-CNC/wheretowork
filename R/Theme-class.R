@@ -48,7 +48,7 @@ Theme <- R6::R6Class(
       message("  mandatory: ", self$mandatory)
       message("  feature: ")
       for (x in vapply(self$feature[po], function(x) x$repr(), character(1))) {
-        message("    " , x)
+        message("    " , gsub("\n", "\n    ", x))
       }
       invisible(self)
     },
@@ -71,6 +71,34 @@ Theme <- R6::R6Class(
               vapply(self$feature[po], function(x) x$repr(), character(1))
             ),
             collapse = nl())))
+    },
+
+    #' @description
+    #' Get feature identifiers.
+    #' @return `character` vector with identifier(s).
+    get_feature_id = function() {
+      vapply(self$feature, FUN.VALUE = character(1), function(x) x$id)
+    },
+
+    #' @description
+    #' Get feature names.
+    #' @return `character` vector with identifier(s).
+    get_feature_name = function() {
+      vapply(self$feature, FUN.VALUE = character(1), function(x) x$name)
+    },
+
+    #' @description
+    #' Get feature current.
+    #' @return `numeric` vector with value(s).
+    get_feature_current = function() {
+      vapply(self$feature, FUN.VALUE = numeric(1), function(x) x$current)
+    },
+
+    #' @description
+    #' Get feature current.
+    #' @return `numeric` vector with value(s).
+    get_feature_total = function() {
+      vapply(self$feature, FUN.VALUE = numeric(1), function(x) x$variable$total)
     },
 
     #' @description

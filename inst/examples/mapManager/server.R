@@ -7,11 +7,17 @@ function(input, output, session) {
   # update widget state
   ## ordering
   observeEvent(input$order_button, {
-
     updateMapManagerOrder(
       session, "widget",
       value = rev(seq_along(mm$layers))
     )
+  })
+
+  ## new solution
+  observeEvent(input$new_solution_button, {
+    s <- simulate_solution(themes = list(t1, t2), weights = list(w))
+    mm$add_layer(s)
+    addMapManagerLayer(session, "widget", value = s)
   })
 
   ## singleTheme
@@ -67,7 +73,6 @@ function(input, output, session) {
     )
   })
 
-
   ## weight
   observeEvent(input$w_name_button, {
     updateMapManagerLayer(
@@ -89,6 +94,9 @@ function(input, output, session) {
   # update internal object based on widget
   observeEvent(input$widget, {
     mm$set_parameter(input$widget)
+    if (identical(input$widget$parameter, "remove")) {
+      dropMapManagerLayer(session, "widget", input$widget$id)
+    }
   })
 
   # update text outputs

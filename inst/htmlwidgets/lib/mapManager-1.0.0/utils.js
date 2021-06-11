@@ -1,5 +1,15 @@
 function newLayer(manager, x) {
-  if (x.type == "weight") {
+  if (x.type == "solution") {
+    var y = new SolutionLayer(
+      manager,
+      x.id,
+      x.name,
+      x.statistics,
+      x.visible,
+      x.legend,
+      x.units
+    );
+  } else if (x.type == "weight") {
     var y = new WeightLayer(
       manager,
       x.id,

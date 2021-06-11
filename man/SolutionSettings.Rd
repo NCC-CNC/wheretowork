@@ -56,7 +56,10 @@ Available options are: \code{"theme"} or \code{"weight"}.}
 \item \href{#method-get_parameter}{\code{SolutionSettings$get_parameter()}}
 \item \href{#method-set_parameter}{\code{SolutionSettings$set_parameter()}}
 \item \href{#method-get_widget_data}{\code{SolutionSettings$get_widget_data()}}
-\item \href{#method-get_prioritization_data}{\code{SolutionSettings$get_prioritization_data()}}
+\item \href{#method-get_theme_settings}{\code{SolutionSettings$get_theme_settings()}}
+\item \href{#method-get_weight_settings}{\code{SolutionSettings$get_weight_settings()}}
+\item \href{#method-get_rij_matrix}{\code{SolutionSettings$get_rij_matrix()}}
+\item \href{#method-get_wij_matrix}{\code{SolutionSettings$get_wij_matrix()}}
 \item \href{#method-clone}{\code{SolutionSettings$clone()}}
 }
 }
@@ -200,16 +203,55 @@ Get data for displaying the theme in a \code{\link[=solutionSettings]{solutionSe
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_prioritization_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_prioritization_data}{}}}
-\subsection{Method \code{get_prioritization_data()}}{
-Get data for generating a prioritization.
+\if{html}{\out{<a id="method-get_theme_settings"></a>}}
+\if{latex}{\out{\hypertarget{method-get_theme_settings}{}}}
+\subsection{Method \code{get_theme_settings()}}{
+Get theme settings for generating a prioritization.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$get_prioritization_data()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$get_theme_settings()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-\code{list} with data.
+\code{\link[tibble:tibble]{tibble::tibble()}} with data.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_weight_settings"></a>}}
+\if{latex}{\out{\hypertarget{method-get_weight_settings}{}}}
+\subsection{Method \code{get_weight_settings()}}{
+Get weight settings for generating a prioritization.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$get_weight_settings()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{\link[tibble:tibble]{tibble::tibble()}} with data.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_rij_matrix"></a>}}
+\if{latex}{\out{\hypertarget{method-get_rij_matrix}{}}}
+\subsection{Method \code{get_rij_matrix()}}{
+Get rij data for the themes.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$get_rij_matrix()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{matrix} with data.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_wij_matrix"></a>}}
+\if{latex}{\out{\hypertarget{method-get_wij_matrix}{}}}
+\subsection{Method \code{get_wij_matrix()}}{
+Get wij data for the themes.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$get_wij_matrix()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{matrix} with data.
 }
 }
 \if{html}{\out{<hr>}}
