@@ -42,7 +42,7 @@ Statistic <- R6::R6Class(
     #' Print the object.
     #' @param ... not used.
     print = function(...) {
-      message(paste0(self$name, " ", self$value, " ", self$units))
+      message(paste0(self$name, " ", round(self$value, 2), " ", self$units))
       invisible(self)
     },
 
@@ -51,7 +51,7 @@ Statistic <- R6::R6Class(
     #' @param ... not used.
     #' @return `character` value.
     repr = function(...) {
-      paste0(self$name, " ", self$value, " ", self$units)
+      paste0(self$name, " ", round(self$value, 2), " ", self$units)
     },
 
     #' @description

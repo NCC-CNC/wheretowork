@@ -49,17 +49,22 @@ fluidPage(
     class = "panel",
     wellPanel(
       h3("Controls"),
-        p("This tab contains controls to manually update the appearance of the widget. Note that these controls (mostly) do not alter R's internal representation of the widget. This is because they are designed to be used within an R Shiny session to update the widget automatically for the user."),
+        p("This tab contains controls to manually update the appearance of the widget. Note that some of these controls (excepting the Layers tab) do not alter R's internal representation of the widget. This is because they are designed to be used within an R Shiny session to update the widget automatically for the user."),
       tabsetPanel(
         type = "tabs",
 
-        ## order
+        ## layers
         tabPanel(
-          "Order",
+          "Layers",
           br(),
           fluidRow(
             column(1,
               actionButton("order_button", label = "Reset order")
+            )
+          ),
+          fluidRow(
+            column(1,
+              actionButton("new_solution_button", label = "Add new solution")
             )
           )
         ),

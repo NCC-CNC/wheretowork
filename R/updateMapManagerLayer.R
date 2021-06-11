@@ -130,3 +130,51 @@ updateMapManagerLayer <- function(
   session$sendCustomMessage(
     "mapManager:updateLayer", list(id = inputId, value = value))
 }
+
+#' Add a layer in a map manager widget
+#'
+#' Add a new layer to a map manager widget on the client.
+#'
+#' @param value [Theme], [Weight], or [Solution] object.
+#'
+#' @inheritParams updateMapManagerLayer
+#'
+#' @seealso [mapManager()].
+#'
+#' @export
+addMapManagerLayer <- function(
+  session = shiny::getDefaultReactiveDomain(), inputId, value) {
+  # assert valid arguments
+  assertthat::assert_that(
+    assertthat::is.string(inputId),
+    assertthat::noNA(inputId),
+    inherits(value, c("Theme", "Weight", "Solution")))
+  # pass data to widget
+  session$sendCustomMessage(
+    "mapManager:addLayer",
+    list(id = inputId, value = value$get_map_manager_widget_data()))
+}
+
+#' Drop a layer from a map manager widget
+#'
+#' Drop a layer from a map manager widget on the client.
+#'
+#' @param value `character` layer identifier.
+#'
+#' @inheritParams updateMapManagerLayer
+#'
+#' @seealso [mapManager()].
+#'
+#' @export
+dropMapManagerLayer <- function(
+  session = shiny::getDefaultReactiveDomain(), inputId, value) {
+  # assert valid arguments
+  assertthat::assert_that(
+    assertthat::is.string(inputId),
+    assertthat::noNA(inputId),
+    assertthat::is.string(value),
+    assertthat::noNA(value))
+  # pass data to widget
+  session$sendCustomMessage(
+    "mapManager:dropLayer", list(id = inputId, value = value))
+}

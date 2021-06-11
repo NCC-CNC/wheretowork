@@ -33,8 +33,12 @@ sim_data <- locationmisc::simulate_data(1, 1, 1)
 ## add a categorical legend into the multi-themes
 sim_data$themes[[2]]$feature[[1]]$variable <- v1
 
+## simulate solution
+sol <- simulate_solution(sim_data$themes, sim_data$weights)
+
 ## create list of all map layers
-l <- append(append(sim_data$themes, sim_data$weights), list(w1, w2))
+l <-
+  append(sol, append(append(sim_data$themes, sim_data$weights), list(w1, w2)))
 
 # create a map manager object
 mm <- new_map_manager(l)

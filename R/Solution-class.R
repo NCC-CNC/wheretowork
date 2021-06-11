@@ -17,14 +17,17 @@ Solution <- R6::R6Class(
     #' @field name `character` name of solution.
     name = NA_character_,
 
+    #' @field initial_visible `logical` value.
+    initial_visible = NA,
+
     #' @field variable [Variable] object.
     variable = NULL,
 
-    #' @field primary_statistics `list` of [Statistic] objects
-    primary_statistics = NULL,
+    #' @field visible `logical` value.
+    visible = NA,
 
-    #' @field supplementary_statistics `list` of [Statistic] objects
-    supplementary_statistics = NULL,
+    #' @field statistics `list` of [Statistic] objects
+    statistics = NULL,
 
     #' @field theme_results `list` of [ThemeResults] objects.
     theme_results = NULL,
@@ -37,14 +40,14 @@ Solution <- R6::R6Class(
     #' @param id `character` value.
     #' @param name `character` value.
     #' @param variable [Variable] object.
-    #' @param primary_statistics `list` of [Statistic] objects.
-    #' @param supplementary_statistics `list` of [Statistic] objects.
+    #' @param initial_visible `logical` value.
+    #' @param statistics `list` of [Statistic] objects.
     #' @param theme_results `list` of [ThemeResults] objects.
     #' @param weight_results `list` of [WeightResults] objects.
     #' @return A new Solution object.
     initialize = function(
-      id, name, variable, primary_statistics, supplementary_statistics,
-      theme_results, weight_results) {
+      id, name, variable, initial_visible, statistics, theme_results,
+      weight_results) {
       # assert arguments are valid
       assertthat::assert_that(
         assertthat::is.string(id),
@@ -52,10 +55,10 @@ Solution <- R6::R6Class(
         assertthat::is.string(name),
         assertthat::noNA(name),
         inherits(variable, "Variable"),
-        is.list(primary_statistics),
-        all_list_elements_inherit(primary_statistics, "Statistic"),
-        is.list(supplementary_statistics),
-        all_list_elements_inherit(supplementary_statistics, "Statistic"),
+        assertthat::is.flag(initial_visible),
+        assertthat::noNA(initial_visible),
+        is.list(statistics),
+        all_list_elements_inherit(statistics, "Statistic"),
         is.list(theme_results),
         all_list_elements_inherit(theme_results, "ThemeResults"),
         is.list(weight_results),
@@ -64,17 +67,31 @@ Solution <- R6::R6Class(
       self$id <- id
       self$name <- name
       self$variable <- variable
-      self$primary_statistics  <- primary_statistics
-      self$supplementary_statistics  <- supplementary_statistics
+      self$visible <- initial_visible
+      self$initial_visible <- initial_visible
+      self$statistics  <- statistics
       self$theme_results <- theme_results
       self$weight_results <- weight_results
     },
 
     #' @description
     #' Generate a `character` summarizing the representation of the object.
+    #' @param start `character` symbol used to start the parameter list.
+    #'   Defaults to `"["`.
+    #' @param end `character` symbol used to start the parameter list.
+    #'   Defaults to `"]"`.
     #' @return `character` value.
-    repr = function() {
-      "Solution object"
+    repr = function(start = "[", end = "]") {
+      paste0(
+        self$name,
+        " ",
+        start,
+        paste(
+          vapply(self$statistics, function(x) x$repr(), character(1)),
+          collapse = ", "),
+        end,
+        nl(),
+        "  variable: ", self$variable$repr())
     },
 
     #' @description
@@ -94,14 +111,9 @@ Solution <- R6::R6Class(
       list(
         id = self$id,
         name = self$name,
-        statistics =
-          append(
-            lapply(
-              self$primary_statistics,
-              function(x) x$get_widget_data()),
-            lapply(
-              self$supplementary_statistics,
-              function(x) x$get_widget_data())),
+        statistics = lapply(
+          self$statistics,
+          function(x) x$get_widget_data()),
         theme_results = lapply(
           self$theme_results,
           function(x) x$get_widget_data()),
@@ -117,9 +129,7 @@ Solution <- R6::R6Class(
       list(
         id = self$id,
         name = self$name,
-        statistics = lapply(
-          self$primary_statistics,
-          function(x) x$get_widget_data()),
+        visible = self$visible,
         legend = self$variable$legend$get_widget_data(),
         units = self$variable$units,
         type = "solution"
@@ -136,9 +146,9 @@ Solution <- R6::R6Class(
 #'
 #' @param variable [Variable] object with the solution.
 #'
-#' @param primary_statistics `list` of [Statistic] objects.
+#' @param initial_visible `logical` should the solution be visible on a map?
 #'
-#' @param supplementary_statistics `list` of [Statistic] objects.
+#' @param statistics `list` of [Statistic] objects.
 #'
 #' @param theme_results `list` of [ThemeResults] objects.
 #'
@@ -151,13 +161,13 @@ Solution <- R6::R6Class(
 #'
 #' @export
 new_solution <- function(
-  name, variable, primary_statistics, supplementary_statistics,
+  name, variable, initial_visible, statistics,
   theme_results, weight_results, id = uuid::UUIDgenerate()) {
   Solution$new(
     name = name,
     variable = variable,
-    primary_statistics = primary_statistics,
-    supplementary_statistics = supplementary_statistics,
+    initial_visible = initial_visible,
+    statistics = statistics,
     theme_results = theme_results,
     weight_results = weight_results,
     id = id)
