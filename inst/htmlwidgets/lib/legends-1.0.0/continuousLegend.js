@@ -42,13 +42,6 @@ function continuousLegend(el, x, units) {
   /// replace any NaN values with zero (caused by zero / zero)
   positions = positions.map((z) => isNaN(z) ? 0 : z);
 
-  console.log("numeric value at bottom (0%) of colorbar: " + x.min_value);
-  console.log("numeric value at top (100%) of colorbar: " + x.max_value);
-  console.log("numeric value of tick labels")
-  console.log(x.values);
-  console.log("percentage positions of ticks along the colorbar");
-  console.log(positions);
-
   // create color bar
   let colorbar = document.createElement("div");
   colorbar.className = "color-bar";
@@ -60,16 +53,18 @@ function continuousLegend(el, x, units) {
   colorbar_background += ")";
   colorbar.style.backgroundColor = x.colors[0];
   colorbar.style.backgroundImage = colorbar_background;
-  
+
   // create container for color bar ticks and labels
   let items = document.createElement("div");
   items.className = "items";
-  items.setAttribute('data-toggle', 'tooltip');
-  items.setAttribute('data-placement', 'right');
-  items.setAttribute('title', 'Continuous Legend Tooltip');
-  //items.setAttribute('delay', '{ "show": 10, "hide": 5000 }');
+  l.setAttribute("data-toggle", "tooltip");
+  l.setAttribute("data-placement", "bottom");
+  l.setAttribute("data-delay", "{\"show\":500, \"hide\":100}");
+  l.setAttribute(
+    "title",
+    "This dataset has continuous data. " +
+    "The legend shows the range of colors used to display the data.");
 
-  
   for (let i = 0; i < x.values.length; ++i) {
     // create container for i'th tick and label
     let item = document.createElement("div");
@@ -98,6 +93,6 @@ function continuousLegend(el, x, units) {
 
   // add legend to parent container
   el.appendChild(l);
-  
-  
+
+
 }

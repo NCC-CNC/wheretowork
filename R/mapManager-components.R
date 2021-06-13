@@ -48,23 +48,16 @@ mm_legend_component_scaffold <- function() {
 #' @noRd
 mm_header_component_scaffold <- function(
   id = uuid::UUIDgenerate(), remove_button = FALSE) {
-  # create ids
-  name_label_id <- uuid::UUIDgenerate()
-  visible_checkbox_id <- uuid::UUIDgenerate()
-  view_checkbox_id <- uuid::UUIDgenerate()
-  remove_button_id <- uuid::UUIDgenerate()
-
   # return scaffold
   htmltools::tags$div(
     class = "header",
 
     htmltools::tags$label(
-      id = view_checkbox_id,
       class = "view-container",
       `data-toggle` = "tooltip",
       `data-placement` = "top",
-      #`delay` = "{'show': 10, 'hide': 5000 }",
-      title = "Show/hide theme",
+      `data-delay` = "{\"show\":500, \"hide\":100}",
+      title = "Show/hide legend",
       htmltools::tags$input(
         class = "view-checkbox",
         type = "checkbox"),
@@ -73,11 +66,10 @@ mm_header_component_scaffold <- function(
     ),
 
     htmltools::tags$label(
-      id = visible_checkbox_id,
       class = "visible-container",
       `data-toggle` = "tooltip",
       `data-placement` = "top",
-      #`delay` = "{'show': 10, 'hide': 5000 }",
+      `data-delay` = "{\"show\":500, \"hide\":100}",
       title = "Show/hide layer",
       htmltools::tags$input(
         class = "visible-checkbox",
@@ -86,17 +78,20 @@ mm_header_component_scaffold <- function(
       htmltools::tags$i(class = "fa fa-eye-slash unchecked")
     ),
     htmltools::tags$label(
-      id = name_label_id,
        class = "name-label",
       `data-toggle` = "tooltip",
       `data-placement` = "top",
-      #`delay` = "{'show': 10, 'hide': 5000 }",
+      `data-delay` = "{\"show\":500, \"hide\":100}",
       title = "Name of the layer",
     ),
     if (remove_button) {
       htmltools::tags$button(
         class = "remove-button",
         type = "button",
+        `data-toggle` = "tooltip",
+        `data-placement` = "top",
+        `data-delay` = "{\"show\":500, \"hide\":100}",
+        title = "Remove layer",
         htmltools::tags$i(class = "fa fa-trash-alt")
       )
     } else {
@@ -122,12 +117,11 @@ mm_subheader_component_scaffold <- function(id = uuid::UUIDgenerate()) {
   htmltools::tags$div(
     class = "sub-header",
     htmltools::tags$label(
-      id = view_checkbox_id,
       class = "view-container",
       `data-toggle` = "tooltip",
       `data-placement` = "top",
-      #`delay` = "{'show': 10, 'hide': 5000 }",
-      title = "Show/hide feature",
+      `data-delay` = "{\"show\":500, \"hide\":100}",
+      title = "Show/hide legend",
       htmltools::tags$input(
         class = "view-checkbox",
         type = "checkbox"),
@@ -136,12 +130,11 @@ mm_subheader_component_scaffold <- function(id = uuid::UUIDgenerate()) {
     ),
 
     htmltools::tags$label(
-      id = visible_checkbox_id,
       class = "visible-container",
       `data-toggle` = "tooltip",
       `data-placement` = "top",
-      #`delay` = "{'show': 10, 'hide': 5000 }",
-      title = "Show/hide layer",
+      `data-delay` = "{\"show\":500, \"hide\":100}",
+      title = "Show/hide feature",
       htmltools::tags$input(
         class = "visible-checkbox",
         type = "checkbox"),
@@ -150,11 +143,10 @@ mm_subheader_component_scaffold <- function(id = uuid::UUIDgenerate()) {
     ),
 
     htmltools::tags$label(
-      id = name_label_id,
       class = "name-label",
       `data-toggle` = "tooltip",
-      `data-placement` = "right",
-      #`delay` = "{'show': 10, 'hide': 5000 }",
+      `data-placement` = "top",
+      `data-delay` = "{\"show\":500, \"hide\":100}",
       title = "Name of the feature",
     )
   )

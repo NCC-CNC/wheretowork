@@ -112,11 +112,9 @@ renderSolutionSettings <- function(expr, env = parent.frame(), quoted = FALSE) {
 # Add custom HTML for the widget (automatically used by htmlwidgets)
 solutionSettings_html <- function(id, style, class, ...) {
   # HTML scaffold
-
   x <-
     htmltools::tags$div(
       id = id, class = class, style = style,
-  
       htmltools::div(
         class = "solution-settings-container",
         htmltools::div(
@@ -137,31 +135,27 @@ solutionSettings_html <- function(id, style, class, ...) {
             )
           )
         ),
-        
+
         ### footer
         htmltools::tags$div(
           class = "solution-footer",
           htmltools::tags$div(
             class = "solution-footer-name",
-            `data-toggle` = "tooltip",
-            `data-placement` = "top",
-            #`delay` = "{'show': 10, 'hide': 5000 }",
-            title = "Name tooltip",
             shiny::textInput(
               inputId = paste0(id, "_name"),
               NULL,
               value = "",
               width = "100%",
-              placeholder = "name for solution"
+              placeholder = "specify a name for new solution"
             ),
           ),
-          
+
           htmltools::tags$div(
             class = "solution-footer-button",
             `data-toggle` = "tooltip",
             `data-placement` = "top",
-            #`delay` = "{'show': 10, 'hide': 5000 }",
-            title = "Button tooltip",
+            `data-delay` = "{\"show\":500, \"hide\":100}",
+            title = "Generate a solution using the themes and weights",
             shinyBS::bsButton(
               inputId = paste0(id, "_button"),
               label = "Generate solution",
@@ -183,10 +177,10 @@ solutionSettings_html <- function(id, style, class, ...) {
         class = "weight-setting-template",
         htmltools::tags$div(
           class = paste("weight-setting solution-setting"),
-          ss_header_component_scaffold(NULL, "weight"),
+          ss_header_component_scaffold("weight"),
           htmltools::tags$div(
             class = "weight-slider",
-            ss_slider_component_scaffold(NULL, "weight")
+            ss_slider_component_scaffold("weight")
           ),
         )
       )
@@ -201,8 +195,8 @@ solutionSettings_html <- function(id, style, class, ...) {
         htmltools::tags$div(
           class = "single-theme-setting solution-setting",
           ss_icon_component_scaffold(),
-          ss_header_component_scaffold(NULL, 'theme'),
-          ss_goal_component_scaffold('theme')
+          ss_header_component_scaffold("theme"),
+          ss_goal_component_scaffold("theme")
         )
       )
     )
@@ -217,7 +211,7 @@ solutionSettings_html <- function(id, style, class, ...) {
         htmltools::tags$div(
           class = "multi-theme-setting solution-setting",
           ss_icon_component_scaffold(),
-          ss_header_component_scaffold(NULL, 'theme'),
+          ss_header_component_scaffold("theme"),
           htmltools::tags$div(
             class = "main",
             shiny::tabsetPanel(
@@ -228,7 +222,7 @@ solutionSettings_html <- function(id, style, class, ...) {
                 "group",
                 htmltools::tags$div(
                   class = "group-view",
-                  ss_group_goal_component_scaffold('theme')
+                  ss_group_goal_component_scaffold("theme")
                 )
               ),
               ## single view
@@ -254,7 +248,7 @@ solutionSettings_html <- function(id, style, class, ...) {
           class = "single-container",
           ss_subicon_component_scaffold(),
           ss_subheader_component_scaffold(),
-          ss_goal_component_scaffold('theme')
+          ss_goal_component_scaffold("theme")
         )
       )
     )

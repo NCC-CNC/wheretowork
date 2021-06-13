@@ -20,10 +20,13 @@ function categoricalLegend(el, x, units) {
   // initialize lenged
   let l = document.createElement("div");
   l.className = "categorical-legend";
-  l.setAttribute('data-toggle', 'tooltip');
-  l.setAttribute('data-placement', 'top');
-  l.setAttribute('title', 'Categorical Legend Tooltip');
-  l.setAttribute('delay', '{ "show": 10, "hide": 5000 }');
+  l.setAttribute("data-toggle", "tooltip");
+  l.setAttribute("data-placement", "bottom");
+  l.setAttribute("data-delay", "{\"show\":500, \"hide\":100}");
+  l.setAttribute(
+    "title",
+    "This dataset has categorical data. " +
+    "The legend shows the color associated with each category.");
 
   // create legend
   for (let i = 0; i < x.values.length; ++i) {

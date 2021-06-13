@@ -3,10 +3,16 @@
 #' Create a HTML scaffold for a goal component of
 #' the [solutionSettings()] widget.
 #'
+#' @inheritParams ss_slider_component_scaffold
+#'
 #' @return `shiny.tag` object.
 #'
 #' @noRd
-ss_goal_component_scaffold <- function(caller) {
+ss_goal_component_scaffold <- function(type) {
+  assertthat::assert_that(
+    assertthat::is.string(type),
+    assertthat::noNA(type),
+    type %in% c("weight", "theme"))
   htmltools::tags$div(
     class = "goal",
     htmltools::tags$div(
@@ -20,50 +26,8 @@ ss_goal_component_scaffold <- function(caller) {
           class = "current-label",
           `data-toggle` = "tooltip",
           `data-placement` = "top",
-          #`delay` = "{'show': 10, 'hide': 5000 }",
-          title = "Current label tooltip")
-      ),
-      htmltools::tags$div(
-        class = "sub-status-info",
-        htmltools::tags$div(
-          class = "slider-symbol disable-if-inactive",
-        ),
-        htmltools::tags$label(
-          class = "slider-label disable-if-inactive", 
-          `data-toggle` = "tooltip",
-          `data-placement` = "top",
-          #`delay` = "{'show': 10, 'hide': 5000 }",
-          title = "Goal label tooltip")
-      ),
-    ),
-    ss_slider_component_scaffold(bar = "current-bar", caller)
-  )
-}
-
-#' Scaffold for a group goal component of the solution settings widget
-#'
-#' Create a HTML scaffold for a goal component of
-#' the [solutionSettings()] widget.
-#'
-#' @return `shiny.tag` object.
-#'
-#' @noRd
-ss_group_goal_component_scaffold <- function(caller) {
-  htmltools::tags$div(
-    class = "goal",
-    htmltools::tags$div(
-      class = "status-info",
-      htmltools::tags$div(
-        class = "sub-status-info",
-        htmltools::tags$div(
-          class = "current-symbol"
-        ),
-        htmltools::tags$label(
-          class = "current-label",
-          `data-toggle` = "tooltip",
-          `data-placement` = "top",
-          #`delay` = "{'show': 10, 'hide': 5000 }",
-          title = "Current-gr label tooltip")
+          `data-delay` = "{\"show\":500, \"hide\":100}",
+          title = "Current coverage by existing conservation areas")
       ),
       htmltools::tags$div(
         class = "sub-status-info",
@@ -74,12 +38,60 @@ ss_group_goal_component_scaffold <- function(caller) {
           class = "slider-label disable-if-inactive",
           `data-toggle` = "tooltip",
           `data-placement` = "top",
-          #`delay` = "{'show': 10, 'hide': 5000 }",
-          title = "Goal (gr) label tooltip")
+          `data-delay` = "{\"show\":500, \"hide\":100}",
+          title = "Goal for generating solutions")
+      ),
+    ),
+    ss_slider_component_scaffold(bar = "current-bar", type)
+  )
+}
+
+#' Scaffold for a group goal component of the solution settings widget
+#'
+#' Create a HTML scaffold for a goal component of
+#' the [solutionSettings()] widget.
+#'
+#' @inheritParams ss_slider_component_scaffold
+#'
+#' @return `shiny.tag` object.
+#'
+#' @noRd
+ss_group_goal_component_scaffold <- function(type) {
+  assertthat::assert_that(
+    assertthat::is.string(type),
+    assertthat::noNA(type),
+    type %in% c("weight", "theme"))
+  htmltools::tags$div(
+    class = "goal",
+    htmltools::tags$div(
+      class = "status-info",
+      htmltools::tags$div(
+        class = "sub-status-info",
+        htmltools::tags$div(
+          class = "current-symbol"
+        ),
+        htmltools::tags$label(
+          class = "current-label",
+          `data-toggle` = "tooltip",
+          `data-placement` = "top",
+          `data-delay` = "{\"show\":500, \"hide\":100}",
+          title = "Current coverage by existing conservation areas")
+      ),
+      htmltools::tags$div(
+        class = "sub-status-info",
+        htmltools::tags$div(
+          class = "slider-symbol disable-if-inactive",
+        ),
+        htmltools::tags$label(
+          class = "slider-label disable-if-inactive",
+          `data-toggle` = "tooltip",
+          `data-placement` = "top",
+          `data-delay` = "{\"show\":500, \"hide\":100}",
+          title = "Goal for generating solutions")
       ),
     ),
     ss_slider_component_scaffold(bar = c(
-      "current-max-bar", "current-min-bar"), caller)
+      "current-max-bar", "current-min-bar"), type)
   )
 }
 
@@ -88,44 +100,37 @@ ss_group_goal_component_scaffold <- function(caller) {
 #' Create a HTML scaffold for a slider component of the
 #' the [solutionSettings()] widget.
 #'
+#' @param type `character` is the slider used for a `"weight"` or a `"theme"`?
+#'
 #' @param bar `character` names of classes for bars to include.
 #'  Defaults to `NULL` such that no bars are included.
-#'
-#' @param current_min `logical` should the component provide a container for
-#'  displaying a minimum bar behind the slider?
-#'  Defaults to `FALSE`.
-#'
-#' @param current_max `logical` should the component provide a container for
-#'  displaying a minimum bar behind the slider?
-#'  Defaults to `FALSE`.
 #'
 #' @return `shiny.tag` object.
 #'
 #' @noRd
-ss_slider_component_scaffold <- function(bar = NULL, caller='') {
-  
-  slider_id <- uuid::UUIDgenerate()
-  sliderToolTip = "Slider label"
- 
-  
-  if (caller=="weight")
-  {
-    sliderToolTip = "Weight slider"
-  }
-  if (caller=="theme")
-  {
-    sliderToolTip = "Theme slider"
-  }
-  
+ss_slider_component_scaffold <- function(type, bar = NULL) {
   # assert arguments are valid
+  assertthat::assert_that(
+    assertthat::is.string(type),
+    assertthat::noNA(type),
+    type %in% c("weight", "theme"))
   if (!is.null(bar)) {
     assertthat::assert_that(
       is.character(bar),
       assertthat::noNA(bar))
   }
   # initialize slider
-  out <- htmltools::tags$div(id = slider_id, class = "slider", `data-toggle` = "tooltip", `data-placement` = "bottom", title = sliderToolTip)
-  
+  out <- htmltools::tags$div(
+    class = "slider",
+    `data-toggle` = "tooltip",
+    `data-placement` = "bottom",
+    `data-delay` = "{\"show\":500, \"hide\":100}",
+    title = ifelse(
+      type == "weight",
+      "Set the factor",
+      "Set the goal")
+    )
+
   # add bars if needed
   if (!is.null(bar)) {
     # add bar cap
@@ -154,7 +159,6 @@ ss_slider_component_scaffold <- function(bar = NULL, caller='') {
   # return result
   out
 }
-
 
 #' Scaffold for the icon component of the solution settings widget
 #'
@@ -185,34 +189,27 @@ ss_subicon_component_scaffold <- function() {
 #' Create a HTML scaffold for a header component of
 #' the [solutionSettings()] widget.
 #'
+#' @inheritParams ss_slider_component_scaffold
+#'
 #' @return `shiny.tag` object.
 #'
 #' @noRd
-ss_header_component_scaffold <- function(id, caller) {
-  
-  id = uuid::UUIDgenerate()
-  switchToolTip = "Switch"
-  labelToolTip = "Switch label"
-
-  if (caller=="weight")
-  {
-    switchToolTip = "Weight switch"
-    labelToolTip = "Weigth switch label"
-  }
-  if (caller=="theme")
-  {
-    switchToolTip = "Theme switch"
-    labelToolTip = "Theme switch label"
-  }
-  
+ss_header_component_scaffold <- function(type, id = uuid::UUIDgenerate()) {
+  assertthat::assert_that(
+    assertthat::is.string(type),
+    assertthat::noNA(type),
+    type %in% c("weight", "theme"))
   htmltools::tags$div(
     class = "header",
     htmltools::tags$label(
       class = "el-switch",
       `data-toggle` = "tooltip",
       `data-placement` = "top",
-      #`delay` = "{'show': 10, 'hide': 5000 }",
-      title = switchToolTip,
+      `data-delay` = "{\"show\":500, \"hide\":100}",
+      title = ifelse(
+        type == "weight",
+        "Enable/disable the weight when generating a solution",
+        "Enable/disable the theme when generating a solution"),
       htmltools::tags$input(
         type = "checkbox",
         class = "status-checkbox status",
@@ -227,8 +224,11 @@ ss_header_component_scaffold <- function(id, caller) {
       class = "name-label disable-if-inactive",
       `data-toggle` = "tooltip",
       `data-placement` = "top",
-      #`delay` = "{'show': 10, 'hide': 5000 }",
-      title = labelToolTip,
+      `data-delay` = "{\"show\":500, \"hide\":100}",
+      title = ifelse(
+        type == "weight",
+        "Name of the weight",
+        "Name of the theme")
     )
   )
 }
@@ -240,8 +240,8 @@ ss_subheader_component_scaffold<- function(id = uuid::UUIDgenerate()) {
       class = "el-switch el-switch-sm",
       `data-toggle` = "tooltip",
       `data-placement` = "top",
-      #`delay` = "{'show': 10, 'hide': 5000 }",
-      title = "Small switch tooltip",
+      `data-delay` = "{\"show\":500, \"hide\":100}",
+      title = "Enable/disable the feature when generating a solution",
       htmltools::tags$input(
         type = "checkbox",
         class = "status-checkbox status",
@@ -256,8 +256,8 @@ ss_subheader_component_scaffold<- function(id = uuid::UUIDgenerate()) {
       class = "name-label disable-if-inactive",
       `data-toggle` = "tooltip",
       `data-placement` = "top",
-      #`delay` = "{'show': 10, 'hide': 5000 }",
-      title = "Small Switch label tooltip",
+      `data-delay` = "{\"show\":500, \"hide\":100}",
+      title = "Name of the feature",
     )
   )
 }
