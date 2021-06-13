@@ -4,16 +4,13 @@
 \alias{new_dataset}
 \title{New dataset}
 \usage{
-new_dataset(source, total, units, legend)
+new_dataset(source, id = uuid::UUIDgenerate())
 }
 \arguments{
-\item{source}{\code{character} file path for the underlying data.}
+\item{source}{\code{character}, \code{\link[sf:sf]{sf::st_sf()}}, or \code{\link[raster:stack]{raster::stack()}} object.}
 
-\item{total}{\code{numeric} total amount of all values in the underlying data.}
-
-\item{units}{\code{character} units for the values in the underlying data.}
-
-\item{legend}{\code{Legend} object.}
+\item{id}{\code{character} unique identifier.
+Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}
 }
 \value{
 A \link{Dataset} object.
@@ -22,12 +19,13 @@ A \link{Dataset} object.
 Create a new \link{Dataset} object.
 }
 \examples{
-# create new object
-l <- new_dataset(
-  source = tempfile(), total = 12, units = "ha",
-  legend = new_continuous_legend(1, 100, c("#000000", "#AAAAAA")))
+# find data path
+f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+
+# create new dataset
+d <- new_dataset(f)
 
 # print object
-print(l)
+print(d)
 
 }

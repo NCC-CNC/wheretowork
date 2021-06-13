@@ -40,7 +40,12 @@
 #' where `id` is the argument to `elementId`.
 #'
 #' @examples
-#' # TODO.
+#' \dontrun{
+#' # run Shiny app to demo the sidebar pane
+#' if (interactive()) {
+#'   runExample("solutionSettings")
+#' }
+#' }
 #'
 #' @rdname solutionSettings-widget
 #'
@@ -118,7 +123,7 @@ solutionSettings_html <- function(id, style, class, ...) {
           class = "solution-settings",
           shinyBS::bsCollapse(
             id = paste0(id, "_collapse"),
-            multiple = TRUE,
+            multiple = FALSE,
             open = paste0(id, c("_collapseThemePanel", "_collapseWeightPanel")),
             shinyBS::bsCollapsePanel(
               title = "Themes",

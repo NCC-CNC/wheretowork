@@ -1,0 +1,26 @@
+name,unit
+Human footprint index,index
+Habitat intactness index,index
+Landscape naturalness,index
+Population density,%
+Population count,humans
+Climate resiliency,index
+Percent cover of native habitat,%
+Rugged terrain,index
+Transportation network,ha
+Roads,ha
+Mining tenures,ha
+Energy extraction and development,ha
+Invasive species,frequency
+Fire,%
+Sea level rise,meters
+Livestock industry,CAD
+Forestry,CAD
+Grazing,ha
+Tourism and recreation,CAD
+Agricultural activities,CAD
+Tsunami threat,%
+Engagement potential,%
+Archaeological site,frequency
+Pesticide risk,%
+Marine vessel traffic (threat),frequency

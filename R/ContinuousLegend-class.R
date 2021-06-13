@@ -38,7 +38,7 @@ ContinuousLegend <- R6::R6Class(
         max_value >= min_value,
         is.character(colors),
         assertthat::noNA(min_value),
-        all(nchar(colors) == 7),
+        all(nchar(colors) %in% c(7, 9)),
         all(substr(colors, 1, 1) == "#"))
       self$min_value <- min_value
       self$max_value <- max_value

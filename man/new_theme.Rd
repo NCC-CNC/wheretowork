@@ -18,18 +18,22 @@ Create a new \link{Theme} object. This is a convenience wrapper for
 the \code{\link[=new_single_theme]{new_single_theme()}} and \code{\link[=new_multi_theme]{new_multi_theme()}} functions.
 }
 \examples{
+# find data path
+f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+
 # create new dataset
-l <- new_dataset(
- source = tempfile(), total = 12, units = "ha",
- legend = new_continuous_legend(1, 100, c("#000000", "#1b9e77")))
+d <- new_dataset(f)
 
-# create feature using the dataset
-f <- new_feature(name = "Intact Alvar Occurrence", dataset = l)
+# create new variable
+v <- new_variable_from_auto(d, index = 1)
 
-# create a theme using the single feature
-st <- new_theme(name = "Intact Alvar", feature = f)
+# create new feature
+f <- new_feature(name = "Intact Alvar map", variable = v)
+
+# create a theme using the feature
+x <- new_theme(name = "Intact Alvar", feature = f)
 
 # print object
-print(st)
+print(x)
 
 }

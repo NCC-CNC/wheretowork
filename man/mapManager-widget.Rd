@@ -29,11 +29,21 @@ The widget sends a \code{list} with the following values to the server:
 
 \describe{
 
-\item{parameter}{\code{character} name of the updated parameter.
-Available options are: \code{"visible"} and \code{"order"}.}
+\item{id}{\code{character} identifer for layer to update.}
+
+\item{parameter}{\code{character} name of the updated parameter}.
 
 \item{value}{\code{numeric} or \code{logical} values.}
 
 }
 }
 
+\examples{
+\dontrun{
+# run Shiny app to demo the sidebar pane
+if (interactive()) {
+  runExample("mapManager")
+}
+}
+
+}

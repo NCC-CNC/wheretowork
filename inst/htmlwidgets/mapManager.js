@@ -52,11 +52,14 @@ HTMLWidgets.widget({
       },
 
       addLayer: function(params) {
-        // TODO
+        handle.addLayer(params.value);
       },
 
       dropLayer: function(params) {
-        // TODO
+        console.log("dropLayer");
+        console.log("params");
+        console.log(params);
+        handle.dropLayer(params.value);
       },
 
     };
@@ -65,7 +68,7 @@ HTMLWidgets.widget({
 
 // Attach message handlers if in Shiny mode (these correspond to API)
 if (HTMLWidgets.shinyMode) {
-  var fxns = ["updateOrder", "updateLayer", "addLayer", "removeLayer"];
+  var fxns = ["updateOrder", "updateLayer", "addLayer", "dropLayer"];
 
   var addShinyHandler = function(fxn) {
     return function() {

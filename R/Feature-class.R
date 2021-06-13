@@ -1,11 +1,11 @@
-#' @include internal.R Dataset-class.R
+#' @include internal.R Variable-class.R
 NULL
 
 #' Feature class
 #'
 #' Definition for the Feature class.
 #'
-#' @seealso [new_feature()], [new_dataset()].
+#' @seealso [new_feature()], [new_variable()].
 Feature <- R6::R6Class(
   "Feature",
   public = list(
@@ -15,8 +15,8 @@ Feature <- R6::R6Class(
     #' @field name `character` name.
     name = NA_character_,
 
-    #' @field dataset [Dataset] object.
-    dataset = NULL,
+    #' @field variable [Variable] object.
+    variable = NULL,
 
     #' @field visible `logical` value.
     visible = NA,
@@ -61,7 +61,7 @@ Feature <- R6::R6Class(
     #' Create a Feature object.
     #' @param id `character` value.
     #' @param name `character` value.
-    #' @param dataset [Dataset] .
+    #' @param variable [Variable] .
     #' @param initial_visible `logical` value.
     #' @param initial_status `logical` value.
     #' @param min_goal `numeric` value.
@@ -74,7 +74,7 @@ Feature <- R6::R6Class(
     #' @param icon `shiny.tag` object.
     #' @return A new Feature object.
     initialize = function(
-      id, name, dataset, initial_visible, initial_status,
+      id, name, variable, initial_visible, initial_status,
       initial_goal, min_goal, max_goal, step_goal, limit_goal,
       current, current_label, icon) {
       ### assert that arguments are valid
@@ -85,8 +85,8 @@ Feature <- R6::R6Class(
         #### name
         assertthat::is.string(name),
         assertthat::noNA(name),
-        #### dataset
-        inherits(dataset, "Dataset"),
+        #### variable
+        inherits(variable, "Variable"),
         #### initial_visible
         assertthat::is.flag(initial_visible),
         assertthat::noNA(initial_visible),
@@ -124,7 +124,7 @@ Feature <- R6::R6Class(
       ### set fields
       self$id <- id
       self$name <- name
-      self$dataset <- dataset
+      self$variable <- variable
       self$visible <- initial_visible
       self$initial_visible <- initial_visible
       self$status <- initial_status
@@ -147,11 +147,11 @@ Feature <- R6::R6Class(
       message("Feature")
       message("  id:      ", self$id)
       message("  name:    ", self$name)
+      message("  variable:   ", self$variable$repr())
       message("  visible:  ", self$visible)
       message("  status:  ", self$status)
       message("  current: ", round(self$current, 2))
       message("  goal:    ", round(self$goal, 2))
-      message("  dataset:   ", self$dataset$repr())
       invisible(self)
     },
 
@@ -168,7 +168,7 @@ Feature <- R6::R6Class(
         " ", start, "status: ", self$status,
         ", current: ", round(self$current, 2),
         ", goal: ", round(self$goal, 2), end, nl(),
-        "  dataset: ", self$dataset$repr())
+        "  variable: ", self$variable$repr())
     },
 
     #' @description
@@ -190,6 +190,13 @@ Feature <- R6::R6Class(
     #' @return `numeric` value.
     get_goal = function() {
       self$goal
+    },
+
+    #' @description
+    #' Get the data.
+    #' @return [sf::st_as_sf()] or [raster::raster()] object.
+    get_data = function() {
+      self$variable$get_data()
     },
 
     #' @description
@@ -237,7 +244,7 @@ Feature <- R6::R6Class(
 #'
 #' @param name `character` Name of the feature.
 #'
-#' @param dataset [Dataset] object.
+#' @param variable [Variable] object.
 #'
 #' @param initial_visible `logical` The initial visible value.
 #'   This is used to determine if the feature is displayed (or not)
@@ -289,20 +296,24 @@ Feature <- R6::R6Class(
 #'  If the argument to `icon` is a `character`, it is used with
 #'  [shiny::icon()] to generate an `shiny.tag` icon.
 #'  Defaults to `"map-marked-alt"`.
-
+#'
 #' @param id `character` unique identifier.
 #'   Defaults to a random identifier ([uuid::UUIDgenerate()]).
 #'
 #' @return A [Feature] object.
 #'
 #' @examples
-#' # create new dataset
-#' l <- new_dataset(
-#'  source = tempfile(), total = 12, units = "ha",
-#'  legend = new_continuous_legend(1, 100, c("#000000", "#AAAAAA")))
+#' # find data path
+#' f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
 #'
-#' # create feature using the dataset
-#' f <- new_feature(name = "Intact Alvar", dataset = l)
+#' # create new dataset
+#' d <- new_dataset(f)
+#'
+#' # create new variable
+#' v <- new_variable_from_auto(dataset = d, index = 1)
+#'
+#' # create feature using the variable
+#' f <- new_feature(name = "Intact Alvar", variable = v)
 #'
 #' # print object
 #' print(f)
@@ -310,7 +321,7 @@ Feature <- R6::R6Class(
 #' @export
 new_feature <- function(
     name,
-    dataset,
+    variable,
     initial_visible = TRUE,
     initial_status = TRUE,
     initial_goal = 0.1,
@@ -329,7 +340,7 @@ new_feature <- function(
   Feature$new(
     id = id,
     name = name,
-    dataset = dataset,
+    variable = variable,
     initial_visible = initial_visible,
     initial_status = initial_status,
     initial_goal = initial_goal,

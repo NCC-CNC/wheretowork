@@ -1,16 +1,19 @@
-/* pane */
+/* widget container */
+.widget-container {
+  height: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  overflow-y: scroll;
+}
+
 .map-manager-pane {
   margin-top: 3px;
-  overflow-y: hidden !important;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-/* widget container */
-.map-manager-pane .widget-container {
-  max-height: 100%;
-  overflow-x: hidden;
-  overflow-y: hidden;
-}
-
-.map-manager-pane .sidebar-content {
-  overflow-y: hidden !important;
+.sidebar-pane{
+  height: calc(100% - 28px);
+  box-sizing: border-box;
+  padding-right: 5px !important;
 }

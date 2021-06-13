@@ -21,19 +21,16 @@ and \code{"visible"} parameters.}
 }
 
 \describe{
-\item{id}{\code{character} (optional) name of layer.}
+\item{id}{\code{character} (optional) identifier for layer.}
 \item{parameter}{\code{character} name of parameter.
-Available options are: \code{"order"}, \code{"visible"}, \code{"feature_order"},
-or \code{"feature_visible"}.
-Note that the \code{"id"} element is required for
-\code{"visible"}, \code{"feature_order"}, \code{"feature_visible"} parameters.}
-\item{value}{\code{numeric} or \code{logical} value for new parameter.}
+Available options are:
+\code{"order"}, "remove"\verb{, }"visible"\verb{, }"feature_order"\verb{, }"feature_visible"\verb{. Note that the }"id"\verb{element is required for}"remove"\verb{, }"visible"\verb{, }"feature_order"\verb{, }"feature_visible"\verb{ parameters.\} \\item\{value\}\{}numeric\code{or}logical` value for new parameter.}
 }
 }
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
-\item{\code{layers}}{\code{list} of \link{Theme} or \link{Weight} objects.}
+\item{\code{layers}}{\code{list} of \link{Theme}, \link{Weight}, \link{Solution} objects.}
 
 \item{\code{ids}}{\code{character} vector of identifiers for the layers.}
 
@@ -73,7 +70,7 @@ Create a MapManager object.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{layers}}{\code{list} of Layer objects.}
+\item{\code{layers}}{\code{list} of \link{Theme}, \link{Weight}, \link{Solution} objects.}
 
 \item{\code{order}}{\code{numeric} vector.}
 }
@@ -223,7 +220,7 @@ Remove a layer.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{value}}{\code{character} identifier of the layer to remove.}
+\item{\code{value}}{\code{character} layer identifier.}
 }
 \if{html}{\out{</div>}}
 }

@@ -23,31 +23,35 @@ A \link{MapManager} object.
 Create a new \link{MapManager} object.
 }
 \examples{
-# create datasets
-l1 <- new_dataset(
- source = tempfile(), total = 12, units = "ha",
- legend = new_continuous_legend(1, 100, c("#000000", "#1b9e77")))
-l2 <- new_dataset(
- source = tempfile(), total = 14, units = "ha",
- legend = new_continuous_legend(1, 100, c("#000000", "#d95f02")))
-l3 <- new_dataset(
- source = tempfile(), total = 78, units = "ha",
- legend = new_continuous_legend(1, 100, c("#000000", "#7570b3")))
-l4 <- new_dataset(
- source = tempfile(), total = 90, units = "ha",
- legend = new_continuous_legend(1, 100, c("#000000", "#e31a1c")))
+# create dataset
+f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+d <- new_dataset(f)
 
-# create a weight using a dataset
-w <- new_weight(name = "Human Footprint Index", dataset = l1)
+# create variables
+v1 <- new_variable_from_auto(dataset = d, index = 1)
+v2 <- new_variable_from_auto(dataset = d, index = 2)
+v3 <- new_variable_from_auto(dataset = d, index = 3)
+v4 <- new_variable_from_auto(dataset = d, index = 4)
 
-# create features using datasets
-f1 <- new_feature(name = "Possum Occurrence", dataset = l2)
-f2 <- new_feature(name = "Forests", dataset = l3)
-f3 <- new_feature(name = "Shrublands", dataset = l4)
+# create a weight using a variable
+w <- new_weight(
+  name = "Human Footprint Index", variable = v1,
+  initial_factor = 90, initial_status = FALSE, id = "W1")
+
+# create features using variables
+f1 <- new_feature(
+  name = "Possum", variable = v2,
+  initial_goal = 0.2, initial_status = FALSE, current = 0.5, id = "F1")
+f2 <- new_feature(
+  name = "Forests", variable = v3,
+  initial_goal = 0.3, initial_status = FALSE, current = 0.9, id = "F2")
+f3 <- new_feature(
+  name = "Shrubs", variable = v4,
+  initial_goal = 0.6, initial_status = TRUE, current = 0.4, id = "F3")
 
 # create themes using the features
-t1 <- new_single_theme(name = "Species", f1)
-t2 <- new_multi_theme(name = "Ecoregions", list(f1, f2))
+t1 <- new_single_theme("Species", f1, id = "T1")
+t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")
 
 # create a map manager for the themes and weight
 mm <- new_map_manager(layers = list(t1, t2, w))

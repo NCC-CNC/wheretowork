@@ -2,12 +2,14 @@ context("new_theme")
 
 test_that("SingleTheme", {
   # create object
-  l <- new_dataset(
-    source = "l1.tif", total = 100, units = "ha",
+  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+  d <- new_dataset(f)
+  v <- new_variable(
+    dataset = d, index = 1, total = 100, units = "ha",
     legend = simulate_continuous_legend())
   f <- new_feature(
     name = "F1",
-    dataset = l,
+    variable = v,
     initial_visible = FALSE,
     initial_status = FALSE,
     initial_goal = 0.2,
@@ -37,15 +39,17 @@ test_that("SingleTheme", {
 
 test_that("MultiTheme", {
   # create object
-  l1 <- new_dataset(
-    source = "l1.txt", total = 100, units = "ha",
+  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+  d <- new_dataset(f)
+  v1 <- new_variable(
+    dataset = d, index = 1, total = 100, units = "ha",
     legend = simulate_continuous_legend())
-  l2 <- new_dataset(
-    source = "l2.txt", total = 30, units = "ha",
+  v2 <- new_variable(
+    dataset = d, index = 2, total = 30, units = "ha",
     legend = simulate_continuous_legend())
   f1 <- new_feature(
     name = "F1",
-    dataset = l1,
+    variable = v1,
     initial_visible = FALSE,
     initial_status = FALSE,
     initial_goal = 0.2,
@@ -59,7 +63,7 @@ test_that("MultiTheme", {
     id = "FID1")
   f2 <- new_feature(
     name = "F2",
-    dataset = l2,
+    variable = v2,
     initial_visible = FALSE,
     initial_status = TRUE,
     initial_goal = 0.21,

@@ -175,10 +175,61 @@ SolutionSettings <- R6::R6Class(
     },
 
     #' @description
-    #' Get data for generating a prioritization.
-    #' @return `list` with data.
-    get_prioritization_data = function() {
-      stop("TODO")
+    #' Get theme settings for generating a prioritization.
+    #' @return [tibble::tibble()] with data.
+    get_theme_settings = function() {
+      # extract data
+      ids <- lapply(self$themes, function(x) x$get_feature_id())
+      nms <- lapply(self$themes, function(x) x$get_feature_name())
+      currents <- lapply(self$themes, function(x) x$get_feature_current())
+      statuses <- lapply(self$themes, function(x) x$get_feature_status())
+      goals <- lapply(self$themes, function(x) x$get_feature_goal())
+      totals <- lapply(self$themes, function(x) x$get_feature_total())
+      # return result
+      tibble::tibble(
+        id = do.call(c, ids),
+        name = do.call(c, nms),
+        status = do.call(c, statuses),
+        goal = do.call(c, goals),
+        current = do.call(c, currents),
+        total = do.call(c, totals))
+    },
+
+    #' @description
+    #' Get weight settings for generating a prioritization.
+    #' @return [tibble::tibble()] with data.
+    get_weight_settings = function() {
+      tibble::tibble(
+        id = vapply(self$weights, function(x) x$id, character(1)),
+        name = vapply(self$weights, function(x) x$name, character(1)),
+        status = vapply(self$weights, function(x) x$status, logical(1)),
+        factor = vapply(self$weights, function(x) x$factor, numeric(1)))
+    },
+
+    #' @description
+    #' Get rij data for the themes.
+    #' @return `matrix` with data.
+    get_rij_matrix = function() {
+      v <- lapply(self$themes, function(x) {
+        lapply(x$feature, `[[`, "variable")
+      })
+      fid <- lapply(self$themes, function(x) {
+        lapply(x$feature, `[[`, "id")
+      })
+      fid <- base::unlist(fid, recursive = TRUE, use.names = FALSE)
+      out <- extract_data_matrix(do.call(c, v))
+      rownames(out) <- fid
+      out
+    },
+
+    #' @description
+    #' Get wij data for the themes.
+    #' @return `matrix` with data.
+    get_wij_matrix = function() {
+      v <- lapply(self$weights, `[[`, "variable")
+      out <- extract_data_matrix(v)
+      rownames(out) <- vapply(self$weights, `[[`, character(1), "id")
+      out
     }
 
   )
@@ -195,31 +246,35 @@ SolutionSettings <- R6::R6Class(
 #' @return A [SolutionSettings] object.
 #'
 #' @examples
-#' # create datasets
-#' l1 <- new_dataset(
-#'  source = tempfile(), total = 12, units = "ha",
-#'  legend = new_continuous_legend(1, 100, c("#000000", "#1b9e77")))
-#' l2 <- new_dataset(
-#'  source = tempfile(), total = 14, units = "ha",
-#'  legend = new_continuous_legend(1, 100, c("#000000", "#d95f02")))
-#' l3 <- new_dataset(
-#'  source = tempfile(), total = 78, units = "ha",
-#'  legend = new_continuous_legend(1, 100, c("#000000", "#7570b3")))
-#' l4 <- new_dataset(
-#'  source = tempfile(), total = 90, units = "ha",
-#'  legend = new_continuous_legend(1, 100, c("#000000", "#e31a1c")))
+#' # create dataset
+#' f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+#' d <- new_dataset(f)
 #'
-#' # create a weight using a dataset
-#' w <- new_weight(name = "Human Footprint Index", dataset = l1)
+#' # create variables
+#' v1 <- new_variable_from_auto(dataset = d, index = 1)
+#' v2 <- new_variable_from_auto(dataset = d, index = 2)
+#' v3 <- new_variable_from_auto(dataset = d, index = 3)
+#' v4 <- new_variable_from_auto(dataset = d, index = 4)
 #'
-#' # create features using datasets
-#' f1 <- new_feature(name = "Possum Occurrence", dataset = l2)
-#' f2 <- new_feature(name = "Forests", dataset = l3)
-#' f3 <- new_feature(name = "Shrublands", dataset = l4)
+#' # create a weight using a variable
+#' w <- new_weight(
+#'   name = "Human Footprint Index", variable = v1,
+#'   initial_factor = 90, initial_status = FALSE, id = "W1")
+#'
+#' # create features using variables
+#' f1 <- new_feature(
+#'   name = "Possum", variable = v2,
+#'   initial_goal = 0.2, initial_status = FALSE, current = 0.5, id = "F1")
+#' f2 <- new_feature(
+#'   name = "Forests", variable = v3,
+#'   initial_goal = 0.3, initial_status = FALSE, current = 0.9, id = "F2")
+#' f3 <- new_feature(
+#'   name = "Shrubs", variable = v4,
+#'   initial_goal = 0.6, initial_status = TRUE, current = 0.4, id = "F3")
 #'
 #' # create themes using the features
-#' t1 <- new_single_theme(name = "Species", f1)
-#' t2 <- new_multi_theme(name = "Ecoregions", list(f1, f2))
+#' t1 <- new_single_theme("Species", f1, id = "T1")
+#' t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")
 #'
 #' # create solution settings using the themes and weight
 #' ss <- new_solution_settings(themes = list(t1, t2), weights = list(w))

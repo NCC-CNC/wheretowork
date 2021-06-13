@@ -31,6 +31,11 @@ n_distinct <- function(x) {
   length(unique(x))
 }
 
+# alias for dplyr::last()
+last <- function(x) {
+  x[[length(x)]]
+}
+
 #' Example weight names
 #'
 #' Import example weight names for simulating weights.
@@ -39,11 +44,13 @@ n_distinct <- function(x) {
 #'
 #' @noRd
 example_weight_names <- function() {
-  tibble::tibble(
-    weight =
-      readLines(
-        system.file(
-          "extdata", "example-weights.txt", package = "locationmisc"))
+  tibble::as_tibble(
+    utils::read.table(
+      system.file("extdata", "example-weights.csv", package = "locationmisc"),
+      stringsAsFactors = FALSE,
+      sep = ",",
+      header = TRUE
+    )
   )
 }
 

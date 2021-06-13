@@ -37,14 +37,22 @@ mm_legend_component_scaffold <- function() {
 #' Create a HTML scaffold for a header component of
 #' the [mapManager()] widget.
 #'
+#' @param id `character` HTML element identifier value.
+#'   Defaults to random identifier.
+#'
+#' @param remove_button `logical` include a button to remove the layer?
+#'  Defaults to `FALSE`.
+#'
 #' @return `shiny.tag` object.
 #'
 #' @noRd
-mm_header_component_scaffold <- function(id = uuid::UUIDgenerate()) {
+mm_header_component_scaffold <- function(
+  id = uuid::UUIDgenerate(), remove_button = FALSE) {
   # create ids
   name_label_id <- uuid::UUIDgenerate()
   visible_checkbox_id <- uuid::UUIDgenerate()
   view_checkbox_id <- uuid::UUIDgenerate()
+  remove_button_id <- uuid::UUIDgenerate()
 
   # return scaffold
   htmltools::tags$div(
@@ -79,13 +87,21 @@ mm_header_component_scaffold <- function(id = uuid::UUIDgenerate()) {
     ),
     htmltools::tags$label(
       id = name_label_id,
-      #class = "name-label has-tooltip",
        class = "name-label",
       `data-toggle` = "tooltip",
       `data-placement` = "top",
       #`delay` = "{'show': 10, 'hide': 5000 }",
       title = "Name of the layer",
-    )
+    ),
+    if (remove_button) {
+      htmltools::tags$button(
+        class = "remove-button",
+        type = "button",
+        htmltools::tags$i(class = "fa fa-trash-alt")
+      )
+    } else {
+      NULL
+    }
   )
 }
 
@@ -98,7 +114,6 @@ mm_header_component_scaffold <- function(id = uuid::UUIDgenerate()) {
 #'
 #' @noRd
 mm_subheader_component_scaffold <- function(id = uuid::UUIDgenerate()) {
-
   # create ids
   name_label_id <- uuid::UUIDgenerate()
   visible_checkbox_id <- uuid::UUIDgenerate()
