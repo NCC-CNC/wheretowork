@@ -37,6 +37,9 @@ function categoricalLegend(el, x, units) {
     item_symbol.className = "item-symbol disable-if-inactive";
     item_symbol.style.backgroundColor = x.colors[i];
     item_symbol.style.color = x.colors[i];
+    if(i==0){
+      item_symbol.style.opacity=0.2;
+    }
 
     /// add item to legend
     item.appendChild(item_symbol);
