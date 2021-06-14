@@ -36,6 +36,8 @@
 .map-manager-layer .header .remove-button {
   float: right;
   margin: 5px;
+  border: 0;
+  background: #fff;
 }
 
 /* sub-header container */
