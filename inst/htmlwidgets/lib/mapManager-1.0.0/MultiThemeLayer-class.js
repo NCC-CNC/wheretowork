@@ -110,8 +110,10 @@ class MultiThemeLayer {
         let checked = this.checked;
         if (checked) {
           that.main_el.style.display = "block";
+          // TODO: insert JS to add animation for maximizing container
         } else {
           that.main_el.style.display = "none";
+          // TODO: insert JS to add animation for minimizing container
         }
       });
       /// show/hide legends
@@ -120,8 +122,10 @@ class MultiThemeLayer {
           let checked = this.checked;
           if (checked) {
             that.single_legend_el[i].style.display = "block";
+            // TODO: insert JS to add animation for maximizing legend
           } else {
             that.single_legend_el[i].style.display = "none";
+            // TODO: insert JS to add animation for minimizing legend
           }
         });
       }
