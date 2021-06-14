@@ -37,8 +37,9 @@ function categoricalLegend(el, x, units) {
     item_symbol.className = "item-symbol disable-if-inactive";
     item_symbol.style.backgroundColor = x.colors[i];
     item_symbol.style.color = x.colors[i];
-    if(i==0){
-      item_symbol.style.opacity=0.2;
+    if (x.colors[i].length === 9) {
+      // if has alpha channel, then set opacity
+      item_symbol.style.opacity = 1 - parseInt(x.colors[i].substr(-2), 16)/255;
     }
 
     /// add item to legend
