@@ -57,6 +57,7 @@ mm_header_component_scaffold <- function(
       `data-toggle` = "tooltip",
       `data-placement` = "top",
       `data-delay` = "{\"show\":500, \"hide\":100}",
+      `data-container` = ".sidebar",
       title = "Show/hide legend",
       htmltools::tags$input(
         class = "view-checkbox",
