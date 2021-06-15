@@ -73,3 +73,9 @@
   color: var(--symbol-border);
   background-color: var(--symbol-border);
 }
+
+.continuous-legend .items .tooltip-custom {
+    .tooltip-inner {
+        background-color: red !important;    
+    }
+}

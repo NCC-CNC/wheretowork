@@ -112,16 +112,9 @@ renderSolutionSettings <- function(expr, env = parent.frame(), quoted = FALSE) {
 # Add custom HTML for the widget (automatically used by htmlwidgets)
 solutionSettings_html <- function(id, style, class, ...) {
   # HTML scaffold
-  
-  # create ids
-  name_input_id <- uuid::UUIDgenerate()
-  button_id <- uuid::UUIDgenerate()
-  slider_id <- uuid::UUIDgenerate()
-  
   x <-
     htmltools::tags$div(
       id = id, class = class, style = style,
-  
       htmltools::div(
         class = "solution-settings-container",
         htmltools::div(
@@ -142,30 +135,27 @@ solutionSettings_html <- function(id, style, class, ...) {
             )
           )
         ),
-        
+
         ### footer
         htmltools::tags$div(
           class = "solution-footer",
           htmltools::tags$div(
-            id = name_input_id,
             class = "solution-footer-name",
             shiny::textInput(
               inputId = paste0(id, "_name"),
               NULL,
               value = "",
               width = "100%",
-              placeholder = "name for solution"
+              placeholder = "specify a name for new solution"
             ),
           ),
-          
-          shinyBS::bsTooltip(
-            id = name_input_id,
-            title = "Name tooltip",
-            placement = "top", trigger = "hover"),
-          
+
           htmltools::tags$div(
-            id = button_id, 
             class = "solution-footer-button",
+            `data-toggle` = "tooltip",
+            `data-placement` = "top",
+            `data-delay` = "{\"show\":500, \"hide\":100}",
+            title = "Generate a solution using the themes and weights",
             shinyBS::bsButton(
               inputId = paste0(id, "_button"),
               label = "Generate solution",
@@ -174,11 +164,6 @@ solutionSettings_html <- function(id, style, class, ...) {
               type = "action"
             )
           ),
-          
-          shinyBS::bsTooltip(
-            id = button_id,
-            title = "Button tooltip",
-            placement = "top", trigger = "hover"),
         )
       )
     )
@@ -192,16 +177,11 @@ solutionSettings_html <- function(id, style, class, ...) {
         class = "weight-setting-template",
         htmltools::tags$div(
           class = paste("weight-setting solution-setting"),
-          ss_header_component_scaffold(),
+          ss_header_component_scaffold("weight"),
           htmltools::tags$div(
-            id = slider_id,
             class = "weight-slider",
-            ss_slider_component_scaffold()
+            ss_slider_component_scaffold("weight")
           ),
-          shinyBS::bsTooltip(
-            id = slider_id, 
-            title = "slider tool tip", 
-            placement = "top", trigger = "hover")
         )
       )
     )
@@ -215,8 +195,8 @@ solutionSettings_html <- function(id, style, class, ...) {
         htmltools::tags$div(
           class = "single-theme-setting solution-setting",
           ss_icon_component_scaffold(),
-          ss_header_component_scaffold(),
-          ss_goal_component_scaffold()
+          ss_header_component_scaffold("theme"),
+          ss_goal_component_scaffold("theme")
         )
       )
     )
@@ -231,7 +211,7 @@ solutionSettings_html <- function(id, style, class, ...) {
         htmltools::tags$div(
           class = "multi-theme-setting solution-setting",
           ss_icon_component_scaffold(),
-          ss_header_component_scaffold(),
+          ss_header_component_scaffold("theme"),
           htmltools::tags$div(
             class = "main",
             shiny::tabsetPanel(
@@ -242,7 +222,7 @@ solutionSettings_html <- function(id, style, class, ...) {
                 "group",
                 htmltools::tags$div(
                   class = "group-view",
-                  ss_group_goal_component_scaffold()
+                  ss_group_goal_component_scaffold("theme")
                 )
               ),
               ## single view
@@ -268,7 +248,7 @@ solutionSettings_html <- function(id, style, class, ...) {
           class = "single-container",
           ss_subicon_component_scaffold(),
           ss_subheader_component_scaffold(),
-          ss_goal_component_scaffold()
+          ss_goal_component_scaffold("theme")
         )
       )
     )

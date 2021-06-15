@@ -41,6 +41,10 @@ Definition for the Solution class.
 \item \href{#method-new}{\code{Solution$new()}}
 \item \href{#method-repr}{\code{Solution$repr()}}
 \item \href{#method-print}{\code{Solution$print()}}
+\item \href{#method-get_visible}{\code{Solution$get_visible()}}
+\item \href{#method-get_parameter}{\code{Solution$get_parameter()}}
+\item \href{#method-set_visible}{\code{Solution$set_visible()}}
+\item \href{#method-set_parameter}{\code{Solution$set_parameter()}}
 \item \href{#method-get_solution_results_widget_data}{\code{Solution$get_solution_results_widget_data()}}
 \item \href{#method-get_map_manager_widget_data}{\code{Solution$get_map_manager_widget_data()}}
 \item \href{#method-clone}{\code{Solution$clone()}}
@@ -123,6 +127,77 @@ Print the object.
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{...}}{not used.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_visible"></a>}}
+\if{latex}{\out{\hypertarget{method-get_visible}{}}}
+\subsection{Method \code{get_visible()}}{
+Get visible.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Solution$get_visible()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{logical} value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_parameter"></a>}}
+\if{latex}{\out{\hypertarget{method-get_parameter}{}}}
+\subsection{Method \code{get_parameter()}}{
+Get parameter.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Solution$get_parameter(name)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{name}}{\code{character} parameter name.
+Available options are \code{"visible"}.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+Value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_visible"></a>}}
+\if{latex}{\out{\hypertarget{method-set_visible}{}}}
+\subsection{Method \code{set_visible()}}{
+Set visible.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Solution$set_visible(value)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{value}}{\code{logical} new value.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_parameter"></a>}}
+\if{latex}{\out{\hypertarget{method-set_parameter}{}}}
+\subsection{Method \code{set_parameter()}}{
+Set parameter.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Solution$set_parameter(name, value)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{name}}{\code{character} parameter name.
+Available options are `"visible"``.}
+
+\item{\code{value}}{\code{ANY} new value.}
 }
 \if{html}{\out{</div>}}
 }

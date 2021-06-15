@@ -66,7 +66,7 @@ Create a Variable object.
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A new Variabe object.
+A new Variable object.
 }
 }
 \if{html}{\out{<hr>}}
