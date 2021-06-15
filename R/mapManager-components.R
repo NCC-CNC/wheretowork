@@ -71,6 +71,7 @@ mm_header_component_scaffold <- function(
       `data-toggle` = "tooltip",
       `data-placement` = "top",
       `data-delay` = "{\"show\":500, \"hide\":100}",
+      `data-container` = ".sidebar",
       title = "Show/hide layer",
       htmltools::tags$input(
         class = "visible-checkbox",
@@ -83,6 +84,7 @@ mm_header_component_scaffold <- function(
       `data-toggle` = "tooltip",
       `data-placement` = "top",
       `data-delay` = "{\"show\":500, \"hide\":100}",
+      `data-container` = ".sidebar",
       title = "Name of the layer",
     ),
     if (remove_button) {
@@ -92,6 +94,7 @@ mm_header_component_scaffold <- function(
         `data-toggle` = "tooltip",
         `data-placement` = "top",
         `data-delay` = "{\"show\":500, \"hide\":100}",
+        `data-container` = ".sidebar",
         title = "Remove layer",
         htmltools::tags$i(class = "fa fa-trash-alt")
       )
@@ -122,6 +125,7 @@ mm_subheader_component_scaffold <- function(id = uuid::UUIDgenerate()) {
       `data-toggle` = "tooltip",
       `data-placement` = "top",
       `data-delay` = "{\"show\":500, \"hide\":100}",
+      `data-container` = ".sidebar",
       title = "Show/hide legend",
       htmltools::tags$input(
         class = "view-checkbox",
@@ -135,6 +139,7 @@ mm_subheader_component_scaffold <- function(id = uuid::UUIDgenerate()) {
       `data-toggle` = "tooltip",
       `data-placement` = "top",
       `data-delay` = "{\"show\":500, \"hide\":100}",
+      `data-container` = ".sidebar",
       title = "Show/hide feature",
       htmltools::tags$input(
         class = "visible-checkbox",
@@ -148,6 +153,7 @@ mm_subheader_component_scaffold <- function(id = uuid::UUIDgenerate()) {
       `data-toggle` = "tooltip",
       `data-placement` = "top",
       `data-delay` = "{\"show\":500, \"hide\":100}",
+      `data-container` = ".sidebar",
       title = "Name of the feature",
     )
   )

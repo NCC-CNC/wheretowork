@@ -27,6 +27,7 @@ ss_goal_component_scaffold <- function(type) {
           `data-toggle` = "tooltip",
           `data-placement` = "top",
           `data-delay` = "{\"show\":500, \"hide\":100}",
+          `data-container` = ".sidebar",
           title = "Current coverage by existing conservation areas")
       ),
       htmltools::tags$div(
@@ -39,6 +40,7 @@ ss_goal_component_scaffold <- function(type) {
           `data-toggle` = "tooltip",
           `data-placement` = "top",
           `data-delay` = "{\"show\":500, \"hide\":100}",
+          `data-container` = ".sidebar",
           title = "Goal for generating solutions")
       ),
     ),
@@ -75,6 +77,7 @@ ss_group_goal_component_scaffold <- function(type) {
           `data-toggle` = "tooltip",
           `data-placement` = "top",
           `data-delay` = "{\"show\":500, \"hide\":100}",
+          `data-container` = ".sidebar",
           title = "Current coverage by existing conservation areas")
       ),
       htmltools::tags$div(
@@ -87,6 +90,7 @@ ss_group_goal_component_scaffold <- function(type) {
           `data-toggle` = "tooltip",
           `data-placement` = "top",
           `data-delay` = "{\"show\":500, \"hide\":100}",
+          `data-container` = ".sidebar",
           title = "Goal for generating solutions")
       ),
     ),
@@ -125,6 +129,7 @@ ss_slider_component_scaffold <- function(type, bar = NULL) {
     `data-toggle` = "tooltip",
     `data-placement` = "bottom",
     `data-delay` = "{\"show\":500, \"hide\":100}",
+    `data-container` = ".sidebar",
     title = ifelse(
       type == "weight",
       "Set the factor",
@@ -206,6 +211,7 @@ ss_header_component_scaffold <- function(type, id = uuid::UUIDgenerate()) {
       `data-toggle` = "tooltip",
       `data-placement` = "top",
       `data-delay` = "{\"show\":500, \"hide\":100}",
+      `data-container` = ".sidebar",
       title = ifelse(
         type == "weight",
         "Enable/disable the weight when generating a solution",
@@ -225,6 +231,7 @@ ss_header_component_scaffold <- function(type, id = uuid::UUIDgenerate()) {
       `data-toggle` = "tooltip",
       `data-placement` = "top",
       `data-delay` = "{\"show\":500, \"hide\":100}",
+      `data-container` = ".sidebar",
       title = ifelse(
         type == "weight",
         "Name of the weight",
@@ -241,6 +248,7 @@ ss_subheader_component_scaffold<- function(id = uuid::UUIDgenerate()) {
       `data-toggle` = "tooltip",
       `data-placement` = "top",
       `data-delay` = "{\"show\":500, \"hide\":100}",
+      `data-container` = ".sidebar",
       title = "Enable/disable the feature when generating a solution",
       htmltools::tags$input(
         type = "checkbox",
@@ -257,6 +265,7 @@ ss_subheader_component_scaffold<- function(id = uuid::UUIDgenerate()) {
       `data-toggle` = "tooltip",
       `data-placement` = "top",
       `data-delay` = "{\"show\":500, \"hide\":100}",
+      `data-container` = ".sidebar",
       title = "Name of the feature",
     )
   )
