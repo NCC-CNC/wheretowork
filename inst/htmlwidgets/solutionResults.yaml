@@ -1,5 +1,13 @@
 dependencies:
 
+  - name: apexcharts
+    version: 3.27.1
+    src: htmlwidgets/lib/apexcharts-3.27.1
+    script:
+      - apexcharts.min.js
+    stylesheet:
+      - apexcharts.css
+
   - name: solutionResults
     version: 1.0.0
     src: htmlwidgets/lib/solutionResults-1.0.0
