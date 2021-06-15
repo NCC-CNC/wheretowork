@@ -29,7 +29,7 @@ function continuousLegend(el, x, units) {
   // initialize lenged
   let l = document.createElement("div");
   l.className = "continuous-legend";
-  
+
   // calculate label/ticks positions
   /// calculate percentages
   positions = x.values.map((z) => {
@@ -56,7 +56,7 @@ function continuousLegend(el, x, units) {
   l.setAttribute("data-toggle", "tooltip");
   l.setAttribute("data-placement", "bottom");
   l.setAttribute("data-delay", "{\"show\":500, \"hide\":100}");
-  l.setAttribute("data-container", "sidebar");
+  l.setAttribute("data-container", ".sidebar");
   l.setAttribute(
     "title",
     "This dataset has continuous data. " +
