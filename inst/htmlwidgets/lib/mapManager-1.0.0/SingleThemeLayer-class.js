@@ -47,11 +47,9 @@ class SingleThemeLayer {
       this.view_el.addEventListener("change", function () {
         let checked = this.checked;
         if (checked) {
-          that.legend_el.style.display = "block";
-          // TODO: insert JS to add animation for maximizing legend
+          that.legend_el.classList.remove("hide-legend");
         } else {
-          that.legend_el.style.display = "none";
-          // TODO: insert JS to add animation for minimizing legend
+          that.legend_el.classList.add("hide-legend");
         }
       });
     }

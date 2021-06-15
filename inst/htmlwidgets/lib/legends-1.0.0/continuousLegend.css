@@ -4,22 +4,13 @@
   min-height: 115px;
   overflow:auto;
   position:relative;
+  transition: min-height 0.1s;
 }
 
-.continuous-legend-plus {
-  width: 100%;
-  min-height: 115px;
-  overflow:auto;
-  position:relative;
-  transition: 0.8s;
-}
-
-.continuous-legend-minus {
-  width: 100%;
-  min-height: 0px;
-  overflow:auto;
-  position:relative;
-  transition: 0.8s;
+/* overall widget when inside a container with the hidden class */
+.hide-legend .continuous-legend {
+  transition: min-height 0.1s;
+  min-height: 0;
 }
 
 /* containers */

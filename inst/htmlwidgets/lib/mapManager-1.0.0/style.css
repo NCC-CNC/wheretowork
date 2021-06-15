@@ -70,7 +70,6 @@
     display: none;
 }
 
-
 /* visible checkbox */
 .map-manager-layer .visible-container input[type="checkbox"],
 .map-manager-layer .visible-container .checked {
