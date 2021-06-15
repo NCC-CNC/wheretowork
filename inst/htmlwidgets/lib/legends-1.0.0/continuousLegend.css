@@ -6,6 +6,22 @@
   position:relative;
 }
 
+.continuous-legend-plus {
+  width: 100%;
+  min-height: 115px;
+  overflow:auto;
+  position:relative;
+  transition: 0.8s;
+}
+
+.continuous-legend-minus {
+  width: 100%;
+  min-height: 0px;
+  overflow:auto;
+  position:relative;
+  transition: 0.8s;
+}
+
 /* containers */
 .continuous-legend .color-bar {
   position: absolute;
