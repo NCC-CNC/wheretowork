@@ -39,7 +39,13 @@ function categoricalLegend(el, x, units) {
     item_symbol.style.color = x.colors[i];
     if (x.colors[i].length === 9) {
       // if has alpha channel, then set opacity
-      item_symbol.style.opacity = 1 - parseInt(x.colors[i].substr(-2), 16)/255;
+      //item_symbol.style.opacity = 1 - parseInt(x.colors[i].substr(-2), 16)/255;
+      var r = parseInt(x.colors[i].slice(1, 3), 16);
+      var g = parseInt(x.colors[i].slice(3, 5), 16);
+      var b = parseInt(x.colors[i].slice(5, 7), 16);
+      var a = 1 - parseInt(x.colors[i].substr(-2), 16)/255;
+      item_symbol.style.backgroundColor = "rgba(" + r +", " + g +"," + b +", " + a +")";
+      item_symbol.style.color = "rgba(" + r +", " + g +"," + b +", " + a +")";
     }
 
     /// add item to legend
