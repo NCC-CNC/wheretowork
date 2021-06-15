@@ -26,7 +26,7 @@ class MultiThemeResults {
         .content,
       true);
 
-    // TODO: add code to dipslay results for the object
+    // TODO: add code to display results for the object
     // The current code just inserts a TODO into the DOM
     const l = document.createElement("label");
     l.innerText = "TODO";
