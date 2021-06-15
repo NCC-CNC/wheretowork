@@ -36,7 +36,9 @@
 .map-manager-layer .header .remove-button {
   float: right;
   margin-left: 5px;
-  margin-top: -3px;
+  margin-top: 0px;
+  padding-top: 0;
+  padding-bottom: 0;
   border: 0;
   background: #fff;
 }
@@ -89,5 +91,3 @@
 {
     display: none;
 }
-
-
