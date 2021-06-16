@@ -121,11 +121,9 @@ class MultiThemeLayer {
         single_view_el[i].addEventListener("change", function () {
           let checked = this.checked;
           if (checked) {
-            that.single_legend_el[i].style.display = "block";
-            // TODO: insert JS to add animation for maximizing legend
+            that.single_legend_el[i].classList.remove("hide-legend");
           } else {
-            that.single_legend_el[i].style.display = "none";
-            // TODO: insert JS to add animation for minimizing legend
+            that.single_legend_el[i].classList.add("hide-legend");
           }
         });
       }
