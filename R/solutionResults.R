@@ -123,7 +123,7 @@ solutionResults_html <- function(id, style, class, ...) {
       htmltools::tags$template(
         class = "statistic-template",
         htmltools::tags$div(
-          class  = "statistic",
+          class  = "solution-result",
           # TODO
         )
       )
@@ -156,7 +156,6 @@ solutionResults_html <- function(id, style, class, ...) {
     )
 
   ## multiTheme
-  ### main container
   x <-
     htmltools::tagAppendChild(
       x,
@@ -164,19 +163,6 @@ solutionResults_html <- function(id, style, class, ...) {
         class = "multi-theme-results-template",
         htmltools::tags$div(
           class = "solution-result",
-          # TODO
-        )
-      )
-    )
-
-  ### sub container
-  x <-
-    htmltools::tagAppendChild(
-      x,
-      htmltools::tags$template(
-        class = "multi-theme-single-results-template",
-        htmltools::tags$div(
-          class = "single-container",
           # TODO
         )
       )

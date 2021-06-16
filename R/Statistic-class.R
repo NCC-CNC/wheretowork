@@ -10,6 +10,9 @@ Statistic <- R6::R6Class(
   "Statistic",
   public = list(
 
+    #' @field id `character` value.
+    id = NA_character_,
+
     #' @field name `character` value.
     name = NA_character_,
 
@@ -21,18 +24,22 @@ Statistic <- R6::R6Class(
 
     #' @description
     #' Create a Statistic object.
+    #' @param id `character` value.
     #' @param name `character` value.
     #' @param value `numeric` value
     #' @param units `character` value.
     #' @return A Statistic object.
-    initialize = function(name, value, units) {
+    initialize = function(id, name, value, units) {
       assertthat::assert_that(
+        assertthat::is.string(id),
+        assertthat::noNA(id),
         assertthat::is.number(value),
         assertthat::noNA(value),
         assertthat::is.string(name),
         assertthat::noNA(name),
         assertthat::is.string(units),
         assertthat::noNA(units))
+      self$id <- id
       self$name <- name
       self$value <- value
       self$units <- units
@@ -58,7 +65,12 @@ Statistic <- R6::R6Class(
     #' Get widget data.
     #' @return `list` object.
     get_widget_data = function() {
-      list(name = self$name, value = self$value,  units = self$units)
+      list(
+        id = self$id,
+        name = self$name,
+        value = self$value,
+        units = self$units
+      )
     }
   )
 )
@@ -73,6 +85,8 @@ Statistic <- R6::R6Class(
 #'
 #' @param units `character` units.
 #'
+#' @inheritParams new_single_theme
+#'
 #' @return A [Statistic] object.
 #'
 #' @examples
@@ -83,6 +97,6 @@ Statistic <- R6::R6Class(
 #' print(x)
 #'
 #' @export
-new_statistic <- function(name, value, units) {
-  Statistic$new(name = name, value = value, units = units)
+new_statistic <- function(name, value, units, id = uuid::UUIDgenerate()) {
+  Statistic$new(id = id, name = name, value = value, units = units)
 }

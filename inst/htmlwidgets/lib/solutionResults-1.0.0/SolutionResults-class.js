@@ -9,7 +9,7 @@ class SolutionResults {
     // set fields to store HTML elements
     this.select_el =
       this.el.querySelector(".solution-select");
-    this.result_contatainer_el =
+    this.result_container_el =
       this.el.querySelector(".solution-result-container");
 
     // alias this
@@ -67,9 +67,9 @@ class SolutionResults {
     // if solution found, then show it in the widget
     if (idx > -1) {
       // clear solution from solution results container
-      removeAllChildNodes(this.result_contatainer_el);
+      removeAllChildNodes(this.result_container_el);
       // add new solution to solution results container
-      this.solutions[idx].render(this.result_contatainer_el);
+      this.solutions[idx].render(this.result_container_el);
       // update select input
       this.select_el.value = this.select_el.children[idx].innerText;
     }

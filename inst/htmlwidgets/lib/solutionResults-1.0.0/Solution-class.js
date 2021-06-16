@@ -11,26 +11,32 @@ class Solution {
     // set fields
     this.id = id;
     this.name = name;
+    this.statistics =
+      statistics.map((x) => newStatistic(manager, x));
+    this.theme_results =
+      theme_results.map((x) => newThemeResults(manager, x));
+    this.weight_results =
+      weight_results.map((x) => newWeightResults(manager, x));
 
     // create HTML element to display all solution results
     this.el = document.createElement("div");
 
     // statistics results
     const statistics_el = document.createElement("div");;
-    statistics.forEach((x) => {
-      statistics_el.appendChild(newStatistic(manager, x).render());
-    });
+    this.statistics.forEach((x) => {
+      return statistics_el.appendChild(x.render());
+    })
 
     // theme results
     const theme_results_el = document.createElement("div");
-    theme_results.forEach((x) => {
-      theme_results_el.appendChild(newThemeResults(manager, x).render());
+    this.theme_results.forEach((x) => {
+      return theme_results_el.appendChild(x.render());
     });
 
     // weight results
     const weight_results_el = document.createElement("div");
-    weight_results.forEach((x) => {
-      weight_results_el.appendChild(newWeightResults(manager, x).render());
+    this.weight_results.forEach((x) => {
+      return weight_results_el.appendChild(x.render());
     });
 
     // append all HTML  versions of the results objects to HTML element
@@ -43,6 +49,11 @@ class Solution {
   render(parent) {
     // append the HTML element to parent element
     parent.appendChild(this.el);
+
+    // call post-render methods to render charts
+    this.statistics.forEach((x) => x.postrender());
+    this.theme_results.forEach((x) => x.postrender());
+    this.weight_results.forEach((x) => x.postrender());
   }
 
 }

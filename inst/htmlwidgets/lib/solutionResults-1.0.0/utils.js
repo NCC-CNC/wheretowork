@@ -12,6 +12,7 @@ function newSolution(manager, x) {
 function newStatistic(manager, x) {
   return new Statistic(
     manager,
+    x.id,
     x.name,
     x.value,
     x.units);

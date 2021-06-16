@@ -2,6 +2,7 @@ class Statistic {
   /* constructor */
   constructor(
     manager,
+    id,
     name,
     value,
     units) {
@@ -14,6 +15,10 @@ class Statistic {
         .content,
       true);
 
+    // prepare HTML element
+    /// assign id to chart HTML element
+    this.el.querySelector(".solution-result").id = id;
+
     // append statistics to the HTML element
     const l = document.createElement("label");
     l.innerText = `${name}: ${value} ${units}`;
@@ -24,6 +29,11 @@ class Statistic {
   /* render method */
   render() {
     return this.el;
+  }
+
+  /* post render method */
+  postrender() {
+    // TODO: see ./SingleThemeResults-class.js for example
   }
 
 };

@@ -2,11 +2,12 @@ context("new_statistic")
 
 test_that("initialization", {
   # create object
-  x <- new_statistic(name = "Area", value = 12, units = "ha")
+  x <- new_statistic(name = "Area", value = 12, units = "ha", id = "S1")
   # run tests
   expect_is(x, "Statistic")
   print(x)
   expect_is(x$repr(), "character")
+  expect_identical(x$id, "S1")
   expect_identical(x$name, "Area")
   expect_identical(x$value, 12)
   expect_identical(x$units, "ha")
@@ -14,11 +15,12 @@ test_that("initialization", {
 
 test_that("widget method", {
   # create object
-  x <- new_statistic(name = "Area", value = 12, units = "ha")
+  x <- new_statistic(name = "Area", value = 12, units = "ha", id = "S1")
   # run tests
   expect_identical(
     x$get_widget_data(),
     list(
+      id = x$id,
       name = x$name,
       value = x$value,
       units = x$units
