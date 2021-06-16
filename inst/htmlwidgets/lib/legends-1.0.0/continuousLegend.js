@@ -50,8 +50,18 @@ function continuousLegend(el, x, units) {
   colorbar.className = "color-bar";
   let colorbar_background = "linear-gradient(180deg";
   for (let i = 0; i < x.colors.length; ++i) {
-    colorbar_background +=
+    if (x.colors[i].length === 9) {
+      // if has alpha channel, then set opacity
+      var r = parseInt(x.colors[i].slice(1, 3), 16);
+      var g = parseInt(x.colors[i].slice(3, 5), 16);
+      var b = parseInt(x.colors[i].slice(5, 7), 16);
+      var a = 1 - parseInt(x.colors[i].substr(-2), 16) / 255;
+      colorbar_background += 
+      `, rgba(${r}, ${g}, ${b}, ${a}) ${positions[i]}%`;  
+    } else {
+      colorbar_background +=
       `, ${x.colors[i]} ${positions[i]}%`;
+    }
   }
   colorbar_background += ")";
   colorbar.style.backgroundColor = x.colors[0];
