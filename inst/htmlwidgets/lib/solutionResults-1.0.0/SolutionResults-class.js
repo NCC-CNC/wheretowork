@@ -5,6 +5,7 @@ class SolutionResults {
     this.id = id,
     this.solutions = new Array();
     this.el = container;
+    this.current_idx = undefined;
 
     // set fields to store HTML elements
     this.select_el =
@@ -66,12 +67,18 @@ class SolutionResults {
     const idx = this.solutions.findIndex((x) => x.id === id);
     // if solution found, then show it in the widget
     if (idx > -1) {
+      // destroy charts if currently showing a solution
+      if (typeof this.current_idx !== "undefined") {
+        this.solutions[this.current_idx].destroy();
+      }
       // clear solution from solution results container
       removeAllChildNodes(this.result_container_el);
       // add new solution to solution results container
       this.solutions[idx].render(this.result_container_el);
       // update select input
       this.select_el.value = this.select_el.children[idx].innerText;
+      // update index of currently shown solution
+      this.current_idx = idx;
     }
   }
 

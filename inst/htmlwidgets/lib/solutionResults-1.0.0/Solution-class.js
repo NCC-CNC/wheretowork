@@ -56,4 +56,11 @@ class Solution {
     this.weight_results.forEach((x) => x.postrender());
   }
 
+  /* destroy method */
+  destroy() {
+    this.statistics.forEach((x) => x.destroy());
+    this.theme_results.forEach((x) => x.destroy());
+    this.weight_results.forEach((x) => x.destroy());
+  }
+
 }

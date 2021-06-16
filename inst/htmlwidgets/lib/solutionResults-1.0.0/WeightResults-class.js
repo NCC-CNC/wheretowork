@@ -12,6 +12,7 @@ class WeightResults {
   ) {
     // class fields
     this.id = id;
+    this.chart = undefined;
     this.el =
       document.importNode(
         document
@@ -39,6 +40,11 @@ class WeightResults {
 
   /* post render method */
   postrender() {
+    // TODO: see ./SingleThemeResults-class.js for example
+  }
+
+  /* destroy method */
+  destroy() {
     // TODO: see ./SingleThemeResults-class.js for example
   }
 

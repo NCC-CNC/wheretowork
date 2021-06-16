@@ -18,6 +18,7 @@ class SingleThemeResults {
   ) {
     // class fields
     this.id = id;
+    this.chart = undefined;
     this.el =
       document.importNode(
         document
@@ -98,8 +99,14 @@ class SingleThemeResults {
   /* post render method */
   postrender() {
     const node = document.querySelector(`[id="${this.id}"]`);
-    const chart = new ApexCharts(node, this.chart_options);
-    chart.render();
+    this.chart = new ApexCharts(node, this.chart_options);
+    this.chart.render();
+  }
+
+  /* destroy method */
+  destroy() {
+    this.chart.destroy();
+    this.chart = undefined;
   }
 
 };

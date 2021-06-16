@@ -7,6 +7,8 @@ class Statistic {
     value,
     units) {
     // initialize HTML element to display the results
+    this.id = id;
+    this.chart = undefined;
     this.el =
       document.importNode(
         document
@@ -14,6 +16,7 @@ class Statistic {
         .querySelector(".statistic-template")
         .content,
       true);
+
 
     // prepare HTML element
     /// assign id to chart HTML element
@@ -33,6 +36,11 @@ class Statistic {
 
   /* post render method */
   postrender() {
+    // TODO: see ./SingleThemeResults-class.js for example
+  }
+
+  /* destroy method */
+  destroy() {
     // TODO: see ./SingleThemeResults-class.js for example
   }
 
