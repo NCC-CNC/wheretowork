@@ -1,5 +1,6 @@
 # load packages
 library(testthat)
+library(shinytest)
 library(locationmisc)
 
 # enable parallel testing
