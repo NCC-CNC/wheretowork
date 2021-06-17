@@ -9,6 +9,27 @@
   align-content: flex-end;
   margin: 0px;
   margin-left:23px;
+  max-height: 115px;
+  overflow: auto;
+  position: relative;
+  transition: max-height 0.8s;
+}
+
+.hidden-legend .categorical-legend {
+  width: 95%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-flow: row wrap;
+  align-content: flex-end;
+  margin: 0px;
+  margin-left:23px;
+  max-height: 1px;
+  overflow: auto;
+  position: relative;
+  transition: max-height 0.8s;
 }
 
 .categorical-legend-plus {
