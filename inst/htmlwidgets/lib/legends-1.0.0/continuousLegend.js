@@ -53,11 +53,12 @@ function continuousLegend(el, x, units) {
   // create container for color bar ticks and labels
   let items = document.createElement("div");
   items.className = "items";
-  items.setAttribute("data-toggle", "tooltip");
-  items.setAttribute("data-placement", "right");
-  items.setAttribute("data-delay", "{\"show\":500, \"hide\":100}");
-  items.setAttribute("data-container", ".sidebar");
-  items.setAttribute(
+  l.setAttribute("data-toggle", "tooltip");
+  l.setAttribute("data-placement", "right");
+  l.setAttribute("data-delay", "{\"show\":500, \"hide\":100}");
+  l.setAttribute("data-container", ".sidebar");
+  l.setAttribute("style", "margin-left: -200px;");
+  l.setAttribute(
     "title",
     "This dataset has continuous data. " +
     "The legend shows the range of colors used to display the data.");
