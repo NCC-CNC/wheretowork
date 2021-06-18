@@ -1,0 +1,2633 @@
+name: Example GPKG dataset
+path: inst/extdata/sim_vector_data.gpkg
+mode: beginner
+themes:
+- name: Patagonian Tyrant
+  mandatory: no
+  round: yes
+  icon: map-marked-alt
+  feature:
+  - name: Patagonian Tyrant habitat
+    variable:
+      index: Patagonian_Tyrant
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFF7FB'
+        - '#ECE7F2'
+        - '#D0D1E6'
+        - '#A6BDDB'
+        - '#74A9CF'
+        - '#3690C0'
+        - '#0570B0'
+        - '#045A8D'
+        - '#023858'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.8557357
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.3395188
+    current_label: Current
+    icon: hdd
+- name: Amaui
+  mandatory: no
+  round: yes
+  icon: map-marked-alt
+  feature:
+  - name: Amaui habitat
+    variable:
+      index: Amaui
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFF7F3'
+        - '#FDE0DD'
+        - '#FCC5C0'
+        - '#FA9FB5'
+        - '#F768A1'
+        - '#DD3497'
+        - '#AE017E'
+        - '#7A0177'
+        - '#49006A'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.6767875
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.3465754
+    current_label: Current
+    icon: map-pin
+- name: Booted Racket-tail (Peruvian)
+  mandatory: no
+  round: yes
+  icon: map-marked-alt
+  feature:
+  - name: Booted Racket-tail (Peruvian) habitat
+    variable:
+      index: Booted_Racket_tail_Peruvian_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#67001F'
+        - '#B2182B'
+        - '#D6604D'
+        - '#F4A582'
+        - '#FDDBC7'
+        - '#F7F7F7'
+        - '#D1E5F0'
+        - '#92C5DE'
+        - '#4393C3'
+        - '#2166AC'
+        - '#053061'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.5743815
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.1199106
+    current_label: Current
+    icon: map-marked-alt
+- name: Blood-colored Woodpecker
+  mandatory: yes
+  round: yes
+  icon: map-marked-alt
+  feature:
+  - name: Blood-colored Woodpecker habitat
+    variable:
+      index: Blood_colored_Woodpecker
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFF7FB'
+        - '#ECE2F0'
+        - '#D0D1E6'
+        - '#A6BDDB'
+        - '#67A9CF'
+        - '#3690C0'
+        - '#02818A'
+        - '#016C59'
+        - '#014636'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.5997334
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.1021226
+    current_label: Current
+    icon: database
+- name: Delegorgue's Pigeon
+  mandatory: no
+  round: yes
+  icon: map-marked-alt
+  feature:
+  - name: Delegorgue's Pigeon habitat
+    variable:
+      index: Delegorgue_s_Pigeon
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FCFBFD'
+        - '#EFEDF5'
+        - '#DADAEB'
+        - '#BCBDDC'
+        - '#9E9AC8'
+        - '#807DBA'
+        - '#6A51A3'
+        - '#54278F'
+        - '#3F007D'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.7586366
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.0829848
+    current_label: Current
+    icon: map-pin
+- name: Ground-Rollers
+  mandatory: no
+  round: yes
+  icon: otter
+  feature:
+  - name: Long-tailed Ground-Roller
+    variable:
+      index: Long_tailed_Ground_Roller
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#7F3B08'
+        - '#B35806'
+        - '#E08214'
+        - '#FDB863'
+        - '#FEE0B6'
+        - '#F7F7F7'
+        - '#D8DAEB'
+        - '#B2ABD2'
+        - '#8073AC'
+        - '#542788'
+        - '#2D004B'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.5841786
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.3627551
+    current_label: Current
+    icon: database
+  - name: Scaly Ground-Roller
+    variable:
+      index: Scaly_Ground_Roller
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFFFE5'
+        - '#F7FCB9'
+        - '#D9F0A3'
+        - '#ADDD8E'
+        - '#78C679'
+        - '#41AB5D'
+        - '#238443'
+        - '#006837'
+        - '#004529'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.8209076
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.0225842
+    current_label: Current
+    icon: map-pin
+  - name: Rufous-headed Ground-Roller
+    variable:
+      index: Rufous_headed_Ground_Roller
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFF7FB'
+        - '#ECE7F2'
+        - '#D0D1E6'
+        - '#A6BDDB'
+        - '#74A9CF'
+        - '#3690C0'
+        - '#0570B0'
+        - '#045A8D'
+        - '#023858'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.6671548
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.0337297
+    current_label: Current
+    icon: hdd
+  - name: Short-legged Ground-Roller
+    variable:
+      index: Short_legged_Ground_Roller
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#F7FCFD'
+        - '#E5F5F9'
+        - '#CCECE6'
+        - '#99D8C9'
+        - '#66C2A4'
+        - '#41AE76'
+        - '#238B45'
+        - '#006D2C'
+        - '#00441B'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.8965926
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.2932636
+    current_label: Current
+    icon: atlas
+- name: Tityras and Allies
+  mandatory: no
+  round: yes
+  icon: dog
+  feature:
+  - name: Greenish Schiffornis
+    variable:
+      index: Greenish_Schiffornis
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#9E0142'
+        - '#D53E4F'
+        - '#F46D43'
+        - '#FDAE61'
+        - '#FEE08B'
+        - '#FFFFBF'
+        - '#E6F598'
+        - '#ABDDA4'
+        - '#66C2A5'
+        - '#3288BD'
+        - '#5E4FA2'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.7979685
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.247257
+    current_label: Current
+    icon: map-marked-alt
+  - name: Rose-throated Becard
+    variable:
+      index: Rose_throated_Becard
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#40004B'
+        - '#762A83'
+        - '#9970AB'
+        - '#C2A5CF'
+        - '#E7D4E8'
+        - '#F7F7F7'
+        - '#D9F0D3'
+        - '#A6DBA0'
+        - '#5AAE61'
+        - '#1B7837'
+        - '#00441B'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.6028866
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.0137347
+    current_label: Current
+    icon: map-pin
+  - name: Jamaican Becard
+    variable:
+      index: Jamaican_Becard
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#543005'
+        - '#8C510A'
+        - '#BF812D'
+        - '#DFC27D'
+        - '#F6E8C3'
+        - '#F5F5F5'
+        - '#C7EAE5'
+        - '#80CDC1'
+        - '#35978F'
+        - '#01665E'
+        - '#003C30'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.6947811
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.3496067
+    current_label: Current
+    icon: map-pin
+  - name: Black-tailed Tityra (Western)
+    variable:
+      index: Black_tailed_Tityra_Western_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#F7FCF5'
+        - '#E5F5E0'
+        - '#C7E9C0'
+        - '#A1D99B'
+        - '#74C476'
+        - '#41AB5D'
+        - '#238B45'
+        - '#006D2C'
+        - '#00441B'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.8013988
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.1412099
+    current_label: Current
+    icon: hdd
+  - name: Russet-winged Schiffornis
+    variable:
+      index: Russet_winged_Schiffornis
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFFFCC'
+        - '#FFEDA0'
+        - '#FED976'
+        - '#FEB24C'
+        - '#FD8D3C'
+        - '#FC4E2A'
+        - '#E31A1C'
+        - '#BD0026'
+        - '#800026'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.5347441
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.0701193
+    current_label: Current
+    icon: map-marked-alt
+  - name: Brown-winged Schiffornis (Amazonian)
+    variable:
+      index: Brown_winged_Schiffornis_Amazonian_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFFFCC'
+        - '#FFEDA0'
+        - '#FED976'
+        - '#FEB24C'
+        - '#FD8D3C'
+        - '#FC4E2A'
+        - '#E31A1C'
+        - '#BD0026'
+        - '#800026'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.5143789
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.2033293
+    current_label: Current
+    icon: atlas
+  - name: White-browed Purpletuft
+    variable:
+      index: White_browed_Purpletuft
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFFFE5'
+        - '#FFF7BC'
+        - '#FEE391'
+        - '#FEC44F'
+        - '#FE9929'
+        - '#EC7014'
+        - '#CC4C02'
+        - '#993404'
+        - '#662506'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.5586887
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.2968759
+    current_label: Current
+    icon: map-pin
+- name: Ducks, Geese, and Waterfowl
+  mandatory: no
+  round: yes
+  icon: dove
+  feature:
+  - name: Green-winged Teal
+    variable:
+      index: Green_winged_Teal
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#A50026'
+        - '#D73027'
+        - '#F46D43'
+        - '#FDAE61'
+        - '#FEE08B'
+        - '#FFFFBF'
+        - '#D9EF8B'
+        - '#A6D96A'
+        - '#66BD63'
+        - '#1A9850'
+        - '#006837'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.5257462
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.1497056
+    current_label: Current
+    icon: hdd
+  - name: Black-bellied Whistling-Duck
+    variable:
+      index: Black_bellied_Whistling_Duck
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFF5EB'
+        - '#FEE6CE'
+        - '#FDD0A2'
+        - '#FDAE6B'
+        - '#FD8D3C'
+        - '#F16913'
+        - '#D94801'
+        - '#A63603'
+        - '#7F2704'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.5445751
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.2556831
+    current_label: Current
+    icon: map-pin
+  - name: Bernier's Teal
+    variable:
+      index: Bernier_s_Teal
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#8DD3C7'
+        - '#FFFFB3'
+        - '#BEBADA'
+        - '#FB8072'
+        - '#80B1D3'
+        - '#FDB462'
+        - '#B3DE69'
+        - '#FCCDE5'
+        - '#D9D9D9'
+        - '#BC80BD'
+        - '#CCEBC5'
+        - '#FFED6F'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.8817506
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.3549075
+    current_label: Current
+    icon: map
+  - name: Mauritius Shelduck
+    variable:
+      index: Mauritius_Shelduck
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#543005'
+        - '#8C510A'
+        - '#BF812D'
+        - '#DFC27D'
+        - '#F6E8C3'
+        - '#F5F5F5'
+        - '#C7EAE5'
+        - '#80CDC1'
+        - '#35978F'
+        - '#01665E'
+        - '#003C30'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.7301759
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.0384529
+    current_label: Current
+    icon: map-marked-alt
+  - name: Mottled Duck (Gulf Coast)
+    variable:
+      index: Mottled_Duck_Gulf_Coast_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#F7FCFD'
+        - '#E5F5F9'
+        - '#CCECE6'
+        - '#99D8C9'
+        - '#66C2A4'
+        - '#41AE76'
+        - '#238B45'
+        - '#006D2C'
+        - '#00441B'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.8347197
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.3065876
+    current_label: Current
+    icon: map
+- name: Sharpbill, Royal Flycatcher, and Allies
+  mandatory: no
+  round: yes
+  icon: crow
+  feature:
+  - name: Black-tailed Flycatcher (Black-tailed)
+    variable:
+      index: Black_tailed_Flycatcher_Black_tailed_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#F7FBFF'
+        - '#DEEBF7'
+        - '#C6DBEF'
+        - '#9ECAE1'
+        - '#6BAED6'
+        - '#4292C6'
+        - '#2171B5'
+        - '#08519C'
+        - '#08306B'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.6215883
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.1244847
+    current_label: Current
+    icon: map-pin
+  - name: Whiskered Flycatcher
+    variable:
+      index: Whiskered_Flycatcher
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#F7FBFF'
+        - '#DEEBF7'
+        - '#C6DBEF'
+        - '#9ECAE1'
+        - '#6BAED6'
+        - '#4292C6'
+        - '#2171B5'
+        - '#08519C'
+        - '#08306B'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.5230549
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.0690427
+    current_label: Current
+    icon: map-marked-alt
+  - name: Royal Flycatcher (Amazonian)
+    variable:
+      index: Royal_Flycatcher_Amazonian_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#A6CEE3'
+        - '#1F78B4'
+        - '#B2DF8A'
+        - '#33A02C'
+        - '#FB9A99'
+        - '#E31A1C'
+        - '#FDBF6F'
+        - '#FF7F00'
+        - '#CAB2D6'
+        - '#6A3D9A'
+        - '#FFFF99'
+        - '#B15928'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.7673009
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.2056408
+    current_label: Current
+    icon: hdd
+  - name: Whiskered Flycatcher (Whiskered)
+    variable:
+      index: Whiskered_Flycatcher_Whiskered_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#40004B'
+        - '#762A83'
+        - '#9970AB'
+        - '#C2A5CF'
+        - '#E7D4E8'
+        - '#F7F7F7'
+        - '#D9F0D3'
+        - '#A6DBA0'
+        - '#5AAE61'
+        - '#1B7837'
+        - '#00441B'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.6121034
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.0056529
+    current_label: Current
+    icon: map-marked-alt
+  - name: Whiskered Flycatcher (Yellow-rumped)
+    variable:
+      index: Whiskered_Flycatcher_Yellow_rumped_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#B3E2CD'
+        - '#FDCDAC'
+        - '#CBD5E8'
+        - '#F4CAE4'
+        - '#E6F5C9'
+        - '#FFF2AE'
+        - '#F1E2CC'
+        - '#CCCCCC'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.5873755
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.0757101
+    current_label: Current
+    icon: database
+  - name: Black-tailed Flycatcher
+    variable:
+      index: Black_tailed_Flycatcher
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#B3E2CD'
+        - '#FDCDAC'
+        - '#CBD5E8'
+        - '#F4CAE4'
+        - '#E6F5C9'
+        - '#FFF2AE'
+        - '#F1E2CC'
+        - '#CCCCCC'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.8756575
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.0115293
+    current_label: Current
+    icon: map
+  - name: Royal Flycatcher (Northern)
+    variable:
+      index: Royal_Flycatcher_Northern_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#F7FCFD'
+        - '#E0ECF4'
+        - '#BFD3E6'
+        - '#9EBCDA'
+        - '#8C96C6'
+        - '#8C6BB1'
+        - '#88419D'
+        - '#810F7C'
+        - '#4D004B'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.6572016
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.2936581
+    current_label: Current
+    icon: atlas
+- name: Sunbirds and Spiderhunters
+  mandatory: no
+  round: yes
+  icon: dragon
+  feature:
+  - name: Green-tailed Sunbird (Doi Inthanon)
+    variable:
+      index: Green_tailed_Sunbird_Doi_Inthanon_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FBB4AE'
+        - '#B3CDE3'
+        - '#CCEBC5'
+        - '#DECBE4'
+        - '#FED9A6'
+        - '#FFFFCC'
+        - '#E5D8BD'
+        - '#FDDAEC'
+        - '#F2F2F2'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.8104795
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.009474
+    current_label: Current
+    icon: database
+  - name: Purple-throated Sunbird (Purple-throated)
+    variable:
+      index: Purple_throated_Sunbird_Purple_throated_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FCFBFD'
+        - '#EFEDF5'
+        - '#DADAEB'
+        - '#BCBDDC'
+        - '#9E9AC8'
+        - '#807DBA'
+        - '#6A51A3'
+        - '#54278F'
+        - '#3F007D'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.8190541
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.1654872
+    current_label: Current
+    icon: map-marked-alt
+  - name: Rockefeller's Sunbird
+    variable:
+      index: Rockefeller_s_Sunbird
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#543005'
+        - '#8C510A'
+        - '#BF812D'
+        - '#DFC27D'
+        - '#F6E8C3'
+        - '#F5F5F5'
+        - '#C7EAE5'
+        - '#80CDC1'
+        - '#35978F'
+        - '#01665E'
+        - '#003C30'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.8596818
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.2882134
+    current_label: Current
+    icon: database
+- name: Old World Parrots
+  mandatory: no
+  round: yes
+  icon: dragon
+  feature:
+  - name: Ground Parrot (Eastern)
+    variable:
+      index: Ground_Parrot_Eastern_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFF5EB'
+        - '#FEE6CE'
+        - '#FDD0A2'
+        - '#FDAE6B'
+        - '#FD8D3C'
+        - '#F16913'
+        - '#D94801'
+        - '#A63603'
+        - '#7F2704'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.8049143
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.3508286
+    current_label: Current
+    icon: map-pin
+  - name: Australian Ringneck (Mallee)
+    variable:
+      index: Australian_Ringneck_Mallee_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#40004B'
+        - '#762A83'
+        - '#9970AB'
+        - '#C2A5CF'
+        - '#E7D4E8'
+        - '#F7F7F7'
+        - '#D9F0D3'
+        - '#A6DBA0'
+        - '#5AAE61'
+        - '#1B7837'
+        - '#00441B'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.8792627
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.3189712
+    current_label: Current
+    icon: map-marked-alt
+  - name: Yellow-and-green Lorikeet (Mustard-capped)
+    variable:
+      index: Yellow_and_green_Lorikeet_Mustard_capped_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFFFFF'
+        - '#F0F0F0'
+        - '#D9D9D9'
+        - '#BDBDBD'
+        - '#969696'
+        - '#737373'
+        - '#525252'
+        - '#252525'
+        - '#000000'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.7857446
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.3553674
+    current_label: Current
+    icon: hdd
+  - name: Elegant Parrot
+    variable:
+      index: Elegant_Parrot
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFF7FB'
+        - '#ECE2F0'
+        - '#D0D1E6'
+        - '#A6BDDB'
+        - '#67A9CF'
+        - '#3690C0'
+        - '#02818A'
+        - '#016C59'
+        - '#014636'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.8156564
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.2362835
+    current_label: Current
+    icon: database
+  - name: Crimson Shining-Parrot
+    variable:
+      index: Crimson_Shining_Parrot
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#A50026'
+        - '#D73027'
+        - '#F46D43'
+        - '#FDAE61'
+        - '#FEE090'
+        - '#FFFFBF'
+        - '#E0F3F8'
+        - '#ABD9E9'
+        - '#74ADD1'
+        - '#4575B4'
+        - '#313695'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.6225413
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.113794
+    current_label: Current
+    icon: map-pin
+  - name: Red-breasted Pygmy-Parrot
+    variable:
+      index: Red_breasted_Pygmy_Parrot
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#8E0152'
+        - '#C51B7D'
+        - '#DE77AE'
+        - '#F1B6DA'
+        - '#FDE0EF'
+        - '#F7F7F7'
+        - '#E6F5D0'
+        - '#B8E186'
+        - '#7FBC41'
+        - '#4D9221'
+        - '#276419'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.8819597
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.0609008
+    current_label: Current
+    icon: map-marked-alt
+  - name: Rainbow Lorikeet
+    variable:
+      index: Rainbow_Lorikeet
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FBB4AE'
+        - '#B3CDE3'
+        - '#CCEBC5'
+        - '#DECBE4'
+        - '#FED9A6'
+        - '#FFFFCC'
+        - '#E5D8BD'
+        - '#FDDAEC'
+        - '#F2F2F2'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.7714696
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.0245248
+    current_label: Current
+    icon: map-pin
+  - name: Orange-breasted Fig-Parrot
+    variable:
+      index: Orange_breasted_Fig_Parrot
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFFFE5'
+        - '#F7FCB9'
+        - '#D9F0A3'
+        - '#ADDD8E'
+        - '#78C679'
+        - '#41AB5D'
+        - '#238443'
+        - '#006837'
+        - '#004529'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.7689631
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.1478996
+    current_label: Current
+    icon: map-marked-alt
+  - name: Pesquet's Parrot
+    variable:
+      index: Pesquet_s_Parrot
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#A50026'
+        - '#D73027'
+        - '#F46D43'
+        - '#FDAE61'
+        - '#FEE090'
+        - '#FFFFBF'
+        - '#E0F3F8'
+        - '#ABD9E9'
+        - '#74ADD1'
+        - '#4575B4'
+        - '#313695'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.8988972
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.3334793
+    current_label: Current
+    icon: map
+- name: Cranes
+  mandatory: no
+  round: yes
+  icon: crow
+  feature:
+  - name: White-naped Crane
+    variable:
+      index: White_naped_Crane
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#F7FCF5'
+        - '#E5F5E0'
+        - '#C7E9C0'
+        - '#A1D99B'
+        - '#74C476'
+        - '#41AB5D'
+        - '#238B45'
+        - '#006D2C'
+        - '#00441B'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.5582638
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.003866
+    current_label: Current
+    icon: map
+  - name: Hooded Crane
+    variable:
+      index: Hooded_Crane
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#A6CEE3'
+        - '#1F78B4'
+        - '#B2DF8A'
+        - '#33A02C'
+        - '#FB9A99'
+        - '#E31A1C'
+        - '#FDBF6F'
+        - '#FF7F00'
+        - '#CAB2D6'
+        - '#6A3D9A'
+        - '#FFFF99'
+        - '#B15928'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.8873745
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.3367825
+    current_label: Current
+    icon: database
+  - name: Brolga
+    variable:
+      index: Brolga
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#8E0152'
+        - '#C51B7D'
+        - '#DE77AE'
+        - '#F1B6DA'
+        - '#FDE0EF'
+        - '#F7F7F7'
+        - '#E6F5D0'
+        - '#B8E186'
+        - '#7FBC41'
+        - '#4D9221'
+        - '#276419'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.6915231
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.1049825
+    current_label: Current
+    icon: atlas
+  - name: Sandhill Crane (nesiotes)
+    variable:
+      index: Sandhill_Crane_nesiotes_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#7FC97F'
+        - '#BEAED4'
+        - '#FDC086'
+        - '#FFFF99'
+        - '#386CB0'
+        - '#F0027F'
+        - '#BF5B17'
+        - '#666666'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.5704044
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.3702364
+    current_label: Current
+    icon: database
+  - name: Red-crowned Crane
+    variable:
+      index: Red_crowned_Crane
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#E41A1C'
+        - '#377EB8'
+        - '#4DAF4A'
+        - '#984EA3'
+        - '#FF7F00'
+        - '#FFFF33'
+        - '#A65628'
+        - '#F781BF'
+        - '#999999'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.6545024
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.2829628
+    current_label: Current
+    icon: map
+  - name: Black-necked Crane
+    variable:
+      index: Black_necked_Crane
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#F7F4F9'
+        - '#E7E1EF'
+        - '#D4B9DA'
+        - '#C994C7'
+        - '#DF65B0'
+        - '#E7298A'
+        - '#CE1256'
+        - '#980043'
+        - '#67001F'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.5416117
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.1486767
+    current_label: Current
+    icon: database
+- name: Hawks, Eagles, and Kites
+  mandatory: no
+  round: yes
+  icon: horse
+  feature:
+  - name: Red-chested Goshawk (Banded)
+    variable:
+      index: Red_chested_Goshawk_Banded_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#67001F'
+        - '#B2182B'
+        - '#D6604D'
+        - '#F4A582'
+        - '#FDDBC7'
+        - '#F7F7F7'
+        - '#D1E5F0'
+        - '#92C5DE'
+        - '#4393C3'
+        - '#2166AC'
+        - '#053061'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.8826205
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.197369
+    current_label: Current
+    icon: map-pin
+  - name: Bicolored Hawk (Chilean)
+    variable:
+      index: Bicolored_Hawk_Chilean_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFFFE5'
+        - '#FFF7BC'
+        - '#FEE391'
+        - '#FEC44F'
+        - '#FE9929'
+        - '#EC7014'
+        - '#CC4C02'
+        - '#993404'
+        - '#662506'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.5008982
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.1026208
+    current_label: Current
+    icon: map
+  - name: Rüppell's Griffon
+    variable:
+      index: Rüppell_s_Griffon
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#543005'
+        - '#8C510A'
+        - '#BF812D'
+        - '#DFC27D'
+        - '#F6E8C3'
+        - '#F5F5F5'
+        - '#C7EAE5'
+        - '#80CDC1'
+        - '#35978F'
+        - '#01665E'
+        - '#003C30'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.7213833
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.323868
+    current_label: Current
+    icon: hdd
+  - name: Rufous-tailed Hawk
+    variable:
+      index: Rufous_tailed_Hawk
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFF5F0'
+        - '#FEE0D2'
+        - '#FCBBA1'
+        - '#FC9272'
+        - '#FB6A4A'
+        - '#EF3B2C'
+        - '#CB181D'
+        - '#A50F15'
+        - '#67000D'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.5729832
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.2140807
+    current_label: Current
+    icon: map
+  - name: Common Buzzard (Canary Is.)
+    variable:
+      index: Common_Buzzard_Canary_Is_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#40004B'
+        - '#762A83'
+        - '#9970AB'
+        - '#C2A5CF'
+        - '#E7D4E8'
+        - '#F7F7F7'
+        - '#D9F0D3'
+        - '#A6DBA0'
+        - '#5AAE61'
+        - '#1B7837'
+        - '#00441B'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.517843
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.0289638
+    current_label: Current
+    icon: map
+  - name: Black Kite (Black-eared)
+    variable:
+      index: Black_Kite_Black_eared_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFF5F0'
+        - '#FEE0D2'
+        - '#FCBBA1'
+        - '#FC9272'
+        - '#FB6A4A'
+        - '#EF3B2C'
+        - '#CB181D'
+        - '#A50F15'
+        - '#67000D'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.627571
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.3639527
+    current_label: Current
+    icon: map-pin
+  - name: Henst's Goshawk
+    variable:
+      index: Henst_s_Goshawk
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#A50026'
+        - '#D73027'
+        - '#F46D43'
+        - '#FDAE61'
+        - '#FEE08B'
+        - '#FFFFBF'
+        - '#D9EF8B'
+        - '#A6D96A'
+        - '#66BD63'
+        - '#1A9850'
+        - '#006837'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.5669534
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.3336262
+    current_label: Current
+    icon: database
+- name: Wattle-eyes and Batises
+  mandatory: no
+  round: yes
+  icon: fish
+  feature:
+  - name: Yellow-bellied Wattle-eye
+    variable:
+      index: Yellow_bellied_Wattle_eye
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#8DD3C7'
+        - '#FFFFB3'
+        - '#BEBADA'
+        - '#FB8072'
+        - '#80B1D3'
+        - '#FDB462'
+        - '#B3DE69'
+        - '#FCCDE5'
+        - '#D9D9D9'
+        - '#BC80BD'
+        - '#CCEBC5'
+        - '#FFED6F'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.5996658
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.0478645
+    current_label: Current
+    icon: hdd
+  - name: Banded Wattle-eye
+    variable:
+      index: Banded_Wattle_eye
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#F7FCFD'
+        - '#E0ECF4'
+        - '#BFD3E6'
+        - '#9EBCDA'
+        - '#8C96C6'
+        - '#8C6BB1'
+        - '#88419D'
+        - '#810F7C'
+        - '#4D004B'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.8361954
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.1152388
+    current_label: Current
+    icon: map-pin
+  - name: Cape Batis (Malawi)
+    variable:
+      index: Cape_Batis_Malawi_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFF7FB'
+        - '#ECE2F0'
+        - '#D0D1E6'
+        - '#A6BDDB'
+        - '#67A9CF'
+        - '#3690C0'
+        - '#02818A'
+        - '#016C59'
+        - '#014636'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.6754371
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.0735764
+    current_label: Current
+    icon: map
+  - name: Jameson's Wattle-eye
+    variable:
+      index: Jameson_s_Wattle_eye
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#F7FCF0'
+        - '#E0F3DB'
+        - '#CCEBC5'
+        - '#A8DDB5'
+        - '#7BCCC4'
+        - '#4EB3D3'
+        - '#2B8CBE'
+        - '#0868AC'
+        - '#084081'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.5699851
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.0516966
+    current_label: Current
+    icon: map-marked-alt
+- name: Laughingthrushes and Allies
+  mandatory: no
+  round: yes
+  icon: dragon
+  feature:
+  - name: Spotted Crocias
+    variable:
+      index: Spotted_Crocias
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFFFFF'
+        - '#F0F0F0'
+        - '#D9D9D9'
+        - '#BDBDBD'
+        - '#969696'
+        - '#737373'
+        - '#525252'
+        - '#252525'
+        - '#000000'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.7059721
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.2418478
+    current_label: Current
+    icon: database
+  - name: Blue-crowned Laughingthrush
+    variable:
+      index: Blue_crowned_Laughingthrush
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#8DD3C7'
+        - '#FFFFB3'
+        - '#BEBADA'
+        - '#FB8072'
+        - '#80B1D3'
+        - '#FDB462'
+        - '#B3DE69'
+        - '#FCCDE5'
+        - '#D9D9D9'
+        - '#BC80BD'
+        - '#CCEBC5'
+        - '#FFED6F'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.7531432
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.1568679
+    current_label: Current
+    icon: map
+  - name: Steere's Liocichla
+    variable:
+      index: Steere_s_Liocichla
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFF7EC'
+        - '#FEE8C8'
+        - '#FDD49E'
+        - '#FDBB84'
+        - '#FC8D59'
+        - '#EF6548'
+        - '#D7301F'
+        - '#B30000'
+        - '#7F0000'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.5024963
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.1897563
+    current_label: Current
+    icon: database
+  - name: Spectacled Barwing
+    variable:
+      index: Spectacled_Barwing
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#67001F'
+        - '#B2182B'
+        - '#D6604D'
+        - '#F4A582'
+        - '#FDDBC7'
+        - '#F7F7F7'
+        - '#D1E5F0'
+        - '#92C5DE'
+        - '#4393C3'
+        - '#2166AC'
+        - '#053061'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.5435348
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.0358554
+    current_label: Current
+    icon: atlas
+  - name: Black-throated Laughingthrush (Black-throated)
+    variable:
+      index: Black_throated_Laughingthrush_Black_throated_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFF7F3'
+        - '#FDE0DD'
+        - '#FCC5C0'
+        - '#FA9FB5'
+        - '#F768A1'
+        - '#DD3497'
+        - '#AE017E'
+        - '#7A0177'
+        - '#49006A'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.7060561
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.0692192
+    current_label: Current
+    icon: database
+  - name: Beautiful Sibia
+    variable:
+      index: Beautiful_Sibia
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#8E0152'
+        - '#C51B7D'
+        - '#DE77AE'
+        - '#F1B6DA'
+        - '#FDE0EF'
+        - '#F7F7F7'
+        - '#E6F5D0'
+        - '#B8E186'
+        - '#7FBC41'
+        - '#4D9221'
+        - '#276419'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.8978753
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.3979595
+    current_label: Current
+    icon: map
+  - name: Striated Babbler
+    variable:
+      index: Striated_Babbler
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFF5EB'
+        - '#FEE6CE'
+        - '#FDD0A2'
+        - '#FDAE6B'
+        - '#FD8D3C'
+        - '#F16913'
+        - '#D94801'
+        - '#A63603'
+        - '#7F2704'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.8969849
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.0639157
+    current_label: Current
+    icon: database
+  - name: Black-headed Sibia (engelbachi/kingi)
+    variable:
+      index: Black_headed_Sibia_engelbachi_kingi_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFFFFF'
+        - '#F0F0F0'
+        - '#D9D9D9'
+        - '#BDBDBD'
+        - '#969696'
+        - '#737373'
+        - '#525252'
+        - '#252525'
+        - '#000000'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.7003479
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.1970924
+    current_label: Current
+    icon: map
+- name: Wattlebirds
+  mandatory: no
+  round: yes
+  icon: horse
+  feature:
+  - name: South Island Saddleback
+    variable:
+      index: South_Island_Saddleback
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#F7FCFD'
+        - '#E5F5F9'
+        - '#CCECE6'
+        - '#99D8C9'
+        - '#66C2A4'
+        - '#41AE76'
+        - '#238B45'
+        - '#006D2C'
+        - '#00441B'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.6095402
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.0604833
+    current_label: Current
+    icon: map
+  - name: North Island Kokako
+    variable:
+      index: North_Island_Kokako
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#7F3B08'
+        - '#B35806'
+        - '#E08214'
+        - '#FDB863'
+        - '#FEE0B6'
+        - '#F7F7F7'
+        - '#D8DAEB'
+        - '#B2ABD2'
+        - '#8073AC'
+        - '#542788'
+        - '#2D004B'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.6139739
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.1605762
+    current_label: Current
+    icon: map
+  - name: North Island Saddleback
+    variable:
+      index: North_Island_Saddleback
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#7F3B08'
+        - '#B35806'
+        - '#E08214'
+        - '#FDB863'
+        - '#FEE0B6'
+        - '#F7F7F7'
+        - '#D8DAEB'
+        - '#B2ABD2'
+        - '#8073AC'
+        - '#542788'
+        - '#2D004B'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.8051348
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.3972568
+    current_label: Current
+    icon: hdd
+  - name: Huia
+    variable:
+      index: Huia
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#F7FCFD'
+        - '#E5F5F9'
+        - '#CCECE6'
+        - '#99D8C9'
+        - '#66C2A4'
+        - '#41AE76'
+        - '#238B45'
+        - '#006D2C'
+        - '#00441B'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.8901996
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.159649
+    current_label: Current
+    icon: map-pin
+- name: Finches, Euphonias, and Allies
+  mandatory: no
+  round: yes
+  icon: horse
+  feature:
+  - name: Trumpeter Finch
+    variable:
+      index: Trumpeter_Finch
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFF7FB'
+        - '#ECE7F2'
+        - '#D0D1E6'
+        - '#A6BDDB'
+        - '#74A9CF'
+        - '#3690C0'
+        - '#0570B0'
+        - '#045A8D'
+        - '#023858'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.7324213
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.2489305
+    current_label: Current
+    icon: database
+  - name: Maui Akepa
+    variable:
+      index: Maui_Akepa
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFFFFF'
+        - '#F0F0F0'
+        - '#D9D9D9'
+        - '#BDBDBD'
+        - '#969696'
+        - '#737373'
+        - '#525252'
+        - '#252525'
+        - '#000000'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.8987894
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.1206576
+    current_label: Current
+    icon: atlas
+  - name: Maui Alauahio
+    variable:
+      index: Maui_Alauahio
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FBB4AE'
+        - '#B3CDE3'
+        - '#CCEBC5'
+        - '#DECBE4'
+        - '#FED9A6'
+        - '#FFFFCC'
+        - '#E5D8BD'
+        - '#FDDAEC'
+        - '#F2F2F2'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.565632
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.2255093
+    current_label: Current
+    icon: map
+  - name: Citril Finch
+    variable:
+      index: Citril_Finch
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#B3E2CD'
+        - '#FDCDAC'
+        - '#CBD5E8'
+        - '#F4CAE4'
+        - '#E6F5C9'
+        - '#FFF2AE'
+        - '#F1E2CC'
+        - '#CCCCCC'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.6368536
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.2339872
+    current_label: Current
+    icon: atlas
+  - name: Olive-backed Euphonia
+    variable:
+      index: Olive_backed_Euphonia
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFF7FB'
+        - '#ECE7F2'
+        - '#D0D1E6'
+        - '#A6BDDB'
+        - '#74A9CF'
+        - '#3690C0'
+        - '#0570B0'
+        - '#045A8D'
+        - '#023858'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.6996379
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.0418443
+    current_label: Current
+    icon: atlas
+  - name: Saffron Siskin
+    variable:
+      index: Saffron_Siskin
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFF7FB'
+        - '#ECE7F2'
+        - '#D0D1E6'
+        - '#A6BDDB'
+        - '#74A9CF'
+        - '#3690C0'
+        - '#0570B0'
+        - '#045A8D'
+        - '#023858'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.8032426
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.1430731
+    current_label: Current
+    icon: map-pin
+  - name: Three-banded Rosefinch
+    variable:
+      index: Three_banded_Rosefinch
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#40004B'
+        - '#762A83'
+        - '#9970AB'
+        - '#C2A5CF'
+        - '#E7D4E8'
+        - '#F7F7F7'
+        - '#D9F0D3'
+        - '#A6DBA0'
+        - '#5AAE61'
+        - '#1B7837'
+        - '#00441B'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.7681542
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.1814665
+    current_label: Current
+    icon: map-pin
+- name: Trumpeters
+  mandatory: no
+  round: yes
+  icon: dragon
+  feature:
+  - name: Dark-winged Trumpeter (Xingu)
+    variable:
+      index: Dark_winged_Trumpeter_Xingu_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#9E0142'
+        - '#D53E4F'
+        - '#F46D43'
+        - '#FDAE61'
+        - '#FEE08B'
+        - '#FFFFBF'
+        - '#E6F598'
+        - '#ABDDA4'
+        - '#66C2A5'
+        - '#3288BD'
+        - '#5E4FA2'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.7821872
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.001663
+    current_label: Current
+    icon: atlas
+  - name: Gray-winged Trumpeter (Napo)
+    variable:
+      index: Gray_winged_Trumpeter_Napo_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFFFD9'
+        - '#EDF8B1'
+        - '#C7E9B4'
+        - '#7FCDBB'
+        - '#41B6C4'
+        - '#1D91C0'
+        - '#225EA8'
+        - '#253494'
+        - '#081D58'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.6358597
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.0487024
+    current_label: Current
+    icon: map-pin
+  - name: Gray-winged Trumpeter
+    variable:
+      index: Gray_winged_Trumpeter
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#E41A1C'
+        - '#377EB8'
+        - '#4DAF4A'
+        - '#984EA3'
+        - '#FF7F00'
+        - '#FFFF33'
+        - '#A65628'
+        - '#F781BF'
+        - '#999999'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.5277963
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.2087577
+    current_label: Current
+    icon: map
+  - name: Dark-winged Trumpeter (Black-backed)
+    variable:
+      index: Dark_winged_Trumpeter_Black_backed_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#8E0152'
+        - '#C51B7D'
+        - '#DE77AE'
+        - '#F1B6DA'
+        - '#FDE0EF'
+        - '#F7F7F7'
+        - '#E6F5D0'
+        - '#B8E186'
+        - '#7FBC41'
+        - '#4D9221'
+        - '#276419'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.883734
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.1756338
+    current_label: Current
+    icon: map
+  - name: Gray-winged Trumpeter (Gray-winged)
+    variable:
+      index: Gray_winged_Trumpeter_Gray_winged_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#67001F'
+        - '#B2182B'
+        - '#D6604D'
+        - '#F4A582'
+        - '#FDDBC7'
+        - '#FFFFFF'
+        - '#E0E0E0'
+        - '#BABABA'
+        - '#878787'
+        - '#4D4D4D'
+        - '#1A1A1A'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.6623095
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.0774647
+    current_label: Current
+    icon: map-pin
+  - name: Dark-winged Trumpeter (Dusky-backed)
+    variable:
+      index: Dark_winged_Trumpeter_Dusky_backed_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#8E0152'
+        - '#C51B7D'
+        - '#DE77AE'
+        - '#F1B6DA'
+        - '#FDE0EF'
+        - '#F7F7F7'
+        - '#E6F5D0'
+        - '#B8E186'
+        - '#7FBC41'
+        - '#4D9221'
+        - '#276419'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.5102042
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.0951879
+    current_label: Current
+    icon: map
+- name: Flowerpeckers
+  mandatory: no
+  round: yes
+  icon: hippo
+  feature:
+  - name: Midget Flowerpecker
+    variable:
+      index: Midget_Flowerpecker
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#F7FCF5'
+        - '#E5F5E0'
+        - '#C7E9C0'
+        - '#A1D99B'
+        - '#74C476'
+        - '#41AB5D'
+        - '#238B45'
+        - '#006D2C'
+        - '#00441B'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.7422633
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.1736073
+    current_label: Current
+    icon: map-pin
+  - name: Ashy Flowerpecker
+    variable:
+      index: Ashy_Flowerpecker
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#F7FBFF'
+        - '#DEEBF7'
+        - '#C6DBEF'
+        - '#9ECAE1'
+        - '#6BAED6'
+        - '#4292C6'
+        - '#2171B5'
+        - '#08519C'
+        - '#08306B'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.7766025
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.2773209
+    current_label: Current
+    icon: atlas
+  - name: Black-fronted Flowerpecker
+    variable:
+      index: Black_fronted_Flowerpecker
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#66C2A5'
+        - '#FC8D62'
+        - '#8DA0CB'
+        - '#E78AC3'
+        - '#A6D854'
+        - '#FFD92F'
+        - '#E5C494'
+        - '#B3B3B3'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.8883464
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.2852696
+    current_label: Current
+    icon: hdd
+  - name: Yellow-sided Flowerpecker
+    variable:
+      index: Yellow_sided_Flowerpecker
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#67001F'
+        - '#B2182B'
+        - '#D6604D'
+        - '#F4A582'
+        - '#FDDBC7'
+        - '#F7F7F7'
+        - '#D1E5F0'
+        - '#92C5DE'
+        - '#4393C3'
+        - '#2166AC'
+        - '#053061'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.6716828
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.0322433
+    current_label: Current
+    icon: map-pin
+  - name: Bicolored Flowerpecker
+    variable:
+      index: Bicolored_Flowerpecker
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#8E0152'
+        - '#C51B7D'
+        - '#DE77AE'
+        - '#F1B6DA'
+        - '#FDE0EF'
+        - '#F7F7F7'
+        - '#E6F5D0'
+        - '#B8E186'
+        - '#7FBC41'
+        - '#4D9221'
+        - '#276419'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.8556606
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.0665925
+    current_label: Current
+    icon: atlas
+- name: Tinamous
+  mandatory: no
+  round: yes
+  icon: hippo
+  feature:
+  - name: Thicket Tinamou
+    variable:
+      index: Thicket_Tinamou
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#F7FBFF'
+        - '#DEEBF7'
+        - '#C6DBEF'
+        - '#9ECAE1'
+        - '#6BAED6'
+        - '#4292C6'
+        - '#2171B5'
+        - '#08519C'
+        - '#08306B'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.842381
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.1762377
+    current_label: Current
+    icon: map
+  - name: Quebracho Crested-Tinamou
+    variable:
+      index: Quebracho_Crested_Tinamou
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFF5EB'
+        - '#FEE6CE'
+        - '#FDD0A2'
+        - '#FDAE6B'
+        - '#FD8D3C'
+        - '#F16913'
+        - '#D94801'
+        - '#A63603'
+        - '#7F2704'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.5187103
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.0923175
+    current_label: Current
+    icon: map-marked-alt
+  - name: Red-legged Tinamou
+    variable:
+      index: Red_legged_Tinamou
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFF5EB'
+        - '#FEE6CE'
+        - '#FDD0A2'
+        - '#FDAE6B'
+        - '#FD8D3C'
+        - '#F16913'
+        - '#D94801'
+        - '#A63603'
+        - '#7F2704'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.737718
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.2518105
+    current_label: Current
+    icon: map-pin
+  - name: Barred Tinamou
+    variable:
+      index: Barred_Tinamou
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#F7F4F9'
+        - '#E7E1EF'
+        - '#D4B9DA'
+        - '#C994C7'
+        - '#DF65B0'
+        - '#E7298A'
+        - '#CE1256'
+        - '#980043'
+        - '#67001F'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.6420477
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.0710047
+    current_label: Current
+    icon: map-pin
+  - name: Bartlett's Tinamou
+    variable:
+      index: Bartlett_s_Tinamou
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#E41A1C'
+        - '#377EB8'
+        - '#4DAF4A'
+        - '#984EA3'
+        - '#FF7F00'
+        - '#FFFF33'
+        - '#A65628'
+        - '#F781BF'
+        - '#999999'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.628061
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.2658489
+    current_label: Current
+    icon: map-pin
+  - name: Puna Tinamou
+    variable:
+      index: Puna_Tinamou
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#7FC97F'
+        - '#BEAED4'
+        - '#FDC086'
+        - '#FFFF99'
+        - '#386CB0'
+        - '#F0027F'
+        - '#BF5B17'
+        - '#666666'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.8515752
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.1274388
+    current_label: Current
+    icon: hdd
+weights:
+- name: Tourism and recreation
+  variable:
+    index: Tourism_and_recreation
+    units: CAD
+    legend:
+      type: continuous
+      colors:
+      - '#FFF7F3'
+      - '#FDE0DD'
+      - '#FCC5C0'
+      - '#FA9FB5'
+      - '#F768A1'
+      - '#DD3497'
+      - '#AE017E'
+      - '#7A0177'
+      - '#49006A'
+  initial_status: yes
+  initial_visible: yes
+  initial_factor: 0.0
+  min_factor: 0.0
+  min_factor: 0.0
+  step_factor: 1.0
+- name: Archaeological site
+  variable:
+    index: Archaeological_site
+    units: frequency
+    legend:
+      type: continuous
+      colors:
+      - '#FFF7FB'
+      - '#ECE7F2'
+      - '#D0D1E6'
+      - '#A6BDDB'
+      - '#74A9CF'
+      - '#3690C0'
+      - '#0570B0'
+      - '#045A8D'
+      - '#023858'
+  initial_status: yes
+  initial_visible: yes
+  initial_factor: 0.0
+  min_factor: 0.0
+  min_factor: 0.0
+  step_factor: 1.0
+- name: Roads
+  variable:
+    index: Roads
+    units: ha
+    legend:
+      type: continuous
+      colors:
+      - '#FBB4AE'
+      - '#B3CDE3'
+      - '#CCEBC5'
+      - '#DECBE4'
+      - '#FED9A6'
+      - '#FFFFCC'
+      - '#E5D8BD'
+      - '#FDDAEC'
+      - '#F2F2F2'
+  initial_status: yes
+  initial_visible: yes
+  initial_factor: 0.0
+  min_factor: 0.0
+  min_factor: 0.0
+  step_factor: 1.0
+- name: Fire
+  variable:
+    index: Fire
+    units: '%'
+    legend:
+      type: continuous
+      colors:
+      - '#FFFFE5'
+      - '#F7FCB9'
+      - '#D9F0A3'
+      - '#ADDD8E'
+      - '#78C679'
+      - '#41AB5D'
+      - '#238443'
+      - '#006837'
+      - '#004529'
+  initial_status: yes
+  initial_visible: yes
+  initial_factor: 0.0
+  min_factor: 0.0
+  min_factor: 0.0
+  step_factor: 1.0
+- name: Marine vessel traffic (threat)
+  variable:
+    index: Marine_vessel_traffic_threat_
+    units: frequency
+    legend:
+      type: continuous
+      colors:
+      - '#7F3B08'
+      - '#B35806'
+      - '#E08214'
+      - '#FDB863'
+      - '#FEE0B6'
+      - '#F7F7F7'
+      - '#D8DAEB'
+      - '#B2ABD2'
+      - '#8073AC'
+      - '#542788'
+      - '#2D004B'
+  initial_status: yes
+  initial_visible: yes
+  initial_factor: 0.0
+  min_factor: 0.0
+  min_factor: 0.0
+  step_factor: 1.0
+- name: Invasive species
+  variable:
+    index: Invasive_species
+    units: frequency
+    legend:
+      type: continuous
+      colors:
+      - '#67001F'
+      - '#B2182B'
+      - '#D6604D'
+      - '#F4A582'
+      - '#FDDBC7'
+      - '#F7F7F7'
+      - '#D1E5F0'
+      - '#92C5DE'
+      - '#4393C3'
+      - '#2166AC'
+      - '#053061'
+  initial_status: yes
+  initial_visible: yes
+  initial_factor: 0.0
+  min_factor: 0.0
+  min_factor: 0.0
+  step_factor: 1.0

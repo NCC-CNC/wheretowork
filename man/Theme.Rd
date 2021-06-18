@@ -52,6 +52,7 @@ This method intentionally throws an error.
 \item \href{#method-set_feature_status}{\code{Theme$set_feature_status()}}
 \item \href{#method-set_feature_goal}{\code{Theme$set_feature_goal()}}
 \item \href{#method-set_parameter}{\code{Theme$set_parameter()}}
+\item \href{#method-export}{\code{Theme$export()}}
 \item \href{#method-clone}{\code{Theme$clone()}}
 }
 }
@@ -295,6 +296,19 @@ Available options are \code{"feature_status"}, \code{"feature_goal"},
 \item{\code{value}}{vector containing a value for each feature.}
 }
 \if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-export"></a>}}
+\if{latex}{\out{\hypertarget{method-export}{}}}
+\subsection{Method \code{export()}}{
+Export parameters
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$export()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{list} object.
 }
 }
 \if{html}{\out{<hr>}}

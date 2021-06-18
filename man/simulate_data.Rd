@@ -4,22 +4,19 @@
 \alias{simulate_data}
 \title{Simulate data}
 \usage{
-simulate_data(
-  n_single_themes = 5,
-  n_multi_themes = 15,
-  n_weights = 5,
-  lambda = 5
-)
+simulate_data(data, n_single_themes, n_multi_themes, n_weights, lambda = 5)
 }
 \arguments{
+\item{data}{\code{\link[sf:sf]{sf::st_sf()}} or \code{\link[raster:raster]{raster::raster()}} object containing
+the spatial data that underpin the planning units.}
+
 \item{n_single_themes}{\code{integer} number of themes with a single feature
-to simulate. Defaults to 5.}
+to simulate.}
 
 \item{n_multi_themes}{\code{integer} number of themes with a multiple features
-to simulate. Defaults to 15.}
+to simulate.}
 
-\item{n_weights}{\code{integer} number of weights to simulate.
-Defaults to 5.}
+\item{n_weights}{\code{integer} number of weights to simulate.}
 
 \item{lambda}{\code{numeric} lambda parameter for simulating the number
 of features for each \link{MultiTheme} object.
@@ -36,6 +33,7 @@ This function simulates \link{Weight}, \link{SingleTheme}, and \link{MultiTheme}
 \examples{
 # simulate data
 x <- simulate_data(
+  data  = simulate_simple_vector_dataset(),
   n_single_themes = 3, n_multi_themes = 2, n_weights = 1)
 
 # print results

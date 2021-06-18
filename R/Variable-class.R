@@ -103,6 +103,17 @@ Variable <- R6::R6Class(
     #' @return [sf::st_as_sf()] or [raster::raster()] object.
     get_data = function() {
       self$dataset$get_index(self$index)
+    },
+
+    #' @description
+    #' Export parameters
+    #' @return `list` object.
+    export = function() {
+      list(
+        index = self$index,
+        units = self$units,
+        legend = self$legend$export()
+      )
     }
   )
 )

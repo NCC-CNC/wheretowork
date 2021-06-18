@@ -224,7 +224,22 @@ Theme <- R6::R6Class(
         stop(paste0("\"", name, "\" is not a parameter"))
       }
       invisible(self)
+    },
+
+
+    #' @description
+    #' Export parameters
+    #' @return `list` object.
+    export = function() {
+      list(
+        name = self$name,
+        mandatory = self$mandatory,
+        round = self$round,
+        icon = strsplit(self$icon$attribs$`aria-label`, " ")[[1]][[1]],
+        feature = lapply(self$feature, function(x) x$export())
+      )
     }
+
   )
 )
 

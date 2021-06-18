@@ -233,6 +233,25 @@ Feature <- R6::R6Class(
         value >= self$limit_goal)
       self$goal <- value
       invisible(self)
+    },
+
+    #' @description
+    #' Export parameters
+    #' @return `list` object.
+    export = function() {
+      list(
+        name = self$name,
+        variable = self$variable$export(),
+        initial_status = self$status,
+        initial_visible = self$visible,
+        initial_goal = self$goal,
+        min_goal = self$min_goal,
+        max_goal = self$max_goal,
+        step_goal = self$step_goal,
+        limit_goal = self$limit_goal,
+        current_label = self$current_label,
+        icon = strsplit(self$icon$attribs$`aria-label`, " ")[[1]][[1]]
+      )
     }
 
   )

@@ -23,7 +23,8 @@ Imports:
     RColorBrewer (>= 1.1.2),
     scales (>= 1.1.1),
     prioritizr (>= 7.0.1),
-    viridisLite (>= 0.4.0)
+    viridisLite (>= 0.4.0),
+    RandomFields (>= 3.3.8)
 Suggests:
     testthat (>= 2.0.1),
     knitr (>= 1.2.0),
@@ -81,6 +82,7 @@ Collate:
     'simulate_data.R'
     'simulate_legends.R'
     'simulate_solution.R'
+    'simulate_spatial_dataset.R'
     'solutionResults.R'
     'solutionResultsSidebarPane.R'
     'solutionSetttings-components.R'
@@ -90,5 +92,6 @@ Collate:
     'updateMapManagerOrder.R'
     'updateSolutionResults.R'
     'updateSolutionSettings.R'
+    'write_configuration_file.R'
 Remotes:
     r-spatial/leafgl#58

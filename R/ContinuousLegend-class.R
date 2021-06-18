@@ -60,7 +60,18 @@ ContinuousLegend <- R6::R6Class(
         values = br,
         type = "ContinuousLegend"
       )
+    },
+
+    #' @description
+    #' Export parameters
+    #' @return `list` object.
+    export = function() {
+      list(
+        type = "continuous",
+        colors = self$colors
+      )
     }
+
   )
 )
 
