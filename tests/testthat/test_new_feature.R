@@ -2,8 +2,7 @@ context("new_feature")
 
 test_that("initialization", {
   # create object
-  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
-  d <- new_dataset(f)
+  d <- new_dataset(import_simple_raster_data())
   v <- new_variable(
     dataset = d, index = 1, total = 200, units = "ha",
     legend = simulate_continuous_legend())
@@ -18,7 +17,6 @@ test_that("initialization", {
     step_goal = 0.03,
     limit_goal = 0.2,
     current = 0.56,
-    current_label = "Now",
     icon = "bell",
     id = "FID1")
   # run tests
@@ -37,15 +35,13 @@ test_that("initialization", {
   expect_identical(x$step_goal, 0.03)
   expect_identical(x$limit_goal, 0.2)
   expect_identical(x$current, 0.56)
-  expect_identical(x$current_label, "Now")
   expect_identical(x$icon, shiny::icon("bell"))
   expect_identical(x$id, "FID1")
 })
 
 test_that("get methods", {
   # create object
-  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
-  d <- new_dataset(f)
+  d <- new_dataset(import_simple_raster_data())
   v <- new_variable(
     dataset = d, index = 1, total = 200, units = "ha",
     legend = simulate_continuous_legend())
@@ -60,7 +56,6 @@ test_that("get methods", {
     step_goal = 0.03,
     limit_goal = 0.2,
     current = 0.56,
-    current_label = "Now",
     icon = "bell",
     id = "FID1")
   # run tests
@@ -71,8 +66,7 @@ test_that("get methods", {
 
 test_that("set methods", {
   # create object
-  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
-  d <- new_dataset(f)
+  d <- new_dataset(import_simple_raster_data())
   v <- new_variable(
     dataset = d, index = 1, total = 200, units = "ha",
     legend = simulate_continuous_legend())
@@ -87,7 +81,6 @@ test_that("set methods", {
     step_goal = 0.03,
     limit_goal = 0.2,
     current = 0.56,
-    current_label = "Now",
     icon = "bell",
     id = "FID1")
   # run tests

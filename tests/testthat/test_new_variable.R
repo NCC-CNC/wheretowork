@@ -2,8 +2,7 @@ context("new_variable")
 
 test_that("initialization", {
   # prepare data
-  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
-  rd <- readNamedRaster(f)
+  rd <- simulate_proportion_spatial_data(import_simple_raster_data(), 2)
   d <- new_dataset(rd)
   l <- new_continuous_legend(1, 100, c("#000000", "#AAAAAA"))
   # create object
@@ -21,8 +20,7 @@ test_that("initialization", {
 
 test_that("methods", {
   # prepare data
-  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
-  rd <- readNamedRaster(f)
+  rd <- simulate_proportion_spatial_data(import_simple_raster_data(), 2)
   d <- new_dataset(rd)
   l <- new_continuous_legend(1, 100, c("#000000", "#AAAAAA"))
   # create object
@@ -38,10 +36,8 @@ test_that("methods", {
 
 test_that("new_variable_from_auto (continuous)", {
   # prepare data
-  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
-  rd <- readNamedRaster(f)
+  rd <- simulate_continuous_spatial_data(import_simple_raster_data(), 2)
   d <- new_dataset(rd)
-  rd <- readNamedRaster(f)
   # create object
   x <- new_variable_from_auto(
     dataset = d, index = 2, units = "ha", colors = "viridis")
@@ -57,13 +53,12 @@ test_that("new_variable_from_auto (continuous)", {
    new_continuous_legend(
      raster::cellStats(rd[[2]], "min"),
      raster::cellStats(rd[[2]], "max"),
-     color_palette("viridis", 20)))
+     color_palette("viridis", 5)))
 })
 
 test_that("new_variable_from_auto (categorical)", {
   # prepare data
-  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
-  rd <- readNamedRaster(f)
+  rd <- simulate_categorical_spatial_data(import_simple_raster_data(), 2)
   d <- new_dataset(rd)
   # create object
   x <- new_variable_from_auto(
@@ -76,14 +71,16 @@ test_that("new_variable_from_auto (categorical)", {
   expect_identical(x$units, "ha")
   expect_equal(
     x$legend,
-    new_categorical_legend(seq(1, 5), color_palette("viridis", 5))
+    new_categorical_legend(
+      seq_len(raster::cellStats(rd[[1]], "max")),
+      color_palette("viridis", raster::cellStats(rd[[1]], "max")))
   )
 })
 
 test_that("new_variable_from_metadata (continuous)", {
   # prepare data
-  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
-  d <- new_dataset(f)
+  rd <- import_simple_raster_data()
+  d <- new_dataset(rd)
   # create object
   x <- new_variable_from_metadata(
     dataset = d,
@@ -100,14 +97,14 @@ test_that("new_variable_from_metadata (continuous)", {
   expect_identical(x$units, "ha")
   expect_equal(
     x$legend,
-    new_continuous_legend(1, 5, color_palette("viridis", 20))
+    new_continuous_legend(1, 5, color_palette("viridis", 5))
   )
 })
 
 test_that("new_variable_from_metadata (categorical)", {
   # prepare data
-  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
-  d <- new_dataset(f)
+  rd <- import_simple_raster_data()
+  d <- new_dataset(rd)
   # create object
   x <- new_variable_from_metadata(
     dataset = d,

@@ -11,9 +11,6 @@ MultiTheme <- R6::R6Class(
   inherit = Theme,
   public = list(
 
-    #' @field current_label `character` value.
-    current_label = NA_character_,
-
     #' @field feature_order `numeric` value.
     feature_order = NA_real_,
 
@@ -23,14 +20,11 @@ MultiTheme <- R6::R6Class(
     #' @param name `character` value.
     #' @param feature `list` of [Feature] objects.
     #' @param mandatory `logical` value.
-    #' @param current_label `character` value.
     #' @param feature_order `numeric` vector.
-    #' @param round `logical` value.
     #' @param icon `shiny.tag` object.
     #' @return A new MultiTheme object.
     initialize = function(
-      id, name, feature, mandatory,
-      current_label, feature_order, round, icon) {
+      id, name, feature, mandatory, feature_order, icon) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -45,17 +39,11 @@ MultiTheme <- R6::R6Class(
         #### mandatory
         assertthat::is.flag(mandatory),
         assertthat::noNA(mandatory),
-        #### current_label
-        assertthat::is.string(current_label),
-        assertthat::noNA(current_label),
         #### feature_order
         is.numeric(feature_order),
         assertthat::noNA(feature_order),
         length(feature_order) == length(feature),
         identical(anyDuplicated(feature_order), 0L),
-        #### round
-        assertthat::is.flag(round),
-        assertthat::noNA(round),
         #### icon
         inherits(icon, "shiny.tag"))
       ## assert all feature have ame units
@@ -70,9 +58,7 @@ MultiTheme <- R6::R6Class(
       self$name <- name
       self$feature <- feature
       self$mandatory <- mandatory
-      self$current_label <- current_label
       self$feature_order <- feature_order
-      self$round <- round
       self$icon <- icon
     },
 
@@ -124,16 +110,12 @@ MultiTheme <- R6::R6Class(
           vapply(self$feature, function(x) x$limit_goal, numeric(1)),
         feature_step_goal =
           vapply(self$feature, function(x) x$step_goal, numeric(1)),
-        feature_current_label =
-          vapply(self$feature, function(x) x$current_label, character(1)),
         feature_icon =
           vapply(
             self$feature, function(x) as.character(x$icon),
             character(1)),
         units = self$feature[[1]]$variable$units,
         mandatory = self$mandatory,
-        current_label = self$current_label,
-        round = self$round,
         icon = as.character(self$icon)
       )
     },
@@ -171,15 +153,8 @@ MultiTheme <- R6::R6Class(
 #' @param mandatory `logical` Is the theme mandatory for generating solutions?
 #'   Defaults to `FALSE`.
 #'
-#' @param current_label `character` The display label for the current
-#'  level of representation for the features under the group view.
-#'  Defaults to `Current`.
-#'
 #' @param feature_order `numeric` Relative order for displaying each feature
 #'  on a map. Defaults to a reverse sequence of integer values.
-#'
-#' @param round `logical` should all numbers be rounded to the nearest integer?
-#'   Defaults to `TRUE`.
 #'
 #' @param icon `shiny.tag` Icon to display for the feature
 #'  This icon should indicate the type of data that underpin the feature.
@@ -221,9 +196,7 @@ new_multi_theme <- function(
   name,
   feature,
   mandatory = FALSE,
-  round = TRUE,
   icon = "map-marked-alt",
-  current_label = "Current",
   feature_order = as.double(rev(seq_along(feature))),
   id = uuid::UUIDgenerate()) {
   # convert icon to shiny.tag if needed
@@ -235,8 +208,6 @@ new_multi_theme <- function(
     name = name,
     feature = feature,
     mandatory = mandatory,
-    current_label = current_label,
     feature_order = feature_order,
-    round = round,
     icon = icon)
 }

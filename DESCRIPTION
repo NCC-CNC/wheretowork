@@ -13,6 +13,7 @@ Authors@R: c(
 Imports:
     utils,
     stats,
+    methods,
     assertthat (>= 0.2.0),
     htmlwidgets (>= 1.5.3),
     htmltools (>= 0.5.1.1),
@@ -24,7 +25,9 @@ Imports:
     scales (>= 1.1.1),
     prioritizr (>= 7.0.1),
     viridisLite (>= 0.4.0),
-    RandomFields (>= 3.3.8)
+    RandomFields (>= 3.3.8),
+    fasterize (>= 1.0.3),
+    yaml (>= 2.2.1)
 Suggests:
     testthat (>= 2.0.1),
     knitr (>= 1.2.0),
@@ -70,6 +73,7 @@ Collate:
     'WeightResults-class.R'
     'color_palette.R'
     'extract_data_matrix.R'
+    'import_spatial_data.R'
     'mapManager-components.R'
     'mapManager.R'
     'solutionSettings.R'
@@ -82,7 +86,7 @@ Collate:
     'simulate_data.R'
     'simulate_legends.R'
     'simulate_solution.R'
-    'simulate_spatial_dataset.R'
+    'simulate_spatial_data.R'
     'solutionResults.R'
     'solutionResultsSidebarPane.R'
     'solutionSetttings-components.R'

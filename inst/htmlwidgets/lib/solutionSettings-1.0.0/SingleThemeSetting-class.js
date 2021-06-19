@@ -13,11 +13,9 @@ class SingleThemeSetting {
     feature_goal,
     feature_limit_goal,
     feature_step_goal,
-    feature_current_label,
     feature_status,
     units,
     mandatory,
-    round,
     icon
   ) {
     // class fields
@@ -73,8 +71,7 @@ class SingleThemeSetting {
     /// current label
     current_label_el.innerText =
       single_current_label_text(
-        feature_current_held, feature_total_amount, round,
-        feature_current_label, units);
+        feature_current_held, feature_total_amount, "Current", units);
     /// current bar width
     style_current_bar(current_bar_el, feature_current_held);
 
@@ -89,8 +86,7 @@ class SingleThemeSetting {
       /// update goal label
       this.goal_el.noUiSlider.on("update", function (values, handle) {
         goal_label_el.innerText = single_goal_label_text(
-          values[handle], feature_total_amount, round,
-          "Goal", units);
+          values[handle], feature_total_amount, "Goal", units);
       });
       /// enable/disable widget on click
       this.status_el.addEventListener("change", function () {

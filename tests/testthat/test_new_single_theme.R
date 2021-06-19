@@ -2,11 +2,8 @@ context("new_single_theme")
 
 test_that("initialization", {
   # create object
-  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
-  d <- new_dataset(f)
-  v <- new_variable(
-    dataset = d, index = 1, total = 200, units = "ha",
-    legend = simulate_continuous_legend())
+  d <- new_dataset(import_simple_raster_data())
+  v <- new_variable_from_auto(dataset = d, index = 1, units = "ha")
   f <- new_feature(
     name = "F1",
     variable = v,
@@ -18,14 +15,12 @@ test_that("initialization", {
     step_goal = 0.02,
     limit_goal = 0.05,
     current = 0.2567,
-    current_label = "Now",
     icon = "bell",
     id = "FID1")
   x <- new_single_theme(
     name = "FS",
     feature = f,
     mandatory = FALSE,
-    round = FALSE,
     icon = "atom",
     id = "FS1")
   # run tests
@@ -35,17 +30,13 @@ test_that("initialization", {
   expect_identical(x$name, "FS")
   expect_identical(x$feature, list(f))
   expect_identical(x$mandatory, FALSE)
-  expect_identical(x$round, FALSE)
   expect_identical(x$icon, shiny::icon("atom"))
 })
 
 test_that("get methods", {
   # create object
-  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
-  d <- new_dataset(f)
-  v <- new_variable(
-    dataset = d, index = 1, total = 200, units = "ha",
-    legend = simulate_continuous_legend())
+  d <- new_dataset(import_simple_raster_data())
+  v <- new_variable_from_auto(dataset = d, index = 1, units = "ha")
   f <- new_feature(
     name = "F1",
     variable = v,
@@ -57,14 +48,12 @@ test_that("get methods", {
     step_goal = 0.02,
     limit_goal = 0.05,
     current = 0.2567,
-    current_label = "Now",
     icon = "bell",
     id = "FID1")
   x <- new_single_theme(
     name = "FS",
     feature = f,
     mandatory = TRUE,
-    round = FALSE,
     icon = "atom",
     id = "FS1")
   # run tests
@@ -78,12 +67,8 @@ test_that("get methods", {
 
 test_that("set methods", {
   # create object
-  # create object
-  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
-  d <- new_dataset(f)
-  v <- new_variable(
-    dataset = d, index = 1, total = 200, units = "ha",
-    legend = simulate_continuous_legend())
+  d <- new_dataset(import_simple_raster_data())
+  v <- new_variable_from_auto(dataset = d, index = 1, units = "ha")
   f <- new_feature(
     name = "F1",
     variable = v,
@@ -95,14 +80,12 @@ test_that("set methods", {
     step_goal = 0.02,
     limit_goal = 0.05,
     current = 0.2567,
-    current_label = "Now",
     icon = "bell",
     id = "FID1")
   x <- new_single_theme(
     name = "FS",
     feature = f,
     mandatory = TRUE,
-    round = FALSE,
     icon = "atom",
     id = "FS1")
   # run tests
@@ -122,12 +105,8 @@ test_that("set methods", {
 
 test_that("widget methods", {
   # create object
-  # create object
-  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
-  d <- new_dataset(f)
-  v <- new_variable(
-    dataset = d, index = 1, total = 200, units = "ha",
-    legend = simulate_continuous_legend())
+  d <- new_dataset(import_simple_raster_data())
+  v <- new_variable_from_auto(dataset = d, index = 1, units = "ha")
   f <- new_feature(
     name = "F1",
     variable = v,
@@ -139,14 +118,12 @@ test_that("widget methods", {
     step_goal = 0.02,
     limit_goal = 0.05,
     current = 0.034,
-    current_label = "Now",
     icon = "bell",
     id = "FID1")
   x <- new_single_theme(
     name = "FS",
     feature = f,
     mandatory = TRUE,
-    round = FALSE,
     icon = "atom",
     id = "FS1")
   # run tests
@@ -159,17 +136,15 @@ test_that("widget methods", {
       feature_name = "F1",
       feature_id = "FID1",
       feature_status = FALSE,
-      feature_total_amount = 200,
+      feature_total_amount = v$total,
       feature_current_held = 0.034,
       feature_min_goal = 0.01,
       feature_max_goal = 0.99,
       feature_goal = 0.2,
       feature_limit_goal = 0.05,
       feature_step_goal = 0.02,
-      feature_current_label = "Now",
       units = "ha",
       mandatory = TRUE,
-      round = FALSE,
       icon = as.character(shiny::icon("atom")))
   )
   ## map manager

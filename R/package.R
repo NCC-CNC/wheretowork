@@ -19,3 +19,12 @@ NULL
 #' @name locationmisc
 #' @docType package
 NULL
+
+# define global variables used in lazy evaluation
+utils::globalVariables(
+  c(
+    "absolute_area",
+    "absolute_perimeter",
+    "statistics"
+  )
+)

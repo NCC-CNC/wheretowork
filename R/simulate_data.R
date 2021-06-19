@@ -27,10 +27,13 @@ NULL
 #' @seealso [new_weight], [new_single_theme], [new_multi_theme].
 #'
 #' @examples
+#' # import data
+#' f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+#' d <- raster::raster(f)
+#'
 #' # simulate data
 #' x <- simulate_data(
-#'   data  = simulate_simple_vector_dataset(),
-#'   n_single_themes = 3, n_multi_themes = 2, n_weights = 1)
+#'   data  = d, n_single_themes = 3, n_multi_themes = 2, n_weights = 1)
 #'
 #' # print results
 #' print(x)
@@ -68,47 +71,42 @@ simulate_data <- function(
   st_names <- tn$feature[st_idx]
   ## set index names
   st_index <- make_valid_names(st_names)
-  ## simulate underlying data values
-  std <- simulate_spatial_autocorrelated_values(data, n_single_themes)
-  names(std)[seq_len(n_single_themes)] <- st_index
-  if (inherits(data, "sf")) {
-    d$data <- cbind(d$data, sf::st_drop_geometry(std))
-    std_min <- apply(sf::st_drop_geometry(std), 2, min, na.rm = TRUE)
-    std_max <- apply(sf::st_drop_geometry(std), 2, max, na.rm = TRUE)
-    std_total <- colSums(sf::st_drop_geometry(std))
-  } else {
-    d$data <- raster::stack(d$data, std)
-    std_min <- raster::cellStats(std, "min")
-    std_max <- raster::cellStats(std, "max")
-    std_total <- raster::cellStats(std, "sum")
-  }
-
   ## generate themes
-  st <- lapply(seq_len(n_single_themes), function(i) {
-    new_single_theme(
-      name = st_names[i],
-      mandatory = runif(1) > 0.5,
-      new_feature(
-        name = paste0(st_names[i], " habitat"),
-        initial_goal = stats::runif(1, 0.5, 0.9),
-        current = stats::runif(1, 0.1, 0.6),
-        limit_goal = stats::runif(1, 0, 0.4),
-        icon = example_feature_icon(),
-        variable =
-          new_variable(
-            dataset = d,
-            index = st_index[[i]],
-            total = std_total[[i]],
-            units = "ha",
-            legend = new_continuous_legend(
-              min_value = std_min[[i]],
-              max_value = std_max[[i]],
-              colors = color_palette("random")
+  st <- list()
+  for (i in seq_len(n_single_themes)) {
+    ### simulate features for the theme
+    if (stats::runif(1) > 0.5) {
+      #### simulate continuous feature data
+      std <- simulate_continuous_spatial_data(data, 1)
+    } else {
+      #### simulate categorical feature data
+      std <- simulate_categorical_spatial_data(data, 1)
+    }
+    names(std)[1] <- st_index[i]
+    ### append data to dataset
+    if (inherits(data, "sf")) {
+      d$data <- cbind(d$data, sf::st_drop_geometry(std))
+    } else {
+      d$data <- raster::stack(d$data, std)
+    }
+    ### create theme
+    st[[i]] <-
+      new_single_theme(
+        name = st_names[i],
+        mandatory = stats::runif(1) > 0.5,
+        new_feature(
+          name = paste0(st_names[i], " habitat"),
+          initial_goal = round(stats::runif(1, 0.5, 0.9), 2),
+          current = round(stats::runif(1, 0.1, 0.6), 2),
+          limit_goal = round(stats::runif(1, 0, 0.4), 2),
+          icon = example_feature_icon(),
+          variable =
+            new_variable_from_auto(
+              dataset = d, index = st_index[[i]], units = "ha"
             )
-          )
+        )
       )
-    )
-  })
+  }
 
   # simulate multi themes
   ## exclude names from tn object
@@ -141,41 +139,34 @@ simulate_data <- function(
       sample(tn$feature[tn$theme == mt_names[i]], mt_n_features[i])
     curr_tn_index <- make_valid_names(curr_tn_names)
     ### simulate features within the theme
-    curr_mtd <- simulate_spatial_autocorrelated_values(data, mt_n_features[i])
+    if (stats::runif(1) > 0.5) {
+      #### simulate continuous data
+      curr_mtd <-
+        simulate_continuous_spatial_data(
+          data, mt_n_features[i])
+    } else {
+      #### simulate categorical data
+      curr_mtd <- simulate_categorical_spatial_data(
+        data, mt_n_features[i])
+    }
     names(curr_mtd)[seq_len(mt_n_features[i])] <- curr_tn_index
+    ### add theme data to dataset
     if (inherits(data, "sf")) {
       d$data <- cbind(d$data, sf::st_drop_geometry(curr_mtd))
-      curr_mtd_min <-
-        apply(sf::st_drop_geometry(curr_mtd), 2, min, na.rm = TRUE)
-      curr_mtd_max <-
-        apply(sf::st_drop_geometry(curr_mtd), 2, max, na.rm = TRUE)
-      curr_mtd_total <-
-        colSums(sf::st_drop_geometry(curr_mtd))
     } else {
       d$data <- raster::stack(d$data, curr_mtd)
-      curr_mtd_min <- raster::cellStats(curr_mtd, "min")
-      curr_mtd_max <- raster::cellStats(curr_mtd, "max")
-      curr_mtd_total <- raster::cellStats(curr_mtd, "sum")
     }
     ### create features
     curr_fts <- lapply(seq_len(mt_n_features[i]), function(j) {
       new_feature(
         name = curr_tn_names[[j]],
-        initial_goal = stats::runif(1, 0.5, 0.9),
-        current = stats::runif(1, 0.1, 0.6),
-        limit_goal = stats::runif(1, 0, 0.4),
+        initial_goal = round(stats::runif(1, 0.5, 0.9), 2),
+        current = round(stats::runif(1, 0.1, 0.6), 2),
+        limit_goal = round(stats::runif(1, 0, 0.4), 2),
         icon = example_feature_icon(),
         variable =
-          new_variable(
-            dataset = d,
-            index = curr_tn_index[[j]],
-            total = curr_mtd_total[[j]],
-            units = "ha",
-            legend = new_continuous_legend(
-              min_value = curr_mtd_min[[j]],
-              max_value = curr_mtd_max[[j]],
-              colors = color_palette("random")
-            )
+          new_variable_from_auto(
+            dataset = d, index = curr_tn_index[[j]], units = "ha"
           )
       )
     })
@@ -201,34 +192,20 @@ simulate_data <- function(
   ## set index names
   wn_index <- make_valid_names(wn[[1]])
   ## simulate underlying data values
-  wd <- simulate_spatial_autocorrelated_values(data, n_weights)
+  wd <- simulate_proportion_spatial_data(data, n_weights)
   names(wd)[seq_len(n_weights)] <- wn_index
   if (inherits(data, "sf")) {
     d$data <- cbind(d$data, sf::st_drop_geometry(wd))
-    w_min <- apply(sf::st_drop_geometry(wd), 2, min, na.rm = TRUE)
-    w_max <- apply(sf::st_drop_geometry(wd), 2, max, na.rm = TRUE)
-    w_total <- colSums(sf::st_drop_geometry(wd))
   } else {
     d$data <- raster::stack(d$data, wd)
-    w_min <- raster::cellStats(wd, "min")
-    w_max <- raster::cellStats(wd, "max")
-    w_total <- raster::cellStats(wd, "sum")
   }
   ## generate weights
   w <- lapply(seq_len(n_weights), function(i) {
     new_weight(
       name = wn[[1]][i],
       variable =
-        new_variable(
-          dataset = d,
-          index = wn_index[i],
-          total = w_total[[i]],
-          units = wn[[2]][i],
-          legend = new_continuous_legend(
-            min_value = w_min[[i]],
-            max_value = w_max[[i]],
-            colors = color_palette("random")
-          )
+        new_variable_from_auto(
+          dataset = d, index = wn_index[[i]], units = "ha"
         )
     )
   })

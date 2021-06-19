@@ -31,10 +31,13 @@ A \code{list} containing the simulated objects. It has \code{themes} and
 This function simulates \link{Weight}, \link{SingleTheme}, and \link{MultiTheme} objects.
 }
 \examples{
+# import data
+f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+d <- raster::raster(f)
+
 # simulate data
 x <- simulate_data(
-  data  = simulate_simple_vector_dataset(),
-  n_single_themes = 3, n_multi_themes = 2, n_weights = 1)
+  data  = d, n_single_themes = 3, n_multi_themes = 2, n_weights = 1)
 
 # print results
 print(x)

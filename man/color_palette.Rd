@@ -85,9 +85,12 @@ color_palette("Greens", NULL)
 # obtain 15 colors using the Set1 and Pastel1 palettes
 color_palette("Set1;Pastel1", 15)
 
-# obtain colors from the plasma palette
+# obtain all colors from the plasma palette
 color_palette("plasma", NULL)
 
-# obtain colors from a random palette
+# obtain all colors from a random palette
 color_palette("random", NULL)
+
+# obtain 5 colors from random palette(s)
+color_palette("random", 5)
 }

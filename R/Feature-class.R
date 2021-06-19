@@ -51,9 +51,6 @@ Feature <- R6::R6Class(
     #' @field limit_goal `numeric` limit goal value.
     limit_goal = NA_real_,
 
-    #' @field  current_label `character` current label.
-    current_label = NA_character_,
-
     #' @field icon `shiny.tag` object.
     icon = NULL,
 
@@ -70,13 +67,12 @@ Feature <- R6::R6Class(
     #' @param limit_goal `numeric` value.
     #' @param step_goal `numeric` value.
     #' @param current `numeric` value.
-    #' @param current_label `character` value.
     #' @param icon `shiny.tag` object.
     #' @return A new Feature object.
     initialize = function(
       id, name, variable, initial_visible, initial_status,
       initial_goal, min_goal, max_goal, step_goal, limit_goal,
-      current, current_label, icon) {
+      current, icon) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -116,9 +112,6 @@ Feature <- R6::R6Class(
         assertthat::noNA(current),
         isTRUE(current >= 0),
         isTRUE(current <= 1),
-        #### current_label
-        assertthat::is.string(current_label),
-        assertthat::noNA(current_label),
         #### icon
         inherits(icon, "shiny.tag"))
       ### set fields
@@ -135,7 +128,6 @@ Feature <- R6::R6Class(
       self$max_goal <- max_goal
       self$step_goal <- step_goal
       self$limit_goal <- limit_goal
-      self$current_label <- current_label
       self$current <- current
       self$icon <- icon
     },
@@ -249,7 +241,7 @@ Feature <- R6::R6Class(
         max_goal = self$max_goal,
         step_goal = self$step_goal,
         limit_goal = self$limit_goal,
-        current_label = self$current_label,
+        current = self$current,
         icon = strsplit(self$icon$attribs$`aria-label`, " ")[[1]][[1]]
       )
     }
@@ -306,10 +298,6 @@ Feature <- R6::R6Class(
 #' @param current `numeric` current proportion of values held in existing
 #'   conservation areas (e.g. 0.1 = 10%).
 #'
-#' @param current_label `character` The display label for the current
-#'  level of for the feature.
-#'  Defaults to `"Current"`.
-#'
 #' @param icon `character` or `shiny.tag` Icon to display for the feature
 #'  This icon should indicate the type of data that underpin the feature.
 #'  If the argument to `icon` is a `character`, it is used with
@@ -349,7 +337,6 @@ new_feature <- function(
     step_goal = 0.01,
     limit_goal = 0.1,
     current = 0,
-    current_label = "Current",
     icon = "map-marked-alt",
     id = uuid::UUIDgenerate()) {
   # convert icon to shiny.tag if needed
@@ -368,6 +355,5 @@ new_feature <- function(
     step_goal = step_goal,
     limit_goal = limit_goal,
     current = current,
-    current_label = current_label,
     icon = icon)
 }

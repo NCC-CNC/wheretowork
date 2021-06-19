@@ -2,11 +2,8 @@ context("new_weight")
 
 test_that("initialization", {
   # create object
-  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
-  d <- new_dataset(f)
-  v <- new_variable(
-    dataset = d, index = 1, total = 200, units = "ha",
-    legend = simulate_continuous_legend())
+  d <- new_dataset(import_simple_raster_data())
+  v <- new_variable_from_auto(dataset = d, index = 1, units = "ha")
   x <- new_weight(
     name = "Human Footprint Index",
     variable = v,
@@ -36,11 +33,8 @@ test_that("initialization", {
 
 test_that("get methods", {
   # create object
-  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
-  d <- new_dataset(f)
-  v <- new_variable(
-    dataset = d, index = 1, total = 200, units = "ha",
-    legend = simulate_continuous_legend())
+  d <- new_dataset(import_simple_raster_data())
+  v <- new_variable_from_auto(dataset = d, index = 1, units = "ha")
   x <- new_weight(
     name = "Human Footprint Index",
     variable = v,
@@ -61,11 +55,8 @@ test_that("get methods", {
 
 test_that("set methods", {
   # create object
-  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
-  d <- new_dataset(f)
-  v <- new_variable(
-    dataset = d, index = 1, total = 200, units = "ha",
-    legend = simulate_continuous_legend())
+  d <- new_dataset(import_simple_raster_data())
+  v <- new_variable_from_auto(dataset = d, index = 1, units = "ha")
   x <- new_weight(
     name = "Human Footprint Index",
     variable = v,

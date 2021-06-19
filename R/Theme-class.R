@@ -23,9 +23,6 @@ Theme <- R6::R6Class(
     #' @field mandatory `logical` value.
     mandatory = FALSE,
 
-    #' @field round `logical` value.
-    round = NA,
-
     #' @field icon `shiny.tag` value.
     icon = NULL,
 
@@ -234,7 +231,6 @@ Theme <- R6::R6Class(
       list(
         name = self$name,
         mandatory = self$mandatory,
-        round = self$round,
         icon = strsplit(self$icon$attribs$`aria-label`, " ")[[1]][[1]],
         feature = lapply(self$feature, function(x) x$export())
       )

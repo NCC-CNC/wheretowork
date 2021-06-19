@@ -26,11 +26,9 @@ function newThemeSetting(manager, x) {
       x.feature_goal,
       x.feature_limit_goal,
       x.feature_step_goal,
-      x.feature_current_label,
       x.feature_status,
       x.units,
       x.mandatory,
-      x.round,
       x.icon
     );
   } else {
@@ -47,13 +45,10 @@ function newThemeSetting(manager, x) {
       x.feature_goal,
       x.feature_limit_goal,
       x.feature_step_goal,
-      x.feature_current_label,
       x.feature_status,
       x.feature_icon,
       x.units,
       x.mandatory,
-      x.current_label,
-      x.round,
       x.icon
     );
   }

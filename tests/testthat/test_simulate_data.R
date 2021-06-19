@@ -2,11 +2,12 @@ context("test_simulate_data")
 
 test_that("small example", {
   # define parameters
+  rd <- import_simple_raster_data()
   n_st <- 2
   n_mt <- 1
   n_w <- 3
   # create object
-  x <- simulate_data(n_st, n_mt, n_w)
+  x <- simulate_data(rd, n_st, n_mt, n_w)
   # run tests
   expect_is(x, "list")
   expect_length(x$themes, n_st + n_mt)
@@ -21,11 +22,12 @@ test_that("small example", {
 
 test_that("large example", {
   # define parameters
-  n_st <- 20
-  n_mt <- 30
+  rd <- import_realistic_raster_data()
+  n_st <- 5
+  n_mt <- 4
   n_w <- 10
   # create object
-  x <- simulate_data(n_st, n_mt, n_w)
+  x <- simulate_data(rd, n_st, n_mt, n_w)
   # run tests
   expect_is(x, "list")
   expect_length(x$themes, n_st + n_mt)

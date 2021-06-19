@@ -18,7 +18,6 @@ test_that("initialization (SingleTheme)", {
     step_goal = 0.02,
     limit_goal = 0.05,
     current = 0.034,
-    current_label = "Now",
     icon = "bell",
     id = "FID1")
   fr <- new_feature_results(
@@ -28,7 +27,6 @@ test_that("initialization (SingleTheme)", {
   th <- new_theme(
     name = "FS",
     feature = f,
-    round = FALSE,
     icon = "atom",
     id = "FS1")
   x <- new_theme_results(theme = th, feature_results = fr, id = "RID2")
@@ -56,7 +54,6 @@ test_that("widget methods (SingleTheme)", {
     step_goal = 0.02,
     limit_goal = 0.05,
     current = 0.034,
-    current_label = "Now",
     icon = "bell",
     id = "FID1")
   f$status <- TRUE
@@ -68,7 +65,6 @@ test_that("widget methods (SingleTheme)", {
   th <- new_theme(
     name = "FS",
     feature = f,
-    round = FALSE,
     icon = "atom",
     id = "FS1")
   x <- new_theme_results(theme = th, feature_results = fr, id = "RID2")
@@ -87,7 +83,6 @@ test_that("widget methods (SingleTheme)", {
       feature_solution_held = fr$held,
       units = v$units,
       mandatory = th$mandatory,
-      round = th$round,
       icon = as.character(th$icon),
       type ="theme_results"
     )
@@ -115,7 +110,6 @@ test_that("initialization (MultiTheme)", {
     limit_goal = 0.02,
     step_goal = 0.05,
     current = 0.245,
-    current_label = "Now",
     icon = "bell",
     id = "FID1")
   f2 <- new_feature(
@@ -129,7 +123,6 @@ test_that("initialization (MultiTheme)", {
     limit_goal = 0.021,
     step_goal = 0.051,
     current = 0.5,
-    current_label = "Here",
     icon = "adn",
     id = "FID2")
   fr <- list(
@@ -145,10 +138,8 @@ test_that("initialization (MultiTheme)", {
     name = "MF",
     feature = list(f1, f2),
     mandatory = FALSE,
-    round = FALSE,
     icon = "atom",
-    id = "MF1",
-    current_label = "Hence")
+    id = "MF1")
   x <- new_theme_results(theme = th, feature_results = fr, id = "RID3")
   # run tests
   expect_identical(x$id, "RID3")
@@ -177,7 +168,6 @@ test_that("widget methods (MultiTheme)", {
     limit_goal = 0.02,
     step_goal = 0.05,
     current = 0.245,
-    current_label = "Now",
     icon = "bell",
     id = "FID1")
   f2 <- new_feature(
@@ -191,7 +181,6 @@ test_that("widget methods (MultiTheme)", {
     limit_goal = 0.021,
     step_goal = 0.051,
     current = 0.5,
-    current_label = "Here",
     icon = "adn",
     id = "FID2")
   fr <- list(
@@ -207,10 +196,8 @@ test_that("widget methods (MultiTheme)", {
     name = "MF",
     feature = list(f1, f2),
     mandatory = FALSE,
-    round = FALSE,
     icon = "atom",
-    id = "MF1",
-    current_label = "Hence")
+    id = "MF1")
   x <- new_theme_results(theme = th, feature_results = fr, id = "RID3")
   # run tests
   expect_identical(
@@ -229,7 +216,6 @@ test_that("widget methods (MultiTheme)", {
       feature_solution_held = c(fr[[1]]$held, fr[[2]]$held),
       units = v1$units,
       mandatory = th$mandatory,
-      round = th$round,
       icon = as.character(th$icon),
       type ="theme_results"
     )
