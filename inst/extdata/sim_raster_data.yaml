@@ -470,7 +470,7 @@ weights:
   initial_visible: yes
   initial_factor: 0.0
   min_factor: 0.0
-  min_factor: 0.0
+  max_factor: 100.0
   step_factor: 1.0
 - name: Human footprint index
   variable:
@@ -494,7 +494,7 @@ weights:
   initial_visible: yes
   initial_factor: 0.0
   min_factor: 0.0
-  min_factor: 0.0
+  max_factor: 100.0
   step_factor: 1.0
 - name: Pesticide risk
   variable:
@@ -516,5 +516,5 @@ weights:
   initial_visible: yes
   initial_factor: 0.0
   min_factor: 0.0
-  min_factor: 0.0
+  max_factor: 100.0
   step_factor: 1.0

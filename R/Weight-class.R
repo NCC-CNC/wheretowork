@@ -288,7 +288,7 @@ Weight <- R6::R6Class(
         initial_visible = self$visible,
         initial_factor = self$factor,
         min_factor = self$min_factor,
-        min_factor = self$min_factor,
+        max_factor = self$max_factor,
         step_factor = self$step_factor
       )
     }
