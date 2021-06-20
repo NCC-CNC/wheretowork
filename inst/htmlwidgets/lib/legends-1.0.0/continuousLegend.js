@@ -26,7 +26,7 @@
 //
 // @return `true` indicating success.
 function continuousLegend(el, x, units) {
-  // initialize lenged
+  // initialize leged
   let l = document.createElement("div");
   l.className = "continuous-legend";
 
@@ -49,9 +49,11 @@ function continuousLegend(el, x, units) {
   let colorbar = document.createElement("div");
   colorbar.className = "color-bar";
   let colorbar_background = "linear-gradient(180deg";
+  let colorbar_position = undefined;
   for (let i = 0; i < x.colors.length; ++i) {
+    colorbar_position = (i / x.colors.length) * 100;
     colorbar_background +=
-      `, ${x.colors[i]} ${positions[i]}%`;
+      `, ${x.colors[i]} ${colorbar_position}%`;
   }
   colorbar_background += ")";
   colorbar.style.backgroundColor = x.colors[0];
@@ -94,6 +96,6 @@ function continuousLegend(el, x, units) {
 
   // add legend to parent container
   el.appendChild(l);
-  
-  
+
+
 }

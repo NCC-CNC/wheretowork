@@ -29,6 +29,7 @@ Definition for the ContinuousLegend class.
 \itemize{
 \item \href{#method-new}{\code{ContinuousLegend$new()}}
 \item \href{#method-get_widget_data}{\code{ContinuousLegend$get_widget_data()}}
+\item \href{#method-export}{\code{ContinuousLegend$export()}}
 \item \href{#method-clone}{\code{ContinuousLegend$clone()}}
 }
 }
@@ -69,6 +70,19 @@ Get data for creating a widget.
 
 \subsection{Returns}{
 A new ContinuousLegend object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-export"></a>}}
+\if{latex}{\out{\hypertarget{method-export}{}}}
+\subsection{Method \code{export()}}{
+Export parameters
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ContinuousLegend$export()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{list} object.
 }
 }
 \if{html}{\out{<hr>}}

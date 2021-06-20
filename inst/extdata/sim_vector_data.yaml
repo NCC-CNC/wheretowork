@@ -1,0 +1,505 @@
+name: Example GPKG dataset
+path: inst/extdata/sim_vector_parameters.gpkg
+mode: beginner
+themes:
+- name: White-fronted Bee-eater
+  mandatory: yes
+  icon: map-marked-alt
+  feature:
+  - name: White-fronted Bee-eater habitat
+    variable:
+      index: White_fronted_Bee_eater
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFFFD9'
+        - '#EDF8B1'
+        - '#C7E9B4'
+        - '#7FCDBB'
+        - '#41B6C4'
+        - '#1D91C0'
+        - '#225EA8'
+        - '#253494'
+        - '#081D58'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.65
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.02
+    current: 0.4
+    icon: map-marked-alt
+- name: Blue-and-black Tanager (Spot-bellied)
+  mandatory: yes
+  icon: map-marked-alt
+  feature:
+  - name: Blue-and-black Tanager (Spot-bellied) habitat
+    variable:
+      index: Blue_and_black_Tanager_Spot_bellied_
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#FFF5EB'
+        - '#FEE6CE'
+        - '#FDD0A2'
+        - '#FDAE6B'
+        - '#FD8D3C'
+        - '#F16913'
+        - '#D94801'
+        - '#8C2D04'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.65
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.36
+    current: 0.29
+    icon: map
+- name: Barn Swallow (Buff-bellied)
+  mandatory: no
+  icon: map-marked-alt
+  feature:
+  - name: Barn Swallow (Buff-bellied) habitat
+    variable:
+      index: Barn_Swallow_Buff_bellied_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#40004B'
+        - '#762A83'
+        - '#9970AB'
+        - '#C2A5CF'
+        - '#E7D4E8'
+        - '#F7F7F7'
+        - '#D9F0D3'
+        - '#A6DBA0'
+        - '#5AAE61'
+        - '#1B7837'
+        - '#00441B'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.57
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.22
+    current: 0.18
+    icon: database
+- name: Rails, Gallinules, and Coots
+  mandatory: no
+  icon: horse
+  feature:
+  - name: Clapper Rail (Atlantic Coast)
+    variable:
+      index: Clapper_Rail_Atlantic_Coast_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#F7FCFD'
+        - '#E5F5F9'
+        - '#CCECE6'
+        - '#99D8C9'
+        - '#66C2A4'
+        - '#41AE76'
+        - '#238B45'
+        - '#006D2C'
+        - '#00441B'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.69
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.12
+    current: 0.36
+    icon: map-pin
+  - name: Calayan Rail
+    variable:
+      index: Calayan_Rail
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#8E0152'
+        - '#C51B7D'
+        - '#DE77AE'
+        - '#F1B6DA'
+        - '#FDE0EF'
+        - '#F7F7F7'
+        - '#E6F5D0'
+        - '#B8E186'
+        - '#7FBC41'
+        - '#4D9221'
+        - '#276419'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.66
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.33
+    current: 0.54
+    icon: map
+  - name: Yellow Rail
+    variable:
+      index: Yellow_Rail
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FBB4AE'
+        - '#B3CDE3'
+        - '#CCEBC5'
+        - '#DECBE4'
+        - '#FED9A6'
+        - '#FFFFCC'
+        - '#E5D8BD'
+        - '#FDDAEC'
+        - '#F2F2F2'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.76
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.4
+    current: 0.54
+    icon: atlas
+  - name: Nkulengu Rail
+    variable:
+      index: Nkulengu_Rail
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFFFD9'
+        - '#EDF8B1'
+        - '#C7E9B4'
+        - '#7FCDBB'
+        - '#41B6C4'
+        - '#1D91C0'
+        - '#225EA8'
+        - '#253494'
+        - '#081D58'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.57
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.04
+    current: 0.4
+    icon: map-pin
+  - name: Mayr's Rail
+    variable:
+      index: Mayr_s_Rail
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#9E0142'
+        - '#D53E4F'
+        - '#F46D43'
+        - '#FDAE61'
+        - '#FEE08B'
+        - '#FFFFBF'
+        - '#E6F598'
+        - '#ABDDA4'
+        - '#66C2A5'
+        - '#3288BD'
+        - '#5E4FA2'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.82
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.2
+    current: 0.49
+    icon: atlas
+  - name: Red-gartered Coot
+    variable:
+      index: Red_gartered_Coot
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#A50026'
+        - '#D73027'
+        - '#F46D43'
+        - '#FDAE61'
+        - '#FEE08B'
+        - '#FFFFBF'
+        - '#D9EF8B'
+        - '#A6D96A'
+        - '#66BD63'
+        - '#1A9850'
+        - '#006837'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.54
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.05
+    current: 0.47
+    icon: database
+  - name: Weka
+    variable:
+      index: Weka
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#543005'
+        - '#8C510A'
+        - '#BF812D'
+        - '#DFC27D'
+        - '#F6E8C3'
+        - '#F5F5F5'
+        - '#C7EAE5'
+        - '#80CDC1'
+        - '#35978F'
+        - '#01665E'
+        - '#003C30'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.62
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.01
+    current: 0.11
+    icon: database
+  - name: Water Rail
+    variable:
+      index: Water_Rail
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#8E0152'
+        - '#C51B7D'
+        - '#DE77AE'
+        - '#F1B6DA'
+        - '#FDE0EF'
+        - '#F7F7F7'
+        - '#E6F5D0'
+        - '#B8E186'
+        - '#7FBC41'
+        - '#4D9221'
+        - '#276419'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.66
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.35
+    current: 0.23
+    icon: map-marked-alt
+- name: Guineafowl
+  mandatory: no
+  icon: cat
+  feature:
+  - name: Plumed Guineafowl
+    variable:
+      index: Plumed_Guineafowl
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#FDE0DD'
+        - '#FA9FB5'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.74
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.19
+    current: 0.59
+    icon: map-pin
+  - name: Crested Guineafowl (Western)
+    variable:
+      index: Crested_Guineafowl_Western_
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#FEE5D9'
+        - '#FCAE91'
+        - '#FB6A4A'
+        - '#CB181D'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.71
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.1
+    current: 0.24
+    icon: map-marked-alt
+  - name: Vulturine Guineafowl
+    variable:
+      index: Vulturine_Guineafowl
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#7B3294'
+        - '#C2A5CF'
+        - '#F7F7F7'
+        - '#A6DBA0'
+        - '#008837'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.9
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.08
+    current: 0.6
+    icon: map
+  - name: Helmeted Guineafowl (Reichenow's)
+    variable:
+      index: Helmeted_Guineafowl_Reichenow_s_
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#543005'
+        - '#8C510A'
+        - '#BF812D'
+        - '#DFC27D'
+        - '#F6E8C3'
+        - '#C7EAE5'
+        - '#80CDC1'
+        - '#35978F'
+        - '#01665E'
+        - '#003C30'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.79
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.23
+    current: 0.23
+    icon: database
+  - name: Crested Guineafowl (Southern)
+    variable:
+      index: Crested_Guineafowl_Southern_
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#F1EEF6'
+        - '#D7B5D8'
+        - '#DF65B0'
+        - '#DD1C77'
+        - '#980043'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.61
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.16
+    current: 0.54
+    icon: map-marked-alt
+  - name: Helmeted Guineafowl (Moroccan)
+    variable:
+      index: Helmeted_Guineafowl_Moroccan_
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#EDF8FB'
+        - '#CCECE6'
+        - '#99D8C9'
+        - '#66C2A4'
+        - '#2CA25F'
+        - '#006D2C'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.64
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.07
+    current: 0.24
+    icon: database
+weights:
+- name: Rugged terrain
+  variable:
+    index: Rugged_terrain
+    units: ha
+    legend:
+      type: continuous
+      colors:
+      - '#F7F4F9'
+      - '#E7E1EF'
+      - '#D4B9DA'
+      - '#C994C7'
+      - '#DF65B0'
+      - '#E7298A'
+      - '#CE1256'
+      - '#980043'
+      - '#67001F'
+  initial_status: yes
+  initial_visible: yes
+  initial_factor: 0.0
+  min_factor: 0.0
+  max_factor: 100.0
+  step_factor: 1.0
+- name: Invasive species
+  variable:
+    index: Invasive_species
+    units: ha
+    legend:
+      type: continuous
+      colors:
+      - '#FFF7FB'
+      - '#ECE7F2'
+      - '#D0D1E6'
+      - '#A6BDDB'
+      - '#74A9CF'
+      - '#3690C0'
+      - '#0570B0'
+      - '#045A8D'
+      - '#023858'
+  initial_status: yes
+  initial_visible: yes
+  initial_factor: 0.0
+  min_factor: 0.0
+  max_factor: 100.0
+  step_factor: 1.0
+- name: Marine vessel traffic (threat)
+  variable:
+    index: Marine_vessel_traffic_threat_
+    units: ha
+    legend:
+      type: continuous
+      colors:
+      - '#F7FBFF'
+      - '#DEEBF7'
+      - '#C6DBEF'
+      - '#9ECAE1'
+      - '#6BAED6'
+      - '#4292C6'
+      - '#2171B5'
+      - '#08519C'
+      - '#08306B'
+  initial_status: yes
+  initial_visible: yes
+  initial_factor: 0.0
+  min_factor: 0.0
+  max_factor: 100.0
+  step_factor: 1.0

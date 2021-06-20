@@ -13,13 +13,10 @@ class MultiThemeSetting {
     feature_goal,
     feature_limit_goal,
     feature_step_goal,
-    feature_current_label,
     feature_status,
     feature_icon,
     units,
     mandatory,
-    current_label,
-    round,
     icon
   ) {
     // class fields
@@ -166,8 +163,7 @@ class MultiThemeSetting {
     /// current text
     group_current_label_el.innerText =
       group_current_label_text(
-        feature_current_held, feature_total_amount, round,
-        current_label, units);
+        feature_current_held, feature_total_amount, "Current", units);
     /// style current bar
     style_group_current_bars(
       group_current_min_bar_el,
@@ -196,8 +192,7 @@ class MultiThemeSetting {
       /// current text
       single_current_label_el[i].innerText =
         single_current_label_text(
-          feature_current_held[i], feature_total_amount[i],
-          round, feature_current_label[i], units);
+          feature_current_held[i], feature_total_amount[i], "Current", units);
       /// current bar
       style_current_bar(
         single_current_bar_el[i], feature_current_held[i]);
@@ -226,8 +221,7 @@ class MultiThemeSetting {
       this.group_goal_el.noUiSlider.on("update", function (values, handle) {
         group_goal_label_el.innerText =
           group_goal_label_text(
-            values[handle], feature_total_amount, round,
-            "Goal", units);
+            values[handle], feature_total_amount, "Goal", units);
       });
       //// set status listener to enable/disable widget on click
       this.status_el.addEventListener("change", function () {
@@ -261,8 +255,7 @@ class MultiThemeSetting {
           "update", function (values, handle) {
           single_goal_label_el[i].innerText =
             single_goal_label_text(
-              values[handle], feature_total_amount[i], round,
-              "Goal", units);
+              values[handle], feature_total_amount[i], "Goal", units);
         });
         //// set status listener to enable/disable widget on click
         this.single_status_el[i].addEventListener("change", function () {

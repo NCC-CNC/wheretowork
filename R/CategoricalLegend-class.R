@@ -40,6 +40,16 @@ CategoricalLegend <- R6::R6Class(
         colors = self$colors,
         type = "CategoricalLegend"
       )
+    },
+
+    #' @description
+    #' Export parameters
+    #' @return `list` object.
+    export = function() {
+      list(
+        type = "categorical",
+        colors = self$colors
+      )
     }
   )
 )

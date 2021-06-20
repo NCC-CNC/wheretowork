@@ -28,7 +28,6 @@ SingleThemeResults <- R6::R6Class(
         feature_solution_held = self$feature_results[[1]]$held,
         units = self$feature_results[[1]]$feature$variable$units,
         mandatory = self$theme$mandatory,
-        round = self$theme$round,
         icon = as.character(self$theme$icon),
         type ="theme_results"
       )

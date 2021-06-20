@@ -122,3 +122,23 @@ example_theme_icon <- function() {
   # return icon
   shiny::icon(sample(x, 1))
 }
+
+#' Make valid names
+#'
+#' Coerce a `character` vector to valid field/layer names for a spatial or
+#' raster dataset.
+#'
+#' @param x `character` object.
+#'
+#' @return `character` object.
+#'
+#' @noRd
+make_valid_names <- function(x) {
+  assertthat::assert_that(
+    is.character(x),
+    assertthat::noNA(x))
+  x <- make.names(x)
+  x <- gsub(pattern = ".", replacement = "_", x, fixed = TRUE)
+  x <- gsub(pattern = "(_)\\1+", replacement = "\\1", x)
+  x
+}

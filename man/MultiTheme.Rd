@@ -20,8 +20,6 @@ Definition for the MultiTheme class.
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
-\item{\code{current_label}}{\code{character} value.}
-
 \item{\code{feature_order}}{\code{numeric} value.}
 }
 \if{html}{\out{</div>}}
@@ -40,6 +38,7 @@ Definition for the MultiTheme class.
 \if{html}{
 \out{<details ><summary>Inherited methods</summary>}
 \itemize{
+\item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="export">}\href{../../locationmisc/html/Theme.html#method-export}{\code{locationmisc::Theme$export()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="get_feature_current">}\href{../../locationmisc/html/Theme.html#method-get_feature_current}{\code{locationmisc::Theme$get_feature_current()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="get_feature_goal">}\href{../../locationmisc/html/Theme.html#method-get_feature_goal}{\code{locationmisc::Theme$get_feature_goal()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="get_feature_id">}\href{../../locationmisc/html/Theme.html#method-get_feature_id}{\code{locationmisc::Theme$get_feature_id()}}\out{</span>}
@@ -63,16 +62,7 @@ Definition for the MultiTheme class.
 \subsection{Method \code{new()}}{
 Create a MultiTheme object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{MultiTheme$new(
-  id,
-  name,
-  feature,
-  mandatory,
-  current_label,
-  feature_order,
-  round,
-  icon
-)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{MultiTheme$new(id, name, feature, mandatory, feature_order, icon)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -86,11 +76,7 @@ Create a MultiTheme object.
 
 \item{\code{mandatory}}{\code{logical} value.}
 
-\item{\code{current_label}}{\code{character} value.}
-
 \item{\code{feature_order}}{\code{numeric} vector.}
-
-\item{\code{round}}{\code{logical} value.}
 
 \item{\code{icon}}{\code{shiny.tag} object.}
 }

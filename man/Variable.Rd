@@ -38,6 +38,7 @@ field/layer for extracting data.}
 \item \href{#method-repr}{\code{Variable$repr()}}
 \item \href{#method-verify}{\code{Variable$verify()}}
 \item \href{#method-get_data}{\code{Variable$get_data()}}
+\item \href{#method-export}{\code{Variable$export()}}
 \item \href{#method-clone}{\code{Variable$clone()}}
 }
 }
@@ -66,7 +67,7 @@ Create a Variable object.
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A new Variabe object.
+A new Variable object.
 }
 }
 \if{html}{\out{<hr>}}
@@ -134,6 +135,19 @@ Get the data.
 
 \subsection{Returns}{
 \code{\link[sf:st_as_sf]{sf::st_as_sf()}} or \code{\link[raster:raster]{raster::raster()}} object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-export"></a>}}
+\if{latex}{\out{\hypertarget{method-export}{}}}
+\subsection{Method \code{export()}}{
+Export parameters
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Variable$export()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{list} object.
 }
 }
 \if{html}{\out{<hr>}}

@@ -34,6 +34,7 @@ only contains a single feature.
 \if{html}{
 \out{<details ><summary>Inherited methods</summary>}
 \itemize{
+\item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="export">}\href{../../locationmisc/html/Theme.html#method-export}{\code{locationmisc::Theme$export()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="get_feature_current">}\href{../../locationmisc/html/Theme.html#method-get_feature_current}{\code{locationmisc::Theme$get_feature_current()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="get_feature_goal">}\href{../../locationmisc/html/Theme.html#method-get_feature_goal}{\code{locationmisc::Theme$get_feature_goal()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="get_feature_id">}\href{../../locationmisc/html/Theme.html#method-get_feature_id}{\code{locationmisc::Theme$get_feature_id()}}\out{</span>}
@@ -57,7 +58,7 @@ only contains a single feature.
 \subsection{Method \code{new()}}{
 Create a SingleTheme object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SingleTheme$new(id, name, feature, mandatory, round, icon)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SingleTheme$new(id, name, feature, mandatory, icon)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -70,8 +71,6 @@ Create a SingleTheme object.
 \item{\code{feature}}{\code{list} of a single \link{Feature} object.}
 
 \item{\code{mandatory}}{\code{logical} value.}
-
-\item{\code{round}}{\code{logical} value.}
 
 \item{\code{icon}}{\code{shiny.tag} object.}
 }

@@ -1,52 +1,74 @@
-// display text indicating the current amount of a single feature held
-function single_current_label_text(prop, total, round, prefix, units) {
-  let v1 = prop * 100.0;
-  let v2 = prop * total;
-  if (round) {
-    v1 = Math.round(v1);
-    v2 = Math.round(v2);
+// round a number to a certain number of digits
+function roundToDigits(x, digits) {
+  return +(Math.round(x + `e+${digits}`)  + `e-${digits}`);
+}
+
+// automatically round a number
+function auto_round(x) {
+  // initialize output
+  let out = x;
+  const y = Math.abs(x);
+  // round number according to rules of thumb
+  if (y >= 100) {
+    // round to integer
+    out = roundToDigits(x, 0);
+  } else if (y >= 10) {
+    // round to one decimal place
+    out = roundToDigits(x, 1);
+  } else if (y >= 1) {
+    // round to two decimal places
+    out = roundToDigits(x, 2);
+  } else {
+    // round to three decimal places
+    out = roundToDigits(x, 3);
   }
+  // return result
+  return out;
+}
+
+// display text indicating the current amount of a single feature held
+function single_current_label_text(prop, total, prefix, units) {
+  let v1 = Math.round(prop * 100.0);
+  let v2 = auto_round(prop * total);
   return `${prefix}: ${v1}% (${v2} ${units})`;
 }
 
 // display text indicating the gobal for a single feature held
-function single_goal_label_text(prop, total, round, prefix, units) {
-  let v1 = prop * 100.0;
-  let v2 = prop * total;
-  if (round) {
-    v1 = Math.round(v1);
-    v2 = Math.round(v2);
-  }
+function single_goal_label_text(prop, total, prefix, units) {
+  let v1 = Math.round(prop * 100.0);
+  let v2 = auto_round(prop * total);
   return `${prefix}: ${v1}% (${v2} ${units})`;
 }
 
 // display text indicating the current amount of a group of features
-function group_current_label_text(prop, total, round, prefix, units) {
+function group_current_label_text(prop, total, prefix, units) {
+  // run calculations
   let v1 = Math.min.apply(Math, prop) * 100.0;
   let v2_totals = new Array(prop.length);
   for (let i = 0; i < prop.length; i++) {
     v2_totals[i] = prop[i] * total[i];
   }
   let v2 = Math.min.apply(Math, v2_totals);
-  if (round) {
-    v1 = Math.round(v1);
-    v2 = Math.round(v2);
-  }
+  // round numbers
+  v1 = Math.round(v1);
+  v2 = auto_round(v2);
+  // return result
   return `${prefix}: ≥${v1}% (≥${v2} ${units})`;
 }
 
 // display text indicating the goal for a group of features
-function group_goal_label_text(prop, total, round, prefix, units) {
+function group_goal_label_text(prop, total, prefix, units) {
+  // run calculations
   let v1 = prop * 100.0;
   let v2_totals = new Array(total.length);
   for (let i = 0; i < total.length; i++) {
     v2_totals[i] = prop * total[i];
   }
   let v2 = Math.min.apply(Math, v2_totals);
-  if (round) {
-    v1 = Math.round(v1);
-    v2 = Math.round(v2);
-  }
+  // round numbers
+  v1 = Math.round(v1);
+  v2 = auto_round(v2);
+  // return result
   return `${prefix}: ≥${v1}% (≥${v2} ${units})`;
 }
 

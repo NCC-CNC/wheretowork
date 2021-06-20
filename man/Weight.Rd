@@ -60,6 +60,7 @@ Definition for the Weight class.
 \item \href{#method-set_parameter}{\code{Weight$set_parameter()}}
 \item \href{#method-get_solution_settings_widget_data}{\code{Weight$get_solution_settings_widget_data()}}
 \item \href{#method-get_map_manager_widget_data}{\code{Weight$get_map_manager_widget_data()}}
+\item \href{#method-export}{\code{Weight$export()}}
 \item \href{#method-clone}{\code{Weight$clone()}}
 }
 }
@@ -318,6 +319,19 @@ Get data for displaying the theme in a \code{\link[=mapManager]{mapManager()}} w
 
 \subsection{Returns}{
 \code{list} with widget data.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-export"></a>}}
+\if{latex}{\out{\hypertarget{method-export}{}}}
+\subsection{Method \code{export()}}{
+Export parameters
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Weight$export()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{list} object.
 }
 }
 \if{html}{\out{<hr>}}

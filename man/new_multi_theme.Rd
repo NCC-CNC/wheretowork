@@ -8,9 +8,7 @@ new_multi_theme(
   name,
   feature,
   mandatory = FALSE,
-  round = TRUE,
   icon = "map-marked-alt",
-  current_label = "Current",
   feature_order = as.double(rev(seq_along(feature))),
   id = uuid::UUIDgenerate()
 )
@@ -23,18 +21,11 @@ new_multi_theme(
 \item{mandatory}{\code{logical} Is the theme mandatory for generating solutions?
 Defaults to \code{FALSE}.}
 
-\item{round}{\code{logical} should all numbers be rounded to the nearest integer?
-Defaults to \code{TRUE}.}
-
 \item{icon}{\code{shiny.tag} Icon to display for the feature
 This icon should indicate the type of data that underpin the feature.
 Alternatively, the argument can be a \code{character} to automatically
 generate a \code{shiny.tag} icon (using \code{\link[shiny:icon]{shiny::icon()}}).
 Defaults to \code{"map-marked-alt"}.}
-
-\item{current_label}{\code{character} The display label for the current
-level of representation for the features under the group view.
-Defaults to \code{Current}.}
 
 \item{feature_order}{\code{numeric} Relative order for displaying each feature
 on a map. Defaults to a reverse sequence of integer values.}

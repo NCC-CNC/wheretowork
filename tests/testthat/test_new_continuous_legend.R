@@ -10,6 +10,19 @@ test_that("initialization", {
   expect_equal(x$colors, c("#000000", "#444444", "#AAAAAA"))
 })
 
+test_that("export method", {
+  # create object
+  x <- new_continuous_legend(0, 100, c("#000000", "#444444", "#AAAAAA"), 3)
+  # run tests
+  expect_equal(
+    x$export(),
+    list(
+      type = "continuous",
+      colors = c("#000000", "#444444", "#AAAAAA")
+    )
+  )
+})
+
 test_that("widget method", {
   # create object
   x <- new_continuous_legend(0, 100, c("#000000", "#444444", "#AAAAAA"), n = 4)

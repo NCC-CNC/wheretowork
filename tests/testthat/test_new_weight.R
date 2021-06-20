@@ -2,11 +2,8 @@ context("new_weight")
 
 test_that("initialization", {
   # create object
-  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
-  d <- new_dataset(f)
-  v <- new_variable(
-    dataset = d, index = 1, total = 200, units = "ha",
-    legend = simulate_continuous_legend())
+  d <- new_dataset(import_simple_raster_data())
+  v <- new_variable_from_auto(dataset = d, index = 1, units = "ha")
   x <- new_weight(
     name = "Human Footprint Index",
     variable = v,
@@ -36,11 +33,8 @@ test_that("initialization", {
 
 test_that("get methods", {
   # create object
-  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
-  d <- new_dataset(f)
-  v <- new_variable(
-    dataset = d, index = 1, total = 200, units = "ha",
-    legend = simulate_continuous_legend())
+  d <- new_dataset(import_simple_raster_data())
+  v <- new_variable_from_auto(dataset = d, index = 1, units = "ha")
   x <- new_weight(
     name = "Human Footprint Index",
     variable = v,
@@ -61,11 +55,8 @@ test_that("get methods", {
 
 test_that("set methods", {
   # create object
-  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
-  d <- new_dataset(f)
-  v <- new_variable(
-    dataset = d, index = 1, total = 200, units = "ha",
-    legend = simulate_continuous_legend())
+  d <- new_dataset(import_simple_raster_data())
+  v <- new_variable_from_auto(dataset = d, index = 1, units = "ha")
   x <- new_weight(
     name = "Human Footprint Index",
     variable = v,
@@ -89,6 +80,36 @@ test_that("set methods", {
   expect_identical(x$get_factor(), 0.3)
   expect_identical(x$get_status(), FALSE)
   expect_identical(x$get_visible(), TRUE)
+})
+
+test_that("export method", {
+  # create object
+  d <- new_dataset(import_simple_raster_data())
+  v <- new_variable_from_auto(dataset = d, index = 1, units = "ha")
+  x <- new_weight(
+    name = "Human Footprint Index",
+    variable = v,
+    initial_visible = TRUE,
+    initial_status = FALSE,
+    initial_factor = 0.2,
+    min_factor = 0.01,
+    max_factor = 0.9,
+    step_factor = 0.03,
+    id = "FID1")
+  # run tests
+  expect_equal(
+    x$export(),
+    list(
+      name = "Human Footprint Index",
+      variable = x$variable$export(),
+      initial_status = FALSE,
+      initial_visible = TRUE,
+      initial_factor = 0.2,
+      min_factor = 0.01,
+      max_factor = 0.9,
+      step_factor = 0.03
+    )
+  )
 })
 
 test_that("widget methods", {

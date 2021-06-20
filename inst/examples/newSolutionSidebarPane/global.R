@@ -8,7 +8,8 @@ library(locationmisc)
 set.seed(500)
 
 # simulate data
-sim_data <- simulate_data(5, 5, 8)
+d <- import_simple_raster_data()
+sim_data <- simulate_data(d, 5, 5, 8)
 
 # create new solution settings widget
 ss <- new_solution_settings(

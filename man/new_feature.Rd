@@ -15,7 +15,6 @@ new_feature(
   step_goal = 0.01,
   limit_goal = 0.1,
   current = 0,
-  current_label = "Current",
   icon = "map-marked-alt",
   id = uuid::UUIDgenerate()
 )
@@ -65,10 +64,6 @@ Defaults to 0 (i.e. 0\%).}
 
 \item{current}{\code{numeric} current proportion of values held in existing
 conservation areas (e.g. 0.1 = 10\%).}
-
-\item{current_label}{\code{character} The display label for the current
-level of for the feature.
-Defaults to \code{"Current"}.}
 
 \item{icon}{\code{character} or \code{shiny.tag} Icon to display for the feature
 This icon should indicate the type of data that underpin the feature.

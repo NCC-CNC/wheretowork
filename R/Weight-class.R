@@ -117,12 +117,12 @@ Weight <- R6::R6Class(
     #' @param ... not used.
     print = function(...) {
       message("Weight")
-      message("  id:      ", self$id)
-      message("  name:    ", self$name)
+      message("  id:       ", self$id)
+      message("  name:     ", self$name)
       message("  variable: ", self$variable$repr())
-      message("  visible: ", self$visible)
-      message("  status: ", self$status)
-      message("  factor: ", round(self$factor, 2))
+      message("  visible:  ", self$visible)
+      message("  status:   ", self$status)
+      message("  factor:   ", round(self$factor, 2))
       invisible(self)
     },
 
@@ -274,6 +274,22 @@ Weight <- R6::R6Class(
         legend = self$variable$legend$get_widget_data(),
         units = self$variable$units,
         type = "weight"
+      )
+    },
+
+    #' @description
+    #' Export parameters
+    #' @return `list` object.
+    export = function() {
+      list(
+        name = self$name,
+        variable = self$variable$export(),
+        initial_status = self$status,
+        initial_visible = self$visible,
+        initial_factor = self$factor,
+        min_factor = self$min_factor,
+        max_factor = self$max_factor,
+        step_factor = self$step_factor
       )
     }
 

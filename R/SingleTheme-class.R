@@ -18,10 +18,9 @@ SingleTheme <- R6::R6Class(
     #' @param feature `list` of a single [Feature] object.
     #' @param mandatory `logical` value.
     #' @param icon `shiny.tag` object.
-    #' @param round `logical` value.
     #' @return A new SingleTheme object.
     initialize = function(
-      id, name, feature, mandatory, round, icon) {
+      id, name, feature, mandatory, icon) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -37,9 +36,6 @@ SingleTheme <- R6::R6Class(
         #### mandatory
         assertthat::is.flag(mandatory),
         assertthat::noNA(mandatory),
-        #### round
-        assertthat::is.flag(round),
-        assertthat::noNA(round),
         #### icon
         inherits(icon, "shiny.tag"))
       ## set fields
@@ -47,7 +43,6 @@ SingleTheme <- R6::R6Class(
       self$name = name
       self$feature = feature
       self$mandatory = mandatory
-      self$round = round
       self$icon = icon
     },
 
@@ -85,10 +80,8 @@ SingleTheme <- R6::R6Class(
         feature_goal = self$feature[[1]]$goal,
         feature_limit_goal = self$feature[[1]]$limit_goal,
         feature_step_goal = self$feature[[1]]$step_goal,
-        feature_current_label = self$feature[[1]]$current_label,
         units = self$feature[[1]]$variable$units,
         mandatory = self$mandatory,
-        round = self$round,
         icon = as.character(self$icon)
       )
     },
@@ -147,7 +140,6 @@ new_single_theme <- function(
   name,
   feature,
   mandatory = FALSE,
-  round = TRUE,
   icon = "map-marked-alt",
   id = uuid::UUIDgenerate()) {
   # convert icon to shiny.tag if needed
@@ -163,6 +155,5 @@ new_single_theme <- function(
     feature = feature,
     name = name,
     mandatory = mandatory,
-    round = round,
     icon = icon)
 }

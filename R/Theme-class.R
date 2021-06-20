@@ -23,9 +23,6 @@ Theme <- R6::R6Class(
     #' @field mandatory `logical` value.
     mandatory = FALSE,
 
-    #' @field round `logical` value.
-    round = NA,
-
     #' @field icon `shiny.tag` value.
     icon = NULL,
 
@@ -224,7 +221,21 @@ Theme <- R6::R6Class(
         stop(paste0("\"", name, "\" is not a parameter"))
       }
       invisible(self)
+    },
+
+
+    #' @description
+    #' Export parameters
+    #' @return `list` object.
+    export = function() {
+      list(
+        name = self$name,
+        mandatory = self$mandatory,
+        icon = strsplit(self$icon$attribs$`aria-label`, " ")[[1]][[1]],
+        feature = lapply(self$feature, function(x) x$export())
+      )
     }
+
   )
 )
 
