@@ -141,6 +141,54 @@ test_that("set methods", {
   expect_identical(x$get_feature_visible(), c(TRUE, TRUE))
 })
 
+test_that("export method", {
+  # create object
+  rd <- simulate_proportion_spatial_data(import_simple_raster_data(), 2)
+  d <- new_dataset(rd)
+  f1 <- new_feature(
+    name = "F1",
+    variable = new_variable_from_auto(dataset = d, index = 1, units = "ha"),
+    initial_visible = TRUE,
+    initial_status = FALSE,
+    initial_goal = 0.2,
+    min_goal = 0.01,
+    max_goal = 0.99,
+    limit_goal = 0.02,
+    step_goal = 0.05,
+    current = 0.245,
+    icon = "bell",
+    id = "FID1")
+  f2 <- new_feature(
+    name = "F2",
+    variable = new_variable_from_auto(dataset = d, index = 2, units = "ha"),
+    initial_visible = FALSE,
+    initial_status = TRUE,
+    initial_goal = 0.21,
+    min_goal = 0.011,
+    max_goal = 0.991,
+    limit_goal = 0.021,
+    step_goal = 0.051,
+    current = 0.5,
+    icon = "adn",
+    id = "FID2")
+  x <- new_multi_theme(
+    name = "MF",
+    feature = list(f1, f2),
+    mandatory = FALSE,
+    icon = "atom",
+    id = "MF1")
+  # run tests
+  expect_equal(
+    x$export(),
+    list(
+      name = x$name,
+      mandatory = x$mandatory,
+      icon = "atom",
+      feature = lapply(x$feature, function(x) x$export())
+    )
+  )
+})
+
 test_that("widget methods", {
   # create object
   rd <- simulate_proportion_spatial_data(import_simple_raster_data(), 2)

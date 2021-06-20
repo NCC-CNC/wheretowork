@@ -64,8 +64,8 @@ test_that("categorical (raster)", {
     raster::compareRaster(
       x, d, res = TRUE, tolerance = 1e-5, stopiffalse = FALSE))
   expect_gte(min(raster::cellStats(x, "min")), 0)
-  expect_lte(max(raster::cellStats(x, "max")), 10)
-  expect_lte(n_distinct(c(raster::values(x))), 10)
+  expect_lte(max(raster::cellStats(x, "max")), 11)
+  expect_lte(n_distinct(c(raster::values(x))), 11)
 })
 
 test_that("categorical (sf)", {
@@ -78,6 +78,6 @@ test_that("categorical (sf)", {
   expect_identical(sf::st_geometry(x), sf::st_geometry(d))
   expect_equal(names(x), c("V1", "V2", "geometry"))
   expect_gte(min(as.matrix(sf::st_drop_geometry(x))), 0)
-  expect_lte(max(as.matrix(sf::st_drop_geometry(x))), 10)
-  expect_lte(n_distinct(c(as.matrix(sf::st_drop_geometry(x)))), 10)
+  expect_lte(max(as.matrix(sf::st_drop_geometry(x))), 11)
+  expect_lte(n_distinct(c(as.matrix(sf::st_drop_geometry(x)))), 11)
 })

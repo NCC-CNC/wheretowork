@@ -34,6 +34,25 @@ test_that("methods", {
   expect_equal(x$get_data(), x$dataset$get_index(2))
 })
 
+test_that("export method", {
+  # prepare data
+  rd <- simulate_proportion_spatial_data(import_simple_raster_data(), 2)
+  d <- new_dataset(rd)
+  l <- new_continuous_legend(1, 100, c("#000000", "#AAAAAA"))
+  # create object
+  x <- new_variable(
+    dataset = d, index = 2, total = 12, units = "ha", legend = l)
+  # run tests
+  expect_identical(
+    x$export(),
+    list(
+      index = 2,
+      units = "ha",
+      legend = l$export()
+    )
+  )
+})
+
 test_that("new_variable_from_auto (continuous)", {
   # prepare data
   rd <- simulate_continuous_spatial_data(import_simple_raster_data(), 2)

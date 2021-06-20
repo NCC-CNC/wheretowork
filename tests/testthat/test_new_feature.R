@@ -91,3 +91,41 @@ test_that("set methods", {
   expect_identical(x$get_status(), TRUE)
   expect_identical(x$get_visible(), FALSE)
 })
+
+test_that("export method", {
+  # create object
+  d <- new_dataset(import_simple_raster_data())
+  v <- new_variable(
+    dataset = d, index = 1, total = 200, units = "ha",
+    legend = simulate_continuous_legend())
+  x <- new_feature(
+    name = "Intact Alvar",
+    variable = v,
+    initial_visible = FALSE,
+    initial_status = FALSE,
+    initial_goal = 0.2,
+    min_goal = 0.01,
+    max_goal = 0.9,
+    step_goal = 0.03,
+    limit_goal = 0.2,
+    current = 0.56,
+    icon = "bell",
+    id = "FID1")
+  # run tests
+  expect_identical(
+    x$export(),
+    list(
+      name = "Intact Alvar",
+      variable = x$variable$export(),
+      initial_status = FALSE,
+      initial_visible = FALSE,
+      initial_goal = 0.2,
+      min_goal = 0.01,
+      max_goal = 0.9,
+      step_goal = 0.03,
+      limit_goal = 0.2,
+      current = 0.56,
+      icon = "bell"
+    )
+  )
+})

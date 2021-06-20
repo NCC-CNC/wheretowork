@@ -33,6 +33,41 @@ test_that("initialization", {
   expect_identical(x$icon, shiny::icon("atom"))
 })
 
+test_that("export method", {
+  # create object
+  d <- new_dataset(import_simple_raster_data())
+  v <- new_variable_from_auto(dataset = d, index = 1, units = "ha")
+  f <- new_feature(
+    name = "F1",
+    variable = v,
+    initial_visible = FALSE,
+    initial_status = FALSE,
+    initial_goal = 0.2,
+    min_goal = 0.01,
+    max_goal = 0.99,
+    step_goal = 0.02,
+    limit_goal = 0.05,
+    current = 0.2567,
+    icon = "bell",
+    id = "FID1")
+  x <- new_single_theme(
+    name = "FS",
+    feature = f,
+    mandatory = FALSE,
+    icon = "atom",
+    id = "FS1")
+  # run tests
+  expect_equal(
+    x$export(),
+    list(
+      name = x$name,
+      mandatory = x$mandatory,
+      icon = "atom",
+      feature = lapply(x$feature, function(x) x$export())
+    )
+  )
+})
+
 test_that("get methods", {
   # create object
   d <- new_dataset(import_simple_raster_data())

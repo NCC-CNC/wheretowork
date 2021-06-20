@@ -23,9 +23,9 @@ test_that("small example", {
 test_that("large example", {
   # define parameters
   rd <- import_realistic_raster_data()
-  n_st <- 5
-  n_mt <- 4
-  n_w <- 10
+  n_st <- 2
+  n_mt <- 3
+  n_w <- 1
   # create object
   x <- simulate_data(rd, n_st, n_mt, n_w)
   # run tests
