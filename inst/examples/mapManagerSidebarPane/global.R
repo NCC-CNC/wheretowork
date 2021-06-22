@@ -13,8 +13,8 @@ set.seed(200)
 RandomFields::RFoptions(seed = 200)
 
 # import data
-d <- new_dataset(import_realistic_vector_data())
-# d <- new_dataset(import_simple_raster_data())
+# d <- new_dataset(import_simple_vector_data())
+d <- new_dataset(import_simple_raster_data())
 
 # simulate themes, weights, and a solution
 sim_themes <- simulate_themes(d, 1, 1, 1)
@@ -25,6 +25,4 @@ sim_solution <- simulate_solution(d, sim_themes, sim_weights)
 l <- append(sim_solution, append(sim_themes, sim_weights))
 
 # create a map manager object
-print("rendering")
 mm <- new_map_manager(l)
-print("done")

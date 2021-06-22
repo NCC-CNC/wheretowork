@@ -148,27 +148,27 @@ Variable <- R6::R6Class(
           colors = self$legend$get_color_map(),
           pane = pane_id)
       } else if (inherits(d, "sf")) {
+        ## reproject data
+        d <- sf::st_transform(d, 4326)
         ## prepare data
-        if (inherits(sf::st_geometry(d)[[1]], c("POLYGON", "MULTIPOLYGON"))) {
-          d <- sf::st_cast(d, "POLYGON")
-          f <- leafgl::addGlPolygons
-        } else if (inherits(d, c("MULTILINESTRING", "LINESTRING"))) {
-          d <- sf::st_cast(d, "LINESTRING")
-          f <- leafgl::addGlPolylines
-        } else if (inherits(d, "POINT")) {
-          d <- sf::st_cast(d, "POINT")
-          f <- leafgl::addGlPoints
+        d <- sf::as_Spatial(d)
+        if (inherits(d, "SpatialPolygonsDataFrame")) {
+          f <- leaflet::addPolygons
+        } else if (inherits(d, "SpatialLinesDataFrame")) {
+          f <- leaflet::addPolylines
+        } else if (inherits(d, "SpatialPointsDataFrame")) {
+          f <- leafgl::addCircleMarkers
         } else {
           stop("unrecognized dataset format")
         }
-        ## reproject data
-        d <- sf::st_transform(d, 4326)
         ### prepare colors
         col <- self$legend$get_color_map()(d[[1]])
-        col <- t(col2rgb(col, alpha = TRUE)) / 255
-        col[, 4] <- col[, 4] * 1
         ### add geometry to map
-        x <- f(map = x, data = d, pane = pane_id, color = col)
+        x <- f(
+          map = x, data = d,
+          stroke = FALSE, opacity = 0.8, fillOpacity = 0.8,
+          color = col, fillColor = col,
+          options = leaflet::pathOptions(pane = pane_id))
       }
       # return result
       x
