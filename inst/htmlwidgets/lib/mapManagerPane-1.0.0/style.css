@@ -12,7 +12,8 @@
   box-sizing: border-box;
 }
 
-.sidebar-pane{
+.sidebar-pane {
+  background: #FFFFFF;
   height: calc(100% - 28px);
   box-sizing: border-box;
   padding-right: 5px !important;

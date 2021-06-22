@@ -40,7 +40,6 @@ test_that("initialization", {
     step_goal = 0.02,
     limit_goal = 0.05,
     current = 0.034,
-    current_label = "Now",
     icon = "bell",
     id = "FID1")
   fr <- new_feature_results(
@@ -50,7 +49,6 @@ test_that("initialization", {
   th <- new_theme(
     name = "FS",
     feature = f,
-    round = FALSE,
     icon = "atom",
     id = "FS1")
   thr <- new_theme_results(
@@ -120,7 +118,6 @@ test_that("get methods", {
     step_goal = 0.02,
     limit_goal = 0.05,
     current = 0.034,
-    current_label = "Now",
     icon = "bell",
     id = "FID1")
   fr <- new_feature_results(
@@ -130,7 +127,6 @@ test_that("get methods", {
   th <- new_theme(
     name = "FS",
     feature = f,
-    round = FALSE,
     icon = "atom",
     id = "FS1")
   thr <- new_theme_results(
@@ -191,7 +187,6 @@ test_that("set methods", {
     step_goal = 0.02,
     limit_goal = 0.05,
     current = 0.034,
-    current_label = "Now",
     icon = "bell",
     id = "FID1")
   fr <- new_feature_results(
@@ -201,7 +196,6 @@ test_that("set methods", {
   th <- new_theme(
     name = "FS",
     feature = f,
-    round = FALSE,
     icon = "atom",
     id = "FS1")
   thr <- new_theme_results(
@@ -264,7 +258,6 @@ test_that("widget methods", {
     step_goal = 0.02,
     limit_goal = 0.05,
     current = 0.034,
-    current_label = "Now",
     icon = "bell",
     id = "FID1")
   fr <- new_feature_results(
@@ -274,7 +267,6 @@ test_that("widget methods", {
   th <- new_theme(
     name = "FS",
     feature = f,
-    round = FALSE,
     icon = "atom",
     id = "FS1")
   thr <- new_theme_results(

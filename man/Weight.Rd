@@ -60,6 +60,9 @@ Definition for the Weight class.
 \item \href{#method-set_parameter}{\code{Weight$set_parameter()}}
 \item \href{#method-get_solution_settings_widget_data}{\code{Weight$get_solution_settings_widget_data()}}
 \item \href{#method-get_map_manager_widget_data}{\code{Weight$get_map_manager_widget_data()}}
+\item \href{#method-export}{\code{Weight$export()}}
+\item \href{#method-render_on_map}{\code{Weight$render_on_map()}}
+\item \href{#method-update_on_map}{\code{Weight$update_on_map()}}
 \item \href{#method-clone}{\code{Weight$clone()}}
 }
 }
@@ -318,6 +321,63 @@ Get data for displaying the theme in a \code{\link[=mapManager]{mapManager()}} w
 
 \subsection{Returns}{
 \code{list} with widget data.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-export"></a>}}
+\if{latex}{\out{\hypertarget{method-export}{}}}
+\subsection{Method \code{export()}}{
+Export parameters.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Weight$export()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{list} object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-render_on_map"></a>}}
+\if{latex}{\out{\hypertarget{method-render_on_map}{}}}
+\subsection{Method \code{render_on_map()}}{
+Render on map.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Weight$render_on_map(x, zindex)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{x}}{\code{\link[leaflet:leaflet]{leaflet::leaflet()}} object.}
+
+\item{\code{zindex}}{\code{numeric} z-index for ordering.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+\code{\link[leaflet:leaflet]{leaflet::leaflet()}} object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-update_on_map"></a>}}
+\if{latex}{\out{\hypertarget{method-update_on_map}{}}}
+\subsection{Method \code{update_on_map()}}{
+Render on map.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Weight$update_on_map(x, zindex)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{x}}{\code{\link[leaflet:leafletProxy]{leaflet::leafletProxy()}} object.}
+
+\item{\code{zindex}}{\code{numeric} z-index for ordering.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+\code{\link[leaflet:leafletProxy]{leaflet::leafletProxy()}} object.
 }
 }
 \if{html}{\out{<hr>}}

@@ -8,7 +8,6 @@ new_single_theme(
   name,
   feature,
   mandatory = FALSE,
-  round = TRUE,
   icon = "map-marked-alt",
   id = uuid::UUIDgenerate()
 )
@@ -22,9 +21,6 @@ can also be supplied that contains a single \link{Feature} object.}
 
 \item{mandatory}{\code{logical} Is the theme mandatory for generating solutions?
 Defaults to \code{FALSE}.}
-
-\item{round}{\code{logical} should all numbers be rounded to the nearest integer?
-Defaults to \code{TRUE}.}
 
 \item{icon}{\code{shiny.tag} Icon to display for the feature
 This icon should indicate the type of data that underpin the feature.

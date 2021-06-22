@@ -25,6 +25,9 @@ Definition for the CategoricalLegend class.
 \itemize{
 \item \href{#method-new}{\code{CategoricalLegend$new()}}
 \item \href{#method-get_widget_data}{\code{CategoricalLegend$get_widget_data()}}
+\item \href{#method-get_resample_method}{\code{CategoricalLegend$get_resample_method()}}
+\item \href{#method-get_color_map}{\code{CategoricalLegend$get_color_map()}}
+\item \href{#method-export}{\code{CategoricalLegend$export()}}
 \item \href{#method-clone}{\code{CategoricalLegend$clone()}}
 }
 }
@@ -61,6 +64,45 @@ Get data for creating a widget.
 
 \subsection{Returns}{
 A new CategoricalLegend object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_resample_method"></a>}}
+\if{latex}{\out{\hypertarget{method-get_resample_method}{}}}
+\subsection{Method \code{get_resample_method()}}{
+Get resample method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{CategoricalLegend$get_resample_method()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_color_map"></a>}}
+\if{latex}{\out{\hypertarget{method-get_color_map}{}}}
+\subsection{Method \code{get_color_map()}}{
+Get a function for mapping values to colors.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{CategoricalLegend$get_color_map()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+A \code{function} object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-export"></a>}}
+\if{latex}{\out{\hypertarget{method-export}{}}}
+\subsection{Method \code{export()}}{
+Export parameters
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{CategoricalLegend$export()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{list} object.
 }
 }
 \if{html}{\out{<hr>}}

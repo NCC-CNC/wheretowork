@@ -2,8 +2,7 @@ context("new_feature")
 
 test_that("initialization", {
   # create object
-  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
-  d <- new_dataset(f)
+  d <- new_dataset(import_simple_raster_data())
   v <- new_variable(
     dataset = d, index = 1, total = 200, units = "ha",
     legend = simulate_continuous_legend())
@@ -18,7 +17,6 @@ test_that("initialization", {
     step_goal = 0.03,
     limit_goal = 0.2,
     current = 0.56,
-    current_label = "Now",
     icon = "bell",
     id = "FID1")
   # run tests
@@ -37,15 +35,13 @@ test_that("initialization", {
   expect_identical(x$step_goal, 0.03)
   expect_identical(x$limit_goal, 0.2)
   expect_identical(x$current, 0.56)
-  expect_identical(x$current_label, "Now")
   expect_identical(x$icon, shiny::icon("bell"))
   expect_identical(x$id, "FID1")
 })
 
 test_that("get methods", {
   # create object
-  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
-  d <- new_dataset(f)
+  d <- new_dataset(import_simple_raster_data())
   v <- new_variable(
     dataset = d, index = 1, total = 200, units = "ha",
     legend = simulate_continuous_legend())
@@ -60,7 +56,6 @@ test_that("get methods", {
     step_goal = 0.03,
     limit_goal = 0.2,
     current = 0.56,
-    current_label = "Now",
     icon = "bell",
     id = "FID1")
   # run tests
@@ -71,8 +66,7 @@ test_that("get methods", {
 
 test_that("set methods", {
   # create object
-  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
-  d <- new_dataset(f)
+  d <- new_dataset(import_simple_raster_data())
   v <- new_variable(
     dataset = d, index = 1, total = 200, units = "ha",
     legend = simulate_continuous_legend())
@@ -87,7 +81,6 @@ test_that("set methods", {
     step_goal = 0.03,
     limit_goal = 0.2,
     current = 0.56,
-    current_label = "Now",
     icon = "bell",
     id = "FID1")
   # run tests
@@ -97,4 +90,42 @@ test_that("set methods", {
   expect_identical(x$get_goal(), 0.8)
   expect_identical(x$get_status(), TRUE)
   expect_identical(x$get_visible(), FALSE)
+})
+
+test_that("export method", {
+  # create object
+  d <- new_dataset(import_simple_raster_data())
+  v <- new_variable(
+    dataset = d, index = 1, total = 200, units = "ha",
+    legend = simulate_continuous_legend())
+  x <- new_feature(
+    name = "Intact Alvar",
+    variable = v,
+    initial_visible = FALSE,
+    initial_status = FALSE,
+    initial_goal = 0.2,
+    min_goal = 0.01,
+    max_goal = 0.9,
+    step_goal = 0.03,
+    limit_goal = 0.2,
+    current = 0.56,
+    icon = "bell",
+    id = "FID1")
+  # run tests
+  expect_identical(
+    x$export(),
+    list(
+      name = "Intact Alvar",
+      variable = x$variable$export(),
+      initial_status = FALSE,
+      initial_visible = FALSE,
+      initial_goal = 0.2,
+      min_goal = 0.01,
+      max_goal = 0.9,
+      step_goal = 0.03,
+      limit_goal = 0.2,
+      current = 0.56,
+      icon = "bell"
+    )
+  )
 })

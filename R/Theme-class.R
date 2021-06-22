@@ -23,9 +23,6 @@ Theme <- R6::R6Class(
     #' @field mandatory `logical` value.
     mandatory = FALSE,
 
-    #' @field round `logical` value.
-    round = NA,
-
     #' @field icon `shiny.tag` value.
     icon = NULL,
 
@@ -224,7 +221,57 @@ Theme <- R6::R6Class(
         stop(paste0("\"", name, "\" is not a parameter"))
       }
       invisible(self)
+    },
+
+
+    #' @description
+    #' Export parameters
+    #' @return `list` object.
+    export = function() {
+      list(
+        name = self$name,
+        mandatory = self$mandatory,
+        icon = strsplit(self$icon$attribs$`aria-label`, " ")[[1]][[1]],
+        feature = lapply(self$feature, function(x) x$export())
+      )
+    },
+
+    #' @description
+    #' Render on map.
+    #' @param x [leaflet::leaflet()] object.
+    #' @param zindex `numeric` z-index for ordering.
+    #' @return [leaflet::leaflet()] object.
+    render_on_map = function(x, zindex) {
+      # extract feature data
+      fid <- self$get_feature_id()
+      fo <- self$get_feature_order() + zindex
+      fv <- self$get_feature_visible()
+      # add feature data
+      for (i in seq_along(self$feature)) {
+        x <- self$feature[[i]]$variable$render(x, fid[i], fo[i], fv[i])
+      }
+      # return result
+      x
+    },
+
+    #' @description
+    #' Render on map.
+    #' @param x [leaflet::leafletProxy()] object.
+    #' @param zindex `numeric` z-index for ordering.
+    #' @return [leaflet::leafletProxy()] object.
+    update_on_map = function(x, zindex) {
+      # extract feature data
+      fid <- self$get_feature_id()
+      fo <- self$get_feature_order() + zindex
+      fv <- self$get_feature_visible()
+      # add feature data
+      for (i in seq_along(self$feature)) {
+        x <- self$feature[[i]]$variable$update_render(x, fid[i], fo[i], fv[i])
+      }
+      # return result
+      x
     }
+
   )
 )
 

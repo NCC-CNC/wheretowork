@@ -2,8 +2,7 @@ context("new_dataset")
 
 test_that("raster (from memory)", {
   # create object
-  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
-  d <- readNamedRaster(f)
+  d <- simulate_proportion_spatial_data(import_simple_raster_data(), 3)
   x <- new_dataset(d)
   # run tests
   print(x)
@@ -20,8 +19,7 @@ test_that("raster (from memory)", {
 
 test_that("methods (sf from memory)", {
   # create object
-  f <- system.file("extdata", "sim_vector_data.gpkg", package = "locationmisc")
-  d <- suppressMessages(sf::read_sf(f))
+  d <- simulate_proportion_spatial_data(import_simple_vector_data(), 3)
   x <- new_dataset(d)
   # run tests
   expect_is(x$repr(), "character")

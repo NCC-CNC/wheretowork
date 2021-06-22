@@ -1,0 +1,520 @@
+name: Example GeoTIFF dataset
+path: inst/extdata/sim_raster_parameters.tif
+mode: advanced
+themes:
+- name: Olive-headed Lorikeet
+  mandatory: no
+  icon: map-marked-alt
+  feature:
+  - name: Olive-headed Lorikeet habitat
+    variable:
+      index: Olive_headed_Lorikeet
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#F2F0F7'
+        - '#CBC9E2'
+        - '#9E9AC8'
+        - '#6A51A3'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.83
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.14
+    current: 0.18
+    icon: atlas
+- name: Purple Honeycreeper
+  mandatory: no
+  icon: map-marked-alt
+  feature:
+  - name: Purple Honeycreeper habitat
+    variable:
+      index: Purple_Honeycreeper
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#66C2A5'
+        - '#FC8D62'
+        - '#8DA0CB'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.65
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.33
+    current: 0.27
+    icon: map-pin
+- name: Least Boobook
+  mandatory: yes
+  icon: map-marked-alt
+  feature:
+  - name: Least Boobook habitat
+    variable:
+      index: Least_Boobook
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#EFF3FF'
+        - '#BDD7E7'
+        - '#6BAED6'
+        - '#2171B5'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.52
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.17
+    current: 0.14
+    icon: map-marked-alt
+- name: Tits, Chickadees, and Titmice
+  mandatory: no
+  icon: hippo
+  feature:
+  - name: Southern Black-Tit
+    variable:
+      index: Southern_Black_Tit
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#ECE2F0'
+        - '#A6BDDB'
+        - '#1C9099'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.69
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.26
+    current: 0.21
+    icon: hdd
+  - name: Yellow-browed Tit
+    variable:
+      index: Yellow_browed_Tit
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#66C2A5'
+        - '#FC8D62'
+        - '#8DA0CB'
+        - '#E78AC3'
+        - '#A6D854'
+        - '#FFD92F'
+        - '#E5C494'
+        - '#B3B3B3'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.85
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.0
+    current: 0.55
+    icon: hdd
+  - name: Caspian Tit
+    variable:
+      index: Caspian_Tit
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#B3E2CD'
+        - '#FDCDAC'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.6
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.28
+    current: 0.53
+    icon: map-pin
+  - name: Somali Tit
+    variable:
+      index: Somali_Tit
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#A6CEE3'
+        - '#1F78B4'
+        - '#B2DF8A'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.61
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.1
+    current: 0.56
+    icon: map-marked-alt
+  - name: Ashy Tit
+    variable:
+      index: Ashy_Tit
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#F1EEF6'
+        - '#BDC9E1'
+        - '#74A9CF'
+        - '#0570B0'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.69
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.09
+    current: 0.24
+    icon: database
+  - name: Yellow-cheeked Tit
+    variable:
+      index: Yellow_cheeked_Tit
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#8C510A'
+        - '#BF812D'
+        - '#DFC27D'
+        - '#F6E8C3'
+        - '#F5F5F5'
+        - '#C7EAE5'
+        - '#80CDC1'
+        - '#35978F'
+        - '#01665E'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.66
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.11
+    current: 0.39
+    icon: hdd
+  - name: Green-backed Tit
+    variable:
+      index: Green_backed_Tit
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#F1EEF6'
+        - '#D7B5D8'
+        - '#DF65B0'
+        - '#CE1256'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.56
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.24
+    current: 0.46
+    icon: database
+  - name: Mountain Chickadee (Rocky Mts.)
+    variable:
+      index: Mountain_Chickadee_Rocky_Mts_
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#D73027'
+        - '#F46D43'
+        - '#FDAE61'
+        - '#FEE08B'
+        - '#FFFFBF'
+        - '#D9EF8B'
+        - '#A6D96A'
+        - '#66BD63'
+        - '#1A9850'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.55
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.32
+    current: 0.38
+    icon: atlas
+  - name: Himalayan Black-lored Tit
+    variable:
+      index: Himalayan_Black_lored_Tit
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#EFF3FF'
+        - '#BDD7E7'
+        - '#6BAED6'
+        - '#3182BD'
+        - '#08519C'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.84
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.28
+    current: 0.3
+    icon: map-pin
+  - name: Varied Tit
+    variable:
+      index: Varied_Tit
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#A6611A'
+        - '#DFC27D'
+        - '#F5F5F5'
+        - '#80CDC1'
+        - '#018571'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.56
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.21
+    current: 0.47
+    icon: hdd
+- name: New World and African Parrots
+  mandatory: no
+  icon: hippo
+  feature:
+  - name: Scarlet-fronted Parakeet (Scarlet-fronted)
+    variable:
+      index: Scarlet_fronted_Parakeet_Scarlet_fronted_
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#66C2A5'
+        - '#FC8D62'
+        - '#8DA0CB'
+        - '#E78AC3'
+        - '#A6D854'
+        - '#FFD92F'
+        - '#E5C494'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.7
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.36
+    current: 0.32
+    icon: map
+  - name: Yellow-eared Parrot
+    variable:
+      index: Yellow_eared_Parrot
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#FEE6CE'
+        - '#FDAE6B'
+        - '#E6550D'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.86
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.4
+    current: 0.41
+    icon: map-pin
+  - name: Spectacled Parrotlet
+    variable:
+      index: Spectacled_Parrotlet
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#8E0152'
+        - '#C51B7D'
+        - '#DE77AE'
+        - '#F1B6DA'
+        - '#FDE0EF'
+        - '#E6F5D0'
+        - '#B8E186'
+        - '#7FBC41'
+        - '#4D9221'
+        - '#276419'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.68
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.34
+    current: 0.28
+    icon: hdd
+  - name: Gray-hooded Parakeet
+    variable:
+      index: Gray_hooded_Parakeet
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#FFFFE5'
+        - '#F7FCB9'
+        - '#D9F0A3'
+        - '#ADDD8E'
+        - '#78C679'
+        - '#41AB5D'
+        - '#238443'
+        - '#005A32'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.6
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.09
+    current: 0.18
+    icon: hdd
+  - name: Blue-winged Parrotlet (Turquoise-winged)
+    variable:
+      index: Blue_winged_Parrotlet_Turquoise_winged_
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#66C2A5'
+        - '#FC8D62'
+        - '#8DA0CB'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.75
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.23
+    current: 0.22
+    icon: atlas
+  - name: Slender-billed Parakeet
+    variable:
+      index: Slender_billed_Parakeet
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#F7FCF5'
+        - '#E5F5E0'
+        - '#C7E9C0'
+        - '#A1D99B'
+        - '#74C476'
+        - '#41AB5D'
+        - '#238B45'
+        - '#006D2C'
+        - '#00441B'
+        - '#FBB4AE'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.67
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.11
+    current: 0.45
+    icon: hdd
+  - name: Brown-throated Parakeet (Brown-throated)
+    variable:
+      index: Brown_throated_Parakeet_Brown_throated_
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#FEE6CE'
+        - '#FDAE6B'
+        - '#E6550D'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.86
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.28
+    current: 0.29
+    icon: hdd
+weights:
+- name: Transportation network
+  variable:
+    index: Transportation_network
+    units: ha
+    legend:
+      type: continuous
+      colors:
+      - '#F7FBFF'
+      - '#DEEBF7'
+      - '#C6DBEF'
+      - '#9ECAE1'
+      - '#6BAED6'
+      - '#4292C6'
+      - '#2171B5'
+      - '#08519C'
+      - '#08306B'
+  initial_status: yes
+  initial_visible: yes
+  initial_factor: 0.0
+  min_factor: 0.0
+  max_factor: 100.0
+  step_factor: 1.0
+- name: Tourism and recreation
+  variable:
+    index: Tourism_and_recreation
+    units: ha
+    legend:
+      type: continuous
+      colors:
+      - '#FFF5F0'
+      - '#FEE0D2'
+      - '#FCBBA1'
+      - '#FC9272'
+      - '#FB6A4A'
+      - '#EF3B2C'
+      - '#CB181D'
+      - '#A50F15'
+      - '#67000D'
+  initial_status: yes
+  initial_visible: yes
+  initial_factor: 0.0
+  min_factor: 0.0
+  max_factor: 100.0
+  step_factor: 1.0
+- name: Landscape naturalness
+  variable:
+    index: Landscape_naturalness
+    units: ha
+    legend:
+      type: continuous
+      colors:
+      - '#8E0152'
+      - '#C51B7D'
+      - '#DE77AE'
+      - '#F1B6DA'
+      - '#FDE0EF'
+      - '#F7F7F7'
+      - '#E6F5D0'
+      - '#B8E186'
+      - '#7FBC41'
+      - '#4D9221'
+      - '#276419'
+  initial_status: yes
+  initial_visible: yes
+  initial_factor: 0.0
+  min_factor: 0.0
+  max_factor: 100.0
+  step_factor: 1.0

@@ -26,6 +26,26 @@ SolutionLegend <- R6::R6Class(
     },
 
     #' @description
+    #' Get resample method.
+    #' @return `character` object.
+    get_resample_method = function() {
+      "ngb"
+    },
+
+    #' @description
+    #' Get a function for mapping values to colors.
+    #' @return A `function` object.
+    get_color_map = function() {
+      leaflet::colorFactor(
+        palette = self$colors,
+        domain = NULL,
+        levels = c(0, 1),
+        alpha = TRUE,
+        na.color = NA
+      )
+    },
+
+    #' @description
     #' Get data for creating a widget.
     #' @return A new CategoricalLegend object.
     get_widget_data = function() {

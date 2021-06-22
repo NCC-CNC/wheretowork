@@ -13,6 +13,7 @@ Authors@R: c(
 Imports:
     utils,
     stats,
+    methods,
     assertthat (>= 0.2.0),
     htmlwidgets (>= 1.5.3),
     htmltools (>= 0.5.1.1),
@@ -23,7 +24,10 @@ Imports:
     RColorBrewer (>= 1.1.2),
     scales (>= 1.1.1),
     prioritizr (>= 7.0.1),
-    viridisLite (>= 0.4.0)
+    viridisLite (>= 0.4.0),
+    RandomFields (>= 3.3.8),
+    fasterize (>= 1.0.3),
+    yaml (>= 2.2.1),
 Suggests:
     testthat (>= 2.0.1),
     knitr (>= 1.2.0),
@@ -35,7 +39,7 @@ Suggests:
 Depends:
     R (>= 4.0.0),
     shiny (>= 1.6.0),
-    leaflet (>= 2.0.4.1),
+    leaflet (>= 2.0.3.9000),
     leaflet.extras2 (>= 1.1.0),
     shinyBS (>= 0.6.1),
     R6 (>= 2.5.0),
@@ -69,6 +73,7 @@ Collate:
     'WeightResults-class.R'
     'color_palette.R'
     'extract_data_matrix.R'
+    'import_spatial_data.R'
     'mapManager-components.R'
     'mapManager.R'
     'solutionSettings.R'
@@ -78,9 +83,11 @@ Collate:
     'raster_io.R'
     'read_spatial_data.R'
     'runExample.R'
-    'simulate_data.R'
     'simulate_legends.R'
     'simulate_solution.R'
+    'simulate_spatial_data.R'
+    'simulate_themes.R'
+    'simulate_weights.R'
     'solutionResults.R'
     'solutionResultsSidebarPane.R'
     'solutionSetttings-components.R'
@@ -90,5 +97,6 @@ Collate:
     'updateMapManagerOrder.R'
     'updateSolutionResults.R'
     'updateSolutionSettings.R'
+    'write_configuration_file.R'
 Remotes:
-    r-spatial/leafgl#58
+    NCC-CNC/leaflet@pane-extra

@@ -34,6 +34,7 @@ only contains a single feature.
 \if{html}{
 \out{<details ><summary>Inherited methods</summary>}
 \itemize{
+\item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="export">}\href{../../locationmisc/html/Theme.html#method-export}{\code{locationmisc::Theme$export()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="get_feature_current">}\href{../../locationmisc/html/Theme.html#method-get_feature_current}{\code{locationmisc::Theme$get_feature_current()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="get_feature_goal">}\href{../../locationmisc/html/Theme.html#method-get_feature_goal}{\code{locationmisc::Theme$get_feature_goal()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="get_feature_id">}\href{../../locationmisc/html/Theme.html#method-get_feature_id}{\code{locationmisc::Theme$get_feature_id()}}\out{</span>}
@@ -43,11 +44,13 @@ only contains a single feature.
 \item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="get_feature_visible">}\href{../../locationmisc/html/Theme.html#method-get_feature_visible}{\code{locationmisc::Theme$get_feature_visible()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="get_parameter">}\href{../../locationmisc/html/Theme.html#method-get_parameter}{\code{locationmisc::Theme$get_parameter()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="print">}\href{../../locationmisc/html/Theme.html#method-print}{\code{locationmisc::Theme$print()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="render_on_map">}\href{../../locationmisc/html/Theme.html#method-render_on_map}{\code{locationmisc::Theme$render_on_map()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="repr">}\href{../../locationmisc/html/Theme.html#method-repr}{\code{locationmisc::Theme$repr()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="set_feature_goal">}\href{../../locationmisc/html/Theme.html#method-set_feature_goal}{\code{locationmisc::Theme$set_feature_goal()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="set_feature_status">}\href{../../locationmisc/html/Theme.html#method-set_feature_status}{\code{locationmisc::Theme$set_feature_status()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="set_feature_visible">}\href{../../locationmisc/html/Theme.html#method-set_feature_visible}{\code{locationmisc::Theme$set_feature_visible()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="set_parameter">}\href{../../locationmisc/html/Theme.html#method-set_parameter}{\code{locationmisc::Theme$set_parameter()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="Theme" data-id="update_on_map">}\href{../../locationmisc/html/Theme.html#method-update_on_map}{\code{locationmisc::Theme$update_on_map()}}\out{</span>}
 }
 \out{</details>}
 }
@@ -57,7 +60,7 @@ only contains a single feature.
 \subsection{Method \code{new()}}{
 Create a SingleTheme object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SingleTheme$new(id, name, feature, mandatory, round, icon)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SingleTheme$new(id, name, feature, mandatory, icon)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -70,8 +73,6 @@ Create a SingleTheme object.
 \item{\code{feature}}{\code{list} of a single \link{Feature} object.}
 
 \item{\code{mandatory}}{\code{logical} value.}
-
-\item{\code{round}}{\code{logical} value.}
 
 \item{\code{icon}}{\code{shiny.tag} object.}
 }

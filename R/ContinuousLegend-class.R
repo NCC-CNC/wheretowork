@@ -60,7 +60,40 @@ ContinuousLegend <- R6::R6Class(
         values = br,
         type = "ContinuousLegend"
       )
+    },
+
+    #' @description
+    #' Get resample method.
+    #' @return `character` object.
+    get_resample_method = function() {
+      "bilinear"
+    },
+
+    #' @description
+    #' Get a function for mapping values to colors.
+    #' @return A `function` object.
+    get_color_map = function() {
+      # calculate data
+      d <- self$get_widget_data()
+      # return color map
+      leaflet::colorNumeric(
+        palette = self$colors,
+        domain = c(d$min_value, d$max_value),
+        alpha = TRUE,
+        na.color = NA
+      )
+    },
+
+    #' @description
+    #' Export parameters
+    #' @return `list` object.
+    export = function() {
+      list(
+        type = "continuous",
+        colors = self$colors
+      )
     }
+
   )
 )
 

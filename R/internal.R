@@ -122,3 +122,42 @@ example_theme_icon <- function() {
   # return icon
   shiny::icon(sample(x, 1))
 }
+
+#' Make valid names
+#'
+#' Coerce a `character` vector to valid field/layer names for a spatial or
+#' raster dataset.
+#'
+#' @param x `character` object.
+#'
+#' @return `character` object.
+#'
+#' @noRd
+make_valid_names <- function(x) {
+  assertthat::assert_that(
+    is.character(x),
+    assertthat::noNA(x))
+  x <- make.names(x)
+  x <- gsub(pattern = ".", replacement = "_", x, fixed = TRUE)
+  x <- gsub(pattern = "(_)\\1+", replacement = "\\1", x)
+  x
+}
+
+#' Extract color opacity
+#'
+#' Extract the opacity from a hexadecimal color (i.e.`#RRGGBBAA`).
+#'
+#' @param x `character` object.
+#'
+#' @return `numeric` values between zero and one.
+#'
+#' @noRd
+color_opacity <- function(x) {
+  assertthat::assert_that(is.character(x))
+  nc <- nchar(x)
+  nc9 <- nc == 9
+  out <- numeric(length(x))
+  out[nc == 7] <- 1
+  out[nc9] <- strtoi(substr(x[nc9], 8, 9), base = 16) / 255
+  out
+}

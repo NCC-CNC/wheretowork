@@ -22,6 +22,8 @@ Definition for the SolutionLegend class.
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-new}{\code{SolutionLegend$new()}}
+\item \href{#method-get_resample_method}{\code{SolutionLegend$get_resample_method()}}
+\item \href{#method-get_color_map}{\code{SolutionLegend$get_color_map()}}
 \item \href{#method-get_widget_data}{\code{SolutionLegend$get_widget_data()}}
 \item \href{#method-clone}{\code{SolutionLegend$clone()}}
 }
@@ -44,6 +46,32 @@ Create a CategoricalLegend object.
 }
 \subsection{Returns}{
 A new SolutionLegend object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_resample_method"></a>}}
+\if{latex}{\out{\hypertarget{method-get_resample_method}{}}}
+\subsection{Method \code{get_resample_method()}}{
+Get resample method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SolutionLegend$get_resample_method()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_color_map"></a>}}
+\if{latex}{\out{\hypertarget{method-get_color_map}{}}}
+\subsection{Method \code{get_color_map()}}{
+Get a function for mapping values to colors.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SolutionLegend$get_color_map()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+A \code{function} object.
 }
 }
 \if{html}{\out{<hr>}}

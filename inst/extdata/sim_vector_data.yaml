@@ -1,0 +1,532 @@
+name: Example GPKG dataset
+path: inst/extdata/sim_vector_parameters.gpkg
+mode: beginner
+themes:
+- name: Yellow-sided Flowerpecker
+  mandatory: no
+  icon: map-marked-alt
+  feature:
+  - name: Yellow-sided Flowerpecker habitat
+    variable:
+      index: Yellow_sided_Flowerpecker
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFFFFF'
+        - '#F0F0F0'
+        - '#D9D9D9'
+        - '#BDBDBD'
+        - '#969696'
+        - '#737373'
+        - '#525252'
+        - '#252525'
+        - '#000000'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.8
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.22
+    current: 0.12
+    icon: atlas
+- name: Three-streaked Tchagra
+  mandatory: yes
+  icon: map-marked-alt
+  feature:
+  - name: Three-streaked Tchagra habitat
+    variable:
+      index: Three_streaked_Tchagra
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#7F3B08'
+        - '#B35806'
+        - '#E08214'
+        - '#FDB863'
+        - '#FEE0B6'
+        - '#F7F7F7'
+        - '#D8DAEB'
+        - '#B2ABD2'
+        - '#8073AC'
+        - '#542788'
+        - '#2D004B'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.57
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.17
+    current: 0.19
+    icon: map-pin
+- name: Philippine Green-Pigeon
+  mandatory: yes
+  icon: map-marked-alt
+  feature:
+  - name: Philippine Green-Pigeon habitat
+    variable:
+      index: Philippine_Green_Pigeon
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#9E0142'
+        - '#D53E4F'
+        - '#F46D43'
+        - '#FDAE61'
+        - '#FEE08B'
+        - '#FFFFBF'
+        - '#E6F598'
+        - '#ABDDA4'
+        - '#66C2A5'
+        - '#3288BD'
+        - '#5E4FA2'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.63
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.35
+    current: 0.56
+    icon: database
+- name: Malagasy Warblers
+  mandatory: no
+  icon: crow
+  feature:
+  - name: Appert's Tetraka
+    variable:
+      index: Appert_s_Tetraka
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFF7F3'
+        - '#FDE0DD'
+        - '#FCC5C0'
+        - '#FA9FB5'
+        - '#F768A1'
+        - '#DD3497'
+        - '#AE017E'
+        - '#7A0177'
+        - '#49006A'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.65
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.2
+    current: 0.15
+    icon: map
+  - name: Dusky Tetraka
+    variable:
+      index: Dusky_Tetraka
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFF7EC'
+        - '#FEE8C8'
+        - '#FDD49E'
+        - '#FDBB84'
+        - '#FC8D59'
+        - '#EF6548'
+        - '#D7301F'
+        - '#B30000'
+        - '#7F0000'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.79
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.03
+    current: 0.57
+    icon: database
+  - name: Thamnornis
+    variable:
+      index: Thamnornis
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFF7EC'
+        - '#FEE8C8'
+        - '#FDD49E'
+        - '#FDBB84'
+        - '#FC8D59'
+        - '#EF6548'
+        - '#D7301F'
+        - '#B30000'
+        - '#7F0000'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.75
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.14
+    current: 0.51
+    icon: database
+  - name: Yellow-browed Oxylabes
+    variable:
+      index: Yellow_browed_Oxylabes
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#7F3B08'
+        - '#B35806'
+        - '#E08214'
+        - '#FDB863'
+        - '#FEE0B6'
+        - '#F7F7F7'
+        - '#D8DAEB'
+        - '#B2ABD2'
+        - '#8073AC'
+        - '#542788'
+        - '#2D004B'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.56
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.16
+    current: 0.45
+    icon: map-pin
+  - name: Gray-crowned Tetraka
+    variable:
+      index: Gray_crowned_Tetraka
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#F7FCF5'
+        - '#E5F5E0'
+        - '#C7E9C0'
+        - '#A1D99B'
+        - '#74C476'
+        - '#41AB5D'
+        - '#238B45'
+        - '#006D2C'
+        - '#00441B'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.77
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.38
+    current: 0.24
+    icon: hdd
+  - name: Spectacled Tetraka
+    variable:
+      index: Spectacled_Tetraka
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFFFD9'
+        - '#EDF8B1'
+        - '#C7E9B4'
+        - '#7FCDBB'
+        - '#41B6C4'
+        - '#1D91C0'
+        - '#225EA8'
+        - '#253494'
+        - '#081D58'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.79
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.32
+    current: 0.32
+    icon: map-pin
+  - name: White-throated Oxylabes
+    variable:
+      index: White_throated_Oxylabes
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFF7FB'
+        - '#ECE2F0'
+        - '#D0D1E6'
+        - '#A6BDDB'
+        - '#67A9CF'
+        - '#3690C0'
+        - '#02818A'
+        - '#016C59'
+        - '#014636'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.54
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.16
+    current: 0.2
+    icon: hdd
+  - name: Rand's Warbler
+    variable:
+      index: Rand_s_Warbler
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#543005'
+        - '#8C510A'
+        - '#BF812D'
+        - '#DFC27D'
+        - '#F6E8C3'
+        - '#F5F5F5'
+        - '#C7EAE5'
+        - '#80CDC1'
+        - '#35978F'
+        - '#01665E'
+        - '#003C30'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.64
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.17
+    current: 0.24
+    icon: map-pin
+- name: Fantails
+  mandatory: no
+  icon: kiwi-bird
+  feature:
+  - name: Taliabu Fantail
+    variable:
+      index: Taliabu_Fantail
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFF7FB'
+        - '#ECE2F0'
+        - '#D0D1E6'
+        - '#A6BDDB'
+        - '#67A9CF'
+        - '#3690C0'
+        - '#02818A'
+        - '#016C59'
+        - '#014636'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.67
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.07
+    current: 0.29
+    icon: atlas
+  - name: White-bellied Thicket-Fantail
+    variable:
+      index: White_bellied_Thicket_Fantail
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#8DD3C7'
+        - '#FFFFB3'
+        - '#BEBADA'
+        - '#FB8072'
+        - '#80B1D3'
+        - '#FDB462'
+        - '#B3DE69'
+        - '#FCCDE5'
+        - '#D9D9D9'
+        - '#BC80BD'
+        - '#CCEBC5'
+        - '#FFED6F'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.81
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.02
+    current: 0.57
+    icon: atlas
+  - name: Brown-capped Fantail
+    variable:
+      index: Brown_capped_Fantail
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#67001F'
+        - '#B2182B'
+        - '#D6604D'
+        - '#F4A582'
+        - '#FDDBC7'
+        - '#FFFFFF'
+        - '#E0E0E0'
+        - '#BABABA'
+        - '#878787'
+        - '#4D4D4D'
+        - '#1A1A1A'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.58
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.35
+    current: 0.35
+    icon: map-marked-alt
+  - name: Malaita Fantail
+    variable:
+      index: Malaita_Fantail
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#A50026'
+        - '#D73027'
+        - '#F46D43'
+        - '#FDAE61'
+        - '#FEE08B'
+        - '#FFFFBF'
+        - '#D9EF8B'
+        - '#A6D96A'
+        - '#66BD63'
+        - '#1A9850'
+        - '#006837'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.75
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.08
+    current: 0.44
+    icon: hdd
+  - name: Visayan Fantail
+    variable:
+      index: Visayan_Fantail
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFF5EB'
+        - '#FEE6CE'
+        - '#FDD0A2'
+        - '#FDAE6B'
+        - '#FD8D3C'
+        - '#F16913'
+        - '#D94801'
+        - '#A63603'
+        - '#7F2704'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.54
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.18
+    current: 0.2
+    icon: hdd
+  - name: Willie-wagtail
+    variable:
+      index: Willie_wagtail
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#66C2A5'
+        - '#FC8D62'
+        - '#8DA0CB'
+        - '#E78AC3'
+        - '#A6D854'
+        - '#FFD92F'
+        - '#E5C494'
+        - '#B3B3B3'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.84
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.05
+    current: 0.19
+    icon: atlas
+weights:
+- name: Energy extraction and development
+  variable:
+    index: Energy_extraction_and_development
+    units: ha
+    legend:
+      type: continuous
+      colors:
+      - '#FFFFFF'
+      - '#F0F0F0'
+      - '#D9D9D9'
+      - '#BDBDBD'
+      - '#969696'
+      - '#737373'
+      - '#525252'
+      - '#252525'
+      - '#000000'
+  initial_status: yes
+  initial_visible: yes
+  initial_factor: 0.0
+  min_factor: 0.0
+  max_factor: 100.0
+  step_factor: 1.0
+- name: Mining tenures
+  variable:
+    index: Mining_tenures
+    units: ha
+    legend:
+      type: continuous
+      colors:
+      - '#F7FBFF'
+      - '#DEEBF7'
+      - '#C6DBEF'
+      - '#9ECAE1'
+      - '#6BAED6'
+      - '#4292C6'
+      - '#2171B5'
+      - '#08519C'
+      - '#08306B'
+  initial_status: yes
+  initial_visible: yes
+  initial_factor: 0.0
+  min_factor: 0.0
+  max_factor: 100.0
+  step_factor: 1.0
+- name: Archaeological site
+  variable:
+    index: Archaeological_site
+    units: ha
+    legend:
+      type: continuous
+      colors:
+      - '#A50026'
+      - '#D73027'
+      - '#F46D43'
+      - '#FDAE61'
+      - '#FEE090'
+      - '#FFFFBF'
+      - '#E0F3F8'
+      - '#ABD9E9'
+      - '#74ADD1'
+      - '#4575B4'
+      - '#313695'
+  initial_status: yes
+  initial_visible: yes
+  initial_factor: 0.0
+  min_factor: 0.0
+  max_factor: 100.0
+  step_factor: 1.0

@@ -28,8 +28,6 @@ This method intentionally throws an error.
 
 \item{\code{mandatory}}{\code{logical} value.}
 
-\item{\code{round}}{\code{logical} value.}
-
 \item{\code{icon}}{\code{shiny.tag} value.}
 }
 \if{html}{\out{</div>}}
@@ -52,6 +50,9 @@ This method intentionally throws an error.
 \item \href{#method-set_feature_status}{\code{Theme$set_feature_status()}}
 \item \href{#method-set_feature_goal}{\code{Theme$set_feature_goal()}}
 \item \href{#method-set_parameter}{\code{Theme$set_parameter()}}
+\item \href{#method-export}{\code{Theme$export()}}
+\item \href{#method-render_on_map}{\code{Theme$render_on_map()}}
+\item \href{#method-update_on_map}{\code{Theme$update_on_map()}}
 \item \href{#method-clone}{\code{Theme$clone()}}
 }
 }
@@ -295,6 +296,63 @@ Available options are \code{"feature_status"}, \code{"feature_goal"},
 \item{\code{value}}{vector containing a value for each feature.}
 }
 \if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-export"></a>}}
+\if{latex}{\out{\hypertarget{method-export}{}}}
+\subsection{Method \code{export()}}{
+Export parameters
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$export()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{list} object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-render_on_map"></a>}}
+\if{latex}{\out{\hypertarget{method-render_on_map}{}}}
+\subsection{Method \code{render_on_map()}}{
+Render on map.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$render_on_map(x, zindex)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{x}}{\code{\link[leaflet:leaflet]{leaflet::leaflet()}} object.}
+
+\item{\code{zindex}}{\code{numeric} z-index for ordering.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+\code{\link[leaflet:leaflet]{leaflet::leaflet()}} object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-update_on_map"></a>}}
+\if{latex}{\out{\hypertarget{method-update_on_map}{}}}
+\subsection{Method \code{update_on_map()}}{
+Render on map.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$update_on_map(x, zindex)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{x}}{\code{\link[leaflet:leafletProxy]{leaflet::leafletProxy()}} object.}
+
+\item{\code{zindex}}{\code{numeric} z-index for ordering.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+\code{\link[leaflet:leafletProxy]{leaflet::leafletProxy()}} object.
 }
 }
 \if{html}{\out{<hr>}}

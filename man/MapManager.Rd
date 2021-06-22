@@ -54,6 +54,7 @@ appear beneath every other layer.}
 \item \href{#method-add_layer}{\code{MapManager$add_layer()}}
 \item \href{#method-drop_layer}{\code{MapManager$drop_layer()}}
 \item \href{#method-get_widget_data}{\code{MapManager$get_widget_data()}}
+\item \href{#method-get_initial_map}{\code{MapManager$get_initial_map()}}
 \item \href{#method-update_map}{\code{MapManager$update_map()}}
 \item \href{#method-clone}{\code{MapManager$clone()}}
 }
@@ -236,6 +237,26 @@ Get data for displaying the theme in a \code{\link[=mapManager]{mapManager()}} w
 
 \subsection{Returns}{
 \code{list} with widget data.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_initial_map"></a>}}
+\if{latex}{\out{\hypertarget{method-get_initial_map}{}}}
+\subsection{Method \code{get_initial_map()}}{
+Get initial map.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MapManager$get_initial_map(dataset)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{dataset}}{\code{Dataset} object.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+\code{\link[leaflet:leaflet]{leaflet::leaflet()}} object.
 }
 }
 \if{html}{\out{<hr>}}

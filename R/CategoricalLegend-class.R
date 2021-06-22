@@ -40,6 +40,36 @@ CategoricalLegend <- R6::R6Class(
         colors = self$colors,
         type = "CategoricalLegend"
       )
+    },
+
+    #' @description
+    #' Get resample method.
+    #' @return `character` object.
+    get_resample_method = function() {
+      "ngb"
+    },
+
+    #' @description
+    #' Get a function for mapping values to colors.
+    #' @return A `function` object.
+    get_color_map = function() {
+      leaflet::colorFactor(
+        palette = self$colors,
+        domain = NULL,
+        levels = self$values,
+        alpha = TRUE,
+        na.color = NA
+      )
+    },
+
+    #' @description
+    #' Export parameters
+    #' @return `list` object.
+    export = function() {
+      list(
+        type = "categorical",
+        colors = self$colors
+      )
     }
   )
 )

@@ -45,8 +45,6 @@ Definition for the Feature class.
 
 \item{\code{limit_goal}}{\code{numeric} limit goal value.}
 
-\item{\code{current_label}}{\code{character} current label.}
-
 \item{\code{icon}}{\code{shiny.tag} object.}
 }
 \if{html}{\out{</div>}}
@@ -64,6 +62,7 @@ Definition for the Feature class.
 \item \href{#method-set_visible}{\code{Feature$set_visible()}}
 \item \href{#method-set_status}{\code{Feature$set_status()}}
 \item \href{#method-set_goal}{\code{Feature$set_goal()}}
+\item \href{#method-export}{\code{Feature$export()}}
 \item \href{#method-clone}{\code{Feature$clone()}}
 }
 }
@@ -85,7 +84,6 @@ Create a Feature object.
   step_goal,
   limit_goal,
   current,
-  current_label,
   icon
 )}\if{html}{\out{</div>}}
 }
@@ -114,8 +112,6 @@ Create a Feature object.
 \item{\code{limit_goal}}{\code{numeric} value.}
 
 \item{\code{current}}{\code{numeric} value.}
-
-\item{\code{current_label}}{\code{character} value.}
 
 \item{\code{icon}}{\code{shiny.tag} object.}
 }
@@ -267,6 +263,19 @@ Set goal.
 \item{\code{value}}{\code{numeric} new value.}
 }
 \if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-export"></a>}}
+\if{latex}{\out{\hypertarget{method-export}{}}}
+\subsection{Method \code{export()}}{
+Export parameters
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Feature$export()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{list} object.
 }
 }
 \if{html}{\out{<hr>}}

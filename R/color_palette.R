@@ -78,11 +78,14 @@ NULL
 #' # obtain 15 colors using the Set1 and Pastel1 palettes
 #' color_palette("Set1;Pastel1", 15)
 #'
-#' # obtain colors from the plasma palette
+#' # obtain all colors from the plasma palette
 #' color_palette("plasma", NULL)
 #'
-#' # obtain colors from a random palette
+#' # obtain all colors from a random palette
 #' color_palette("random", NULL)
+#'
+#' # obtain 5 colors from random palette(s)
+#' color_palette("random", 5)
 #' @export
 color_palette <- function(x, n = NULL) {
   # assert arguments are valid
@@ -103,42 +106,79 @@ color_palette <- function(x, n = NULL) {
     }
   }
 
-  # extract color brewer palette data
-  bp <- as.data.frame(RColorBrewer::brewer.pal.info)
-
   # identify palettes
   pals <- strsplit(x, ";", fixed = TRUE)[[1]]
 
-  # create vector to store number of colors
-  cols <- c()
-
   # generate colors
-  for (pal in pals) {
-    ## determine which palette to use
-    if (pal %in% rownames(bp)) {
-      # determine number of colors
-      if (is.null(n)) {
-        curr_n <- bp$maxcolors[[which(rownames(bp) == pal)]]
-      } else {
-        curr_n <-
-          min(bp$maxcolors[[which(rownames(bp) == pal)]], n - length(cols))
-      }
-      # generate colors
-      new_cols <- RColorBrewer::brewer.pal(n = curr_n, name = pal)
-    } else {
-      # determine number of colors
-      if (is.null(n)) {
-        curr_n <- 20
-      } else {
-        curr_n <- n - length(cols)
-      }
-      # generate colors
-      new_cols <- viridisLite::viridis(n = curr_n, option = pal)
+  if (is.null(n)) {
+    out <- do.call(c, lapply(pals, color_palette_all_colors))
+  } else {
+    out <- c()
+    i <- 1
+    while(length(out) < n) {
+      out <- c(out, color_palette_n_colors(pals[i], n - length(out)))
+      i <- i + 1
     }
-    # store colors
-    cols <- c(cols, new_cols)
   }
 
   # return result
-  cols
+  out
+
+}
+
+#' Extract all colors from palette
+#'
+#' Extract all colors from a color palette.
+#'
+#' @param x `character` name of color palette.
+#'
+#' @return `character` vector of colors.
+#'
+#' @noRd
+color_palette_all_colors <- function(x) {
+  # assert argument is valid
+  assertthat::assert_that(assertthat::is.string(x))
+  # extract color brewer palette data
+  bp <- as.data.frame(RColorBrewer::brewer.pal.info)
+  # generate colors
+  if (x %in% rownames(bp)) {
+    n <- bp$maxcolors[[which(rownames(bp) == x)]]
+    suppressWarnings({
+      out <- RColorBrewer::brewer.pal(n = n, name = x)
+    })
+  } else {
+    n <- 5
+    out <- viridisLite::viridis(n = 5, option = x)
+  }
+  # return result
+  out
+}
+
+#' Extract a number of colors from a palette
+#'
+#' Extract a number colors from a color palette.
+#'
+#' @param x `character` color palette.
+#'
+#' @return `character` vector of colors.
+#'
+#' @noRd
+color_palette_n_colors <- function(x, n) {
+  # assert arguments are valid
+  assertthat::assert_that(
+    assertthat::is.string(x),
+    assertthat::is.count(n))
+  # extract color brewer palette data
+  bp <- as.data.frame(RColorBrewer::brewer.pal.info)
+  # generate colors
+  if (x %in% rownames(bp)) {
+    n <- min(n, bp$maxcolors[[which(rownames(bp) == x)]])
+    suppressWarnings({
+      out <- RColorBrewer::brewer.pal(n = n, name = x)
+    })
+  } else {
+    out <- viridisLite::viridis(n = n, option = x)
+  }
+  # return result
+  out[seq_len(n)]
 }

@@ -40,14 +40,26 @@ test_that("multiple viridisLite palette (n = 12)", {
 test_that("multiple viridisLite palette (n = NULL)", {
   expect_equal(
     color_palette("viridis", NULL),
-    viridisLite::viridis(20, option = "viridis")
+    viridisLite::viridis(5, option = "viridis")
   )
 })
 
 test_that("multiple viridisLite palette (n = NULL)", {
   expect_equal(
     color_palette("viridis;magma", NULL),
-    c(viridisLite::viridis(20, option = "viridis"),
-      viridisLite::viridis(20, option = "magma"))
+    c(viridisLite::viridis(5, option = "viridis"),
+      viridisLite::viridis(5, option = "magma"))
   )
+})
+
+test_that("random palette (n = 5)", {
+  x <- color_palette("random", 5)
+  expect_length(x, 5)
+  expect_equal(anyDuplicated(x), 0)
+})
+
+test_that("random palette (n = NULL)", {
+  x <- color_palette("random", NULL)
+  expect_gt(length(x), 0)
+  expect_equal(anyDuplicated(x), 0)
 })
