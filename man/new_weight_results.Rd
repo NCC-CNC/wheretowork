@@ -22,6 +22,22 @@ A \link{WeightResults} object.
 Create a new \link{WeightResults} object to store results for a solution.
 }
 \examples{
-#TODO
+# find data path
+f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+
+# create new dataset
+d <- new_dataset(f)
+
+# create new variable
+v <- new_variable_from_auto(d, index = 1)
+
+# create a new weight
+w <- new_weight(name = "NDVI", variable = v)
+
+# create a new weight results object to store results
+wr <- new_weight_results(w, 80)
+
+# print object
+print(w)
 
 }

@@ -3,7 +3,7 @@ function(input, output, session) {
   output$widget <- renderSolutionResults({
     s <- lapply(
       seq_len(5),
-      function(x) simulate_solution(sim_data$themes, sim_data$weights))
+      function(x) simulate_solution(d, sim_themes, sim_weights))
     solutionResults(x = s)
   })
 

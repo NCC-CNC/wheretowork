@@ -147,9 +147,6 @@ MapManager <- R6::R6Class(
     #' \item{value}{`numeric` or `logical` value for new parameter.}
     #' }
     set_parameter = function(value) {
-
-
-
       assertthat::assert_that(
         is.list(value),
         assertthat::has_name(value, "parameter"),
@@ -224,11 +221,68 @@ MapManager <- R6::R6Class(
     },
 
     #' @description
+    #' Get initial map.
+    #' @param dataset `Dataset` object.
+    #' @return [leaflet::leaflet()] object.
+    get_initial_map = function(dataset) {
+      # get spatial extent for dataset
+      ## extract extent
+      ext <- methods::as(raster::extent(dataset$get_data()), "SpatialPolygons")
+      ## prepare bounding box
+      ext <- sf::st_set_crs(sf::st_as_sf(ext), dataset$get_crs())
+      ## convert to WGS1984
+      ext <- raster::extent(sf::st_transform(ext, 4326))
+      ## create bounding box by expanding viewport by 10%
+      bb <- list()
+      bb$xmin <- unname(ext@xmin - (0.1 * (ext@xmax - ext@xmin)))
+      bb$xmax <- unname(ext@xmax + (0.1 * (ext@xmax - ext@xmin)))
+      bb$ymin <- unname(ext@ymin - (0.1 * (ext@ymax - ext@ymin)))
+      bb$ymax <- unname(ext@ymax + (0.1 * (ext@ymax - ext@ymin)))
+      bb$xmin <- max(bb$xmin, -180)
+      bb$xmax <- min(bb$xmax, 180)
+      bb$ymin <- max(bb$ymin, -90)
+      bb$ymax <- min(bb$ymax, 90)
+      # prepare JS code for button
+      fly_to_sites_js <- paste0(
+        "function(btn, map){ map.flyToBounds([",
+        "[", bb$ymin, ", ", bb$xmin, "],",
+        "[", bb$ymax, ", ", bb$xmax, "]]);}")
+      # initialize map
+      map <-
+        leaflet::leaflet() %>%
+        leaflet::addProviderTiles(
+          leaflet::providers$Esri.WorldImagery) %>%
+        leaflet::flyToBounds(
+          bb$xmin, bb$ymin, bb$xmax, bb$ymax) %>%
+        leaflet::addScaleBar(
+          position = "bottomright") %>%
+        leaflet::addEasyButton(
+          leaflet::easyButton(
+            icon = "fa-crosshairs",
+            title = "Zoom to region",
+            position = "bottomright",
+            onClick = htmlwidgets::JS(fly_to_sites_js)))
+      # compute zIndex values for layers
+      zv <- self$order * 100
+      # add layers
+      for (i in seq_along(self$layers)) {
+        map <- self$layers[[i]]$render_on_map(map, zindex = zv[i])
+      }
+      # return result
+      map
+    },
+
+    #' @description
     #' Update map.
     #' @param map [leaflet::leafletProxy()] object.
     update_map = function(map) {
-      # TODO
-      stop()
+      # compute zIndex values
+      zv <- self$order * 100
+      # update layers
+      for (i in seq_along(self$layers)) {
+        self$layers[[i]]$update_on_map(map, zindex = zv[i])
+      }
+      invisible(self)
     }
 
   )

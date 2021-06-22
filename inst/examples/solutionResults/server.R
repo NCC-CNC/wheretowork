@@ -11,7 +11,7 @@ function(input, output, session) {
   ## randomly add new solution
   observeEvent(input$add_solution_btn, {
     ### simulate solution
-    s <- simulate_solution(themes = sim_data$themes, weights = sim_data$weights)
+    s <- simulate_solution(d, sim_themes, sim_weights)
     ### store solution
     values$solutions <- append(values$solutions, list(s))
     ### add solution to widget

@@ -114,6 +114,82 @@ Variable <- R6::R6Class(
         units = self$units,
         legend = self$legend$export()
       )
+    },
+
+    #' @description
+    #' Render variable on map.
+    #' @param x [leaflet::leaflet()] object.
+    #' @param id `character` identifier for map pane.
+    #' @param zindex `numeric` z-index for ordering.
+    #' @param visible `logical` should the variable be visible?
+    #' @return [leaflet::leaflet()] object.
+    render = function(x, id, zindex, visible) {
+      # assert arguments are valid
+      assertthat::assert_that(
+        inherits(x, "leaflet"),
+        assertthat::is.string(id),
+        assertthat::is.number(zindex),
+        assertthat::is.flag(visible))
+      # extract data
+      d <- self$get_data()
+      # add map pane for variable
+      pane_id <- paste0("pane-", id)
+      x <- leaflet::addMapPane(x, pane_id, zindex, visible)
+      # add data to leaflet map
+      if (inherits(d, "Raster")) {
+        ## add raster data
+        x <- leaflet::addRasterImage(
+          map = x,
+          x = d,
+          opacity = 0.8,
+          project = FALSE,
+          maxBytes = 1 * 1024 * 1024, # 1MB max size
+          method = self$legend$get_resample_method(),
+          colors = self$legend$get_color_map(),
+          pane = pane_id)
+      } else if (inherits(d, "sf")) {
+        ## prepare data
+        if (inherits(sf::st_geometry(d)[[1]], c("POLYGON", "MULTIPOLYGON"))) {
+          d <- sf::st_cast(d, "POLYGON")
+          f <- leafgl::addGlPolygons
+        } else if (inherits(d, c("MULTILINESTRING", "LINESTRING"))) {
+          d <- sf::st_cast(d, "LINESTRING")
+          f <- leafgl::addGlPolylines
+        } else if (inherits(d, "POINT")) {
+          d <- sf::st_cast(d, "POINT")
+          f <- leafgl::addGlPoints
+        } else {
+          stop("unrecognized dataset format")
+        }
+        ## reproject data
+        d <- sf::st_transform(d, 4326)
+        ### prepare colors
+        col <- self$legend$get_color_map()(d[[1]])
+        col <- t(col2rgb(col, alpha = TRUE)) / 255
+        col[, 4] <- col[, 4] * 1
+        ### add geometry to map
+        x <- f(map = x, data = d, pane = pane_id, color = col)
+      }
+      # return result
+      x
+    },
+
+    #' @description
+    #' Update rendering of variable on map.
+    #' @param x [leaflet::leafletProxy()] object.
+    #' @param id `character` identifier for map pane.
+    #' @param zindex `numeric` z-index for ordering.
+    #' @param visible `logical` should the variable be visible?
+    #' @return [leaflet::leaflet()] object.
+    update_render = function(x, id, zindex, visible) {
+      # assert arguments are valid
+      assertthat::assert_that(
+        inherits(x, "leaflet_proxy"),
+        assertthat::is.string(id),
+        assertthat::is.number(zindex),
+        assertthat::is.flag(visible))
+      # update map pane to update variable
+      leaflet::updateMapPane(x, paste0("pane-", id), zindex, visible)
     }
   )
 )

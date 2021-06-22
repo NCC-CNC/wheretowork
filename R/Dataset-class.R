@@ -104,6 +104,16 @@ Dataset <- R6::R6Class(
     },
 
     #' @description
+    #' Get the coordinate reference system.
+    #' @return [sf::st_crs()] object.
+    get_crs = function() {
+      if (is.null(self$data)) {
+        self$import()
+      }
+      sf::st_crs(self$data)
+    },
+
+    #' @description
     #' Get indices of cells with data.
     #' @details Note that this method only works for Raster data.
     #' @return `integer` vector of indices.

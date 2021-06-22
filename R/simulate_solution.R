@@ -4,7 +4,8 @@ NULL
 #' Simulate a new solution
 #'
 #' This function simulates a [Solution] object.
-#' It is primarily used for testing the package.
+#'
+#' @param dataset [Dataset] object.
 #'
 #' @param themes `list` of [Theme] objects.
 #'
@@ -13,7 +14,7 @@ NULL
 #' @return A [Solution] object.
 #'
 #' @export
-simulate_solution <- function(themes, weights) {
+simulate_solution <- function(dataset, themes, weights) {
   # assert arguments are valid
   assertthat::assert_that(
     is.list(themes),
@@ -22,6 +23,9 @@ simulate_solution <- function(themes, weights) {
     length(weights) >= 1,
     all_list_elements_inherit(themes, "Theme"),
     all_list_elements_inherit(weights, "Weight"))
+
+  # import data
+  data <- dataset$get_data()
 
   # simulate statistics
   statistics <- list(
@@ -36,22 +40,44 @@ simulate_solution <- function(themes, weights) {
   # simulate theme results
   theme_results <- lapply(themes, function(x) {
     fr <- lapply(x$feature, function(z) {
-      new_feature_results(z, held = stats::runif(1, 0.05, 0.9))
+      new_feature_results(
+        z,
+        held = stats::runif(1, z$goal, 1.0)
+      )
     })
     new_theme_results(x, feature_results = fr)
   })
 
-  # return solution
-  n <- paste0("solution_", sample.int(1000, 1))
+  # set index names
+  idx <- paste0("solution_", sample.int(1000, 1))
+
+  # simulate underlying data values
+  sold <- simulate_binary_spatial_data(data, 1)
+  names(sold)[1] <- idx
+  if (inherits(data, "sf")) {
+    dataset$data <- cbind(data, sf::st_drop_geometry(sold))
+    total <- sum(sold[[1]])
+  } else {
+    dataset$data <- raster::stack(data, sold)
+    total <- sum(raster::values(sold), na.rm = TRUE)
+  }
+
+  # create variable for
   v <- new_variable(
-    dataset = weights[[1]]$variable$dataset,
-    index = n, units = "", total =  1005,
-    legend = simulate_solution_legend())
+    dataset = dataset,
+    index = idx,
+    units = "",
+    total = total,
+    legend = simulate_solution_legend()
+  )
+
+  # return solution
   new_solution(
-    name = n,
+    name = sub("_", " ", idx, fixed = TRUE),
     variable = v,
     initial_visible = TRUE,
     statistics = statistics,
     theme_results = theme_results,
-    weight_results = weight_results)
+    weight_results = weight_results
+  )
 }

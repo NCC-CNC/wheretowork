@@ -7,6 +7,6 @@ fillPage(
         id = "mapManagerPane"
       )
     ),
-    leafletOutput("map", width = "100%", height = "100%")
+    leafgl::leafglOutput("map", width = "100%", height = "100%")
   )
 )

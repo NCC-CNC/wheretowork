@@ -42,6 +42,7 @@ This is used to cache calculations for \code{\link[raster:stack]{raster::stack()
 \item \href{#method-import}{\code{Dataset$import()}}
 \item \href{#method-clean}{\code{Dataset$clean()}}
 \item \href{#method-get_data}{\code{Dataset$get_data()}}
+\item \href{#method-get_crs}{\code{Dataset$get_crs()}}
 \item \href{#method-get_finite_cells}{\code{Dataset$get_finite_cells()}}
 \item \href{#method-get_planning_unit_areas}{\code{Dataset$get_planning_unit_areas()}}
 \item \href{#method-get_index}{\code{Dataset$get_index()}}
@@ -135,6 +136,19 @@ Get the data.
 
 \subsection{Returns}{
 \code{\link[sf:st_as_sf]{sf::st_as_sf()}} or \code{\link[raster:raster]{raster::raster()}} object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_crs"></a>}}
+\if{latex}{\out{\hypertarget{method-get_crs}{}}}
+\subsection{Method \code{get_crs()}}{
+Get the coordinate reference system.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Dataset$get_crs()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{\link[sf:st_crs]{sf::st_crs()}} object.
 }
 }
 \if{html}{\out{<hr>}}

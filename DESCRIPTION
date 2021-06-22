@@ -27,7 +27,7 @@ Imports:
     viridisLite (>= 0.4.0),
     RandomFields (>= 3.3.8),
     fasterize (>= 1.0.3),
-    yaml (>= 2.2.1)
+    yaml (>= 2.2.1),
 Suggests:
     testthat (>= 2.0.1),
     knitr (>= 1.2.0),
@@ -39,8 +39,9 @@ Suggests:
 Depends:
     R (>= 4.0.0),
     shiny (>= 1.6.0),
-    leaflet (>= 2.0.4.1),
+    leaflet (>= 2.0.3.9000),
     leaflet.extras2 (>= 1.1.0),
+    leafgl (>= 0.1.1),
     shinyBS (>= 0.6.1),
     R6 (>= 2.5.0),
     raster (>= 3.4.10),
@@ -83,10 +84,11 @@ Collate:
     'raster_io.R'
     'read_spatial_data.R'
     'runExample.R'
-    'simulate_data.R'
     'simulate_legends.R'
     'simulate_solution.R'
     'simulate_spatial_data.R'
+    'simulate_themes.R'
+    'simulate_weights.R'
     'solutionResults.R'
     'solutionResultsSidebarPane.R'
     'solutionSetttings-components.R'
@@ -98,4 +100,5 @@ Collate:
     'updateSolutionSettings.R'
     'write_configuration_file.R'
 Remotes:
-    r-spatial/leafgl#58
+    NCC-CNC/leafgl@newglify2
+    NCC-CNC/leaflet@pane-extra

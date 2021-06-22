@@ -39,6 +39,8 @@ field/layer for extracting data.}
 \item \href{#method-verify}{\code{Variable$verify()}}
 \item \href{#method-get_data}{\code{Variable$get_data()}}
 \item \href{#method-export}{\code{Variable$export()}}
+\item \href{#method-render}{\code{Variable$render()}}
+\item \href{#method-update_render}{\code{Variable$update_render()}}
 \item \href{#method-clone}{\code{Variable$clone()}}
 }
 }
@@ -148,6 +150,58 @@ Export parameters
 
 \subsection{Returns}{
 \code{list} object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-render"></a>}}
+\if{latex}{\out{\hypertarget{method-render}{}}}
+\subsection{Method \code{render()}}{
+Render variable on map.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Variable$render(x, id, zindex, visible)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{x}}{\code{\link[leaflet:leaflet]{leaflet::leaflet()}} object.}
+
+\item{\code{id}}{\code{character} identifier for map pane.}
+
+\item{\code{zindex}}{\code{numeric} z-index for ordering.}
+
+\item{\code{visible}}{\code{logical} should the variable be visible?}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+\code{\link[leaflet:leaflet]{leaflet::leaflet()}} object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-update_render"></a>}}
+\if{latex}{\out{\hypertarget{method-update_render}{}}}
+\subsection{Method \code{update_render()}}{
+Update rendering of variable on map.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Variable$update_render(x, id, zindex, visible)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{x}}{\code{\link[leaflet:leafletProxy]{leaflet::leafletProxy()}} object.}
+
+\item{\code{id}}{\code{character} identifier for map pane.}
+
+\item{\code{zindex}}{\code{numeric} z-index for ordering.}
+
+\item{\code{visible}}{\code{logical} should the variable be visible?}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+\code{\link[leaflet:leaflet]{leaflet::leaflet()}} object.
 }
 }
 \if{html}{\out{<hr>}}
