@@ -28,6 +28,21 @@ The configuration file will contain all the data and parameters related
 to a set of \link{Theme} and \link{Weight} objects.
 }
 \examples{
-# TODO
+# find data path
+f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+
+# create new dataset
+d <- new_dataset(f)
+
+# simulate themes and weights
+th <- simulate_themes(d, 1, 1, 2)
+w <- simulate_weights(d, 1)
+
+# combine themes and weights into a list
+l <- append(th, w)
+
+# save configuration file to temporary location
+write_configuration_file(
+  l, path = tempfile(), name = "example", data_path = f)
 
 }

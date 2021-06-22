@@ -114,6 +114,82 @@ Variable <- R6::R6Class(
         units = self$units,
         legend = self$legend$export()
       )
+    },
+
+    #' @description
+    #' Render variable on map.
+    #' @param x [leaflet::leaflet()] object.
+    #' @param id `character` identifier for map pane.
+    #' @param zindex `numeric` z-index for ordering.
+    #' @param visible `logical` should the variable be visible?
+    #' @return [leaflet::leaflet()] object.
+    render = function(x, id, zindex, visible) {
+      # assert arguments are valid
+      assertthat::assert_that(
+        inherits(x, "leaflet"),
+        assertthat::is.string(id),
+        assertthat::is.number(zindex),
+        assertthat::is.flag(visible))
+      # extract data
+      d <- self$get_data()
+      # add map pane for variable
+      pane_id <- paste0("pane-", id)
+      x <- leaflet::addMapPane(x, pane_id, zindex, visible)
+      # add data to leaflet map
+      if (inherits(d, "Raster")) {
+        ## add raster data
+        x <- leaflet::addRasterImage(
+          map = x,
+          x = d,
+          opacity = 0.8,
+          project = FALSE,
+          maxBytes = 1 * 1024 * 1024, # 1MB max size
+          method = self$legend$get_resample_method(),
+          colors = self$legend$get_color_map(),
+          pane = pane_id)
+      } else if (inherits(d, "sf")) {
+        ## reproject data
+        d <- sf::st_transform(d, 4326)
+        ## prepare data
+        d <- sf::as_Spatial(d)
+        if (inherits(d, "SpatialPolygonsDataFrame")) {
+          f <- leaflet::addPolygons
+        } else if (inherits(d, "SpatialLinesDataFrame")) {
+          f <- leaflet::addPolylines
+        } else if (inherits(d, "SpatialPointsDataFrame")) {
+          f <- leafgl::addCircleMarkers
+        } else {
+          stop("unrecognized dataset format")
+        }
+        ### prepare colors
+        col <- self$legend$get_color_map()(d[[1]])
+        ### add geometry to map
+        x <- f(
+          map = x, data = d,
+          stroke = FALSE, opacity = 0.8, fillOpacity = 0.8,
+          color = col, fillColor = col,
+          options = leaflet::pathOptions(pane = pane_id))
+      }
+      # return result
+      x
+    },
+
+    #' @description
+    #' Update rendering of variable on map.
+    #' @param x [leaflet::leafletProxy()] object.
+    #' @param id `character` identifier for map pane.
+    #' @param zindex `numeric` z-index for ordering.
+    #' @param visible `logical` should the variable be visible?
+    #' @return [leaflet::leaflet()] object.
+    update_render = function(x, id, zindex, visible) {
+      # assert arguments are valid
+      assertthat::assert_that(
+        inherits(x, "leaflet_proxy"),
+        assertthat::is.string(id),
+        assertthat::is.number(zindex),
+        assertthat::is.flag(visible))
+      # update map pane to update variable
+      leaflet::updateMapPane(x, paste0("pane-", id), zindex, visible)
     }
   )
 )

@@ -21,6 +21,28 @@ A \link{ThemeResults} object.
 Create a new \link{ThemeResults} object to store results for a solution.
 }
 \examples{
-#TODO
+# find data path
+f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+
+# create new dataset
+d <- new_dataset(f)
+
+# create new variable
+v <- new_variable_from_auto(d, index = 1)
+
+# create new feature
+f <- new_feature(name = "Intact Alvar", variable = v)
+
+# create a theme using the single feature
+th <- new_single_theme(name = "Intact Alvar", feature = f)
+
+# create a feature results object to store results for the feature
+fr <- new_feature_results(f, held = 0.8)
+
+# create a theme results object to store results for the feature
+thr <- new_theme_results(th, fr)
+
+# print object
+print(thr)
 
 }

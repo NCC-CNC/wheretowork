@@ -278,7 +278,7 @@ Weight <- R6::R6Class(
     },
 
     #' @description
-    #' Export parameters
+    #' Export parameters.
     #' @return `list` object.
     export = function() {
       list(
@@ -291,6 +291,24 @@ Weight <- R6::R6Class(
         max_factor = self$max_factor,
         step_factor = self$step_factor
       )
+    },
+
+    #' @description
+    #' Render on map.
+    #' @param x [leaflet::leaflet()] object.
+    #' @param zindex `numeric` z-index for ordering.
+    #' @return [leaflet::leaflet()] object.
+    render_on_map = function(x, zindex) {
+      self$variable$render(x, self$id, zindex, self$visible)
+    },
+
+    #' @description
+    #' Render on map.
+    #' @param x [leaflet::leafletProxy()] object.
+    #' @param zindex `numeric` z-index for ordering.
+    #' @return [leaflet::leafletProxy()] object.
+    update_on_map = function(x, zindex) {
+      self$variable$update_render(x, self$id, zindex, self$visible)
     }
 
   )

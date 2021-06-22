@@ -4,9 +4,11 @@
 \alias{simulate_solution}
 \title{Simulate a new solution}
 \usage{
-simulate_solution(themes, weights)
+simulate_solution(dataset, themes, weights)
 }
 \arguments{
+\item{dataset}{\link{Dataset} object.}
+
 \item{themes}{\code{list} of \link{Theme} objects.}
 
 \item{weights}{\code{list} of \link{Weight} objects.}
@@ -16,5 +18,4 @@ A \link{Solution} object.
 }
 \description{
 This function simulates a \link{Solution} object.
-It is primarily used for testing the package.
 }

@@ -22,6 +22,22 @@ A \link{FeatureResults} object.
 Create a new \link{FeatureResults} object to store results for a solution.
 }
 \examples{
-#TODO
+# find data path
+f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+
+# create new dataset
+d <- new_dataset(f)
+
+# create new variable
+v <- new_variable_from_auto(d, index = 1)
+
+# create new feature
+f <- new_feature(name = "Intact Alvar", variable = v)
+
+# create a feature results object to store results for the feature
+fr <- new_feature_results(f, held = 0.8)
+
+# print object
+print(fr)
 
 }

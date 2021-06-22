@@ -66,6 +66,26 @@ simulate_categorical_spatial_data <- function(x, n = 1) {
   )
 }
 
+#' Simulate binary spatial data
+#'
+#' Simulate spatially auto-correlated binary values for a spatial dataset.
+#'
+#' @inheritParams simulate_proportion_spatial_data
+#'
+#' @inherit simulate_proportion_spatial_data return
+#'
+#' @noRd
+simulate_binary_spatial_data <- function(x, n = 1) {
+  simulate_spatial_data(
+    x = x,
+    n = n,
+    model = RandomFields::RMgauss(),
+    transform = function(x) {
+      round(x > 0)
+    }
+  )
+}
+
 #' Simulate spatial data
 #'
 #' Simulate spatial data.
@@ -92,7 +112,7 @@ simulate_spatial_data <- function(x, n, model, transform) {
   # convert to spatial format
   if (inherits(x, "Raster")) {
     out <- raster::stack(lapply(seq_len(ncol(mtx)), function(i) {
-        r <- x
+        r <- x[[1]]
         r[raster::Which(!is.na(r))] <- mtx[, i]
         r
     }))

@@ -15,41 +15,43 @@ library(exactextractr)
 ## set seed for reproducibility
 set.seed(500)
 
-# Simulate external datasets
-## raster data
-sim_raster_data <- locationmisc::simulate_data(
-  import_realistic_raster_data(),
-  n_single_themes, n_multi_themes, n_weights)
+# Import data
+raster_data <- new_dataset(import_realistic_raster_data())
+vector_data <- new_dataset(import_realistic_vector_data())
 
-## vector data
-sim_vector_data <- locationmisc::simulate_data(
-  import_realistic_vector_data(),
-  n_single_themes, n_multi_themes, n_weights)
+# Simulate data
+sim_raster_data <- append(
+  simulate_themes(raster_data, n_single_themes, n_multi_themes),
+  simulate_weights(raster_data, n_weights))
+
+sim_vector_data <- append(
+  simulate_themes(vector_data, n_single_themes, n_multi_themes),
+  simulate_weights(raster_data, n_weights))
 
 # Exports
 ## raster data
 writeNamedRaster(
-  sim_raster_data$weights[[1]]$variable$dataset$data,
+  raster_data$data,
   "inst/extdata/sim_raster_data.tif",
   NAflag = -9999, overwrite = TRUE)
 
 ## weights data
 sf::st_write(
-  sim_vector_data$weights[[1]]$variable$dataset$data,
+  vector_data$data,
   "inst/extdata/sim_vector_data.gpkg",
   append = FALSE)
 
 ## configuration files
 write_configuration_file(
-  x = append(sim_vector_data$themes, sim_vector_data$weights),
-  path = "inst/extdata/sim_vector_data.yaml",
-  name = "Example GPKG dataset",
-  data_path = "inst/extdata/sim_vector_parameters.gpkg",
-  mode = "beginner")
-
-write_configuration_file(
-  x = append(sim_raster_data$themes, sim_raster_data$weights),
+  x = sim_raster_data,
   path = "inst/extdata/sim_raster_data.yaml",
   name = "Example GeoTIFF dataset",
   data_path = "inst/extdata/sim_raster_parameters.tif",
   mode = "advanced")
+
+write_configuration_file(
+  x = sim_vector_data,
+  path = "inst/extdata/sim_vector_data.yaml",
+  name = "Example GPKG dataset",
+  data_path = "inst/extdata/sim_vector_parameters.gpkg",
+  mode = "beginner")

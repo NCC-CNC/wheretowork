@@ -77,5 +77,5 @@ simulate_solution_legend <- function() {
     RColorBrewer::brewer.pal(n = n, name = sample(rownames(d), 1))
   })
   # return legend
-  new_solution_legend(colors = c("#00FFFFFF", col[1]))
+  new_solution_legend(colors = c("#00FFFF00", col[1]))
 }

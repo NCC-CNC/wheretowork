@@ -188,7 +188,26 @@ Solution <- R6::R6Class(
         units = self$variable$units,
         type = "solution"
       )
+    },
+
+    #' @description
+    #' Render on map.
+    #' @param x [leaflet::leaflet()] object.
+    #' @param zindex `numeric` z-index for ordering.
+    #' @return [leaflet::leaflet()] object.
+    render_on_map = function(x, zindex) {
+      self$variable$render(x, self$id, zindex, self$visible)
+    },
+
+    #' @description
+    #' Render on map.
+    #' @param x [leaflet::leafletProxy()] object.
+    #' @param zindex `numeric` z-index for ordering.
+    #' @return [leaflet::leafletProxy()] object.
+    update_on_map = function(x, zindex) {
+      self$variable$update_render(x, self$id, zindex, self$visible)
     }
+
   )
 )
 
@@ -283,6 +302,7 @@ new_solution_from_prioritization <- function(
     ## boundary_penalty_gap
     assertthat::is.number(boundary_penalty_gap),
     assertthat::noNA(boundary_penalty_gap))
+
   # extract data
   ## create table with feature settings
   feature_data <- solution_settings$get_theme_settings()

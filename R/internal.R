@@ -142,3 +142,22 @@ make_valid_names <- function(x) {
   x <- gsub(pattern = "(_)\\1+", replacement = "\\1", x)
   x
 }
+
+#' Extract color opacity
+#'
+#' Extract the opacity from a hexadecimal color (i.e.`#RRGGBBAA`).
+#'
+#' @param x `character` object.
+#'
+#' @return `numeric` values between zero and one.
+#'
+#' @noRd
+color_opacity <- function(x) {
+  assertthat::assert_that(is.character(x))
+  nc <- nchar(x)
+  nc9 <- nc == 9
+  out <- numeric(length(x))
+  out[nc == 7] <- 1
+  out[nc9] <- strtoi(substr(x[nc9], 8, 9), base = 16) / 255
+  out
+}
