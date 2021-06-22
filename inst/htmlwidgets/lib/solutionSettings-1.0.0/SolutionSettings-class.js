@@ -42,5 +42,8 @@ class SolutionSettings {
     // weights
     const weight_panel = this.container.querySelector(".weights");
     this.weights.forEach((x) => weight_panel.appendChild(x.render()));
+    
+   // initialize tooltips in widget
+   $(this.container).find('[data-toggle="tooltip"]').tooltip();
   }
 }

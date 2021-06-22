@@ -80,5 +80,7 @@ class MapManager {
         }
       }
     });
+    // initialize tooltips in widget
+    $(this.container).find('[data-toggle="tooltip"]').tooltip();
   }
 }

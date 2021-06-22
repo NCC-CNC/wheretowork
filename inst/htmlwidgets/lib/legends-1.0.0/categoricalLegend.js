@@ -20,6 +20,14 @@ function categoricalLegend(el, x, units) {
   // initialize lenged
   let l = document.createElement("div");
   l.className = "categorical-legend";
+  l.setAttribute("data-toggle", "tooltip");
+  l.setAttribute("data-placement", "bottom");
+  l.setAttribute("data-delay", "{\"show\":500, \"hide\":100}");
+  l.setAttribute("data-container", ".sidebar");
+  l.setAttribute(
+    "title",
+    "This dataset has categorical data. " +
+    "The legend shows the color associated with each category.");
 
   // create legend
   for (let i = 0; i < x.values.length; ++i) {
@@ -37,6 +45,15 @@ function categoricalLegend(el, x, units) {
     item_symbol.className = "item-symbol disable-if-inactive";
     item_symbol.style.backgroundColor = x.colors[i];
     item_symbol.style.color = x.colors[i];
+    if (x.colors[i].length === 9) {
+      // if has alpha channel, then set opacity
+      var r = parseInt(x.colors[i].slice(1, 3), 16);
+      var g = parseInt(x.colors[i].slice(3, 5), 16);
+      var b = parseInt(x.colors[i].slice(5, 7), 16);
+      var a = 1 - parseInt(x.colors[i].substr(-2), 16) / 255;
+      item_symbol.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${a})`;
+      item_symbol.style.color = `rgba(${r}, ${g}, ${b}, ${a})`;
+    }
 
     /// add item to legend
     item.appendChild(item_symbol);
