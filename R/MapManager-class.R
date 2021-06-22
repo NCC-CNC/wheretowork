@@ -247,6 +247,14 @@ MapManager <- R6::R6Class(
         "function(btn, map){ map.flyToBounds([",
         "[", bb$ymin, ", ", bb$xmin, "],",
         "[", bb$ymax, ", ", bb$xmax, "]]);}")
+      zoom_in_js <- paste0(
+        "function(btn, map){",
+        "map.setZoom(Math.min(map.getZoom() + 1, map.getMaxZoom()));",
+        "}")
+      zoom_out_js <- paste0(
+        "function(btn, map){",
+        "map.setZoom(Math.max(map.getZoom() - 1, map.getMinZoom()));",
+        "}")
       # initialize map
       map <-
         leaflet::leaflet() %>%
@@ -254,14 +262,27 @@ MapManager <- R6::R6Class(
           leaflet::providers$Esri.WorldImagery) %>%
         leaflet::flyToBounds(
           bb$xmin, bb$ymin, bb$xmax, bb$ymax) %>%
-        leaflet::addScaleBar(
-          position = "bottomright") %>%
         leaflet::addEasyButton(
           leaflet::easyButton(
-            icon = "fa-crosshairs",
-            title = "Zoom to region",
-            position = "bottomright",
-            onClick = htmlwidgets::JS(fly_to_sites_js)))
+            icon = shiny::icon("plus"),
+            title = "Zoom in",
+            position = "topright",
+            onClick = htmlwidgets::JS(zoom_in_js))) %>%
+        leaflet::addEasyButton(
+          leaflet::easyButton(
+            icon = shiny::icon("minus"),
+            title = "Zoom out",
+            position = "topright",
+            onClick = htmlwidgets::JS(zoom_out_js))) %>%
+        leaflet::addEasyButton(
+          leaflet::easyButton(
+            icon = shiny::icon("home"),
+            title = "Zoom to data",
+            position = "topright",
+            onClick = htmlwidgets::JS(fly_to_sites_js))) %>%
+        leaflet::addScaleBar(
+          position = "bottomright") %>%
+        leaflet::addMiniMap(position = "bottomright")
       # compute zIndex values for layers
       zv <- self$order * 100
       # add layers

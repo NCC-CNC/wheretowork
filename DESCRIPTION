@@ -41,7 +41,6 @@ Depends:
     shiny (>= 1.6.0),
     leaflet (>= 2.0.3.9000),
     leaflet.extras2 (>= 1.1.0),
-    leafgl (>= 0.1.1),
     shinyBS (>= 0.6.1),
     R6 (>= 2.5.0),
     raster (>= 3.4.10),
@@ -100,5 +99,4 @@ Collate:
     'updateSolutionSettings.R'
     'write_configuration_file.R'
 Remotes:
-    NCC-CNC/leafgl@newglify2
     NCC-CNC/leaflet@pane-extra
