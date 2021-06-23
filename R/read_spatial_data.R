@@ -9,9 +9,10 @@ NULL
 #'
 #' @details
 #' This function imports data in vector format as a [sf::st_sf()] object.
-#' It also imports data in raster format as a [raster::stack()] object.
+#' It also imports data in raster format as a [raster::raster()] object.
+#' Note that is will only import the first band in a multi-band raster dataset.
 #'
-#' @return A [sf::st_sf()] or [raster::stack()] object.
+#' @return A [sf::st_sf()] or [raster::raster()] object.
 #'
 #' @examples
 #' # read raster data
@@ -31,15 +32,12 @@ read_spatial_data <- function(x) {
   # deduce format automatically
   rast_ext <- c("grd", "asc", "sdat", "rst", "nc", "tif", "envi", "bil", "img")
   if (tools::file_ext(x) %in% rast_ext) {
-    if (file.exists(raster::extension(x, "txt"))) {
-      out <- readNamedRaster(x)
-    } else {
-      out <- raster::stack(x)
-    }
+      out <- raster::raster(x)
   } else {
     suppressMessages({
-      out <- sf::read_sf(x)
+       out <- sf::read_sf(x)
     })
   }
+  # return result
   out
 }
