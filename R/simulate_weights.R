@@ -36,7 +36,7 @@ simulate_weights <- function(
     assertthat::noNA(n))
 
   # extract data
-  data <- dataset$get_data()
+  data <- dataset$get_spatial_data()
 
   # set weight names
   wn <- example_weight_names()
@@ -56,9 +56,14 @@ simulate_weights <- function(
   wd <- simulate_proportion_spatial_data(data, n)
   names(wd)[seq_len(n)] <- wn_index
   if (inherits(data, "sf")) {
-    dataset$data <- cbind(dataset$data, sf::st_drop_geometry(wd))
+    for (i in seq_along(wn_index)) {
+      dataset$add_index(wn_index[[i]], wd[[wn_index[[i]]]])
+    }
   } else {
-    dataset$data <- raster::stack(dataset$data, wd)
+    idx <- dataset$attribute_data[["_index"]]
+    for (i in seq_along(wn_index)) {
+      dataset$add_index(wn_index[[i]], wd[[wn_index[[i]]]][idx])
+    }
   }
 
   # generate weights

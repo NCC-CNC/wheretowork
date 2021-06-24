@@ -13,8 +13,11 @@ NULL
 #'
 #' @param path `character` file path to save the configuration file.
 #'
-#' @param data_path `character` file path for the dataset that this
-#'  file should accompany.
+#' @param spatial_path `character` file path for the spatial data.
+#'
+#' @param attribute_path `character` file path for the attribute data.
+#'
+#' @param boundary_path `character` file path for the attribute data.
 #'
 #' @param mode `character` mode for running the application.
 #'   Defaults to `"advanced"`.
@@ -41,7 +44,8 @@ NULL
 #'
 #' @export
 write_configuration_file <- function(
-  x, path, name, data_path, mode = "advanced") {
+  x, path, name, spatial_path, attribute_path, boundary_path,
+  mode = "advanced") {
   # assert arguments are valid
   assertthat::assert_that(
     is.list(x),
@@ -50,8 +54,12 @@ write_configuration_file <- function(
     assertthat::noNA(name),
     assertthat::is.string(path),
     assertthat::noNA(path),
-    assertthat::is.string(data_path),
-    assertthat::noNA(data_path),
+    assertthat::is.string(spatial_path),
+    assertthat::noNA(spatial_path),
+    assertthat::is.string(attribute_path),
+    assertthat::noNA(attribute_path),
+    assertthat::is.string(boundary_path),
+    assertthat::noNA(boundary_path),
     assertthat::is.string(mode),
     assertthat::noNA(mode))
 
@@ -66,7 +74,9 @@ write_configuration_file <- function(
   # create full parameter list
   params <- list(
     name = name,
-    path = data_path,
+    spatial_path = spatial_path,
+    attribute_path = attribute_path,
+    boundary_path = boundary_path,
     mode = mode,
     themes = themes_params,
     weights = weights_params

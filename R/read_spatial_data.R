@@ -36,6 +36,11 @@ read_spatial_data <- function(x) {
   } else {
     suppressMessages({
        out <- sf::read_sf(x)
+       if ("geom" %in% names(out)) {
+         names(out)[names(out) == "geom"] <- "geometry"
+         attr(out, "sf_column") <-  "geometry"
+       }
+       attr(out, "agr") <- NULL
     })
   }
   # return result

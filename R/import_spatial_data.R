@@ -23,6 +23,8 @@ import_realistic_vector_data <- function() {
   x$id <- seq_len(nrow(x))
   x <- x[, "id"]
   x <- sf::st_transform(x, 3857)
+  # overwrite attributes
+  attr(x, "agr") <- NULL
   # return result
   x
 }
@@ -51,8 +53,10 @@ import_realistic_raster_data <- function() {
 import_simple_vector_data <- function() {
   x <-
     sf::st_as_sf(raster::rasterToPolygons(import_simple_raster_data()))
-  x$id <- seq_len(nrow(x))
-  x[, c("id")]
+  x <- sf::st_sf(
+    tibble::tibble(id = seq_len(nrow(x)), geometry = sf::st_geometry(x)))
+  attr(x, "agr") <- NULL
+  x
 }
 
 #' Import simple raster data
