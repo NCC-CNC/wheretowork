@@ -14,7 +14,7 @@ RandomFields::RFoptions(seed = 200)
 
 # import data
 # d <- new_dataset(import_simple_vector_data())
-d <- new_dataset(import_simple_raster_data())
+d <- new_dataset(locationmisc:::import_simple_raster_data())
 
 # simulate themes, weights, and a solution
 sim_themes <- simulate_themes(d, 1, 1, 1)
