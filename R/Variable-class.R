@@ -138,15 +138,17 @@ Variable <- R6::R6Class(
       # add data to leaflet map
       if (inherits(d, "Raster")) {
         ## add raster data
-        x <- leaflet::addRasterImage(
-          map = x,
-          x = d,
-          opacity = 0.8,
-          project = FALSE,
-          maxBytes = 1 * 1024 * 1024, # 1MB max size
-          method = self$legend$get_resample_method(),
-          colors = self$legend$get_color_map(),
-          pane = pane_id)
+        suppressWarnings({
+          x <- leaflet::addRasterImage(
+            map = x,
+            x = d,
+            opacity = 0.8,
+            project = FALSE,
+            maxBytes = 1 * 1024 * 1024, # 1MB max size
+            method = self$legend$get_resample_method(),
+            colors = self$legend$get_color_map(),
+            pane = pane_id)
+        })
       } else if (inherits(d, "sf")) {
         ## reproject data
         d <- sf::st_transform(d, 4326)

@@ -227,7 +227,8 @@ MapManager <- R6::R6Class(
     get_initial_map = function(dataset) {
       # get spatial extent for dataset
       ## extract extent
-      ext <- methods::as(raster::extent(dataset$get_data()), "SpatialPolygons")
+      ext <- methods::as(raster::extent(
+        dataset$get_spatial_data()), "SpatialPolygons")
       ## prepare bounding box
       ext <- sf::st_set_crs(sf::st_as_sf(ext), dataset$get_crs())
       ## convert to WGS1984

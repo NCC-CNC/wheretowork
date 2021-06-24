@@ -12,9 +12,16 @@ library(locationmisc)
 set.seed(200)
 RandomFields::RFoptions(seed = 200)
 
-# import data
-# d <- new_dataset(import_simple_vector_data())
-d <- new_dataset(import_simple_raster_data())
+# find data file paths
+f1 <- system.file(
+  "extdata", "sim_raster_spatial.tif", package = "locationmisc")
+f2 <- system.file(
+  "extdata", "sim_raster_attribute.csv.gz", package = "locationmisc")
+f3 <- system.file(
+  "extdata", "sim_raster_boundary.csv.gz", package = "locationmisc")
+
+# create dataset
+d <- new_dataset(f1, f2, f3)
 
 # simulate themes, weights, and a solution
 sim_themes <- simulate_themes(d, 1, 1, 1)
