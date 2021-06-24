@@ -23,6 +23,7 @@ f3 <- system.file(
 # create dataset
 d <- new_dataset(f1, f2, f3)
 
+
 # simulate themes, weights, and a solution
 sim_themes <- simulate_themes(d, 1, 1, 1)
 sim_weights <- simulate_weights(d, 10)
