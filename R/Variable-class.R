@@ -138,15 +138,17 @@ Variable <- R6::R6Class(
       # add data to leaflet map
       if (inherits(d, "Raster")) {
         ## add raster data
-        x <- leaflet::addRasterImage(
-          map = x,
-          x = d,
-          opacity = 0.8,
-          project = FALSE,
-          maxBytes = 1 * 1024 * 1024, # 1MB max size
-          method = self$legend$get_resample_method(),
-          colors = self$legend$get_color_map(),
-          pane = pane_id)
+        suppressWarnings({
+          x <- leaflet::addRasterImage(
+            map = x,
+            x = d,
+            opacity = 0.8,
+            project = FALSE,
+            maxBytes = 1 * 1024 * 1024, # 1MB max size
+            method = self$legend$get_resample_method(),
+            colors = self$legend$get_color_map(),
+            pane = pane_id)
+        })
       } else if (inherits(d, "sf")) {
         ## reproject data
         d <- sf::st_transform(d, 4326)
@@ -212,11 +214,16 @@ Variable <- R6::R6Class(
 #' @return A [Variable] object.
 #'
 #' @examples
-#' # find data path
-#' f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+#' # find data file paths
+#' f1 <- system.file(
+#'   "extdata", "sim_raster_spatial.tif", package = "locationmisc")
+#' f2 <- system.file(
+#'  "extdata", "sim_raster_attribute.csv.gz", package = "locationmisc")
+#' f3 <- system.file(
+#'  "extdata", "sim_raster_boundary.csv.gz", package = "locationmisc")
 #'
 #' # create new dataset
-#' d <- new_dataset(f)
+#' d <- new_dataset(f1, f2, f3)
 #'
 #' # create new variable
 #' v <- new_variable(d, index = 1, total = 12, units = "ha",
@@ -262,11 +269,16 @@ new_variable <- function(dataset, index, units, total, legend) {
 #' @return A [Variable] object.
 #'
 #' @examples
-#' # find data path
-#' f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+#' # find data file paths
+#' f1 <- system.file(
+#'   "extdata", "sim_raster_spatial.tif", package = "locationmisc")
+#' f2 <- system.file(
+#'  "extdata", "sim_raster_attribute.csv.gz", package = "locationmisc")
+#' f3 <- system.file(
+#'  "extdata", "sim_raster_boundary.csv.gz", package = "locationmisc")
 #'
 #' # create new dataset
-#' d <- new_dataset(f)
+#' d <- new_dataset(f1, f2, f3)
 #'
 #' # create new variable
 #' v <- new_variable_from_auto(d, index = 1)
@@ -352,11 +364,16 @@ new_variable_from_auto <- function(
 #' }
 #'
 #' @examples
-#' # find data path
-#' f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+#' # find data file paths
+#' f1 <- system.file(
+#'   "extdata", "sim_raster_spatial.tif", package = "locationmisc")
+#' f2 <- system.file(
+#'  "extdata", "sim_raster_attribute.csv.gz", package = "locationmisc")
+#' f3 <- system.file(
+#'  "extdata", "sim_raster_boundary.csv.gz", package = "locationmisc")
 #'
 #' # create new dataset
-#' d <- new_dataset(f)
+#' d <- new_dataset(f1, f2, f3)
 #'
 #' # create new variable
 #' v <- new_variable_from_metadata(

@@ -1,10 +1,21 @@
+# set options
+options("rgdal_show_exportToProj4_warnings" = "none")
+
 # load package
 library(shiny)
 library(locationmisc)
 
 # create example solution settings object
+## find data file paths
+f1 <- system.file(
+  "extdata", "sim_raster_spatial.tif", package = "locationmisc")
+f2 <- system.file(
+  "extdata", "sim_raster_attribute.csv.gz", package = "locationmisc")
+f3 <- system.file(
+  "extdata", "sim_raster_boundary.csv.gz", package = "locationmisc")
+
 ## create dataset
-d <- new_dataset(tempfile())
+d <- new_dataset(f1, f2, f3)
 
 ## create variables
 v1 <- new_variable(

@@ -1,10 +1,21 @@
+# set options
+options("rgdal_show_exportToProj4_warnings" = "none")
+
 # load package
 library(shiny)
 library(locationmisc)
 
 # create example solution settings object
-## create dataset
-d <- new_dataset(tempfile())
+# find data file paths
+f1 <- system.file(
+  "extdata", "sim_raster_spatial.tif", package = "locationmisc")
+f2 <- system.file(
+  "extdata", "sim_raster_attribute.csv.gz", package = "locationmisc")
+f3 <- system.file(
+  "extdata", "sim_raster_boundary.csv.gz", package = "locationmisc")
+
+# create dataset
+d <- new_dataset(f1, f2, f3)
 
 ## create variables
 v1 <- new_variable(
@@ -46,7 +57,7 @@ t1 <- new_single_theme("Species", f1, id = "SPECIES")
 t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "ER")
 
 ## create solution
-s <- simulate_solution(themes = list(t1, t2), weights = list(w))
+s <- simulate_solution(d, themes = list(t1, t2), weights = list(w))
 
 ## create map manager
 mm <- new_map_manager(list(s, t1, t2, w))

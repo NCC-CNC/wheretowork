@@ -2,7 +2,7 @@ context("simulate_themes")
 
 test_that("simple dataset (single)", {
   # create object
-  d <- new_dataset(import_simple_raster_data())
+  d <- new_dataset_from_auto(import_simple_raster_data())
   x <- simulate_themes(d, 1, 1)
   # run tests
   expect_is(x, "list")
@@ -20,7 +20,7 @@ test_that("simple dataset (single)", {
 
 test_that("simple dataset (multiple)", {
   # create object
-  d <- new_dataset(import_simple_raster_data())
+  d <- new_dataset_from_auto(import_simple_raster_data())
   x <- simulate_themes(d, 2, 2, 2)
   # run tests
   expect_is(x, "list")
@@ -38,7 +38,7 @@ test_that("simple dataset (multiple)", {
 
 test_that("large dataset", {
   # create object
-  d <- new_dataset(import_realistic_raster_data())
+  d <- new_dataset_from_auto(import_realistic_raster_data())
   x <- simulate_themes(d, 2, 2, 2)
   # run tests
   expect_is(x, "list")

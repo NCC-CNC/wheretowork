@@ -2,7 +2,7 @@ context("new_feature")
 
 test_that("initialization", {
   # create object
-  d <- new_dataset(import_simple_raster_data())
+  d <- new_dataset_from_auto(import_simple_raster_data())
   v <- new_variable(
     dataset = d, index = 1, total = 200, units = "ha",
     legend = simulate_continuous_legend())
@@ -41,7 +41,7 @@ test_that("initialization", {
 
 test_that("get methods", {
   # create object
-  d <- new_dataset(import_simple_raster_data())
+  d <- new_dataset_from_auto(import_simple_raster_data())
   v <- new_variable(
     dataset = d, index = 1, total = 200, units = "ha",
     legend = simulate_continuous_legend())
@@ -66,7 +66,7 @@ test_that("get methods", {
 
 test_that("set methods", {
   # create object
-  d <- new_dataset(import_simple_raster_data())
+  d <- new_dataset_from_auto(import_simple_raster_data())
   v <- new_variable(
     dataset = d, index = 1, total = 200, units = "ha",
     legend = simulate_continuous_legend())
@@ -94,7 +94,7 @@ test_that("set methods", {
 
 test_that("export method", {
   # create object
-  d <- new_dataset(import_simple_raster_data())
+  d <- new_dataset_from_auto(import_simple_raster_data())
   v <- new_variable(
     dataset = d, index = 1, total = 200, units = "ha",
     legend = simulate_continuous_legend())

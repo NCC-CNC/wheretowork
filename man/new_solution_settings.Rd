@@ -18,10 +18,16 @@ A \link{SolutionSettings} object.
 Create a new \link{SolutionSettings} object.
 }
 \examples{
-# create dataset
-f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
-d <- new_dataset(f)
+# find data file paths
+f1 <- system.file(
+  "extdata", "sim_raster_spatial.tif", package = "locationmisc")
+f2 <- system.file(
+ "extdata", "sim_raster_attribute.csv.gz", package = "locationmisc")
+f3 <- system.file(
+ "extdata", "sim_raster_boundary.csv.gz", package = "locationmisc")
 
+# create new dataset
+d <- new_dataset(f1, f2, f3)
 # create variables
 v1 <- new_variable_from_auto(dataset = d, index = 1)
 v2 <- new_variable_from_auto(dataset = d, index = 2)
