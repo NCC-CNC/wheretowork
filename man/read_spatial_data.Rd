@@ -10,14 +10,15 @@ read_spatial_data(x)
 \item{x}{\code{character} file path.}
 }
 \value{
-A \code{\link[sf:sf]{sf::st_sf()}} or \code{\link[raster:stack]{raster::stack()}} object.
+A \code{\link[sf:sf]{sf::st_sf()}} or \code{\link[raster:raster]{raster::raster()}} object.
 }
 \description{
 Import spatial data from disk.
 }
 \details{
 This function imports data in vector format as a \code{\link[sf:sf]{sf::st_sf()}} object.
-It also imports data in raster format as a \code{\link[raster:stack]{raster::stack()}} object.
+It also imports data in raster format as a \code{\link[raster:raster]{raster::raster()}} object.
+Note that is will only import the first band in a multi-band raster dataset.
 }
 \examples{
 # read raster data

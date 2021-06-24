@@ -3,8 +3,8 @@ context("new_solution_settings")
 test_that("initialization", {
   # create object
   ## create dataset
-  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
-  d <- new_dataset(f)
+  rd <- simulate_binary_spatial_data(import_simple_raster_data(), 4)
+  d <- new_dataset_from_auto(rd)
   ## create variables
   v1 <- new_variable(
     dataset = d, index = 1, total = 12, units = "ha",
@@ -49,8 +49,8 @@ test_that("initialization", {
 test_that("get methods", {
   # create object
   ## create dataset
-  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
-  d <- new_dataset(f)
+  rd <- simulate_binary_spatial_data(import_simple_raster_data(), 4)
+  d <- new_dataset_from_auto(rd)
   ## create variables
   v1 <- new_variable(
     dataset = d, index = 1, total = 12, units = "ha",
@@ -124,8 +124,8 @@ test_that("get methods", {
 test_that("set methods", {
   # create object
   ## create dataset
-  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
-  d <- new_dataset(f)
+  rd <- simulate_binary_spatial_data(import_simple_raster_data(), 4)
+  d <- new_dataset_from_auto(rd)
   ## create variables
   v1 <- new_variable(
     dataset = d, index = 1, total = 12, units = "ha",
@@ -207,8 +207,8 @@ test_that("set methods", {
 test_that("widget methods", {
   # create object
   ## create dataset
-  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
-  d <- new_dataset(f)
+  rd <- simulate_binary_spatial_data(import_simple_raster_data(), 4)
+  d <- new_dataset_from_auto(rd)
   ## create variables
   v1 <- new_variable(
     dataset = d, index = 1, total = 12, units = "ha",

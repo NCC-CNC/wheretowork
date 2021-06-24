@@ -3,7 +3,7 @@ context("new_multi_theme")
 test_that("initialization", {
   # create object
   rd <- simulate_proportion_spatial_data(import_simple_raster_data(), 2)
-  d <- new_dataset(rd)
+  d <- new_dataset_from_auto(rd)
   f1 <- new_feature(
     name = "F1",
     variable = new_variable_from_auto(dataset = d, index = 1, units = "ha"),
@@ -48,7 +48,7 @@ test_that("initialization", {
 test_that("get methods", {
   # create object
   rd <- simulate_proportion_spatial_data(import_simple_raster_data(), 2)
-  d <- new_dataset(rd)
+  d <- new_dataset_from_auto(rd)
   f1 <- new_feature(
     name = "F1",
     variable = new_variable_from_auto(dataset = d, index = 1, units = "ha"),
@@ -93,7 +93,7 @@ test_that("get methods", {
 test_that("set methods", {
   # create object
   rd <- simulate_proportion_spatial_data(import_simple_raster_data(), 2)
-  d <- new_dataset(rd)
+  d <- new_dataset_from_auto(rd)
   f1 <- new_feature(
     name = "F1",
     variable = new_variable_from_auto(dataset = d, index = 1, units = "ha"),
@@ -144,7 +144,7 @@ test_that("set methods", {
 test_that("export method", {
   # create object
   rd <- simulate_proportion_spatial_data(import_simple_raster_data(), 2)
-  d <- new_dataset(rd)
+  d <- new_dataset_from_auto(rd)
   f1 <- new_feature(
     name = "F1",
     variable = new_variable_from_auto(dataset = d, index = 1, units = "ha"),
@@ -192,7 +192,7 @@ test_that("export method", {
 test_that("widget methods", {
   # create object
   rd <- simulate_proportion_spatial_data(import_simple_raster_data(), 2)
-  d <- new_dataset(rd)
+  d <- new_dataset_from_auto(rd)
   f1 <- new_feature(
     name = "F1",
     variable = new_variable_from_auto(dataset = d, index = 1, units = "ha"),

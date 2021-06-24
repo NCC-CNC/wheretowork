@@ -2,7 +2,9 @@ context("new_solution")
 
 test_that("initialization", {
   # create object
-  d <- new_dataset(tempfile())
+  rd <- simulate_binary_spatial_data(import_simple_raster_data(), 3)
+  names(rd) <- c("a", "b", "solution_1")
+  d <- new_dataset_from_auto(rd)
   v1 <- new_variable(
     d, index = 1, total = 45, units = "ha",
     legend = new_continuous_legend(
@@ -80,7 +82,9 @@ test_that("initialization", {
 
 test_that("get methods", {
   # create object
-  d <- new_dataset(tempfile())
+  rd <- simulate_binary_spatial_data(import_simple_raster_data(), 3)
+  names(rd) <- c("a", "b", "solution_1")
+  d <- new_dataset_from_auto(rd)
   v1 <- new_variable(
     d, index = 1, total = 45, units = "ha",
     legend = new_continuous_legend(
@@ -149,7 +153,10 @@ test_that("get methods", {
 
 test_that("set methods", {
   # create object
-  d <- new_dataset(tempfile())
+  # create object
+  rd <- simulate_binary_spatial_data(import_simple_raster_data(), 3)
+  names(rd) <- c("a", "b", "solution_1")
+  d <- new_dataset_from_auto(rd)
   v1 <- new_variable(
     d, index = 1, total = 45, units = "ha",
     legend = new_continuous_legend(
@@ -220,7 +227,9 @@ test_that("set methods", {
 
 test_that("widget methods", {
   # create object
-  d <- new_dataset(tempfile())
+  rd <- simulate_binary_spatial_data(import_simple_raster_data(), 3)
+  names(rd) <- c("a", "b", "solution_1")
+  d <- new_dataset_from_auto(rd)
   v1 <- new_variable(
     d, index = 1, total = 45, units = "ha",
     legend = new_continuous_legend(

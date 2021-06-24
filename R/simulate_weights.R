@@ -14,9 +14,16 @@ NULL
 #' @seealso [new_weight].
 #'
 #' @examples
-#' # import data
-#' f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
-#' d <- new_dataset(raster::raster(f))
+#' # find data file paths
+#' f1 <- system.file(
+#'   "extdata", "sim_raster_spatial.tif", package = "locationmisc")
+#' f2 <- system.file(
+#'  "extdata", "sim_raster_attribute.csv.gz", package = "locationmisc")
+#' f3 <- system.file(
+#'  "extdata", "sim_raster_boundary.csv.gz", package = "locationmisc")
+#'
+#' # create new dataset
+#' d <- new_dataset(f1, f2, f3)
 #'
 #' # simulate data
 #' x <- simulate_weights(dataset = d, n = 2)

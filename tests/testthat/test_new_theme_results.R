@@ -2,11 +2,8 @@ context("new_theme_results")
 
 test_that("initialization (SingleTheme)", {
   # create objects
-  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
-  d <- new_dataset(f)
-  v <- new_variable(
-    dataset = d, index = 1, total = 100, units = "ha",
-    legend = simulate_continuous_legend())
+  d <- new_dataset_from_auto(import_simple_raster_data())
+  v <- new_variable_from_auto(dataset = d, index = 1, units = "ha")
   f <- new_feature(
     name = "F1",
     variable = v,
@@ -38,8 +35,8 @@ test_that("initialization (SingleTheme)", {
 
 test_that("widget methods (SingleTheme)", {
   # create objects
-  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
-  d <- new_dataset(f)
+  d <- new_dataset_from_auto(import_simple_raster_data())
+  v <- new_variable_from_auto(dataset = d, index = 1, units = "ha")
   v <- new_variable(
     dataset = d, index = 1, total = 100, units = "ha",
     legend = simulate_continuous_legend())
@@ -91,8 +88,8 @@ test_that("widget methods (SingleTheme)", {
 
 test_that("initialization (MultiTheme)", {
   # create object
-  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
-  d <- new_dataset(f)
+  rd <- simulate_proportion_spatial_data(import_simple_raster_data(), 2)
+  d <- new_dataset_from_auto(rd)
   v1 <- new_variable(
     dataset = d, index = 1, total = 100, units = "ha",
     legend = simulate_continuous_legend())
@@ -149,8 +146,8 @@ test_that("initialization (MultiTheme)", {
 
 test_that("widget methods (MultiTheme)", {
   # create object
-  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
-  d <- new_dataset(f)
+  rd <- simulate_proportion_spatial_data(import_simple_raster_data(), 2)
+  d <- new_dataset_from_auto(rd)
   v1 <- new_variable(
     dataset = d, index = 1, total = 100, units = "ha",
     legend = simulate_continuous_legend())

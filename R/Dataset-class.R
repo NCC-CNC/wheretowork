@@ -13,22 +13,22 @@ Dataset <- R6::R6Class(
     #' @field id `character` identifier.
     id = NA_character_,
 
-    #' @field source `character` file path.
+    #' @field spatial_path `character` file path.
     spatial_path = NA_character_,
 
-    #' @field source `character` file path.
+    #' @field attribute_path `character` file path.
     attribute_path = NA_character_,
 
-    #' @field source `character` file path.
+    #' @field boundary_path `character` file path.
     boundary_path = NA_character_,
 
-    #' @field `NULL`, [sf::st_sf()], or [raster::raster()] object.
+    #' @field spatial_data `NULL`, [sf::st_sf()], or [raster::raster()] object.
     spatial_data = NULL,
 
-    #' @field `NULL`, or [tibble::tibble()] object.
+    #' @field attribute_data `NULL`, or [tibble::tibble()] object.
     attribute_data = NULL,
 
-    #' @field `NULL`, or [Matrix::sparseMatrix()] object.
+    #' @field boundary_data `NULL`, or [Matrix::sparseMatrix()] object.
     boundary_data = NULL,
 
     #' @description
@@ -65,6 +65,16 @@ Dataset <- R6::R6Class(
         ## boundary_data
         inherits(boundary_data, c("NULL", "dsCMatrix"))
       )
+      ## validate paths
+      if (!identical(spatial_path, "memory")) {
+        assertthat::assert_that(assertthat::is.readable(spatial_path))
+      }
+      if (!identical(attribute_path, "memory")) {
+        assertthat::assert_that(assertthat::is.readable(attribute_path))
+      }
+      if (!identical(boundary_path, "memory")) {
+        assertthat::assert_that(assertthat::is.readable(boundary_path))
+      }
       ## set fields
       self$id <- id
       self$spatial_path <- spatial_path
@@ -73,7 +83,8 @@ Dataset <- R6::R6Class(
       self$spatial_data <- spatial_data
       self$attribute_data <- attribute_data
       self$boundary_data <- boundary_data
-      # validate attribute data
+
+      ## validate attribute data
       if (inherits(attribute_data, "data.frame")) {
         assertthat::assert_that(
           assertthat::has_name(self$attribute_data, "_index"),
@@ -253,11 +264,12 @@ Dataset <- R6::R6Class(
     #' @return `numeric` vector of values.
     get_planning_unit_areas = function() {
       self$import()
+      idx <- self$attribute_data[["_index"]]
       if (inherits(self$spatial_data, "Raster")) {
         out <-
-          rep(prod(raster::res(self$spatial_data)), nrow(self$attribute_data))
+          rep(prod(raster::res(self$spatial_data)), length(idx))
       } else {
-        out <- as.numeric(sf::st_area(self$spatial_data))
+        out <- as.numeric(sf::st_area(self$spatial_data[idx, ]))
       }
       out
     },
@@ -273,13 +285,14 @@ Dataset <- R6::R6Class(
         assertthat::noNA(index),
         self$has_index(index))
       self$import()
+      idx <- self$attribute_data[["_index"]]
       if (inherits(self$spatial_data, "Raster")) {
         out <- raster::setValues(self$spatial_data, NA_real_)
-        out[self$attribute_data[["_index"]]] <- self$attribute_data[[index]]
+        out[idx] <- self$attribute_data[[index]]
       } else {
         out <- sf::st_as_sf(tibble::tibble(
-            x = self$attribute_data[[index]],
-            geometry = sf::st_geometry(self$spatial_data)))
+            x = self$attribute_data[[index]][idx],
+            geometry = sf::st_geometry(self$spatial_data)[idx]))
         attr(out, "agr") <- NULL
       }
       if (is.character(index)) {
@@ -331,9 +344,9 @@ Dataset <- R6::R6Class(
       assertthat::assert_that(
         length(values) == nrow(self$attribute_data))
       self$attribute_data[[index]] <- values
-      nms <- setdiff(names(self$attribute_data), "_index")
       self$attribute_data <-
-        self$attribute_data[, c(nms, "_index")]
+        self$attribute_data[,
+          c(setdiff(names(self$attribute_data), "_index"), "_index")]
       invisible(self)
     }
 
@@ -368,14 +381,13 @@ Dataset <- R6::R6Class(
 #' @return A [Dataset] object.
 #'
 #' @examples
-#' # find paths
+#' # find data file paths
 #' f1 <- system.file(
-#'   "extdata", "sim_raster_spatial_data.tif", package = "locationmisc")
+#'   "extdata", "sim_raster_spatial.tif", package = "locationmisc")
 #' f2 <- system.file(
-#'  "extdata", "sim_raster_attribute_data.csv.zip", package = "locationmisc")
+#'  "extdata", "sim_raster_attribute.csv.gz", package = "locationmisc")
 #' f3 <- system.file(
-#'  "extdata", "sim_raster_boundary_data.csv.zip", package = "locationmisc")
-#'
+#'  "extdata", "sim_raster_boundary.csv.gz", package = "locationmisc")
 #'
 #' # create new dataset
 #' d <- new_dataset(f1, f2, f3)
@@ -430,10 +442,10 @@ new_dataset <- function(
 #' @examples
 #' # find example data
 #' f <- system.file(
-#'   "extdata", "sim_raster_spatial_data.tif", package = "locationmisc")
+#'   "extdata", "sim_raster_spatial.tif", package = "locationmisc")
 #'
 #' # import data
-#' r <- raster::raster(f)
+#' r <- suppressWarnings(raster::raster(f))
 #' r <- raster::stack(r, r * 2, r * 3, r* 4)
 #'
 #' # create new dataset
@@ -458,12 +470,14 @@ new_dataset_from_auto <- function(x, id = uuid::UUIDgenerate()) {
   if (inherits(x, "sf")) {
     attribute_data <- sf::st_drop_geometry(spatial_data)
   } else {
-    attribute_data <- raster::as.data.frame(spatial_data, na.rm = FALSE)
+    attribute_data <- raster::as.data.frame(x, na.rm = FALSE)
     pu_idx <- rowSums(is.na(as.matrix(attribute_data)))
     attribute_data <- tibble::as_tibble(attribute_data)
     attribute_data[["_index"]] <- seq_len(nrow(attribute_data))
     attribute_data <- attribute_data[pu_idx < 0.5, , drop = FALSE]
   }
+  # determine settings for boundary matrix
+  str_tree <- inherits(x, "sf") && !identical(Sys.info()[["sysname"]], "Darwin")
   # create new dataset
   Dataset$new(
     spatial_path = "memory",
@@ -471,7 +485,8 @@ new_dataset_from_auto <- function(x, id = uuid::UUIDgenerate()) {
     boundary_path = "memory",
     spatial_data = spatial_data,
     attribute_data = attribute_data,
-    boundary_data = prioritizr::boundary_matrix(spatial_data),
+    boundary_data = prioritizr::boundary_matrix(
+      spatial_data, str_tree = str_tree),
     id = id
   )
 }

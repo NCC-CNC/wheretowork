@@ -4,7 +4,15 @@
 \alias{write_configuration_file}
 \title{Write a configuration file}
 \usage{
-write_configuration_file(x, path, name, data_path, mode = "advanced")
+write_configuration_file(
+  x,
+  path,
+  name,
+  spatial_path,
+  attribute_path,
+  boundary_path,
+  mode = "advanced"
+)
 }
 \arguments{
 \item{x}{\code{list} of \link{Theme} and \link{Weight} objects.}
@@ -13,8 +21,11 @@ write_configuration_file(x, path, name, data_path, mode = "advanced")
 
 \item{name}{\code{character} name for the scenario.}
 
-\item{data_path}{\code{character} file path for the dataset that this
-file should accompany.}
+\item{spatial_path}{\code{character} file path for the spatial data.}
+
+\item{attribute_path}{\code{character} file path for the attribute data.}
+
+\item{boundary_path}{\code{character} file path for the attribute data.}
 
 \item{mode}{\code{character} mode for running the application.
 Defaults to \code{"advanced"}.}
@@ -28,11 +39,16 @@ The configuration file will contain all the data and parameters related
 to a set of \link{Theme} and \link{Weight} objects.
 }
 \examples{
-# find data path
-f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+# find data file paths
+f1 <- system.file(
+  "extdata", "sim_raster_spatial.tif", package = "locationmisc")
+f2 <- system.file(
+ "extdata", "sim_raster_attribute.csv.gz", package = "locationmisc")
+f3 <- system.file(
+ "extdata", "sim_raster_boundary.csv.gz", package = "locationmisc")
 
 # create new dataset
-d <- new_dataset(f)
+d <- new_dataset(f1, f2, f3)
 
 # simulate themes and weights
 th <- simulate_themes(d, 1, 1, 2)
@@ -43,6 +59,11 @@ l <- append(th, w)
 
 # save configuration file to temporary location
 write_configuration_file(
-  l, path = tempfile(), name = "example", data_path = f)
+  l,
+  path = tempfile(),
+  name = "example",
+  spatial_path = tempfile(fileext = ".tif"),
+  attribute_path = tempfile(fileext = ".csv.gz"),
+  boundary_path = tempfile(fileext = ".csv.gz"))
 
 }

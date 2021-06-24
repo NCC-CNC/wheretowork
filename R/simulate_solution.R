@@ -25,7 +25,7 @@ simulate_solution <- function(dataset, themes, weights) {
     all_list_elements_inherit(weights, "Weight"))
 
   # import data
-  data <- dataset$get_data()
+  data <- dataset$get_spatial_data()
 
   # simulate statistics
   statistics <- list(
@@ -53,21 +53,17 @@ simulate_solution <- function(dataset, themes, weights) {
 
   # simulate underlying data values
   sold <- simulate_binary_spatial_data(data, 1)
-  names(sold)[1] <- idx
-  if (inherits(data, "sf")) {
-    dataset$data <- cbind(data, sf::st_drop_geometry(sold))
-    total <- sum(sold[[1]])
-  } else {
-    dataset$data <- raster::stack(data, sold)
-    total <- sum(raster::values(sold), na.rm = TRUE)
-  }
+
+  # add new index to data with solution
+  v <- sold[[1]][dataset$attribute_data[["_index"]]]
+  dataset$add_index(idx, v)
 
   # create variable for
   v <- new_variable(
     dataset = dataset,
     index = idx,
     units = "",
-    total = total,
+    total = sum(v),
     legend = simulate_solution_legend()
   )
 

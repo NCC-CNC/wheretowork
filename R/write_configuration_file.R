@@ -25,11 +25,16 @@ NULL
 #' @return Invisible `TRUE` indicating success.
 #'
 #' @examples
-#' # find data path
-#' f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+#' # find data file paths
+#' f1 <- system.file(
+#'   "extdata", "sim_raster_spatial.tif", package = "locationmisc")
+#' f2 <- system.file(
+#'  "extdata", "sim_raster_attribute.csv.gz", package = "locationmisc")
+#' f3 <- system.file(
+#'  "extdata", "sim_raster_boundary.csv.gz", package = "locationmisc")
 #'
 #' # create new dataset
-#' d <- new_dataset(f)
+#' d <- new_dataset(f1, f2, f3)
 #'
 #' # simulate themes and weights
 #' th <- simulate_themes(d, 1, 1, 2)
@@ -40,7 +45,12 @@ NULL
 #'
 #' # save configuration file to temporary location
 #' write_configuration_file(
-#'   l, path = tempfile(), name = "example", data_path = f)
+#'   l,
+#'   path = tempfile(),
+#'   name = "example",
+#'   spatial_path = tempfile(fileext = ".tif"),
+#'   attribute_path = tempfile(fileext = ".csv.gz"),
+#'   boundary_path = tempfile(fileext = ".csv.gz"))
 #'
 #' @export
 write_configuration_file <- function(
