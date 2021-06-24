@@ -111,7 +111,7 @@ simulate_themes <- function(
   ## exclude names from tn object
   tn <- tn[-st_idx, , drop = FALSE]
   ## simulate number of features for each multi theme
-  mt_n_features <- stats::rpois(n_multi_themes, lambda) + 1
+  mt_n_features <- pmax(stats::rpois(n_multi_themes, lambda), 2
   ## calculate number of features within each theme
   tn_meta <-
     tibble::as_tibble(
