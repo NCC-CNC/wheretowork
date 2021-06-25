@@ -16,7 +16,6 @@ class SingleThemeResults {
     round,
     icon
   ) {
-    // class fields
     this.id = id;
     this.el =
       document.importNode(
@@ -26,12 +25,18 @@ class SingleThemeResults {
         .content,
       true);
 
-    // TODO: add code to dipslay results for the object
-    // The current code just inserts a TODO into the DOM
     const l = document.createElement("label");
-    l.innerText = "TODO";
     this.el.appendChild(l);
 
+    const chart = new SingleSolutionChart([{
+      feature_name,
+      feature_goal,
+      feature_current_held,
+      feature_solution_held,
+      feature_total_amount
+    }]);
+
+    chart.render(this.el);
   }
 
   /* render method */

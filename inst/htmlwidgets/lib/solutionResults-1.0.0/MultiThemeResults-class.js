@@ -16,7 +16,6 @@ class MultiThemeResults {
     round,
     icon
   ) {
-    // class fields
     this.id = id;
     this.el =
       document.importNode(
@@ -26,11 +25,18 @@ class MultiThemeResults {
         .content,
       true);
 
-    // TODO: add code to dipslay results for the object
-    // The current code just inserts a TODO into the DOM
     const l = document.createElement("label");
-    l.innerText = "TODO";
     this.el.appendChild(l);
+
+    const chart = new MultiSolutionChart(feature_name.map((name, index) => ({
+      feature_name: name,
+      feature_goal: feature_goal[index],
+      feature_current_held: feature_current_held[index],
+      feature_solution_held: feature_solution_held[index],
+      feature_total_amount: feature_total_amount[index],
+    })));
+
+    chart.render(this.el);
   }
 
   /* render method */
