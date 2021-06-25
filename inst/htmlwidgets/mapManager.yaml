@@ -22,6 +22,7 @@ dependencies:
     src: htmlwidgets/lib/mapManager-1.0.0
     script:
       - utils.js
+      - IncludeLayer-class.js
       - SolutionLayer-class.js
       - WeightLayer-class.js
       - SingleThemeLayer-class.js

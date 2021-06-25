@@ -1,13 +1,18 @@
 class SolutionSettings {
   /* constructor */
-  constructor(id, container, themes, weights) {
+  constructor(id, container, themes, weights, includes) {
     // set container
     this.id = id,
     this.container = container;
+
     // initialize themes
     this.themes = themes.map((x) => newThemeSetting(id, x));
+
     // initialize weights
     this.weights = weights.map((x) => newWeightSetting(id, x));
+
+    // initialize includes
+    this.includes = includes.map((x) => newIncludeSetting(id, x));
   }
 
   /* update method */
@@ -42,7 +47,11 @@ class SolutionSettings {
     // weights
     const weight_panel = this.container.querySelector(".weights");
     this.weights.forEach((x) => weight_panel.appendChild(x.render()));
-    
+
+    // includes
+    const include_panel = this.container.querySelector(".includes");
+    this.includes.forEach((x) => include_panel.appendChild(x.render()));
+
    // initialize tooltips in widget
    $(this.container).find('[data-toggle="tooltip"]').tooltip();
   }

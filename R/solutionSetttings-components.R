@@ -200,10 +200,26 @@ ss_subicon_component_scaffold <- function() {
 #'
 #' @noRd
 ss_header_component_scaffold <- function(type, id = uuid::UUIDgenerate()) {
+  #  assert arguments are valid
   assertthat::assert_that(
     assertthat::is.string(type),
     assertthat::noNA(type),
-    type %in% c("weight", "theme"))
+    type %in% c("weight", "theme", "include"))
+
+  # set tool tip labels
+  msg1 <- switch(
+    type,
+    "theme" = "Enable/disable the theme when generating a solution",
+    "weight" = "Enable/disable the weight when generating a solution",
+    "include" = "Enable/disable the include when generating a solution"
+  )
+  msg2 <- switch(
+    type,
+    "theme" = "Name of the theme",
+    "weight" = "Name of the weight",
+    "include" = "Name of the include")
+
+  # HTML scaffold
   htmltools::tags$div(
     class = "header",
     htmltools::tags$label(
@@ -212,10 +228,7 @@ ss_header_component_scaffold <- function(type, id = uuid::UUIDgenerate()) {
       `data-placement` = "top",
       `data-delay` = "{\"show\":500, \"hide\":100}",
       `data-container` = ".sidebar",
-      title = ifelse(
-        type == "weight",
-        "Enable/disable the weight when generating a solution",
-        "Enable/disable the theme when generating a solution"),
+      title = msg1,
       htmltools::tags$input(
         type = "checkbox",
         class = "status-checkbox status",
@@ -232,10 +245,7 @@ ss_header_component_scaffold <- function(type, id = uuid::UUIDgenerate()) {
       `data-placement` = "top",
       `data-delay` = "{\"show\":500, \"hide\":100}",
       `data-container` = ".sidebar",
-      title = ifelse(
-        type == "weight",
-        "Name of the weight",
-        "Name of the theme")
+      title = msg2
     )
   )
 }

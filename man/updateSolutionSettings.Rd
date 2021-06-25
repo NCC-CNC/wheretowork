@@ -162,6 +162,33 @@ This controls the slider shown for the weight.
 \item{type}{\code{"weight"}}
 }
 }
+
+\subsection{Includes}{
+
+Here we detail all possible parameters that can be updated for
+includes.
+
+\strong{Update the name.}
+This controls the bold text shown in the header of the include.
+
+\describe{
+\item{id}{\code{"INCLUDEID"}}
+\item{parameter}{\code{"name"}}
+\item{value}{\code{"PA"}}
+\item{type}{\code{"include"}}
+}
+
+\strong{Update the status.}
+This controls the large switch shown in the header of include.
+Note that the \code{value} element must be a \code{logical} (\code{TRUE} or \code{FALSE}) value.
+
+\describe{
+\item{id}{\code{"INCLUDEID"}}
+\item{parameter}{\code{"status"}}
+\item{value}{\code{TRUE}}
+\item{type}{\code{"include"}}
+}
+}
 }
 \seealso{
 \code{\link[=solutionSettings]{solutionSettings()}}.

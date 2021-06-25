@@ -126,6 +126,26 @@ mapManager_html <- function(id, style, class, ...) {
     htmltools::tagAppendChild(
       x,
       htmltools::tags$template(
+        class = "include-layer-template",
+        htmltools::tags$div(
+          class  = "map-manager-layer",
+          htmltools::tags$div(
+            class = "include-layer",
+            mm_header_component_scaffold(),
+            htmltools::tags$div(
+              class = "layer-legend-container",
+              mm_legend_component_scaffold()
+            )
+          )
+        )
+      )
+    )
+
+  ## weight
+  x <-
+    htmltools::tagAppendChild(
+      x,
+      htmltools::tags$template(
         class = "weight-layer-template",
         htmltools::tags$div(
           class  = "map-manager-layer",

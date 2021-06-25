@@ -51,7 +51,7 @@ Variable <- R6::R6Class(
         assertthat::noNA(units),
         #### legend
         inherits(legend,
-          c("ContinuousLegend", "CategoricalLegend", "SolutionLegend")))
+          c("ContinuousLegend", "CategoricalLegend", "ManualLegend")))
       ### set fields
       self$dataset <- dataset
       self$index <- index

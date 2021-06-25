@@ -1,10 +1,9 @@
-class SolutionLayer {
+class IncludeLayer {
   /* constructor */
   constructor(
     manager,
     id,
     name,
-    statistics,
     visible,
     legend,
     units
@@ -15,13 +14,12 @@ class SolutionLayer {
       document.importNode(
         document
         .getElementById(manager)
-        .querySelector(".solution-layer-template")
+        .querySelector(".include-layer-template")
         .content,
       true);
     this.view_el = this.el.querySelector(".view-checkbox");
     this.visible_el = this.el.querySelector(".visible-checkbox");
     this.name_el = this.el.querySelector(".name-label");
-    this.remove_el = this.el.querySelector(".remove-button");
     this.legend_el = this.el.querySelector(".legend");
 
     // local variables
@@ -41,14 +39,16 @@ class SolutionLayer {
     /// legend
     createLegend(this.legend_el, legend, units);
 
-    // set listeners to update user interfance
+    // set listeners to update user interface, show/hide legends checkbox
     if (HTMLWidgets.shinyMode) {
       this.view_el.addEventListener("change", function () {
         let checked = this.checked;
         if (checked) {
           that.legend_el.style.display = "block";
+          // TODO: insert JS to add animation for maximizing legend
         } else {
           that.legend_el.style.display = "none";
+          // TODO: insert JS to add animation for minimizing legend
         }
       });
     }
@@ -64,15 +64,6 @@ class SolutionLayer {
           value: checked
         });
       });
-      /// remove button
-      this.remove_el.addEventListener("click", function () {
-        let checked = this.checked;
-        Shiny.setInputValue(manager, {
-          id: id,
-          parameter: "remove",
-        });
-      });
-
     }
   }
 

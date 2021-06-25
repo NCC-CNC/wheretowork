@@ -4,12 +4,14 @@
 \alias{new_solution_settings}
 \title{New solution settings}
 \usage{
-new_solution_settings(themes, weights)
+new_solution_settings(themes, weights, includes)
 }
 \arguments{
 \item{themes}{\code{list} of \link{Theme} objects. D}
 
 \item{weights}{\code{list} of \link{Weight} objects.}
+
+\item{includes}{\code{list} of \link{Include} objects.}
 }
 \value{
 A \link{SolutionSettings} object.
@@ -33,6 +35,7 @@ v1 <- new_variable_from_auto(dataset = d, index = 1)
 v2 <- new_variable_from_auto(dataset = d, index = 2)
 v3 <- new_variable_from_auto(dataset = d, index = 3)
 v4 <- new_variable_from_auto(dataset = d, index = 4)
+v5 <- new_variable_from_auto(dataset = d, index = 5)
 
 # create a weight using a variable
 w <- new_weight(
@@ -54,8 +57,13 @@ f3 <- new_feature(
 t1 <- new_single_theme("Species", f1, id = "T1")
 t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")
 
+# create an included using a variable
+i <- new_include(
+  name = "Protected areas", variable = v5,
+  initial_status = FALSE, id = "I1")
 # create solution settings using the themes and weight
-ss <- new_solution_settings(themes = list(t1, t2), weights = list(w))
+ss <- new_solution_settings(
+  themes = list(t1, t2), weights = list(w), includes = list(i))
 
 # print object
 print(ss)

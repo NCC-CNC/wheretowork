@@ -1,28 +1,35 @@
 #' @include internal.R
 NULL
 
-#' SolutionLegend class
+#' ManualLegend class
 #'
-#' Definition for the SolutionLegend class.
-SolutionLegend <- R6::R6Class(
-  "SolutionLegend",
+#' Definition for the ManualLegend class.
+ManualLegend <- R6::R6Class(
+  "ManualLegend",
   public = list(
 
     #' @field colors `character` vector.
     colors = NA_character_,
 
+    #' @field labels `character` vector.
+    labels = NA_character_,
+
     #' @description
-    #' Create a CategoricalLegend object.
+    #' Create a ManualLegend object.
     #' @param colors `character` vector of colors.
-    #' @return A new SolutionLegend object.
-    initialize = function(colors) {
+    #' @param labels `character` vector of labels.
+    #' @return A new ManualLegend object.
+    initialize = function(colors, labels) {
       assertthat::assert_that(
         is.character(colors),
         assertthat::noNA(colors),
-        length(colors) == 2,
         all(nchar(colors) %in% c(7, 9)),
-        all(substr(colors, 1, 1) == "#"))
+        all(substr(colors, 1, 1) == "#"),
+        is.character(labels),
+        assertthat::noNA(labels),
+        length(colors) == length(labels))
       self$colors <- colors
+      self$labels <- labels
     },
 
     #' @description
@@ -47,35 +54,49 @@ SolutionLegend <- R6::R6Class(
 
     #' @description
     #' Get data for creating a widget.
-    #' @return A new CategoricalLegend object.
+    #' @return A `list` object.
     get_widget_data = function() {
       list(
-        values = c("not selected", "selected"),
+        values = self$labels,
         colors = self$colors,
         type = "CategoricalLegend"
       )
+    },
+
+    #' @description
+    #' Export parameters
+    #' @return `list` object.
+    export = function() {
+      list(
+        type = "manual",
+        colors = self$colors,
+        labels = self$labels
+      )
     }
+
   )
 )
 
-#' New solution legend
+#' New manual legend
 #'
-#' Create a new [SolutionLegend] object.
+#' Create a new [ManualLegend] object.
 #'
 #' @param colors `character` Colors to show in the legend.
 #'   These colors should be in hex format (e.g. `"#AABBCC"`).
 #'   Arguments should contain two different colors.
 #'
-#' @return A [SolutionLegend] object.
+#' @param labels `character` Labels to show in the legend.
+#'
+#' @return A [ManualLegend] object.
 #'
 #' @examples
 #' # create new object
-#' l <- new_solution_legend(c("#000000", "#AAAAAA"))
+#' l <- new_manual_legend(c("#000000", "#AAAAAA"), c("a", "b"))
 #'
 #' # print object
 #' print(l)
 #'
 #' @export
-new_solution_legend <- function(colors) {
-  SolutionLegend$new(colors)
+new_manual_legend <- function(colors, labels) {
+  ManualLegend$new(colors, labels)
 }

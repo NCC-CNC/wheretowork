@@ -9,6 +9,15 @@ function newLayer(manager, x) {
       x.legend,
       x.units
     );
+  } else if (x.type == "include") {
+    var y = new IncludeLayer(
+      manager,
+      x.id,
+      x.name,
+      x.visible,
+      x.legend,
+      x.units
+    );
   } else if (x.type == "weight") {
     var y = new WeightLayer(
       manager,

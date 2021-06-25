@@ -28,7 +28,7 @@
   padding: 0;
   /*background: #f8f9fa; /* bg-light, aka $gray-100 */
   background: #e9ecef; /*  $gray-200 */
-  
+
 }
 
 .solution-settings .panel.panel-default>.panel-heading {
@@ -45,7 +45,7 @@
 }
 
 .solution-settings .panel.panel-default {
-  max-height: 80vh;
+  max-height: 74vh;
   overflow-y: scroll;
 }
 

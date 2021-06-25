@@ -9,5 +9,9 @@ test_that("simulate_categorical_legend", {
 })
 
 test_that("simulate_solution_legend", {
-  expect_is(simulate_solution_legend(), "SolutionLegend")
+  expect_is(simulate_solution_legend(), "ManualLegend")
+})
+
+test_that("simulate_include_legend", {
+  expect_is(simulate_include_legend(), "ManualLegend")
 })

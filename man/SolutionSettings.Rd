@@ -13,23 +13,23 @@ Definition for the SolutionSettings class.
 
 The argument to \code{value} should be a \code{list} with the following elements:
 \describe{
-\item{id}{\code{character} identifier for theme or weight.}
+\item{id}{\code{character} identifier for theme, weight, or include.}
 \item{parameter}{\code{character} name of parameter.
 Available options are: \code{"status"}, \code{"factor"}, or \code{"goal"}.}
 \item{type}{\code{character} indicating if the parameter is for a theme or
 weight.
-Available options are: \code{"theme"} or \code{"weight"}.}
+Available options are: \code{"theme"}, \code{"weight"}, \code{"include"}.}
 }
 
 The argument to \code{value} should be a \code{list} with the following elements:
 \describe{
-\item{id}{\code{character} identifier for theme or weight.}
+\item{id}{\code{character} identifier for theme, weight, or include.}
 \item{parameter}{\code{character} name of parameter.
 Available options are: \code{"status"}, \code{"factor"}, or \code{"goal"}.}
 \item{value}{\code{numeric} or \code{logical} value for new parameter.}
-\item{type}{\code{character} indicating if the parameter is for a theme or
-weight.
-Available options are: \code{"theme"} or \code{"weight"}.}
+\item{type}{\code{character} indicating if the parameter is for a
+theme, weight, or include.
+Available options are: \code{"theme"}, \code{"weight"}, \code{"include"}.}
 }
 }
 \section{Public fields}{
@@ -39,9 +39,13 @@ Available options are: \code{"theme"} or \code{"weight"}.}
 
 \item{\code{weight_ids}}{\code{character} vector of identifiers for the weights.}
 
+\item{\code{include_ids}}{\code{character} vector of identifiers for the includes.}
+
 \item{\code{themes}}{\code{list} of \link{Theme} objects.}
 
 \item{\code{weights}}{\code{list} of \link{Weight} objects.}
+
+\item{\code{includes}}{\code{list} of \link{Include} objects.}
 }
 \if{html}{\out{</div>}}
 }
@@ -53,13 +57,16 @@ Available options are: \code{"theme"} or \code{"weight"}.}
 \item \href{#method-repr}{\code{SolutionSettings$repr()}}
 \item \href{#method-get_theme}{\code{SolutionSettings$get_theme()}}
 \item \href{#method-get_weight}{\code{SolutionSettings$get_weight()}}
+\item \href{#method-get_include}{\code{SolutionSettings$get_include()}}
 \item \href{#method-get_parameter}{\code{SolutionSettings$get_parameter()}}
 \item \href{#method-set_parameter}{\code{SolutionSettings$set_parameter()}}
 \item \href{#method-get_widget_data}{\code{SolutionSettings$get_widget_data()}}
 \item \href{#method-get_theme_settings}{\code{SolutionSettings$get_theme_settings()}}
 \item \href{#method-get_weight_settings}{\code{SolutionSettings$get_weight_settings()}}
-\item \href{#method-get_rij_matrix}{\code{SolutionSettings$get_rij_matrix()}}
-\item \href{#method-get_wij_matrix}{\code{SolutionSettings$get_wij_matrix()}}
+\item \href{#method-get_include_settings}{\code{SolutionSettings$get_include_settings()}}
+\item \href{#method-get_feature_matrix}{\code{SolutionSettings$get_feature_matrix()}}
+\item \href{#method-get_weight_matrix}{\code{SolutionSettings$get_weight_matrix()}}
+\item \href{#method-get_includes_matrix}{\code{SolutionSettings$get_includes_matrix()}}
 \item \href{#method-clone}{\code{SolutionSettings$clone()}}
 }
 }
@@ -69,7 +76,7 @@ Available options are: \code{"theme"} or \code{"weight"}.}
 \subsection{Method \code{new()}}{
 Create a SolutionSettings object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$new(themes, weights)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$new(themes, weights, includes)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -78,6 +85,8 @@ Create a SolutionSettings object.
 \item{\code{themes}}{\code{list} of \link{Theme} objects.}
 
 \item{\code{weights}}{\code{list} of \link{Weight} objects.}
+
+\item{\code{includes}}{\code{list} of \link{Include} objects.}
 }
 \if{html}{\out{</div>}}
 }
@@ -156,10 +165,30 @@ Get a weight.
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_include"></a>}}
+\if{latex}{\out{\hypertarget{method-get_include}{}}}
+\subsection{Method \code{get_include()}}{
+Get an include.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$get_include(value)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{value}}{\code{character} weight identifier.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+\link{Include} object.
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_parameter"></a>}}
 \if{latex}{\out{\hypertarget{method-get_parameter}{}}}
 \subsection{Method \code{get_parameter()}}{
-Get a parameter for a weight or theme.
+Get a parameter for a weight, theme, or include.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$get_parameter(value)}\if{html}{\out{</div>}}
 }
@@ -229,12 +258,25 @@ Get weight settings for generating a prioritization.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_rij_matrix"></a>}}
-\if{latex}{\out{\hypertarget{method-get_rij_matrix}{}}}
-\subsection{Method \code{get_rij_matrix()}}{
-Get rij data for the themes.
+\if{html}{\out{<a id="method-get_include_settings"></a>}}
+\if{latex}{\out{\hypertarget{method-get_include_settings}{}}}
+\subsection{Method \code{get_include_settings()}}{
+Get include settings for generating a prioritization.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$get_rij_matrix()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$get_include_settings()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{\link[tibble:tibble]{tibble::tibble()}} with data.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_feature_matrix"></a>}}
+\if{latex}{\out{\hypertarget{method-get_feature_matrix}{}}}
+\subsection{Method \code{get_feature_matrix()}}{
+Get feature matrix data.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$get_feature_matrix()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
@@ -242,12 +284,25 @@ Get rij data for the themes.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_wij_matrix"></a>}}
-\if{latex}{\out{\hypertarget{method-get_wij_matrix}{}}}
-\subsection{Method \code{get_wij_matrix()}}{
-Get wij data for the themes.
+\if{html}{\out{<a id="method-get_weight_matrix"></a>}}
+\if{latex}{\out{\hypertarget{method-get_weight_matrix}{}}}
+\subsection{Method \code{get_weight_matrix()}}{
+Get weight matrix data.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$get_wij_matrix()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$get_weight_matrix()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{matrix} with data.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_includes_matrix"></a>}}
+\if{latex}{\out{\hypertarget{method-get_includes_matrix}{}}}
+\subsection{Method \code{get_includes_matrix()}}{
+Get includes matrix data.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$get_includes_matrix()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
