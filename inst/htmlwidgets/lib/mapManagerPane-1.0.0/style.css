@@ -18,3 +18,7 @@
   box-sizing: border-box;
   padding-right: 5px !important;
 }
+
+.leaflet-right .leaflet-control {
+	margin-right: 500px !important;
+}
