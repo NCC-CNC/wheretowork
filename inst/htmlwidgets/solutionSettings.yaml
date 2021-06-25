@@ -1,4 +1,9 @@
 dependencies:
+  - name: wNumb
+    version: 1.2.0
+    src: htmlwidgets/lib/wNumb-1.2.0
+    script: wNumb.min.js
+
   - name: noUiSlider
     version: 14.7.0
     src: htmlwidgets/lib/noUiSlider-14.7.0
