@@ -47,11 +47,11 @@ class MultiSolutionChart {
   }
 
   minMultArray(x, y) {
-    let out = Infinity
+    let out = Infinity;
     for (let i = 0; i < x.length; ++i) {
-      out = Math.min(out, x[i] * y[i])
+      out = Math.min(out, x[i] * y[i]);
     }
-    return Math.round(out)
+    return Math.round(out);
   }
 
   renderInitialText(svg) {
@@ -60,16 +60,16 @@ class MultiSolutionChart {
       feature_goal: [],
       feature_solution_held: [],
       feature_total_amount: [],
-    }
+    };
     for (const datum of this.data) {
       for (const key in parsedData) {
-        parsedData[key].push(datum[key])
+        parsedData[key].push(datum[key]);
       }
     }
-    const attrs = ['feature_current_held', 'feature_goal', 'feature_solution_held']
+    const attrs = ['feature_current_held', 'feature_goal', 'feature_solution_held'];
     let count = attrs.length - 1.5;
     for (let i = attrs.length; i > 0; --i) {
-      const attr = attrs[attrs.length - i]
+      const attr = attrs[attrs.length - i];
       svg
         .append('text')
         .attr('dy', `${-count}rem`)
@@ -80,22 +80,22 @@ class MultiSolutionChart {
         .text(() => `
           ${this.locale[attr]}: ≥ ${Math.round(Math.min(...parsedData[attr]) * 100)}
           (≥${this.minMultArray(parsedData[attr], parsedData.feature_total_amount)} ha)`);
-      count = count - 2
+      count = count - 2;
     }
   }
 
   renderFeatureText(svg, sorted_datum, currently_hovered_feature) {
-    const datum = {}
+    const datum = {};
     for (const item of sorted_datum) {
-      datum.feature_name = item[3]
-      datum.feature_total_amount = item[4]
-      datum[item[0]] = item[1]
+      datum.feature_name = item[3];
+      datum.feature_total_amount = item[4];
+      datum[item[0]] = item[1];
     }
-    const attrs = ['feature_current_held', 'feature_goal', 'feature_solution_held']
+    const attrs = ['feature_current_held', 'feature_goal', 'feature_solution_held'];
     if (datum.feature_name.length < this.minWordCount) {
       let count = attrs.length;
       for (let i = attrs.length - 1; i > -1; --i) {
-        const attr = attrs[attrs.length - 1 - i]
+        const attr = attrs[attrs.length - 1 - i];
         svg
           .append('text')
           .attr('dy', `${-count}rem`)
@@ -106,7 +106,7 @@ class MultiSolutionChart {
           .text(() => `
             ${this.locale[attr]}: ${Math.round(datum[attr] * 100)}
             (${Math.round(datum[attr] * datum.feature_total_amount)} ha)`);
-        count = count - 2
+        count = count - 2;
       }
       svg
         .append('text')
@@ -117,7 +117,7 @@ class MultiSolutionChart {
     } else {
       let count = attrs.length - 1;
       for (let i = attrs.length; i > 0; --i) {
-        const attr = attrs[attrs.length - i]
+        const attr = attrs[attrs.length - i];
         svg
           .append('text')
           .attr('dy', `${-count - 2}rem`)
@@ -128,7 +128,7 @@ class MultiSolutionChart {
           .text(() => `
             ${this.locale[attr]}: ${Math.round(datum[attr] * 100)}
             (${Math.round(datum[attr] * datum.feature_total_amount)} ha)`);
-        count = count - 2
+        count = count - 2;
       }
       let remCount = count - 1;
       const splitted = datum.feature_name.split(' ');
@@ -140,7 +140,7 @@ class MultiSolutionChart {
           .attr('text-anchor', 'middle')
           .attr('font-size', this.fontSize)
           .text(() => str);               
-        remCount += 1.5
+        remCount += 1.5;
       }
     }
   }
@@ -156,9 +156,9 @@ class MultiSolutionChart {
   }
 
   renderArcs(svg) {
-    const self = this
-    const inner_rings_length = Object.keys(this.colors).length
-    const sorted_data = []
+    const self = this;
+    const inner_rings_length = Object.keys(this.colors).length;
+    const sorted_data = [];
     for (let i = 0; i < this.data.length; ++i) {
       const datum = this.data[i];
       const sortable = [];
@@ -170,7 +170,7 @@ class MultiSolutionChart {
       sortable.sort(function(a, b) {
         return b[1] - a[1];
       });
-      sorted_data.push(sortable)
+      sorted_data.push(sortable);
     }
     for (let j = 0; j < inner_rings_length; ++j) {
       svg
@@ -181,23 +181,23 @@ class MultiSolutionChart {
         .append('path')
         .attr('class', 'arc')
         .attr('fill', (d) => {
-          return d[j][2]
+          return d[j][2];
         })
         .style('cursor', 'pointer')
         .on('mouseover', function(_, d) {
-          let strokeWidth = self.arcWidth * 0.4
-          strokeWidth = strokeWidth > 5 ? 5 : strokeWidth
+          let strokeWidth = self.arcWidth * 0.4;
+          strokeWidth = strokeWidth > 5 ? 5 : strokeWidth;
           d3
             .select(this)
             .attr('stroke', d[j][2])
-            .attr('stroke-width', strokeWidth)
+            .attr('stroke-width', strokeWidth);
           svg.selectAll('text').remove();
           self.renderFeatureText(svg, d, d[j][0]); 
         })
         .on('mouseout', function() {
           d3
             .select(this)
-            .attr('stroke', null)
+            .attr('stroke', null);
           svg.selectAll('text').remove();
           self.renderInitialText(svg); 
         })

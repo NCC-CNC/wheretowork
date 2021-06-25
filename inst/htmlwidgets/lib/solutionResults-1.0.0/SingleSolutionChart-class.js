@@ -68,13 +68,13 @@ class SingleSolutionChart {
       .attr('fill', this.colors[type])
       .style('cursor', 'pointer')
       .on('mouseover', function() {
-        const strokeWidth = 5
+        const strokeWidth = 5;
         d3
           .select(this)
           .attr('stroke', self.colors[type])
           .attr('stroke-width', strokeWidth);
         svg.selectAll('text').remove();
-        self.renderFeatureText(svg, type)
+        self.renderFeatureText(svg, type);
       })
       .on('mouseout', function() {
         d3
@@ -117,10 +117,10 @@ class SingleSolutionChart {
 
   renderFeatureText(svg, currently_hovered_feature) {
     const datum = this.data[0];
-    const attrs = ['feature_current_held', 'feature_goal', 'feature_solution_held']
+    const attrs = ['feature_current_held', 'feature_goal', 'feature_solution_held'];
     let count = attrs.length - 1;
     for (let i = attrs.length - 1; i > -1; --i) {
-      const attr = attrs[attrs.length - 1 - i]
+      const attr = attrs[attrs.length - 1 - i];
       svg
         .append('text')
         .attr('dy', `${-count - 5.5}rem`)
@@ -130,7 +130,7 @@ class SingleSolutionChart {
         .text(() => `
           ${this.locale[attr]}: ${Math.round(datum[attr] * 100)}
           (${Math.round(datum[attr] * datum.feature_total_amount)} ha)`);
-      count = count - 2
+      count = count - 2;
     }
     svg
       .append('text')
