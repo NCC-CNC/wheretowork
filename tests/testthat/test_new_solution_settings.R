@@ -3,8 +3,8 @@ context("new_solution_settings")
 test_that("initialization", {
   # create object
   ## create dataset
-  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
-  d <- new_dataset(f)
+  rd <- simulate_binary_spatial_data(import_simple_raster_data(), 5)
+  d <- new_dataset_from_auto(rd)
   ## create variables
   v1 <- new_variable(
     dataset = d, index = 1, total = 12, units = "ha",
@@ -18,11 +18,18 @@ test_that("initialization", {
   v4 <- new_variable(
     dataset = d, index = 4, total = 90, units = "ha",
     legend = simulate_continuous_legend())
-  ## create a weight using a dataset
+  v5 <- new_variable(
+    dataset = d, index = 5, total = 90, units = "ha",
+    legend = simulate_include_legend())
+  ## create a weight using dataset
   w <- new_weight(
     name = "Human Footprint Index", variable = v1,
     initial_factor = 90, initial_status = FALSE, id = "W1")
-  ## create features using datasets
+  ## create a weight using dataset
+  incl <- new_include(
+    name = "Protected areas", variable = v1,
+    initial_status = FALSE, id = "I1")
+  ## create features using dataset
   f1 <- new_feature(
     name = "Possum", variable = v2,
     initial_goal = 0.2, initial_status = FALSE, current = 0.5, id = "F1")
@@ -36,21 +43,24 @@ test_that("initialization", {
   t1 <- new_single_theme("Species", f1, id = "T1")
   t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")
   ## create solution setting
-  x <- new_solution_settings(themes = list(t1, t2), weights = list(w))
+  x <- new_solution_settings(
+    themes = list(t1, t2), weights = list(w), includes = list(incl))
   # run tests
   print(x)
   expect_is(x$repr(), "character")
   expect_equal(x$themes, list(t1, t2))
   expect_equal(x$weights, list(w))
+  expect_equal(x$includes, list(incl))
   expect_identical(x$theme_ids, c("T1", "T2"))
   expect_identical(x$weight_ids, "W1")
+  expect_identical(x$include_ids, "I1")
 })
 
 test_that("get methods", {
   # create object
   ## create dataset
-  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
-  d <- new_dataset(f)
+  rd <- simulate_binary_spatial_data(import_simple_raster_data(), 5)
+  d <- new_dataset_from_auto(rd)
   ## create variables
   v1 <- new_variable(
     dataset = d, index = 1, total = 12, units = "ha",
@@ -64,11 +74,18 @@ test_that("get methods", {
   v4 <- new_variable(
     dataset = d, index = 4, total = 90, units = "ha",
     legend = simulate_continuous_legend())
-  ## create a weight using a dataset
+  v5 <- new_variable(
+    dataset = d, index = 5, total = 90, units = "ha",
+    legend = simulate_include_legend())
+  ## create a weight using dataset
   w <- new_weight(
     name = "Human Footprint Index", variable = v1,
     initial_factor = 90, initial_status = FALSE, id = "W1")
-  ## create features using datasets
+  ## create a weight using dataset
+  incl <- new_include(
+    name = "Protected areas", variable = v1,
+    initial_status = TRUE, id = "I1")
+  ## create features using dataset
   f1 <- new_feature(
     name = "Possum", variable = v2,
     initial_goal = 0.2, initial_status = FALSE, current = 0.5, id = "F1")
@@ -82,7 +99,8 @@ test_that("get methods", {
   t1 <- new_single_theme("Species", f1, id = "T1")
   t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")
   ## create solution setting
-  x <- new_solution_settings(themes = list(t1, t2), weights = list(w))
+  x <- new_solution_settings(
+    themes = list(t1, t2), weights = list(w), includes = list(incl))
   # run tests
   ## get theme
   expect_equal(x$get_theme("T1"), t1)
@@ -119,13 +137,18 @@ test_that("get methods", {
     x$get_parameter(
       list(id = "W1", parameter = "status", type = "weight")),
       FALSE)
+  ## get parameters for Include
+  expect_equal(
+    x$get_parameter(
+      list(id = "I1", parameter = "status", type = "include")),
+    TRUE)
 })
 
 test_that("set methods", {
   # create object
   ## create dataset
-  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
-  d <- new_dataset(f)
+  rd <- simulate_binary_spatial_data(import_simple_raster_data(), 5)
+  d <- new_dataset_from_auto(rd)
   ## create variables
   v1 <- new_variable(
     dataset = d, index = 1, total = 12, units = "ha",
@@ -139,11 +162,18 @@ test_that("set methods", {
   v4 <- new_variable(
     dataset = d, index = 4, total = 90, units = "ha",
     legend = simulate_continuous_legend())
-  ## create a weight using a dataset
+  v5 <- new_variable(
+    dataset = d, index = 5, total = 90, units = "ha",
+    legend = simulate_include_legend())
+  ## create a weight using dataset
   w <- new_weight(
     name = "Human Footprint Index", variable = v1,
     initial_factor = 90, initial_status = FALSE, id = "W1")
-  ## create features using datasets
+  ## create a weight using dataset
+  incl <- new_include(
+    name = "Protected areas", variable = v1,
+    initial_status = TRUE, id = "I1")
+  ## create features using dataset
   f1 <- new_feature(
     name = "Possum", variable = v2,
     initial_goal = 0.2, initial_status = FALSE, current = 0.5, id = "F1")
@@ -157,7 +187,8 @@ test_that("set methods", {
   t1 <- new_single_theme("Species", f1, id = "T1")
   t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")
   ## create solution setting
-  x <- new_solution_settings(themes = list(t1, t2), weights = list(w))
+  x <- new_solution_settings(
+    themes = list(t1, t2), weights = list(w), includes = list(incl))
   # run tests
   ## singleTheme
   x$set_parameter(
@@ -202,13 +233,24 @@ test_that("set methods", {
     x$get_parameter(
       list(id = "W1", parameter = "factor", type = "weight")),
     90)
+  ## Include
+  expect_equal(
+    x$get_parameter(
+      list(id = "I1", parameter = "status", type = "include")),
+    TRUE)
+  x$set_parameter(
+    list(id = "I1", parameter = "status", value = FALSE, type = "include"))
+  expect_equal(
+    x$get_parameter(
+      list(id = "I1", parameter = "status", type = "include")),
+    FALSE)
 })
 
 test_that("widget methods", {
   # create object
   ## create dataset
-  f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
-  d <- new_dataset(f)
+  rd <- simulate_binary_spatial_data(import_simple_raster_data(), 5)
+  d <- new_dataset_from_auto(rd)
   ## create variables
   v1 <- new_variable(
     dataset = d, index = 1, total = 12, units = "ha",
@@ -222,11 +264,18 @@ test_that("widget methods", {
   v4 <- new_variable(
     dataset = d, index = 4, total = 90, units = "ha",
     legend = simulate_continuous_legend())
-  ## create a weight using a dataset
+  v5 <- new_variable(
+    dataset = d, index = 5, total = 90, units = "ha",
+    legend = simulate_include_legend())
+  ## create a weight using dataset
   w <- new_weight(
     name = "Human Footprint Index", variable = v1,
     initial_factor = 90, initial_status = FALSE, id = "W1")
-  ## create features using datasets
+  ## create a weight using dataset
+  incl <- new_include(
+    name = "Protected areas", variable = v1,
+    initial_status = TRUE, id = "I1")
+  ## create features using dataset
   f1 <- new_feature(
     name = "Possum", variable = v2,
     initial_goal = 0.2, initial_status = FALSE, current = 0.5, id = "F1")
@@ -240,7 +289,8 @@ test_that("widget methods", {
   t1 <- new_single_theme("Species", f1, id = "T1")
   t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")
   ## create solution setting
-  x <- new_solution_settings(themes = list(t1, t2), weights = list(w))
+  x <- new_solution_settings(
+    themes = list(t1, t2), weights = list(w), includes = list(incl))
   # run tests
   expect_equal(
     x$get_widget_data(),
@@ -249,6 +299,8 @@ test_that("widget methods", {
         t1$get_solution_settings_widget_data(),
         t2$get_solution_settings_widget_data()),
       weights = list(
-        w$get_solution_settings_widget_data()))
+        w$get_solution_settings_widget_data()),
+      includes = list(
+        incl$get_solution_settings_widget_data()))
   )
 })

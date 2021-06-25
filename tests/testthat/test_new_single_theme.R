@@ -2,7 +2,7 @@ context("new_single_theme")
 
 test_that("initialization", {
   # create object
-  d <- new_dataset(import_simple_raster_data())
+  d <- new_dataset_from_auto(import_simple_raster_data())
   v <- new_variable_from_auto(dataset = d, index = 1, units = "ha")
   f <- new_feature(
     name = "F1",
@@ -35,7 +35,7 @@ test_that("initialization", {
 
 test_that("export method", {
   # create object
-  d <- new_dataset(import_simple_raster_data())
+  d <- new_dataset_from_auto(import_simple_raster_data())
   v <- new_variable_from_auto(dataset = d, index = 1, units = "ha")
   f <- new_feature(
     name = "F1",
@@ -70,7 +70,7 @@ test_that("export method", {
 
 test_that("get methods", {
   # create object
-  d <- new_dataset(import_simple_raster_data())
+  d <- new_dataset_from_auto(import_simple_raster_data())
   v <- new_variable_from_auto(dataset = d, index = 1, units = "ha")
   f <- new_feature(
     name = "F1",
@@ -102,7 +102,7 @@ test_that("get methods", {
 
 test_that("set methods", {
   # create object
-  d <- new_dataset(import_simple_raster_data())
+  d <- new_dataset_from_auto(import_simple_raster_data())
   v <- new_variable_from_auto(dataset = d, index = 1, units = "ha")
   f <- new_feature(
     name = "F1",
@@ -140,7 +140,7 @@ test_that("set methods", {
 
 test_that("widget methods", {
   # create object
-  d <- new_dataset(import_simple_raster_data())
+  d <- new_dataset_from_auto(import_simple_raster_data())
   v <- new_variable_from_auto(dataset = d, index = 1, units = "ha")
   f <- new_feature(
     name = "F1",

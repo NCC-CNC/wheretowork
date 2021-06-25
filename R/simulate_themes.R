@@ -23,9 +23,16 @@ NULL
 #' @seealso [new_single_theme], [new_multi_theme].
 #'
 #' @examples
-#' # import data
-#' f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
-#' d <- new_dataset(raster::raster(f))
+#' # find data file paths
+#' f1 <- system.file(
+#'   "extdata", "sim_raster_spatial.tif", package = "locationmisc")
+#' f2 <- system.file(
+#'  "extdata", "sim_raster_attribute.csv.gz", package = "locationmisc")
+#' f3 <- system.file(
+#'  "extdata", "sim_raster_boundary.csv.gz", package = "locationmisc")
+#'
+#' # create new dataset
+#' d <- new_dataset(f1, f2, f3)
 #'
 #' # simulate data
 #' x <- simulate_themes(data = d, n_single_themes = 3, n_multi_themes = 2)
@@ -51,8 +58,9 @@ simulate_themes <- function(
     assertthat::is.number(lambda),
     assertthat::noNA(lambda))
 
-  # simulate dataset
-  data <- dataset$get_data()
+  # extract data
+  data <- dataset$get_spatial_data()
+  idx <- dataset$attribute_data[["_index"]]
 
   # simulate single themes
   ## simulate theme names
@@ -76,9 +84,9 @@ simulate_themes <- function(
     names(std)[1] <- st_index[i]
     ### append data to dataset
     if (inherits(data, "sf")) {
-      dataset$data <- cbind(dataset$data, sf::st_drop_geometry(std))
+      dataset$add_index(st_index[i], std[[1]])
     } else {
-      dataset$data <- raster::stack(dataset$data, std)
+      dataset$add_index(st_index[i], std[[1]][idx])
     }
     ### create theme
     st[[i]] <-
@@ -103,7 +111,7 @@ simulate_themes <- function(
   ## exclude names from tn object
   tn <- tn[-st_idx, , drop = FALSE]
   ## simulate number of features for each multi theme
-  mt_n_features <- stats::rpois(n_multi_themes, lambda) + 1
+  mt_n_features <- pmax(stats::rpois(n_multi_themes, lambda), 2)
   ## calculate number of features within each theme
   tn_meta <-
     tibble::as_tibble(
@@ -144,9 +152,14 @@ simulate_themes <- function(
     names(curr_mtd)[seq_len(mt_n_features[i])] <- curr_tn_index
     ### add theme data to dataset
     if (inherits(data, "sf")) {
-      dataset$data <- cbind(dataset$data, sf::st_drop_geometry(curr_mtd))
+      for (j in seq_along(curr_tn_index)) {
+        dataset$add_index(curr_tn_index[[j]], curr_mtd[[curr_tn_index[[j]]]])
+      }
     } else {
-      dataset$data <- raster::stack(dataset$data, curr_mtd)
+      for (j in seq_along(curr_tn_index)) {
+        dataset$add_index(
+          curr_tn_index[[j]], curr_mtd[[curr_tn_index[[j]]]][idx])
+      }
     }
     ### create features
     curr_fts <- lapply(seq_len(mt_n_features[i]), function(j) {

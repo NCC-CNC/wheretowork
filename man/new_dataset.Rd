@@ -4,10 +4,34 @@
 \alias{new_dataset}
 \title{New dataset}
 \usage{
-new_dataset(source, id = uuid::UUIDgenerate())
+new_dataset(
+  spatial_path,
+  attribute_path,
+  boundary_path,
+  spatial_data = NULL,
+  attribute_data = NULL,
+  boundary_data = NULL,
+  id = uuid::UUIDgenerate()
+)
 }
 \arguments{
-\item{source}{\code{character}, \code{\link[sf:sf]{sf::st_sf()}}, or \code{\link[raster:stack]{raster::stack()}} object.}
+\item{spatial_path}{\code{character} file path for spatial data.}
+
+\item{attribute_path}{\code{character} file path for attribute data.}
+
+\item{boundary_path}{\code{character} file path for boundary data.}
+
+\item{spatial_data}{\code{NULL}, \code{\link[sf:sf]{sf::st_sf()}}, or \code{\link[raster:raster]{raster::raster()}} object.
+Defaults to \code{NULL} such that data are automatically imported
+using the argument to \code{spatial_path}.}
+
+\item{attribute_data}{\code{NULL}, or \code{\link[tibble:tibble]{tibble::tibble()}} object.
+Defaults to \code{NULL} such that data are automatically imported
+using the argument to \code{attribute_path}.}
+
+\item{boundary_data}{\code{NULL}, or \code{\link[Matrix:sparseMatrix]{Matrix::sparseMatrix()}} object.
+Defaults to \code{NULL} such that data are automatically imported
+using the argument to \code{boundary_path}.}
 
 \item{id}{\code{character} unique identifier.
 Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}
@@ -19,11 +43,16 @@ A \link{Dataset} object.
 Create a new \link{Dataset} object.
 }
 \examples{
-# find data path
-f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+# find data file paths
+f1 <- system.file(
+  "extdata", "sim_raster_spatial.tif", package = "locationmisc")
+f2 <- system.file(
+ "extdata", "sim_raster_attribute.csv.gz", package = "locationmisc")
+f3 <- system.file(
+ "extdata", "sim_raster_boundary.csv.gz", package = "locationmisc")
 
 # create new dataset
-d <- new_dataset(f)
+d <- new_dataset(f1, f2, f3)
 
 # print object
 print(d)

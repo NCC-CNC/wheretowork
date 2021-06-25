@@ -3,7 +3,7 @@ context("new_variable")
 test_that("initialization", {
   # prepare data
   rd <- simulate_proportion_spatial_data(import_simple_raster_data(), 2)
-  d <- new_dataset(rd)
+  d <- new_dataset_from_auto(rd)
   l <- new_continuous_legend(1, 100, c("#000000", "#AAAAAA"))
   # create object
   x <- new_variable(
@@ -21,11 +21,11 @@ test_that("initialization", {
 test_that("methods", {
   # prepare data
   rd <- simulate_proportion_spatial_data(import_simple_raster_data(), 2)
-  d <- new_dataset(rd)
+  d <- new_dataset_from_auto(rd)
   l <- new_continuous_legend(1, 100, c("#000000", "#AAAAAA"))
   # create object
   x <- new_variable(
-    dataset = d, index = 2, total = 12, units = "ha", legend = l)
+    dataset = d, index = 1, total = 12, units = "ha", legend = l)
   # run tests
   expect_true(x$verify())
   x$index <- 1000
@@ -37,7 +37,7 @@ test_that("methods", {
 test_that("export method", {
   # prepare data
   rd <- simulate_proportion_spatial_data(import_simple_raster_data(), 2)
-  d <- new_dataset(rd)
+  d <- new_dataset_from_auto(rd)
   l <- new_continuous_legend(1, 100, c("#000000", "#AAAAAA"))
   # create object
   x <- new_variable(
@@ -56,7 +56,7 @@ test_that("export method", {
 test_that("new_variable_from_auto (continuous)", {
   # prepare data
   rd <- simulate_continuous_spatial_data(import_simple_raster_data(), 2)
-  d <- new_dataset(rd)
+  d <- new_dataset_from_auto(rd)
   # create object
   x <- new_variable_from_auto(
     dataset = d, index = 2, units = "ha", colors = "viridis")
@@ -78,7 +78,7 @@ test_that("new_variable_from_auto (continuous)", {
 test_that("new_variable_from_auto (categorical)", {
   # prepare data
   rd <- simulate_categorical_spatial_data(import_simple_raster_data(), 2)
-  d <- new_dataset(rd)
+  d <- new_dataset_from_auto(rd)
   # create object
   x <- new_variable_from_auto(
     dataset = d, index = 1, units = "ha", colors = "viridis")
@@ -99,7 +99,7 @@ test_that("new_variable_from_auto (categorical)", {
 test_that("new_variable_from_metadata (continuous)", {
   # prepare data
   rd <- import_simple_raster_data()
-  d <- new_dataset(rd)
+  d <- new_dataset_from_auto(rd)
   # create object
   x <- new_variable_from_metadata(
     dataset = d,
@@ -123,7 +123,7 @@ test_that("new_variable_from_metadata (continuous)", {
 test_that("new_variable_from_metadata (categorical)", {
   # prepare data
   rd <- import_simple_raster_data()
-  d <- new_dataset(rd)
+  d <- new_dataset_from_auto(rd)
   # create object
   x <- new_variable_from_metadata(
     dataset = d,

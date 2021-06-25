@@ -14,9 +14,16 @@ NULL
 #' @seealso [new_weight].
 #'
 #' @examples
-#' # import data
-#' f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
-#' d <- new_dataset(raster::raster(f))
+#' # find data file paths
+#' f1 <- system.file(
+#'   "extdata", "sim_raster_spatial.tif", package = "locationmisc")
+#' f2 <- system.file(
+#'  "extdata", "sim_raster_attribute.csv.gz", package = "locationmisc")
+#' f3 <- system.file(
+#'  "extdata", "sim_raster_boundary.csv.gz", package = "locationmisc")
+#'
+#' # create new dataset
+#' d <- new_dataset(f1, f2, f3)
 #'
 #' # simulate data
 #' x <- simulate_weights(dataset = d, n = 2)
@@ -36,7 +43,7 @@ simulate_weights <- function(
     assertthat::noNA(n))
 
   # extract data
-  data <- dataset$get_data()
+  data <- dataset$get_spatial_data()
 
   # set weight names
   wn <- example_weight_names()
@@ -56,9 +63,14 @@ simulate_weights <- function(
   wd <- simulate_proportion_spatial_data(data, n)
   names(wd)[seq_len(n)] <- wn_index
   if (inherits(data, "sf")) {
-    dataset$data <- cbind(dataset$data, sf::st_drop_geometry(wd))
+    for (i in seq_along(wn_index)) {
+      dataset$add_index(wn_index[[i]], wd[[wn_index[[i]]]])
+    }
   } else {
-    dataset$data <- raster::stack(dataset$data, wd)
+    idx <- dataset$attribute_data[["_index"]]
+    for (i in seq_along(wn_index)) {
+      dataset$add_index(wn_index[[i]], wd[[wn_index[[i]]]][idx])
+    }
   }
 
   # generate weights

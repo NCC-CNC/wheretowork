@@ -7,16 +7,13 @@
 simulate_solution_legend()
 }
 \value{
-A \link{SolutionLegend} object.
+A \link{ManualLegend} object.
 }
 \description{
-This function simulates a solution legend (\link{SolutionLegend}) object.
+This function simulates a legend for a \link{Solution} object.
 It is primarily used for testing the package.
 }
 \examples{
 print(simulate_solution_legend())
 
-}
-\seealso{
-\code{\link[=new_solution_legend]{new_solution_legend()}}.
 }

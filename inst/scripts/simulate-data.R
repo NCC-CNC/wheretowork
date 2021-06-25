@@ -6,18 +6,13 @@ n_weights <- 3
 
 ## load packages
 devtools::load_all()
-library(prioritizr)
-library(raster)
-library(sf)
-library(dplyr)
-library(exactextractr)
 
 ## set seed for reproducibility
 set.seed(500)
 
 # Import data
-raster_data <- new_dataset(import_realistic_raster_data())
-vector_data <- new_dataset(import_realistic_vector_data())
+raster_data <- new_dataset_from_auto(import_simple_raster_data())
+vector_data <- new_dataset_from_auto(import_realistic_vector_data())
 
 # Simulate data
 sim_raster_data <- append(
@@ -30,28 +25,32 @@ sim_vector_data <- append(
 
 # Exports
 ## raster data
-writeNamedRaster(
-  raster_data$data,
-  "inst/extdata/sim_raster_data.tif",
-  NAflag = -9999, overwrite = TRUE)
+raster_data$write(
+  "inst/extdata/sim_raster_spatial.tif",
+  "inst/extdata/sim_raster_attribute.csv.gz",
+  "inst/extdata/sim_raster_boundary.csv.gz")
 
-## weights data
-sf::st_write(
-  vector_data$data,
-  "inst/extdata/sim_vector_data.gpkg",
-  append = FALSE)
+## vector data
+vector_data$write(
+  "inst/extdata/sim_vector_spatial.gpkg",
+  "inst/extdata/sim_vector_attribute.csv.gz",
+  "inst/extdata/sim_vector_boundary.csv.gz")
 
 ## configuration files
 write_configuration_file(
   x = sim_raster_data,
   path = "inst/extdata/sim_raster_data.yaml",
   name = "Example GeoTIFF dataset",
-  data_path = "inst/extdata/sim_raster_parameters.tif",
+  spatial_path = "inst/extdata/sim_raster_spatial.tif",
+  attribute_path = "inst/extdata/sim_raster_attribute.csv.gz",
+  boundary_path = "inst/extdata/sim_raster_boundary.csv.gz",
   mode = "advanced")
 
 write_configuration_file(
   x = sim_vector_data,
   path = "inst/extdata/sim_vector_data.yaml",
   name = "Example GPKG dataset",
-  data_path = "inst/extdata/sim_vector_parameters.gpkg",
+  spatial_path = "inst/extdata/sim_vector_spatial.tif",
+  attribute_path = "inst/extdata/sim_vector_attribute.csv.gz",
+  boundary_path = "inst/extdata/sim_vector_boundary.csv.gz",
   mode = "beginner")

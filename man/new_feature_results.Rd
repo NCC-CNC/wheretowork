@@ -22,11 +22,16 @@ A \link{FeatureResults} object.
 Create a new \link{FeatureResults} object to store results for a solution.
 }
 \examples{
-# find data path
-f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+# find data file paths
+f1 <- system.file(
+  "extdata", "sim_raster_spatial.tif", package = "locationmisc")
+f2 <- system.file(
+ "extdata", "sim_raster_attribute.csv.gz", package = "locationmisc")
+f3 <- system.file(
+ "extdata", "sim_raster_boundary.csv.gz", package = "locationmisc")
 
 # create new dataset
-d <- new_dataset(f)
+d <- new_dataset(f1, f2, f3)
 
 # create new variable
 v <- new_variable_from_auto(d, index = 1)

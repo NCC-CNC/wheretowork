@@ -56,15 +56,13 @@ simulate_categorical_legend <- function() {
 
 #' Simulate solution legend
 #'
-#' This function simulates a solution legend ([SolutionLegend]) object.
+#' This function simulates a legend for a [Solution] object.
 #' It is primarily used for testing the package.
 #'
-#' @return A [SolutionLegend] object.
+#' @return A [ManualLegend] object.
 #'
 #' @examples
 #' print(simulate_solution_legend())
-#'
-#' @seealso [new_solution_legend()].
 #'
 #' @export
 simulate_solution_legend <- function() {
@@ -77,5 +75,33 @@ simulate_solution_legend <- function() {
     RColorBrewer::brewer.pal(n = n, name = sample(rownames(d), 1))
   })
   # return legend
-  new_solution_legend(colors = c("#00FFFF00", col[1]))
+  new_manual_legend(
+    colors = c("#00FFFF00", col[1]),
+    labels = c("not selected", "selected"))
+}
+
+#' Simulate include legend
+#'
+#' This function simulates a legend for a [Include] object.
+#' It is primarily used for testing the package.
+#'
+#' @return A [ManualLegend] object.
+#'
+#' @examples
+#' print(simulate_include_legend())
+#'
+#' @export
+simulate_include_legend <- function() {
+  # randomly pick number of values for legend
+  n <- sample.int(8, 1)
+  # randomly pick color for legend
+  d <- RColorBrewer::brewer.pal.info
+  d <- d[d$category == "qual", , drop = FALSE]
+  col <- suppressWarnings({
+    RColorBrewer::brewer.pal(n = n, name = sample(rownames(d), 1))
+  })
+  # return legend
+  new_manual_legend(
+    colors = c("#00FFFF00", col[1]),
+    labels = c("not included", "included"))
 }

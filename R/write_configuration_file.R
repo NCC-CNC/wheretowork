@@ -13,8 +13,11 @@ NULL
 #'
 #' @param path `character` file path to save the configuration file.
 #'
-#' @param data_path `character` file path for the dataset that this
-#'  file should accompany.
+#' @param spatial_path `character` file path for the spatial data.
+#'
+#' @param attribute_path `character` file path for the attribute data.
+#'
+#' @param boundary_path `character` file path for the attribute data.
 #'
 #' @param mode `character` mode for running the application.
 #'   Defaults to `"advanced"`.
@@ -22,11 +25,16 @@ NULL
 #' @return Invisible `TRUE` indicating success.
 #'
 #' @examples
-#' # find data path
-#' f <- system.file("extdata", "sim_raster_data.tif", package = "locationmisc")
+#' # find data file paths
+#' f1 <- system.file(
+#'   "extdata", "sim_raster_spatial.tif", package = "locationmisc")
+#' f2 <- system.file(
+#'  "extdata", "sim_raster_attribute.csv.gz", package = "locationmisc")
+#' f3 <- system.file(
+#'  "extdata", "sim_raster_boundary.csv.gz", package = "locationmisc")
 #'
 #' # create new dataset
-#' d <- new_dataset(f)
+#' d <- new_dataset(f1, f2, f3)
 #'
 #' # simulate themes and weights
 #' th <- simulate_themes(d, 1, 1, 2)
@@ -37,11 +45,17 @@ NULL
 #'
 #' # save configuration file to temporary location
 #' write_configuration_file(
-#'   l, path = tempfile(), name = "example", data_path = f)
+#'   l,
+#'   path = tempfile(),
+#'   name = "example",
+#'   spatial_path = tempfile(fileext = ".tif"),
+#'   attribute_path = tempfile(fileext = ".csv.gz"),
+#'   boundary_path = tempfile(fileext = ".csv.gz"))
 #'
 #' @export
 write_configuration_file <- function(
-  x, path, name, data_path, mode = "advanced") {
+  x, path, name, spatial_path, attribute_path, boundary_path,
+  mode = "advanced") {
   # assert arguments are valid
   assertthat::assert_that(
     is.list(x),
@@ -50,8 +64,12 @@ write_configuration_file <- function(
     assertthat::noNA(name),
     assertthat::is.string(path),
     assertthat::noNA(path),
-    assertthat::is.string(data_path),
-    assertthat::noNA(data_path),
+    assertthat::is.string(spatial_path),
+    assertthat::noNA(spatial_path),
+    assertthat::is.string(attribute_path),
+    assertthat::noNA(attribute_path),
+    assertthat::is.string(boundary_path),
+    assertthat::noNA(boundary_path),
     assertthat::is.string(mode),
     assertthat::noNA(mode))
 
@@ -66,7 +84,9 @@ write_configuration_file <- function(
   # create full parameter list
   params <- list(
     name = name,
-    path = data_path,
+    spatial_path = spatial_path,
+    attribute_path = attribute_path,
+    boundary_path = boundary_path,
     mode = mode,
     themes = themes_params,
     weights = weights_params

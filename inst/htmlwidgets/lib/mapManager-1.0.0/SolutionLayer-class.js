@@ -89,10 +89,6 @@ class SolutionLayer {
     this.visible_el.checked = value;
   }
 
-  updateFeatureVisible(value) {
-    this.visible_el.checked = value;
-  }
-
   updateName(value) {
     this.name_el.innerText = value;
   }

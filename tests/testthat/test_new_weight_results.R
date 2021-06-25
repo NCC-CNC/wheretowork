@@ -2,7 +2,7 @@ context("new_weight_results")
 
 test_that("initialization", {
   # create object
-  d <- new_dataset(import_simple_raster_data())
+  d <- new_dataset_from_auto(import_simple_raster_data())
   v <- new_variable_from_auto(dataset = d, index = 1, units = "ha")
   w <- new_weight(
     name = "Human Footprint Index",
@@ -29,7 +29,7 @@ test_that("initialization", {
 
 test_that("widget methods", {
   # create object
-  d <- new_dataset(import_simple_raster_data())
+  d <- new_dataset_from_auto(import_simple_raster_data())
   v <- new_variable_from_auto(dataset = d, index = 1, units = "ha")
   w <- new_weight(
     name = "Human Footprint Index",

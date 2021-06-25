@@ -122,7 +122,7 @@ solutionSettings_html <- function(id, style, class, ...) {
           shinyBS::bsCollapse(
             id = paste0(id, "_collapse"),
             multiple = FALSE,
-            open = paste0(id, c("_collapseThemePanel", "_collapseWeightPanel")),
+            open = paste0(id, "_collapseThemePanel"),
             shinyBS::bsCollapsePanel(
               title = "Themes",
               value = paste0(id, "_collapseThemePanel"),
@@ -132,6 +132,11 @@ solutionSettings_html <- function(id, style, class, ...) {
               title = "Weights",
               value = paste0(id, "_collapseWeightPanel"),
               htmltools::tags$div(class = "weights")
+            ),
+            shinyBS::bsCollapsePanel(
+              title = "Includes",
+              value = paste0(id, "_collapseIncludePanel"),
+              htmltools::tags$div(class = "includes")
             )
           )
         ),
@@ -170,7 +175,20 @@ solutionSettings_html <- function(id, style, class, ...) {
     )
 
   # add HTML template scaffolds for dynamic content
-  ## weightFactor
+  ## include
+  x <-
+    htmltools::tagAppendChild(
+      x,
+      htmltools::tags$template(
+        class = "include-setting-template",
+        htmltools::tags$div(
+          class = paste("include-setting solution-setting"),
+          ss_header_component_scaffold("include"),
+        )
+      )
+    )
+
+  ## weight
   x <-
     htmltools::tagAppendChild(
       x,
@@ -187,7 +205,7 @@ solutionSettings_html <- function(id, style, class, ...) {
       )
     )
 
-  ## singleThemeGoal
+  ## singleTheme
   x <-
     htmltools::tagAppendChild(
       x,
@@ -202,7 +220,7 @@ solutionSettings_html <- function(id, style, class, ...) {
       )
     )
 
-  ## multiThemeGoal
+  ## multiTheme
   ### main container
   x <-
     htmltools::tagAppendChild(

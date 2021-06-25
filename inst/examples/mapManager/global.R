@@ -1,10 +1,21 @@
+# set options
+options("rgdal_show_exportToProj4_warnings" = "none")
+
 # load package
 library(shiny)
 library(locationmisc)
 
 # create example solution settings object
-## create dataset
-d <- new_dataset(tempfile())
+# find data file paths
+f1 <- system.file(
+  "extdata", "sim_raster_spatial.tif", package = "locationmisc")
+f2 <- system.file(
+  "extdata", "sim_raster_attribute.csv.gz", package = "locationmisc")
+f3 <- system.file(
+  "extdata", "sim_raster_boundary.csv.gz", package = "locationmisc")
+
+# create dataset
+d <- new_dataset(f1, f2, f3)
 
 ## create variables
 v1 <- new_variable(
@@ -19,11 +30,14 @@ v3 <- new_variable(
 v4 <- new_variable(
   dataset = d, index = 4, total = 90, units = "ha",
   legend = new_continuous_legend(1, 100, c("#000000", "#e31a1c")))
+v5 <- new_variable(
+  dataset = d, index = 5, total = 12, units = "",
+  legend = simulate_include_legend())
 
-## create a weight using a dataset
+## create a weight using dataset
 w <- new_weight(name = "Human Footprint Index", variable = v1, id = "HFP")
 
-## create features using datasets
+## create features using dataset
 f1 <-
   new_feature(
     name = "Possum", variable = v2, initial_goal = 0.2, current = 0.1,)
@@ -41,12 +55,17 @@ fts <- lapply(seq_len(5), function(i) {
     name = paste0("Turnipus spp. ", i), variable = v,
     initial_goal = runif(1, 0.6, 0.99), current = runif(1))
 })
+
 ## create themes using the features
 t1 <- new_single_theme("Species", f1, id = "SPECIES")
 t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "ER")
 
+## create a include using dataset
+incl <- new_include(name = "National protected area", variable = v5, id = "PA")
+
 ## create solution
-s <- simulate_solution(themes = list(t1, t2), weights = list(w))
+s <- simulate_solution(
+  d, themes = list(t1, t2), weights = list(w), includes = list(incl))
 
 ## create map manager
-mm <- new_map_manager(list(s, t1, t2, w))
+mm <- new_map_manager(list(s, t1, t2, w, incl))

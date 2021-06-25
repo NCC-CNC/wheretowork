@@ -13,8 +13,6 @@ Definition for the Dataset class.
 
 Note that this method has no effect if the dataset does not have
 file path on disk.
-
-Note that this method only works for Raster data.
 }
 \seealso{
 \code{\link[=new_dataset]{new_dataset()}}.
@@ -24,12 +22,17 @@ Note that this method only works for Raster data.
 \describe{
 \item{\code{id}}{\code{character} identifier.}
 
-\item{\code{source}}{\code{character}, \code{\link[sf:sf]{sf::st_sf()}}, or \code{\link[raster:stack]{raster::stack()}} object.}
+\item{\code{spatial_path}}{\code{character} file path.}
 
-\item{\code{data}}{\code{NULL}, \code{\link[sf:sf]{sf::st_sf()}}, or \code{\link[raster:stack]{raster::stack()}} object.}
+\item{\code{attribute_path}}{\code{character} file path.}
 
-\item{\code{cells}}{\code{integer} indices of grid cells.
-This is used to cache calculations for \code{\link[raster:stack]{raster::stack()}} data.}
+\item{\code{boundary_path}}{\code{character} file path.}
+
+\item{\code{spatial_data}}{\code{NULL}, \code{\link[sf:sf]{sf::st_sf()}}, or \code{\link[raster:raster]{raster::raster()}} object.}
+
+\item{\code{attribute_data}}{\code{NULL}, or \code{\link[tibble:tibble]{tibble::tibble()}} object.}
+
+\item{\code{boundary_data}}{\code{NULL}, or \code{\link[Matrix:sparseMatrix]{Matrix::sparseMatrix()}} object.}
 }
 \if{html}{\out{</div>}}
 }
@@ -40,13 +43,15 @@ This is used to cache calculations for \code{\link[raster:stack]{raster::stack()
 \item \href{#method-print}{\code{Dataset$print()}}
 \item \href{#method-repr}{\code{Dataset$repr()}}
 \item \href{#method-import}{\code{Dataset$import()}}
+\item \href{#method-write}{\code{Dataset$write()}}
 \item \href{#method-clean}{\code{Dataset$clean()}}
-\item \href{#method-get_data}{\code{Dataset$get_data()}}
+\item \href{#method-get_spatial_data}{\code{Dataset$get_spatial_data()}}
+\item \href{#method-get_attribute_data}{\code{Dataset$get_attribute_data()}}
+\item \href{#method-get_boundary_data}{\code{Dataset$get_boundary_data()}}
 \item \href{#method-get_crs}{\code{Dataset$get_crs()}}
-\item \href{#method-get_finite_cells}{\code{Dataset$get_finite_cells()}}
+\item \href{#method-get_planning_unit_indices}{\code{Dataset$get_planning_unit_indices()}}
 \item \href{#method-get_planning_unit_areas}{\code{Dataset$get_planning_unit_areas()}}
 \item \href{#method-get_index}{\code{Dataset$get_index()}}
-\item \href{#method-get_indices}{\code{Dataset$get_indices()}}
 \item \href{#method-has_index}{\code{Dataset$has_index()}}
 \item \href{#method-max_index}{\code{Dataset$max_index()}}
 \item \href{#method-add_index}{\code{Dataset$add_index()}}
@@ -59,7 +64,15 @@ This is used to cache calculations for \code{\link[raster:stack]{raster::stack()
 \subsection{Method \code{new()}}{
 Create a Dataset object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Dataset$new(id, source)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Dataset$new(
+  id,
+  spatial_path,
+  attribute_path,
+  boundary_path,
+  spatial_data,
+  attribute_data,
+  boundary_data
+)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -67,7 +80,17 @@ Create a Dataset object.
 \describe{
 \item{\code{id}}{\code{character} value.}
 
-\item{\code{source}}{\code{character}, \code{\link[sf:sf]{sf::st_sf()}}, or \code{\link[raster:stack]{raster::stack()}} object.}
+\item{\code{spatial_path}}{\code{character} file path.}
+
+\item{\code{attribute_path}}{\code{character} file path.}
+
+\item{\code{boundary_path}}{\code{character} file path.}
+
+\item{\code{spatial_data}}{\code{\link[sf:sf]{sf::st_sf()}}, or \code{\link[raster:raster]{raster::raster()}} object.}
+
+\item{\code{attribute_data}}{\code{\link[tibble:tibble]{tibble::tibble()}} object.}
+
+\item{\code{boundary_data}}{\code{\link[Matrix:sparseMatrix]{Matrix::sparseMatrix()}} object.}
 }
 \if{html}{\out{</div>}}
 }
@@ -109,11 +132,32 @@ Generate a \code{character} summarizing the representation of the object.
 \if{html}{\out{<a id="method-import"></a>}}
 \if{latex}{\out{\hypertarget{method-import}{}}}
 \subsection{Method \code{import()}}{
-Import the dataset into memory.
+Import the data into memory.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Dataset$import()}\if{html}{\out{</div>}}
 }
 
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-write"></a>}}
+\if{latex}{\out{\hypertarget{method-write}{}}}
+\subsection{Method \code{write()}}{
+Write the data to disk.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Dataset$write(spatial_path, attribute_path, boundary_path)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{spatial_path}}{\code{character} file path.}
+
+\item{\code{attribute_path}}{\code{character} file path.}
+
+\item{\code{boundary_path}}{\code{character} file path.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clean"></a>}}
@@ -126,16 +170,42 @@ Clean the dataset from memory.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_data}{}}}
-\subsection{Method \code{get_data()}}{
-Get the data.
+\if{html}{\out{<a id="method-get_spatial_data"></a>}}
+\if{latex}{\out{\hypertarget{method-get_spatial_data}{}}}
+\subsection{Method \code{get_spatial_data()}}{
+Get the spatial data.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Dataset$get_data()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Dataset$get_spatial_data()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
 \code{\link[sf:st_as_sf]{sf::st_as_sf()}} or \code{\link[raster:raster]{raster::raster()}} object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_attribute_data"></a>}}
+\if{latex}{\out{\hypertarget{method-get_attribute_data}{}}}
+\subsection{Method \code{get_attribute_data()}}{
+Get the attribute data.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Dataset$get_attribute_data()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{\link[tibble:tibble]{tibble::tibble()}} object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_boundary_data"></a>}}
+\if{latex}{\out{\hypertarget{method-get_boundary_data}{}}}
+\subsection{Method \code{get_boundary_data()}}{
+Get the spatial data.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Dataset$get_boundary_data()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{\link[Matrix:sparseMatrix]{Matrix::sparseMatrix()}} object.
 }
 }
 \if{html}{\out{<hr>}}
@@ -152,12 +222,12 @@ Get the coordinate reference system.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_finite_cells"></a>}}
-\if{latex}{\out{\hypertarget{method-get_finite_cells}{}}}
-\subsection{Method \code{get_finite_cells()}}{
-Get indices of cells with data.
+\if{html}{\out{<a id="method-get_planning_unit_indices"></a>}}
+\if{latex}{\out{\hypertarget{method-get_planning_unit_indices}{}}}
+\subsection{Method \code{get_planning_unit_indices()}}{
+Get planning unit indices.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Dataset$get_finite_cells()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Dataset$get_planning_unit_indices()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
@@ -184,27 +254,6 @@ Get area values.
 Get a data from the dataset at an index.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Dataset$get_index(index)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{index}}{\code{character} or \code{integer} indicating the field/layer with
-the data.}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-\code{\link[sf:st_as_sf]{sf::st_as_sf()}} or \code{\link[raster:raster]{raster::raster()}} object.
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_indices"></a>}}
-\if{latex}{\out{\hypertarget{method-get_indices}{}}}
-\subsection{Method \code{get_indices()}}{
-Get a data from the dataset at a set of indices.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Dataset$get_indices(index)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{

@@ -28,3 +28,7 @@ utils::globalVariables(
     "statistics"
   )
 )
+
+# define functions for internally used packages to pass checks
+tmp1 <- rgdal::readOGR
+tmp2 <- R.utils::gzip
