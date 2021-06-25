@@ -36,9 +36,28 @@ last <- function(x) {
   x[[length(x)]]
 }
 
+
+#' Example include names
+#'
+#' Import example include names for simulating [Include] objects.
+#'
+#' @return A [tibble()] object.
+#'
+#' @noRd
+example_include_names <- function() {
+  tibble::as_tibble(
+    utils::read.table(
+      system.file("extdata", "example-includes.csv", package = "locationmisc"),
+      stringsAsFactors = FALSE,
+      sep = ",",
+      header = TRUE
+    )
+  )
+}
+
 #' Example weight names
 #'
-#' Import example weight names for simulating weights.
+#' Import example weight names for simulating [Weight] objects.
 #'
 #' @return A [tibble()] object.
 #'
@@ -56,7 +75,7 @@ example_weight_names <- function() {
 
 #' Example theme names
 #'
-#' Import species data and prepare it for simulating themes.
+#' Import species data and prepare it for simulating [Theme] objects.
 #'
 #' @return A [tibble()] object.
 #'

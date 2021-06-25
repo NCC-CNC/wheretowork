@@ -23,14 +23,14 @@ f3 <- system.file(
 # create dataset
 d <- new_dataset(f1, f2, f3)
 
-
 # simulate themes, weights, and a solution
-sim_themes <- simulate_themes(d, 1, 1, 1)
-sim_weights <- simulate_weights(d, 10)
-sim_solution <- simulate_solution(d, sim_themes, sim_weights)
+sim_themes <- simulate_themes(d, 2, 1, 1)
+sim_weights <- simulate_weights(d, 3)
+sim_includes <- simulate_includes(d, 2)
+sim_solution <- simulate_solution(d, sim_themes, sim_weights, sim_includes)
 
 # create list of all map layers
-l <- append(sim_solution, append(sim_themes, sim_weights))
+l <- append(sim_solution, append(sim_themes, append(sim_weights, sim_includes)))
 
 # create a map manager object
 mm <- new_map_manager(l)

@@ -11,6 +11,16 @@ function newWeightSetting(manager, x) {
   );
 }
 
+function newIncludeSetting(manager, x) {
+  return new IncludeSetting(
+    manager,
+    x.id,
+    x.name,
+    x.status,
+    x.mandatory
+  );
+}
+
 function newThemeSetting(manager, x) {
   if (typeof(x.feature_name) === "string") {
     var y = new SingleThemeSetting(

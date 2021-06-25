@@ -28,7 +28,8 @@ MapManager <- R6::R6Class(
     initialize = function(layers, order) {
       assertthat::assert_that(
         is.list(layers),
-        all_list_elements_inherit(layers, c("Theme", "Weight", "Solution")),
+        all_list_elements_inherit(
+          layers, c("Theme", "Weight", "Solution", "Include")),
         length(order) == length(layers),
         is.numeric(order),
         setequal(order, seq_along(layers))

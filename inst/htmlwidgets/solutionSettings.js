@@ -21,9 +21,10 @@ HTMLWidgets.widget({
           initialized = true;
           // attach the widget to the DOM
           container.widget = that;
-          // initialize solution settings manaer
+          // initialize solution settings manager
+          console.log(opts);
           handle = new SolutionSettings(
-            elementId, container, opts.themes, opts.weights);
+            elementId, container, opts.themes, opts.weights, opts.includes);
           // render HTML elements
           handle.render();
         }

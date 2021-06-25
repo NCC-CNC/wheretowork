@@ -30,11 +30,14 @@ v3 <- new_variable(
 v4 <- new_variable(
   dataset = d, index = 4, total = 90, units = "ha",
   legend = new_continuous_legend(1, 100, c("#000000", "#e31a1c")))
+v5 <- new_variable(
+  dataset = d, index = 5, total = 12, units = "",
+  legend = simulate_include_legend())
 
-## create a weight using a dataset
+## create a weight using dataset
 w <- new_weight(name = "Human Footprint Index", variable = v1, id = "HFP")
 
-## create features using datasets
+## create features using dataset
 f1 <-
   new_feature(
     name = "Possum", variable = v2, initial_goal = 0.2, current = 0.1,)
@@ -58,5 +61,10 @@ t1 <- new_single_theme("Species", f1, id = "SPECIES")
 t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "ER")
 t3 <- new_multi_theme("Turnips", fts, mandatory = FALSE)
 
+## create a include using dataset
+incl <- new_include(
+  name = "National protected area", variable = v5, id = "PA", mandatory = TRUE)
+
 ## create solution setting
-ss <- new_solution_settings(themes = list(t1, t2, t3), weights = list(w))
+ss <- new_solution_settings(
+  themes = list(t1, t2, t3), weights = list(w), includes = list(incl))

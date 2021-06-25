@@ -155,6 +155,31 @@ NULL
 #' \item{type}{`"weight"`}
 #' }
 #'
+#' ## Includes
+#' Here we detail all possible parameters that can be updated for
+#' includes.
+#'
+#' **Update the name.**
+#' This controls the bold text shown in the header of the include.
+#'
+#' \describe{
+#' \item{id}{`"INCLUDEID"`}
+#' \item{parameter}{`"name"`}
+#' \item{value}{`"PA"`}
+#' \item{type}{`"include"`}
+#' }
+#'
+#' **Update the status.**
+#' This controls the large switch shown in the header of include.
+#' Note that the `value` element must be a `logical` (`TRUE` or `FALSE`) value.
+#'
+#' \describe{
+#' \item{id}{`"INCLUDEID"`}
+#' \item{parameter}{`"status"`}
+#' \item{value}{`TRUE`}
+#' \item{type}{`"include"`}
+#' }
+#'
 #' @seealso [solutionSettings()].
 #'
 #' @export
@@ -179,7 +204,7 @@ updateSolutionSettings <- function(
 
   # assert value contains valid settings
   ## define valid parameter names and value classes
-  assertthat::assert_that(value$type %in% c("weight", "theme"))
+  assertthat::assert_that(value$type %in% c("weight", "theme", "include"))
   if (identical(value$type, "theme")) {
     param_names <- c(
       "name", "status", "group_goal", "feature_goal", "feature_status", "view")
@@ -188,6 +213,9 @@ updateSolutionSettings <- function(
   } else if (identical(value$type, "weight")) {
     param_names <- c("name", "status", "factor")
     param_classes <- c("character", "logical", "numeric")
+  } else if (identical(value$type, "weight")) {
+      param_names <- c("name", "status")
+      param_classes <- c("character", "logical")
   }
 
   ## sanity check
