@@ -118,46 +118,12 @@ ss_slider_component_scaffold <- function(type, bar = NULL) {
     assertthat::is.string(type),
     assertthat::noNA(type),
     type %in% c("weight", "theme"))
-  
-    htmltools::tags$div(
-    class = "goal",
-    htmltools::tags$div(
-      class = "status-info",
-      htmltools::tags$div(
-        class = "sub-status-info",
-        htmltools::tags$div(
-          class = "current-symbol"
-        ),
-        htmltools::tags$label(
-          class = "current-label",
-          `data-toggle` = "tooltip",
-          `data-placement` = "top",
-          `data-delay` = "{\"show\":500, \"hide\":100}",
-          `data-container` = ".sidebar",
-          title = "Current coverage by existing conservation areas")
-      ),
-      htmltools::tags$div(
-        class = "sub-status-info",
-        htmltools::tags$div(
-          class = "slider-symbol disable-if-inactive",
-        ),
-        htmltools::tags$label(
-          class = "slider-label disable-if-inactive",
-          `data-toggle` = "tooltip",
-          `data-placement` = "top",
-          `data-delay` = "{\"show\":500, \"hide\":100}",
-          `data-container` = ".sidebar",
-          title = "Goal for generating solutions")
-      ),
-    ),
-    ss_slider_component_scaffold(bar = "noUiSlider-widget", type)
-  )
-
   if (!is.null(bar)) {
     assertthat::assert_that(
       is.character(bar),
       assertthat::noNA(bar))
   }
+
   # initialize slider
   out <- htmltools::tags$div(
     class = "slider",
