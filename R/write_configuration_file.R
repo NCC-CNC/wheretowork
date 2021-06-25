@@ -4,7 +4,7 @@ NULL
 #' Write a configuration file
 #'
 #' Save a configuration file to disk.
-#' The configuration file will contain all the data and parameters related
+#' The configuration file will contain all the data and settings related
 #' to a set of [Theme] and [Weight] objects.
 #'
 #' @param x `list` of [Theme] and [Weight] objects.
@@ -73,15 +73,15 @@ write_configuration_file <- function(
     assertthat::is.string(mode),
     assertthat::noNA(mode))
 
-  # create parameter list for themes
+  # create setting list for themes
   themes_idx <- vapply(x, inherits, what = "Theme", logical(1))
   themes_params <- lapply(x[themes_idx], function(x) x$export())
 
-  # create parameter list for weights
+  # create setting list for weights
   weights_idx <- vapply(x, inherits, what = "Weight", logical(1))
   weights_params <- lapply(x[weights_idx], function(x) x$export())
 
-  # create full parameter list
+  # create full settings list
   params <- list(
     name = name,
     spatial_path = spatial_path,

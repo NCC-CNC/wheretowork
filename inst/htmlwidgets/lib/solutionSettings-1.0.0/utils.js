@@ -21,6 +21,19 @@ function newIncludeSetting(manager, x) {
   );
 }
 
+function newParameterSetting(manager, x) {
+  return new ParameterSetting(
+    manager,
+    x.id,
+    x.name,
+    x.min_value,
+    x.min_value,
+    x.value,
+    x.step_value,
+    x.status,
+  );
+}
+
 function newThemeSetting(manager, x) {
   if (typeof(x.feature_name) === "string") {
     var y = new SingleThemeSetting(

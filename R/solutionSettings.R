@@ -20,12 +20,12 @@
 #'
 #' \item{id}{`character` identifier for the theme or weight.}
 #'
-#' \item{parameter}{`character` name of the updated parameter.
+#' \item{setting}{`character` name of the updated setting.
 #'   Available options include: `"status"`, `"factor"`, or `"goal"`.}
 #'
 #' \item{value}{new `numeric` or `logical` values.}
 #'
-#' \item{type}{`character` indicating if the updated parameter corresponds
+#' \item{type}{`character` indicating if the updated setting corresponds
 #'   to a `theme` or `weight`.}
 #'
 #' }

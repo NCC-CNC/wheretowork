@@ -25,7 +25,9 @@ d <- new_dataset(f1, f2, f3)
 sim_themes <- simulate_themes(d, 3, 4, 2)
 sim_weights <- simulate_weights(d, 4)
 sim_includes <- simulate_includes(d, 4)
+sim_parameters <- list(new_parameter(name = "Spatial clumping"))
 
 # create new solution settings widget
 ss <- new_solution_settings(
-  themes = sim_themes, weights = sim_weights, includes = sim_includes)
+  themes = sim_themes, weights = sim_weights, includes = sim_includes,
+  parameters = sim_parameters)

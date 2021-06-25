@@ -69,6 +69,7 @@ Collate:
     'MultiTheme-class.R'
     'ThemeResults-class.R'
     'MultiThemeResults.R'
+    'Parameter-class.R'
     'SingleTheme-class.R'
     'SingleThemeResults.R'
     'SolutionSettings-class.R'

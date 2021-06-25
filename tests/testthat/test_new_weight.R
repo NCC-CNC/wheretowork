@@ -49,8 +49,8 @@ test_that("get methods", {
   expect_identical(x$get_factor(), 0.2)
   expect_identical(x$get_visible(), TRUE)
   expect_identical(x$get_status(), FALSE)
-  expect_identical(x$get_parameter("factor"), x$get_factor())
-  expect_identical(x$get_parameter("status"), x$get_status())
+  expect_identical(x$get_setting("factor"), x$get_factor())
+  expect_identical(x$get_setting("status"), x$get_status())
 })
 
 test_that("set methods", {
@@ -74,9 +74,9 @@ test_that("set methods", {
   expect_identical(x$get_factor(), 0.8)
   expect_identical(x$get_status(), TRUE)
   expect_identical(x$get_visible(), FALSE)
-  x$set_parameter("factor", 0.3)
-  x$set_parameter("status", FALSE)
-  x$set_parameter("visible", TRUE)
+  x$set_setting("factor", 0.3)
+  x$set_setting("status", FALSE)
+  x$set_setting("visible", TRUE)
   expect_identical(x$get_factor(), 0.3)
   expect_identical(x$get_status(), FALSE)
   expect_identical(x$get_visible(), TRUE)

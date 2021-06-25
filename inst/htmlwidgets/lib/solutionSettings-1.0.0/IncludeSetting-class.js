@@ -63,7 +63,7 @@ class IncludeSetting {
         let checked = this.checked;
         Shiny.setInputValue(manager, {
           id: id,
-          parameter: "status",
+          setting: "status",
           value: checked,
           type: "include"
         });
@@ -72,10 +72,10 @@ class IncludeSetting {
   }
 
   /* update methods */
-  updateParameter(parameter, value) {
-    if (parameter === "name") {
+  updateSetting(setting, value) {
+    if (setting === "name") {
       this.updateName(value);
-    } else if (parameter === "status") {
+    } else if (setting === "status") {
       this.updateStatus(value);
     }
   }

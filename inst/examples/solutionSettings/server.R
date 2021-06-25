@@ -10,7 +10,7 @@ function(input, output, session) {
     updateSolutionSettings(
       session, "widget",
       list(
-        id = "SPECIES", parameter = "name",
+        id = "SPECIES", setting = "name",
         value = input$st_name_input, type = "theme")
     )
   })
@@ -18,7 +18,7 @@ function(input, output, session) {
     updateSolutionSettings(
       session, "widget",
       list(
-        id = "SPECIES", parameter = "status",
+        id = "SPECIES", setting = "status",
         value = input$st_status_input, type = "theme")
     )
   })
@@ -26,7 +26,7 @@ function(input, output, session) {
     updateSolutionSettings(
       session, "widget",
       list(
-        id = "SPECIES", parameter = "feature_goal",
+        id = "SPECIES", setting = "feature_goal",
         value = input$st_goal_input, type = "theme")
     )
   })
@@ -36,7 +36,7 @@ function(input, output, session) {
     updateSolutionSettings(
       session, "widget",
       list(
-        id = "ER", parameter = "name",
+        id = "ER", setting = "name",
         value = input$mt_name_input, type = "theme")
     )
   })
@@ -44,7 +44,7 @@ function(input, output, session) {
     updateSolutionSettings(
       session, "widget",
       list(
-        id = "ER", parameter = "status",
+        id = "ER", setting = "status",
         value = input$mt_status_input, type = "theme")
     )
   })
@@ -52,7 +52,7 @@ function(input, output, session) {
     updateSolutionSettings(
       session, "widget",
       list(
-        id = "ER", parameter = "view",
+        id = "ER", setting = "view",
         value = input$mt_view_input, type = "theme")
     )
   })
@@ -60,7 +60,7 @@ function(input, output, session) {
     updateSolutionSettings(
       session, "widget",
       list(
-        id = "ER", parameter = "group_goal",
+        id = "ER", setting = "group_goal",
         value = input$mt_group_goal_input, type = "theme")
     )
   })
@@ -68,7 +68,7 @@ function(input, output, session) {
     updateSolutionSettings(
       session, "widget",
       list(
-        id = "ER", parameter = "feature_status",
+        id = "ER", setting = "feature_status",
         value =
           c(input$mt1_feature_status_input, input$mt2_feature_status_input),
         type = "theme")
@@ -78,7 +78,7 @@ function(input, output, session) {
     updateSolutionSettings(
       session, "widget",
       list(
-        id = "ER", parameter = "feature_goal",
+        id = "ER", setting = "feature_goal",
         value = c(input$mt1_feature_goal_input, input$mt2_feature_goal_input),
         type = "theme")
     )
@@ -90,7 +90,7 @@ function(input, output, session) {
     updateSolutionSettings(
       session, "widget",
       list(
-        id = "HFP", parameter = "name",
+        id = "HFP", setting = "name",
         value = input$w_name_input, type = "weight")
     )
   })
@@ -98,7 +98,7 @@ function(input, output, session) {
     updateSolutionSettings(
       session, "widget",
       list(
-        id = "HFP", parameter = "status",
+        id = "HFP", setting = "status",
         value = input$w_status_input, type = "weight")
     )
   })
@@ -106,14 +106,14 @@ function(input, output, session) {
     updateSolutionSettings(
       session, "widget",
       list(
-        id = "HFP", parameter = "factor",
+        id = "HFP", setting = "factor",
         value = input$w_factor_input, type = "weight")
     )
   })
 
   # update internal object based on widget
   observeEvent(input$widget, {
-    ss$set_parameter(input$widget)
+    ss$set_setting(input$widget)
   })
 
   # update text outputs

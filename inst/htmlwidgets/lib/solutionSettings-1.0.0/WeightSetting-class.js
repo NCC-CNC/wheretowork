@@ -67,7 +67,7 @@ class WeightSetting {
       this.factor_el.noUiSlider.on("update", function (values, handle) {
         Shiny.setInputValue(manager, {
           id: id,
-          parameter: "factor",
+          setting: "factor",
           value: parseFloat(values[handle]),
           type: "weight"
         });
@@ -77,7 +77,7 @@ class WeightSetting {
         let checked = this.checked;
         Shiny.setInputValue(manager, {
           id: id,
-          parameter: "status",
+          setting: "status",
           value: checked,
           type: "weight"
         });
@@ -86,12 +86,12 @@ class WeightSetting {
   }
 
   /* update methods */
-  updateParameter(parameter, value) {
-    if (parameter === "name") {
+  updateSetting(setting, value) {
+    if (setting === "name") {
       this.updateName(value);
-    } else if (parameter === "status") {
+    } else if (setting === "status") {
       this.updateStatus(value);
-    } else if (parameter === "factor") {
+    } else if (setting === "factor") {
       this.updateFactor(value);
     }
   }

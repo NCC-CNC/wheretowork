@@ -4,7 +4,7 @@ NULL
 #' Update solution settings widget
 #'
 #' Change the settings for solution settings widget on the client.
-#' Specifically, change the parameters for a theme or weight depicted
+#' Specifically, change the settings for a theme or weight depicted
 #' in a solution settings widget.
 #'
 #' @param session The `session` object passed to function given to
@@ -23,23 +23,23 @@ NULL
 #'
 #' \describe{
 #' \item{id}{`character` value with the identifier for the theme or weight.}
-#' \item{parameter}{`character` value with the name of the parameter to update.}
-#' \item{value}{`ANY` new value for the parameter.}
+#' \item{setting}{`character` value with the name of the setting to update.}
+#' \item{value}{`ANY` new value for the setting.}
 #' \item{type}{`character` value indicating if the setting is a `theme`
 #'   or `weight`.}
 #' }
 #'
 #' Note that the `value` element in the `list` object should have a
 #' class (i.e. `numeric`, `logical, or `character`) that is relevant
-#' to the parameter that should be updated. For example, if the
-#' `parameter` element is equal to `name`, then the `value` element
+#' to the setting that should be updated. For example, if the
+#' `setting` element is equal to `name`, then the `value` element
 #' should contain a `character` value.
-#' For reference, we provide examples detailing all the various parameters that
+#' For reference, we provide examples detailing all the various settings that
 #' can be updated below.
 #'
 #' ## Themes
 #'
-#' Here we detail all possible parameters that can be updated for
+#' Here we detail all possible settings that can be updated for
 #' themes.
 #'
 #' **Update the name.**
@@ -47,7 +47,7 @@ NULL
 #'
 #' \describe{
 #' \item{id}{`"THEMEID"`}
-#' \item{parameter}{`"name"`}
+#' \item{setting}{`"name"`}
 #' \item{value}{`"SPECIES"`}
 #' \item{type}{`"theme"`}
 #' }
@@ -58,7 +58,7 @@ NULL
 #'
 #' \describe{
 #' \item{id}{`"THEMEID"`}
-#' \item{parameter}{`"status"`}
+#' \item{setting}{`"status"`}
 #' \item{value}{`TRUE`}
 #' \item{type}{`"theme"`}
 #' }
@@ -72,7 +72,7 @@ NULL
 #'
 #' \describe{
 #' \item{id}{`"THEMEID"`}
-#' \item{parameter}{`"view"`}
+#' \item{setting}{`"view"`}
 #' \item{value}{`"group"`}
 #' \item{type}{`"theme"`}
 #' }
@@ -83,7 +83,7 @@ NULL
 #'
 #' \describe{
 #' \item{id}{`"THEMEID"`}
-#' \item{parameter}{`"group_goal"`}
+#' \item{setting}{`"group_goal"`}
 #' \item{value}{`0.7`}
 #' \item{type}{`"theme"`}
 #' }
@@ -98,7 +98,7 @@ NULL
 #'
 #' \describe{
 #' \item{id}{`"THEMEID"`}
-#' \item{parameter}{`"feature_status"`}
+#' \item{setting}{`"feature_status"`}
 #' \item{value}{`c(TRUE, FALSE, TRUE)`}
 #' \item{type}{`"theme"`}
 #' }
@@ -113,7 +113,7 @@ NULL
 #'
 #' \describe{
 #' \item{id}{`"THEMEID"`}
-#' \item{parameter}{`"feature_goal"`}
+#' \item{setting}{`"feature_goal"`}
 #' \item{value}{`c(0.3, 0.1, 0.7)`}
 #' \item{type}{`"theme"`}
 #' }
@@ -121,7 +121,7 @@ NULL
 #'
 #' ## Weights
 #'
-#' Here we detail all possible parameters that can be updated for
+#' Here we detail all possible settings that can be updated for
 #' weights.
 #'
 #' **Update the name.**
@@ -129,7 +129,7 @@ NULL
 #'
 #' \describe{
 #' \item{id}{`"WEIGHTID"`}
-#' \item{parameter}{`"name"`}
+#' \item{setting}{`"name"`}
 #' \item{value}{`"SPECIES"`}
 #' \item{type}{`"weight"`}
 #' }
@@ -140,7 +140,7 @@ NULL
 #'
 #' \describe{
 #' \item{id}{`"WEIGHTID"`}
-#' \item{parameter}{`"status"`}
+#' \item{setting}{`"status"`}
 #' \item{value}{`TRUE`}
 #' \item{type}{`"weight"`}
 #' }
@@ -150,13 +150,13 @@ NULL
 #'
 #' \describe{
 #' \item{id}{`"WEIGHTID"`}
-#' \item{parameter}{`"factor"`}
+#' \item{setting}{`"factor"`}
 #' \item{value}{`0.1`}
 #' \item{type}{`"weight"`}
 #' }
 #'
 #' ## Includes
-#' Here we detail all possible parameters that can be updated for
+#' Here we detail all possible settings that can be updated for
 #' includes.
 #'
 #' **Update the name.**
@@ -164,7 +164,7 @@ NULL
 #'
 #' \describe{
 #' \item{id}{`"INCLUDEID"`}
-#' \item{parameter}{`"name"`}
+#' \item{setting}{`"name"`}
 #' \item{value}{`"PA"`}
 #' \item{type}{`"include"`}
 #' }
@@ -175,7 +175,7 @@ NULL
 #'
 #' \describe{
 #' \item{id}{`"INCLUDEID"`}
-#' \item{parameter}{`"status"`}
+#' \item{setting}{`"status"`}
 #' \item{value}{`TRUE`}
 #' \item{type}{`"include"`}
 #' }
@@ -194,17 +194,18 @@ updateSolutionSettings <- function(
     assertthat::has_name(value, "id"),
     assertthat::is.string(value$id),
     assertthat::noNA(value$id),
-    assertthat::has_name(value, "parameter"),
-    assertthat::is.string(value$parameter),
-    assertthat::noNA(value$parameter),
+    assertthat::has_name(value, "setting"),
+    assertthat::is.string(value$setting),
+    assertthat::noNA(value$setting),
     assertthat::has_name(value, "value"),
     assertthat::has_name(value, "type"),
     assertthat::is.string(value$type),
     assertthat::noNA(value$type))
 
   # assert value contains valid settings
-  ## define valid parameter names and value classes
-  assertthat::assert_that(value$type %in% c("weight", "theme", "include"))
+  ## define valid setting names and value classes
+  assertthat::assert_that(
+    value$type %in% c("weight", "theme", "include", "parameter"))
   if (identical(value$type, "theme")) {
     param_names <- c(
       "name", "status", "group_goal", "feature_goal", "feature_status", "view")
@@ -216,6 +217,9 @@ updateSolutionSettings <- function(
   } else if (identical(value$type, "weight")) {
       param_names <- c("name", "status")
       param_classes <- c("character", "logical")
+  } else if (identical(value$type, "parameter")) {
+      param_names <- c("name", "status", "value")
+      param_classes <- c("character", "logical", "numeric")
   }
 
   ## sanity check
@@ -230,27 +234,27 @@ updateSolutionSettings <- function(
 
   ## run checks
   assertthat::assert_that(
-    value$parameter %in% param_names,
+    value$setting %in% param_names,
     msg = paste0(
       value$type,
-      "s must have a `parameter` equal to one of the following: ",
+      "s must have a `setting` equal to one of the following: ",
       paste(paste0("\"", param_names, "\""), collapse = ", "))
   )
   assertthat::assert_that(
     inherits(
       value$value,
-      param_classes[[which(param_names == value$parameter)]]),
+      param_classes[[which(param_names == value$setting)]]),
     msg = paste0(
-      "the \"", value$parameter,
-      "\" parameter must have a ",
-      param_classes[[which(param_names == value$parameter)]],
+      "the \"", value$setting,
+      "\" setting must have a ",
+      param_classes[[which(param_names == value$setting)]],
       " `value`")
   )
-  if (identical(value$parameter, "view")) {
+  if (identical(value$setting, "view")) {
     assertthat::assert_that(
       value$value %in% c("single", "group"),
       msg = paste0(
-        "the \"view\" parameter must have a \"single\" ",
+        "the \"view\" setting must have a \"single\" ",
         "or \"group\" `value`."))
   }
 

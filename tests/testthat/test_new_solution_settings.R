@@ -110,37 +110,37 @@ test_that("get methods", {
   ## invalid themes and weights
   expect_error(x$get_theme("NOT_EXISTANT"))
   expect_error(x$get_weight("NOT_EXISTANT"))
-  ## get parameters for SingleTheme
+  ## get settings for SingleTheme
   expect_equal(
-    x$get_parameter(
-      list(id = "T1", parameter = "feature_goal", type = "theme")),
+    x$get_setting(
+      list(id = "T1", setting = "feature_goal", type = "theme")),
       0.2)
   expect_equal(
-    x$get_parameter(
-      list(id = "T1", parameter = "feature_status", type = "theme")),
+    x$get_setting(
+      list(id = "T1", setting = "feature_status", type = "theme")),
       FALSE)
-  ## get parameters for MultiTheme
+  ## get settings for MultiTheme
   expect_equal(
-    x$get_parameter(
-      list(id = "T2", parameter = "feature_goal", type = "theme")),
+    x$get_setting(
+      list(id = "T2", setting = "feature_goal", type = "theme")),
       c(0.3, 0.6))
   expect_equal(
-    x$get_parameter(
-      list(id = "T2", parameter = "feature_status", type = "theme")),
+    x$get_setting(
+      list(id = "T2", setting = "feature_status", type = "theme")),
       c(FALSE, TRUE))
-  ## get parameters for Weight
+  ## get settings for Weight
   expect_equal(
-    x$get_parameter(
-      list(id = "W1", parameter = "factor", type = "weight")),
+    x$get_setting(
+      list(id = "W1", setting = "factor", type = "weight")),
       90)
   expect_equal(
-    x$get_parameter(
-      list(id = "W1", parameter = "status", type = "weight")),
+    x$get_setting(
+      list(id = "W1", setting = "status", type = "weight")),
       FALSE)
-  ## get parameters for Include
+  ## get settings for Include
   expect_equal(
-    x$get_parameter(
-      list(id = "I1", parameter = "status", type = "include")),
+    x$get_setting(
+      list(id = "I1", setting = "status", type = "include")),
     TRUE)
 })
 
@@ -191,58 +191,58 @@ test_that("set methods", {
     themes = list(t1, t2), weights = list(w), includes = list(incl))
   # run tests
   ## singleTheme
-  x$set_parameter(
-    list(id = "T1", parameter = "feature_status", value = TRUE, type = "theme"))
+  x$set_setting(
+    list(id = "T1", setting = "feature_status", value = TRUE, type = "theme"))
   expect_equal(
-    x$get_parameter(
-      list(id = "T1", parameter = "feature_status", type = "theme")),
+    x$get_setting(
+      list(id = "T1", setting = "feature_status", type = "theme")),
     TRUE)
-  x$set_parameter(
-    list(id = "T1", parameter = "feature_goal", value = 0.91, type = "theme"))
+  x$set_setting(
+    list(id = "T1", setting = "feature_goal", value = 0.91, type = "theme"))
   expect_equal(
-    x$get_parameter(
-      list(id = "T1", parameter = "feature_goal", type = "theme")),
+    x$get_setting(
+      list(id = "T1", setting = "feature_goal", type = "theme")),
     0.91)
   ## multiTheme
-  x$set_parameter(
+  x$set_setting(
     list(
-      id = "T2", parameter = "feature_status", value = c(TRUE, FALSE),
+      id = "T2", setting = "feature_status", value = c(TRUE, FALSE),
       type = "theme"))
   expect_equal(
-    x$get_parameter(
-      list(id = "T2", parameter = "feature_status", type = "theme")),
+    x$get_setting(
+      list(id = "T2", setting = "feature_status", type = "theme")),
     c(TRUE, FALSE))
-  x$set_parameter(
+  x$set_setting(
     list(
-      id = "T2", parameter = "feature_goal", value = c(0.99, 0.21),
+      id = "T2", setting = "feature_goal", value = c(0.99, 0.21),
       type = "theme"))
   expect_equal(
-    x$get_parameter(
-      list(id = "T2", parameter = "feature_goal", type = "theme")),
+    x$get_setting(
+      list(id = "T2", setting = "feature_goal", type = "theme")),
     c(0.99, 0.21))
   ## Weight
-  x$set_parameter(
-    list(id = "W1", parameter = "status", value = TRUE, type = "weight"))
+  x$set_setting(
+    list(id = "W1", setting = "status", value = TRUE, type = "weight"))
   expect_equal(
-    x$get_parameter(
-      list(id = "W1", parameter = "status", type = "weight")),
+    x$get_setting(
+      list(id = "W1", setting = "status", type = "weight")),
     TRUE)
-  x$set_parameter(
-    list(id = "W1", parameter = "factor", value = 90, type = "weight"))
+  x$set_setting(
+    list(id = "W1", setting = "factor", value = 90, type = "weight"))
   expect_equal(
-    x$get_parameter(
-      list(id = "W1", parameter = "factor", type = "weight")),
+    x$get_setting(
+      list(id = "W1", setting = "factor", type = "weight")),
     90)
   ## Include
   expect_equal(
-    x$get_parameter(
-      list(id = "I1", parameter = "status", type = "include")),
+    x$get_setting(
+      list(id = "I1", setting = "status", type = "include")),
     TRUE)
-  x$set_parameter(
-    list(id = "I1", parameter = "status", value = FALSE, type = "include"))
+  x$set_setting(
+    list(id = "I1", setting = "status", value = FALSE, type = "include"))
   expect_equal(
-    x$get_parameter(
-      list(id = "I1", parameter = "status", type = "include")),
+    x$get_setting(
+      list(id = "I1", setting = "status", type = "include")),
     FALSE)
 })
 

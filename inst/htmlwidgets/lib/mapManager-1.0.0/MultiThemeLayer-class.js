@@ -76,7 +76,7 @@ class MultiThemeLayer {
           });
           Shiny.setInputValue(manager, {
             id: id,
-            parameter: "feature_order",
+            setting: "feature_order",
             value: order
           });
         }
@@ -146,7 +146,7 @@ class MultiThemeLayer {
         let checked = this.checked;
         Shiny.setInputValue(manager, {
           id: id,
-          parameter: "feature_visible",
+          setting: "feature_visible",
           value: Array(that.n_features).fill(checked),
         });
       });
@@ -157,7 +157,7 @@ class MultiThemeLayer {
           that.single_visible_values[i] = this.checked;
           Shiny.setInputValue(manager, {
             id: id,
-            parameter: "feature_visible",
+            setting: "feature_visible",
             value: that.single_visible_values
           });
         });
@@ -167,14 +167,14 @@ class MultiThemeLayer {
 
   /* update HTML elements */
   /* update methods */
-  updateParameter(parameter, value) {
-    if (parameter === "name") {
+  updateSetting(setting, value) {
+    if (setting === "name") {
       this.updateName(value);
-    } else if (parameter === "visible") {
+    } else if (setting === "visible") {
       this.updateVisible(value);
-    } else if (parameter === "feature_visible") {
+    } else if (setting === "feature_visible") {
       this.updateFeatureVisible(value);
-    } else if (parameter === "feature_order") {
+    } else if (setting === "feature_order") {
       this.updateFeatureOrder(value);
     }
   }
