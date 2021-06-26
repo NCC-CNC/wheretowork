@@ -110,7 +110,7 @@ class SingleThemeSetting {
         if (v >= feature_limit_goal) {
           Shiny.setInputValue(manager, {
             id: id,
-            parameter: "feature_goal",
+            setting: "feature_goal",
             value: v,
             type: "theme"
           });
@@ -121,7 +121,7 @@ class SingleThemeSetting {
         let checked = this.checked;
         Shiny.setInputValue(manager, {
           id: id,
-          parameter: "feature_status",
+          setting: "feature_status",
           value: checked,
           type: "theme"
         });
@@ -130,12 +130,12 @@ class SingleThemeSetting {
   }
 
   /* update methods */
-  updateParameter(parameter, value) {
-    if (parameter === "name") {
+  updateSetting(setting, value) {
+    if (setting === "name") {
       this.updateName(value);
-    } else if (parameter === "status" || parameter === "feature_status") {
+    } else if (setting === "status" || setting === "feature_status") {
       this.updateStatus(value);
-    } else if (parameter === "feature_goal") {
+    } else if (setting === "feature_goal") {
       this.updateFeatureGoal(value);
     }
   }

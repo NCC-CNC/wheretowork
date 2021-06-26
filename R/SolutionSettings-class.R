@@ -18,6 +18,9 @@ SolutionSettings <- R6::R6Class(
     #' @field include_ids `character` vector of identifiers for the includes.
     include_ids = NULL,
 
+    #' @field parameter_ids `character` vector of identifiers for the parameters.
+    parameter_ids = NULL,
+
     #' @field themes `list` of [Theme] objects.
     themes = NULL,
 
@@ -27,25 +30,32 @@ SolutionSettings <- R6::R6Class(
     #' @field includes `list` of [Include] objects.
     includes = NULL,
 
+    #' @field parameters `list` of [Parameter] objects.
+    parameters = NULL,
+
     #' @description
     #' Create a SolutionSettings object.
     #' @param themes `list` of [Theme] objects.
     #' @param weights `list` of [Weight] objects.
     #' @param includes `list` of [Include] objects.
+    #' @param parameters `list` of [Parameter] objects.
     #' @return A new SolutionSettings object.
-    initialize = function(themes, weights, includes) {
+    initialize = function(themes, weights, includes, parameters) {
       assertthat::assert_that(
         is.list(themes),
         is.list(weights),
         all_list_elements_inherit(themes, "Theme"),
         all_list_elements_inherit(weights, "Weight"),
-        all_list_elements_inherit(includes, "Include"))
+        all_list_elements_inherit(includes, "Include"),
+        all_list_elements_inherit(parameters, "Parameter"))
       self$themes <- themes
       self$weights <- weights
       self$includes <- includes
+      self$parameters <- parameters
       self$theme_ids <- vapply(themes, function(x) x$id, character(1))
       self$weight_ids <- vapply(weights, function(x) x$id, character(1))
       self$include_ids <- vapply(includes, function(x) x$id, character(1))
+      self$parameter_ids <- vapply(parameters, function(x) x$id, character(1))
     },
 
     #' @description
@@ -79,6 +89,15 @@ SolutionSettings <- R6::R6Class(
         }
       } else {
         message("  includes: none")
+      }
+      ## print parameters
+      if (length(self$parameters) > 0) {
+        message("  parameters: ")
+        for (x in vapply(self$parameters, function(x) x$repr(), character(1))) {
+          message("    " , gsub(nl(), paste0(nl(), "    "), x, fixed = TRUE))
+        }
+      } else {
+        message("  parameters: none")
       }
       invisible(self)
     },
@@ -133,67 +152,85 @@ SolutionSettings <- R6::R6Class(
     },
 
     #' @description
-    #' Get a parameter for a weight, theme, or include.
+    #' Get an parameter.
+    #' @param value `character` weight identifier.
+    #' @return [Parameter] object.
+    get_parameter = function(value) {
+      assertthat::assert_that(
+        assertthat::is.string(value),
+        assertthat::noNA(value))
+      assertthat::assert_that(
+        value %in% self$parameter_ids,
+        msg = paste0("no parameter with the id `", value,"`"))
+      self$parameters[[which(self$parameter_ids == value)]]
+    },
+
+    #' @description
+    #' Get a setting for a weight, theme, include, or parameter.
     #' @param value `list` with new parameter information (see Details section)
     #' @details
     #' The argument to `value` should be a `list` with the following elements:
     #' \describe{
     #' \item{id}{`character` identifier for theme, weight, or include.}
-    #' \item{parameter}{`character` name of parameter.
-    #'   Available options are: `"status"`, `"factor"`, or `"goal"`.}
-    #' \item{type}{`character` indicating if the parameter is for a theme or
-    #'   weight.
-    #'   Available options are: `"theme"`, `"weight"`, `"include"`.}
+    #' \item{setting}{`character` name of parameter.
+    #'   Available options are: `"status"`, `"factor"`, `"value"`, or `"goal"`.}
+    #' \item{type}{`character` indicating the type of setting.
+    #'   Available options are: `"theme"`, `"weight"`, `"include"`,
+    #'   `"parameter"`.}
     #' }
-    get_parameter = function(value) {
+    get_setting = function(value) {
       assertthat::assert_that(
         is.list(value),
         assertthat::has_name(value, "id"),
         assertthat::is.string(value$id),
-        assertthat::has_name(value, "parameter"),
-        assertthat::is.string(value$parameter),
+        assertthat::has_name(value, "setting"),
+        assertthat::is.string(value$setting),
         assertthat::has_name(value, "type"),
         assertthat::is.string(value$type),
-        isTRUE(value$type %in% c("theme", "weight", "include")))
+        isTRUE(value$type %in% c("theme", "weight", "include", "parameter")))
       if (identical(value$type, "theme")) {
-        self$get_theme(value$id)$get_parameter(value$parameter)
+        self$get_theme(value$id)$get_setting(value$setting)
       } else if (identical(value$type, "weight")) {
-        self$get_weight(value$id)$get_parameter(value$parameter)
+        self$get_weight(value$id)$get_setting(value$setting)
       } else if (identical(value$type, "include")) {
-        self$get_include(value$id)$get_parameter(value$parameter)
+        self$get_include(value$id)$get_setting(value$setting)
+      } else if (identical(value$type, "parameter")) {
+        self$get_parameter(value$id)$get_setting(value$setting)
       }
     },
 
     #' @description
-    #' Set a parameter for a weight or theme.
-    #' @param value `list` with new parameter information (see Details section)
+    #' Set a setting for a weight or theme.
+    #' @param value `list` with new setting information (see Details section)
     #' @details
     #' The argument to `value` should be a `list` with the following elements:
     #' \describe{
     #' \item{id}{`character` identifier for theme, weight, or include.}
-    #' \item{parameter}{`character` name of parameter.
-    #'   Available options are: `"status"`, `"factor"`, or `"goal"`.}
-    #' \item{value}{`numeric` or `logical` value for new parameter.}
-    #' \item{type}{`character` indicating if the parameter is for a
-    #'   theme, weight, or include.
-    #'   Available options are: `"theme"`, `"weight"`, `"include"`.}
+    #' \item{setting}{`character` name of parameter.
+    #'   Available options are: `"status"`, `"factor"`, `"value"`, or `"goal"`.}
+    #' \item{value}{`numeric` or `logical` value for new setting.}
+    #' \item{type}{`character` indicating the type of setting.
+    #'   Available options are: `"theme"`, `"weight"`, `"include"`,
+    #'   `"parameter"`.}
     #' }
-    set_parameter = function(value) {
+    set_setting = function(value) {
       assertthat::assert_that(
         is.list(value),
         assertthat::has_name(value, "id"),
         assertthat::is.string(value$id),
-        assertthat::has_name(value, "parameter"),
-        assertthat::is.string(value$parameter),
+        assertthat::has_name(value, "setting"),
+        assertthat::is.string(value$setting),
         assertthat::has_name(value, "value"),
         assertthat::is.string(value$type),
-        isTRUE(value$type %in% c("theme", "weight", "include")))
+        isTRUE(value$type %in% c("theme", "weight", "include", "parameter")))
       if (identical(value$type, "theme")) {
-        self$get_theme(value$id)$set_parameter(value$parameter, value$value)
+        self$get_theme(value$id)$set_setting(value$setting, value$value)
       } else if (identical(value$type, "weight")) {
-        self$get_weight(value$id)$set_parameter(value$parameter, value$value)
+        self$get_weight(value$id)$set_setting(value$setting, value$value)
       } else if (identical(value$type, "include")) {
-        self$get_include(value$id)$set_parameter(value$parameter, value$value)
+        self$get_include(value$id)$set_setting(value$setting, value$value)
+      } else if (identical(value$type, "parameter")) {
+        self$get_parameter(value$id)$set_setting(value$setting, value$value)
       }
     },
 
@@ -210,7 +247,10 @@ SolutionSettings <- R6::R6Class(
             self$weights, function(x) x$get_solution_settings_widget_data()),
         includes =
           lapply(
-            self$includes, function(x) x$get_solution_settings_widget_data())
+            self$includes, function(x) x$get_solution_settings_widget_data()),
+        parameters =
+          lapply(
+            self$parameters, function(x) x$get_solution_settings_widget_data())
       )
     },
 
@@ -254,6 +294,17 @@ SolutionSettings <- R6::R6Class(
         id = vapply(self$includes, function(x) x$id, character(1)),
         name = vapply(self$includes, function(x) x$name, character(1)),
         status = vapply(self$includes, function(x) x$status, logical(1)))
+    },
+
+    #' @description
+    #' Get parameter settings for generating a prioritization.
+    #' @return [tibble::tibble()] with data.
+    get_parameter_settings = function() {
+      tibble::tibble(
+        id = vapply(self$parameters, function(x) x$id, character(1)),
+        name = vapply(self$parameters, function(x) x$name, character(1)),
+        status = vapply(self$parameters, function(x) x$status, logical(1)),
+        value = vapply(self$parameters, function(x) x$value, numeric(1)))
     },
 
     #' @description
@@ -305,6 +356,8 @@ SolutionSettings <- R6::R6Class(
 #'
 #' @param includes `list` of [Include] objects.
 #'
+#' @param parameters `list` of [Parameter] objects.
+#'
 #' @return A [SolutionSettings] object.
 #'
 #' @examples
@@ -349,16 +402,22 @@ SolutionSettings <- R6::R6Class(
 #' i <- new_include(
 #'   name = "Protected areas", variable = v5,
 #'   initial_status = FALSE, id = "I1")
-
+#'
+#' # create parameters
+#' p1 <- new_parameter(name = "Spatial clustering")
+#' p2 <- new_parameter(name = "Optimality gap")
+#'
 #' # create solution settings using the themes and weight
 #' ss <- new_solution_settings(
-#'   themes = list(t1, t2), weights = list(w), includes = list(i))
+#'   themes = list(t1, t2), weights = list(w), includes = list(i),
+#'   parameters = list(p1, p2))
 #'
 #' # print object
 #' print(ss)
 #'
 #' @export
-new_solution_settings <- function(themes, weights, includes) {
+new_solution_settings <- function(themes, weights, includes, parameters) {
   SolutionSettings$new(
-    themes = themes, weights = weights, includes = includes)
+    themes = themes, weights = weights, includes = includes,
+    parameters =  parameters)
 }

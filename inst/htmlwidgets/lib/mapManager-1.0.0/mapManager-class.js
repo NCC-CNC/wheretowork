@@ -32,9 +32,9 @@ class MapManager {
     }
   }
 
-  updateLayer(id, parameter, value) {
+  updateLayer(id, setting, value) {
     const idx = this.layers.findIndex((x) => x.id === id);
-    this.layers[idx].updateParameter(parameter, value);
+    this.layers[idx].updateSetting(setting, value);
   }
 
   /* update method */
@@ -74,7 +74,7 @@ class MapManager {
           const order = ids.map((x) => n - (new_ids.findIndex((z) => z === x)));
           // send order to R session
           Shiny.setInputValue(that.id, {
-            parameter: "order",
+            setting: "order",
             value: order
           });
         }

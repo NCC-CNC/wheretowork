@@ -1,11 +1,15 @@
-class IncludeSetting {
+class ParameterSetting {
   /* constructor */
   constructor(
     manager,
     id,
     name,
+    min_value,
+    max_value,
+    value,
+    step_value,
     status,
-    mandatory
+    units
   ) {
     // class fields
     this.id = id;
@@ -13,11 +17,12 @@ class IncludeSetting {
       document.importNode(
         document
         .getElementById(manager)
-        .querySelector(".include-setting-template")
+        .querySelector(".parameter-setting-template")
         .content,
       true);
     this.name_el = this.el.querySelector(".name-label");
     this.status_el = this.el.querySelector(".status-checkbox");
+    this.value_el = this.el.querySelector(".noUiSlider-widget");
 
     // local variables
     let that = this;
@@ -30,17 +35,18 @@ class IncludeSetting {
     this.name_el.innerText = name;
     /// status
     this.status_el.checked = status;
+    /// value
+    noUiSlider.create(this.value_el, {
+      start: value,
+      step: step_value,
+      connect: "lower",
+      range: {
+        "min": min_value,
+        "max": max_value
+      }
+    });
 
-    // disable switches if include is mandatory
-    if (mandatory) {
-      this.status_el.parentElement.classList.add("disable-mouse");
-      this.status_el.addEventListener("click", function (e) {
-        e.preventDefault();
-        return false;
-      });
-    }
-
-    // set listeners to update user interface
+    // set listeners to update user interfance
     /// enable/disable widget on click
     if (HTMLWidgets.shinyMode) {
       this.status_el.addEventListener("change", function () {
@@ -58,6 +64,15 @@ class IncludeSetting {
 
     // set listeners to pass data to Shiny
     if (HTMLWidgets.shinyMode) {
+      /// value
+      this.value_el.noUiSlider.on("update", function (values, handle) {
+        Shiny.setInputValue(manager, {
+          id: id,
+          setting: "value",
+          value: parseFloat(values[handle]),
+          type: "parameter"
+        });
+      });
       /// status
       this.status_el.addEventListener("change", function () {
         let checked = this.checked;
@@ -65,7 +80,7 @@ class IncludeSetting {
           id: id,
           setting: "status",
           value: checked,
-          type: "include"
+          type: "parameter"
         });
       });
     }
@@ -77,6 +92,8 @@ class IncludeSetting {
       this.updateName(value);
     } else if (setting === "status") {
       this.updateStatus(value);
+    } else if (setting === "value") {
+      this.updateValue(value);
     }
   }
 
@@ -94,6 +111,10 @@ class IncludeSetting {
     } else {
       els.forEach((x) => x.setAttribute("disabled", ""));
     }
+  }
+
+  updateValue(value) {
+    this.value_el.noUiSlider.set(value);
   }
 
   /* render method */

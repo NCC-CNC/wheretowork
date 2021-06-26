@@ -45,11 +45,11 @@ This method intentionally throws an error.
 \item \href{#method-get_feature_visible}{\code{Theme$get_feature_visible()}}
 \item \href{#method-get_feature_status}{\code{Theme$get_feature_status()}}
 \item \href{#method-get_feature_goal}{\code{Theme$get_feature_goal()}}
-\item \href{#method-get_parameter}{\code{Theme$get_parameter()}}
+\item \href{#method-get_setting}{\code{Theme$get_setting()}}
 \item \href{#method-set_feature_visible}{\code{Theme$set_feature_visible()}}
 \item \href{#method-set_feature_status}{\code{Theme$set_feature_status()}}
 \item \href{#method-set_feature_goal}{\code{Theme$set_feature_goal()}}
-\item \href{#method-set_parameter}{\code{Theme$set_parameter()}}
+\item \href{#method-set_setting}{\code{Theme$set_setting()}}
 \item \href{#method-export}{\code{Theme$export()}}
 \item \href{#method-render_on_map}{\code{Theme$render_on_map()}}
 \item \href{#method-update_on_map}{\code{Theme$update_on_map()}}
@@ -202,18 +202,18 @@ Get feature goal values.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_parameter"></a>}}
-\if{latex}{\out{\hypertarget{method-get_parameter}{}}}
-\subsection{Method \code{get_parameter()}}{
-Get parameter.
+\if{html}{\out{<a id="method-get_setting"></a>}}
+\if{latex}{\out{\hypertarget{method-get_setting}{}}}
+\subsection{Method \code{get_setting()}}{
+Get setting.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Theme$get_parameter(name)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Theme$get_setting(name)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{name}}{\code{character} parameter name.
+\item{\code{name}}{\code{character} setting name.
 Available options are \code{"feature_status"}, \code{"feature_goal"},
 \code{"feature_visible"}, or \code{"feature_order"}.}
 }
@@ -278,18 +278,18 @@ A \code{list} of \code{numeric} values can also be supplied.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_parameter"></a>}}
-\if{latex}{\out{\hypertarget{method-set_parameter}{}}}
-\subsection{Method \code{set_parameter()}}{
-Set parameter.
+\if{html}{\out{<a id="method-set_setting"></a>}}
+\if{latex}{\out{\hypertarget{method-set_setting}{}}}
+\subsection{Method \code{set_setting()}}{
+Set setting.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Theme$set_parameter(name, value)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Theme$set_setting(name, value)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{name}}{\code{character} parameter name.
+\item{\code{name}}{\code{character} setting name.
 Available options are \code{"feature_status"}, \code{"feature_goal"},
 \code{"feature_visible"}, \code{"feature_order"}.}
 
@@ -302,7 +302,7 @@ Available options are \code{"feature_status"}, \code{"feature_goal"},
 \if{html}{\out{<a id="method-export"></a>}}
 \if{latex}{\out{\hypertarget{method-export}{}}}
 \subsection{Method \code{export()}}{
-Export parameters
+Export settings
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Theme$export()}\if{html}{\out{</div>}}
 }

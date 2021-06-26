@@ -47,7 +47,7 @@ HTMLWidgets.widget({
 
       updateLayer: function(params) {
         handle.updateLayer(
-          params.value.id, params.value.parameter,
+          params.value.id, params.value.setting,
           params.value.value);
       },
 
@@ -56,9 +56,6 @@ HTMLWidgets.widget({
       },
 
       dropLayer: function(params) {
-        console.log("dropLayer");
-        console.log("params");
-        console.log(params);
         handle.dropLayer(params.value);
       },
 

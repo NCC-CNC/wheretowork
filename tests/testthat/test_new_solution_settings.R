@@ -42,9 +42,12 @@ test_that("initialization", {
   ## create themes using the features
   t1 <- new_single_theme("Species", f1, id = "T1")
   t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")
+  ## create parameter
+  p1 <- new_parameter("Spatial clustering", id = "P1")
   ## create solution setting
   x <- new_solution_settings(
-    themes = list(t1, t2), weights = list(w), includes = list(incl))
+    themes = list(t1, t2), weights = list(w), includes = list(incl),
+    parameters = list(p1))
   # run tests
   print(x)
   expect_is(x$repr(), "character")
@@ -54,6 +57,7 @@ test_that("initialization", {
   expect_identical(x$theme_ids, c("T1", "T2"))
   expect_identical(x$weight_ids, "W1")
   expect_identical(x$include_ids, "I1")
+  expect_identical(x$parameter_ids, "P1")
 })
 
 test_that("get methods", {
@@ -98,9 +102,12 @@ test_that("get methods", {
   ## create themes using the features
   t1 <- new_single_theme("Species", f1, id = "T1")
   t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")
+  ## create parameter
+  p1 <- new_parameter("Spatial clustering", initial_value = 90, id = "P1")
   ## create solution setting
   x <- new_solution_settings(
-    themes = list(t1, t2), weights = list(w), includes = list(incl))
+    themes = list(t1, t2), weights = list(w), includes = list(incl),
+    parameters = list(p1))
   # run tests
   ## get theme
   expect_equal(x$get_theme("T1"), t1)
@@ -110,38 +117,47 @@ test_that("get methods", {
   ## invalid themes and weights
   expect_error(x$get_theme("NOT_EXISTANT"))
   expect_error(x$get_weight("NOT_EXISTANT"))
-  ## get parameters for SingleTheme
+  ## get settings for SingleTheme
   expect_equal(
-    x$get_parameter(
-      list(id = "T1", parameter = "feature_goal", type = "theme")),
+    x$get_setting(
+      list(id = "T1", setting = "feature_goal", type = "theme")),
       0.2)
   expect_equal(
-    x$get_parameter(
-      list(id = "T1", parameter = "feature_status", type = "theme")),
+    x$get_setting(
+      list(id = "T1", setting = "feature_status", type = "theme")),
       FALSE)
-  ## get parameters for MultiTheme
+  ## get settings for MultiTheme
   expect_equal(
-    x$get_parameter(
-      list(id = "T2", parameter = "feature_goal", type = "theme")),
+    x$get_setting(
+      list(id = "T2", setting = "feature_goal", type = "theme")),
       c(0.3, 0.6))
   expect_equal(
-    x$get_parameter(
-      list(id = "T2", parameter = "feature_status", type = "theme")),
+    x$get_setting(
+      list(id = "T2", setting = "feature_status", type = "theme")),
       c(FALSE, TRUE))
-  ## get parameters for Weight
+  ## get settings for Weight
   expect_equal(
-    x$get_parameter(
-      list(id = "W1", parameter = "factor", type = "weight")),
+    x$get_setting(
+      list(id = "W1", setting = "factor", type = "weight")),
       90)
   expect_equal(
-    x$get_parameter(
-      list(id = "W1", parameter = "status", type = "weight")),
+    x$get_setting(
+      list(id = "W1", setting = "status", type = "weight")),
       FALSE)
-  ## get parameters for Include
+  ## get settings for Include
   expect_equal(
-    x$get_parameter(
-      list(id = "I1", parameter = "status", type = "include")),
+    x$get_setting(
+      list(id = "I1", setting = "status", type = "include")),
     TRUE)
+  ## get settings for Parameter
+  expect_equal(
+    x$get_setting(
+      list(id = "P1", setting = "status", type = "parameter")),
+    TRUE)
+  expect_equal(
+    x$get_setting(
+      list(id = "P1", setting = "value", type = "parameter")),
+    90)
 })
 
 test_that("set methods", {
@@ -186,64 +202,88 @@ test_that("set methods", {
   ## create themes using the features
   t1 <- new_single_theme("Species", f1, id = "T1")
   t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")
+  ## create parameter
+  p1 <- new_parameter("Spatial clustering", initial_value = 90, id = "P1")
   ## create solution setting
   x <- new_solution_settings(
-    themes = list(t1, t2), weights = list(w), includes = list(incl))
+    themes = list(t1, t2), weights = list(w), includes = list(incl),
+    parameters = list(p1))
   # run tests
   ## singleTheme
-  x$set_parameter(
-    list(id = "T1", parameter = "feature_status", value = TRUE, type = "theme"))
+  x$set_setting(
+    list(id = "T1", setting = "feature_status", value = TRUE, type = "theme"))
   expect_equal(
-    x$get_parameter(
-      list(id = "T1", parameter = "feature_status", type = "theme")),
+    x$get_setting(
+      list(id = "T1", setting = "feature_status", type = "theme")),
     TRUE)
-  x$set_parameter(
-    list(id = "T1", parameter = "feature_goal", value = 0.91, type = "theme"))
+  x$set_setting(
+    list(id = "T1", setting = "feature_goal", value = 0.91, type = "theme"))
   expect_equal(
-    x$get_parameter(
-      list(id = "T1", parameter = "feature_goal", type = "theme")),
+    x$get_setting(
+      list(id = "T1", setting = "feature_goal", type = "theme")),
     0.91)
   ## multiTheme
-  x$set_parameter(
+  x$set_setting(
     list(
-      id = "T2", parameter = "feature_status", value = c(TRUE, FALSE),
+      id = "T2", setting = "feature_status", value = c(TRUE, FALSE),
       type = "theme"))
   expect_equal(
-    x$get_parameter(
-      list(id = "T2", parameter = "feature_status", type = "theme")),
+    x$get_setting(
+      list(id = "T2", setting = "feature_status", type = "theme")),
     c(TRUE, FALSE))
-  x$set_parameter(
+  x$set_setting(
     list(
-      id = "T2", parameter = "feature_goal", value = c(0.99, 0.21),
+      id = "T2", setting = "feature_goal", value = c(0.99, 0.21),
       type = "theme"))
   expect_equal(
-    x$get_parameter(
-      list(id = "T2", parameter = "feature_goal", type = "theme")),
+    x$get_setting(
+      list(id = "T2", setting = "feature_goal", type = "theme")),
     c(0.99, 0.21))
   ## Weight
-  x$set_parameter(
-    list(id = "W1", parameter = "status", value = TRUE, type = "weight"))
+  x$set_setting(
+    list(id = "W1", setting = "status", value = TRUE, type = "weight"))
   expect_equal(
-    x$get_parameter(
-      list(id = "W1", parameter = "status", type = "weight")),
+    x$get_setting(
+      list(id = "W1", setting = "status", type = "weight")),
     TRUE)
-  x$set_parameter(
-    list(id = "W1", parameter = "factor", value = 90, type = "weight"))
+  x$set_setting(
+    list(id = "W1", setting = "factor", value = 90, type = "weight"))
   expect_equal(
-    x$get_parameter(
-      list(id = "W1", parameter = "factor", type = "weight")),
+    x$get_setting(
+      list(id = "W1", setting = "factor", type = "weight")),
     90)
   ## Include
   expect_equal(
-    x$get_parameter(
-      list(id = "I1", parameter = "status", type = "include")),
+    x$get_setting(
+      list(id = "I1", setting = "status", type = "include")),
     TRUE)
-  x$set_parameter(
-    list(id = "I1", parameter = "status", value = FALSE, type = "include"))
+  x$set_setting(
+    list(id = "I1", setting = "status", value = FALSE, type = "include"))
   expect_equal(
-    x$get_parameter(
-      list(id = "I1", parameter = "status", type = "include")),
+    x$get_setting(
+      list(id = "I1", setting = "status", type = "include")),
     FALSE)
+  ## Parameter
+  expect_equal(
+    x$get_setting(
+      list(id = "P1", setting = "status", type = "parameter")),
+    TRUE)
+  x$set_setting(
+    list(id = "P1", setting = "status", value = FALSE, type = "parameter"))
+  expect_equal(
+    x$get_setting(
+      list(id = "P1", setting = "status", type = "parameter")),
+    FALSE)
+  expect_equal(
+    x$get_setting(
+      list(id = "P1", setting = "value", type = "parameter")),
+    90)
+  x$set_setting(
+    list(id = "P1", setting = "value", value = 12, type = "parameter"))
+  expect_equal(
+    x$get_setting(
+      list(id = "P1", setting = "value", type = "parameter")),
+    12)
 })
 
 test_that("widget methods", {
@@ -288,9 +328,12 @@ test_that("widget methods", {
   ## create themes using the features
   t1 <- new_single_theme("Species", f1, id = "T1")
   t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")
+  ## create parameter
+  p1 <- new_parameter("Spatial clustering", initial_value = 90, id = "P1")
   ## create solution setting
   x <- new_solution_settings(
-    themes = list(t1, t2), weights = list(w), includes = list(incl))
+    themes = list(t1, t2), weights = list(w), includes = list(incl),
+    parameters = list(p1))
   # run tests
   expect_equal(
     x$get_widget_data(),
@@ -301,6 +344,9 @@ test_that("widget methods", {
       weights = list(
         w$get_solution_settings_widget_data()),
       includes = list(
-        incl$get_solution_settings_widget_data()))
+        incl$get_solution_settings_widget_data()),
+      parameters = list(
+        p1$get_solution_settings_widget_data())
+    )
   )
 })

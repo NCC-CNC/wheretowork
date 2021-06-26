@@ -45,7 +45,7 @@
 }
 
 .solution-settings .panel.panel-default {
-  max-height: 74vh;
+  max-height: 68.5vh;
   overflow-y: scroll;
 }
 
@@ -300,7 +300,8 @@
   margin-left: 5px;
 }
 
-.solution-setting .weight-slider {
+.solution-setting .weight-slider,
+.solution-setting .parameter-slider{
   margin-top: 0px;
   margin-bottom: 5px;
 }

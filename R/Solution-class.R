@@ -76,9 +76,9 @@ Solution <- R6::R6Class(
 
     #' @description
     #' Generate a `character` summarizing the representation of the object.
-    #' @param start `character` symbol used to start the parameter list.
+    #' @param start `character` symbol used to start the setting list.
     #'   Defaults to `"["`.
-    #' @param end `character` symbol used to start the parameter list.
+    #' @param end `character` symbol used to start the setting list.
     #'   Defaults to `"]"`.
     #' @return `character` value.
     repr = function(start = "[", end = "]") {
@@ -112,11 +112,11 @@ Solution <- R6::R6Class(
     },
 
     #' @description
-    #' Get parameter.
-    #' @param name `character` parameter name.
+    #' Get setting.
+    #' @param name `character` setting name.
     #' Available options are `"visible"`.
     #' @return Value.
-    get_parameter = function(name) {
+    get_setting = function(name) {
       assertthat::assert_that(
         assertthat::is.string(name),
         assertthat::noNA(name),
@@ -124,7 +124,7 @@ Solution <- R6::R6Class(
       if (identical(name, "visible")) {
         out <- self$get_visible()
       } else {
-        stop(paste0("\"", name, "\" is not a parameter"))
+        stop(paste0("\"", name, "\" is not a setting"))
       }
       out
     },
@@ -141,11 +141,11 @@ Solution <- R6::R6Class(
     },
 
     #' @description
-    #' Set parameter.
-    #' @param name `character` parameter name.
+    #' Set setting.
+    #' @param name `character` setting name.
     #' Available options are `"visible"``.
     #' @param value `ANY` new value.
-    set_parameter = function(name, value) {
+    set_setting = function(name, value) {
       assertthat::assert_that(
         assertthat::is.string(name),
         assertthat::noNA(name),
@@ -153,7 +153,7 @@ Solution <- R6::R6Class(
       if (identical(name, "visible")) {
         self$set_visible(value)
       } else {
-        stop(paste0("\"", name, "\" is not a parameter"))
+        stop(paste0("\"", name, "\" is not a setting"))
       }
       invisible(self)
     },
@@ -375,7 +375,7 @@ new_solution_from_prioritization <- function(
     main_solution <-
       c(prioritizr::solve(main_problem, run_checks = FALSE))
   } else {
-    ### if the boundary_penalty_gap parameter is very low,
+    ### if the boundary_penalty_gap setting is very low,
     ### then we will just use the initial solution because the
     ### second prioritization is unlikely to be very different from the first
     main_solution <- initial_solution

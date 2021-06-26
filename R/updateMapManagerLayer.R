@@ -21,16 +21,16 @@ NULL
 #'
 #' \describe{
 #' \item{id}{`character` value with the identifier for the layer.}
-#' \item{parameter}{`character` value with the name of the parameter to update.}
-#' \item{value}{`ANY` new value for the parameter.}
+#' \item{setting}{`character` value with the name of the setting to update.}
+#' \item{value}{`ANY` new value for the setting.}
 #' }
 #'
 #' Note that the `value` element in the `list` object should have a
 #' class (i.e. `numeric`, `logical`) that is relevant
-#' to the parameter that should be updated. For example, if the
-#' `parameter` element is equal to `name`, then the `value` element
+#' to the setting that should be updated. For example, if the
+#' `setting` element is equal to `name`, then the `value` element
 #' should contain a `character` value.
-#' For reference, we provide examples detailing all the various parameters that
+#' For reference, we provide examples detailing all the various settings that
 #' can be updated below.
 #'
 #' **Update layer name.**
@@ -38,7 +38,7 @@ NULL
 #'
 #' \describe{
 #' \item{id}{`"LAYERID"`}
-#' \item{parameter}{`"name"`}
+#' \item{setting}{`"name"`}
 #' \item{value}{`"SPECIES"`}
 #' }
 #'
@@ -48,7 +48,7 @@ NULL
 #'
 #' \describe{
 #' \item{id}{`"LAYERID"`}
-#' \item{parameter}{`"visible"`}
+#' \item{setting}{`"visible"`}
 #' \item{value}{`TRUE`}
 #' }
 #'
@@ -59,7 +59,7 @@ NULL
 #'
 #' \describe{
 #' \item{id}{`"LAYERID"`}
-#' \item{parameter}{`"feature_visible"`}
+#' \item{setting}{`"feature_visible"`}
 #' \item{value}{`c(TRUE, FALSE, TRUE)`}
 #' }
 #'
@@ -70,7 +70,7 @@ NULL
 #'
 #' \describe{
 #' \item{id}{`"LAYERID"`}
-#' \item{parameter}{`"feature_order"`}
+#' \item{setting}{`"feature_order"`}
 #' \item{value}{`c(TRUE, FALSE, TRUE)`}
 #' }
 #'
@@ -85,13 +85,13 @@ updateMapManagerLayer <- function(
     assertthat::noNA(inputId),
     is.list(value))
   assertthat::assert_that(
-    assertthat::has_name(value, "parameter"),
-    assertthat::is.string(value$parameter),
-    assertthat::noNA(value$parameter),
+    assertthat::has_name(value, "setting"),
+    assertthat::is.string(value$setting),
+    assertthat::noNA(value$setting),
     assertthat::has_name(value, "value"))
 
   # assert value contains valid settings
-  ## define valid parameter names and value classes
+  ## define valid setting names and value classes
   param_names <- c(
     "name", "visible", "feature_order", "feature_visible")
     param_classes <- c(
@@ -109,20 +109,20 @@ updateMapManagerLayer <- function(
 
   ## run checks
   assertthat::assert_that(
-    value$parameter %in% param_names,
+    value$setting %in% param_names,
     msg = paste0(
       value$type,
-      "s must have a `parameter` equal to one of the following: ",
+      "s must have a `setting` equal to one of the following: ",
       paste(paste0("\"", param_names, "\""), collapse = ", "))
   )
   assertthat::assert_that(
     inherits(
       value$value,
-      param_classes[[which(param_names == value$parameter)]]),
+      param_classes[[which(param_names == value$setting)]]),
     msg = paste0(
-      "the \"", value$parameter,
-      "\" parameter must have a ",
-      param_classes[[which(param_names == value$parameter)]],
+      "the \"", value$setting,
+      "\" setting must have a ",
+      param_classes[[which(param_names == value$setting)]],
       " `value`")
   )
 

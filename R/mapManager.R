@@ -13,9 +13,9 @@
 #'
 #' \describe{
 #'
-#'  \item{id}{`character` identifer for layer to update.}
+#'  \item{id}{`character` identifier for layer to update.}
 #'
-#'   \item{parameter}{`character` name of the updated parameter}.
+#'   \item{setting}{`character` name of the updated setting}.
 #'
 #'   \item{value}{`numeric` or `logical` values.}
 #'
