@@ -85,7 +85,6 @@ function(input, output, session) {
   })
 
   ## weight
-  ## singleTheme
   observeEvent(input$w_name_button, {
     updateSolutionSettings(
       session, "widget",
@@ -108,6 +107,50 @@ function(input, output, session) {
       list(
         id = "HFP", setting = "factor",
         value = input$w_factor_input, type = "weight")
+    )
+  })
+
+  ## include
+  observeEvent(input$i_name_button, {
+    updateSolutionSettings(
+      session, "widget",
+      list(
+        id = "I2", setting = "name",
+        value = input$i_name_input, type = "include")
+    )
+  })
+  observeEvent(input$i_status_button, {
+    updateSolutionSettings(
+      session, "widget",
+      list(
+        id = "I2", setting = "status",
+        value = input$i_status_input, type = "include")
+    )
+  })
+
+  ## parameter
+  observeEvent(input$p_name_button, {
+    updateSolutionSettings(
+      session, "widget",
+      list(
+        id = "P1", setting = "name",
+        value = input$p_name_input, type = "parameter")
+    )
+  })
+  observeEvent(input$p_status_button, {
+    updateSolutionSettings(
+      session, "widget",
+      list(
+        id = "P1", setting = "status",
+        value = input$p_status_input, type = "parameter")
+    )
+  })
+  observeEvent(input$p_value_button, {
+    updateSolutionSettings(
+      session, "widget",
+      list(
+        id = "P1", setting = "value",
+        value = input$p_value_input, type = "parameter")
     )
   })
 

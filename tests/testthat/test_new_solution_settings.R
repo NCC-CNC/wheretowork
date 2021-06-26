@@ -42,9 +42,12 @@ test_that("initialization", {
   ## create themes using the features
   t1 <- new_single_theme("Species", f1, id = "T1")
   t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")
+  ## create parameter
+  p1 <- new_parameter("Spatial clustering", id = "P1")
   ## create solution setting
   x <- new_solution_settings(
-    themes = list(t1, t2), weights = list(w), includes = list(incl))
+    themes = list(t1, t2), weights = list(w), includes = list(incl),
+    parameters = list(p1))
   # run tests
   print(x)
   expect_is(x$repr(), "character")
@@ -54,6 +57,7 @@ test_that("initialization", {
   expect_identical(x$theme_ids, c("T1", "T2"))
   expect_identical(x$weight_ids, "W1")
   expect_identical(x$include_ids, "I1")
+  expect_identical(x$parameter_ids, "P1")
 })
 
 test_that("get methods", {
@@ -98,9 +102,12 @@ test_that("get methods", {
   ## create themes using the features
   t1 <- new_single_theme("Species", f1, id = "T1")
   t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")
+  ## create parameter
+  p1 <- new_parameter("Spatial clustering", initial_value = 90, id = "P1")
   ## create solution setting
   x <- new_solution_settings(
-    themes = list(t1, t2), weights = list(w), includes = list(incl))
+    themes = list(t1, t2), weights = list(w), includes = list(incl),
+    parameters = list(p1))
   # run tests
   ## get theme
   expect_equal(x$get_theme("T1"), t1)
@@ -142,6 +149,15 @@ test_that("get methods", {
     x$get_setting(
       list(id = "I1", setting = "status", type = "include")),
     TRUE)
+  ## get settings for Parameter
+  expect_equal(
+    x$get_setting(
+      list(id = "P1", setting = "status", type = "parameter")),
+    TRUE)
+  expect_equal(
+    x$get_setting(
+      list(id = "P1", setting = "value", type = "parameter")),
+    90)
 })
 
 test_that("set methods", {
@@ -186,9 +202,12 @@ test_that("set methods", {
   ## create themes using the features
   t1 <- new_single_theme("Species", f1, id = "T1")
   t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")
+  ## create parameter
+  p1 <- new_parameter("Spatial clustering", initial_value = 90, id = "P1")
   ## create solution setting
   x <- new_solution_settings(
-    themes = list(t1, t2), weights = list(w), includes = list(incl))
+    themes = list(t1, t2), weights = list(w), includes = list(incl),
+    parameters = list(p1))
   # run tests
   ## singleTheme
   x$set_setting(
@@ -244,6 +263,27 @@ test_that("set methods", {
     x$get_setting(
       list(id = "I1", setting = "status", type = "include")),
     FALSE)
+  ## Parameter
+  expect_equal(
+    x$get_setting(
+      list(id = "P1", setting = "status", type = "parameter")),
+    TRUE)
+  x$set_setting(
+    list(id = "P1", setting = "status", value = FALSE, type = "parameter"))
+  expect_equal(
+    x$get_setting(
+      list(id = "P1", setting = "status", type = "parameter")),
+    FALSE)
+  expect_equal(
+    x$get_setting(
+      list(id = "P1", setting = "value", type = "parameter")),
+    90)
+  x$set_setting(
+    list(id = "P1", setting = "value", value = 12, type = "parameter"))
+  expect_equal(
+    x$get_setting(
+      list(id = "P1", setting = "value", type = "parameter")),
+    12)
 })
 
 test_that("widget methods", {
@@ -288,9 +328,12 @@ test_that("widget methods", {
   ## create themes using the features
   t1 <- new_single_theme("Species", f1, id = "T1")
   t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")
+  ## create parameter
+  p1 <- new_parameter("Spatial clustering", initial_value = 90, id = "P1")
   ## create solution setting
   x <- new_solution_settings(
-    themes = list(t1, t2), weights = list(w), includes = list(incl))
+    themes = list(t1, t2), weights = list(w), includes = list(incl),
+    parameters = list(p1))
   # run tests
   expect_equal(
     x$get_widget_data(),
@@ -301,6 +344,9 @@ test_that("widget methods", {
       weights = list(
         w$get_solution_settings_widget_data()),
       includes = list(
-        incl$get_solution_settings_widget_data()))
+        incl$get_solution_settings_widget_data()),
+      parameters = list(
+        p1$get_solution_settings_widget_data())
+    )
   )
 })

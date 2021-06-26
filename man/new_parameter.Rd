@@ -11,6 +11,7 @@ new_parameter(
   min_value = 0,
   max_value = 100,
   step_value = 1,
+  units = "",
   id = uuid::UUIDgenerate()
 )
 }
@@ -33,6 +34,9 @@ Defaults to 0.}
 \item{step_value}{\code{numeric} step value.
 Defaults to 1.}
 
+\item{units}{\code{character} units.
+Defaults to an empty \code{character} object.}
+
 \item{id}{\code{character} unique identifier.
 Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}
 }
@@ -44,7 +48,7 @@ Create a new \link{Parameter} object.
 }
 \examples{
 # create a new parameter
-p <- new_parameter(name = "Spatial clumping")
+p <- new_parameter(name = "Spatial clustering")
 
 # print object
 print(p)

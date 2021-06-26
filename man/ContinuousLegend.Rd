@@ -104,7 +104,7 @@ A \code{function} object.
 \if{html}{\out{<a id="method-export"></a>}}
 \if{latex}{\out{\hypertarget{method-export}{}}}
 \subsection{Method \code{export()}}{
-Export parameters
+Export settings
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ContinuousLegend$export()}\if{html}{\out{</div>}}
 }

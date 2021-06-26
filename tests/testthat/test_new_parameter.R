@@ -9,6 +9,7 @@ test_that("initialization", {
     min_value = 0.01,
     max_value = 0.9,
     step_value = 0.03,
+    units = "asdf",
     id = "P1")
   # run tests
   print(x)
@@ -22,6 +23,7 @@ test_that("initialization", {
   expect_equal(x$min_value, 0.01)
   expect_equal(x$max_value, 0.9)
   expect_equal(x$step_value, 0.03)
+  expect_equal(x$units, "asdf")
 })
 
 test_that("get methods", {
@@ -37,8 +39,8 @@ test_that("get methods", {
   # run tests
   expect_identical(x$get_value(), 0.2)
   expect_identical(x$get_status(), FALSE)
-  expect_identical(x$get_parameter("value"), x$get_value())
-  expect_identical(x$get_parameter("status"), x$get_status())
+  expect_identical(x$get_setting("value"), x$get_value())
+  expect_identical(x$get_setting("status"), x$get_status())
 })
 
 test_that("set methods", {
@@ -56,8 +58,8 @@ test_that("set methods", {
   x$set_status(TRUE)
   expect_identical(x$get_value(), 0.8)
   expect_identical(x$get_status(), TRUE)
-  x$set_parameter("value", 0.3)
-  x$set_parameter("status", FALSE)
+  x$set_setting("value", 0.3)
+  x$set_setting("status", FALSE)
   expect_identical(x$get_value(), 0.3)
   expect_identical(x$get_status(), FALSE)
 })
@@ -95,6 +97,7 @@ test_that("widget methods", {
     min_value = 0.01,
     max_value = 0.9,
     step_value = 0.03,
+    units = "asdf",
     id = "P1")
   # run tests
   ## solution settings
@@ -107,6 +110,7 @@ test_that("widget methods", {
       max_value = 0.9,
       value = 0.2,
       step_value = 0.03,
-      status = FALSE)
+      status = FALSE,
+      units = "asdf")
   )
 })

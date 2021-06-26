@@ -34,6 +34,8 @@ Definition for the Parameter class.
 \item{\code{max_value}}{\code{numeric} maximum value.}
 
 \item{\code{step_value}}{\code{numeric} step value.}
+
+\item{\code{units}}{\code{character} value.}
 }
 \if{html}{\out{</div>}}
 }
@@ -45,10 +47,10 @@ Definition for the Parameter class.
 \item \href{#method-repr}{\code{Parameter$repr()}}
 \item \href{#method-get_status}{\code{Parameter$get_status()}}
 \item \href{#method-get_value}{\code{Parameter$get_value()}}
-\item \href{#method-get_parameter}{\code{Parameter$get_parameter()}}
+\item \href{#method-get_setting}{\code{Parameter$get_setting()}}
 \item \href{#method-set_status}{\code{Parameter$set_status()}}
 \item \href{#method-set_value}{\code{Parameter$set_value()}}
-\item \href{#method-set_parameter}{\code{Parameter$set_parameter()}}
+\item \href{#method-set_setting}{\code{Parameter$set_setting()}}
 \item \href{#method-get_solution_settings_widget_data}{\code{Parameter$get_solution_settings_widget_data()}}
 \item \href{#method-export}{\code{Parameter$export()}}
 \item \href{#method-clone}{\code{Parameter$clone()}}
@@ -67,7 +69,8 @@ Create a new Parameter object.
   initial_value,
   min_value,
   max_value,
-  step_value
+  step_value,
+  units
 )}\if{html}{\out{</div>}}
 }
 
@@ -87,6 +90,8 @@ Create a new Parameter object.
 \item{\code{max_value}}{\code{numeric} maximum value.}
 
 \item{\code{step_value}}{\code{numeric} step value.}
+
+\item{\code{units}}{\code{character} value.}
 }
 \if{html}{\out{</div>}}
 }
@@ -123,10 +128,10 @@ Generate a \code{character} summarizing the representation of the object.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{start}}{\code{character} symbol used to start the parameter list.
+\item{\code{start}}{\code{character} symbol used to start the setting list.
 Defaults to \code{"["}.}
 
-\item{\code{end}}{\code{character} symbol used to start the parameter list.
+\item{\code{end}}{\code{character} symbol used to start the setting list.
 Defaults to \code{"]"}.}
 }
 \if{html}{\out{</div>}}
@@ -162,18 +167,18 @@ Get value.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_parameter"></a>}}
-\if{latex}{\out{\hypertarget{method-get_parameter}{}}}
-\subsection{Method \code{get_parameter()}}{
-Get parameter.
+\if{html}{\out{<a id="method-get_setting"></a>}}
+\if{latex}{\out{\hypertarget{method-get_setting}{}}}
+\subsection{Method \code{get_setting()}}{
+Get setting.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Parameter$get_parameter(name)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Parameter$get_setting(name)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{name}}{\code{character} parameter name.
+\item{\code{name}}{\code{character} setting name.
 Available options are \code{"status"}, or \code{"value"}.}
 }
 \if{html}{\out{</div>}}
@@ -217,18 +222,18 @@ Set value.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_parameter"></a>}}
-\if{latex}{\out{\hypertarget{method-set_parameter}{}}}
-\subsection{Method \code{set_parameter()}}{
-Set parameter.
+\if{html}{\out{<a id="method-set_setting"></a>}}
+\if{latex}{\out{\hypertarget{method-set_setting}{}}}
+\subsection{Method \code{set_setting()}}{
+Set setting.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Parameter$set_parameter(name, value)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Parameter$set_setting(name, value)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{name}}{\code{character} parameter name.
+\item{\code{name}}{\code{character} setting name.
 Available options are \code{"status"}, or \code{"value"}.}
 
 \item{\code{value}}{\code{ANY} new value.}
@@ -253,7 +258,7 @@ Get data for displaying the theme in a \code{\link[=solutionSettings]{solutionSe
 \if{html}{\out{<a id="method-export"></a>}}
 \if{latex}{\out{\hypertarget{method-export}{}}}
 \subsection{Method \code{export()}}{
-Export parameters.
+Export settings.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Parameter$export()}\if{html}{\out{</div>}}
 }

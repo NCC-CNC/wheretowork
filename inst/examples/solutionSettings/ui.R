@@ -191,6 +191,60 @@ fluidPage(
               actionButton("w_factor_button", label = "Update factor")
             )
           )
+        ),
+
+        ### include
+        tabPanel(
+          "Nature reserves",
+          br(),
+          fluidRow(
+            column(3,
+              textInput("i_name_input", label = NULL),
+            ),
+            column(1,
+              actionButton("i_name_button", label = "Update name")
+            )
+          ),
+          fluidRow(
+            column(3,
+              checkboxInput("i_status_input", label = NULL, TRUE),
+            ),
+            column(1,
+              actionButton("i_status_button", label = "Update status")
+            )
+          )
+        ),
+
+        ### parameter
+        tabPanel(
+          "Spatial clumping",
+          br(),
+          fluidRow(
+            column(3,
+              textInput("p_name_input", label = NULL),
+            ),
+            column(1,
+              actionButton("p_name_button", label = "Update name")
+            )
+          ),
+          fluidRow(
+            column(3,
+              checkboxInput("p_status_input", label = NULL, TRUE),
+            ),
+            column(1,
+              actionButton("p_status_button", label = "Update status")
+            )
+          ),
+          fluidRow(
+            column(3,
+              numericInput(
+                "p_value_input", label = NULL,
+                value = p$get_value(), min = 0, max = 100, step = 0.01),
+            ),
+            column(1,
+              actionButton("p_value_button", label = "Update value")
+            )
+          )
         )
       )
     )

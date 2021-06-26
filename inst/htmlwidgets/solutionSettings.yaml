@@ -14,6 +14,7 @@ dependencies:
     version: 1.0-0
     src: htmlwidgets/lib/solutionSettings-1.0.0
     script:
+      - ParameterSetting-class.js
       - IncludeSetting-class.js
       - MultiThemeSetting-class.js
       - SingleThemeSetting-class.js

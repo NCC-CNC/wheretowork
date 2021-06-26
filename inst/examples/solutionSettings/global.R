@@ -66,12 +66,12 @@ t3 <- new_multi_theme("Turnips", fts, mandatory = FALSE)
 
 ## create a include using dataset
 i1 <- new_include(
-  name = "National protected area", variable = v5, id = "PA1", mandatory = TRUE)
+  name = "National protected area", variable = v5, id = "I1", mandatory = TRUE)
 i2 <- new_include(
-  name = "Nature reserves", variable = v6, id = "PA2", mandatory = FALSE)
+  name = "Nature reserves", variable = v6, id = "I2", mandatory = FALSE)
 
 ## create a parameter
-p <- new_parameter(name = "Spatial clumping")
+p <- new_parameter(name = "Spatial clumping", id = "P1")
 
 ## create solution setting
 ss <- new_solution_settings(

@@ -214,7 +214,7 @@ updateSolutionSettings <- function(
   } else if (identical(value$type, "weight")) {
     param_names <- c("name", "status", "factor")
     param_classes <- c("character", "logical", "numeric")
-  } else if (identical(value$type, "weight")) {
+  } else if (identical(value$type, "include")) {
       param_names <- c("name", "status")
       param_classes <- c("character", "logical")
   } else if (identical(value$type, "parameter")) {

@@ -38,6 +38,9 @@ Parameter <- R6::R6Class(
     #' @field step_value `numeric` step value.
     step_value = NA_real_,
 
+    #' @field units `character` value.
+    units = NA_character_,
+
     #' @description
     #' Create a new Parameter object.
     #' @param id `character` value.
@@ -47,11 +50,12 @@ Parameter <- R6::R6Class(
     #' @param min_value `numeric` minimum value.
     #' @param max_value `numeric` maximum value.
     #' @param step_value `numeric` step value.
+    #' @param units `character` value.
     #' @return A new Parameter object.
     ## constructor
     initialize = function(
       id, name, initial_status,
-      initial_value, min_value, max_value, step_value) {
+      initial_value, min_value, max_value, step_value, units) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -79,7 +83,10 @@ Parameter <- R6::R6Class(
         #### step_value
         assertthat::is.number(step_value),
         assertthat::noNA(step_value),
-        step_value <= max_value
+        step_value <= max_value,
+        #### units
+        assertthat::is.string(units),
+        assertthat::noNA(units)
       )
       ### set fields
       self$id <- id
@@ -91,6 +98,7 @@ Parameter <- R6::R6Class(
       self$min_value <- min_value
       self$max_value <- max_value
       self$step_value <- step_value
+      self$units <- units
     },
 
     #' @description
@@ -101,22 +109,22 @@ Parameter <- R6::R6Class(
       message("  id:       ", self$id)
       message("  name:     ", self$name)
       message("  status:   ", self$status)
-      message("  value:   ", round(self$value, 2))
+      message("  value:   ", round(self$value, 2), " ", self$units)
       invisible(self)
     },
 
     #' @description
     #' Generate a `character` summarizing the representation of the object.
-    #' @param start `character` symbol used to start the parameter list.
+    #' @param start `character` symbol used to start the setting list.
     #'   Defaults to `"["`.
-    #' @param end `character` symbol used to start the parameter list.
+    #' @param end `character` symbol used to start the setting list.
     #'   Defaults to `"]"`.
     #' @return `character` value.
     repr = function(start = "[", end = "]") {
       paste0(
         self$name,
         " ", start, "status: ", self$status,
-        ", value: ", round(self$value, 2), end)
+        ", value: ", round(self$value, 2), " ", self$units, end)
     },
 
     #' @description
@@ -134,11 +142,11 @@ Parameter <- R6::R6Class(
     },
 
     #' @description
-    #' Get parameter.
-    #' @param name `character` parameter name.
+    #' Get setting.
+    #' @param name `character` setting name.
     #' Available options are `"status"`, or `"value"`.
     #' @return Value.
-    get_parameter = function(name) {
+    get_setting = function(name) {
       assertthat::assert_that(
         assertthat::is.string(name),
         assertthat::noNA(name),
@@ -148,7 +156,7 @@ Parameter <- R6::R6Class(
       } else if (identical(name, "value")) {
         out <- self$get_value()
       } else {
-        stop(paste0("\"", name, "\" is not a parameter"))
+        stop(paste0("\"", name, "\" is not a setting"))
       }
       out
     },
@@ -178,11 +186,11 @@ Parameter <- R6::R6Class(
     },
 
     #' @description
-    #' Set parameter.
-    #' @param name `character` parameter name.
+    #' Set setting.
+    #' @param name `character` setting name.
     #' Available options are `"status"`, or `"value"`.
     #' @param value `ANY` new value.
-    set_parameter = function(name, value) {
+    set_setting = function(name, value) {
       assertthat::assert_that(
         assertthat::is.string(name),
         assertthat::noNA(name),
@@ -192,7 +200,7 @@ Parameter <- R6::R6Class(
       } else if (identical(name, "value")) {
         self$set_value(value)
       } else {
-        stop(paste0("\"", name, "\" is not a parameter"))
+        stop(paste0("\"", name, "\" is not a setting"))
       }
       invisible(self)
     },
@@ -208,13 +216,13 @@ Parameter <- R6::R6Class(
         max_value = self$max_value,
         value = self$value,
         step_value = self$step_value,
-        status = self$status
+        status = self$status,
+        units = self$units
       )
     },
 
     #' @description
-    #' Export parameters.
-    #' Export parameters.
+    #' Export settings.
     #' @return `list` object.
     export = function() {
       list(
@@ -246,6 +254,9 @@ Parameter <- R6::R6Class(
 #' @param step_value `numeric` step value.
 #'   Defaults to 1.
 #'
+#' @param units `character` units.
+#'   Defaults to an empty `character` object.
+#'
 #' @inheritParams new_multi_theme
 #' @inheritParams new_feature
 #'
@@ -253,7 +264,7 @@ Parameter <- R6::R6Class(
 #'
 #' @examples
 #' # create a new parameter
-#' p <- new_parameter(name = "Spatial clumping")
+#' p <- new_parameter(name = "Spatial clustering")
 #'
 #' # print object
 #' print(p)
@@ -262,7 +273,7 @@ Parameter <- R6::R6Class(
 new_parameter <- function(
   name, initial_status = TRUE,
   initial_value = 0, min_value = 0, max_value = 100, step_value = 1,
-  id = uuid::UUIDgenerate()) {
+  units = "", id = uuid::UUIDgenerate()) {
   Parameter$new(
     id = id,
     name = name,
@@ -270,5 +281,6 @@ new_parameter <- function(
     min_value = min_value,
     max_value = max_value,
     initial_value = initial_value,
-    step_value = step_value)
+    step_value = step_value,
+    units = units)
 }

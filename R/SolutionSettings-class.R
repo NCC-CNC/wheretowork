@@ -18,7 +18,7 @@ SolutionSettings <- R6::R6Class(
     #' @field include_ids `character` vector of identifiers for the includes.
     include_ids = NULL,
 
-    #' @field include_ids `character` vector of identifiers for the parameters.
+    #' @field parameter_ids `character` vector of identifiers for the parameters.
     parameter_ids = NULL,
 
     #' @field themes `list` of [Theme] objects.
@@ -30,7 +30,7 @@ SolutionSettings <- R6::R6Class(
     #' @field includes `list` of [Include] objects.
     includes = NULL,
 
-    #' @field includes `list` of [Parameter] objects.
+    #' @field parameters `list` of [Parameter] objects.
     parameters = NULL,
 
     #' @description
@@ -55,7 +55,7 @@ SolutionSettings <- R6::R6Class(
       self$theme_ids <- vapply(themes, function(x) x$id, character(1))
       self$weight_ids <- vapply(weights, function(x) x$id, character(1))
       self$include_ids <- vapply(includes, function(x) x$id, character(1))
-      self$parameter_ids <- vapply(includes, function(x) x$id, character(1))
+      self$parameter_ids <- vapply(parameters, function(x) x$id, character(1))
     },
 
     #' @description
@@ -402,10 +402,15 @@ SolutionSettings <- R6::R6Class(
 #' i <- new_include(
 #'   name = "Protected areas", variable = v5,
 #'   initial_status = FALSE, id = "I1")
-
+#'
+#' # create parameters
+#' p1 <- new_parameter(name = "Spatial clustering")
+#' p2 <- new_parameter(name = "Optimality gap")
+#'
 #' # create solution settings using the themes and weight
 #' ss <- new_solution_settings(
-#'   themes = list(t1, t2), weights = list(w), includes = list(i))
+#'   themes = list(t1, t2), weights = list(w), includes = list(i),
+#'   parameters = list(p1, p2))
 #'
 #' # print object
 #' print(ss)

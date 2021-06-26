@@ -27,10 +27,11 @@ function newParameterSetting(manager, x) {
     x.id,
     x.name,
     x.min_value,
-    x.min_value,
+    x.max_value,
     x.value,
     x.step_value,
     x.status,
+    x.units
   );
 }
 
