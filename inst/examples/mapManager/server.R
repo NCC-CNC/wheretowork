@@ -25,7 +25,7 @@ function(input, output, session) {
     updateMapManagerLayer(
       session, "widget",
       list(
-        id = "SPECIES", parameter = "name",
+        id = "SPECIES", setting = "name",
         value = input$st_name_input)
     )
   })
@@ -33,7 +33,7 @@ function(input, output, session) {
     updateMapManagerLayer(
       session, "widget",
       list(
-        id = "SPECIES", parameter = "visible",
+        id = "SPECIES", setting = "visible",
         value = input$st_visible_input)
     )
   })
@@ -43,7 +43,7 @@ function(input, output, session) {
     updateMapManagerLayer(
       session, "widget",
       list(
-        id = "ER", parameter = "name",
+        id = "ER", setting = "name",
         value = input$mt_name_input)
     )
   })
@@ -51,7 +51,7 @@ function(input, output, session) {
     updateMapManagerLayer(
       session, "widget",
       list(
-        id = "ER", parameter = "visible",
+        id = "ER", setting = "visible",
         value = input$mt_visible_input)
     )
   })
@@ -59,7 +59,7 @@ function(input, output, session) {
     updateMapManagerLayer(
       session, "widget",
       list(
-        id = "ER", parameter = "feature_visible",
+        id = "ER", setting = "feature_visible",
         value =
           c(input$mt1_feature_visible_input, input$mt2_feature_visible_input))
     )
@@ -68,7 +68,7 @@ function(input, output, session) {
     updateMapManagerLayer(
       session, "widget",
       list(
-        id = "ER", parameter = "feature_order",
+        id = "ER", setting = "feature_order",
         value = rev(seq_along(t2$feature)))
     )
   })
@@ -78,7 +78,7 @@ function(input, output, session) {
     updateMapManagerLayer(
       session, "widget",
       list(
-        id = "HFP", parameter = "name",
+        id = "HFP", setting = "name",
         value = input$w_name_input)
     )
   })
@@ -86,15 +86,15 @@ function(input, output, session) {
     updateMapManagerLayer(
       session, "widget",
       list(
-        id = "HFP", parameter = "visible",
+        id = "HFP", setting = "visible",
         value = input$w_visible_input)
     )
   })
 
   # update internal object based on widget
   observeEvent(input$widget, {
-    mm$set_parameter(input$widget)
-    if (identical(input$widget$parameter, "remove")) {
+    mm$set_setting(input$widget)
+    if (identical(input$widget$setting, "remove")) {
       dropMapManagerLayer(session, "widget", input$widget$id)
     }
   })
