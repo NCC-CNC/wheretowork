@@ -25,9 +25,18 @@ d <- new_dataset(f1, f2, f3)
 sim_themes <- simulate_themes(d, 3, 4, 2)
 sim_weights <- simulate_weights(d, 4)
 sim_includes <- simulate_includes(d, 4)
-sim_parameters <- list(new_parameter(name = "Spatial clumping"))
+sim_parameters <- list(new_parameter(name = "Spatial clumping", id = "P1"))
 
 # create new solution settings widget
 ss <- new_solution_settings(
   themes = sim_themes, weights = sim_weights, includes = sim_includes,
   parameters = sim_parameters)
+
+# extract data to speed up calculations
+theme_data <- ss$get_theme_data()
+weight_data <- ss$get_weight_data()
+include_data <- ss$get_include_data()
+boundary_data <- d$get_boundary_data()
+
+# re-scale boundary values to avoid numerical issues
+boundary_data@x <- scales::rescale(boundary_data@x, to = c(0.01, 100))

@@ -308,9 +308,9 @@ SolutionSettings <- R6::R6Class(
     },
 
     #' @description
-    #' Get feature matrix data.
-    #' @return `matrix` with data.
-    get_feature_matrix = function() {
+    #' Get theme matrix data.
+    #' @return [Matrix::sparseMatrix()] with data.
+    get_theme_data = function() {
       v <- lapply(self$themes, function(x) {
         lapply(x$feature, `[[`, "variable")
       })
@@ -325,8 +325,8 @@ SolutionSettings <- R6::R6Class(
 
     #' @description
     #' Get weight matrix data.
-    #' @return `matrix` with data.
-    get_weight_matrix = function() {
+    #' @return [Matrix::sparseMatrix()] with data.
+    get_weight_data = function() {
       v <- lapply(self$weights, `[[`, "variable")
       out <- extract_data_matrix(v)
       rownames(out) <- vapply(self$weights, `[[`, character(1), "id")
@@ -335,8 +335,8 @@ SolutionSettings <- R6::R6Class(
 
     #' @description
     #' Get includes matrix data.
-    #' @return `matrix` with data.
-    get_includes_matrix = function() {
+    #' @return [Matrix::sparseMatrix()] with data.
+    get_include_data = function() {
       v <- lapply(self$includes, `[[`, "variable")
       out <- extract_data_matrix(v)
       rownames(out) <- vapply(self$includes, `[[`, character(1), "id")

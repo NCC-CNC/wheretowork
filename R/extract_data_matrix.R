@@ -15,21 +15,16 @@ NULL
 extract_data_matrix <- function(x) {
   # assert argument is valid
   assertthat::assert_that(
+    is.list(x),
     all_list_elements_inherit(x, "Variable"),
-    n_distinct(vapply(x, function(x) x$dataset$id, character(1))) == 1)
-  # store data
-  d <- x[[1]]$dataset
+    n_distinct(vapply(x, function(z) z$dataset$id, character(1))) == 1)
+  # get attribute data
+  d <- x[[1]]$dataset$get_attribute_data()
   # extract variable indices
-  idx <- vapply(x, function(z) which(z$index == names(d$data)), integer(1))
-  # extract spatial data
-  out <- d$get_indices(idx)
-  # convert to matrix format
-  if (inherits(d$data, "Raster")) {
-    out <- out[d$get_finite_cells()]
-  } else {
-    out <- sf::st_drop_geometry(out)
-    out <- t(as.matrix(out))
-  }
+  idx <- vapply(x, FUN.VALUE = integer(1), function(z) {
+    if (is.numeric(z$index)) return(as.integer(z$index))
+    which(z$index == names(d))
+  })
   # return result
-  out
+  methods::as(t(as.matrix(d[, idx, drop = FALSE])), "dgCMatrix")
 }
