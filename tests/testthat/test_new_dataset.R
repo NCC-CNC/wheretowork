@@ -189,7 +189,7 @@ test_that("methods (sf from file)", {
     attribute_data = attribute_data,
     boundary_data = boundary_data)
   # write object to disk
-  f1 <- tempfile(fileext = ".gpkg")
+  f1 <- tempfile(fileext = ".shp")
   f2 <- tempfile(fileext = ".csv.gz")
   f3 <- tempfile(fileext = ".csv.gz")
   d$write(f1, f2, f3)

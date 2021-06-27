@@ -1,11 +1,11 @@
 name: Example GPKG dataset
-spatial_path: inst/extdata/sim_vector_spatial.tif
+spatial_path: inst/extdata/sim_vector_spatial.shp
 attribute_path: inst/extdata/sim_vector_attribute.csv.gz
 boundary_path: inst/extdata/sim_vector_boundary.csv.gz
 mode: beginner
 themes:
 - name: Cassin's Kingbird
-  mandatory: yes
+  mandatory: no
   icon: map-marked-alt
   feature:
   - name: Cassin's Kingbird habitat
@@ -15,30 +15,6 @@ themes:
       legend:
         type: categorical
         colors:
-        - '#D7191C'
-        - '#FDAE61'
-        - '#A6D96A'
-        - '#1A9641'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.82
-    min_goal: 0.0
-    max_goal: 1.0
-    step_goal: 0.01
-    limit_goal: 0.34
-    current: 0.47
-    icon: database
-- name: Silky-tailed Nightjar
-  mandatory: no
-  icon: map-marked-alt
-  feature:
-  - name: Silky-tailed Nightjar habitat
-    variable:
-      index: Silky_tailed_Nightjar
-      units: ha
-      legend:
-        type: continuous
-        colors:
         - '#7FC97F'
         - '#BEAED4'
         - '#FDC086'
@@ -47,14 +23,43 @@ themes:
         - '#F0027F'
         - '#BF5B17'
         - '#666666'
+        - '#F1A340'
+        - '#F7F7F7'
     initial_status: yes
     initial_visible: yes
-    initial_goal: 0.62
+    initial_goal: 0.71
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.23
+    current: 0.36
+    icon: map-pin
+- name: Silky-tailed Nightjar
+  mandatory: yes
+  icon: map-marked-alt
+  feature:
+  - name: Silky-tailed Nightjar habitat
+    variable:
+      index: Silky_tailed_Nightjar
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#D73027'
+        - '#FC8D59'
+        - '#FEE090'
+        - '#FFFFBF'
+        - '#E0F3F8'
+        - '#91BFDB'
+        - '#4575B4'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.87
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
     limit_goal: 0.29
-    current: 0.51
+    current: 0.39
     icon: map-pin
 - name: Seychelles Fody
   mandatory: no
@@ -67,214 +72,101 @@ themes:
       legend:
         type: continuous
         colors:
-        - '#F7F4F9'
-        - '#E7E1EF'
-        - '#D4B9DA'
-        - '#C994C7'
-        - '#DF65B0'
-        - '#E7298A'
-        - '#CE1256'
-        - '#980043'
-        - '#67001F'
+        - '#FBB4AE'
+        - '#B3CDE3'
+        - '#CCEBC5'
+        - '#DECBE4'
+        - '#FED9A6'
+        - '#FFFFCC'
+        - '#E5D8BD'
+        - '#FDDAEC'
+        - '#F2F2F2'
     initial_status: yes
     initial_visible: yes
-    initial_goal: 0.62
+    initial_goal: 0.64
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
-    limit_goal: 0.07
-    current: 0.36
-    icon: atlas
-- name: Trogons
-  mandatory: no
-  icon: dragon
-  feature:
-  - name: Diard's Trogon
-    variable:
-      index: Diard_s_Trogon
-      units: ha
-      legend:
-        type: categorical
-        colors:
-        - '#FFFFE5'
-        - '#F7FCB9'
-        - '#D9F0A3'
-        - '#ADDD8E'
-        - '#78C679'
-        - '#41AB5D'
-        - '#238443'
-        - '#006837'
-        - '#004529'
-        - '#EDF8B1'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.67
-    min_goal: 0.0
-    max_goal: 1.0
-    step_goal: 0.01
-    limit_goal: 0.24
-    current: 0.24
-    icon: hdd
-  - name: Masked Trogon
-    variable:
-      index: Masked_Trogon
-      units: ha
-      legend:
-        type: categorical
-        colors:
-        - '#FFF5F0'
-        - '#FEE0D2'
-        - '#FCBBA1'
-        - '#FC9272'
-        - '#FB6A4A'
-        - '#EF3B2C'
-        - '#CB181D'
-        - '#A50F15'
-        - '#67000D'
-        - '#1B9E77'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.55
-    min_goal: 0.0
-    max_goal: 1.0
-    step_goal: 0.01
-    limit_goal: 0.28
-    current: 0.29
+    limit_goal: 0.13
+    current: 0.56
     icon: database
-  - name: Pavonine Quetzal
+- name: Thrushes and Allies
+  mandatory: no
+  icon: kiwi-bird
+  feature:
+  - name: American Robin (nigrideus)
     variable:
-      index: Pavonine_Quetzal
+      index: American_Robin_nigrideus_
       units: ha
       legend:
         type: categorical
         colors:
-        - '#FEE0D2'
-        - '#FC9272'
-        - '#DE2D26'
+        - '#8DD3C7'
+        - '#FFFFB3'
+        - '#BEBADA'
+        - '#FB8072'
+        - '#80B1D3'
+        - '#FDB462'
+        - '#B3DE69'
+        - '#FCCDE5'
+        - '#D9D9D9'
+        - '#BC80BD'
     initial_status: yes
     initial_visible: yes
-    initial_goal: 0.7
+    initial_goal: 0.78
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
-    limit_goal: 0.32
+    limit_goal: 0.33
     current: 0.22
     icon: map-marked-alt
-  - name: Elegant Trogon (Coppery-tailed)
+  - name: Orange-billed Nightingale-Thrush (Gray-headed)
     variable:
-      index: Elegant_Trogon_Coppery_tailed_
+      index: Orange_billed_Nightingale_Thrush_Gray_headed_
       units: ha
       legend:
         type: categorical
         colors:
-        - '#ECE2F0'
-        - '#A6BDDB'
+        - '#7FC97F'
+        - '#BEAED4'
+        - '#FDC086'
+        - '#FFFF99'
+        - '#386CB0'
+        - '#F0027F'
+        - '#BF5B17'
     initial_status: yes
     initial_visible: yes
-    initial_goal: 0.73
+    initial_goal: 0.74
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
-    limit_goal: 0.01
-    current: 0.48
+    limit_goal: 0.27
+    current: 0.35
+    icon: map-marked-alt
+  - name: Swainson's Thrush
+    variable:
+      index: Swainson_s_Thrush
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#F1EEF6'
+        - '#D7B5D8'
+        - '#DF65B0'
+        - '#DD1C77'
+        - '#980043'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.66
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.33
+    current: 0.35
     icon: hdd
-- name: Leafbirds
-  mandatory: no
-  icon: dragon
-  feature:
-  - name: Blue-masked Leafbird
+  - name: Island Thrush (Lord Howe I.)
     variable:
-      index: Blue_masked_Leafbird
-      units: ha
-      legend:
-        type: categorical
-        colors:
-        - '#EFF3FF'
-        - '#C6DBEF'
-        - '#9ECAE1'
-        - '#6BAED6'
-        - '#4292C6'
-        - '#2171B5'
-        - '#084594'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.6
-    min_goal: 0.0
-    max_goal: 1.0
-    step_goal: 0.01
-    limit_goal: 0.0
-    current: 0.55
-    icon: map
-  - name: Jerdon's Leafbird
-    variable:
-      index: Jerdon_s_Leafbird
-      units: ha
-      legend:
-        type: categorical
-        colors:
-        - '#D8B365'
-        - '#F5F5F5'
-        - '#5AB4AC'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.55
-    min_goal: 0.0
-    max_goal: 1.0
-    step_goal: 0.01
-    limit_goal: 0.05
-    current: 0.47
-    icon: hdd
-  - name: Orange-bellied Leafbird (Grayish-crowned)
-    variable:
-      index: Orange_bellied_Leafbird_Grayish_crowned_
-      units: ha
-      legend:
-        type: categorical
-        colors:
-        - '#EFF3FF'
-        - '#C6DBEF'
-        - '#9ECAE1'
-        - '#6BAED6'
-        - '#4292C6'
-        - '#2171B5'
-        - '#084594'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.87
-    min_goal: 0.0
-    max_goal: 1.0
-    step_goal: 0.01
-    limit_goal: 0.15
-    current: 0.58
-    icon: atlas
-  - name: Lesser Green Leafbird
-    variable:
-      index: Lesser_Green_Leafbird
-      units: ha
-      legend:
-        type: categorical
-        colors:
-        - '#FFF7F3'
-        - '#FDE0DD'
-        - '#FCC5C0'
-        - '#FA9FB5'
-        - '#F768A1'
-        - '#DD3497'
-        - '#AE017E'
-        - '#7A0177'
-        - '#49006A'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.65
-    min_goal: 0.0
-    max_goal: 1.0
-    step_goal: 0.01
-    limit_goal: 0.09
-    current: 0.13
-    icon: atlas
-  - name: Bornean Leafbird
-    variable:
-      index: Bornean_Leafbird
+      index: Island_Thrush_Lord_Howe_I_
       units: ha
       legend:
         type: categorical
@@ -286,124 +178,214 @@ themes:
         - '#74A9CF'
         - '#3690C0'
         - '#0570B0'
-        - '#034E7B'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.52
-    min_goal: 0.0
-    max_goal: 1.0
-    step_goal: 0.01
-    limit_goal: 0.31
-    current: 0.11
-    icon: map
-  - name: Orange-bellied Leafbird (Orange-bellied)
-    variable:
-      index: Orange_bellied_Leafbird_Orange_bellied_
-      units: ha
-      legend:
-        type: categorical
-        colors:
-        - '#B2182B'
+        - '#045A8D'
+        - '#023858'
         - '#EF8A62'
-        - '#FDDBC7'
-        - '#F7F7F7'
-        - '#D1E5F0'
-        - '#67A9CF'
-        - '#2166AC'
     initial_status: yes
     initial_visible: yes
-    initial_goal: 0.7
+    initial_goal: 0.62
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
-    limit_goal: 0.13
-    current: 0.3
-    icon: map
-  - name: Greater Green Leafbird
+    limit_goal: 0.29
+    current: 0.22
+    icon: atlas
+  - name: Orange-billed Nightingale-Thrush
     variable:
-      index: Greater_Green_Leafbird
+      index: Orange_billed_Nightingale_Thrush
       units: ha
       legend:
         type: categorical
         colors:
-        - '#E41A1C'
-        - '#377EB8'
-        - '#4DAF4A'
-        - '#984EA3'
-        - '#FF7F00'
-        - '#FFFF33'
+        - '#D53E4F'
+        - '#FC8D59'
+        - '#FEE08B'
+        - '#E6F598'
+        - '#99D594'
+        - '#3288BD'
     initial_status: yes
     initial_visible: yes
-    initial_goal: 0.65
+    initial_goal: 0.8
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
-    limit_goal: 0.19
-    current: 0.43
-    icon: database
+    limit_goal: 0.18
+    current: 0.28
+    icon: map
+- name: Bulbuls
+  mandatory: no
+  icon: spider
+  feature:
+  - name: Common Bulbul (Dark-capped)
+    variable:
+      index: Common_Bulbul_Dark_capped_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#F7FCFD'
+        - '#E0ECF4'
+        - '#BFD3E6'
+        - '#9EBCDA'
+        - '#8C96C6'
+        - '#8C6BB1'
+        - '#88419D'
+        - '#810F7C'
+        - '#4D004B'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.81
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.03
+    current: 0.47
+    icon: map-pin
+  - name: Western Mountain Greenbul
+    variable:
+      index: Western_Mountain_Greenbul
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#40004B'
+        - '#762A83'
+        - '#9970AB'
+        - '#C2A5CF'
+        - '#E7D4E8'
+        - '#F7F7F7'
+        - '#D9F0D3'
+        - '#A6DBA0'
+        - '#5AAE61'
+        - '#1B7837'
+        - '#00441B'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.63
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.38
+    current: 0.59
+    icon: map-marked-alt
+  - name: Puff-throated Bulbul (Puff-throated)
+    variable:
+      index: Puff_throated_Bulbul_Puff_throated_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#A50026'
+        - '#D73027'
+        - '#F46D43'
+        - '#FDAE61'
+        - '#FEE08B'
+        - '#FFFFBF'
+        - '#D9EF8B'
+        - '#A6D96A'
+        - '#66BD63'
+        - '#1A9850'
+        - '#006837'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.72
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.12
+    current: 0.49
+    icon: map-marked-alt
+  - name: Yellow-streaked Greenbul (Yellow-streaked)
+    variable:
+      index: Yellow_streaked_Greenbul_Yellow_streaked_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#40004B'
+        - '#762A83'
+        - '#9970AB'
+        - '#C2A5CF'
+        - '#E7D4E8'
+        - '#F7F7F7'
+        - '#D9F0D3'
+        - '#A6DBA0'
+        - '#5AAE61'
+        - '#1B7837'
+        - '#00441B'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.87
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.38
+    current: 0.57
+    icon: map-pin
 weights:
-- name: Habitat intactness index
+- name: Rugged terrain
   variable:
-    index: Habitat_intactness_index
+    index: Rugged_terrain
     units: ha
     legend:
       type: continuous
       colors:
-      - '#FBB4AE'
-      - '#B3CDE3'
-      - '#CCEBC5'
-      - '#DECBE4'
-      - '#FED9A6'
-      - '#FFFFCC'
-      - '#E5D8BD'
-      - '#FDDAEC'
-      - '#F2F2F2'
+      - '#B3E2CD'
+      - '#FDCDAC'
+      - '#CBD5E8'
+      - '#F4CAE4'
+      - '#E6F5C9'
+      - '#FFF2AE'
+      - '#F1E2CC'
+      - '#CCCCCC'
   initial_status: yes
   initial_visible: yes
   initial_factor: 0.0
   min_factor: 0.0
   max_factor: 100.0
   step_factor: 1.0
-- name: Archaeological site
+- name: Landscape naturalness
   variable:
-    index: Archaeological_site
+    index: Landscape_naturalness
     units: ha
     legend:
       type: continuous
       colors:
-      - '#FFFFCC'
-      - '#FFEDA0'
-      - '#FED976'
-      - '#FEB24C'
-      - '#FD8D3C'
-      - '#FC4E2A'
-      - '#E31A1C'
-      - '#BD0026'
-      - '#800026'
+      - '#543005'
+      - '#8C510A'
+      - '#BF812D'
+      - '#DFC27D'
+      - '#F6E8C3'
+      - '#F5F5F5'
+      - '#C7EAE5'
+      - '#80CDC1'
+      - '#35978F'
+      - '#01665E'
+      - '#003C30'
   initial_status: yes
   initial_visible: yes
   initial_factor: 0.0
   min_factor: 0.0
   max_factor: 100.0
   step_factor: 1.0
-- name: Mining tenures
+- name: Tsunami threat
   variable:
-    index: Mining_tenures
+    index: Tsunami_threat
     units: ha
     legend:
       type: continuous
       colors:
-      - '#A50026'
-      - '#D73027'
-      - '#F46D43'
-      - '#FDAE61'
-      - '#FEE08B'
-      - '#FFFFBF'
-      - '#D9EF8B'
-      - '#A6D96A'
-      - '#66BD63'
-      - '#1A9850'
-      - '#006837'
+      - '#67001F'
+      - '#B2182B'
+      - '#D6604D'
+      - '#F4A582'
+      - '#FDDBC7'
+      - '#FFFFFF'
+      - '#E0E0E0'
+      - '#BABABA'
+      - '#878787'
+      - '#4D4D4D'
+      - '#1A1A1A'
   initial_status: yes
   initial_visible: yes
   initial_factor: 0.0
@@ -411,30 +393,30 @@ weights:
   max_factor: 100.0
   step_factor: 1.0
 includes:
-- name: UNESCO-MAB Biosphere Reserves
+- name: Nature reserves
   variable:
-    index: UNESCO_MAB_Biosphere_Reserves
+    index: Nature_reserves
     units: ''
     legend:
       type: manual
       colors:
       - '#00FFFF00'
-      - '#7FC97F'
+      - '#B3E2CD'
       labels:
       - not included
       - included
   mandatory: no
   initial_status: yes
   initial_visible: yes
-- name: Marine protected areas
+- name: Managed resource areas
   variable:
-    index: Marine_protected_areas
+    index: Managed_resource_areas
     units: ''
     legend:
       type: manual
       colors:
       - '#00FFFF00'
-      - '#1B9E77'
+      - '#FBB4AE'
       labels:
       - not included
       - included
