@@ -158,6 +158,14 @@ test_that("get methods", {
     x$get_setting(
       list(id = "P1", setting = "value", type = "parameter")),
     90)
+  ## get data
+  expect_is(x$get_theme_data(), "dgCMatrix")
+  expect_is(x$get_weight_data(), "dgCMatrix")
+  expect_is(x$get_include_data(), "dgCMatrix")
+  ## get settings
+  expect_is(x$get_theme_settings(), "data.frame")
+  expect_is(x$get_weight_settings(), "data.frame")
+  expect_is(x$get_include_settings(), "data.frame")
 })
 
 test_that("set methods", {

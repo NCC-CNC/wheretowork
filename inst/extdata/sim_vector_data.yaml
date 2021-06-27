@@ -4,99 +4,255 @@ attribute_path: inst/extdata/sim_vector_attribute.csv.gz
 boundary_path: inst/extdata/sim_vector_boundary.csv.gz
 mode: beginner
 themes:
-- name: Sociable Weaver
+- name: Cassin's Kingbird
+  mandatory: yes
+  icon: map-marked-alt
+  feature:
+  - name: Cassin's Kingbird habitat
+    variable:
+      index: Cassin_s_Kingbird
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#D7191C'
+        - '#FDAE61'
+        - '#A6D96A'
+        - '#1A9641'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.82
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.34
+    current: 0.47
+    icon: database
+- name: Silky-tailed Nightjar
   mandatory: no
   icon: map-marked-alt
   feature:
-  - name: Sociable Weaver habitat
+  - name: Silky-tailed Nightjar habitat
     variable:
-      index: Sociable_Weaver
+      index: Silky_tailed_Nightjar
       units: ha
       legend:
         type: continuous
         colors:
-        - '#F7FCF0'
-        - '#E0F3DB'
-        - '#CCEBC5'
-        - '#A8DDB5'
-        - '#7BCCC4'
-        - '#4EB3D3'
-        - '#2B8CBE'
-        - '#0868AC'
-        - '#084081'
+        - '#7FC97F'
+        - '#BEAED4'
+        - '#FDC086'
+        - '#FFFF99'
+        - '#386CB0'
+        - '#F0027F'
+        - '#BF5B17'
+        - '#666666'
     initial_status: yes
     initial_visible: yes
     initial_goal: 0.62
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
-    limit_goal: 0.21
-    current: 0.31
-    icon: atlas
-- name: Black-chinned Babbler
+    limit_goal: 0.29
+    current: 0.51
+    icon: map-pin
+- name: Seychelles Fody
   mandatory: no
   icon: map-marked-alt
   feature:
-  - name: Black-chinned Babbler habitat
+  - name: Seychelles Fody habitat
     variable:
-      index: Black_chinned_Babbler
+      index: Seychelles_Fody
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#F7F4F9'
+        - '#E7E1EF'
+        - '#D4B9DA'
+        - '#C994C7'
+        - '#DF65B0'
+        - '#E7298A'
+        - '#CE1256'
+        - '#980043'
+        - '#67001F'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.62
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.07
+    current: 0.36
+    icon: atlas
+- name: Trogons
+  mandatory: no
+  icon: dragon
+  feature:
+  - name: Diard's Trogon
+    variable:
+      index: Diard_s_Trogon
       units: ha
       legend:
         type: categorical
         colors:
-        - '#AF8DC3'
-        - '#F7F7F7'
-        - '#7FBF7B'
+        - '#FFFFE5'
+        - '#F7FCB9'
+        - '#D9F0A3'
+        - '#ADDD8E'
+        - '#78C679'
+        - '#41AB5D'
+        - '#238443'
+        - '#006837'
+        - '#004529'
+        - '#EDF8B1'
     initial_status: yes
     initial_visible: yes
     initial_goal: 0.67
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
-    limit_goal: 0.17
-    current: 0.25
-    icon: map-pin
-- name: Savannah Sparrow (Belding's)
-  mandatory: yes
-  icon: map-marked-alt
-  feature:
-  - name: Savannah Sparrow (Belding's) habitat
+    limit_goal: 0.24
+    current: 0.24
+    icon: hdd
+  - name: Masked Trogon
     variable:
-      index: Savannah_Sparrow_Belding_s_
+      index: Masked_Trogon
       units: ha
       legend:
-        type: continuous
+        type: categorical
         colors:
-        - '#9E0142'
-        - '#D53E4F'
-        - '#F46D43'
-        - '#FDAE61'
-        - '#FEE08B'
-        - '#FFFFBF'
-        - '#E6F598'
-        - '#ABDDA4'
-        - '#66C2A5'
-        - '#3288BD'
-        - '#5E4FA2'
+        - '#FFF5F0'
+        - '#FEE0D2'
+        - '#FCBBA1'
+        - '#FC9272'
+        - '#FB6A4A'
+        - '#EF3B2C'
+        - '#CB181D'
+        - '#A50F15'
+        - '#67000D'
+        - '#1B9E77'
     initial_status: yes
     initial_visible: yes
-    initial_goal: 0.72
+    initial_goal: 0.55
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
-    limit_goal: 0.38
-    current: 0.24
-    icon: map
-- name: Ovenbirds and Woodcreepers
-  mandatory: no
-  icon: crow
-  feature:
-  - name: Streak-breasted Treehunter
+    limit_goal: 0.28
+    current: 0.29
+    icon: database
+  - name: Pavonine Quetzal
     variable:
-      index: Streak_breasted_Treehunter
+      index: Pavonine_Quetzal
       units: ha
       legend:
-        type: continuous
+        type: categorical
+        colors:
+        - '#FEE0D2'
+        - '#FC9272'
+        - '#DE2D26'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.7
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.32
+    current: 0.22
+    icon: map-marked-alt
+  - name: Elegant Trogon (Coppery-tailed)
+    variable:
+      index: Elegant_Trogon_Coppery_tailed_
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#ECE2F0'
+        - '#A6BDDB'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.73
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.01
+    current: 0.48
+    icon: hdd
+- name: Leafbirds
+  mandatory: no
+  icon: dragon
+  feature:
+  - name: Blue-masked Leafbird
+    variable:
+      index: Blue_masked_Leafbird
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#EFF3FF'
+        - '#C6DBEF'
+        - '#9ECAE1'
+        - '#6BAED6'
+        - '#4292C6'
+        - '#2171B5'
+        - '#084594'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.6
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.0
+    current: 0.55
+    icon: map
+  - name: Jerdon's Leafbird
+    variable:
+      index: Jerdon_s_Leafbird
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#D8B365'
+        - '#F5F5F5'
+        - '#5AB4AC'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.55
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.05
+    current: 0.47
+    icon: hdd
+  - name: Orange-bellied Leafbird (Grayish-crowned)
+    variable:
+      index: Orange_bellied_Leafbird_Grayish_crowned_
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#EFF3FF'
+        - '#C6DBEF'
+        - '#9ECAE1'
+        - '#6BAED6'
+        - '#4292C6'
+        - '#2171B5'
+        - '#084594'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.87
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.15
+    current: 0.58
+    icon: atlas
+  - name: Lesser Green Leafbird
+    variable:
+      index: Lesser_Green_Leafbird
+      units: ha
+      legend:
+        type: categorical
         colors:
         - '#FFF7F3'
         - '#FDE0DD'
@@ -109,314 +265,121 @@ themes:
         - '#49006A'
     initial_status: yes
     initial_visible: yes
-    initial_goal: 0.83
-    min_goal: 0.0
-    max_goal: 1.0
-    step_goal: 0.01
-    limit_goal: 0.29
-    current: 0.56
-    icon: map-marked-alt
-  - name: Long-billed Woodcreeper
-    variable:
-      index: Long_billed_Woodcreeper
-      units: ha
-      legend:
-        type: continuous
-        colors:
-        - '#F7FCF5'
-        - '#E5F5E0'
-        - '#C7E9C0'
-        - '#A1D99B'
-        - '#74C476'
-        - '#41AB5D'
-        - '#238B45'
-        - '#006D2C'
-        - '#00441B'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.71
-    min_goal: 0.0
-    max_goal: 1.0
-    step_goal: 0.01
-    limit_goal: 0.07
-    current: 0.45
-    icon: map-marked-alt
-  - name: Canyon Canastero
-    variable:
-      index: Canyon_Canastero
-      units: ha
-      legend:
-        type: continuous
-        colors:
-        - '#F7FCFD'
-        - '#E0ECF4'
-        - '#BFD3E6'
-        - '#9EBCDA'
-        - '#8C96C6'
-        - '#8C6BB1'
-        - '#88419D'
-        - '#810F7C'
-        - '#4D004B'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.88
-    min_goal: 0.0
-    max_goal: 1.0
-    step_goal: 0.01
-    limit_goal: 0.06
-    current: 0.48
-    icon: atlas
-  - name: Scaly-throated Foliage-gleaner
-    variable:
-      index: Scaly_throated_Foliage_gleaner
-      units: ha
-      legend:
-        type: continuous
-        colors:
-        - '#FFF7EC'
-        - '#FEE8C8'
-        - '#FDD49E'
-        - '#FDBB84'
-        - '#FC8D59'
-        - '#EF6548'
-        - '#D7301F'
-        - '#B30000'
-        - '#7F0000'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.67
+    initial_goal: 0.65
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
     limit_goal: 0.09
-    current: 0.44
-    icon: database
-  - name: Spectacled Prickletail
-    variable:
-      index: Spectacled_Prickletail
-      units: ha
-      legend:
-        type: continuous
-        colors:
-        - '#67001F'
-        - '#B2182B'
-        - '#D6604D'
-        - '#F4A582'
-        - '#FDDBC7'
-        - '#FFFFFF'
-        - '#E0E0E0'
-        - '#BABABA'
-        - '#878787'
-        - '#4D4D4D'
-        - '#1A1A1A'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.8
-    min_goal: 0.0
-    max_goal: 1.0
-    step_goal: 0.01
-    limit_goal: 0.09
-    current: 0.1
-    icon: map
-- name: Buttonquail
-  mandatory: no
-  icon: hippo
-  feature:
-  - name: Barred Buttonquail
-    variable:
-      index: Barred_Buttonquail
-      units: ha
-      legend:
-        type: continuous
-        colors:
-        - '#F7FCFD'
-        - '#E0ECF4'
-        - '#BFD3E6'
-        - '#9EBCDA'
-        - '#8C96C6'
-        - '#8C6BB1'
-        - '#88419D'
-        - '#810F7C'
-        - '#4D004B'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.85
-    min_goal: 0.0
-    max_goal: 1.0
-    step_goal: 0.01
-    limit_goal: 0.03
-    current: 0.36
-    icon: map-pin
-  - name: Quail-plover
-    variable:
-      index: Quail_plover
-      units: ha
-      legend:
-        type: continuous
-        colors:
-        - '#B3E2CD'
-        - '#FDCDAC'
-        - '#CBD5E8'
-        - '#F4CAE4'
-        - '#E6F5C9'
-        - '#FFF2AE'
-        - '#F1E2CC'
-        - '#CCCCCC'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.67
-    min_goal: 0.0
-    max_goal: 1.0
-    step_goal: 0.01
-    limit_goal: 0.16
-    current: 0.39
-    icon: map-pin
-  - name: Painted Buttonquail (New Caledonian)
-    variable:
-      index: Painted_Buttonquail_New_Caledonian_
-      units: ha
-      legend:
-        type: continuous
-        colors:
-        - '#8E0152'
-        - '#C51B7D'
-        - '#DE77AE'
-        - '#F1B6DA'
-        - '#FDE0EF'
-        - '#F7F7F7'
-        - '#E6F5D0'
-        - '#B8E186'
-        - '#7FBC41'
-        - '#4D9221'
-        - '#276419'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.74
-    min_goal: 0.0
-    max_goal: 1.0
-    step_goal: 0.01
-    limit_goal: 0.28
-    current: 0.59
-    icon: map-pin
-  - name: Small Buttonquail
-    variable:
-      index: Small_Buttonquail
-      units: ha
-      legend:
-        type: continuous
-        colors:
-        - '#A6CEE3'
-        - '#1F78B4'
-        - '#B2DF8A'
-        - '#33A02C'
-        - '#FB9A99'
-        - '#E31A1C'
-        - '#FDBF6F'
-        - '#FF7F00'
-        - '#CAB2D6'
-        - '#6A3D9A'
-        - '#FFFF99'
-        - '#B15928'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.83
-    min_goal: 0.0
-    max_goal: 1.0
-    step_goal: 0.01
-    limit_goal: 0.02
-    current: 0.41
-    icon: database
-  - name: Spotted Buttonquail
-    variable:
-      index: Spotted_Buttonquail
-      units: ha
-      legend:
-        type: continuous
-        colors:
-        - '#F7FCF5'
-        - '#E5F5E0'
-        - '#C7E9C0'
-        - '#A1D99B'
-        - '#74C476'
-        - '#41AB5D'
-        - '#238B45'
-        - '#006D2C'
-        - '#00441B'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.85
-    min_goal: 0.0
-    max_goal: 1.0
-    step_goal: 0.01
-    limit_goal: 0.35
     current: 0.13
-    icon: hdd
-  - name: Black-breasted Buttonquail
+    icon: atlas
+  - name: Bornean Leafbird
     variable:
-      index: Black_breasted_Buttonquail
+      index: Bornean_Leafbird
       units: ha
       legend:
-        type: continuous
+        type: categorical
         colors:
-        - '#F7FCFD'
-        - '#E5F5F9'
-        - '#CCECE6'
-        - '#99D8C9'
-        - '#66C2A4'
-        - '#41AE76'
-        - '#238B45'
-        - '#006D2C'
-        - '#00441B'
+        - '#FFF7FB'
+        - '#ECE7F2'
+        - '#D0D1E6'
+        - '#A6BDDB'
+        - '#74A9CF'
+        - '#3690C0'
+        - '#0570B0'
+        - '#034E7B'
     initial_status: yes
     initial_visible: yes
-    initial_goal: 0.71
+    initial_goal: 0.52
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
-    limit_goal: 0.1
-    current: 0.42
+    limit_goal: 0.31
+    current: 0.11
+    icon: map
+  - name: Orange-bellied Leafbird (Orange-bellied)
+    variable:
+      index: Orange_bellied_Leafbird_Orange_bellied_
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#B2182B'
+        - '#EF8A62'
+        - '#FDDBC7'
+        - '#F7F7F7'
+        - '#D1E5F0'
+        - '#67A9CF'
+        - '#2166AC'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.7
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.13
+    current: 0.3
+    icon: map
+  - name: Greater Green Leafbird
+    variable:
+      index: Greater_Green_Leafbird
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#E41A1C'
+        - '#377EB8'
+        - '#4DAF4A'
+        - '#984EA3'
+        - '#FF7F00'
+        - '#FFFF33'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.65
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.19
+    current: 0.43
     icon: database
 weights:
-- name: Invasive species
+- name: Habitat intactness index
   variable:
-    index: Invasive_species
+    index: Habitat_intactness_index
     units: ha
     legend:
       type: continuous
       colors:
-      - '#543005'
-      - '#8C510A'
-      - '#BF812D'
-      - '#DFC27D'
-      - '#F6E8C3'
-      - '#F5F5F5'
-      - '#C7EAE5'
-      - '#80CDC1'
-      - '#35978F'
-      - '#01665E'
-      - '#003C30'
+      - '#FBB4AE'
+      - '#B3CDE3'
+      - '#CCEBC5'
+      - '#DECBE4'
+      - '#FED9A6'
+      - '#FFFFCC'
+      - '#E5D8BD'
+      - '#FDDAEC'
+      - '#F2F2F2'
   initial_status: yes
   initial_visible: yes
   initial_factor: 0.0
   min_factor: 0.0
   max_factor: 100.0
   step_factor: 1.0
-- name: Grazing
+- name: Archaeological site
   variable:
-    index: Grazing
+    index: Archaeological_site
     units: ha
     legend:
       type: continuous
       colors:
-      - '#FCFBFD'
-      - '#EFEDF5'
-      - '#DADAEB'
-      - '#BCBDDC'
-      - '#9E9AC8'
-      - '#807DBA'
-      - '#6A51A3'
-      - '#54278F'
-      - '#3F007D'
+      - '#FFFFCC'
+      - '#FFEDA0'
+      - '#FED976'
+      - '#FEB24C'
+      - '#FD8D3C'
+      - '#FC4E2A'
+      - '#E31A1C'
+      - '#BD0026'
+      - '#800026'
   initial_status: yes
   initial_visible: yes
   initial_factor: 0.0
@@ -430,18 +393,51 @@ weights:
     legend:
       type: continuous
       colors:
-      - '#F7FCF5'
-      - '#E5F5E0'
-      - '#C7E9C0'
-      - '#A1D99B'
-      - '#74C476'
-      - '#41AB5D'
-      - '#238B45'
-      - '#006D2C'
-      - '#00441B'
+      - '#A50026'
+      - '#D73027'
+      - '#F46D43'
+      - '#FDAE61'
+      - '#FEE08B'
+      - '#FFFFBF'
+      - '#D9EF8B'
+      - '#A6D96A'
+      - '#66BD63'
+      - '#1A9850'
+      - '#006837'
   initial_status: yes
   initial_visible: yes
   initial_factor: 0.0
   min_factor: 0.0
   max_factor: 100.0
   step_factor: 1.0
+includes:
+- name: UNESCO-MAB Biosphere Reserves
+  variable:
+    index: UNESCO_MAB_Biosphere_Reserves
+    units: ''
+    legend:
+      type: manual
+      colors:
+      - '#00FFFF00'
+      - '#7FC97F'
+      labels:
+      - not included
+      - included
+  mandatory: no
+  initial_status: yes
+  initial_visible: yes
+- name: Marine protected areas
+  variable:
+    index: Marine_protected_areas
+    units: ''
+    legend:
+      type: manual
+      colors:
+      - '#00FFFF00'
+      - '#1B9E77'
+      labels:
+      - not included
+      - included
+  mandatory: no
+  initial_status: yes
+  initial_visible: yes

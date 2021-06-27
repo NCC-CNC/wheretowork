@@ -59,7 +59,7 @@ write_configuration_file <- function(
   # assert arguments are valid
   assertthat::assert_that(
     is.list(x),
-    all_list_elements_inherit(x, c("Theme", "Weight")),
+    all_list_elements_inherit(x, c("Theme", "Weight", "Include")),
     assertthat::is.string(name),
     assertthat::noNA(name),
     assertthat::is.string(path),
@@ -81,6 +81,10 @@ write_configuration_file <- function(
   weights_idx <- vapply(x, inherits, what = "Weight", logical(1))
   weights_params <- lapply(x[weights_idx], function(x) x$export())
 
+  # create setting list for includes
+  includes_idx <- vapply(x, inherits, what = "Include", logical(1))
+  includes_params <- lapply(x[includes_idx], function(x) x$export())
+
   # create full settings list
   params <- list(
     name = name,
@@ -89,7 +93,8 @@ write_configuration_file <- function(
     boundary_path = boundary_path,
     mode = mode,
     themes = themes_params,
-    weights = weights_params
+    weights = weights_params,
+    includes = includes_params
   )
 
   # save result to disk

@@ -116,7 +116,7 @@ test_that("raster (from file)", {
     V1 = runif(length(idx)),
     V2 = runif(length(idx)),
     `_index` = idx)
-  boundary_data <- prioritizr::boundary_matrix(spatial_data)
+  boundary_data <- prioritizr::boundary_matrix(spatial_data)[idx, idx]
   # create object from memory
   d <- new_dataset(
     spatial_path = "memory",

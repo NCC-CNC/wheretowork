@@ -3,6 +3,7 @@
 n_single_themes <- 3
 n_multi_themes <- 2
 n_weights <- 3
+n_includes <- 2
 
 ## load packages
 devtools::load_all()
@@ -15,13 +16,23 @@ raster_data <- new_dataset_from_auto(import_simple_raster_data())
 vector_data <- new_dataset_from_auto(import_realistic_vector_data())
 
 # Simulate data
-sim_raster_data <- append(
-  simulate_themes(raster_data, n_single_themes, n_multi_themes),
-  simulate_weights(raster_data, n_weights))
+sim_raster_data <-
+  append(
+    simulate_themes(raster_data, n_single_themes, n_multi_themes),
+    append(
+      simulate_weights(raster_data, n_weights),
+      simulate_includes(raster_data, n_includes)
+    )
+  )
 
-sim_vector_data <- append(
-  simulate_themes(vector_data, n_single_themes, n_multi_themes),
-  simulate_weights(raster_data, n_weights))
+sim_vector_data <-
+  append(
+    simulate_themes(vector_data, n_single_themes, n_multi_themes),
+    append(
+      simulate_weights(vector_data, n_weights),
+      simulate_includes(vector_data, n_includes)
+    )
+  )
 
 # Exports
 ## raster data

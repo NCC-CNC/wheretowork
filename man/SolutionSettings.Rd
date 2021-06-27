@@ -70,9 +70,9 @@ Available options are: \code{"theme"}, \code{"weight"}, \code{"include"},
 \item \href{#method-get_weight_settings}{\code{SolutionSettings$get_weight_settings()}}
 \item \href{#method-get_include_settings}{\code{SolutionSettings$get_include_settings()}}
 \item \href{#method-get_parameter_settings}{\code{SolutionSettings$get_parameter_settings()}}
-\item \href{#method-get_feature_matrix}{\code{SolutionSettings$get_feature_matrix()}}
-\item \href{#method-get_weight_matrix}{\code{SolutionSettings$get_weight_matrix()}}
-\item \href{#method-get_includes_matrix}{\code{SolutionSettings$get_includes_matrix()}}
+\item \href{#method-get_theme_data}{\code{SolutionSettings$get_theme_data()}}
+\item \href{#method-get_weight_data}{\code{SolutionSettings$get_weight_data()}}
+\item \href{#method-get_include_data}{\code{SolutionSettings$get_include_data()}}
 \item \href{#method-clone}{\code{SolutionSettings$clone()}}
 }
 }
@@ -312,42 +312,42 @@ Get parameter settings for generating a prioritization.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_feature_matrix"></a>}}
-\if{latex}{\out{\hypertarget{method-get_feature_matrix}{}}}
-\subsection{Method \code{get_feature_matrix()}}{
-Get feature matrix data.
+\if{html}{\out{<a id="method-get_theme_data"></a>}}
+\if{latex}{\out{\hypertarget{method-get_theme_data}{}}}
+\subsection{Method \code{get_theme_data()}}{
+Get theme matrix data.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$get_feature_matrix()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$get_theme_data()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-\code{matrix} with data.
+\code{\link[Matrix:sparseMatrix]{Matrix::sparseMatrix()}} with data.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_weight_matrix"></a>}}
-\if{latex}{\out{\hypertarget{method-get_weight_matrix}{}}}
-\subsection{Method \code{get_weight_matrix()}}{
+\if{html}{\out{<a id="method-get_weight_data"></a>}}
+\if{latex}{\out{\hypertarget{method-get_weight_data}{}}}
+\subsection{Method \code{get_weight_data()}}{
 Get weight matrix data.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$get_weight_matrix()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$get_weight_data()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-\code{matrix} with data.
+\code{\link[Matrix:sparseMatrix]{Matrix::sparseMatrix()}} with data.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_includes_matrix"></a>}}
-\if{latex}{\out{\hypertarget{method-get_includes_matrix}{}}}
-\subsection{Method \code{get_includes_matrix()}}{
+\if{html}{\out{<a id="method-get_include_data"></a>}}
+\if{latex}{\out{\hypertarget{method-get_include_data}{}}}
+\subsection{Method \code{get_include_data()}}{
 Get includes matrix data.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$get_includes_matrix()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$get_include_data()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-\code{matrix} with data.
+\code{\link[Matrix:sparseMatrix]{Matrix::sparseMatrix()}} with data.
 }
 }
 \if{html}{\out{<hr>}}

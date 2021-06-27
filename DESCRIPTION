@@ -30,7 +30,8 @@ Imports:
     yaml (>= 2.2.1),
     R.utils (>= 2.10.1),
     rgdal (>= 1.5.23),
-    data.table (>= 1.14.0)
+    data.table (>= 1.14.0),
+    rcbc (>= 0.1.0.9001)
 Suggests:
     testthat (>= 2.0.1),
     knitr (>= 1.2.0),
@@ -77,6 +78,7 @@ Collate:
     'WeightResults-class.R'
     'color_palette.R'
     'extract_data_matrix.R'
+    'generate_solution.R'
     'import_spatial_data.R'
     'mapManager-components.R'
     'mapManager.R'
@@ -105,3 +107,4 @@ Collate:
     'write_configuration_file.R'
 Remotes:
     NCC-CNC/leaflet@pane-extra
+    dirkschumacher/rcbc
