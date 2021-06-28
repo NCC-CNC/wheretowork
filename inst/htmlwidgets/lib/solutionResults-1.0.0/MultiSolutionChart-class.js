@@ -64,7 +64,22 @@ class MultiSolutionChart {
       .attr('transform', `translate(${this.width / 2},${this.height / 2})`);
   }
 
-  renderArcs(svg) {
+
+  renderTooltip(el) {
+    return d3.select(el)
+      .append('div')
+      .style('display', 'none')
+      .style('background-color', 'white')
+      .style('border', 'solid')
+      .style('border-width', '2px')
+      .style('border-radius', '5px')
+      .style('padding', '5px')
+      .style('position', 'fixed')
+      .style('top', 0)
+      .style('left', 0)
+  }
+
+  renderArcs(svg, tooltip) {
     const self = this;
     const inner_rings_length = Object.keys(this.colors).length;
     const sorted_data = [];
@@ -93,18 +108,27 @@ class MultiSolutionChart {
           return d[j][2];
         })
         .style('cursor', 'pointer')
-        .on('mouseover', function(_, d) {
+        .on('mouseover', function(e, d) {
           let strokeWidth = self.arcWidth * 0.4;
           strokeWidth = strokeWidth > 3 ? 3 : strokeWidth;
           d3
             .select(this)
             .attr('stroke', d[j][2])
             .attr('stroke-width', strokeWidth);
+          tooltip
+            .html('Hello, world!')
+            .style('display', 'inline')
+            .style('top', `${e.clientY + 5}px`)
+            .style('left', `${e.clientX + 5}px`)
         })
         .on('mouseout', function() {
           d3
             .select(this)
             .attr('stroke', null);
+          tooltip
+            .style('display', 'none')
+            .style('top', `${0}px`)
+            .style('left', `${0}px`)
         })
         .transition()
         .delay((_, i) => i * 200)
@@ -116,13 +140,14 @@ class MultiSolutionChart {
     }
   }
 
-  renderAllArcs(svg) {
-    this.renderArcs(svg);
+  renderAllArcs(svg, tooltip) {
+    this.renderArcs(svg, tooltip);
   }
 
   render(el) {
     const svg = this.renderSvg(el);
-    this.renderAllArcs(svg);
+    const tooltip = this.renderTooltip(el)
+    this.renderAllArcs(svg, tooltip);
   }
 
 }

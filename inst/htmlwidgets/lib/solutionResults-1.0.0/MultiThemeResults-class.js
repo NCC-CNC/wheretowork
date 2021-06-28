@@ -21,11 +21,11 @@ class MultiThemeResults {
       document.importNode(
         document
         .getElementById(manager)
-        .querySelector(".multi-theme-results-template")
+        .querySelector('.multi-theme-results-template')
         .content,
       true);
 
-    const chartContainer = document.createElement("div");
+    const chartContainer = document.createElement('div');
     chartContainer.classList.add('multi-theme-result')
     this.el.appendChild(chartContainer);
 
@@ -39,6 +39,10 @@ class MultiThemeResults {
     })));
 
     chart.render(chartContainer);
+
+    const l = document.createElement('label');
+    l.innerText = name;
+    chartContainer.appendChild(l);
   }
 
   /* render method */

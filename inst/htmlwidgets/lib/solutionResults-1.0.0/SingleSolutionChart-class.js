@@ -56,7 +56,7 @@ class SingleSolutionChart {
       .attr('transform', `translate(${this.width / 2},${this.height / 2})`);
   }
 
-  renderArcs(svg, type, delay) {
+  renderArcs(svg, tooltip, type, delay) {
     const self = this;
     svg
       .append('g')
@@ -67,17 +67,26 @@ class SingleSolutionChart {
       .attr('class', 'arc')
       .attr('fill', this.colors[type])
       .style('cursor', 'pointer')
-      .on('mouseover', function() {
+      .on('mouseover', function(e) {
         const strokeWidth = 3;
         d3
           .select(this)
           .attr('stroke', self.colors[type])
           .attr('stroke-width', strokeWidth);
+        tooltip
+          .html('Hello, world!')
+          .style('display', 'inline')
+          .style('top', `${e.clientY + 5}px`)
+          .style('left', `${e.clientX + 5}px`)
       })
       .on('mouseout', function() {
         d3
           .select(this)
           .attr('stroke', null);
+        tooltip
+          .style('display', 'none')
+          .style('top', `${0}px`)
+          .style('left', `${0}px`)
       })
       .transition()
       .delay((_, i) => i * 200)
@@ -88,7 +97,7 @@ class SingleSolutionChart {
       });
   }
 
-  renderAllArcs(svg) {
+  renderAllArcs(svg, tooltip) {
     const allowed_keys = {
       feature_goal: true,
       feature_current_held: true,
@@ -106,16 +115,30 @@ class SingleSolutionChart {
     });
     let delay = 1000;
     for (let i = 0; i < sortable.length; ++i) {
-      this.renderArcs(svg, sortable[i][0], delay);
+      this.renderArcs(svg, tooltip, sortable[i][0], delay);
       delay += 300;
     }
   }
 
+  renderTooltip(el) {
+    return d3.select(el)
+      .append('div')
+      .style('display', 'none')
+      .style('background-color', 'white')
+      .style('border', 'solid')
+      .style('border-width', '2px')
+      .style('border-radius', '5px')
+      .style('padding', '5px')
+      .style('position', 'fixed')
+      .style('top', 0)
+      .style('left', 0)
+  }
 
   render(el) {
     if (this.data.length === 0) return;
     const svg = this.renderSvg(el);
-    this.renderAllArcs(svg);
+    const tooltip = this.renderTooltip(el);
+    this.renderAllArcs(svg, tooltip);
   }
 
 }

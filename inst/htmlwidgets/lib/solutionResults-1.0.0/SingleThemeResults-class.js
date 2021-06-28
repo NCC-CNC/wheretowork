@@ -21,11 +21,11 @@ class SingleThemeResults {
       document.importNode(
         document
         .getElementById(manager)
-        .querySelector(".single-theme-results-template")
+        .querySelector('.single-theme-results-template')
         .content,
       true);
 
-    const chartContainer = document.createElement("div");
+    const chartContainer = document.createElement('div');
     chartContainer.classList.add('single-theme-result')
     this.el.appendChild(chartContainer);
 
@@ -39,6 +39,10 @@ class SingleThemeResults {
     }]);
 
     chart.render(chartContainer);
+
+    const l = document.createElement('label');
+    l.innerText = name;
+    chartContainer.appendChild(l);
   }
 
   /* render method */
