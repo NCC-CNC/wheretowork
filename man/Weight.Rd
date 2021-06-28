@@ -53,11 +53,11 @@ Definition for the Weight class.
 \item \href{#method-get_status}{\code{Weight$get_status()}}
 \item \href{#method-get_factor}{\code{Weight$get_factor()}}
 \item \href{#method-get_data}{\code{Weight$get_data()}}
-\item \href{#method-get_parameter}{\code{Weight$get_parameter()}}
+\item \href{#method-get_setting}{\code{Weight$get_setting()}}
 \item \href{#method-set_visible}{\code{Weight$set_visible()}}
 \item \href{#method-set_status}{\code{Weight$set_status()}}
 \item \href{#method-set_factor}{\code{Weight$set_factor()}}
-\item \href{#method-set_parameter}{\code{Weight$set_parameter()}}
+\item \href{#method-set_setting}{\code{Weight$set_setting()}}
 \item \href{#method-get_solution_settings_widget_data}{\code{Weight$get_solution_settings_widget_data()}}
 \item \href{#method-get_map_manager_widget_data}{\code{Weight$get_map_manager_widget_data()}}
 \item \href{#method-export}{\code{Weight$export()}}
@@ -141,10 +141,10 @@ Generate a \code{character} summarizing the representation of the object.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{start}}{\code{character} symbol used to start the parameter list.
+\item{\code{start}}{\code{character} symbol used to start the setting list.
 Defaults to \code{"["}.}
 
-\item{\code{end}}{\code{character} symbol used to start the parameter list.
+\item{\code{end}}{\code{character} symbol used to start the setting list.
 Defaults to \code{"]"}.}
 }
 \if{html}{\out{</div>}}
@@ -206,18 +206,18 @@ Get the data.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_parameter"></a>}}
-\if{latex}{\out{\hypertarget{method-get_parameter}{}}}
-\subsection{Method \code{get_parameter()}}{
-Get parameter.
+\if{html}{\out{<a id="method-get_setting"></a>}}
+\if{latex}{\out{\hypertarget{method-get_setting}{}}}
+\subsection{Method \code{get_setting()}}{
+Get setting.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Weight$get_parameter(name)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Weight$get_setting(name)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{name}}{\code{character} parameter name.
+\item{\code{name}}{\code{character} setting name.
 Available options are \code{"status"} \code{"factor"}, or \code{"visible"}.}
 }
 \if{html}{\out{</div>}}
@@ -278,18 +278,18 @@ Set factor.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_parameter"></a>}}
-\if{latex}{\out{\hypertarget{method-set_parameter}{}}}
-\subsection{Method \code{set_parameter()}}{
-Set parameter.
+\if{html}{\out{<a id="method-set_setting"></a>}}
+\if{latex}{\out{\hypertarget{method-set_setting}{}}}
+\subsection{Method \code{set_setting()}}{
+Set setting.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Weight$set_parameter(name, value)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Weight$set_setting(name, value)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{name}}{\code{character} parameter name.
+\item{\code{name}}{\code{character} setting name.
 Available options are \code{"status"} \code{"factor"}, or `"visible"``.}
 
 \item{\code{value}}{\code{ANY} new value.}
@@ -327,7 +327,7 @@ Get data for displaying the theme in a \code{\link[=mapManager]{mapManager()}} w
 \if{html}{\out{<a id="method-export"></a>}}
 \if{latex}{\out{\hypertarget{method-export}{}}}
 \subsection{Method \code{export()}}{
-Export parameters.
+Export settings.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Weight$export()}\if{html}{\out{</div>}}
 }

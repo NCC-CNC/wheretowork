@@ -35,7 +35,7 @@ Invisible \code{TRUE} indicating success.
 }
 \description{
 Save a configuration file to disk.
-The configuration file will contain all the data and parameters related
+The configuration file will contain all the data and settings related
 to a set of \link{Theme} and \link{Weight} objects.
 }
 \examples{

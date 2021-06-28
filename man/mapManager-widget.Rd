@@ -29,9 +29,9 @@ The widget sends a \code{list} with the following values to the server:
 
 \describe{
 
-\item{id}{\code{character} identifer for layer to update.}
+\item{id}{\code{character} identifier for layer to update.}
 
-\item{parameter}{\code{character} name of the updated parameter}.
+\item{setting}{\code{character} name of the updated setting}.
 
 \item{value}{\code{numeric} or \code{logical} values.}
 

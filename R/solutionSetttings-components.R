@@ -104,7 +104,7 @@ ss_group_goal_component_scaffold <- function(type) {
 #' Create a HTML scaffold for a slider component of the
 #' the [solutionSettings()] widget.
 #'
-#' @param type `character` is the slider used for a `"weight"` or a `"theme"`?
+#' @param type `character` name of parent widget.
 #'
 #' @param bar `character` names of classes for bars to include.
 #'  Defaults to `NULL` such that no bars are included.
@@ -117,7 +117,7 @@ ss_slider_component_scaffold <- function(type, bar = NULL) {
   assertthat::assert_that(
     assertthat::is.string(type),
     assertthat::noNA(type),
-    type %in% c("weight", "theme"))
+    type %in% c("weight", "theme", "parameter"))
   if (!is.null(bar)) {
     assertthat::assert_that(
       is.character(bar),
@@ -131,10 +131,13 @@ ss_slider_component_scaffold <- function(type, bar = NULL) {
     `data-placement` = "bottom",
     `data-delay` = "{\"show\":500, \"hide\":100}",
     `data-container` = ".sidebar",
-    title = ifelse(
-      type == "weight",
-      "Set the factor",
-      "Set the goal")
+    title =
+      switch(
+        type,
+        "weight" = "Set the factor",
+        "theme" = "Set the goal",
+        "parameter" = "Set the parameter value"
+      )
     )
 
   # add bars if needed
@@ -204,21 +207,7 @@ ss_header_component_scaffold <- function(type, id = uuid::UUIDgenerate()) {
   #  assert arguments are valid
   assertthat::assert_that(
     assertthat::is.string(type),
-    assertthat::noNA(type),
-    type %in% c("weight", "theme", "include"))
-
-  # set tool tip labels
-  msg1 <- switch(
-    type,
-    "theme" = "Enable/disable the theme when generating a solution",
-    "weight" = "Enable/disable the weight when generating a solution",
-    "include" = "Enable/disable the include when generating a solution"
-  )
-  msg2 <- switch(
-    type,
-    "theme" = "Name of the theme",
-    "weight" = "Name of the weight",
-    "include" = "Name of the include")
+    assertthat::noNA(type))
 
   # HTML scaffold
   htmltools::tags$div(
@@ -229,7 +218,8 @@ ss_header_component_scaffold <- function(type, id = uuid::UUIDgenerate()) {
       `data-placement` = "top",
       `data-delay` = "{\"show\":500, \"hide\":100}",
       `data-container` = ".sidebar",
-      title = msg1,
+      title =
+        paste0("Enable/disable the ", type, " when generating a solution"),
       htmltools::tags$input(
         type = "checkbox",
         class = "status-checkbox status",
@@ -246,7 +236,7 @@ ss_header_component_scaffold <- function(type, id = uuid::UUIDgenerate()) {
       `data-placement` = "top",
       `data-delay` = "{\"show\":500, \"hide\":100}",
       `data-container` = ".sidebar",
-      title = msg2
+      title = paste0("Name of the ", type)
     )
   )
 }

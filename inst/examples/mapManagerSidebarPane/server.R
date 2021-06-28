@@ -15,8 +15,8 @@ function(input, output, session) {
 
   # update map
   observeEvent(input$mapManagerPane_settings, {
-    mm$set_parameter(input$mapManagerPane_settings)
-    if (identical(input$mapManagerPane_settings$parameter, "remove")) {
+    mm$set_setting(input$mapManagerPane_settings)
+    if (identical(input$mapManagerPane_settings$setting, "remove")) {
       dropMapManagerLayer(
         session, "mapManagerPane_settings", input$mapManagerPane_settings$id)
     }

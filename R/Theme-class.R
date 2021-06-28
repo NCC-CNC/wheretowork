@@ -120,12 +120,12 @@ Theme <- R6::R6Class(
     },
 
     #' @description
-    #' Get parameter.
-    #' @param name `character` parameter name.
+    #' Get setting.
+    #' @param name `character` setting name.
     #' Available options are `"feature_status"`, `"feature_goal"`,
     #' `"feature_visible"`, or `"feature_order"`.
     #' @return Value.
-    get_parameter = function(name) {
+    get_setting = function(name) {
       assertthat::assert_that(
         assertthat::is.string(name),
         assertthat::noNA(name),
@@ -140,7 +140,7 @@ Theme <- R6::R6Class(
       } else if (identical(name, "feature_order")) {
         out <- self$get_feature_order()
       } else {
-        stop(paste0("\"", name, "\" is not a parameter"))
+        stop(paste0("\"", name, "\" is not a setting"))
       }
       out
     },
@@ -197,12 +197,12 @@ Theme <- R6::R6Class(
     },
 
     #' @description
-    #' Set parameter.
-    #' @param name `character` parameter name.
+    #' Set setting.
+    #' @param name `character` setting name.
     #' Available options are `"feature_status"`, `"feature_goal"`,
     #' `"feature_visible"`, `"feature_order"`.
     #' @param value vector containing a value for each feature.
-    set_parameter = function(name, value) {
+    set_setting = function(name, value) {
       assertthat::assert_that(
         assertthat::is.string(name),
         assertthat::noNA(name),
@@ -218,14 +218,14 @@ Theme <- R6::R6Class(
       } else if (identical(name, "feature_order")) {
         self$set_feature_order(value)
       } else {
-        stop(paste0("\"", name, "\" is not a parameter"))
+        stop(paste0("\"", name, "\" is not a setting"))
       }
       invisible(self)
     },
 
 
     #' @description
-    #' Export parameters
+    #' Export settings
     #' @return `list` object.
     export = function() {
       list(

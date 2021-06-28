@@ -85,36 +85,36 @@ MapManager <- R6::R6Class(
     },
 
     #' @description
-    #' Get a parameter for the object.
-    #' @param value `list` with parameter information (see Details section)
+    #' Get a setting for the object.
+    #' @param value `list` with setting information (see Details section)
     #' @details
     #' The argument to `value` should be a `list` with the following elements:
     #' \describe{
     #' \item{id}{`character` (optional) name of layer.}
-    #' \item{parameter}{`character` name of parameter.
+    #' \item{setting}{`character` name of setting.
     #'   Available options are: `"order"`, `"feature_order"` and `"visible"`.
     #'   Note that the `"id"` element is required for `"feature_order"`
-    #'   and `"visible"` parameters.}
+    #'   and `"visible"` settings.}
     #' }
-    get_parameter = function(value) {
+    get_setting = function(value) {
       assertthat::assert_that(
         is.list(value),
-        assertthat::has_name(value, "parameter"),
-        assertthat::is.string(value$parameter))
+        assertthat::has_name(value, "setting"),
+        assertthat::is.string(value$setting))
       if (is.null(value$id)) {
-        # map manager parameters
-        if (identical(value$parameter, "order")) {
+        # map manager settings
+        if (identical(value$setting, "order")) {
           return(self$get_order())
         } else {
-          stop("unknown parameter.")
+          stop("unknown setting.")
         }
       } else {
-        # layer parameters
+        # layer settings
         assertthat::assert_that(
           assertthat::has_name(value, "id"),
           assertthat::is.string(value$id),
           value$id %in% self$ids)
-          return(self$get_layer(value$id)$get_parameter(value$parameter))
+          return(self$get_layer(value$id)$get_setting(value$setting))
       }
     },
 
@@ -133,42 +133,42 @@ MapManager <- R6::R6Class(
     },
 
     #' @description
-    #' Set a parameter for the object.
-    #' @param value `list` with new parameter information (see Details section)
+    #' Set a setting for the object.
+    #' @param value `list` with new setting information (see Details section)
     #' @details
     #' \describe{
     #' \item{id}{`character` (optional) identifier for layer.}
-    #' \item{parameter}{`character` name of parameter.
+    #' \item{setting}{`character` name of setting.
     #'   Available options are:
     #'   `"order"`, "remove"`,
     #'   `"visible"`, `"feature_order"`, `"feature_visible"`.
     #'   Note that the `"id"` element is required for
     #'   `"remove"`, `"visible"`, `"feature_order"`, `"feature_visible"`
-    #'    parameters.}
-    #' \item{value}{`numeric` or `logical` value for new parameter.}
+    #'    settings.}
+    #' \item{value}{`numeric` or `logical` value for new setting.}
     #' }
-    set_parameter = function(value) {
+    set_setting = function(value) {
       assertthat::assert_that(
         is.list(value),
-        assertthat::has_name(value, "parameter"),
-        assertthat::is.string(value$parameter))
-      if (identical(value$parameter, "remove")) {
+        assertthat::has_name(value, "setting"),
+        assertthat::is.string(value$setting))
+      if (identical(value$setting, "remove")) {
         # remove layer from map manager
         self$drop_layer(value$id)
       } else if (is.null(value$id)) {
-        # map manager parameters
-        if (identical(value$parameter, "order")) {
+        # map manager settings
+        if (identical(value$setting, "order")) {
           self$set_order(value$value)
         } else {
-          stop("unknown parameter.")
+          stop("unknown setting.")
         }
       } else {
-        # layer parameters
+        # layer settings
         assertthat::assert_that(
           assertthat::has_name(value, "id"),
           assertthat::is.string(value$id),
           value$id %in% self$ids)
-          self$get_layer(value$id)$set_parameter(value$parameter, value$value)
+          self$get_layer(value$id)$set_setting(value$setting, value$value)
       }
       invisible(self)
     },

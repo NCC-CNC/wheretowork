@@ -116,7 +116,7 @@ test_that("raster (from file)", {
     V1 = runif(length(idx)),
     V2 = runif(length(idx)),
     `_index` = idx)
-  boundary_data <- prioritizr::boundary_matrix(spatial_data)
+  boundary_data <- prioritizr::boundary_matrix(spatial_data)[idx, idx]
   # create object from memory
   d <- new_dataset(
     spatial_path = "memory",
@@ -189,7 +189,7 @@ test_that("methods (sf from file)", {
     attribute_data = attribute_data,
     boundary_data = boundary_data)
   # write object to disk
-  f1 <- tempfile(fileext = ".gpkg")
+  f1 <- tempfile(fileext = ".shp")
   f2 <- tempfile(fileext = ".csv.gz")
   f3 <- tempfile(fileext = ".csv.gz")
   d$write(f1, f2, f3)

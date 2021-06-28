@@ -93,9 +93,9 @@ Include <- R6::R6Class(
 
     #' @description
     #' Generate a `character` summarizing the representation of the object.
-    #' @param start `character` symbol used to start the parameter list.
+    #' @param start `character` symbol used to start the setting list.
     #'   Defaults to `"["`.
-    #' @param end `character` symbol used to start the parameter list.
+    #' @param end `character` symbol used to start the setting list.
     #'   Defaults to `"]"`.
     #' @return `character` value.
     repr = function(start = "[", end = "]") {
@@ -127,11 +127,11 @@ Include <- R6::R6Class(
     },
 
     #' @description
-    #' Get parameter.
-    #' @param name `character` parameter name.
+    #' Get setting.
+    #' @param name `character` setting name.
     #' Available options are `"status"` or `"visible"`.
     #' @return Value.
-    get_parameter = function(name) {
+    get_setting = function(name) {
       assertthat::assert_that(
         assertthat::is.string(name),
         assertthat::noNA(name),
@@ -141,7 +141,7 @@ Include <- R6::R6Class(
       } else if (identical(name, "visible")) {
         out <- self$get_visible()
       } else {
-        stop(paste0("\"", name, "\" is not a parameter"))
+        stop(paste0("\"", name, "\" is not a setting"))
       }
       out
     },
@@ -169,11 +169,11 @@ Include <- R6::R6Class(
     },
 
     #' @description
-    #' Set parameter.
-    #' @param name `character` parameter name.
+    #' Set setting.
+    #' @param name `character` setting name.
     #' Available options are `"status"` or `"visible"``.
     #' @param value `ANY` new value.
-    set_parameter = function(name, value) {
+    set_setting = function(name, value) {
       assertthat::assert_that(
         assertthat::is.string(name),
         assertthat::noNA(name),
@@ -183,7 +183,7 @@ Include <- R6::R6Class(
       } else if (identical(name, "visible")) {
         self$set_visible(value)
       } else {
-        stop(paste0("\"", name, "\" is not a parameter"))
+        stop(paste0("\"", name, "\" is not a setting"))
       }
       invisible(self)
     },
@@ -215,7 +215,7 @@ Include <- R6::R6Class(
     },
 
     #' @description
-    #' Export parameters.
+    #' Export settings.
     #' @return `list` object.
     export = function() {
       list(

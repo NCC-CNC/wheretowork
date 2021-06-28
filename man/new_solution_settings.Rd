@@ -4,7 +4,7 @@
 \alias{new_solution_settings}
 \title{New solution settings}
 \usage{
-new_solution_settings(themes, weights, includes)
+new_solution_settings(themes, weights, includes, parameters)
 }
 \arguments{
 \item{themes}{\code{list} of \link{Theme} objects. D}
@@ -12,6 +12,8 @@ new_solution_settings(themes, weights, includes)
 \item{weights}{\code{list} of \link{Weight} objects.}
 
 \item{includes}{\code{list} of \link{Include} objects.}
+
+\item{parameters}{\code{list} of \link{Parameter} objects.}
 }
 \value{
 A \link{SolutionSettings} object.
@@ -61,9 +63,15 @@ t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")
 i <- new_include(
   name = "Protected areas", variable = v5,
   initial_status = FALSE, id = "I1")
+
+# create parameters
+p1 <- new_parameter(name = "Spatial clustering")
+p2 <- new_parameter(name = "Optimality gap")
+
 # create solution settings using the themes and weight
 ss <- new_solution_settings(
-  themes = list(t1, t2), weights = list(w), includes = list(i))
+  themes = list(t1, t2), weights = list(w), includes = list(i),
+  parameters = list(p1, p2))
 
 # print object
 print(ss)
