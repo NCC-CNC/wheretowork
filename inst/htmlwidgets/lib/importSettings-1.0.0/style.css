@@ -1,0 +1,15 @@
+.well {
+    max-width: 500px;
+}
+.layers {
+    max-height: 54vh;
+    overflow-y: scroll;
+    margin-left: 5px;
+    margin-bottom: 8px;
+}
+
+.btn {
+    position: absolute;
+    left: 15%;
+}
+
