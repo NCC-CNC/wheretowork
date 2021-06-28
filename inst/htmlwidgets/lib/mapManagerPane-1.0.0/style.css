@@ -20,5 +20,8 @@
 }
 
 .leaflet-right .leaflet-control {
-	margin-right: 500px !important;
+  position: fixed !important;
+  left: 50%;
+  margin-top: -160px;
+  margin-left: -100px;
 }
