@@ -49,7 +49,10 @@ solutionResults <- function(
     package = "locationmisc",
     elementId = elementId,
     dependencies = c(
-      htmltools::htmlDependencies(shiny::icon("map-marked-alt")))
+      htmltools::htmlDependencies(shiny::icon("map-marked-alt")),
+      htmltools::htmlDependencies(
+        shinyBS::bsCollapse(shinyBS::bsCollapsePanel("id")))
+    )
   )
 }
 
@@ -107,9 +110,26 @@ solutionResults_html <- function(id, style, class, ...) {
               class = "solution-select"
             )
           ),
-          # container to show results for a given solution
-          htmltools::tags$div(
-            class = "solution-result-container"
+          # accordion panels
+          shinyBS::bsCollapse(
+            id = paste0(id, "_collapse"),
+            multiple = FALSE,
+            open = paste0(id, "_collapseThemePanel"),
+            shinyBS::bsCollapsePanel(
+              title = "Statistics",
+              value = paste0(id, "_collapseStatisticPanel"),
+              htmltools::tags$div(class = "statistics")
+            ),
+            shinyBS::bsCollapsePanel(
+              title = "Themes",
+              value = paste0(id, "_collapseThemePanel"),
+              htmltools::tags$div(class = "themes")
+            ),
+            shinyBS::bsCollapsePanel(
+              title = "Weights",
+              value = paste0(id, "_collapseWeightPanel"),
+              htmltools::tags$div(class = "weights")
+            )
           )
         )
       )
