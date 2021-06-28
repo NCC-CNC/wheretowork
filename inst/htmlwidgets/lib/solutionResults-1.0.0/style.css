@@ -1,3 +1,21 @@
 .solution-select-container {
   padding-top: 10px;
 }
+
+.solution-theme-results {
+  margin-left: -50px;
+}
+
+.solution-theme-results {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.single-theme-result {
+  padding: 5px;
+}
+
+.multi-theme-result {
+  padding: 5px;
+}

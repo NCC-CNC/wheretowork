@@ -23,6 +23,7 @@ class Solution {
 
     // theme results
     const theme_results_el = document.createElement("div");
+    theme_results_el.classList.add('solution-theme-results')
     theme_results.forEach((x) => {
       theme_results_el.appendChild(newThemeResults(manager, x).render());
     });

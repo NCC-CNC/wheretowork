@@ -25,10 +25,12 @@ class SingleThemeResults {
         .content,
       true);
 
-    const l = document.createElement("label");
-    this.el.appendChild(l);
+    const chartContainer = document.createElement("div");
+    chartContainer.classList.add('single-theme-result')
+    this.el.appendChild(chartContainer);
 
     const chart = new SingleSolutionChart([{
+      name,
       feature_name,
       feature_goal,
       feature_current_held,
@@ -36,7 +38,7 @@ class SingleThemeResults {
       feature_total_amount
     }]);
 
-    chart.render(this.el);
+    chart.render(chartContainer);
   }
 
   /* render method */

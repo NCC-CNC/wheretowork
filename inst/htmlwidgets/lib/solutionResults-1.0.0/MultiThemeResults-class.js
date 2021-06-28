@@ -25,18 +25,20 @@ class MultiThemeResults {
         .content,
       true);
 
-    const l = document.createElement("label");
-    this.el.appendChild(l);
+    const chartContainer = document.createElement("div");
+    chartContainer.classList.add('multi-theme-result')
+    this.el.appendChild(chartContainer);
 
-    const chart = new MultiSolutionChart(feature_name.map((name, index) => ({
-      feature_name: name,
+    const chart = new MultiSolutionChart(feature_name.map((feature_name, index) => ({
+      name,
+      feature_name,
       feature_goal: feature_goal[index],
       feature_current_held: feature_current_held[index],
       feature_solution_held: feature_solution_held[index],
       feature_total_amount: feature_total_amount[index],
     })));
 
-    chart.render(this.el);
+    chart.render(chartContainer);
   }
 
   /* render method */

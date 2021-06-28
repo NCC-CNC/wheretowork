@@ -2,11 +2,11 @@ class SingleSolutionChart {
 
   constructor(data) {
     this.data = data;
-    this.width = 300;
-    this.height = 350;
+    this.width = 180;
+    this.height = 200;
     this.chartRadius = this.width / 2;
-    this.arcMinRadius = 120;
-    this.arcWidth = this.chartRadius - this.arcMinRadius - 1;
+    this.arcMinRadius = 50;
+    this.arcWidth = this.chartRadius - this.arcMinRadius - 1 - 10;
     this.scale = d3
       .scaleLinear()
       .domain([0, 1])
@@ -68,20 +68,16 @@ class SingleSolutionChart {
       .attr('fill', this.colors[type])
       .style('cursor', 'pointer')
       .on('mouseover', function() {
-        const strokeWidth = 5;
+        const strokeWidth = 3;
         d3
           .select(this)
           .attr('stroke', self.colors[type])
           .attr('stroke-width', strokeWidth);
-        svg.selectAll('text').remove();
-        self.renderFeatureText(svg, type);
       })
       .on('mouseout', function() {
         d3
           .select(this)
           .attr('stroke', null);
-        svg.selectAll('text').remove();
-        self.renderFeatureText(svg); 
       })
       .transition()
       .delay((_, i) => i * 200)
@@ -115,33 +111,10 @@ class SingleSolutionChart {
     }
   }
 
-  renderFeatureText(svg, currently_hovered_feature) {
-    const datum = this.data[0];
-    const attrs = ['feature_current_held', 'feature_goal', 'feature_solution_held'];
-    let count = attrs.length - 1;
-    for (let i = attrs.length - 1; i > -1; --i) {
-      const attr = attrs[attrs.length - 1 - i];
-      svg
-        .append('text')
-        .attr('dy', `${-count - 5.5}rem`)
-        .attr('fill', this.colors[attr])
-        .attr('text-anchor', 'middle')
-        .attr('font-weight', currently_hovered_feature === attr ? 'bold' : 'normal')
-        .text(() => `
-          ${this.locale[attr]}: ${Math.round(datum[attr] * 100)}
-          (${Math.round(datum[attr] * datum.feature_total_amount)} ha)`);
-      count = count - 2;
-    }
-    svg
-      .append('text')
-      .attr('text-anchor', 'middle')
-      .text(() => datum.feature_name);
-  }
 
   render(el) {
     if (this.data.length === 0) return;
     const svg = this.renderSvg(el);
-    this.renderFeatureText(svg);
     this.renderAllArcs(svg);
   }
 
