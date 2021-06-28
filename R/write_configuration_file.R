@@ -5,9 +5,11 @@ NULL
 #'
 #' Save a configuration file to disk.
 #' The configuration file will contain all the data and settings related
-#' to a set of [Theme] and [Weight] objects.
+#' to a set of [Theme], [Weight], and [Include] objects.
 #'
-#' @param x `list` of [Theme] and [Weight] objects.
+#' @param x `list` of [Theme], [Weight], and [Include] objects.
+#'
+#' @param dataset [Dataset] object.
 #'
 #' @param name `character` name for the scenario.
 #'
@@ -45,21 +47,22 @@ NULL
 #'
 #' # save configuration file to temporary location
 #' write_configuration_file(
-#'   l,
-#'   path = tempfile(),
 #'   name = "example",
+#'   dataset = d,
+#'   path = tempfile(),
 #'   spatial_path = tempfile(fileext = ".tif"),
 #'   attribute_path = tempfile(fileext = ".csv.gz"),
 #'   boundary_path = tempfile(fileext = ".csv.gz"))
 #'
 #' @export
 write_configuration_file <- function(
-  x, path, name, spatial_path, attribute_path, boundary_path,
+  x, dataset, path, name, spatial_path, attribute_path, boundary_path,
   mode = "advanced") {
   # assert arguments are valid
   assertthat::assert_that(
     is.list(x),
     all_list_elements_inherit(x, c("Theme", "Weight", "Include")),
+    inherits(dataset, "Dataset"),
     assertthat::is.string(name),
     assertthat::noNA(name),
     assertthat::is.string(path),
@@ -97,8 +100,11 @@ write_configuration_file <- function(
     includes = includes_params
   )
 
-  # save result to disk
+  # save configuration file to disk
   yaml::write_yaml(params, path)
+
+  # save dataset to disk
+  dataset$write(spatial_path, attribute_path, boundary_path)
 
   # return success
   invisible(TRUE)

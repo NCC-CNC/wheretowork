@@ -126,7 +126,7 @@ Variable <- R6::R6Class(
     render = function(x, id, zindex, visible) {
       # assert arguments are valid
       assertthat::assert_that(
-        inherits(x, "leaflet"),
+        inherits(x, c("leaflet", "leaflet_proxy")),
         assertthat::is.string(id),
         assertthat::is.number(zindex),
         assertthat::is.flag(visible))

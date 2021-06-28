@@ -224,8 +224,8 @@ MapManager <- R6::R6Class(
     #' @description
     #' Get initial map.
     #' @param dataset `Dataset` object.
-    #' @return [leaflet::leaflet()] object.
-    get_initial_map = function(dataset) {
+    #' @param map [leaflet::leafletProxy] object.
+    get_initial_map = function(dataset, map) {
       # get spatial extent for dataset
       ## extract extent
       ext <- methods::as(raster::extent(
@@ -244,47 +244,9 @@ MapManager <- R6::R6Class(
       bb$xmax <- min(bb$xmax, 180)
       bb$ymin <- max(bb$ymin, -90)
       bb$ymax <- min(bb$ymax, 90)
-      # prepare JS code for button
-      fly_to_sites_js <- paste0(
-        "function(btn, map){ map.flyToBounds([",
-        "[", bb$ymin, ", ", bb$xmin, "],",
-        "[", bb$ymax, ", ", bb$xmax, "]]);}")
-      zoom_in_js <- paste0(
-        "function(btn, map){",
-        "map.setZoom(Math.min(map.getZoom() + 1, map.getMaxZoom()));",
-        "}")
-      zoom_out_js <- paste0(
-        "function(btn, map){",
-        "map.setZoom(Math.max(map.getZoom() - 1, map.getMinZoom()));",
-        "}")
-      # initialize map
+      # update map
       map <-
-        leaflet::leaflet() %>%
-        leaflet::addProviderTiles(
-          leaflet::providers$Esri.WorldImagery) %>%
-        leaflet::flyToBounds(
-          bb$xmin, bb$ymin, bb$xmax, bb$ymax) %>%
-        leaflet::addEasyButton(
-          leaflet::easyButton(
-            icon = shiny::icon("plus"),
-            title = "Zoom in",
-            position = "topright",
-            onClick = htmlwidgets::JS(zoom_in_js))) %>%
-        leaflet::addEasyButton(
-          leaflet::easyButton(
-            icon = shiny::icon("minus"),
-            title = "Zoom out",
-            position = "topright",
-            onClick = htmlwidgets::JS(zoom_out_js))) %>%
-        leaflet::addEasyButton(
-          leaflet::easyButton(
-            icon = shiny::icon("home"),
-            title = "Zoom to data",
-            position = "topright",
-            onClick = htmlwidgets::JS(fly_to_sites_js))) %>%
-        leaflet::addScaleBar(
-          position = "bottomright") %>%
-        leaflet::addMiniMap(position = "bottomright")
+        leaflet::flyToBounds(map, bb$xmin, bb$ymin, bb$xmax, bb$ymax)
       # compute zIndex values for layers
       zv <- self$order * 100
       # add layers
@@ -292,7 +254,7 @@ MapManager <- R6::R6Class(
         map <- self$layers[[i]]$render_on_map(map, zindex = zv[i])
       }
       # return result
-      map
+       invisible(map)
     },
 
     #' @description

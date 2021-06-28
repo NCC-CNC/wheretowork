@@ -35,21 +35,10 @@ sim_vector_data <-
   )
 
 # Exports
-## raster data
-raster_data$write(
-  "inst/extdata/sim_raster_spatial.tif",
-  "inst/extdata/sim_raster_attribute.csv.gz",
-  "inst/extdata/sim_raster_boundary.csv.gz")
-
-## vector data
-vector_data$write(
-  "inst/extdata/sim_vector_spatial.shp",
-  "inst/extdata/sim_vector_attribute.csv.gz",
-  "inst/extdata/sim_vector_boundary.csv.gz")
-
 ## configuration files
 write_configuration_file(
   x = sim_raster_data,
+  dataset = vector_data,
   path = "inst/extdata/sim_raster_data.yaml",
   name = "Example GeoTIFF dataset",
   spatial_path = "inst/extdata/sim_raster_spatial.tif",
@@ -59,6 +48,7 @@ write_configuration_file(
 
 write_configuration_file(
   x = sim_vector_data,
+  dataset = raster_data,
   path = "inst/extdata/sim_vector_data.yaml",
   name = "Example GPKG dataset",
   spatial_path = "inst/extdata/sim_vector_spatial.shp",
