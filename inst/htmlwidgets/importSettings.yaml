@@ -1,0 +1,15 @@
+dependencies:
+
+  - name: importSettings
+    version: 1.0.0
+    src: htmlwidgets/lib/importSettings-1.0.0
+    script:
+      - utils.js
+    stylesheet:
+      - style.css
+
+  - name: importSettings-style
+    version: 1.0.0
+    src: htmlwidgets
+    stylesheet:
+      - importSettings.css

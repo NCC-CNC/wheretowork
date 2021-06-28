@@ -39,6 +39,8 @@ class WeightSetting {
       start: factor,
       step: step_factor,
       connect: "lower",
+      tooltips: true,
+      format: wNumb({decimals: 0}),
       range: {
         "min": min_factor,
         "max": max_factor
