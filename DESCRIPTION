@@ -80,6 +80,7 @@ Collate:
     'color_palette.R'
     'extract_data_matrix.R'
     'generate_solution.R'
+    'importSettings.R'
     'import_spatial_data.R'
     'mapManager-components.R'
     'mapManager.R'
