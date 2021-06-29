@@ -23,6 +23,17 @@
   max-height: 86vh;
 }
 
+/* hide certain elements under beginner mode */
+/* -- hide option to select group or single view */
+.beginner .multi-theme-setting .main .tabbable ul {
+  display: none;
+}
+
+/* -- slidebars for weights */
+.beginner .weight-setting .weight-slider {
+  display: none;
+}
+
 /* panels */
 .solution-settings .panel-body {
   padding: 0;
@@ -45,7 +56,7 @@
 }
 
 .solution-settings .panel.panel-default {
-  max-height: 74vh;
+  max-height: 68.5vh;
   overflow-y: scroll;
 }
 
@@ -176,6 +187,7 @@
   padding-top: 2px;
   padding-left: 5px;
   padding-right: 5px;
+  flex-basis: 50%;
 }
 
 .solution-setting .single-container .status-info {
@@ -301,6 +313,8 @@
 }
 
 .solution-setting .weight-slider {
+.solution-setting .weight-slider,
+.solution-setting .parameter-slider{
   margin-top: 32px;
   margin-bottom: 5px;
 }

@@ -64,7 +64,7 @@ ManualLegend <- R6::R6Class(
     },
 
     #' @description
-    #' Export parameters
+    #' Export settings
     #' @return `list` object.
     export = function() {
       list(

@@ -285,13 +285,13 @@ class MultiThemeSetting {
         let v = that.group_goal_el.noUiSlider.get();
         Shiny.setInputValue(manager, {
           id: id,
-          parameter: "feature_status",
+          setting: "feature_status",
           value: Array(that.n_features).fill(checked),
           type: "theme"
         });
         Shiny.setInputValue(manager, {
           id: id,
-          parameter:"feature_goal",
+          setting:"feature_goal",
           value: Array(that.n_features).fill(parseFloat(v)),
           type: "theme"
         });
@@ -301,7 +301,7 @@ class MultiThemeSetting {
         let checked = this.checked;
         Shiny.setInputValue(manager, {
           id: id,
-          parameter: "feature_status",
+          setting: "feature_status",
           value: Array(that.n_features).fill(checked),
           type: "theme"
         });
@@ -312,7 +312,7 @@ class MultiThemeSetting {
         if (v >= that.group_limit_goal) {
           Shiny.setInputValue(manager, {
             id: id,
-            parameter: "feature_goal",
+            setting: "feature_goal",
             value: Array(that.n_features).fill(v),
             type: "theme"
           });
@@ -325,13 +325,13 @@ class MultiThemeSetting {
         this.single_tab_el.addEventListener("click", function() {
           Shiny.setInputValue(manager, {
             id: id,
-            parameter: "status",
+            setting: "status",
             value: that.single_status_values,
             type: "feature_status"
           });
           Shiny.setInputValue(manager, {
             id: id,
-            parameter: "feature_goal",
+            setting: "feature_goal",
             value: that.single_goal_values,
             type: "theme"
           });
@@ -341,7 +341,7 @@ class MultiThemeSetting {
           that.single_status_values[i] = that.single_status_el[i].checked;
           Shiny.setInputValue(manager, {
             id: id,
-            parameter: "feature_status",
+            setting: "feature_status",
             value: that.single_status_values,
             type: "theme"
           });
@@ -354,7 +354,7 @@ class MultiThemeSetting {
             that.single_goal_values[i] = v;
             Shiny.setInputValue(manager, {
               id: id,
-              parameter: "feature_goal",
+              setting: "feature_goal",
               value: that.single_goal_values,
               type: "theme"
             });
@@ -366,18 +366,18 @@ class MultiThemeSetting {
 
   /* update HTML elements */
   /* update methods */
-  updateParameter(parameter, value) {
-    if (parameter === "name") {
+  updateSetting(setting, value) {
+    if (setting === "name") {
       this.updateName(value);
-    } else if (parameter === "status") {
+    } else if (setting === "status") {
       this.updateStatus(value);
-    } else if (parameter === "view") {
+    } else if (setting === "view") {
       this.updateView(value);
-    } else if (parameter === "group_goal") {
+    } else if (setting === "group_goal") {
       this.updateGroupGoal(value);
-    } else if (parameter === "feature_status") {
+    } else if (setting === "feature_status") {
       this.updateFeatureStatus(value);
-    } else if (parameter === "feature_goal") {
+    } else if (setting === "feature_goal") {
       this.updateFeatureGoal(value);
     }
   }

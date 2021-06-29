@@ -3,6 +3,7 @@
 n_single_themes <- 3
 n_multi_themes <- 2
 n_weights <- 3
+n_includes <- 2
 
 ## load packages
 devtools::load_all()
@@ -12,16 +13,26 @@ set.seed(500)
 
 # Import data
 raster_data <- new_dataset_from_auto(import_simple_raster_data())
-vector_data <- new_dataset_from_auto(import_realistic_vector_data())
+vector_data <- new_dataset_from_auto(import_simple_vector_data())
 
 # Simulate data
-sim_raster_data <- append(
-  simulate_themes(raster_data, n_single_themes, n_multi_themes),
-  simulate_weights(raster_data, n_weights))
+sim_raster_data <-
+  append(
+    simulate_themes(raster_data, n_single_themes, n_multi_themes),
+    append(
+      simulate_weights(raster_data, n_weights),
+      simulate_includes(raster_data, n_includes)
+    )
+  )
 
-sim_vector_data <- append(
-  simulate_themes(vector_data, n_single_themes, n_multi_themes),
-  simulate_weights(raster_data, n_weights))
+sim_vector_data <-
+  append(
+    simulate_themes(vector_data, n_single_themes, n_multi_themes),
+    append(
+      simulate_weights(vector_data, n_weights),
+      simulate_includes(vector_data, n_includes)
+    )
+  )
 
 # Exports
 ## raster data
@@ -32,7 +43,7 @@ raster_data$write(
 
 ## vector data
 vector_data$write(
-  "inst/extdata/sim_vector_spatial.gpkg",
+  "inst/extdata/sim_vector_spatial.shp",
   "inst/extdata/sim_vector_attribute.csv.gz",
   "inst/extdata/sim_vector_boundary.csv.gz")
 
@@ -50,7 +61,7 @@ write_configuration_file(
   x = sim_vector_data,
   path = "inst/extdata/sim_vector_data.yaml",
   name = "Example GPKG dataset",
-  spatial_path = "inst/extdata/sim_vector_spatial.tif",
+  spatial_path = "inst/extdata/sim_vector_spatial.shp",
   attribute_path = "inst/extdata/sim_vector_attribute.csv.gz",
   boundary_path = "inst/extdata/sim_vector_boundary.csv.gz",
   mode = "beginner")

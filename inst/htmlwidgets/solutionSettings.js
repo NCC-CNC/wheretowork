@@ -22,9 +22,9 @@ HTMLWidgets.widget({
           // attach the widget to the DOM
           container.widget = that;
           // initialize solution settings manager
-          console.log(opts);
           handle = new SolutionSettings(
-            elementId, container, opts.themes, opts.weights, opts.includes);
+            elementId, container,
+            opts.themes, opts.weights, opts.includes, opts.parameters);
           // render HTML elements
           handle.render();
         }
@@ -38,9 +38,9 @@ HTMLWidgets.widget({
       solutionSettings: container,
 
       /* API functions to manipulate widget */
-      updateSetting: function(params) {
+      update: function(params) {
         handle.updateSetting(
-          params.value.id, params.value.parameter,
+          params.value.id, params.value.setting,
           params.value.value, params.value.type);
       }
 

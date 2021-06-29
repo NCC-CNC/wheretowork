@@ -42,9 +42,9 @@ Definition for the Solution class.
 \item \href{#method-repr}{\code{Solution$repr()}}
 \item \href{#method-print}{\code{Solution$print()}}
 \item \href{#method-get_visible}{\code{Solution$get_visible()}}
-\item \href{#method-get_parameter}{\code{Solution$get_parameter()}}
+\item \href{#method-get_setting}{\code{Solution$get_setting()}}
 \item \href{#method-set_visible}{\code{Solution$set_visible()}}
-\item \href{#method-set_parameter}{\code{Solution$set_parameter()}}
+\item \href{#method-set_setting}{\code{Solution$set_setting()}}
 \item \href{#method-get_solution_results_widget_data}{\code{Solution$get_solution_results_widget_data()}}
 \item \href{#method-get_map_manager_widget_data}{\code{Solution$get_map_manager_widget_data()}}
 \item \href{#method-render_on_map}{\code{Solution$render_on_map()}}
@@ -104,10 +104,10 @@ Generate a \code{character} summarizing the representation of the object.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{start}}{\code{character} symbol used to start the parameter list.
+\item{\code{start}}{\code{character} symbol used to start the setting list.
 Defaults to \code{"["}.}
 
-\item{\code{end}}{\code{character} symbol used to start the parameter list.
+\item{\code{end}}{\code{character} symbol used to start the setting list.
 Defaults to \code{"]"}.}
 }
 \if{html}{\out{</div>}}
@@ -147,18 +147,18 @@ Get visible.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_parameter"></a>}}
-\if{latex}{\out{\hypertarget{method-get_parameter}{}}}
-\subsection{Method \code{get_parameter()}}{
-Get parameter.
+\if{html}{\out{<a id="method-get_setting"></a>}}
+\if{latex}{\out{\hypertarget{method-get_setting}{}}}
+\subsection{Method \code{get_setting()}}{
+Get setting.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Solution$get_parameter(name)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Solution$get_setting(name)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{name}}{\code{character} parameter name.
+\item{\code{name}}{\code{character} setting name.
 Available options are \code{"visible"}.}
 }
 \if{html}{\out{</div>}}
@@ -185,18 +185,18 @@ Set visible.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_parameter"></a>}}
-\if{latex}{\out{\hypertarget{method-set_parameter}{}}}
-\subsection{Method \code{set_parameter()}}{
-Set parameter.
+\if{html}{\out{<a id="method-set_setting"></a>}}
+\if{latex}{\out{\hypertarget{method-set_setting}{}}}
+\subsection{Method \code{set_setting()}}{
+Set setting.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Solution$set_parameter(name, value)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Solution$set_setting(name, value)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{name}}{\code{character} parameter name.
+\item{\code{name}}{\code{character} setting name.
 Available options are `"visible"``.}
 
 \item{\code{value}}{\code{ANY} new value.}

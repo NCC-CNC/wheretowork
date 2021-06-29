@@ -63,7 +63,7 @@ class SingleThemeLayer {
         let checked = this.checked;
         Shiny.setInputValue(manager, {
           id: id,
-          parameter: "feature_visible",
+          setting: "feature_visible",
           value: checked
         });
       });
@@ -71,12 +71,12 @@ class SingleThemeLayer {
   }
 
   /* update methods */
-  updateParameter(parameter, value) {
-    if (parameter === "name") {
+  updateSetting(setting, value) {
+    if (setting === "name") {
       this.updateName(value);
-    } else if (parameter === "visible") {
+    } else if (setting === "visible") {
       this.updateVisible(value);
-    } else if (parameter === "feature_visible") {
+    } else if (setting === "feature_visible") {
       this.updateFeatureVisible(value);
     }
   }

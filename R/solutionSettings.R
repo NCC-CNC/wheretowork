@@ -20,12 +20,12 @@
 #'
 #' \item{id}{`character` identifier for the theme or weight.}
 #'
-#' \item{parameter}{`character` name of the updated parameter.
+#' \item{setting}{`character` name of the updated setting.
 #'   Available options include: `"status"`, `"factor"`, or `"goal"`.}
 #'
 #' \item{value}{new `numeric` or `logical` values.}
 #'
-#' \item{type}{`character` indicating if the updated parameter corresponds
+#' \item{type}{`character` indicating if the updated setting corresponds
 #'   to a `theme` or `weight`.}
 #'
 #' }
@@ -137,6 +137,11 @@ solutionSettings_html <- function(id, style, class, ...) {
               title = "Includes",
               value = paste0(id, "_collapseIncludePanel"),
               htmltools::tags$div(class = "includes")
+            ),
+            shinyBS::bsCollapsePanel(
+              title = "Settings",
+              value = paste0(id, "_collapseParametersPanel"),
+              htmltools::tags$div(class = "parameters")
             )
           )
         ),
@@ -175,6 +180,23 @@ solutionSettings_html <- function(id, style, class, ...) {
     )
 
   # add HTML template scaffolds for dynamic content
+  ## parameter
+  x <-
+    htmltools::tagAppendChild(
+      x,
+      htmltools::tags$template(
+        class = "parameter-setting-template",
+        htmltools::tags$div(
+          class = paste("parameter-setting solution-setting"),
+          ss_header_component_scaffold("parameter"),
+          htmltools::tags$div(
+            class = "parameter-slider",
+            ss_slider_component_scaffold("parameter")
+          ),
+        )
+      )
+    )
+
   ## include
   x <-
     htmltools::tagAppendChild(

@@ -143,18 +143,12 @@ Dataset <- R6::R6Class(
         ### import data
         bd <- tibble::as_tibble(data.table::fread(
             self$boundary_path, data.table = FALSE))
-        ### find dimensions
-        if (inherits(self$spatial_data, "sf")) {
-          n_total_units <- nrow(self$spatial_data)
-        } else {
-          n_total_units <- raster::ncell(self$spatial_data[[1]])
-        }
         ### convert to matrix
         self$boundary_data <-
           Matrix::sparseMatrix(
             i = bd[[1]], j = bd[[2]], x = bd[[3]],
             index1 = FALSE, repr = "C", symmetric = TRUE,
-            dims = rep(n_total_units, 2)
+            dims = rep(nrow(self$attribute_data), 2)
           )
       }
       invisible(self)
@@ -291,7 +285,7 @@ Dataset <- R6::R6Class(
         out[idx] <- self$attribute_data[[index]]
       } else {
         out <- sf::st_as_sf(tibble::tibble(
-            x = self$attribute_data[[index]][idx],
+            x = self$attribute_data[[index]],
             geometry = sf::st_geometry(self$spatial_data)[idx]))
         attr(out, "agr") <- NULL
       }
@@ -337,16 +331,25 @@ Dataset <- R6::R6Class(
     #'   the data.
     #' @param values `numeric` vector.
     add_index = function(index, values) {
+      # import data if needed
+      self$import()
+      # assert arguments are valid
       assertthat::assert_that(
         assertthat::is.string(index) || assertthat::is.count(index),
-        assertthat::noNA(index))
-      self$import()
-      assertthat::assert_that(
+        assertthat::noNA(index),
         length(values) == nrow(self$attribute_data))
+      # if index is an integer, then generate new column name
+      # because each column must have a name
+      if (is.numeric(index)) {
+        index <- uuid::UUIDgenerate()
+      }
+      # insert new column with values
       self$attribute_data[[index]] <- values
+      # re-order columns
       self$attribute_data <-
         self$attribute_data[,
           c(setdiff(names(self$attribute_data), "_index"), "_index")]
+      # return self
       invisible(self)
     }
 
@@ -476,8 +479,12 @@ new_dataset_from_auto <- function(x, id = uuid::UUIDgenerate()) {
     attribute_data[["_index"]] <- seq_len(nrow(attribute_data))
     attribute_data <- attribute_data[pu_idx < 0.5, , drop = FALSE]
   }
-  # determine settings for boundary matrix
+  # prepare boundary data
   str_tree <- inherits(x, "sf") && !identical(Sys.info()[["sysname"]], "Darwin")
+  bm <- prioritizr::boundary_matrix(spatial_data, str_tree = str_tree)
+  if (inherits(x, "Raster")) {
+    bm <- bm[attribute_data[["_index"]], attribute_data[["_index"]]]
+  }
   # create new dataset
   Dataset$new(
     spatial_path = "memory",
@@ -485,8 +492,7 @@ new_dataset_from_auto <- function(x, id = uuid::UUIDgenerate()) {
     boundary_path = "memory",
     spatial_data = spatial_data,
     attribute_data = attribute_data,
-    boundary_data = prioritizr::boundary_matrix(
-      spatial_data, str_tree = str_tree),
+    boundary_data = bm,
     id = id
   )
 }

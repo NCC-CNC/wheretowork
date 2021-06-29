@@ -36,6 +36,14 @@ last <- function(x) {
   x[[length(x)]]
 }
 
+# alias for (x - mean(x)) / sd(x)
+zscale <- function(x) {
+  sdx <- stats::sd(x, na.rm = TRUE)
+  if (!is.finite(sdx) || isTRUE(sdx < 1e-5)) {
+    sdx <- 1
+  }
+  (x - mean(x, na.rm = TRUE)) / sdx
+}
 
 #' Example include names
 #'
