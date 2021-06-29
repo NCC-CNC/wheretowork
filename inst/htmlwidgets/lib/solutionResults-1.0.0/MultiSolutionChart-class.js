@@ -88,7 +88,15 @@ class MultiSolutionChart {
       const sortable = [];
       for (const key in datum) {
         if (!isNaN(datum[key]) && key in this.colors) {
-          sortable.push([key, datum[key], this.colors[key], datum.feature_name, datum.feature_total_amount]);
+          sortable.push([
+            key,
+            datum[key],
+            this.colors[key],
+            datum.feature_name,
+            datum.feature_total_amount,
+            datum.feature_status,
+            datum.units,
+          ]);
         }
       }
       sortable.sort(function(a, b) {
@@ -109,6 +117,7 @@ class MultiSolutionChart {
         })
         .style('cursor', 'pointer')
         .on('mouseover', function(e, d) {
+          const type = d[j][0]
           let strokeWidth = self.arcWidth * 0.4;
           strokeWidth = strokeWidth > 3 ? 3 : strokeWidth;
           d3
@@ -116,10 +125,26 @@ class MultiSolutionChart {
             .attr('stroke', d[j][2])
             .attr('stroke-width', strokeWidth);
           tooltip
-            .html('Hello, world!')
             .style('display', 'inline')
             .style('top', `${e.clientY + 5}px`)
             .style('left', `${e.clientX + 5}px`)
+
+          for (const datum of d) {
+            const locale = self.locale[datum[0]];
+            tooltip.
+                append('div')
+                .text(
+                  locale === 'Goal'
+                    ? (
+                      datum[5]
+                       ? `${locale}: ${Math.round(datum[1] * 100)}% (${Math.round(datum[1] * datum[4])} ${datum[6]})`
+                       : `${locale}: 0% (0 ${datum[6]})`
+                    )
+                    : `${locale}: ${Math.round(datum[1] * 100)}% (${Math.round(datum[1] * datum[4])} ${datum[6]})` 
+                )
+                .style('color', datum[2])
+                .style('font-weight', datum[0] === type ? 'bold' : 'normal')
+          }
         })
         .on('mouseout', function() {
           d3
@@ -129,6 +154,9 @@ class MultiSolutionChart {
             .style('display', 'none')
             .style('top', `${0}px`)
             .style('left', `${0}px`)
+          tooltip
+            .selectAll('div')
+            .remove();
         })
         .transition()
         .delay((_, i) => i * 200)

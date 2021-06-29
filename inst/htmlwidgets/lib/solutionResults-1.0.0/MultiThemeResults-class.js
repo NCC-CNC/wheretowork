@@ -36,6 +36,8 @@ class MultiThemeResults {
       feature_current_held: feature_current_held[index],
       feature_solution_held: feature_solution_held[index],
       feature_total_amount: feature_total_amount[index],
+      feature_status: feature_status[index],
+      units,
     })));
 
     chart.render(chartContainer);

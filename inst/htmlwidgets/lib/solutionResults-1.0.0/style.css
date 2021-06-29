@@ -1,15 +1,11 @@
-.solution-select-container {
-  padding-top: 10px;
+.solution-results-header {
+  margin-left: -20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-.solution-theme-results {
-  margin-left: -50px;
-}
-
-.solution-theme-results {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+.solution-results-main {
+  margin-left: -20px;
 }
 
 .single-theme-result {
@@ -26,4 +22,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.themes {
+  overflow: scroll;
+}
+
+.weights {
+  overflow: scroll;
 }

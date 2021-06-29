@@ -35,7 +35,9 @@ class SingleThemeResults {
       feature_goal,
       feature_current_held,
       feature_solution_held,
-      feature_total_amount
+      feature_total_amount,
+      feature_status,
+      units,
     }]);
 
     chart.render(chartContainer);

@@ -67,17 +67,33 @@ class SingleSolutionChart {
       .attr('class', 'arc')
       .attr('fill', this.colors[type])
       .style('cursor', 'pointer')
-      .on('mouseover', function(e) {
+      .on('mouseover', function(e, d) {
         const strokeWidth = 3;
         d3
           .select(this)
           .attr('stroke', self.colors[type])
           .attr('stroke-width', strokeWidth);
         tooltip
-          .html('Hello, world!')
           .style('display', 'inline')
           .style('top', `${e.clientY + 5}px`)
           .style('left', `${e.clientX + 5}px`)
+
+        for (const key in self.locale) {
+          const locale = self.locale[key];
+          tooltip.
+              append('div')
+              .text(
+                locale === 'Goal'
+                  ? (
+                    d.feature_status
+                    ? `${locale}: ${Math.round(d[key] * 100)}% (${Math.round(d[key] * d.feature_total_amount)} ${d.units})`
+                    : `${locale}: 0% (0 ${d.units})`
+                  )
+                  : `${locale}: ${Math.round(d[key] * 100)}% (${Math.round(d[key] * d.feature_total_amount)} ${d.units})` 
+              )
+              .style('color', self.colors[key])
+              .style('font-weight', type === key ? 'bold' : 'normal')
+        }
       })
       .on('mouseout', function() {
         d3
@@ -86,7 +102,10 @@ class SingleSolutionChart {
         tooltip
           .style('display', 'none')
           .style('top', `${0}px`)
-          .style('left', `${0}px`)
+          .style('left', `${0}px`);
+        tooltip
+          .selectAll('div')
+          .remove();
       })
       .transition()
       .delay((_, i) => i * 200)
