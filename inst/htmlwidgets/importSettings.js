@@ -8,7 +8,6 @@ HTMLWidgets.widget({
     var container = document.getElementById(elementId);
     var layers_el = container.querySelector(".layers");
     var button_el = container.querySelector(`#${elementId}_button`);
-
     return {
 
       renderValue: function(opts) {
@@ -65,11 +64,28 @@ HTMLWidgets.widget({
           // insert layer name into the label
           curr_el.querySelector("label").innerText = x;
 
+          this.view_el = curr_el.querySelector("input");
+          var select = curr_el.querySelector("select");       
+          var label = curr_el.querySelector("label");
+          this.view_el.checked = true;
+          curr_el.querySelector("select").disabled = false;
+
           // TODO: add event handler to
           // 1: disable select input + make label grey
           // when the curr_el.querySelector("input").checked === false;
           // 2: enable select input + make label black
           // when the curr_el.querySelector("input").checked === true;
+
+          this.view_el.addEventListener("change", function () {
+            let checked = this.checked;
+            if (checked) {
+              label.style.color = "black";
+              select.disabled=false;
+            } else {
+              label.style.color = "grey";
+              select.disabled = true;
+            }
+           });
 
           // append layer to container
           layers_el.appendChild(curr_el);

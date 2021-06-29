@@ -13,3 +13,8 @@
     left: 15%;
 }
 
+select {
+    position: relative;
+    float: right;
+}
+
