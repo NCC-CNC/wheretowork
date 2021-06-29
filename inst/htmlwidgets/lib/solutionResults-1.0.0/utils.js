@@ -23,10 +23,10 @@ function newWeightResults(manager, x) {
     x.id,
     x.name,
     x.status,
-    x.total,
     x.factor,
-    x.held,
-    x.units,
+    x.total_amount,
+    x.current_held,
+    x.solution_held,
   );
 }
 

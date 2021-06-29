@@ -24,6 +24,9 @@ WeightResults <- R6::R6Class(
     factor = NA_real_,
 
     #' @field held `numeric` value.
+    current = NA_real_,
+
+    #' @field held `numeric` value.
     held = NA_real_,
 
     #' @description
@@ -51,6 +54,7 @@ WeightResults <- R6::R6Class(
       self$status <- weight$status
       self$factor <- weight$factor
       self$held <- held
+      self$current <- weight$current
     },
 
     #' @description
@@ -61,6 +65,7 @@ WeightResults <- R6::R6Class(
       message("  id:      ", self$id)
       message("  status: ", self$status)
       message("  factor: ", round(self$factor, 2))
+      message("  current: ", round(self$current, 2))
       message("  held: ", round(self$held, 2))
       message("  weight: ", self$weight$repr())
       invisible(self)
@@ -90,9 +95,10 @@ WeightResults <- R6::R6Class(
         id = self$id,
         name = self$weight$name,
         status = self$status,
-        total = self$weight$variable$total,
         factor = self$factor,
-        held = self$held,
+        total_amount = self$weight$variable$total,
+        current_held = self$current,
+        solution_held = self$held,
         units = self$weight$variable$units,
         type = "weight_results"
       )

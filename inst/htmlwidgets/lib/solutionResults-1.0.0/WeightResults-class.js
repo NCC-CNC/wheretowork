@@ -5,9 +5,10 @@ class WeightResults {
     id,
     name,
     status,
-    total,
     factor,
-    held,
+    total_amount,
+    current_held,
+    solution_held,
     units
   ) {
     // class fields

@@ -9,6 +9,7 @@ test_that("initialization", {
     variable = v,
     initial_visible = FALSE,
     initial_status = FALSE,
+    current = 0.8,
     initial_factor = 0.2,
     min_factor = 0.01,
     max_factor = 0.9,
@@ -24,6 +25,7 @@ test_that("initialization", {
   expect_equal(x$initial_visible, FALSE)
   expect_equal(x$status, FALSE)
   expect_equal(x$initial_status, FALSE)
+  expect_equal(x$current, 0.8)
   expect_equal(x$factor, 0.2)
   expect_equal(x$initial_factor, 0.2)
   expect_equal(x$min_factor, 0.01)
@@ -91,6 +93,7 @@ test_that("export method", {
     variable = v,
     initial_visible = TRUE,
     initial_status = FALSE,
+    current = 0.8,
     initial_factor = 0.2,
     min_factor = 0.01,
     max_factor = 0.9,
@@ -104,6 +107,7 @@ test_that("export method", {
       variable = x$variable$export(),
       initial_status = FALSE,
       initial_visible = TRUE,
+      current = 0.8,
       initial_factor = 0.2,
       min_factor = 0.01,
       max_factor = 0.9,

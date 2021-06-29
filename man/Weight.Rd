@@ -31,6 +31,8 @@ Definition for the Weight class.
 
 \item{\code{initial_status}}{\code{logical} value.}
 
+\item{\code{current}}{\code{numeric} value.}
+
 \item{\code{factor}}{\code{numeric} value.}
 
 \item{\code{initial_factor}}{\code{numeric} initial factor value.}
@@ -78,6 +80,7 @@ Create a new Weight object.
   variable,
   initial_visible,
   initial_status,
+  current,
   initial_factor,
   min_factor,
   max_factor,
@@ -97,6 +100,8 @@ Create a new Weight object.
 \item{\code{initial_visible}}{\code{logical} value.}
 
 \item{\code{initial_status}}{\code{logical} value.}
+
+\item{\code{current}}{\code{logical} value.}
 
 \item{\code{initial_factor}}{\code{numeric} initial factor value.}
 

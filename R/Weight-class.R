@@ -32,6 +32,9 @@ Weight <- R6::R6Class(
     #' @field initial_status `logical` value.
     initial_status = NA,
 
+    #' @field current `numeric` value.
+    current = NA_real_,
+
     #' @field factor `numeric` value.
     factor = NA_real_,
 
@@ -54,6 +57,7 @@ Weight <- R6::R6Class(
     #' @param variable [Variable] object.
     #' @param initial_visible `logical` value.
     #' @param initial_status `logical` value.
+    #' @param current `logical` value.
     #' @param initial_factor `numeric` initial factor value.
     #' @param min_factor `numeric` minimum factor value.
     #' @param max_factor `numeric` maximum factor value.
@@ -61,7 +65,7 @@ Weight <- R6::R6Class(
     #' @return A new Weight object.
     ## constructor
     initialize = function(
-      id, name, variable, initial_visible, initial_status,
+      id, name, variable, initial_visible, initial_status, current,
       initial_factor, min_factor, max_factor, step_factor) {
       ### assert that arguments are valid
       assertthat::assert_that(
@@ -79,6 +83,9 @@ Weight <- R6::R6Class(
         #### initial_status
         assertthat::is.flag(initial_status),
         assertthat::noNA(initial_status),
+        #### current
+        assertthat::is.number(current),
+        assertthat::noNA(current),
         #### initial_factor
         assertthat::is.number(initial_factor),
         assertthat::noNA(initial_factor),
@@ -101,8 +108,9 @@ Weight <- R6::R6Class(
       self$id <- id
       self$variable <- variable
       self$name <- name
-      self$status <- initial_status
+      self$current <- current
       self$initial_status <- initial_status
+      self$status <- initial_status
       self$visible <- initial_visible
       self$initial_visible <- initial_visible
       self$factor <- initial_factor
@@ -120,6 +128,7 @@ Weight <- R6::R6Class(
       message("  id:       ", self$id)
       message("  name:     ", self$name)
       message("  variable: ", self$variable$repr())
+      message("  current:  ", self$current)
       message("  visible:  ", self$visible)
       message("  status:   ", self$status)
       message("  factor:   ", round(self$factor, 2))
@@ -137,6 +146,7 @@ Weight <- R6::R6Class(
       paste0(
         self$name,
         " ", start, "status: ", self$status,
+        "current: ", round(self$current),
         ", factor: ", round(self$factor, 2), end, nl(),
         "  variable: ", self$variable$repr())
     },
@@ -286,6 +296,7 @@ Weight <- R6::R6Class(
         variable = self$variable$export(),
         initial_status = self$status,
         initial_visible = self$visible,
+        current = self$current,
         initial_factor = self$factor,
         min_factor = self$min_factor,
         max_factor = self$max_factor,
@@ -359,7 +370,7 @@ Weight <- R6::R6Class(
 #' @export
 new_weight <- function(
   name, variable,
-  initial_visible = TRUE, initial_status = TRUE,
+  initial_visible = TRUE, initial_status = TRUE, current = 0,
   initial_factor = 0, min_factor = 0, max_factor = 100, step_factor = 1,
   id = uuid::UUIDgenerate()) {
   Weight$new(
@@ -368,6 +379,7 @@ new_weight <- function(
     variable = variable,
     initial_visible = initial_visible,
     initial_status = initial_status,
+    current = current,
     min_factor = min_factor,
     max_factor = max_factor,
     initial_factor = initial_factor,

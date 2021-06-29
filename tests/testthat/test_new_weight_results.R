@@ -9,6 +9,7 @@ test_that("initialization", {
     variable = v,
     initial_visible = FALSE,
     initial_status = FALSE,
+    current = 0.8,
     initial_factor = 0.2,
     min_factor = 0.01,
     max_factor = 0.9,
@@ -36,6 +37,7 @@ test_that("widget methods", {
     variable = v,
     initial_visible = FALSE,
     initial_status = FALSE,
+    current = 0.8,
     initial_factor = 0.2,
     min_factor = 0.01,
     max_factor = 0.9,
@@ -54,9 +56,10 @@ test_that("widget methods", {
       id = "RID1",
       name = "Human Footprint Index",
       status = TRUE,
-      total = v$total,
       factor = 0.8,
-      held = 0.9,
+      total_amount = v$total,
+      current_held = 0.8,
+      solution_held = 0.9,
       units = v$units,
       type = "weight_results"
     )

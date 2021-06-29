@@ -26,6 +26,8 @@ Definition for the WeightResults class.
 \item{\code{factor}}{\code{numeric} value.}
 
 \item{\code{held}}{\code{numeric} value.}
+
+\item{\code{held}}{\code{numeric} value.}
 }
 \if{html}{\out{</div>}}
 }
