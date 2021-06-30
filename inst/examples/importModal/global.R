@@ -25,6 +25,7 @@ themes <- NULL
 weights <- NULL
 includes <- NULL
 mode <- NULL
+bbox <- NULL
 
 ## widget variables
 mm <- NULL

@@ -38,6 +38,8 @@ This method intentionally throws an error.
 \item \href{#method-new}{\code{Theme$new()}}
 \item \href{#method-print}{\code{Theme$print()}}
 \item \href{#method-repr}{\code{Theme$repr()}}
+\item \href{#method-get_layer_name}{\code{Theme$get_layer_name()}}
+\item \href{#method-get_layer_index}{\code{Theme$get_layer_index()}}
 \item \href{#method-get_feature_id}{\code{Theme$get_feature_id()}}
 \item \href{#method-get_feature_name}{\code{Theme$get_feature_name()}}
 \item \href{#method-get_feature_current}{\code{Theme$get_feature_current()}}
@@ -108,6 +110,32 @@ Generate a \code{character} summarizing the representation of the object.
 }
 \subsection{Returns}{
 \code{character} value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_layer_name"></a>}}
+\if{latex}{\out{\hypertarget{method-get_layer_name}{}}}
+\subsection{Method \code{get_layer_name()}}{
+Get layer names.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$get_layer_name()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} vector.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_layer_index"></a>}}
+\if{latex}{\out{\hypertarget{method-get_layer_index}{}}}
+\subsection{Method \code{get_layer_index()}}{
+Get layer index values.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$get_layer_index()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} vector.
 }
 }
 \if{html}{\out{<hr>}}

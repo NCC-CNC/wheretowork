@@ -34,11 +34,14 @@ sim_vector_data <-
     )
   )
 
+# Remove "layer" from attribute data
+raster_data$attribute_data <- raster_data$attribute_data[, -1, drop = FALSE]
+
 # Exports
 ## configuration files
 write_configuration_file(
   x = sim_raster_data,
-  dataset = vector_data,
+  dataset = raster_data,
   path = "inst/extdata/sim_raster_data.yaml",
   name = "Example GeoTIFF dataset",
   spatial_path = "inst/extdata/sim_raster_spatial.tif",
@@ -48,7 +51,7 @@ write_configuration_file(
 
 write_configuration_file(
   x = sim_vector_data,
-  dataset = raster_data,
+  dataset = vector_data,
   path = "inst/extdata/sim_vector_data.yaml",
   name = "Example GPKG dataset",
   spatial_path = "inst/extdata/sim_vector_spatial.shp",

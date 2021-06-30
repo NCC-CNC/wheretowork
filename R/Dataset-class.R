@@ -246,11 +246,74 @@ Dataset <- R6::R6Class(
     },
 
     #' @description
+    #' Get the bounding box.
+    #' @param native `logical` indicating if the bounding box should
+    #'   be in (`TRUE`) the native coordinate reference system or (`FALSE`)
+    #'   re-projected to longitude/latitude?
+    #' @param expand `FALSE` should the bounding box be expanded by 10%?
+    #' @return `list` object with `"xmin"`, `"xmax"`, `"ymin"`, and `"ymax"`
+    #'   elements.
+    get_bbox = function(native = TRUE, expand = FALSE) {
+      # assert arguments are valid
+      assertthat::assert_that(
+        assertthat::is.flag(native),
+        assertthat::noNA(native),
+        assertthat::is.flag(expand),
+        assertthat::noNA(expand))
+      # get extent
+      self$import()
+      # generate extent object
+      if (native) {
+        # if native then extract extent
+        ext <- raster::extent(self$get_spatial_data())
+      } else {
+        # if not native, then reproject data and extract extent
+        ext <- methods::as(raster::extent(
+          self$get_spatial_data()), "SpatialPolygons")
+        ## prepare bounding box
+        ext <- sf::st_set_crs(sf::st_as_sf(ext), dataset$get_crs())
+        ## convert to WGS1984
+        ext <- raster::extent(sf::st_transform(ext, 4326))
+      }
+      # expand bounding box if needed
+      if (expand) {
+        out <- list()
+        out$xmin <- unname(ext@xmin - (0.1 * (ext@xmax - ext@xmin)))
+        out$xmax <- unname(ext@xmax + (0.1 * (ext@xmax - ext@xmin)))
+        out$ymin <- unname(ext@ymin - (0.1 * (ext@ymax - ext@ymin)))
+        out$ymax <- unname(ext@ymax + (0.1 * (ext@ymax - ext@ymin)))
+      } else {
+        out <- list(
+          xmin = unname(ext@xmin),
+          xmax = unname(ext@xmax),
+          ymin = unname(ext@ymin),
+          ymax = unname(ext@ymax))
+      }
+      # if using lon/lat CRS, then ensure valid extent
+      if (!native) {
+        out$xmin <- max(out$xmin, -180)
+        out$xmax <- min(out$xmax, 180)
+        out$ymin <- max(out$ymin, -90)
+        out$ymax <- min(out$ymax, 90)
+      }
+      # return result
+      out
+    },
+
+    #' @description
     #' Get planning unit indices.
     #' @return `integer` vector of indices.
     get_planning_unit_indices = function() {
       self$import()
       self$attribute_data[["_index"]]
+    },
+
+    #' @description
+    #' Get attribute names.
+    #' @return `character` vector of field/layer names.
+    get_names = function() {
+      self$import()
+      names(self$attribute_data)[-ncol(self$attribute_data)]
     },
 
     #' @description
@@ -275,24 +338,33 @@ Dataset <- R6::R6Class(
     #' @return [sf::st_as_sf()] or [raster::raster()] object.
     get_index = function(index) {
       assertthat::assert_that(
-        assertthat::is.string(index) || assertthat::is.count(index),
+        is.character(index) || is.numeric(index),
         assertthat::noNA(index),
-        self$has_index(index))
+        all(self$has_index(index)))
       self$import()
       idx <- self$attribute_data[["_index"]]
       if (inherits(self$spatial_data, "Raster")) {
-        out <- raster::setValues(self$spatial_data, NA_real_)
-        out[idx] <- self$attribute_data[[index]]
+        blank <- raster::setValues(self$spatial_data, NA_real_)
+        out <- lapply(index, function(x) {
+          r <- blank
+          r[idx] <- self$attribute_data[[x]]
+          r
+        })
+        if (length(index) == 1) {
+          out <- out[[1]]
+        } else {
+          out <- raster::stack(out)
+        }
       } else {
-        out <- sf::st_as_sf(tibble::tibble(
-            x = self$attribute_data[[index]],
-            geometry = sf::st_geometry(self$spatial_data)[idx]))
+        out <- tibble::as_tibble(self$attribute_data[, index, drop = FALSE])
+        out$geometry <- sf::st_geometry(self$spatial_data)[idx]
+        out <- sf::st_as_sf(out, sf_column_name = "geometry")
         attr(out, "agr") <- NULL
       }
       if (is.character(index)) {
-        names(out)[[1]] <- index
+        names(out)[seq_along(index)] <- index
       } else {
-        names(out)[[1]] <- paste0("V", index)
+        names(out)[seq_along(index)] <- paste0("V", index)
       }
       out
     },
@@ -304,7 +376,7 @@ Dataset <- R6::R6Class(
     #' @return `logical` indicating if data is present or not.
     has_index = function(index) {
       assertthat::assert_that(
-        assertthat::is.string(index) || assertthat::is.count(index),
+        is.character(index) || is.numeric(index),
         assertthat::noNA(index))
       self$import()
       if (is.numeric(index)) {

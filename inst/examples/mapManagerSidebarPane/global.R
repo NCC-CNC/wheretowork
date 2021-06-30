@@ -22,6 +22,7 @@ f3 <- system.file(
 
 # create dataset
 d <- new_dataset(f1, f2, f3)
+bbox <- d$get_bbox()
 
 # simulate themes, weights, and a solution
 sim_themes <- simulate_themes(d, 2, 1, 1)

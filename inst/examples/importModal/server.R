@@ -3,14 +3,7 @@ function(input, output, session) {
   ## import data modal
   shiny::showModal(importModal(id = "importModal"))
   ## leaflet map
-  output$map <- renderLeaflet({
-    leaflet::leaflet() %>%
-    add_leaflet_map_components() %>%
-    addSidebar(
-      id = "sidebar",
-      options = list(position = "left", fit = FALSE)
-    )
-  })
+  output$map <- renderLeaflet(leaflet_map())
 
   # file upload handlers
   ## parameter
@@ -25,6 +18,7 @@ function(input, output, session) {
     req(input$importModal_spatial_file)
     spatial_path <<-
       prepare_fileInput_files(input$importModal_spatial_file)
+      spatial_path <<- spatial_path[endsWith(spatial_path, ".shp")]
   })
 
   ## attribute
@@ -76,17 +70,30 @@ function(input, output, session) {
     weights <<- x$weights
     includes <<- x$includes
     mode <<- x$mode
+    bbox <<- dataset$get_bbox(native = FALSE, expand = TRUE)
     ## store widget variables
     mm <<- new_map_manager(append(themes, append(weights, includes)))
     ## update map manager
     output$mapManagerPane_settings <- renderMapManager(mapManager(mm))
     ## update leaflet map
-    mm$get_initial_map(dataset, leaflet::leafletProxy("map"))
+    map <- leaflet::leafletProxy("map")
+    leaflet::flyToBounds(map, bbox$xmin, bbox$ymin, bbox$xmax, bbox$ymax)
+    leaflet::fitBounds(map, bbox$xmin, bbox$ymin, bbox$xmax, bbox$ymax)
+    leaflet.extras2::addSidebar(
+      map, id = "sidebar",
+      options = list(position = "left", fit = FALSE))
+    mm$initialize_map(map)
+    ## update export field names
+    shiny::updateSelectizeInput(
+      session = session,
+      inputId = "exportPane_fields",
+      choices = setNames(mm$get_layer_indices(), mm$get_layer_names()))
     ## remove modal
     shiny::removeModal(session)
   })
 
   # update map
+  ## map manager
   observeEvent(input$mapManagerPane_settings, {
     mm$set_setting(input$mapManagerPane_settings)
     if (identical(input$mapManagerPane_settings$setting, "remove")) {
@@ -95,11 +102,24 @@ function(input, output, session) {
     }
     mm$update_map(leaflet::leafletProxy("map"))
   })
-
-  # export data
-  observeEvent(input$exportPane_export_button, {
-    # TODO
+  ## home button
+  observeEvent(input$home_button, {
+    leaflet::flyToBounds(
+      leaflet::leafletProxy("map"),
+      bbox$xmin, bbox$ymin, bbox$xmax, bbox$ymax)
   })
 
-
+  # export data
+  output$exportPane_button <- shiny::downloadHandler(
+    filename = function() {
+      paste0("prioritization-", Sys.Date(), ".zip")
+    },
+    content = function(con) {
+      ## extract spatial data
+      d <- dataset$get_index(input$exportPane_fields)
+      ## save data
+      write_spatial_data(x = d, path = con, name = "data")
+    },
+    contentType = "application/zip"
+  )
 }

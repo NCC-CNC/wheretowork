@@ -76,13 +76,13 @@ Collate:
     'SolutionSettings-class.R'
     'Statistic-class.R'
     'WeightResults-class.R'
-    'add_leaflet_map_components.R'
     'color_palette.R'
     'exportSidebarPane.R'
     'extract_data_matrix.R'
     'generate_solution.R'
     'importModal.R'
     'import_spatial_data.R'
+    'initial_leaflet_map.R'
     'mapManager-components.R'
     'mapManager.R'
     'solutionSettings.R'
@@ -110,6 +110,7 @@ Collate:
     'updateSolutionResults.R'
     'updateSolutionSettings.R'
     'write_configuration_file.R'
+    'write_spatial_data.R'
 Remotes:
     NCC-CNC/leaflet@pane-extra
     dirkschumacher/rcbc

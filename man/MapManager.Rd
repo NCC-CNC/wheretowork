@@ -48,13 +48,15 @@ appear beneath every other layer.}
 \item \href{#method-repr}{\code{MapManager$repr()}}
 \item \href{#method-get_order}{\code{MapManager$get_order()}}
 \item \href{#method-get_layer}{\code{MapManager$get_layer()}}
+\item \href{#method-get_layer_names}{\code{MapManager$get_layer_names()}}
+\item \href{#method-get_layer_indices}{\code{MapManager$get_layer_indices()}}
 \item \href{#method-get_setting}{\code{MapManager$get_setting()}}
 \item \href{#method-set_order}{\code{MapManager$set_order()}}
 \item \href{#method-set_setting}{\code{MapManager$set_setting()}}
 \item \href{#method-add_layer}{\code{MapManager$add_layer()}}
 \item \href{#method-drop_layer}{\code{MapManager$drop_layer()}}
 \item \href{#method-get_widget_data}{\code{MapManager$get_widget_data()}}
-\item \href{#method-get_initial_map}{\code{MapManager$get_initial_map()}}
+\item \href{#method-initialize_map}{\code{MapManager$initialize_map()}}
 \item \href{#method-update_map}{\code{MapManager$update_map()}}
 \item \href{#method-clone}{\code{MapManager$clone()}}
 }
@@ -71,7 +73,8 @@ Create a MapManager object.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{layers}}{\code{list} of \link{Theme}, \link{Weight}, \link{Solution} objects.}
+\item{\code{layers}}{\code{list} of \link{Include}, \link{Weight}, \link{Theme}, or \link{Solution}
+objects.}
 
 \item{\code{order}}{\code{numeric} vector.}
 }
@@ -139,6 +142,32 @@ Get a layer.
 }
 \subsection{Returns}{
 \link{Theme} object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_layer_names"></a>}}
+\if{latex}{\out{\hypertarget{method-get_layer_names}{}}}
+\subsection{Method \code{get_layer_names()}}{
+Get layer names.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MapManager$get_layer_names()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} vector.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_layer_indices"></a>}}
+\if{latex}{\out{\hypertarget{method-get_layer_indices}{}}}
+\subsection{Method \code{get_layer_indices()}}{
+Get layer index values.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MapManager$get_layer_indices()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} vector.
 }
 }
 \if{html}{\out{<hr>}}
@@ -240,19 +269,17 @@ Get data for displaying the theme in a \code{\link[=mapManager]{mapManager()}} w
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_initial_map"></a>}}
-\if{latex}{\out{\hypertarget{method-get_initial_map}{}}}
-\subsection{Method \code{get_initial_map()}}{
-Get initial map.
+\if{html}{\out{<a id="method-initialize_map"></a>}}
+\if{latex}{\out{\hypertarget{method-initialize_map}{}}}
+\subsection{Method \code{initialize_map()}}{
+Initial map by adding data to it.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{MapManager$get_initial_map(dataset, map)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{MapManager$initialize_map(map)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{dataset}}{\code{Dataset} object.}
-
 \item{\code{map}}{\link[leaflet:leafletProxy]{leaflet::leafletProxy} object.}
 }
 \if{html}{\out{</div>}}

@@ -13,8 +13,7 @@ Variable <- R6::R6Class(
     #' @field dataset `Dataset` object.
     dataset = NULL,
 
-    #' @field index `character` or `integer` value indicating the
-    #'  field/layer for extracting data.
+    #' @field index `character` value.
     index = NULL,
 
     #' @field total `numeric` value.
@@ -54,10 +53,15 @@ Variable <- R6::R6Class(
           c("ContinuousLegend", "CategoricalLegend", "ManualLegend")))
       ### set fields
       self$dataset <- dataset
-      self$index <- index
       self$total <- total
       self$units <- units
       self$legend <- legend
+      assertthat::assert_that(dataset$has_index(index))
+      if (is.numeric(index)) {
+        self$index <- dataset$get_names()[[index]]
+      } else {
+        self$index <- index
+      }
     },
 
     #' @description

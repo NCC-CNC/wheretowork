@@ -5,9 +5,11 @@ NULL
 #'
 #' Constructs a sidebar pane for exporting data.
 #'
-#' @inheritParams importSidebarPane
+#' @inheritParams solutionResultsSidebarPane
 #'
-#' @inherit importSidebarPane details return examples
+#' @inherit importModal examples
+#'
+#' @inherit solutionResultsSidebarPane details return
 #'
 #' @export
 exportSidebarPane <- function(id) {
@@ -22,19 +24,22 @@ exportSidebarPane <- function(id) {
     id = id,
     icon = NULL,
 
+    ## help text
+    shiny::p("Select data to save to your computer."),
+
     ## select columns
-    shiny::selectInput(
+    shiny::selectizeInput(
       inputId = paste0(id, "_fields"),
-      label = "Select data to save",
+      label = "Select data",
       choices = c(),
-      multiple = TRUE
+      multiple = TRUE,
+      width = "100%"
     ),
 
     ## upload button
-    shinyBS::bsButton(
-      inputId = paste0(id, "_export_button"),
+    shiny::downloadButton(
+      outputId = paste0(id, "_button"),
       label = "Save",
-      style = "primary",
       icon = shiny::icon("download")
     )
   )

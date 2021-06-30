@@ -6,6 +6,26 @@
 \usage{
 exportSidebarPane(id)
 }
+\arguments{
+\item{id}{\code{character} identifier for the sidebar pane.}
+}
+\value{
+A \code{shiny.tag} object with the sidebar pane.
+}
 \description{
 Constructs a sidebar pane for exporting data.
+}
+\details{
+This is designed to be used as an argument to
+\link[leaflet.extras2:sidebar_tabs]{leaflet.extras2::sidebar_tabs} when specifying
+the user interface for a Shiny web application.
+}
+\examples{
+\dontrun{
+# run Shiny app to demo the sidebar pane
+if (interactive()) {
+  runExample("importModal")
+}
+}
+
 }
