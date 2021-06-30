@@ -82,6 +82,7 @@ Collate:
     'extract_data_matrix.R'
     'generate_solution.R'
     'importModal.R'
+    'importSettings.R'
     'import_spatial_data.R'
     'initial_leaflet_map.R'
     'mapManager-components.R'
