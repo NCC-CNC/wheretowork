@@ -123,6 +123,7 @@ ss_slider_component_scaffold <- function(type, bar = NULL) {
       is.character(bar),
       assertthat::noNA(bar))
   }
+
   # initialize slider
   out <- htmltools::tags$div(
     class = "slider",
