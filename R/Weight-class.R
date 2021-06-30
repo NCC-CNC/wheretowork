@@ -142,6 +142,20 @@ Weight <- R6::R6Class(
     },
 
     #' @description
+    #' Get layer names.
+    #' @return `character` vector.
+    get_layer_name = function() {
+      self$name
+    },
+
+    #' @description
+    #' Get layer index values.
+    #' @return `character` vector.
+    get_layer_index = function() {
+      self$variable$index
+    },
+
+    #' @description
     #' Get visible.
     #' @return `logical` value.
     get_visible = function() {

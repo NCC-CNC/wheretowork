@@ -22,14 +22,15 @@ MapManager <- R6::R6Class(
 
     #' @description
     #' Create a MapManager object.
-    #' @param layers `list` of [Theme], [Weight], [Solution] objects.
+    #' @param layers `list` of [Include], [Weight], [Theme], or [Solution]
+    #'  objects.
     #' @param order `numeric` vector.
     #' @return A new MapManager object.
     initialize = function(layers, order) {
       assertthat::assert_that(
         is.list(layers),
         all_list_elements_inherit(
-          layers, c("Theme", "Weight", "Solution", "Include")),
+          layers, c("Include", "Weight", "Theme", "Solution")),
         length(order) == length(layers),
         is.numeric(order),
         setequal(order, seq_along(layers))
@@ -82,6 +83,24 @@ MapManager <- R6::R6Class(
         value %in% self$ids,
         msg = paste0("no layer with the id `", value,"`"))
       self$layers[[which(self$ids == value)]]
+    },
+
+    #' @description
+    #' Get layer names.
+    #' @return `character` vector.
+    get_layer_names = function() {
+      unlist(
+        lapply(self$layers, function(x) x$get_layer_name()),
+        recursive = TRUE, use.names = FALSE)
+    },
+
+    #' @description
+    #' Get layer index values.
+    #' @return `character` vector.
+    get_layer_indices = function() {
+      unlist(
+        lapply(self$layers, function(x) x$get_layer_index()),
+        recursive = TRUE, use.names = FALSE)
     },
 
     #' @description
@@ -222,69 +241,9 @@ MapManager <- R6::R6Class(
     },
 
     #' @description
-    #' Get initial map.
-    #' @param dataset `Dataset` object.
-    #' @return [leaflet::leaflet()] object.
-    get_initial_map = function(dataset) {
-      # get spatial extent for dataset
-      ## extract extent
-      ext <- methods::as(raster::extent(
-        dataset$get_spatial_data()), "SpatialPolygons")
-      ## prepare bounding box
-      ext <- sf::st_set_crs(sf::st_as_sf(ext), dataset$get_crs())
-      ## convert to WGS1984
-      ext <- raster::extent(sf::st_transform(ext, 4326))
-      ## create bounding box by expanding viewport by 10%
-      bb <- list()
-      bb$xmin <- unname(ext@xmin - (0.1 * (ext@xmax - ext@xmin)))
-      bb$xmax <- unname(ext@xmax + (0.1 * (ext@xmax - ext@xmin)))
-      bb$ymin <- unname(ext@ymin - (0.1 * (ext@ymax - ext@ymin)))
-      bb$ymax <- unname(ext@ymax + (0.1 * (ext@ymax - ext@ymin)))
-      bb$xmin <- max(bb$xmin, -180)
-      bb$xmax <- min(bb$xmax, 180)
-      bb$ymin <- max(bb$ymin, -90)
-      bb$ymax <- min(bb$ymax, 90)
-      # prepare JS code for button
-      fly_to_sites_js <- paste0(
-        "function(btn, map){ map.flyToBounds([",
-        "[", bb$ymin, ", ", bb$xmin, "],",
-        "[", bb$ymax, ", ", bb$xmax, "]]);}")
-      zoom_in_js <- paste0(
-        "function(btn, map){",
-        "map.setZoom(Math.min(map.getZoom() + 1, map.getMaxZoom()));",
-        "}")
-      zoom_out_js <- paste0(
-        "function(btn, map){",
-        "map.setZoom(Math.max(map.getZoom() - 1, map.getMinZoom()));",
-        "}")
-      # initialize map
-      map <-
-        leaflet::leaflet() %>%
-        leaflet::addProviderTiles(
-          leaflet::providers$Esri.WorldImagery) %>%
-        leaflet::flyToBounds(
-          bb$xmin, bb$ymin, bb$xmax, bb$ymax) %>%
-        leaflet::addEasyButton(
-          leaflet::easyButton(
-            icon = shiny::icon("plus"),
-            title = "Zoom in",
-            position = "topright",
-            onClick = htmlwidgets::JS(zoom_in_js))) %>%
-        leaflet::addEasyButton(
-          leaflet::easyButton(
-            icon = shiny::icon("minus"),
-            title = "Zoom out",
-            position = "topright",
-            onClick = htmlwidgets::JS(zoom_out_js))) %>%
-        leaflet::addEasyButton(
-          leaflet::easyButton(
-            icon = shiny::icon("home"),
-            title = "Zoom to data",
-            position = "topright",
-            onClick = htmlwidgets::JS(fly_to_sites_js))) %>%
-        leaflet::addScaleBar(
-          position = "bottomright") %>%
-        leaflet::addMiniMap(position = "bottomright")
+    #' Initial map by adding data to it.
+    #' @param map [leaflet::leafletProxy] object.
+    initialize_map = function(map) {
       # compute zIndex values for layers
       zv <- self$order * 100
       # add layers
@@ -292,7 +251,7 @@ MapManager <- R6::R6Class(
         map <- self$layers[[i]]$render_on_map(map, zindex = zv[i])
       }
       # return result
-      map
+       invisible(map)
     },
 
     #' @description

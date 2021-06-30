@@ -19,8 +19,11 @@ A \code{shiny.tag} object with the sidebar pane.
 }
 \description{
 Constructs a sidebar pane for managing the layers on a
-\code{\link[leaflet:map-shiny]{leaflet::leafletOutput()}} map. This is designed to
-be used as an argument to \link[leaflet.extras2:sidebar_tabs]{leaflet.extras2::sidebar_tabs} when specifying
+\code{\link[leaflet:map-shiny]{leaflet::leafletOutput()}} map.
+}
+\details{
+This is designed to be used as an argument to
+\link[leaflet.extras2:sidebar_tabs]{leaflet.extras2::sidebar_tabs} when specifying
 the user interface for a Shiny web application.
 }
 \examples{

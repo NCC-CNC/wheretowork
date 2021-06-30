@@ -41,6 +41,8 @@ Definition for the Include class.
 \item \href{#method-new}{\code{Include$new()}}
 \item \href{#method-print}{\code{Include$print()}}
 \item \href{#method-repr}{\code{Include$repr()}}
+\item \href{#method-get_layer_name}{\code{Include$get_layer_name()}}
+\item \href{#method-get_layer_index}{\code{Include$get_layer_index()}}
 \item \href{#method-get_visible}{\code{Include$get_visible()}}
 \item \href{#method-get_status}{\code{Include$get_status()}}
 \item \href{#method-get_data}{\code{Include$get_data()}}
@@ -125,6 +127,32 @@ Defaults to \code{"]"}.}
 }
 \subsection{Returns}{
 \code{character} value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_layer_name"></a>}}
+\if{latex}{\out{\hypertarget{method-get_layer_name}{}}}
+\subsection{Method \code{get_layer_name()}}{
+Get layer names.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Include$get_layer_name()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} vector.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_layer_index"></a>}}
+\if{latex}{\out{\hypertarget{method-get_layer_index}{}}}
+\subsection{Method \code{get_layer_index()}}{
+Get layer index values.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Include$get_layer_index()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} vector.
 }
 }
 \if{html}{\out{<hr>}}

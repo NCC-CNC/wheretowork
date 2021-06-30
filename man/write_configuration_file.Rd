@@ -6,6 +6,7 @@
 \usage{
 write_configuration_file(
   x,
+  dataset,
   path,
   name,
   spatial_path,
@@ -15,7 +16,9 @@ write_configuration_file(
 )
 }
 \arguments{
-\item{x}{\code{list} of \link{Theme} and \link{Weight} objects.}
+\item{x}{\code{list} of \link{Theme}, \link{Weight}, and \link{Include} objects.}
+
+\item{dataset}{\link{Dataset} object.}
 
 \item{path}{\code{character} file path to save the configuration file.}
 
@@ -36,7 +39,7 @@ Invisible \code{TRUE} indicating success.
 \description{
 Save a configuration file to disk.
 The configuration file will contain all the data and settings related
-to a set of \link{Theme} and \link{Weight} objects.
+to a set of \link{Theme}, \link{Weight}, and \link{Include} objects.
 }
 \examples{
 # find data file paths
@@ -59,9 +62,9 @@ l <- append(th, w)
 
 # save configuration file to temporary location
 write_configuration_file(
-  l,
-  path = tempfile(),
   name = "example",
+  dataset = d,
+  path = tempfile(),
   spatial_path = tempfile(fileext = ".tif"),
   attribute_path = tempfile(fileext = ".csv.gz"),
   boundary_path = tempfile(fileext = ".csv.gz"))

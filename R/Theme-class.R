@@ -71,6 +71,21 @@ Theme <- R6::R6Class(
     },
 
     #' @description
+    #' Get layer names.
+    #' @return `character` vector.
+    get_layer_name = function() {
+      vapply(self$feature, FUN.VALUE = character(1), function(x) x$name)
+    },
+
+    #' @description
+    #' Get layer index values.
+    #' @return `character` vector.
+    get_layer_index = function() {
+      vapply(
+        self$feature, FUN.VALUE = character(1), function(x) x$variable$index)
+    },
+
+    #' @description
     #' Get feature identifiers.
     #' @return `character` vector with identifier(s).
     get_feature_id = function() {

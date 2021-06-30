@@ -45,6 +45,12 @@ test_that("initialization", {
   expect_equal(x$layers, list(t1, t2, w))
   expect_identical(x$ids, c("T1", "T2", "W1"))
   expect_identical(x$order, c(2, 1, 3))
+  expect_equal(
+    x$get_layer_names(),
+    c("Possum", "Forests", "Shrubs", "Human Footprint Index"))
+  expect_equal(
+    x$get_layer_indices(),
+    names(rd)[c(2, 3, 4, 1)])
 })
 
 test_that("get methods", {

@@ -19,8 +19,10 @@ A \code{shiny.tag} object with the sidebar pane.
 }
 \description{
 Constructs a sidebar pane for displaying solution results.
-This is designed to
-be used as an argument to \link[leaflet.extras2:sidebar_tabs]{leaflet.extras2::sidebar_tabs} when specifying
+}
+\details{
+This is designed to be used as an argument to
+\link[leaflet.extras2:sidebar_tabs]{leaflet.extras2::sidebar_tabs} when specifying
 the user interface for a Shiny web application.
 }
 \examples{

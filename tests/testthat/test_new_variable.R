@@ -12,7 +12,7 @@ test_that("initialization", {
   expect_is(x, "Variable")
   expect_is(x$repr(), "character")
   expect_identical(x$dataset, d)
-  expect_identical(x$index, 2)
+  expect_identical(x$index, names(rd)[[2]])
   expect_identical(x$total, 12)
   expect_identical(x$units, "ha")
   expect_identical(x$legend, l)
@@ -46,7 +46,7 @@ test_that("export method", {
   expect_identical(
     x$export(),
     list(
-      index = 2,
+      index = names(rd)[[2]],
       units = "ha",
       legend = l$export()
     )
@@ -64,7 +64,7 @@ test_that("new_variable_from_auto (continuous)", {
   expect_is(x, "Variable")
   expect_is(x$repr(), "character")
   expect_identical(x$dataset, d)
-  expect_identical(x$index, 2)
+  expect_identical(x$index, names(rd)[[2]])
   expect_identical(x$total, raster::cellStats(rd[[2]], "sum"))
   expect_identical(x$units, "ha")
   expect_equal(
@@ -105,13 +105,13 @@ test_that("new_variable_from_metadata (continuous)", {
     dataset = d,
     metadata =
       list(
-        index = 2, type = "continuous", units = "ha", colors = "viridis",
+        index = 1, type = "continuous", units = "ha", colors = "viridis",
         min_value = 1, max_value = 5, total = 11))
   # run tests
   expect_is(x, "Variable")
   expect_is(x$repr(), "character")
   expect_identical(x$dataset, d)
-  expect_identical(x$index, 2)
+  expect_identical(x$index, names(rd)[[1]])
   expect_identical(x$total, 11)
   expect_identical(x$units, "ha")
   expect_equal(
@@ -135,7 +135,7 @@ test_that("new_variable_from_metadata (categorical)", {
   expect_is(x, "Variable")
   expect_is(x$repr(), "character")
   expect_identical(x$dataset, d)
-  expect_identical(x$index, 1)
+  expect_identical(x$index, names(rd)[[1]])
   expect_identical(x$total, 11)
   expect_identical(x$units, "ha")
   expect_equal(

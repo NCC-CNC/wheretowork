@@ -19,8 +19,7 @@ Definition for the Variable class.
 \describe{
 \item{\code{dataset}}{\code{Dataset} object.}
 
-\item{\code{index}}{\code{character} or \code{integer} value indicating the
-field/layer for extracting data.}
+\item{\code{index}}{\code{character} value.}
 
 \item{\code{total}}{\code{numeric} value.}
 

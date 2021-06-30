@@ -18,8 +18,11 @@ Defaults to \code{paste0(id, "_settings")}.}
 A \code{shiny.tag} object with the sidebar pane.
 }
 \description{
-Constructs a sidebar pane for generating new solutions. This is designed to
-be used as an argument to \link[leaflet.extras2:sidebar_tabs]{leaflet.extras2::sidebar_tabs} when specifying
+Constructs a sidebar pane for generating new solutions.
+}
+\details{
+This is designed to be used as an argument to
+\link[leaflet.extras2:sidebar_tabs]{leaflet.extras2::sidebar_tabs} when specifying
 the user interface for a Shiny web application.
 }
 \examples{
