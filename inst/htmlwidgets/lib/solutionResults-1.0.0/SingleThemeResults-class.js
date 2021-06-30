@@ -41,10 +41,6 @@ class SingleThemeResults {
     }]);
 
     chart.render(chartContainer);
-
-    const l = document.createElement('label');
-    l.innerText = name;
-    chartContainer.appendChild(l);
   }
 
   /* render method */

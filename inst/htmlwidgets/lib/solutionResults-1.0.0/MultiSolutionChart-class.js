@@ -132,18 +132,18 @@ class MultiSolutionChart {
           for (const datum of d) {
             const locale = self.locale[datum[0]];
             tooltip.
-                append('div')
-                .text(
-                  locale === 'Goal'
-                    ? (
-                      datum[5]
-                       ? `${locale}: ${Math.round(datum[1] * 100)}% (${Math.round(datum[1] * datum[4])} ${datum[6]})`
-                       : `${locale}: 0% (0 ${datum[6]})`
-                    )
-                    : `${locale}: ${Math.round(datum[1] * 100)}% (${Math.round(datum[1] * datum[4])} ${datum[6]})` 
+              append('div')
+              .text(
+                locale === 'Goal'
+                ? (
+                  datum[5]
+                  ? `${locale}: ${Math.round(datum[1] * 100)}% (${Math.round(datum[1] * datum[4])} ${datum[6]})`
+                  : `${locale}: 0% (0 ${datum[6]})`
                 )
-                .style('color', datum[2])
-                .style('font-weight', datum[0] === type ? 'bold' : 'normal')
+                : `${locale}: ${Math.round(datum[1] * 100)}% (${Math.round(datum[1] * datum[4])} ${datum[6]})` 
+              )
+              .style('color', datum[2])
+              .style('font-weight', datum[0] === type ? 'bold' : 'normal')
           }
         })
         .on('mouseout', function() {
@@ -168,13 +168,62 @@ class MultiSolutionChart {
     }
   }
 
+  renderTitle(el, tooltip) {
+    const self = this;
+    d3.select(el)
+      .append('label')
+      .style('cursor', 'pointer')
+      .on('mouseover', function(e) {
+        tooltip
+          .style('display', 'inline')
+          .style('top', `${e.clientY + 5}px`)
+          .style('left', `${e.clientX + 5}px`)
+        const parsedData = {
+          feature_current_held: [],
+          feature_goal: [],
+          feature_solution_held: [],
+          feature_total_amount: [],
+        };
+        for (const datum of self.data) {
+          for (const key in parsedData) {
+            parsedData[key].push(datum[key]);
+          }
+        }
+        const attrs = ['feature_current_held', 'feature_goal', 'feature_solution_held'];
+        for (let i = attrs.length; i > 0; --i) {
+          const attr = attrs[attrs.length - i];
+          tooltip
+            .append('div')
+            .text(() => `
+              ${self.locale[attr]}: ≥ ${Math.round(Math.min(...parsedData[attr]) * 100)}%
+              (≥${self.minMultArray(parsedData[attr], parsedData.feature_total_amount)} ha)`)
+            .style('color', self.colors[attr]);
+        }
+      })
+      .on('mouseout', function() {
+        d3
+          .select(this)
+          .attr('stroke', null);
+        tooltip
+          .style('display', 'none')
+          .style('top', `${0}px`)
+          .style('left', `${0}px`)
+        tooltip
+          .selectAll('div')
+          .remove();
+      })
+      .node()
+      .innerHTML = this.data[0].name;
+  }
+
   renderAllArcs(svg, tooltip) {
     this.renderArcs(svg, tooltip);
   }
 
   render(el) {
-    const svg = this.renderSvg(el);
     const tooltip = this.renderTooltip(el)
+    this.renderTitle(el, tooltip);
+    const svg = this.renderSvg(el, tooltip);
     this.renderAllArcs(svg, tooltip);
   }
 
