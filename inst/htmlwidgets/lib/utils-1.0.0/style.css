@@ -1,0 +1,4 @@
+/* style all tooltips */
+.tooltip {
+  z-index: 99999 !important;
+}

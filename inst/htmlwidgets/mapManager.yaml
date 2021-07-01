@@ -1,5 +1,13 @@
 dependencies:
 
+  - name: utils
+    version: 1.0.0
+    src: htmlwidgets/lib/utils-1.0.0
+    script:
+      - utils.js
+    stylesheet:
+      - style.css
+
   - name: legends
     version: 1.0.0
     src: htmlwidgets/lib/legends-1.0.0

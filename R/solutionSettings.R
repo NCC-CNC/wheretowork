@@ -165,7 +165,7 @@ solutionSettings_html <- function(id, style, class, ...) {
             `data-toggle` = "tooltip",
             `data-placement` = "top",
             `data-delay` = "{\"show\":500, \"hide\":100}",
-            `data-container` = ".sidebar",
+            `data-container` = "body",
             title = "Generate a solution using the settings",
             shinyBS::bsButton(
               inputId = paste0(id, "_button"),
