@@ -27,6 +27,16 @@ HTMLWidgets.widget({
             opts.themes, opts.weights, opts.includes, opts.parameters);
           // render HTML elements
           handle.render();
+          // make the button disabled when the text box is empty
+          const button_el = document.getElementById(elementId + "_button");
+          const name_el = document.getElementById(elementId + "_name");
+          name_el.addEventListener("input", function() {
+            if (name_el.value.length === 0) {
+              button_el.setAttribute("disabled", "");
+            } else {
+              button_el.removeAttribute("disabled");
+            }
+          });
         }
       },
 

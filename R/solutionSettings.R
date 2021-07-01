@@ -166,13 +166,14 @@ solutionSettings_html <- function(id, style, class, ...) {
             `data-placement` = "top",
             `data-delay` = "{\"show\":500, \"hide\":100}",
             `data-container` = ".sidebar",
-            title = "Generate a solution using the themes and weights",
+            title = "Generate a solution using the settings",
             shinyBS::bsButton(
               inputId = paste0(id, "_button"),
               label = "Generate solution",
               icon = NULL,
               style = "primary",
-              type = "action"
+              type = "action",
+              disabled = TRUE
             )
           ),
         )
