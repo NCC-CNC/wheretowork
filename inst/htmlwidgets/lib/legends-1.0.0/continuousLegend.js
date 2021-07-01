@@ -58,7 +58,7 @@ function continuousLegend(el, x, units) {
   l.setAttribute("data-toggle", "tooltip");
   l.setAttribute("data-placement", "bottom");
   l.setAttribute("data-delay", "{\"show\":500, \"hide\":100}");
-  l.setAttribute("data-container", ".sidebar");
+  l.setAttribute("data-container", "body");
   l.setAttribute(
     "title",
     "This dataset has continuous data. " +
