@@ -28,6 +28,8 @@ leaflet_map <- function() {
   leaflet.extras2::addHistory(
     options = leaflet.extras2::historyOptions(position = "topleft")) %>%
   leaflet::addScaleBar(
-    position = "bottomright") %>%
-  leaflet::addMiniMap(position = "bottomright")
+    position = "bottomleft") %>%
+  leaflet::addMiniMap(
+    position = "bottomleft",
+    width = 174, height = 150)
 }

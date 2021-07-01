@@ -19,7 +19,7 @@ NULL
 #' \item{name}{`character` name of the field/layer.}
 #' \item{import}{`logical` value indicating if the field/layer should be used.}
 #' \item{type}{`character` value. Available options are
-#'  `"theme"`, `"weight"`, or `"locked in"`.}
+#'  `"theme"`, `"weight"`, or `"include"`.}
 #' }
 #'
 #' @rdname importSettings-widget
@@ -83,7 +83,7 @@ importSettingsOutput <- function(outputId, width = "100%", height = "auto"){
     outputId, "importSettings", width, height, package = "locationmisc")
 }
 
-#' @rdname solutionResults-shiny
+#' @rdname importSettings-shiny
 #' @export
 renderImportSettings <- function(expr, env = parent.frame(), quoted = FALSE) {
   if (!quoted) { expr <- substitute(expr) } # force quoted
@@ -131,7 +131,7 @@ importSettings_html <- function(id, style, class, ...) {
           htmltools::tags$select(
             htmltools::tags$option("theme"),
             htmltools::tags$option("weight"),
-            htmltools::tags$option("locked in")
+            htmltools::tags$option("include")
           )
         )
       )

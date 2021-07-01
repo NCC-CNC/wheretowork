@@ -64,6 +64,9 @@ demo-solutionResultsSidebarPane:
 demo-importModal:
 	R --slave -e "devtools::load_all();options(shiny.launch.browser=TRUE);locationmisc::runExample('importModal')"
 
+demo-importSettings:
+	R --slave -e "devtools::load_all();options(shiny.launch.browser=TRUE);locationmisc::runExample('importSettings')"
+
 demo-debug:
 	R --slave -e "devtools::load_all();options(shiny.launch.browser=TRUE);locationmisc::runExample('debug')"
 

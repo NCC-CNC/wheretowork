@@ -62,6 +62,7 @@ l <- append(th, w)
 
 # save configuration file to temporary location
 write_configuration_file(
+  x = l,
   name = "example",
   dataset = d,
   path = tempfile(),

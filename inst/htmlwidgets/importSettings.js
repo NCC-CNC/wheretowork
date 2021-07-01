@@ -98,7 +98,7 @@ if (HTMLWidgets.shinyMode) {
   var addShinyHandler = function(fxn) {
     return function() {
       Shiny.addCustomMessageHandler(
-        "importSetings:" + fxn, function(message) {
+        "importSettings:" + fxn, function(message) {
           var el = document.getElementById(message.id);
           if (el) {
             delete message["id"];

@@ -172,8 +172,7 @@ MapManager <- R6::R6Class(
         assertthat::has_name(value, "setting"),
         assertthat::is.string(value$setting))
       if (identical(value$setting, "remove")) {
-        # remove layer from map manager
-        self$drop_layer(value$id)
+        stop("$drop_layer() must be called directly.")
       } else if (is.null(value$id)) {
         # map manager settings
         if (identical(value$setting, "order")) {
@@ -195,36 +194,55 @@ MapManager <- R6::R6Class(
     #' @description
     #' Add a new layer.
     #' @param value `Layer` object.
-    add_layer = function(value) {
-      assertthat::assert_that(inherits(value, c("Weight", "Theme", "Solution")))
+    #' @param map [leaflet::leafletProxy()] object.
+    add_layer = function(value, map) {
+      # assert arguments are valid
+      assertthat::assert_that(
+        inherits(value, c("Weight", "Theme", "Solution")),
+        inherits(map, "leaflet_proxy"))
       assertthat::assert_that(
         !value$id %in% self$ids,
         msg = paste0(
           "cannot add new layer because the id `", value$id,
           "` already exists"))
-        self$layers[[length(self$layers) + 1]] <- value
-        self$ids <- c(self$ids, value$id)
-        self$order <- c(self$order, max(self$order) + 1)
-        invisible(self)
+      # add layer from object
+      self$layers[[length(self$layers) + 1]] <- value
+      self$ids <- c(self$ids, value$id)
+      self$order <- c(self$order, max(self$order) + 1)
+      # update map
+      self$layers[[length(self$layers)]]$render_on_map(
+        map, zindex = last(self$order) * 100)
+      # return invisible self
+      invisible(self)
     },
 
     #' @description
     #' Remove a layer.
     #' @param value `character` layer identifier.
-    drop_layer = function(value) {
+    #' @param map [leaflet::leafletProxy()] object.
+    drop_layer = function(value, map) {
+      # assert arguments are valid
       assertthat::assert_that(
         assertthat::is.string(value),
-        assertthat::noNA(value))
+        assertthat::noNA(value),
+        inherits(map, "leaflet_proxy"))
       assertthat::assert_that(
         value %in% self$ids,
         msg = paste0(
-          "cannot drop layer because the id `", id,
+          "cannot drop layer because the id `", value,
           "` doesn't exist"))
+      # drop layer from object
       idx <- which(self$ids != value)
       self$layers <- self$layers[idx]
       self$ids <- self$ids[idx]
       self$order <- self$order[idx]
       self$order <- rank(self$order)
+      # update map
+      ## since we can't actually delete panes,
+      ## we will move the pane below the map and remove its contents
+      leaflet::updateMapPane(map, paste0("pane-", value), -1, FALSE)
+      leaflet::clearGroup(map, value)
+      # return invisible self
       invisible(self)
     },
 

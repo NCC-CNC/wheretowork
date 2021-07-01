@@ -148,7 +148,7 @@ addMapManagerLayer <- function(
   assertthat::assert_that(
     assertthat::is.string(inputId),
     assertthat::noNA(inputId),
-    inherits(value, c("Theme", "Weight", "Solution")))
+    inherits(value, c("Theme", "Weight", "Solution", "Include")))
   # pass data to widget
   session$sendCustomMessage(
     "mapManager:addLayer",

@@ -32,7 +32,7 @@ containing:
 \item{name}{\code{character} name of the field/layer.}
 \item{import}{\code{logical} value indicating if the field/layer should be used.}
 \item{type}{\code{character} value. Available options are
-\code{"theme"}, \code{"weight"}, or \code{"locked in"}.}
+\code{"theme"}, \code{"weight"}, or \code{"include"}.}
 }
 }
 

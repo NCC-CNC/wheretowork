@@ -151,6 +151,7 @@ Variable <- R6::R6Class(
             maxBytes = 1 * 1024 * 1024, # 1MB max size
             method = self$legend$get_resample_method(),
             colors = self$legend$get_color_map(),
+            group = id,
             pane = pane_id)
         })
       } else if (inherits(d, "sf")) {
@@ -171,9 +172,14 @@ Variable <- R6::R6Class(
         col <- self$legend$get_color_map()(d[[1]])
         ### add geometry to map
         x <- f(
-          map = x, data = d,
-          stroke = FALSE, opacity = 0.8, fillOpacity = 0.8,
-          color = col, fillColor = col,
+          map = x,
+          data = d,
+          stroke = FALSE,
+          opacity = 0.8,
+          fillOpacity = 0.8,
+          color = col,
+          fillColor = col,
+          group = id,
           options = leaflet::pathOptions(pane = pane_id))
       }
       # return result

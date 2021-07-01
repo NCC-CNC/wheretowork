@@ -271,7 +271,7 @@ Dataset <- R6::R6Class(
         ext <- methods::as(raster::extent(
           self$get_spatial_data()), "SpatialPolygons")
         ## prepare bounding box
-        ext <- sf::st_set_crs(sf::st_as_sf(ext), dataset$get_crs())
+        ext <- sf::st_set_crs(sf::st_as_sf(ext), self$get_crs())
         ## convert to WGS1984
         ext <- raster::extent(sf::st_transform(ext, 4326))
       }

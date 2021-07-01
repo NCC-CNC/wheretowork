@@ -3,9 +3,12 @@
 \name{importSettings-shiny}
 \alias{importSettings-shiny}
 \alias{importSettingsOutput}
+\alias{renderImportSettings}
 \title{Shiny bindings for importSettings}
 \usage{
 importSettingsOutput(outputId, width = "100\%", height = "auto")
+
+renderImportSettings(expr, env = parent.frame(), quoted = FALSE)
 }
 \arguments{
 \item{outputId}{output variable to read from}

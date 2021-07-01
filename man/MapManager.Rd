@@ -227,13 +227,15 @@ Set a setting for the object.
 \subsection{Method \code{add_layer()}}{
 Add a new layer.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{MapManager$add_layer(value)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{MapManager$add_layer(value, map)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{value}}{\code{Layer} object.}
+
+\item{\code{map}}{\code{\link[leaflet:leafletProxy]{leaflet::leafletProxy()}} object.}
 }
 \if{html}{\out{</div>}}
 }
@@ -244,13 +246,15 @@ Add a new layer.
 \subsection{Method \code{drop_layer()}}{
 Remove a layer.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{MapManager$drop_layer(value)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{MapManager$drop_layer(value, map)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{value}}{\code{character} layer identifier.}
+
+\item{\code{map}}{\code{\link[leaflet:leafletProxy]{leaflet::leafletProxy()}} object.}
 }
 \if{html}{\out{</div>}}
 }

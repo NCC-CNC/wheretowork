@@ -31,7 +31,8 @@ Imports:
     R.utils (>= 2.10.1),
     rgdal (>= 1.5.23),
     data.table (>= 1.14.0),
-    rcbc (>= 0.1.0.9001)
+    rcbc (>= 0.1.0.9001),
+    withr (>= 2.4.2)
 Suggests:
     testthat (>= 2.0.1),
     knitr (>= 1.2.0),
@@ -84,18 +85,19 @@ Collate:
     'importModal.R'
     'importSettings.R'
     'import_spatial_data.R'
-    'initial_leaflet_map.R'
+    'is_valid_file.R'
+    'leaflet_map.R'
     'mapManager-components.R'
     'mapManager.R'
     'solutionSettings.R'
     'mapManagerSidebarPane.R'
     'newSolutionSidebarPane.R'
     'package.R'
+    'prepare_fileInput.R'
     'raster_io.R'
     'read_configuration_file.R'
     'read_spatial_data.R'
     'runExample.R'
-    'shiny_functions.R'
     'simulate_includes.R'
     'simulate_legends.R'
     'simulate_solution.R'
@@ -115,5 +117,5 @@ Collate:
     'write_configuration_file.R'
     'write_spatial_data.R'
 Remotes:
-    NCC-CNC/leaflet@pane-extra
+    NCC-CNC/leaflet@pane-extra,
     dirkschumacher/rcbc

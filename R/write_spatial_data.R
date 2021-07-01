@@ -45,7 +45,7 @@ write_spatial_data <- function(
     })
   }
   # add files to zip archive
-  withr::with_dir(td, zip(path, dir(td), flags = "-qq"))
+  withr::with_dir(td, utils::zip(path, dir(td), flags = "-qq"))
   # return success
   file.exists(path)
 }

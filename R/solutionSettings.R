@@ -156,7 +156,7 @@ solutionSettings_html <- function(id, style, class, ...) {
               NULL,
               value = "",
               width = "100%",
-              placeholder = "specify a name for new solution"
+              placeholder = "enter solution name"
             ),
           ),
 
