@@ -15,21 +15,31 @@ leaflet_map <- function() {
     "Shiny.setInputValue(\"home_button\", Math.random());",
     "}")
   # create map
-  leaflet::leaflet() %>%
-  leaflet::addProviderTiles(
-    leaflet::providers$Esri.WorldImagery) %>%
-  leaflet::flyToBounds(
-    -165, -30, 165, 60) %>%
-  leaflet::addEasyButton(
-    leaflet::easyButton(
-      icon = shiny::icon("home"),
-      position = "topleft",
-      onClick = htmlwidgets::JS(home_js))) %>%
-  leaflet.extras2::addHistory(
-    options = leaflet.extras2::historyOptions(position = "topleft")) %>%
-  leaflet::addScaleBar(
-    position = "bottomleft") %>%
-  leaflet::addMiniMap(
-    position = "bottomleft",
-    width = 174, height = 150)
+  map <-
+    leaflet::leaflet() %>%
+    leaflet::addProviderTiles(
+      leaflet::providers$Esri.WorldImagery) %>%
+    leaflet::flyToBounds(
+      -165, -30, 165, 60) %>%
+     leaflet::addEasyButton(
+      leaflet::easyButton(
+        icon = shiny::icon("home"),
+        position = "topleft",
+        onClick = htmlwidgets::JS(home_js)
+      )
+    ) %>%
+    leaflet.extras2::addHistory(
+      options = leaflet.extras2::historyOptions(position = "topleft")) %>%
+    leaflet::addScaleBar(
+      position = "bottomleft") %>%
+    leaflet::addMiniMap(
+      position = "bottomleft",
+      width = 174, height = 150)
+  # remove outdated font awesome dependency
+  idx <- vapply(
+    map$dependencies, FUN.VALUE = logical(1),
+    function(x) x$name == "fontawesome" && x$version == "4.7.0")
+  map$dependencies <- map$dependencies[which(!idx)]
+  # return result
+  map
 }
