@@ -2,3 +2,54 @@
 .tooltip {
   z-index: 99999 !important;
 }
+
+/* style sidebar panes */
+.sidebar-left .sidebar-header {
+  padding-left: 30px !important;
+}
+
+.sidebar-right .sidebar-header {
+  padding-left: 30px !important;
+}
+
+.sidebar-pane {
+  background: #FFFFFF;
+  height: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden !important;
+  padding-bottom: 3px !important;
+}
+
+.sidebar-left .sidebar-pane {
+  padding-right: 0px !important;
+}
+
+.sidebar-right .sidebar-pane {
+  padding-left: 0px !important;
+}
+
+/* style content */
+.sidebar-pane-content {
+  height: calc(100% - 35px);
+  padding-top: 3px !important;
+  margin-right: 3px !important;
+  margin-left: 3px !important;
+}
+
+.sidebar-pane-content .widget-container {
+  max-height: 100%;
+}
+
+.sidebar-right .sidebar-pane.active {
+  padding-right: 0px !important;
+}
+
+.sidebar-left .sidebar-pane.active {
+  padding-left: 0px !important;
+}
+
+.widget-container {
+  height: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}

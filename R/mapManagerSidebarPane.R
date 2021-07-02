@@ -43,31 +43,17 @@ mapManagerSidebarPane <- function(
       title = "Table of contents",
       id = id,
       icon = NULL,
-      ### container
-      htmltools::tags$div(
-        class = "map-manager-pane",
-
-        ### settings
         htmltools::tags$div(
-          class = "widget-container",
-          mapManagerOutput(mapManagerId, height = "100%")
-        )
-
+          class = "sidebar-pane-content",
+          htmltools::tags$div(
+            class = "map-manager-pane",
+            htmltools::tags$div(
+              class = "widget-container",
+              mapManagerOutput(mapManagerId, height = "100%")
+            )
+          )
       )
     )
-
-  ## add dependencies
-  d <-
-    htmltools::htmlDependency(
-      name = "mapManagerPane",
-      version = "1.0.0",
-      src =
-        system.file(
-          "htmlwidgets", "lib", "mapManagerPane-1.0.0",
-          package = "locationmisc"),
-      stylesheet = "style.css"
-    )
-  w <- htmltools::attachDependencies(w, d)
 
   # return result
   w

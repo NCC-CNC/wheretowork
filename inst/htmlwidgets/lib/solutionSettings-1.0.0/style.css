@@ -14,7 +14,6 @@
   flex: 1 1 auto;
   flex-direction: column;
   overflow-y: hidden;
-  padding-right: 20px;
 }
 
 .solution-settings {
@@ -37,22 +36,20 @@
 /* panels */
 .solution-settings .panel-body {
   padding: 0;
-  /*background: #f8f9fa; /* bg-light, aka $gray-100 */
   background: #e9ecef; /*  $gray-200 */
-
 }
 
 .solution-settings .panel.panel-default>.panel-heading {
   border-top-right-radius: 0px;
-  /*background: #dee2e6; /* $gray-300 */
   background: #ced4da; /* $gray-400 */
 }
 
 .solution-settings .panel-group {
-  margin-bottom: 2px !important;
   flex: 1 1 auto;
   flex-direction: column;
   overflow-y: hidden;
+  margin-bottom: 2px !important;
+  padding-right: 4px;
 }
 
 .solution-settings .panel.panel-default {
@@ -84,8 +81,6 @@
   width: 94%;
   border: 1px var(--border) solid;
   border-radius: 5px 5px 5px 5px;
-  /*border-bottom: 8px solid grey;
-  border-left: 8px solid grey;*/
   margin : 10px;
   padding-bottom: 4px;
   background: white;

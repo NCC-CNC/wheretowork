@@ -24,23 +24,28 @@ exportSidebarPane <- function(id) {
     id = id,
     icon = NULL,
 
-    ## help text
-    shiny::p("Select data to save to your computer."),
+    # sidebar pane content
+    htmltools::tags$div(
+      class = "sidebar-pane-content",
 
-    ## select columns
-    shiny::selectizeInput(
-      inputId = paste0(id, "_fields"),
-      label = "Select data",
-      choices = c(),
-      multiple = TRUE,
-      width = "100%"
-    ),
+      ## help text
+      shiny::p("Select data to save to your computer."),
 
-    ## upload button
-    shiny::downloadButton(
-      outputId = paste0(id, "_button"),
-      label = "Save",
-      icon = shiny::icon("download")
+      ## select columns
+      shiny::selectizeInput(
+        inputId = paste0(id, "_fields"),
+        label = "Select data",
+        choices = c(),
+        multiple = TRUE,
+        width = "100%"
+      ),
+
+      ## upload button
+      shiny::downloadButton(
+        outputId = paste0(id, "_button"),
+        label = "Save",
+        icon = shiny::icon("download")
+      )
     )
   )
 }

@@ -47,31 +47,17 @@ solutionResultsSidebarPane <- function(
       title = "Solution results",
       id = id,
       icon = NULL,
-      ### container
       htmltools::tags$div(
-        class = "solution-results-pane",
-
-        ### settings
+        class = "sidebar-pane-content",
         htmltools::tags$div(
-          class = "widget-container",
-          solutionResultsOutput(solutionResultsId, height = "100%")
+          class = "solution-results-pane",
+          htmltools::tags$div(
+            class = "widget-container",
+            solutionResultsOutput(solutionResultsId, height = "100%")
+          )
         )
-
       )
     )
-
-  ## add dependencies
-  d <-
-    htmltools::htmlDependency(
-      name = "solutionResultsPane",
-      version = "1.0.0",
-      src =
-        system.file(
-          "htmlwidgets", "lib", "solutionResultsPane-1.0.0",
-          package = "locationmisc"),
-      stylesheet = "style.css"
-    )
-  w <- htmltools::attachDependencies(w, d)
 
   # return result
   w
