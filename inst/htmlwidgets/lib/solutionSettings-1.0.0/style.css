@@ -76,6 +76,10 @@
   margin-bottom: 0px;
 }
 
+.solution-footer-button {
+  margin-right: 3px;
+}
+
 /* view containers */
 .solution-setting {
   width: 94%;

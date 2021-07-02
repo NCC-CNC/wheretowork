@@ -5,6 +5,10 @@
   overflow-x: hidden;
 }
 
+.map-manager-pane .widget-container {
+  overflow-y: scroll;
+}
+
 /* overall widget */
 .mapManager {
   padding-right: 3px;

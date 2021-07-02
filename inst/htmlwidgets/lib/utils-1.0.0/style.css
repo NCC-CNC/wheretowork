@@ -3,6 +3,11 @@
   z-index: 99999 !important;
 }
 
+/* style all icons in buttons */
+.action-button.btn-primary.shiny-bound-input i {
+  margin-right: 4px;
+}
+
 /* style sidebar panes */
 .sidebar-left .sidebar-header {
   padding-left: 30px !important;
