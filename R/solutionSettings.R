@@ -162,20 +162,15 @@ solutionSettings_html <- function(id, style, class, ...) {
 
           htmltools::tags$div(
             class = "solution-footer-button",
-            `data-toggle` = "tooltip",
-            `data-placement` = "top",
-            `data-delay` = "{\"show\":500, \"hide\":100}",
-            `data-container` = "body",
-            title = "Generate a solution using the settings",
             shinyBS::bsButton(
               inputId = paste0(id, "_button"),
               label = "Generate solution",
-              icon = NULL,
+              icon = shiny::icon("rocket"),
               style = "primary",
               type = "action",
               disabled = TRUE
             )
-          ),
+          )
         )
       )
     )
