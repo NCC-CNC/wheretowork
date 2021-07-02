@@ -82,6 +82,7 @@ Collate:
     'WeightResults-class.R'
     'cleanImportSettings.R'
     'color_palette.R'
+    'error_message.R'
     'exportSidebarPane.R'
     'extract_data_matrix.R'
     'generate_solution.R'

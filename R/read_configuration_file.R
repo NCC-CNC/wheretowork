@@ -131,7 +131,7 @@ read_configuration_file <- function(
   assertthat::assert_that(
     length(fail) == 0,
     msg = paste0(
-      "Failed to import the following themes: ",
+      "failed to import the following themes: ",
       paste(paste0("\"", fail, "\""), collapse = ", ")
     )
   )
@@ -165,7 +165,7 @@ read_configuration_file <- function(
   assertthat::assert_that(
     length(fail) == 0,
     msg = paste0(
-      "Failed to import the following includes: ",
+      "failed to import the following includes: ",
       paste(paste0("\"", fail, "\""), collapse = ", ")
     )
   )
@@ -201,7 +201,7 @@ read_configuration_file <- function(
   assertthat::assert_that(
     length(fail) == 0,
     msg = paste0(
-      "Failed to import the following includes: ",
+      "failed to import the following includes: ",
       paste(paste0("\"", fail, "\""), collapse = ", ")
     )
   )

@@ -27,11 +27,15 @@ importModal <- function(id) {
   # create modal
   shiny::modalDialog(
     title =
-      htmltools::tags$p("Import data", style = "text-align:center"),
+      htmltools::tags$p(
+        "Welcome to the Location App",
+        style = "text-align:center"),
     easyClose = FALSE,
     fade = TRUE,
     footer = htmltools::tags$div(
+      # styling
       style = "text-align: center",
+      # loading button
       shinyFeedback::loadingButton(
         inputId = paste0(id, "_import_button"),
         label = "Import",
@@ -42,7 +46,7 @@ importModal <- function(id) {
     ## import method
     shiny::selectInput(
       inputId = paste0(id, "_method"),
-      label = "Import method",
+      label = "Select data type",
       choices = c("configuration file", "spatial dataset"),
       selected = "configuration file",
       multiple = FALSE
@@ -93,9 +97,9 @@ importModal <- function(id) {
       p("TODO")
     ),
 
-    ## import error alert
+    # error alert
     shinyBS::bsAlert(
-      anchorId = paste0(id, "_import_alert")
+      anchorId = paste0(id, "_alert")
     )
 
   )
