@@ -32,11 +32,10 @@ importModal <- function(id) {
     fade = TRUE,
     footer = htmltools::tags$div(
       style = "text-align: center",
-      shinyBS::bsButton(
+      shinyFeedback::loadingButton(
         inputId = paste0(id, "_import_button"),
         label = "Import",
-        style = "primary",
-        icon = shiny::icon("upload")
+        loadingLabel = "Loading..."
       )
     ),
 

@@ -162,13 +162,10 @@ solutionSettings_html <- function(id, style, class, ...) {
 
           htmltools::tags$div(
             class = "solution-footer-button",
-            shinyBS::bsButton(
+            shinyFeedback::loadingButton(
               inputId = paste0(id, "_button"),
               label = "Generate solution",
-              icon = shiny::icon("rocket"),
-              style = "primary",
-              type = "action",
-              disabled = TRUE
+              loadingLabel = "Optimizing..."
             )
           )
         )
