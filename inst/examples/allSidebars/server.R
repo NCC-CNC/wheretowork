@@ -1,16 +1,15 @@
 function(input, output, session) {
   # initialize map
   output$map <- renderLeaflet({
-    leaflet() %>%
-      addTiles() %>%
-      addSidebar(
-        id = "dataSidebar",
-        options = list(position = "left", fit = FALSE)
-      ) %>%
-      addSidebar(
-        id = "analysisSidebar",
-        options = list(position = "right", fit = FALSE)
-      )
+    leaflet_map() %>%
+    addSidebar(
+      id = "dataSidebar",
+      options = list(position = "left", fit = FALSE)
+    ) %>%
+    addSidebar(
+      id = "analysisSidebar",
+      options = list(position = "right", fit = FALSE)
+    )
   })
 
   # initialize widgets
