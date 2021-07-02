@@ -120,5 +120,6 @@ Collate:
     'write_configuration_file.R'
     'write_spatial_data.R'
 Remotes:
+    NCC-CNC/leaflet.extras2,
     NCC-CNC/leaflet@pane-extra,
     dirkschumacher/rcbc
