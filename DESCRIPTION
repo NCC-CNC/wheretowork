@@ -102,6 +102,7 @@ Collate:
     'read_configuration_file.R'
     'read_spatial_data.R'
     'runExample.R'
+    'shinyjs_functions.R'
     'simulate_includes.R'
     'simulate_legends.R'
     'simulate_solution.R'
