@@ -13,12 +13,21 @@ set.seed(200)
 RandomFields::RFoptions(seed = 200)
 
 # find data file paths
+## raster data
+# f1 <- system.file(
+#   "extdata", "sim_raster_spatial.tif", package = "locationmisc")
+# f2 <- system.file(
+#   "extdata", "sim_raster_attribute.csv.gz", package = "locationmisc")
+# f3 <- system.file(
+#   "extdata", "sim_raster_boundary.csv.gz", package = "locationmisc")
+
+## vector data
 f1 <- system.file(
-  "extdata", "sim_raster_spatial.tif", package = "locationmisc")
+  "extdata", "sim_vector_spatial.shp", package = "locationmisc")
 f2 <- system.file(
-  "extdata", "sim_raster_attribute.csv.gz", package = "locationmisc")
+  "extdata", "sim_vector_attribute.csv.gz", package = "locationmisc")
 f3 <- system.file(
-  "extdata", "sim_raster_boundary.csv.gz", package = "locationmisc")
+  "extdata", "sim_vector_boundary.csv.gz", package = "locationmisc")
 
 # create dataset
 d <- new_dataset(f1, f2, f3)
