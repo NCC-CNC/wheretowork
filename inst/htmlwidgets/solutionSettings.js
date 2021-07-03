@@ -27,8 +27,10 @@ HTMLWidgets.widget({
             opts.themes, opts.weights, opts.includes, opts.parameters);
           // render HTML elements
           handle.render();
-          // make the button disabled when the text box is empty
+          // set the button to disabled by default
           const button_el = document.getElementById(elementId + "_button");
+          button_el.setAttribute("disabled", "");
+          // make the button disabled when the text box is empty
           const name_el = document.getElementById(elementId + "_name");
           name_el.addEventListener("input", function() {
             if (name_el.value.length === 0) {
