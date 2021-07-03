@@ -155,8 +155,6 @@ Variable <- R6::R6Class(
             pane = pane_id)
         })
       } else if (inherits(d, "sf")) {
-        ## reproject data
-        d <- sf::st_transform(d, 4326)
         ## prepare data
         d <- sf::as_Spatial(d)
         if (inherits(d, "SpatialPolygonsDataFrame")) {
