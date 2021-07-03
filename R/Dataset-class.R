@@ -84,6 +84,25 @@ Dataset <- R6::R6Class(
       self$attribute_data <- attribute_data
       self$boundary_data <- boundary_data
 
+      ### validate crs
+      if (inherits(self$spatial_data, "sf")) {
+        assertthat::assert_that(
+          raster::compareCRS(
+            methods::as(sf::st_crs(self$spatial_data), "CRS"),
+            methods::as(sf::st_crs(4326), "CRS")
+          ),
+          msg = "vector data must be EPSG:4236"
+        )
+      } else if (inherits(self$spatial_data, "Raster")) {
+        assertthat::assert_that(
+          raster::compareCRS(
+            methods::as(sf::st_crs(self$spatial_data), "CRS"),
+            methods::as(sf::st_crs(3857), "CRS")
+          ),
+          msg = "raster data must be EPSG:3857"
+        )
+      }
+
       ## validate attribute data
       if (inherits(attribute_data, "data.frame")) {
         assertthat::assert_that(
@@ -123,9 +142,28 @@ Dataset <- R6::R6Class(
       # if data files are not stored in memory, then import them
       ## spatial data
       if (is.null(self$spatial_data)) {
+        ### import data
         suppressWarnings({
           self$spatial_data <- read_spatial_data(self$spatial_path)
         })
+        ### validate crs
+        if (inherits(self$spatial_data, "sf")) {
+          assertthat::assert_that(
+            raster::compareCRS(
+              methods::as(sf::st_crs(self$spatial_data), "CRS"),
+              methods::as(sf::st_crs(4326), "CRS")
+            ),
+            msg = "vector data must be EPSG:4326"
+          )
+        } else if (inherits(self$spatial_data, "Raster")) {
+          assertthat::assert_that(
+            raster::compareCRS(
+              methods::as(sf::st_crs(self$spatial_data), "CRS"),
+              methods::as(sf::st_crs(3857), "CRS")
+            ),
+            msg = "raster data must be EPSG:3857"
+          )
+        }
       }
       ## attribute data
       if (is.null(self$attribute_data)) {
@@ -534,6 +572,7 @@ new_dataset_from_auto <- function(x, id = uuid::UUIDgenerate()) {
   # assert arguments are valid
   assertthat::assert_that(
     inherits(x, c("sf", "Raster")))
+
   # prepare geometry data
   if (inherits(x, "sf")) {
     x[["_index"]] <- seq_len(nrow(x))
@@ -541,6 +580,7 @@ new_dataset_from_auto <- function(x, id = uuid::UUIDgenerate()) {
   } else {
     spatial_data <- x[[1]]
   }
+
   # prepare attribute data
   if (inherits(x, "sf")) {
     attribute_data <- sf::st_drop_geometry(spatial_data)
@@ -551,12 +591,35 @@ new_dataset_from_auto <- function(x, id = uuid::UUIDgenerate()) {
     attribute_data[["_index"]] <- seq_len(nrow(attribute_data))
     attribute_data <- attribute_data[pu_idx < 0.5, , drop = FALSE]
   }
+
+  # reproject the dataset as needed
+  spatial_data_crs <- methods::as(sf::st_crs(spatial_data), "CRS")
+  if (inherits(spatial_data, "sf")) {
+    correct_crs <- methods::as(sf::st_crs(4326), "CRS")
+    if (!raster::compareCRS(spatial_data_crs, correct_crs)) {
+      spatial_data <- sf::st_transform(spatial_data, 4326)
+    }
+  } else {
+    correct_crs <- methods::as(sf::st_crs(3857), "CRS")
+    if (!raster::compareCRS(spatial_data_crs,  correct_crs)) {
+      spatial_data <- raster::projectRaster(spatial_data, correct_crs)
+    }
+  }
+
+  # if dataset is in EPSG:4326 then reproject it for boundary calculations
+  if (raster::isLonLat(correct_crs)) {
+    reproj_spatial_data <- sf::st_transform(spatial_data, 3857)
+  } else {
+    reproj_spatial_data <- spatial_data
+  }
+
   # prepare boundary data
   str_tree <- inherits(x, "sf") && !identical(Sys.info()[["sysname"]], "Darwin")
-  bm <- prioritizr::boundary_matrix(spatial_data, str_tree = str_tree)
+  bm <- prioritizr::boundary_matrix(reproj_spatial_data, str_tree = str_tree)
   if (inherits(x, "Raster")) {
     bm <- bm[attribute_data[["_index"]], attribute_data[["_index"]]]
   }
+
   # create new dataset
   Dataset$new(
     spatial_path = "memory",

@@ -225,17 +225,17 @@ test_that("methods (sf from file)", {
   expect_identical(x$boundary_path, f3)
   x$import()
   expect_equal(
-    sf::st_set_crs(x$spatial_data, 3857),
-    sf::st_set_crs(spatial_data, 3857)
+    sf::st_set_crs(x$spatial_data, 4326),
+    sf::st_set_crs(spatial_data, 4326)
   )
   expect_equal(x$attribute_data, attribute_data)
-  expect_identical(x$boundary_data, boundary_data)
+  expect_equal(x$boundary_data, boundary_data)
   expect_equal(
-    sf::st_set_crs(x$get_spatial_data(), 3857),
-    sf::st_set_crs(spatial_data, 3857)
+    sf::st_set_crs(x$get_spatial_data(), 4326),
+    sf::st_set_crs(spatial_data, 4326)
   )
   expect_equal(x$get_attribute_data(), attribute_data)
-  expect_identical(x$get_boundary_data(), boundary_data)
+  expect_equal(x$get_boundary_data(), boundary_data)
   expect_true(x$has_index(2))
   expect_true(x$has_index("V2"))
   expect_false(x$has_index("ASDFG"))
