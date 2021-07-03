@@ -92,7 +92,7 @@ importModal <- function(id) {
         paste0(id, "_spatial_data"),
         "Select spatial data",
         multiple = TRUE,
-        accept = c(".shp", ".shx", ".prj", "shp", ".cpg", ".txt", ".tif"),
+        accept = c(".shp", ".shx", ".prj", "shp", ".cpg", ".tif"),
       ),
       p("TODO")
     ),
