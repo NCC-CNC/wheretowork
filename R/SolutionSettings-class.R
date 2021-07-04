@@ -362,7 +362,7 @@ SolutionSettings <- R6::R6Class(
 
       # calculate current status for each planning unit
       curr_status <- include_data
-      for (i in seq_along(nrow(curr_status))) {
+      for (i in seq_len(nrow(curr_status))) {
         curr_status[i, ] <- curr_status[i, ] * self$includes[[i]]$status
       }
       curr_status <- matrix(
