@@ -114,6 +114,14 @@ Theme <- R6::R6Class(
     },
 
     #' @description
+    #' Set visible value for all features.
+    #' @return `logical` value.
+    get_visible = function() {
+      any(self$get_feature_visible())
+    },
+
+
+    #' @description
     #' Get feature visible values.
     #' @return `logical` vector with status value(s).
     get_feature_visible = function() {
@@ -138,14 +146,14 @@ Theme <- R6::R6Class(
     #' Get setting.
     #' @param name `character` setting name.
     #' Available options are `"feature_status"`, `"feature_goal"`,
-    #' `"feature_visible"`, or `"feature_order"`.
+    #' `"feature_visible"`, `"visible"`, or `"feature_order"`.
     #' @return Value.
     get_setting = function(name) {
       assertthat::assert_that(
         assertthat::is.string(name),
         assertthat::noNA(name),
         name %in% c("feature_status", "feature_goal", "feature_visible",
-                    "feature_order", "feature_current"))
+                    "feature_order", "feature_current", "visible"))
       if (identical(name, "feature_status")) {
         out <- self$get_feature_status()
       } else if (identical(name, "feature_goal")) {
@@ -156,10 +164,23 @@ Theme <- R6::R6Class(
         out <- self$get_feature_order()
       } else if (identical(name, "feature_current")) {
         out <- self$get_feature_current()
+      } else if (identical(name, "visible")) {
+        out <- self$get_visible()
       } else {
         stop(paste0("\"", name, "\" is not a setting"))
       }
       out
+    },
+
+    #' @description
+    #' Set visible value for all features.
+    #' @param value `logical` value.
+    set_visible = function(value) {
+      assertthat::assert_that(
+        assertthat::is.flag(value),
+        assertthat::noNA(value))
+      self$set_feature_visible(rep(value, length(self$feature)))
+      invisible(self)
     },
 
     #' @description
@@ -234,7 +255,8 @@ Theme <- R6::R6Class(
     #' Set setting.
     #' @param name `character` setting name.
     #' Available options are `"feature_status"`, `"feature_goal"`,
-    #' `"feature_visible"`, `"feature_order"`, `"feature_current"`.
+    #' `"feature_visible"`, `"visible"`, `"feature_order"`,
+    #' or `"feature_current"`.
     #' @param value vector containing a value for each feature.
     set_setting = function(name, value) {
       assertthat::assert_that(
@@ -242,7 +264,7 @@ Theme <- R6::R6Class(
         assertthat::noNA(name),
         name %in%
           c("feature_status", "feature_goal", "feature_visible",
-            "feature_order", "feature_current"))
+            "feature_order", "feature_current", "visible"))
       if (identical(name, "feature_status")) {
         self$set_feature_status(value)
       } else if (identical(name, "feature_goal")) {
@@ -253,6 +275,8 @@ Theme <- R6::R6Class(
         self$set_feature_order(value)
       } else if (identical(name, "feature_current")) {
         self$set_feature_current(value)
+      } else if (identical(name, "visible")) {
+        self$set_visible(value)
       } else {
         stop(paste0("\"", name, "\" is not a setting"))
       }

@@ -9,10 +9,14 @@ NULL
 #'
 #' @export
 leaflet_map <- function() {
-  # prepare JS code for button
+  # prepare JS code for buttons
   home_js <- paste0(
     "function(btn, map) {",
     "Shiny.setInputValue(\"home_button\", Math.random());",
+    "}")
+  hide_js <- paste0(
+    "function(btn, map) {",
+    "Shiny.setInputValue(\"hide_button\", Math.random());",
     "}")
   # create map
   map <-
@@ -21,11 +25,18 @@ leaflet_map <- function() {
       leaflet::providers$Esri.WorldImagery) %>%
     leaflet::flyToBounds(
       -165, -30, 165, 60) %>%
-     leaflet::addEasyButton(
+   leaflet::addEasyButton(
       leaflet::easyButton(
         icon = shiny::icon("home"),
         position = "topleft",
         onClick = htmlwidgets::JS(home_js)
+      )
+    ) %>%
+   leaflet::addEasyButton(
+      leaflet::easyButton(
+        icon = shiny::icon("eye-slash"),
+        position = "topleft",
+        onClick = htmlwidgets::JS(hide_js)
       )
     ) %>%
     leaflet.extras2::addHistory(

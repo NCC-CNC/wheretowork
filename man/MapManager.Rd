@@ -30,7 +30,7 @@ Available options are:
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
-\item{\code{layers}}{\code{list} of \link{Theme}, \link{Weight}, \link{Solution} objects.}
+\item{\code{layers}}{\code{list} of \link{Theme}, \link{Weight}, \link{Include}, \link{Solution} objects.}
 
 \item{\code{ids}}{\code{character} vector of identifiers for the layers.}
 
@@ -52,6 +52,7 @@ appear beneath every other layer.}
 \item \href{#method-get_layer_indices}{\code{MapManager$get_layer_indices()}}
 \item \href{#method-get_setting}{\code{MapManager$get_setting()}}
 \item \href{#method-set_order}{\code{MapManager$set_order()}}
+\item \href{#method-set_visible}{\code{MapManager$set_visible()}}
 \item \href{#method-set_setting}{\code{MapManager$set_setting()}}
 \item \href{#method-add_layer}{\code{MapManager$add_layer()}}
 \item \href{#method-drop_layer}{\code{MapManager$drop_layer()}}
@@ -73,7 +74,7 @@ Create a MapManager object.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{layers}}{\code{list} of \link{Include}, \link{Weight}, \link{Theme}, or \link{Solution}
+\item{\code{layers}}{\code{list} of \link{Theme}, \link{Weight}, \link{Include}, \link{Solution}
 objects.}
 
 \item{\code{order}}{\code{numeric} vector.}
@@ -200,6 +201,24 @@ Set information on the plot order of each layer.
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{value}}{\code{logical} vector indicating if each layer is visible or not.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_visible"></a>}}
+\if{latex}{\out{\hypertarget{method-set_visible}{}}}
+\subsection{Method \code{set_visible()}}{
+Set visibility for all layers.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MapManager$set_visible(value)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{value}}{\code{logical} vector indicating if layers should be visible or
+not.}
 }
 \if{html}{\out{</div>}}
 }

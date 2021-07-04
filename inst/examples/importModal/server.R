@@ -10,14 +10,14 @@ function(input, output, session) {
   observeEvent(input$importModal_configuration_file, {
     req(input$importModal_configuration_file)
     config_path <<-
-      prepare_fileInput_files(input$importModal_configuration_file)
+      prepare_fileInput(input$importModal_configuration_file)
   })
 
   ## spatial
   observeEvent(input$importModal_spatial_file, {
     req(input$importModal_spatial_file)
     spatial_path <<-
-      prepare_fileInput_files(input$importModal_spatial_file)
+      prepare_fileInput(input$importModal_spatial_file)
       spatial_path <<- spatial_path[endsWith(spatial_path, ".shp")]
   })
 
@@ -25,14 +25,14 @@ function(input, output, session) {
   observeEvent(input$importModal_attribute_file, {
     req(input$importModal_attribute_file)
     attribute_path <<-
-      prepare_fileInput_files(input$importModal_attribute_file)
+      prepare_fileInput(input$importModal_attribute_file)
   })
 
   ## boundary
   observeEvent(input$importModal_boundary_file, {
     req(input$importModal_boundary_file)
     boundary_path <<-
-      prepare_fileInput_files(input$importModal_boundary_file)
+      prepare_fileInput(input$importModal_boundary_file)
   })
 
   # import button

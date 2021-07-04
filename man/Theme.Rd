@@ -44,10 +44,12 @@ This method intentionally throws an error.
 \item \href{#method-get_feature_name}{\code{Theme$get_feature_name()}}
 \item \href{#method-get_feature_current}{\code{Theme$get_feature_current()}}
 \item \href{#method-get_feature_total}{\code{Theme$get_feature_total()}}
+\item \href{#method-get_visible}{\code{Theme$get_visible()}}
 \item \href{#method-get_feature_visible}{\code{Theme$get_feature_visible()}}
 \item \href{#method-get_feature_status}{\code{Theme$get_feature_status()}}
 \item \href{#method-get_feature_goal}{\code{Theme$get_feature_goal()}}
 \item \href{#method-get_setting}{\code{Theme$get_setting()}}
+\item \href{#method-set_visible}{\code{Theme$set_visible()}}
 \item \href{#method-set_feature_visible}{\code{Theme$set_feature_visible()}}
 \item \href{#method-set_feature_status}{\code{Theme$set_feature_status()}}
 \item \href{#method-set_feature_goal}{\code{Theme$set_feature_goal()}}
@@ -192,6 +194,19 @@ Get feature current.
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_visible"></a>}}
+\if{latex}{\out{\hypertarget{method-get_visible}{}}}
+\subsection{Method \code{get_visible()}}{
+Set visible value for all features.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$get_visible()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{logical} value.
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_feature_visible"></a>}}
 \if{latex}{\out{\hypertarget{method-get_feature_visible}{}}}
 \subsection{Method \code{get_feature_visible()}}{
@@ -244,12 +259,29 @@ Get setting.
 \describe{
 \item{\code{name}}{\code{character} setting name.
 Available options are \code{"feature_status"}, \code{"feature_goal"},
-\code{"feature_visible"}, or \code{"feature_order"}.}
+\code{"feature_visible"}, \code{"visible"}, or \code{"feature_order"}.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
 Value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_visible"></a>}}
+\if{latex}{\out{\hypertarget{method-set_visible}{}}}
+\subsection{Method \code{set_visible()}}{
+Set visible value for all features.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$set_visible(value)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{value}}{\code{logical} value.}
+}
+\if{html}{\out{</div>}}
 }
 }
 \if{html}{\out{<hr>}}
@@ -338,7 +370,8 @@ Set setting.
 \describe{
 \item{\code{name}}{\code{character} setting name.
 Available options are \code{"feature_status"}, \code{"feature_goal"},
-\code{"feature_visible"}, \code{"feature_order"}, \code{"feature_current"}.}
+\code{"feature_visible"}, \code{"visible"}, \code{"feature_order"},
+or \code{"feature_current"}.}
 
 \item{\code{value}}{vector containing a value for each feature.}
 }

@@ -9,7 +9,7 @@ MapManager <- R6::R6Class(
   "MapManager",
   public = list(
 
-    #' @field layers `list` of [Theme], [Weight], [Solution] objects.
+    #' @field layers `list` of [Theme], [Weight], [Include], [Solution] objects.
     layers = list(),
 
     #' @field ids `character` vector of identifiers for the layers.
@@ -22,7 +22,7 @@ MapManager <- R6::R6Class(
 
     #' @description
     #' Create a MapManager object.
-    #' @param layers `list` of [Include], [Weight], [Theme], or [Solution]
+    #' @param layers `list` of [Theme], [Weight], [Include], [Solution]
     #'  objects.
     #' @param order `numeric` vector.
     #' @return A new MapManager object.
@@ -148,6 +148,21 @@ MapManager <- R6::R6Class(
         assertthat::noNA(value),
         length(value) == length(self$layers))
       self$order <- value
+      invisible(self)
+    },
+
+    #' @description
+    #' Set visibility for all layers.
+    #' @param value `logical` vector indicating if layers should be visible or
+    #' not.
+    set_visible = function(value) {
+      assertthat::assert_that(
+        assertthat::is.flag(value),
+        assertthat::noNA(value))
+      vapply(self$layers, FUN.VALUE = logical(1), function(x) {
+        x$set_visible(value)
+        TRUE
+      })
       invisible(self)
     },
 

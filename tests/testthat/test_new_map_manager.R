@@ -182,6 +182,12 @@ test_that("set methods", {
   expect_equal(
     x$get_setting(list(id = "T2", setting = "feature_order")),
     c(3, 2))
+  ## visible
+  x$set_visible(FALSE)
+  expect_false(f1$get_visible())
+  expect_false(f2$get_visible())
+  expect_false(f3$get_visible())
+  expect_false(w$get_visible())
 })
 
 test_that("widget methods", {
