@@ -34,7 +34,8 @@ function(input, output, session) {
       boundary_data = boundary_data,
       gap = 0.01,
       boundary_gap =
-        (ss$get_parameter("P1")$value * ss$get_parameter("P1")$status) / 100
+        (ss$get_parameter("P1")$value * ss$get_parameter("P1")$status) / 100,
+      legend_color = scales::alpha(input$newSolutionPane_settings_color, 0.8)
     )
     # add solution to map
     suppressWarnings({

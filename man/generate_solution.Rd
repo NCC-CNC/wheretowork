@@ -13,7 +13,8 @@ generate_solution(
   include_data = settings$get_include_data(),
   boundary_data = dataset$get_boundary_data(),
   gap = 0,
-  boundary_gap = 0.1
+  boundary_gap = 0.1,
+  legend_color = "#FF0000"
 )
 }
 \arguments{
@@ -39,6 +40,8 @@ Defaults to being automatically extracted from \code{dataset}.}
 
 \item{boundary_gap}{\code{numeric} gap value used to control
 the level of spatial clustering in the solution. Defaults to 0.1}
+
+\item{legend_color}{\code{character} legend color.}
 }
 \value{
 A \link{Solution} object containing the solution.

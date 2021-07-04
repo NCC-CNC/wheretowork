@@ -32,7 +32,8 @@ Imports:
     rgdal (>= 1.5.23),
     data.table (>= 1.14.0),
     rcbc (>= 0.1.0.9001),
-    withr (>= 2.4.2)
+    withr (>= 2.4.2),
+    colourpicker (>= 1.1.0),
 Suggests:
     testthat (>= 2.0.1),
     knitr (>= 1.2.0),

@@ -29,6 +29,8 @@ NULL
 #' @param boundary_gap `numeric` gap value used to control
 #'   the level of spatial clustering in the solution. Defaults to 0.1
 #'
+#' @param legend_color `character` legend color.
+#'
 #' @return A [Solution] object containing the solution.
 #'
 #' @examples
@@ -41,7 +43,9 @@ generate_solution <- function(
   weight_data = settings$get_weight_data(),
   include_data = settings$get_include_data(),
   boundary_data = dataset$get_boundary_data(),
-  gap = 0, boundary_gap = 0.1) {
+  gap = 0,
+  boundary_gap = 0.1,
+  legend_color = "#FF0000") {
   # validate arguments
   assertthat::assert_that(
     ## name
@@ -62,7 +66,10 @@ generate_solution <- function(
     assertthat::noNA(gap),
     ## boundary_gap
     assertthat::is.number(boundary_gap),
-    assertthat::noNA(boundary_gap))
+    assertthat::noNA(boundary_gap),
+    ## legend_color
+    assertthat::is.string(legend_color),
+    assertthat::noNA(legend_color))
 
   # prepare settings
   ## extract values
@@ -254,7 +261,9 @@ generate_solution <- function(
     index = idx,
     total = sum(main_solution),
     units = "",
-    legend = simulate_solution_legend())
+    legend = new_manual_legend(
+      colors = c("#00FFFF00", legend_color),
+      labels = c("not selected", "selected")))
 
   # return solution object
   new_solution(

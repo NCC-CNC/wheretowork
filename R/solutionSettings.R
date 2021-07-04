@@ -31,13 +31,17 @@
 #' }
 #'
 #' The widget also contains a text box. The server value for this
-#' text box is a `character` string, and it can be queried using
+#' text box is a `character` string. It can be queried using
 #' `id_name` where `id` is the argument to `elementId`.
 #'
-#' Additionally, the widget contains a button. The server value for this
+#' The widget also contains a button. The server value for this
 #' button is an `integer` indicating the number of times the button
-#' has been clicked, and it can be queried using `id_button` where
-#' where `id` is the argument to `elementId`.
+#' has been clicked. It can be queried using `id_button` where
+#' `id` is the argument to `elementId`.
+#'
+#' The widget also contains a color picker. The server value for this
+#' button is an `character` indicating the current color. It can be queried
+#' using `id_color` where `id` is the argument to `elementId`.
 #'
 #' @examples
 #' \dontrun{
@@ -158,6 +162,17 @@ solutionSettings_html <- function(id, style, class, ...) {
               width = "100%",
               placeholder = "enter solution name"
             ),
+          ),
+
+          htmltools::tags$div(
+            class = "solution-footer-color",
+            colourpicker::colourInput(
+              inputId = paste0(id, "_color"),
+              value = "#FF0000",
+              showColour = "background",
+              label = NULL,
+              palette = "limited"
+            )
           ),
 
           htmltools::tags$div(

@@ -76,8 +76,28 @@
   margin-bottom: 0px;
 }
 
+/* -- button */
 .solution-footer-button {
   margin-right: 3px;
+}
+
+/* -- color picker */
+.solution-footer-color {
+  width: 25px;
+}
+
+.shiny-colour-input.colourpicker-input {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+.solution-footer-color .colourpicker-input-container {
+  width: 25px;
+}
+
+.solution-footer-color .colourpicker-panel {
+  width: 184px !important;
+  bottom: 38px;
 }
 
 /* view containers */
