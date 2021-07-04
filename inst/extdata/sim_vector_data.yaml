@@ -32,7 +32,6 @@ themes:
     max_goal: 1.0
     step_goal: 0.01
     limit_goal: 0.23
-    current: 0.36
     icon: map-pin
 - name: Silky-tailed Nightjar
   mandatory: yes
@@ -59,7 +58,6 @@ themes:
     max_goal: 1.0
     step_goal: 0.01
     limit_goal: 0.29
-    current: 0.39
     icon: map-pin
 - name: Seychelles Fody
   mandatory: no
@@ -88,7 +86,6 @@ themes:
     max_goal: 1.0
     step_goal: 0.01
     limit_goal: 0.13
-    current: 0.56
     icon: database
 - name: Thrushes and Allies
   mandatory: no
@@ -118,7 +115,6 @@ themes:
     max_goal: 1.0
     step_goal: 0.01
     limit_goal: 0.33
-    current: 0.22
     icon: map-marked-alt
   - name: Orange-billed Nightingale-Thrush (Gray-headed)
     variable:
@@ -141,7 +137,6 @@ themes:
     max_goal: 1.0
     step_goal: 0.01
     limit_goal: 0.27
-    current: 0.35
     icon: map-marked-alt
   - name: Swainson's Thrush
     variable:
@@ -162,7 +157,6 @@ themes:
     max_goal: 1.0
     step_goal: 0.01
     limit_goal: 0.33
-    current: 0.35
     icon: hdd
   - name: Island Thrush (Lord Howe I.)
     variable:
@@ -188,7 +182,6 @@ themes:
     max_goal: 1.0
     step_goal: 0.01
     limit_goal: 0.29
-    current: 0.22
     icon: atlas
   - name: Orange-billed Nightingale-Thrush
     variable:
@@ -210,7 +203,6 @@ themes:
     max_goal: 1.0
     step_goal: 0.01
     limit_goal: 0.18
-    current: 0.28
     icon: map
 - name: Bulbuls
   mandatory: no
@@ -239,7 +231,6 @@ themes:
     max_goal: 1.0
     step_goal: 0.01
     limit_goal: 0.03
-    current: 0.47
     icon: map-pin
   - name: Western Mountain Greenbul
     variable:
@@ -266,7 +257,6 @@ themes:
     max_goal: 1.0
     step_goal: 0.01
     limit_goal: 0.38
-    current: 0.59
     icon: map-marked-alt
   - name: Puff-throated Bulbul (Puff-throated)
     variable:
@@ -293,7 +283,6 @@ themes:
     max_goal: 1.0
     step_goal: 0.01
     limit_goal: 0.12
-    current: 0.49
     icon: map-marked-alt
   - name: Yellow-streaked Greenbul (Yellow-streaked)
     variable:
@@ -320,7 +309,6 @@ themes:
     max_goal: 1.0
     step_goal: 0.01
     limit_goal: 0.38
-    current: 0.57
     icon: map-pin
 weights:
 - name: Rugged terrain

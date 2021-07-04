@@ -22,6 +22,14 @@ function(input, output, session) {
         value = input$st_status_input, type = "theme")
     )
   })
+  observeEvent(input$st_current_button, {
+    updateSolutionSettings(
+      session, "widget",
+      list(
+        id = "SPECIES", setting = "feature_current",
+        value = input$st_current_input, type = "theme")
+    )
+  })
   observeEvent(input$st_goal_button, {
     updateSolutionSettings(
       session, "widget",
@@ -71,6 +79,16 @@ function(input, output, session) {
         id = "ER", setting = "feature_status",
         value =
           c(input$mt1_feature_status_input, input$mt2_feature_status_input),
+        type = "theme")
+    )
+  })
+  observeEvent(input$mt_feature_current_button, {
+    updateSolutionSettings(
+      session, "widget",
+      list(
+        id = "ER", setting = "feature_current",
+        value =
+          c(input$mt1_feature_current_input, input$mt2_feature_current_input),
         type = "theme")
     )
   })

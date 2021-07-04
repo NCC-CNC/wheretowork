@@ -72,7 +72,7 @@ test_that("widget methods (SingleTheme)", {
       id = "RID2",
       name = th$name,
       feature_name = f$name,
-      feature_id = f$id,
+      feature_id = fr$id,
       feature_status = fr$status,
       feature_total_amount = v$total,
       feature_current_held = f$current,
@@ -203,7 +203,7 @@ test_that("widget methods (MultiTheme)", {
       id = "RID3",
       name = th$name,
       feature_name = c(fr[[1]]$feature$name, fr[[2]]$feature$name),
-      feature_id = c(fr[[1]]$feature$id, fr[[2]]$feature$id),
+      feature_id = c(fr[[1]]$id, fr[[2]]$id),
       feature_status = c(fr[[1]]$feature$status, fr[[2]]$feature$status),
       feature_total_amount = c(
         fr[[1]]$feature$variable$total, fr[[2]]$feature$variable$total),

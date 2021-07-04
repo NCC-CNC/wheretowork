@@ -171,6 +171,13 @@ Feature <- R6::R6Class(
     },
 
     #' @description
+    #' Get current.
+    #' @return `numeric` value.
+    get_current = function() {
+      self$current
+    },
+
+    #' @description
     #' Get status.
     #' @return `logical` value.
     get_status = function() {
@@ -228,6 +235,17 @@ Feature <- R6::R6Class(
     },
 
     #' @description
+    #' Set current.
+    #' @param value `numeric` new value.
+    set_current = function(value) {
+      assertthat::assert_that(
+        assertthat::is.number(value),
+        assertthat::noNA(value))
+      self$current <- value
+      invisible(self)
+    },
+
+    #' @description
     #' Export settings
     #' @return `list` object.
     export = function() {
@@ -241,7 +259,6 @@ Feature <- R6::R6Class(
         max_goal = self$max_goal,
         step_goal = self$step_goal,
         limit_goal = self$limit_goal,
-        current = self$current,
         icon = strsplit(self$icon$attribs$`aria-label`, " ")[[1]][[1]]
       )
     }

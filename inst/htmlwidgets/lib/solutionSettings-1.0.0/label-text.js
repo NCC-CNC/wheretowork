@@ -63,9 +63,4 @@ function style_group_current_bars(
   // resize bars
   d_min.style.width = (minw * 100) + "%";
   d_max.style.width = (maxw * 100) + "%";
-  // set color for max bar
-  let col = window.getComputedStyle(d_max).backgroundColor;
-  d_max.style.background =
-    `linear-gradient(to right, ${col} 0, ${col} ` +
-    `${minw}px, transparent 100%)`;
 }

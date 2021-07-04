@@ -91,25 +91,25 @@ MultiTheme <- R6::R6Class(
         id = self$id,
         name = self$name,
         feature_name =
-          vapply(self$feature, function(x) x$name, character(1)),
+          vapply(self$feature, `[[`, character(1), "name"),
         feature_id =
-          vapply(self$feature, function(x) x$id, character(1)),
+          vapply(self$feature, `[[`, character(1), "id"),
         feature_status =
-          vapply(self$feature, function(x) x$status, logical(1)),
+          vapply(self$feature, `[[`, logical(1), "status"),
         feature_total_amount =
           vapply(self$feature, function(x) x$variable$total, numeric(1)),
         feature_current_held =
-          vapply(self$feature, function(x) x$current, numeric(1)),
+          vapply(self$feature, `[[`, numeric(1), "current"),
         feature_min_goal =
-          vapply(self$feature, function(x) x$min_goal, numeric(1)),
+          vapply(self$feature, `[[`, numeric(1), "min_goal"),
         feature_max_goal =
-          vapply(self$feature, function(x) x$max_goal, numeric(1)),
+          vapply(self$feature, `[[`, numeric(1), "max_goal"),
         feature_goal =
-          vapply(self$feature, function(x) x$goal, numeric(1)),
+          vapply(self$feature, `[[`, numeric(1), "goal"),
         feature_limit_goal =
-          vapply(self$feature, function(x) x$limit_goal, numeric(1)),
+          vapply(self$feature, `[[`, numeric(1), "limit_goal"),
         feature_step_goal =
-          vapply(self$feature, function(x) x$step_goal, numeric(1)),
+          vapply(self$feature, `[[`, numeric(1), "step_goal"),
         feature_icon =
           vapply(
             self$feature, function(x) as.character(x$icon),
@@ -128,11 +128,11 @@ MultiTheme <- R6::R6Class(
         id = self$id,
         name = self$name,
         feature_name =
-          vapply(self$feature, function(x) x$name, character(1)),
+          vapply(self$feature, `[[`, character(1), "name"),
         feature_id =
-          vapply(self$feature, function(x) x$id, character(1)),
+          vapply(self$feature, `[[`, character(1), "id"),
         feature_visible =
-          vapply(self$feature, function(x) x$visible, logical(1)),
+          vapply(self$feature, `[[`, logical(1), "visible"),
         feature_legend =
           lapply(self$feature, function(x) x$variable$legend$get_widget_data()),
         units = self$feature[[1]]$variable$units,

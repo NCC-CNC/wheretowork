@@ -95,9 +95,11 @@ test_that("get methods", {
   expect_identical(x$get_feature_goal(), 0.2)
   expect_identical(x$get_feature_visible(), TRUE)
   expect_identical(x$get_feature_status(), FALSE)
+  expect_identical(x$get_feature_current(), 0.2567)
   expect_identical(x$get_setting("feature_goal"), x$get_feature_goal())
   expect_identical(x$get_setting("feature_status"), x$get_feature_status())
   expect_identical(x$get_setting("feature_visible"), x$get_feature_visible())
+  expect_identical(x$get_setting("feature_current"), x$get_feature_current())
 })
 
 test_that("set methods", {
@@ -127,15 +129,19 @@ test_that("set methods", {
   x$set_feature_goal(0.8)
   x$set_feature_visible(FALSE)
   x$set_feature_status(TRUE)
+  x$set_feature_current(0.213)
   expect_identical(x$get_feature_goal(), 0.8)
   expect_identical(x$get_feature_visible(), FALSE)
   expect_identical(x$get_feature_status(), TRUE)
+  expect_identical(x$get_feature_current(), 0.213)
   x$set_setting("feature_goal", 0.5)
   x$set_setting("feature_status", FALSE)
   x$set_setting("feature_visible", TRUE)
+  x$set_setting("feature_current", 0.12)
   expect_identical(x$get_feature_goal(), 0.5)
   expect_identical(x$get_feature_status(), FALSE)
   expect_identical(x$get_feature_visible(), TRUE)
+  expect_identical(x$get_feature_current(), 0.12)
 })
 
 test_that("widget methods", {

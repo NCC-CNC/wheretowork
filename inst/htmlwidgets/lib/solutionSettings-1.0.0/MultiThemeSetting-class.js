@@ -26,6 +26,8 @@ class MultiThemeSetting {
     this.feature_id = feature_id;
     this.single_goal_values = feature_goal;
     this.single_status_values = feature_status;
+    this.single_total_values = feature_total_amount;
+    this.units = units;
     this.group_limit_goal = Math.max.apply(Math, feature_limit_goal);
     /// HTML container
     this.el =
@@ -42,6 +44,13 @@ class MultiThemeSetting {
 
     this.group_goal_el = undefined;
     this.single_goal_el = undefined;
+
+    this.group_current_label_el = undefined;
+    this.single_current_label_el = undefined;
+
+    this.group_current_min_bar_el = undefined;
+    this.group_current_max_bar_el = undefined;
+    this.single_current_bar_el = undefined;
 
     this.group_tab_el = undefined;
     this.single_tab_el = undefined;
@@ -63,17 +72,17 @@ class MultiThemeSetting {
       this.el.querySelector("[data-value='group']");
     this.group_goal_el =
       group_panel_el.querySelector(".noUiSlider-widget");
+    this.group_current_label_el =
+      group_panel_el.querySelector(".current-label");
+    this.group_current_min_bar_el =
+      group_panel_el.querySelector(".current-min-bar");
+    this.group_current_max_bar_el =
+      group_panel_el.querySelector(".current-max-bar");
 
     let group_goal_label_el =
       group_panel_el.querySelector(".slider-label");
     let group_goal_symbol_el =
       group_panel_el.querySelector(".slider-symbol");
-    let group_current_label_el =
-      group_panel_el.querySelector(".current-label");
-    let group_current_min_bar_el =
-      group_panel_el.querySelector(".current-min-bar");
-    let group_current_max_bar_el =
-      group_panel_el.querySelector(".current-max-bar");
     let group_widget_el_el =
       group_panel_el.querySelector(".widget");
 
@@ -101,9 +110,9 @@ class MultiThemeSetting {
       single_panel_el.querySelectorAll(".slider-label");
     let single_icon_el =
       single_panel_el.querySelectorAll(".sub-icon");
-    let single_current_label_el =
+    this.single_current_label_el =
       single_panel_el.querySelectorAll(".current-label");
-    let single_current_bar_el =
+    this.single_current_bar_el =
       single_panel_el.querySelectorAll(".current-bar");
     let single_widget_el =
       single_panel_el.querySelectorAll(".widget");
@@ -161,13 +170,14 @@ class MultiThemeSetting {
 
     // set initial group values
     /// current text
-    group_current_label_el.innerText =
+    this.group_current_label_el.innerText =
       group_current_label_text(
-        feature_current_held, feature_total_amount, "Current", units);
+        feature_current_held, this.single_total_values,
+        "Current", this.units);
     /// style current bar
     style_group_current_bars(
-      group_current_min_bar_el,
-      group_current_max_bar_el,
+      this.group_current_min_bar_el,
+      this.group_current_max_bar_el,
       Math.min.apply(Math, feature_current_held),
       Math.max.apply(Math, feature_current_held));
     /// slider
@@ -190,12 +200,15 @@ class MultiThemeSetting {
       /// status
       this.single_status_el[i].checked = feature_status[i];
       /// current text
-      single_current_label_el[i].innerText =
+      this.single_current_label_el[i].innerText =
         single_current_label_text(
-          feature_current_held[i], feature_total_amount[i], "Current", units);
+          feature_current_held[i],
+          this.single_total_values[i],
+          "Current",
+          this.units);
       /// current bar
       style_current_bar(
-        single_current_bar_el[i], feature_current_held[i]);
+        this.single_current_bar_el[i], feature_current_held[i]);
       /// slider
       noUiSlider.create(this.single_goal_el[i], {
         start: feature_goal[i],
@@ -221,7 +234,7 @@ class MultiThemeSetting {
       this.group_goal_el.noUiSlider.on("update", function (values, handle) {
         group_goal_label_el.innerText =
           group_goal_label_text(
-            values[handle], feature_total_amount, "Goal", units);
+            values[handle], that.single_total_values, "Goal", that.units);
       });
       //// set status listener to enable/disable widget on click
       this.status_el.addEventListener("change", function () {
@@ -255,7 +268,8 @@ class MultiThemeSetting {
           "update", function (values, handle) {
           single_goal_label_el[i].innerText =
             single_goal_label_text(
-              values[handle], feature_total_amount[i], "Goal", units);
+              values[handle], that.single_total_values[i],
+              "Goal", that.units);
         });
         //// set status listener to enable/disable widget on click
         this.single_status_el[i].addEventListener("change", function () {
@@ -379,6 +393,8 @@ class MultiThemeSetting {
       this.updateFeatureStatus(value);
     } else if (setting === "feature_goal") {
       this.updateFeatureGoal(value);
+    } else if (setting === "feature_current") {
+      this.updateFeatureCurrent(value);
     }
   }
 
@@ -446,6 +462,32 @@ class MultiThemeSetting {
   updateFeatureGoal(value) {
     for (let i = 0; i < this.n_features; ++i) {
       this.single_goal_el[i].noUiSlider.set(value[i]);
+    }
+  }
+
+  updateFeatureCurrent(value) {
+    // update group view components
+    /// label
+    this.group_current_label_el.innerText =
+      group_current_label_text(
+        value, this.single_total_values,
+        "Current", this.units);
+    /// bars
+    style_group_current_bars(
+      this.group_current_min_bar_el,
+      this.group_current_max_bar_el,
+      Math.min.apply(Math, value),
+      Math.max.apply(Math, value));
+
+    // update single view components
+    for (let i = 0; i < this.n_features; ++i) {
+      /// label
+      this.single_current_label_el[i].innerText =
+        single_current_label_text(
+          value[i], this.single_total_values[i],
+          "Current", this.units);
+      /// bar
+      style_current_bar(this.single_current_bar_el[i], value[i]);
     }
   }
 

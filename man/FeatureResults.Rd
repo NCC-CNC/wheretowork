@@ -23,6 +23,8 @@ Definition for the FeatureResults class.
 
 \item{\code{status}}{\code{logical} value.}
 
+\item{\code{current}}{\code{numeric} value.}
+
 \item{\code{goal}}{\code{numeric} value.}
 
 \item{\code{held}}{\code{numeric} value.}

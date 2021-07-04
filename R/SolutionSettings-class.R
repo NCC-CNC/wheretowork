@@ -18,7 +18,8 @@ SolutionSettings <- R6::R6Class(
     #' @field include_ids `character` vector of identifiers for the includes.
     include_ids = NULL,
 
-    #' @field parameter_ids `character` vector of identifiers for the parameters.
+    #' @field parameter_ids `character` vector of identifiers for the
+    #'  parameters.
     parameter_ids = NULL,
 
     #' @field themes `list` of [Theme] objects.
@@ -52,10 +53,10 @@ SolutionSettings <- R6::R6Class(
       self$weights <- weights
       self$includes <- includes
       self$parameters <- parameters
-      self$theme_ids <- vapply(themes, function(x) x$id, character(1))
-      self$weight_ids <- vapply(weights, function(x) x$id, character(1))
-      self$include_ids <- vapply(includes, function(x) x$id, character(1))
-      self$parameter_ids <- vapply(parameters, function(x) x$id, character(1))
+      self$theme_ids <- vapply(themes, `[[`, character(1), "id")
+      self$weight_ids <- vapply(weights, `[[`, character(1), "id")
+      self$include_ids <- vapply(includes, `[[`, character(1), "id")
+      self$parameter_ids <- vapply(parameters, `[[`, character(1), "id")
     },
 
     #' @description
@@ -280,10 +281,10 @@ SolutionSettings <- R6::R6Class(
     #' @return [tibble::tibble()] with data.
     get_weight_settings = function() {
       tibble::tibble(
-        id = vapply(self$weights, function(x) x$id, character(1)),
-        name = vapply(self$weights, function(x) x$name, character(1)),
-        status = vapply(self$weights, function(x) x$status, logical(1)),
-        factor = vapply(self$weights, function(x) x$factor, numeric(1)))
+        id = vapply(self$weights, `[[`, character(1), "id"),
+        name = vapply(self$weights, `[[`, character(1), "name"),
+        status = vapply(self$weights, `[[`, logical(1), "status"),
+        factor = vapply(self$weights, `[[`, numeric(1), "factor"))
     },
 
     #' @description
@@ -291,9 +292,9 @@ SolutionSettings <- R6::R6Class(
     #' @return [tibble::tibble()] with data.
     get_include_settings = function() {
       tibble::tibble(
-        id = vapply(self$includes, function(x) x$id, character(1)),
-        name = vapply(self$includes, function(x) x$name, character(1)),
-        status = vapply(self$includes, function(x) x$status, logical(1)))
+        id = vapply(self$includes, `[[`, character(1), "id"),
+        name = vapply(self$includes, `[[`, character(1), "name"),
+        status = vapply(self$includes, `[[`, logical(1), "status"))
     },
 
     #' @description
@@ -301,10 +302,9 @@ SolutionSettings <- R6::R6Class(
     #' @return [tibble::tibble()] with data.
     get_parameter_settings = function() {
       tibble::tibble(
-        id = vapply(self$parameters, function(x) x$id, character(1)),
-        name = vapply(self$parameters, function(x) x$name, character(1)),
-        status = vapply(self$parameters, function(x) x$status, logical(1)),
-        value = vapply(self$parameters, function(x) x$value, numeric(1)))
+        id = vapply(self$parameters, `[[`, character(1), "id"),
+        name = vapply(self$parameters, `[[`, character(1), "name"),        status = vapply(self$parameters, `[[`, logical(1), "status"),
+        value = vapply(self$parameters, `[[`, numeric(1), "value"))
     },
 
     #' @description
@@ -341,8 +341,49 @@ SolutionSettings <- R6::R6Class(
       out <- extract_data_matrix(v)
       rownames(out) <- vapply(self$includes, `[[`, character(1), "id")
       out
-    }
+    },
 
+    #' @description
+    #' Update the current amount held for each feature automatically
+    #' based on the include statuses.
+    #' @param theme_data `[Matrix::sparseMatrix()] with theme data.
+    #' Defaults to `self$get_theme_data()`.
+    #' @param include_data `[Matrix::sparseMatrix()] with include data.
+    #' Defaults to `self$get_include_data()`.
+    update_feature_current = function(
+      theme_data = self$get_theme_data(),
+      include_data = self$get_include_data()) {
+      # assert arguments are valid
+      assertthat::assert_that(
+        inherits(theme_data, "dgCMatrix"),
+        inherits(include_data, "dgCMatrix"),
+        ncol(theme_data) == ncol(include_data),
+        nrow(include_data) == length(self$includes))
+
+      # calculate current status for each planning unit
+      curr_status <- include_data
+      for (i in seq_along(nrow(curr_status))) {
+        curr_status[i, ] <- curr_status[i, ] * self$includes[[i]]$status
+      }
+      curr_status <- matrix(
+        as.numeric(colSums(curr_status > 0.5) > 0.5),
+        ncol = ncol(theme_data), nrow = nrow(theme_data))
+
+      # calculate current amount held for each feature as a proportion
+      curr_held <- rowSums(curr_status * (theme_data))
+      curr_held <- curr_held / rowSums(theme_data)
+      names(curr_held) <- rownames(theme_data)
+
+      # update the current amount for each theme
+      for (i in seq_along(self$themes)) {
+        self$themes[[i]]$set_feature_current(
+          curr_held[self$themes[[i]]$get_feature_id()]
+        )
+      }
+
+      # return self
+      invisible(self)
+    }
   )
 )
 

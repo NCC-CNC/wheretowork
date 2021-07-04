@@ -41,7 +41,8 @@ Available options are: \code{"theme"}, \code{"weight"}, \code{"include"},
 
 \item{\code{include_ids}}{\code{character} vector of identifiers for the includes.}
 
-\item{\code{parameter_ids}}{\code{character} vector of identifiers for the parameters.}
+\item{\code{parameter_ids}}{\code{character} vector of identifiers for the
+parameters.}
 
 \item{\code{themes}}{\code{list} of \link{Theme} objects.}
 
@@ -73,6 +74,7 @@ Available options are: \code{"theme"}, \code{"weight"}, \code{"include"},
 \item \href{#method-get_theme_data}{\code{SolutionSettings$get_theme_data()}}
 \item \href{#method-get_weight_data}{\code{SolutionSettings$get_weight_data()}}
 \item \href{#method-get_include_data}{\code{SolutionSettings$get_include_data()}}
+\item \href{#method-update_feature_current}{\code{SolutionSettings$update_feature_current()}}
 \item \href{#method-clone}{\code{SolutionSettings$clone()}}
 }
 }
@@ -348,6 +350,29 @@ Get includes matrix data.
 
 \subsection{Returns}{
 \code{\link[Matrix:sparseMatrix]{Matrix::sparseMatrix()}} with data.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-update_feature_current"></a>}}
+\if{latex}{\out{\hypertarget{method-update_feature_current}{}}}
+\subsection{Method \code{update_feature_current()}}{
+Update the current amount held for each feature automatically
+based on the include statuses.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$update_feature_current(
+  theme_data = self$get_theme_data(),
+  include_data = self$get_include_data()
+)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{theme_data}}{\verb{[Matrix::sparseMatrix()] with theme data. Defaults to }self$get_theme_data()`.}
+
+\item{\code{include_data}}{\verb{[Matrix::sparseMatrix()] with include data. Defaults to }self$get_include_data()`.}
+}
+\if{html}{\out{</div>}}
 }
 }
 \if{html}{\out{<hr>}}

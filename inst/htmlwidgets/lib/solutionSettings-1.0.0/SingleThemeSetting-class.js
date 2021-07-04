@@ -30,14 +30,16 @@ class SingleThemeSetting {
     this.name_el = this.el.querySelector(".name-label");
     this.status_el = this.el.querySelector(".status-checkbox");
     this.goal_el = this.el.querySelector(".noUiSlider-widget");
+    this.current_label_el = this.el.querySelector(".current-label");
+    this.current_bar_el = this.el.querySelector(".current-bar");
+    this.total = feature_total_amount;
+    this.units = units;
 
     // local variables
     let that = this;
     let icon_el = this.el.querySelector(".icon");
     let goal_label_el = this.el.querySelector(".slider-label");
     let goal_symbol_el = this.el.querySelector(".slider-symbol");
-    let current_label_el = this.el.querySelector(".current-label");
-    let current_bar_el = this.el.querySelector(".current-bar");
 
     // attach id to element
     this.el.querySelector(".solution-setting").id = id;
@@ -69,11 +71,11 @@ class SingleThemeSetting {
       }
     });
     /// current label
-    current_label_el.innerText =
+    this.current_label_el.innerText =
       single_current_label_text(
-        feature_current_held, feature_total_amount, "Current", units);
+        feature_current_held, this.total, "Current", this.units);
     /// current bar width
-    style_current_bar(current_bar_el, feature_current_held);
+    style_current_bar(this.current_bar_el, feature_current_held);
 
     // set listeners to update user interfance
     if (HTMLWidgets.shinyMode) {
@@ -86,7 +88,7 @@ class SingleThemeSetting {
       /// update goal label
       this.goal_el.noUiSlider.on("update", function (values, handle) {
         goal_label_el.innerText = single_goal_label_text(
-          values[handle], feature_total_amount, "Goal", units);
+          values[handle], that.total, "Goal", that.units);
       });
       /// enable/disable widget on click
       this.status_el.addEventListener("change", function () {
@@ -137,6 +139,8 @@ class SingleThemeSetting {
       this.updateStatus(value);
     } else if (setting === "feature_goal") {
       this.updateFeatureGoal(value);
+    } else if (setting === "feature_current") {
+      this.updateFeatureCurrent(value);
     }
   }
 
@@ -164,8 +168,17 @@ class SingleThemeSetting {
   updateView(value) {
     // no effect
   }
+
   updateFeatureStatus(value) {
     self.updateStatus(value);
+  }
+
+  updateFeatureCurrent(value) {
+    // current label
+    this.current_label_el.innerText =
+      single_current_label_text(value, this.total, "Current", this.units);
+    // current bar width
+    style_current_bar(this.current_bar_el, value);
   }
 
   /* render method */

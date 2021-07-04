@@ -110,7 +110,7 @@ read_configuration_file <- function(
             max_goal = f$max_goal,
             step_goal = f$step_goal,
             limit_goal = f$limit_goal,
-            current = f$current,
+            current = 0,
             icon = f$icon,
             variable = new_variable_from_auto(
               dataset = d,
@@ -205,6 +205,11 @@ read_configuration_file <- function(
       paste(paste0("\"", fail, "\""), collapse = ", ")
     )
   )
+
+  # calculate current amount held for each feature within each theme
+  ss <- new_solution_settings(
+    themes = themes, weights = list(), includes = includes, parameters = list())
+  ss$update_feature_current()
 
   # return result
   list(

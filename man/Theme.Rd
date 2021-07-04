@@ -51,6 +51,7 @@ This method intentionally throws an error.
 \item \href{#method-set_feature_visible}{\code{Theme$set_feature_visible()}}
 \item \href{#method-set_feature_status}{\code{Theme$set_feature_status()}}
 \item \href{#method-set_feature_goal}{\code{Theme$set_feature_goal()}}
+\item \href{#method-set_feature_current}{\code{Theme$set_feature_current()}}
 \item \href{#method-set_setting}{\code{Theme$set_setting()}}
 \item \href{#method-export}{\code{Theme$export()}}
 \item \href{#method-render_on_map}{\code{Theme$render_on_map()}}
@@ -306,6 +307,24 @@ A \code{list} of \code{numeric} values can also be supplied.}
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_feature_current"></a>}}
+\if{latex}{\out{\hypertarget{method-set_feature_current}{}}}
+\subsection{Method \code{set_feature_current()}}{
+Set feature current values.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$set_feature_current(value)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{value}}{\code{numeric} vector containing a value for each feature.
+A \code{list} of \code{numeric} values can also be supplied.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-set_setting"></a>}}
 \if{latex}{\out{\hypertarget{method-set_setting}{}}}
 \subsection{Method \code{set_setting()}}{
@@ -319,7 +338,7 @@ Set setting.
 \describe{
 \item{\code{name}}{\code{character} setting name.
 Available options are \code{"feature_status"}, \code{"feature_goal"},
-\code{"feature_visible"}, \code{"feature_order"}.}
+\code{"feature_visible"}, \code{"feature_order"}, \code{"feature_current"}.}
 
 \item{\code{value}}{vector containing a value for each feature.}
 }

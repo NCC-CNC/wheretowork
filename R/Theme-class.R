@@ -74,7 +74,7 @@ Theme <- R6::R6Class(
     #' Get layer names.
     #' @return `character` vector.
     get_layer_name = function() {
-      vapply(self$feature, FUN.VALUE = character(1), function(x) x$name)
+      vapply(self$feature, `[[`, character(1), "name")
     },
 
     #' @description
@@ -89,21 +89,21 @@ Theme <- R6::R6Class(
     #' Get feature identifiers.
     #' @return `character` vector with identifier(s).
     get_feature_id = function() {
-      vapply(self$feature, FUN.VALUE = character(1), function(x) x$id)
+      vapply(self$feature, `[[`, character(1), "id")
     },
 
     #' @description
     #' Get feature names.
     #' @return `character` vector with identifier(s).
     get_feature_name = function() {
-      vapply(self$feature, FUN.VALUE = character(1), function(x) x$name)
+      vapply(self$feature, `[[`, character(1), "name")
     },
 
     #' @description
     #' Get feature current.
     #' @return `numeric` vector with value(s).
     get_feature_current = function() {
-      vapply(self$feature, FUN.VALUE = numeric(1), function(x) x$current)
+      vapply(self$feature, `[[`, numeric(1), "current")
     },
 
     #' @description
@@ -117,21 +117,21 @@ Theme <- R6::R6Class(
     #' Get feature visible values.
     #' @return `logical` vector with status value(s).
     get_feature_visible = function() {
-      vapply(self$feature, FUN.VALUE = logical(1), function(x) x$get_visible())
+      vapply(self$feature, `[[`, logical(1), "visible")
     },
 
     #' @description
     #' Get feature status values.
     #' @return `logical` vector with status value(s).
     get_feature_status = function() {
-      vapply(self$feature, FUN.VALUE = logical(1), function(x) x$get_status())
+      vapply(self$feature, `[[`, logical(1), "status")
     },
 
     #' @description
     #' Get feature goal values.
     #' @return `numeric` vector with goal value(s).
     get_feature_goal = function() {
-      vapply(self$feature, FUN.VALUE = numeric(1), function(x) x$get_goal())
+      vapply(self$feature, `[[`, numeric(1), "goal")
     },
 
     #' @description
@@ -145,7 +145,7 @@ Theme <- R6::R6Class(
         assertthat::is.string(name),
         assertthat::noNA(name),
         name %in% c("feature_status", "feature_goal", "feature_visible",
-                    "feature_order"))
+                    "feature_order", "feature_current"))
       if (identical(name, "feature_status")) {
         out <- self$get_feature_status()
       } else if (identical(name, "feature_goal")) {
@@ -154,6 +154,8 @@ Theme <- R6::R6Class(
         out <- self$get_feature_visible()
       } else if (identical(name, "feature_order")) {
         out <- self$get_feature_order()
+      } else if (identical(name, "feature_current")) {
+        out <- self$get_feature_current()
       } else {
         stop(paste0("\"", name, "\" is not a setting"))
       }
@@ -212,10 +214,27 @@ Theme <- R6::R6Class(
     },
 
     #' @description
+    #' Set feature current values.
+    #' @param value `numeric` vector containing a value for each feature.
+    #'   A `list` of `numeric` values can also be supplied.
+    set_feature_current = function(value) {
+      if (is.list(value))
+        value <- unlist(value, recursive = TRUE, use.names = TRUE)
+      assertthat::assert_that(
+        is.numeric(value),
+        assertthat::noNA(value),
+        length(value) == length(self$feature))
+      for (i in seq_along(value)) {
+        self$feature[[i]]$set_current(value[[i]])
+      }
+      invisible(self)
+    },
+
+    #' @description
     #' Set setting.
     #' @param name `character` setting name.
     #' Available options are `"feature_status"`, `"feature_goal"`,
-    #' `"feature_visible"`, `"feature_order"`.
+    #' `"feature_visible"`, `"feature_order"`, `"feature_current"`.
     #' @param value vector containing a value for each feature.
     set_setting = function(name, value) {
       assertthat::assert_that(
@@ -223,7 +242,7 @@ Theme <- R6::R6Class(
         assertthat::noNA(name),
         name %in%
           c("feature_status", "feature_goal", "feature_visible",
-            "feature_order"))
+            "feature_order", "feature_current"))
       if (identical(name, "feature_status")) {
         self$set_feature_status(value)
       } else if (identical(name, "feature_goal")) {
@@ -232,6 +251,8 @@ Theme <- R6::R6Class(
         self$set_feature_visible(value)
       } else if (identical(name, "feature_order")) {
         self$set_feature_order(value)
+      } else if (identical(name, "feature_current")) {
+        self$set_feature_current(value)
       } else {
         stop(paste0("\"", name, "\" is not a setting"))
       }

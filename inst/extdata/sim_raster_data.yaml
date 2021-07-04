@@ -28,7 +28,6 @@ themes:
     max_goal: 1.0
     step_goal: 0.01
     limit_goal: 0.02
-    current: 0.22
     icon: map-marked-alt
 - name: Purple Honeycreeper
   mandatory: no
@@ -58,7 +57,6 @@ themes:
     max_goal: 1.0
     step_goal: 0.01
     limit_goal: 0.36
-    current: 0.59
     icon: map-pin
 - name: Least Boobook
   mandatory: yes
@@ -88,7 +86,6 @@ themes:
     max_goal: 1.0
     step_goal: 0.01
     limit_goal: 0.33
-    current: 0.12
     icon: map
 - name: Penduline-Tits
   mandatory: no
@@ -114,7 +111,6 @@ themes:
     max_goal: 1.0
     step_goal: 0.01
     limit_goal: 0.09
-    current: 0.38
     icon: database
   - name: Black-headed Penduline-Tit
     variable:
@@ -132,7 +128,6 @@ themes:
     max_goal: 1.0
     step_goal: 0.01
     limit_goal: 0.29
-    current: 0.32
     icon: atlas
   - name: Verdin
     variable:
@@ -150,7 +145,6 @@ themes:
     max_goal: 1.0
     step_goal: 0.01
     limit_goal: 0.38
-    current: 0.32
     icon: map
   - name: African Penduline-Tit (Buff-bellied)
     variable:
@@ -176,7 +170,6 @@ themes:
     max_goal: 1.0
     step_goal: 0.01
     limit_goal: 0.04
-    current: 0.18
     icon: map
   - name: Sennar Penduline-Tit
     variable:
@@ -199,7 +192,6 @@ themes:
     max_goal: 1.0
     step_goal: 0.01
     limit_goal: 0.37
-    current: 0.45
     icon: map-pin
 - name: Bowerbirds
   mandatory: no
@@ -222,7 +214,6 @@ themes:
     max_goal: 1.0
     step_goal: 0.01
     limit_goal: 0.39
-    current: 0.58
     icon: atlas
   - name: Black-capped Catbird
     variable:
@@ -245,7 +236,6 @@ themes:
     max_goal: 1.0
     step_goal: 0.01
     limit_goal: 0.26
-    current: 0.18
     icon: hdd
   - name: Golden-fronted Bowerbird
     variable:
@@ -268,7 +258,6 @@ themes:
     max_goal: 1.0
     step_goal: 0.01
     limit_goal: 0.35
-    current: 0.2
     icon: map-pin
   - name: Fawn-breasted Bowerbird
     variable:
@@ -288,7 +277,6 @@ themes:
     max_goal: 1.0
     step_goal: 0.01
     limit_goal: 0.38
-    current: 0.38
     icon: atlas
 weights:
 - name: Population density

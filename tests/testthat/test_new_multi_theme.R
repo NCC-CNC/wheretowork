@@ -85,9 +85,11 @@ test_that("get methods", {
   expect_identical(x$get_feature_goal(), c(0.2, 0.21))
   expect_identical(x$get_feature_visible(), c(TRUE, FALSE))
   expect_identical(x$get_feature_status(), c(FALSE, TRUE))
+  expect_identical(x$get_feature_current(), c(0.245, 0.5))
   expect_identical(x$get_feature_goal(), x$get_setting("feature_goal"))
   expect_identical(x$get_feature_status(), x$get_setting("feature_status"))
   expect_identical(x$get_feature_visible(), x$get_setting("feature_visible"))
+  expect_identical(x$get_feature_current(), x$get_setting("feature_current"))
 })
 
 test_that("set methods", {
@@ -130,15 +132,19 @@ test_that("set methods", {
   x$set_feature_goal(c(0.89, 0.26))
   x$set_feature_status(c(TRUE, FALSE))
   x$set_feature_visible(c(FALSE, FALSE))
+  x$set_feature_current(c(0.43, 0.21))
   expect_identical(x$get_feature_goal(), c(0.89, 0.26))
   expect_identical(x$get_feature_status(), c(TRUE, FALSE))
   expect_identical(x$get_feature_visible(), c(FALSE, FALSE))
+  expect_identical(x$get_feature_current(), c(0.43, 0.21))
   x$set_setting("feature_goal", c(0.33, 0.67))
   x$set_setting("feature_status", c(FALSE, FALSE))
   x$set_setting("feature_visible", c(TRUE, TRUE))
+  x$set_setting("feature_current", c(0.22, 0.99))
   expect_identical(x$get_feature_goal(), c(0.33, 0.67))
   expect_identical(x$get_feature_status(), c(FALSE, FALSE))
   expect_identical(x$get_feature_visible(), c(TRUE, TRUE))
+  expect_identical(x$get_feature_current(), c(0.22, 0.99))
 })
 
 test_that("export method", {

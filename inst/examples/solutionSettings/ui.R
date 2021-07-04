@@ -79,6 +79,16 @@ fluidPage(
           fluidRow(
             column(3,
               numericInput(
+                "st_current_input", label = NULL,
+                value = f1$get_current(), min = 0, max = 1, step = 0.01)
+            ),
+            column(3,
+              actionButton("st_current_button", label = "Update current")
+            )
+          ),
+          fluidRow(
+            column(3,
+              numericInput(
                 "st_goal_input", label = NULL,
                 value = f1$get_goal(), min = 0, max = 1, step = 0.01)
             ),
@@ -142,6 +152,23 @@ fluidPage(
               column(1,
                 actionButton(
                   "mt_feature_status_button", label = "Update feature status"
+                )
+              )
+            )
+          ),
+          wellPanel(
+            fluidRow(
+              column(3,
+                numericInput(
+                  "mt1_feature_current_input", label = "forest",
+                  value = f2$get_current(), min = 0, max = 1, step = 0.01),
+                numericInput(
+                  "mt2_feature_current_input", label = "shrubs",
+                  value = f3$get_current(), min = 0, max = 1, step = 0.01),
+              ),
+              column(1,
+                actionButton(
+                  "mt_feature_current_button", label = "Update feature currents"
                 )
               )
             )

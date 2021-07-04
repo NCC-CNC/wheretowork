@@ -58,6 +58,7 @@ test_that("widget methods", {
       id = "RID1",
       name = "Intact Alvar",
       status = FALSE,
+      current = 0.56,
       goal = 0.5,
       held = 0.9,
       legend = v$legend$get_widget_data(),

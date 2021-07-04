@@ -62,6 +62,7 @@ test_that("get methods", {
   expect_identical(x$get_goal(), 0.2)
   expect_identical(x$get_status(), FALSE)
   expect_identical(x$get_visible(), TRUE)
+  expect_identical(x$get_current(), 0.56)
 })
 
 test_that("set methods", {
@@ -87,9 +88,11 @@ test_that("set methods", {
   x$set_goal(0.8)
   x$set_status(TRUE)
   x$set_visible(FALSE)
+  x$set_current(0.77)
   expect_identical(x$get_goal(), 0.8)
   expect_identical(x$get_status(), TRUE)
   expect_identical(x$get_visible(), FALSE)
+  expect_identical(x$get_current(), 0.77)
 })
 
 test_that("export method", {
@@ -108,7 +111,6 @@ test_that("export method", {
     max_goal = 0.9,
     step_goal = 0.03,
     limit_goal = 0.2,
-    current = 0.56,
     icon = "bell",
     id = "FID1")
   # run tests
@@ -124,7 +126,6 @@ test_that("export method", {
       max_goal = 0.9,
       step_goal = 0.03,
       limit_goal = 0.2,
-      current = 0.56,
       icon = "bell"
     )
   )

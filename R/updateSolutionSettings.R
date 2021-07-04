@@ -103,6 +103,19 @@ NULL
 #' \item{type}{`"theme"`}
 #' }
 #'
+#' **Update the feature current values.**
+#' This controls the bars indicating the amount currently held for each
+#' feature under both the "single" and "group" tabs.
+#' Note that the `value` element must have a value for each feature
+#' within the theme (the example below assumes the theme has three features).
+#'
+#' \describe{
+#' \item{id}{`"THEMEID"`}
+#' \item{setting}{`"feature_current"`}
+#' \item{value}{`c(0.3, 0.1, 0.7)`}
+#' \item{type}{`"theme"`}
+#' }
+#'
 #' **Update the feature goals.**
 #' This controls the sliders present under the "single" tab.
 #' To ensure compatibility between themes with a single feature
@@ -208,9 +221,11 @@ updateSolutionSettings <- function(
     value$type %in% c("weight", "theme", "include", "parameter"))
   if (identical(value$type, "theme")) {
     param_names <- c(
-      "name", "status", "group_goal", "feature_goal", "feature_status", "view")
+      "name", "status", "view",
+      "group_goal", "feature_goal", "feature_status", "feature_current")
     param_classes <- c(
-      "character", "logical", "numeric", "numeric", "logical", "character")
+      "character", "logical", "character",
+      "numeric", "numeric", "logical", "numeric")
   } else if (identical(value$type, "weight")) {
     param_names <- c("name", "status", "factor")
     param_classes <- c("character", "logical", "numeric")
