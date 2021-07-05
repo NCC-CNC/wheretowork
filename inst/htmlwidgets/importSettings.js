@@ -89,8 +89,39 @@ HTMLWidgets.widget({
 
           // append layer to container
           layers_el.appendChild(curr_el);
-        });
+          // enable sorting within container
+          this.sortable = new Sortable(
+            layers_el, {
+            animation: 150,
+            dataIdAttr: "data-id",
+            ghostClass: "ghost",
+            onUpdate: function(event) {
+              // set listeners to update user interfance
+              if (HTMLWidgets.shinyMode) {
+                const currentOrder = event.newDraggableIndex;
+                const settings = el.querySelectorAll(".layer-settings");
+                let i = 0;
+                let value = {};
+                Array.prototype.slice.call(settings).forEach((x, i) => {
+                    ++i;
+                    const v1 = x.querySelector("label").innerText;
+                    const v2 = x.querySelector("input").checked;
+                    const v3 = x.querySelector("select").value;
+                    const v4 = currentOrder;
+                    if (i == currentOrder) {
+                      value[i] = {order: v4, name: v1, import: v2, type: v3};
+                    }
+                });
+                // send message to R session
+                Shiny.setInputValue(elementId, {
+                  setting: "value",
+                  value: value
+                });
+              }
 
+            }
+          });
+        });
         // enable button
         button_el.removeAttribute("disabled");
       },
@@ -124,7 +155,6 @@ if (HTMLWidgets.shinyMode) {
       );
     }
   };
-
   for (var i = 0; i < fxns.length; ++i) {
     addShinyHandler(fxns[i])();
   }
