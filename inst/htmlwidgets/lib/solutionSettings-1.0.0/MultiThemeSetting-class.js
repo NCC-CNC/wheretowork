@@ -22,8 +22,9 @@ class MultiThemeSetting {
     // class fields
     /// internal variables
     this.id = id;
+    this.elementId = "setting-" + id;
     this.n_features = feature_id.length;
-    this.feature_id = feature_id;
+    this.feature_id = feature_id.map((x) => "setting-" + x);
     this.single_goal_values = feature_goal;
     this.single_status_values = feature_status;
     this.single_total_values = feature_total_amount;
@@ -119,28 +120,28 @@ class MultiThemeSetting {
 
     // attach id to elements
     /// main container
-    this.el.querySelector(".solution-setting").id = id;
+    this.el.querySelector(".solution-setting").id = this.elementId;
     /// single view containers
     for (let i = 0; i < this.n_features; ++i) {
-      single_panel_el.children[i].id = feature_id[i];
+      single_panel_el.children[i].id = this.feature_id[i];
     }
     /// tab containers
     this.el
       .querySelector(".tabbable ul")
-      .setAttribute("data-tabsetid", `tabs-${id}`);
+      .setAttribute("data-tabsetid", `tabs-${this.elementId}`);
     this.el
       .querySelector(".tabbable .tab-content")
-      .setAttribute("data-tabsetid", `tabs-${id}`);
+      .setAttribute("data-tabsetid", `tabs-${this.elementId}`);
     /// group tab
-    this.group_tab_el.setAttribute("href", `#tabs-${id}-1`);
+    this.group_tab_el.setAttribute("href", `#tabs-${this.elementId}-1`);
     this.el
       .querySelector(".tabbable .tab-content [data-value='group']")
-      .setAttribute("id", `tabs-${id}-1`);
+      .setAttribute("id", `tabs-${this.elementId}-1`);
     /// single tab
-    this.single_tab_el.setAttribute("href", `#tabs-${id}-2`);
+    this.single_tab_el.setAttribute("href", `#tabs-${this.elementId}-2`);
     this.el
       .querySelector(".tabbable .tab-content [data-value='single']")
-      .setAttribute("id", `tabs-${id}-2`);
+      .setAttribute("id", `tabs-${this.elementId}-2`);
 
     // disable switches if theme is mandatory (and keep colors as toggled on)
     if (mandatory) {
@@ -242,7 +243,7 @@ class MultiThemeSetting {
         that.single_status_el.forEach((x) => x.checked = checked);
         let els =
           document
-          .getElementById(that.id)
+          .getElementById(that.elementId)
           .querySelectorAll(
             `.disable-if-inactive, ` +
             `.disable-if-inactive.icon i, ` +
@@ -277,10 +278,10 @@ class MultiThemeSetting {
           that.single_status_values[i] = checked;
           let els =
             document
-            .getElementById(id)
+            .getElementById(that.elementId)
             .querySelectorAll(
-              `[id="${feature_id[i]}"] .disable-if-inactive, ` +
-              `[id="${feature_id[i]}"] .disable-if-inactive.sub-icon i`);
+              `[id="${that.feature_id[i]}"] .disable-if-inactive, ` +
+              `[id="${that.feature_id[i]}"] .disable-if-inactive.sub-icon i`);
           if (checked) {
             els.forEach((x) => x.removeAttribute("disabled"));
           } else {
@@ -408,7 +409,7 @@ class MultiThemeSetting {
     this.single_status_values.fill(value);
     let els =
       document
-      .getElementById(this.id)
+      .getElementById(this.elementId)
       .querySelectorAll(
         `.disable-if-inactive, ` +
         `.disable-if-inactive.icon i, ` +
@@ -446,7 +447,7 @@ class MultiThemeSetting {
       this.single_status_el[i].checked = value[i];
       let els =
         document
-        .getElementById(this.id)
+        .getElementById(this.elementId)
         .querySelectorAll(
           `[id="${this.feature_id[i]}"] .disable-if-inactive, ` +
           `[id="${this.feature_id[i]}"] .disable-if-inactive.sub-icon i`

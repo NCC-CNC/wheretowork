@@ -13,6 +13,7 @@ class ParameterSetting {
   ) {
     // class fields
     this.id = id;
+    this.elementId = "setting-" + id;
     this.el =
       document.importNode(
         document
@@ -28,7 +29,7 @@ class ParameterSetting {
     let that = this;
 
     // attach id to element
-    this.el.querySelector(".solution-setting").id = id;
+    this.el.querySelector(".solution-setting").id = this.elementId;
 
     // set initial values
     /// name
@@ -54,7 +55,7 @@ class ParameterSetting {
       this.status_el.addEventListener("change", function () {
         let checked = this.checked;
         let els =
-          document.getElementById(id).querySelectorAll(
+          document.getElementById(that.elementId).querySelectorAll(
             ".disable-if-inactive");
         if (checked) {
           els.forEach((x) => x.removeAttribute("disabled"));
@@ -106,7 +107,7 @@ class ParameterSetting {
   updateStatus(value) {
     this.status_el.checked = value;
     let els =
-      document.getElementById(this.id).querySelectorAll(
+      document.getElementById(this.elementId).querySelectorAll(
         ".disable-if-inactive, .disable-if-inactive.icon i");
     if (value) {
       els.forEach((x) => x.removeAttribute("disabled"));
