@@ -127,7 +127,7 @@ generate_solution <- function(
     prioritizr::add_min_set_objective() %>%
     prioritizr::add_manual_targets(targets) %>%
     prioritizr::add_binary_decisions() %>%
-    prioritizr::add_default_solver(gap = gap, verbose = FALSE)
+    prioritizr::add_cbc_solver(gap = gap, verbose = FALSE)
   ### add locked in constraints if needed
   if (any(locked_in)) {
     initial_problem <-
@@ -168,7 +168,7 @@ generate_solution <- function(
         )
       ) %>%
       prioritizr::add_binary_decisions() %>%
-      prioritizr::add_default_solver(gap = gap, verbose = FALSE)
+      prioritizr::add_cbc_solver(gap = gap, verbose = FALSE)
     ### add locked in constraints if needed
     if (any(locked_in)) {
       main_problem <-
