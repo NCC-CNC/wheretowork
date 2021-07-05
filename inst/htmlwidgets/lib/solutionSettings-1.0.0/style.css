@@ -33,6 +33,15 @@
   display: none;
 }
 
+/* panel title */
+.solution-settings .panel-title span {
+  display: flex;
+}
+
+.solution-settings .panel-title i {
+  margin-right: 5px;
+}
+
 /* panels */
 .solution-settings .panel-body {
   padding: 0;

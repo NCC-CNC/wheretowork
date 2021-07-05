@@ -111,7 +111,9 @@ mapManager_html <- function(id, style, class, ...) {
           class  = "map-manager-layer",
           htmltools::tags$div(
             class = "solution-layer",
-            mm_header_component_scaffold(remove_button = TRUE),
+            mm_header_component_scaffold(
+              icon = shiny::icon("rocket"),
+              remove_button = TRUE),
             htmltools::tags$div(
               class = "layer-legend-container",
               mm_legend_component_scaffold()
@@ -121,7 +123,7 @@ mapManager_html <- function(id, style, class, ...) {
       )
     )
 
-  ## weight
+  ## include
   x <-
     htmltools::tagAppendChild(
       x,
@@ -131,7 +133,9 @@ mapManager_html <- function(id, style, class, ...) {
           class  = "map-manager-layer",
           htmltools::tags$div(
             class = "include-layer",
-            mm_header_component_scaffold(),
+            mm_header_component_scaffold(
+              icon = shiny::icon("lock"),
+            ),
             htmltools::tags$div(
               class = "layer-legend-container",
               mm_legend_component_scaffold()
@@ -151,7 +155,9 @@ mapManager_html <- function(id, style, class, ...) {
           class  = "map-manager-layer",
           htmltools::tags$div(
             class = "weight-layer",
-            mm_header_component_scaffold(),
+            mm_header_component_scaffold(
+              icon = shiny::icon("weight-hanging")
+            ),
             htmltools::tags$div(
               class = "layer-legend-container",
               mm_legend_component_scaffold()
@@ -171,7 +177,9 @@ mapManager_html <- function(id, style, class, ...) {
           class  = "map-manager-layer",
           htmltools::tags$div(
             class = "theme-layer",
-            mm_header_component_scaffold(),
+            mm_header_component_scaffold(
+              icon = shiny::icon("star")
+            ),
             htmltools::tags$div(
               class = "layer-legend-container",
               mm_legend_component_scaffold()
@@ -192,7 +200,9 @@ mapManager_html <- function(id, style, class, ...) {
           class = "map-manager-layer",
             htmltools::tags$div(
               class = "theme-layer",
-              mm_header_component_scaffold(),
+              mm_header_component_scaffold(
+                icon = shiny::icon("star")
+              ),
               htmltools::tags$div(
                 class = "main"
             )

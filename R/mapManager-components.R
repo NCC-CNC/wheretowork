@@ -1,26 +1,3 @@
-#' Scaffold for the icon component of the map manager widget
-#'
-#' Create a HTML scaffold for an icon component of
-#' the [mapManager()] widget.
-#'
-#' @return `shiny.tag` object.
-#'
-#' @noRd
-mm_icon_component_scaffold <- function() {
-  htmltools::tags$div(class = "icon")
-}
-
-#' Scaffold for the sub-icon component of the map manager widget
-#'
-#' Create a HTML scaffold for a sub-icon component.
-#'
-#' @return `shiny.tag` object.
-#'
-#' @noRd
-mm_subicon_component_scaffold <- function() {
-  htmltools::tags$div(class = "sub-icon")
-}
-
 #' Scaffold for the legend component of the map manager widget
 #'
 #' Create a HTML scaffold for a legend component.
@@ -47,7 +24,9 @@ mm_legend_component_scaffold <- function() {
 #'
 #' @noRd
 mm_header_component_scaffold <- function(
-  id = uuid::UUIDgenerate(), remove_button = FALSE) {
+  id = uuid::UUIDgenerate(),
+  icon = shiny::icon("map-marker-alt"),
+  remove_button = FALSE) {
   # return scaffold
   htmltools::tags$div(
     class = "header",
@@ -85,7 +64,16 @@ mm_header_component_scaffold <- function(
       `data-placement` = "top",
       `data-delay` = "{\"show\":500, \"hide\":100}",
       `data-container` = "body",
-      title = "Name of the layer",
+      title = "Layer name",
+    ),
+    htmltools::tags$div(
+       class = "icon-container",
+      `data-toggle` = "tooltip",
+      `data-placement` = "top",
+      `data-delay` = "{\"show\":500, \"hide\":100}",
+      `data-container` = "body",
+      title = "Layer type",
+      icon
     ),
     if (remove_button) {
       htmltools::tags$button(

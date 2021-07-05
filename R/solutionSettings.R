@@ -128,22 +128,34 @@ solutionSettings_html <- function(id, style, class, ...) {
             multiple = FALSE,
             open = paste0(id, "_collapseThemePanel"),
             shinyBS::bsCollapsePanel(
-              title = "Themes",
+              title = htmltools::tags$span(
+                shiny::icon("star"),
+                "Themes"
+              ),
               value = paste0(id, "_collapseThemePanel"),
               htmltools::tags$div(class = "themes")
             ),
             shinyBS::bsCollapsePanel(
-              title = "Weights",
+              title = htmltools::tags$span(
+                shiny::icon("weight-hanging"),
+                "Weights"
+              ),
               value = paste0(id, "_collapseWeightPanel"),
               htmltools::tags$div(class = "weights")
             ),
             shinyBS::bsCollapsePanel(
-              title = "Includes",
+              title = htmltools::tags$span(
+                shiny::icon("lock"),
+                "Includes"
+              ),
               value = paste0(id, "_collapseIncludePanel"),
               htmltools::tags$div(class = "includes")
             ),
             shinyBS::bsCollapsePanel(
-              title = "Settings",
+              title = htmltools::tags$span(
+                shiny::icon("cog"),
+                "Settings"
+              ),
               value = paste0(id, "_collapseParametersPanel"),
               htmltools::tags$div(class = "parameters")
             )
