@@ -22,6 +22,7 @@ leaflet_map <- function() {
     "function(btn, map) {",
     "Shiny.setInputValue(\"print_button\", Math.random());",
     "}")
+
   # create map
   map <-
     ## initialize leaflet map
@@ -70,16 +71,14 @@ leaflet_map <- function() {
       options = leaflet.extras2::historyOptions(position = "topleft")) %>%
     ## add scale bar
     leaflet::addScaleBar(
-      position = "bottomleft") %>%
-    ## add minimap
-    leaflet::addMiniMap(
-      position = "bottomleft",
-      width = 174, height = 150)
+      position = "bottomleft")
+
   # remove outdated font awesome dependency
   idx <- vapply(
     map$dependencies, FUN.VALUE = logical(1),
     function(x) x$name == "fontawesome" && x$version == "4.7.0")
   map$dependencies <- map$dependencies[which(!idx)]
+
   # return result
   map
 }
