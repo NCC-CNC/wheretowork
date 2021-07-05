@@ -253,8 +253,11 @@ generate_solution <- function(
     )
   })
 
+  # identify index for storing data
+  idx <- last(make.names(c(dataset$get_names(), name), unique = TRUE))
+  idx <- gsub(".", "_", idx, fixed = TRUE)
+
   # create variable to store solution
-  idx <- dataset$max_index() + 1
   dataset$add_index(index = idx, values = main_solution)
   v <- new_variable(
     dataset = dataset,
