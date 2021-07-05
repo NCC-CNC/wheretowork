@@ -35,27 +35,56 @@ importModal <- function(id) {
     footer = htmltools::tags$div(
       # styling
       style = "text-align: center",
-      # loading button
-      shinyFeedback::loadingButton(
-        inputId = paste0(id, "_import_button"),
-        label = "Import",
-        loadingLabel = "Loading..."
+      # auto button
+      shiny::conditionalPanel(
+        condition = paste0("input.", id, "_method == 'auto'"),
+        shinyFeedback::loadingButton(
+          inputId = paste0(id, "_auto_import_button"),
+          label = "Import",
+          loadingLabel = "Loading..."
+        )
+      ),
+      # manual button
+      shiny::conditionalPanel(
+        condition = paste0("input.", id, "_method == 'manual'"),
+        shinyFeedback::loadingButton(
+          inputId = paste0(id, "_manual_import_button"),
+          label = "Import",
+          loadingLabel = "Loading..."
+        )
       )
     ),
 
     ## import method
     shiny::selectInput(
       inputId = paste0(id, "_method"),
-      label = "Select data type",
-      choices = c("configuration file", "spatial dataset"),
-      selected = "configuration file",
+      label = "Select import method",
+      choices = c(
+        "built-in project" = "auto",
+        "upload project data" = "manual",
+        "spatial dataset" = "spatial"
+      ),
+      selected = "built-in project",
       multiple = FALSE
     ),
 
-    ## configuration file method
+    ## auto method
     shiny::conditionalPanel(
       ### condition
-      condition = paste0("input.", id, "_method == 'configuration file'"),
+      condition = paste0("input.", id, "_method == 'auto'"),
+      ### main
+      shiny::selectInput(
+        inputId = paste0(id, "_name"),
+        label = "Select project",
+        choices = c("No built-in projects available" = "NA"),
+        multiple = FALSE
+      )
+    ),
+
+    ## manual method
+    shiny::conditionalPanel(
+      ### condition
+      condition = paste0("input.", id, "_method == 'manual'"),
       ### main
       shiny::fileInput(
         paste0(id, "_configuration_file"),
@@ -83,16 +112,16 @@ importModal <- function(id) {
       )
     ),
 
-    ## spatial dataset method
+    ## spatial method
     shiny::conditionalPanel(
       ### condition
-      condition = paste0("input.", id, "_method == 'spatial dataset'"),
+      condition = paste0("input.", id, "_method == 'spatial'"),
       ### main
       shiny::fileInput(
         paste0(id, "_spatial_data"),
-        "Select spatial data",
+        "Select shapefile",
         multiple = TRUE,
-        accept = c(".shp", ".shx", ".prj", "shp", ".cpg", ".tif"),
+        accept = c(".shp", ".shx", ".prj", "shp", ".cpg"),
       ),
       p("TODO")
     ),
