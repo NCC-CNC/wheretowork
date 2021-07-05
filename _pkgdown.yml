@@ -15,23 +15,72 @@ reference:
       - locationmisc
       - runExample
 
-  - title: Widgets
+  - title: Sidebar panes
     desc: >
-      These functions for create and update Shiny widgets.
+      Functions for adding sidebar panes.
+    contents:
+      - exportSidebarPane
+      - mapManagerSidebarPane
+      - newSolutionSidebarPane
+      - solutionResultsSidebarPane
+
+  - title: Import modal widget
+    desc: >
+      Functions for creating and updating the widget.
+    contents:
+      - importModal
+
+  - title: Import settings widget
+    desc: >
+      Functions for creating and updating the widget.
+    contents:
+      - importSettings
+      - importSettings-shiny
+      - updateImportSettings
+      - cleanImportSettings
+
+  - title: Solution settings widget
+    desc: >
+      Functions for creating and updating the widget.
     contents:
       - solutionSettings
       - updateSolutionSettings
       - solutionSettings-shiny
+
+  - title: Map manager widget
+    desc: >
+      Functions for creating and updating the widget.
+    contents:
       - mapManager
       - mapManager-shiny
-      - newSolutionSidebarPane
+      - addMapManagerLayer
+      - dropMapManagerLayer
+      - updateMapManagerOrder
+      - updateMapManagerLayer
+
+  - title: Solution settings widget
+    desc: >
+      Functions for creating and updating the widget.
+    contents:
+      - solutionSettings
+      - solutionSettings-shiny
+      - updateSolutionSettings
+
+  - title: Solution results widget
+    desc: >
+      Functions for creating and updating the widget.
+    contents:
+      - solutionResults
+      - solutionResults-shiny
+      - addSolutionResults
+      - dropSolutionResults
+      - showSolutionResults
 
   - title: Class constructors
     desc: >
       These functions for generate new objects based on package's data structures.
     contents:
       - starts_with("new_")
-
 
   - title: Simulate objects
     desc: >
@@ -45,11 +94,56 @@ reference:
     contents:
       - ContinuousLegend
       - CategoricalLegend
+      - ManualLegend
+      - Parameter
+      - Statistic
       - Dataset
+      - Variable
       - Feature
       - Weight
+      - Include
       - Theme
       - SingleTheme
       - MultiTheme
+      - Solution
       - SolutionSettings
       - MapManager
+      - FeatureResults
+      - WeightResults
+      - ThemeResults
+      - SingleThemeResults
+      - MultiThemeResults
+
+  - title: Import/export functions
+    contents:
+      - readNamedRaster
+      - writeNamedRaster
+      - read_spatial_data
+      - write_spatial_data
+      - read_configuration_file
+      - write_configuration_file
+      - is_valid_attribute_file
+      - is_valid_boundary_file
+      - is_valid_spatial_file
+      - is_valid_configuration_file
+
+  - title: Shiny functions
+    contents:
+      - leaflet_map
+      - enable_html_element
+      - disable_html_element
+      - prepare_fileInput
+
+  - title: Spatial functions
+    contents:
+      - spatial_data_type
+      - spatial_data_statistics
+      - disable_html_element
+      - prepare_fileInput
+
+  - title: Assorted functions
+    contents:
+      - color_palette
+      - error_message
+      - extract_data_matrix
+      - generate_solution
