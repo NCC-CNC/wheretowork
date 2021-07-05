@@ -53,7 +53,7 @@ write_configuration_file(
   x = sim_vector_data,
   dataset = vector_data,
   path = "inst/extdata/sim_vector_data.yaml",
-  name = "Example GPKG dataset",
+  name = "Example Shapefile dataset",
   spatial_path = "inst/extdata/sim_vector_spatial.shp",
   attribute_path = "inst/extdata/sim_vector_attribute.csv.gz",
   boundary_path = "inst/extdata/sim_vector_boundary.csv.gz",
