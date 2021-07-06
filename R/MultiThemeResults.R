@@ -40,7 +40,6 @@ MultiThemeResults <- R6::R6Class(
         feature_solution_held =
           vapply(self$feature_results, `[[` , numeric(1), "held"),
         units = self$feature_results[[1]]$feature$variable$units,
-        mandatory = self$theme$mandatory,
         type = "theme_results"
       )
     }

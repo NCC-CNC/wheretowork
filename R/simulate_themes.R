@@ -92,7 +92,6 @@ simulate_themes <- function(
     st[[i]] <-
       new_single_theme(
         name = st_names[i],
-        mandatory = stats::runif(1) > 0.5,
         new_feature(
           name = paste0(st_names[i], " habitat"),
           initial_goal = round(stats::runif(1, 0.5, 0.9), 2),

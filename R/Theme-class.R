@@ -20,9 +20,6 @@ Theme <- R6::R6Class(
     #' @field feature `list` of [Feature] objects.
     feature = list(),
 
-    #' @field mandatory `logical` value.
-    mandatory = FALSE,
-
     #' @description
     #' Create a Theme object.
     #' @details This method intentionally throws an error.
@@ -39,7 +36,6 @@ Theme <- R6::R6Class(
       message("Theme")
       message("  id:        ", self$id)
       message("  name:      ", self$name)
-      message("  mandatory: ", self$mandatory)
       message("  feature: ")
       for (x in vapply(self$feature[po], function(x) x$repr(), character(1))) {
         message("    " , gsub("\n", "\n    ", x))
@@ -55,8 +51,7 @@ Theme <- R6::R6Class(
       po <- order(self$get_feature_order(), decreasing = TRUE)
       paste0(
         self$name,
-        ifelse(self$mandatory, " (mandatory):", ":"),
-        nl(),
+        ":", nl(),
         paste(
           paste0(
             "  ",
@@ -294,7 +289,6 @@ Theme <- R6::R6Class(
     export = function() {
       list(
         name = self$name,
-        mandatory = self$mandatory,
         feature = lapply(self$feature, function(x) x$export())
       )
     },

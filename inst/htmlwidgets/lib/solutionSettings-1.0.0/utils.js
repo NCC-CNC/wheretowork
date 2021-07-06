@@ -51,8 +51,7 @@ function newThemeSetting(manager, x) {
       x.feature_goal,
       x.feature_limit_goal,
       x.feature_step_goal,
-      x.units,
-      x.mandatory
+      x.units
     );
   } else {
     var y = new MultiThemeSetting(
@@ -69,8 +68,7 @@ function newThemeSetting(manager, x) {
       x.feature_goal,
       x.feature_limit_goal,
       x.feature_step_goal,
-      x.units,
-      x.mandatory
+      x.units
     );
   }
   return y;

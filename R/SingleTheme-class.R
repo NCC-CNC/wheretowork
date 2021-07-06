@@ -16,10 +16,9 @@ SingleTheme <- R6::R6Class(
     #' @param id `character` value.
     #' @param name `character` value.
     #' @param feature `list` of a single [Feature] object.
-    #' @param mandatory `logical` value.
     #' @return A new SingleTheme object.
     initialize = function(
-      id, name, feature, mandatory) {
+      id, name, feature) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -31,15 +30,11 @@ SingleTheme <- R6::R6Class(
         #### feature
         is.list(feature),
         length(feature) == 1,
-        inherits(feature[[1]], "Feature"),
-        #### mandatory
-        assertthat::is.flag(mandatory),
-        assertthat::noNA(mandatory))
+        inherits(feature[[1]], "Feature"))
       ## set fields
       self$id <- id
       self$name <- name
       self$feature <- feature
-      self$mandatory <- mandatory
     },
 
     #' @description
@@ -76,8 +71,7 @@ SingleTheme <- R6::R6Class(
         feature_goal = self$feature[[1]]$goal,
         feature_limit_goal = self$feature[[1]]$limit_goal,
         feature_step_goal = self$feature[[1]]$step_goal,
-        units = self$feature[[1]]$variable$units,
-        mandatory = self$mandatory
+        units = self$feature[[1]]$variable$units
       )
     },
 
@@ -139,7 +133,6 @@ SingleTheme <- R6::R6Class(
 new_single_theme <- function(
   name,
   feature,
-  mandatory = FALSE,
   id = uuid::UUIDgenerate()) {
   # convert to list
   if (inherits(feature, "Feature")) {
@@ -149,6 +142,5 @@ new_single_theme <- function(
   SingleTheme$new(
     id = id,
     feature = feature,
-    name = name,
-    mandatory = mandatory)
+    name = name)
 }

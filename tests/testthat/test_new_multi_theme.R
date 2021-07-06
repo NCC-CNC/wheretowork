@@ -31,7 +31,6 @@ test_that("initialization", {
   x <- new_multi_theme(
     name = "MF",
     feature = list(f1, f2),
-    mandatory = FALSE,
     id = "MF1")
   # run tests
   print(x)
@@ -39,7 +38,6 @@ test_that("initialization", {
   expect_identical(x$id, "MF1")
   expect_identical(x$name, "MF")
   expect_identical(x$feature, list(f1, f2))
-  expect_identical(x$mandatory, FALSE)
 })
 
 test_that("get methods", {
@@ -73,7 +71,6 @@ test_that("get methods", {
   x <- new_multi_theme(
     name = "MF",
     feature = list(f1, f2),
-    mandatory = FALSE,
     id = "MF1")
   # run tests
   expect_identical(x$get_feature_goal(), c(0.2, 0.21))
@@ -119,7 +116,6 @@ test_that("set methods", {
   x <- new_multi_theme(
     name = "MF",
     feature = list(f1, f2),
-    mandatory = FALSE,
     id = "MF1")
   # run tests
   x$set_feature_goal(c(0.89, 0.26))
@@ -173,14 +169,12 @@ test_that("export method", {
   x <- new_multi_theme(
     name = "MF",
     feature = list(f1, f2),
-    mandatory = FALSE,
     id = "MF1")
   # run tests
   expect_equal(
     x$export(),
     list(
       name = x$name,
-      mandatory = x$mandatory,
       feature = lapply(x$feature, function(x) x$export())
     )
   )
@@ -217,27 +211,26 @@ test_that("widget methods", {
   x <- new_multi_theme(
     name = "MF",
     feature = list(f1, f2),
-    mandatory = FALSE,
     id = "MF1")
   # run tests
   ## solution settings
   expect_identical(
     x$get_solution_settings_widget_data(),
     list(
-        id = "MF1",
-        name = "MF",
-        feature_name = c("F1", "F2"),
-        feature_id = c("FID1", "FID2"),
-        feature_status = c(FALSE, TRUE),
-        feature_total_amount = c(f1$variable$total, f2$variable$total),
-        feature_current_held = c(0.245, 0.523),
-        feature_min_goal = c(0.01, 0.011),
-        feature_max_goal = c(0.99, 0.991),
-        feature_goal = c(0.2, 0.21),
-        feature_limit_goal = c(0.02, 0.021),
-        feature_step_goal = c(0.05, 0.051),
-        units = "ha",
-        mandatory = FALSE)
+      id = "MF1",
+      name = "MF",
+      feature_name = c("F1", "F2"),
+      feature_id = c("FID1", "FID2"),
+      feature_status = c(FALSE, TRUE),
+      feature_total_amount = c(f1$variable$total, f2$variable$total),
+      feature_current_held = c(0.245, 0.523),
+      feature_min_goal = c(0.01, 0.011),
+      feature_max_goal = c(0.99, 0.991),
+      feature_goal = c(0.2, 0.21),
+      feature_limit_goal = c(0.02, 0.021),
+      feature_step_goal = c(0.05, 0.051),
+      units = "ha"
+    )
   )
   ## map manager settings
   expect_identical(

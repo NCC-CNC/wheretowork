@@ -130,7 +130,6 @@ read_configuration_file <- function(
     try(
       new_theme(
         name = x$name,
-        mandatory = x$mandatory,
         feature = lapply(x$feature, function(f) {
           new_feature(
             name = f$name,

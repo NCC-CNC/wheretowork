@@ -19,7 +19,6 @@ test_that("initialization", {
   x <- new_single_theme(
     name = "FS",
     feature = f,
-    mandatory = FALSE,
     id = "FS1")
   # run tests
   print(x)
@@ -27,7 +26,6 @@ test_that("initialization", {
   expect_identical(x$id, "FS1")
   expect_identical(x$name, "FS")
   expect_identical(x$feature, list(f))
-  expect_identical(x$mandatory, FALSE)
 })
 
 test_that("export method", {
@@ -49,14 +47,12 @@ test_that("export method", {
   x <- new_single_theme(
     name = "FS",
     feature = f,
-    mandatory = FALSE,
     id = "FS1")
   # run tests
   expect_equal(
     x$export(),
     list(
       name = x$name,
-      mandatory = x$mandatory,
       feature = lapply(x$feature, function(x) x$export())
     )
   )
@@ -81,7 +77,6 @@ test_that("get methods", {
   x <- new_single_theme(
     name = "FS",
     feature = f,
-    mandatory = TRUE,
     id = "FS1")
   # run tests
   expect_identical(x$get_feature_goal(), 0.2)
@@ -115,7 +110,6 @@ test_that("set methods", {
   x <- new_single_theme(
     name = "FS",
     feature = f,
-    mandatory = TRUE,
     id = "FS1")
   # run tests
   x$set_feature_goal(0.8)
@@ -157,7 +151,6 @@ test_that("widget methods", {
   x <- new_single_theme(
     name = "FS",
     feature = f,
-    mandatory = TRUE,
     id = "FS1")
   # run tests
   ## solution settings
@@ -176,8 +169,7 @@ test_that("widget methods", {
       feature_goal = 0.2,
       feature_limit_goal = 0.05,
       feature_step_goal = 0.02,
-      units = "ha",
-      mandatory = TRUE
+      units = "ha"
     )
   )
   ## map manager

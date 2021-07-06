@@ -19,11 +19,10 @@ MultiTheme <- R6::R6Class(
     #' @param id `character` value.
     #' @param name `character` value.
     #' @param feature `list` of [Feature] objects.
-    #' @param mandatory `logical` value.
     #' @param feature_order `numeric` vector.
     #' @return A new MultiTheme object.
     initialize = function(
-      id, name, feature, mandatory, feature_order) {
+      id, name, feature, feature_order) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -35,9 +34,6 @@ MultiTheme <- R6::R6Class(
         #### feature
         is.list(feature),
         all_list_elements_inherit(feature, "Feature"),
-        #### mandatory
-        assertthat::is.flag(mandatory),
-        assertthat::noNA(mandatory),
         #### feature_order
         is.numeric(feature_order),
         assertthat::noNA(feature_order),
@@ -54,7 +50,6 @@ MultiTheme <- R6::R6Class(
       self$id <- id
       self$name <- name
       self$feature <- feature
-      self$mandatory <- mandatory
       self$feature_order <- feature_order
     },
 
@@ -106,8 +101,7 @@ MultiTheme <- R6::R6Class(
           vapply(self$feature, `[[`, numeric(1), "limit_goal"),
         feature_step_goal =
           vapply(self$feature, `[[`, numeric(1), "step_goal"),
-        units = self$feature[[1]]$variable$units,
-        mandatory = self$mandatory
+        units = self$feature[[1]]$variable$units
       )
     },
 
@@ -140,9 +134,6 @@ MultiTheme <- R6::R6Class(
 #' @param name `character` Name to display.
 #'
 #' @param feature `list` of [Feature] objects.
-#'
-#' @param mandatory `logical` Is the theme mandatory for generating solutions?
-#'   Defaults to `FALSE`.
 #'
 #' @param feature_order `numeric` Relative order for displaying each feature
 #'  on a map. Defaults to a reverse sequence of integer values.
@@ -185,7 +176,6 @@ MultiTheme <- R6::R6Class(
 new_multi_theme <- function(
   name,
   feature,
-  mandatory = FALSE,
   feature_order = as.double(rev(seq_along(feature))),
   id = uuid::UUIDgenerate()) {
   # return new feature
@@ -193,6 +183,5 @@ new_multi_theme <- function(
     id = id,
     name = name,
     feature = feature,
-    mandatory = mandatory,
     feature_order = feature_order)
 }

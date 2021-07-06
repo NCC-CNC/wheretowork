@@ -14,8 +14,7 @@ class MultiThemeSetting {
     feature_goal,
     feature_limit_goal,
     feature_step_goal,
-    units,
-    mandatory
+    units
   ) {
     // class fields
     /// internal variables
@@ -141,24 +140,6 @@ class MultiThemeSetting {
     this.el
       .querySelector(".tabbable .tab-content [data-value='single']")
       .setAttribute("id", `tabs-${this.elementId}-2`);
-
-    // disable switches if theme is mandatory (and keep colors as toggled on)
-    if (mandatory) {
-      /// status switch
-      this.status_el.parentElement.classList.add("disable-mouse");
-      this.status_el.addEventListener("click", function (e) {
-        e.preventDefault();
-        return false;
-      });
-      /// single switches
-      this.single_status_el.forEach((x) => {
-        x.parentElement.classList.add("disable-mouse");
-        x.addEventListener("click", function (e) {
-          e.preventDefault();
-          return false;
-        });
-      });
-    }
 
     // set initial theme values
     /// name

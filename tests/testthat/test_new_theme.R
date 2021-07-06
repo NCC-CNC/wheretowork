@@ -19,12 +19,10 @@ test_that("SingleTheme", {
   x <- new_single_theme(
     name = "FS",
     feature = f,
-    mandatory = FALSE,
     id = "FS1")
   y <- new_theme(
     name = "FS",
     feature = f,
-    mandatory = FALSE,
     id = "FS1")
   # run tests
   expect_equal(x, y)
@@ -61,12 +59,10 @@ test_that("MultiTheme", {
   x <- new_multi_theme(
     name = "MF",
     feature = list(f1, f2),
-    mandatory = FALSE,
     id = "MF1")
   y <- new_theme(
     name = "MF",
     feature = list(f1, f2),
-    mandatory = FALSE,
     id = "MF1")
   # run tests
   expect_equal(x, y)

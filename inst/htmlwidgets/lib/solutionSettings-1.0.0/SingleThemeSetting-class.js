@@ -14,8 +14,7 @@ class SingleThemeSetting {
     feature_goal,
     feature_limit_goal,
     feature_step_goal,
-    units,
-    mandatory
+    units
   ) {
     // class fields
     this.id = id;
@@ -44,15 +43,6 @@ class SingleThemeSetting {
 
     // attach id to element
     this.el.querySelector(".solution-setting").id = this.elementId;
-
-    // disable switches if theme is mandatory
-    if (mandatory) {
-      this.status_el.parentElement.classList.add("disable-mouse");
-      this.status_el.addEventListener("click", function (e) {
-        e.preventDefault();
-        return false;
-      });
-    }
 
     // set initial values
     /// name

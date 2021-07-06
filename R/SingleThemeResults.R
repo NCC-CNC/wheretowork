@@ -27,7 +27,6 @@ SingleThemeResults <- R6::R6Class(
         feature_goal = self$feature_results[[1]]$goal,
         feature_solution_held = self$feature_results[[1]]$held,
         units = self$feature_results[[1]]$feature$variable$units,
-        mandatory = self$theme$mandatory,
         type ="theme_results"
       )
     }

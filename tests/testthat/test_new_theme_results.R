@@ -75,7 +75,6 @@ test_that("widget methods (SingleTheme)", {
       feature_goal = fr$goal,
       feature_solution_held = fr$held,
       units = v$units,
-      mandatory = th$mandatory,
       type ="theme_results"
     )
   )
@@ -127,7 +126,6 @@ test_that("initialization (MultiTheme)", {
   th <- new_multi_theme(
     name = "MF",
     feature = list(f1, f2),
-    mandatory = FALSE,
     id = "MF1")
   x <- new_theme_results(theme = th, feature_results = fr, id = "RID3")
   # run tests
@@ -182,7 +180,6 @@ test_that("widget methods (MultiTheme)", {
   th <- new_multi_theme(
     name = "MF",
     feature = list(f1, f2),
-    mandatory = FALSE,
     id = "MF1")
   x <- new_theme_results(theme = th, feature_results = fr, id = "RID3")
   # run tests
@@ -201,7 +198,6 @@ test_that("widget methods (MultiTheme)", {
       feature_goal = c(fr[[1]]$goal, fr[[2]]$goal),
       feature_solution_held = c(fr[[1]]$held, fr[[2]]$held),
       units = v1$units,
-      mandatory = th$mandatory,
       type ="theme_results"
     )
   )
