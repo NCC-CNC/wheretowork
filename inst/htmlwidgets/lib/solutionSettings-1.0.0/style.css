@@ -156,7 +156,7 @@
 }
 
 .solution-setting .header .el-switch {
-  font-size: 14px;
+  font-size: 9px;
   font-weight: 700;
   padding-bottom: 0;
   margin-bottom: 0;
@@ -172,7 +172,7 @@
 }
 
 .solution-setting .sub-header .el-switch {
-  font-size: 11px;
+  font-size: 8px;
   margin-bottom: 0;
   padding-bottom: 0;
 }
