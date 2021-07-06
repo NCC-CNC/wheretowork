@@ -87,10 +87,11 @@ class SingleSolutionChart {
               ? (
                 d.feature_status
                 ? `${locale}: ${Math.round(d[key] * 100)}% (${Math.round(d[key] * d.feature_total_amount)} ${d.units
-                        || 'units'})`
+                    || 'units'})`
                 : `${locale}: 0% (0 ${d.units})`
               )
-              : `${locale}: ${Math.round(d[key] * 100)}% (${Math.round(d[key] * d.feature_total_amount)} ${d.units})` 
+              : `${locale}: ${Math.round(d[key] * 100)}% (${Math.round(d[key] * d.feature_total_amount)} ${d.units
+                  || 'units'})` 
             )
             .style('color', self.colors[key])
             .style('font-weight', type === key ? 'bold' : 'normal')

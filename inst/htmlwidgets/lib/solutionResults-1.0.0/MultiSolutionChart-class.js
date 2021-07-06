@@ -196,8 +196,8 @@ class MultiSolutionChart {
             .append('div')
             .text(() => `
               ${self.locale[attr]}: ≥ ${Math.round(Math.min(...parsedData[attr]) * 100)}%
-              (≥${self.minMultArray(parsedData[attr], parsedData.feature_total_amount)} ${self.data[0].units
-                      || 'units'})`)
+              (≥${self.minMultArray(parsedData[attr], parsedData.feature_total_amount)} ${self.data[0].units 
+                  || 'units'})`)
             .style('color', self.colors[attr]);
         }
       })
