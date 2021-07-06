@@ -18,6 +18,7 @@ dependencies:
       - utils.js
       - SingleSolutionChart-class.js
       - MultiSolutionChart-class.js
+      - WeightSolutionChart-class.js
     stylesheet:
       - style.css
 

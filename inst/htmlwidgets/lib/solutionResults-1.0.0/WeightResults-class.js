@@ -21,12 +21,21 @@ class WeightResults {
         .content,
       true);
 
-    // TODO: add code to display results for the object
-    // The current code just inserts a TODO into the DOM
-    const l = document.createElement("label");
-    l.innerText = "TODO";
-    this.el.appendChild(l);
+    const chartContainer = document.createElement('div');
+    chartContainer.classList.add('single-theme-result')
+    this.el.appendChild(chartContainer);
 
+    const chart = new WeightSolutionChart([{
+      name,
+      current_held,
+      solution_held,
+      total_amount,
+      units,
+      status,
+      factor,
+    }]);
+
+    chart.render(chartContainer);
   }
 
   /* render method */
