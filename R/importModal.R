@@ -35,11 +35,11 @@ importModal <- function(id) {
     footer = htmltools::tags$div(
       # styling
       style = "text-align: center",
-      # auto button
+      # builtin button
       shiny::conditionalPanel(
-        condition = paste0("input.", id, "_method == 'auto'"),
+        condition = paste0("input.", id, "_method == 'builtin'"),
         shinyFeedback::loadingButton(
-          inputId = paste0(id, "_auto_import_button"),
+          inputId = paste0(id, "_builtin_button"),
           label = "Import",
           loadingLabel = "Loading..."
         )
@@ -48,7 +48,7 @@ importModal <- function(id) {
       shiny::conditionalPanel(
         condition = paste0("input.", id, "_method == 'manual'"),
         shinyFeedback::loadingButton(
-          inputId = paste0(id, "_manual_import_button"),
+          inputId = paste0(id, "_manual_button"),
           label = "Import",
           loadingLabel = "Loading..."
         )
@@ -60,7 +60,7 @@ importModal <- function(id) {
       inputId = paste0(id, "_method"),
       label = "Select import method",
       choices = c(
-        "built-in project" = "auto",
+        "built-in project" = "builtin",
         "upload project data" = "manual",
         "spatial dataset" = "spatial"
       ),
@@ -68,10 +68,10 @@ importModal <- function(id) {
       multiple = FALSE
     ),
 
-    ## auto method
+    ## builtin method
     shiny::conditionalPanel(
       ### condition
-      condition = paste0("input.", id, "_method == 'auto'"),
+      condition = paste0("input.", id, "_method == 'builtin'"),
       ### main
       shiny::selectInput(
         inputId = paste0(id, "_name"),
