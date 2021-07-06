@@ -34,6 +34,7 @@ Imports:
     rcbc (>= 0.1.0.9001),
     withr (>= 2.4.2),
     colourpicker (>= 1.1.0),
+    dplyr (>= 1.0.6),
 Suggests:
     testthat (>= 2.0.1),
     knitr (>= 1.2.0),

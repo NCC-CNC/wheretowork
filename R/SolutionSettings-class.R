@@ -259,21 +259,22 @@ SolutionSettings <- R6::R6Class(
     #' Get theme settings for generating a prioritization.
     #' @return [tibble::tibble()] with data.
     get_theme_settings = function() {
-      # extract data
-      ids <- lapply(self$themes, function(x) x$get_feature_id())
-      nms <- lapply(self$themes, function(x) x$get_feature_name())
-      currents <- lapply(self$themes, function(x) x$get_feature_current())
-      statuses <- lapply(self$themes, function(x) x$get_feature_status())
-      goals <- lapply(self$themes, function(x) x$get_feature_goal())
-      totals <- lapply(self$themes, function(x) x$get_feature_total())
-      # return result
       tibble::tibble(
-        id = do.call(c, ids),
-        name = do.call(c, nms),
-        status = do.call(c, statuses),
-        goal = do.call(c, goals),
-        current = do.call(c, currents),
-        total = do.call(c, totals))
+        id =
+          do.call(c, lapply(self$themes, function(x) x$get_feature_id())),
+        name =
+          do.call(c, lapply(self$themes, function(x) x$get_feature_name())),
+        status =
+          do.call(c, lapply(self$themes, function(x) x$get_feature_status())),
+        goal =
+          do.call(c, lapply(self$themes, function(x) x$get_feature_goal())),
+        current =
+          do.call(c, lapply(self$themes, function(x) x$get_feature_current())),
+        limit =
+          do.call(c, lapply(self$themes, function(x) x$get_feature_limit())),
+        total =
+          do.call(c,  lapply(self$themes, function(x) x$get_feature_total()))
+      )
     },
 
     #' @description
@@ -303,7 +304,8 @@ SolutionSettings <- R6::R6Class(
     get_parameter_settings = function() {
       tibble::tibble(
         id = vapply(self$parameters, `[[`, character(1), "id"),
-        name = vapply(self$parameters, `[[`, character(1), "name"),        status = vapply(self$parameters, `[[`, logical(1), "status"),
+        name = vapply(self$parameters, `[[`, character(1), "name"),
+        status = vapply(self$parameters, `[[`, logical(1), "status"),
         value = vapply(self$parameters, `[[`, numeric(1), "value"))
     },
 

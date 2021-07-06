@@ -89,8 +89,11 @@ generate_solution <- function(
       feature = theme_settings$id,
       type = "absolute",
       sense = ">=",
-      target =
-        theme_settings$total * theme_settings$goal * theme_settings$status)
+      target = dplyr::if_else(
+        theme_settings$status,
+        theme_settings$total * theme_settings$goal,
+        theme_settings$total * theme_settings$limit)
+    )
   ## round values down to account for floating point issues
   targets$target <- floor(targets$target * 1e+3) / 1e+3
 

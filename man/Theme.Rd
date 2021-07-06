@@ -41,6 +41,7 @@ This method intentionally throws an error.
 \item \href{#method-get_feature_id}{\code{Theme$get_feature_id()}}
 \item \href{#method-get_feature_name}{\code{Theme$get_feature_name()}}
 \item \href{#method-get_feature_current}{\code{Theme$get_feature_current()}}
+\item \href{#method-get_feature_limit}{\code{Theme$get_feature_limit()}}
 \item \href{#method-get_feature_total}{\code{Theme$get_feature_total()}}
 \item \href{#method-get_visible}{\code{Theme$get_visible()}}
 \item \href{#method-get_feature_visible}{\code{Theme$get_feature_visible()}}
@@ -172,6 +173,19 @@ Get feature names.
 Get feature current.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Theme$get_feature_current()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{numeric} vector with value(s).
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_feature_limit"></a>}}
+\if{latex}{\out{\hypertarget{method-get_feature_limit}{}}}
+\subsection{Method \code{get_feature_limit()}}{
+Get feature limit.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$get_feature_limit()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{

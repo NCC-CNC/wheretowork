@@ -104,6 +104,13 @@ Theme <- R6::R6Class(
     },
 
     #' @description
+    #' Get feature limit.
+    #' @return `numeric` vector with value(s).
+    get_feature_limit = function() {
+      vapply(self$feature, `[[`, numeric(1), "limit_goal")
+    },
+
+    #' @description
     #' Get feature current.
     #' @return `numeric` vector with value(s).
     get_feature_total = function() {
