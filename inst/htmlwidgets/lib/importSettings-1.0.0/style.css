@@ -18,3 +18,7 @@ select {
     float: right;
 }
 
+.ghost {
+    background: #C8EBFB;
+    opacity: 0.2;
+  }
