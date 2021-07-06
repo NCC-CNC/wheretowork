@@ -15,19 +15,16 @@ test_that("SingleTheme", {
     step_goal = 0.02,
     limit_goal = 0.05,
     current = 0.2567,
-    icon = "bell",
     id = "FID1")
   x <- new_single_theme(
     name = "FS",
     feature = f,
     mandatory = FALSE,
-    icon = "atom",
     id = "FS1")
   y <- new_theme(
     name = "FS",
     feature = f,
     mandatory = FALSE,
-    icon = "atom",
     id = "FS1")
   # run tests
   expect_equal(x, y)
@@ -48,7 +45,6 @@ test_that("MultiTheme", {
     limit_goal = 0.02,
     step_goal = 0.05,
     current = 0.245,
-    icon = "bell",
     id = "FID1")
   f2 <- new_feature(
     name = "F2",
@@ -61,19 +57,16 @@ test_that("MultiTheme", {
     limit_goal = 0.021,
     step_goal = 0.051,
     current = 0.5,
-    icon = "adn",
     id = "FID2")
   x <- new_multi_theme(
     name = "MF",
     feature = list(f1, f2),
     mandatory = FALSE,
-    icon = "atom",
     id = "MF1")
   y <- new_theme(
     name = "MF",
     feature = list(f1, f2),
     mandatory = FALSE,
-    icon = "atom",
     id = "MF1")
   # run tests
   expect_equal(x, y)

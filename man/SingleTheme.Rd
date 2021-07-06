@@ -65,7 +65,7 @@ only contains a single feature.
 \subsection{Method \code{new()}}{
 Create a SingleTheme object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SingleTheme$new(id, name, feature, mandatory, icon)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SingleTheme$new(id, name, feature, mandatory)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -78,8 +78,6 @@ Create a SingleTheme object.
 \item{\code{feature}}{\code{list} of a single \link{Feature} object.}
 
 \item{\code{mandatory}}{\code{logical} value.}
-
-\item{\code{icon}}{\code{shiny.tag} object.}
 }
 \if{html}{\out{</div>}}
 }

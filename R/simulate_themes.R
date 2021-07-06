@@ -98,7 +98,6 @@ simulate_themes <- function(
           initial_goal = round(stats::runif(1, 0.5, 0.9), 2),
           current = round(stats::runif(1, 0.1, 0.6), 2),
           limit_goal = round(stats::runif(1, 0, 0.4), 2),
-          icon = example_feature_icon(),
           variable =
             new_variable_from_auto(
               dataset = dataset, index = st_index[[i]], units = "ha"
@@ -168,7 +167,6 @@ simulate_themes <- function(
         initial_goal = round(stats::runif(1, 0.5, 0.9), 2),
         current = round(stats::runif(1, 0.1, 0.6), 2),
         limit_goal = round(stats::runif(1, 0, 0.4), 2),
-        icon = example_feature_icon(),
         variable =
           new_variable_from_auto(
             dataset = dataset, index = curr_tn_index[[j]], units = "ha"
@@ -179,8 +177,7 @@ simulate_themes <- function(
     mt[[i]] <-
       new_multi_theme(
         name = mt_names[i],
-        feature = curr_fts,
-        icon = example_theme_icon(),
+        feature = curr_fts
       )
   }
 

@@ -15,7 +15,6 @@ test_that("initialization", {
     limit_goal = 0.02,
     step_goal = 0.05,
     current = 0.245,
-    icon = "bell",
     id = "FID1")
   f2 <- new_feature(
     name = "F2",
@@ -28,13 +27,11 @@ test_that("initialization", {
     limit_goal = 0.021,
     step_goal = 0.051,
     current = 0.5,
-    icon = "adn",
     id = "FID2")
   x <- new_multi_theme(
     name = "MF",
     feature = list(f1, f2),
     mandatory = FALSE,
-    icon = "atom",
     id = "MF1")
   # run tests
   print(x)
@@ -60,7 +57,6 @@ test_that("get methods", {
     limit_goal = 0.02,
     step_goal = 0.05,
     current = 0.245,
-    icon = "bell",
     id = "FID1")
   f2 <- new_feature(
     name = "F2",
@@ -73,13 +69,11 @@ test_that("get methods", {
     limit_goal = 0.021,
     step_goal = 0.051,
     current = 0.5,
-    icon = "adn",
     id = "FID2")
   x <- new_multi_theme(
     name = "MF",
     feature = list(f1, f2),
     mandatory = FALSE,
-    icon = "atom",
     id = "MF1")
   # run tests
   expect_identical(x$get_feature_goal(), c(0.2, 0.21))
@@ -109,7 +103,6 @@ test_that("set methods", {
     limit_goal = 0.02,
     step_goal = 0.05,
     current = 0.245,
-    icon = "bell",
     id = "FID1")
   f2 <- new_feature(
     name = "F2",
@@ -122,13 +115,11 @@ test_that("set methods", {
     limit_goal = 0.021,
     step_goal = 0.051,
     current = 0.5,
-    icon = "adn",
     id = "FID2")
   x <- new_multi_theme(
     name = "MF",
     feature = list(f1, f2),
     mandatory = FALSE,
-    icon = "atom",
     id = "MF1")
   # run tests
   x$set_feature_goal(c(0.89, 0.26))
@@ -166,7 +157,6 @@ test_that("export method", {
     limit_goal = 0.02,
     step_goal = 0.05,
     current = 0.245,
-    icon = "bell",
     id = "FID1")
   f2 <- new_feature(
     name = "F2",
@@ -179,13 +169,11 @@ test_that("export method", {
     limit_goal = 0.021,
     step_goal = 0.051,
     current = 0.5,
-    icon = "adn",
     id = "FID2")
   x <- new_multi_theme(
     name = "MF",
     feature = list(f1, f2),
     mandatory = FALSE,
-    icon = "atom",
     id = "MF1")
   # run tests
   expect_equal(
@@ -193,7 +181,6 @@ test_that("export method", {
     list(
       name = x$name,
       mandatory = x$mandatory,
-      icon = "atom",
       feature = lapply(x$feature, function(x) x$export())
     )
   )
@@ -214,7 +201,6 @@ test_that("widget methods", {
     limit_goal = 0.02,
     step_goal = 0.05,
     current = 0.245,
-    icon = "bell",
     id = "FID1")
   f2 <- new_feature(
     name = "F2",
@@ -227,13 +213,11 @@ test_that("widget methods", {
     limit_goal = 0.021,
     step_goal = 0.051,
     current = 0.523,
-    icon = "adn",
     id = "FID2")
   x <- new_multi_theme(
     name = "MF",
     feature = list(f1, f2),
     mandatory = FALSE,
-    icon = "atom",
     id = "MF1")
   # run tests
   ## solution settings
@@ -252,11 +236,8 @@ test_that("widget methods", {
         feature_goal = c(0.2, 0.21),
         feature_limit_goal = c(0.02, 0.021),
         feature_step_goal = c(0.05, 0.051),
-        feature_icon = c(
-          as.character(shiny::icon("bell")), as.character(shiny::icon("adn"))),
         units = "ha",
-        mandatory = FALSE,
-        icon = as.character(shiny::icon("atom")))
+        mandatory = FALSE)
   )
   ## map manager settings
   expect_identical(

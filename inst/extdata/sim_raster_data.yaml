@@ -6,7 +6,6 @@ mode: advanced
 themes:
 - name: Olive-headed Lorikeet
   mandatory: no
-  icon: map-marked-alt
   feature:
   - name: Olive-headed Lorikeet habitat
     variable:
@@ -28,10 +27,8 @@ themes:
     max_goal: 1.0
     step_goal: 0.01
     limit_goal: 0.02
-    icon: map-marked-alt
 - name: Purple Honeycreeper
   mandatory: no
-  icon: map-marked-alt
   feature:
   - name: Purple Honeycreeper habitat
     variable:
@@ -40,16 +37,16 @@ themes:
       legend:
         type: categorical
         colors:
-        - '#F7FCFD'
+        - '#FFFFCC'
+        - '#FFEDA0'
+        - '#FED976'
+        - '#FEB24C'
+        - '#FD8D3C'
+        - '#FC4E2A'
+        - '#E31A1C'
+        - '#BD0026'
+        - '#800026'
         - '#E5F5F9'
-        - '#CCECE6'
-        - '#99D8C9'
-        - '#66C2A4'
-        - '#41AE76'
-        - '#238B45'
-        - '#006D2C'
-        - '#00441B'
-        - '#F0F0F0'
     initial_status: yes
     initial_visible: yes
     initial_goal: 0.7
@@ -57,10 +54,8 @@ themes:
     max_goal: 1.0
     step_goal: 0.01
     limit_goal: 0.36
-    icon: map-pin
 - name: Least Boobook
   mandatory: yes
-  icon: map-marked-alt
   feature:
   - name: Least Boobook habitat
     variable:
@@ -69,16 +64,16 @@ themes:
       legend:
         type: categorical
         colors:
+        - '#F7FCFD'
+        - '#E0ECF4'
+        - '#BFD3E6'
+        - '#9EBCDA'
+        - '#8C96C6'
+        - '#8C6BB1'
+        - '#88419D'
+        - '#810F7C'
+        - '#4D004B'
         - '#66C2A5'
-        - '#FC8D62'
-        - '#8DA0CB'
-        - '#E78AC3'
-        - '#A6D854'
-        - '#FFD92F'
-        - '#E5C494'
-        - '#B3B3B3'
-        - '#FC8D59'
-        - '#FFFFBF'
     initial_status: yes
     initial_visible: yes
     initial_goal: 0.7
@@ -86,10 +81,8 @@ themes:
     max_goal: 1.0
     step_goal: 0.01
     limit_goal: 0.33
-    icon: map
 - name: Penduline-Tits
   mandatory: no
-  icon: frog
   feature:
   - name: African Penduline-Tit
     variable:
@@ -98,12 +91,12 @@ themes:
       legend:
         type: categorical
         colors:
-        - '#FEF0D9'
-        - '#FDD49E'
-        - '#FDBB84'
-        - '#FC8D59'
-        - '#E34A33'
-        - '#B30000'
+        - '#B2182B'
+        - '#EF8A62'
+        - '#FDDBC7'
+        - '#D1E5F0'
+        - '#67A9CF'
+        - '#2166AC'
     initial_status: yes
     initial_visible: yes
     initial_goal: 0.78
@@ -111,7 +104,6 @@ themes:
     max_goal: 1.0
     step_goal: 0.01
     limit_goal: 0.09
-    icon: database
   - name: Black-headed Penduline-Tit
     variable:
       index: Black_headed_Penduline_Tit
@@ -128,7 +120,6 @@ themes:
     max_goal: 1.0
     step_goal: 0.01
     limit_goal: 0.29
-    icon: atlas
   - name: Verdin
     variable:
       index: Verdin
@@ -145,7 +136,6 @@ themes:
     max_goal: 1.0
     step_goal: 0.01
     limit_goal: 0.38
-    icon: map
   - name: African Penduline-Tit (Buff-bellied)
     variable:
       index: African_Penduline_Tit_Buff_bellied_
@@ -170,54 +160,9 @@ themes:
     max_goal: 1.0
     step_goal: 0.01
     limit_goal: 0.04
-    icon: map
   - name: Sennar Penduline-Tit
     variable:
       index: Sennar_Penduline_Tit
-      units: ha
-      legend:
-        type: categorical
-        colors:
-        - '#B2182B'
-        - '#EF8A62'
-        - '#FDDBC7'
-        - '#FFFFFF'
-        - '#E0E0E0'
-        - '#999999'
-        - '#4D4D4D'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.78
-    min_goal: 0.0
-    max_goal: 1.0
-    step_goal: 0.01
-    limit_goal: 0.37
-    icon: map-pin
-- name: Bowerbirds
-  mandatory: no
-  icon: hippo
-  feature:
-  - name: Streaked Bowerbird
-    variable:
-      index: Streaked_Bowerbird
-      units: ha
-      legend:
-        type: categorical
-        colors:
-        - '#E41A1C'
-        - '#377EB8'
-        - '#4DAF4A'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.68
-    min_goal: 0.0
-    max_goal: 1.0
-    step_goal: 0.01
-    limit_goal: 0.39
-    icon: atlas
-  - name: Black-capped Catbird
-    variable:
-      index: Black_capped_Catbird
       units: ha
       legend:
         type: categorical
@@ -231,12 +176,73 @@ themes:
         - '#A6761D'
     initial_status: yes
     initial_visible: yes
-    initial_goal: 0.88
+    initial_goal: 0.78
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
-    limit_goal: 0.26
-    icon: hdd
+    limit_goal: 0.37
+- name: Bowerbirds
+  mandatory: no
+  feature:
+  - name: Western Bowerbird
+    variable:
+      index: Western_Bowerbird
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#762A83'
+        - '#AF8DC3'
+        - '#E7D4E8'
+        - '#F7F7F7'
+        - '#D9F0D3'
+        - '#7FBF7B'
+        - '#1B7837'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.84
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.17
+  - name: Streaked Bowerbird
+    variable:
+      index: Streaked_Bowerbird
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#FFEDA0'
+        - '#FEB24C'
+        - '#F03B20'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.63
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.33
+  - name: Black-capped Catbird
+    variable:
+      index: Black_capped_Catbird
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#762A83'
+        - '#AF8DC3'
+        - '#E7D4E8'
+        - '#F7F7F7'
+        - '#D9F0D3'
+        - '#7FBF7B'
+        - '#1B7837'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.58
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.05
   - name: Golden-fronted Bowerbird
     variable:
       index: Golden_fronted_Bowerbird
@@ -244,101 +250,83 @@ themes:
       legend:
         type: categorical
         colors:
-        - '#FFFFCC'
-        - '#D9F0A3'
-        - '#ADDD8E'
-        - '#78C679'
-        - '#41AB5D'
-        - '#238443'
-        - '#005A32'
+        - '#EFF3FF'
+        - '#C6DBEF'
+        - '#9ECAE1'
+        - '#6BAED6'
+        - '#4292C6'
+        - '#2171B5'
+        - '#084594'
     initial_status: yes
     initial_visible: yes
-    initial_goal: 0.62
+    initial_goal: 0.67
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
-    limit_goal: 0.35
-    icon: map-pin
-  - name: Fawn-breasted Bowerbird
-    variable:
-      index: Fawn_breasted_Bowerbird
-      units: ha
-      legend:
-        type: categorical
-        colors:
-        - '#CA0020'
-        - '#F4A582'
-        - '#92C5DE'
-        - '#0571B0'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.85
-    min_goal: 0.0
-    max_goal: 1.0
-    step_goal: 0.01
-    limit_goal: 0.38
-    icon: atlas
+    limit_goal: 0.04
 weights:
-- name: Population density
+- name: Climate resiliency
   variable:
-    index: Population_density
+    index: Climate_resiliency
     units: ha
     legend:
       type: continuous
       colors:
-      - '#F7FCF0'
-      - '#E0F3DB'
-      - '#CCEBC5'
-      - '#A8DDB5'
-      - '#7BCCC4'
-      - '#4EB3D3'
-      - '#2B8CBE'
-      - '#0868AC'
-      - '#084081'
+      - '#FFFFE5'
+      - '#FFF7BC'
+      - '#FEE391'
+      - '#FEC44F'
+      - '#FE9929'
+      - '#EC7014'
+      - '#CC4C02'
+      - '#993404'
+      - '#662506'
   initial_status: yes
   initial_visible: yes
   initial_factor: 0.0
   min_factor: 0.0
   max_factor: 100.0
   step_factor: 1.0
-- name: Invasive species
+- name: Human footprint index
   variable:
-    index: Invasive_species
+    index: Human_footprint_index
     units: ha
     legend:
       type: continuous
       colors:
-      - '#FFF7EC'
-      - '#FEE8C8'
-      - '#FDD49E'
-      - '#FDBB84'
-      - '#FC8D59'
-      - '#EF6548'
-      - '#D7301F'
-      - '#B30000'
-      - '#7F0000'
+      - '#67001F'
+      - '#B2182B'
+      - '#D6604D'
+      - '#F4A582'
+      - '#FDDBC7'
+      - '#F7F7F7'
+      - '#D1E5F0'
+      - '#92C5DE'
+      - '#4393C3'
+      - '#2166AC'
+      - '#053061'
   initial_status: yes
   initial_visible: yes
   initial_factor: 0.0
   min_factor: 0.0
   max_factor: 100.0
   step_factor: 1.0
-- name: Archaeological site
+- name: Tsunami threat
   variable:
-    index: Archaeological_site
+    index: Tsunami_threat
     units: ha
     legend:
       type: continuous
       colors:
-      - '#FFF5F0'
-      - '#FEE0D2'
-      - '#FCBBA1'
-      - '#FC9272'
-      - '#FB6A4A'
-      - '#EF3B2C'
-      - '#CB181D'
-      - '#A50F15'
-      - '#67000D'
+      - '#F7FCF5'
+      - '#E5F5E0'
+      - '#C7E9C0'
+      - '#A1D99B'
+      - '#74C476'
+      - '#41AB5D'
+      - '#238B45'
+      - '#006D2C'
+      - '#00441B'
   initial_status: yes
   initial_visible: yes
   initial_factor: 0.0
@@ -346,9 +334,9 @@ weights:
   max_factor: 100.0
   step_factor: 1.0
 includes:
-- name: Special Protection Area
+- name: Managed resource areas
   variable:
-    index: Special_Protection_Area
+    index: Managed_resource_areas
     units: ''
     legend:
       type: manual
@@ -361,15 +349,15 @@ includes:
   mandatory: no
   initial_status: yes
   initial_visible: yes
-- name: Site of Community Importance
+- name: Important Bird Areas
   variable:
-    index: Site_of_Community_Importance
+    index: Important_Bird_Areas
     units: ''
     legend:
       type: manual
       colors:
       - '#00FFFF00'
-      - '#1B9E77'
+      - '#FBB4AE'
       labels:
       - not included
       - included

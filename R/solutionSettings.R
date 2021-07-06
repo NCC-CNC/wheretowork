@@ -255,7 +255,6 @@ solutionSettings_html <- function(id, style, class, ...) {
         class = "single-theme-setting-template",
         htmltools::tags$div(
           class = "single-theme-setting solution-setting",
-          ss_icon_component_scaffold(),
           ss_header_component_scaffold("theme"),
           ss_goal_component_scaffold("theme")
         )
@@ -271,7 +270,6 @@ solutionSettings_html <- function(id, style, class, ...) {
         class = "multi-theme-setting-template",
         htmltools::tags$div(
           class = "multi-theme-setting solution-setting",
-          ss_icon_component_scaffold(),
           ss_header_component_scaffold("theme"),
           htmltools::tags$div(
             class = "main",
@@ -307,7 +305,6 @@ solutionSettings_html <- function(id, style, class, ...) {
         class = "multi-theme-single-setting-template",
         htmltools::tags$div(
           class = "single-container",
-          ss_subicon_component_scaffold(),
           ss_subheader_component_scaffold(),
           ss_goal_component_scaffold("theme")
         )

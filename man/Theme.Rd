@@ -27,8 +27,6 @@ This method intentionally throws an error.
 \item{\code{feature}}{\code{list} of \link{Feature} objects.}
 
 \item{\code{mandatory}}{\code{logical} value.}
-
-\item{\code{icon}}{\code{shiny.tag} value.}
 }
 \if{html}{\out{</div>}}
 }

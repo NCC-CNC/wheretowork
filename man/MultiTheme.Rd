@@ -69,7 +69,7 @@ Definition for the MultiTheme class.
 \subsection{Method \code{new()}}{
 Create a MultiTheme object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{MultiTheme$new(id, name, feature, mandatory, feature_order, icon)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{MultiTheme$new(id, name, feature, mandatory, feature_order)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -84,8 +84,6 @@ Create a MultiTheme object.
 \item{\code{mandatory}}{\code{logical} value.}
 
 \item{\code{feature_order}}{\code{numeric} vector.}
-
-\item{\code{icon}}{\code{shiny.tag} object.}
 }
 \if{html}{\out{</div>}}
 }

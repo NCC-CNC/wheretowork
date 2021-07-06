@@ -51,9 +51,6 @@ Feature <- R6::R6Class(
     #' @field limit_goal `numeric` limit goal value.
     limit_goal = NA_real_,
 
-    #' @field icon `shiny.tag` object.
-    icon = NULL,
-
     #' @description
     #' Create a Feature object.
     #' @param id `character` value.
@@ -67,12 +64,11 @@ Feature <- R6::R6Class(
     #' @param limit_goal `numeric` value.
     #' @param step_goal `numeric` value.
     #' @param current `numeric` value.
-    #' @param icon `shiny.tag` object.
     #' @return A new Feature object.
     initialize = function(
       id, name, variable, initial_visible, initial_status,
       initial_goal, min_goal, max_goal, step_goal, limit_goal,
-      current, icon) {
+      current) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -111,9 +107,7 @@ Feature <- R6::R6Class(
         assertthat::is.number(current),
         assertthat::noNA(current),
         isTRUE(current >= 0),
-        isTRUE(current <= 1),
-        #### icon
-        inherits(icon, "shiny.tag"))
+        isTRUE(current <= 1))
       ### set fields
       self$id <- id
       self$name <- name
@@ -129,7 +123,6 @@ Feature <- R6::R6Class(
       self$step_goal <- step_goal
       self$limit_goal <- limit_goal
       self$current <- current
-      self$icon <- icon
     },
 
     #' @description
@@ -258,8 +251,7 @@ Feature <- R6::R6Class(
         min_goal = self$min_goal,
         max_goal = self$max_goal,
         step_goal = self$step_goal,
-        limit_goal = self$limit_goal,
-        icon = strsplit(self$icon$attribs$`aria-label`, " ")[[1]][[1]]
+        limit_goal = self$limit_goal
       )
     }
 
@@ -315,12 +307,6 @@ Feature <- R6::R6Class(
 #' @param current `numeric` current proportion of values held in existing
 #'   conservation areas (e.g. 0.1 = 10%).
 #'
-#' @param icon `character` or `shiny.tag` Icon to display for the feature
-#'  This icon should indicate the type of data that underpin the feature.
-#'  If the argument to `icon` is a `character`, it is used with
-#'  [shiny::icon()] to generate an `shiny.tag` icon.
-#'  Defaults to `"map-marked-alt"`.
-#'
 #' @param id `character` unique identifier.
 #'   Defaults to a random identifier ([uuid::UUIDgenerate()]).
 #'
@@ -359,11 +345,7 @@ new_feature <- function(
     step_goal = 0.01,
     limit_goal = 0.1,
     current = 0,
-    icon = "map-marked-alt",
     id = uuid::UUIDgenerate()) {
-  # convert icon to shiny.tag if needed
-  if (is.character(icon))
-    icon <- shiny::icon(icon)
   # return new feature
   Feature$new(
     id = id,
@@ -376,6 +358,5 @@ new_feature <- function(
     max_goal = max_goal,
     step_goal = step_goal,
     limit_goal = limit_goal,
-    current = current,
-    icon = icon)
+    current = current)
 }

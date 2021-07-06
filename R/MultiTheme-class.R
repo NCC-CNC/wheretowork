@@ -21,10 +21,9 @@ MultiTheme <- R6::R6Class(
     #' @param feature `list` of [Feature] objects.
     #' @param mandatory `logical` value.
     #' @param feature_order `numeric` vector.
-    #' @param icon `shiny.tag` object.
     #' @return A new MultiTheme object.
     initialize = function(
-      id, name, feature, mandatory, feature_order, icon) {
+      id, name, feature, mandatory, feature_order) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -43,9 +42,7 @@ MultiTheme <- R6::R6Class(
         is.numeric(feature_order),
         assertthat::noNA(feature_order),
         length(feature_order) == length(feature),
-        identical(anyDuplicated(feature_order), 0L),
-        #### icon
-        inherits(icon, "shiny.tag"))
+        identical(anyDuplicated(feature_order), 0L))
       ## assert all feature have ame units
       assertthat::assert_that(
         n_distinct(
@@ -59,7 +56,6 @@ MultiTheme <- R6::R6Class(
       self$feature <- feature
       self$mandatory <- mandatory
       self$feature_order <- feature_order
-      self$icon <- icon
     },
 
     #' @description
@@ -110,13 +106,8 @@ MultiTheme <- R6::R6Class(
           vapply(self$feature, `[[`, numeric(1), "limit_goal"),
         feature_step_goal =
           vapply(self$feature, `[[`, numeric(1), "step_goal"),
-        feature_icon =
-          vapply(
-            self$feature, function(x) as.character(x$icon),
-            character(1)),
         units = self$feature[[1]]$variable$units,
-        mandatory = self$mandatory,
-        icon = as.character(self$icon)
+        mandatory = self$mandatory
       )
     },
 
@@ -155,12 +146,6 @@ MultiTheme <- R6::R6Class(
 #'
 #' @param feature_order `numeric` Relative order for displaying each feature
 #'  on a map. Defaults to a reverse sequence of integer values.
-#'
-#' @param icon `shiny.tag` Icon to display for the feature
-#'  This icon should indicate the type of data that underpin the feature.
-#'  Alternatively, the argument can be a `character` to automatically
-#'  generate a `shiny.tag` icon (using [shiny::icon()]).
-#'  Defaults to `"map-marked-alt"`.
 #'
 #' @param id `character` unique identifier.
 #'   Defaults to a random identifier ([uuid::UUIDgenerate()]).
@@ -201,18 +186,13 @@ new_multi_theme <- function(
   name,
   feature,
   mandatory = FALSE,
-  icon = "map-marked-alt",
   feature_order = as.double(rev(seq_along(feature))),
   id = uuid::UUIDgenerate()) {
-  # convert icon to shiny.tag if needed
-  if (is.character(icon))
-    icon <- shiny::icon(icon)
   # return new feature
   MultiTheme$new(
     id = id,
     name = name,
     feature = feature,
     mandatory = mandatory,
-    feature_order = feature_order,
-    icon = icon)
+    feature_order = feature_order)
 }

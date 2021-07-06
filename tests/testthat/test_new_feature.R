@@ -17,7 +17,6 @@ test_that("initialization", {
     step_goal = 0.03,
     limit_goal = 0.2,
     current = 0.56,
-    icon = "bell",
     id = "FID1")
   # run tests
   print(x)
@@ -35,7 +34,6 @@ test_that("initialization", {
   expect_identical(x$step_goal, 0.03)
   expect_identical(x$limit_goal, 0.2)
   expect_identical(x$current, 0.56)
-  expect_identical(x$icon, shiny::icon("bell"))
   expect_identical(x$id, "FID1")
 })
 
@@ -56,7 +54,6 @@ test_that("get methods", {
     step_goal = 0.03,
     limit_goal = 0.2,
     current = 0.56,
-    icon = "bell",
     id = "FID1")
   # run tests
   expect_identical(x$get_goal(), 0.2)
@@ -82,7 +79,6 @@ test_that("set methods", {
     step_goal = 0.03,
     limit_goal = 0.2,
     current = 0.56,
-    icon = "bell",
     id = "FID1")
   # run tests
   x$set_goal(0.8)
@@ -111,7 +107,6 @@ test_that("export method", {
     max_goal = 0.9,
     step_goal = 0.03,
     limit_goal = 0.2,
-    icon = "bell",
     id = "FID1")
   # run tests
   expect_identical(
@@ -125,8 +120,7 @@ test_that("export method", {
       min_goal = 0.01,
       max_goal = 0.9,
       step_goal = 0.03,
-      limit_goal = 0.2,
-      icon = "bell"
+      limit_goal = 0.2
     )
   )
 })

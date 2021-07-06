@@ -8,7 +8,6 @@ new_multi_theme(
   name,
   feature,
   mandatory = FALSE,
-  icon = "map-marked-alt",
   feature_order = as.double(rev(seq_along(feature))),
   id = uuid::UUIDgenerate()
 )
@@ -20,12 +19,6 @@ new_multi_theme(
 
 \item{mandatory}{\code{logical} Is the theme mandatory for generating solutions?
 Defaults to \code{FALSE}.}
-
-\item{icon}{\code{shiny.tag} Icon to display for the feature
-This icon should indicate the type of data that underpin the feature.
-Alternatively, the argument can be a \code{character} to automatically
-generate a \code{shiny.tag} icon (using \code{\link[shiny:icon]{shiny::icon()}}).
-Defaults to \code{"map-marked-alt"}.}
 
 \item{feature_order}{\code{numeric} Relative order for displaying each feature
 on a map. Defaults to a reverse sequence of integer values.}

@@ -131,7 +131,6 @@ read_configuration_file <- function(
       new_theme(
         name = x$name,
         mandatory = x$mandatory,
-        icon = x$icon,
         feature = lapply(x$feature, function(f) {
           new_feature(
             name = f$name,
@@ -143,7 +142,6 @@ read_configuration_file <- function(
             step_goal = f$step_goal,
             limit_goal = f$limit_goal,
             current = 0,
-            icon = f$icon,
             variable = new_variable_from_auto(
               dataset = d,
               index = f$variable$index,

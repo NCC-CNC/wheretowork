@@ -41,7 +41,6 @@ MultiThemeResults <- R6::R6Class(
           vapply(self$feature_results, `[[` , numeric(1), "held"),
         units = self$feature_results[[1]]$feature$variable$units,
         mandatory = self$theme$mandatory,
-        icon = as.character(self$theme$icon),
         type = "theme_results"
       )
     }

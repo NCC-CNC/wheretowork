@@ -15,7 +15,6 @@ test_that("initialization (SingleTheme)", {
     step_goal = 0.02,
     limit_goal = 0.05,
     current = 0.034,
-    icon = "bell",
     id = "FID1")
   fr <- new_feature_results(
     feature = f,
@@ -24,7 +23,6 @@ test_that("initialization (SingleTheme)", {
   th <- new_theme(
     name = "FS",
     feature = f,
-    icon = "atom",
     id = "FS1")
   x <- new_theme_results(theme = th, feature_results = fr, id = "RID2")
   # run tests
@@ -51,7 +49,6 @@ test_that("widget methods (SingleTheme)", {
     step_goal = 0.02,
     limit_goal = 0.05,
     current = 0.034,
-    icon = "bell",
     id = "FID1")
   f$status <- TRUE
   f$goal <- 0.97
@@ -62,7 +59,6 @@ test_that("widget methods (SingleTheme)", {
   th <- new_theme(
     name = "FS",
     feature = f,
-    icon = "atom",
     id = "FS1")
   x <- new_theme_results(theme = th, feature_results = fr, id = "RID2")
   # run tests
@@ -80,7 +76,6 @@ test_that("widget methods (SingleTheme)", {
       feature_solution_held = fr$held,
       units = v$units,
       mandatory = th$mandatory,
-      icon = as.character(th$icon),
       type ="theme_results"
     )
   )
@@ -107,7 +102,6 @@ test_that("initialization (MultiTheme)", {
     limit_goal = 0.02,
     step_goal = 0.05,
     current = 0.245,
-    icon = "bell",
     id = "FID1")
   f2 <- new_feature(
     name = "F2",
@@ -120,7 +114,6 @@ test_that("initialization (MultiTheme)", {
     limit_goal = 0.021,
     step_goal = 0.051,
     current = 0.5,
-    icon = "adn",
     id = "FID2")
   fr <- list(
     new_feature_results(
@@ -135,7 +128,6 @@ test_that("initialization (MultiTheme)", {
     name = "MF",
     feature = list(f1, f2),
     mandatory = FALSE,
-    icon = "atom",
     id = "MF1")
   x <- new_theme_results(theme = th, feature_results = fr, id = "RID3")
   # run tests
@@ -165,7 +157,6 @@ test_that("widget methods (MultiTheme)", {
     limit_goal = 0.02,
     step_goal = 0.05,
     current = 0.245,
-    icon = "bell",
     id = "FID1")
   f2 <- new_feature(
     name = "F2",
@@ -178,7 +169,6 @@ test_that("widget methods (MultiTheme)", {
     limit_goal = 0.021,
     step_goal = 0.051,
     current = 0.5,
-    icon = "adn",
     id = "FID2")
   fr <- list(
     new_feature_results(
@@ -193,7 +183,6 @@ test_that("widget methods (MultiTheme)", {
     name = "MF",
     feature = list(f1, f2),
     mandatory = FALSE,
-    icon = "atom",
     id = "MF1")
   x <- new_theme_results(theme = th, feature_results = fr, id = "RID3")
   # run tests
@@ -213,7 +202,6 @@ test_that("widget methods (MultiTheme)", {
       feature_solution_held = c(fr[[1]]$held, fr[[2]]$held),
       units = v1$units,
       mandatory = th$mandatory,
-      icon = as.character(th$icon),
       type ="theme_results"
     )
   )

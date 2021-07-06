@@ -4,166 +4,162 @@ attribute_path: inst/extdata/sim_vector_attribute.csv.gz
 boundary_path: inst/extdata/sim_vector_boundary.csv.gz
 mode: beginner
 themes:
-- name: Cassin's Kingbird
-  mandatory: no
-  icon: map-marked-alt
+- name: Black Tern (American)
+  mandatory: yes
   feature:
-  - name: Cassin's Kingbird habitat
+  - name: Black Tern (American) habitat
     variable:
-      index: Cassin_s_Kingbird
+      index: Black_Tern_American_
       units: ha
       legend:
         type: categorical
         colors:
-        - '#7FC97F'
-        - '#BEAED4'
-        - '#FDC086'
-        - '#FFFF99'
-        - '#386CB0'
-        - '#F0027F'
-        - '#BF5B17'
-        - '#666666'
-        - '#F1A340'
+        - '#F2F0F7'
+        - '#CBC9E2'
+        - '#9E9AC8'
+        - '#756BB1'
+        - '#54278F'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.59
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.3
+- name: Western Corella
+  mandatory: no
+  feature:
+  - name: Western Corella habitat
+    variable:
+      index: Western_Corella
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFF7FB'
+        - '#ECE2F0'
+        - '#D0D1E6'
+        - '#A6BDDB'
+        - '#67A9CF'
+        - '#3690C0'
+        - '#02818A'
+        - '#016C59'
+        - '#014636'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.81
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.4
+- name: White-browed Spinetail (rufiventris)
+  mandatory: no
+  feature:
+  - name: White-browed Spinetail (rufiventris) habitat
+    variable:
+      index: White_browed_Spinetail_rufiventris_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#40004B'
+        - '#762A83'
+        - '#9970AB'
+        - '#C2A5CF'
+        - '#E7D4E8'
         - '#F7F7F7'
+        - '#D9F0D3'
+        - '#A6DBA0'
+        - '#5AAE61'
+        - '#1B7837'
+        - '#00441B'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.85
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.32
+- name: Boobies and Gannets
+  mandatory: no
+  feature:
+  - name: Abbott's Booby
+    variable:
+      index: Abbott_s_Booby
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFFFE5'
+        - '#F7FCB9'
+        - '#D9F0A3'
+        - '#ADDD8E'
+        - '#78C679'
+        - '#41AB5D'
+        - '#238443'
+        - '#006837'
+        - '#004529'
     initial_status: yes
     initial_visible: yes
     initial_goal: 0.71
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
-    limit_goal: 0.23
-    icon: map-pin
-- name: Silky-tailed Nightjar
-  mandatory: yes
-  icon: map-marked-alt
-  feature:
-  - name: Silky-tailed Nightjar habitat
+    limit_goal: 0.08
+  - name: Red-footed Booby
     variable:
-      index: Silky_tailed_Nightjar
-      units: ha
-      legend:
-        type: categorical
-        colors:
-        - '#D73027'
-        - '#FC8D59'
-        - '#FEE090'
-        - '#FFFFBF'
-        - '#E0F3F8'
-        - '#91BFDB'
-        - '#4575B4'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.87
-    min_goal: 0.0
-    max_goal: 1.0
-    step_goal: 0.01
-    limit_goal: 0.29
-    icon: map-pin
-- name: Seychelles Fody
-  mandatory: no
-  icon: map-marked-alt
-  feature:
-  - name: Seychelles Fody habitat
-    variable:
-      index: Seychelles_Fody
+      index: Red_footed_Booby
       units: ha
       legend:
         type: continuous
         colors:
-        - '#FBB4AE'
-        - '#B3CDE3'
-        - '#CCEBC5'
-        - '#DECBE4'
-        - '#FED9A6'
-        - '#FFFFCC'
-        - '#E5D8BD'
-        - '#FDDAEC'
-        - '#F2F2F2'
+        - '#543005'
+        - '#8C510A'
+        - '#BF812D'
+        - '#DFC27D'
+        - '#F6E8C3'
+        - '#F5F5F5'
+        - '#C7EAE5'
+        - '#80CDC1'
+        - '#35978F'
+        - '#01665E'
+        - '#003C30'
     initial_status: yes
     initial_visible: yes
-    initial_goal: 0.64
+    initial_goal: 0.69
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.18
+  - name: Red-footed Booby (Eastern Pacific)
+    variable:
+      index: Red_footed_Booby_Eastern_Pacific_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFFFFF'
+        - '#F0F0F0'
+        - '#D9D9D9'
+        - '#BDBDBD'
+        - '#969696'
+        - '#737373'
+        - '#525252'
+        - '#252525'
+        - '#000000'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.65
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
     limit_goal: 0.13
-    icon: database
-- name: Thrushes and Allies
-  mandatory: no
-  icon: kiwi-bird
-  feature:
-  - name: American Robin (nigrideus)
+  - name: Brown Booby
     variable:
-      index: American_Robin_nigrideus_
+      index: Brown_Booby
       units: ha
       legend:
-        type: categorical
-        colors:
-        - '#8DD3C7'
-        - '#FFFFB3'
-        - '#BEBADA'
-        - '#FB8072'
-        - '#80B1D3'
-        - '#FDB462'
-        - '#B3DE69'
-        - '#FCCDE5'
-        - '#D9D9D9'
-        - '#BC80BD'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.78
-    min_goal: 0.0
-    max_goal: 1.0
-    step_goal: 0.01
-    limit_goal: 0.33
-    icon: map-marked-alt
-  - name: Orange-billed Nightingale-Thrush (Gray-headed)
-    variable:
-      index: Orange_billed_Nightingale_Thrush_Gray_headed_
-      units: ha
-      legend:
-        type: categorical
-        colors:
-        - '#7FC97F'
-        - '#BEAED4'
-        - '#FDC086'
-        - '#FFFF99'
-        - '#386CB0'
-        - '#F0027F'
-        - '#BF5B17'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.74
-    min_goal: 0.0
-    max_goal: 1.0
-    step_goal: 0.01
-    limit_goal: 0.27
-    icon: map-marked-alt
-  - name: Swainson's Thrush
-    variable:
-      index: Swainson_s_Thrush
-      units: ha
-      legend:
-        type: categorical
-        colors:
-        - '#F1EEF6'
-        - '#D7B5D8'
-        - '#DF65B0'
-        - '#DD1C77'
-        - '#980043'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.66
-    min_goal: 0.0
-    max_goal: 1.0
-    step_goal: 0.01
-    limit_goal: 0.33
-    icon: hdd
-  - name: Island Thrush (Lord Howe I.)
-    variable:
-      index: Island_Thrush_Lord_Howe_I_
-      units: ha
-      legend:
-        type: categorical
+        type: continuous
         colors:
         - '#FFF7FB'
         - '#ECE7F2'
@@ -174,158 +170,178 @@ themes:
         - '#0570B0'
         - '#045A8D'
         - '#023858'
-        - '#EF8A62'
     initial_status: yes
     initial_visible: yes
-    initial_goal: 0.62
+    initial_goal: 0.65
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
-    limit_goal: 0.29
-    icon: atlas
-  - name: Orange-billed Nightingale-Thrush
+    limit_goal: 0.09
+  - name: Northern Gannet
     variable:
-      index: Orange_billed_Nightingale_Thrush
+      index: Northern_Gannet
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFF7EC'
+        - '#FEE8C8'
+        - '#FDD49E'
+        - '#FDBB84'
+        - '#FC8D59'
+        - '#EF6548'
+        - '#D7301F'
+        - '#B30000'
+        - '#7F0000'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.71
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.14
+- name: Flamingos
+  mandatory: no
+  feature:
+  - name: Chilean Flamingo
+    variable:
+      index: Chilean_Flamingo
       units: ha
       legend:
         type: categorical
         colors:
-        - '#D53E4F'
-        - '#FC8D59'
-        - '#FEE08B'
-        - '#E6F598'
-        - '#99D594'
-        - '#3288BD'
+        - '#FBB4AE'
+        - '#B3CDE3'
+        - '#CCEBC5'
+        - '#DECBE4'
+        - '#FED9A6'
+        - '#FFFFCC'
+        - '#E5D8BD'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.85
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.07
+  - name: Greater Flamingo
+    variable:
+      index: Greater_Flamingo
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#FEE5D9'
+        - '#FCAE91'
+        - '#FB6A4A'
+        - '#CB181D'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.79
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.1
+  - name: Lesser Flamingo
+    variable:
+      index: Lesser_Flamingo
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#D7191C'
+        - '#FDAE61'
+        - '#FFFFBF'
+        - '#A6D96A'
+        - '#1A9641'
     initial_status: yes
     initial_visible: yes
     initial_goal: 0.8
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
-    limit_goal: 0.18
-    icon: map
-- name: Bulbuls
-  mandatory: no
-  icon: spider
-  feature:
-  - name: Common Bulbul (Dark-capped)
+    limit_goal: 0.39
+  - name: American Flamingo
     variable:
-      index: Common_Bulbul_Dark_capped_
+      index: American_Flamingo
       units: ha
       legend:
-        type: continuous
+        type: categorical
         colors:
-        - '#F7FCFD'
-        - '#E0ECF4'
-        - '#BFD3E6'
-        - '#9EBCDA'
-        - '#8C96C6'
-        - '#8C6BB1'
-        - '#88419D'
-        - '#810F7C'
-        - '#4D004B'
+        - '#D01C8B'
+        - '#F1B6DA'
+        - '#B8E186'
+        - '#4DAC26'
     initial_status: yes
     initial_visible: yes
-    initial_goal: 0.81
+    initial_goal: 0.51
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
-    limit_goal: 0.03
-    icon: map-pin
-  - name: Western Mountain Greenbul
+    limit_goal: 0.04
+  - name: James's Flamingo
     variable:
-      index: Western_Mountain_Greenbul
+      index: James_s_Flamingo
       units: ha
       legend:
-        type: continuous
+        type: categorical
         colors:
-        - '#40004B'
-        - '#762A83'
-        - '#9970AB'
-        - '#C2A5CF'
-        - '#E7D4E8'
-        - '#F7F7F7'
-        - '#D9F0D3'
-        - '#A6DBA0'
-        - '#5AAE61'
-        - '#1B7837'
-        - '#00441B'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.63
-    min_goal: 0.0
-    max_goal: 1.0
-    step_goal: 0.01
-    limit_goal: 0.38
-    icon: map-marked-alt
-  - name: Puff-throated Bulbul (Puff-throated)
-    variable:
-      index: Puff_throated_Bulbul_Puff_throated_
-      units: ha
-      legend:
-        type: continuous
-        colors:
-        - '#A50026'
-        - '#D73027'
+        - '#9E0142'
+        - '#D53E4F'
         - '#F46D43'
         - '#FDAE61'
         - '#FEE08B'
-        - '#FFFFBF'
-        - '#D9EF8B'
-        - '#A6D96A'
-        - '#66BD63'
-        - '#1A9850'
-        - '#006837'
+        - '#E6F598'
+        - '#ABDDA4'
+        - '#66C2A5'
+        - '#3288BD'
+        - '#5E4FA2'
     initial_status: yes
     initial_visible: yes
-    initial_goal: 0.72
+    initial_goal: 0.66
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
-    limit_goal: 0.12
-    icon: map-marked-alt
-  - name: Yellow-streaked Greenbul (Yellow-streaked)
-    variable:
-      index: Yellow_streaked_Greenbul_Yellow_streaked_
-      units: ha
-      legend:
-        type: continuous
-        colors:
-        - '#40004B'
-        - '#762A83'
-        - '#9970AB'
-        - '#C2A5CF'
-        - '#E7D4E8'
-        - '#F7F7F7'
-        - '#D9F0D3'
-        - '#A6DBA0'
-        - '#5AAE61'
-        - '#1B7837'
-        - '#00441B'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.87
-    min_goal: 0.0
-    max_goal: 1.0
-    step_goal: 0.01
-    limit_goal: 0.38
-    icon: map-pin
+    limit_goal: 0.21
 weights:
-- name: Rugged terrain
+- name: Pesticide risk
   variable:
-    index: Rugged_terrain
+    index: Pesticide_risk
     units: ha
     legend:
       type: continuous
       colors:
-      - '#B3E2CD'
-      - '#FDCDAC'
-      - '#CBD5E8'
-      - '#F4CAE4'
-      - '#E6F5C9'
-      - '#FFF2AE'
-      - '#F1E2CC'
-      - '#CCCCCC'
+      - '#FFF5EB'
+      - '#FEE6CE'
+      - '#FDD0A2'
+      - '#FDAE6B'
+      - '#FD8D3C'
+      - '#F16913'
+      - '#D94801'
+      - '#A63603'
+      - '#7F2704'
+  initial_status: yes
+  initial_visible: yes
+  initial_factor: 0.0
+  min_factor: 0.0
+  max_factor: 100.0
+  step_factor: 1.0
+- name: Archaeological site
+  variable:
+    index: Archaeological_site
+    units: ha
+    legend:
+      type: continuous
+      colors:
+      - '#FFFFE5'
+      - '#F7FCB9'
+      - '#D9F0A3'
+      - '#ADDD8E'
+      - '#78C679'
+      - '#41AB5D'
+      - '#238443'
+      - '#006837'
+      - '#004529'
   initial_status: yes
   initial_visible: yes
   initial_factor: 0.0
@@ -339,41 +355,17 @@ weights:
     legend:
       type: continuous
       colors:
-      - '#543005'
-      - '#8C510A'
-      - '#BF812D'
-      - '#DFC27D'
-      - '#F6E8C3'
-      - '#F5F5F5'
-      - '#C7EAE5'
-      - '#80CDC1'
-      - '#35978F'
-      - '#01665E'
-      - '#003C30'
-  initial_status: yes
-  initial_visible: yes
-  initial_factor: 0.0
-  min_factor: 0.0
-  max_factor: 100.0
-  step_factor: 1.0
-- name: Tsunami threat
-  variable:
-    index: Tsunami_threat
-    units: ha
-    legend:
-      type: continuous
-      colors:
-      - '#67001F'
-      - '#B2182B'
-      - '#D6604D'
-      - '#F4A582'
-      - '#FDDBC7'
-      - '#FFFFFF'
-      - '#E0E0E0'
-      - '#BABABA'
-      - '#878787'
-      - '#4D4D4D'
-      - '#1A1A1A'
+      - '#A50026'
+      - '#D73027'
+      - '#F46D43'
+      - '#FDAE61'
+      - '#FEE08B'
+      - '#FFFFBF'
+      - '#D9EF8B'
+      - '#A6D96A'
+      - '#66BD63'
+      - '#1A9850'
+      - '#006837'
   initial_status: yes
   initial_visible: yes
   initial_factor: 0.0
@@ -381,24 +373,24 @@ weights:
   max_factor: 100.0
   step_factor: 1.0
 includes:
-- name: Nature reserves
+- name: Protected landscapes
   variable:
-    index: Nature_reserves
+    index: Protected_landscapes
     units: ''
     legend:
       type: manual
       colors:
       - '#00FFFF00'
-      - '#B3E2CD'
+      - '#8DD3C7'
       labels:
       - not included
       - included
   mandatory: no
   initial_status: yes
   initial_visible: yes
-- name: Managed resource areas
+- name: Nature reserves
   variable:
-    index: Managed_resource_areas
+    index: Nature_reserves
     units: ''
     legend:
       type: manual

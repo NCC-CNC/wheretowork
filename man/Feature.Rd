@@ -44,8 +44,6 @@ Definition for the Feature class.
 \item{\code{step_goal}}{\code{numeric} step goal value.}
 
 \item{\code{limit_goal}}{\code{numeric} limit goal value.}
-
-\item{\code{icon}}{\code{shiny.tag} object.}
 }
 \if{html}{\out{</div>}}
 }
@@ -85,8 +83,7 @@ Create a Feature object.
   max_goal,
   step_goal,
   limit_goal,
-  current,
-  icon
+  current
 )}\if{html}{\out{</div>}}
 }
 
@@ -114,8 +111,6 @@ Create a Feature object.
 \item{\code{limit_goal}}{\code{numeric} value.}
 
 \item{\code{current}}{\code{numeric} value.}
-
-\item{\code{icon}}{\code{shiny.tag} object.}
 }
 \if{html}{\out{</div>}}
 }

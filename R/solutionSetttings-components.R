@@ -169,30 +169,6 @@ ss_slider_component_scaffold <- function(type, bar = NULL) {
   out
 }
 
-#' Scaffold for the icon component of the solution settings widget
-#'
-#' Create a HTML scaffold for an icon component of
-#' the [solutionSettings()] widget.
-#'
-#' @return `shiny.tag` object.
-#'
-#' @noRd
-ss_icon_component_scaffold <- function() {
-  htmltools::tags$div(class = "icon disable-if-inactive")
-}
-
-#' Scaffold for the sub-icon component of the solution settings widget
-#'
-#' Create a HTML scaffold for an sub-icon component of
-#' the [solutionSettings()] widget.
-#'
-#' @return `shiny.tag` object.
-#'
-#' @noRd
-ss_subicon_component_scaffold <- function() {
-  htmltools::tags$div(class = "sub-icon disable-if-inactive")
-}
-
 #' Scaffold for the header component of the solution settings widget
 #'
 #' Create a HTML scaffold for a header component of

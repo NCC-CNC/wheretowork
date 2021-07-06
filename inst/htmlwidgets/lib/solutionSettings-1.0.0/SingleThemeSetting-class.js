@@ -6,6 +6,7 @@ class SingleThemeSetting {
     name,
     feature_name,
     feature_id,
+    feature_status,
     feature_total_amount,
     feature_current_held,
     feature_min_goal,
@@ -13,10 +14,8 @@ class SingleThemeSetting {
     feature_goal,
     feature_limit_goal,
     feature_step_goal,
-    feature_status,
     units,
-    mandatory,
-    icon
+    mandatory
   ) {
     // class fields
     this.id = id;
@@ -38,7 +37,6 @@ class SingleThemeSetting {
 
     // local variables
     let that = this;
-    let icon_el = this.el.querySelector(".icon");
     let goal_label_el = this.el.querySelector(".slider-label");
     let goal_symbol_el = this.el.querySelector(".slider-symbol");
 
@@ -55,8 +53,6 @@ class SingleThemeSetting {
     }
 
     // set initial values
-    /// icon
-    icon_el.insertAdjacentHTML("beforeend", icon);
     /// name
     this.name_el.innerText = name;
     /// status
@@ -95,8 +91,9 @@ class SingleThemeSetting {
       this.status_el.addEventListener("change", function () {
         let checked = this.checked;
         let els =
-          document.getElementById(that.elementId).querySelectorAll(
-            ".disable-if-inactive, .disable-if-inactive.icon i");
+          document
+          .getElementById(that.elementId)
+          .querySelectorAll(".disable-if-inactive");
         if (checked) {
           els.forEach((x) => x.removeAttribute("disabled"));
         } else {
@@ -152,8 +149,9 @@ class SingleThemeSetting {
   updateStatus(value) {
     this.status_el.checked = value;
     let els =
-      document.getElementById(this.elementId).querySelectorAll(
-        ".disable-if-inactive, .disable-if-inactive.icon i");
+      document
+      .getElementById(this.elementId)
+      .querySelectorAll(".disable-if-inactive");
     if (value) {
       els.forEach((x) => x.removeAttribute("disabled"));
     } else {

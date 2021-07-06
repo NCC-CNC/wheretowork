@@ -43,6 +43,7 @@ function newThemeSetting(manager, x) {
       x.name,
       x.feature_name,
       x.feature_id,
+      x.feature_status,
       x.feature_total_amount,
       x.feature_current_held,
       x.feature_min_goal,
@@ -50,10 +51,8 @@ function newThemeSetting(manager, x) {
       x.feature_goal,
       x.feature_limit_goal,
       x.feature_step_goal,
-      x.feature_status,
       x.units,
-      x.mandatory,
-      x.icon
+      x.mandatory
     );
   } else {
     var y = new MultiThemeSetting(
@@ -62,6 +61,7 @@ function newThemeSetting(manager, x) {
       x.name,
       x.feature_name,
       x.feature_id,
+      x.feature_status,
       x.feature_total_amount,
       x.feature_current_held,
       x.feature_min_goal,
@@ -69,11 +69,8 @@ function newThemeSetting(manager, x) {
       x.feature_goal,
       x.feature_limit_goal,
       x.feature_step_goal,
-      x.feature_status,
-      x.feature_icon,
       x.units,
-      x.mandatory,
-      x.icon
+      x.mandatory
     );
   }
   return y;

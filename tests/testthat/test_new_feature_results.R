@@ -15,7 +15,6 @@ test_that("initialization", {
     step_goal = 0.03,
     limit_goal = 0.2,
     current = 0.56,
-    icon = "bell",
     id = "FID1")
   x <- new_feature_results(
     feature = f,
@@ -44,7 +43,6 @@ test_that("widget methods", {
     step_goal = 0.03,
     limit_goal = 0.2,
     current = 0.56,
-    icon = "bell",
     id = "FID1")
   f$goal <- 0.5
   x <- new_feature_results(

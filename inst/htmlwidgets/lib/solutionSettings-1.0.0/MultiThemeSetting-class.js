@@ -6,6 +6,7 @@ class MultiThemeSetting {
     name,
     feature_name,
     feature_id,
+    feature_status,
     feature_total_amount,
     feature_current_held,
     feature_min_goal,
@@ -13,11 +14,8 @@ class MultiThemeSetting {
     feature_goal,
     feature_limit_goal,
     feature_step_goal,
-    feature_status,
-    feature_icon,
     units,
-    mandatory,
-    icon
+    mandatory
   ) {
     // class fields
     /// internal variables
@@ -64,7 +62,6 @@ class MultiThemeSetting {
     this.name_el = header_el.querySelector(".name-label");
     this.status_el = header_el.querySelector(".status-checkbox");
     let main_el = this.el.querySelector(".main");
-    let icon_el = this.el.querySelector(".icon");
     let group_panel_el = main_el.querySelector(".group-view");
     let single_panel_el = main_el.querySelector(".single-view");
 
@@ -109,8 +106,6 @@ class MultiThemeSetting {
       single_panel_el.querySelectorAll(".noUiSlider-widget");
     let single_goal_label_el =
       single_panel_el.querySelectorAll(".slider-label");
-    let single_icon_el =
-      single_panel_el.querySelectorAll(".sub-icon");
     this.single_current_label_el =
       single_panel_el.querySelectorAll(".current-label");
     this.single_current_bar_el =
@@ -162,8 +157,6 @@ class MultiThemeSetting {
     }
 
     // set initial theme values
-    /// icon
-    icon_el.insertAdjacentHTML("beforeend", icon);
     /// name
     this.name_el.innerText = name;
     /// status
@@ -194,8 +187,6 @@ class MultiThemeSetting {
 
     // set initial single values
     for (let i = 0; i < this.n_features; ++i) {
-      /// icon
-      single_icon_el[i].insertAdjacentHTML("beforeend", feature_icon[i]);
       /// name text
       single_name_el[i].innerText = feature_name[i];
       /// status
@@ -246,8 +237,6 @@ class MultiThemeSetting {
           .getElementById(that.elementId)
           .querySelectorAll(
             `.disable-if-inactive, ` +
-            `.disable-if-inactive.icon i, ` +
-            `.disable-if-inactive.sub-icon i, ` +
             `.sub-header .status-checkbox`);
         if (checked) {
           els.forEach((x) => x.removeAttribute("disabled"));
@@ -280,8 +269,7 @@ class MultiThemeSetting {
             document
             .getElementById(that.elementId)
             .querySelectorAll(
-              `[id="${that.feature_id[i]}"] .disable-if-inactive, ` +
-              `[id="${that.feature_id[i]}"] .disable-if-inactive.sub-icon i`);
+              `[id="${that.feature_id[i]}"] .disable-if-inactive`);
           if (checked) {
             els.forEach((x) => x.removeAttribute("disabled"));
           } else {
@@ -412,8 +400,6 @@ class MultiThemeSetting {
       .getElementById(this.elementId)
       .querySelectorAll(
         `.disable-if-inactive, ` +
-        `.disable-if-inactive.icon i, ` +
-        `.disable-if-inactive.sub-icon i, ` +
         `.sub-header .status-checkbox`);
     if (value) {
       els.forEach((x) => x.removeAttribute("disabled"));
@@ -449,9 +435,7 @@ class MultiThemeSetting {
         document
         .getElementById(this.elementId)
         .querySelectorAll(
-          `[id="${this.feature_id[i]}"] .disable-if-inactive, ` +
-          `[id="${this.feature_id[i]}"] .disable-if-inactive.sub-icon i`
-        );
+          `[id="${this.feature_id[i]}"] .disable-if-inactive`);
       if (value[i]) {
         els.forEach((x) => x.removeAttribute("disabled"));
       } else {

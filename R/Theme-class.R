@@ -23,9 +23,6 @@ Theme <- R6::R6Class(
     #' @field mandatory `logical` value.
     mandatory = FALSE,
 
-    #' @field icon `shiny.tag` value.
-    icon = NULL,
-
     #' @description
     #' Create a Theme object.
     #' @details This method intentionally throws an error.
@@ -291,7 +288,6 @@ Theme <- R6::R6Class(
       list(
         name = self$name,
         mandatory = self$mandatory,
-        icon = strsplit(self$icon$attribs$`aria-label`, " ")[[1]][[1]],
         feature = lapply(self$feature, function(x) x$export())
       )
     },
