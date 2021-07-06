@@ -1,25 +1,27 @@
-.well {
-    max-width: 500px;
-}
-.layers {
-    max-height: 54vh;
-    overflow-y: scroll;
-    margin-left: 5px;
-    margin-bottom: 8px;
+/* style widget elements */
+.importSettings .well {
+  max-width: 500px;
 }
 
-.btn {
-    position: absolute;
-    left: 15%;
+.importSettings .layers {
+  max-height: 54vh;
+  overflow-y: scroll;
+  margin-left: 5px;
+  margin-bottom: 8px;
 }
 
-select {
-    position: relative;
-    float: right;
+.importSettings .btn {
+  position: absolute;
+  left: 15%;
+}
+
+.importSettings .select {
+  position: relative;
+  float: right;
 }
 
 /* ghost styling */
-.ghost {
-    background: #C8EBFB;
-    opacity: 0.2;
-  }
+.importSettings. .ghost {
+  background: #C8EBFB;
+  opacity: 0.2;
+}
