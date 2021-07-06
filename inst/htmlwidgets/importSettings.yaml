@@ -21,3 +21,9 @@ dependencies:
     src: htmlwidgets
     stylesheet:
       - importSettings.css
+
+  - name: Sortable
+    version: 1.13.0
+    src: htmlwidgets/lib/Sortable-1.13.0
+    script:
+      - Sortable.min.js

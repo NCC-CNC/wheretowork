@@ -126,7 +126,12 @@ importSettings_html <- function(id, style, class, ...) {
         class = "layer-settings-template",
         htmltools::div(
           class = "layer-settings",
-          htmltools::tags$input(type = "checkbox"),
+          htmltools::tags$input(
+            
+            class = "view-checkbox",
+            type = "checkbox"
+            ),
+
           htmltools::tags$label(),
           htmltools::tags$select(
             htmltools::tags$option("theme"),
