@@ -22,7 +22,7 @@ class WeightResults {
       true);
 
     const chartContainer = document.createElement('div');
-    chartContainer.classList.add('single-theme-result')
+    chartContainer.classList.add('weight-result')
     this.el.appendChild(chartContainer);
 
     const chart = new WeightSolutionChart([{
