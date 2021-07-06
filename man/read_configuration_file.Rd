@@ -4,16 +4,27 @@
 \alias{read_configuration_file}
 \title{Read a configuration file}
 \usage{
-read_configuration_file(x, spatial_path, attribute_path, boundary_path)
+read_configuration_file(
+  path,
+  spatial_path = NULL,
+  attribute_path = NULL,
+  boundary_path = NULL
+)
 }
 \arguments{
-\item{x}{\code{character} file path for configuration file.}
+\item{path}{\code{character} file path for the configuration file.}
 
-\item{spatial_path}{\code{character} file path for the spatial data.}
+\item{spatial_path}{\code{character} file path for spatial data.
+Defaults to \code{NULL} such that the file path is determined using
+the argument to \code{path}.}
 
-\item{attribute_path}{\code{character} file path for the attribute data.}
+\item{attribute_path}{\code{character} file path for attribute data.
+Defaults to \code{NULL} such that the file path is determined using
+the argument to \code{path}.}
 
-\item{boundary_path}{\code{character} file path for the attribute data.}
+\item{boundary_path}{\code{character} file path for boundary data.
+Defaults to \code{NULL} such that the file path is determined using
+the argument to \code{path}.}
 }
 \value{
 A \code{list} containing the following elements:

@@ -7,9 +7,20 @@ NULL
 #' The configuration file will contain all the data and settings related
 #' to a set of [Theme], [Weight], and [Include] objects.
 #'
-#' @param x `character` file path for configuration file.
+#' @param path `character` file path for the configuration file.
 #'
-#' @inheritParams write_configuration_file
+#' @param spatial_path `character` file path for spatial data.
+#'  Defaults to `NULL` such that the file path is determined using
+#'  the argument to `path`.
+#'
+#' @param attribute_path `character` file path for attribute data.
+#'  Defaults to `NULL` such that the file path is determined using
+#'  the argument to `path`.
+#'
+#' @param boundary_path `character` file path for boundary data.
+#'  Defaults to `NULL` such that the file path is determined using
+#'  the argument to `path`.
+#'
 #'
 #' @return A `list` containing the following elements:
 #' \describe{
@@ -40,24 +51,45 @@ NULL
 #'
 #' @export
 read_configuration_file <- function(
-  x, spatial_path, attribute_path, boundary_path) {
+  path, spatial_path = NULL, attribute_path = NULL, boundary_path = NULL) {
   # assert arguments are valid
   assertthat::assert_that(
-    assertthat::is.string(x),
-    assertthat::noNA(x),
-    assertthat::is.string(spatial_path),
-    assertthat::noNA(spatial_path),
-    assertthat::is.string(attribute_path),
-    assertthat::noNA(attribute_path),
-    assertthat::is.string(boundary_path),
-    assertthat::noNA(boundary_path))
+    assertthat::is.string(path),
+    assertthat::noNA(path))
+  if (!is.null(spatial_path)) {
+    assertthat::assert_that(
+      assertthat::is.string(spatial_path),
+      assertthat::noNA(spatial_path))
+  }
+  if (!is.null(attribute_path)) {
+    assertthat::assert_that(
+      assertthat::is.string(attribute_path),
+      assertthat::noNA(attribute_path))
+  }
+  if (!is.null(boundary_path)) {
+    assertthat::assert_that(
+      assertthat::is.string(boundary_path),
+      assertthat::noNA(boundary_path))
+  }
 
   # import configuration file
   ## read file
-  x <- try(yaml::read_yaml(x), silent = TRUE)
+  x <- try(yaml::read_yaml(path), silent = TRUE)
   if (inherits(x, "try-error")) {
     stop("configuration file is not a valid YAML file.")
   }
+
+  # set file paths if needed
+  if (is.null(spatial_path)) {
+    spatial_path <- file.path(dirname(path), basename(x$spatial_path))
+  }
+  if (is.null(attribute_path)) {
+    attribute_path <- file.path(dirname(path), basename(x$attribute_path))
+  }
+  if (is.null(boundary_path)) {
+    boundary_path <- file.path(dirname(path), basename(x$boundary_path))
+  }
+
   ## verify that file names listed in file match arguments
   if (endsWith(x$spatial_path, ".shp")) {
     message_path <-
