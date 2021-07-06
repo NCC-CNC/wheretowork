@@ -23,6 +23,7 @@ class WeightSetting {
     this.name_el = this.el.querySelector(".name-label");
     this.status_el = this.el.querySelector(".status-checkbox");
     this.factor_el = this.el.querySelector(".noUiSlider-widget");
+    this.previous_factor = factor;
 
     // local variables
     let that = this;
@@ -48,11 +49,20 @@ class WeightSetting {
       }
     });
 
-    // set listeners to update user interfance
+    // set listeners to update user interface
     /// enable/disable widget on click
     if (HTMLWidgets.shinyMode) {
       this.status_el.addEventListener("change", function () {
+        //// set switch value
         let checked = this.checked;
+        //// update slider
+        if (checked) {
+          that.factor_el.noUiSlider.set(that.previous_factor);
+        } else {
+          that.previous_factor = that.factor_el.noUiSlider.get();
+          that.factor_el.noUiSlider.set(0);
+        }
+        //// update HTML styles
         let els =
           document.getElementById(that.elementId).querySelectorAll(
             ".disable-if-inactive");
@@ -104,7 +114,19 @@ class WeightSetting {
   }
 
   updateStatus(value) {
-    this.status_el.checked = value;
+    // update HTML elements if needed
+    if (this.status_el.checked !== value) {
+      /// update switch
+      this.status_el.checked = value;
+      /// update slider
+      if (value) {
+        this.factor_el.noUiSlider.set(this.previous_factor);
+      } else {
+        this.previous_factor = this.factor_el.noUiSlider.get();
+        this.factor_el.noUiSlider.set(0);
+      }
+    }
+    // update HTML element styles
     let els =
       document.getElementById(this.elementId).querySelectorAll(
         ".disable-if-inactive, .disable-if-inactive.icon i");
@@ -116,6 +138,7 @@ class WeightSetting {
   }
 
   updateFactor(value) {
+    this.previous_factor = value;
     this.factor_el.noUiSlider.set(value);
   }
 

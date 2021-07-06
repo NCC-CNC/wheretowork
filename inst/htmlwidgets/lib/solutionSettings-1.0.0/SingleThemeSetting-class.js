@@ -32,8 +32,10 @@ class SingleThemeSetting {
     this.goal_el = this.el.querySelector(".noUiSlider-widget");
     this.current_label_el = this.el.querySelector(".current-label");
     this.current_bar_el = this.el.querySelector(".current-bar");
+    this.limit = feature_limit_goal;
     this.total = feature_total_amount;
     this.units = units;
+    this.previous_goal = feature_goal;
 
     // local variables
     let that = this;
@@ -78,8 +80,8 @@ class SingleThemeSetting {
     if (HTMLWidgets.shinyMode) {
       /// enforce minimum limit
       this.goal_el.noUiSlider.on("change", function (values, handle) {
-        if (values[handle] < feature_limit_goal) {
-          that.goal_el.noUiSlider.set(feature_limit_goal);
+        if (values[handle] < that.limit) {
+          that.goal_el.noUiSlider.set(that.limit);
         }
       });
       /// update goal label
@@ -89,7 +91,16 @@ class SingleThemeSetting {
       });
       /// enable/disable widget on click
       this.status_el.addEventListener("change", function () {
+        //// set switch value
         let checked = this.checked;
+        //// update slider
+        if (checked) {
+          that.goal_el.noUiSlider.set(that.previous_goal);
+        } else {
+          that.previous_goal = that.goal_el.noUiSlider.get();
+          that.goal_el.noUiSlider.set(that.limit);
+        }
+        //// update HTML styles
         let els =
           document
           .getElementById(that.elementId)
@@ -147,7 +158,19 @@ class SingleThemeSetting {
   }
 
   updateStatus(value) {
-    this.status_el.checked = value;
+    // update HTML elements if needed
+    if (this.status_el.checked !== value) {
+      /// update switch;
+      this.status_el.checked = value;
+      /// update slider
+      if (value) {
+        this.goal_el.noUiSlider.set(this.previous_goal);
+      } else {
+        this.previous_goal = this.goal_el.noUiSlider.get();
+        this.goal_el.noUiSlider.set(this.limit);
+      }
+    }
+    // update HTML element styles
     let els =
       document
       .getElementById(this.elementId)
@@ -160,6 +183,7 @@ class SingleThemeSetting {
   }
 
   updateFeatureGoal(value) {
+    this.previous_goal = value;
     this.goal_el.noUiSlider.set(value);
   }
 

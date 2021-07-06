@@ -26,8 +26,12 @@ class MultiThemeSetting {
     this.single_goal_values = feature_goal;
     this.single_status_values = feature_status;
     this.single_total_values = feature_total_amount;
+    this.single_limit_values = feature_limit_goal;
     this.units = units;
     this.group_limit_goal = Math.max.apply(Math, feature_limit_goal);
+    this.previous_group_goal = Math.max.apply(Math, feature_goal);
+    this.previous_single_goals = [...feature_goal];
+
     /// HTML container
     this.el =
       document.importNode(
@@ -146,7 +150,7 @@ class MultiThemeSetting {
         e.preventDefault();
         return false;
       });
-      /// single sswitches
+      /// single switches
       this.single_status_el.forEach((x) => {
         x.parentElement.classList.add("disable-mouse");
         x.addEventListener("click", function (e) {
@@ -176,7 +180,7 @@ class MultiThemeSetting {
       Math.max.apply(Math, feature_current_held));
     /// slider
     noUiSlider.create(this.group_goal_el, {
-      start: Math.min.apply(Math, feature_current_held),
+      start: Math.max.apply(Math, feature_goal),
       step: Math.min.apply(Math, feature_step_goal),
       connect: "lower",
       range: {
@@ -217,7 +221,7 @@ class MultiThemeSetting {
     if (HTMLWidgets.shinyMode) {
       /// group view
       //// enforce minimum limit
-      this.group_goal_el.noUiSlider.on('change', function (values, handle) {
+      this.group_goal_el.noUiSlider.on("change", function (values, handle) {
         if (values[handle] < that.group_limit_goal) {
           that.group_goal_el.noUiSlider.set(that.group_limit_goal);
         }
@@ -230,8 +234,33 @@ class MultiThemeSetting {
       });
       //// set status listener to enable/disable widget on click
       this.status_el.addEventListener("change", function () {
+        ///// set switch values
         let checked = this.checked;
-        that.single_status_el.forEach((x) => x.checked = checked);
+        ///// update group slider
+        if (checked) {
+          that.group_goal_el.noUiSlider.set(that.previous_group_goal);
+        } else {
+          that.previous_group_goal = that.group_goal_el.noUiSlider.get();
+          that.group_goal_el.noUiSlider.set(that.group_limit_goal);
+        }
+        ///// update single sliders
+        for (let i = 0; i < that.n_features; ++i) {
+          if (that.single_status_el[i].checked !== checked) {
+            /// update switch
+            that.single_status_el[i].checked = checked;
+            /// update slider
+            if (checked) {
+              that.single_goal_el[i].noUiSlider.set(
+                that.previous_single_goals[i]);
+            } else {
+              that.previous_single_goals[i] =
+                that.single_goal_el[i].noUiSlider.get();
+              that.single_goal_el[i].noUiSlider.set(
+                that.single_limit_values[i]);
+            }
+          }
+        }
+        //// update HTML element styles
         let els =
           document
           .getElementById(that.elementId)
@@ -263,8 +292,21 @@ class MultiThemeSetting {
         });
         //// set status listener to enable/disable widget on click
         this.single_status_el[i].addEventListener("change", function () {
+          ///// set switch values
           let checked = this.checked;
+          ///// update switches
           that.single_status_values[i] = checked;
+          ///// update slider
+          if (checked) {
+            that.single_goal_el[i].noUiSlider.set(
+              that.previous_single_goals[i]);
+          } else {
+            that.previous_single_goals[i] =
+              that.single_goal_el[i].noUiSlider.get();
+            that.single_goal_el[i].noUiSlider.set(
+              that.single_limit_values[i]);
+          }
+          //// update HTML element styles
           let els =
             document
             .getElementById(that.elementId)
@@ -392,8 +434,36 @@ class MultiThemeSetting {
   }
 
   updateStatus(value) {
-    this.status_el.checked = value;
-    this.single_status_el.forEach((x) => x.checked = value);
+    // update group HTML elements if needed
+    if (this.status_el.checked !== value) {
+      /// update switch
+      this.status_el.checked = value;
+      /// update group slider if needed
+      if (value) {
+        this.group_goal_el.noUiSlider.set(this.previous_group_goal);
+      } else {
+        this.previous_group_goal = this.group_goal_el.noUiSlider.get();
+        this.group_goal_el.noUiSlider.set(this.group_limit_goal);
+      }
+    }
+    /// update single HTML elements if needed
+    for (let i = 0; i < this.n_features; ++i) {
+      if (this.single_status_el[i].checked !== value) {
+        /// update switch
+        this.single_status_el[i].checked = value;
+        /// update slider
+        if (value) {
+          this.single_goal_el[i].noUiSlider.set(
+            this.previous_single_goals[i]);
+        } else {
+          this.previous_single_goals[i] =
+            this.single_goal_el[i].noUiSlider.get();
+          this.single_goal_el[i].noUiSlider.set(
+            this.single_limit_values[i]);
+        }
+      }
+    }
+    // update HTML element styles
     this.single_status_values.fill(value);
     let els =
       document
@@ -417,6 +487,7 @@ class MultiThemeSetting {
   }
 
   updateGroupGoal(value) {
+    this.previous_group_goal = value;
     this.group_goal_el.noUiSlider.set(value);
   }
 
@@ -427,10 +498,24 @@ class MultiThemeSetting {
     }
     // update status variable
     this.single_status_values = value;
-    // set elements as active/inactive
+    // iterate over each feature
     let els = undefined;
     for (let i = 0; i < this.n_features; ++i) {
-      this.single_status_el[i].checked = value[i];
+      /// update if needed
+      if (this.single_status_el[i].checked !== value[i]) {
+        /// update switch
+        this.single_status_el[i].checked = value[i];
+        /// update slider
+        if (value[i]) {
+          this.single_goal_el[i].noUiSlider.set(this.previous_single_goals[i]);
+        } else {
+          this.previous_single_goals[i] =
+            this.single_goal_el[i].noUiSlider.get();
+          this.single_goal_el[i].noUiSlider.set(
+            this.single_limit_values[i]);
+        }
+      }
+      /// update HTML element styles
       let els =
         document
         .getElementById(this.elementId)
@@ -445,6 +530,7 @@ class MultiThemeSetting {
   }
 
   updateFeatureGoal(value) {
+    this.previous_single_goals = value;
     for (let i = 0; i < this.n_features; ++i) {
       this.single_goal_el[i].noUiSlider.set(value[i]);
     }

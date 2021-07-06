@@ -114,9 +114,15 @@
   width: 94%;
   border: 1px var(--border) solid;
   border-radius: 5px 5px 5px 5px;
-  margin : 10px;
+  margin: 10px;
   padding-bottom: 0px;
   background: white;
+}
+
+.weight-setting.solution-setting,
+.include-setting.solution-setting,
+.parameter-setting.solution-setting {
+  padding-bottom: 5px;
 }
 
 /* -- add disabled mouse cursor to any element with the .disable-mouse class */

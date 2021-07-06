@@ -24,6 +24,7 @@ class ParameterSetting {
     this.name_el = this.el.querySelector(".name-label");
     this.status_el = this.el.querySelector(".status-checkbox");
     this.value_el = this.el.querySelector(".noUiSlider-widget");
+    this.previous_value = value;
 
     // local variables
     let that = this;
@@ -49,11 +50,20 @@ class ParameterSetting {
       }
     });
 
-    // set listeners to update user interfance
+    // set listeners to update user interface
     /// enable/disable widget on click
     if (HTMLWidgets.shinyMode) {
       this.status_el.addEventListener("change", function () {
+        //// set switch value
         let checked = this.checked;
+        //// update slider
+        if (checked) {
+          that.value_el.noUiSlider.set(that.previous_value);
+        } else {
+          that.previous_value = that.value_el.noUiSlider.get();
+          that.value_el.noUiSlider.set(0);
+        }
+        //// update HTML styles
         let els =
           document.getElementById(that.elementId).querySelectorAll(
             ".disable-if-inactive");
@@ -105,7 +115,19 @@ class ParameterSetting {
   }
 
   updateStatus(value) {
-    this.status_el.checked = value;
+    // update HTML elements if needed
+    if (this.status_el.checked !== value) {
+      /// update switch
+      this.status_el.checked = value;
+      /// update slider
+      if (value) {
+        this.value_el.noUiSlider.set(this.previous_value);
+      } else {
+        this.previous_value = this.value_el.noUiSlider.get();
+        this.value_el.noUiSlider.set(0);
+      }
+    }
+    // update HTML element styles
     let els =
       document.getElementById(this.elementId).querySelectorAll(
         ".disable-if-inactive, .disable-if-inactive.icon i");
@@ -117,6 +139,7 @@ class ParameterSetting {
   }
 
   updateValue(value) {
+    this.previous_value = value;
     this.value_el.noUiSlider.set(value);
   }
 
