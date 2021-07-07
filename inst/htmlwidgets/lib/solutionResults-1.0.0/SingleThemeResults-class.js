@@ -14,7 +14,8 @@ class SingleThemeResults {
     units,
     mandatory,
     round,
-    icon
+    icon,
+    solution_color
   ) {
     this.id = id;
     this.el =
@@ -38,6 +39,7 @@ class SingleThemeResults {
       feature_total_amount,
       feature_status,
       units,
+      solution_color
     }]);
 
     chart.render(chartContainer);

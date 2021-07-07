@@ -9,7 +9,8 @@ class WeightResults {
     total_amount,
     current_held,
     solution_held,
-    units
+    units,
+    solution_color
   ) {
     // class fields
     this.id = id;
@@ -33,6 +34,7 @@ class WeightResults {
       units,
       status,
       factor,
+      solution_color
     }]);
 
     chart.render(chartContainer);

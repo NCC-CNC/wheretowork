@@ -14,7 +14,8 @@ class MultiThemeResults {
     units,
     mandatory,
     round,
-    icon
+    icon,
+    solution_color
   ) {
     this.id = id;
     this.el =
@@ -38,6 +39,7 @@ class MultiThemeResults {
       feature_total_amount: feature_total_amount[index],
       feature_status: feature_status[index],
       units,
+      solution_color
     })));
 
     chart.render(chartContainer);

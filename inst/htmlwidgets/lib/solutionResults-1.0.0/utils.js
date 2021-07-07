@@ -5,7 +5,8 @@ function newSolution(manager, x) {
     x.name,
     x.statistics,
     x.theme_results,
-    x.weight_results
+    x.weight_results,
+    x.solution_color
   );
 }
 
@@ -17,7 +18,7 @@ function newStatistic(manager, x) {
     x.units);
 }
 
-function newWeightResults(manager, x) {
+function newWeightResults(manager, x, solution_color) {
   return new WeightResults(
     manager,
     x.id,
@@ -27,10 +28,12 @@ function newWeightResults(manager, x) {
     x.total_amount,
     x.current_held,
     x.solution_held,
+    x.units,
+    solution_color
   );
 }
 
-function newThemeResults(manager, x) {
+function newThemeResults(manager, x, solution_color) {
   if (typeof(x.feature_name) === "string") {
     var y = new SingleThemeResults(
       manager,
@@ -46,7 +49,8 @@ function newThemeResults(manager, x) {
       x.units,
       x.mandatory,
       x.round,
-      x.icon
+      x.icon,
+      solution_color
     );
   } else {
     var y = new MultiThemeResults(
@@ -63,7 +67,8 @@ function newThemeResults(manager, x) {
       x.units,
       x.mandatory,
       x.round,
-      x.icon
+      x.icon,
+      solution_color
     );
   }
   return y;

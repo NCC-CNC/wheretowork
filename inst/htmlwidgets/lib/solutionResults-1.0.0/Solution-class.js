@@ -6,7 +6,8 @@ class Solution {
     name,
     statistics,
     theme_results,
-    weight_results
+    weight_results,
+    solution_color
   ) {
     // set fields
     this.id = id;
@@ -21,13 +22,15 @@ class Solution {
     // theme results
     this.themes_el = document.createElement("div");
     theme_results.forEach((x) => {
-      this.themes_el.appendChild(newThemeResults(manager, x).render());
+      this.themes_el.appendChild(
+        newThemeResults(manager, x, solution_color).render());
     });
 
     // weight results
     this.weights_el = document.createElement("div");
     weight_results.forEach((x) => {
-      this.weights_el.appendChild(newWeightResults(manager, x).render());
+      this.weights_el.appendChild(
+        newWeightResults(manager, x, solution_color).render());
     });
   }
 
