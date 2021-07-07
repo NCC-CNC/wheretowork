@@ -123,7 +123,9 @@ class MultiSolutionChart {
             .style('display', 'inline')
             .style('top', `${e.clientY + 5}px`)
             .style('left', `${e.clientX + 5}px`)
-
+          tooltip
+            .append('div')
+            .text(`Name: ${d[j][3]}`)
           for (const datum of d) {
             const locale = self.locale[datum[0]];
             tooltip.
