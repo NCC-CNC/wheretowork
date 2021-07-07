@@ -39,8 +39,11 @@ class MultiThemeResults {
       feature_total_amount: feature_total_amount[index],
       feature_status: feature_status[index],
       units,
-      solution_color
-    })));
+    })), {
+      feature_goal: '#118ab2',
+      feature_current_held: '#06d6a0',
+      feature_solution_held: solution_color,
+    });
 
     chart.render(chartContainer);
   }

@@ -1,10 +1,10 @@
 class WeightSolutionChart {
 
-  constructor(data) {
+  constructor(data, colors) {
     this.data = data;
     this.width = 180;
     this.height = 120;
-    this.colors = d3.scaleOrdinal(d3.schemeCategory10);
+    this.colors = colors
   }
 
   renderSvg(el) {
@@ -50,7 +50,7 @@ class WeightSolutionChart {
         `Current: ${Math.round(d.current_held * 100)}% ${Math.round(d.current_held * d.total_amount)} ${d.units
             || 'units'}`
       )
-      .style('color', this.colors(1));
+      .style('color', this.colors.feature_current_held);
     tooltip
       .append('div')
       .text(() => `Factor: ${
@@ -63,154 +63,96 @@ class WeightSolutionChart {
       .text(() =>
           `Solution: ${Math.round(d.solution_held * 100)}% ${Math.round(d.solution_held * d.total_amount)} ${d.units
               || 'units'}`)
-      .style('color', this.colors(0));
+      .style('color', this.colors.feature_solution_held);
+  }
+
+  renderSolutionBar(svg, tooltip) {
+    const self = this;
+    svg
+      .append('g')
+      .selectAll('path')
+      .data(this.data)
+      .enter()
+      .append('rect')
+      .attr('width', d => d.solution_held * this.width)
+      .attr('height', this.height * 0.30)
+      .attr('fill', this.colors.feature_solution_held)
+      .on('mouseover', function(e, d) {
+        const strokeWidth = 1.5;
+        d3
+          .select(this)
+          .attr('stroke', self.colors.feature_solution_held)
+          .attr('stroke-width', strokeWidth);
+        tooltip
+          .style('display', 'inline')
+          .style('top', `${e.clientY + 5}px`)
+          .style('left', `${e.clientX + 5}px`)
+        self.showStats(d, tooltip)
+      })
+      .on('mouseout', function() {
+        d3
+          .select(this)
+          .attr('stroke', null);
+        tooltip
+          .style('display', 'none')
+          .style('top', `${0}px`)
+          .style('left', `${0}px`)
+        tooltip
+          .selectAll('div')
+          .remove();
+      })
+      .attr('cursor', 'pointer');
+  }
+
+  renderGoalBar(svg, tooltip) {
+    const self = this;
+    svg
+      .append('g')
+      .selectAll('path')
+      .data(this.data)
+      .enter()
+      .append('rect')
+      .attr('width', d => d.current_held * this.width)
+      .attr('height', this.height * 0.30)
+      .attr('fill', this.colors.feature_goal)
+      .on('mouseover', function(e, d) {
+        const strokeWidth = 1.5;
+        d3
+          .select(this)
+          .attr('stroke', self.colors.feature_goal)
+          .attr('stroke-width', strokeWidth);
+        tooltip
+          .style('display', 'inline')
+          .style('top', `${e.clientY + 5}px`)
+          .style('left', `${e.clientX + 5}px`)
+        self.showStats(d, tooltip)
+      })
+      .on('mouseout', function() {
+        d3
+          .select(this)
+          .attr('stroke', null);
+        tooltip
+          .style('display', 'none')
+          .style('top', `${0}px`)
+          .style('left', `${0}px`)
+        tooltip
+          .selectAll('div')
+          .remove();
+      })
+      .attr('cursor', 'pointer');
   }
 
   renderBars(svg, tooltip) {
-      const self = this;
       const d = this.data[0];
       const solution = d.solution_held * d.total_amount;
       const current = d.current_held * d.total_amount;
       if (solution > current) {
-        svg
-          .append('g')
-          .selectAll('path')
-          .data(this.data)
-          .enter()
-          .append('rect')
-          .attr('width', d => d.solution_held * this.width)
-          .attr('height', this.height * 0.30)
-          .attr('fill', this.colors(0))
-          .on('mouseover', function(e, d) {
-            const strokeWidth = 1.5;
-            d3
-              .select(this)
-              .attr('stroke', self.colors(0))
-              .attr('stroke-width', strokeWidth);
-            tooltip
-              .style('display', 'inline')
-              .style('top', `${e.clientY + 5}px`)
-              .style('left', `${e.clientX + 5}px`)
-            self.showStats(d, tooltip)
-          })
-          .on('mouseout', function() {
-            d3
-              .select(this)
-              .attr('stroke', null);
-            tooltip
-              .style('display', 'none')
-              .style('top', `${0}px`)
-              .style('left', `${0}px`)
-            tooltip
-              .selectAll('div')
-              .remove();
-          })
-          .attr('cursor', 'pointer');
-        svg
-          .append('g')
-          .selectAll('path')
-          .data(this.data)
-          .enter()
-          .append('rect')
-          .attr('width', d => d.current_held * this.width)
-          .attr('height', this.height * 0.30)
-          .attr('fill', this.colors(1))
-          .on('mouseover', function(e, d) {
-            const strokeWidth = 1.5;
-            d3
-              .select(this)
-              .attr('stroke', self.colors(1))
-              .attr('stroke-width', strokeWidth);
-            tooltip
-              .style('display', 'inline')
-              .style('top', `${e.clientY + 5}px`)
-              .style('left', `${e.clientX + 5}px`)
-            self.showStats(d, tooltip)
-          })
-          .on('mouseout', function() {
-            d3
-              .select(this)
-              .attr('stroke', null);
-            tooltip
-              .style('display', 'none')
-              .style('top', `${0}px`)
-              .style('left', `${0}px`)
-            tooltip
-              .selectAll('div')
-              .remove();
-          })
-          .attr('cursor', 'pointer');
+        this.renderGoalBar(svg, tooltip);
+        this.renderSolutionBar(svg, tooltip);
       } else {
-        svg
-          .append('g')
-          .selectAll('path')
-          .data(this.data)
-          .enter()
-          .append('rect')
-          .attr('width', d => d.current_held * this.width)
-          .attr('height', this.height * 0.30)
-          .attr('fill', this.colors(1))
-          .on('mouseover', function(e, d) {
-            const strokeWidth = 1.5;
-            d3
-              .select(this)
-              .attr('stroke', self.colors(1))
-              .attr('stroke-width', strokeWidth);
-            tooltip
-              .style('display', 'inline')
-              .style('top', `${e.clientY + 5}px`)
-              .style('left', `${e.clientX + 5}px`)
-            self.showStats(d, tooltip)
-          })
-          .on('mouseout', function() {
-            d3
-              .select(this)
-              .attr('stroke', null);
-            tooltip
-              .style('display', 'none')
-              .style('top', `${0}px`)
-              .style('left', `${0}px`)
-            tooltip
-              .selectAll('div')
-              .remove();
-          })
-          .attr('cursor', 'pointer');
-        svg
-          .append('g')
-          .selectAll('path')
-          .data(this.data)
-          .enter()
-          .append('rect')
-          .attr('width', d => d.solution_held * this.width)
-          .attr('height', this.height * 0.30)
-          .attr('fill', this.colors(0))
-          .on('mouseover', function(e, d) {
-            const strokeWidth = 1.5;
-            d3
-              .select(this)
-              .attr('stroke', self.colors(0))
-              .attr('stroke-width', strokeWidth);
-            tooltip
-              .style('display', 'inline')
-              .style('top', `${e.clientY + 5}px`)
-              .style('left', `${e.clientX + 5}px`)
-            self.showStats(d, tooltip)
-          })
-          .on('mouseout', function() {
-            d3
-              .select(this)
-              .attr('stroke', null);
-            tooltip
-              .style('display', 'none')
-              .style('top', `${0}px`)
-              .style('left', `${0}px`)
-            tooltip
-              .selectAll('div')
-              .remove();
-          })
-          .attr('cursor', 'pointer');
+        this.renderSolutionBar(svg, tooltip);
+        this.renderGoalBar(svg, tooltip);
       }
-
   }
 
   render(el) {

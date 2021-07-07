@@ -40,7 +40,11 @@ class SingleThemeResults {
       feature_status,
       units,
       solution_color
-    }]);
+    }], {
+      feature_goal: '#118ab2',
+      feature_current_held: '#06d6a0',
+      feature_solution_held: solution_color,
+    });
 
     chart.render(chartContainer);
   }

@@ -1,6 +1,6 @@
 class SingleSolutionChart {
 
-  constructor(data) {
+  constructor(data, colors) {
     this.data = data;
     this.width = 180;
     this.height = 200;
@@ -22,12 +22,7 @@ class SingleSolutionChart {
       feature_current_held: 'Current',
       feature_solution_held: 'Solution',           
     };
-    const palette = d3.scaleOrdinal(d3.schemeCategory10);
-    this.colors = {
-      feature_goal: palette(0),
-      feature_current_held: palette(1),
-      feature_solution_held: palette(2),
-    };
+    this.colors = colors
   }
 
   rad2deg(angle) {
