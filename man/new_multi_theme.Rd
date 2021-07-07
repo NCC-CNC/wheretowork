@@ -7,7 +7,6 @@
 new_multi_theme(
   name,
   feature,
-  mandatory = FALSE,
   feature_order = as.double(rev(seq_along(feature))),
   id = uuid::UUIDgenerate()
 )
@@ -16,9 +15,6 @@ new_multi_theme(
 \item{name}{\code{character} Name to display.}
 
 \item{feature}{\code{list} of \link{Feature} objects.}
-
-\item{mandatory}{\code{logical} Is the theme mandatory for generating solutions?
-Defaults to \code{FALSE}.}
 
 \item{feature_order}{\code{numeric} Relative order for displaying each feature
 on a map. Defaults to a reverse sequence of integer values.}

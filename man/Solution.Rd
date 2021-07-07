@@ -46,6 +46,10 @@ Definition for the Solution class.
 \item \href{#method-get_visible}{\code{Solution$get_visible()}}
 \item \href{#method-get_setting}{\code{Solution$get_setting()}}
 \item \href{#method-set_visible}{\code{Solution$set_visible()}}
+\item \href{#method-get_theme_results_data}{\code{Solution$get_theme_results_data()}}
+\item \href{#method-get_weight_results_data}{\code{Solution$get_weight_results_data()}}
+\item \href{#method-render_theme_results}{\code{Solution$render_theme_results()}}
+\item \href{#method-render_weight_results}{\code{Solution$render_weight_results()}}
 \item \href{#method-set_setting}{\code{Solution$set_setting()}}
 \item \href{#method-get_solution_results_widget_data}{\code{Solution$get_solution_results_widget_data()}}
 \item \href{#method-get_map_manager_widget_data}{\code{Solution$get_map_manager_widget_data()}}
@@ -210,6 +214,58 @@ Set visible.
 \item{\code{value}}{\code{logical} new value.}
 }
 \if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_theme_results_data"></a>}}
+\if{latex}{\out{\hypertarget{method-get_theme_results_data}{}}}
+\subsection{Method \code{get_theme_results_data()}}{
+Get theme results.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Solution$get_theme_results_data()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{\link[tibble:tibble]{tibble::tibble()}} object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_weight_results_data"></a>}}
+\if{latex}{\out{\hypertarget{method-get_weight_results_data}{}}}
+\subsection{Method \code{get_weight_results_data()}}{
+Get weight results.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Solution$get_weight_results_data()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{\link[tibble:tibble]{tibble::tibble()}} object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-render_theme_results"></a>}}
+\if{latex}{\out{\hypertarget{method-render_theme_results}{}}}
+\subsection{Method \code{render_theme_results()}}{
+Render theme results.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Solution$render_theme_results()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{\link[DT:datatable]{DT::datatable()}} object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-render_weight_results"></a>}}
+\if{latex}{\out{\hypertarget{method-render_weight_results}{}}}
+\subsection{Method \code{render_weight_results()}}{
+Render weight results.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Solution$render_weight_results()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{\link[DT:datatable]{DT::datatable()}} object.
 }
 }
 \if{html}{\out{<hr>}}

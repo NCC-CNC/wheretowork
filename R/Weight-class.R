@@ -26,6 +26,9 @@ Weight <- R6::R6Class(
     #' @field initial_visible `logical` value.
     initial_visible = NA,
 
+    #' @field current `numeric` value.
+    current = NA_real_,
+
     #' @field status `logical` value.
     status = NA,
 
@@ -54,6 +57,7 @@ Weight <- R6::R6Class(
     #' @param variable [Variable] object.
     #' @param initial_visible `logical` value.
     #' @param initial_status `logical` value.
+    #' @param current `logical` value.
     #' @param initial_factor `numeric` initial factor value.
     #' @param min_factor `numeric` minimum factor value.
     #' @param max_factor `numeric` maximum factor value.
@@ -61,7 +65,7 @@ Weight <- R6::R6Class(
     #' @return A new Weight object.
     ## constructor
     initialize = function(
-      id, name, variable, initial_visible, initial_status,
+      id, name, variable, initial_visible, initial_status, current,
       initial_factor, min_factor, max_factor, step_factor) {
       ### assert that arguments are valid
       assertthat::assert_that(
@@ -79,6 +83,9 @@ Weight <- R6::R6Class(
         #### initial_status
         assertthat::is.flag(initial_status),
         assertthat::noNA(initial_status),
+        #### current
+        assertthat::is.number(current),
+        assertthat::noNA(current),
         #### initial_factor
         assertthat::is.number(initial_factor),
         assertthat::noNA(initial_factor),
@@ -101,8 +108,9 @@ Weight <- R6::R6Class(
       self$id <- id
       self$variable <- variable
       self$name <- name
-      self$status <- initial_status
       self$initial_status <- initial_status
+      self$status <- initial_status
+      self$current <- current
       self$visible <- initial_visible
       self$initial_visible <- initial_visible
       self$factor <- initial_factor
@@ -120,6 +128,7 @@ Weight <- R6::R6Class(
       message("  id:       ", self$id)
       message("  name:     ", self$name)
       message("  variable: ", self$variable$repr())
+      message("  current:  ", round(self$current, 2))
       message("  visible:  ", self$visible)
       message("  status:   ", self$status)
       message("  factor:   ", round(self$factor, 2))
@@ -137,6 +146,7 @@ Weight <- R6::R6Class(
       paste0(
         self$name,
         " ", start, "status: ", self$status,
+        ", current: ", round(self$current, 2),
         ", factor: ", round(self$factor, 2), end, nl(),
         "  variable: ", self$variable$repr())
     },
@@ -170,6 +180,13 @@ Weight <- R6::R6Class(
     },
 
     #' @description
+    #' Get current.
+    #' @return `logical` value.
+    get_current = function() {
+      self$current
+    },
+
+    #' @description
     #' Get factor.
     #' @return `numeric` value.
     get_factor = function() {
@@ -186,17 +203,19 @@ Weight <- R6::R6Class(
     #' @description
     #' Get setting.
     #' @param name `character` setting name.
-    #' Available options are `"status"` `"factor"`, or `"visible"`.
+    #' Available options are `"status"` `"factor"`, `"current"`, or `"visible"`.
     #' @return Value.
     get_setting = function(name) {
       assertthat::assert_that(
         assertthat::is.string(name),
         assertthat::noNA(name),
-        name %in% c("status", "factor", "visible"))
+        name %in% c("status", "factor", "visible", "current"))
       if (identical(name, "status")) {
         out <- self$get_status()
       } else if (identical(name, "factor")) {
         out <- self$get_factor()
+      } else if (identical(name, "current")) {
+        out <- self$get_current()
       } else if (identical(name, "visible")) {
         out <- self$get_visible()
       } else {
@@ -241,19 +260,33 @@ Weight <- R6::R6Class(
     },
 
     #' @description
+    #' Set current.
+    #' @param value `numeric` new value.
+    set_current = function(value) {
+      assertthat::assert_that(
+        assertthat::is.number(value),
+        assertthat::noNA(value))
+      self$current <- value
+      invisible(self)
+    },
+
+    #' @description
     #' Set setting.
     #' @param name `character` setting name.
-    #' Available options are `"status"` `"factor"`, or `"visible"``.
+    #' Available options are `"status"` `"factor"`, `"current"`,
+    #' or `"visible"``.
     #' @param value `ANY` new value.
     set_setting = function(name, value) {
       assertthat::assert_that(
         assertthat::is.string(name),
         assertthat::noNA(name),
-        name %in% c("status", "factor", "visible"))
+        name %in% c("status", "factor", "current", "visible"))
       if (identical(name, "status")) {
         self$set_status(value)
       } else if (identical(name, "factor")) {
         self$set_factor(value)
+      } else if (identical(name, "current")) {
+        self$set_current(value)
       } else if (identical(name, "visible")) {
         self$set_visible(value)
       } else {
@@ -373,7 +406,7 @@ Weight <- R6::R6Class(
 #' @export
 new_weight <- function(
   name, variable,
-  initial_visible = TRUE, initial_status = TRUE,
+  initial_visible = TRUE, initial_status = TRUE, current = 0,
   initial_factor = 0, min_factor = 0, max_factor = 100, step_factor = 1,
   id = uuid::UUIDgenerate()) {
   Weight$new(
@@ -382,6 +415,7 @@ new_weight <- function(
     variable = variable,
     initial_visible = initial_visible,
     initial_status = initial_status,
+    current = current,
     min_factor = min_factor,
     max_factor = max_factor,
     initial_factor = initial_factor,

@@ -112,6 +112,7 @@ Collate:
     'simulate_themes.R'
     'simulate_weights.R'
     'solutionResults.R'
+    'solutionResultsModal.R'
     'solutionResultsSidebarPane.R'
     'solutionSetttings-components.R'
     'spatial_data_statistics.R'

@@ -9,6 +9,7 @@ test_that("initialization", {
     variable = v,
     initial_visible = FALSE,
     initial_status = FALSE,
+    current = 0.45,
     initial_factor = 0.2,
     min_factor = 0.01,
     max_factor = 0.9,
@@ -17,7 +18,6 @@ test_that("initialization", {
   x <- new_weight_results(
     weight = w,
     held = 0.9,
-    current = 0.45,
     id = "RID1")
   # run tests
   print(x)
@@ -38,6 +38,7 @@ test_that("results methods", {
     variable = v,
     initial_visible = FALSE,
     initial_status = FALSE,
+    current = 0.45,
     initial_factor = 0.2,
     min_factor = 0.01,
     max_factor = 0.9,
@@ -48,7 +49,6 @@ test_that("results methods", {
   x <- new_weight_results(
     weight = w,
     held = 0.9,
-    current = 0.45,
     id = "RID1")
   # run tests
   expect_identical(
@@ -74,6 +74,7 @@ test_that("widget methods", {
     variable = v,
     initial_visible = FALSE,
     initial_status = FALSE,
+    current = 0.45,
     initial_factor = 0.2,
     min_factor = 0.01,
     max_factor = 0.9,
@@ -84,7 +85,6 @@ test_that("widget methods", {
   x <- new_weight_results(
     weight = w,
     held = 0.9,
-    current = 0.45,
     id = "RID1")
   # run tests
   expect_identical(

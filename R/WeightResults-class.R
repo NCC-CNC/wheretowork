@@ -34,10 +34,9 @@ WeightResults <- R6::R6Class(
     #' @param id `character` value.
     #' @param weight [Weight] object.
     #' @param held `numeric` value.
-    #' @param current `numeric` value.
     #' @return A new WeightResults object.
     ## constructor
-    initialize = function(id, weight, current, held) {
+    initialize = function(id, weight, held) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -45,9 +44,6 @@ WeightResults <- R6::R6Class(
         assertthat::noNA(id),
         ### weight
         inherits(weight, "Weight"),
-        #### held
-        assertthat::is.number(current),
-        assertthat::noNA(current),
         #### held
         assertthat::is.number(held),
         assertthat::noNA(held)
@@ -57,8 +53,8 @@ WeightResults <- R6::R6Class(
       self$weight <- weight
       self$status <- weight$status
       self$factor <- weight$factor
-      self$current <- current
       self$held <- held
+      self$current <- weight$current
     },
 
     #' @description
@@ -86,7 +82,7 @@ WeightResults <- R6::R6Class(
       paste0(
         self$weight$name,
         " ", start, "status: ", self$status,
-        ", factor: ", round(self$factor, 2), end, nl(),
+        ", factor: ", round(self$factor, 2),
         ", held: ", round(self$held, 2), end, nl(),
         "  weight: ", self$weight$repr())
     },
@@ -134,9 +130,6 @@ WeightResults <- R6::R6Class(
 #' @param held `numeric` proportion of the weight covered by the solution.
 #'   (e.g. 0.1 = 10%).
 #'
-#' @param current `numeric` proportion of the weight locked into the solution.
-#'   (e.g. 0.1 = 10%). Defaults to 0.
-#'
 #' @inheritParams new_weight
 #'
 #' @return A [WeightResults] object.
@@ -167,10 +160,9 @@ WeightResults <- R6::R6Class(
 #'
 #' @export
 new_weight_results <- function(
-  weight, held, current = 0, id = uuid::UUIDgenerate()) {
+  weight, held, id = uuid::UUIDgenerate()) {
   WeightResults$new(
     id = id,
     weight = weight,
-    current = current,
     held = held)
 }

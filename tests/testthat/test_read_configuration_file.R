@@ -9,7 +9,7 @@ test_that("raster data", {
   sim_layers <- append(sim_themes, append(sim_weights, sim_includes))
   # manually calculate current amount held
   ss <- new_solution_settings(sim_themes, sim_weights, sim_includes, list())
-  ss$update_feature_current()
+  ss$update_current_held()
   # generate file paths
   f1 <- tempfile(fileext = ".yaml")
   f2 <- tempfile(fileext = ".tif")
@@ -70,7 +70,7 @@ test_that("spatial data", {
   f4 <- tempfile(fileext = ".csv.gz")
   # manually calculate current amount held
   ss <- new_solution_settings(sim_themes, sim_weights, sim_includes, list())
-  ss$update_feature_current()
+  ss$update_current_held()
   # save configuration file
   write_configuration_file(
     x = sim_layers,
@@ -121,7 +121,7 @@ test_that("default spatial, boundary, attribute paths", {
   sim_layers <- append(sim_themes, append(sim_weights, sim_includes))
   # manually calculate current amount held
   ss <- new_solution_settings(sim_themes, sim_weights, sim_includes, list())
-  ss$update_feature_current()
+  ss$update_current_held()
   # generate file paths
   f1 <- tempfile(fileext = ".yaml")
   f2 <- tempfile(fileext = ".tif")

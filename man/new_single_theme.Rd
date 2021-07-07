@@ -4,7 +4,7 @@
 \alias{new_single_theme}
 \title{New single theme}
 \usage{
-new_single_theme(name, feature, mandatory = FALSE, id = uuid::UUIDgenerate())
+new_single_theme(name, feature, id = uuid::UUIDgenerate())
 }
 \arguments{
 \item{name}{\code{character} Name to display.}
@@ -12,9 +12,6 @@ new_single_theme(name, feature, mandatory = FALSE, id = uuid::UUIDgenerate())
 \item{feature}{\link{Feature} object.
 For compatibility with \code{\link[=new_multi_theme]{new_multi_theme()}}, a \code{list} object
 can also be supplied that contains a single \link{Feature} object.}
-
-\item{mandatory}{\code{logical} Is the theme mandatory for generating solutions?
-Defaults to \code{FALSE}.}
 
 \item{id}{\code{character} unique identifier.
 Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}
