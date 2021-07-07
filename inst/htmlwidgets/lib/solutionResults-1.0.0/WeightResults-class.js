@@ -35,9 +35,9 @@ class WeightResults {
       status,
       factor,
     }], {
-      feature_goal: '#118ab2',
-      feature_current_held: '#06d6a0',
-      feature_solution_held: solution_color,
+      goal: '#118ab2',
+      current: '#06d6a0',
+      solution: solution_color,
     });
 
     chart.render(chartContainer);

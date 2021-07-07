@@ -43,14 +43,15 @@ class WeightSolutionChart {
       .style('left', 0);
   }
 
-  showStats(d, tooltip) {
+  showStats(d, tooltip, type) {
     tooltip
       .append('div')
       .text(() =>
         `Current: ${Math.round(d.current_held * 100)}% ${Math.round(d.current_held * d.total_amount)} ${d.units
             || 'units'}`
       )
-      .style('color', this.colors.feature_current_held);
+      .style('font-weight', type === 'current' ? 'bold' : 'normal')
+      .style('color', this.colors.current);
     tooltip
       .append('div')
       .text(() => `Factor: ${
@@ -63,10 +64,11 @@ class WeightSolutionChart {
       .text(() =>
           `Solution: ${Math.round(d.solution_held * 100)}% ${Math.round(d.solution_held * d.total_amount)} ${d.units
               || 'units'}`)
-      .style('color', this.colors.feature_solution_held);
+      .style('font-weight', type === 'solution' ? 'bold' : 'normal')
+      .style('color', this.colors.solution);
   }
 
-  renderSolutionBar(svg, tooltip) {
+  renderCurrentBar(svg, tooltip) {
     const self = this;
     svg
       .append('g')
@@ -74,20 +76,20 @@ class WeightSolutionChart {
       .data(this.data)
       .enter()
       .append('rect')
-      .attr('width', d => d.solution_held * this.width)
+      .attr('width', d => d.current_held * this.width)
       .attr('height', this.height * 0.30)
-      .attr('fill', this.colors.feature_solution_held)
+      .attr('fill', self.colors.current)
       .on('mouseover', function(e, d) {
         const strokeWidth = 1.5;
         d3
           .select(this)
-          .attr('stroke', self.colors.feature_solution_held)
+          .attr('stroke', self.colors.current)
           .attr('stroke-width', strokeWidth);
         tooltip
           .style('display', 'inline')
           .style('top', `${e.clientY + 5}px`)
           .style('left', `${e.clientX + 5}px`)
-        self.showStats(d, tooltip)
+        self.showStats(d, tooltip, 'current')
       })
       .on('mouseout', function() {
         d3
@@ -104,7 +106,7 @@ class WeightSolutionChart {
       .attr('cursor', 'pointer');
   }
 
-  renderGoalBar(svg, tooltip) {
+  renderSolutionBar(svg, tooltip) {
     const self = this;
     svg
       .append('g')
@@ -112,20 +114,20 @@ class WeightSolutionChart {
       .data(this.data)
       .enter()
       .append('rect')
-      .attr('width', d => d.current_held * this.width)
+      .attr('width', d => d.solution_held * this.width)
       .attr('height', this.height * 0.30)
-      .attr('fill', this.colors.feature_goal)
+      .attr('fill', self.colors.solution)
       .on('mouseover', function(e, d) {
         const strokeWidth = 1.5;
         d3
           .select(this)
-          .attr('stroke', self.colors.feature_goal)
+          .attr('stroke', self.colors.solution)
           .attr('stroke-width', strokeWidth);
         tooltip
           .style('display', 'inline')
           .style('top', `${e.clientY + 5}px`)
           .style('left', `${e.clientX + 5}px`)
-        self.showStats(d, tooltip)
+        self.showStats(d, tooltip, 'solution')
       })
       .on('mouseout', function() {
         d3
@@ -147,11 +149,11 @@ class WeightSolutionChart {
       const solution = d.solution_held * d.total_amount;
       const current = d.current_held * d.total_amount;
       if (solution > current) {
-        this.renderGoalBar(svg, tooltip);
         this.renderSolutionBar(svg, tooltip);
+        this.renderCurrentBar(svg, tooltip);
       } else {
+        this.renderCurrentBar(svg, tooltip);
         this.renderSolutionBar(svg, tooltip);
-        this.renderGoalBar(svg, tooltip);
       }
   }
 
