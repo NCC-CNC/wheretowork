@@ -23,6 +23,9 @@ WeightResults <- R6::R6Class(
     #' @field factor `numeric` value.
     factor = NA_real_,
 
+    #' @field current `numeric` value.
+    current = NA_real_,
+
     #' @field held `numeric` value.
     held = NA_real_,
 
@@ -31,9 +34,10 @@ WeightResults <- R6::R6Class(
     #' @param id `character` value.
     #' @param weight [Weight] object.
     #' @param held `numeric` value.
+    #' @param current `numeric` value.
     #' @return A new WeightResults object.
     ## constructor
-    initialize = function(id, weight, held) {
+    initialize = function(id, weight, current, held) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -41,6 +45,9 @@ WeightResults <- R6::R6Class(
         assertthat::noNA(id),
         ### weight
         inherits(weight, "Weight"),
+        #### held
+        assertthat::is.number(current),
+        assertthat::noNA(current),
         #### held
         assertthat::is.number(held),
         assertthat::noNA(held)
@@ -50,6 +57,7 @@ WeightResults <- R6::R6Class(
       self$weight <- weight
       self$status <- weight$status
       self$factor <- weight$factor
+      self$current <- current
       self$held <- held
     },
 
@@ -61,6 +69,7 @@ WeightResults <- R6::R6Class(
       message("  id:      ", self$id)
       message("  status: ", self$status)
       message("  factor: ", round(self$factor, 2))
+      message("  current: ", round(self$current, 2))
       message("  held: ", round(self$held, 2))
       message("  weight: ", self$weight$repr())
       invisible(self)
@@ -75,11 +84,26 @@ WeightResults <- R6::R6Class(
     #' @return `character` value.
     repr = function(start = "[", end = "]") {
       paste0(
-        self$name,
+        self$weight$name,
         " ", start, "status: ", self$status,
         ", factor: ", round(self$factor, 2), end, nl(),
         ", held: ", round(self$held, 2), end, nl(),
         "  weight: ", self$weight$repr())
+    },
+
+    #' @description
+    #' Get results.
+    #' @return [tibble::tibble()] object.
+    get_results_data = function() {
+      tibble::tibble(
+        name = self$weight$name,
+        status = self$status,
+        total = self$weight$variable$total,
+        current = self$current,
+        factor = self$factor,
+        held = self$held,
+        units = self$weight$variable$units
+      )
     },
 
     #' @description
@@ -91,6 +115,7 @@ WeightResults <- R6::R6Class(
         name = self$weight$name,
         status = self$status,
         total = self$weight$variable$total,
+        current = self$current,
         factor = self$factor,
         held = self$held,
         units = self$weight$variable$units,
@@ -108,6 +133,9 @@ WeightResults <- R6::R6Class(
 #'
 #' @param held `numeric` proportion of the weight covered by the solution.
 #'   (e.g. 0.1 = 10%).
+#'
+#' @param current `numeric` proportion of the weight locked into the solution.
+#'   (e.g. 0.1 = 10%). Defaults to 0.
 #'
 #' @inheritParams new_weight
 #'
@@ -139,9 +167,10 @@ WeightResults <- R6::R6Class(
 #'
 #' @export
 new_weight_results <- function(
-  weight, held, id = uuid::UUIDgenerate()) {
+  weight, held, current = 0, id = uuid::UUIDgenerate()) {
   WeightResults$new(
     id = id,
     weight = weight,
+    current = current,
     held = held)
 }

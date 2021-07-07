@@ -155,6 +155,106 @@ Solution <- R6::R6Class(
     },
 
     #' @description
+    #' Get theme results.
+    #' @return [tibble::tibble()] object.
+    get_theme_results = function() {
+      # compile data
+      x <- tibble::as_tibble(plyr::ldply(
+        self$theme_results, function(x) x$get_results()))
+      # return formatted table
+      tibble::tibble(
+        Theme = x$name,
+        Name = x$feature_name,
+        Status = x$feature_status,
+        `Current (%)` =
+          round(x$feature_current_held * 100, 2),
+        `Goal (%)` =
+          round(x$feature_goal * 100, 2),
+        `Solution (%)` =
+          round(x$feature_solution_held * 100, 2)
+        `Current (units)` =
+          paste0(
+            round(x$feature_current_held * x$feature_total_amount, 2),
+            x$units
+          ),
+        `Goal (units)` =
+          paste0(
+            round(x$feature_goal * x$feature_total_amount, 2),
+            x$units
+          ),
+        `Solution (units)` =
+          paste0(
+            round(x$feature_solution_held * x$feature_total_amount, 2),
+            x$units
+          ),
+        `Total (units)` =
+          paste0(
+            round(x$feature_total_amount, 2), x$units
+          )
+      )
+    }
+
+    #' @description
+    #' Get weight results.
+    #' @return [tibble::tibble()] object.
+    get_weight_results = function() {
+      # compile results
+      x <- tibble::as_tibble(plyr::ldply(
+        self$theme_results, function(x) x$get_results()))
+      # prepare data for plotting
+      x <- tibble::tibble(
+        Name = x$name,
+        Status = x$feature_status,
+        `Current (%)` = round(x$feature_current_held * 100, 2),
+        `Goal (%)` = round(x$feature_goal * 100, 2),
+        `Solution (%)` = round(x$feature_solution_held * 100, 2),
+        `Current (units)` =
+          paste0(
+            round(x$feature_current_held * x$feature_total_amount, 2),
+            x$units
+          ),
+        `Goal (units)` =
+          paste0(
+            round(x$feature_goal * x$feature_total_amount, 2),
+            x$units
+          ),
+        `Solution (units)` =
+          paste0(
+            round(x$feature_solution_held * x$feature_total_amount, 2),
+            x$units
+          ),
+        `Total (units)` =
+          paste0(
+            round(x$feature_total_amount, 2),
+            x$units
+          )
+      )
+      # generate widget
+      DT::datatable(
+        x, rownames = FALSE, colnames = names(x),
+        filter = "top", escape = TRUE, editable = FALSE)
+    },
+
+    #' @description
+    #' Render theme results.
+    #' @return [DT::datatable()] object.
+    render_theme_results = function() {
+      DT::datatable(
+        self$get_theme_results(),
+        rownames = FALSE, colnames = names(x),
+        filter = "top", escape = TRUE, editable = FALSE)
+    },
+
+    #' @description
+    #' Render weight results.
+    #' @return [DT::datatable()] object.
+    render_weight_results = function() {
+      DT::datatable(
+        self$get_weight_results(), rownames = FALSE, colnames = names(x),
+        filter = "top", escape = TRUE, editable = FALSE)
+    },
+
+    #' @description
     #' Set setting.
     #' @param name `character` setting name.
     #' Available options are `"visible"``.

@@ -87,23 +87,8 @@ FeatureResults <- R6::R6Class(
         ", goal: ", round(self$goal, 2), end, nl(),
         ", held: ", round(self$held, 2), end, nl(),
         "  feature: ", self$feature$repr())
-    },
-
-    #' @description
-    #' Get data for displaying the object in a [solutionResults()] widget.
-    #' @return `list` with widget data.
-    get_widget_data = function() {
-      list(
-        id = self$id,
-        name = self$feature$name,
-        status = self$status,
-        current = self$current,
-        goal = self$goal,
-        held = self$held,
-        legend = self$feature$variable$legend$get_widget_data(),
-        units = self$feature$variable$units
-      )
     }
+
   )
 )
 

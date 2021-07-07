@@ -76,6 +76,10 @@ test_that("initialization", {
   expect_identical(x$theme_results, list(thr))
   expect_identical(x$weight_results, list(wr))
   expect_identical(x$id, "solution1")
+  expect_is(x$get_theme_results(), "data.frame")
+  expect_is(x$get_weight_results(), "data.frame")
+  expect_is(x$render_theme_results(), "datatables")
+  expect_is(x$render_weight_results(), "datatables")
 })
 
 test_that("get methods", {
