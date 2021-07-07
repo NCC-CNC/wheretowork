@@ -4,10 +4,6 @@ class WeightSolutionChart {
     this.data = data;
     this.width = 180;
     this.height = 120;
-    this.scale = d3
-      .scaleLinear()
-      .domain([0, 100])
-      .range([0, this.width]);
     this.colors = d3.scaleOrdinal(d3.schemeCategory10);
   }
 
@@ -51,7 +47,7 @@ class WeightSolutionChart {
     tooltip
       .append('div')
       .text(() =>
-        `Current: ${Math.round(d.current_held * 100)}% ${Math.round(d.current_held * d.total_amount)} ${d.units 
+        `Current: ${Math.round(d.current_held * 100)}% ${Math.round(d.current_held * d.total_amount)} ${d.units
             || 'units'}`
       )
       .style('color', this.colors(1));
@@ -65,7 +61,7 @@ class WeightSolutionChart {
     tooltip
       .append('div')
       .text(() =>
-          `Solution: ${Math.round(d.solution_held * 100)}% ${Math.round(d.solution_held * d.total_amount)} ${d.units 
+          `Solution: ${Math.round(d.solution_held * 100)}% ${Math.round(d.solution_held * d.total_amount)} ${d.units
               || 'units'}`)
       .style('color', this.colors(0));
   }
@@ -82,7 +78,7 @@ class WeightSolutionChart {
           .data(this.data)
           .enter()
           .append('rect')
-          .attr('width', d => this.scale(d.solution_held * d.total_amount))
+          .attr('width', d => d.solution_held * this.width)
           .attr('height', this.height * 0.30)
           .attr('fill', this.colors(0))
           .on('mouseover', function(e, d) {
@@ -116,7 +112,7 @@ class WeightSolutionChart {
           .data(this.data)
           .enter()
           .append('rect')
-          .attr('width', d => this.scale(d.current_held * d.total_amount))
+          .attr('width', d => d.current_held * this.width)
           .attr('height', this.height * 0.30)
           .attr('fill', this.colors(1))
           .on('mouseover', function(e, d) {
@@ -151,7 +147,7 @@ class WeightSolutionChart {
           .data(this.data)
           .enter()
           .append('rect')
-          .attr('width', d => this.scale(d.current_held * d.total_amount))
+          .attr('width', d => d.current_held * this.width)
           .attr('height', this.height * 0.30)
           .attr('fill', this.colors(1))
           .on('mouseover', function(e, d) {
@@ -185,7 +181,7 @@ class WeightSolutionChart {
           .data(this.data)
           .enter()
           .append('rect')
-          .attr('width', d => this.scale(d.solution_held * d.total_amount))
+          .attr('width', d => d.solution_held * this.width)
           .attr('height', this.height * 0.30)
           .attr('fill', this.colors(0))
           .on('mouseover', function(e, d) {
@@ -214,7 +210,7 @@ class WeightSolutionChart {
           })
           .attr('cursor', 'pointer');
       }
-      
+
   }
 
   render(el) {
