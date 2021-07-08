@@ -35,6 +35,9 @@ Weight <- R6::R6Class(
     #' @field initial_status `logical` value.
     initial_status = NA,
 
+    #' @field current `numeric` value.
+    current = NA_real_,
+
     #' @field factor `numeric` value.
     factor = NA_real_,
 
@@ -333,6 +336,7 @@ Weight <- R6::R6Class(
         variable = self$variable$export(),
         initial_status = self$status,
         initial_visible = self$visible,
+        current = self$current,
         initial_factor = self$factor,
         min_factor = self$min_factor,
         max_factor = self$max_factor,

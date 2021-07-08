@@ -9,8 +9,12 @@ class SolutionResults {
     // set fields to store HTML elements
     this.select_el =
       this.el.querySelector(".solution-select");
-    this.result_contatainer_el =
-      this.el.querySelector(".solution-result-container");
+    this.statistics_el =
+      this.el.querySelector(".statistics");
+    this.themes_el =
+      this.el.querySelector(".themes");
+    this.weights_el =
+      this.el.querySelector(".weights");
 
     // alias this
     const that = this;
@@ -66,10 +70,14 @@ class SolutionResults {
     const idx = this.solutions.findIndex((x) => x.id === id);
     // if solution found, then show it in the widget
     if (idx > -1) {
-      // clear solution from solution results container
-      removeAllChildNodes(this.result_contatainer_el);
+      // clear solution from panels
+      removeAllChildNodes(this.statistics_el);
+      removeAllChildNodes(this.themes_el);
+      removeAllChildNodes(this.weights_el);
       // add new solution to solution results container
-      this.solutions[idx].render(this.result_contatainer_el);
+      this.solutions[idx].render_statistics(this.statistics_el)
+      this.solutions[idx].render_themes(this.themes_el);
+      this.solutions[idx].render_weights(this.weights_el);
       // update select input
       this.select_el.value = this.select_el.children[idx].innerText;
     }

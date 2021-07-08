@@ -5,10 +5,12 @@ class WeightResults {
     id,
     name,
     status,
-    total,
     factor,
-    held,
-    units
+    total_amount,
+    current_held,
+    solution_held,
+    units,
+    solution_color
   ) {
     // class fields
     this.id = id;
@@ -20,12 +22,25 @@ class WeightResults {
         .content,
       true);
 
-    // TODO: add code to display results for the object
-    // The current code just inserts a TODO into the DOM
-    const l = document.createElement("label");
-    l.innerText = "TODO";
-    this.el.appendChild(l);
+    const chartContainer = document.createElement('div');
+    chartContainer.classList.add('weight-result')
+    this.el.appendChild(chartContainer);
 
+    const chart = new WeightSolutionChart([{
+      name,
+      current_held,
+      solution_held,
+      total_amount,
+      units,
+      status,
+      factor,
+    }], {
+      goal: '#118ab2',
+      current: '#06d6a0',
+      solution: solution_color,
+    });
+
+    chart.render(chartContainer);
   }
 
   /* render method */

@@ -33,6 +33,8 @@ Definition for the Weight class.
 
 \item{\code{initial_status}}{\code{logical} value.}
 
+\item{\code{current}}{\code{numeric} value.}
+
 \item{\code{factor}}{\code{numeric} value.}
 
 \item{\code{initial_factor}}{\code{numeric} initial factor value.}

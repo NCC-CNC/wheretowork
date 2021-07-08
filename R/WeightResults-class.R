@@ -27,6 +27,9 @@ WeightResults <- R6::R6Class(
     current = NA_real_,
 
     #' @field held `numeric` value.
+    current = NA_real_,
+
+    #' @field held `numeric` value.
     held = NA_real_,
 
     #' @description
@@ -113,7 +116,9 @@ WeightResults <- R6::R6Class(
         total = self$weight$variable$total,
         current = self$current,
         factor = self$factor,
-        held = self$held,
+        total_amount = self$weight$variable$total,
+        current_held = self$current,
+        solution_held = self$held,
         units = self$weight$variable$units,
         type = "weight_results"
       )

@@ -6,43 +6,45 @@ class Solution {
     name,
     statistics,
     theme_results,
-    weight_results
+    weight_results,
+    solution_color
   ) {
     // set fields
     this.id = id;
     this.name = name;
 
-    // create HTML element to display all solution results
-    this.el = document.createElement("div");
-
     // statistics results
-    const statistics_el = document.createElement("div");;
+    this.statistics_el = document.createElement("div");
     statistics.forEach((x) => {
-      statistics_el.appendChild(newStatistic(manager, x).render());
+      this.statistics_el.appendChild(newStatistic(manager, x).render());
     });
 
     // theme results
-    const theme_results_el = document.createElement("div");
+    this.themes_el = document.createElement("div");
     theme_results.forEach((x) => {
-      theme_results_el.appendChild(newThemeResults(manager, x).render());
+      this.themes_el.appendChild(
+        newThemeResults(manager, x, solution_color).render());
     });
 
     // weight results
-    const weight_results_el = document.createElement("div");
+    this.weights_el = document.createElement("div");
     weight_results.forEach((x) => {
-      weight_results_el.appendChild(newWeightResults(manager, x).render());
+      this.weights_el.appendChild(
+        newWeightResults(manager, x, solution_color).render());
     });
-
-    // append all HTML  versions of the results objects to HTML element
-    this.el.appendChild(statistics_el);
-    this.el.appendChild(theme_results_el);
-    this.el.appendChild(weight_results_el);
   }
 
   /* render method */
-  render(parent) {
-    // append the HTML element to parent element
-    parent.appendChild(this.el);
+  render_statistics(el) {
+    el.appendChild(this.statistics_el);
+  }
+
+  render_themes(el) {
+    el.appendChild(this.themes_el);
+  }
+
+  render_weights(el) {
+    el.appendChild(this.weights_el);
   }
 
 }

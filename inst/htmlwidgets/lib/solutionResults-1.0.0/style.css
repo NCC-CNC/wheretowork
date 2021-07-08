@@ -1,0 +1,41 @@
+.solution-results-header {
+  margin-left: -20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.solution-results-main {
+  margin-left: -20px;
+}
+
+.single-theme-result {
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.weight-result {
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.multi-theme-result {
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.themes {
+  overflow: scroll;
+}
+
+.weights {
+  overflow: scroll;
+}

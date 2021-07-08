@@ -14,24 +14,39 @@ class SingleThemeResults {
     units,
     mandatory,
     round,
-    icon
+    icon,
+    solution_color
   ) {
-    // class fields
     this.id = id;
     this.el =
       document.importNode(
         document
         .getElementById(manager)
-        .querySelector(".single-theme-results-template")
+        .querySelector('.single-theme-results-template')
         .content,
       true);
 
-    // TODO: add code to dipslay results for the object
-    // The current code just inserts a TODO into the DOM
-    const l = document.createElement("label");
-    l.innerText = "TODO";
-    this.el.appendChild(l);
+    const chartContainer = document.createElement('div');
+    chartContainer.classList.add('single-theme-result')
+    this.el.appendChild(chartContainer);
 
+    const chart = new SingleSolutionChart([{
+      name,
+      feature_name,
+      feature_goal,
+      feature_current_held,
+      feature_solution_held,
+      feature_total_amount,
+      feature_status,
+      units,
+      solution_color
+    }], {
+      feature_goal: '#118ab2',
+      feature_current_held: '#06d6a0',
+      feature_solution_held: solution_color,
+    });
+
+    chart.render(chartContainer);
   }
 
   /* render method */

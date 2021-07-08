@@ -93,10 +93,10 @@ test_that("widget methods", {
       id = "RID1",
       name = "Human Footprint Index",
       status = TRUE,
-      total = v$total,
-      current = 0.45,
       factor = 0.8,
-      held = 0.9,
+      total_amount = v$total,
+      current_held = 0.8,
+      solution_held = 0.9,
       units = v$units,
       type = "weight_results"
     )

@@ -28,6 +28,8 @@ Definition for the WeightResults class.
 \item{\code{current}}{\code{numeric} value.}
 
 \item{\code{held}}{\code{numeric} value.}
+
+\item{\code{held}}{\code{numeric} value.}
 }
 \if{html}{\out{</div>}}
 }
