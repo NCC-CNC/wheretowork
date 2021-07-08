@@ -12,6 +12,7 @@ class WeightSetting {
   ) {
     // class fields
     this.id = id;
+    this.elementId = "setting-" + id;
     this.el =
       document.importNode(
         document
@@ -22,12 +23,13 @@ class WeightSetting {
     this.name_el = this.el.querySelector(".name-label");
     this.status_el = this.el.querySelector(".status-checkbox");
     this.factor_el = this.el.querySelector(".noUiSlider-widget");
+    this.previous_factor = factor;
 
     // local variables
     let that = this;
 
     // attach id to element
-    this.el.querySelector(".solution-setting").id = id;
+    this.el.querySelector(".solution-setting").id = this.elementId;
 
     // set initial values
     /// name
@@ -39,19 +41,30 @@ class WeightSetting {
       start: factor,
       step: step_factor,
       connect: "lower",
+      tooltips: true,
+      format: wNumb({decimals: 0}),
       range: {
         "min": min_factor,
         "max": max_factor
       }
     });
 
-    // set listeners to update user interfance
+    // set listeners to update user interface
     /// enable/disable widget on click
     if (HTMLWidgets.shinyMode) {
       this.status_el.addEventListener("change", function () {
+        //// set switch value
         let checked = this.checked;
+        //// update slider
+        if (checked) {
+          that.factor_el.noUiSlider.set(that.previous_factor);
+        } else {
+          that.previous_factor = that.factor_el.noUiSlider.get();
+          that.factor_el.noUiSlider.set(0);
+        }
+        //// update HTML styles
         let els =
-          document.getElementById(id).querySelectorAll(
+          document.getElementById(that.elementId).querySelectorAll(
             ".disable-if-inactive");
         if (checked) {
           els.forEach((x) => x.removeAttribute("disabled"));
@@ -67,7 +80,7 @@ class WeightSetting {
       this.factor_el.noUiSlider.on("update", function (values, handle) {
         Shiny.setInputValue(manager, {
           id: id,
-          parameter: "factor",
+          setting: "factor",
           value: parseFloat(values[handle]),
           type: "weight"
         });
@@ -77,7 +90,7 @@ class WeightSetting {
         let checked = this.checked;
         Shiny.setInputValue(manager, {
           id: id,
-          parameter: "status",
+          setting: "status",
           value: checked,
           type: "weight"
         });
@@ -86,12 +99,12 @@ class WeightSetting {
   }
 
   /* update methods */
-  updateParameter(parameter, value) {
-    if (parameter === "name") {
+  updateSetting(setting, value) {
+    if (setting === "name") {
       this.updateName(value);
-    } else if (parameter === "status") {
+    } else if (setting === "status") {
       this.updateStatus(value);
-    } else if (parameter === "factor") {
+    } else if (setting === "factor") {
       this.updateFactor(value);
     }
   }
@@ -101,9 +114,21 @@ class WeightSetting {
   }
 
   updateStatus(value) {
-    this.status_el.checked = value;
+    // update HTML elements if needed
+    if (this.status_el.checked !== value) {
+      /// update switch
+      this.status_el.checked = value;
+      /// update slider
+      if (value) {
+        this.factor_el.noUiSlider.set(this.previous_factor);
+      } else {
+        this.previous_factor = this.factor_el.noUiSlider.get();
+        this.factor_el.noUiSlider.set(0);
+      }
+    }
+    // update HTML element styles
     let els =
-      document.getElementById(this.id).querySelectorAll(
+      document.getElementById(this.elementId).querySelectorAll(
         ".disable-if-inactive, .disable-if-inactive.icon i");
     if (value) {
       els.forEach((x) => x.removeAttribute("disabled"));
@@ -113,6 +138,7 @@ class WeightSetting {
   }
 
   updateFactor(value) {
+    this.previous_factor = value;
     this.factor_el.noUiSlider.set(value);
   }
 

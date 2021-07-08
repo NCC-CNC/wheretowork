@@ -60,17 +60,15 @@ HTMLWidgets.widget({
 
 // Attach message handlers if in Shiny mode (these correspond to API)
 if (HTMLWidgets.shinyMode) {
-  var fxns = ["addSolution", "dropSolution", "addSolution", "showSolution"];
+  var fxns = ["addSolution", "dropSolution", "showSolution"];
 
   var addShinyHandler = function(fxn) {
     return function() {
       Shiny.addCustomMessageHandler(
         "solutionResults:" + fxn, function(message) {
           var el = document.getElementById(message.id);
-          console.log("el");
-          console.log(el);
           if (el) {
-            delete message["id"];
+            // delete message["id"];
             el.widget[fxn](message);
           }
         }

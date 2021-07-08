@@ -15,10 +15,13 @@ FeatureResults <- R6::R6Class(
     id = NA_character_,
 
     #' @field feature [Feature] object.
-    feature = NA_character_,
+    feature = NULL,
 
     #' @field status `logical` value.
     status = NA,
+
+    #' @field current `numeric` value.
+    current = NA_real_,
 
     #' @field goal `numeric` value.
     goal = NA_real_,
@@ -49,6 +52,7 @@ FeatureResults <- R6::R6Class(
       self$id <- id
       self$feature <- feature
       self$held <- held
+      self$current <- feature$current
       self$goal <- feature$goal
       self$status <- feature$status
     },
@@ -60,6 +64,7 @@ FeatureResults <- R6::R6Class(
       message("FeatureResults")
       message("  id:      ", self$id)
       message("  status: ", self$status)
+      message("  current: ", round(self$current, 2))
       message("  goal: ", round(self$goal, 2))
       message("  held: ", round(self$held, 2))
       message("  feature: ",
@@ -69,34 +74,21 @@ FeatureResults <- R6::R6Class(
 
     #' @description
     #' Generate a `character` summarizing the representation of the object.
-    #' @param start `character` symbol used to start the parameter list.
+    #' @param start `character` symbol used to start the setting list.
     #'   Defaults to `"["`.
-    #' @param end `character` symbol used to start the parameter list.
+    #' @param end `character` symbol used to start the setting list.
     #'   Defaults to `"]"`.
     #' @return `character` value.
     repr = function(start = "[", end = "]") {
       paste0(
         self$name,
         " ", start, "status: ", self$status,
+        ", current: ", round(self$current, 2), end, nl(),
         ", goal: ", round(self$goal, 2), end, nl(),
         ", held: ", round(self$held, 2), end, nl(),
         "  feature: ", self$feature$repr())
-    },
-
-    #' @description
-    #' Get data for displaying the object in a [solutionResults()] widget.
-    #' @return `list` with widget data.
-    get_widget_data = function() {
-      list(
-        id = self$id,
-        name = self$feature$name,
-        status = self$status,
-        goal = self$goal,
-        held = self$held,
-        legend = self$feature$variable$legend$get_widget_data(),
-        units = self$feature$variable$units
-      )
     }
+
   )
 )
 

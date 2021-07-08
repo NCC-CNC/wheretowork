@@ -42,7 +42,6 @@ test_that("initialization", {
     step_goal = 0.02,
     limit_goal = 0.05,
     current = 0.034,
-    icon = "bell",
     id = "FID1")
   fr <- new_feature_results(
     feature = f,
@@ -51,7 +50,6 @@ test_that("initialization", {
   th <- new_theme(
     name = "FS",
     feature = f,
-    icon = "atom",
     id = "FS1")
   thr <- new_theme_results(
     theme = th,
@@ -78,6 +76,10 @@ test_that("initialization", {
   expect_identical(x$theme_results, list(thr))
   expect_identical(x$weight_results, list(wr))
   expect_identical(x$id, "solution1")
+  expect_is(x$get_theme_results_data(), "data.frame")
+  expect_is(x$get_weight_results_data(), "data.frame")
+  expect_is(x$render_theme_results(), "datatables")
+  expect_is(x$render_weight_results(), "datatables")
 })
 
 test_that("get methods", {
@@ -122,7 +124,6 @@ test_that("get methods", {
     step_goal = 0.02,
     limit_goal = 0.05,
     current = 0.034,
-    icon = "bell",
     id = "FID1")
   fr <- new_feature_results(
     feature = f,
@@ -131,7 +132,6 @@ test_that("get methods", {
   th <- new_theme(
     name = "FS",
     feature = f,
-    icon = "atom",
     id = "FS1")
   thr <- new_theme_results(
     theme = th,
@@ -194,7 +194,6 @@ test_that("set methods", {
     step_goal = 0.02,
     limit_goal = 0.05,
     current = 0.034,
-    icon = "bell",
     id = "FID1")
   fr <- new_feature_results(
     feature = f,
@@ -203,7 +202,6 @@ test_that("set methods", {
   th <- new_theme(
     name = "FS",
     feature = f,
-    icon = "atom",
     id = "FS1")
   thr <- new_theme_results(
     theme = th,
@@ -267,7 +265,6 @@ test_that("widget methods", {
     step_goal = 0.02,
     limit_goal = 0.05,
     current = 0.034,
-    icon = "bell",
     id = "FID1")
   fr <- new_feature_results(
     feature = f,
@@ -276,7 +273,6 @@ test_that("widget methods", {
   th <- new_theme(
     name = "FS",
     feature = f,
-    icon = "atom",
     id = "FS1")
   thr <- new_theme_results(
     theme = th,
@@ -317,46 +313,3 @@ test_that("widget methods", {
     )
   )
 })
-
-# test_that("new_solution_from_prioritization", {
-#   # create objects
-#   ## raw data
-#   f <- system.file("extdata", "sim_vector_data.gpkg", package = "locationmisc")
-#   rd <- sf::read_sf(f)
-#   rd <- rd[seq_len(min(100, nrow(rd))), drop = FALSE]
-#   ## set names
-#   theme_names <-
-#     list(theme1 = names(rd)[1],
-#          theme2 = names(rd)[2],
-#          theme3 = names(rd)[3:8])
-#   wt_names <- names(rd)[11:15]
-#   ## create dataset
-#   d <- new_dataset(rd)
-#   ## create weights
-#   wts <- lapply(wt_names, function(x) {
-#     v <- new_variable_from_auto(dataset = d, index = x)
-#     new_weight(x, variable = v, initial_factor = runif(1, 0, 100))
-#   })
-#   ## create themes
-#   thms <- lapply(seq_along(theme_names), function(i) {
-#     fts <- lapply(theme_names[[i]], function(x) {
-#       v <- new_variable_from_auto(dataset = d, index = x)
-#       new_feature(x, variable = v, initial_goal = runif(1, 0.2, 1))
-#     })
-#     new_theme(name = names(theme_names)[[i]], feature = fts)
-#   })
-#   ## create solution settings object
-#   ss <- new_solution_settings(themes = thms, weights = wts)
-#   ## create matrices
-#   rij <- ss$get_rij_matrix()
-#   wij <- ss$get_wij_matrix()
-#   ## create object
-#   x <- new_solution_from_prioritization(
-#     name = "solution01", dataset = d,
-#     solution_settings = ss,
-#     rij = rij, wij = wij, boundary_data = prioritizr::boundary_matrix(rd),
-#     gap = 0.001, boundary_penalty_gap = 0.1)
-#   # run tests
-#   # TODO
-#
-# })

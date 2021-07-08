@@ -30,16 +30,16 @@ Broadly speaking, it should contain the following elements:
 
 \describe{
 \item{id}{\code{character} value with the identifier for the layer.}
-\item{parameter}{\code{character} value with the name of the parameter to update.}
-\item{value}{\code{ANY} new value for the parameter.}
+\item{setting}{\code{character} value with the name of the setting to update.}
+\item{value}{\code{ANY} new value for the setting.}
 }
 
 Note that the \code{value} element in the \code{list} object should have a
 class (i.e. \code{numeric}, \code{logical}) that is relevant
-to the parameter that should be updated. For example, if the
-\code{parameter} element is equal to \code{name}, then the \code{value} element
+to the setting that should be updated. For example, if the
+\code{setting} element is equal to \code{name}, then the \code{value} element
 should contain a \code{character} value.
-For reference, we provide examples detailing all the various parameters that
+For reference, we provide examples detailing all the various settings that
 can be updated below.
 
 \strong{Update layer name.}
@@ -47,7 +47,7 @@ This controls the bold text shown in the header of the layer.
 
 \describe{
 \item{id}{\code{"LAYERID"}}
-\item{parameter}{\code{"name"}}
+\item{setting}{\code{"name"}}
 \item{value}{\code{"SPECIES"}}
 }
 
@@ -57,7 +57,7 @@ Note that the \code{value} element must be a \code{logical} (\code{TRUE} or \cod
 
 \describe{
 \item{id}{\code{"LAYERID"}}
-\item{parameter}{\code{"visible"}}
+\item{setting}{\code{"visible"}}
 \item{value}{\code{TRUE}}
 }
 
@@ -68,7 +68,7 @@ within the theme (the example below assumes the theme has three features).
 
 \describe{
 \item{id}{\code{"LAYERID"}}
-\item{parameter}{\code{"feature_visible"}}
+\item{setting}{\code{"feature_visible"}}
 \item{value}{\code{c(TRUE, FALSE, TRUE)}}
 }
 
@@ -79,7 +79,7 @@ within a layer (e.g. the example below assumes a theme has three features).
 
 \describe{
 \item{id}{\code{"LAYERID"}}
-\item{parameter}{\code{"feature_order"}}
+\item{setting}{\code{"feature_order"}}
 \item{value}{\code{c(TRUE, FALSE, TRUE)}}
 }
 }

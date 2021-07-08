@@ -4,13 +4,7 @@
 \alias{new_single_theme}
 \title{New single theme}
 \usage{
-new_single_theme(
-  name,
-  feature,
-  mandatory = FALSE,
-  icon = "map-marked-alt",
-  id = uuid::UUIDgenerate()
-)
+new_single_theme(name, feature, id = uuid::UUIDgenerate())
 }
 \arguments{
 \item{name}{\code{character} Name to display.}
@@ -18,15 +12,6 @@ new_single_theme(
 \item{feature}{\link{Feature} object.
 For compatibility with \code{\link[=new_multi_theme]{new_multi_theme()}}, a \code{list} object
 can also be supplied that contains a single \link{Feature} object.}
-
-\item{mandatory}{\code{logical} Is the theme mandatory for generating solutions?
-Defaults to \code{FALSE}.}
-
-\item{icon}{\code{shiny.tag} Icon to display for the feature
-This icon should indicate the type of data that underpin the feature.
-Alternatively, the argument can be a \code{character} to automatically
-generate a \code{shiny.tag} icon (using \code{\link[shiny:icon]{shiny::icon()}}).
-Defaults to \code{"map-marked-alt"}.}
 
 \item{id}{\code{character} unique identifier.
 Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}

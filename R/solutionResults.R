@@ -110,6 +110,23 @@ solutionResults_html <- function(id, style, class, ...) {
               class = "solution-select"
             )
           ),
+          # modal button
+          htmltools::tags$div(
+            class = "solution-button-container",
+            # button to import data
+            shinyBS::bsButton(
+              inputId = paste0(id, "_button"),
+              label = "View data",
+              icon = shiny::icon("table"),
+              style = "primary",
+              type = "action"
+            )
+          ),
+          # modal
+          solutionResultsModal(
+            id = paste0(id, "_modal"),
+            trigger = paste0(id, "_button")
+          ),
           # accordion panels
           htmltools::tags$div(
             class = "solution-results-main",

@@ -9,7 +9,7 @@ MapManager <- R6::R6Class(
   "MapManager",
   public = list(
 
-    #' @field layers `list` of [Theme], [Weight], [Solution] objects.
+    #' @field layers `list` of [Theme], [Weight], [Include], [Solution] objects.
     layers = list(),
 
     #' @field ids `character` vector of identifiers for the layers.
@@ -22,14 +22,15 @@ MapManager <- R6::R6Class(
 
     #' @description
     #' Create a MapManager object.
-    #' @param layers `list` of [Theme], [Weight], [Solution] objects.
+    #' @param layers `list` of [Theme], [Weight], [Include], [Solution]
+    #'  objects.
     #' @param order `numeric` vector.
     #' @return A new MapManager object.
     initialize = function(layers, order) {
       assertthat::assert_that(
         is.list(layers),
         all_list_elements_inherit(
-          layers, c("Theme", "Weight", "Solution", "Include")),
+          layers, c("Include", "Weight", "Theme", "Solution")),
         length(order) == length(layers),
         is.numeric(order),
         setequal(order, seq_along(layers))
@@ -85,36 +86,54 @@ MapManager <- R6::R6Class(
     },
 
     #' @description
-    #' Get a parameter for the object.
-    #' @param value `list` with parameter information (see Details section)
+    #' Get layer names.
+    #' @return `character` vector.
+    get_layer_names = function() {
+      unlist(
+        lapply(self$layers, function(x) x$get_layer_name()),
+        recursive = TRUE, use.names = FALSE)
+    },
+
+    #' @description
+    #' Get layer index values.
+    #' @return `character` vector.
+    get_layer_indices = function() {
+      unlist(
+        lapply(self$layers, function(x) x$get_layer_index()),
+        recursive = TRUE, use.names = FALSE)
+    },
+
+    #' @description
+    #' Get a setting for the object.
+    #' @param value `list` with setting information (see Details section)
     #' @details
     #' The argument to `value` should be a `list` with the following elements:
     #' \describe{
     #' \item{id}{`character` (optional) name of layer.}
-    #' \item{parameter}{`character` name of parameter.
+    #' \item{setting}{`character` name of setting.
     #'   Available options are: `"order"`, `"feature_order"` and `"visible"`.
     #'   Note that the `"id"` element is required for `"feature_order"`
-    #'   and `"visible"` parameters.}
+    #'   and `"visible"` settings.}
     #' }
-    get_parameter = function(value) {
+    get_setting = function(value) {
       assertthat::assert_that(
         is.list(value),
-        assertthat::has_name(value, "parameter"),
-        assertthat::is.string(value$parameter))
+        assertthat::has_name(value, "setting"),
+        assertthat::is.string(value$setting))
       if (is.null(value$id)) {
-        # map manager parameters
-        if (identical(value$parameter, "order")) {
+        # map manager settings
+        if (identical(value$setting, "order")) {
           return(self$get_order())
         } else {
-          stop("unknown parameter.")
+          stop("unknown setting.")
         }
       } else {
-        # layer parameters
+        # layer settings
         assertthat::assert_that(
           assertthat::has_name(value, "id"),
           assertthat::is.string(value$id),
           value$id %in% self$ids)
-          return(self$get_layer(value$id)$get_parameter(value$parameter))
+          return(self$get_layer(value$id)$get_setting(value$setting))
       }
     },
 
@@ -133,42 +152,56 @@ MapManager <- R6::R6Class(
     },
 
     #' @description
-    #' Set a parameter for the object.
-    #' @param value `list` with new parameter information (see Details section)
+    #' Set visibility for all layers.
+    #' @param value `logical` vector indicating if layers should be visible or
+    #' not.
+    set_visible = function(value) {
+      assertthat::assert_that(
+        assertthat::is.flag(value),
+        assertthat::noNA(value))
+      vapply(self$layers, FUN.VALUE = logical(1), function(x) {
+        x$set_visible(value)
+        TRUE
+      })
+      invisible(self)
+    },
+
+    #' @description
+    #' Set a setting for the object.
+    #' @param value `list` with new setting information (see Details section)
     #' @details
     #' \describe{
     #' \item{id}{`character` (optional) identifier for layer.}
-    #' \item{parameter}{`character` name of parameter.
+    #' \item{setting}{`character` name of setting.
     #'   Available options are:
     #'   `"order"`, "remove"`,
     #'   `"visible"`, `"feature_order"`, `"feature_visible"`.
     #'   Note that the `"id"` element is required for
     #'   `"remove"`, `"visible"`, `"feature_order"`, `"feature_visible"`
-    #'    parameters.}
-    #' \item{value}{`numeric` or `logical` value for new parameter.}
+    #'    settings.}
+    #' \item{value}{`numeric` or `logical` value for new setting.}
     #' }
-    set_parameter = function(value) {
+    set_setting = function(value) {
       assertthat::assert_that(
         is.list(value),
-        assertthat::has_name(value, "parameter"),
-        assertthat::is.string(value$parameter))
-      if (identical(value$parameter, "remove")) {
-        # remove layer from map manager
-        self$drop_layer(value$id)
+        assertthat::has_name(value, "setting"),
+        assertthat::is.string(value$setting))
+      if (identical(value$setting, "remove")) {
+        stop("$drop_layer() must be called directly.")
       } else if (is.null(value$id)) {
-        # map manager parameters
-        if (identical(value$parameter, "order")) {
+        # map manager settings
+        if (identical(value$setting, "order")) {
           self$set_order(value$value)
         } else {
-          stop("unknown parameter.")
+          stop("unknown setting.")
         }
       } else {
-        # layer parameters
+        # layer settings
         assertthat::assert_that(
           assertthat::has_name(value, "id"),
           assertthat::is.string(value$id),
           value$id %in% self$ids)
-          self$get_layer(value$id)$set_parameter(value$parameter, value$value)
+          self$get_layer(value$id)$set_setting(value$setting, value$value)
       }
       invisible(self)
     },
@@ -176,36 +209,55 @@ MapManager <- R6::R6Class(
     #' @description
     #' Add a new layer.
     #' @param value `Layer` object.
-    add_layer = function(value) {
-      assertthat::assert_that(inherits(value, c("Weight", "Theme", "Solution")))
+    #' @param map [leaflet::leafletProxy()] object.
+    add_layer = function(value, map) {
+      # assert arguments are valid
+      assertthat::assert_that(
+        inherits(value, c("Weight", "Theme", "Solution")),
+        inherits(map, "leaflet_proxy"))
       assertthat::assert_that(
         !value$id %in% self$ids,
         msg = paste0(
           "cannot add new layer because the id `", value$id,
           "` already exists"))
-        self$layers[[length(self$layers) + 1]] <- value
-        self$ids <- c(self$ids, value$id)
-        self$order <- c(self$order, max(self$order) + 1)
-        invisible(self)
+      # add layer from object
+      self$layers[[length(self$layers) + 1]] <- value
+      self$ids <- c(self$ids, value$id)
+      self$order <- c(self$order, max(self$order) + 1)
+      # update map
+      self$layers[[length(self$layers)]]$render_on_map(
+        map, zindex = last(self$order) * 100)
+      # return invisible self
+      invisible(self)
     },
 
     #' @description
     #' Remove a layer.
     #' @param value `character` layer identifier.
-    drop_layer = function(value) {
+    #' @param map [leaflet::leafletProxy()] object.
+    drop_layer = function(value, map) {
+      # assert arguments are valid
       assertthat::assert_that(
         assertthat::is.string(value),
-        assertthat::noNA(value))
+        assertthat::noNA(value),
+        inherits(map, "leaflet_proxy"))
       assertthat::assert_that(
         value %in% self$ids,
         msg = paste0(
-          "cannot drop layer because the id `", id,
+          "cannot drop layer because the id `", value,
           "` doesn't exist"))
+      # drop layer from object
       idx <- which(self$ids != value)
       self$layers <- self$layers[idx]
       self$ids <- self$ids[idx]
       self$order <- self$order[idx]
       self$order <- rank(self$order)
+      # update map
+      ## since we can't actually delete panes,
+      ## we will move the pane below the map and remove its contents
+      leaflet::updateMapPane(map, paste0("pane-", value), -1, FALSE)
+      leaflet::clearGroup(map, value)
+      # return invisible self
       invisible(self)
     },
 
@@ -222,69 +274,9 @@ MapManager <- R6::R6Class(
     },
 
     #' @description
-    #' Get initial map.
-    #' @param dataset `Dataset` object.
-    #' @return [leaflet::leaflet()] object.
-    get_initial_map = function(dataset) {
-      # get spatial extent for dataset
-      ## extract extent
-      ext <- methods::as(raster::extent(
-        dataset$get_spatial_data()), "SpatialPolygons")
-      ## prepare bounding box
-      ext <- sf::st_set_crs(sf::st_as_sf(ext), dataset$get_crs())
-      ## convert to WGS1984
-      ext <- raster::extent(sf::st_transform(ext, 4326))
-      ## create bounding box by expanding viewport by 10%
-      bb <- list()
-      bb$xmin <- unname(ext@xmin - (0.1 * (ext@xmax - ext@xmin)))
-      bb$xmax <- unname(ext@xmax + (0.1 * (ext@xmax - ext@xmin)))
-      bb$ymin <- unname(ext@ymin - (0.1 * (ext@ymax - ext@ymin)))
-      bb$ymax <- unname(ext@ymax + (0.1 * (ext@ymax - ext@ymin)))
-      bb$xmin <- max(bb$xmin, -180)
-      bb$xmax <- min(bb$xmax, 180)
-      bb$ymin <- max(bb$ymin, -90)
-      bb$ymax <- min(bb$ymax, 90)
-      # prepare JS code for button
-      fly_to_sites_js <- paste0(
-        "function(btn, map){ map.flyToBounds([",
-        "[", bb$ymin, ", ", bb$xmin, "],",
-        "[", bb$ymax, ", ", bb$xmax, "]]);}")
-      zoom_in_js <- paste0(
-        "function(btn, map){",
-        "map.setZoom(Math.min(map.getZoom() + 1, map.getMaxZoom()));",
-        "}")
-      zoom_out_js <- paste0(
-        "function(btn, map){",
-        "map.setZoom(Math.max(map.getZoom() - 1, map.getMinZoom()));",
-        "}")
-      # initialize map
-      map <-
-        leaflet::leaflet() %>%
-        leaflet::addProviderTiles(
-          leaflet::providers$Esri.WorldImagery) %>%
-        leaflet::flyToBounds(
-          bb$xmin, bb$ymin, bb$xmax, bb$ymax) %>%
-        leaflet::addEasyButton(
-          leaflet::easyButton(
-            icon = shiny::icon("plus"),
-            title = "Zoom in",
-            position = "topright",
-            onClick = htmlwidgets::JS(zoom_in_js))) %>%
-        leaflet::addEasyButton(
-          leaflet::easyButton(
-            icon = shiny::icon("minus"),
-            title = "Zoom out",
-            position = "topright",
-            onClick = htmlwidgets::JS(zoom_out_js))) %>%
-        leaflet::addEasyButton(
-          leaflet::easyButton(
-            icon = shiny::icon("home"),
-            title = "Zoom to data",
-            position = "topright",
-            onClick = htmlwidgets::JS(fly_to_sites_js))) %>%
-        leaflet::addScaleBar(
-          position = "bottomright") %>%
-        leaflet::addMiniMap(position = "bottomright")
+    #' Initial map by adding data to it.
+    #' @param map [leaflet::leafletProxy] object.
+    initialize_map = function(map) {
       # compute zIndex values for layers
       zv <- self$order * 100
       # add layers
@@ -292,7 +284,7 @@ MapManager <- R6::R6Class(
         map <- self$layers[[i]]$render_on_map(map, zindex = zv[i])
       }
       # return result
-      map
+       invisible(map)
     },
 
     #' @description

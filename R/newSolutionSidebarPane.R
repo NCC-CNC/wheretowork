@@ -3,18 +3,16 @@ NULL
 
 #' New solution sidebar pane
 #'
-#' Constructs a sidebar pane for generating new solutions. This is designed to
-#' be used as an argument to [leaflet.extras2::sidebar_tabs] when specifying
-#' the user interface for a Shiny web application.
-#'
-#' @param id `character` identifier for the sidebar pane.
+#' Constructs a sidebar pane for generating new solutions.
 #'
 #' @param solutionSettingsId `character` identifier for the
 #'   [solutionSettings()] widget to create within the sidebar pane.
 #'   This widget is used to control the settings for new solutions.
 #'   Defaults to `paste0(id, "_settings")`.
 #'
-#' @return A `shiny.tag` object with the sidebar pane.
+#' @inheritParams solutionResultsSidebarPane
+#'
+#' @inherit solutionResultsSidebarPane details return
 #'
 #' @examples
 #' \dontrun{
@@ -45,26 +43,16 @@ newSolutionSidebarPane <- function(
       icon = NULL,
       ### container
       htmltools::tags$div(
-        class = "new-solution-pane",
+        class = "sidebar-pane-content",
         htmltools::tags$div(
-          class = "widget-container",
-          solutionSettingsOutput(solutionSettingsId, height = "100%")
+          class = "new-solution-pane",
+          htmltools::tags$div(
+            class = "widget-container",
+            solutionSettingsOutput(solutionSettingsId, height = "100%")
+          )
         )
       )
     )
-
-  ## add dependencies
-  d <-
-    htmltools::htmlDependency(
-      name = "newSolutionPane",
-      version = "1.0.0",
-      src =
-        system.file(
-          "htmlwidgets", "lib", "newSolutionPane-1.0.0",
-          package = "locationmisc"),
-      stylesheet = "style.css"
-    )
-  w <- htmltools::attachDependencies(w, d)
 
   # return result
   w

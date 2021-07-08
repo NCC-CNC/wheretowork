@@ -44,8 +44,6 @@ Definition for the Feature class.
 \item{\code{step_goal}}{\code{numeric} step goal value.}
 
 \item{\code{limit_goal}}{\code{numeric} limit goal value.}
-
-\item{\code{icon}}{\code{shiny.tag} object.}
 }
 \if{html}{\out{</div>}}
 }
@@ -56,12 +54,14 @@ Definition for the Feature class.
 \item \href{#method-print}{\code{Feature$print()}}
 \item \href{#method-repr}{\code{Feature$repr()}}
 \item \href{#method-get_visible}{\code{Feature$get_visible()}}
+\item \href{#method-get_current}{\code{Feature$get_current()}}
 \item \href{#method-get_status}{\code{Feature$get_status()}}
 \item \href{#method-get_goal}{\code{Feature$get_goal()}}
 \item \href{#method-get_data}{\code{Feature$get_data()}}
 \item \href{#method-set_visible}{\code{Feature$set_visible()}}
 \item \href{#method-set_status}{\code{Feature$set_status()}}
 \item \href{#method-set_goal}{\code{Feature$set_goal()}}
+\item \href{#method-set_current}{\code{Feature$set_current()}}
 \item \href{#method-export}{\code{Feature$export()}}
 \item \href{#method-clone}{\code{Feature$clone()}}
 }
@@ -83,8 +83,7 @@ Create a Feature object.
   max_goal,
   step_goal,
   limit_goal,
-  current,
-  icon
+  current
 )}\if{html}{\out{</div>}}
 }
 
@@ -112,8 +111,6 @@ Create a Feature object.
 \item{\code{limit_goal}}{\code{numeric} value.}
 
 \item{\code{current}}{\code{numeric} value.}
-
-\item{\code{icon}}{\code{shiny.tag} object.}
 }
 \if{html}{\out{</div>}}
 }
@@ -150,10 +147,10 @@ Generate a \code{character} summarizing the representation of the object.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{start}}{\code{character} symbol used to start the parameter list.
+\item{\code{start}}{\code{character} symbol used to start the setting list.
 Defaults to \code{"["}.}
 
-\item{\code{end}}{\code{character} symbol used to start the parameter list.
+\item{\code{end}}{\code{character} symbol used to start the setting list.
 Defaults to \code{"]"}.}
 }
 \if{html}{\out{</div>}}
@@ -169,6 +166,19 @@ Defaults to \code{"]"}.}
 Get visible.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Feature$get_visible()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{numeric} value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_current"></a>}}
+\if{latex}{\out{\hypertarget{method-get_current}{}}}
+\subsection{Method \code{get_current()}}{
+Get current.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Feature$get_current()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
@@ -266,10 +276,27 @@ Set goal.
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_current"></a>}}
+\if{latex}{\out{\hypertarget{method-set_current}{}}}
+\subsection{Method \code{set_current()}}{
+Set current.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Feature$set_current(value)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{value}}{\code{numeric} new value.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-export"></a>}}
 \if{latex}{\out{\hypertarget{method-export}{}}}
 \subsection{Method \code{export()}}{
-Export parameters
+Export settings
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Feature$export()}\if{html}{\out{</div>}}
 }

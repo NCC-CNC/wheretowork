@@ -23,6 +23,9 @@ WeightResults <- R6::R6Class(
     #' @field factor `numeric` value.
     factor = NA_real_,
 
+    #' @field current `numeric` value.
+    current = NA_real_,
+
     #' @field held `numeric` value.
     current = NA_real_,
 
@@ -73,18 +76,33 @@ WeightResults <- R6::R6Class(
 
     #' @description
     #' Generate a `character` summarizing the representation of the object.
-    #' @param start `character` symbol used to start the parameter list.
+    #' @param start `character` symbol used to start the setting list.
     #'   Defaults to `"["`.
-    #' @param end `character` symbol used to start the parameter list.
+    #' @param end `character` symbol used to start the setting list.
     #'   Defaults to `"]"`.
     #' @return `character` value.
     repr = function(start = "[", end = "]") {
       paste0(
-        self$name,
+        self$weight$name,
         " ", start, "status: ", self$status,
-        ", factor: ", round(self$factor, 2), end, nl(),
+        ", factor: ", round(self$factor, 2),
         ", held: ", round(self$held, 2), end, nl(),
         "  weight: ", self$weight$repr())
+    },
+
+    #' @description
+    #' Get results.
+    #' @return [tibble::tibble()] object.
+    get_results_data = function() {
+      tibble::tibble(
+        name = self$weight$name,
+        status = self$status,
+        total = self$weight$variable$total,
+        current = self$current,
+        factor = self$factor,
+        held = self$held,
+        units = self$weight$variable$units
+      )
     },
 
     #' @description
@@ -95,6 +113,8 @@ WeightResults <- R6::R6Class(
         id = self$id,
         name = self$weight$name,
         status = self$status,
+        total = self$weight$variable$total,
+        current = self$current,
         factor = self$factor,
         total_amount = self$weight$variable$total,
         current_held = self$current,

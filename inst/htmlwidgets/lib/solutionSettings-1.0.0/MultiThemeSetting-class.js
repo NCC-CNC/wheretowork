@@ -6,6 +6,7 @@ class MultiThemeSetting {
     name,
     feature_name,
     feature_id,
+    feature_status,
     feature_total_amount,
     feature_current_held,
     feature_min_goal,
@@ -13,20 +14,23 @@ class MultiThemeSetting {
     feature_goal,
     feature_limit_goal,
     feature_step_goal,
-    feature_status,
-    feature_icon,
-    units,
-    mandatory,
-    icon
+    units
   ) {
     // class fields
     /// internal variables
     this.id = id;
+    this.elementId = "setting-" + id;
     this.n_features = feature_id.length;
-    this.feature_id = feature_id;
+    this.feature_id = feature_id.map((x) => "setting-" + x);
     this.single_goal_values = feature_goal;
     this.single_status_values = feature_status;
+    this.single_total_values = feature_total_amount;
+    this.single_limit_values = feature_limit_goal;
+    this.units = units;
     this.group_limit_goal = Math.max.apply(Math, feature_limit_goal);
+    this.previous_group_goal = Math.max.apply(Math, feature_goal);
+    this.previous_single_goals = [...feature_goal];
+
     /// HTML container
     this.el =
       document.importNode(
@@ -43,6 +47,13 @@ class MultiThemeSetting {
     this.group_goal_el = undefined;
     this.single_goal_el = undefined;
 
+    this.group_current_label_el = undefined;
+    this.single_current_label_el = undefined;
+
+    this.group_current_min_bar_el = undefined;
+    this.group_current_max_bar_el = undefined;
+    this.single_current_bar_el = undefined;
+
     this.group_tab_el = undefined;
     this.single_tab_el = undefined;
 
@@ -54,7 +65,6 @@ class MultiThemeSetting {
     this.name_el = header_el.querySelector(".name-label");
     this.status_el = header_el.querySelector(".status-checkbox");
     let main_el = this.el.querySelector(".main");
-    let icon_el = this.el.querySelector(".icon");
     let group_panel_el = main_el.querySelector(".group-view");
     let single_panel_el = main_el.querySelector(".single-view");
 
@@ -63,17 +73,17 @@ class MultiThemeSetting {
       this.el.querySelector("[data-value='group']");
     this.group_goal_el =
       group_panel_el.querySelector(".noUiSlider-widget");
+    this.group_current_label_el =
+      group_panel_el.querySelector(".current-label");
+    this.group_current_min_bar_el =
+      group_panel_el.querySelector(".current-min-bar");
+    this.group_current_max_bar_el =
+      group_panel_el.querySelector(".current-max-bar");
 
     let group_goal_label_el =
       group_panel_el.querySelector(".slider-label");
     let group_goal_symbol_el =
       group_panel_el.querySelector(".slider-symbol");
-    let group_current_label_el =
-      group_panel_el.querySelector(".current-label");
-    let group_current_min_bar_el =
-      group_panel_el.querySelector(".current-min-bar");
-    let group_current_max_bar_el =
-      group_panel_el.querySelector(".current-max-bar");
     let group_widget_el_el =
       group_panel_el.querySelector(".widget");
 
@@ -99,61 +109,39 @@ class MultiThemeSetting {
       single_panel_el.querySelectorAll(".noUiSlider-widget");
     let single_goal_label_el =
       single_panel_el.querySelectorAll(".slider-label");
-    let single_icon_el =
-      single_panel_el.querySelectorAll(".sub-icon");
-    let single_current_label_el =
+    this.single_current_label_el =
       single_panel_el.querySelectorAll(".current-label");
-    let single_current_bar_el =
+    this.single_current_bar_el =
       single_panel_el.querySelectorAll(".current-bar");
     let single_widget_el =
       single_panel_el.querySelectorAll(".widget");
 
     // attach id to elements
     /// main container
-    this.el.querySelector(".solution-setting").id = id;
+    this.el.querySelector(".solution-setting").id = this.elementId;
     /// single view containers
     for (let i = 0; i < this.n_features; ++i) {
-      single_panel_el.children[i].id = feature_id[i];
+      single_panel_el.children[i].id = this.feature_id[i];
     }
     /// tab containers
     this.el
       .querySelector(".tabbable ul")
-      .setAttribute("data-tabsetid", `tabs-${id}`);
+      .setAttribute("data-tabsetid", `tabs-${this.elementId}`);
     this.el
       .querySelector(".tabbable .tab-content")
-      .setAttribute("data-tabsetid", `tabs-${id}`);
+      .setAttribute("data-tabsetid", `tabs-${this.elementId}`);
     /// group tab
-    this.group_tab_el.setAttribute("href", `#tabs-${id}-1`);
+    this.group_tab_el.setAttribute("href", `#tabs-${this.elementId}-1`);
     this.el
       .querySelector(".tabbable .tab-content [data-value='group']")
-      .setAttribute("id", `tabs-${id}-1`);
+      .setAttribute("id", `tabs-${this.elementId}-1`);
     /// single tab
-    this.single_tab_el.setAttribute("href", `#tabs-${id}-2`);
+    this.single_tab_el.setAttribute("href", `#tabs-${this.elementId}-2`);
     this.el
       .querySelector(".tabbable .tab-content [data-value='single']")
-      .setAttribute("id", `tabs-${id}-2`);
-
-    // disable switches if theme is mandatory (and keep colors as toggled on)
-    if (mandatory) {
-      /// status switch
-      this.status_el.parentElement.classList.add("disable-mouse");
-      this.status_el.addEventListener("click", function (e) {
-        e.preventDefault();
-        return false;
-      });
-      /// single sswitches
-      this.single_status_el.forEach((x) => {
-        x.parentElement.classList.add("disable-mouse");
-        x.addEventListener("click", function (e) {
-          e.preventDefault();
-          return false;
-        });
-      });
-    }
+      .setAttribute("id", `tabs-${this.elementId}-2`);
 
     // set initial theme values
-    /// icon
-    icon_el.insertAdjacentHTML("beforeend", icon);
     /// name
     this.name_el.innerText = name;
     /// status
@@ -161,18 +149,19 @@ class MultiThemeSetting {
 
     // set initial group values
     /// current text
-    group_current_label_el.innerText =
+    this.group_current_label_el.innerText =
       group_current_label_text(
-        feature_current_held, feature_total_amount, "Current", units);
+        feature_current_held, this.single_total_values,
+        "Current", this.units);
     /// style current bar
     style_group_current_bars(
-      group_current_min_bar_el,
-      group_current_max_bar_el,
+      this.group_current_min_bar_el,
+      this.group_current_max_bar_el,
       Math.min.apply(Math, feature_current_held),
       Math.max.apply(Math, feature_current_held));
     /// slider
     noUiSlider.create(this.group_goal_el, {
-      start: Math.min.apply(Math, feature_current_held),
+      start: Math.max.apply(Math, feature_goal),
       step: Math.min.apply(Math, feature_step_goal),
       connect: "lower",
       range: {
@@ -183,19 +172,20 @@ class MultiThemeSetting {
 
     // set initial single values
     for (let i = 0; i < this.n_features; ++i) {
-      /// icon
-      single_icon_el[i].insertAdjacentHTML("beforeend", feature_icon[i]);
       /// name text
       single_name_el[i].innerText = feature_name[i];
       /// status
       this.single_status_el[i].checked = feature_status[i];
       /// current text
-      single_current_label_el[i].innerText =
+      this.single_current_label_el[i].innerText =
         single_current_label_text(
-          feature_current_held[i], feature_total_amount[i], "Current", units);
+          feature_current_held[i],
+          this.single_total_values[i],
+          "Current",
+          this.units);
       /// current bar
       style_current_bar(
-        single_current_bar_el[i], feature_current_held[i]);
+        this.single_current_bar_el[i], feature_current_held[i]);
       /// slider
       noUiSlider.create(this.single_goal_el[i], {
         start: feature_goal[i],
@@ -212,7 +202,7 @@ class MultiThemeSetting {
     if (HTMLWidgets.shinyMode) {
       /// group view
       //// enforce minimum limit
-      this.group_goal_el.noUiSlider.on('change', function (values, handle) {
+      this.group_goal_el.noUiSlider.on("change", function (values, handle) {
         if (values[handle] < that.group_limit_goal) {
           that.group_goal_el.noUiSlider.set(that.group_limit_goal);
         }
@@ -221,19 +211,42 @@ class MultiThemeSetting {
       this.group_goal_el.noUiSlider.on("update", function (values, handle) {
         group_goal_label_el.innerText =
           group_goal_label_text(
-            values[handle], feature_total_amount, "Goal", units);
+            values[handle], that.single_total_values, "Goal", that.units);
       });
       //// set status listener to enable/disable widget on click
       this.status_el.addEventListener("change", function () {
+        ///// set switch values
         let checked = this.checked;
-        that.single_status_el.forEach((x) => x.checked = checked);
+        ///// update group slider
+        if (checked) {
+          that.group_goal_el.noUiSlider.set(that.previous_group_goal);
+        } else {
+          that.previous_group_goal = that.group_goal_el.noUiSlider.get();
+          that.group_goal_el.noUiSlider.set(that.group_limit_goal);
+        }
+        ///// update single sliders
+        for (let i = 0; i < that.n_features; ++i) {
+          if (that.single_status_el[i].checked !== checked) {
+            /// update switch
+            that.single_status_el[i].checked = checked;
+            /// update slider
+            if (checked) {
+              that.single_goal_el[i].noUiSlider.set(
+                that.previous_single_goals[i]);
+            } else {
+              that.previous_single_goals[i] =
+                that.single_goal_el[i].noUiSlider.get();
+              that.single_goal_el[i].noUiSlider.set(
+                that.single_limit_values[i]);
+            }
+          }
+        }
+        //// update HTML element styles
         let els =
           document
-          .getElementById(that.id)
+          .getElementById(that.elementId)
           .querySelectorAll(
             `.disable-if-inactive, ` +
-            `.disable-if-inactive.icon i, ` +
-            `.disable-if-inactive.sub-icon i, ` +
             `.sub-header .status-checkbox`);
         if (checked) {
           els.forEach((x) => x.removeAttribute("disabled"));
@@ -255,18 +268,31 @@ class MultiThemeSetting {
           "update", function (values, handle) {
           single_goal_label_el[i].innerText =
             single_goal_label_text(
-              values[handle], feature_total_amount[i], "Goal", units);
+              values[handle], that.single_total_values[i],
+              "Goal", that.units);
         });
         //// set status listener to enable/disable widget on click
         this.single_status_el[i].addEventListener("change", function () {
+          ///// set switch values
           let checked = this.checked;
+          ///// update switches
           that.single_status_values[i] = checked;
+          ///// update slider
+          if (checked) {
+            that.single_goal_el[i].noUiSlider.set(
+              that.previous_single_goals[i]);
+          } else {
+            that.previous_single_goals[i] =
+              that.single_goal_el[i].noUiSlider.get();
+            that.single_goal_el[i].noUiSlider.set(
+              that.single_limit_values[i]);
+          }
+          //// update HTML element styles
           let els =
             document
-            .getElementById(id)
+            .getElementById(that.elementId)
             .querySelectorAll(
-              `[id="${feature_id[i]}"] .disable-if-inactive, ` +
-              `[id="${feature_id[i]}"] .disable-if-inactive.sub-icon i`);
+              `[id="${that.feature_id[i]}"] .disable-if-inactive`);
           if (checked) {
             els.forEach((x) => x.removeAttribute("disabled"));
           } else {
@@ -285,13 +311,13 @@ class MultiThemeSetting {
         let v = that.group_goal_el.noUiSlider.get();
         Shiny.setInputValue(manager, {
           id: id,
-          parameter: "feature_status",
+          setting: "feature_status",
           value: Array(that.n_features).fill(checked),
           type: "theme"
         });
         Shiny.setInputValue(manager, {
           id: id,
-          parameter:"feature_goal",
+          setting:"feature_goal",
           value: Array(that.n_features).fill(parseFloat(v)),
           type: "theme"
         });
@@ -301,7 +327,7 @@ class MultiThemeSetting {
         let checked = this.checked;
         Shiny.setInputValue(manager, {
           id: id,
-          parameter: "feature_status",
+          setting: "feature_status",
           value: Array(that.n_features).fill(checked),
           type: "theme"
         });
@@ -312,7 +338,7 @@ class MultiThemeSetting {
         if (v >= that.group_limit_goal) {
           Shiny.setInputValue(manager, {
             id: id,
-            parameter: "feature_goal",
+            setting: "feature_goal",
             value: Array(that.n_features).fill(v),
             type: "theme"
           });
@@ -325,13 +351,13 @@ class MultiThemeSetting {
         this.single_tab_el.addEventListener("click", function() {
           Shiny.setInputValue(manager, {
             id: id,
-            parameter: "status",
+            setting: "status",
             value: that.single_status_values,
             type: "feature_status"
           });
           Shiny.setInputValue(manager, {
             id: id,
-            parameter: "feature_goal",
+            setting: "feature_goal",
             value: that.single_goal_values,
             type: "theme"
           });
@@ -341,7 +367,7 @@ class MultiThemeSetting {
           that.single_status_values[i] = that.single_status_el[i].checked;
           Shiny.setInputValue(manager, {
             id: id,
-            parameter: "feature_status",
+            setting: "feature_status",
             value: that.single_status_values,
             type: "theme"
           });
@@ -354,7 +380,7 @@ class MultiThemeSetting {
             that.single_goal_values[i] = v;
             Shiny.setInputValue(manager, {
               id: id,
-              parameter: "feature_goal",
+              setting: "feature_goal",
               value: that.single_goal_values,
               type: "theme"
             });
@@ -366,19 +392,21 @@ class MultiThemeSetting {
 
   /* update HTML elements */
   /* update methods */
-  updateParameter(parameter, value) {
-    if (parameter === "name") {
+  updateSetting(setting, value) {
+    if (setting === "name") {
       this.updateName(value);
-    } else if (parameter === "status") {
+    } else if (setting === "status") {
       this.updateStatus(value);
-    } else if (parameter === "view") {
+    } else if (setting === "view") {
       this.updateView(value);
-    } else if (parameter === "group_goal") {
+    } else if (setting === "group_goal") {
       this.updateGroupGoal(value);
-    } else if (parameter === "feature_status") {
+    } else if (setting === "feature_status") {
       this.updateFeatureStatus(value);
-    } else if (parameter === "feature_goal") {
+    } else if (setting === "feature_goal") {
       this.updateFeatureGoal(value);
+    } else if (setting === "feature_current") {
+      this.updateFeatureCurrent(value);
     }
   }
 
@@ -387,16 +415,42 @@ class MultiThemeSetting {
   }
 
   updateStatus(value) {
-    this.status_el.checked = value;
-    this.single_status_el.forEach((x) => x.checked = value);
+    // update group HTML elements if needed
+    if (this.status_el.checked !== value) {
+      /// update switch
+      this.status_el.checked = value;
+      /// update group slider if needed
+      if (value) {
+        this.group_goal_el.noUiSlider.set(this.previous_group_goal);
+      } else {
+        this.previous_group_goal = this.group_goal_el.noUiSlider.get();
+        this.group_goal_el.noUiSlider.set(this.group_limit_goal);
+      }
+    }
+    /// update single HTML elements if needed
+    for (let i = 0; i < this.n_features; ++i) {
+      if (this.single_status_el[i].checked !== value) {
+        /// update switch
+        this.single_status_el[i].checked = value;
+        /// update slider
+        if (value) {
+          this.single_goal_el[i].noUiSlider.set(
+            this.previous_single_goals[i]);
+        } else {
+          this.previous_single_goals[i] =
+            this.single_goal_el[i].noUiSlider.get();
+          this.single_goal_el[i].noUiSlider.set(
+            this.single_limit_values[i]);
+        }
+      }
+    }
+    // update HTML element styles
     this.single_status_values.fill(value);
     let els =
       document
-      .getElementById(this.id)
+      .getElementById(this.elementId)
       .querySelectorAll(
         `.disable-if-inactive, ` +
-        `.disable-if-inactive.icon i, ` +
-        `.disable-if-inactive.sub-icon i, ` +
         `.sub-header .status-checkbox`);
     if (value) {
       els.forEach((x) => x.removeAttribute("disabled"));
@@ -414,6 +468,7 @@ class MultiThemeSetting {
   }
 
   updateGroupGoal(value) {
+    this.previous_group_goal = value;
     this.group_goal_el.noUiSlider.set(value);
   }
 
@@ -424,17 +479,29 @@ class MultiThemeSetting {
     }
     // update status variable
     this.single_status_values = value;
-    // set elements as active/inactive
+    // iterate over each feature
     let els = undefined;
     for (let i = 0; i < this.n_features; ++i) {
-      this.single_status_el[i].checked = value[i];
+      /// update if needed
+      if (this.single_status_el[i].checked !== value[i]) {
+        /// update switch
+        this.single_status_el[i].checked = value[i];
+        /// update slider
+        if (value[i]) {
+          this.single_goal_el[i].noUiSlider.set(this.previous_single_goals[i]);
+        } else {
+          this.previous_single_goals[i] =
+            this.single_goal_el[i].noUiSlider.get();
+          this.single_goal_el[i].noUiSlider.set(
+            this.single_limit_values[i]);
+        }
+      }
+      /// update HTML element styles
       let els =
         document
-        .getElementById(this.id)
+        .getElementById(this.elementId)
         .querySelectorAll(
-          `[id="${this.feature_id[i]}"] .disable-if-inactive, ` +
-          `[id="${this.feature_id[i]}"] .disable-if-inactive.sub-icon i`
-        );
+          `[id="${this.feature_id[i]}"] .disable-if-inactive`);
       if (value[i]) {
         els.forEach((x) => x.removeAttribute("disabled"));
       } else {
@@ -444,8 +511,35 @@ class MultiThemeSetting {
   }
 
   updateFeatureGoal(value) {
+    this.previous_single_goals = value;
     for (let i = 0; i < this.n_features; ++i) {
       this.single_goal_el[i].noUiSlider.set(value[i]);
+    }
+  }
+
+  updateFeatureCurrent(value) {
+    // update group view components
+    /// label
+    this.group_current_label_el.innerText =
+      group_current_label_text(
+        value, this.single_total_values,
+        "Current", this.units);
+    /// bars
+    style_group_current_bars(
+      this.group_current_min_bar_el,
+      this.group_current_max_bar_el,
+      Math.min.apply(Math, value),
+      Math.max.apply(Math, value));
+
+    // update single view components
+    for (let i = 0; i < this.n_features; ++i) {
+      /// label
+      this.single_current_label_el[i].innerText =
+        single_current_label_text(
+          value[i], this.single_total_values[i],
+          "Current", this.units);
+      /// bar
+      style_current_bar(this.single_current_bar_el[i], value[i]);
     }
   }
 

@@ -6,6 +6,7 @@ class SingleThemeSetting {
     name,
     feature_name,
     feature_id,
+    feature_status,
     feature_total_amount,
     feature_current_held,
     feature_min_goal,
@@ -13,13 +14,11 @@ class SingleThemeSetting {
     feature_goal,
     feature_limit_goal,
     feature_step_goal,
-    feature_status,
-    units,
-    mandatory,
-    icon
+    units
   ) {
     // class fields
     this.id = id;
+    this.elementId = "setting-" + id;
     this.el =
       document.importNode(
         document
@@ -30,30 +29,22 @@ class SingleThemeSetting {
     this.name_el = this.el.querySelector(".name-label");
     this.status_el = this.el.querySelector(".status-checkbox");
     this.goal_el = this.el.querySelector(".noUiSlider-widget");
+    this.current_label_el = this.el.querySelector(".current-label");
+    this.current_bar_el = this.el.querySelector(".current-bar");
+    this.limit = feature_limit_goal;
+    this.total = feature_total_amount;
+    this.units = units;
+    this.previous_goal = feature_goal;
 
     // local variables
     let that = this;
-    let icon_el = this.el.querySelector(".icon");
     let goal_label_el = this.el.querySelector(".slider-label");
     let goal_symbol_el = this.el.querySelector(".slider-symbol");
-    let current_label_el = this.el.querySelector(".current-label");
-    let current_bar_el = this.el.querySelector(".current-bar");
 
     // attach id to element
-    this.el.querySelector(".solution-setting").id = id;
-
-    // disable switches if theme is mandatory
-    if (mandatory) {
-      this.status_el.parentElement.classList.add("disable-mouse");
-      this.status_el.addEventListener("click", function (e) {
-        e.preventDefault();
-        return false;
-      });
-    }
+    this.el.querySelector(".solution-setting").id = this.elementId;
 
     // set initial values
-    /// icon
-    icon_el.insertAdjacentHTML("beforeend", icon);
     /// name
     this.name_el.innerText = name;
     /// status
@@ -69,31 +60,41 @@ class SingleThemeSetting {
       }
     });
     /// current label
-    current_label_el.innerText =
+    this.current_label_el.innerText =
       single_current_label_text(
-        feature_current_held, feature_total_amount, "Current", units);
+        feature_current_held, this.total, "Current", this.units);
     /// current bar width
-    style_current_bar(current_bar_el, feature_current_held);
+    style_current_bar(this.current_bar_el, feature_current_held);
 
     // set listeners to update user interfance
     if (HTMLWidgets.shinyMode) {
       /// enforce minimum limit
       this.goal_el.noUiSlider.on("change", function (values, handle) {
-        if (values[handle] < feature_limit_goal) {
-          that.goal_el.noUiSlider.set(feature_limit_goal);
+        if (values[handle] < that.limit) {
+          that.goal_el.noUiSlider.set(that.limit);
         }
       });
       /// update goal label
       this.goal_el.noUiSlider.on("update", function (values, handle) {
         goal_label_el.innerText = single_goal_label_text(
-          values[handle], feature_total_amount, "Goal", units);
+          values[handle], that.total, "Goal", that.units);
       });
       /// enable/disable widget on click
       this.status_el.addEventListener("change", function () {
+        //// set switch value
         let checked = this.checked;
+        //// update slider
+        if (checked) {
+          that.goal_el.noUiSlider.set(that.previous_goal);
+        } else {
+          that.previous_goal = that.goal_el.noUiSlider.get();
+          that.goal_el.noUiSlider.set(that.limit);
+        }
+        //// update HTML styles
         let els =
-          document.getElementById(id).querySelectorAll(
-            ".disable-if-inactive, .disable-if-inactive.icon i");
+          document
+          .getElementById(that.elementId)
+          .querySelectorAll(".disable-if-inactive");
         if (checked) {
           els.forEach((x) => x.removeAttribute("disabled"));
         } else {
@@ -110,7 +111,7 @@ class SingleThemeSetting {
         if (v >= feature_limit_goal) {
           Shiny.setInputValue(manager, {
             id: id,
-            parameter: "feature_goal",
+            setting: "feature_goal",
             value: v,
             type: "theme"
           });
@@ -121,7 +122,7 @@ class SingleThemeSetting {
         let checked = this.checked;
         Shiny.setInputValue(manager, {
           id: id,
-          parameter: "feature_status",
+          setting: "feature_status",
           value: checked,
           type: "theme"
         });
@@ -130,13 +131,15 @@ class SingleThemeSetting {
   }
 
   /* update methods */
-  updateParameter(parameter, value) {
-    if (parameter === "name") {
+  updateSetting(setting, value) {
+    if (setting === "name") {
       this.updateName(value);
-    } else if (parameter === "status" || parameter === "feature_status") {
+    } else if (setting === "status" || setting === "feature_status") {
       this.updateStatus(value);
-    } else if (parameter === "feature_goal") {
+    } else if (setting === "feature_goal") {
       this.updateFeatureGoal(value);
+    } else if (setting === "feature_current") {
+      this.updateFeatureCurrent(value);
     }
   }
 
@@ -145,10 +148,23 @@ class SingleThemeSetting {
   }
 
   updateStatus(value) {
-    this.status_el.checked = value;
+    // update HTML elements if needed
+    if (this.status_el.checked !== value) {
+      /// update switch;
+      this.status_el.checked = value;
+      /// update slider
+      if (value) {
+        this.goal_el.noUiSlider.set(this.previous_goal);
+      } else {
+        this.previous_goal = this.goal_el.noUiSlider.get();
+        this.goal_el.noUiSlider.set(this.limit);
+      }
+    }
+    // update HTML element styles
     let els =
-      document.getElementById(this.id).querySelectorAll(
-        ".disable-if-inactive, .disable-if-inactive.icon i");
+      document
+      .getElementById(this.elementId)
+      .querySelectorAll(".disable-if-inactive");
     if (value) {
       els.forEach((x) => x.removeAttribute("disabled"));
     } else {
@@ -157,6 +173,7 @@ class SingleThemeSetting {
   }
 
   updateFeatureGoal(value) {
+    this.previous_goal = value;
     this.goal_el.noUiSlider.set(value);
   }
 
@@ -164,8 +181,17 @@ class SingleThemeSetting {
   updateView(value) {
     // no effect
   }
+
   updateFeatureStatus(value) {
     self.updateStatus(value);
+  }
+
+  updateFeatureCurrent(value) {
+    // current label
+    this.current_label_el.innerText =
+      single_current_label_text(value, this.total, "Current", this.units);
+    // current bar width
+    style_current_bar(this.current_bar_el, value);
   }
 
   /* render method */

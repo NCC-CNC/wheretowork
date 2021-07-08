@@ -5,8 +5,6 @@ boundary_path: inst/extdata/sim_raster_boundary.csv.gz
 mode: advanced
 themes:
 - name: Olive-headed Lorikeet
-  mandatory: no
-  icon: map-marked-alt
   feature:
   - name: Olive-headed Lorikeet habitat
     variable:
@@ -28,11 +26,7 @@ themes:
     max_goal: 1.0
     step_goal: 0.01
     limit_goal: 0.02
-    current: 0.22
-    icon: map-marked-alt
 - name: Purple Honeycreeper
-  mandatory: no
-  icon: map-marked-alt
   feature:
   - name: Purple Honeycreeper habitat
     variable:
@@ -41,16 +35,14 @@ themes:
       legend:
         type: categorical
         colors:
-        - '#F7FCFD'
-        - '#E5F5F9'
-        - '#CCECE6'
-        - '#99D8C9'
-        - '#66C2A4'
-        - '#41AE76'
-        - '#238B45'
-        - '#006D2C'
-        - '#00441B'
-        - '#F0F0F0'
+        - '#FFF7EC'
+        - '#FEE8C8'
+        - '#FDD49E'
+        - '#FDBB84'
+        - '#FC8D59'
+        - '#EF6548'
+        - '#D7301F'
+        - '#990000'
     initial_status: yes
     initial_visible: yes
     initial_goal: 0.7
@@ -58,11 +50,7 @@ themes:
     max_goal: 1.0
     step_goal: 0.01
     limit_goal: 0.36
-    current: 0.59
-    icon: map-pin
 - name: Least Boobook
-  mandatory: yes
-  icon: map-marked-alt
   feature:
   - name: Least Boobook habitat
     variable:
@@ -71,14 +59,6 @@ themes:
       legend:
         type: categorical
         colors:
-        - '#66C2A5'
-        - '#FC8D62'
-        - '#8DA0CB'
-        - '#E78AC3'
-        - '#A6D854'
-        - '#FFD92F'
-        - '#E5C494'
-        - '#B3B3B3'
         - '#FC8D59'
         - '#FFFFBF'
     initial_status: yes
@@ -88,15 +68,11 @@ themes:
     max_goal: 1.0
     step_goal: 0.01
     limit_goal: 0.33
-    current: 0.12
-    icon: map
-- name: Plovers and Lapwings
-  mandatory: no
-  icon: horse
+- name: Wagtails and Pipits
   feature:
-  - name: Mountain Plover
+  - name: Eastern Yellow Wagtail (Green-headed)
     variable:
-      index: Mountain_Plover
+      index: Eastern_Yellow_Wagtail_Green_headed_
       units: ha
       legend:
         type: continuous
@@ -112,70 +88,14 @@ themes:
         - '#67000D'
     initial_status: yes
     initial_visible: yes
-    initial_goal: 0.58
-    min_goal: 0.0
-    max_goal: 1.0
-    step_goal: 0.01
-    limit_goal: 0.19
-    current: 0.51
-    icon: map-pin
-  - name: American Golden-Plover
-    variable:
-      index: American_Golden_Plover
-      units: ha
-      legend:
-        type: continuous
-        colors:
-        - '#40004B'
-        - '#762A83'
-        - '#9970AB'
-        - '#C2A5CF'
-        - '#E7D4E8'
-        - '#F7F7F7'
-        - '#D9F0D3'
-        - '#A6DBA0'
-        - '#5AAE61'
-        - '#1B7837'
-        - '#00441B'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.9
-    min_goal: 0.0
-    max_goal: 1.0
-    step_goal: 0.01
-    limit_goal: 0.16
-    current: 0.22
-    icon: map-marked-alt
-  - name: Kittlitz's Plover
-    variable:
-      index: Kittlitz_s_Plover
-      units: ha
-      legend:
-        type: continuous
-        colors:
-        - '#67001F'
-        - '#B2182B'
-        - '#D6604D'
-        - '#F4A582'
-        - '#FDDBC7'
-        - '#F7F7F7'
-        - '#D1E5F0'
-        - '#92C5DE'
-        - '#4393C3'
-        - '#2166AC'
-        - '#053061'
-    initial_status: yes
-    initial_visible: yes
     initial_goal: 0.69
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
-    limit_goal: 0.14
-    current: 0.53
-    icon: map-marked-alt
-  - name: Long-billed Plover
+    limit_goal: 0.04
+  - name: Alpine Pipit
     variable:
-      index: Long_billed_Plover
+      index: Alpine_Pipit
       units: ha
       legend:
         type: continuous
@@ -191,41 +111,135 @@ themes:
         - '#7F0000'
     initial_status: yes
     initial_visible: yes
-    initial_goal: 0.61
+    initial_goal: 0.55
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
-    limit_goal: 0.32
-    current: 0.21
-    icon: map
-  - name: Little Ringed Plover (dubius/jerdoni)
+    limit_goal: 0.05
+  - name: Mountain Wagtail
     variable:
-      index: Little_Ringed_Plover_dubius_jerdoni_
+      index: Mountain_Wagtail
       units: ha
       legend:
         type: continuous
         colors:
-        - '#F7FCF0'
-        - '#E0F3DB'
-        - '#CCEBC5'
-        - '#A8DDB5'
-        - '#7BCCC4'
-        - '#4EB3D3'
-        - '#2B8CBE'
-        - '#0868AC'
-        - '#084081'
+        - '#8E0152'
+        - '#C51B7D'
+        - '#DE77AE'
+        - '#F1B6DA'
+        - '#FDE0EF'
+        - '#F7F7F7'
+        - '#E6F5D0'
+        - '#B8E186'
+        - '#7FBC41'
+        - '#4D9221'
+        - '#276419'
     initial_status: yes
     initial_visible: yes
-    initial_goal: 0.58
+    initial_goal: 0.53
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
-    limit_goal: 0.34
-    current: 0.15
-    icon: map
-  - name: Spur-winged Lapwing
+    limit_goal: 0.28
+  - name: Yellow-breasted Pipit
     variable:
-      index: Spur_winged_Lapwing
+      index: Yellow_breasted_Pipit
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFFFD9'
+        - '#EDF8B1'
+        - '#C7E9B4'
+        - '#7FCDBB'
+        - '#41B6C4'
+        - '#1D91C0'
+        - '#225EA8'
+        - '#253494'
+        - '#081D58'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.52
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.08
+  - name: African Pipit (Yemen)
+    variable:
+      index: African_Pipit_Yemen_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#8E0152'
+        - '#C51B7D'
+        - '#DE77AE'
+        - '#F1B6DA'
+        - '#FDE0EF'
+        - '#F7F7F7'
+        - '#E6F5D0'
+        - '#B8E186'
+        - '#7FBC41'
+        - '#4D9221'
+        - '#276419'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.72
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.18
+  - name: Long-billed Pipit (Indian)
+    variable:
+      index: Long_billed_Pipit_Indian_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#66C2A5'
+        - '#FC8D62'
+        - '#8DA0CB'
+        - '#E78AC3'
+        - '#A6D854'
+        - '#FFD92F'
+        - '#E5C494'
+        - '#B3B3B3'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.57
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.35
+  - name: Buffy Pipit
+    variable:
+      index: Buffy_Pipit
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#A6CEE3'
+        - '#1F78B4'
+        - '#B2DF8A'
+        - '#33A02C'
+        - '#FB9A99'
+        - '#E31A1C'
+        - '#FDBF6F'
+        - '#FF7F00'
+        - '#CAB2D6'
+        - '#6A3D9A'
+        - '#FFFF99'
+        - '#B15928'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.5
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.24
+  - name: Rock Pipit (Western)
+    variable:
+      index: Rock_Pipit_Western_
       units: ha
       legend:
         type: continuous
@@ -241,119 +255,100 @@ themes:
         - '#999999'
     initial_status: yes
     initial_visible: yes
-    initial_goal: 0.8
+    initial_goal: 0.54
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
-    limit_goal: 0.14
-    current: 0.34
-    icon: map-marked-alt
-- name: Bush Warblers and Allies
-  mandatory: no
-  icon: dragon
+    limit_goal: 0.03
+  - name: Western Yellow Wagtail (lutea)
+    variable:
+      index: Western_Yellow_Wagtail_lutea_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFF7FB'
+        - '#ECE2F0'
+        - '#D0D1E6'
+        - '#A6BDDB'
+        - '#67A9CF'
+        - '#3690C0'
+        - '#02818A'
+        - '#016C59'
+        - '#014636'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.81
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.21
+- name: Penduline-Tits
   feature:
-  - name: Scrub Warbler (Western)
+  - name: Eurasian Penduline-Tit
     variable:
-      index: Scrub_Warbler_Western_
+      index: Eurasian_Penduline_Tit
       units: ha
       legend:
-        type: categorical
+        type: continuous
         colors:
-        - '#F1EEF6'
-        - '#D4B9DA'
-        - '#C994C7'
-        - '#DF65B0'
-        - '#E7298A'
-        - '#CE1256'
-        - '#91003F'
+        - '#8E0152'
+        - '#C51B7D'
+        - '#DE77AE'
+        - '#F1B6DA'
+        - '#FDE0EF'
+        - '#F7F7F7'
+        - '#E6F5D0'
+        - '#B8E186'
+        - '#7FBC41'
+        - '#4D9221'
+        - '#276419'
     initial_status: yes
     initial_visible: yes
-    initial_goal: 0.83
+    initial_goal: 0.56
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
-    limit_goal: 0.37
-    current: 0.32
-    icon: database
-  - name: Gray-bellied Tesia
+    limit_goal: 0.32
+  - name: African Penduline-Tit (Slaty-backed)
     variable:
-      index: Gray_bellied_Tesia
+      index: African_Penduline_Tit_Slaty_backed_
       units: ha
       legend:
-        type: categorical
+        type: continuous
         colors:
-        - '#FEE5D9'
-        - '#FCAE91'
-        - '#FB6A4A'
-        - '#CB181D'
+        - '#FFFFCC'
+        - '#FFEDA0'
+        - '#FED976'
+        - '#FEB24C'
+        - '#FD8D3C'
+        - '#FC4E2A'
+        - '#E31A1C'
+        - '#BD0026'
+        - '#800026'
     initial_status: yes
     initial_visible: yes
-    initial_goal: 0.61
+    initial_goal: 0.56
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
-    limit_goal: 0.2
-    current: 0.26
-    icon: hdd
-  - name: Timor Stubtail
+    limit_goal: 0.38
+  - name: Yellow Penduline-Tit
     variable:
-      index: Timor_Stubtail
+      index: Yellow_Penduline_Tit
       units: ha
       legend:
-        type: categorical
+        type: continuous
         colors:
-        - '#F7FCF5'
-        - '#E5F5E0'
-        - '#C7E9C0'
-        - '#A1D99B'
-        - '#74C476'
-        - '#41AB5D'
-        - '#238B45'
-        - '#005A32'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.85
-    min_goal: 0.0
-    max_goal: 1.0
-    step_goal: 0.01
-    limit_goal: 0.06
-    current: 0.17
-    icon: map-marked-alt
-  - name: Bornean Stubtail
-    variable:
-      index: Bornean_Stubtail
-      units: ha
-      legend:
-        type: categorical
-        colors:
-        - '#FEF0D9'
-        - '#FDCC8A'
-        - '#FC8D59'
-        - '#E34A33'
-        - '#B30000'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.5
-    min_goal: 0.0
-    max_goal: 1.0
-    step_goal: 0.01
-    limit_goal: 0.39
-    current: 0.41
-    icon: atlas
-  - name: Yellowish-bellied Bush Warbler
-    variable:
-      index: Yellowish_bellied_Bush_Warbler
-      units: ha
-      legend:
-        type: categorical
-        colors:
-        - '#EDF8FB'
+        - '#F7FCFD'
+        - '#E5F5F9'
         - '#CCECE6'
         - '#99D8C9'
         - '#66C2A4'
         - '#41AE76'
         - '#238B45'
-        - '#005824'
+        - '#006D2C'
+        - '#00441B'
     initial_status: yes
     initial_visible: yes
     initial_goal: 0.6
@@ -361,47 +356,70 @@ themes:
     max_goal: 1.0
     step_goal: 0.01
     limit_goal: 0.31
-    current: 0.37
-    icon: map-pin
+  - name: Verdin
+    variable:
+      index: Verdin
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#F7FBFF'
+        - '#DEEBF7'
+        - '#C6DBEF'
+        - '#9ECAE1'
+        - '#6BAED6'
+        - '#4292C6'
+        - '#2171B5'
+        - '#08519C'
+        - '#08306B'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.56
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.32
+  - name: Mouse-colored Penduline-Tit
+    variable:
+      index: Mouse_colored_Penduline_Tit
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#7FC97F'
+        - '#BEAED4'
+        - '#FDC086'
+        - '#FFFF99'
+        - '#386CB0'
+        - '#F0027F'
+        - '#BF5B17'
+        - '#666666'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.51
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.32
 weights:
-- name: Livestock industry
+- name: Fire
   variable:
-    index: Livestock_industry
+    index: Fire
     units: ha
     legend:
       type: continuous
       colors:
-      - '#FCFBFD'
-      - '#EFEDF5'
-      - '#DADAEB'
-      - '#BCBDDC'
-      - '#9E9AC8'
-      - '#807DBA'
-      - '#6A51A3'
-      - '#54278F'
-      - '#3F007D'
-  initial_status: yes
-  initial_visible: yes
-  initial_factor: 0.0
-  min_factor: 0.0
-  max_factor: 100.0
-  step_factor: 1.0
-- name: Habitat intactness index
-  variable:
-    index: Habitat_intactness_index
-    units: ha
-    legend:
-      type: continuous
-      colors:
-      - '#FFFFE5'
-      - '#F7FCB9'
-      - '#D9F0A3'
-      - '#ADDD8E'
-      - '#78C679'
-      - '#41AB5D'
-      - '#238443'
-      - '#006837'
-      - '#004529'
+      - '#40004B'
+      - '#762A83'
+      - '#9970AB'
+      - '#C2A5CF'
+      - '#E7D4E8'
+      - '#F7F7F7'
+      - '#D9F0D3'
+      - '#A6DBA0'
+      - '#5AAE61'
+      - '#1B7837'
+      - '#00441B'
   initial_status: yes
   initial_visible: yes
   initial_factor: 0.0
@@ -415,18 +433,70 @@ weights:
     legend:
       type: continuous
       colors:
-      - '#FFFFD9'
-      - '#EDF8B1'
-      - '#C7E9B4'
-      - '#7FCDBB'
-      - '#41B6C4'
-      - '#1D91C0'
-      - '#225EA8'
-      - '#253494'
-      - '#081D58'
+      - '#FFF7FB'
+      - '#ECE2F0'
+      - '#D0D1E6'
+      - '#A6BDDB'
+      - '#67A9CF'
+      - '#3690C0'
+      - '#02818A'
+      - '#016C59'
+      - '#014636'
   initial_status: yes
   initial_visible: yes
   initial_factor: 0.0
   min_factor: 0.0
   max_factor: 100.0
   step_factor: 1.0
+- name: Population count
+  variable:
+    index: Population_count
+    units: ha
+    legend:
+      type: continuous
+      colors:
+      - '#66C2A5'
+      - '#FC8D62'
+      - '#8DA0CB'
+      - '#E78AC3'
+      - '#A6D854'
+      - '#FFD92F'
+      - '#E5C494'
+      - '#B3B3B3'
+  initial_status: yes
+  initial_visible: yes
+  initial_factor: 0.0
+  min_factor: 0.0
+  max_factor: 100.0
+  step_factor: 1.0
+includes:
+- name: Wilderness areas
+  variable:
+    index: Wilderness_areas
+    units: ''
+    legend:
+      type: manual
+      colors:
+      - '#00FFFF00'
+      - '#66C2A5'
+      labels:
+      - not included
+      - included
+  mandatory: no
+  initial_status: yes
+  initial_visible: yes
+- name: Specially Protected Area
+  variable:
+    index: Specially_Protected_Area
+    units: ''
+    legend:
+      type: manual
+      colors:
+      - '#00FFFF00'
+      - '#7FC97F'
+      labels:
+      - not included
+      - included
+  mandatory: no
+  initial_status: yes
+  initial_visible: yes

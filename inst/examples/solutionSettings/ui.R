@@ -19,7 +19,11 @@ fluidPage(
     wellPanel(
       h3("Widget"),
       p("This panel contains a minimal version of the solution settings widget. Note that it has minimal styling so that we make easily customize it within the Location App. The red outline shows its extent."),
-      solutionSettingsOutput("widget", height = "60vh")
+      div(
+        class = "advanced",
+        # class = "beginner",
+        solutionSettingsOutput("widget", height = "60vh")
+      )
     )
   ),
 
@@ -70,6 +74,16 @@ fluidPage(
             ),
             column(1,
               actionButton("st_status_button", label = "Update status")
+            )
+          ),
+          fluidRow(
+            column(3,
+              numericInput(
+                "st_current_input", label = NULL,
+                value = f1$get_current(), min = 0, max = 1, step = 0.01)
+            ),
+            column(3,
+              actionButton("st_current_button", label = "Update current")
             )
           ),
           fluidRow(
@@ -146,6 +160,23 @@ fluidPage(
             fluidRow(
               column(3,
                 numericInput(
+                  "mt1_feature_current_input", label = "forest",
+                  value = f2$get_current(), min = 0, max = 1, step = 0.01),
+                numericInput(
+                  "mt2_feature_current_input", label = "shrubs",
+                  value = f3$get_current(), min = 0, max = 1, step = 0.01),
+              ),
+              column(1,
+                actionButton(
+                  "mt_feature_current_button", label = "Update feature currents"
+                )
+              )
+            )
+          ),
+          wellPanel(
+            fluidRow(
+              column(3,
+                numericInput(
                   "mt1_feature_goal_input", label = "forest",
                   value = f2$get_goal(), min = 0, max = 1, step = 0.01),
                 numericInput(
@@ -189,6 +220,60 @@ fluidPage(
             ),
             column(1,
               actionButton("w_factor_button", label = "Update factor")
+            )
+          )
+        ),
+
+        ### include
+        tabPanel(
+          "Nature reserves",
+          br(),
+          fluidRow(
+            column(3,
+              textInput("i_name_input", label = NULL),
+            ),
+            column(1,
+              actionButton("i_name_button", label = "Update name")
+            )
+          ),
+          fluidRow(
+            column(3,
+              checkboxInput("i_status_input", label = NULL, TRUE),
+            ),
+            column(1,
+              actionButton("i_status_button", label = "Update status")
+            )
+          )
+        ),
+
+        ### parameter
+        tabPanel(
+          "Spatial clumping",
+          br(),
+          fluidRow(
+            column(3,
+              textInput("p_name_input", label = NULL),
+            ),
+            column(1,
+              actionButton("p_name_button", label = "Update name")
+            )
+          ),
+          fluidRow(
+            column(3,
+              checkboxInput("p_status_input", label = NULL, TRUE),
+            ),
+            column(1,
+              actionButton("p_status_button", label = "Update status")
+            )
+          ),
+          fluidRow(
+            column(3,
+              numericInput(
+                "p_value_input", label = NULL,
+                value = p$get_value(), min = 0, max = 100, step = 0.01),
+            ),
+            column(1,
+              actionButton("p_value_button", label = "Update value")
             )
           )
         )

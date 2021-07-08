@@ -14,7 +14,6 @@
   flex: 1 1 auto;
   flex-direction: column;
   overflow-y: hidden;
-  padding-right: 20px;
 }
 
 .solution-settings {
@@ -23,29 +22,47 @@
   max-height: 86vh;
 }
 
+/* hide certain elements under beginner mode */
+/* -- hide option to select group or single view */
+.beginner .multi-theme-setting .main .tabbable ul {
+  display: none;
+}
+
+/* -- slidebars for weights */
+.beginner .weight-setting .weight-slider {
+  display: none;
+}
+
+/* panel title */
+.solution-settings .panel-title span {
+  display: flex;
+}
+
+.solution-settings .panel-title i {
+  margin-right: 5px;
+}
+
 /* panels */
 .solution-settings .panel-body {
   padding: 0;
-  /*background: #f8f9fa; /* bg-light, aka $gray-100 */
   background: #e9ecef; /*  $gray-200 */
-
 }
 
 .solution-settings .panel.panel-default>.panel-heading {
   border-top-right-radius: 0px;
-  /*background: #dee2e6; /* $gray-300 */
   background: #ced4da; /* $gray-400 */
 }
 
 .solution-settings .panel-group {
-  margin-bottom: 2px !important;
   flex: 1 1 auto;
   flex-direction: column;
   overflow-y: hidden;
+  margin-bottom: 2px !important;
+  padding-right: 4px;
 }
 
 .solution-settings .panel.panel-default {
-  max-height: 74vh;
+  max-height: 68.5vh;
   overflow-y: scroll;
 }
 
@@ -68,16 +85,44 @@
   margin-bottom: 0px;
 }
 
+/* -- button */
+.solution-footer-button {
+  margin-right: 3px;
+}
+
+/* -- color picker */
+.solution-footer-color {
+  width: 25px;
+}
+
+.shiny-colour-input.colourpicker-input {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+.solution-footer-color .colourpicker-input-container {
+  width: 25px;
+}
+
+.solution-footer-color .colourpicker-panel {
+  width: 184px !important;
+  bottom: 38px;
+}
+
 /* view containers */
 .solution-setting {
   width: 94%;
   border: 1px var(--border) solid;
   border-radius: 5px 5px 5px 5px;
-  /*border-bottom: 8px solid grey;
-  border-left: 8px solid grey;*/
-  margin : 10px;
-  padding-bottom: 4px;
+  margin: 10px;
+  padding-bottom: 0px;
   background: white;
+}
+
+.weight-setting.solution-setting,
+.include-setting.solution-setting,
+.parameter-setting.solution-setting {
+  padding-bottom: 5px;
 }
 
 /* -- add disabled mouse cursor to any element with the .disable-mouse class */
@@ -117,7 +162,7 @@
 }
 
 .solution-setting .header .el-switch {
-  font-size: 14px;
+  font-size: 9px;
   font-weight: 700;
   padding-bottom: 0;
   margin-bottom: 0;
@@ -133,7 +178,7 @@
 }
 
 .solution-setting .sub-header .el-switch {
-  font-size: 11px;
+  font-size: 8px;
   margin-bottom: 0;
   padding-bottom: 0;
 }
@@ -145,16 +190,6 @@
   padding-right: 10px;
   padding-bottom: 0px;
   padding-top: 0px;
-}
-
-.solution-setting .icon {
-  color: var(--icon);
-  font-size: 30px;
-}
-
-.solution-setting .sub-icon {
-  color: var(--sub-icon);
-  font-size: 25px;
 }
 
 /* tabs */
@@ -176,6 +211,14 @@
   padding-top: 2px;
   padding-left: 5px;
   padding-right: 5px;
+  flex-basis: 50%;
+}
+
+.solution-setting .single-container {
+  width: calc(100% - 6px);
+  margin: 3px;
+  border: 1px var(--border) solid;
+  border-radius: 5px 5px 5px 5px;
 }
 
 .solution-setting .single-container .status-info {
@@ -300,8 +343,9 @@
   margin-left: 5px;
 }
 
-.solution-setting .weight-slider {
-  margin-top: 0px;
+.solution-setting .weight-slider,
+.solution-setting .parameter-slider {
+  margin-top: 32px;
   margin-bottom: 5px;
 }
 

@@ -45,6 +45,12 @@ test_that("initialization", {
   expect_equal(x$layers, list(t1, t2, w))
   expect_identical(x$ids, c("T1", "T2", "W1"))
   expect_identical(x$order, c(2, 1, 3))
+  expect_equal(
+    x$get_layer_names(),
+    c("Possum", "Forests", "Shrubs", "Human Footprint Index"))
+  expect_equal(
+    x$get_layer_indices(),
+    names(rd)[c(2, 3, 4, 1)])
 })
 
 test_that("get methods", {
@@ -92,19 +98,19 @@ test_that("get methods", {
   expect_equal(x$get_layer("T2"), t2)
   expect_equal(x$get_order(), x$order)
   expect_equal(
-    x$get_parameter(list(parameter = "order")),
+    x$get_setting(list(setting = "order")),
     x$get_order())
   expect_equal(
-    x$get_parameter(list(id = "W1", parameter = "visible")),
+    x$get_setting(list(id = "W1", setting = "visible")),
     w$get_visible())
   expect_equal(
-    x$get_parameter(list(id = "T1", parameter = "feature_visible")),
+    x$get_setting(list(id = "T1", setting = "feature_visible")),
     t1$get_feature_visible())
   expect_equal(
-    x$get_parameter(list(id = "T2", parameter = "feature_visible")),
+    x$get_setting(list(id = "T2", setting = "feature_visible")),
     t2$get_feature_visible())
   expect_equal(
-    x$get_parameter(list(id = "T2", parameter = "feature_order")),
+    x$get_setting(list(id = "T2", setting = "feature_order")),
     t2$get_feature_order())
 })
 
@@ -149,33 +155,39 @@ test_that("set methods", {
     order = c(2, 1, 3))
   # run tests
   ## order
-  x$set_parameter(
-    list(parameter = "order", value = c(1, 3, 2)))
+  x$set_setting(
+    list(setting = "order", value = c(1, 3, 2)))
   expect_equal(
     x$get_order(), c(1, 3, 2))
   ## visible
-  x$set_parameter(
-    list(id = "W1", parameter = "visible",  value = FALSE))
+  x$set_setting(
+    list(id = "W1", setting = "visible",  value = FALSE))
   expect_equal(
-    x$get_parameter(list(id = "W1", parameter = "visible")),
+    x$get_setting(list(id = "W1", setting = "visible")),
     FALSE)
   ## feature_visible
-  x$set_parameter(
-    list(id = "T1", parameter = "feature_visible",  value = TRUE))
+  x$set_setting(
+    list(id = "T1", setting = "feature_visible",  value = TRUE))
   expect_equal(
-    x$get_parameter(list(id = "T1", parameter = "feature_visible")),
+    x$get_setting(list(id = "T1", setting = "feature_visible")),
     TRUE)
-  x$set_parameter(
-    list(id = "T2", parameter = "feature_visible",  value = c(FALSE, FALSE)))
+  x$set_setting(
+    list(id = "T2", setting = "feature_visible",  value = c(FALSE, FALSE)))
   expect_equal(
-    x$get_parameter(list(id = "T2", parameter = "feature_visible")),
+    x$get_setting(list(id = "T2", setting = "feature_visible")),
     c(FALSE, FALSE))
   ## feature_order
-  x$set_parameter(
-    list(id = "T2", parameter = "feature_order",  value = c(3, 2)))
+  x$set_setting(
+    list(id = "T2", setting = "feature_order",  value = c(3, 2)))
   expect_equal(
-    x$get_parameter(list(id = "T2", parameter = "feature_order")),
+    x$get_setting(list(id = "T2", setting = "feature_order")),
     c(3, 2))
+  ## visible
+  x$set_visible(FALSE)
+  expect_false(f1$get_visible())
+  expect_false(f2$get_visible())
+  expect_false(f3$get_visible())
+  expect_false(w$get_visible())
 })
 
 test_that("widget methods", {

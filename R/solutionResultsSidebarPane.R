@@ -4,9 +4,6 @@ NULL
 #' Solution results sidebar pane
 #'
 #' Constructs a sidebar pane for displaying solution results.
-#' This is designed to
-#' be used as an argument to [leaflet.extras2::sidebar_tabs] when specifying
-#' the user interface for a Shiny web application.
 #'
 #' @param id `character` identifier for the sidebar pane.
 #'
@@ -14,6 +11,11 @@ NULL
 #'   [solutionResults()] widget to create within the sidebar pane.
 #'   This widget is used to  display results for solutions.
 #'   Defaults to `paste0(id, "_results")`.
+#'
+#' @details
+#' This is designed to be used as an argument to
+#' [leaflet.extras2::sidebar_tabs] when specifying
+#' the user interface for a Shiny web application.
 #'
 #' @return A `shiny.tag` object with the sidebar pane.
 #'
@@ -45,31 +47,17 @@ solutionResultsSidebarPane <- function(
       title = "Solution results",
       id = id,
       icon = NULL,
-      ### container
       htmltools::tags$div(
-        class = "solution-results-pane",
-
-        ### settings
+        class = "sidebar-pane-content",
         htmltools::tags$div(
-          class = "widget-container",
-          solutionResultsOutput(solutionResultsId, height = "100%")
+          class = "solution-results-pane",
+          htmltools::tags$div(
+            class = "widget-container",
+            solutionResultsOutput(solutionResultsId, height = "100%")
+          )
         )
-
       )
     )
-
-  ## add dependencies
-  d <-
-    htmltools::htmlDependency(
-      name = "solutionResultsPane",
-      version = "1.0.0",
-      src =
-        system.file(
-          "htmlwidgets", "lib", "solutionResultsPane-1.0.0",
-          package = "locationmisc"),
-      stylesheet = "style.css"
-    )
-  w <- htmltools::attachDependencies(w, d)
 
   # return result
   w

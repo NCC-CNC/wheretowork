@@ -21,6 +21,20 @@ function newIncludeSetting(manager, x) {
   );
 }
 
+function newParameterSetting(manager, x) {
+  return new ParameterSetting(
+    manager,
+    x.id,
+    x.name,
+    x.min_value,
+    x.max_value,
+    x.value,
+    x.step_value,
+    x.status,
+    x.units
+  );
+}
+
 function newThemeSetting(manager, x) {
   if (typeof(x.feature_name) === "string") {
     var y = new SingleThemeSetting(
@@ -29,6 +43,7 @@ function newThemeSetting(manager, x) {
       x.name,
       x.feature_name,
       x.feature_id,
+      x.feature_status,
       x.feature_total_amount,
       x.feature_current_held,
       x.feature_min_goal,
@@ -36,10 +51,7 @@ function newThemeSetting(manager, x) {
       x.feature_goal,
       x.feature_limit_goal,
       x.feature_step_goal,
-      x.feature_status,
-      x.units,
-      x.mandatory,
-      x.icon
+      x.units
     );
   } else {
     var y = new MultiThemeSetting(
@@ -48,6 +60,7 @@ function newThemeSetting(manager, x) {
       x.name,
       x.feature_name,
       x.feature_id,
+      x.feature_status,
       x.feature_total_amount,
       x.feature_current_held,
       x.feature_min_goal,
@@ -55,11 +68,7 @@ function newThemeSetting(manager, x) {
       x.feature_goal,
       x.feature_limit_goal,
       x.feature_step_goal,
-      x.feature_status,
-      x.feature_icon,
-      x.units,
-      x.mandatory,
-      x.icon
+      x.units
     );
   }
   return y;

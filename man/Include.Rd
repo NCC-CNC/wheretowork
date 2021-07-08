@@ -41,13 +41,15 @@ Definition for the Include class.
 \item \href{#method-new}{\code{Include$new()}}
 \item \href{#method-print}{\code{Include$print()}}
 \item \href{#method-repr}{\code{Include$repr()}}
+\item \href{#method-get_layer_name}{\code{Include$get_layer_name()}}
+\item \href{#method-get_layer_index}{\code{Include$get_layer_index()}}
 \item \href{#method-get_visible}{\code{Include$get_visible()}}
 \item \href{#method-get_status}{\code{Include$get_status()}}
 \item \href{#method-get_data}{\code{Include$get_data()}}
-\item \href{#method-get_parameter}{\code{Include$get_parameter()}}
+\item \href{#method-get_setting}{\code{Include$get_setting()}}
 \item \href{#method-set_visible}{\code{Include$set_visible()}}
 \item \href{#method-set_status}{\code{Include$set_status()}}
-\item \href{#method-set_parameter}{\code{Include$set_parameter()}}
+\item \href{#method-set_setting}{\code{Include$set_setting()}}
 \item \href{#method-get_solution_settings_widget_data}{\code{Include$get_solution_settings_widget_data()}}
 \item \href{#method-get_map_manager_widget_data}{\code{Include$get_map_manager_widget_data()}}
 \item \href{#method-export}{\code{Include$export()}}
@@ -115,16 +117,42 @@ Generate a \code{character} summarizing the representation of the object.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{start}}{\code{character} symbol used to start the parameter list.
+\item{\code{start}}{\code{character} symbol used to start the setting list.
 Defaults to \code{"["}.}
 
-\item{\code{end}}{\code{character} symbol used to start the parameter list.
+\item{\code{end}}{\code{character} symbol used to start the setting list.
 Defaults to \code{"]"}.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
 \code{character} value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_layer_name"></a>}}
+\if{latex}{\out{\hypertarget{method-get_layer_name}{}}}
+\subsection{Method \code{get_layer_name()}}{
+Get layer names.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Include$get_layer_name()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} vector.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_layer_index"></a>}}
+\if{latex}{\out{\hypertarget{method-get_layer_index}{}}}
+\subsection{Method \code{get_layer_index()}}{
+Get layer index values.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Include$get_layer_index()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} vector.
 }
 }
 \if{html}{\out{<hr>}}
@@ -167,18 +195,18 @@ Get the data.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_parameter"></a>}}
-\if{latex}{\out{\hypertarget{method-get_parameter}{}}}
-\subsection{Method \code{get_parameter()}}{
-Get parameter.
+\if{html}{\out{<a id="method-get_setting"></a>}}
+\if{latex}{\out{\hypertarget{method-get_setting}{}}}
+\subsection{Method \code{get_setting()}}{
+Get setting.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Include$get_parameter(name)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Include$get_setting(name)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{name}}{\code{character} parameter name.
+\item{\code{name}}{\code{character} setting name.
 Available options are \code{"status"} or \code{"visible"}.}
 }
 \if{html}{\out{</div>}}
@@ -222,18 +250,18 @@ Set status.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_parameter"></a>}}
-\if{latex}{\out{\hypertarget{method-set_parameter}{}}}
-\subsection{Method \code{set_parameter()}}{
-Set parameter.
+\if{html}{\out{<a id="method-set_setting"></a>}}
+\if{latex}{\out{\hypertarget{method-set_setting}{}}}
+\subsection{Method \code{set_setting()}}{
+Set setting.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Include$set_parameter(name, value)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Include$set_setting(name, value)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{name}}{\code{character} parameter name.
+\item{\code{name}}{\code{character} setting name.
 Available options are \code{"status"} or `"visible"``.}
 
 \item{\code{value}}{\code{ANY} new value.}
@@ -271,7 +299,7 @@ Get data for displaying the theme in a \code{\link[=mapManager]{mapManager()}} w
 \if{html}{\out{<a id="method-export"></a>}}
 \if{latex}{\out{\hypertarget{method-export}{}}}
 \subsection{Method \code{export()}}{
-Export parameters.
+Export settings.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Include$export()}\if{html}{\out{</div>}}
 }

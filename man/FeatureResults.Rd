@@ -23,6 +23,8 @@ Definition for the FeatureResults class.
 
 \item{\code{status}}{\code{logical} value.}
 
+\item{\code{current}}{\code{numeric} value.}
+
 \item{\code{goal}}{\code{numeric} value.}
 
 \item{\code{held}}{\code{numeric} value.}
@@ -35,7 +37,6 @@ Definition for the FeatureResults class.
 \item \href{#method-new}{\code{FeatureResults$new()}}
 \item \href{#method-print}{\code{FeatureResults$print()}}
 \item \href{#method-repr}{\code{FeatureResults$repr()}}
-\item \href{#method-get_widget_data}{\code{FeatureResults$get_widget_data()}}
 \item \href{#method-clone}{\code{FeatureResults$clone()}}
 }
 }
@@ -92,29 +93,16 @@ Generate a \code{character} summarizing the representation of the object.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{start}}{\code{character} symbol used to start the parameter list.
+\item{\code{start}}{\code{character} symbol used to start the setting list.
 Defaults to \code{"["}.}
 
-\item{\code{end}}{\code{character} symbol used to start the parameter list.
+\item{\code{end}}{\code{character} symbol used to start the setting list.
 Defaults to \code{"]"}.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
 \code{character} value.
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_widget_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_widget_data}{}}}
-\subsection{Method \code{get_widget_data()}}{
-Get data for displaying the object in a \code{\link[=solutionResults]{solutionResults()}} widget.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{FeatureResults$get_widget_data()}\if{html}{\out{</div>}}
-}
-
-\subsection{Returns}{
-\code{list} with widget data.
 }
 }
 \if{html}{\out{<hr>}}

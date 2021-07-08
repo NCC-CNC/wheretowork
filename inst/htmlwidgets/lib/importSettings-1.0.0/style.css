@@ -1,0 +1,27 @@
+/* style widget elements */
+.importSettings .well {
+  max-width: 500px;
+}
+
+.importSettings .layers {
+  max-height: 54vh;
+  overflow-y: scroll;
+  margin-left: 5px;
+  margin-bottom: 8px;
+}
+
+.importSettings .btn {
+  position: absolute;
+  left: 15%;
+}
+
+.importSettings .select {
+  position: relative;
+  float: right;
+}
+
+/* ghost styling */
+.importSettings. .ghost {
+  background: #C8EBFB;
+  opacity: 0.2;
+}

@@ -20,7 +20,7 @@ updateSolutionSettings(
 }
 \description{
 Change the settings for solution settings widget on the client.
-Specifically, change the parameters for a theme or weight depicted
+Specifically, change the settings for a theme or weight depicted
 in a solution settings widget.
 }
 \details{
@@ -32,21 +32,21 @@ Broadly speaking, it should contain the following elements:
 
 \describe{
 \item{id}{\code{character} value with the identifier for the theme or weight.}
-\item{parameter}{\code{character} value with the name of the parameter to update.}
-\item{value}{\code{ANY} new value for the parameter.}
+\item{setting}{\code{character} value with the name of the setting to update.}
+\item{value}{\code{ANY} new value for the setting.}
 \item{type}{\code{character} value indicating if the setting is a \code{theme}
 or \code{weight}.}
 }
 
 Note that the \code{value} element in the \code{list} object should have a
-class (i.e. \code{numeric}, \verb{logical, or }character\verb{) that is relevant to the parameter that should be updated. For example, if the }parameter\verb{element is equal to}name\verb{, then the }value\verb{element should contain a}character` value.
-For reference, we provide examples detailing all the various parameters that
+class (i.e. \code{numeric}, \verb{logical, or }character\verb{) that is relevant to the setting that should be updated. For example, if the }setting\verb{element is equal to}name\verb{, then the }value\verb{element should contain a}character` value.
+For reference, we provide examples detailing all the various settings that
 can be updated below.
 }
 
 \subsection{Themes}{
 
-Here we detail all possible parameters that can be updated for
+Here we detail all possible settings that can be updated for
 themes.
 
 \strong{Update the name.}
@@ -54,7 +54,7 @@ This controls the bold text shown in the header of the theme.
 
 \describe{
 \item{id}{\code{"THEMEID"}}
-\item{parameter}{\code{"name"}}
+\item{setting}{\code{"name"}}
 \item{value}{\code{"SPECIES"}}
 \item{type}{\code{"theme"}}
 }
@@ -65,7 +65,7 @@ Note that the \code{value} element must be a \code{logical} (\code{TRUE} or \cod
 
 \describe{
 \item{id}{\code{"THEMEID"}}
-\item{parameter}{\code{"status"}}
+\item{setting}{\code{"status"}}
 \item{value}{\code{TRUE}}
 \item{type}{\code{"theme"}}
 }
@@ -79,7 +79,7 @@ Note that the \code{value} element must be a \code{character} value equal to
 
 \describe{
 \item{id}{\code{"THEMEID"}}
-\item{parameter}{\code{"view"}}
+\item{setting}{\code{"view"}}
 \item{value}{\code{"group"}}
 \item{type}{\code{"theme"}}
 }
@@ -90,7 +90,7 @@ It does not have any effect for themes with a single features.
 
 \describe{
 \item{id}{\code{"THEMEID"}}
-\item{parameter}{\code{"group_goal"}}
+\item{setting}{\code{"group_goal"}}
 \item{value}{\code{0.7}}
 \item{type}{\code{"theme"}}
 }
@@ -105,8 +105,21 @@ within the theme (the example below assumes the theme has three features).
 
 \describe{
 \item{id}{\code{"THEMEID"}}
-\item{parameter}{\code{"feature_status"}}
+\item{setting}{\code{"feature_status"}}
 \item{value}{\code{c(TRUE, FALSE, TRUE)}}
+\item{type}{\code{"theme"}}
+}
+
+\strong{Update the feature current values.}
+This controls the bars indicating the amount currently held for each
+feature under both the "single" and "group" tabs.
+Note that the \code{value} element must have a value for each feature
+within the theme (the example below assumes the theme has three features).
+
+\describe{
+\item{id}{\code{"THEMEID"}}
+\item{setting}{\code{"feature_current"}}
+\item{value}{\code{c(0.3, 0.1, 0.7)}}
 \item{type}{\code{"theme"}}
 }
 
@@ -120,7 +133,7 @@ within the theme (the example below assumes the theme has three features).
 
 \describe{
 \item{id}{\code{"THEMEID"}}
-\item{parameter}{\code{"feature_goal"}}
+\item{setting}{\code{"feature_goal"}}
 \item{value}{\code{c(0.3, 0.1, 0.7)}}
 \item{type}{\code{"theme"}}
 }
@@ -128,7 +141,7 @@ within the theme (the example below assumes the theme has three features).
 
 \subsection{Weights}{
 
-Here we detail all possible parameters that can be updated for
+Here we detail all possible settings that can be updated for
 weights.
 
 \strong{Update the name.}
@@ -136,7 +149,7 @@ This controls the bold text shown in the header of the weight.
 
 \describe{
 \item{id}{\code{"WEIGHTID"}}
-\item{parameter}{\code{"name"}}
+\item{setting}{\code{"name"}}
 \item{value}{\code{"SPECIES"}}
 \item{type}{\code{"weight"}}
 }
@@ -147,7 +160,7 @@ Note that the \code{value} element must be a \code{logical} (\code{TRUE} or \cod
 
 \describe{
 \item{id}{\code{"WEIGHTID"}}
-\item{parameter}{\code{"status"}}
+\item{setting}{\code{"status"}}
 \item{value}{\code{TRUE}}
 \item{type}{\code{"weight"}}
 }
@@ -157,7 +170,7 @@ This controls the slider shown for the weight.
 
 \describe{
 \item{id}{\code{"WEIGHTID"}}
-\item{parameter}{\code{"factor"}}
+\item{setting}{\code{"factor"}}
 \item{value}{\code{0.1}}
 \item{type}{\code{"weight"}}
 }
@@ -165,7 +178,7 @@ This controls the slider shown for the weight.
 
 \subsection{Includes}{
 
-Here we detail all possible parameters that can be updated for
+Here we detail all possible settings that can be updated for
 includes.
 
 \strong{Update the name.}
@@ -173,7 +186,7 @@ This controls the bold text shown in the header of the include.
 
 \describe{
 \item{id}{\code{"INCLUDEID"}}
-\item{parameter}{\code{"name"}}
+\item{setting}{\code{"name"}}
 \item{value}{\code{"PA"}}
 \item{type}{\code{"include"}}
 }
@@ -184,7 +197,7 @@ Note that the \code{value} element must be a \code{logical} (\code{TRUE} or \cod
 
 \describe{
 \item{id}{\code{"INCLUDEID"}}
-\item{parameter}{\code{"status"}}
+\item{setting}{\code{"status"}}
 \item{value}{\code{TRUE}}
 \item{type}{\code{"include"}}
 }

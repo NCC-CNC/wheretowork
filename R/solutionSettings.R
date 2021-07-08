@@ -20,24 +20,28 @@
 #'
 #' \item{id}{`character` identifier for the theme or weight.}
 #'
-#' \item{parameter}{`character` name of the updated parameter.
+#' \item{setting}{`character` name of the updated setting.
 #'   Available options include: `"status"`, `"factor"`, or `"goal"`.}
 #'
 #' \item{value}{new `numeric` or `logical` values.}
 #'
-#' \item{type}{`character` indicating if the updated parameter corresponds
+#' \item{type}{`character` indicating if the updated setting corresponds
 #'   to a `theme` or `weight`.}
 #'
 #' }
 #'
 #' The widget also contains a text box. The server value for this
-#' text box is a `character` string, and it can be queried using
+#' text box is a `character` string. It can be queried using
 #' `id_name` where `id` is the argument to `elementId`.
 #'
-#' Additionally, the widget contains a button. The server value for this
+#' The widget also contains a button. The server value for this
 #' button is an `integer` indicating the number of times the button
-#' has been clicked, and it can be queried using `id_button` where
-#' where `id` is the argument to `elementId`.
+#' has been clicked. It can be queried using `id_button` where
+#' `id` is the argument to `elementId`.
+#'
+#' The widget also contains a color picker. The server value for this
+#' button is an `character` indicating the current color. It can be queried
+#' using `id_color` where `id` is the argument to `elementId`.
 #'
 #' @examples
 #' \dontrun{
@@ -124,19 +128,36 @@ solutionSettings_html <- function(id, style, class, ...) {
             multiple = FALSE,
             open = paste0(id, "_collapseThemePanel"),
             shinyBS::bsCollapsePanel(
-              title = "Themes",
+              title = htmltools::tags$span(
+                shiny::icon("star"),
+                "Themes"
+              ),
               value = paste0(id, "_collapseThemePanel"),
               htmltools::tags$div(class = "themes")
             ),
             shinyBS::bsCollapsePanel(
-              title = "Weights",
+              title = htmltools::tags$span(
+                shiny::icon("weight-hanging"),
+                "Weights"
+              ),
               value = paste0(id, "_collapseWeightPanel"),
               htmltools::tags$div(class = "weights")
             ),
             shinyBS::bsCollapsePanel(
-              title = "Includes",
+              title = htmltools::tags$span(
+                shiny::icon("lock"),
+                "Includes"
+              ),
               value = paste0(id, "_collapseIncludePanel"),
               htmltools::tags$div(class = "includes")
+            ),
+            shinyBS::bsCollapsePanel(
+              title = htmltools::tags$span(
+                shiny::icon("cog"),
+                "Settings"
+              ),
+              value = paste0(id, "_collapseParametersPanel"),
+              htmltools::tags$div(class = "parameters")
             )
           )
         ),
@@ -151,30 +172,51 @@ solutionSettings_html <- function(id, style, class, ...) {
               NULL,
               value = "",
               width = "100%",
-              placeholder = "specify a name for new solution"
+              placeholder = "enter solution name"
             ),
           ),
 
           htmltools::tags$div(
-            class = "solution-footer-button",
-            `data-toggle` = "tooltip",
-            `data-placement` = "top",
-            `data-delay` = "{\"show\":500, \"hide\":100}",
-            `data-container` = ".sidebar",
-            title = "Generate a solution using the themes and weights",
-            shinyBS::bsButton(
-              inputId = paste0(id, "_button"),
-              label = "Generate solution",
-              icon = NULL,
-              style = "primary",
-              type = "action"
+            class = "solution-footer-color",
+            colourpicker::colourInput(
+              inputId = paste0(id, "_color"),
+              value = "#FF0000",
+              showColour = "background",
+              label = NULL,
+              palette = "limited"
             )
           ),
+
+          htmltools::tags$div(
+            class = "solution-footer-button",
+            shinyFeedback::loadingButton(
+              inputId = paste0(id, "_button"),
+              label = "Generate solution",
+              loadingLabel = "Optimizing..."
+            )
+          )
         )
       )
     )
 
   # add HTML template scaffolds for dynamic content
+  ## parameter
+  x <-
+    htmltools::tagAppendChild(
+      x,
+      htmltools::tags$template(
+        class = "parameter-setting-template",
+        htmltools::tags$div(
+          class = paste("parameter-setting solution-setting"),
+          ss_header_component_scaffold("parameter"),
+          htmltools::tags$div(
+            class = "parameter-slider",
+            ss_slider_component_scaffold("parameter")
+          ),
+        )
+      )
+    )
+
   ## include
   x <-
     htmltools::tagAppendChild(
@@ -213,7 +255,6 @@ solutionSettings_html <- function(id, style, class, ...) {
         class = "single-theme-setting-template",
         htmltools::tags$div(
           class = "single-theme-setting solution-setting",
-          ss_icon_component_scaffold(),
           ss_header_component_scaffold("theme"),
           ss_goal_component_scaffold("theme")
         )
@@ -229,7 +270,6 @@ solutionSettings_html <- function(id, style, class, ...) {
         class = "multi-theme-setting-template",
         htmltools::tags$div(
           class = "multi-theme-setting solution-setting",
-          ss_icon_component_scaffold(),
           ss_header_component_scaffold("theme"),
           htmltools::tags$div(
             class = "main",
@@ -265,7 +305,6 @@ solutionSettings_html <- function(id, style, class, ...) {
         class = "multi-theme-single-setting-template",
         htmltools::tags$div(
           class = "single-container",
-          ss_subicon_component_scaffold(),
           ss_subheader_component_scaffold(),
           ss_goal_component_scaffold("theme")
         )

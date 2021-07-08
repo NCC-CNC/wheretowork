@@ -76,9 +76,9 @@ Solution <- R6::R6Class(
 
     #' @description
     #' Generate a `character` summarizing the representation of the object.
-    #' @param start `character` symbol used to start the parameter list.
+    #' @param start `character` symbol used to start the setting list.
     #'   Defaults to `"["`.
-    #' @param end `character` symbol used to start the parameter list.
+    #' @param end `character` symbol used to start the setting list.
     #'   Defaults to `"]"`.
     #' @return `character` value.
     repr = function(start = "[", end = "]") {
@@ -105,6 +105,20 @@ Solution <- R6::R6Class(
     },
 
     #' @description
+    #' Get layer names.
+    #' @return `character` vector.
+    get_layer_name = function() {
+      self$name
+    },
+
+    #' @description
+    #' Get layer index values.
+    #' @return `character` vector.
+    get_layer_index = function() {
+      self$variable$index
+    },
+
+    #' @description
     #' Get visible.
     #' @return `logical` value.
     get_visible = function() {
@@ -112,11 +126,11 @@ Solution <- R6::R6Class(
     },
 
     #' @description
-    #' Get parameter.
-    #' @param name `character` parameter name.
+    #' Get setting.
+    #' @param name `character` setting name.
     #' Available options are `"visible"`.
     #' @return Value.
-    get_parameter = function(name) {
+    get_setting = function(name) {
       assertthat::assert_that(
         assertthat::is.string(name),
         assertthat::noNA(name),
@@ -124,7 +138,7 @@ Solution <- R6::R6Class(
       if (identical(name, "visible")) {
         out <- self$get_visible()
       } else {
-        stop(paste0("\"", name, "\" is not a parameter"))
+        stop(paste0("\"", name, "\" is not a setting"))
       }
       out
     },
@@ -141,11 +155,209 @@ Solution <- R6::R6Class(
     },
 
     #' @description
-    #' Set parameter.
-    #' @param name `character` parameter name.
+    #' Get theme results.
+    #' @return [tibble::tibble()] object.
+    get_theme_results_data = function() {
+      # compile data
+      x <- tibble::as_tibble(plyr::ldply(
+        self$theme_results, function(x) x$get_results_data()))
+      # return formatted table
+      tibble::tibble(
+        Theme = x$name,
+        Feature = x$feature_name,
+        Status = dplyr::if_else(x$feature_status, "Enabled", "Disabled"),
+        `Total (units)` =
+          paste(
+            round(x$feature_total_amount, 2), x$units
+          ),
+        `Current (%)` =
+          round(x$feature_current_held * 100, 2),
+        `Current (units)` =
+          paste(
+            round(x$feature_current_held * x$feature_total_amount, 2),
+            x$units
+          ),
+        `Goal (%)` =
+          round(x$feature_goal * 100, 2),
+        `Goal (units)` =
+          paste(
+            round(x$feature_goal * x$feature_total_amount, 2),
+            x$units
+          ),
+        `Solution (%)` =
+          round(x$feature_solution_held * 100, 2),
+        `Solution (units)` =
+          paste(
+            round(x$feature_solution_held * x$feature_total_amount, 2),
+            x$units
+          )
+      )
+    },
+
+    #' @description
+    #' Get weight results.
+    #' @return [tibble::tibble()] object.
+    get_weight_results_data = function() {
+      # compile results
+      x <- tibble::as_tibble(plyr::ldply(
+        self$weight_results, function(x) x$get_results_data()))
+      # return data for plotting
+      tibble::tibble(
+        Weight = x$name,
+        Status = dplyr::if_else(x$status, "Enabled", "Disabled"),
+        Factor = round(x$factor, 2),
+        `Total (units)` = paste(round(x$total, 2), x$units),
+        `Current (%)` = round(x$current * 100, 2),
+        `Current (units)` = paste(round(x$current * x$total, 2), x$units),
+        `Solution (%)` = round(x$held * 100, 2),
+        `Solution (units)` = paste(round(x$current * x$total, 2), x$units),
+      )
+    },
+
+    #' @description
+    #' Render theme results.
+    #' @return [DT::datatable()] object.
+    render_theme_results = function() {
+      ## generate results
+      x <- self$get_theme_results_data()
+      ## add in extra column
+      x$space1 <- " "
+      x$space2 <- " "
+      x <- x[, c(seq_len(6), 11, c(7, 8), 12, c(9, 10)), drop = FALSE]
+      ## define JS for button
+      action_js <- htmlwidgets::JS(
+        "function ( e, dt, node, config ) {",
+        "  $('#theme_results_button')[0].click();",
+        "}")
+      ## render table
+      DT::datatable(
+        x,
+        rownames = FALSE, escape = TRUE,
+        editable = FALSE, selection = "none",
+        fillContainer = TRUE, extensions = "Buttons",
+        options = list(
+          ### align columns
+          columnDefs = list(
+            list(className = "dt-left", targets = 0:1),
+            list(className = "dt-center", targets = 2:11),
+            list(className = "spacer", "sortable" = FALSE, targets = c(6, 9))
+          ),
+          ### disable paging
+          paging = FALSE,
+          scrollY = "calc(100vh - 295px)",
+          scrollCollapse = TRUE,
+          ### download button
+          dom = "Bfrtip",
+          buttons = list(
+            list(
+              extend = "collection",
+              text = as.character(shiny::icon("file-download")),
+              title = "Download spreadsheet",
+              action = action_js
+            )
+          )
+        ),
+        container = htmltools::tags$table(
+          class = "display",
+          htmltools::tags$thead(
+            htmltools::tags$tr(
+              htmltools::tags$th(rowspan = 2, "Theme"),
+              htmltools::tags$th(rowspan = 2, "Feature"),
+              htmltools::tags$th(rowspan = 2, "Status"),
+              htmltools::tags$th(rowspan = 2, "Total (units)"),
+              htmltools::tags$th(
+                class = "dt-center", colspan = 2, "Current"
+              ),
+              htmltools::tags$th(rowspan = 2),
+              htmltools::tags$th(
+                class = "dt-center", colspan = 2, "Goal"
+              ),
+              htmltools::tags$th(rowspan = 2),
+              htmltools::tags$th(
+                class = "dt-center", colspan = 2, "Solution"
+              )
+            ),
+            htmltools::tags$tr(
+              lapply(rep(c("(%)", "(units)"), 3), htmltools::tags$th)
+            )
+          )
+        )
+      )
+    },
+
+    #' @description
+    #' Render weight results.
+    #' @return [DT::datatable()] object.
+    render_weight_results = function() {
+      ## generate table
+      x <- self$get_weight_results_data()
+      ## add in extra column
+      x$space1 <- " "
+      x <- x[, c(seq_len(6), 9, c(7, 8)), drop = FALSE]
+      ## define JS for button
+      action_js <- htmlwidgets::JS(
+        "function ( e, dt, node, config ) {",
+        "  $('#weight_results_button')[0].click();",
+        "}")
+      ## render table
+      DT::datatable(
+        x,
+        rownames = FALSE, escape = TRUE,
+        editable = FALSE, selection = "none",
+        fillContainer = TRUE, extensions = "Buttons",
+        options = list(
+          ### align columns
+          columnDefs = list(
+            list(className = "dt-left", targets = 0),
+            list(className = "dt-center", targets = 1:8),
+            list(className = "spacer", "sortable" = FALSE, targets = 6)
+          ),
+          ### disable paging
+          paging = FALSE,
+          scrollY = "calc(100vh - 295px)",
+          scrollY = "100%",
+          scrollCollapse = TRUE,
+          ### download button
+          dom = "Bfrtip",
+          buttons = list(
+            list(
+              extend = "collection",
+              text = as.character(shiny::icon("file-download")),
+              title = "Download spreadsheet",
+              action = action_js
+           )
+          )
+        ),
+        container = htmltools::tags$table(
+          class = "display",
+          htmltools::tags$thead(
+            htmltools::tags$tr(
+              htmltools::tags$th(rowspan = 2, "Weight"),
+              htmltools::tags$th(rowspan = 2, "Status"),
+              htmltools::tags$th(rowspan = 2, "Factor"),
+              htmltools::tags$th(rowspan = 2, "Total (units)"),
+              htmltools::tags$th(
+                class = "dt-center", colspan = 2, "Current"
+              ),
+              htmltools::tags$th(rowspan = 2),
+              htmltools::tags$th(
+                class = "dt-center", colspan = 2, "Solution"
+              )
+            ),
+            htmltools::tags$tr(
+              lapply(rep(c("(%)", "(units)"), 2), htmltools::tags$th)
+            )
+          )
+        )
+      )
+    },
+
+    #' @description
+    #' Set setting.
+    #' @param name `character` setting name.
     #' Available options are `"visible"``.
     #' @param value `ANY` new value.
-    set_parameter = function(name, value) {
+    set_setting = function(name, value) {
       assertthat::assert_that(
         assertthat::is.string(name),
         assertthat::noNA(name),
@@ -153,7 +365,7 @@ Solution <- R6::R6Class(
       if (identical(name, "visible")) {
         self$set_visible(value)
       } else {
-        stop(paste0("\"", name, "\" is not a parameter"))
+        stop(paste0("\"", name, "\" is not a setting"))
       }
       invisible(self)
     },
@@ -246,202 +458,4 @@ new_solution <- function(
     theme_results = theme_results,
     weight_results = weight_results,
     id = id)
-}
-
-#' New solution from analysis
-#'
-#' Create a new [Solution] object by generating a prioritization and
-#' calculating performance statistics.
-#'
-#' @param name `character` name for new solution.
-#'
-#' @param dataset [Dataset] object to store the solution.
-#'
-#' @param solution_settings [SolutionSettings] object.
-#'
-#' @param rij `matrix` object.
-#'  This matrix specifies the amount of each feature associated with
-#'  each planning unit.
-#'
-#' @param wij `matrix` object.
-#'  This matrix specifies the value of each weight associated with each
-#'  planning unit.
-#'
-#' @param boundary_data [Matrix::sparseMatrix()] object.
-#'  This matrix specifies the boundary length data for the planning units.
-#'
-#' @param gap `numeric` relative optimality gap value. Defaults to 0.
-#'
-#' @param boundary_penalty_gap `numeric` gap value used to control
-#'   the level of spatial fragmentation in the solution. Defaults to 0.1
-#'
-#' @return A `SolutionResults` object containing the solution.
-#'
-#' @examples
-#' #TODO.
-#'
-#' @export
-new_solution_from_prioritization <- function(
-  name, dataset, solution_settings,
-  rij, wij, boundary_data,
-  gap = 0, boundary_penalty_gap = 0.1) {
-  # validate arguments
-  assertthat::assert_that(
-    ## name
-    assertthat::is.string(name),
-    assertthat::noNA(name),
-    ## dataset
-    inherits(dataset, "Dataset"),
-    ## solution_settings
-    inherits(solution_settings, "SolutionSettings"),
-    ## rij
-    is.matrix(rij),
-    ## wij
-    is.matrix(wij),
-    ## gap
-    assertthat::is.number(gap),
-    assertthat::noNA(gap),
-    ## boundary_penalty_gap
-    assertthat::is.number(boundary_penalty_gap),
-    assertthat::noNA(boundary_penalty_gap))
-
-  # extract data
-  ## create table with feature settings
-  feature_data <- solution_settings$get_theme_settings()
-  ## create table with weight settings
-  weight_data <- solution_settings$get_weight_settings()
-  ## validate data
-  assertthat::assert_that(
-    setequal(weight_data$id, rownames(wij)),
-    setequal(feature_data$id, rownames(rij)))
-  ## ensure correct ordering
-  feature_data <-
-    feature_data[order(feature_data$id, rownames(rij)), , drop = FALSE]
-  weight_data <-
-    weight_data[order(weight_data$id, rownames(wij)), , drop = FALSE]
-
-  # prepare for prioritization
-  ## compute cost variable using weight data
-  cost <- colSums(matrix(
-      weight_data$factor * weight_data$status,
-      nrow = nrow(wij), ncol = ncol(wij)) * wij)
-
-  ## calculate absolute targets
-  ## (and round them down to account for floating point issues)
-  abs_targets <- feature_data$total * feature_data$goal
-  abs_targets <- floor(abs_targets * 1e+3) / 1e+3
-  abs_targets <- abs_targets * feature_data$status
-
-  # generate initial prioritization
-  ## this simply just aims to minimize cost
-  initial_problem <-
-    prioritizr::problem(
-      x = cost,
-      features = tibble::tibble(
-        id = seq_along(abs_targets),
-        name = feature_data$id),
-      rij_matrix = rij) %>%
-    prioritizr::add_min_set_objective() %>%
-    prioritizr::add_absolute_targets(abs_targets) %>%
-    prioritizr::add_binary_decisions() %>%
-    prioritizr::add_default_solver(
-      gap = gap, verbose = FALSE)
-  initial_solution <-
-    c(prioritizr::solve(initial_problem, run_checks = FALSE))
-
-  # generate second prioritization
-  ## this formulation aims to minimize fragmentation,
-  ## whilst ensuring that total cost does do not exceed a threshold
-  if (boundary_penalty_gap >= 1e-5) {
-    ### calculate total cost of initial prioritization
-    max_cost <- sum(initial_solution * cost) * (boundary_penalty_gap + 1)
-    ### generate prioritization
-    main_problem <-
-      prioritizr::problem(
-        x = rep(0, length(cost)),
-        features = tibble::tibble(
-          id = seq_along(c(abs_targets, 1)),
-          name = c(feature_data$id, "cost")),
-          rbind(
-            feature_data[, c("id", "name")],
-            tibble::tibble(id = "cost", name = "cost")),
-        rij_matrix = rbind(rij, cost)) %>%
-      prioritizr::add_min_set_objective() %>%
-      prioritizr::add_boundary_penalties(
-        penalty = 1, data = boundary_data) %>%
-      prioritizr::add_absolute_targets(
-        c(abs_targets, max_cost)) %>%
-      prioritizr::add_binary_decisions() %>%
-      prioritizr::add_default_solver(
-        gap = gap, verbose = FALSE)
-    main_solution <-
-      c(prioritizr::solve(main_problem, run_checks = FALSE))
-  } else {
-    ### if the boundary_penalty_gap parameter is very low,
-    ### then we will just use the initial solution because the
-    ### second prioritization is unlikely to be very different from the first
-    main_solution <- initial_solution
-    main_problem <- initial_problem
-  }
-
-  # calculate results
-  ## summary statistics
-  ### preliminary calculations
-  pu_areas <- dataset$get_planning_unit_areas()
-
-  ### calculate statistics
-  statistics_results <-
-    tibble::tibble(
-      absolute_area = sum(main_solution * pu_areas),
-      relative_area = sum(main_solution * pu_areas) / sum(pu_areas),
-      absolute_perimeter =
-      prioritizr::eval_boundary_summary(
-        x = main_problem, solution = main_solution,
-        data =  boundary_data)$boundary[[1]],
-      perimeter_area_ratio = absolute_perimeter / absolute_area)
-
-  ## theme representation
-  ### preliminary calculations
-  rij_absolute_held <-
-    rowSums(matrix(main_solution, ncol = ncol(rij), nrow = nrow(rij)) * rij)
-  names(rij_absolute_held) <- rownames(rij)
-  ### calculate results for each theme separately
-  theme_results <- lapply(seq_along(solution_settings$themes), function(i) {
-    out <- solution_settings$themes[[i]]$get_solution_settings_widget_data()
-    out$feature_held <-
-      unname(rij_absolute_held[out$feature_id]) / out$feature_total
-    out
-  })
-
-  ## weight coverage
-  ### preliminary calculations
-  wij_totals <- rowSums(wij)
-  wij_absolute_held <-
-    rowSums(matrix(main_solution, ncol = ncol(wij), nrow = nrow(wij) * wij))
-  ### calculate results for each weight separately
-  weight_results <- lapply(seq_along(solution_settings$weights), function(i) {
-    out <- solution_settings$weights[[i]]$get_solution_settings_widget_data()
-    out$total <- wij_totals[i]
-    out$held <- wij_absolute_held[i] / wij_totals[i]
-    out
-  })
-
-  # create variable to store solution
-  idx <- dataset$max_index() + 1
-  dataset$add_index(index = idx, values = main_solution)
-  v <- new_variable(
-    dataset = dataset, index = idx,
-    total = sum(main_solution), units = "",
-    legend = new_categorical_legend(
-      values = c(0, 1),
-      colors = sample(color_palette("Set1", NULL), 1)))
-
-  # return solution object
-  new_solution(
-    name = name,
-    variable = v,
-    statistics = statistics,
-    theme_results = theme_results,
-    weight_results = weight_results,
-    id = uuid::UUIDgenerate())
 }

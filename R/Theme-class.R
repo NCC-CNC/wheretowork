@@ -20,12 +20,6 @@ Theme <- R6::R6Class(
     #' @field feature `list` of [Feature] objects.
     feature = list(),
 
-    #' @field mandatory `logical` value.
-    mandatory = FALSE,
-
-    #' @field icon `shiny.tag` value.
-    icon = NULL,
-
     #' @description
     #' Create a Theme object.
     #' @details This method intentionally throws an error.
@@ -42,7 +36,6 @@ Theme <- R6::R6Class(
       message("Theme")
       message("  id:        ", self$id)
       message("  name:      ", self$name)
-      message("  mandatory: ", self$mandatory)
       message("  feature: ")
       for (x in vapply(self$feature[po], function(x) x$repr(), character(1))) {
         message("    " , gsub("\n", "\n    ", x))
@@ -58,8 +51,7 @@ Theme <- R6::R6Class(
       po <- order(self$get_feature_order(), decreasing = TRUE)
       paste0(
         self$name,
-        ifelse(self$mandatory, " (mandatory):", ":"),
-        nl(),
+        ":", nl(),
         paste(
           paste0(
             "  ",
@@ -71,24 +63,46 @@ Theme <- R6::R6Class(
     },
 
     #' @description
+    #' Get layer names.
+    #' @return `character` vector.
+    get_layer_name = function() {
+      vapply(self$feature, `[[`, character(1), "name")
+    },
+
+    #' @description
+    #' Get layer index values.
+    #' @return `character` vector.
+    get_layer_index = function() {
+      vapply(
+        self$feature, FUN.VALUE = character(1), function(x) x$variable$index)
+    },
+
+    #' @description
     #' Get feature identifiers.
     #' @return `character` vector with identifier(s).
     get_feature_id = function() {
-      vapply(self$feature, FUN.VALUE = character(1), function(x) x$id)
+      vapply(self$feature, `[[`, character(1), "id")
     },
 
     #' @description
     #' Get feature names.
     #' @return `character` vector with identifier(s).
     get_feature_name = function() {
-      vapply(self$feature, FUN.VALUE = character(1), function(x) x$name)
+      vapply(self$feature, `[[`, character(1), "name")
     },
 
     #' @description
     #' Get feature current.
     #' @return `numeric` vector with value(s).
     get_feature_current = function() {
-      vapply(self$feature, FUN.VALUE = numeric(1), function(x) x$current)
+      vapply(self$feature, `[[`, numeric(1), "current")
+    },
+
+    #' @description
+    #' Get feature limit.
+    #' @return `numeric` vector with value(s).
+    get_feature_limit = function() {
+      vapply(self$feature, `[[`, numeric(1), "limit_goal")
     },
 
     #' @description
@@ -99,38 +113,46 @@ Theme <- R6::R6Class(
     },
 
     #' @description
+    #' Set visible value for all features.
+    #' @return `logical` value.
+    get_visible = function() {
+      any(self$get_feature_visible())
+    },
+
+
+    #' @description
     #' Get feature visible values.
     #' @return `logical` vector with status value(s).
     get_feature_visible = function() {
-      vapply(self$feature, FUN.VALUE = logical(1), function(x) x$get_visible())
+      vapply(self$feature, `[[`, logical(1), "visible")
     },
 
     #' @description
     #' Get feature status values.
     #' @return `logical` vector with status value(s).
     get_feature_status = function() {
-      vapply(self$feature, FUN.VALUE = logical(1), function(x) x$get_status())
+      vapply(self$feature, `[[`, logical(1), "status")
     },
 
     #' @description
     #' Get feature goal values.
     #' @return `numeric` vector with goal value(s).
     get_feature_goal = function() {
-      vapply(self$feature, FUN.VALUE = numeric(1), function(x) x$get_goal())
+      vapply(self$feature, `[[`, numeric(1), "goal")
     },
 
     #' @description
-    #' Get parameter.
-    #' @param name `character` parameter name.
+    #' Get setting.
+    #' @param name `character` setting name.
     #' Available options are `"feature_status"`, `"feature_goal"`,
-    #' `"feature_visible"`, or `"feature_order"`.
+    #' `"feature_visible"`, `"visible"`, or `"feature_order"`.
     #' @return Value.
-    get_parameter = function(name) {
+    get_setting = function(name) {
       assertthat::assert_that(
         assertthat::is.string(name),
         assertthat::noNA(name),
         name %in% c("feature_status", "feature_goal", "feature_visible",
-                    "feature_order"))
+                    "feature_order", "feature_current", "visible"))
       if (identical(name, "feature_status")) {
         out <- self$get_feature_status()
       } else if (identical(name, "feature_goal")) {
@@ -139,10 +161,25 @@ Theme <- R6::R6Class(
         out <- self$get_feature_visible()
       } else if (identical(name, "feature_order")) {
         out <- self$get_feature_order()
+      } else if (identical(name, "feature_current")) {
+        out <- self$get_feature_current()
+      } else if (identical(name, "visible")) {
+        out <- self$get_visible()
       } else {
-        stop(paste0("\"", name, "\" is not a parameter"))
+        stop(paste0("\"", name, "\" is not a setting"))
       }
       out
+    },
+
+    #' @description
+    #' Set visible value for all features.
+    #' @param value `logical` value.
+    set_visible = function(value) {
+      assertthat::assert_that(
+        assertthat::is.flag(value),
+        assertthat::noNA(value))
+      self$set_feature_visible(rep(value, length(self$feature)))
+      invisible(self)
     },
 
     #' @description
@@ -197,18 +234,36 @@ Theme <- R6::R6Class(
     },
 
     #' @description
-    #' Set parameter.
-    #' @param name `character` parameter name.
+    #' Set feature current values.
+    #' @param value `numeric` vector containing a value for each feature.
+    #'   A `list` of `numeric` values can also be supplied.
+    set_feature_current = function(value) {
+      if (is.list(value))
+        value <- unlist(value, recursive = TRUE, use.names = TRUE)
+      assertthat::assert_that(
+        is.numeric(value),
+        assertthat::noNA(value),
+        length(value) == length(self$feature))
+      for (i in seq_along(value)) {
+        self$feature[[i]]$set_current(value[[i]])
+      }
+      invisible(self)
+    },
+
+    #' @description
+    #' Set setting.
+    #' @param name `character` setting name.
     #' Available options are `"feature_status"`, `"feature_goal"`,
-    #' `"feature_visible"`, `"feature_order"`.
+    #' `"feature_visible"`, `"visible"`, `"feature_order"`,
+    #' or `"feature_current"`.
     #' @param value vector containing a value for each feature.
-    set_parameter = function(name, value) {
+    set_setting = function(name, value) {
       assertthat::assert_that(
         assertthat::is.string(name),
         assertthat::noNA(name),
         name %in%
           c("feature_status", "feature_goal", "feature_visible",
-            "feature_order"))
+            "feature_order", "feature_current", "visible"))
       if (identical(name, "feature_status")) {
         self$set_feature_status(value)
       } else if (identical(name, "feature_goal")) {
@@ -217,21 +272,23 @@ Theme <- R6::R6Class(
         self$set_feature_visible(value)
       } else if (identical(name, "feature_order")) {
         self$set_feature_order(value)
+      } else if (identical(name, "feature_current")) {
+        self$set_feature_current(value)
+      } else if (identical(name, "visible")) {
+        self$set_visible(value)
       } else {
-        stop(paste0("\"", name, "\" is not a parameter"))
+        stop(paste0("\"", name, "\" is not a setting"))
       }
       invisible(self)
     },
 
 
     #' @description
-    #' Export parameters
+    #' Export settings
     #' @return `list` object.
     export = function() {
       list(
         name = self$name,
-        mandatory = self$mandatory,
-        icon = strsplit(self$icon$attribs$`aria-label`, " ")[[1]][[1]],
         feature = lapply(self$feature, function(x) x$export())
       )
     },

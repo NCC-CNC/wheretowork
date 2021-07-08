@@ -60,7 +60,7 @@ class SolutionLayer {
         let checked = this.checked;
         Shiny.setInputValue(manager, {
           id: id,
-          parameter: "visible",
+          setting: "visible",
           value: checked
         });
       });
@@ -69,7 +69,7 @@ class SolutionLayer {
         let checked = this.checked;
         Shiny.setInputValue(manager, {
           id: id,
-          parameter: "remove",
+          setting: "remove",
         });
       });
 
@@ -77,10 +77,10 @@ class SolutionLayer {
   }
 
   /* update methods */
-  updateParameter(parameter, value) {
-    if (parameter === "name") {
+  updateSetting(setting, value) {
+    if (setting === "name") {
       this.updateName(value);
-    } else if (parameter === "visible") {
+    } else if (setting === "visible") {
       this.updateVisible(value);
     }
   }

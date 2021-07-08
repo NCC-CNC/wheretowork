@@ -13,8 +13,7 @@ Variable <- R6::R6Class(
     #' @field dataset `Dataset` object.
     dataset = NULL,
 
-    #' @field index `character` or `integer` value indicating the
-    #'  field/layer for extracting data.
+    #' @field index `character` value.
     index = NULL,
 
     #' @field total `numeric` value.
@@ -54,10 +53,15 @@ Variable <- R6::R6Class(
           c("ContinuousLegend", "CategoricalLegend", "ManualLegend")))
       ### set fields
       self$dataset <- dataset
-      self$index <- index
       self$total <- total
       self$units <- units
       self$legend <- legend
+      assertthat::assert_that(dataset$has_index(index))
+      if (is.numeric(index)) {
+        self$index <- dataset$get_names()[[index]]
+      } else {
+        self$index <- index
+      }
     },
 
     #' @description
@@ -74,9 +78,9 @@ Variable <- R6::R6Class(
 
     #' @description
     #' Generate a `character` summarizing the representation of the object.
-    #' @param start `character` symbol used to start the parameter list.
+    #' @param start `character` symbol used to start the setting list.
     #'   Defaults to `"["`.
-    #' @param end `character` symbol used to start the parameter list.
+    #' @param end `character` symbol used to start the setting list.
     #'   Defaults to `"]"`.
     #' @return `character` value.
     repr = function(start = "[", end = "]") {
@@ -106,7 +110,7 @@ Variable <- R6::R6Class(
     },
 
     #' @description
-    #' Export parameters
+    #' Export settings
     #' @return `list` object.
     export = function() {
       list(
@@ -126,7 +130,7 @@ Variable <- R6::R6Class(
     render = function(x, id, zindex, visible) {
       # assert arguments are valid
       assertthat::assert_that(
-        inherits(x, "leaflet"),
+        inherits(x, c("leaflet", "leaflet_proxy")),
         assertthat::is.string(id),
         assertthat::is.number(zindex),
         assertthat::is.flag(visible))
@@ -147,11 +151,10 @@ Variable <- R6::R6Class(
             maxBytes = 1 * 1024 * 1024, # 1MB max size
             method = self$legend$get_resample_method(),
             colors = self$legend$get_color_map(),
+            group = id,
             pane = pane_id)
         })
       } else if (inherits(d, "sf")) {
-        ## reproject data
-        d <- sf::st_transform(d, 4326)
         ## prepare data
         d <- sf::as_Spatial(d)
         if (inherits(d, "SpatialPolygonsDataFrame")) {
@@ -167,9 +170,14 @@ Variable <- R6::R6Class(
         col <- self$legend$get_color_map()(d[[1]])
         ### add geometry to map
         x <- f(
-          map = x, data = d,
-          stroke = FALSE, opacity = 0.8, fillOpacity = 0.8,
-          color = col, fillColor = col,
+          map = x,
+          data = d,
+          stroke = FALSE,
+          opacity = 0.8,
+          fillOpacity = 0.8,
+          color = col,
+          fillColor = col,
+          group = id,
           options = leaflet::pathOptions(pane = pane_id))
       }
       # return result
@@ -319,7 +327,7 @@ new_variable_from_auto <- function(
   # compute statistics for data
   s <- spatial_data_statistics(d, type, 1)
 
-  # create new variable using automatically deduced parameters
+  # create new variable using automatically deduced settings
   new_variable_from_metadata(
     dataset = dataset,
     metadata =

@@ -22,11 +22,23 @@ HTMLWidgets.widget({
           // attach the widget to the DOM
           container.widget = that;
           // initialize solution settings manager
-          console.log(opts);
           handle = new SolutionSettings(
-            elementId, container, opts.themes, opts.weights, opts.includes);
+            elementId, container,
+            opts.themes, opts.weights, opts.includes, opts.parameters);
           // render HTML elements
           handle.render();
+          // set the button to disabled by default
+          const button_el = document.getElementById(elementId + "_button");
+          button_el.setAttribute("disabled", "");
+          // make the button disabled when the text box is empty
+          const name_el = document.getElementById(elementId + "_name");
+          name_el.addEventListener("input", function() {
+            if (name_el.value.length === 0) {
+              button_el.setAttribute("disabled", "");
+            } else {
+              button_el.removeAttribute("disabled");
+            }
+          });
         }
       },
 
@@ -38,9 +50,9 @@ HTMLWidgets.widget({
       solutionSettings: container,
 
       /* API functions to manipulate widget */
-      updateSetting: function(params) {
+      update: function(params) {
         handle.updateSetting(
-          params.value.id, params.value.parameter,
+          params.value.id, params.value.setting,
           params.value.value, params.value.type);
       }
 

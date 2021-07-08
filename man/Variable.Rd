@@ -19,8 +19,7 @@ Definition for the Variable class.
 \describe{
 \item{\code{dataset}}{\code{Dataset} object.}
 
-\item{\code{index}}{\code{character} or \code{integer} value indicating the
-field/layer for extracting data.}
+\item{\code{index}}{\code{character} value.}
 
 \item{\code{total}}{\code{numeric} value.}
 
@@ -101,10 +100,10 @@ Generate a \code{character} summarizing the representation of the object.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{start}}{\code{character} symbol used to start the parameter list.
+\item{\code{start}}{\code{character} symbol used to start the setting list.
 Defaults to \code{"["}.}
 
-\item{\code{end}}{\code{character} symbol used to start the parameter list.
+\item{\code{end}}{\code{character} symbol used to start the setting list.
 Defaults to \code{"]"}.}
 }
 \if{html}{\out{</div>}}
@@ -143,7 +142,7 @@ Get the data.
 \if{html}{\out{<a id="method-export"></a>}}
 \if{latex}{\out{\hypertarget{method-export}{}}}
 \subsection{Method \code{export()}}{
-Export parameters
+Export settings
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Variable$export()}\if{html}{\out{</div>}}
 }

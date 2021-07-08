@@ -4,10 +4,12 @@ NULL
 #' Write a configuration file
 #'
 #' Save a configuration file to disk.
-#' The configuration file will contain all the data and parameters related
-#' to a set of [Theme] and [Weight] objects.
+#' The configuration file will contain all the data and settings related
+#' to a set of [Theme], [Weight], and [Include] objects.
 #'
-#' @param x `list` of [Theme] and [Weight] objects.
+#' @param x `list` of [Theme], [Weight], and [Include] objects.
+#'
+#' @param dataset [Dataset] object.
 #'
 #' @param name `character` name for the scenario.
 #'
@@ -45,21 +47,23 @@ NULL
 #'
 #' # save configuration file to temporary location
 #' write_configuration_file(
-#'   l,
-#'   path = tempfile(),
+#'   x = l,
 #'   name = "example",
+#'   dataset = d,
+#'   path = tempfile(),
 #'   spatial_path = tempfile(fileext = ".tif"),
 #'   attribute_path = tempfile(fileext = ".csv.gz"),
 #'   boundary_path = tempfile(fileext = ".csv.gz"))
 #'
 #' @export
 write_configuration_file <- function(
-  x, path, name, spatial_path, attribute_path, boundary_path,
+  x, dataset, path, name, spatial_path, attribute_path, boundary_path,
   mode = "advanced") {
   # assert arguments are valid
   assertthat::assert_that(
     is.list(x),
-    all_list_elements_inherit(x, c("Theme", "Weight")),
+    all_list_elements_inherit(x, c("Theme", "Weight", "Include")),
+    inherits(dataset, "Dataset"),
     assertthat::is.string(name),
     assertthat::noNA(name),
     assertthat::is.string(path),
@@ -73,15 +77,19 @@ write_configuration_file <- function(
     assertthat::is.string(mode),
     assertthat::noNA(mode))
 
-  # create parameter list for themes
+  # create setting list for themes
   themes_idx <- vapply(x, inherits, what = "Theme", logical(1))
   themes_params <- lapply(x[themes_idx], function(x) x$export())
 
-  # create parameter list for weights
+  # create setting list for weights
   weights_idx <- vapply(x, inherits, what = "Weight", logical(1))
   weights_params <- lapply(x[weights_idx], function(x) x$export())
 
-  # create full parameter list
+  # create setting list for includes
+  includes_idx <- vapply(x, inherits, what = "Include", logical(1))
+  includes_params <- lapply(x[includes_idx], function(x) x$export())
+
+  # create full settings list
   params <- list(
     name = name,
     spatial_path = spatial_path,
@@ -89,11 +97,15 @@ write_configuration_file <- function(
     boundary_path = boundary_path,
     mode = mode,
     themes = themes_params,
-    weights = weights_params
+    weights = weights_params,
+    includes = includes_params
   )
 
-  # save result to disk
+  # save configuration file to disk
   yaml::write_yaml(params, path)
+
+  # save dataset to disk
+  dataset$write(spatial_path, attribute_path, boundary_path)
 
   # return success
   invisible(TRUE)

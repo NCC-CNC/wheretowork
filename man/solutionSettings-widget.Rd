@@ -29,24 +29,28 @@ The widget sends a \code{list} with the following values to the server:
 
 \item{id}{\code{character} identifier for the theme or weight.}
 
-\item{parameter}{\code{character} name of the updated parameter.
+\item{setting}{\code{character} name of the updated setting.
 Available options include: \code{"status"}, \code{"factor"}, or \code{"goal"}.}
 
 \item{value}{new \code{numeric} or \code{logical} values.}
 
-\item{type}{\code{character} indicating if the updated parameter corresponds
+\item{type}{\code{character} indicating if the updated setting corresponds
 to a \code{theme} or \code{weight}.}
 
 }
 
 The widget also contains a text box. The server value for this
-text box is a \code{character} string, and it can be queried using
+text box is a \code{character} string. It can be queried using
 \code{id_name} where \code{id} is the argument to \code{elementId}.
 
-Additionally, the widget contains a button. The server value for this
+The widget also contains a button. The server value for this
 button is an \code{integer} indicating the number of times the button
-has been clicked, and it can be queried using \code{id_button} where
-where \code{id} is the argument to \code{elementId}.
+has been clicked. It can be queried using \code{id_button} where
+\code{id} is the argument to \code{elementId}.
+
+The widget also contains a color picker. The server value for this
+button is an \code{character} indicating the current color. It can be queried
+using \code{id_color} where \code{id} is the argument to \code{elementId}.
 }
 
 \examples{

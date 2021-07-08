@@ -3,6 +3,7 @@ options("rgdal_show_exportToProj4_warnings" = "none")
 
 # load package
 library(shiny)
+library(DT)
 library(locationmisc)
 
 # set seed
@@ -20,5 +21,19 @@ f3 <- system.file(
 d <- new_dataset(f1, f2, f3)
 
 # simulate themes, weights, and a solution
-sim_themes <- simulate_themes(d, 3, 4)
-sim_weights <- simulate_weights(d, 4)
+sim_themes <- simulate_themes(d, 2, 1)
+sim_weights <-
+  append(simulate_weights(d, 10), append(simulate_weights(d, 10),
+         simulate_weights(d, 10)))
+
+# simulate solutions
+sols <- lapply(seq_len(5), function(x) {
+  simulate_solution(d, sim_themes, sim_weights)
+})
+
+# extract solution names
+sol_names <-
+  setNames(
+    vapply(sols, `[[`, character(1), "id"),
+    vapply(sols, `[[`, character(1), "name")
+  )

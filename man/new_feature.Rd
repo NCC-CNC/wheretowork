@@ -15,7 +15,6 @@ new_feature(
   step_goal = 0.01,
   limit_goal = 0.1,
   current = 0,
-  icon = "map-marked-alt",
   id = uuid::UUIDgenerate()
 )
 }
@@ -64,12 +63,6 @@ Defaults to 0 (i.e. 0\%).}
 
 \item{current}{\code{numeric} current proportion of values held in existing
 conservation areas (e.g. 0.1 = 10\%).}
-
-\item{icon}{\code{character} or \code{shiny.tag} Icon to display for the feature
-This icon should indicate the type of data that underpin the feature.
-If the argument to \code{icon} is a \code{character}, it is used with
-\code{\link[shiny:icon]{shiny::icon()}} to generate an \code{shiny.tag} icon.
-Defaults to \code{"map-marked-alt"}.}
 
 \item{id}{\code{character} unique identifier.
 Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}

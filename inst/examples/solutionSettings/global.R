@@ -33,6 +33,9 @@ v4 <- new_variable(
 v5 <- new_variable(
   dataset = d, index = 5, total = 12, units = "",
   legend = simulate_include_legend())
+v6 <- new_variable(
+  dataset = d, index = 6, total = 23, units = "",
+  legend = simulate_include_legend())
 
 ## create a weight using dataset
 w <- new_weight(name = "Human Footprint Index", variable = v1, id = "HFP")
@@ -59,12 +62,18 @@ fts <- lapply(seq_len(5), function(i) {
 ## create themes using the features
 t1 <- new_single_theme("Species", f1, id = "SPECIES")
 t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "ER")
-t3 <- new_multi_theme("Turnips", fts, mandatory = FALSE)
+t3 <- new_multi_theme("Turnips", fts)
 
 ## create a include using dataset
-incl <- new_include(
-  name = "National protected area", variable = v5, id = "PA", mandatory = TRUE)
+i1 <- new_include(
+  name = "National protected area", variable = v5, id = "I1", mandatory = TRUE)
+i2 <- new_include(
+  name = "Nature reserves", variable = v6, id = "I2", mandatory = FALSE)
+
+## create a parameter
+p <- new_parameter(name = "Spatial clumping", id = "P1")
 
 ## create solution setting
 ss <- new_solution_settings(
-  themes = list(t1, t2, t3), weights = list(w), includes = list(incl))
+  themes = list(t1, t2, t3), weights = list(w), includes = list(i1, i2),
+  parameters = list(p))

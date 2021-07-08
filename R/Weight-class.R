@@ -26,6 +26,9 @@ Weight <- R6::R6Class(
     #' @field initial_visible `logical` value.
     initial_visible = NA,
 
+    #' @field current `numeric` value.
+    current = NA_real_,
+
     #' @field status `logical` value.
     status = NA,
 
@@ -108,9 +111,9 @@ Weight <- R6::R6Class(
       self$id <- id
       self$variable <- variable
       self$name <- name
-      self$current <- current
       self$initial_status <- initial_status
       self$status <- initial_status
+      self$current <- current
       self$visible <- initial_visible
       self$initial_visible <- initial_visible
       self$factor <- initial_factor
@@ -128,7 +131,7 @@ Weight <- R6::R6Class(
       message("  id:       ", self$id)
       message("  name:     ", self$name)
       message("  variable: ", self$variable$repr())
-      message("  current:  ", self$current)
+      message("  current:  ", round(self$current, 2))
       message("  visible:  ", self$visible)
       message("  status:   ", self$status)
       message("  factor:   ", round(self$factor, 2))
@@ -137,18 +140,32 @@ Weight <- R6::R6Class(
 
     #' @description
     #' Generate a `character` summarizing the representation of the object.
-    #' @param start `character` symbol used to start the parameter list.
+    #' @param start `character` symbol used to start the setting list.
     #'   Defaults to `"["`.
-    #' @param end `character` symbol used to start the parameter list.
+    #' @param end `character` symbol used to start the setting list.
     #'   Defaults to `"]"`.
     #' @return `character` value.
     repr = function(start = "[", end = "]") {
       paste0(
         self$name,
         " ", start, "status: ", self$status,
-        "current: ", round(self$current),
+        ", current: ", round(self$current, 2),
         ", factor: ", round(self$factor, 2), end, nl(),
         "  variable: ", self$variable$repr())
+    },
+
+    #' @description
+    #' Get layer names.
+    #' @return `character` vector.
+    get_layer_name = function() {
+      self$name
+    },
+
+    #' @description
+    #' Get layer index values.
+    #' @return `character` vector.
+    get_layer_index = function() {
+      self$variable$index
     },
 
     #' @description
@@ -166,6 +183,13 @@ Weight <- R6::R6Class(
     },
 
     #' @description
+    #' Get current.
+    #' @return `logical` value.
+    get_current = function() {
+      self$current
+    },
+
+    #' @description
     #' Get factor.
     #' @return `numeric` value.
     get_factor = function() {
@@ -180,23 +204,25 @@ Weight <- R6::R6Class(
     },
 
     #' @description
-    #' Get parameter.
-    #' @param name `character` parameter name.
-    #' Available options are `"status"` `"factor"`, or `"visible"`.
+    #' Get setting.
+    #' @param name `character` setting name.
+    #' Available options are `"status"` `"factor"`, `"current"`, or `"visible"`.
     #' @return Value.
-    get_parameter = function(name) {
+    get_setting = function(name) {
       assertthat::assert_that(
         assertthat::is.string(name),
         assertthat::noNA(name),
-        name %in% c("status", "factor", "visible"))
+        name %in% c("status", "factor", "visible", "current"))
       if (identical(name, "status")) {
         out <- self$get_status()
       } else if (identical(name, "factor")) {
         out <- self$get_factor()
+      } else if (identical(name, "current")) {
+        out <- self$get_current()
       } else if (identical(name, "visible")) {
         out <- self$get_visible()
       } else {
-        stop(paste0("\"", name, "\" is not a parameter"))
+        stop(paste0("\"", name, "\" is not a setting"))
       }
       out
     },
@@ -237,23 +263,37 @@ Weight <- R6::R6Class(
     },
 
     #' @description
-    #' Set parameter.
-    #' @param name `character` parameter name.
-    #' Available options are `"status"` `"factor"`, or `"visible"``.
+    #' Set current.
+    #' @param value `numeric` new value.
+    set_current = function(value) {
+      assertthat::assert_that(
+        assertthat::is.number(value),
+        assertthat::noNA(value))
+      self$current <- value
+      invisible(self)
+    },
+
+    #' @description
+    #' Set setting.
+    #' @param name `character` setting name.
+    #' Available options are `"status"` `"factor"`, `"current"`,
+    #' or `"visible"``.
     #' @param value `ANY` new value.
-    set_parameter = function(name, value) {
+    set_setting = function(name, value) {
       assertthat::assert_that(
         assertthat::is.string(name),
         assertthat::noNA(name),
-        name %in% c("status", "factor", "visible"))
+        name %in% c("status", "factor", "current", "visible"))
       if (identical(name, "status")) {
         self$set_status(value)
       } else if (identical(name, "factor")) {
         self$set_factor(value)
+      } else if (identical(name, "current")) {
+        self$set_current(value)
       } else if (identical(name, "visible")) {
         self$set_visible(value)
       } else {
-        stop(paste0("\"", name, "\" is not a parameter"))
+        stop(paste0("\"", name, "\" is not a setting"))
       }
       invisible(self)
     },
@@ -288,7 +328,7 @@ Weight <- R6::R6Class(
     },
 
     #' @description
-    #' Export parameters.
+    #' Export settings.
     #' @return `list` object.
     export = function() {
       list(

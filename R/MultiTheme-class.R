@@ -19,12 +19,10 @@ MultiTheme <- R6::R6Class(
     #' @param id `character` value.
     #' @param name `character` value.
     #' @param feature `list` of [Feature] objects.
-    #' @param mandatory `logical` value.
     #' @param feature_order `numeric` vector.
-    #' @param icon `shiny.tag` object.
     #' @return A new MultiTheme object.
     initialize = function(
-      id, name, feature, mandatory, feature_order, icon) {
+      id, name, feature, feature_order) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -36,16 +34,11 @@ MultiTheme <- R6::R6Class(
         #### feature
         is.list(feature),
         all_list_elements_inherit(feature, "Feature"),
-        #### mandatory
-        assertthat::is.flag(mandatory),
-        assertthat::noNA(mandatory),
         #### feature_order
         is.numeric(feature_order),
         assertthat::noNA(feature_order),
         length(feature_order) == length(feature),
-        identical(anyDuplicated(feature_order), 0L),
-        #### icon
-        inherits(icon, "shiny.tag"))
+        identical(anyDuplicated(feature_order), 0L))
       ## assert all feature have ame units
       assertthat::assert_that(
         n_distinct(
@@ -57,9 +50,7 @@ MultiTheme <- R6::R6Class(
       self$id <- id
       self$name <- name
       self$feature <- feature
-      self$mandatory <- mandatory
       self$feature_order <- feature_order
-      self$icon <- icon
     },
 
     #' @description
@@ -91,32 +82,26 @@ MultiTheme <- R6::R6Class(
         id = self$id,
         name = self$name,
         feature_name =
-          vapply(self$feature, function(x) x$name, character(1)),
+          vapply(self$feature, `[[`, character(1), "name"),
         feature_id =
-          vapply(self$feature, function(x) x$id, character(1)),
+          vapply(self$feature, `[[`, character(1), "id"),
         feature_status =
-          vapply(self$feature, function(x) x$status, logical(1)),
+          vapply(self$feature, `[[`, logical(1), "status"),
         feature_total_amount =
           vapply(self$feature, function(x) x$variable$total, numeric(1)),
         feature_current_held =
-          vapply(self$feature, function(x) x$current, numeric(1)),
+          vapply(self$feature, `[[`, numeric(1), "current"),
         feature_min_goal =
-          vapply(self$feature, function(x) x$min_goal, numeric(1)),
+          vapply(self$feature, `[[`, numeric(1), "min_goal"),
         feature_max_goal =
-          vapply(self$feature, function(x) x$max_goal, numeric(1)),
+          vapply(self$feature, `[[`, numeric(1), "max_goal"),
         feature_goal =
-          vapply(self$feature, function(x) x$goal, numeric(1)),
+          vapply(self$feature, `[[`, numeric(1), "goal"),
         feature_limit_goal =
-          vapply(self$feature, function(x) x$limit_goal, numeric(1)),
+          vapply(self$feature, `[[`, numeric(1), "limit_goal"),
         feature_step_goal =
-          vapply(self$feature, function(x) x$step_goal, numeric(1)),
-        feature_icon =
-          vapply(
-            self$feature, function(x) as.character(x$icon),
-            character(1)),
-        units = self$feature[[1]]$variable$units,
-        mandatory = self$mandatory,
-        icon = as.character(self$icon)
+          vapply(self$feature, `[[`, numeric(1), "step_goal"),
+        units = self$feature[[1]]$variable$units
       )
     },
 
@@ -128,11 +113,11 @@ MultiTheme <- R6::R6Class(
         id = self$id,
         name = self$name,
         feature_name =
-          vapply(self$feature, function(x) x$name, character(1)),
+          vapply(self$feature, `[[`, character(1), "name"),
         feature_id =
-          vapply(self$feature, function(x) x$id, character(1)),
+          vapply(self$feature, `[[`, character(1), "id"),
         feature_visible =
-          vapply(self$feature, function(x) x$visible, logical(1)),
+          vapply(self$feature, `[[`, logical(1), "visible"),
         feature_legend =
           lapply(self$feature, function(x) x$variable$legend$get_widget_data()),
         units = self$feature[[1]]$variable$units,
@@ -150,17 +135,8 @@ MultiTheme <- R6::R6Class(
 #'
 #' @param feature `list` of [Feature] objects.
 #'
-#' @param mandatory `logical` Is the theme mandatory for generating solutions?
-#'   Defaults to `FALSE`.
-#'
 #' @param feature_order `numeric` Relative order for displaying each feature
 #'  on a map. Defaults to a reverse sequence of integer values.
-#'
-#' @param icon `shiny.tag` Icon to display for the feature
-#'  This icon should indicate the type of data that underpin the feature.
-#'  Alternatively, the argument can be a `character` to automatically
-#'  generate a `shiny.tag` icon (using [shiny::icon()]).
-#'  Defaults to `"map-marked-alt"`.
 #'
 #' @param id `character` unique identifier.
 #'   Defaults to a random identifier ([uuid::UUIDgenerate()]).
@@ -200,19 +176,12 @@ MultiTheme <- R6::R6Class(
 new_multi_theme <- function(
   name,
   feature,
-  mandatory = FALSE,
-  icon = "map-marked-alt",
   feature_order = as.double(rev(seq_along(feature))),
   id = uuid::UUIDgenerate()) {
-  # convert icon to shiny.tag if needed
-  if (is.character(icon))
-    icon <- shiny::icon(icon)
   # return new feature
   MultiTheme$new(
     id = id,
     name = name,
     feature = feature,
-    mandatory = mandatory,
-    feature_order = feature_order,
-    icon = icon)
+    feature_order = feature_order)
 }

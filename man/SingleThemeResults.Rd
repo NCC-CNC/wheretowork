@@ -20,6 +20,7 @@ Definition for the SingleThemeResults class.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
+\item \href{#method-get_results_data}{\code{SingleThemeResults$get_results_data()}}
 \item \href{#method-get_widget_data}{\code{SingleThemeResults$get_widget_data()}}
 \item \href{#method-clone}{\code{SingleThemeResults$clone()}}
 }
@@ -32,6 +33,19 @@ Definition for the SingleThemeResults class.
 \item \out{<span class="pkg-link" data-pkg="locationmisc" data-topic="ThemeResults" data-id="repr">}\href{../../locationmisc/html/ThemeResults.html#method-repr}{\code{locationmisc::ThemeResults$repr()}}\out{</span>}
 }
 \out{</details>}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_results_data"></a>}}
+\if{latex}{\out{\hypertarget{method-get_results_data}{}}}
+\subsection{Method \code{get_results_data()}}{
+Get results.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SingleThemeResults$get_results_data()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{\link[tibble:tibble]{tibble::tibble()}} object.
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_widget_data"></a>}}

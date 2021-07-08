@@ -49,7 +49,9 @@ file path on disk.
 \item \href{#method-get_attribute_data}{\code{Dataset$get_attribute_data()}}
 \item \href{#method-get_boundary_data}{\code{Dataset$get_boundary_data()}}
 \item \href{#method-get_crs}{\code{Dataset$get_crs()}}
+\item \href{#method-get_bbox}{\code{Dataset$get_bbox()}}
 \item \href{#method-get_planning_unit_indices}{\code{Dataset$get_planning_unit_indices()}}
+\item \href{#method-get_names}{\code{Dataset$get_names()}}
 \item \href{#method-get_planning_unit_areas}{\code{Dataset$get_planning_unit_areas()}}
 \item \href{#method-get_index}{\code{Dataset$get_index()}}
 \item \href{#method-has_index}{\code{Dataset$has_index()}}
@@ -222,6 +224,31 @@ Get the coordinate reference system.
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_bbox"></a>}}
+\if{latex}{\out{\hypertarget{method-get_bbox}{}}}
+\subsection{Method \code{get_bbox()}}{
+Get the bounding box.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Dataset$get_bbox(native = TRUE, expand = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{native}}{\code{logical} indicating if the bounding box should
+be in (\code{TRUE}) the native coordinate reference system or (\code{FALSE})
+re-projected to longitude/latitude?}
+
+\item{\code{expand}}{\code{FALSE} should the bounding box be expanded by 10\%?}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+\code{list} object with \code{"xmin"}, \code{"xmax"}, \code{"ymin"}, and \code{"ymax"}
+elements.
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_planning_unit_indices"></a>}}
 \if{latex}{\out{\hypertarget{method-get_planning_unit_indices}{}}}
 \subsection{Method \code{get_planning_unit_indices()}}{
@@ -232,6 +259,19 @@ Get planning unit indices.
 
 \subsection{Returns}{
 \code{integer} vector of indices.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_names"></a>}}
+\if{latex}{\out{\hypertarget{method-get_names}{}}}
+\subsection{Method \code{get_names()}}{
+Get attribute names.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Dataset$get_names()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} vector of field/layer names.
 }
 }
 \if{html}{\out{<hr>}}
