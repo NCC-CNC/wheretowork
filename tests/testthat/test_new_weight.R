@@ -10,6 +10,7 @@ test_that("initialization", {
     initial_visible = FALSE,
     initial_status = FALSE,
     initial_factor = 0.2,
+    current = 0.89,
     min_factor = 0.01,
     max_factor = 0.9,
     step_factor = 0.03,
@@ -24,6 +25,7 @@ test_that("initialization", {
   expect_equal(x$initial_visible, FALSE)
   expect_equal(x$status, FALSE)
   expect_equal(x$initial_status, FALSE)
+  expect_equal(x$current, 0.89)
   expect_equal(x$factor, 0.2)
   expect_equal(x$initial_factor, 0.2)
   expect_equal(x$min_factor, 0.01)
@@ -40,6 +42,7 @@ test_that("get methods", {
     variable = v,
     initial_visible = TRUE,
     initial_status = FALSE,
+    current = 0.89,
     initial_factor = 0.2,
     min_factor = 0.01,
     max_factor = 0.9,
@@ -49,8 +52,10 @@ test_that("get methods", {
   expect_identical(x$get_factor(), 0.2)
   expect_identical(x$get_visible(), TRUE)
   expect_identical(x$get_status(), FALSE)
+  expect_identical(x$get_current(), 0.89)
   expect_identical(x$get_setting("factor"), x$get_factor())
   expect_identical(x$get_setting("status"), x$get_status())
+  expect_identical(x$get_setting("current"), x$get_current())
 })
 
 test_that("set methods", {
@@ -62,6 +67,7 @@ test_that("set methods", {
     variable = v,
     initial_visible = TRUE,
     initial_status = FALSE,
+    current = 0.89,
     initial_factor = 0.2,
     min_factor = 0.01,
     max_factor = 0.9,
@@ -71,15 +77,19 @@ test_that("set methods", {
   x$set_factor(0.8)
   x$set_status(TRUE)
   x$set_visible(FALSE)
+  x$set_current(0.66)
   expect_identical(x$get_factor(), 0.8)
   expect_identical(x$get_status(), TRUE)
   expect_identical(x$get_visible(), FALSE)
+  expect_identical(x$get_current(), 0.66)
   x$set_setting("factor", 0.3)
   x$set_setting("status", FALSE)
   x$set_setting("visible", TRUE)
+  x$set_setting("current", 0.12)
   expect_identical(x$get_factor(), 0.3)
   expect_identical(x$get_status(), FALSE)
   expect_identical(x$get_visible(), TRUE)
+  expect_identical(x$get_current(), 0.12)
 })
 
 test_that("export method", {
@@ -91,6 +101,7 @@ test_that("export method", {
     variable = v,
     initial_visible = TRUE,
     initial_status = FALSE,
+    current = 0.89,
     initial_factor = 0.2,
     min_factor = 0.01,
     max_factor = 0.9,

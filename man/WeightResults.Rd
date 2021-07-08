@@ -25,6 +25,8 @@ Definition for the WeightResults class.
 
 \item{\code{factor}}{\code{numeric} value.}
 
+\item{\code{current}}{\code{numeric} value.}
+
 \item{\code{held}}{\code{numeric} value.}
 }
 \if{html}{\out{</div>}}
@@ -35,6 +37,7 @@ Definition for the WeightResults class.
 \item \href{#method-new}{\code{WeightResults$new()}}
 \item \href{#method-print}{\code{WeightResults$print()}}
 \item \href{#method-repr}{\code{WeightResults$repr()}}
+\item \href{#method-get_results_data}{\code{WeightResults$get_results_data()}}
 \item \href{#method-get_widget_data}{\code{WeightResults$get_widget_data()}}
 \item \href{#method-clone}{\code{WeightResults$clone()}}
 }
@@ -102,6 +105,19 @@ Defaults to \code{"]"}.}
 }
 \subsection{Returns}{
 \code{character} value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_results_data"></a>}}
+\if{latex}{\out{\hypertarget{method-get_results_data}{}}}
+\subsection{Method \code{get_results_data()}}{
+Get results.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{WeightResults$get_results_data()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{\link[tibble:tibble]{tibble::tibble()}} object.
 }
 }
 \if{html}{\out{<hr>}}

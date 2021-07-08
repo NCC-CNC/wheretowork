@@ -346,21 +346,27 @@ SolutionSettings <- R6::R6Class(
     },
 
     #' @description
-    #' Update the current amount held for each feature automatically
+    #' Update the current amount held for each themes and weights automatically
     #' based on the include statuses.
     #' @param theme_data `[Matrix::sparseMatrix()] with theme data.
     #' Defaults to `self$get_theme_data()`.
+    #' @param weight_data `[Matrix::sparseMatrix()] with weight data.
+    #' Defaults to `self$get_weight_data()`.
     #' @param include_data `[Matrix::sparseMatrix()] with include data.
     #' Defaults to `self$get_include_data()`.
-    update_feature_current = function(
+    update_current_held = function(
       theme_data = self$get_theme_data(),
+      weight_data = self$get_weight_data(),
       include_data = self$get_include_data()) {
       # assert arguments are valid
       assertthat::assert_that(
         inherits(theme_data, "dgCMatrix"),
+        inherits(weight_data, "dgCMatrix"),
         inherits(include_data, "dgCMatrix"),
         ncol(theme_data) == ncol(include_data),
-        nrow(include_data) == length(self$includes))
+        ncol(weight_data) == ncol(include_data),
+        nrow(include_data) == length(self$includes),
+        nrow(weight_data) == length(self$weights))
 
       # calculate current status for each planning unit
       curr_status <- include_data
@@ -372,20 +378,33 @@ SolutionSettings <- R6::R6Class(
         ncol = ncol(theme_data), nrow = nrow(theme_data))
 
       # calculate current amount held for each feature as a proportion
-      curr_held <- rowSums(curr_status * (theme_data))
-      curr_held <- curr_held / rowSums(theme_data)
-      names(curr_held) <- rownames(theme_data)
+      curr_feature_held <- rowSums(curr_status * (theme_data))
+      curr_feature_held <- curr_feature_held / rowSums(theme_data)
+      names(curr_feature_held) <- rownames(theme_data)
+
+      # calculate current amount held for each weight as a proportion
+      curr_weight_held <- rowSums(curr_status * (theme_data))
+      curr_weight_held <- curr_weight_held / rowSums(theme_data)
+      names(curr_weight_held) <- rownames(weight_data)
 
       # update the current amount for each theme
       for (i in seq_along(self$themes)) {
         self$themes[[i]]$set_feature_current(
-          curr_held[self$themes[[i]]$get_feature_id()]
+          unname(curr_feature_held[self$themes[[i]]$get_feature_id()])
+        )
+      }
+
+      # update the current amount for each weight
+      for (i in seq_along(self$weights)) {
+        self$weights[[i]]$set_current(
+          unname(curr_weight_held[self$weights[[i]]$id])
         )
       }
 
       # return self
       invisible(self)
     }
+
   )
 )
 

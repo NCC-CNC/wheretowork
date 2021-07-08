@@ -27,6 +27,8 @@ Definition for the Weight class.
 
 \item{\code{initial_visible}}{\code{logical} value.}
 
+\item{\code{current}}{\code{numeric} value.}
+
 \item{\code{status}}{\code{logical} value.}
 
 \item{\code{initial_status}}{\code{logical} value.}
@@ -53,12 +55,14 @@ Definition for the Weight class.
 \item \href{#method-get_layer_index}{\code{Weight$get_layer_index()}}
 \item \href{#method-get_visible}{\code{Weight$get_visible()}}
 \item \href{#method-get_status}{\code{Weight$get_status()}}
+\item \href{#method-get_current}{\code{Weight$get_current()}}
 \item \href{#method-get_factor}{\code{Weight$get_factor()}}
 \item \href{#method-get_data}{\code{Weight$get_data()}}
 \item \href{#method-get_setting}{\code{Weight$get_setting()}}
 \item \href{#method-set_visible}{\code{Weight$set_visible()}}
 \item \href{#method-set_status}{\code{Weight$set_status()}}
 \item \href{#method-set_factor}{\code{Weight$set_factor()}}
+\item \href{#method-set_current}{\code{Weight$set_current()}}
 \item \href{#method-set_setting}{\code{Weight$set_setting()}}
 \item \href{#method-get_solution_settings_widget_data}{\code{Weight$get_solution_settings_widget_data()}}
 \item \href{#method-get_map_manager_widget_data}{\code{Weight$get_map_manager_widget_data()}}
@@ -80,6 +84,7 @@ Create a new Weight object.
   variable,
   initial_visible,
   initial_status,
+  current,
   initial_factor,
   min_factor,
   max_factor,
@@ -99,6 +104,8 @@ Create a new Weight object.
 \item{\code{initial_visible}}{\code{logical} value.}
 
 \item{\code{initial_status}}{\code{logical} value.}
+
+\item{\code{current}}{\code{logical} value.}
 
 \item{\code{initial_factor}}{\code{numeric} initial factor value.}
 
@@ -208,6 +215,19 @@ Get status.
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_current"></a>}}
+\if{latex}{\out{\hypertarget{method-get_current}{}}}
+\subsection{Method \code{get_current()}}{
+Get current.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Weight$get_current()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{logical} value.
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_factor"></a>}}
 \if{latex}{\out{\hypertarget{method-get_factor}{}}}
 \subsection{Method \code{get_factor()}}{
@@ -246,7 +266,7 @@ Get setting.
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{name}}{\code{character} setting name.
-Available options are \code{"status"} \code{"factor"}, or \code{"visible"}.}
+Available options are \code{"status"} \code{"factor"}, \code{"current"}, or \code{"visible"}.}
 }
 \if{html}{\out{</div>}}
 }
@@ -306,6 +326,23 @@ Set factor.
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_current"></a>}}
+\if{latex}{\out{\hypertarget{method-set_current}{}}}
+\subsection{Method \code{set_current()}}{
+Set current.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Weight$set_current(value)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{value}}{\code{numeric} new value.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-set_setting"></a>}}
 \if{latex}{\out{\hypertarget{method-set_setting}{}}}
 \subsection{Method \code{set_setting()}}{
@@ -318,7 +355,8 @@ Set setting.
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{name}}{\code{character} setting name.
-Available options are \code{"status"} \code{"factor"}, or `"visible"``.}
+Available options are \code{"status"} \code{"factor"}, \code{"current"},
+or `"visible"``.}
 
 \item{\code{value}}{\code{ANY} new value.}
 }

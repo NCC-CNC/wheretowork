@@ -221,8 +221,9 @@ generate_solution <- function(
   ### calculate amount held for each feature
   feature_held <-
     matrix(main_solution, ncol = ncol(theme_data), nrow = nrow(theme_data))
-  feature_held <- rowSums(feature_held * theme_data) / rowSums(feature_held)
+  feature_held <- rowSums(feature_held * theme_data) / rowSums(theme_data)
   names(feature_held) <- rownames(theme_data)
+
   ### calculate results for each theme separately
   theme_results <- lapply(seq_along(settings$themes), function(i) {
     #### extract theme

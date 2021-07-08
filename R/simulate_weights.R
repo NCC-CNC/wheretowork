@@ -77,6 +77,7 @@ simulate_weights <- function(
   w <- lapply(seq_len(n), function(i) {
     new_weight(
       name = wn[[1]][i],
+      current = round(stats::runif(1, 0.1, 0.6), 2),
       variable =
         new_variable_from_auto(
           dataset = dataset, index = wn_index[[i]], units = "ha"

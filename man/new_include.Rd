@@ -18,9 +18,6 @@ new_include(
 
 \item{variable}{\link{Variable} object.}
 
-\item{mandatory}{\code{logical} Is the theme mandatory for generating solutions?
-Defaults to \code{FALSE}.}
-
 \item{initial_visible}{\code{logical} The initial visible value.
 This is used to determine if the feature is displayed (or not)
 or not the map.

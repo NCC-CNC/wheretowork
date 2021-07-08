@@ -74,7 +74,7 @@ parameters.}
 \item \href{#method-get_theme_data}{\code{SolutionSettings$get_theme_data()}}
 \item \href{#method-get_weight_data}{\code{SolutionSettings$get_weight_data()}}
 \item \href{#method-get_include_data}{\code{SolutionSettings$get_include_data()}}
-\item \href{#method-update_feature_current}{\code{SolutionSettings$update_feature_current()}}
+\item \href{#method-update_current_held}{\code{SolutionSettings$update_current_held()}}
 \item \href{#method-clone}{\code{SolutionSettings$clone()}}
 }
 }
@@ -353,14 +353,15 @@ Get includes matrix data.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-update_feature_current"></a>}}
-\if{latex}{\out{\hypertarget{method-update_feature_current}{}}}
-\subsection{Method \code{update_feature_current()}}{
-Update the current amount held for each feature automatically
+\if{html}{\out{<a id="method-update_current_held"></a>}}
+\if{latex}{\out{\hypertarget{method-update_current_held}{}}}
+\subsection{Method \code{update_current_held()}}{
+Update the current amount held for each themes and weights automatically
 based on the include statuses.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$update_feature_current(
+\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$update_current_held(
   theme_data = self$get_theme_data(),
+  weight_data = self$get_weight_data(),
   include_data = self$get_include_data()
 )}\if{html}{\out{</div>}}
 }
@@ -369,6 +370,8 @@ based on the include statuses.
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{theme_data}}{\verb{[Matrix::sparseMatrix()] with theme data. Defaults to }self$get_theme_data()`.}
+
+\item{\code{weight_data}}{\verb{[Matrix::sparseMatrix()] with weight data. Defaults to }self$get_weight_data()`.}
 
 \item{\code{include_data}}{\verb{[Matrix::sparseMatrix()] with include data. Defaults to }self$get_include_data()`.}
 }

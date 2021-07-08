@@ -237,8 +237,9 @@ read_configuration_file <- function(
 
   # calculate current amount held for each feature within each theme
   ss <- new_solution_settings(
-    themes = themes, weights = list(), includes = includes, parameters = list())
-  ss$update_feature_current()
+    themes = themes, weights = weights, includes = includes,
+    parameters = list())
+  ss$update_current_held()
 
   # return result
   list(

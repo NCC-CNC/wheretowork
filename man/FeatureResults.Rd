@@ -37,7 +37,6 @@ Definition for the FeatureResults class.
 \item \href{#method-new}{\code{FeatureResults$new()}}
 \item \href{#method-print}{\code{FeatureResults$print()}}
 \item \href{#method-repr}{\code{FeatureResults$repr()}}
-\item \href{#method-get_widget_data}{\code{FeatureResults$get_widget_data()}}
 \item \href{#method-clone}{\code{FeatureResults$clone()}}
 }
 }
@@ -104,19 +103,6 @@ Defaults to \code{"]"}.}
 }
 \subsection{Returns}{
 \code{character} value.
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_widget_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_widget_data}{}}}
-\subsection{Method \code{get_widget_data()}}{
-Get data for displaying the object in a \code{\link[=solutionResults]{solutionResults()}} widget.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{FeatureResults$get_widget_data()}\if{html}{\out{</div>}}
-}
-
-\subsection{Returns}{
-\code{list} with widget data.
 }
 }
 \if{html}{\out{<hr>}}

@@ -25,8 +25,6 @@ This method intentionally throws an error.
 \item{\code{name}}{\code{character} value.}
 
 \item{\code{feature}}{\code{list} of \link{Feature} objects.}
-
-\item{\code{mandatory}}{\code{logical} value.}
 }
 \if{html}{\out{</div>}}
 }

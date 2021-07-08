@@ -9,6 +9,7 @@ new_weight(
   variable,
   initial_visible = TRUE,
   initial_status = TRUE,
+  current = 0,
   initial_factor = 0,
   min_factor = 0,
   max_factor = 100,
@@ -30,6 +31,9 @@ Defaults to \code{TRUE}}
 This is used to display information on whether the feature is
 selected (or not) for subsequent analysis.
 Defaults to \code{TRUE}}
+
+\item{current}{\code{numeric} current proportion of values held in existing
+conservation areas (e.g. 0.1 = 10\%).}
 
 \item{initial_factor}{\code{numeric} initial factor value.
 Defaults to 0.}
