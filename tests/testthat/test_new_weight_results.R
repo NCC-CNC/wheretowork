@@ -95,7 +95,7 @@ test_that("widget methods", {
       status = TRUE,
       factor = 0.8,
       total_amount = v$total,
-      current_held = 0.8,
+      current_held = 0.45,
       solution_held = 0.9,
       units = v$units,
       type = "weight_results"

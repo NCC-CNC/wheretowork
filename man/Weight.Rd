@@ -27,8 +27,6 @@ Definition for the Weight class.
 
 \item{\code{initial_visible}}{\code{logical} value.}
 
-\item{\code{current}}{\code{numeric} value.}
-
 \item{\code{status}}{\code{logical} value.}
 
 \item{\code{initial_status}}{\code{logical} value.}

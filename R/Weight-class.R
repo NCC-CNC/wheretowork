@@ -26,9 +26,6 @@ Weight <- R6::R6Class(
     #' @field initial_visible `logical` value.
     initial_visible = NA,
 
-    #' @field current `numeric` value.
-    current = NA_real_,
-
     #' @field status `logical` value.
     status = NA,
 

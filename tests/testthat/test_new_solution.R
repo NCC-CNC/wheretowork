@@ -297,7 +297,8 @@ test_that("widget methods", {
       name = "solution001",
       statistics = list(s1$get_widget_data(), s2$get_widget_data()),
       theme_results = list(thr$get_widget_data()),
-      weight_results = list(wr$get_widget_data())
+      weight_results = list(wr$get_widget_data()),
+      color = last(x$variable$legend$colors)
     )
   )
   ## map manager widget
