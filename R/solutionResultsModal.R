@@ -29,12 +29,12 @@ solutionResultsModal <- function(id, trigger) {
           package = "locationmisc"
         )
       ),
-      class = "modal sbs-modal fade",
+      class = "solution-results-modal modal sbs-modal fade",
       id = id,
       tabindex = "-1",
       `data-sbs-trigger` = trigger,
       htmltools::tags$div(
-        class = "modal-dialog modal-lg",
+        class = "modal-dialog modal-xl",
         htmltools::tags$div(
           class = "modal-content",
           ## header
@@ -47,29 +47,54 @@ solutionResultsModal <- function(id, trigger) {
               `data-dismiss` = "modal",
               htmltools::tags$span(htmltools::HTML("&times;"))
             ),
-            ### title with select input
-            htmltools::tags$h4(
-              class = "modal-title",
-              "Solution results"
+          htmltools::tags$div(
+            class = "modal-header-content",
+              ### solution select container
+              htmltools::tags$div(
+                class = "select-container",
+                shinyWidgets::pickerInput(
+                  inputId = paste0(id, "_select"),
+                  choices = "NA",
+                  label = "Solution:",
+                  multiple = FALSE,
+                  width = "fit",
+                  inline = TRUE
+                )
+              ),
+              ### radio button container
+              htmltools::tags$div(
+                class = "radio-container",
+                shinyWidgets::radioGroupButtons(
+                  inputId = paste0(id, "_radio"),
+                  label = NULL,
+                  choices = c(
+                    `<i class='fa fa-star'></i>Themes` = "themes",
+                    `<i class='fa fa-weight-hanging'></i>Weights` = "weights"),
+                 justified = FALSE,
+                 size  = "normal"
+                ),
+              ),
+              ## download buttons
+              shiny::downloadButton(
+                outputId = "theme_results_button",
+                label = "Download theme results"),
+              shiny::downloadButton(
+                outputId = "weight_results_button",
+                label = "Download weight results")
             )
           ),
           ## body
           htmltools::tags$div(
             class = "modal-body",
-            ### select container
-            htmltools::tags$div(
-              class = "select_container",
-              shiny::selectInput(
-                inputId = paste0(id, "_select"),
-                choices = "NA",
-                label = "Show solution:",
-                width = "50px"
-              )
+            ### themes panel
+            shiny::conditionalPanel(
+              condition = paste0("input.", id, "_radio == 'themes'"),
+              DT::DTOutput(outputId = paste0(id, "_themes_table"))
             ),
-            ### table container
-            htmltools::tags$div(
-              class = "table_container",
-              DT::DTOutput(outputId = paste0(id, "_table"))
+            ### weights panel
+            shiny::conditionalPanel(
+              condition = paste0("input.", id, "_radio == 'weights'"),
+              DT::DTOutput(outputId = paste0(id, "_weights_table"))
             )
           )
         )

@@ -4,7 +4,7 @@
 \alias{solutionResultsModal}
 \title{Solution results modal}
 \usage{
-solutionResultsModal(id)
+solutionResultsModal(id, trigger)
 }
 \arguments{
 \item{id}{\code{character} identifier for the sidebar pane.}

@@ -366,7 +366,7 @@ SolutionSettings <- R6::R6Class(
         ncol(theme_data) == ncol(include_data),
         ncol(weight_data) == ncol(include_data),
         nrow(include_data) == length(self$includes),
-        nrow(weight_data) == length(self$includes))
+        nrow(weight_data) == length(self$weights))
 
       # calculate current status for each planning unit
       curr_status <- include_data

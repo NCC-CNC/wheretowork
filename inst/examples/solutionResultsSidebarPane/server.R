@@ -6,21 +6,25 @@ function(input, output, session) {
 
   # initialize modal
   ## select input
-  updateSelectInput(
-    "widget_modal_select",
-    choices = sol_names,
-    selected = sol_names[[1]]
+  shinyWidgets::updatePickerInput(
+    session = session,
+    inputId = "widget_modal_select",
+    choices = sol_names
   )
 
   ## table
   observeEvent(input$widget_modal_select, {
+    ### specify dependencies
     req(input$widget_modal_select)
+    if (!input$widget_modal_select %in% sol_names) return()
+    ### find solution to show
     i <- which(sol_names == input$widget_modal_select)[[1]]
-    output$widget_modal_theme_table <- renderDataTable({
-      sol[[i]]$render_themes_table()
+    ### update tables
+    output$widget_modal_themes_table <- renderDataTable({
+      sols[[i]]$render_theme_results()
     })
     output$widget_modal_weights_table <- renderDataTable({
-      sol[[i]]$render_themes_table()
+      sols[[i]]$render_weight_results()
     })
   })
 

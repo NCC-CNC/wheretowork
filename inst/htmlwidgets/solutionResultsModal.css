@@ -1,0 +1,59 @@
+/* overall widget styling */
+
+/* -- modal */
+.solution-results-modal.modal.sbs-modal {
+  overflow-y: hidden;
+}
+
+.solution-results-modal .modal-content {
+  height: calc(100vh - 50px);
+}
+
+/* -- define modal-xl class for wide modal */
+@media (min-width: 768px) {
+  .modal-xl {
+    width: 90%;
+   max-width:1200px;
+  }
+}
+
+/* modal header */
+.solution-results-modal .modal-header-content {
+  display: flex;
+}
+
+/* select input */
+.solution-results-modal .select-container .dropdown {
+  min-width: 300px;
+}
+
+.solution-results-modal .select-container .form-group {
+  margin-bottom: 0;
+}
+
+/* radio buttons */
+.solution-results-modal .radio-container {
+  margin-left: 5px;
+}
+
+.solution-results-modal .radio-container .form-group {
+  margin-bottom: 0;
+}
+
+.solution-results-modal .radio-container i {
+  margin-right: 3px;
+}
+
+/* download buttons */
+#theme_results_button,
+#weight_results_button {
+  visibility: hidden;
+}
+
+/* tables */
+.solution-results-modal .spacer {
+  width: 5px;
+  font-size: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
