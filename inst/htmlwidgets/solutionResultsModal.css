@@ -28,6 +28,17 @@
 }
 
 .solution-results-modal .select-container .form-group {
+  display: flex !important;
+  align-items: center;
+}
+
+.solution-results-modal .select-container .control-label {
+  font-size: 1.8em !important;
+  margin-bottom: 0px;
+  margin-right: 3px;
+}
+
+.solution-results-modal .select-container .form-group {
   margin-bottom: 0;
 }
 
