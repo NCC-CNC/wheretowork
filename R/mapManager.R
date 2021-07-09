@@ -19,6 +19,7 @@
 #'
 #'   \item{value}{`numeric` or `logical` values.}
 #'
+#'
 #' }
 #'
 #' @rdname mapManager-widget
