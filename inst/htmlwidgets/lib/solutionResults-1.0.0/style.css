@@ -1,14 +1,42 @@
-.solution-results-header {
-  margin-left: -20px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+/* overall widget */
+.solutionResults {
+  padding-right: 3px;
 }
 
-.solution-results-main {
-  margin-left: -20px;
+/* header */
+.solution-results .solution-results-header {
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 0px;
 }
 
-.single-theme-result {
+/* panel titles */
+.solution-settings .panel-title span {
+  display: flex;
+}
+
+.solution-settings .panel-title i {
+  margin-right: 5px;
+}
+
+/* panel content */
+.solution-results .panel.panel-default {
+  max-height: 68.5vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.solution-results .themes-results,
+.solution-results .weights-results {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: stretch;
+}
+
+/* single theme widgets */
+.solution-results .single-theme-result {
   padding: 5px;
   display: flex;
   flex-direction: column;
@@ -16,7 +44,8 @@
   align-items: center;
 }
 
-.weight-result {
+/*  weight widgets */
+.solution-results .weight-result {
   padding: 5px;
   display: flex;
   flex-direction: column;
@@ -24,18 +53,11 @@
   align-items: center;
 }
 
-.multi-theme-result {
+/*  multi-theme widgets */
+.solution-results .multi-theme-result {
   padding: 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.themes {
-  overflow: scroll;
-}
-
-.weights {
-  overflow: scroll;
 }

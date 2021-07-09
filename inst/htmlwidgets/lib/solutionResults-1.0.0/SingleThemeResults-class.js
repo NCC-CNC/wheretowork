@@ -17,19 +17,14 @@ class SingleThemeResults {
     icon,
     solution_color
   ) {
+    // declare fields
     this.id = id;
-    this.el =
-      document.importNode(
-        document
-        .getElementById(manager)
-        .querySelector('.single-theme-results-template')
-        .content,
-      true);
 
-    const chartContainer = document.createElement('div');
-    chartContainer.classList.add('single-theme-result')
-    this.el.appendChild(chartContainer);
+    // create HTML element
+    this.el = document.createElement("div");
+    this.el.classList.add("single-theme-result");
 
+    // create chart
     const chart = new SingleSolutionChart([{
       name,
       feature_name,
@@ -41,12 +36,13 @@ class SingleThemeResults {
       units,
       solution_color
     }], {
-      feature_goal: '#118ab2',
-      feature_current_held: '#06d6a0',
+      feature_goal: "#118ab2",
+      feature_current_held: "#06d6a0",
       feature_solution_held: solution_color,
     });
 
-    chart.render(chartContainer);
+    // render chart on HTML element
+    chart.render(this.el);
   }
 
   /* render method */

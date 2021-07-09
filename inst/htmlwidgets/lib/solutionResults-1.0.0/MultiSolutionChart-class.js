@@ -2,8 +2,8 @@ class MultiSolutionChart {
 
   constructor(data, colors) {
     this.data = data;
-    this.width = 180;
-    this.height = 180;
+    this.width = 130;
+    this.height = 130;
     this.chartRadius = this.width / 2;
     this.arcMinRadius = 1;
     this.arcPadding = 3;
@@ -24,7 +24,7 @@ class MultiSolutionChart {
     this.locale = {
       feature_goal: 'Goal',
       feature_current_held: 'Current',
-      feature_solution_held: 'Solution',           
+      feature_solution_held: 'Solution',
     };
     this.colors = colors;
   }
@@ -137,7 +137,7 @@ class MultiSolutionChart {
                   ? `${locale}: ${Math.round(datum[1] * 100)}% (${Math.round(datum[1] * datum[4])} ${datum[6]})`
                   : `${locale}: 0% (0 ${datum[6]})`
                 )
-                : `${locale}: ${Math.round(datum[1] * 100)}% (${Math.round(datum[1] * datum[4])} ${datum[6]})` 
+                : `${locale}: ${Math.round(datum[1] * 100)}% (${Math.round(datum[1] * datum[4])} ${datum[6]})`
               )
               .style('color', datum[2])
               .style('font-weight', datum[0] === type ? 'bold' : 'normal')
@@ -193,7 +193,7 @@ class MultiSolutionChart {
             .append('div')
             .text(() => `
               ${self.locale[attr]}: ≥ ${Math.round(Math.min(...parsedData[attr]) * 100)}%
-              (≥${self.minMultArray(parsedData[attr], parsedData.feature_total_amount)} ${self.data[0].units 
+              (≥${self.minMultArray(parsedData[attr], parsedData.feature_total_amount)} ${self.data[0].units
                   || 'units'})`)
             .style('color', self.colors[attr]);
         }

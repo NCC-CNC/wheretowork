@@ -1,18 +1,36 @@
 function(input, output, session) {
-  # initialize solution settings widget
+  # initialize
+  ## map
+  output$map <- renderLeaflet({
+    leaflet() %>%
+      addTiles() %>%
+      addSidebar(
+        id = "sidebar",
+        options = list(position = "left", fit = FALSE)
+      )
+  })
+
+  ## widget
   output$widget <- renderSolutionResults({
     solutionResults(x = sols)
   })
 
-  # initialize modal
-  ## select input
+  ## modal select input
   shinyWidgets::updatePickerInput(
     session = session,
     inputId = "widget_modal_select",
     choices = sol_names
   )
 
-  ## table
+  ## picker input
+  shinyWidgets::updatePickerInput(
+    session = session,
+    inputId = "widget_select",
+    choices = sol_names
+  )
+
+  ## observers
+  ## tables
   observeEvent(input$widget_modal_select, {
     ### specify dependencies
     req(input$widget_modal_select)
@@ -28,13 +46,17 @@ function(input, output, session) {
     })
   })
 
-  # initialize map
-  output$map <- renderLeaflet({
-    leaflet() %>%
-      addTiles() %>%
-      addSidebar(
-        id = "sidebar",
-        options = list(position = "left", fit = FALSE)
-      )
+  ## picker input
+  observeEvent(input$widget_select, {
+    ### specify dependencies
+    req(input$widget_select)
+    if (!input$widget_modal_select %in% sol_names) return()
+    ### show solution results
+    showSolutionResults(
+      session = session,
+      inputId = "widget",
+      value = input$widget_select
+    )
   })
+
 }

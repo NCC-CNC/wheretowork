@@ -100,26 +100,28 @@ solutionResults_html <- function(id, style, class, ...) {
         class = "solution-results-container",
         htmltools::div(
           class = "solution-results",
-          # select input
+          # header
           htmltools::tags$div(
             class = "solution-results-header",
-            htmltools::tags$label(
-              "Solution:"
+            # select input
+            shinyWidgets::pickerInput(
+              inputId = paste0(id, "_select"),
+              label = "Solution:",
+              choices = c("NA" = "NA"),
+              selected = NULL,
+              width = "fit"
             ),
-            htmltools::tags$select(
-              class = "solution-select"
-            )
-          ),
-          # modal button
-          htmltools::tags$div(
-            class = "solution-button-container",
-            # button to import data
-            shinyBS::bsButton(
-              inputId = paste0(id, "_button"),
-              label = "View data",
-              icon = shiny::icon("table"),
-              style = "primary",
-              type = "action"
+            # modal button
+            htmltools::tags$div(
+              class = "solution-button-container",
+              # button to import data
+              shinyBS::bsButton(
+                inputId = paste0(id, "_button"),
+                label = "View data",
+                icon = shiny::icon("table"),
+                style = "primary",
+                type = "action"
+              )
             )
           ),
           # modal
@@ -140,12 +142,18 @@ solutionResults_html <- function(id, style, class, ...) {
                 htmltools::tags$div(class = "statistics")
               ),
               shinyBS::bsCollapsePanel(
-                title = "Themes",
+                title = htmltools::tags$span(
+                  shiny::icon("star"),
+                  "Themes"
+                ),
                 value = paste0(id, "_collapseThemePanel"),
                 htmltools::tags$div(class = "themes")
               ),
               shinyBS::bsCollapsePanel(
-                title = "Weights",
+                title = htmltools::tags$span(
+                  shiny::icon("weight-hanging"),
+                  "Weights"
+                ),
                 value = paste0(id, "_collapseWeightPanel"),
                 htmltools::tags$div(class = "weights")
               )
@@ -164,59 +172,6 @@ solutionResults_html <- function(id, style, class, ...) {
         class = "statistic-template",
         htmltools::tags$div(
           class  = "statistic",
-          # TODO
-        )
-      )
-    )
-
-  ## weight
-  x <-
-    htmltools::tagAppendChild(
-      x,
-      htmltools::tags$template(
-        class = "weight-results-template",
-        htmltools::tags$div(
-          class  = "solution-result",
-          # TODO
-        )
-      )
-    )
-
-  ## singleTheme
-  x <-
-    htmltools::tagAppendChild(
-      x,
-      htmltools::tags$template(
-        class = "single-theme-results-template",
-        htmltools::tags$div(
-          class  = "solution-result",
-          # TODO
-        )
-      )
-    )
-
-  ## multiTheme
-  ### main container
-  x <-
-    htmltools::tagAppendChild(
-      x,
-      htmltools::tags$template(
-        class = "multi-theme-results-template",
-        htmltools::tags$div(
-          class = "solution-result",
-          # TODO
-        )
-      )
-    )
-
-  ### sub container
-  x <-
-    htmltools::tagAppendChild(
-      x,
-      htmltools::tags$template(
-        class = "multi-theme-single-results-template",
-        htmltools::tags$div(
-          class = "single-container",
           # TODO
         )
       )

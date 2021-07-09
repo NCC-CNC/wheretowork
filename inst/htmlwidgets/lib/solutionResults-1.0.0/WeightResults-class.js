@@ -12,20 +12,14 @@ class WeightResults {
     units,
     solution_color
   ) {
-    // class fields
+    // declare fields
     this.id = id;
-    this.el =
-      document.importNode(
-        document
-        .getElementById(manager)
-        .querySelector(".weight-results-template")
-        .content,
-      true);
 
-    const chartContainer = document.createElement('div');
-    chartContainer.classList.add('weight-result')
-    this.el.appendChild(chartContainer);
+    // create HTML element
+    this.el = document.createElement("div");
+    this.el.classList.add("weight-result");
 
+    // create chart
     const chart = new WeightSolutionChart([{
       name,
       current_held,
@@ -35,12 +29,13 @@ class WeightResults {
       status,
       factor,
     }], {
-      goal: '#118ab2',
-      current: '#06d6a0',
+      goal: "#118ab2",
+      current: "#06d6a0",
       solution: solution_color,
     });
 
-    chart.render(chartContainer);
+    // render chart on HTML element
+    chart.render(this.el);
   }
 
   /* render method */

@@ -2,8 +2,8 @@ class WeightSolutionChart {
 
   constructor(data, colors) {
     this.data = data;
-    this.width = 180;
-    this.height = 120;
+    this.width = 130;
+    this.height = 130;
     this.colors = colors
   }
 

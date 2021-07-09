@@ -2,8 +2,8 @@ class SingleSolutionChart {
 
   constructor(data, colors) {
     this.data = data;
-    this.width = 180;
-    this.height = 200;
+    this.width = 130;
+    this.height = 130;
     this.chartRadius = this.width / 2;
     this.arcMinRadius = 50;
     this.arcWidth = this.chartRadius - this.arcMinRadius - 1 - 10;
@@ -20,7 +20,7 @@ class SingleSolutionChart {
     this.locale = {
       feature_goal: 'Goal',
       feature_current_held: 'Current',
-      feature_solution_held: 'Solution',           
+      feature_solution_held: 'Solution',
     };
     this.colors = colors
   }
@@ -86,7 +86,7 @@ class SingleSolutionChart {
                 : `${locale}: 0% (0 ${d.units})`
               )
               : `${locale}: ${Math.round(d[key] * 100)}% (${Math.round(d[key] * d.feature_total_amount)} ${d.units
-                  || 'units'})` 
+                  || 'units'})`
             )
             .style('color', self.colors[key])
             .style('font-weight', type === key ? 'bold' : 'normal')

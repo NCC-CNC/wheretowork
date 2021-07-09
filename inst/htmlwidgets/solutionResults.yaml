@@ -1,10 +1,4 @@
 dependencies:
-  - name: d3
-    version: 7.0.0
-    src: htmlwidgets/lib/d3-7.0.0
-    script:
-      - d3.min.js
-
   - name: utils
     version: 1.0.0
     src: htmlwidgets/lib/utils-1.0.0
@@ -12,6 +6,12 @@ dependencies:
       - utils.js
     stylesheet:
       - style.css
+
+  - name: d3
+    version: 7.0.0
+    src: htmlwidgets/lib/d3-7.0.0
+    script:
+      - d3.min.js
 
   - name: solutionResults
     version: 1.0.0

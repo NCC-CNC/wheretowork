@@ -15,12 +15,14 @@ class Solution {
 
     // statistics results
     this.statistics_el = document.createElement("div");
+    this.statistics_el.classList.add("statistics-results");
     statistics.forEach((x) => {
       this.statistics_el.appendChild(newStatistic(manager, x).render());
     });
 
     // theme results
     this.themes_el = document.createElement("div");
+    this.themes_el.classList.add("themes-results");
     theme_results.forEach((x) => {
       this.themes_el.appendChild(
         newThemeResults(manager, x, solution_color).render());
@@ -28,6 +30,7 @@ class Solution {
 
     // weight results
     this.weights_el = document.createElement("div");
+    this.weights_el.classList.add("weights-results");
     weight_results.forEach((x) => {
       this.weights_el.appendChild(
         newWeightResults(manager, x, solution_color).render());

@@ -22,9 +22,7 @@ d <- new_dataset(f1, f2, f3)
 
 # simulate themes, weights, and a solution
 sim_themes <- simulate_themes(d, 2, 1)
-sim_weights <-
-  append(simulate_weights(d, 10), append(simulate_weights(d, 10),
-         simulate_weights(d, 10)))
+sim_weights <- simulate_weights(d, 2)
 
 # simulate solutions
 sols <- lapply(seq_len(5), function(x) {
