@@ -34,7 +34,7 @@ class MultiThemeLayer {
     this.main_el = this.el.querySelector(".main");
 
     // local variables
-    let that = this;
+    const that = this;
 
     /// attach DOM elements for each feature
     for (let i = 0; i < this.n_features; ++i) {
@@ -50,13 +50,14 @@ class MultiThemeLayer {
     /// store HTML elements for each feature
     this.single_visible_el = this.main_el.querySelectorAll(".visible-checkbox");
     this.single_legend_el = this.main_el.querySelectorAll(".legend");
-    let single_view_el = this.main_el.querySelectorAll(".view-checkbox");
-    let single_name_el = this.main_el.querySelectorAll(".name-label");
+    const single_view_el = this.main_el.querySelectorAll(".view-checkbox");
+    const single_name_el = this.main_el.querySelectorAll(".name-label");
+    const mapManagerLayer = this.el.querySelector(".map-manager-layer");
 
     // attach id to elements
     /// main container
-        this.el.querySelector(".map-manager-layer").setAttribute("data-id", id);
-    this.el.querySelector(".map-manager-layer").id = id;
+    mapManagerLayer.setAttribute("data-id", id);
+    mapManagerLayer.id = id;
     /// single view containers
     for (let i = 0; i < this.n_features; ++i) {
       this.main_el.children[i].id = feature_id[i];
@@ -68,10 +69,10 @@ class MultiThemeLayer {
       animation: 150,
       dataIdAttr: "data-id",
       ghostClass: "ghost",
-      onUpdate: function(event) {
+      onUpdate: function() {
         if (HTMLWidgets.shinyMode) {
-          let new_ids = this.toArray();
-          let order = feature_id.map(function(x) {
+          const new_ids = this.toArray();
+          const order = feature_id.map(function(x) {
             return that.n_features - (new_ids.findIndex((z) => z === x));
           });
           Shiny.setInputValue(manager, {
@@ -107,7 +108,7 @@ class MultiThemeLayer {
     if (HTMLWidgets.shinyMode) {
       /// show/hide main container
       this.view_el.addEventListener("change", function () {
-        let checked = this.checked;
+        const checked = this.checked;
         if (checked) {
           that.main_el.style.display = "block";
           // TODO: insert JS to add animation for maximizing container
@@ -119,7 +120,7 @@ class MultiThemeLayer {
       /// show/hide legends
       for (let i = 0; i < this.n_features; ++i) {
         single_view_el[i].addEventListener("change", function () {
-          let checked = this.checked;
+          const checked = this.checked;
           if (checked) {
             that.single_legend_el[i].style.display = "block";
             // TODO: insert JS to add animation for maximizing legend
@@ -132,7 +133,7 @@ class MultiThemeLayer {
       /// set all features to be visible/invisible when overall
       /// visisble button clicked
       this.visible_el.addEventListener("change", function () {
-        let checked = this.checked;
+        const checked = this.checked;
         for (let i = 0; i < that.n_features; ++i) {
           that.single_visible_el[i].checked = checked;
         }
@@ -143,7 +144,7 @@ class MultiThemeLayer {
     if (HTMLWidgets.shinyMode) {
       /// overall visible button
       this.visible_el.addEventListener("change", function () {
-        let checked = this.checked;
+        const checked = this.checked;
         Shiny.setInputValue(manager, {
           id: id,
           setting: "feature_visible",
@@ -210,8 +211,6 @@ class MultiThemeLayer {
     // re-order layers in widget
     this.sortable.sort(new_ids, true);
   }
-
-
 
   /* render method */
   render() {

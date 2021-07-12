@@ -1,6 +1,6 @@
 function newLayer(manager, x) {
   if (x.type == "solution") {
-    var y = new SolutionLayer(
+    return new SolutionLayer(
       manager,
       x.id,
       x.name,
@@ -10,7 +10,7 @@ function newLayer(manager, x) {
       x.units
     );
   } else if (x.type == "include") {
-    var y = new IncludeLayer(
+    return new IncludeLayer(
       manager,
       x.id,
       x.name,
@@ -19,7 +19,7 @@ function newLayer(manager, x) {
       x.units
     );
   } else if (x.type == "weight") {
-    var y = new WeightLayer(
+    return new WeightLayer(
       manager,
       x.id,
       x.name,
@@ -29,7 +29,7 @@ function newLayer(manager, x) {
     );
   } else {
     if (typeof(x.feature_name) === "string") {
-      var y = new SingleThemeLayer(
+      return new SingleThemeLayer(
         manager,
         x.id,
         x.name,
@@ -40,7 +40,7 @@ function newLayer(manager, x) {
         x.units
       );
     } else {
-      var y = new MultiThemeLayer(
+      return new MultiThemeLayer(
         manager,
         x.id,
         x.name,
@@ -52,5 +52,4 @@ function newLayer(manager, x) {
       );
     }
   }
-  return y;
 }

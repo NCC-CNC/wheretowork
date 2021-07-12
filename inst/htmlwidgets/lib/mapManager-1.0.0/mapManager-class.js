@@ -5,7 +5,7 @@ class MapManager {
     this.id = id,
     this.container = container;
     // initialize layers
-    this.layers = layers.map((x, i) => newLayer(id, x));
+    this.layers = layers.map(x => newLayer(id, x));
     this.order = order;
     this.sortable = undefined;
   }
@@ -63,7 +63,7 @@ class MapManager {
       animation: 150,
       dataIdAttr: "data-id",
       ghostClass: "ghost",
-      onUpdate: function(event) {
+      onUpdate: function() {
         if (HTMLWidgets.shinyMode) {
           // extract ids for each layer
           const ids = that.layers.map((x) => x.id);

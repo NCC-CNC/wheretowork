@@ -25,11 +25,12 @@ class SingleThemeLayer {
     this.legend_el = this.el.querySelector(".legend");
 
     // local variables
-    let that = this;
+    const that = this;
+    const mapManagerLayer = this.el.querySelector(".map-manager-layer")
 
     // attach id to element
-    this.el.querySelector(".map-manager-layer").setAttribute("data-id", id);
-    this.el.querySelector(".map-manager-layer").id = id;
+    mapManagerLayer.setAttribute("data-id", id);
+    mapManagerLayer.id = id;
 
     // set initial values
     /// name
@@ -45,7 +46,7 @@ class SingleThemeLayer {
     /// show/hide legend on click
     if (HTMLWidgets.shinyMode) {
       this.view_el.addEventListener("change", function () {
-        let checked = this.checked;
+        const checked = this.checked;
         if (checked) {
           that.legend_el.style.display = "block";
           // TODO: insert JS to add animation for maximizing legend
@@ -60,7 +61,7 @@ class SingleThemeLayer {
     if (HTMLWidgets.shinyMode) {
       /// status
       this.visible_el.addEventListener("change", function () {
-        let checked = this.checked;
+        const checked = this.checked;
         Shiny.setInputValue(manager, {
           id: id,
           setting: "feature_visible",
