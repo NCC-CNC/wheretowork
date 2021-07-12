@@ -109,10 +109,12 @@ class WeightSetting {
     }
   }
 
+  /* update name */
   updateName(value) {
     this.name_el.innerText = value;
   }
 
+  /* update status */
   updateStatus(value) {
     // update HTML elements if needed
     if (this.status_el.checked !== value) {

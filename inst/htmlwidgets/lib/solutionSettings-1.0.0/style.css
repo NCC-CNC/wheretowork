@@ -9,6 +9,7 @@
   flex-direction: column;
 }
 
+/* solution-settings-container */
 .solution-settings-container {
   display: flex;
   flex: 1 1 auto;
@@ -16,6 +17,7 @@
   overflow-y: hidden;
 }
 
+/* solution-settings */
 .solution-settings {
   flex: 3;
   display: flex;
@@ -53,6 +55,7 @@
   background: #ced4da; /* $gray-400 */
 }
 
+/* panels  group */
 .solution-settings .panel-group {
   flex: 1 1 auto;
   flex-direction: column;
@@ -61,6 +64,7 @@
   padding-right: 4px;
 }
 
+/* panel.panel-default */
 .solution-settings .panel.panel-default {
   max-height: 68.5vh;
   overflow-y: scroll;
@@ -100,10 +104,12 @@
   padding-right: 0px !important;
 }
 
+/* -- colourpicker-input-container */
 .solution-footer-color .colourpicker-input-container {
   width: 25px;
 }
 
+/* -- colourpicker-panel */
 .solution-footer-color .colourpicker-panel {
   width: 184px !important;
   bottom: 38px;
