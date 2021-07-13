@@ -19,6 +19,9 @@ class WeightResults {
     this.el = document.createElement("div");
     this.el.classList.add("weight-result");
 
+    // manually coerce factor to zero if status is false
+    const manual_factor = status ? factor : 0;
+
     // create chart
     const chart = new WeightSolutionChart([{
       name,
@@ -27,11 +30,12 @@ class WeightResults {
       total_amount,
       units,
       status,
-      factor,
+      factor: manual_factor,
+      total: 1,
     }], {
-      goal: "#118ab2",
-      current: "#06d6a0",
-      solution: solution_color,
+      current_held: "#06d6a0",
+      solution_held: solution_color,
+      total: "#cccccc44"
     });
 
     // render chart on HTML element

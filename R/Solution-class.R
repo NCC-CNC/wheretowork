@@ -386,7 +386,7 @@ Solution <- R6::R6Class(
         weight_results = lapply(
           self$weight_results,
           function(x) x$get_widget_data()),
-        color = last(self$variable$legend$colors)
+        solution_color = last(self$variable$legend$colors)
       )
     },
 

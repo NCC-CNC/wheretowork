@@ -24,8 +24,7 @@ dependencies:
       - SolutionResults-class.js
       - Statistic-class.js
       - utils.js
-      - SingleSolutionChart-class.js
-      - MultiSolutionChart-class.js
+      - ThemeSolutionChart-class.js
       - WeightSolutionChart-class.js
     stylesheet:
       - style.css
