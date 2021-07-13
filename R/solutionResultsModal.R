@@ -52,13 +52,11 @@ solutionResultsModal <- function(id, trigger) {
               ### solution select container
               htmltools::tags$div(
                 class = "select-container",
-                shinyWidgets::pickerInput(
+                horizontalPickerInput(
                   inputId = paste0(id, "_select"),
                   choices = "NA",
                   label = "Solution:",
-                  multiple = FALSE,
-                  width = "fit",
-                  inline = TRUE
+                  multiple = FALSE
                 )
               ),
               ### radio button container
@@ -77,10 +75,14 @@ solutionResultsModal <- function(id, trigger) {
               ## download buttons
               shiny::downloadButton(
                 outputId = "theme_results_button",
-                label = "Download theme results"),
+                label = "Download theme results",
+                class = "btn-sm"
+              ),
               shiny::downloadButton(
                 outputId = "weight_results_button",
-                label = "Download weight results")
+                label = "Download weight results",
+                class = "btn-sm"
+              )
             )
           ),
           ## body

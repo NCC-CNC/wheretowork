@@ -50,8 +50,8 @@ solutionResults <- function(
     elementId = elementId,
     dependencies = c(
       htmltools::htmlDependencies(shiny::icon("map-marked-alt")),
-      htmltools::htmlDependencies(
-        shinyBS::bsCollapse(shinyBS::bsCollapsePanel("id")))
+      htmltools::htmlDependencies(shinyBS::bsCollapsePanel("id")),
+      htmltools::htmlDependencies(shinyWidgets::pickerInput("id", "x", "y"))
     )
   )
 }
@@ -104,12 +104,16 @@ solutionResults_html <- function(id, style, class, ...) {
           htmltools::tags$div(
             class = "solution-results-header",
             # select input
-            shinyWidgets::pickerInput(
+            # horizontalSelectInput(
+            #   inputId = paste0(id, "_select"),
+            #   label = "Solution:",
+            #   choices = c("NA" = "NA")
+            # ),
+            horizontalPickerInput(
               inputId = paste0(id, "_select"),
               label = "Solution:",
               choices = c("NA" = "NA"),
-              selected = NULL,
-              width = "fit"
+              selected = NULL
             ),
             # modal button
             htmltools::tags$div(

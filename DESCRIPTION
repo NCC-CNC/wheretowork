@@ -89,6 +89,7 @@ Collate:
     'exportSidebarPane.R'
     'extract_data_matrix.R'
     'generate_solution.R'
+    'horizontalPickerInput.R'
     'importModal.R'
     'importSettings.R'
     'import_spatial_data.R'
