@@ -46,6 +46,7 @@ Suggests:
     shinyFeedback (>= 0.3.0),
     shinybusy (>= 0.2.2),
     openxlsx (>= 4.2.3),
+    shinyalert (>= 2.0.0),
 Depends:
     R (>= 4.0.0),
     shiny (>= 1.6.0),
