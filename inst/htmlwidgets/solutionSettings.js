@@ -4,16 +4,16 @@ HTMLWidgets.widget({
   type: "output",
   factory: function(el, width, height) {
     // shared variables
-    var elementId = el.id;
-    var initialized = false;
-    var container = document.getElementById(elementId);
-    var handle = undefined;
+    const elementId = el.id;
+    let initialized = false;
+    let container = document.getElementById(elementId);
+    let handle = undefined;
 
     return {
 
       renderValue: function(opts) {
         // alias this
-        var that = this;
+        let that = this;
 
         // initialize widget
         if (!initialized) {
@@ -62,13 +62,13 @@ HTMLWidgets.widget({
 
 // Attach message handlers if in Shiny mode (these correspond to API)
 if (HTMLWidgets.shinyMode) {
-  var fxns = ["update"];
+  const fxns = ["update"];
 
-  var addShinyHandler = function(fxn) {
+  let addShinyHandler = function(fxn) {
     return function() {
       Shiny.addCustomMessageHandler(
         "solutionSettings:" + fxn, function(message) {
-          var el = document.getElementById(message.id);
+          let el = document.getElementById(message.id);
           if (el) {
             delete message["id"];
             el.widget[fxn](message);
@@ -78,7 +78,7 @@ if (HTMLWidgets.shinyMode) {
     }
   };
 
-  for (var i = 0; i < fxns.length; ++i) {
+  for (let i = 0; i < fxns.length; ++i) {
     addShinyHandler(fxns[i])();
   }
 }

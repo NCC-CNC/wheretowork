@@ -16,6 +16,7 @@
 #' @section Server value:
 #' The widget sends a `list` with the following values to the server:
 #'
+#'
 #' \describe{
 #'
 #' \item{id}{`character` identifier for the theme or weight.}
