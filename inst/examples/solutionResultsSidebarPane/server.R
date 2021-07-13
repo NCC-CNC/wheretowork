@@ -15,13 +15,6 @@ function(input, output, session) {
     solutionResults(x = sols)
   })
 
-  ## sidebar select input
-  # shiny::updateSelectInput(
-  #   session = session,
-  #   inputId = "widget_select",
-  #   choices = sol_names
-  # )
-
   shinyWidgets::updatePickerInput(
     session = session,
     inputId = "widget_select",
@@ -34,7 +27,6 @@ function(input, output, session) {
     inputId = "widget_modal_select",
     choices = sol_names
   )
-
 
   ## observers
   ## tables

@@ -22,17 +22,27 @@ solutionResultsModal <- function(id, trigger) {
   # create modal
   out <-
     htmltools::tags$div(
-      includeCSS(
+      # include CSS style
+      shiny::includeCSS(
         system.file(
           "htmlwidgets",
           "solutionResultsModal.css",
           package = "locationmisc"
         )
       ),
+      # script to style modal backdrop
+      htmltools::tags$script(htmltools::HTML(paste0(
+        "$('#", id, "').on('show.bs.modal', function() {",
+        "  setTimeout(function() {",
+        "  $('#", id, "').appendTo('body');",
+        "$('.modal-backdrop').addClass('solution-results-modal-backdrop');",
+        "})});"
+      ))),
       class = "solution-results-modal modal sbs-modal fade",
       id = id,
       tabindex = "-1",
       `data-sbs-trigger` = trigger,
+      # modal content
       htmltools::tags$div(
         class = "modal-dialog modal-xl",
         htmltools::tags$div(
