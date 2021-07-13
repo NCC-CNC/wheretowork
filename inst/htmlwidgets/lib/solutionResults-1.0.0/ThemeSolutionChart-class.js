@@ -11,7 +11,6 @@ class ThemeSolutionChart {
     this.arcWidth =
       (this.chartRadius - this.arcMinRadius - this.numArcs * this.arcPadding) /
       this.numArcs;
-    this.minWordCount = 25;
     this.fontSize = 12;
     this.scale = d3
       .scaleLinear()
