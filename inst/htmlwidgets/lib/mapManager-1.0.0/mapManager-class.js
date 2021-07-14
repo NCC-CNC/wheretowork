@@ -19,6 +19,10 @@ class MapManager {
     this.order.push(Math.max.apply(null, this.order) + 1);
     // insert HTML element as the first layer
     this.container.querySelector(".layers").prepend(x.render());
+    // initialize tooltips in new layer
+    $(this.container)
+      .find(`[data-id = "${x.id}"] [data-toggle = "tooltip"]`)
+      .tooltip();
   }
 
   dropLayer(id) {
