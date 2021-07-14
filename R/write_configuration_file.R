@@ -92,9 +92,9 @@ write_configuration_file <- function(
   # create full settings list
   params <- list(
     name = name,
-    spatial_path = spatial_path,
-    attribute_path = attribute_path,
-    boundary_path = boundary_path,
+    spatial_path = basename(spatial_path),
+    attribute_path = basename(attribute_path),
+    boundary_path = basename(boundary_path),
     mode = mode,
     themes = themes_params,
     weights = weights_params,
