@@ -7,32 +7,37 @@ HTMLWidgets.widget({
     var initialized = false;
     var container = document.getElementById(elementId);
     var layers_el = container.querySelector(".layers");
-    var button_el = container.querySelector(`#${elementId}_button`);
+    var button_el = undefined;
     return {
 
       renderValue: function(opts) {
+        // initialize widget
         if (!initialized) {
-          // set initialized
+          /// set initialized
           initialized = true;
-          // add click event to button
+          /// attach the widget to the DOM
+          container.widget = this;
+          /// find button
+          button_el = document.getElementById(opts.buttonId);
+          /// add click event to button
           if (HTMLWidgets.shinyMode) {
             button_el.addEventListener("click", function() {
-              // compile results
+              /// compile message for backend
               const settings = el.querySelectorAll(".layer-settings");
               let i = 0;
               let value = {};
               Array.prototype.slice.call(settings).forEach((x) => {
                   ++i;
-                  const v1 = x.querySelector("label").innerText;
+                  const v1 = x.querySelector("p").innerText;
                   const v2 = x.querySelector("input").checked;
                   const v3 = x.querySelector("select").value;
                   value[i] = {name: v1, import: v2, type: v3};
               });
-              // send message to backend
+              /// send message to backend
               Shiny.setInputValue(elementId, value);
             });
           }
-          // if opts.values contains values then use them to populate the widget
+          /// if initialized with values, then use them to populate widget
           if (opts.values !== null) {
             this.update(opts);
           }
@@ -50,10 +55,14 @@ HTMLWidgets.widget({
       update: function(params) {
         // empty all layers
         this.empty();
-
+        // promote to array if needed
+        let values = params.value;
+        if (typeof(values) === "string") {
+          values = [params.value];
+        }
         // add new layers based on parameters
-        params.values.forEach((x) => {
-          // import template
+        values.forEach((x) => {
+          /// import template
           curr_el =
             document.importNode(
               document
@@ -61,35 +70,29 @@ HTMLWidgets.widget({
               .querySelector(".layer-settings-template")
               .content,
             true);
-          // insert layer name into the label
-          curr_el.querySelector("label").innerText = x;
-
+          /// insert layer name into the label
+          curr_el.querySelector("p").innerText = x;
           this.view_el = curr_el.querySelector("input");
-          var select = curr_el.querySelector("select");       
-          var label = curr_el.querySelector("label");
+          const select = curr_el.querySelector("select");
+          const label = curr_el.querySelector("p");
           this.view_el.checked = true;
           curr_el.querySelector("select").disabled = false;
-
-          // TODO: add event handler to
-          // 1: disable select input + make label grey
-          // when the curr_el.querySelector("input").checked === false;
-          // 2: enable select input + make label black
-          // when the curr_el.querySelector("input").checked === true;
-
-          this.view_el.addEventListener("change", function () {
-            let checked = this.checked;
-            if (checked) {
-              label.style.color = "black";
-              select.disabled=false;
-            } else {
-              label.style.color = "grey";
-              select.disabled = true;
-            }
-           });
-
-          // append layer to container
+          /// add event listeners
+          if (HTMLWidgets.shinyMode) {
+            this.view_el.addEventListener("change", function () {
+              let checked = this.checked;
+              if (checked) {
+                label.style.color = "black";
+                select.disabled = false;
+              } else {
+                label.style.color = "#B8B8B8";
+                select.disabled = true;
+              }
+             });
+          }
+          /// append layer to container
           layers_el.appendChild(curr_el);
-          // enable sorting within container
+          /// enable sorting within container
           this.sortable = new Sortable(
             layers_el, {
             animation: 150,
@@ -97,16 +100,11 @@ HTMLWidgets.widget({
             ghostClass: "ghost",
           });
         });
-        // enable button
-        button_el.removeAttribute("disabled");
       },
 
       empty: function(params) {
         // remove all layers from layer container
         removeAllChildNodes(layers_el);
-
-        // set button as disabled
-        button_el.setAttribute("disabled", "");
       },
 
     };

@@ -6,6 +6,9 @@ NULL
 #' Constructs a widget for specifying settings for importing data.
 #' This widget is designed to be used within a Shiny web application.
 #'
+#' @param buttonId `character` containing the identifier for the button HTML
+#'  element to accompany this widget.
+#'
 #' @param x `character` vector containing the field/layer names for the
 #'   dataset. A `NULL` value may also be specified to initialize the widget
 #'   without any field/layer names.
@@ -34,8 +37,12 @@ NULL
 #'
 #' @export
 importSettings <- function(
-  x = NULL, width = NULL, height = NULL, elementId = NULL) {
+  buttonId, x = NULL, width = NULL, height = NULL, elementId = NULL) {
   # assert arguments are valid
+  assertthat::assert_that(
+    assertthat::is.string(buttonId),
+    assertthat::noNA(buttonId)
+  )
   if (!is.null(x)) {
     assertthat::assert_that(
       is.character(x),
@@ -44,7 +51,7 @@ importSettings <- function(
   }
 
   # prepare parameters
-  p <- list(api = list(), values = x)
+  p <- list(api = list(), buttonId = buttonId, value = x)
 
   # create widget
   htmlwidgets::createWidget(
@@ -104,14 +111,6 @@ importSettings_html <- function(id, style, class, ...) {
           # layer container
           htmltools::tags$div(
             class = "layers",
-          ),
-          # button to import data
-          shinyBS::bsButton(
-            inputId = paste0(id, "_button"),
-            label = "Import data",
-            icon = NULL,
-            style = "primary",
-            type = "action"
           )
         )
       )
@@ -125,15 +124,17 @@ importSettings_html <- function(id, style, class, ...) {
       htmltools::tags$template(
         class = "layer-settings-template",
         htmltools::div(
-          class = "layer-settings",
-          htmltools::tags$input(
-            
-            class = "view-checkbox",
-            type = "checkbox"
-            ),
-
-          htmltools::tags$label(),
+          class = "layer-settings input-group",
+          htmltools::span(
+            class = "input-group-addon",
+            htmltools::tags$input(
+              class = "checkbox checkbox-inline",
+              type = "checkbox"
+            )
+          ),
+          htmltools::tags$p(class = "form-control"),
           htmltools::tags$select(
+            class = "form-control",
             htmltools::tags$option("theme"),
             htmltools::tags$option("weight"),
             htmltools::tags$option("include")

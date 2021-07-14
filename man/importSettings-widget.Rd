@@ -4,9 +4,18 @@
 \alias{importSettings}
 \title{Import settings}
 \usage{
-importSettings(x = NULL, width = NULL, height = NULL, elementId = NULL)
+importSettings(
+  buttonId,
+  x = NULL,
+  width = NULL,
+  height = NULL,
+  elementId = NULL
+)
 }
 \arguments{
+\item{buttonId}{\code{character} containing the identifier for the button HTML
+element to accompany this widget.}
+
 \item{x}{\code{character} vector containing the field/layer names for the
 dataset. A \code{NULL} value may also be specified to initialize the widget
 without any field/layer names.}

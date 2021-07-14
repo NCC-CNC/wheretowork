@@ -52,6 +52,15 @@ importModal <- function(id) {
           label = "Import",
           loadingLabel = "Loading..."
         )
+      ),
+      # spatial button
+      shiny::conditionalPanel(
+        condition = paste0("input.", id, "_method == 'spatial'"),
+        shinyFeedback::loadingButton(
+          inputId = paste0(id, "_spatial_button"),
+          label = "Import",
+          loadingLabel = "Loading..."
+        )
       )
     ),
 
@@ -87,25 +96,25 @@ importModal <- function(id) {
       condition = paste0("input.", id, "_method == 'manual'"),
       ### main
       shiny::fileInput(
-        paste0(id, "_configuration_file"),
+        paste0(id, "_manual_configuration_file"),
         "Select configuration file",
         multiple = FALSE,
         accept = ".yaml"
       ),
       shiny::fileInput(
-        paste0(id, "_spatial_file"),
+        paste0(id, "_manual_spatial_file"),
         "Select spatial data",
         multiple = TRUE,
         accept = c(".shp", ".shx", ".prj", ".dbf", ".cpg", ".tif"),
       ),
       shiny::fileInput(
-        paste0(id, "_attribute_file"),
+        paste0(id, "_manual_attribute_file"),
         "Select attribute data",
         multiple = FALSE,
         accept = c(".csv", ".csv.gz")
       ),
       shiny::fileInput(
-        paste0(id, "_boundary_file"),
+        paste0(id, "_manual_boundary_file"),
         "Select boundary data",
         multiple = FALSE,
         accept = c(".csv", ".csv.gz")
@@ -118,12 +127,17 @@ importModal <- function(id) {
       condition = paste0("input.", id, "_method == 'spatial'"),
       ### main
       shiny::fileInput(
-        paste0(id, "_spatial_data"),
+        paste0(id, "_spatial_spatial_file"),
         "Select shapefile",
         multiple = TRUE,
-        accept = c(".shp", ".shx", ".prj", "shp", ".cpg"),
+        accept = c(".shp", ".shx", ".prj", ".dbf", ".cpg"),
       ),
-      p("TODO")
+      htmltools::tags$label(
+        id = paste0(id, "_spatial_text"),
+        class = "control-label",
+        "Select fields"
+      ),
+      importSettingsOutput(outputId = paste0(id, "_spatial_settings"))
     ),
 
     # error alert

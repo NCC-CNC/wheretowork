@@ -19,7 +19,14 @@ fluidPage(
     wellPanel(
       h3("Widget"),
       p("This panel contains a minimal version of the import settings widget. Note that it has minimal styling so that we make easily customize it within the Location App. The red outline shows its extent."),
-      importSettingsOutput("widget", height = "60vh")
+      importSettingsOutput("widget"),
+      shinyBS::bsButton(
+        inputId = "widget_button",
+        label = "Import data",
+        icon = NULL,
+        style = "primary",
+        type = "action"
+      )
     )
   ),
 
