@@ -199,21 +199,41 @@ generate_solution <- function(
       x = main_problem,
       solution = main_solution,
       data = boundary_data)$boundary[[1]]
+  reserve_sizes_m <-
+    reserve_sizes(
+      x = main_solution,  areas = pu_areas, boundary_matrix = boundary_data)
   ### calculate statistics
   statistics_results <-
     list(
       new_statistic(
-        name = "Area",
+        name = "Total size",
         value = area_m * 1e-6,
-        units = "kmU+00B2"),
+        units = "km²"
+      ),
       new_statistic(
-        name = "Perimeter",
+        name = "Total perimeter",
         value = perimeter_m * 1e-3,
-        units = "km"),
+        units = "km"
+      ),
       new_statistic(
-        name = "Fragmentation ratio",
-        value = area_m / perimeter_m,
-        units = "area / perimeter"
+        name = "Total number of reserves",
+        value = length(reserve_sizes_m),
+        units = ""
+      ),
+      new_statistic(
+        name = "Smallest reserve size",
+        value = min(reserve_sizes_m) * 1e-6,
+        units = "km²"
+      ),
+      new_statistic(
+        name = "Average reserve size",
+        value = mean(reserve_sizes_m) * 1e-6,
+        units = "km²"
+      ),
+      new_statistic(
+        name = "Largest reserve size",
+        value = max(reserve_sizes_m) * 1e-6,
+        units = "km²"
       )
     )
 

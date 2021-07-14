@@ -60,7 +60,7 @@ test_that("no spatial clustering", {
   expect_is(x, "Solution")
 })
 
-test_that("no spatial clustering", {
+test_that("spatial clustering", {
   # create object
   ## create dataset
   rd <- simulate_binary_spatial_data(import_simple_raster_data(), 5)
