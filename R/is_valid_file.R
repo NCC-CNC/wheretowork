@@ -24,7 +24,7 @@ is_valid_configuration_file <- function(x) {
 
   # check if can be parsed as valid YAML file
   if (inherits(f, "try-error")) {
-    return("Error: invalid file format")
+    return("Error: not valid file format")
   }
 
   # check if YAML file contains correct keys
@@ -72,12 +72,12 @@ is_valid_spatial_file <- function(x) {
     ## note that only first couple of rows are imported to reduce run time
     l <- try(sf::st_layers(p)$name[[1]], silent = TRUE)
     if (inherits(l, "try-error")) {
-      return("Error: invalid ESRI Shapefile format")
+      return("Error: not valid ESRI Shapefile format")
     }
     qu <- paste0("SELECT * FROM \"", l, "\" WHERE FID <= 5")
     f <- try(sf::read_sf(dsn = p, layer = l, query = qu), silent = TRUE)
     if (inherits(f, "try-error")) {
-      return("Error: invalid ESRI Shapefile format")
+      return("Error: not valid ESRI Shapefile format")
     }
 
     ## verify correct projection
@@ -96,7 +96,7 @@ is_valid_spatial_file <- function(x) {
     ## verify that valid tiff file
     f <- suppressWarnings(try(raster::raster(p), silent = FALSE))
     if (inherits(f, "try-error")) {
-      return("Error: invalid GeoTIFF file format")
+      return("Error: not valid GeoTIFF file format")
     }
 
     ## verify correct projection
@@ -140,7 +140,7 @@ is_valid_attribute_file <- function(x) {
 
   # check if can be parsed as valid file
   if (inherits(f, "try-error")) {
-    return("Error: invalid file format")
+    return("Error: not valid file format")
   }
 
   # check if has data
@@ -180,7 +180,7 @@ is_valid_boundary_file <- function(x) {
 
   # check if can be parsed as valid file
   if (inherits(f, "try-error")) {
-    return("Error: invalid file format")
+    return("Error: not valid file format")
   }
 
   # check if has data
