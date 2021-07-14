@@ -583,7 +583,7 @@ new_dataset_from_auto <- function(x, id = uuid::UUIDgenerate()) {
 
   # prepare attribute data
   if (inherits(x, "sf")) {
-    attribute_data <- sf::st_drop_geometry(spatial_data)
+    attribute_data <- sf::st_drop_geometry(x)
   } else {
     attribute_data <- raster::as.data.frame(x, na.rm = FALSE)
     pu_idx <- rowSums(is.na(as.matrix(attribute_data)))
