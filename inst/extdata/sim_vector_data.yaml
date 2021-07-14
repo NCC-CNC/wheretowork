@@ -1,162 +1,254 @@
 name: Example Shapefile dataset
-spatial_path: inst/extdata/sim_vector_spatial.shp
-attribute_path: inst/extdata/sim_vector_attribute.csv.gz
-boundary_path: inst/extdata/sim_vector_boundary.csv.gz
+spatial_path: sim_vector_spatial.shp
+attribute_path: sim_vector_attribute.csv.gz
+boundary_path: sim_vector_boundary.csv.gz
 mode: beginner
 themes:
-- name: Mindanao Hornbill
+- name: Jerdon's Nightjar
   feature:
-  - name: Mindanao Hornbill habitat
+  - name: Jerdon's Nightjar habitat
     variable:
-      index: Mindanao_Hornbill
+      index: Jerdon_s_Nightjar
       units: ha
       legend:
-        type: continuous
+        type: categorical
         colors:
-        - '#7F3B08'
-        - '#B35806'
-        - '#E08214'
+        - '#E66101'
         - '#FDB863'
-        - '#FEE0B6'
-        - '#F7F7F7'
-        - '#D8DAEB'
         - '#B2ABD2'
-        - '#8073AC'
-        - '#542788'
-        - '#2D004B'
+        - '#5E3C99'
     initial_status: yes
     initial_visible: yes
-    initial_goal: 0.52
+    initial_goal: 0.63
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
-    limit_goal: 0.23
-- name: Simple Greenbul
+    limit_goal: 0.09
+- name: Plain Leaf Warbler
   feature:
-  - name: Simple Greenbul habitat
+  - name: Plain Leaf Warbler habitat
     variable:
-      index: Simple_Greenbul
-      units: ha
-      legend:
-        type: continuous
-        colors:
-        - '#FFF5EB'
-        - '#FEE6CE'
-        - '#FDD0A2'
-        - '#FDAE6B'
-        - '#FD8D3C'
-        - '#F16913'
-        - '#D94801'
-        - '#A63603'
-        - '#7F2704'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.89
-    min_goal: 0.0
-    max_goal: 1.0
-    step_goal: 0.01
-    limit_goal: 0.02
-- name: Sumba Flycatcher
-  feature:
-  - name: Sumba Flycatcher habitat
-    variable:
-      index: Sumba_Flycatcher
-      units: ha
-      legend:
-        type: continuous
-        colors:
-        - '#A50026'
-        - '#D73027'
-        - '#F46D43'
-        - '#FDAE61'
-        - '#FEE08B'
-        - '#FFFFBF'
-        - '#D9EF8B'
-        - '#A6D96A'
-        - '#66BD63'
-        - '#1A9850'
-        - '#006837'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.84
-    min_goal: 0.0
-    max_goal: 1.0
-    step_goal: 0.01
-    limit_goal: 0.34
-- name: Tanagers and Allies
-  feature:
-  - name: Mangrove Finch
-    variable:
-      index: Mangrove_Finch
+      index: Plain_Leaf_Warbler
       units: ha
       legend:
         type: continuous
         colors:
         - '#F7FCFD'
-        - '#E0ECF4'
-        - '#BFD3E6'
-        - '#9EBCDA'
-        - '#8C96C6'
-        - '#8C6BB1'
-        - '#88419D'
-        - '#810F7C'
-        - '#4D004B'
+        - '#E5F5F9'
+        - '#CCECE6'
+        - '#99D8C9'
+        - '#66C2A4'
+        - '#41AE76'
+        - '#238B45'
+        - '#006D2C'
+        - '#00441B'
     initial_status: yes
     initial_visible: yes
-    initial_goal: 0.69
+    initial_goal: 0.88
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
-    limit_goal: 0.19
-  - name: Gray-throated Warbling-Finch
+    limit_goal: 0.09
+- name: Nicobar Scrubfowl
+  feature:
+  - name: Nicobar Scrubfowl habitat
     variable:
-      index: Gray_throated_Warbling_Finch
+      index: Nicobar_Scrubfowl
       units: ha
       legend:
         type: continuous
         colors:
-        - '#F7FCF0'
-        - '#E0F3DB'
-        - '#CCEBC5'
-        - '#A8DDB5'
-        - '#7BCCC4'
-        - '#4EB3D3'
-        - '#2B8CBE'
-        - '#0868AC'
-        - '#084081'
+        - '#F7FCF5'
+        - '#E5F5E0'
+        - '#C7E9C0'
+        - '#A1D99B'
+        - '#74C476'
+        - '#41AB5D'
+        - '#238B45'
+        - '#006D2C'
+        - '#00441B'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.75
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.38
+- name: Kiwis
+  feature:
+  - name: Southern Brown Kiwi
+    variable:
+      index: Southern_Brown_Kiwi
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#67001F'
+        - '#B2182B'
+        - '#D6604D'
+        - '#F4A582'
+        - '#FDDBC7'
+        - '#F7F7F7'
+        - '#D1E5F0'
+        - '#92C5DE'
+        - '#4393C3'
+        - '#2166AC'
+        - '#053061'
     initial_status: yes
     initial_visible: yes
     initial_goal: 0.56
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
-    limit_goal: 0.27
-  - name: Black-faced Dacnis
+    limit_goal: 0.19
+  - name: Southern Brown Kiwi (Stewart I.)
     variable:
-      index: Black_faced_Dacnis
+      index: Southern_Brown_Kiwi_Stewart_I_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#543005'
+        - '#8C510A'
+        - '#BF812D'
+        - '#DFC27D'
+        - '#F6E8C3'
+        - '#F5F5F5'
+        - '#C7EAE5'
+        - '#80CDC1'
+        - '#35978F'
+        - '#01665E'
+        - '#003C30'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.68
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.15
+  - name: Okarito Brown Kiwi
+    variable:
+      index: Okarito_Brown_Kiwi
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFFFD9'
+        - '#EDF8B1'
+        - '#C7E9B4'
+        - '#7FCDBB'
+        - '#41B6C4'
+        - '#1D91C0'
+        - '#225EA8'
+        - '#253494'
+        - '#081D58'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.68
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.06
+  - name: Little Spotted Kiwi
+    variable:
+      index: Little_Spotted_Kiwi
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#66C2A5'
+        - '#FC8D62'
+        - '#8DA0CB'
+        - '#E78AC3'
+        - '#A6D854'
+        - '#FFD92F'
+        - '#E5C494'
+        - '#B3B3B3'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.54
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.19
+  - name: North Island Brown Kiwi
+    variable:
+      index: North_Island_Brown_Kiwi
       units: ha
       legend:
         type: continuous
         colors:
         - '#FFF7FB'
-        - '#ECE2F0'
+        - '#ECE7F2'
         - '#D0D1E6'
         - '#A6BDDB'
-        - '#67A9CF'
+        - '#74A9CF'
         - '#3690C0'
-        - '#02818A'
-        - '#016C59'
-        - '#014636'
+        - '#0570B0'
+        - '#045A8D'
+        - '#023858'
     initial_status: yes
     initial_visible: yes
-    initial_goal: 0.62
+    initial_goal: 0.59
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
-    limit_goal: 0.15
-  - name: Chestnut-backed Tanager
+    limit_goal: 0.34
+  - name: Southern Brown Kiwi (South I.)
     variable:
-      index: Chestnut_backed_Tanager
+      index: Southern_Brown_Kiwi_South_I_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#40004B'
+        - '#762A83'
+        - '#9970AB'
+        - '#C2A5CF'
+        - '#E7D4E8'
+        - '#F7F7F7'
+        - '#D9F0D3'
+        - '#A6DBA0'
+        - '#5AAE61'
+        - '#1B7837'
+        - '#00441B'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.71
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.08
+- name: Southern Storm-Petrels
+  feature:
+  - name: Elliot's Storm-Petrel
+    variable:
+      index: Elliot_s_Storm_Petrel
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#40004B'
+        - '#762A83'
+        - '#9970AB'
+        - '#C2A5CF'
+        - '#E7D4E8'
+        - '#F7F7F7'
+        - '#D9F0D3'
+        - '#A6DBA0'
+        - '#5AAE61'
+        - '#1B7837'
+        - '#00441B'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.79
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.16
+  - name: Gray-backed Storm-Petrel
+    variable:
+      index: Gray_backed_Storm_Petrel
       units: ha
       legend:
         type: continuous
@@ -172,16 +264,60 @@ themes:
         - '#67001F'
     initial_status: yes
     initial_visible: yes
-    initial_goal: 0.61
+    initial_goal: 0.72
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
-    limit_goal: 0.22
-- name: Wattlebirds
-  feature:
-  - name: South Island Saddleback
+    limit_goal: 0.01
+  - name: Wilson's Storm-Petrel (Fuegian)
     variable:
-      index: South_Island_Saddleback
+      index: Wilson_s_Storm_Petrel_Fuegian_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFF5F0'
+        - '#FEE0D2'
+        - '#FCBBA1'
+        - '#FC9272'
+        - '#FB6A4A'
+        - '#EF3B2C'
+        - '#CB181D'
+        - '#A50F15'
+        - '#67000D'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.83
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.07
+  - name: Wilson's Storm-Petrel
+    variable:
+      index: Wilson_s_Storm_Petrel
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFF7F3'
+        - '#FDE0DD'
+        - '#FCC5C0'
+        - '#FA9FB5'
+        - '#F768A1'
+        - '#DD3497'
+        - '#AE017E'
+        - '#7A0177'
+        - '#49006A'
+    initial_status: yes
+    initial_visible: yes
+    initial_goal: 0.7
+    min_goal: 0.0
+    max_goal: 1.0
+    step_goal: 0.01
+    limit_goal: 0.07
+  - name: New Zealand Storm-Petrel
+    variable:
+      index: New_Zealand_Storm_Petrel
       units: ha
       legend:
         type: continuous
@@ -197,35 +333,83 @@ themes:
         - '#4D004B'
     initial_status: yes
     initial_visible: yes
-    initial_goal: 0.85
+    initial_goal: 0.82
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
-    limit_goal: 0.33
-  - name: North Island Kokako
+    limit_goal: 0.29
+  - name: Polynesian Storm-Petrel
     variable:
-      index: North_Island_Kokako
+      index: Polynesian_Storm_Petrel
       units: ha
       legend:
         type: continuous
         colors:
-        - '#E41A1C'
-        - '#377EB8'
-        - '#4DAF4A'
-        - '#984EA3'
-        - '#FF7F00'
-        - '#FFFF33'
-        - '#A65628'
-        - '#F781BF'
-        - '#999999'
+        - '#7FC97F'
+        - '#BEAED4'
+        - '#FDC086'
+        - '#FFFF99'
+        - '#386CB0'
+        - '#F0027F'
+        - '#BF5B17'
+        - '#666666'
     initial_status: yes
     initial_visible: yes
-    initial_goal: 0.8
+    initial_goal: 0.73
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
-    limit_goal: 0.35
+    limit_goal: 0.15
 weights:
+- name: Tsunami threat
+  variable:
+    index: Tsunami_threat
+    units: ha
+    legend:
+      type: continuous
+      colors:
+      - '#F7FCFD'
+      - '#E5F5F9'
+      - '#CCECE6'
+      - '#99D8C9'
+      - '#66C2A4'
+      - '#41AE76'
+      - '#238B45'
+      - '#006D2C'
+      - '#00441B'
+  initial_status: yes
+  initial_visible: yes
+  current: 0.52
+  initial_factor: 0.0
+  min_factor: 0.0
+  max_factor: 100.0
+  step_factor: 1.0
+- name: Tourism and recreation
+  variable:
+    index: Tourism_and_recreation
+    units: ha
+    legend:
+      type: continuous
+      colors:
+      - '#A6CEE3'
+      - '#1F78B4'
+      - '#B2DF8A'
+      - '#33A02C'
+      - '#FB9A99'
+      - '#E31A1C'
+      - '#FDBF6F'
+      - '#FF7F00'
+      - '#CAB2D6'
+      - '#6A3D9A'
+      - '#FFFF99'
+      - '#B15928'
+  initial_status: yes
+  initial_visible: yes
+  current: 0.57
+  initial_factor: 0.0
+  min_factor: 0.0
+  max_factor: 100.0
+  step_factor: 1.0
 - name: Habitat intactness index
   variable:
     index: Habitat_intactness_index
@@ -233,83 +417,41 @@ weights:
     legend:
       type: continuous
       colors:
-      - '#FFF7FB'
-      - '#ECE7F2'
-      - '#D0D1E6'
-      - '#A6BDDB'
-      - '#74A9CF'
-      - '#3690C0'
-      - '#0570B0'
-      - '#045A8D'
-      - '#023858'
+      - '#FFFFFF'
+      - '#F0F0F0'
+      - '#D9D9D9'
+      - '#BDBDBD'
+      - '#969696'
+      - '#737373'
+      - '#525252'
+      - '#252525'
+      - '#000000'
   initial_status: yes
   initial_visible: yes
-  initial_factor: 0.0
-  min_factor: 0.0
-  max_factor: 100.0
-  step_factor: 1.0
-- name: Archaeological site
-  variable:
-    index: Archaeological_site
-    units: ha
-    legend:
-      type: continuous
-      colors:
-      - '#FFFFD9'
-      - '#EDF8B1'
-      - '#C7E9B4'
-      - '#7FCDBB'
-      - '#41B6C4'
-      - '#1D91C0'
-      - '#225EA8'
-      - '#253494'
-      - '#081D58'
-  initial_status: yes
-  initial_visible: yes
-  initial_factor: 0.0
-  min_factor: 0.0
-  max_factor: 100.0
-  step_factor: 1.0
-- name: Fire
-  variable:
-    index: Fire
-    units: ha
-    legend:
-      type: continuous
-      colors:
-      - '#1B9E77'
-      - '#D95F02'
-      - '#7570B3'
-      - '#E7298A'
-      - '#66A61E'
-      - '#E6AB02'
-      - '#A6761D'
-      - '#666666'
-  initial_status: yes
-  initial_visible: yes
+  current: 0.41
   initial_factor: 0.0
   min_factor: 0.0
   max_factor: 100.0
   step_factor: 1.0
 includes:
-- name: OECM areas
+- name: RAMSAR Sites
   variable:
-    index: OECM_areas
+    index: RAMSAR_Sites
     units: ''
     legend:
       type: manual
       colors:
       - '#00FFFF00'
-      - '#7FC97F'
+      - '#66C2A5'
       labels:
       - not included
       - included
   mandatory: no
   initial_status: yes
   initial_visible: yes
-- name: Site of Community Importance
+- name: OECM areas
   variable:
-    index: Site_of_Community_Importance
+    index: OECM_areas
     units: ''
     legend:
       type: manual

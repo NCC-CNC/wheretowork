@@ -7,6 +7,8 @@ n_includes <- 2
 
 ## load packages
 devtools::load_all()
+library(sf)
+library(dplyr)
 
 ## set seed for reproducibility
 set.seed(500)
@@ -38,7 +40,7 @@ sim_vector_data <-
 raster_data$attribute_data <- raster_data$attribute_data[, -1, drop = FALSE]
 
 # Exports
-## configuration files
+## raster project
 write_configuration_file(
   x = sim_raster_data,
   dataset = raster_data,
@@ -49,6 +51,7 @@ write_configuration_file(
   boundary_path = "inst/extdata/sim_raster_boundary.csv.gz",
   mode = "advanced")
 
+## vector project
 write_configuration_file(
   x = sim_vector_data,
   dataset = vector_data,
@@ -58,3 +61,10 @@ write_configuration_file(
   attribute_path = "inst/extdata/sim_vector_attribute.csv.gz",
   boundary_path = "inst/extdata/sim_vector_boundary.csv.gz",
   mode = "beginner")
+
+## shapefile
+{vector_data$spatial_data} %>%
+select(-`_index`) %>%
+{bind_cols(., select(vector_data$attribute_data, -`_index`))} %>%
+as_Spatial() %>%
+raster::shapefile("inst/extdata/sim_shapefile.shp", overwrite = TRUE)

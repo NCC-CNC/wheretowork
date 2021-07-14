@@ -1,7 +1,7 @@
 name: Example GeoTIFF dataset
-spatial_path: inst/extdata/sim_raster_spatial.tif
-attribute_path: inst/extdata/sim_raster_attribute.csv.gz
-boundary_path: inst/extdata/sim_raster_boundary.csv.gz
+spatial_path: sim_raster_spatial.tif
+attribute_path: sim_raster_attribute.csv.gz
+boundary_path: sim_raster_boundary.csv.gz
 mode: advanced
 themes:
 - name: Olive-headed Lorikeet
@@ -422,6 +422,7 @@ weights:
       - '#00441B'
   initial_status: yes
   initial_visible: yes
+  current: 0.2
   initial_factor: 0.0
   min_factor: 0.0
   max_factor: 100.0
@@ -429,28 +430,6 @@ weights:
 - name: Grazing
   variable:
     index: Grazing
-    units: ha
-    legend:
-      type: continuous
-      colors:
-      - '#FFF7FB'
-      - '#ECE2F0'
-      - '#D0D1E6'
-      - '#A6BDDB'
-      - '#67A9CF'
-      - '#3690C0'
-      - '#02818A'
-      - '#016C59'
-      - '#014636'
-  initial_status: yes
-  initial_visible: yes
-  initial_factor: 0.0
-  min_factor: 0.0
-  max_factor: 100.0
-  step_factor: 1.0
-- name: Population count
-  variable:
-    index: Population_count
     units: ha
     legend:
       type: continuous
@@ -465,35 +444,61 @@ weights:
       - '#B3B3B3'
   initial_status: yes
   initial_visible: yes
+  current: 0.39
+  initial_factor: 0.0
+  min_factor: 0.0
+  max_factor: 100.0
+  step_factor: 1.0
+- name: Population count
+  variable:
+    index: Population_count
+    units: ha
+    legend:
+      type: continuous
+      colors:
+      - '#A50026'
+      - '#D73027'
+      - '#F46D43'
+      - '#FDAE61'
+      - '#FEE08B'
+      - '#FFFFBF'
+      - '#D9EF8B'
+      - '#A6D96A'
+      - '#66BD63'
+      - '#1A9850'
+      - '#006837'
+  initial_status: yes
+  initial_visible: yes
+  current: 0.36
   initial_factor: 0.0
   min_factor: 0.0
   max_factor: 100.0
   step_factor: 1.0
 includes:
-- name: Wilderness areas
+- name: OECM areas
   variable:
-    index: Wilderness_areas
+    index: OECM_areas
     units: ''
     legend:
       type: manual
       colors:
       - '#00FFFF00'
-      - '#66C2A5'
+      - '#1B9E77'
       labels:
       - not included
       - included
   mandatory: no
   initial_status: yes
   initial_visible: yes
-- name: Specially Protected Area
+- name: RAMSAR Sites
   variable:
-    index: Specially_Protected_Area
+    index: RAMSAR_Sites
     units: ''
     legend:
       type: manual
       colors:
       - '#00FFFF00'
-      - '#7FC97F'
+      - '#66C2A5'
       labels:
       - not included
       - included
