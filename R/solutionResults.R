@@ -141,7 +141,10 @@ solutionResults_html <- function(id, style, class, ...) {
               multiple = FALSE,
               open = paste0(id, "_collapseThemePanel"),
               shinyBS::bsCollapsePanel(
-                title = "Statistics",
+                title = htmltools::tags$span(
+                  shiny::icon("chart-line"),
+                  "Statistics"
+                ),
                 value = paste0(id, "_collapseStatisticPanel"),
                 htmltools::tags$div(class = "statistics")
               ),
@@ -163,20 +166,6 @@ solutionResults_html <- function(id, style, class, ...) {
               )
             )
           )
-        )
-      )
-    )
-
-  # add HTML template scaffolds for dynamic content
-  ## statistic
-  x <-
-    htmltools::tagAppendChild(
-      x,
-      htmltools::tags$template(
-        class = "statistic-template",
-        htmltools::tags$div(
-          class  = "statistic",
-          # TODO
         )
       )
     )

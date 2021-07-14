@@ -72,3 +72,22 @@
   justify-content: flex-end;
   align-items: center;
 }
+
+/* statistics */
+.solution-results .statistics-results {
+  display: flex;
+}
+
+.solution-results .statistics-results .names {
+  margin-right: 30px;
+}
+
+.solution-results .statistics-results .names,
+.solution-results .statistics-results .values {
+  display: flex;
+  flex-direction: column;
+}
+
+.solution-results .statistics-results .values label {
+  font-weight: 400 !important;
+}

@@ -10,12 +10,13 @@ function newSolution(manager, x) {
   );
 }
 
-function newStatistic(manager, x) {
-  return new Statistic(
+function newStatistics(manager, x) {
+  return new Statistics(
     manager,
-    x.name,
-    x.value,
-    x.units);
+    x.map((y) => y.name),
+    x.map((y) => y.value),
+    x.map((y) => y.units)
+  );
 }
 
 function newWeightResults(manager, x, solution_color) {

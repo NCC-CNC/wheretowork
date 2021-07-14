@@ -22,7 +22,7 @@ dependencies:
       - WeightResults-class.js
       - Solution-class.js
       - SolutionResults-class.js
-      - Statistic-class.js
+      - Statistics-class.js
       - utils.js
       - ThemeSolutionChart-class.js
       - WeightSolutionChart-class.js

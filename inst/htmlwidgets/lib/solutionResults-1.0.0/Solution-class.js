@@ -16,9 +16,8 @@ class Solution {
     // statistics results
     this.statistics_el = document.createElement("div");
     this.statistics_el.classList.add("statistics-results");
-    statistics.forEach((x) => {
-      this.statistics_el.appendChild(newStatistic(manager, x).render());
-    });
+    this.statistics_el.appendChild(
+      newStatistics(manager, statistics).render());
 
     // theme results
     this.themes_el = document.createElement("div");
