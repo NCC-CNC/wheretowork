@@ -6,9 +6,14 @@ fillPage(
     # data sidebar (appears on left)
     sidebar_tabs(
       id = "dataSidebar",
-      iconList = list(shiny::icon("bars"), shiny::icon("download")),
+      iconList = list(
+        shiny::icon("bars"),
+        shiny::icon("download"),
+        shiny::icon("heart")
+      ),
       mapManagerSidebarPane(id = "mapManagerPane"),
-      exportSidebarPane(id = "exportPane")
+      exportSidebarPane(id = "exportPane"),
+      acknowledgmentsSidebarPane(id = "acknowledgmentsPane")
     ),
 
     # analysis sidebar (appears on right)
