@@ -104,11 +104,6 @@ solutionResults_html <- function(id, style, class, ...) {
           htmltools::tags$div(
             class = "solution-results-header",
             # select input
-            # horizontalSelectInput(
-            #   inputId = paste0(id, "_select"),
-            #   label = "Solution:",
-            #   choices = c("NA" = "NA")
-            # ),
             horizontalPickerInput(
               inputId = paste0(id, "_select"),
               label = "Solution:",
@@ -146,7 +141,10 @@ solutionResults_html <- function(id, style, class, ...) {
                   "Statistics"
                 ),
                 value = paste0(id, "_collapseStatisticPanel"),
-                htmltools::tags$div(class = "statistics")
+                htmltools::tags$div(
+                  class = "panel-content-inner",
+                  htmltools::tags$div(class = "statistics")
+                )
               ),
               shinyBS::bsCollapsePanel(
                 title = htmltools::tags$span(
@@ -154,7 +152,10 @@ solutionResults_html <- function(id, style, class, ...) {
                   "Themes"
                 ),
                 value = paste0(id, "_collapseThemePanel"),
-                htmltools::tags$div(class = "themes")
+                htmltools::tags$div(
+                  class = "panel-content-inner",
+                  htmltools::tags$div(class = "themes")
+                )
               ),
               shinyBS::bsCollapsePanel(
                 title = htmltools::tags$span(
@@ -162,7 +163,10 @@ solutionResults_html <- function(id, style, class, ...) {
                   "Weights"
                 ),
                 value = paste0(id, "_collapseWeightPanel"),
-                htmltools::tags$div(class = "weights")
+                htmltools::tags$div(
+                  class = "panel-content-inner",
+                  htmltools::tags$div(class = "weights")
+                )
               )
             )
           )

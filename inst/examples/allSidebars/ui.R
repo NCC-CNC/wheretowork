@@ -1,5 +1,8 @@
 fillPage(
   tagList(
+    # enable pretty scrollbars
+    useCustomScrollbars(),
+
     # map
     leafletOutput("map", width = "100%", height = "100%"),
 

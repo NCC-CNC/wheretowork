@@ -129,6 +129,7 @@ Collate:
     'updateMapManagerOrder.R'
     'updateSolutionResults.R'
     'updateSolutionSettings.R'
+    'useCustomScrollbars.R'
     'write_configuration_file.R'
     'write_spatial_data.R'
 Remotes:

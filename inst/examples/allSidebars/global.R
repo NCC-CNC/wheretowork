@@ -3,6 +3,7 @@ options("rgdal_show_exportToProj4_warnings" = "none")
 
 # load package
 library(shiny)
+library(shinyjs)
 library(locationmisc)
 
 # set seed
@@ -20,8 +21,8 @@ f3 <- system.file(
 d <- new_dataset(f1, f2, f3)
 
 # simulate themes, weights, includes and a solution
-sim_themes <- simulate_themes(d, 2, 2, 1)
-sim_weights <- simulate_weights(d, 4)
+sim_themes <- simulate_themes(d, 20, 2, 1)
+sim_weights <- simulate_weights(d, 20)
 sim_includes <- simulate_includes(d, 3)
 sim_parameter <- new_parameter(name = "Spatial clumping", id = "P1")
 sim_solution <- simulate_solution(d, sim_themes, sim_weights, sim_includes)

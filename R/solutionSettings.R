@@ -132,7 +132,10 @@ solutionSettings_html <- function(id, style, class, ...) {
               "Themes"
             ),
             value = paste0(id, "_collapseThemePanel"),
-            htmltools::tags$div(class = "themes")
+            htmltools::tags$div(
+              class = "panel-content-inner",
+              htmltools::tags$div(class = "themes")
+            )
           ),
           shinyBS::bsCollapsePanel(
             title = htmltools::tags$span(
@@ -140,7 +143,10 @@ solutionSettings_html <- function(id, style, class, ...) {
               "Weights"
             ),
             value = paste0(id, "_collapseWeightPanel"),
-            htmltools::tags$div(class = "weights")
+            htmltools::tags$div(
+              class = "panel-content-inner",
+              htmltools::tags$div(class = "weights")
+            )
           ),
           shinyBS::bsCollapsePanel(
             title = htmltools::tags$span(
@@ -148,7 +154,10 @@ solutionSettings_html <- function(id, style, class, ...) {
               "Includes"
             ),
             value = paste0(id, "_collapseIncludePanel"),
-            htmltools::tags$div(class = "includes")
+            htmltools::tags$div(
+              class = "panel-content-inner",
+              htmltools::tags$div(class = "includes")
+            )
           ),
           shinyBS::bsCollapsePanel(
             title = htmltools::tags$span(
@@ -156,7 +165,10 @@ solutionSettings_html <- function(id, style, class, ...) {
               "Settings"
             ),
             value = paste0(id, "_collapseParametersPanel"),
-            htmltools::tags$div(class = "parameters")
+            htmltools::tags$div(
+              class = "panel-content-inner",
+              htmltools::tags$div(class = "parameters")
+            )
           )
         )
       ),

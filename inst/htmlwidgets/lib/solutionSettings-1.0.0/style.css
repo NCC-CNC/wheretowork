@@ -2,7 +2,6 @@
 .solutionSettings {
   height: 100%;
   width: 100%;
-  min-height: 90.5vh;
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
@@ -14,6 +13,10 @@
   flex: 3;
   display: flex;
   max-height: 86vh;
+}
+
+.new-solution-pane {
+  height: 100%;
 }
 
 /* hide certain elements under beginner mode */
@@ -56,10 +59,9 @@
   padding-right: 4px;
 }
 
-/* panel.panel-default */
-.solution-settings .panel.panel-default {
-  max-height: 68.5vh;
+.solution-settings .panel-content-inner {
   overflow-y: scroll;
+  max-height: calc(100vh - 290px);
 }
 
 /* footer */
@@ -109,7 +111,7 @@
 
 /* view containers */
 .solution-setting {
-  width: 94%;
+  width: calc(100% - 15px);
   border: 1px var(--border) solid;
   border-radius: 5px 5px 5px 5px;
   margin: 10px;

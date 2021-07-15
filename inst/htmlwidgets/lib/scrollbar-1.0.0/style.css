@@ -1,0 +1,18 @@
+::-webkit-scrollbar {
+  width: 8px;  /* for vertical scrollbars */
+  /* width: 6px;  /* for vertical scrollbars */ */
+  height: 12px; /* for horizontal scrollbars */
+}
+
+*:hover::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0);
+}
+
+*:hover::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 3px;
+}
+
+*:hover::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.65);
+}
