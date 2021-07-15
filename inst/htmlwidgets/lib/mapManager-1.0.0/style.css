@@ -1,22 +1,8 @@
-/* map manager container */
-.map-manager-pane {
-  height: 100%;
-  box-sizing: border-box;
-  overflow-x: hidden;
-}
-
-.map-manager-pane .widget-container {
-  overflow-y: scroll;
-}
-
 /* overall widget */
 .mapManager {
   padding-right: 3px;
 }
 
-.map-manager-pane .widget-container {
-  margin-right: 3px;
-}
 /* layer containers */
 .map-manager-layer {
   width: 100%;

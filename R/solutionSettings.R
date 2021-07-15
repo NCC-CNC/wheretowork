@@ -121,80 +121,77 @@ solutionSettings_html <- function(id, style, class, ...) {
     htmltools::tags$div(
       id = id, class = class, style = style,
       htmltools::div(
-        class = "solution-settings-container",
-        htmltools::div(
-          class = "solution-settings",
-          shinyBS::bsCollapse(
-            id = paste0(id, "_collapse"),
-            multiple = FALSE,
-            open = paste0(id, "_collapseThemePanel"),
-            shinyBS::bsCollapsePanel(
-              title = htmltools::tags$span(
-                shiny::icon("star"),
-                "Themes"
-              ),
-              value = paste0(id, "_collapseThemePanel"),
-              htmltools::tags$div(class = "themes")
+        class = "solution-settings",
+        shinyBS::bsCollapse(
+          id = paste0(id, "_collapse"),
+          multiple = FALSE,
+          open = paste0(id, "_collapseThemePanel"),
+          shinyBS::bsCollapsePanel(
+            title = htmltools::tags$span(
+              shiny::icon("star"),
+              "Themes"
             ),
-            shinyBS::bsCollapsePanel(
-              title = htmltools::tags$span(
-                shiny::icon("weight-hanging"),
-                "Weights"
-              ),
-              value = paste0(id, "_collapseWeightPanel"),
-              htmltools::tags$div(class = "weights")
+            value = paste0(id, "_collapseThemePanel"),
+            htmltools::tags$div(class = "themes")
+          ),
+          shinyBS::bsCollapsePanel(
+            title = htmltools::tags$span(
+              shiny::icon("weight-hanging"),
+              "Weights"
             ),
-            shinyBS::bsCollapsePanel(
-              title = htmltools::tags$span(
-                shiny::icon("lock"),
-                "Includes"
-              ),
-              value = paste0(id, "_collapseIncludePanel"),
-              htmltools::tags$div(class = "includes")
+            value = paste0(id, "_collapseWeightPanel"),
+            htmltools::tags$div(class = "weights")
+          ),
+          shinyBS::bsCollapsePanel(
+            title = htmltools::tags$span(
+              shiny::icon("lock"),
+              "Includes"
             ),
-            shinyBS::bsCollapsePanel(
-              title = htmltools::tags$span(
-                shiny::icon("cog"),
-                "Settings"
-              ),
-              value = paste0(id, "_collapseParametersPanel"),
-              htmltools::tags$div(class = "parameters")
-            )
+            value = paste0(id, "_collapseIncludePanel"),
+            htmltools::tags$div(class = "includes")
+          ),
+          shinyBS::bsCollapsePanel(
+            title = htmltools::tags$span(
+              shiny::icon("cog"),
+              "Settings"
+            ),
+            value = paste0(id, "_collapseParametersPanel"),
+            htmltools::tags$div(class = "parameters")
+          )
+        )
+      ),
+
+      ### footer
+      htmltools::tags$div(
+        class = "solution-footer",
+        htmltools::tags$div(
+          class = "solution-footer-name",
+          shiny::textInput(
+            inputId = paste0(id, "_name"),
+            NULL,
+            value = "",
+            width = "100%",
+            placeholder = "enter solution name"
+          ),
+        ),
+
+        htmltools::tags$div(
+          class = "solution-footer-color",
+          colourpicker::colourInput(
+            inputId = paste0(id, "_color"),
+            value = "#FF0000",
+            showColour = "background",
+            label = NULL,
+            palette = "limited"
           )
         ),
 
-        ### footer
         htmltools::tags$div(
-          class = "solution-footer",
-          htmltools::tags$div(
-            class = "solution-footer-name",
-            shiny::textInput(
-              inputId = paste0(id, "_name"),
-              NULL,
-              value = "",
-              width = "100%",
-              placeholder = "enter solution name"
-            ),
-          ),
-
-          htmltools::tags$div(
-            class = "solution-footer-color",
-            colourpicker::colourInput(
-              inputId = paste0(id, "_color"),
-              value = "#FF0000",
-              showColour = "background",
-              label = NULL,
-              palette = "limited"
-            )
-          ),
-
-          htmltools::tags$div(
-            class = "solution-footer-button",
-            shinyFeedback::loadingButton(
-              inputId = paste0(id, "_button"),
-              label = "Generate solution",
-              loadingLabel = "Optimizing..."
-            )
+          class = "solution-footer-button",
+          shinyFeedback::loadingButton(
+            inputId = paste0(id, "_button"),
+            label = "Generate solution",
+            loadingLabel = "Optimizing..."
           )
         )
       )

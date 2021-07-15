@@ -19,33 +19,51 @@ exportSidebarPane <- function(id) {
     assertthat::noNA(id))
 
   # create sidebar
-  leaflet.extras2::sidebar_pane(
-    title = "Save data",
+  x <- leaflet.extras2::sidebar_pane(
+    title = "Download data",
     id = id,
     icon = NULL,
 
     # sidebar pane content
     htmltools::tags$div(
       class = "sidebar-pane-content",
+      htmltools::tags$div(
+        class = "sidebar-pane-inner",
+        htmltools::tags$div(
+          class = "generic-container",
 
-      ## help text
-      shiny::p("Select data to save to your computer."),
+          ## select columns
+          shiny::selectizeInput(
+            inputId = paste0(id, "_fields"),
+            label = "Select data and solutions to download",
+            choices = c(),
+            multiple = TRUE,
+            width = "100%"
+          ),
 
-      ## select columns
-      shiny::selectizeInput(
-        inputId = paste0(id, "_fields"),
-        label = "Select data",
-        choices = c(),
-        multiple = TRUE,
-        width = "100%"
-      ),
-
-      ## upload button
-      shiny::downloadButton(
-        outputId = paste0(id, "_button"),
-        label = "Save",
-        icon = shiny::icon("download")
+          ## upload button
+          htmltools::tags$div(
+            class = "col text-center",
+            shiny::downloadButton(
+              outputId = paste0(id, "_button"),
+              label = "Download",
+              class = "btn-primary btn-block",
+              icon = shiny::icon("download")
+            )
+          )
+        )
       )
+    )
+  )
+
+  # attach dependencies
+  htmltools::attachDependencies(x,
+    htmltools::htmlDependency(
+      name = "sidebar",
+      version = "1.0.0",
+      src = system.file(
+        "htmlwidgets", package = "locationmisc"),
+      stylesheet = "sidebarPane.css"
     )
   )
 }

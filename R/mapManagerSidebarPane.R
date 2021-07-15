@@ -43,15 +43,15 @@ mapManagerSidebarPane <- function(
       title = "Table of contents",
       id = id,
       icon = NULL,
+      htmltools::tags$div(
+        class = "sidebar-pane-content",
         htmltools::tags$div(
-          class = "sidebar-pane-content",
+          class = "sidebar-pane-inner",
           htmltools::tags$div(
-            class = "map-manager-pane",
-            htmltools::tags$div(
-              class = "widget-container",
-              mapManagerOutput(mapManagerId, height = "100%")
-            )
+            class = "widget-container",
+            mapManagerOutput(mapManagerId, height = "100%")
           )
+        )
       )
     )
 
