@@ -12,11 +12,13 @@ fillPage(
       iconList = list(
         shiny::icon("bars"),
         shiny::icon("download"),
-        shiny::icon("heart")
+        shiny::icon("heart"),
+        shiny::icon("envelope")
       ),
       mapManagerSidebarPane(id = "mapManagerPane"),
       exportSidebarPane(id = "exportPane"),
-      acknowledgmentsSidebarPane(id = "acknowledgmentsPane")
+      acknowledgmentsSidebarPane(id = "acknowledgmentsPane"),
+      contactSidebarPane(id = "contactPane")
     ),
 
     # analysis sidebar (appears on right)

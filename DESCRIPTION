@@ -90,6 +90,7 @@ Collate:
     'acknowledgmentsSidebarPane.R'
     'cleanImportSettings.R'
     'color_palette.R'
+    'contactSidebarPane.R'
     'error_message.R'
     'exportSidebarPane.R'
     'extract_data_matrix.R'
