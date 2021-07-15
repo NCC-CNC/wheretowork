@@ -18,6 +18,9 @@ new_include(
 
 \item{variable}{\link{Variable} object.}
 
+\item{mandatory}{\code{logical} value indicating if object is mandatory
+for generating solutions.}
+
 \item{initial_visible}{\code{logical} The initial visible value.
 This is used to determine if the feature is displayed (or not)
 or not the map.
