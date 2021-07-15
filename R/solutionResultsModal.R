@@ -5,7 +5,10 @@ NULL
 #'
 #' Constructs a modal for displaying solution results.
 #'
-#' @param id `character` identifier for the sidebar pane.
+#' @param id `character` identifier for the modal.
+#'
+#' @param trigger `character` identifier for the modal trigger.
+#'   See [shinyBS::bsModal] for further details.
 #'
 #' @return A `shiny.tag` object with the modal
 #'

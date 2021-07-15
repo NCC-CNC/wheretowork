@@ -7,7 +7,10 @@
 solutionResultsModal(id, trigger)
 }
 \arguments{
-\item{id}{\code{character} identifier for the sidebar pane.}
+\item{id}{\code{character} identifier for the modal.}
+
+\item{trigger}{\code{character} identifier for the modal trigger.
+See \link[shinyBS:bsModal]{shinyBS::bsModal} for further details.}
 }
 \value{
 A \code{shiny.tag} object with the modal
