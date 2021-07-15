@@ -270,7 +270,7 @@ fluidPage(
             column(3,
               numericInput(
                 "p_value_input", label = NULL,
-                value = p$get_value(), min = 0, max = 100, step = 0.01),
+                value = p1$get_value(), min = 0, max = 100, step = 0.01),
             ),
             column(1,
               actionButton("p_value_button", label = "Update value")

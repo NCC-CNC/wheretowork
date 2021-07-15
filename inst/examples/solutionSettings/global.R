@@ -71,9 +71,13 @@ i2 <- new_include(
   name = "Nature reserves", variable = v6, id = "I2", mandatory = FALSE)
 
 ## create a parameter
-p <- new_parameter(name = "Spatial clumping", id = "P1")
+p1 <- new_parameter(name = "Spatial clumping", id = "P1")
+p2 <- new_parameter(name = "Budget", id = "P2", hide = TRUE)
 
 ## create solution setting
 ss <- new_solution_settings(
-  themes = list(t1, t2, t3), weights = list(w), includes = list(i1, i2),
-  parameters = list(p))
+  themes = list(t1, t2, t3),
+  weights = list(w),
+  includes = list(i1, i2),
+  parameters = list(p1, p2)
+)
