@@ -55,7 +55,7 @@ contactSidebarPane <- function(id) {
                 "richard.schuster@natureconservancy.ca",
                 .noWS = "outside"
               ),
-              "). Additionally, to discuss possible enhancements ",
+              "). Additionally, to discuss possible enhancements, ",
               "additional functionality, or customizing this application ",
               "for your work, please contact ",
               htmltools::tags$a(
