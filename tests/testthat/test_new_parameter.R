@@ -10,6 +10,7 @@ test_that("initialization", {
     max_value = 0.9,
     step_value = 0.03,
     units = "asdf",
+    hide = TRUE,
     id = "P1")
   # run tests
   print(x)
@@ -23,6 +24,7 @@ test_that("initialization", {
   expect_equal(x$min_value, 0.01)
   expect_equal(x$max_value, 0.9)
   expect_equal(x$step_value, 0.03)
+  expect_equal(x$hide, TRUE)
   expect_equal(x$units, "asdf")
 })
 
@@ -73,6 +75,8 @@ test_that("export method", {
     min_value = 0.01,
     max_value = 0.9,
     step_value = 0.03,
+    hide = TRUE,
+    units = "asdf",
     id = "P1")
   # run tests
   expect_equal(
@@ -83,7 +87,9 @@ test_that("export method", {
       initial_value = 0.2,
       min_value = 0.01,
       max_value = 0.9,
-      step_value = 0.03
+      step_value = 0.03,
+      hide = TRUE,
+      units = "asdf"
     )
   )
 })
@@ -98,6 +104,7 @@ test_that("widget methods", {
     max_value = 0.9,
     step_value = 0.03,
     units = "asdf",
+    hide = TRUE,
     id = "P1")
   # run tests
   ## solution settings
@@ -111,6 +118,7 @@ test_that("widget methods", {
       value = 0.2,
       step_value = 0.03,
       status = FALSE,
+      hide = TRUE,
       units = "asdf")
   )
 })

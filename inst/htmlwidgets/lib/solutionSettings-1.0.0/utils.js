@@ -31,6 +31,7 @@ function newParameterSetting(manager, x) {
     x.value,
     x.step_value,
     x.status,
+    x.hide,
     x.units
   );
 }

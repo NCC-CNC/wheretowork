@@ -9,6 +9,7 @@ class ParameterSetting {
     value,
     step_value,
     status,
+    hide,
     units
   ) {
     // class fields
@@ -24,7 +25,9 @@ class ParameterSetting {
     this.name_el = this.el.querySelector(".name-label");
     this.status_el = this.el.querySelector(".status-checkbox");
     this.value_el = this.el.querySelector(".noUiSlider-widget");
+    this.value_container_el = this.el.querySelector(".parameter-slider");
     this.previous_value = value;
+    this.hide = hide;
 
     // local variables
     let that = this;
@@ -62,6 +65,14 @@ class ParameterSetting {
         } else {
           that.previous_value = that.value_el.noUiSlider.get();
           that.value_el.noUiSlider.set(0);
+        }
+        /// hide slider if needed
+        if (that.hide) {
+          if (checked) {
+            that.value_container_el.style.display = "block";
+          } else {
+            that.value_container_el.style.display = "none";
+          }
         }
         //// update HTML styles
         let els =
@@ -125,6 +136,14 @@ class ParameterSetting {
       } else {
         this.previous_value = this.value_el.noUiSlider.get();
         this.value_el.noUiSlider.set(0);
+      }
+      /// hide slider if needed
+      if (that.hide) {
+        if (checked) {
+          this.value_container_el.style.display = "block";
+        } else {
+          this.value_container_el.style.display = "none";
+        }
       }
     }
     // update HTML element styles

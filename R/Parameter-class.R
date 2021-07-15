@@ -38,6 +38,9 @@ Parameter <- R6::R6Class(
     #' @field step_value `numeric` step value.
     step_value = NA_real_,
 
+    #' @field hide `logical` value.
+    hide = NA,
+
     #' @field units `character` value.
     units = NA_character_,
 
@@ -50,12 +53,13 @@ Parameter <- R6::R6Class(
     #' @param min_value `numeric` minimum value.
     #' @param max_value `numeric` maximum value.
     #' @param step_value `numeric` step value.
+    #' @param hide `logical` value.
     #' @param units `character` value.
     #' @return A new Parameter object.
     ## constructor
     initialize = function(
       id, name, initial_status,
-      initial_value, min_value, max_value, step_value, units) {
+      initial_value, min_value, max_value, step_value, hide, units) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -84,6 +88,9 @@ Parameter <- R6::R6Class(
         assertthat::is.number(step_value),
         assertthat::noNA(step_value),
         step_value <= max_value,
+        #### hide
+        assertthat::is.flag(hide),
+        assertthat::noNA(hide),
         #### units
         assertthat::is.string(units),
         assertthat::noNA(units)
@@ -98,6 +105,7 @@ Parameter <- R6::R6Class(
       self$min_value <- min_value
       self$max_value <- max_value
       self$step_value <- step_value
+      self$hide <- hide
       self$units <- units
     },
 
@@ -217,6 +225,7 @@ Parameter <- R6::R6Class(
         value = self$value,
         step_value = self$step_value,
         status = self$status,
+        hide = self$hide,
         units = self$units
       )
     },
@@ -231,7 +240,9 @@ Parameter <- R6::R6Class(
         initial_value = self$value,
         min_value = self$min_value,
         max_value = self$max_value,
-        step_value = self$step_value
+        step_value = self$step_value,
+        hide = self$hide,
+        units = self$units
       )
     }
 
@@ -257,6 +268,10 @@ Parameter <- R6::R6Class(
 #' @param units `character` units.
 #'   Defaults to an empty `character` object.
 #'
+#' @param hide `logical` value indicating if the slider should be
+#'   hidden when the parameter is disabled.
+#'   Defaults to `FALSE`.
+#'
 #' @inheritParams new_multi_theme
 #' @inheritParams new_feature
 #'
@@ -273,7 +288,7 @@ Parameter <- R6::R6Class(
 new_parameter <- function(
   name, initial_status = TRUE,
   initial_value = 0, min_value = 0, max_value = 100, step_value = 1,
-  units = "", id = uuid::UUIDgenerate()) {
+  hide = FALSE, units = "", id = uuid::UUIDgenerate()) {
   Parameter$new(
     id = id,
     name = name,
@@ -282,5 +297,6 @@ new_parameter <- function(
     max_value = max_value,
     initial_value = initial_value,
     step_value = step_value,
+    hide = hide,
     units = units)
 }

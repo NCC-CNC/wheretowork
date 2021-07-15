@@ -11,6 +11,7 @@ new_parameter(
   min_value = 0,
   max_value = 100,
   step_value = 1,
+  hide = FALSE,
   units = "",
   id = uuid::UUIDgenerate()
 )
@@ -33,6 +34,10 @@ Defaults to 0.}
 
 \item{step_value}{\code{numeric} step value.
 Defaults to 1.}
+
+\item{hide}{\code{logical} value indicating if the slider should be
+hidden when the parameter is disabled.
+Defaults to \code{FALSE}.}
 
 \item{units}{\code{character} units.
 Defaults to an empty \code{character} object.}

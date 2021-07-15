@@ -35,6 +35,8 @@ Definition for the Parameter class.
 
 \item{\code{step_value}}{\code{numeric} step value.}
 
+\item{\code{hide}}{\code{logical} value.}
+
 \item{\code{units}}{\code{character} value.}
 }
 \if{html}{\out{</div>}}
@@ -70,6 +72,7 @@ Create a new Parameter object.
   min_value,
   max_value,
   step_value,
+  hide,
   units
 )}\if{html}{\out{</div>}}
 }
@@ -90,6 +93,8 @@ Create a new Parameter object.
 \item{\code{max_value}}{\code{numeric} maximum value.}
 
 \item{\code{step_value}}{\code{numeric} step value.}
+
+\item{\code{hide}}{\code{logical} value.}
 
 \item{\code{units}}{\code{character} value.}
 }
