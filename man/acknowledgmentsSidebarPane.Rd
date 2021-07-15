@@ -13,7 +13,7 @@ acknowledgmentsSidebarPane(id)
 A \code{shiny.tag} object with the sidebar pane.
 }
 \description{
-Constructs a sidebar pane for displaying acknowledgements.
+Constructs a sidebar pane for displaying acknowledgments.
 }
 \details{
 This is designed to be used as an argument to

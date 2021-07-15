@@ -3,7 +3,7 @@ NULL
 
 #' Acknowledgments sidebar pane
 #'
-#' Constructs a sidebar pane for displaying acknowledgements.
+#' Constructs a sidebar pane for displaying acknowledgments.
 #'
 #' @inheritParams solutionResultsSidebarPane
 #'
@@ -40,13 +40,13 @@ acknowledgmentsSidebarPane <- function(id) {
           class = "generic-container",
             ## NCC acknowledgments
             htmltools::tags$p(
-              class = "text-justify",
+              class = "text-left",
               "INSERT NCC ACKNOWLEDGMENTS HERE",
               .noWS = c("after-begin", "before-end")
             ),
             ## RCS acknowledgments
             htmltools::tags$p(
-              class = "text-justify",
+              class = "text-left",
               "This work was supported by the ",
               htmltools::tags$a(
                 href = "https://carleton.ca/rcs/our-team/",
@@ -97,7 +97,7 @@ acknowledgmentsSidebarPane <- function(id) {
             ),
             ## main dependencies
             htmltools::tags$p(
-              class = "text-justify",
+              class = "text-left",
               "This application was built using the ",
               htmltools::tags$a(
                 href = "https://shiny.rstudio.com/",
@@ -138,7 +138,7 @@ acknowledgmentsSidebarPane <- function(id) {
               htmltools::tags$a(
                 href = "https://d3js.org/",
                 target = "_blank",
-                "D3 data visualization",
+                "D3",
                 .noWS = "outside"
               ),
               ", ",
@@ -149,6 +149,12 @@ acknowledgmentsSidebarPane <- function(id) {
                 .noWS = "outside"
               ),
               ", ",
+              htmltools::tags$a(
+                href = "https://leafletjs.com/",
+                target = "_blank",
+                "Leaflet",
+                .noWS = "outside"
+              ),
               htmltools::tags$a(
                 href = "https://refreshless.com/nouislider/",
                 target = "_blank",
@@ -170,6 +176,35 @@ acknowledgmentsSidebarPane <- function(id) {
                 .noWS = "outside"
               ),
               " JavaScript libraries.",
+              " It also uses the ",
+              htmltools::tags$a(
+                href = "https://github.com/CliffCloud/Leaflet.EasyButton",
+                target = "_blank",
+                "Leaflet.EasyButton",
+                .noWS = "outside"
+              ),
+              ", ",
+              htmltools::tags$a(
+                href = "http://rowanwins.github.io/leaflet-easyPrint/",
+                target = "_blank",
+                "leaflet-easyPrint",
+                .noWS = "outside"
+              ),
+              ", ",
+              htmltools::tags$a(
+                href = "https://github.com/cscott530/leaflet-history",
+                target = "_blank",
+                "Leaflet-History Control",
+                .noWS = "outside"
+              ),
+              ", and the ",
+              htmltools::tags$a(
+                href = "https://github.com/Turbo87/sidebar-v2",
+                target = "_blank",
+                "sidebar-v2",
+                .noWS = "outside"
+              ),
+              " Leaflet plugins.",
               .noWS = c("after-begin", "before-end"),
             ),
             ## additional dependencies
