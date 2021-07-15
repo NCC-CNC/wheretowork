@@ -1,4 +1,4 @@
-context("generate_solution")
+context("generate_min_set_solution")
 
 test_that("no spatial clustering", {
   # create object
@@ -50,7 +50,7 @@ test_that("no spatial clustering", {
     themes = list(t1, t2), weights = list(w), includes = list(incl),
     parameters = list(p1, p2))
   ## create object
-  x <- generate_solution(
+  x <- generate_min_set_solution(
     name = "solution01",
     dataset = d,
     settings = ss,
@@ -110,7 +110,7 @@ test_that("spatial clustering", {
     themes = list(t1, t2), weights = list(w), includes = list(incl),
     parameters = list(p1, p2))
   ## create object
-  x <- generate_solution(
+  x <- generate_min_set_solution(
     name = "solution01",
     dataset = d,
     settings = ss,

@@ -1,10 +1,10 @@
 #' @include internal.R
 NULL
 
-#' Generate solution
+#' Generate minimum set solution
 #'
-#' Create a new [Solution] object by generating a prioritization and
-#' calculating performance statistics.
+#' Create a new [Solution] object by generating a prioritization
+#' using the minimum set formulation of the reserve selection problem.
 #'
 #' @param name `character` name for new solution.
 #'
@@ -37,7 +37,7 @@ NULL
 #' #TODO.
 #'
 #' @export
-generate_solution <- function(
+generate_min_set_solution <- function(
   name, dataset, settings,
   theme_data = settings$get_theme_data(),
   weight_data = settings$get_weight_data(),
