@@ -152,20 +152,10 @@ generate_min_shortfall_solution <- function(
     initial_budget <- total_budget
   }
 
-  print("name")
-  print(name)
-  print("locked_in")
-  print(mean(locked_in))
-  print("locked_out")
-  print(mean(locked_out))
-  print("cost")
-  print(sum(cost))
-  print("total_budget")
-  print(sum(total_budget))
-  print("initial_budget")
-  print(sum(initial_budget))
-  print("")
-  print("")
+  # verify that problem if feasible with locked in planning units
+  if (sum(cost[locked_in]) > min(initial_budget, total_budget) {
+    stop("code_1")
+  }
 
   # calculate feature data
   features <-
