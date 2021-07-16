@@ -36,6 +36,8 @@ Imports:
     colourpicker (>= 1.1.0),
     dplyr (>= 1.0.6),
     igraph (>= 1.2.6),
+    future (>= 1.21.0),
+    promises (>= 1.2.0.1),
 Suggests:
     testthat (>= 2.0.1),
     knitr (>= 1.2.0),
