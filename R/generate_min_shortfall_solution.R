@@ -153,7 +153,7 @@ generate_min_shortfall_solution <- function(
   }
 
   # verify that problem if feasible with locked in planning units
-  if (sum(cost[locked_in]) > min(initial_budget, total_budget) {
+  if (sum(cost[locked_in]) > min(initial_budget, total_budget)) {
     stop("code_1")
   }
 
