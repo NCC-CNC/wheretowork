@@ -99,8 +99,9 @@ generate_min_set_solution <- function(
 
   # calculate locked in values
   locked_in <- matrix(
-      include_settings$status,
-      nrow = nrow(include_data), ncol = ncol(include_data))
+    include_settings$status, byrow = TRUE,
+    nrow = nrow(include_data), ncol = ncol(include_data)
+  )
   locked_in <- as.logical(colSums(locked_in * include_data) > 0)
 
   # calculate cost values
@@ -112,8 +113,9 @@ generate_min_set_solution <- function(
   wn@x <- wn@x + abs(min(wn@x)) + 1
   ## apply factors and status settings
   cost <- matrix(
-    weight_settings$factor * weight_settings$status,
-    nrow = nrow(wn), ncol = ncol(wn))
+    weight_settings$factor * weight_settings$status, byrow = TRUE,
+    nrow = nrow(wn), ncol = ncol(wn)
+  )
   ## calculate total cost by summing together all weight values
   cost <- colSums(cost * wn)
   ## re-scale cost values to avoid numerical issues
@@ -239,8 +241,10 @@ generate_min_set_solution <- function(
 
   ## theme representation
   ### calculate amount held for each feature
-  feature_held <-
-    matrix(main_solution, ncol = ncol(theme_data), nrow = nrow(theme_data))
+  feature_held <- matrix(
+    main_solution, byrow = TRUE,
+    ncol = ncol(theme_data), nrow = nrow(theme_data)
+  )
   feature_held <- rowSums(feature_held * theme_data) / rowSums(theme_data)
   names(feature_held) <- rownames(theme_data)
 
@@ -262,8 +266,10 @@ generate_min_set_solution <- function(
 
   ## weight coverage
   ### calculate amount held for each weight
-  weight_held <-
-    matrix(main_solution, ncol = ncol(weight_data), nrow = nrow(weight_data))
+  weight_held <- matrix(
+    main_solution, byrow = TRUE,
+    ncol = ncol(weight_data), nrow = nrow(weight_data)
+  )
   weight_held <- rowSums(weight_held * weight_data) / rowSums(weight_data)
   names(weight_held) <- rownames(weight_data)
   ### calculate results for each weight separately

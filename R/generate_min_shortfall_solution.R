@@ -107,35 +107,38 @@ generate_min_shortfall_solution <- function(
     )
   ## round values down to account for floating point issues
   targets$target <- floor(targets$target * 1e+3) / 1e+3
+  ## adjust values to prevent CBC from throwing an error and crashing R session
+  targets$target <- pmax(targets$target, 1e-5)
 
   # calculate locked in values
   locked_in <- matrix(
-      include_settings$status,
-      nrow = nrow(include_data), ncol = ncol(include_data))
+    include_settings$status, byrow = TRUE,
+    nrow = nrow(include_data), ncol = ncol(include_data)
+  )
   locked_in <- as.logical(colSums(locked_in * include_data) > 0)
 
   # calculate locked out values
   ## initialize matrix
   locked_out <- as.matrix(weight_data)
   ## identify planning units to lock out per each weight
-  for (i in seq_along(nrow(locked_out))) {
+  for (i in seq_len(nrow(locked_out))) {
     ## skip if not using weights
-    if (!weight_settings$status) {
+    if (!weight_settings$status[i]) {
       locked_out[i, ] <- FALSE
     } else {
       ## identify threshold
       thresh <- quantile(
         x = locked_out[i, ],
-        quantile = min(weight_settings$factor / 100),
+        probs = min((100 - weight_settings$factor[i]) / 100, 1),
         names = FALSE
       )
       ## identify planning units to lock out for given weight
-      locked_out[i, ] <- locked_out[i, ] >= thresh
+      locked_out[i, ] <- locked_out[i, ] > thresh
     }
   }
   ## identify planning unit to lock out for solutions
   ## note that locked in planning units are not locked out
-  locked_out <- (colSums(locked_out) > 0.5) & !locked_in
+  locked_out <- !locked_in & (colSums(locked_out) > 0.5)
 
   # calculate cost values
   pu_areas <- dataset$get_planning_unit_areas()
@@ -149,6 +152,21 @@ generate_min_shortfall_solution <- function(
     initial_budget <- total_budget
   }
 
+  print("name")
+  print(name)
+  print("locked_in")
+  print(mean(locked_in))
+  print("locked_out")
+  print(mean(locked_out))
+  print("cost")
+  print(sum(cost))
+  print("total_budget")
+  print(sum(total_budget))
+  print("initial_budget")
+  print(sum(initial_budget))
+  print("")
+  print("")
+
   # calculate feature data
   features <-
     data.frame(id = seq_len(nrow(theme_settings)), name = theme_settings$id)
@@ -161,7 +179,7 @@ generate_min_shortfall_solution <- function(
     prioritizr::add_min_shortfall_objective(budget = initial_budget) %>%
     prioritizr::add_manual_targets(targets) %>%
     prioritizr::add_binary_decisions() %>%
-    prioritizr::add_cbc_solver(gap = gap, verbose = TRUE)
+    prioritizr::add_cbc_solver(gap = gap, verbose = FALSE)
   ### add locked in constraints if needed
   if (any(locked_in)) {
     initial_problem <-
@@ -184,9 +202,19 @@ generate_min_shortfall_solution <- function(
   if (boundary_budget_proportion >= 1e-5) {
     ### calculate targets based on feature representation in initial solution
     main_targets <- targets
-    main_targets$target <- rowSums(matrix(
-      initial_solution, ncol = ncol(theme_data), nrow = nrow(theme_data)) *
-      initial_solution * theme_data)
+    main_targets$target <- rowSums(
+      matrix(
+        initial_solution, byrow = TRUE,
+        ncol = ncol(theme_data), nrow = nrow(theme_data)) *
+      theme_data
+    )
+    ### prepare adjacency matrix for connectivity penalties
+    ### note we use connectivity penalties because we want the solution
+    ### to be as near as possible to the budget, even if the result has
+    ### high perimeter because we included planning units with high perimeter
+    adj_data <- boundary_data
+    Matrix::diag(adj_data) <- 0
+    adj_data <- Matrix::drop0(adj_data)
     ### generate prioritization
     main_problem <-
       suppressWarnings(
@@ -200,8 +228,8 @@ generate_min_shortfall_solution <- function(
         )
       ) %>%
       prioritizr::add_min_set_objective() %>%
-      prioritizr::add_boundary_penalties(
-        penalty = 1, data = boundary_data) %>%
+      prioritizr::add_connectivity_penalties(
+        penalty = 1, data = adj_data) %>%
       prioritizr::add_manual_targets(
         rbind(
           main_targets,
@@ -214,7 +242,7 @@ generate_min_shortfall_solution <- function(
         )
       ) %>%
       prioritizr::add_binary_decisions() %>%
-      prioritizr::add_cbc_solver(gap = gap, verbose = TRUE)
+      prioritizr::add_cbc_solver(gap = gap, verbose = FALSE)
     ### add locked in constraints if needed
     if (any(locked_in)) {
       main_problem <-
@@ -287,8 +315,10 @@ generate_min_shortfall_solution <- function(
 
   ## theme representation
   ### calculate amount held for each feature
-  feature_held <-
-    matrix(main_solution, ncol = ncol(theme_data), nrow = nrow(theme_data))
+  feature_held <- matrix(
+    main_solution, byrow = TRUE,
+    ncol = ncol(theme_data), nrow = nrow(theme_data)
+  )
   feature_held <- rowSums(feature_held * theme_data) / rowSums(theme_data)
   names(feature_held) <- rownames(theme_data)
 
@@ -310,8 +340,10 @@ generate_min_shortfall_solution <- function(
 
   ## weight coverage
   ### calculate amount held for each weight
-  weight_held <-
-    matrix(main_solution, ncol = ncol(weight_data), nrow = nrow(weight_data))
+  weight_held <- matrix(
+    main_solution, byrow = TRUE,
+    ncol = ncol(weight_data), nrow = nrow(weight_data)
+  )
   weight_held <- rowSums(weight_held * weight_data) / rowSums(weight_data)
   names(weight_held) <- rownames(weight_data)
   ### calculate results for each weight separately
