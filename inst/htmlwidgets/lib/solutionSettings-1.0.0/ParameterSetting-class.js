@@ -46,7 +46,7 @@ class ParameterSetting {
       step: step_value,
       connect: "lower",
       tooltips: true,
-      format: wNumb({decimals: 0}),
+      format: wNumb({decimals: 0, suffix: units}),
       range: {
         "min": min_value,
         "max": max_value
