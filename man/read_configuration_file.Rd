@@ -8,7 +8,8 @@ read_configuration_file(
   path,
   spatial_path = NULL,
   attribute_path = NULL,
-  boundary_path = NULL
+  boundary_path = NULL,
+  mode = NULL
 )
 }
 \arguments{
@@ -25,6 +26,11 @@ the argument to \code{path}.}
 \item{boundary_path}{\code{character} file path for boundary data.
 Defaults to \code{NULL} such that the file path is determined using
 the argument to \code{path}.}
+
+\item{mode}{\code{character} mode for importing the objects.
+Defaults to \code{NULL} such that the mode is determined based on
+the contents of \code{path}. If the \code{mode} is \code{"advanced"}, then
+goal limits and mandatory include settings are disabled.}
 }
 \value{
 A \code{list} containing the following elements:

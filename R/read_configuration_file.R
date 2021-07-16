@@ -21,6 +21,10 @@ NULL
 #'  Defaults to `NULL` such that the file path is determined using
 #'  the argument to `path`.
 #'
+#' @param mode `character` mode for importing the objects.
+#'  Defaults to `NULL` such that the mode is determined based on
+#'  the contents of `path`. If the `mode` is `"advanced"`, then
+#'  goal limits and mandatory include settings are disabled.
 #'
 #' @return A `list` containing the following elements:
 #' \describe{
@@ -51,7 +55,11 @@ NULL
 #'
 #' @export
 read_configuration_file <- function(
-  path, spatial_path = NULL, attribute_path = NULL, boundary_path = NULL) {
+  path,
+  spatial_path = NULL,
+  attribute_path = NULL,
+  boundary_path = NULL,
+  mode = NULL) {
   # assert arguments are valid
   assertthat::assert_that(
     assertthat::is.string(path),
@@ -71,6 +79,11 @@ read_configuration_file <- function(
       assertthat::is.string(boundary_path),
       assertthat::noNA(boundary_path))
   }
+  if (!is.null(mode)) {
+    assertthat::assert_that(
+      assertthat::is.string(mode),
+      assertthat::noNA(mode))
+  }
 
   # import configuration file
   ## read file
@@ -78,6 +91,13 @@ read_configuration_file <- function(
   if (inherits(x, "try-error")) {
     stop("configuration file is not a valid YAML file.")
   }
+
+  # determine if advanced mode
+  adv_mode <- identical(mode, "advanced")
+  if (is.null(mode)) {
+    adv_mode <- identical(x$mode, "advanced")
+  }
+
 
   # set file paths if needed
   if (is.null(spatial_path)) {
@@ -139,7 +159,7 @@ read_configuration_file <- function(
             min_goal = f$min_goal,
             max_goal = f$max_goal,
             step_goal = f$step_goal,
-            limit_goal = f$limit_goal,
+            limit_goal = ifelse(adv_mode, 0, f$limit_goal),
             current = 0,
             variable = new_variable_from_auto(
               dataset = d,
@@ -219,7 +239,7 @@ read_configuration_file <- function(
           ),
         initial_visible = x$initial_visible,
         initial_status = x$initial_status,
-        mandatory = x$mandatory
+        mandatory = ifelse(adv_mode, FALSE, x$mandatory)
       ),
       silent = FALSE
     )
@@ -248,6 +268,6 @@ read_configuration_file <- function(
     themes = themes,
     weights = weights,
     includes = includes,
-    mode = x$mode
+    mode = ifelse(is.null(mode), x$mode, mode)
   )
 }
