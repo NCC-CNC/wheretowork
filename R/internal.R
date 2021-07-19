@@ -55,7 +55,10 @@ zscale <- function(x) {
 example_include_names <- function() {
   tibble::as_tibble(
     utils::read.table(
-      system.file("extdata", "example-includes.csv", package = "locationmisc"),
+      system.file(
+        "extdata", "data", "example-includes.csv",
+        package = "wheretowork"
+      ),
       stringsAsFactors = FALSE,
       sep = ",",
       header = TRUE
@@ -73,7 +76,10 @@ example_include_names <- function() {
 example_weight_names <- function() {
   tibble::as_tibble(
     utils::read.table(
-      system.file("extdata", "example-weights.csv", package = "locationmisc"),
+      system.file(
+        "extdata", "data", "example-weights.csv",
+        package = "wheretowork"
+      ),
       stringsAsFactors = FALSE,
       sep = ",",
       header = TRUE
@@ -94,8 +100,9 @@ example_theme_names <- function() {
     d <-
       readxl::read_excel(
         system.file(
-          "extdata", "Clements-Checklist-v2019-August-2019.xlsx",
-          package = "locationmisc"),
+          "extdata", "data", "Clements-Checklist-v2019-August-2019.xlsx",
+          package = "wheretowork"
+        ),
         sheet = 1)
    })
    # format column names
@@ -116,38 +123,6 @@ example_theme_names <- function() {
   d <- stats::setNames(d, c("feature", "theme"))
   # return result
   d
-}
-
-#' Example feature icon
-#'
-#' Randomly generate an icon for an example feature.
-#'
-#' @return A `shiny.tag` icon.
-#'
-#' @noRd
-example_feature_icon <- function() {
-  # define names for feature icons
-  x <- c(
-    "map-marked-alt", "atlas", "map-pin", "map", "database",
-    "hdd")
-  # return icon
-  shiny::icon(sample(x, 1))
-}
-
-#' Example theme icon
-#'
-#' Randomly generate an icon for an example theme.
-#'
-#' @return A `shiny.tag` icon.
-#'
-#' @noRd
-example_theme_icon <- function() {
-  # define names for theme icons
-  x <- c(
-    "cat", "crow", "dog", "dove", "dragon", "fish",
-    "frog", "hippo", "horse", "kiwi-bird", "otter", "spider")
-  # return icon
-  shiny::icon(sample(x, 1))
 }
 
 #' Make valid names

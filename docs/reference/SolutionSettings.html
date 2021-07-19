@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Solution settings class — SolutionSettings • locationmisc</title>
+<title>Solution settings class — SolutionSettings • wheretowork</title>
 
 
 <!-- jquery -->
@@ -80,7 +80,7 @@ Solution settings class" />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">locationmisc</a>
+        <a class="navbar-link" href="../index.html">wheretowork</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
       </span>
     </div>
@@ -189,7 +189,7 @@ parameters.</p></dd>
 <li><p><a href='#method-get_theme_data'><code>SolutionSettings$get_theme_data()</code></a></p></li>
 <li><p><a href='#method-get_weight_data'><code>SolutionSettings$get_weight_data()</code></a></p></li>
 <li><p><a href='#method-get_include_data'><code>SolutionSettings$get_include_data()</code></a></p></li>
-<li><p><a href='#method-update_feature_current'><code>SolutionSettings$update_feature_current()</code></a></p></li>
+<li><p><a href='#method-update_current_held'><code>SolutionSettings$update_current_held()</code></a></p></li>
 <li><p><a href='#method-clone'><code>SolutionSettings$clone()</code></a></p></li>
 </ul>
 <p><hr>
@@ -494,32 +494,38 @@ parameters.</p></dd>
 <h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
 <p><code><a href='https://rdrr.io/pkg/Matrix/man/sparseMatrix.html'>Matrix::sparseMatrix()</a></code> with data.</p>
 <p><hr>
-<a id="method-update_feature_current"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>update_feature_current()</code></h3>
-<p>Update the current amount held for each feature automatically
+<a id="method-update_current_held"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>update_current_held()</code></h3>
+<p>Update the current amount held for each themes and weights automatically
 based on the include statuses.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
-<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>SolutionSettings</span><span class='op'>$</span><span class='fu'>update_feature_current</span><span class='op'>(</span>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>SolutionSettings</span><span class='op'>$</span><span class='fu'>update_current_held</span><span class='op'>(</span>
   theme_data <span class='op'>=</span> <span class='va'>self</span><span class='op'>$</span><span class='fu'>get_theme_data</span><span class='op'>(</span><span class='op'>)</span>,
+  weight_data <span class='op'>=</span> <span class='va'>self</span><span class='op'>$</span><span class='fu'>get_weight_data</span><span class='op'>(</span><span class='op'>)</span>,
   include_data <span class='op'>=</span> <span class='va'>self</span><span class='op'>$</span><span class='fu'>get_include_data</span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>)</span></code></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
 <p><div class="arguments"></p><dl>
 <dt><code>theme_data</code></dt><dd><p><code>[Matrix::sparseMatrix()] with theme data. Defaults to </code>self$get_theme_data()`.</p></dd>
+
+<dt><code>weight_data</code></dt><dd><p><code>[Matrix::sparseMatrix()] with weight data. Defaults to </code>self$get_weight_data()`.</p></dd>
 
 <dt><code>include_data</code></dt><dd><p><code>[Matrix::sparseMatrix()] with include data. Defaults to </code>self$get_include_data()`.</p></dd>
 
 </dl><p></div></p>
-<h3 class='hasAnchor' id='list-update-feature-current-'><a class='anchor' aria-hidden='true' href='#list-update-feature-current-'></a>Method <code>update_feature_current()</code></h3>
-<p>Update the current amount held for each feature automatically
+<h3 class='hasAnchor' id='list-update-current-held-'><a class='anchor' aria-hidden='true' href='#list-update-current-held-'></a>Method <code>update_current_held()</code></h3>
+<p>Update the current amount held for each themes and weights automatically
 based on the include statuses.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
-<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>SolutionSettings</span><span class='op'>$</span><span class='fu'>update_feature_current</span><span class='op'>(</span>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>SolutionSettings</span><span class='op'>$</span><span class='fu'>update_current_held</span><span class='op'>(</span>
   theme_data <span class='op'>=</span> <span class='va'>self</span><span class='op'>$</span><span class='fu'>get_theme_data</span><span class='op'>(</span><span class='op'>)</span>,
+  weight_data <span class='op'>=</span> <span class='va'>self</span><span class='op'>$</span><span class='fu'>get_weight_data</span><span class='op'>(</span><span class='op'>)</span>,
   include_data <span class='op'>=</span> <span class='va'>self</span><span class='op'>$</span><span class='fu'>get_include_data</span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>)</span></code></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
 <p><div class="arguments"></p><dl>
 <dt><code>theme_data</code></dt><dd><p><code>[Matrix::sparseMatrix()] with theme data. Defaults to </code>self$get_theme_data()`.</p></dd>
+
+<dt><code>weight_data</code></dt><dd><p><code>[Matrix::sparseMatrix()] with weight data. Defaults to </code>self$get_weight_data()`.</p></dd>
 
 <dt><code>include_data</code></dt><dd><p><code>[Matrix::sparseMatrix()] with include data. Defaults to </code>self$get_include_data()`.</p></dd>
 

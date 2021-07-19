@@ -5,8 +5,6 @@ dependencies:
     src: htmlwidgets/lib/utils-1.0.0
     script:
       - utils.js
-    stylesheet:
-      - style.css
 
   - name: wNumb
     version: 1.2.0

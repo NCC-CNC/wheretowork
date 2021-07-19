@@ -41,25 +41,33 @@ raster_data$attribute_data <- raster_data$attribute_data[, -1, drop = FALSE]
 
 # Exports
 ## raster project
-write_configuration_file(
+write_project(
   x = sim_raster_data,
   dataset = raster_data,
-  path = "inst/extdata/sim_raster_data.yaml",
   name = "Example GeoTIFF dataset",
-  spatial_path = "inst/extdata/sim_raster_spatial.tif",
-  attribute_path = "inst/extdata/sim_raster_attribute.csv.gz",
-  boundary_path = "inst/extdata/sim_raster_boundary.csv.gz",
+  path =
+    "inst/extdata/projects/sim_raster/sim_raster_data.yaml",
+  spatial_path =
+    "inst/extdata/projects/sim_raster/sim_raster_spatial.tif",
+  attribute_path =
+    "inst/extdata/projects/sim_raster/sim_raster_attribute.csv.gz",
+  boundary_path =
+    "inst/extdata/projects/sim_raster/sim_raster_boundary.csv.gz",
   mode = "advanced")
 
 ## vector project
-write_configuration_file(
+write_project(
   x = sim_vector_data,
   dataset = vector_data,
-  path = "inst/extdata/sim_vector_data.yaml",
   name = "Example Shapefile dataset",
-  spatial_path = "inst/extdata/sim_vector_spatial.shp",
-  attribute_path = "inst/extdata/sim_vector_attribute.csv.gz",
-  boundary_path = "inst/extdata/sim_vector_boundary.csv.gz",
+  path =
+    "inst/extdata/projects/sim_vector/sim_vector_data.yaml",
+  spatial_path =
+    "inst/extdata/projects/sim_vector/sim_vector_spatial.shp",
+  attribute_path =
+    "inst/extdata/projects/sim_vector/sim_vector_attribute.csv.gz",
+  boundary_path =
+    "inst/extdata/projects/sim_vector/sim_vector_boundary.csv.gz",
   mode = "beginner")
 
 ## shapefile
@@ -67,4 +75,4 @@ write_configuration_file(
 select(-`_index`) %>%
 {bind_cols(., select(vector_data$attribute_data, -`_index`))} %>%
 as_Spatial() %>%
-raster::shapefile("inst/extdata/sim_shapefile.shp", overwrite = TRUE)
+raster::shapefile("inst/extdata/shapefile/sim_shapefile.shp", overwrite = TRUE)

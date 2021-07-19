@@ -1,0 +1,15 @@
+/* style all tooltips */
+.tooltip {
+  z-index: 99999 !important;
+}
+
+/* style all icons in buttons */
+.action-button.btn-primary.shiny-bound-input i {
+  margin-right: 4px;
+}
+
+.widget-container {
+  height: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}

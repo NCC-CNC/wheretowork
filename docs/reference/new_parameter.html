@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>New parameter — new_parameter • locationmisc</title>
+<title>New parameter — new_parameter • wheretowork</title>
 
 
 <!-- jquery -->
@@ -79,7 +79,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">locationmisc</a>
+        <a class="navbar-link" href="../index.html">wheretowork</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
       </span>
     </div>
@@ -124,6 +124,7 @@
   min_value <span class='op'>=</span> <span class='fl'>0</span>,
   max_value <span class='op'>=</span> <span class='fl'>100</span>,
   step_value <span class='op'>=</span> <span class='fl'>1</span>,
+  hide <span class='op'>=</span> <span class='cn'>FALSE</span>,
   units <span class='op'>=</span> <span class='st'>""</span>,
   id <span class='op'>=</span> <span class='fu'>uuid</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/uuid/man/UUIDgenerate.html'>UUIDgenerate</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>)</span></code></pre></div>
@@ -162,6 +163,12 @@ Defaults to 0.</p></td>
 Defaults to 1.</p></td>
     </tr>
     <tr>
+      <th>hide</th>
+      <td><p><code>logical</code> value indicating if the slider should be
+hidden when the parameter is disabled.
+Defaults to <code>FALSE</code>.</p></td>
+    </tr>
+    <tr>
       <th>units</th>
       <td><p><code>character</code> units.
 Defaults to an empty <code>character</code> object.</p></td>
@@ -184,7 +191,7 @@ Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUI
 <span class='r-in'><span class='co'># print object</span></span>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>p</span><span class='op'>)</span></span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Parameter</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       a528f158-99c8-40cb-b8bd-990d81a9e99e</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       0f51de3c-2a42-4b3a-9136-e2e318c477e9</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:     Spatial clustering</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   status:   TRUE</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   value:   0 </span>

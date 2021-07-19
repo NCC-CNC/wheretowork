@@ -1,3 +1,14 @@
+function createLegend(el, x, units) {
+  if (x.type === "CategoricalLegend") {
+    return categoricalLegend(el, x, units);
+  } else if (x.type === "ContinuousLegend") {
+    return continuousLegend(el, x, units);
+  } else {
+    console.error("unrecognized legend")
+    console.log(x)
+  }
+}
+
 function newLayer(manager, x) {
   if (x.type == "solution") {
     return new SolutionLayer(

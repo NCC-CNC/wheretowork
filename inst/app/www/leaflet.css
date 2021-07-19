@@ -1,0 +1,85 @@
+/* hide leaflet controls on app start up */
+.startup .leaflet-top,
+.startup .leaflet-bottom
+.startup .sidebar {
+  visibility: hidden;
+}
+
+/* hide easy print button */
+.leaflet-control-easyPrint {
+  display: none;
+}
+
+/* minimap + scale bar container */
+.leaflet-bottom.leaflet-left {
+  margin-bottom: 15px;
+  left: 50%;
+  -ms-transform: translateX(-50%);
+  -webkit-transform: translate(-50%);
+  transform: translate(-50%);
+}
+
+/* minimap */
+.leaflet-control-minimap.leaflet-container {
+  margin-left: 0;
+}
+
+/* scalebar */
+.leaflet-control-scale.leaflet-control {
+  margin-left: 0;
+  left: 50%;
+  -ms-transform: translateX(-50%);
+  -webkit-transform: translate(-50%);
+  transform: translate(-50%);
+}
+
+/* map control buttons */
+.leaflet-top.leaflet-left {
+  display: flex;
+  left: 50%;
+  -ms-transform: translateX(-50%);
+  -webkit-transform: translate(-50%);
+  transform: translate(-50%);
+}
+
+.leaflet-top.leaflet-left .leaflet-control {
+  margin-left: 5px !important;
+  margin-right: 5px !important;
+}
+
+/* display zoom buttons horizontally */
+.leaflet-control-zoom.leaflet-bar.leaflet-control {
+  margin-left: 0px;
+  display: flex;
+}
+
+/* zoom in button */
+.leaflet-touch .leaflet-bar a:first-child {
+  /* border radius */
+  border-top-left-radius: 2px !important;
+  border-bottom-left-radius: 2px !important;
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+  /* border colors */
+  border-bottom: 0;
+  border-right: 1px solid #ccc;
+}
+
+/* zoom out button */
+.leaflet-touch .leaflet-bar a:last-child {
+  /* border radius */
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+  border-top-right-radius: 2px !important;
+  border-bottom-right-radius: 2px !important;
+}
+
+/* style home button */
+.easy-button-container {
+  margin-left: 1px;
+  margin-right: 1px;
+}
+
+.easy-button-button {
+  font-size: large;
+}

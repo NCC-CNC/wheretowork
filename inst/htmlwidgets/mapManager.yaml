@@ -5,19 +5,6 @@ dependencies:
     src: htmlwidgets/lib/utils-1.0.0
     script:
       - utils.js
-    stylesheet:
-      - style.css
-
-  - name: legends
-    version: 1.0.0
-    src: htmlwidgets/lib/legends-1.0.0
-    script:
-      - continuousLegend.js
-      - categoricalLegend.js
-      - main.js
-    stylesheet:
-      - continuousLegend.css
-      - categoricalLegend.css
 
   - name: Sortable
     version: 1.13.0
@@ -30,6 +17,8 @@ dependencies:
     src: htmlwidgets/lib/mapManager-1.0.0
     script:
       - utils.js
+      - continuousLegend.js
+      - categoricalLegend.js
       - IncludeLayer-class.js
       - SolutionLayer-class.js
       - WeightLayer-class.js
@@ -38,6 +27,8 @@ dependencies:
       - mapManager-class.js
     stylesheet:
       - style.css
+      - continuousLegend.css
+      - categoricalLegend.css
 
   - name: mapManager-style
     version: 1.0.0
