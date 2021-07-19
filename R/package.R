@@ -1,31 +1,38 @@
 #' @include internal.R
 NULL
 
-#' @import htmlwidgets
-#' @import R6
-#' @import shiny
-#' @import leaflet
-#' @import leaflet.extras2
 #' @import shinyBS
+#' @import promises
+#' @import R6
 #' @import raster
 #' @import sf
 NULL
 
-#' locationmisc: Classes, Widgets, and Functions for the Location App
+#' wheretowork: Systematic conservation planning application.
 #'
-#' This package provides classes, widgets, and functions for the
-#' [Location App](https://github.com/NCC-CNC/location-app).
+#' TODO.
 #'
-#' @name locationmisc
+#' @name wheretowork
+#'
 #' @docType package
+#'
+#' @examples
+#' #TODO
 NULL
 
-# define global variables used in lazy evaluation
+# define global variables to pass package checks
+## these variables are used in lazy evaluation or the shiny application
 utils::globalVariables(
   c(
     "absolute_area",
     "absolute_perimeter",
-    "statistics"
+    "statistics",
+    "area_budget_parameter",
+    "boundary_gap_parameter",
+    "session",
+    "app_data",
+    "project_data",
+    "import_data"
   )
 )
 

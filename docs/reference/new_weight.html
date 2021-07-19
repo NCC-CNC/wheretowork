@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>New weight — new_weight • locationmisc</title>
+<title>New weight — new_weight • wheretowork</title>
 
 
 <!-- jquery -->
@@ -79,7 +79,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">locationmisc</a>
+        <a class="navbar-link" href="../index.html">wheretowork</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
       </span>
     </div>
@@ -122,6 +122,7 @@
   <span class='va'>variable</span>,
   initial_visible <span class='op'>=</span> <span class='cn'>TRUE</span>,
   initial_status <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  current <span class='op'>=</span> <span class='fl'>0</span>,
   initial_factor <span class='op'>=</span> <span class='fl'>0</span>,
   min_factor <span class='op'>=</span> <span class='fl'>0</span>,
   max_factor <span class='op'>=</span> <span class='fl'>100</span>,
@@ -153,6 +154,11 @@ Defaults to <code>TRUE</code></p></td>
 This is used to display information on whether the feature is
 selected (or not) for subsequent analysis.
 Defaults to <code>TRUE</code></p></td>
+    </tr>
+    <tr>
+      <th>current</th>
+      <td><p><code>numeric</code> current proportion of values held in existing
+conservation areas (e.g. 0.1 = 10%).</p></td>
     </tr>
     <tr>
       <th>initial_factor</th>
@@ -187,11 +193,17 @@ Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUI
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='co'># find data file paths</span></span>
 <span class='r-in'><span class='va'>f1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span></span>
-<span class='r-in'>  <span class='st'>"extdata"</span>, <span class='st'>"sim_raster_spatial.tif"</span>, package <span class='op'>=</span> <span class='st'>"locationmisc"</span><span class='op'>)</span></span>
+<span class='r-in'>  <span class='st'>"extdata"</span>, <span class='st'>"projects"</span>, <span class='st'>"sim_raster"</span>, <span class='st'>"sim_raster_spatial.tif"</span>,</span>
+<span class='r-in'>  package <span class='op'>=</span> <span class='st'>"wheretowork"</span></span>
+<span class='r-in'><span class='op'>)</span></span>
 <span class='r-in'><span class='va'>f2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span></span>
-<span class='r-in'> <span class='st'>"extdata"</span>, <span class='st'>"sim_raster_attribute.csv.gz"</span>, package <span class='op'>=</span> <span class='st'>"locationmisc"</span><span class='op'>)</span></span>
+<span class='r-in'> <span class='st'>"extdata"</span>,  <span class='st'>"projects"</span>, <span class='st'>"sim_raster"</span>, <span class='st'>"sim_raster_attribute.csv.gz"</span>,</span>
+<span class='r-in'> package <span class='op'>=</span> <span class='st'>"wheretowork"</span></span>
+<span class='r-in'><span class='op'>)</span></span>
 <span class='r-in'><span class='va'>f3</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span></span>
-<span class='r-in'> <span class='st'>"extdata"</span>, <span class='st'>"sim_raster_boundary.csv.gz"</span>, package <span class='op'>=</span> <span class='st'>"locationmisc"</span><span class='op'>)</span></span>
+<span class='r-in'> <span class='st'>"extdata"</span>,  <span class='st'>"projects"</span>, <span class='st'>"sim_raster"</span>, <span class='st'>"sim_raster_boundary.csv.gz"</span>,</span>
+<span class='r-in'> package <span class='op'>=</span> <span class='st'>"wheretowork"</span></span>
+<span class='r-in'><span class='op'>)</span></span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># create new dataset</span></span>
 <span class='r-in'><span class='va'>d</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_dataset.html'>new_dataset</a></span><span class='op'>(</span><span class='va'>f1</span>, <span class='va'>f2</span>, <span class='va'>f3</span><span class='op'>)</span></span>
@@ -205,9 +217,10 @@ Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUI
 <span class='r-in'><span class='co'># print object</span></span>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>w</span><span class='op'>)</span></span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Weight</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       fe5e0ac7-851c-4d93-b855-5802f5e666b5</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       0e15892c-8c07-437b-b609-38c982b82970</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:     NDVI</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   variable: .../sim_raster_spatial.tif#Olive_headed_Lorikeet [total: 1052 ]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   current:  0</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   visible:  TRUE</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   status:   TRUE</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   factor:   0</span>

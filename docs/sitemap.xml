@@ -76,6 +76,12 @@
     <loc>/reference/WeightResults.html</loc>
   </url>
   <url>
+    <loc>/reference/acknowledge_packages.html</loc>
+  </url>
+  <url>
+    <loc>/reference/acknowledgmentsSidebarPane.html</loc>
+  </url>
+  <url>
     <loc>/reference/addMapManagerLayer.html</loc>
   </url>
   <url>
@@ -88,6 +94,12 @@
     <loc>/reference/color_palette.html</loc>
   </url>
   <url>
+    <loc>/reference/contactSidebarPane.html</loc>
+  </url>
+  <url>
+    <loc>/reference/disable_html_css_selector.html</loc>
+  </url>
+  <url>
     <loc>/reference/disable_html_element.html</loc>
   </url>
   <url>
@@ -95,6 +107,9 @@
   </url>
   <url>
     <loc>/reference/dropSolutionResults.html</loc>
+  </url>
+  <url>
+    <loc>/reference/enable_html_css_selector.html</loc>
   </url>
   <url>
     <loc>/reference/enable_html_element.html</loc>
@@ -109,7 +124,19 @@
     <loc>/reference/extract_data_matrix.html</loc>
   </url>
   <url>
-    <loc>/reference/generate_solution.html</loc>
+    <loc>/reference/find_projects.html</loc>
+  </url>
+  <url>
+    <loc>/reference/generate_min_set_solution.html</loc>
+  </url>
+  <url>
+    <loc>/reference/generate_min_shortfall_solution.html</loc>
+  </url>
+  <url>
+    <loc>/reference/get_golem_config.html</loc>
+  </url>
+  <url>
+    <loc>/reference/horizontalPickerInput.html</loc>
   </url>
   <url>
     <loc>/reference/importModal.html</loc>
@@ -119,6 +146,9 @@
   </url>
   <url>
     <loc>/reference/importSettings-widget.html</loc>
+  </url>
+  <url>
+    <loc>/reference/import_data.html</loc>
   </url>
   <url>
     <loc>/reference/index.html</loc>
@@ -137,9 +167,6 @@
   </url>
   <url>
     <loc>/reference/leaflet_map.html</loc>
-  </url>
-  <url>
-    <loc>/reference/locationmisc.html</loc>
   </url>
   <url>
     <loc>/reference/mapManager-shiny.html</loc>
@@ -226,13 +253,19 @@
     <loc>/reference/readNamedRaster.html</loc>
   </url>
   <url>
-    <loc>/reference/read_configuration_file.html</loc>
+    <loc>/reference/read_project.html</loc>
   </url>
   <url>
     <loc>/reference/read_spatial_data.html</loc>
   </url>
   <url>
-    <loc>/reference/runExample.html</loc>
+    <loc>/reference/reserve_sizes.html</loc>
+  </url>
+  <url>
+    <loc>/reference/run_app.html</loc>
+  </url>
+  <url>
+    <loc>/reference/shapefile_field_names.html</loc>
   </url>
   <url>
     <loc>/reference/showSolutionResults.html</loc>
@@ -268,6 +301,9 @@
     <loc>/reference/solutionResults-widget.html</loc>
   </url>
   <url>
+    <loc>/reference/solutionResultsModal.html</loc>
+  </url>
+  <url>
     <loc>/reference/solutionResultsSidebarPane.html</loc>
   </url>
   <url>
@@ -295,10 +331,13 @@
     <loc>/reference/updateSolutionSettings.html</loc>
   </url>
   <url>
+    <loc>/reference/wheretowork.html</loc>
+  </url>
+  <url>
     <loc>/reference/writeNamedRaster.html</loc>
   </url>
   <url>
-    <loc>/reference/write_configuration_file.html</loc>
+    <loc>/reference/write_project.html</loc>
   </url>
   <url>
     <loc>/reference/write_spatial_data.html</loc>

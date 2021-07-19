@@ -1,0 +1,29 @@
+default:
+  # golem variables
+  golem_name: wheretowork
+  golem_version: 0.0.0.9000
+  app_prod: no
+
+  # app variables
+  ## optimality gap for optimization
+  gap: 0.01
+
+  ## mode for importing projects
+  mode: "advanced"
+
+  ## directory containing the projects
+  ## "default" = system.file("extdata", "projects", package = "wheretowork")
+  projects: "default"
+
+  ## future plan strategy
+  ### if "auto", then "sequential" is used on Shiny apps
+  ### (per R_CONFIG_ACTIVE variable),
+  ### otherwise, "multisession" is used.
+  strategy: "auto"
+
+production:
+  mode: "project"
+  strategy: "multisession"
+
+dev:
+  golem_wd: !expr here::here()

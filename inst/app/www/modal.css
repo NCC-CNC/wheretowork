@@ -1,0 +1,10 @@
+/* fix width for modal dialog */
+[id = 'shiny-modal-wrapper'] .modal-dialog {
+  width: 330px;
+}
+
+/* fix height for soltion settings widget */
+.importSettings .layers {
+  /* max-height: calc(100vh - 410px) !important; */
+  max-height: calc(100vh - 440px) !important;
+}

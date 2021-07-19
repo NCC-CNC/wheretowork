@@ -1,6 +1,6 @@
 # load packages
 library(testthat)
-library(locationmisc)
+library(wheretowork)
 
 # enable parallel testing
 Sys.unsetenv("R_TESTS")
@@ -9,4 +9,4 @@ Sys.unsetenv("R_TESTS")
 RandomFields::RFoptions(cPrintlevel = 0)
 
 # run tests
-test_check("locationmisc")
+test_check("wheretowork")

@@ -1,8 +1,8 @@
-Package: locationmisc
-Title: Classes, widgets, and functions for the Location App
+Package: wheretowork
+Title: Systematic conservation planning application
 Version: 0.0.0.9000
 Description:
-  This package provides classes, widgets, and functions for the Location App.
+  Interactive application for systematic conservation planning
 Authors@R: c(
   person(c('Jeffrey', 'O'), 'Hanson',
     email='jeffrey.hanson@uqconnect.edu.au', role = c('aut', 'cre'),
@@ -15,29 +15,45 @@ Imports:
     stats,
     methods,
     assertthat (>= 0.2.0),
+    stringi (>= 1.7.3),
+    tools (>= 4.0.5),
+    Matrix (>= 1.3.4),
+    uuid (>= 0.1.4),
+    scales (>= 1.1.1),
+    R.utils (>= 2.10.1),
+    yaml (>= 2.2.1),
+    config (>= 0.3.1),
+    openxlsx (>= 4.2.3),
+    future (>= 1.21.0),
+    igraph (>= 1.2.6),
+    RColorBrewer (>= 1.1.2),
+    viridisLite (>= 0.4.0),
+    tibble (>= 3.1.1),
+    withr (>= 2.4.2),
+    readxl (>= 1.3.1),
+    data.table (>= 1.14.0),
+    plyr (>= 1.8.6),
+    dplyr (>= 1.0.6),
+    prioritizr (>= 7.0.1),
+    fasterize (>= 1.0.3),
+    rgdal (>= 1.5.23),
+    rcbc (>= 0.1.0.9001),
+    RandomFields (>= 3.3.8),
+    shiny (>= 1.6.0),
+    golem (>= 0.3.1),
+    pkgload (>= 1.2.1),
     htmlwidgets (>= 1.5.3),
     htmltools (>= 0.5.1.1),
-    tools (>= 4.0.5),
-    uuid (>= 0.1.4),
-    readxl (>= 1.3.1),
-    tibble (>= 3.1.1),
-    RColorBrewer (>= 1.1.2),
-    scales (>= 1.1.1),
-    prioritizr (>= 7.0.1),
-    viridisLite (>= 0.4.0),
-    RandomFields (>= 3.3.8),
-    fasterize (>= 1.0.3),
-    yaml (>= 2.2.1),
-    R.utils (>= 2.10.1),
-    rgdal (>= 1.5.23),
-    data.table (>= 1.14.0),
-    rcbc (>= 0.1.0.9001),
-    withr (>= 2.4.2),
+    shinyjs (>= 2.0.0),
+    shinyFeedback (>= 0.3.0),
+    shinyWidgets (>= 0.6.0),
+    shinybusy (>= 0.2.2),
+    shinyalert (>= 2.0.0),
+    leaflet (>= 2.0.3.9000),
+    leaflet.extras2 (>= 1.1.0),
     colourpicker (>= 1.1.0),
-    dplyr (>= 1.0.6),
-    igraph (>= 1.2.6),
-    future (>= 1.21.0),
-    promises (>= 1.2.0.1),
+    DT (>= 0.18),
+    whereami (>= 0.1.9),
 Suggests:
     testthat (>= 2.0.1),
     knitr (>= 1.2.0),
@@ -45,17 +61,12 @@ Suggests:
     rmarkdown (>= 1.10),
     rvest (>= 1.0.0),
     xml2 (>= 1.3.2),
-    shinyjs (>= 2.0.0),
-    shinyFeedback (>= 0.3.0),
-    shinybusy (>= 0.2.2),
-    openxlsx (>= 4.2.3),
-    shinyalert (>= 2.0.0),
+    processx (>= 3.5.2),
+    rsconnect (>= 0.8.18),
 Depends:
     R (>= 4.0.0),
-    shiny (>= 1.6.0),
-    leaflet (>= 2.0.3.9000),
-    leaflet.extras2 (>= 1.1.0),
     shinyBS (>= 0.6.1),
+    promises (>= 1.2.0.1),
     R6 (>= 2.5.0),
     raster (>= 3.4.10),
     sf (>= 0.9.8),
@@ -65,78 +76,93 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Collate:
+    '_disable_autoload.R'
+    'app_config.R'
+    'app_global.R'
+    'app_server.R'
+    'app_ui.R'
     'internal.R'
-    'CategoricalLegend-class.R'
-    'ContinuousLegend-class.R'
-    'Dataset-class.R'
-    'Variable-class.R'
-    'Feature-class.R'
-    'FeatureResults-class.R'
-    'Include-class.R'
-    'ManualLegend-class.R'
-    'Solution-class.R'
-    'Theme-class.R'
-    'Weight-class.R'
-    'MapManager-class.R'
-    'MultiTheme-class.R'
-    'ThemeResults-class.R'
-    'MultiThemeResults.R'
-    'Parameter-class.R'
-    'SingleTheme-class.R'
-    'SingleThemeResults.R'
-    'SolutionSettings-class.R'
-    'Statistic-class.R'
-    'WeightResults-class.R'
-    'acknowledge_packages.R'
-    'solutionSettings.R'
-    'acknowledgmentsSidebarPane.R'
-    'cleanImportSettings.R'
-    'color_palette.R'
-    'contactSidebarPane.R'
-    'error_message.R'
-    'exportSidebarPane.R'
-    'extract_data_matrix.R'
-    'generate_min_set_solution.R'
-    'generate_min_shortfall_solution.R'
-    'horizontalPickerInput.R'
-    'importModal.R'
-    'importSettings.R'
-    'import_spatial_data.R'
-    'is_valid_file.R'
-    'leaflet_map.R'
-    'mapManager-components.R'
-    'mapManager.R'
-    'mapManagerSidebarPane.R'
-    'newSolutionSidebarPane.R'
+    'class_CategoricalLegend.R'
+    'class_ContinuousLegend.R'
+    'class_Dataset.R'
+    'class_Variable.R'
+    'class_Feature.R'
+    'class_FeatureResults.R'
+    'class_Include.R'
+    'class_ManualLegend.R'
+    'class_Solution.R'
+    'class_Theme.R'
+    'class_Weight.R'
+    'class_MapManager.R'
+    'class_MultiTheme.R'
+    'class_ThemeResults.R'
+    'class_MultiThemeResults.R'
+    'class_Parameter-class.R'
+    'class_SingleTheme.R'
+    'class_SingleThemeResults.R'
+    'class_SolutionSettings.R'
+    'class_Statistic.R'
+    'class_WeightResults.R'
+    'fct_find_projects.R'
+    'fct_generate_min_set_solution.R'
+    'fct_generate_min_shortfall_solution.R'
+    'fct_read_project.R'
+    'fct_simulate_includes.R'
+    'fct_simulate_legends.R'
+    'fct_simulate_solution.R'
+    'fct_simulate_spatial_data.R'
+    'fct_simulate_themes.R'
+    'fct_simulate_weights.R'
+    'fct_write_project.R'
     'package.R'
-    'prepare_fileInput.R'
-    'raster_io.R'
-    'read_configuration_file.R'
-    'read_spatial_data.R'
-    'runExample.R'
-    'shinyjs_functions.R'
-    'simulate_includes.R'
-    'simulate_legends.R'
-    'simulate_solution.R'
-    'simulate_spatial_data.R'
-    'simulate_themes.R'
-    'simulate_weights.R'
-    'solutionResults.R'
-    'solutionResultsModal.R'
-    'solutionResultsSidebarPane.R'
-    'solutionSetttings-components.R'
-    'spatial_data_statistics.R'
-    'spatial_data_type.R'
-    'spatial_functions.R'
-    'updateImportSettings.R'
-    'updateMapManagerLayer.R'
-    'updateMapManagerOrder.R'
-    'updateSolutionResults.R'
-    'updateSolutionSettings.R'
-    'useCustomScrollbars.R'
-    'write_configuration_file.R'
-    'write_spatial_data.R'
+    'run_app.R'
+    'server_export_data.R'
+    'server_export_spreadsheets.R'
+    'server_generate_new_solution.R'
+    'server_import_builtin_data.R'
+    'server_import_data.R'
+    'server_import_manual_data.R'
+    'server_import_spatial_data.R'
+    'server_initialize_app.R'
+    'server_update_map.R'
+    'server_update_solution_results.R'
+    'server_update_solution_settings.R'
+    'server_verify_manual_uploads.R'
+    'server_verify_spatial_uploads.R'
+    'widget_solutionSettings_ui.R'
+    'ui_acknowledgmentsSidebarPane.R'
+    'ui_contactSidebarPane.R'
+    'ui_exportSidebarPane.R'
+    'ui_horizontalPickerInput.R'
+    'ui_importModal.R'
+    'ui_leaflet_map.R'
+    'widget_mapManager_ui.R'
+    'ui_mapManagerSidebarPane.R'
+    'ui_newSolutionSidebarPane.R'
+    'widget_solutionResults_ui.R'
+    'ui_solutionResultsModal.R'
+    'ui_solutionResultsSidebarPane.R'
+    'utils_acknowledge_packages.R'
+    'utils_color_palette.R'
+    'utils_error_message.R'
+    'utils_extract_data_matrix.R'
+    'utils_file_validation.R'
+    'utils_import_spatial_data.R'
+    'utils_prepare_fileInput.R'
+    'utils_raster_io.R'
+    'utils_shinyjs.R'
+    'utils_spatial_data_statistics.R'
+    'utils_spatial_data_type.R'
+    'utils_spatial_io.R'
+    'utils_spatial_misc.R'
+    'widget_importSettings_server.R'
+    'widget_importSettings_ui.R'
+    'widget_mapManager_html.R'
+    'widget_mapManager_server.R'
+    'widget_solutionResults_server.R'
+    'widget_solutionSettings_server.R'
+    'widget_solutionSetttings_html.R'
 Remotes:
-    jeffreyhanson/leaflet.extras2,
+    NCC-CNC/leaflet.extras2,
     NCC-CNC/leaflet@pane-extra,
     dirkschumacher/rcbc

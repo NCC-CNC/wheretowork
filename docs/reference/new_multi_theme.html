@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>New multi-theme — new_multi_theme • locationmisc</title>
+<title>New multi-theme — new_multi_theme • wheretowork</title>
 
 
 <!-- jquery -->
@@ -79,7 +79,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">locationmisc</a>
+        <a class="navbar-link" href="../index.html">wheretowork</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
       </span>
     </div>
@@ -120,8 +120,6 @@
     <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>new_multi_theme</span><span class='op'>(</span>
   <span class='va'>name</span>,
   <span class='va'>feature</span>,
-  mandatory <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  icon <span class='op'>=</span> <span class='st'>"map-marked-alt"</span>,
   feature_order <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/double.html'>as.double</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/rev.html'>rev</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_along</a></span><span class='op'>(</span><span class='va'>feature</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>,
   id <span class='op'>=</span> <span class='fu'>uuid</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/uuid/man/UUIDgenerate.html'>UUIDgenerate</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>)</span></code></pre></div>
@@ -136,19 +134,6 @@
     <tr>
       <th>feature</th>
       <td><p><code>list</code> of <a href='Feature.html'>Feature</a> objects.</p></td>
-    </tr>
-    <tr>
-      <th>mandatory</th>
-      <td><p><code>logical</code> Is the theme mandatory for generating solutions?
-Defaults to <code>FALSE</code>.</p></td>
-    </tr>
-    <tr>
-      <th>icon</th>
-      <td><p><code>shiny.tag</code> Icon to display for the feature
-This icon should indicate the type of data that underpin the feature.
-Alternatively, the argument can be a <code>character</code> to automatically
-generate a <code>shiny.tag</code> icon (using <code><a href='https://rdrr.io/pkg/shiny/man/icon.html'>shiny::icon()</a></code>).
-Defaults to <code>"map-marked-alt"</code>.</p></td>
     </tr>
     <tr>
       <th>feature_order</th>
@@ -169,11 +154,17 @@ Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUI
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='co'># find data file paths</span></span>
 <span class='r-in'><span class='va'>f1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span></span>
-<span class='r-in'>  <span class='st'>"extdata"</span>, <span class='st'>"sim_raster_spatial.tif"</span>, package <span class='op'>=</span> <span class='st'>"locationmisc"</span><span class='op'>)</span></span>
+<span class='r-in'>  <span class='st'>"extdata"</span>, <span class='st'>"projects"</span>, <span class='st'>"sim_raster"</span>, <span class='st'>"sim_raster_spatial.tif"</span>,</span>
+<span class='r-in'>  package <span class='op'>=</span> <span class='st'>"wheretowork"</span></span>
+<span class='r-in'><span class='op'>)</span></span>
 <span class='r-in'><span class='va'>f2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span></span>
-<span class='r-in'> <span class='st'>"extdata"</span>, <span class='st'>"sim_raster_attribute.csv.gz"</span>, package <span class='op'>=</span> <span class='st'>"locationmisc"</span><span class='op'>)</span></span>
+<span class='r-in'> <span class='st'>"extdata"</span>,  <span class='st'>"projects"</span>, <span class='st'>"sim_raster"</span>, <span class='st'>"sim_raster_attribute.csv.gz"</span>,</span>
+<span class='r-in'> package <span class='op'>=</span> <span class='st'>"wheretowork"</span></span>
+<span class='r-in'><span class='op'>)</span></span>
 <span class='r-in'><span class='va'>f3</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span></span>
-<span class='r-in'> <span class='st'>"extdata"</span>, <span class='st'>"sim_raster_boundary.csv.gz"</span>, package <span class='op'>=</span> <span class='st'>"locationmisc"</span><span class='op'>)</span></span>
+<span class='r-in'> <span class='st'>"extdata"</span>,  <span class='st'>"projects"</span>, <span class='st'>"sim_raster"</span>, <span class='st'>"sim_raster_boundary.csv.gz"</span>,</span>
+<span class='r-in'> package <span class='op'>=</span> <span class='st'>"wheretowork"</span></span>
+<span class='r-in'><span class='op'>)</span></span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># create new dataset</span></span>
 <span class='r-in'><span class='va'>d</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_dataset.html'>new_dataset</a></span><span class='op'>(</span><span class='va'>f1</span>, <span class='va'>f2</span>, <span class='va'>f3</span><span class='op'>)</span></span>
@@ -195,16 +186,15 @@ Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUI
 <span class='r-in'><span class='co'># print object</span></span>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>mt</span><span class='op'>)</span></span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Theme</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        3cb7055c-9854-4cc8-8abe-94d0bbf3604b</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        645e3936-725c-4939-a521-6a4199bf3a16</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Endangered species</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   mandatory: FALSE</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   feature: </span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>     Pangolin [status: TRUE, current: 0, goal: 0.1]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Olive_headed_Lorikeet [total: 1052 ]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>     Panda [status: TRUE, current: 0, goal: 0.1]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Purple_Honeycreeper [total: 1667 ]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Purple_Honeycreeper [total: 1349 ]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>     Palms [status: TRUE, current: 0, goal: 0.1]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Least_Boobook [total: 1678 ]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Least_Boobook [total: 430 ]</span>
 <span class='r-in'></span>
 </code></pre></div>
   </div>

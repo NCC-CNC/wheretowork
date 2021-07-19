@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Solution class — Solution • locationmisc</title>
+<title>Solution class — Solution • wheretowork</title>
 
 
 <!-- jquery -->
@@ -80,7 +80,7 @@ Solution class" />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">locationmisc</a>
+        <a class="navbar-link" href="../index.html">wheretowork</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
       </span>
     </div>
@@ -161,6 +161,10 @@ Solution class" />
 <li><p><a href='#method-get_visible'><code>Solution$get_visible()</code></a></p></li>
 <li><p><a href='#method-get_setting'><code>Solution$get_setting()</code></a></p></li>
 <li><p><a href='#method-set_visible'><code>Solution$set_visible()</code></a></p></li>
+<li><p><a href='#method-get_theme_results_data'><code>Solution$get_theme_results_data()</code></a></p></li>
+<li><p><a href='#method-get_weight_results_data'><code>Solution$get_weight_results_data()</code></a></p></li>
+<li><p><a href='#method-render_theme_results'><code>Solution$render_theme_results()</code></a></p></li>
+<li><p><a href='#method-render_weight_results'><code>Solution$render_weight_results()</code></a></p></li>
 <li><p><a href='#method-set_setting'><code>Solution$set_setting()</code></a></p></li>
 <li><p><a href='#method-get_solution_results_widget_data'><code>Solution$get_solution_results_widget_data()</code></a></p></li>
 <li><p><a href='#method-get_map_manager_widget_data'><code>Solution$get_map_manager_widget_data()</code></a></p></li>
@@ -364,6 +368,58 @@ Available options are <code>"visible"</code>.</p></dd>
 <dt><code>value</code></dt><dd><p><code>logical</code> new value.</p></dd>
 
 </dl><p></div></p>
+<p><hr>
+<a id="method-get_theme_results_data"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>get_theme_results_data()</code></h3>
+<p>Get theme results.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Solution</span><span class='op'>$</span><span class='fu'>get_theme_results_data</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble::tibble()</a></code> object.</p>
+<h3 class='hasAnchor' id='list-get-theme-results-data-'><a class='anchor' aria-hidden='true' href='#list-get-theme-results-data-'></a>Method <code>get_theme_results_data()</code></h3>
+<p>Get theme results.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Solution</span><span class='op'>$</span><span class='fu'>get_theme_results_data</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble::tibble()</a></code> object.</p>
+<p><hr>
+<a id="method-get_weight_results_data"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>get_weight_results_data()</code></h3>
+<p>Get weight results.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Solution</span><span class='op'>$</span><span class='fu'>get_weight_results_data</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble::tibble()</a></code> object.</p>
+<h3 class='hasAnchor' id='list-get-weight-results-data-'><a class='anchor' aria-hidden='true' href='#list-get-weight-results-data-'></a>Method <code>get_weight_results_data()</code></h3>
+<p>Get weight results.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Solution</span><span class='op'>$</span><span class='fu'>get_weight_results_data</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble::tibble()</a></code> object.</p>
+<p><hr>
+<a id="method-render_theme_results"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>render_theme_results()</code></h3>
+<p>Render theme results.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Solution</span><span class='op'>$</span><span class='fu'>render_theme_results</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code><a href='https://rdrr.io/pkg/DT/man/datatable.html'>DT::datatable()</a></code> object.</p>
+<h3 class='hasAnchor' id='list-render-theme-results-'><a class='anchor' aria-hidden='true' href='#list-render-theme-results-'></a>Method <code>render_theme_results()</code></h3>
+<p>Render theme results.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Solution</span><span class='op'>$</span><span class='fu'>render_theme_results</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code><a href='https://rdrr.io/pkg/DT/man/datatable.html'>DT::datatable()</a></code> object.</p>
+<p><hr>
+<a id="method-render_weight_results"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>render_weight_results()</code></h3>
+<p>Render weight results.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Solution</span><span class='op'>$</span><span class='fu'>render_weight_results</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code><a href='https://rdrr.io/pkg/DT/man/datatable.html'>DT::datatable()</a></code> object.</p>
+<h3 class='hasAnchor' id='list-render-weight-results-'><a class='anchor' aria-hidden='true' href='#list-render-weight-results-'></a>Method <code>render_weight_results()</code></h3>
+<p>Render weight results.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Solution</span><span class='op'>$</span><span class='fu'>render_weight_results</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code><a href='https://rdrr.io/pkg/DT/man/datatable.html'>DT::datatable()</a></code> object.</p>
 <p><hr>
 <a id="method-set_setting"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>set_setting()</code></h3>
 <p>Set setting.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>

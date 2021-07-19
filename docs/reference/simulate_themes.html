@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Simulate themes — simulate_themes • locationmisc</title>
+<title>Simulate themes — simulate_themes • wheretowork</title>
 
 
 <!-- jquery -->
@@ -79,7 +79,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">locationmisc</a>
+        <a class="navbar-link" href="../index.html">wheretowork</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
       </span>
     </div>
@@ -155,80 +155,83 @@ Defaults to 5.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='co'># find data file paths</span></span>
 <span class='r-in'><span class='va'>f1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span></span>
-<span class='r-in'>  <span class='st'>"extdata"</span>, <span class='st'>"sim_raster_spatial.tif"</span>, package <span class='op'>=</span> <span class='st'>"locationmisc"</span><span class='op'>)</span></span>
+<span class='r-in'>  <span class='st'>"extdata"</span>, <span class='st'>"projects"</span>, <span class='st'>"sim_raster"</span>, <span class='st'>"sim_raster_spatial.tif"</span>,</span>
+<span class='r-in'>  package <span class='op'>=</span> <span class='st'>"wheretowork"</span></span>
+<span class='r-in'><span class='op'>)</span></span>
 <span class='r-in'><span class='va'>f2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span></span>
-<span class='r-in'> <span class='st'>"extdata"</span>, <span class='st'>"sim_raster_attribute.csv.gz"</span>, package <span class='op'>=</span> <span class='st'>"locationmisc"</span><span class='op'>)</span></span>
+<span class='r-in'> <span class='st'>"extdata"</span>,  <span class='st'>"projects"</span>, <span class='st'>"sim_raster"</span>, <span class='st'>"sim_raster_attribute.csv.gz"</span>,</span>
+<span class='r-in'> package <span class='op'>=</span> <span class='st'>"wheretowork"</span></span>
+<span class='r-in'><span class='op'>)</span></span>
 <span class='r-in'><span class='va'>f3</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span></span>
-<span class='r-in'> <span class='st'>"extdata"</span>, <span class='st'>"sim_raster_boundary.csv.gz"</span>, package <span class='op'>=</span> <span class='st'>"locationmisc"</span><span class='op'>)</span></span>
+<span class='r-in'> <span class='st'>"extdata"</span>,  <span class='st'>"projects"</span>, <span class='st'>"sim_raster"</span>, <span class='st'>"sim_raster_boundary.csv.gz"</span>,</span>
+<span class='r-in'> package <span class='op'>=</span> <span class='st'>"wheretowork"</span></span>
+<span class='r-in'><span class='op'>)</span></span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># create new dataset</span></span>
 <span class='r-in'><span class='va'>d</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_dataset.html'>new_dataset</a></span><span class='op'>(</span><span class='va'>f1</span>, <span class='va'>f2</span>, <span class='va'>f3</span><span class='op'>)</span></span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># simulate data</span></span>
 <span class='r-in'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>simulate_themes</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>d</span>, n_single_themes <span class='op'>=</span> <span class='fl'>3</span>, n_multi_themes <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> .....</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> ....</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ......</span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># print results</span></span>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> [[1]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Theme</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        6bab3a2e-b1a4-402d-8a3a-0055598ef727</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Blue-headed Parrot (Blue-headed)</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   mandatory: TRUE</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        c4b3ffab-f8e1-4dd1-b1ef-1c4b121d94eb</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Asian Golden Weaver</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   feature: </span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Blue-headed Parrot (Blue-headed) habitat [status: TRUE, current: 0.2, goal: 0.6]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Blue_headed_Parrot_Blue_headed_ [total: 2574.85 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Asian Golden Weaver habitat [status: TRUE, current: 0.12, goal: 0.67]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Asian_Golden_Weaver [total: 231.55 ha]</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> [[2]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Theme</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        16aeceb1-acdc-4386-b2ec-ed8bd6cb3483</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Chestnut-headed Bee-eater</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   mandatory: TRUE</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        ad7b6c87-d767-4538-9b28-6e988ee773a2</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Mountain Chiffchaff</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   feature: </span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Chestnut-headed Bee-eater habitat [status: TRUE, current: 0.39, goal: 0.67]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Chestnut_headed_Bee_eater [total: 1291 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Mountain Chiffchaff habitat [status: TRUE, current: 0.21, goal: 0.73]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Mountain_Chiffchaff [total: 803 ha]</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> [[3]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Theme</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        f28e5f40-9872-4bd5-bcb3-05d537951d8f</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Moustached Flowerpiercer (mystacalis)</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   mandatory: TRUE</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        91c4ac09-407e-459b-a413-c8c8a2ffbd53</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Cinereous Warbling-Finch</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   feature: </span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Moustached Flowerpiercer (mystacalis) habitat [status: TRUE, current: 0.26, goal: 0.51]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Moustached_Flowerpiercer_mystacalis_ [total: 478 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Cinereous Warbling-Finch habitat [status: TRUE, current: 0.54, goal: 0.71]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Cinereous_Warbling_Finch [total: 1133 ha]</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> [[4]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Theme</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        e102ed74-0668-4384-90ec-81997160dd95</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Northern Storm-Petrels</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   mandatory: FALSE</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        8e95f6ce-d2ec-463a-999c-b9d8991f557b</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Gulls, Terns, and Skimmers</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   feature: </span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Ringed Storm-Petrel [status: TRUE, current: 0.18, goal: 0.61]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Ringed_Storm_Petrel [total: 5152.8 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Ainley's Storm-Petrel [status: TRUE, current: 0.49, goal: 0.81]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Ainley_s_Storm_Petrel [total: 11860.98 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Guadalupe Storm-Petrel [status: TRUE, current: 0.36, goal: 0.59]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Guadalupe_Storm_Petrel [total: 5057.88 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Matsudaira's Storm-Petrel [status: TRUE, current: 0.22, goal: 0.69]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Matsudaira_s_Storm_Petrel [total: 226.66 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Band-rumped Storm-Petrel [status: TRUE, current: 0.54, goal: 0.86]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Band_rumped_Storm_Petrel [total: 4647.41 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Laughing Gull [status: TRUE, current: 0.14, goal: 0.51]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Laughing_Gull [total: 10167.06 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Franklin's Gull [status: TRUE, current: 0.3, goal: 0.64]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Franklin_s_Gull [total: 9379.63 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Iceland Gull (Thayer's) [status: TRUE, current: 0.25, goal: 0.72]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Iceland_Gull_Thayer_s_ [total: 18754.55 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Lesser Black-backed Gull [status: TRUE, current: 0.53, goal: 0.89]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Lesser_Black_backed_Gull [total: 19482.9 ha]</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> [[5]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Theme</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        9f5425bd-447e-4d99-9612-301fab93c132</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Todies</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   mandatory: FALSE</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        8b626b19-6d06-45fc-bd07-41268440badf</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Bush Warblers and Allies</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   feature: </span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Puerto Rican Tody [status: TRUE, current: 0.42, goal: 0.74]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Puerto_Rican_Tody [total: 11569.62 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Narrow-billed Tody [status: TRUE, current: 0.55, goal: 0.7]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Narrow_billed_Tody [total: 18687.69 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Cuban Tody [status: TRUE, current: 0.24, goal: 0.81]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Cuban_Tody [total: 18246.34 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Jamaican Tody [status: TRUE, current: 0.46, goal: 0.83]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Jamaican_Tody [total: 5478.13 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Brownish-flanked Bush Warbler (Taiwan) [status: TRUE, current: 0.55, goal: 0.63]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Brownish_flanked_Bush_Warbler_Taiwan_ [total: 13579.89 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Fiji Bush Warbler [status: TRUE, current: 0.28, goal: 0.76]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Fiji_Bush_Warbler [total: 10965.74 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Slaty-bellied Tesia [status: TRUE, current: 0.59, goal: 0.78]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Slaty_bellied_Tesia [total: 20785.6 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Hume's Bush Warbler [status: TRUE, current: 0.48, goal: 0.9]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Hume_s_Bush_Warbler [total: 7212.96 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Brownish-flanked Bush Warbler (Brownish-flanked) [status: TRUE, current: 0.57, goal: 0.67]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Brownish_flanked_Bush_Warbler_Brownish_flanked_ [total: 17523.29 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Broad-billed Warbler [status: TRUE, current: 0.21, goal: 0.85]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Broad_billed_Warbler [total: 7280.45 ha]</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-in'></span>
 </code></pre></div>
