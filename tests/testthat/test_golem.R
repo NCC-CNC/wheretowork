@@ -12,6 +12,11 @@ test_that("app server", {
   expect_is(server, "function")
 })
 
+test_that("app global", {
+  global <- app_global
+  expect_is(global, "{")
+})
+
 # Configure this test to fit your need
 test_that(
   "app launches",
@@ -19,6 +24,7 @@ test_that(
     skip_on_cran()
     skip_on_travis()
     skip_on_appveyor()
+    skip_if_not(interactive())
     x <- processx::process$new(
       "R",
       c(
