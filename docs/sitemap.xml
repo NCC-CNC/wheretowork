@@ -37,19 +37,7 @@
     <loc>/reference/MapManager.html</loc>
   </url>
   <url>
-    <loc>/reference/MultiTheme.html</loc>
-  </url>
-  <url>
-    <loc>/reference/MultiThemeResults.html</loc>
-  </url>
-  <url>
     <loc>/reference/Parameter.html</loc>
-  </url>
-  <url>
-    <loc>/reference/SingleTheme.html</loc>
-  </url>
-  <url>
-    <loc>/reference/SingleThemeResults.html</loc>
   </url>
   <url>
     <loc>/reference/Solution.html</loc>
@@ -208,13 +196,7 @@
     <loc>/reference/new_map_manager.html</loc>
   </url>
   <url>
-    <loc>/reference/new_multi_theme.html</loc>
-  </url>
-  <url>
     <loc>/reference/new_parameter.html</loc>
-  </url>
-  <url>
-    <loc>/reference/new_single_theme.html</loc>
   </url>
   <url>
     <loc>/reference/new_solution.html</loc>

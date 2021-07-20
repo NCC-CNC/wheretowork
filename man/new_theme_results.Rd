@@ -45,7 +45,7 @@ v <- new_variable_from_auto(d, index = 1)
 f <- new_feature(name = "Intact Alvar", variable = v)
 
 # create a theme using the single feature
-th <- new_single_theme(name = "Intact Alvar", feature = f)
+th <- new_theme(name = "Intact Alvar", feature = f)
 
 # create a feature results object to store results for the feature
 fr <- new_feature_results(f, held = 0.8)

@@ -128,12 +128,10 @@ Theme class" />
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Definition for the Theme class. This is a parent class that contains
-shared fields and methods for the <a href='SingleTheme.html'>SingleTheme</a> and <a href='MultiTheme.html'>MultiTheme</a> classes.</p>
-<p>This method intentionally throws an error.</p>
+    <p>Definition for the Theme class.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='new_single_theme.html'>new_single_theme()</a></code>, <code><a href='new_multi_theme.html'>new_multi_theme()</a></code>.</p></div>
+    <div class='dont-index'><p><code><a href='new_theme.html'>new_theme()</a></code>.</p></div>
     <h2 class="hasAnchor" id="public-fields"><a class="anchor" href="#public-fields"></a>Public fields</h2>
 
     <p><div class="r6-fields"></p><dl>
@@ -142,6 +140,8 @@ shared fields and methods for the <a href='SingleTheme.html'>SingleTheme</a> and
 <dt><code>name</code></dt><dd><p><code>character</code> value.</p></dd>
 
 <dt><code>feature</code></dt><dd><p><code>list</code> of <a href='Feature.html'>Feature</a> objects.</p></dd>
+
+<dt><code>feature_order</code></dt><dd><p><code>numeric</code> value.</p></dd>
 
 </dl><p></div></p>
     <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
@@ -164,6 +164,8 @@ shared fields and methods for the <a href='SingleTheme.html'>SingleTheme</a> and
 <li><p><a href='#method-get_feature_visible'><code>Theme$get_feature_visible()</code></a></p></li>
 <li><p><a href='#method-get_feature_status'><code>Theme$get_feature_status()</code></a></p></li>
 <li><p><a href='#method-get_feature_goal'><code>Theme$get_feature_goal()</code></a></p></li>
+<li><p><a href='#method-get_feature_order'><code>Theme$get_feature_order()</code></a></p></li>
+<li><p><a href='#method-set_feature_order'><code>Theme$set_feature_order()</code></a></p></li>
 <li><p><a href='#method-get_setting'><code>Theme$get_setting()</code></a></p></li>
 <li><p><a href='#method-set_visible'><code>Theme$set_visible()</code></a></p></li>
 <li><p><a href='#method-set_feature_visible'><code>Theme$set_feature_visible()</code></a></p></li>
@@ -171,30 +173,48 @@ shared fields and methods for the <a href='SingleTheme.html'>SingleTheme</a> and
 <li><p><a href='#method-set_feature_goal'><code>Theme$set_feature_goal()</code></a></p></li>
 <li><p><a href='#method-set_feature_current'><code>Theme$set_feature_current()</code></a></p></li>
 <li><p><a href='#method-set_setting'><code>Theme$set_setting()</code></a></p></li>
-<li><p><a href='#method-export'><code>Theme$export()</code></a></p></li>
+<li><p><a href='#method-get_solution_settings_widget_data'><code>Theme$get_solution_settings_widget_data()</code></a></p></li>
+<li><p><a href='#method-get_map_manager_widget_data'><code>Theme$get_map_manager_widget_data()</code></a></p></li>
 <li><p><a href='#method-render_on_map'><code>Theme$render_on_map()</code></a></p></li>
 <li><p><a href='#method-update_on_map'><code>Theme$update_on_map()</code></a></p></li>
+<li><p><a href='#method-export'><code>Theme$export()</code></a></p></li>
 <li><p><a href='#method-clone'><code>Theme$clone()</code></a></p></li>
 </ul>
 <p><hr>
 <a id="method-new"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>new()</code></h3>
 <p>Create a Theme object.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
-<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Theme</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span></code></pre><p></div></p>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Theme</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>id</span>, <span class='va'>name</span>, <span class='va'>feature</span>, <span class='va'>feature_order</span><span class='op'>)</span></code></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
 <p><div class="arguments"></p><dl>
-<dt><code>...</code></dt><dd><p>not used.</p></dd>
+<dt><code>id</code></dt><dd><p><code>character</code> value.</p></dd>
+
+<dt><code>name</code></dt><dd><p><code>character</code> value.</p></dd>
+
+<dt><code>feature</code></dt><dd><p><code>list</code> of <a href='Feature.html'>Feature</a> objects.</p></dd>
+
+<dt><code>feature_order</code></dt><dd><p><code>numeric</code> vector.</p></dd>
 
 </dl><p></div></p>
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p>A new Theme object.</p>
 <h3 class='hasAnchor' id='list-new-'><a class='anchor' aria-hidden='true' href='#list-new-'></a>Method <code>new()</code></h3>
 <p>Create a Theme object.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
-<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Theme</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span></code></pre><p></div></p>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Theme</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>id</span>, <span class='va'>name</span>, <span class='va'>feature</span>, <span class='va'>feature_order</span><span class='op'>)</span></code></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
 <p><div class="arguments"></p><dl>
-<dt><code>...</code></dt><dd><p>not used.</p></dd>
+<dt><code>id</code></dt><dd><p><code>character</code> value.</p></dd>
+
+<dt><code>name</code></dt><dd><p><code>character</code> value.</p></dd>
+
+<dt><code>feature</code></dt><dd><p><code>list</code> of <a href='Feature.html'>Feature</a> objects.</p></dd>
+
+<dt><code>feature_order</code></dt><dd><p><code>numeric</code> vector.</p></dd>
 
 </dl><p></div></p>
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p>A new Theme object.</p>
 <p><hr>
 <a id="method-print"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code><a href='https://rdrr.io/r/base/print.html'>print()</a></code></h3>
 <p>Print the object.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
@@ -381,6 +401,34 @@ shared fields and methods for the <a href='SingleTheme.html'>SingleTheme</a> and
 <h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
 <p><code>numeric</code> vector with goal value(s).</p>
 <p><hr>
+<a id="method-get_feature_order"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>get_feature_order()</code></h3>
+<p>Set relative order for displaying features on a map.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Theme</span><span class='op'>$</span><span class='fu'>get_feature_order</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h3 class='hasAnchor' id='list-get-feature-order-'><a class='anchor' aria-hidden='true' href='#list-get-feature-order-'></a>Method <code>get_feature_order()</code></h3>
+<p>Set relative order for displaying features on a map.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Theme</span><span class='op'>$</span><span class='fu'>get_feature_order</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<p><hr>
+<a id="method-set_feature_order"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>set_feature_order()</code></h3>
+<p>Set relative order for displaying features on a map.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Theme</span><span class='op'>$</span><span class='fu'>set_feature_order</span><span class='op'>(</span><span class='va'>value</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>value</code></dt><dd><p><code>numeric</code> vector of new orders.</p></dd>
+
+</dl><p></div></p>
+<h3 class='hasAnchor' id='list-set-feature-order-'><a class='anchor' aria-hidden='true' href='#list-set-feature-order-'></a>Method <code>set_feature_order()</code></h3>
+<p>Set relative order for displaying features on a map.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Theme</span><span class='op'>$</span><span class='fu'>set_feature_order</span><span class='op'>(</span><span class='va'>value</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>value</code></dt><dd><p><code>numeric</code> vector of new orders.</p></dd>
+
+</dl><p></div></p>
+<p><hr>
 <a id="method-get_setting"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>get_setting()</code></h3>
 <p>Get setting.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
 <p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Theme</span><span class='op'>$</span><span class='fu'>get_setting</span><span class='op'>(</span><span class='va'>name</span><span class='op'>)</span></code></pre><p></div></p>
@@ -540,18 +588,31 @@ or <code>"feature_current"</code>.</p></dd>
 
 </dl><p></div></p>
 <p><hr>
-<a id="method-export"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>export()</code></h3>
-<p>Export settings</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
-<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Theme</span><span class='op'>$</span><span class='fu'>export</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+<a id="method-get_solution_settings_widget_data"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>get_solution_settings_widget_data()</code></h3>
+<p>Get data for displaying the theme in a <code><a href='solutionSettings-widget.html'>solutionSettings()</a></code> widget.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Theme</span><span class='op'>$</span><span class='fu'>get_solution_settings_widget_data</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
 
 <h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
-<p><code>list</code> object.</p>
-<h3 class='hasAnchor' id='list-export-'><a class='anchor' aria-hidden='true' href='#list-export-'></a>Method <code>export()</code></h3>
-<p>Export settings</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
-<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Theme</span><span class='op'>$</span><span class='fu'>export</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+<p><code>list</code> with widget data.</p>
+<h3 class='hasAnchor' id='list-get-solution-settings-widget-data-'><a class='anchor' aria-hidden='true' href='#list-get-solution-settings-widget-data-'></a>Method <code>get_solution_settings_widget_data()</code></h3>
+<p>Get data for displaying the theme in a <code><a href='solutionSettings-widget.html'>solutionSettings()</a></code> widget.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Theme</span><span class='op'>$</span><span class='fu'>get_solution_settings_widget_data</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
 
 <h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
-<p><code>list</code> object.</p>
+<p><code>list</code> with widget data.</p>
+<p><hr>
+<a id="method-get_map_manager_widget_data"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>get_map_manager_widget_data()</code></h3>
+<p>Get data for displaying the theme in a <code><a href='mapManager-widget.html'>mapManager()</a></code> widget.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Theme</span><span class='op'>$</span><span class='fu'>get_map_manager_widget_data</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>list</code> with widget data.</p>
+<h3 class='hasAnchor' id='list-get-map-manager-widget-data-'><a class='anchor' aria-hidden='true' href='#list-get-map-manager-widget-data-'></a>Method <code>get_map_manager_widget_data()</code></h3>
+<p>Get data for displaying the theme in a <code><a href='mapManager-widget.html'>mapManager()</a></code> widget.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Theme</span><span class='op'>$</span><span class='fu'>get_map_manager_widget_data</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>list</code> with widget data.</p>
 <p><hr>
 <a id="method-render_on_map"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>render_on_map()</code></h3>
 <p>Render on map.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
@@ -606,6 +667,19 @@ or <code>"feature_current"</code>.</p></dd>
 </dl><p></div></p>
 <h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
 <p><code><a href='https://rdrr.io/pkg/leaflet/man/leafletProxy.html'>leaflet::leafletProxy()</a></code> object.</p>
+<p><hr>
+<a id="method-export"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>export()</code></h3>
+<p>Export settings</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Theme</span><span class='op'>$</span><span class='fu'>export</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>list</code> object.</p>
+<h3 class='hasAnchor' id='list-export-'><a class='anchor' aria-hidden='true' href='#list-export-'></a>Method <code>export()</code></h3>
+<p>Export settings</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Theme</span><span class='op'>$</span><span class='fu'>export</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>list</code> object.</p>
 <p><hr>
 <a id="method-clone"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>clone()</code></h3>
 <p>The objects of this class are cloneable with this method.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>

@@ -264,7 +264,7 @@ Include <- R6::R6Class(
 #' @param mandatory `logical` value indicating if object is mandatory
 #'  for generating solutions.
 #'
-#' @inheritParams new_multi_theme
+#' @inheritParams new_theme
 #' @inheritParams new_feature
 #'
 #' @return A [Include] object.

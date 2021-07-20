@@ -4,18 +4,29 @@
 \alias{new_theme}
 \title{New theme}
 \usage{
-new_theme(...)
+new_theme(
+  name,
+  feature,
+  feature_order = as.double(rev(seq_along(feature))),
+  id = uuid::UUIDgenerate()
+)
 }
 \arguments{
-\item{...}{arguments to be passed to \code{\link[=new_single_theme]{new_single_theme()}}
-or \code{\link[=new_multi_theme]{new_multi_theme()}}.}
+\item{name}{\code{character} Name to display.}
+
+\item{feature}{\code{list} of \link{Feature} objects.}
+
+\item{feature_order}{\code{numeric} Relative order for displaying each feature
+on a map. Defaults to a reverse sequence of integer values.}
+
+\item{id}{\code{character} unique identifier.
+Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}
 }
 \value{
 A \link{Theme} object.
 }
 \description{
-Create a new \link{Theme} object. This is a convenience wrapper for
-the \code{\link[=new_single_theme]{new_single_theme()}} and \code{\link[=new_multi_theme]{new_multi_theme()}} functions.
+Create a new \link{Theme} object.
 }
 \examples{
 # find data path

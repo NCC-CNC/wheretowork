@@ -50,8 +50,8 @@ test_that("no spatial clustering", {
     goal = 0.6, status = TRUE, current = 0.4, id = "F3"
   )
   ## create themes using the features
-  t1 <- new_single_theme("Species", f1, id = "T1")
-  t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")
+  t1 <- new_theme("Species", f1, id = "T1")
+  t2 <- new_theme("Ecoregions", list(f2, f3), id = "T2")
   ## create parameter
   p1 <- new_parameter("Spatial clustering", id = "P1")
   p2 <- new_parameter("Gap", id = "P2")
@@ -122,8 +122,8 @@ test_that("spatial clustering", {
     goal = 0.6, status = TRUE, current = 0.4, id = "F3"
   )
   ## create themes using the features
-  t1 <- new_single_theme("Species", f1, id = "T1")
-  t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")
+  t1 <- new_theme("Species", f1, id = "T1")
+  t2 <- new_theme("Ecoregions", list(f2, f3), id = "T2")
   ## create parameter
   p1 <- new_parameter("Spatial clustering", value = 30, id = "P1")
   p2 <- new_parameter("Gap", id = "P2")

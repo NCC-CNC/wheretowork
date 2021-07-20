@@ -37,9 +37,6 @@ Defaults to 0.}
 
 \item{id}{\code{character} unique identifier.
 Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}
-
-\item{step_factor}{\code{numeric} step factor value.
-Defaults to 1.}
 }
 \value{
 A \link{Weight} object.

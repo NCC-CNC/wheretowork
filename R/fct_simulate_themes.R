@@ -3,7 +3,7 @@ NULL
 
 #' Simulate themes
 #'
-#' This function simulates [SingleTheme] and [MultiTheme] objects.
+#' This function simulates [Theme] objects.
 #'
 #' @param dataset [Dataset] object.
 #'
@@ -14,13 +14,13 @@ NULL
 #'   to simulate.
 #'
 #' @param lambda `numeric` lambda parameter for simulating the number
-#'   of features for each [MultiTheme] object.
+#'   of features for themes that contain multiple features.
 #'   This parameter is used as a argument to `rpois(n, lambda = lambda)`.
 #'   Defaults to 5.
 #'
 #' @return A `list` of simulated [Theme] objects.
 #'
-#' @seealso [new_single_theme], [new_multi_theme].
+#' @seealso [new_theme].
 #'
 #' @examples
 #' # find data file paths
@@ -96,7 +96,7 @@ simulate_themes <- function(dataset, n_single_themes, n_multi_themes,
     }
     ### create theme
     st[[i]] <-
-      new_single_theme(
+      new_theme(
         name = st_names[i],
         new_feature(
           name = paste0(st_names[i], " habitat"),
@@ -186,7 +186,7 @@ simulate_themes <- function(dataset, n_single_themes, n_multi_themes,
     })
     #### generate theme
     mt[[i]] <-
-      new_multi_theme(
+      new_theme(
         name = mt_names[i],
         feature = curr_fts
       )

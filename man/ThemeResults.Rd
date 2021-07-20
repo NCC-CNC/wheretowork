@@ -31,6 +31,8 @@ Definition for the ThemeResults class.
 \item \href{#method-new}{\code{ThemeResults$new()}}
 \item \href{#method-print}{\code{ThemeResults$print()}}
 \item \href{#method-repr}{\code{ThemeResults$repr()}}
+\item \href{#method-get_results_data}{\code{ThemeResults$get_results_data()}}
+\item \href{#method-get_widget_data}{\code{ThemeResults$get_widget_data()}}
 \item \href{#method-clone}{\code{ThemeResults$clone()}}
 }
 }
@@ -97,6 +99,32 @@ Defaults to \code{"]"}.}
 }
 \subsection{Returns}{
 \code{character} value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_results_data"></a>}}
+\if{latex}{\out{\hypertarget{method-get_results_data}{}}}
+\subsection{Method \code{get_results_data()}}{
+Get results.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ThemeResults$get_results_data()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{\link[tibble:tibble]{tibble::tibble()}} object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_widget_data"></a>}}
+\if{latex}{\out{\hypertarget{method-get_widget_data}{}}}
+\subsection{Method \code{get_widget_data()}}{
+Get data for displaying the object in a \code{\link[=solutionResults]{solutionResults()}} widget.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ThemeResults$get_widget_data()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{list} with widget data.
 }
 }
 \if{html}{\out{<hr>}}

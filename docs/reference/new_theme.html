@@ -40,8 +40,7 @@
 
 
 <meta property="og:title" content="New theme — new_theme" />
-<meta property="og:description" content="Create a new Theme object. This is a convenience wrapper for
-the new_single_theme() and new_multi_theme() functions." />
+<meta property="og:description" content="Create a new Theme object." />
 
 
 
@@ -120,19 +119,36 @@ the new_single_theme() and new_multi_theme() functions." />
     </div>
 
     <div class="ref-description">
-    <p>Create a new <a href='Theme.html'>Theme</a> object. This is a convenience wrapper for
-the <code><a href='new_single_theme.html'>new_single_theme()</a></code> and <code><a href='new_multi_theme.html'>new_multi_theme()</a></code> functions.</p>
+    <p>Create a new <a href='Theme.html'>Theme</a> object.</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>new_theme</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span></code></pre></div>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>new_theme</span><span class='op'>(</span>
+  <span class='va'>name</span>,
+  <span class='va'>feature</span>,
+  feature_order <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/double.html'>as.double</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/rev.html'>rev</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_along</a></span><span class='op'>(</span><span class='va'>feature</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>,
+  id <span class='op'>=</span> <span class='fu'>uuid</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/uuid/man/UUIDgenerate.html'>UUIDgenerate</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>...</th>
-      <td><p>arguments to be passed to <code><a href='new_single_theme.html'>new_single_theme()</a></code>
-or <code><a href='new_multi_theme.html'>new_multi_theme()</a></code>.</p></td>
+      <th>name</th>
+      <td><p><code>character</code> Name to display.</p></td>
+    </tr>
+    <tr>
+      <th>feature</th>
+      <td><p><code>list</code> of <a href='Feature.html'>Feature</a> objects.</p></td>
+    </tr>
+    <tr>
+      <th>feature_order</th>
+      <td><p><code>numeric</code> Relative order for displaying each feature
+on a map. Defaults to a reverse sequence of integer values.</p></td>
+    </tr>
+    <tr>
+      <th>id</th>
+      <td><p><code>character</code> unique identifier.
+Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUIDgenerate.html'>uuid::UUIDgenerate()</a></code>).</p></td>
     </tr>
     </table>
 
@@ -171,7 +187,7 @@ or <code><a href='new_multi_theme.html'>new_multi_theme()</a></code>.</p></td>
 <span class='r-in'><span class='co'># print object</span></span>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Theme</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        6ed4984d-86f8-4965-afe1-20b93afc8bbf</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        3782ed72-4ac3-41a4-a9cd-4ce66a7a5f6f</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Intact Alvar</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   feature: </span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>     Intact Alvar map [status: TRUE, current: 0, goal: 0.1]</span>

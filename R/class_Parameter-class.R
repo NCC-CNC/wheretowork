@@ -268,7 +268,7 @@ Parameter <- R6::R6Class(
 #'   hidden when the parameter is disabled.
 #'   Defaults to `FALSE`.
 #'
-#' @inheritParams new_multi_theme
+#' @inheritParams new_theme
 #' @inheritParams new_feature
 #'
 #' @return A [Parameter] object.

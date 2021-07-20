@@ -358,10 +358,7 @@ Weight <- R6::R6Class(
 #' @param factor `numeric` initial factor value.
 #'   Defaults to 0.
 #'
-#' @param step_factor `numeric` step factor value.
-#'   Defaults to 1.
-#'
-#' @inheritParams new_multi_theme
+#' @inheritParams new_theme
 #' @inheritParams new_feature
 #'
 #' @return A [Weight] object.

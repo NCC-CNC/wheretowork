@@ -102,16 +102,12 @@ reference:
       - Weight
       - Include
       - Theme
-      - SingleTheme
-      - MultiTheme
       - Solution
       - SolutionSettings
       - MapManager
       - FeatureResults
       - WeightResults
       - ThemeResults
-      - SingleThemeResults
-      - MultiThemeResults
 
   - title: Solution functions
     desc: >

@@ -9,13 +9,10 @@ Theme class
 Theme class
 }
 \details{
-Definition for the Theme class. This is a parent class that contains
-shared fields and methods for the \link{SingleTheme} and \link{MultiTheme} classes.
-
-This method intentionally throws an error.
+Definition for the Theme class.
 }
 \seealso{
-\code{\link[=new_single_theme]{new_single_theme()}}, \code{\link[=new_multi_theme]{new_multi_theme()}}.
+\code{\link[=new_theme]{new_theme()}}.
 }
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
@@ -25,6 +22,8 @@ This method intentionally throws an error.
 \item{\code{name}}{\code{character} value.}
 
 \item{\code{feature}}{\code{list} of \link{Feature} objects.}
+
+\item{\code{feature_order}}{\code{numeric} value.}
 }
 \if{html}{\out{</div>}}
 }
@@ -45,6 +44,8 @@ This method intentionally throws an error.
 \item \href{#method-get_feature_visible}{\code{Theme$get_feature_visible()}}
 \item \href{#method-get_feature_status}{\code{Theme$get_feature_status()}}
 \item \href{#method-get_feature_goal}{\code{Theme$get_feature_goal()}}
+\item \href{#method-get_feature_order}{\code{Theme$get_feature_order()}}
+\item \href{#method-set_feature_order}{\code{Theme$set_feature_order()}}
 \item \href{#method-get_setting}{\code{Theme$get_setting()}}
 \item \href{#method-set_visible}{\code{Theme$set_visible()}}
 \item \href{#method-set_feature_visible}{\code{Theme$set_feature_visible()}}
@@ -52,9 +53,11 @@ This method intentionally throws an error.
 \item \href{#method-set_feature_goal}{\code{Theme$set_feature_goal()}}
 \item \href{#method-set_feature_current}{\code{Theme$set_feature_current()}}
 \item \href{#method-set_setting}{\code{Theme$set_setting()}}
-\item \href{#method-export}{\code{Theme$export()}}
+\item \href{#method-get_solution_settings_widget_data}{\code{Theme$get_solution_settings_widget_data()}}
+\item \href{#method-get_map_manager_widget_data}{\code{Theme$get_map_manager_widget_data()}}
 \item \href{#method-render_on_map}{\code{Theme$render_on_map()}}
 \item \href{#method-update_on_map}{\code{Theme$update_on_map()}}
+\item \href{#method-export}{\code{Theme$export()}}
 \item \href{#method-clone}{\code{Theme$clone()}}
 }
 }
@@ -64,15 +67,24 @@ This method intentionally throws an error.
 \subsection{Method \code{new()}}{
 Create a Theme object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Theme$new(...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Theme$new(id, name, feature, feature_order)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{...}}{not used.}
+\item{\code{id}}{\code{character} value.}
+
+\item{\code{name}}{\code{character} value.}
+
+\item{\code{feature}}{\code{list} of \link{Feature} objects.}
+
+\item{\code{feature_order}}{\code{numeric} vector.}
 }
 \if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+A new Theme object.
 }
 }
 \if{html}{\out{<hr>}}
@@ -256,6 +268,33 @@ Get feature goal values.
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_feature_order"></a>}}
+\if{latex}{\out{\hypertarget{method-get_feature_order}{}}}
+\subsection{Method \code{get_feature_order()}}{
+Set relative order for displaying features on a map.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$get_feature_order()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_feature_order"></a>}}
+\if{latex}{\out{\hypertarget{method-set_feature_order}{}}}
+\subsection{Method \code{set_feature_order()}}{
+Set relative order for displaying features on a map.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$set_feature_order(value)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{value}}{\code{numeric} vector of new orders.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_setting"></a>}}
 \if{latex}{\out{\hypertarget{method-get_setting}{}}}
 \subsection{Method \code{get_setting()}}{
@@ -389,16 +428,29 @@ or \code{"feature_current"}.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-export"></a>}}
-\if{latex}{\out{\hypertarget{method-export}{}}}
-\subsection{Method \code{export()}}{
-Export settings
+\if{html}{\out{<a id="method-get_solution_settings_widget_data"></a>}}
+\if{latex}{\out{\hypertarget{method-get_solution_settings_widget_data}{}}}
+\subsection{Method \code{get_solution_settings_widget_data()}}{
+Get data for displaying the theme in a \code{\link[=solutionSettings]{solutionSettings()}} widget.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Theme$export()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Theme$get_solution_settings_widget_data()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-\code{list} object.
+\code{list} with widget data.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_map_manager_widget_data"></a>}}
+\if{latex}{\out{\hypertarget{method-get_map_manager_widget_data}{}}}
+\subsection{Method \code{get_map_manager_widget_data()}}{
+Get data for displaying the theme in a \code{\link[=mapManager]{mapManager()}} widget.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$get_map_manager_widget_data()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{list} with widget data.
 }
 }
 \if{html}{\out{<hr>}}
@@ -443,6 +495,19 @@ Render on map.
 }
 \subsection{Returns}{
 \code{\link[leaflet:leafletProxy]{leaflet::leafletProxy()}} object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-export"></a>}}
+\if{latex}{\out{\hypertarget{method-export}{}}}
+\subsection{Method \code{export()}}{
+Export settings
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$export()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{list} object.
 }
 }
 \if{html}{\out{<hr>}}

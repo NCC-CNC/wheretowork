@@ -47,7 +47,7 @@ function newLayer(manager, x) {
         x.feature_id,
         x.feature_name,
         x.feature_visible,
-        x.feature_legend,
+        x.feature_legend[0],
         x.units
       );
     } else {

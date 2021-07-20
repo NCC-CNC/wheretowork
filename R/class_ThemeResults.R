@@ -65,6 +65,75 @@ ThemeResults <- R6::R6Class(
     #' @return `character` value.
     repr = function(start = "[", end = "]") {
       "TODO"
+    },
+
+    #' @description
+    #' Get results.
+    #' @return [tibble::tibble()] object.
+    get_results_data = function() {
+      tibble::tibble(
+        name = self$theme$name,
+        feature_name = vapply(
+          self$feature_results,
+          function(x) x$feature$name,
+          character(1)
+        ),
+        feature_status = vapply(
+          self$feature_results, `[[`, logical(1), "status"
+        ),
+        feature_total_amount = vapply(
+          self$feature_results,
+          function(x) x$feature$variable$total,
+          numeric(1)
+        ),
+        feature_current_held = vapply(
+          self$feature_results, `[[`, numeric(1), "current"
+        ),
+        feature_goal = vapply(
+          self$feature_results, `[[`, numeric(1), "goal"
+        ),
+        feature_solution_held = vapply(
+          self$feature_results, `[[`, numeric(1), "held"
+        ),
+        units = self$feature_results[[1]]$feature$variable$units,
+      )
+    },
+
+    #' @description
+    #' Get data for displaying the object in a [solutionResults()] widget.
+    #' @return `list` with widget data.
+    get_widget_data = function() {
+      list(
+        id = self$id,
+        name = self$theme$name,
+        feature_name = vapply(
+          self$feature_results,
+          function(x) x$feature$name,
+          character(1)
+        ),
+        feature_id = vapply(
+          self$feature_results, `[[`, character(1), "id"
+        ),
+        feature_status = vapply(
+          self$feature_results, `[[`, logical(1), "status"
+        ),
+        feature_total_amount = vapply(
+          self$feature_results,
+          function(x) x$feature$variable$total,
+          numeric(1)
+        ),
+        feature_current_held = vapply(
+          self$feature_results, `[[`, numeric(1), "current"
+        ),
+        feature_goal = vapply(
+          self$feature_results, `[[`, numeric(1), "goal"
+        ),
+        feature_solution_held = vapply(
+          self$feature_results, `[[`, numeric(1), "held"
+        ),
+        units = self$feature_results[[1]]$feature$variable$units,
+        type = "theme_results"
+      )
     }
   )
 )
@@ -77,7 +146,7 @@ ThemeResults <- R6::R6Class(
 #'
 #' @param feature_results [FeatureResults] object or a `list` of such objects.
 #'
-#' @inheritParams new_single_theme
+#' @inheritParams new_theme
 #'
 #' @return A [ThemeResults] object.
 #'
@@ -106,7 +175,7 @@ ThemeResults <- R6::R6Class(
 #' f <- new_feature(name = "Intact Alvar", variable = v)
 #'
 #' # create a theme using the single feature
-#' th <- new_single_theme(name = "Intact Alvar", feature = f)
+#' th <- new_theme(name = "Intact Alvar", feature = f)
 #'
 #' # create a feature results object to store results for the feature
 #' fr <- new_feature_results(f, held = 0.8)
@@ -125,18 +194,9 @@ new_theme_results <- function(theme, feature_results,
   if (inherits(feature_results, "FeatureResults")) {
     feature_results <- list(feature_results)
   }
-  if (length(feature_results) == 1) {
-    out <- SingleThemeResults$new(
-      id = id,
-      theme = theme,
-      feature_results = feature_results
-    )
-  } else {
-    out <- MultiThemeResults$new(
-      id = id,
-      theme = theme,
-      feature_results = feature_results
-    )
-  }
-  out
+  ThemeResults$new(
+    id = id,
+    theme = theme,
+    feature_results = feature_results
+  )
 }

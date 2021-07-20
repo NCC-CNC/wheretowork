@@ -120,7 +120,7 @@ server_import_spatial_data <- quote({
     ### generate themes
     x$themes <- lapply(
       settings_data$name[settings_data$type == "theme"], function(y) {
-        new_single_theme(
+        new_theme(
           name = y,
           feature = new_feature(
             name = y,

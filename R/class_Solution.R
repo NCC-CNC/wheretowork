@@ -448,7 +448,7 @@ Solution <- R6::R6Class(
 #'
 #' @param weight_results `list` of [WeightResults] objects.
 #'
-#' @inheritParams new_multi_theme
+#' @inheritParams new_theme
 #'
 #' @examples
 #' # TODO

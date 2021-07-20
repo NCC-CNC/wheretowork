@@ -50,8 +50,8 @@ test_that("initialization", {
     goal = 0.6, status = TRUE, current = 0.4, id = "F3"
   )
   ## create themes using the features
-  t1 <- new_single_theme("Species", f1, id = "T1")
-  t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")
+  t1 <- new_theme("Species", f1, id = "T1")
+  t2 <- new_theme("Ecoregions", list(f2, f3), id = "T2")
   ## create parameter
   p1 <- new_parameter("Spatial clustering", id = "P1")
   ## create solution setting
@@ -121,8 +121,8 @@ test_that("get methods", {
     goal = 0.6, status = TRUE, current = 0.4, id = "F3"
   )
   ## create themes using the features
-  t1 <- new_single_theme("Species", f1, id = "T1")
-  t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")
+  t1 <- new_theme("Species", f1, id = "T1")
+  t2 <- new_theme("Ecoregions", list(f2, f3), id = "T2")
   ## create parameter
   p1 <- new_parameter("Spatial clustering", value = 90, id = "P1")
   ## create solution setting
@@ -258,8 +258,8 @@ test_that("set methods", {
     goal = 0.6, status = TRUE, current = 0.4, id = "F3"
   )
   ## create themes using the features
-  t1 <- new_single_theme("Species", f1, id = "T1")
-  t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")
+  t1 <- new_theme("Species", f1, id = "T1")
+  t2 <- new_theme("Ecoregions", list(f2, f3), id = "T2")
   ## create parameter
   p1 <- new_parameter("Spatial clustering", value = 90, id = "P1")
   ## create solution setting
@@ -430,8 +430,8 @@ test_that("widget methods", {
     goal = 0.6, status = TRUE, current = 0.4, id = "F3"
   )
   ## create themes using the features
-  t1 <- new_single_theme("Species", f1, id = "T1")
-  t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")
+  t1 <- new_theme("Species", f1, id = "T1")
+  t2 <- new_theme("Ecoregions", list(f2, f3), id = "T2")
   ## create parameter
   p1 <- new_parameter("Spatial clustering", value = 90, id = "P1")
   ## create solution setting

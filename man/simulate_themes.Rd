@@ -16,7 +16,7 @@ to simulate.}
 to simulate.}
 
 \item{lambda}{\code{numeric} lambda parameter for simulating the number
-of features for each \link{MultiTheme} object.
+of features for themes that contain multiple features.
 This parameter is used as a argument to \code{rpois(n, lambda = lambda)}.
 Defaults to 5.}
 }
@@ -24,7 +24,7 @@ Defaults to 5.}
 A \code{list} of simulated \link{Theme} objects.
 }
 \description{
-This function simulates \link{SingleTheme} and \link{MultiTheme} objects.
+This function simulates \link{Theme} objects.
 }
 \examples{
 # find data file paths
@@ -51,5 +51,5 @@ x <- simulate_themes(data = d, n_single_themes = 3, n_multi_themes = 2)
 print(x)
 }
 \seealso{
-\link{new_single_theme}, \link{new_multi_theme}.
+\link{new_theme}.
 }

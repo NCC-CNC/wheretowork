@@ -41,8 +41,8 @@ test_that("initialization", {
     goal = 0.6, status = TRUE, current = 0.4, id = "F3"
   )
   ## create themes using the features
-  t1 <- new_single_theme("Species", f1, id = "T1")
-  t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")
+  t1 <- new_theme("Species", f1, id = "T1")
+  t2 <- new_theme("Ecoregions", list(f2, f3), id = "T2")
   ## create solution setting
   x <- new_map_manager(
     layers = list(t1, t2, w),
@@ -105,8 +105,8 @@ test_that("get methods", {
     goal = 0.6, status = TRUE, current = 0.4, id = "F3"
   )
   ## create themes using the features
-  t1 <- new_single_theme("Species", f1, id = "T1")
-  t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")
+  t1 <- new_theme("Species", f1, id = "T1")
+  t2 <- new_theme("Ecoregions", list(f2, f3), id = "T2")
   ## create solution setting
   x <- new_map_manager(
     layers = list(t1, t2, w),
@@ -180,8 +180,8 @@ test_that("set methods", {
     goal = 0.6, status = TRUE, current = 0.4, id = "F3"
   )
   ## create themes using the features
-  t1 <- new_single_theme("Species", f1, id = "T1")
-  t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")
+  t1 <- new_theme("Species", f1, id = "T1")
+  t2 <- new_theme("Ecoregions", list(f2, f3), id = "T2")
   ## create solution setting
   x <- new_map_manager(
     layers = list(t1, t2, w),
@@ -275,8 +275,8 @@ test_that("widget methods", {
     goal = 0.6, status = TRUE, current = 0.4, id = "F3"
   )
   ## create themes using the features
-  t1 <- new_single_theme("Species", f1, id = "T1")
-  t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")
+  t1 <- new_theme("Species", f1, id = "T1")
+  t2 <- new_theme("Ecoregions", list(f2, f3), id = "T2")
   ## create solution setting
   x <- new_map_manager(
     layers = list(t1, t2, w),

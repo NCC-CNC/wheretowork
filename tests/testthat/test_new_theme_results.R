@@ -1,6 +1,6 @@
 context("new_theme_results")
 
-test_that("initialization (SingleTheme)", {
+test_that("initialization (single feature)", {
   # create objects
   d <- new_dataset_from_auto(import_simple_raster_data())
   v <- new_variable_from_auto(dataset = d, index = 1, units = "ha")
@@ -31,7 +31,7 @@ test_that("initialization (SingleTheme)", {
   expect_identical(x$feature_results[[1]], fr)
 })
 
-test_that("results methods (SingleTheme)", {
+test_that("results methods (single feature)", {
   # create objects
   d <- new_dataset_from_auto(import_simple_raster_data())
   v <- new_variable_from_auto(dataset = d, index = 1, units = "ha")
@@ -78,7 +78,7 @@ test_that("results methods (SingleTheme)", {
   )
 })
 
-test_that("widget methods (SingleTheme)", {
+test_that("widget methods (single feature)", {
   # create objects
   d <- new_dataset_from_auto(import_simple_raster_data())
   v <- new_variable_from_auto(dataset = d, index = 1, units = "ha")
@@ -128,7 +128,7 @@ test_that("widget methods (SingleTheme)", {
   )
 })
 
-test_that("initialization (MultiTheme)", {
+test_that("initialization (multiple features)", {
   # create object
   rd <- simulate_proportion_spatial_data(import_simple_raster_data(), 2)
   d <- new_dataset_from_auto(rd)
@@ -172,7 +172,7 @@ test_that("initialization (MultiTheme)", {
       id = "RID2"
     )
   )
-  th <- new_multi_theme(
+  th <- new_theme(
     name = "MF",
     feature = list(f1, f2),
     id = "MF1"
@@ -184,7 +184,7 @@ test_that("initialization (MultiTheme)", {
   expect_identical(x$feature_results, fr)
 })
 
-test_that("results methods (MultiTheme)", {
+test_that("results methods (multiple features)", {
   # create object
   rd <- simulate_proportion_spatial_data(import_simple_raster_data(), 2)
   d <- new_dataset_from_auto(rd)
@@ -228,7 +228,7 @@ test_that("results methods (MultiTheme)", {
       id = "RID2"
     )
   )
-  th <- new_multi_theme(
+  th <- new_theme(
     name = "MF",
     feature = list(f1, f2),
     id = "MF1"
@@ -254,7 +254,7 @@ test_that("results methods (MultiTheme)", {
   )
 })
 
-test_that("widget methods (MultiTheme)", {
+test_that("widget methods (multiple features)", {
   # create object
   rd <- simulate_proportion_spatial_data(import_simple_raster_data(), 2)
   d <- new_dataset_from_auto(rd)
@@ -298,7 +298,7 @@ test_that("widget methods (MultiTheme)", {
       id = "RID2"
     )
   )
-  th <- new_multi_theme(
+  th <- new_theme(
     name = "MF",
     feature = list(f1, f2),
     id = "MF1"
@@ -310,17 +310,34 @@ test_that("widget methods (MultiTheme)", {
     list(
       id = "RID3",
       name = th$name,
-      feature_name = c(fr[[1]]$feature$name, fr[[2]]$feature$name),
-      feature_id = c(fr[[1]]$id, fr[[2]]$id),
-      feature_status = c(fr[[1]]$feature$status, fr[[2]]$feature$status),
+      feature_name = c(
+        fr[[1]]$feature$name,
+        fr[[2]]$feature$name
+      ),
+      feature_id = c(
+        fr[[1]]$id,
+        fr[[2]]$id
+      ),
+      feature_status = c(
+        fr[[1]]$feature$status,
+        fr[[2]]$feature$status
+      ),
       feature_total_amount = c(
-        fr[[1]]$feature$variable$total, fr[[2]]$feature$variable$total
+        fr[[1]]$feature$variable$total,
+        fr[[2]]$feature$variable$total
       ),
       feature_current_held = c(
-        fr[[1]]$feature$current, fr[[2]]$feature$current
+        fr[[1]]$feature$current,
+        fr[[2]]$feature$current
       ),
-      feature_goal = c(fr[[1]]$goal, fr[[2]]$goal),
-      feature_solution_held = c(fr[[1]]$held, fr[[2]]$held),
+      feature_goal = c(
+        fr[[1]]$goal,
+        fr[[2]]$goal
+      ),
+      feature_solution_held = c(
+        fr[[1]]$held,
+        fr[[2]]$held
+      ),
       units = v1$units,
       type = "theme_results"
     )
