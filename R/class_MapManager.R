@@ -346,18 +346,18 @@ MapManager <- R6::R6Class(
 #' # create a weight using a variable
 #' w <- new_weight(
 #'   name = "Human Footprint Index", variable = v1,
-#'   initial_factor = 90, initial_status = FALSE, id = "W1")
+#'   factor = 90, status = FALSE, id = "W1")
 #'
 #' # create features using variables
 #' f1 <- new_feature(
 #'   name = "Possum", variable = v2,
-#'   initial_goal = 0.2, initial_status = FALSE, current = 0.5, id = "F1")
+#'   goal = 0.2, status = FALSE, current = 0.5, id = "F1")
 #' f2 <- new_feature(
 #'   name = "Forests", variable = v3,
-#'   initial_goal = 0.3, initial_status = FALSE, current = 0.9, id = "F2")
+#'   goal = 0.3, status = FALSE, current = 0.9, id = "F2")
 #' f3 <- new_feature(
 #'   name = "Shrubs", variable = v4,
-#'   initial_goal = 0.6, initial_status = TRUE, current = 0.4, id = "F3")
+#'   goal = 0.6, status = TRUE, current = 0.4, id = "F3")
 #'
 #' # create themes using the features
 #' t1 <- new_single_theme("Species", f1, id = "T1")

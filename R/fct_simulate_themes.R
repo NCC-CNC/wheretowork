@@ -100,7 +100,7 @@ simulate_themes <- function(
         name = st_names[i],
         new_feature(
           name = paste0(st_names[i], " habitat"),
-          initial_goal = round(stats::runif(1, 0.5, 0.9), 2),
+          goal = round(stats::runif(1, 0.5, 0.9), 2),
           current = round(stats::runif(1, 0.1, 0.6), 2),
           limit_goal = round(stats::runif(1, 0, 0.4), 2),
           variable =
@@ -169,7 +169,7 @@ simulate_themes <- function(
     curr_fts <- lapply(seq_len(mt_n_features[i]), function(j) {
       new_feature(
         name = curr_tn_names[[j]],
-        initial_goal = round(stats::runif(1, 0.5, 0.9), 2),
+        goal = round(stats::runif(1, 0.5, 0.9), 2),
         current = round(stats::runif(1, 0.1, 0.6), 2),
         limit_goal = round(stats::runif(1, 0, 0.4), 2),
         variable =

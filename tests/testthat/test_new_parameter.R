@@ -4,8 +4,8 @@ test_that("initialization", {
   # create object
   x <- new_parameter(
     name = "Spatial clumping",
-    initial_status = FALSE,
-    initial_value = 0.2,
+    status = FALSE,
+    value = 0.2,
     min_value = 0.01,
     max_value = 0.9,
     step_value = 0.03,
@@ -18,9 +18,7 @@ test_that("initialization", {
   expect_equal(x$id, "P1")
   expect_equal(x$name, "Spatial clumping")
   expect_equal(x$status, FALSE)
-  expect_equal(x$initial_status, FALSE)
   expect_equal(x$value, 0.2)
-  expect_equal(x$initial_value, 0.2)
   expect_equal(x$min_value, 0.01)
   expect_equal(x$max_value, 0.9)
   expect_equal(x$step_value, 0.03)
@@ -32,8 +30,8 @@ test_that("get methods", {
   # create object
   x <- new_parameter(
     name = "Spatial clumping",
-    initial_status = FALSE,
-    initial_value = 0.2,
+    status = FALSE,
+    value = 0.2,
     min_value = 0.01,
     max_value = 0.9,
     step_value = 0.03,
@@ -49,8 +47,8 @@ test_that("set methods", {
   # create object
   x <- new_parameter(
     name = "Spatial clumping",
-    initial_status = FALSE,
-    initial_value = 0.2,
+    status = FALSE,
+    value = 0.2,
     min_value = 0.01,
     max_value = 0.9,
     step_value = 0.03,
@@ -70,8 +68,8 @@ test_that("export method", {
   # create object
   x <- new_parameter(
     name = "Spatial clumping",
-    initial_status = FALSE,
-    initial_value = 0.2,
+    status = FALSE,
+    value = 0.2,
     min_value = 0.01,
     max_value = 0.9,
     step_value = 0.03,
@@ -83,8 +81,8 @@ test_that("export method", {
     x$export(),
     list(
       name = "Spatial clumping",
-      initial_status = FALSE,
-      initial_value = 0.2,
+      status = FALSE,
+      value = 0.2,
       min_value = 0.01,
       max_value = 0.9,
       step_value = 0.03,
@@ -98,8 +96,8 @@ test_that("widget methods", {
   # create object
   x <- new_parameter(
     name = "Spatial clumping",
-    initial_status = FALSE,
-    initial_value = 0.2,
+    status = FALSE,
+    value = 0.2,
     min_value = 0.01,
     max_value = 0.9,
     step_value = 0.03,

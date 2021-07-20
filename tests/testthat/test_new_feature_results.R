@@ -7,9 +7,9 @@ test_that("initialization", {
   f <- new_feature(
     name = "Intact Alvar",
     variable = v,
-    initial_visible = FALSE,
-    initial_status = FALSE,
-    initial_goal = 0.2,
+    visible = FALSE,
+    status = FALSE,
+    goal = 0.2,
     min_goal = 0.01,
     max_goal = 0.9,
     step_goal = 0.03,

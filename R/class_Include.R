@@ -26,14 +26,8 @@ Include <- R6::R6Class(
     #' @field visible `logical` value.
     visible = NA,
 
-    #' @field initial_visible `logical` value.
-    initial_visible = NA,
-
     #' @field status `logical` value.
     status = NA,
-
-    #' @field initial_status `logical` value.
-    initial_status = NA,
 
     #' @description
     #' Create a new Lock object.
@@ -41,12 +35,12 @@ Include <- R6::R6Class(
     #' @param name `character` value.
     #' @param variable [Variable] object.
     #' @param mandatory `logical` value.
-    #' @param initial_visible `logical` value.
-    #' @param initial_status `logical` value.
+    #' @param visible `logical` value.
+    #' @param status `logical` value.
     #' @return A new Lock object.
     ## constructor
     initialize = function(
-      id, name, variable, mandatory, initial_visible, initial_status) {
+      id, name, variable, mandatory, visible, status) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -60,21 +54,19 @@ Include <- R6::R6Class(
         #### mandatory
         assertthat::is.flag(mandatory),
         assertthat::noNA(mandatory),
-        #### initial_visible
-        assertthat::is.flag(initial_visible),
-        assertthat::noNA(initial_visible),
-        #### initial_status
-        assertthat::is.flag(initial_status),
-        assertthat::noNA(initial_status)
+        #### visible
+        assertthat::is.flag(visible),
+        assertthat::noNA(visible),
+        #### status
+        assertthat::is.flag(status),
+        assertthat::noNA(status)
       )
       ### set fields
       self$id <- id
       self$variable <- variable
       self$name <- name
-      self$status <- initial_status
-      self$initial_status <- initial_status
-      self$visible <- initial_visible
-      self$initial_visible <- initial_visible
+      self$status <- status
+      self$visible <- visible
       self$mandatory <- mandatory
     },
 
@@ -236,8 +228,8 @@ Include <- R6::R6Class(
         name = self$name,
         variable = self$variable$export(),
         mandatory = self$mandatory,
-        initial_status = self$status,
-        initial_visible = self$visible
+        status = self$status,
+        visible = self$visible
       )
     },
 
@@ -304,13 +296,13 @@ Include <- R6::R6Class(
 #' @export
 new_include <- function(
   name, variable, mandatory = FALSE,
-  initial_visible = TRUE, initial_status = TRUE,
+  visible = TRUE, status = TRUE,
   id = uuid::UUIDgenerate()) {
   Include$new(
     id = id,
     name = name,
     variable = variable,
     mandatory = mandatory,
-    initial_visible = initial_visible,
-    initial_status = initial_status)
+    visible = visible,
+    status = status)
 }

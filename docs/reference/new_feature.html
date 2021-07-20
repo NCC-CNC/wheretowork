@@ -125,9 +125,9 @@
     <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>new_feature</span><span class='op'>(</span>
   <span class='va'>name</span>,
   <span class='va'>variable</span>,
-  initial_visible <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  initial_status <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  initial_goal <span class='op'>=</span> <span class='fl'>0.1</span>,
+  visible <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  status <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  goal <span class='op'>=</span> <span class='fl'>0.1</span>,
   min_goal <span class='op'>=</span> <span class='fl'>0</span>,
   max_goal <span class='op'>=</span> <span class='fl'>1</span>,
   step_goal <span class='op'>=</span> <span class='fl'>0.01</span>,
@@ -148,21 +148,21 @@
       <td><p><a href='Variable.html'>Variable</a> object.</p></td>
     </tr>
     <tr>
-      <th>initial_visible</th>
+      <th>visible</th>
       <td><p><code>logical</code> The initial visible value.
 This is used to determine if the feature is displayed (or not)
 or not the map.
 Defaults to <code>TRUE</code></p></td>
     </tr>
     <tr>
-      <th>initial_status</th>
+      <th>status</th>
       <td><p><code>logical</code> The initial status value.
 This is used to display information on whether the feature is
 selected (or not) for subsequent analysis.
 Defaults to <code>TRUE</code></p></td>
     </tr>
     <tr>
-      <th>initial_goal</th>
+      <th>goal</th>
       <td><p><code>numeric</code> The initial goal for the feature.
 Note that goal values are specified as proportions, such that a
 value of 0.1 corresponds to 10%.
@@ -242,7 +242,7 @@ Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUI
 <span class='r-in'><span class='co'># print object</span></span>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>f</span><span class='op'>)</span></span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Feature</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:      b6d3c4ca-0e61-4d97-8fd6-cc0e26b6ac7c</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:      7345b35d-ad2b-4ff4-8c03-b16803d88924</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:    Intact Alvar</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   variable:   .../sim_raster_spatial.tif#Olive_headed_Lorikeet [total: 1052 ]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   visible:  TRUE</span>

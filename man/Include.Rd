@@ -27,11 +27,7 @@ Definition for the Include class.
 
 \item{\code{visible}}{\code{logical} value.}
 
-\item{\code{initial_visible}}{\code{logical} value.}
-
 \item{\code{status}}{\code{logical} value.}
-
-\item{\code{initial_status}}{\code{logical} value.}
 }
 \if{html}{\out{</div>}}
 }
@@ -64,7 +60,7 @@ Definition for the Include class.
 \subsection{Method \code{new()}}{
 Create a new Lock object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Include$new(id, name, variable, mandatory, initial_visible, initial_status)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Include$new(id, name, variable, mandatory, visible, status)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -78,9 +74,9 @@ Create a new Lock object.
 
 \item{\code{mandatory}}{\code{logical} value.}
 
-\item{\code{initial_visible}}{\code{logical} value.}
+\item{\code{visible}}{\code{logical} value.}
 
-\item{\code{initial_status}}{\code{logical} value.}
+\item{\code{status}}{\code{logical} value.}
 }
 \if{html}{\out{</div>}}
 }

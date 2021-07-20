@@ -302,7 +302,7 @@ generate_min_set_solution <- function(
   new_solution(
     name = name,
     variable = v,
-    initial_visible = TRUE,
+    visible = TRUE,
     statistics = statistics_results,
     theme_results = theme_results,
     weight_results = weight_results,

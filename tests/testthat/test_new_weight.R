@@ -7,9 +7,9 @@ test_that("initialization", {
   x <- new_weight(
     name = "Human Footprint Index",
     variable = v,
-    initial_visible = FALSE,
-    initial_status = FALSE,
-    initial_factor = 0.2,
+    visible = FALSE,
+    status = FALSE,
+    factor = 0.2,
     current = 0.89,
     min_factor = 0.01,
     max_factor = 0.9,
@@ -22,12 +22,9 @@ test_that("initialization", {
   expect_equal(x$name, "Human Footprint Index")
   expect_equal(x$variable, v)
   expect_equal(x$visible, FALSE)
-  expect_equal(x$initial_visible, FALSE)
   expect_equal(x$status, FALSE)
-  expect_equal(x$initial_status, FALSE)
   expect_equal(x$current, 0.89)
   expect_equal(x$factor, 0.2)
-  expect_equal(x$initial_factor, 0.2)
   expect_equal(x$min_factor, 0.01)
   expect_equal(x$max_factor, 0.9)
   expect_equal(x$step_factor, 0.03)
@@ -40,10 +37,10 @@ test_that("get methods", {
   x <- new_weight(
     name = "Human Footprint Index",
     variable = v,
-    initial_visible = TRUE,
-    initial_status = FALSE,
+    visible = TRUE,
+    status = FALSE,
     current = 0.89,
-    initial_factor = 0.2,
+    factor = 0.2,
     min_factor = 0.01,
     max_factor = 0.9,
     step_factor = 0.03,
@@ -65,10 +62,10 @@ test_that("set methods", {
   x <- new_weight(
     name = "Human Footprint Index",
     variable = v,
-    initial_visible = TRUE,
-    initial_status = FALSE,
+    visible = TRUE,
+    status = FALSE,
     current = 0.89,
-    initial_factor = 0.2,
+    factor = 0.2,
     min_factor = 0.01,
     max_factor = 0.9,
     step_factor = 0.03,
@@ -99,10 +96,10 @@ test_that("export method", {
   x <- new_weight(
     name = "Human Footprint Index",
     variable = v,
-    initial_visible = TRUE,
-    initial_status = FALSE,
+    visible = TRUE,
+    status = FALSE,
     current = 0.89,
-    initial_factor = 0.2,
+    factor = 0.2,
     min_factor = 0.01,
     max_factor = 0.9,
     step_factor = 0.03,
@@ -113,10 +110,10 @@ test_that("export method", {
     list(
       name = "Human Footprint Index",
       variable = x$variable$export(),
-      initial_status = FALSE,
-      initial_visible = TRUE,
+      status = FALSE,
+      visible = TRUE,
       current = 0.89,
-      initial_factor = 0.2,
+      factor = 0.2,
       min_factor = 0.01,
       max_factor = 0.9,
       step_factor = 0.03
@@ -133,8 +130,8 @@ test_that("widget methods", {
   x <- new_weight(
     name = "Human Footprint Index",
     variable = v,
-    initial_status = FALSE,
-    initial_factor = 0.2,
+    status = FALSE,
+    factor = 0.2,
     min_factor = 0.01,
     max_factor = 0.9,
     step_factor = 0.03,

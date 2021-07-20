@@ -19,9 +19,9 @@ themes:
         - '#FD8D3C'
         - '#F03B20'
         - '#BD0026'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.83
+    status: yes
+    visible: yes
+    goal: 0.83
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
@@ -43,9 +43,9 @@ themes:
         - '#EF6548'
         - '#D7301F'
         - '#990000'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.7
+    status: yes
+    visible: yes
+    goal: 0.7
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
@@ -61,9 +61,9 @@ themes:
         colors:
         - '#FC8D59'
         - '#FFFFBF'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.7
+    status: yes
+    visible: yes
+    goal: 0.7
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
@@ -86,9 +86,9 @@ themes:
         - '#CB181D'
         - '#A50F15'
         - '#67000D'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.69
+    status: yes
+    visible: yes
+    goal: 0.69
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
@@ -109,9 +109,9 @@ themes:
         - '#D7301F'
         - '#B30000'
         - '#7F0000'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.55
+    status: yes
+    visible: yes
+    goal: 0.55
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
@@ -134,9 +134,9 @@ themes:
         - '#7FBC41'
         - '#4D9221'
         - '#276419'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.53
+    status: yes
+    visible: yes
+    goal: 0.53
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
@@ -157,9 +157,9 @@ themes:
         - '#225EA8'
         - '#253494'
         - '#081D58'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.52
+    status: yes
+    visible: yes
+    goal: 0.52
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
@@ -182,9 +182,9 @@ themes:
         - '#7FBC41'
         - '#4D9221'
         - '#276419'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.72
+    status: yes
+    visible: yes
+    goal: 0.72
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
@@ -204,9 +204,9 @@ themes:
         - '#FFD92F'
         - '#E5C494'
         - '#B3B3B3'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.57
+    status: yes
+    visible: yes
+    goal: 0.57
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
@@ -230,9 +230,9 @@ themes:
         - '#6A3D9A'
         - '#FFFF99'
         - '#B15928'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.5
+    status: yes
+    visible: yes
+    goal: 0.5
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
@@ -253,9 +253,9 @@ themes:
         - '#A65628'
         - '#F781BF'
         - '#999999'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.54
+    status: yes
+    visible: yes
+    goal: 0.54
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
@@ -276,9 +276,9 @@ themes:
         - '#02818A'
         - '#016C59'
         - '#014636'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.81
+    status: yes
+    visible: yes
+    goal: 0.81
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
@@ -303,9 +303,9 @@ themes:
         - '#7FBC41'
         - '#4D9221'
         - '#276419'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.56
+    status: yes
+    visible: yes
+    goal: 0.56
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
@@ -326,9 +326,9 @@ themes:
         - '#E31A1C'
         - '#BD0026'
         - '#800026'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.56
+    status: yes
+    visible: yes
+    goal: 0.56
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
@@ -349,9 +349,9 @@ themes:
         - '#238B45'
         - '#006D2C'
         - '#00441B'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.6
+    status: yes
+    visible: yes
+    goal: 0.6
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
@@ -372,9 +372,9 @@ themes:
         - '#2171B5'
         - '#08519C'
         - '#08306B'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.56
+    status: yes
+    visible: yes
+    goal: 0.56
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
@@ -394,9 +394,9 @@ themes:
         - '#F0027F'
         - '#BF5B17'
         - '#666666'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.51
+    status: yes
+    visible: yes
+    goal: 0.51
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
@@ -420,10 +420,10 @@ weights:
       - '#5AAE61'
       - '#1B7837'
       - '#00441B'
-  initial_status: yes
-  initial_visible: yes
+  status: yes
+  visible: yes
   current: 0.2
-  initial_factor: 0.0
+  factor: 0.0
   min_factor: 0.0
   max_factor: 100.0
   step_factor: 1.0
@@ -442,10 +442,10 @@ weights:
       - '#FFD92F'
       - '#E5C494'
       - '#B3B3B3'
-  initial_status: yes
-  initial_visible: yes
+  status: yes
+  visible: yes
   current: 0.39
-  initial_factor: 0.0
+  factor: 0.0
   min_factor: 0.0
   max_factor: 100.0
   step_factor: 1.0
@@ -467,10 +467,10 @@ weights:
       - '#66BD63'
       - '#1A9850'
       - '#006837'
-  initial_status: yes
-  initial_visible: yes
+  status: yes
+  visible: yes
   current: 0.36
-  initial_factor: 0.0
+  factor: 0.0
   min_factor: 0.0
   max_factor: 100.0
   step_factor: 1.0
@@ -488,8 +488,8 @@ includes:
       - not included
       - included
   mandatory: no
-  initial_status: yes
-  initial_visible: yes
+  status: yes
+  visible: yes
 - name: RAMSAR Sites
   variable:
     index: RAMSAR_Sites
@@ -503,5 +503,5 @@ includes:
       - not included
       - included
   mandatory: no
-  initial_status: yes
-  initial_visible: yes
+  status: yes
+  visible: yes

@@ -17,14 +17,11 @@ Solution <- R6::R6Class(
     #' @field name `character` name of solution.
     name = NA_character_,
 
-    #' @field initial_visible `logical` value.
-    initial_visible = NA,
+    #' @field visible `logical` value.
+    visible = NA,
 
     #' @field variable [Variable] object.
     variable = NULL,
-
-    #' @field visible `logical` value.
-    visible = NA,
 
     #' @field statistics `list` of [Statistic] objects
     statistics = NULL,
@@ -40,13 +37,13 @@ Solution <- R6::R6Class(
     #' @param id `character` value.
     #' @param name `character` value.
     #' @param variable [Variable] object.
-    #' @param initial_visible `logical` value.
+    #' @param visible `logical` value.
     #' @param statistics `list` of [Statistic] objects.
     #' @param theme_results `list` of [ThemeResults] objects.
     #' @param weight_results `list` of [WeightResults] objects.
     #' @return A new Solution object.
     initialize = function(
-      id, name, variable, initial_visible, statistics, theme_results,
+      id, name, variable, visible, statistics, theme_results,
       weight_results) {
       # assert arguments are valid
       assertthat::assert_that(
@@ -55,8 +52,8 @@ Solution <- R6::R6Class(
         assertthat::is.string(name),
         assertthat::noNA(name),
         inherits(variable, "Variable"),
-        assertthat::is.flag(initial_visible),
-        assertthat::noNA(initial_visible),
+        assertthat::is.flag(visible),
+        assertthat::noNA(visible),
         is.list(statistics),
         all_list_elements_inherit(statistics, "Statistic"),
         is.list(theme_results),
@@ -67,8 +64,7 @@ Solution <- R6::R6Class(
       self$id <- id
       self$name <- name
       self$variable <- variable
-      self$visible <- initial_visible
-      self$initial_visible <- initial_visible
+      self$visible <- visible
       self$statistics  <- statistics
       self$theme_results <- theme_results
       self$weight_results <- weight_results
@@ -433,7 +429,7 @@ Solution <- R6::R6Class(
 #'
 #' @param variable [Variable] object with the solution.
 #'
-#' @param initial_visible `logical` should the solution be visible on a map?
+#' @param visible `logical` should the solution be visible on a map?
 #'
 #' @param statistics `list` of [Statistic] objects.
 #'
@@ -448,12 +444,12 @@ Solution <- R6::R6Class(
 #'
 #' @export
 new_solution <- function(
-  name, variable, initial_visible, statistics,
+  name, variable, visible, statistics,
   theme_results, weight_results, id = uuid::UUIDgenerate()) {
   Solution$new(
     name = name,
     variable = variable,
-    initial_visible = initial_visible,
+    visible = visible,
     statistics = statistics,
     theme_results = theme_results,
     weight_results = weight_results,

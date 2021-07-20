@@ -176,18 +176,18 @@
 <span class='r-in'><span class='co'># create a weight using a variable</span></span>
 <span class='r-in'><span class='va'>w</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_weight.html'>new_weight</a></span><span class='op'>(</span></span>
 <span class='r-in'>  name <span class='op'>=</span> <span class='st'>"Human Footprint Index"</span>, variable <span class='op'>=</span> <span class='va'>v1</span>,</span>
-<span class='r-in'>  initial_factor <span class='op'>=</span> <span class='fl'>90</span>, initial_status <span class='op'>=</span> <span class='cn'>FALSE</span>, id <span class='op'>=</span> <span class='st'>"W1"</span><span class='op'>)</span></span>
+<span class='r-in'>  factor <span class='op'>=</span> <span class='fl'>90</span>, status <span class='op'>=</span> <span class='cn'>FALSE</span>, id <span class='op'>=</span> <span class='st'>"W1"</span><span class='op'>)</span></span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># create features using variables</span></span>
 <span class='r-in'><span class='va'>f1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_feature.html'>new_feature</a></span><span class='op'>(</span></span>
 <span class='r-in'>  name <span class='op'>=</span> <span class='st'>"Possum"</span>, variable <span class='op'>=</span> <span class='va'>v2</span>,</span>
-<span class='r-in'>  initial_goal <span class='op'>=</span> <span class='fl'>0.2</span>, initial_status <span class='op'>=</span> <span class='cn'>FALSE</span>, current <span class='op'>=</span> <span class='fl'>0.5</span>, id <span class='op'>=</span> <span class='st'>"F1"</span><span class='op'>)</span></span>
+<span class='r-in'>  goal <span class='op'>=</span> <span class='fl'>0.2</span>, status <span class='op'>=</span> <span class='cn'>FALSE</span>, current <span class='op'>=</span> <span class='fl'>0.5</span>, id <span class='op'>=</span> <span class='st'>"F1"</span><span class='op'>)</span></span>
 <span class='r-in'><span class='va'>f2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_feature.html'>new_feature</a></span><span class='op'>(</span></span>
 <span class='r-in'>  name <span class='op'>=</span> <span class='st'>"Forests"</span>, variable <span class='op'>=</span> <span class='va'>v3</span>,</span>
-<span class='r-in'>  initial_goal <span class='op'>=</span> <span class='fl'>0.3</span>, initial_status <span class='op'>=</span> <span class='cn'>FALSE</span>, current <span class='op'>=</span> <span class='fl'>0.9</span>, id <span class='op'>=</span> <span class='st'>"F2"</span><span class='op'>)</span></span>
+<span class='r-in'>  goal <span class='op'>=</span> <span class='fl'>0.3</span>, status <span class='op'>=</span> <span class='cn'>FALSE</span>, current <span class='op'>=</span> <span class='fl'>0.9</span>, id <span class='op'>=</span> <span class='st'>"F2"</span><span class='op'>)</span></span>
 <span class='r-in'><span class='va'>f3</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_feature.html'>new_feature</a></span><span class='op'>(</span></span>
 <span class='r-in'>  name <span class='op'>=</span> <span class='st'>"Shrubs"</span>, variable <span class='op'>=</span> <span class='va'>v4</span>,</span>
-<span class='r-in'>  initial_goal <span class='op'>=</span> <span class='fl'>0.6</span>, initial_status <span class='op'>=</span> <span class='cn'>TRUE</span>, current <span class='op'>=</span> <span class='fl'>0.4</span>, id <span class='op'>=</span> <span class='st'>"F3"</span><span class='op'>)</span></span>
+<span class='r-in'>  goal <span class='op'>=</span> <span class='fl'>0.6</span>, status <span class='op'>=</span> <span class='cn'>TRUE</span>, current <span class='op'>=</span> <span class='fl'>0.4</span>, id <span class='op'>=</span> <span class='st'>"F3"</span><span class='op'>)</span></span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># create themes using the features</span></span>
 <span class='r-in'><span class='va'>t1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_single_theme.html'>new_single_theme</a></span><span class='op'>(</span><span class='st'>"Species"</span>, <span class='va'>f1</span>, id <span class='op'>=</span> <span class='st'>"T1"</span><span class='op'>)</span></span>
@@ -196,7 +196,7 @@
 <span class='r-in'><span class='co'># create an included using a variable</span></span>
 <span class='r-in'><span class='va'>i</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_include.html'>new_include</a></span><span class='op'>(</span></span>
 <span class='r-in'>  name <span class='op'>=</span> <span class='st'>"Protected areas"</span>, variable <span class='op'>=</span> <span class='va'>v5</span>,</span>
-<span class='r-in'>  initial_status <span class='op'>=</span> <span class='cn'>FALSE</span>, id <span class='op'>=</span> <span class='st'>"I1"</span><span class='op'>)</span></span>
+<span class='r-in'>  status <span class='op'>=</span> <span class='cn'>FALSE</span>, id <span class='op'>=</span> <span class='st'>"I1"</span><span class='op'>)</span></span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># create parameters</span></span>
 <span class='r-in'><span class='va'>p1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_parameter.html'>new_parameter</a></span><span class='op'>(</span>name <span class='op'>=</span> <span class='st'>"Spatial clustering"</span><span class='op'>)</span></span>

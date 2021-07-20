@@ -21,11 +21,9 @@ Definition for the Solution class.
 
 \item{\code{name}}{\code{character} name of solution.}
 
-\item{\code{initial_visible}}{\code{logical} value.}
+\item{\code{visible}}{\code{logical} value.}
 
 \item{\code{variable}}{\link{Variable} object.}
-
-\item{\code{visible}}{\code{logical} value.}
 
 \item{\code{statistics}}{\code{list} of \link{Statistic} objects}
 
@@ -68,7 +66,7 @@ Create a Solution object.
   id,
   name,
   variable,
-  initial_visible,
+  visible,
   statistics,
   theme_results,
   weight_results
@@ -84,7 +82,7 @@ Create a Solution object.
 
 \item{\code{variable}}{\link{Variable} object.}
 
-\item{\code{initial_visible}}{\code{logical} value.}
+\item{\code{visible}}{\code{logical} value.}
 
 \item{\code{statistics}}{\code{list} of \link{Statistic} objects.}
 

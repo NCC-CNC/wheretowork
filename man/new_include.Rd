@@ -8,8 +8,8 @@ new_include(
   name,
   variable,
   mandatory = FALSE,
-  initial_visible = TRUE,
-  initial_status = TRUE,
+  visible = TRUE,
+  status = TRUE,
   id = uuid::UUIDgenerate()
 )
 }
@@ -21,12 +21,12 @@ new_include(
 \item{mandatory}{\code{logical} value indicating if object is mandatory
 for generating solutions.}
 
-\item{initial_visible}{\code{logical} The initial visible value.
+\item{visible}{\code{logical} The initial visible value.
 This is used to determine if the feature is displayed (or not)
 or not the map.
 Defaults to \code{TRUE}}
 
-\item{initial_status}{\code{logical} The initial status value.
+\item{status}{\code{logical} The initial status value.
 This is used to display information on whether the feature is
 selected (or not) for subsequent analysis.
 Defaults to \code{TRUE}}

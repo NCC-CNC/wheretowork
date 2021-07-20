@@ -17,8 +17,8 @@ app_global <- quote({
   area_budget_parameter <-
     new_parameter(
       name = "Total area budget",
-      initial_status = FALSE,
-      initial_value = 0,
+      status = FALSE,
+      value = 0,
       min_value = 0,
       max_value = 100,
       step_value = 1,
@@ -30,8 +30,8 @@ app_global <- quote({
   boundary_gap_parameter <-
     new_parameter(
       name = "Spatial clustering",
-      initial_status = FALSE,
-      initial_value = 0,
+      status = FALSE,
+      value = 0,
       min_value = 0,
       max_value = 100,
       step_value = 1,

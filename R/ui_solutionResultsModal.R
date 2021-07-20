@@ -25,14 +25,6 @@ solutionResultsModal <- function(id, trigger) {
   # create modal
   out <-
     htmltools::tags$div(
-      # include CSS style
-      shiny::includeCSS(
-        system.file(
-          "htmlwidgets",
-          "solutionResultsModal.css",
-          package = "wheretowork"
-        )
-      ),
       # script to style modal backdrop
       htmltools::tags$script(htmltools::HTML(paste0(
         "$('#", id, "').on('show.bs.modal', function() {",

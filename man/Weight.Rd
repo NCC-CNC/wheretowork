@@ -25,17 +25,11 @@ Definition for the Weight class.
 
 \item{\code{visible}}{\code{logical} value.}
 
-\item{\code{initial_visible}}{\code{logical} value.}
-
 \item{\code{status}}{\code{logical} value.}
-
-\item{\code{initial_status}}{\code{logical} value.}
 
 \item{\code{current}}{\code{numeric} value.}
 
 \item{\code{factor}}{\code{numeric} value.}
-
-\item{\code{initial_factor}}{\code{numeric} initial factor value.}
 
 \item{\code{min_factor}}{\code{numeric} minimum factor value.}
 
@@ -82,10 +76,10 @@ Create a new Weight object.
   id,
   name,
   variable,
-  initial_visible,
-  initial_status,
+  visible,
+  status,
   current,
-  initial_factor,
+  factor,
   min_factor,
   max_factor,
   step_factor
@@ -101,13 +95,13 @@ Create a new Weight object.
 
 \item{\code{variable}}{\link{Variable} object.}
 
-\item{\code{initial_visible}}{\code{logical} value.}
+\item{\code{visible}}{\code{logical} value.}
 
-\item{\code{initial_status}}{\code{logical} value.}
+\item{\code{status}}{\code{logical} value.}
 
 \item{\code{current}}{\code{logical} value.}
 
-\item{\code{initial_factor}}{\code{numeric} initial factor value.}
+\item{\code{factor}}{\code{numeric} initial factor value.}
 
 \item{\code{min_factor}}{\code{numeric} minimum factor value.}
 

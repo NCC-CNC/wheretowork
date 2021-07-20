@@ -7,7 +7,7 @@
 new_solution(
   name,
   variable,
-  initial_visible,
+  visible,
   statistics,
   theme_results,
   weight_results,
@@ -19,7 +19,7 @@ new_solution(
 
 \item{variable}{\link{Variable} object with the solution.}
 
-\item{initial_visible}{\code{logical} should the solution be visible on a map?}
+\item{visible}{\code{logical} should the solution be visible on a map?}
 
 \item{statistics}{\code{list} of \link{Statistic} objects.}
 

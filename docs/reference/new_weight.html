@@ -125,10 +125,10 @@
     <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>new_weight</span><span class='op'>(</span>
   <span class='va'>name</span>,
   <span class='va'>variable</span>,
-  initial_visible <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  initial_status <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  visible <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  status <span class='op'>=</span> <span class='cn'>TRUE</span>,
   current <span class='op'>=</span> <span class='fl'>0</span>,
-  initial_factor <span class='op'>=</span> <span class='fl'>0</span>,
+  factor <span class='op'>=</span> <span class='fl'>0</span>,
   min_factor <span class='op'>=</span> <span class='fl'>0</span>,
   max_factor <span class='op'>=</span> <span class='fl'>100</span>,
   step_factor <span class='op'>=</span> <span class='fl'>1</span>,
@@ -147,14 +147,14 @@
       <td><p><a href='Variable.html'>Variable</a> object.</p></td>
     </tr>
     <tr>
-      <th>initial_visible</th>
+      <th>visible</th>
       <td><p><code>logical</code> The initial visible value.
 This is used to determine if the feature is displayed (or not)
 or not the map.
 Defaults to <code>TRUE</code></p></td>
     </tr>
     <tr>
-      <th>initial_status</th>
+      <th>status</th>
       <td><p><code>logical</code> The initial status value.
 This is used to display information on whether the feature is
 selected (or not) for subsequent analysis.
@@ -166,7 +166,7 @@ Defaults to <code>TRUE</code></p></td>
 conservation areas (e.g. 0.1 = 10%).</p></td>
     </tr>
     <tr>
-      <th>initial_factor</th>
+      <th>factor</th>
       <td><p><code>numeric</code> initial factor value.
 Defaults to 0.</p></td>
     </tr>
@@ -222,7 +222,7 @@ Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUI
 <span class='r-in'><span class='co'># print object</span></span>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>w</span><span class='op'>)</span></span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Weight</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       db6a1df5-5c74-407d-b5a9-22fd561e3d3b</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       4606045b-5e73-4b0b-801a-2366946b32a4</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:     NDVI</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   variable: .../sim_raster_spatial.tif#Olive_headed_Lorikeet [total: 1052 ]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   current:  0</span>

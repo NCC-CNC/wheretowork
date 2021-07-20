@@ -159,9 +159,9 @@ read_project <- function(
         feature = lapply(x$feature, function(f) {
           new_feature(
             name = f$name,
-            initial_visible = f$initial_visible,
-            initial_status = f$initial_status,
-            initial_goal = f$initial_goal,
+            visible = f$visible,
+            status = f$status,
+            goal = f$goal,
             min_goal = f$min_goal,
             max_goal = f$max_goal,
             step_goal = f$step_goal,
@@ -197,9 +197,9 @@ read_project <- function(
     try(
       new_weight(
         name = x$name,
-        initial_visible = x$initial_visible,
-        initial_status = x$initial_status,
-        initial_factor = x$initial_factor,
+        visible = x$visible,
+        status = x$status,
+        factor = x$factor,
         min_factor = x$min_factor,
         max_factor = x$max_factor,
         step_factor = x$step_factor,
@@ -243,8 +243,8 @@ read_project <- function(
               labels = x$variable$legend$labels
             )
           ),
-        initial_visible = x$initial_visible,
-        initial_status = x$initial_status,
+        visible = x$visible,
+        status = x$status,
         mandatory = ifelse(adv_mode, FALSE, x$mandatory)
       ),
       silent = FALSE

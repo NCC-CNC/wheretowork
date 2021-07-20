@@ -17,9 +17,9 @@ themes:
         - '#FDB863'
         - '#B2ABD2'
         - '#5E3C99'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.63
+    status: yes
+    visible: yes
+    goal: 0.63
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
@@ -42,9 +42,9 @@ themes:
         - '#238B45'
         - '#006D2C'
         - '#00441B'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.88
+    status: yes
+    visible: yes
+    goal: 0.88
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
@@ -67,9 +67,9 @@ themes:
         - '#238B45'
         - '#006D2C'
         - '#00441B'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.75
+    status: yes
+    visible: yes
+    goal: 0.75
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
@@ -94,9 +94,9 @@ themes:
         - '#4393C3'
         - '#2166AC'
         - '#053061'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.56
+    status: yes
+    visible: yes
+    goal: 0.56
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
@@ -119,9 +119,9 @@ themes:
         - '#35978F'
         - '#01665E'
         - '#003C30'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.68
+    status: yes
+    visible: yes
+    goal: 0.68
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
@@ -142,9 +142,9 @@ themes:
         - '#225EA8'
         - '#253494'
         - '#081D58'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.68
+    status: yes
+    visible: yes
+    goal: 0.68
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
@@ -164,9 +164,9 @@ themes:
         - '#FFD92F'
         - '#E5C494'
         - '#B3B3B3'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.54
+    status: yes
+    visible: yes
+    goal: 0.54
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
@@ -187,9 +187,9 @@ themes:
         - '#0570B0'
         - '#045A8D'
         - '#023858'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.59
+    status: yes
+    visible: yes
+    goal: 0.59
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
@@ -212,9 +212,9 @@ themes:
         - '#5AAE61'
         - '#1B7837'
         - '#00441B'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.71
+    status: yes
+    visible: yes
+    goal: 0.71
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
@@ -239,9 +239,9 @@ themes:
         - '#5AAE61'
         - '#1B7837'
         - '#00441B'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.79
+    status: yes
+    visible: yes
+    goal: 0.79
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
@@ -262,9 +262,9 @@ themes:
         - '#CE1256'
         - '#980043'
         - '#67001F'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.72
+    status: yes
+    visible: yes
+    goal: 0.72
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
@@ -285,9 +285,9 @@ themes:
         - '#CB181D'
         - '#A50F15'
         - '#67000D'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.83
+    status: yes
+    visible: yes
+    goal: 0.83
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
@@ -308,9 +308,9 @@ themes:
         - '#AE017E'
         - '#7A0177'
         - '#49006A'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.7
+    status: yes
+    visible: yes
+    goal: 0.7
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
@@ -331,9 +331,9 @@ themes:
         - '#88419D'
         - '#810F7C'
         - '#4D004B'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.82
+    status: yes
+    visible: yes
+    goal: 0.82
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
@@ -353,9 +353,9 @@ themes:
         - '#F0027F'
         - '#BF5B17'
         - '#666666'
-    initial_status: yes
-    initial_visible: yes
-    initial_goal: 0.73
+    status: yes
+    visible: yes
+    goal: 0.73
     min_goal: 0.0
     max_goal: 1.0
     step_goal: 0.01
@@ -377,10 +377,10 @@ weights:
       - '#238B45'
       - '#006D2C'
       - '#00441B'
-  initial_status: yes
-  initial_visible: yes
+  status: yes
+  visible: yes
   current: 0.52
-  initial_factor: 0.0
+  factor: 0.0
   min_factor: 0.0
   max_factor: 100.0
   step_factor: 1.0
@@ -403,10 +403,10 @@ weights:
       - '#6A3D9A'
       - '#FFFF99'
       - '#B15928'
-  initial_status: yes
-  initial_visible: yes
+  status: yes
+  visible: yes
   current: 0.57
-  initial_factor: 0.0
+  factor: 0.0
   min_factor: 0.0
   max_factor: 100.0
   step_factor: 1.0
@@ -426,10 +426,10 @@ weights:
       - '#525252'
       - '#252525'
       - '#000000'
-  initial_status: yes
-  initial_visible: yes
+  status: yes
+  visible: yes
   current: 0.41
-  initial_factor: 0.0
+  factor: 0.0
   min_factor: 0.0
   max_factor: 100.0
   step_factor: 1.0
@@ -447,8 +447,8 @@ includes:
       - not included
       - included
   mandatory: no
-  initial_status: yes
-  initial_visible: yes
+  status: yes
+  visible: yes
 - name: OECM areas
   variable:
     index: OECM_areas
@@ -462,5 +462,5 @@ includes:
       - not included
       - included
   mandatory: no
-  initial_status: yes
-  initial_visible: yes
+  status: yes
+  visible: yes

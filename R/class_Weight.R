@@ -23,23 +23,14 @@ Weight <- R6::R6Class(
     #' @field visible `logical` value.
     visible = NA,
 
-    #' @field initial_visible `logical` value.
-    initial_visible = NA,
-
     #' @field status `logical` value.
     status = NA,
-
-    #' @field initial_status `logical` value.
-    initial_status = NA,
 
     #' @field current `numeric` value.
     current = NA_real_,
 
     #' @field factor `numeric` value.
     factor = NA_real_,
-
-    #' @field initial_factor `numeric` initial factor value.
-    initial_factor = NA_real_,
 
     #' @field min_factor `numeric` minimum factor value.
     min_factor = NA_real_,
@@ -55,18 +46,18 @@ Weight <- R6::R6Class(
     #' @param id `character` value.
     #' @param name `character` value.
     #' @param variable [Variable] object.
-    #' @param initial_visible `logical` value.
-    #' @param initial_status `logical` value.
+    #' @param visible `logical` value.
+    #' @param status `logical` value.
     #' @param current `logical` value.
-    #' @param initial_factor `numeric` initial factor value.
+    #' @param factor `numeric` initial factor value.
     #' @param min_factor `numeric` minimum factor value.
     #' @param max_factor `numeric` maximum factor value.
     #' @param step_factor `numeric` step factor value.
     #' @return A new Weight object.
     ## constructor
     initialize = function(
-      id, name, variable, initial_visible, initial_status, current,
-      initial_factor, min_factor, max_factor, step_factor) {
+      id, name, variable, visible, status, current,
+      factor, min_factor, max_factor, step_factor) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -77,20 +68,20 @@ Weight <- R6::R6Class(
         assertthat::noNA(name),
         ### variable
         inherits(variable, "Variable"),
-        #### initial_visible
-        assertthat::is.flag(initial_visible),
-        assertthat::noNA(initial_visible),
-        #### initial_status
-        assertthat::is.flag(initial_status),
-        assertthat::noNA(initial_status),
+        #### visible
+        assertthat::is.flag(visible),
+        assertthat::noNA(visible),
+        #### status
+        assertthat::is.flag(status),
+        assertthat::noNA(status),
         #### current
         assertthat::is.number(current),
         assertthat::noNA(current),
-        #### initial_factor
-        assertthat::is.number(initial_factor),
-        assertthat::noNA(initial_factor),
-        initial_factor >= min_factor,
-        initial_factor <= max_factor,
+        #### factor
+        assertthat::is.number(factor),
+        assertthat::noNA(factor),
+        factor >= min_factor,
+        factor <= max_factor,
         #### min_factor
         assertthat::is.number(min_factor),
         assertthat::noNA(min_factor),
@@ -108,13 +99,10 @@ Weight <- R6::R6Class(
       self$id <- id
       self$variable <- variable
       self$name <- name
-      self$initial_status <- initial_status
-      self$status <- initial_status
+      self$status <- status
       self$current <- current
-      self$visible <- initial_visible
-      self$initial_visible <- initial_visible
-      self$factor <- initial_factor
-      self$initial_factor <- initial_factor
+      self$visible <- visible
+      self$factor <- factor
       self$min_factor <- min_factor
       self$max_factor <- max_factor
       self$step_factor <- step_factor
@@ -331,10 +319,10 @@ Weight <- R6::R6Class(
       list(
         name = self$name,
         variable = self$variable$export(),
-        initial_status = self$status,
-        initial_visible = self$visible,
+        status = self$status,
+        visible = self$visible,
         current = self$current,
-        initial_factor = self$factor,
+        factor = self$factor,
         min_factor = self$min_factor,
         max_factor = self$max_factor,
         step_factor = self$step_factor
@@ -372,7 +360,7 @@ Weight <- R6::R6Class(
 #' @param max_factor `numeric` maximum factor value.
 #    Defaults to 100
 #'
-#' @param initial_factor `numeric` initial factor value.
+#' @param factor `numeric` initial factor value.
 #'   Defaults to 0.
 #'
 #' @param step_factor `numeric` step factor value.
@@ -413,18 +401,18 @@ Weight <- R6::R6Class(
 #' @export
 new_weight <- function(
   name, variable,
-  initial_visible = TRUE, initial_status = TRUE, current = 0,
-  initial_factor = 0, min_factor = 0, max_factor = 100, step_factor = 1,
+  visible = TRUE, status = TRUE, current = 0,
+  factor = 0, min_factor = 0, max_factor = 100, step_factor = 1,
   id = uuid::UUIDgenerate()) {
   Weight$new(
     id = id,
     name = name,
     variable = variable,
-    initial_visible = initial_visible,
-    initial_status = initial_status,
+    visible = visible,
+    status = status,
     current = current,
     min_factor = min_factor,
     max_factor = max_factor,
-    initial_factor = initial_factor,
+    factor = factor,
     step_factor = step_factor)
 }

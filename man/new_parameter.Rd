@@ -6,8 +6,8 @@
 \usage{
 new_parameter(
   name,
-  initial_status = TRUE,
-  initial_value = 0,
+  status = TRUE,
+  value = 0,
   min_value = 0,
   max_value = 100,
   step_value = 1,
@@ -19,12 +19,12 @@ new_parameter(
 \arguments{
 \item{name}{\code{character} Name to display.}
 
-\item{initial_status}{\code{logical} The initial status value.
+\item{status}{\code{logical} The initial status value.
 This is used to display information on whether the feature is
 selected (or not) for subsequent analysis.
 Defaults to \code{TRUE}}
 
-\item{initial_value}{\code{numeric} initial value.
+\item{value}{\code{numeric} initial value.
 Defaults to 0.}
 
 \item{min_value}{\code{numeric} minimum value.

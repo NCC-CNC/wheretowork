@@ -10,8 +10,8 @@ test_that("initialization", {
     name = "National protected areas",
     variable = v,
     mandatory = TRUE,
-    initial_visible = FALSE,
-    initial_status = FALSE,
+    visible = FALSE,
+    status = FALSE,
     id = "FID1")
   # run tests
   print(x)
@@ -20,9 +20,7 @@ test_that("initialization", {
   expect_identical(x$mandatory, TRUE)
   expect_identical(x$variable, v)
   expect_identical(x$visible, FALSE)
-  expect_identical(x$initial_visible, FALSE)
   expect_identical(x$status, FALSE)
-  expect_identical(x$initial_status, FALSE)
   expect_identical(x$id, "FID1")
 })
 
@@ -36,8 +34,8 @@ test_that("get methods", {
     name = "National protected areas",
     variable = v,
     mandatory = TRUE,
-    initial_visible = TRUE,
-    initial_status = FALSE,
+    visible = TRUE,
+    status = FALSE,
     id = "FID1")
   # run tests
   expect_identical(x$get_status(), FALSE)
@@ -54,8 +52,8 @@ test_that("set methods", {
     name = "National protected areas",
     variable = v,
     mandatory = TRUE,
-    initial_visible = FALSE,
-    initial_status = FALSE,
+    visible = FALSE,
+    status = FALSE,
     id = "FID1")
   # run tests
   x$set_status(TRUE)
@@ -74,8 +72,8 @@ test_that("export method", {
     name = "National protected areas",
     variable = v,
     mandatory = TRUE,
-    initial_visible = FALSE,
-    initial_status = FALSE,
+    visible = FALSE,
+    status = FALSE,
     id = "FID1")
   # run tests
   expect_identical(
@@ -84,8 +82,8 @@ test_that("export method", {
       name = "National protected areas",
       variable = x$variable$export(),
       mandatory = TRUE,
-      initial_status = FALSE,
-      initial_visible = FALSE
+      status = FALSE,
+      visible = FALSE
     )
   )
 })
@@ -100,8 +98,8 @@ test_that("widget methods", {
     name = "National protected areas",
     variable = v,
     mandatory = TRUE,
-    initial_visible = FALSE,
-    initial_status = FALSE,
+    visible = FALSE,
+    status = FALSE,
     id = "FID1")
   # run tests
   ## solution settings

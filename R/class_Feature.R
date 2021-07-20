@@ -21,23 +21,14 @@ Feature <- R6::R6Class(
     #' @field visible `logical` value.
     visible = NA,
 
-    #' @field initial_visible `logical` value.
-    initial_visible = NA,
-
     #' @field status `logical` value.
     status = NA,
-
-    #' @field initial_status `logical` value.
-    initial_status = NA,
-
-    #' @field  goal `numeric` value.
-    goal = NA_real_,
 
     #' @field current `numeric` value.
     current = NA_real_,
 
-    #' @field initial_goal `numeric` initial goal value.
-    initial_goal = NA_real_,
+    #' @field  goal `numeric` value.
+    goal = NA_real_,
 
     #' @field min_goal `numeric` minimum goal value.
     min_goal = NA_real_,
@@ -56,18 +47,18 @@ Feature <- R6::R6Class(
     #' @param id `character` value.
     #' @param name `character` value.
     #' @param variable [Variable] .
-    #' @param initial_visible `logical` value.
-    #' @param initial_status `logical` value.
+    #' @param visible `logical` value.
+    #' @param status `logical` value.
     #' @param min_goal `numeric` value.
     #' @param max_goal `numeric` value.
-    #' @param initial_goal `numeric` value.
+    #' @param goal `numeric` value.
     #' @param limit_goal `numeric` value.
     #' @param step_goal `numeric` value.
     #' @param current `numeric` value.
     #' @return A new Feature object.
     initialize = function(
-      id, name, variable, initial_visible, initial_status,
-      initial_goal, min_goal, max_goal, step_goal, limit_goal,
+      id, name, variable, visible, status,
+      goal, min_goal, max_goal, step_goal, limit_goal,
       current) {
       ### assert that arguments are valid
       assertthat::assert_that(
@@ -79,18 +70,18 @@ Feature <- R6::R6Class(
         assertthat::noNA(name),
         #### variable
         inherits(variable, "Variable"),
-        #### initial_visible
-        assertthat::is.flag(initial_visible),
-        assertthat::noNA(initial_visible),
-        #### initial_status
-        assertthat::is.flag(initial_status),
-        assertthat::noNA(initial_status),
-        #### initial_goal
-        assertthat::is.number(initial_goal),
-        assertthat::noNA(initial_goal),
-        initial_goal >= min_goal,
-        initial_goal <= max_goal,
-        initial_goal >= limit_goal,
+        #### visible
+        assertthat::is.flag(visible),
+        assertthat::noNA(visible),
+        #### status
+        assertthat::is.flag(status),
+        assertthat::noNA(status),
+        #### goal
+        assertthat::is.number(goal),
+        assertthat::noNA(goal),
+        goal >= min_goal,
+        goal <= max_goal,
+        goal >= limit_goal,
         #### min_goal
         assertthat::is.number(min_goal),
         assertthat::noNA(min_goal),
@@ -112,12 +103,9 @@ Feature <- R6::R6Class(
       self$id <- id
       self$name <- name
       self$variable <- variable
-      self$visible <- initial_visible
-      self$initial_visible <- initial_visible
-      self$status <- initial_status
-      self$initial_status <- initial_status
-      self$goal <- initial_goal
-      self$initial_goal <- initial_goal
+      self$visible <- visible
+      self$status <- status
+      self$goal <- goal
       self$min_goal <- min_goal
       self$max_goal <- max_goal
       self$step_goal <- step_goal
@@ -245,9 +233,9 @@ Feature <- R6::R6Class(
       list(
         name = self$name,
         variable = self$variable$export(),
-        initial_status = self$status,
-        initial_visible = self$visible,
-        initial_goal = self$goal,
+        status = self$status,
+        visible = self$visible,
+        goal = self$goal,
         min_goal = self$min_goal,
         max_goal = self$max_goal,
         step_goal = self$step_goal,
@@ -266,17 +254,17 @@ Feature <- R6::R6Class(
 #'
 #' @param variable [Variable] object.
 #'
-#' @param initial_visible `logical` The initial visible value.
+#' @param visible `logical` The initial visible value.
 #'   This is used to determine if the feature is displayed (or not)
 #'   or not the map.
 #'   Defaults to `TRUE`
 #'
-#' @param initial_status `logical` The initial status value.
+#' @param status `logical` The initial status value.
 #'   This is used to display information on whether the feature is
 #'   selected (or not) for subsequent analysis.
 #'   Defaults to `TRUE`
 #'
-#' @param initial_goal `numeric` The initial goal for the feature.
+#' @param goal `numeric` The initial goal for the feature.
 #'   Note that goal values are specified as proportions, such that a
 #'   value of 0.1 corresponds to 10%.
 #'   Defaults to 0.3 (i.e. 30%).
@@ -343,9 +331,9 @@ Feature <- R6::R6Class(
 new_feature <- function(
     name,
     variable,
-    initial_visible = TRUE,
-    initial_status = TRUE,
-    initial_goal = 0.1,
+    visible = TRUE,
+    status = TRUE,
+    goal = 0.1,
     min_goal = 0,
     max_goal = 1.0,
     step_goal = 0.01,
@@ -357,9 +345,9 @@ new_feature <- function(
     id = id,
     name = name,
     variable = variable,
-    initial_visible = initial_visible,
-    initial_status = initial_status,
-    initial_goal = initial_goal,
+    visible = visible,
+    status = status,
+    goal = goal,
     min_goal = min_goal,
     max_goal = max_goal,
     step_goal = step_goal,

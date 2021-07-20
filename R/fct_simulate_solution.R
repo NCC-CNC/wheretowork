@@ -85,7 +85,7 @@ simulate_solution <- function(dataset, themes, weights, includes = list()) {
   new_solution(
     name = sub("_", " ", vidx, fixed = TRUE),
     variable = v,
-    initial_visible = TRUE,
+    visible = TRUE,
     statistics = statistics,
     theme_results = theme_results,
     weight_results = weight_results

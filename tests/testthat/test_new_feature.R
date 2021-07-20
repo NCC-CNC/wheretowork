@@ -9,9 +9,9 @@ test_that("initialization", {
   x <- new_feature(
     name = "Intact Alvar",
     variable = v,
-    initial_visible = FALSE,
-    initial_status = FALSE,
-    initial_goal = 0.2,
+    visible = FALSE,
+    status = FALSE,
+    goal = 0.2,
     min_goal = 0.01,
     max_goal = 0.9,
     step_goal = 0.03,
@@ -24,11 +24,8 @@ test_that("initialization", {
   expect_identical(x$name, "Intact Alvar")
   expect_identical(x$variable, v)
   expect_identical(x$visible, FALSE)
-  expect_identical(x$initial_visible, FALSE)
   expect_identical(x$status, FALSE)
-  expect_identical(x$initial_status, FALSE)
   expect_identical(x$goal, 0.2)
-  expect_identical(x$initial_goal, 0.2)
   expect_identical(x$min_goal, 0.01)
   expect_identical(x$max_goal, 0.9)
   expect_identical(x$step_goal, 0.03)
@@ -46,9 +43,9 @@ test_that("get methods", {
   x <- new_feature(
     name = "Intact Alvar",
     variable = v,
-    initial_visible = TRUE,
-    initial_status = FALSE,
-    initial_goal = 0.2,
+    visible = TRUE,
+    status = FALSE,
+    goal = 0.2,
     min_goal = 0.01,
     max_goal = 0.9,
     step_goal = 0.03,
@@ -71,9 +68,9 @@ test_that("set methods", {
   x <- new_feature(
     name = "Intact Alvar",
     variable = v,
-    initial_visible = FALSE,
-    initial_status = FALSE,
-    initial_goal = 0.2,
+    visible = FALSE,
+    status = FALSE,
+    goal = 0.2,
     min_goal = 0.01,
     max_goal = 0.9,
     step_goal = 0.03,
@@ -100,9 +97,9 @@ test_that("export method", {
   x <- new_feature(
     name = "Intact Alvar",
     variable = v,
-    initial_visible = FALSE,
-    initial_status = FALSE,
-    initial_goal = 0.2,
+    visible = FALSE,
+    status = FALSE,
+    goal = 0.2,
     min_goal = 0.01,
     max_goal = 0.9,
     step_goal = 0.03,
@@ -114,9 +111,9 @@ test_that("export method", {
     list(
       name = "Intact Alvar",
       variable = x$variable$export(),
-      initial_status = FALSE,
-      initial_visible = FALSE,
-      initial_goal = 0.2,
+      status = FALSE,
+      visible = FALSE,
+      goal = 0.2,
       min_goal = 0.01,
       max_goal = 0.9,
       step_goal = 0.03,

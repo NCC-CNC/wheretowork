@@ -7,10 +7,10 @@
 new_weight(
   name,
   variable,
-  initial_visible = TRUE,
-  initial_status = TRUE,
+  visible = TRUE,
+  status = TRUE,
   current = 0,
-  initial_factor = 0,
+  factor = 0,
   min_factor = 0,
   max_factor = 100,
   step_factor = 1,
@@ -22,12 +22,12 @@ new_weight(
 
 \item{variable}{\link{Variable} object.}
 
-\item{initial_visible}{\code{logical} The initial visible value.
+\item{visible}{\code{logical} The initial visible value.
 This is used to determine if the feature is displayed (or not)
 or not the map.
 Defaults to \code{TRUE}}
 
-\item{initial_status}{\code{logical} The initial status value.
+\item{status}{\code{logical} The initial status value.
 This is used to display information on whether the feature is
 selected (or not) for subsequent analysis.
 Defaults to \code{TRUE}}
@@ -35,7 +35,7 @@ Defaults to \code{TRUE}}
 \item{current}{\code{numeric} current proportion of values held in existing
 conservation areas (e.g. 0.1 = 10\%).}
 
-\item{initial_factor}{\code{numeric} initial factor value.
+\item{factor}{\code{numeric} initial factor value.
 Defaults to 0.}
 
 \item{min_factor}{\code{numeric} minimum factor value.

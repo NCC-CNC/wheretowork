@@ -7,9 +7,9 @@
 new_feature(
   name,
   variable,
-  initial_visible = TRUE,
-  initial_status = TRUE,
-  initial_goal = 0.1,
+  visible = TRUE,
+  status = TRUE,
+  goal = 0.1,
   min_goal = 0,
   max_goal = 1,
   step_goal = 0.01,
@@ -23,17 +23,17 @@ new_feature(
 
 \item{variable}{\link{Variable} object.}
 
-\item{initial_visible}{\code{logical} The initial visible value.
+\item{visible}{\code{logical} The initial visible value.
 This is used to determine if the feature is displayed (or not)
 or not the map.
 Defaults to \code{TRUE}}
 
-\item{initial_status}{\code{logical} The initial status value.
+\item{status}{\code{logical} The initial status value.
 This is used to display information on whether the feature is
 selected (or not) for subsequent analysis.
 Defaults to \code{TRUE}}
 
-\item{initial_goal}{\code{numeric} The initial goal for the feature.
+\item{goal}{\code{numeric} The initial goal for the feature.
 Note that goal values are specified as proportions, such that a
 value of 0.1 corresponds to 10\%.
 Defaults to 0.3 (i.e. 30\%).}

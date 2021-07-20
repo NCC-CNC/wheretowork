@@ -20,14 +20,8 @@ Parameter <- R6::R6Class(
     #' @field status `logical` value.
     status = NA,
 
-    #' @field initial_status `logical` value.
-    initial_status = NA,
-
-    #' @field value `numeric` value.
+    #' @field value `numeric` initial value value.
     value = NA_real_,
-
-    #' @field initial_value `numeric` initial value value.
-    initial_value = NA_real_,
 
     #' @field min_value `numeric` minimum value.
     min_value = NA_real_,
@@ -48,8 +42,8 @@ Parameter <- R6::R6Class(
     #' Create a new Parameter object.
     #' @param id `character` value.
     #' @param name `character` value.
-    #' @param initial_status `logical` value.
-    #' @param initial_value `numeric` initial value.
+    #' @param status `logical` value.
+    #' @param value `numeric` initial value.
     #' @param min_value `numeric` minimum value.
     #' @param max_value `numeric` maximum value.
     #' @param step_value `numeric` step value.
@@ -58,8 +52,8 @@ Parameter <- R6::R6Class(
     #' @return A new Parameter object.
     ## constructor
     initialize = function(
-      id, name, initial_status,
-      initial_value, min_value, max_value, step_value, hide, units) {
+      id, name, status,
+      value, min_value, max_value, step_value, hide, units) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -68,14 +62,14 @@ Parameter <- R6::R6Class(
         #### name
         assertthat::is.string(name),
         assertthat::noNA(name),
-        #### initial_status
-        assertthat::is.flag(initial_status),
-        assertthat::noNA(initial_status),
-        #### initial_value
-        assertthat::is.number(initial_value),
-        assertthat::noNA(initial_value),
-        initial_value >= min_value,
-        initial_value <= max_value,
+        #### status
+        assertthat::is.flag(status),
+        assertthat::noNA(status),
+        #### value
+        assertthat::is.number(value),
+        assertthat::noNA(value),
+        value >= min_value,
+        value <= max_value,
         #### min_value
         assertthat::is.number(min_value),
         assertthat::noNA(min_value),
@@ -98,10 +92,8 @@ Parameter <- R6::R6Class(
       ### set fields
       self$id <- id
       self$name <- name
-      self$status <- initial_status
-      self$initial_status <- initial_status
-      self$value <- initial_value
-      self$initial_value <- initial_value
+      self$status <- status
+      self$value <- value
       self$min_value <- min_value
       self$max_value <- max_value
       self$step_value <- step_value
@@ -236,8 +228,8 @@ Parameter <- R6::R6Class(
     export = function() {
       list(
         name = self$name,
-        initial_status = self$status,
-        initial_value = self$value,
+        status = self$status,
+        value = self$value,
         min_value = self$min_value,
         max_value = self$max_value,
         step_value = self$step_value,
@@ -259,7 +251,7 @@ Parameter <- R6::R6Class(
 #' @param max_value `numeric` maximum value.
 #    Defaults to 100
 #'
-#' @param initial_value `numeric` initial value.
+#' @param value `numeric` initial value.
 #'   Defaults to 0.
 #'
 #' @param step_value `numeric` step value.
@@ -286,16 +278,16 @@ Parameter <- R6::R6Class(
 #'
 #' @export
 new_parameter <- function(
-  name, initial_status = TRUE,
-  initial_value = 0, min_value = 0, max_value = 100, step_value = 1,
+  name, status = TRUE,
+  value = 0, min_value = 0, max_value = 100, step_value = 1,
   hide = FALSE, units = "", id = uuid::UUIDgenerate()) {
   Parameter$new(
     id = id,
     name = name,
-    initial_status = initial_status,
+    status = status,
     min_value = min_value,
     max_value = max_value,
-    initial_value = initial_value,
+    value = value,
     step_value = step_value,
     hide = hide,
     units = units)

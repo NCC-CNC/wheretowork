@@ -25,17 +25,11 @@ Definition for the Feature class.
 
 \item{\code{visible}}{\code{logical} value.}
 
-\item{\code{initial_visible}}{\code{logical} value.}
-
 \item{\code{status}}{\code{logical} value.}
-
-\item{\code{initial_status}}{\code{logical} value.}
-
-\item{\code{goal}}{\code{numeric} value.}
 
 \item{\code{current}}{\code{numeric} value.}
 
-\item{\code{initial_goal}}{\code{numeric} initial goal value.}
+\item{\code{goal}}{\code{numeric} value.}
 
 \item{\code{min_goal}}{\code{numeric} minimum goal value.}
 
@@ -76,9 +70,9 @@ Create a Feature object.
   id,
   name,
   variable,
-  initial_visible,
-  initial_status,
-  initial_goal,
+  visible,
+  status,
+  goal,
   min_goal,
   max_goal,
   step_goal,
@@ -96,11 +90,11 @@ Create a Feature object.
 
 \item{\code{variable}}{\link{Variable} .}
 
-\item{\code{initial_visible}}{\code{logical} value.}
+\item{\code{visible}}{\code{logical} value.}
 
-\item{\code{initial_status}}{\code{logical} value.}
+\item{\code{status}}{\code{logical} value.}
 
-\item{\code{initial_goal}}{\code{numeric} value.}
+\item{\code{goal}}{\code{numeric} value.}
 
 \item{\code{min_goal}}{\code{numeric} value.}
 

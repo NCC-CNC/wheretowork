@@ -20,9 +20,9 @@ test_that("initialization", {
   w <- new_weight(
     name = "Human Footprint Index",
     variable = v1,
-    initial_visible = FALSE,
-    initial_status = FALSE,
-    initial_factor = 0.2,
+    visible = FALSE,
+    status = FALSE,
+    factor = 0.2,
     min_factor = 0.01,
     max_factor = 0.9,
     step_factor = 0.03,
@@ -34,9 +34,9 @@ test_that("initialization", {
   f <- new_feature(
     name = "F1",
     variable = v2,
-    initial_visible = FALSE,
-    initial_status = FALSE,
-    initial_goal = 0.2,
+    visible = FALSE,
+    status = FALSE,
+    goal = 0.2,
     min_goal = 0.01,
     max_goal = 0.99,
     step_goal = 0.02,
@@ -60,7 +60,7 @@ test_that("initialization", {
   x <- new_solution(
     name = "solution001",
     variable = v3,
-    initial_visible = FALSE,
+    visible = FALSE,
     statistics = list(s1, s2),
     theme_results = list(thr),
     weight_results = list(wr),
@@ -70,7 +70,7 @@ test_that("initialization", {
   print(x)
   expect_identical(x$name, "solution001")
   expect_identical(x$variable, v3)
-  expect_identical(x$initial_visible, FALSE)
+  expect_identical(x$visible, FALSE)
   expect_identical(x$visible, FALSE)
   expect_identical(x$statistics, list(s1, s2))
   expect_identical(x$theme_results, list(thr))
@@ -102,9 +102,9 @@ test_that("get methods", {
   w <- new_weight(
     name = "Human Footprint Index",
     variable = v1,
-    initial_visible = FALSE,
-    initial_status = FALSE,
-    initial_factor = 0.2,
+    visible = FALSE,
+    status = FALSE,
+    factor = 0.2,
     min_factor = 0.01,
     max_factor = 0.9,
     step_factor = 0.03,
@@ -116,9 +116,9 @@ test_that("get methods", {
   f <- new_feature(
     name = "F1",
     variable = v2,
-    initial_visible = FALSE,
-    initial_status = FALSE,
-    initial_goal = 0.2,
+    visible = FALSE,
+    status = FALSE,
+    goal = 0.2,
     min_goal = 0.01,
     max_goal = 0.99,
     step_goal = 0.02,
@@ -142,7 +142,7 @@ test_that("get methods", {
   x <- new_solution(
     name = "solution001",
     variable = v3,
-    initial_visible = FALSE,
+    visible = FALSE,
     statistics = list(s1, s2),
     theme_results = list(thr),
     weight_results = list(wr),
@@ -172,9 +172,9 @@ test_that("set methods", {
   w <- new_weight(
     name = "Human Footprint Index",
     variable = v1,
-    initial_visible = FALSE,
-    initial_status = FALSE,
-    initial_factor = 0.2,
+    visible = FALSE,
+    status = FALSE,
+    factor = 0.2,
     min_factor = 0.01,
     max_factor = 0.9,
     step_factor = 0.03,
@@ -186,9 +186,9 @@ test_that("set methods", {
   f <- new_feature(
     name = "F1",
     variable = v2,
-    initial_visible = FALSE,
-    initial_status = FALSE,
-    initial_goal = 0.2,
+    visible = FALSE,
+    status = FALSE,
+    goal = 0.2,
     min_goal = 0.01,
     max_goal = 0.99,
     step_goal = 0.02,
@@ -212,7 +212,7 @@ test_that("set methods", {
   x <- new_solution(
     name = "solution001",
     variable = v3,
-    initial_visible = FALSE,
+    visible = FALSE,
     statistics = list(s1, s2),
     theme_results = list(thr),
     weight_results = list(wr),
@@ -243,9 +243,9 @@ test_that("widget methods", {
   w <- new_weight(
     name = "Human Footprint Index",
     variable = v1,
-    initial_visible = FALSE,
-    initial_status = FALSE,
-    initial_factor = 0.2,
+    visible = FALSE,
+    status = FALSE,
+    factor = 0.2,
     min_factor = 0.01,
     max_factor = 0.9,
     step_factor = 0.03,
@@ -257,9 +257,9 @@ test_that("widget methods", {
   f <- new_feature(
     name = "F1",
     variable = v2,
-    initial_visible = FALSE,
-    initial_status = FALSE,
-    initial_goal = 0.2,
+    visible = FALSE,
+    status = FALSE,
+    goal = 0.2,
     min_goal = 0.01,
     max_goal = 0.99,
     step_goal = 0.02,
@@ -283,7 +283,7 @@ test_that("widget methods", {
   x <- new_solution(
     name = "solution001",
     variable = v3,
-    initial_visible = FALSE,
+    visible = FALSE,
     statistics = list(s1, s2),
     theme_results = list(thr),
     weight_results = list(wr),

@@ -23,11 +23,7 @@ Definition for the Parameter class.
 
 \item{\code{status}}{\code{logical} value.}
 
-\item{\code{initial_status}}{\code{logical} value.}
-
-\item{\code{value}}{\code{numeric} value.}
-
-\item{\code{initial_value}}{\code{numeric} initial value value.}
+\item{\code{value}}{\code{numeric} initial value value.}
 
 \item{\code{min_value}}{\code{numeric} minimum value.}
 
@@ -67,8 +63,8 @@ Create a new Parameter object.
 \if{html}{\out{<div class="r">}}\preformatted{Parameter$new(
   id,
   name,
-  initial_status,
-  initial_value,
+  status,
+  value,
   min_value,
   max_value,
   step_value,
@@ -84,9 +80,9 @@ Create a new Parameter object.
 
 \item{\code{name}}{\code{character} value.}
 
-\item{\code{initial_status}}{\code{logical} value.}
+\item{\code{status}}{\code{logical} value.}
 
-\item{\code{initial_value}}{\code{numeric} initial value.}
+\item{\code{value}}{\code{numeric} initial value.}
 
 \item{\code{min_value}}{\code{numeric} minimum value.}
 

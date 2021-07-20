@@ -24,21 +24,21 @@ test_that("no spatial clustering", {
   ## create a weight using dataset
   w <- new_weight(
     name = "Human Footprint Index", variable = v1,
-    initial_factor = 90, initial_status = FALSE, id = "W1")
+    factor = 90, status = FALSE, id = "W1")
   ## create a weight using dataset
   incl <- new_include(
     name = "Protected areas", variable = v1,
-    initial_status = FALSE, id = "I1")
+    status = FALSE, id = "I1")
   ## create features using dataset
   f1 <- new_feature(
     name = "Possum", variable = v2,
-    initial_goal = 0.2, initial_status = FALSE, current = 0.5, id = "F1")
+    goal = 0.2, status = FALSE, current = 0.5, id = "F1")
   f2 <- new_feature(
     name = "Forests", variable = v3,
-    initial_goal = 0.3, initial_status = FALSE, current = 0.9, id = "F2")
+    goal = 0.3, status = FALSE, current = 0.9, id = "F2")
   f3 <- new_feature(
     name = "Shrubs", variable = v4,
-    initial_goal = 0.6, initial_status = TRUE, current = 0.4, id = "F3")
+    goal = 0.6, status = TRUE, current = 0.4, id = "F3")
   ## create themes using the features
   t1 <- new_single_theme("Species", f1, id = "T1")
   t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")
@@ -84,26 +84,26 @@ test_that("spatial clustering", {
   ## create a weight using dataset
   w <- new_weight(
     name = "Human Footprint Index", variable = v1,
-    initial_factor = 90, initial_status = FALSE, id = "W1")
+    factor = 90, status = FALSE, id = "W1")
   ## create a weight using dataset
   incl <- new_include(
     name = "Protected areas", variable = v1,
-    initial_status = FALSE, id = "I1")
+    status = FALSE, id = "I1")
   ## create features using dataset
   f1 <- new_feature(
     name = "Possum", variable = v2,
-    initial_goal = 0.2, initial_status = FALSE, current = 0.5, id = "F1")
+    goal = 0.2, status = FALSE, current = 0.5, id = "F1")
   f2 <- new_feature(
     name = "Forests", variable = v3,
-    initial_goal = 0.3, initial_status = FALSE, current = 0.9, id = "F2")
+    goal = 0.3, status = FALSE, current = 0.9, id = "F2")
   f3 <- new_feature(
     name = "Shrubs", variable = v4,
-    initial_goal = 0.6, initial_status = TRUE, current = 0.4, id = "F3")
+    goal = 0.6, status = TRUE, current = 0.4, id = "F3")
   ## create themes using the features
   t1 <- new_single_theme("Species", f1, id = "T1")
   t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")
   ## create parameter
-  p1 <- new_parameter("Spatial clustering", initial_value = 30, id = "P1")
+  p1 <- new_parameter("Spatial clustering", value = 30, id = "P1")
   p2 <- new_parameter("Gap", id = "P2")
   ## create solution setting
   ss <- new_solution_settings(
