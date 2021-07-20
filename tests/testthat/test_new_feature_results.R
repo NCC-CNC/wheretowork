@@ -10,9 +10,6 @@ test_that("initialization", {
     visible = FALSE,
     status = FALSE,
     goal = 0.2,
-    min_goal = 0.01,
-    max_goal = 0.9,
-    step_goal = 0.03,
     limit_goal = 0.2,
     current = 0.56,
     id = "FID1"

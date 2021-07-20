@@ -13,9 +13,6 @@ test_that("initialization", {
     visible = FALSE,
     status = FALSE,
     goal = 0.2,
-    min_goal = 0.01,
-    max_goal = 0.9,
-    step_goal = 0.03,
     limit_goal = 0.2,
     current = 0.56,
     id = "FID1"
@@ -28,9 +25,6 @@ test_that("initialization", {
   expect_identical(x$visible, FALSE)
   expect_identical(x$status, FALSE)
   expect_identical(x$goal, 0.2)
-  expect_identical(x$min_goal, 0.01)
-  expect_identical(x$max_goal, 0.9)
-  expect_identical(x$step_goal, 0.03)
   expect_identical(x$limit_goal, 0.2)
   expect_identical(x$current, 0.56)
   expect_identical(x$id, "FID1")
@@ -49,9 +43,6 @@ test_that("get methods", {
     visible = TRUE,
     status = FALSE,
     goal = 0.2,
-    min_goal = 0.01,
-    max_goal = 0.9,
-    step_goal = 0.03,
     limit_goal = 0.2,
     current = 0.56,
     id = "FID1"
@@ -76,9 +67,6 @@ test_that("set methods", {
     visible = FALSE,
     status = FALSE,
     goal = 0.2,
-    min_goal = 0.01,
-    max_goal = 0.9,
-    step_goal = 0.03,
     limit_goal = 0.2,
     current = 0.56,
     id = "FID1"
@@ -107,9 +95,6 @@ test_that("export method", {
     visible = FALSE,
     status = FALSE,
     goal = 0.2,
-    min_goal = 0.01,
-    max_goal = 0.9,
-    step_goal = 0.03,
     limit_goal = 0.2,
     id = "FID1"
   )
@@ -122,9 +107,6 @@ test_that("export method", {
       status = FALSE,
       visible = FALSE,
       goal = 0.2,
-      min_goal = 0.01,
-      max_goal = 0.9,
-      step_goal = 0.03,
       limit_goal = 0.2
     )
   )

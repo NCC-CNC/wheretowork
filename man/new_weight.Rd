@@ -11,9 +11,6 @@ new_weight(
   status = TRUE,
   current = 0,
   factor = 0,
-  min_factor = 0,
-  max_factor = 100,
-  step_factor = 1,
   id = uuid::UUIDgenerate()
 )
 }
@@ -38,16 +35,11 @@ conservation areas (e.g. 0.1 = 10\%).}
 \item{factor}{\code{numeric} initial factor value.
 Defaults to 0.}
 
-\item{min_factor}{\code{numeric} minimum factor value.
-Defaults to 0.}
-
-\item{max_factor}{\code{numeric} maximum factor value.}
+\item{id}{\code{character} unique identifier.
+Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}
 
 \item{step_factor}{\code{numeric} step factor value.
 Defaults to 1.}
-
-\item{id}{\code{character} unique identifier.
-Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}
 }
 \value{
 A \link{Weight} object.

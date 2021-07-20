@@ -127,12 +127,9 @@
   <span class='va'>variable</span>,
   visible <span class='op'>=</span> <span class='cn'>TRUE</span>,
   status <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  goal <span class='op'>=</span> <span class='fl'>0.1</span>,
-  min_goal <span class='op'>=</span> <span class='fl'>0</span>,
-  max_goal <span class='op'>=</span> <span class='fl'>1</span>,
-  step_goal <span class='op'>=</span> <span class='fl'>0.01</span>,
-  limit_goal <span class='op'>=</span> <span class='fl'>0.1</span>,
   current <span class='op'>=</span> <span class='fl'>0</span>,
+  goal <span class='op'>=</span> <span class='fl'>0.1</span>,
+  limit_goal <span class='op'>=</span> <span class='fl'>0.1</span>,
   id <span class='op'>=</span> <span class='fu'>uuid</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/uuid/man/UUIDgenerate.html'>UUIDgenerate</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>)</span></code></pre></div>
 
@@ -162,34 +159,16 @@ selected (or not) for subsequent analysis.
 Defaults to <code>TRUE</code></p></td>
     </tr>
     <tr>
+      <th>current</th>
+      <td><p><code>numeric</code> current proportion of values held in existing
+conservation areas (e.g. 0.1 = 10%).</p></td>
+    </tr>
+    <tr>
       <th>goal</th>
       <td><p><code>numeric</code> The initial goal for the feature.
 Note that goal values are specified as proportions, such that a
 value of 0.1 corresponds to 10%.
 Defaults to 0.3 (i.e. 30%).</p></td>
-    </tr>
-    <tr>
-      <th>min_goal</th>
-      <td><p><code>numeric</code> The minimum goal (inclusive)
-shown for the feature.
-Note that goal values are specified as proportions, such that a
-value of 0.1 corresponds to 10%.
-Defaults to 0 (i.e. 0%).</p></td>
-    </tr>
-    <tr>
-      <th>max_goal</th>
-      <td><p><code>numeric</code> The maximum goal (inclusive) shown
-for the feature.
-Note that goal values are specified as proportions, such that a
-value of 0.1 corresponds to 10%.
-Defaults to 1 (i.e. 100%).</p></td>
-    </tr>
-    <tr>
-      <th>step_goal</th>
-      <td><p><code>numeric</code> The minimum increment for setting goals.
-Note that goal are specified as proportions, such that a
-value of 0.01 corresponds to 1%.
-Defaults to 0.01 (i.e. 1%).</p></td>
     </tr>
     <tr>
       <th>limit_goal</th>
@@ -198,11 +177,6 @@ Defaults to 0.01 (i.e. 1%).</p></td>
 Note that goal values are specified as proportions, such that a
 value of 0.1 corresponds to 10%.
 Defaults to 0 (i.e. 0%).</p></td>
-    </tr>
-    <tr>
-      <th>current</th>
-      <td><p><code>numeric</code> current proportion of values held in existing
-conservation areas (e.g. 0.1 = 10%).</p></td>
     </tr>
     <tr>
       <th>id</th>
@@ -242,7 +216,7 @@ Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUI
 <span class='r-in'><span class='co'># print object</span></span>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>f</span><span class='op'>)</span></span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Feature</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:      cf37e047-3f1f-4817-bb2a-0b8b349aba36</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:      6858c594-f8dc-4c89-bab9-9ae2e761f83d</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:    Intact Alvar</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   variable:   .../sim_raster_spatial.tif#Olive_headed_Lorikeet [total: 1052 ]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   visible:  TRUE</span>

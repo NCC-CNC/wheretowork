@@ -296,11 +296,11 @@ Weight <- R6::R6Class(
       list(
         id = self$id,
         name = self$name,
+        status = self$status,
+        factor = self$factor,
         min_factor = self$min_factor,
         max_factor = self$max_factor,
-        factor = self$factor,
-        step_factor = self$step_factor,
-        status = self$status
+        step_factor = self$step_factor
       )
     },
 
@@ -328,10 +328,7 @@ Weight <- R6::R6Class(
         status = self$status,
         visible = self$visible,
         current = self$current,
-        factor = self$factor,
-        min_factor = self$min_factor,
-        max_factor = self$max_factor,
-        step_factor = self$step_factor
+        factor = self$factor
       )
     },
 
@@ -358,12 +355,6 @@ Weight <- R6::R6Class(
 #' New weight
 #'
 #' Create a new [Weight] object.
-#'
-#' @param min_factor `numeric` minimum factor value.
-#'   Defaults to 0.
-#'
-#' @param max_factor `numeric` maximum factor value.
-#    Defaults to 100
 #'
 #' @param factor `numeric` initial factor value.
 #'   Defaults to 0.
@@ -404,9 +395,8 @@ Weight <- R6::R6Class(
 #' print(w)
 #' @export
 new_weight <- function(name, variable,
-                       visible = TRUE, status = TRUE, current = 0,
-                       factor = 0,
-                       min_factor = 0, max_factor = 100, step_factor = 1,
+                       visible = TRUE, status = TRUE,
+                       current = 0, factor = 0,
                        id = uuid::UUIDgenerate()) {
   Weight$new(
     id = id,
@@ -415,9 +405,9 @@ new_weight <- function(name, variable,
     visible = visible,
     status = status,
     current = current,
-    min_factor = min_factor,
-    max_factor = max_factor,
     factor = factor,
-    step_factor = step_factor
+    min_factor = 0,
+    max_factor = 100,
+    step_factor = 1
   )
 }

@@ -11,9 +11,6 @@ test_that("initialization", {
     status = FALSE,
     factor = 0.2,
     current = 0.89,
-    min_factor = 0.01,
-    max_factor = 0.9,
-    step_factor = 0.03,
     id = "FID1"
   )
   # run tests
@@ -26,9 +23,6 @@ test_that("initialization", {
   expect_equal(x$status, FALSE)
   expect_equal(x$current, 0.89)
   expect_equal(x$factor, 0.2)
-  expect_equal(x$min_factor, 0.01)
-  expect_equal(x$max_factor, 0.9)
-  expect_equal(x$step_factor, 0.03)
 })
 
 test_that("get methods", {
@@ -42,9 +36,6 @@ test_that("get methods", {
     status = FALSE,
     current = 0.89,
     factor = 0.2,
-    min_factor = 0.01,
-    max_factor = 0.9,
-    step_factor = 0.03,
     id = "FID1"
   )
   # run tests
@@ -68,9 +59,6 @@ test_that("set methods", {
     status = FALSE,
     current = 0.89,
     factor = 0.2,
-    min_factor = 0.01,
-    max_factor = 0.9,
-    step_factor = 0.03,
     id = "FID1"
   )
   # run tests
@@ -103,9 +91,6 @@ test_that("export method", {
     status = FALSE,
     current = 0.89,
     factor = 0.2,
-    min_factor = 0.01,
-    max_factor = 0.9,
-    step_factor = 0.03,
     id = "FID1"
   )
   # run tests
@@ -117,10 +102,7 @@ test_that("export method", {
       status = FALSE,
       visible = TRUE,
       current = 0.89,
-      factor = 0.2,
-      min_factor = 0.01,
-      max_factor = 0.9,
-      step_factor = 0.03
+      factor = 0.2
     )
   )
 })
@@ -137,9 +119,6 @@ test_that("widget methods", {
     variable = v,
     status = FALSE,
     factor = 0.2,
-    min_factor = 0.01,
-    max_factor = 0.9,
-    step_factor = 0.03,
     id = "FID1"
   )
   # run tests
@@ -149,11 +128,11 @@ test_that("widget methods", {
     list(
       id = "FID1",
       name = "Human Footprint Index",
-      min_factor = 0.01,
-      max_factor = 0.9,
+      status = FALSE,
       factor = 0.2,
-      step_factor = 0.03,
-      status = FALSE
+      min_factor = 0,
+      max_factor = 100,
+      step_factor = 1
     )
   )
   ## map manager settings

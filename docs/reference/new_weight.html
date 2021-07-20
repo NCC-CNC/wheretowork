@@ -129,9 +129,6 @@
   status <span class='op'>=</span> <span class='cn'>TRUE</span>,
   current <span class='op'>=</span> <span class='fl'>0</span>,
   factor <span class='op'>=</span> <span class='fl'>0</span>,
-  min_factor <span class='op'>=</span> <span class='fl'>0</span>,
-  max_factor <span class='op'>=</span> <span class='fl'>100</span>,
-  step_factor <span class='op'>=</span> <span class='fl'>1</span>,
   id <span class='op'>=</span> <span class='fu'>uuid</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/uuid/man/UUIDgenerate.html'>UUIDgenerate</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>)</span></code></pre></div>
 
@@ -171,23 +168,14 @@ conservation areas (e.g. 0.1 = 10%).</p></td>
 Defaults to 0.</p></td>
     </tr>
     <tr>
-      <th>min_factor</th>
-      <td><p><code>numeric</code> minimum factor value.
-Defaults to 0.</p></td>
-    </tr>
-    <tr>
-      <th>max_factor</th>
-      <td><p><code>numeric</code> maximum factor value.</p></td>
+      <th>id</th>
+      <td><p><code>character</code> unique identifier.
+Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUIDgenerate.html'>uuid::UUIDgenerate()</a></code>).</p></td>
     </tr>
     <tr>
       <th>step_factor</th>
       <td><p><code>numeric</code> step factor value.
 Defaults to 1.</p></td>
-    </tr>
-    <tr>
-      <th>id</th>
-      <td><p><code>character</code> unique identifier.
-Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUIDgenerate.html'>uuid::UUIDgenerate()</a></code>).</p></td>
     </tr>
     </table>
 
@@ -222,7 +210,7 @@ Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUI
 <span class='r-in'><span class='co'># print object</span></span>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>w</span><span class='op'>)</span></span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Weight</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       1e5dfc48-79f0-4867-b551-6e7a34a545c8</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       c68a3b53-1af8-468f-b253-5f4e341545fa</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:     NDVI</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   variable: .../sim_raster_spatial.tif#Olive_headed_Lorikeet [total: 1052 ]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   current:  0</span>

@@ -72,12 +72,12 @@ Create a Feature object.
   variable,
   visible,
   status,
+  current,
   goal,
+  limit_goal,
   min_goal,
   max_goal,
-  step_goal,
-  limit_goal,
-  current
+  step_goal
 )}\if{html}{\out{</div>}}
 }
 
@@ -94,17 +94,17 @@ Create a Feature object.
 
 \item{\code{status}}{\code{logical} value.}
 
+\item{\code{current}}{\code{numeric} value.}
+
 \item{\code{goal}}{\code{numeric} value.}
+
+\item{\code{limit_goal}}{\code{numeric} value.}
 
 \item{\code{min_goal}}{\code{numeric} value.}
 
 \item{\code{max_goal}}{\code{numeric} value.}
 
 \item{\code{step_goal}}{\code{numeric} value.}
-
-\item{\code{limit_goal}}{\code{numeric} value.}
-
-\item{\code{current}}{\code{numeric} value.}
 }
 \if{html}{\out{</div>}}
 }

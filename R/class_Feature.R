@@ -56,9 +56,8 @@ Feature <- R6::R6Class(
     #' @param step_goal `numeric` value.
     #' @param current `numeric` value.
     #' @return A new Feature object.
-    initialize = function(id, name, variable, visible, status,
-                          goal, min_goal, max_goal, step_goal, limit_goal,
-                          current) {
+    initialize = function(id, name, variable, visible, status, current,
+                          goal, limit_goal, min_goal, max_goal, step_goal) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -241,9 +240,6 @@ Feature <- R6::R6Class(
         status = self$status,
         visible = self$visible,
         goal = self$goal,
-        min_goal = self$min_goal,
-        max_goal = self$max_goal,
-        step_goal = self$step_goal,
         limit_goal = self$limit_goal
       )
     }
@@ -273,28 +269,11 @@ Feature <- R6::R6Class(
 #'   value of 0.1 corresponds to 10%.
 #'   Defaults to 0.3 (i.e. 30%).
 #'
-#' @param min_goal `numeric` The minimum goal (inclusive)
-#'   shown for the feature.
-#'   Note that goal values are specified as proportions, such that a
-#'   value of 0.1 corresponds to 10%.
-#'   Defaults to 0 (i.e. 0%).
-#'
-#' @param max_goal `numeric` The maximum goal (inclusive) shown
-#'   for the feature.
-#'   Note that goal values are specified as proportions, such that a
-#'   value of 0.1 corresponds to 10%.
-#'   Defaults to 1 (i.e. 100%).
-#'
 #' @param limit_goal `numeric` The minimum goal
 #'   (inclusive) that can be selected for the feature.
 #'   Note that goal values are specified as proportions, such that a
 #'   value of 0.1 corresponds to 10%.
 #'   Defaults to 0 (i.e. 0%).
-#'
-#' @param step_goal `numeric` The minimum increment for setting goals.
-#'   Note that goal are specified as proportions, such that a
-#'   value of 0.01 corresponds to 1%.
-#'   Defaults to 0.01 (i.e. 1%).
 #'
 #' @param current `numeric` current proportion of values held in existing
 #'   conservation areas (e.g. 0.1 = 10%).
@@ -335,12 +314,9 @@ new_feature <- function(name,
                         variable,
                         visible = TRUE,
                         status = TRUE,
-                        goal = 0.1,
-                        min_goal = 0,
-                        max_goal = 1.0,
-                        step_goal = 0.01,
-                        limit_goal = 0.1,
                         current = 0,
+                        goal = 0.1,
+                        limit_goal = 0.1,
                         id = uuid::UUIDgenerate()) {
   # return new feature
   Feature$new(
@@ -349,11 +325,11 @@ new_feature <- function(name,
     variable = variable,
     visible = visible,
     status = status,
+    current = current,
     goal = goal,
-    min_goal = min_goal,
-    max_goal = max_goal,
-    step_goal = step_goal,
     limit_goal = limit_goal,
-    current = current
+    min_goal = 0,
+    max_goal = 1,
+    step_goal = 0.01
   )
 }

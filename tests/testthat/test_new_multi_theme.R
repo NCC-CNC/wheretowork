@@ -10,10 +10,7 @@ test_that("initialization", {
     visible = TRUE,
     status = FALSE,
     goal = 0.2,
-    min_goal = 0.01,
-    max_goal = 0.99,
     limit_goal = 0.02,
-    step_goal = 0.05,
     current = 0.245,
     id = "FID1"
   )
@@ -23,10 +20,7 @@ test_that("initialization", {
     visible = FALSE,
     status = TRUE,
     goal = 0.21,
-    min_goal = 0.011,
-    max_goal = 0.991,
     limit_goal = 0.021,
-    step_goal = 0.051,
     current = 0.5,
     id = "FID2"
   )
@@ -53,10 +47,7 @@ test_that("get methods", {
     visible = TRUE,
     status = FALSE,
     goal = 0.2,
-    min_goal = 0.01,
-    max_goal = 0.99,
     limit_goal = 0.02,
-    step_goal = 0.05,
     current = 0.245,
     id = "FID1"
   )
@@ -66,10 +57,7 @@ test_that("get methods", {
     visible = FALSE,
     status = TRUE,
     goal = 0.21,
-    min_goal = 0.011,
-    max_goal = 0.991,
     limit_goal = 0.021,
-    step_goal = 0.051,
     current = 0.5,
     id = "FID2"
   )
@@ -101,10 +89,7 @@ test_that("set methods", {
     visible = TRUE,
     status = FALSE,
     goal = 0.2,
-    min_goal = 0.01,
-    max_goal = 0.99,
     limit_goal = 0.02,
-    step_goal = 0.05,
     current = 0.245,
     id = "FID1"
   )
@@ -114,10 +99,7 @@ test_that("set methods", {
     visible = FALSE,
     status = TRUE,
     goal = 0.21,
-    min_goal = 0.011,
-    max_goal = 0.991,
     limit_goal = 0.021,
-    step_goal = 0.051,
     current = 0.5,
     id = "FID2"
   )
@@ -157,10 +139,7 @@ test_that("export method", {
     visible = TRUE,
     status = FALSE,
     goal = 0.2,
-    min_goal = 0.01,
-    max_goal = 0.99,
     limit_goal = 0.02,
-    step_goal = 0.05,
     current = 0.245,
     id = "FID1"
   )
@@ -170,10 +149,7 @@ test_that("export method", {
     visible = FALSE,
     status = TRUE,
     goal = 0.21,
-    min_goal = 0.011,
-    max_goal = 0.991,
     limit_goal = 0.021,
-    step_goal = 0.051,
     current = 0.5,
     id = "FID2"
   )
@@ -202,10 +178,7 @@ test_that("widget methods", {
     visible = TRUE,
     status = FALSE,
     goal = 0.2,
-    min_goal = 0.01,
-    max_goal = 0.99,
     limit_goal = 0.02,
-    step_goal = 0.05,
     current = 0.245,
     id = "FID1"
   )
@@ -215,10 +188,7 @@ test_that("widget methods", {
     visible = FALSE,
     status = TRUE,
     goal = 0.21,
-    min_goal = 0.011,
-    max_goal = 0.991,
     limit_goal = 0.021,
-    step_goal = 0.051,
     current = 0.523,
     id = "FID2"
   )
@@ -239,11 +209,11 @@ test_that("widget methods", {
       feature_status = c(FALSE, TRUE),
       feature_total_amount = c(f1$variable$total, f2$variable$total),
       feature_current_held = c(0.245, 0.523),
-      feature_min_goal = c(0.01, 0.011),
-      feature_max_goal = c(0.99, 0.991),
+      feature_min_goal = c(0, 0),
+      feature_max_goal = c(1, 1),
       feature_goal = c(0.2, 0.21),
       feature_limit_goal = c(0.02, 0.021),
-      feature_step_goal = c(0.05, 0.051),
+      feature_step_goal = c(0.01, 0.01),
       units = "ha"
     )
   )

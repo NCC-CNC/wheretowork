@@ -11,9 +11,6 @@ test_that("initialization", {
     status = FALSE,
     current = 0.45,
     factor = 0.2,
-    min_factor = 0.01,
-    max_factor = 0.9,
-    step_factor = 0.03,
     id = "FID1"
   )
   x <- new_weight_results(
@@ -42,9 +39,6 @@ test_that("results methods", {
     status = FALSE,
     current = 0.45,
     factor = 0.2,
-    min_factor = 0.01,
-    max_factor = 0.9,
-    step_factor = 0.03,
     id = "FID1"
   )
   w$factor <- 0.8
@@ -80,9 +74,6 @@ test_that("widget methods", {
     status = FALSE,
     current = 0.45,
     factor = 0.2,
-    min_factor = 0.01,
-    max_factor = 0.9,
-    step_factor = 0.03,
     id = "FID1"
   )
   w$factor <- 0.8

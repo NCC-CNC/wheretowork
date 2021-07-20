@@ -10,9 +10,6 @@ test_that("initialization (SingleTheme)", {
     visible = FALSE,
     status = FALSE,
     goal = 0.2,
-    min_goal = 0.01,
-    max_goal = 0.99,
-    step_goal = 0.02,
     limit_goal = 0.05,
     current = 0.034,
     id = "FID1"
@@ -48,9 +45,6 @@ test_that("results methods (SingleTheme)", {
     visible = FALSE,
     status = FALSE,
     goal = 0.2,
-    min_goal = 0.01,
-    max_goal = 0.99,
-    step_goal = 0.02,
     limit_goal = 0.05,
     current = 0.034,
     id = "FID1"
@@ -98,9 +92,6 @@ test_that("widget methods (SingleTheme)", {
     visible = FALSE,
     status = FALSE,
     goal = 0.2,
-    min_goal = 0.01,
-    max_goal = 0.99,
-    step_goal = 0.02,
     limit_goal = 0.05,
     current = 0.034,
     id = "FID1"
@@ -155,10 +146,7 @@ test_that("initialization (MultiTheme)", {
     visible = TRUE,
     status = FALSE,
     goal = 0.2,
-    min_goal = 0.01,
-    max_goal = 0.99,
     limit_goal = 0.02,
-    step_goal = 0.05,
     current = 0.245,
     id = "FID1"
   )
@@ -168,10 +156,7 @@ test_that("initialization (MultiTheme)", {
     visible = FALSE,
     status = TRUE,
     goal = 0.21,
-    min_goal = 0.011,
-    max_goal = 0.991,
     limit_goal = 0.021,
-    step_goal = 0.051,
     current = 0.5,
     id = "FID2"
   )
@@ -217,10 +202,7 @@ test_that("results methods (MultiTheme)", {
     visible = TRUE,
     status = FALSE,
     goal = 0.2,
-    min_goal = 0.01,
-    max_goal = 0.99,
     limit_goal = 0.02,
-    step_goal = 0.05,
     current = 0.245,
     id = "FID1"
   )
@@ -230,10 +212,7 @@ test_that("results methods (MultiTheme)", {
     visible = FALSE,
     status = TRUE,
     goal = 0.21,
-    min_goal = 0.011,
-    max_goal = 0.991,
     limit_goal = 0.021,
-    step_goal = 0.051,
     current = 0.5,
     id = "FID2"
   )
@@ -293,10 +272,7 @@ test_that("widget methods (MultiTheme)", {
     visible = TRUE,
     status = FALSE,
     goal = 0.2,
-    min_goal = 0.01,
-    max_goal = 0.99,
     limit_goal = 0.02,
-    step_goal = 0.05,
     current = 0.245,
     id = "FID1"
   )
@@ -306,10 +282,7 @@ test_that("widget methods (MultiTheme)", {
     visible = FALSE,
     status = TRUE,
     goal = 0.21,
-    min_goal = 0.011,
-    max_goal = 0.991,
     limit_goal = 0.021,
-    step_goal = 0.051,
     current = 0.5,
     id = "FID2"
   )

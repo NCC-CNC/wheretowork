@@ -9,12 +9,9 @@ new_feature(
   variable,
   visible = TRUE,
   status = TRUE,
-  goal = 0.1,
-  min_goal = 0,
-  max_goal = 1,
-  step_goal = 0.01,
-  limit_goal = 0.1,
   current = 0,
+  goal = 0.1,
+  limit_goal = 0.1,
   id = uuid::UUIDgenerate()
 )
 }
@@ -33,36 +30,19 @@ This is used to display information on whether the feature is
 selected (or not) for subsequent analysis.
 Defaults to \code{TRUE}}
 
+\item{current}{\code{numeric} current proportion of values held in existing
+conservation areas (e.g. 0.1 = 10\%).}
+
 \item{goal}{\code{numeric} The initial goal for the feature.
 Note that goal values are specified as proportions, such that a
 value of 0.1 corresponds to 10\%.
 Defaults to 0.3 (i.e. 30\%).}
-
-\item{min_goal}{\code{numeric} The minimum goal (inclusive)
-shown for the feature.
-Note that goal values are specified as proportions, such that a
-value of 0.1 corresponds to 10\%.
-Defaults to 0 (i.e. 0\%).}
-
-\item{max_goal}{\code{numeric} The maximum goal (inclusive) shown
-for the feature.
-Note that goal values are specified as proportions, such that a
-value of 0.1 corresponds to 10\%.
-Defaults to 1 (i.e. 100\%).}
-
-\item{step_goal}{\code{numeric} The minimum increment for setting goals.
-Note that goal are specified as proportions, such that a
-value of 0.01 corresponds to 1\%.
-Defaults to 0.01 (i.e. 1\%).}
 
 \item{limit_goal}{\code{numeric} The minimum goal
 (inclusive) that can be selected for the feature.
 Note that goal values are specified as proportions, such that a
 value of 0.1 corresponds to 10\%.
 Defaults to 0 (i.e. 0\%).}
-
-\item{current}{\code{numeric} current proportion of values held in existing
-conservation areas (e.g. 0.1 = 10\%).}
 
 \item{id}{\code{character} unique identifier.
 Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}

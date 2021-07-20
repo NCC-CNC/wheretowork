@@ -32,9 +32,6 @@ test_that("initialization", {
     visible = FALSE,
     status = FALSE,
     factor = 0.2,
-    min_factor = 0.01,
-    max_factor = 0.9,
-    step_factor = 0.03,
     id = "FID1"
   )
   wr <- new_weight_results(
@@ -48,9 +45,6 @@ test_that("initialization", {
     visible = FALSE,
     status = FALSE,
     goal = 0.2,
-    min_goal = 0.01,
-    max_goal = 0.99,
-    step_goal = 0.02,
     limit_goal = 0.05,
     current = 0.034,
     id = "FID1"
@@ -130,9 +124,6 @@ test_that("get methods", {
     visible = FALSE,
     status = FALSE,
     factor = 0.2,
-    min_factor = 0.01,
-    max_factor = 0.9,
-    step_factor = 0.03,
     id = "FID1"
   )
   wr <- new_weight_results(
@@ -146,9 +137,6 @@ test_that("get methods", {
     visible = FALSE,
     status = FALSE,
     goal = 0.2,
-    min_goal = 0.01,
-    max_goal = 0.99,
-    step_goal = 0.02,
     limit_goal = 0.05,
     current = 0.034,
     id = "FID1"
@@ -216,9 +204,6 @@ test_that("set methods", {
     visible = FALSE,
     status = FALSE,
     factor = 0.2,
-    min_factor = 0.01,
-    max_factor = 0.9,
-    step_factor = 0.03,
     id = "FID1"
   )
   wr <- new_weight_results(
@@ -232,9 +217,6 @@ test_that("set methods", {
     visible = FALSE,
     status = FALSE,
     goal = 0.2,
-    min_goal = 0.01,
-    max_goal = 0.99,
-    step_goal = 0.02,
     limit_goal = 0.05,
     current = 0.034,
     id = "FID1"
@@ -303,9 +285,6 @@ test_that("widget methods", {
     visible = FALSE,
     status = FALSE,
     factor = 0.2,
-    min_factor = 0.01,
-    max_factor = 0.9,
-    step_factor = 0.03,
     id = "FID1"
   )
   wr <- new_weight_results(
@@ -319,9 +298,6 @@ test_that("widget methods", {
     visible = FALSE,
     status = FALSE,
     goal = 0.2,
-    min_goal = 0.01,
-    max_goal = 0.99,
-    step_goal = 0.02,
     limit_goal = 0.05,
     current = 0.034,
     id = "FID1"
