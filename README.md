@@ -60,12 +60,13 @@ the application).
 
 ## Contributing
 
-The application is a [Shiny web application](https://shiny.rstudio.com/)
-developed using the [R statistical computing
-environment](https://www.r-project.org/). Specifically, it uses the
-[`golem` framework](https://thinkr-open.github.io/golem/). This means
-that the application is effectively an [R package](https://r-pkgs.org/)
-that contains code for defining and launching the application (see
+The application is a [Shiny web
+application](https://mastering-shiny.org/) developed using the [R
+statistical computing environment](https://www.r-project.org/).
+Specifically, it uses the [`golem`
+framework](https://thinkr-open.github.io/golem/). This means that the
+application is effectively an [R package](https://r-pkgs.org/) that
+contains code for defining and launching the application (see
 [here](https://engineering-shiny.org/) for more details). The R code
 files (located in the `./R` directory) are organized the following
 system of naming conventions:
