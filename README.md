@@ -4,33 +4,43 @@
 # Where to Work: Interactive application for systematic conservation planning
 
 [![lifecycle](https://img.shields.io/badge/Lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
-[![R-CMD-check-Ubuntu](https://img.shields.io/github/workflow/status/NCC-CNC/wheretowork/Ubuntu/master.svg?label=Ubuntu)](https://github.com/NCC-CNC/wheretowork/actions)
-[![R-CMD-check-Windows](https://img.shields.io/github/workflow/status/NCC-CNC/wheretowork/Windows/master.svg?label=Windows)](https://github.com/NCC-CNC/wheretowork/actions)
-[![R-CMD-check-Mac-OSX](https://img.shields.io/github/workflow/status/NCC-CNC/wheretowork/Mac%20OSX/master.svg?label=Mac%20OSX)](https://github.com/NCC-CNC/wheretowork/actions)
 [![Docker
 Status](https://img.shields.io/docker/cloud/build/naturecons/wheretowork?label=Docker%20build)](https://hub.docker.com/r/naturecons/wheretowork)
-[![Coverage
-Status](https://codecov.io/github/NCC-CNC/wheretowork/coverage.svg?branch=master)](https://codecov.io/github/NCC-CNC/wheretowork?branch=master)
 
 The *Where to Work* application is a decision support tool to help
 prioritize conservation efforts for the [Nature Conservancy of
 Canada](https://natureconservancy.ca/en/).
 
+## Usage
+
+The application is [available online
+here](https://natureconservancy.ca/en/). **TODO: insert more details.**
+
 ## Installation
 
-The latest official version can be installed from
+The application is available as [an online
+service](https://natureconservancy.ca/en/). As such, most users should
+not need to install the application to use it. If you *absolutely must*
+run the application from your own computer, then you will first need to
+install the [Docker Engine](https://docs.docker.com/get-docker/)
+software. After installing this software, you can install the
+application from
 [DockerHub](https://hub.docker.com/repository/docker/naturecons/wheretowork).
-After [installing Docker on your
-system](https://docs.docker.com/get-docker/), please use the following
-system command to install the application:
+To install and launch the latest official version, please use the
+following system command:
 
 ``` bash
-docker run -dp 3838:3838 -it naturecons/wheretowork:latest
+docker run -dp 3838:3838 --name wheretowork -it naturecons/wheretowork:latest
 ```
 
 You can then view the application by opening the following link in
 [Google Chrome](https://www.google.com/chrome/):
-<http://localhost:3838>.
+<http://localhost:3838>. After you have finished using the application,
+you can terminate it using the following system command:
+
+``` bash
+docker rm -f wheretowork
+```
 
 Alternatively, the latest development version can be installed using the
 following system command. Please note that while developmental versions
@@ -38,16 +48,15 @@ may contain additional features not present in the official version,
 they may also contain defects.
 
 ``` bash
-docker run -dp 3838:3838 -it naturecons/wheretowork:devel
+docker run -dp 3838:3838 --name wheretowork -it naturecons/wheretowork:devel
 ```
 
-You can then view the development version of the application – similar
-to the official version – by opening the following link in [Google
-Chrome](https://www.google.com/chrome/): <http://localhost:3838>.
-
-## Usage
-
-TODO.
+Similar to the official version, you can access the developmental
+version of the application by opening the following link in [Google
+Chrome](https://www.google.com/chrome/): <http://localhost:3838>. Also
+note that you should terminate the application once you are finished
+using it (per the same system command listed previously for terminating
+the application).
 
 ## Contributing
 
