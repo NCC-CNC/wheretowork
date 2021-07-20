@@ -5,7 +5,8 @@ test_that("initialization", {
   d <- new_dataset_from_auto(import_simple_raster_data())
   v <- new_variable(
     dataset = d, index = 1, total = 200, units = "ha",
-    legend = simulate_continuous_legend())
+    legend = simulate_continuous_legend()
+  )
   x <- new_feature(
     name = "Intact Alvar",
     variable = v,
@@ -17,7 +18,8 @@ test_that("initialization", {
     step_goal = 0.03,
     limit_goal = 0.2,
     current = 0.56,
-    id = "FID1")
+    id = "FID1"
+  )
   # run tests
   print(x)
   expect_is(x$repr(), "character")
@@ -39,7 +41,8 @@ test_that("get methods", {
   d <- new_dataset_from_auto(import_simple_raster_data())
   v <- new_variable(
     dataset = d, index = 1, total = 200, units = "ha",
-    legend = simulate_continuous_legend())
+    legend = simulate_continuous_legend()
+  )
   x <- new_feature(
     name = "Intact Alvar",
     variable = v,
@@ -51,7 +54,8 @@ test_that("get methods", {
     step_goal = 0.03,
     limit_goal = 0.2,
     current = 0.56,
-    id = "FID1")
+    id = "FID1"
+  )
   # run tests
   expect_identical(x$get_goal(), 0.2)
   expect_identical(x$get_status(), FALSE)
@@ -64,7 +68,8 @@ test_that("set methods", {
   d <- new_dataset_from_auto(import_simple_raster_data())
   v <- new_variable(
     dataset = d, index = 1, total = 200, units = "ha",
-    legend = simulate_continuous_legend())
+    legend = simulate_continuous_legend()
+  )
   x <- new_feature(
     name = "Intact Alvar",
     variable = v,
@@ -76,7 +81,8 @@ test_that("set methods", {
     step_goal = 0.03,
     limit_goal = 0.2,
     current = 0.56,
-    id = "FID1")
+    id = "FID1"
+  )
   # run tests
   x$set_goal(0.8)
   x$set_status(TRUE)
@@ -93,7 +99,8 @@ test_that("export method", {
   d <- new_dataset_from_auto(import_simple_raster_data())
   v <- new_variable(
     dataset = d, index = 1, total = 200, units = "ha",
-    legend = simulate_continuous_legend())
+    legend = simulate_continuous_legend()
+  )
   x <- new_feature(
     name = "Intact Alvar",
     variable = v,
@@ -104,7 +111,8 @@ test_that("export method", {
     max_goal = 0.9,
     step_goal = 0.03,
     limit_goal = 0.2,
-    id = "FID1")
+    id = "FID1"
+  )
   # run tests
   expect_identical(
     x$export(),

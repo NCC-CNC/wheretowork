@@ -100,7 +100,8 @@ simulate_spatial_data <- function(x, n, model, transform) {
   assertthat::assert_that(
     inherits(x, c("sf", "Raster")),
     assertthat::is.count(n),
-    assertthat::noNA(n))
+    assertthat::noNA(n)
+  )
   # extract centroids
   if (inherits(x, "Raster")) {
     coords <- methods::as(x, "SpatialPoints")@coords
@@ -112,9 +113,9 @@ simulate_spatial_data <- function(x, n, model, transform) {
   # convert to spatial format
   if (inherits(x, "Raster")) {
     out <- raster::stack(lapply(seq_len(ncol(mtx)), function(i) {
-        r <- x[[1]]
-        r[raster::Which(!is.na(r))] <- mtx[, i]
-        r
+      r <- x[[1]]
+      r[raster::Which(!is.na(r))] <- mtx[, i]
+      r
     }))
     names(out) <- colnames(mtx)
   } else {
@@ -147,11 +148,13 @@ simulate_random_field <- function(model, n, coords, transform) {
     ncol(coords) == 2,
     assertthat::is.count(n),
     assertthat::noNA(n),
-    is.function(transform))
+    is.function(transform)
+  )
   # simulate values
   mtx <- RandomFields::RFsimulate(
     model = model,
-    x = coords[, 1], y = coords[, 2], n = n, spConform = FALSE)
+    x = coords[, 1], y = coords[, 2], n = n, spConform = FALSE
+  )
   if (!inherits(mtx, "matrix")) {
     mtx <- matrix(mtx, ncol = 1)
   }

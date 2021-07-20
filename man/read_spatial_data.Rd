@@ -28,5 +28,4 @@ read_spatial_data(f1)
 # read vector data
 f2 <- system.file("shape/nc.shp", package = "sf")
 read_spatial_data(f2)
-
 }

@@ -18,9 +18,9 @@ server_import_manual_data <- quote({
     ## validation
     if (
       !is.character(app_data$configuration_path) ||
-      !is.character(app_data$spatial_path) ||
-      !is.character(app_data$attribute_path) ||
-      !is.character(app_data$boundary_path)) {
+        !is.character(app_data$spatial_path) ||
+        !is.character(app_data$attribute_path) ||
+        !is.character(app_data$boundary_path)) {
       return()
     }
 
@@ -76,5 +76,4 @@ server_import_manual_data <- quote({
     ## remove modal
     shiny::removeModal(session)
   })
-
 })

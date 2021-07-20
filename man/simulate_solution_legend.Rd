@@ -15,5 +15,4 @@ It is primarily used for testing the package.
 }
 \examples{
 print(simulate_solution_legend())
-
 }

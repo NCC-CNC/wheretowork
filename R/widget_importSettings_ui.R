@@ -36,8 +36,8 @@ NULL
 #' }
 #'
 #' @export
-importSettings <- function(
-  buttonId, x = NULL, width = NULL, height = NULL, elementId = NULL) {
+importSettings <- function(buttonId, x = NULL, width = NULL, height = NULL,
+                           elementId = NULL) {
   # assert arguments are valid
   assertthat::assert_that(
     assertthat::is.string(buttonId),
@@ -47,7 +47,8 @@ importSettings <- function(
     assertthat::assert_that(
       is.character(x),
       length(x) > 0,
-      assertthat::noNA(x))
+      assertthat::noNA(x)
+    )
   }
 
   # prepare parameters
@@ -85,17 +86,23 @@ importSettings <- function(
 #' @name importSettings-shiny
 #'
 #' @export
-importSettingsOutput <- function(outputId, width = "100%", height = "auto"){
+importSettingsOutput <- function(outputId, width = "100%", height = "auto") {
   htmlwidgets::shinyWidgetOutput(
-    outputId, "importSettings", width, height, package = "wheretowork")
+    outputId, "importSettings", width, height,
+    package = "wheretowork"
+  )
 }
 
 #' @rdname importSettings-shiny
 #' @export
 renderImportSettings <- function(expr, env = parent.frame(), quoted = FALSE) {
-  if (!quoted) { expr <- substitute(expr) } # force quoted
+  if (!quoted) {
+    expr <- substitute(expr)
+  } # force quoted
   htmlwidgets::shinyRenderWidget(
-    expr, importSettingsOutput, env, quoted = TRUE)
+    expr, importSettingsOutput, env,
+    quoted = TRUE
+  )
 }
 
 # Add custom HTML for the widget (automatically used by htmlwidgets)

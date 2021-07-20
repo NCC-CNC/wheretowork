@@ -55,9 +55,8 @@ Weight <- R6::R6Class(
     #' @param step_factor `numeric` step factor value.
     #' @return A new Weight object.
     ## constructor
-    initialize = function(
-      id, name, variable, visible, status, current,
-      factor, min_factor, max_factor, step_factor) {
+    initialize = function(id, name, variable, visible, status, current,
+                          factor, min_factor, max_factor, step_factor) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -136,7 +135,8 @@ Weight <- R6::R6Class(
         " ", start, "status: ", self$status,
         ", current: ", round(self$current, 2),
         ", factor: ", round(self$factor, 2), end, nl(),
-        "  variable: ", self$variable$repr())
+        "  variable: ", self$variable$repr()
+      )
     },
 
     #' @description
@@ -197,7 +197,8 @@ Weight <- R6::R6Class(
       assertthat::assert_that(
         assertthat::is.string(name),
         assertthat::noNA(name),
-        name %in% c("status", "factor", "visible", "current"))
+        name %in% c("status", "factor", "visible", "current")
+      )
       if (identical(name, "status")) {
         out <- self$get_status()
       } else if (identical(name, "factor")) {
@@ -218,7 +219,8 @@ Weight <- R6::R6Class(
     set_visible = function(value) {
       assertthat::assert_that(
         assertthat::is.flag(value),
-        assertthat::noNA(value))
+        assertthat::noNA(value)
+      )
       self$visible <- value
       invisible(self)
     },
@@ -229,7 +231,8 @@ Weight <- R6::R6Class(
     set_status = function(value) {
       assertthat::assert_that(
         assertthat::is.flag(value),
-        assertthat::noNA(value))
+        assertthat::noNA(value)
+      )
       self$status <- value
       invisible(self)
     },
@@ -242,7 +245,8 @@ Weight <- R6::R6Class(
         assertthat::is.number(value),
         assertthat::noNA(value),
         value >= self$min_factor,
-        value <= self$max_factor)
+        value <= self$max_factor
+      )
       self$factor <- value
       invisible(self)
     },
@@ -253,7 +257,8 @@ Weight <- R6::R6Class(
     set_current = function(value) {
       assertthat::assert_that(
         assertthat::is.number(value),
-        assertthat::noNA(value))
+        assertthat::noNA(value)
+      )
       self$current <- value
       invisible(self)
     },
@@ -268,7 +273,8 @@ Weight <- R6::R6Class(
       assertthat::assert_that(
         assertthat::is.string(name),
         assertthat::noNA(name),
-        name %in% c("status", "factor", "current", "visible"))
+        name %in% c("status", "factor", "current", "visible")
+      )
       if (identical(name, "status")) {
         self$set_status(value)
       } else if (identical(name, "factor")) {
@@ -346,7 +352,6 @@ Weight <- R6::R6Class(
     update_on_map = function(x, zindex) {
       self$variable$update_render(x, self$id, zindex, self$visible)
     }
-
   )
 )
 
@@ -378,12 +383,12 @@ Weight <- R6::R6Class(
 #'   package = "wheretowork"
 #' )
 #' f2 <- system.file(
-#'  "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
-#'  package = "wheretowork"
+#'   "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
+#'   package = "wheretowork"
 #' )
 #' f3 <- system.file(
-#'  "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
-#'  package = "wheretowork"
+#'   "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
+#'   package = "wheretowork"
 #' )
 #'
 #' # create new dataset
@@ -397,13 +402,12 @@ Weight <- R6::R6Class(
 #'
 #' # print object
 #' print(w)
-#'
 #' @export
-new_weight <- function(
-  name, variable,
-  visible = TRUE, status = TRUE, current = 0,
-  factor = 0, min_factor = 0, max_factor = 100, step_factor = 1,
-  id = uuid::UUIDgenerate()) {
+new_weight <- function(name, variable,
+                       visible = TRUE, status = TRUE, current = 0,
+                       factor = 0,
+                       min_factor = 0, max_factor = 100, step_factor = 1,
+                       id = uuid::UUIDgenerate()) {
   Weight$new(
     id = id,
     name = name,
@@ -414,5 +418,6 @@ new_weight <- function(
     min_factor = min_factor,
     max_factor = max_factor,
     factor = factor,
-    step_factor = step_factor)
+    step_factor = step_factor
+  )
 }

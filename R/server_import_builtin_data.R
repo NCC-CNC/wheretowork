@@ -60,5 +60,4 @@ server_import_builtin_data <- quote({
     ## remove modal
     shiny::removeModal(session)
   })
-
 })

@@ -49,9 +49,9 @@ server_verify_manual_uploads <- quote({
     ### enable import button if all files are uploaded
     if (
       is.character(app_data$configuration_path) &&
-      is.character(app_data$spatial_path) &&
-      is.character(app_data$attribute_path) &&
-      is.character(app_data$boundary_path)) {
+        is.character(app_data$spatial_path) &&
+        is.character(app_data$attribute_path) &&
+        is.character(app_data$boundary_path)) {
       enable_html_element("importModal_manual_button")
     }
   })
@@ -93,9 +93,9 @@ server_verify_manual_uploads <- quote({
     ### enable import button if all files are uploaded
     if (
       is.character(app_data$configuration_path) &&
-      is.character(app_data$spatial_path) &&
-      is.character(app_data$attribute_path) &&
-      is.character(app_data$boundary_path)) {
+        is.character(app_data$spatial_path) &&
+        is.character(app_data$attribute_path) &&
+        is.character(app_data$boundary_path)) {
       enable_html_element("importModal_manual_button")
     }
   })
@@ -135,9 +135,9 @@ server_verify_manual_uploads <- quote({
     ### enable import button if all files are uploaded
     if (
       is.character(app_data$configuration_path) &&
-      is.character(app_data$spatial_path) &&
-      is.character(app_data$attribute_path) &&
-      is.character(app_data$boundary_path)) {
+        is.character(app_data$spatial_path) &&
+        is.character(app_data$attribute_path) &&
+        is.character(app_data$boundary_path)) {
       enable_html_element("importModal_manual_button")
     }
   })
@@ -177,11 +177,10 @@ server_verify_manual_uploads <- quote({
     ### enable import button if all files are uploaded
     if (
       is.character(app_data$configuration_path) &&
-      is.character(app_data$spatial_path) &&
-      is.character(app_data$attribute_path) &&
-      is.character(app_data$boundary_path)) {
+        is.character(app_data$spatial_path) &&
+        is.character(app_data$attribute_path) &&
+        is.character(app_data$boundary_path)) {
       enable_html_element("importModal_manual_button")
     }
   })
-
 })

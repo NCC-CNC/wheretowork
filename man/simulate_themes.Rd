@@ -33,12 +33,12 @@ f1 <- system.file(
   package = "wheretowork"
 )
 f2 <- system.file(
- "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
- package = "wheretowork"
+  "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
+  package = "wheretowork"
 )
 f3 <- system.file(
- "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
- package = "wheretowork"
+  "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
+  package = "wheretowork"
 )
 
 # create new dataset
@@ -49,7 +49,6 @@ x <- simulate_themes(data = d, n_single_themes = 3, n_multi_themes = 2)
 
 # print results
 print(x)
-
 }
 \seealso{
 \link{new_single_theme}, \link{new_multi_theme}.

@@ -4,7 +4,7 @@
 \alias{newSolutionSidebarPane}
 \title{New solution sidebar pane}
 \usage{
-newSolutionSidebarPane(id, solutionSettingsId = paste0(id, "_settings"))
+newSolutionSidebarPane(id, solutionSettingsId = NULL)
 }
 \arguments{
 \item{id}{\code{character} identifier for the sidebar pane.}
@@ -12,7 +12,8 @@ newSolutionSidebarPane(id, solutionSettingsId = paste0(id, "_settings"))
 \item{solutionSettingsId}{\code{character} identifier for the
 \code{\link[=solutionSettings]{solutionSettings()}} widget to create within the sidebar pane.
 This widget is used to control the settings for new solutions.
-Defaults to \code{paste0(id, "_settings")}.}
+Defaults to \code{NULL} such that the default argument is
+\code{paste0(id, "_settings")}.}
 }
 \value{
 A \code{shiny.tag} object with the sidebar pane.

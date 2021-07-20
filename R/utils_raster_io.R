@@ -18,7 +18,7 @@
 writeNamedRaster <- function(x, filename, ...) {
   args <- list(...)
   if ((!file.exists(raster::extension(filename, "txt"))) ||
-      isTRUE(args$overwrite)) {
+    isTRUE(args$overwrite)) {
     writeLines(names(x), raster::extension(filename, "txt"))
   }
   raster::writeRaster(x, filename, ...)
@@ -41,11 +41,13 @@ writeNamedRaster <- function(x, filename, ...) {
 #' @export
 readNamedRaster <- function(x, ...) {
   assertthat::assert_that(file.exists(raster::extension(x, "txt")),
-                          msg = "x is not a named raster")
+    msg = "x is not a named raster"
+  )
   n <- readLines(raster::extension(x, "txt"))
   x <- suppressWarnings(raster::stack(x, ...))
   names(x) <- n
-  if (raster::nlayers(x) == 1)
+  if (raster::nlayers(x) == 1) {
     x <- x[[1]]
+  }
   x
 }

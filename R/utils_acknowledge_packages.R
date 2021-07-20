@@ -16,8 +16,9 @@ NULL
 #' @return `shiny.tag` object.
 #'
 #' @export
-acknowledge_packages <- function(
-  x, prefix = "We thank the ", suffix = " R packages.") {
+acknowledge_packages <- function(x,
+                                 prefix = "We thank the ",
+                                 suffix = " R packages.") {
   # assert valid argument
   assertthat::assert_that(
     ## x

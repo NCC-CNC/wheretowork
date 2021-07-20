@@ -30,5 +30,4 @@ l <- new_continuous_legend(0, 1, c("#000000", "#DDDDDD"))
 
 # print object
 print(l)
-
 }

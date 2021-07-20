@@ -17,5 +17,4 @@ Quickly extract the field names in a shapefile.
 }
 \examples{
 shapefile_field_names(system.file("shape/nc.shp", package = "sf"))
-
 }

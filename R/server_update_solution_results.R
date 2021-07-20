@@ -38,7 +38,8 @@ server_update_solution_results <- quote({
     }
     ## find selected solution
     i <- which(
-      app_data$solution_ids == input$solutionResultsPane_results_modal_select)
+      app_data$solution_ids == input$solutionResultsPane_results_modal_select
+    )
     ## render theme results
     output$solutionResultsPane_results_modal_themes_table <-
       DT::renderDT({
@@ -50,5 +51,4 @@ server_update_solution_results <- quote({
         app_data$solutions[[i]]$render_weight_results()
       })
   })
-
 })

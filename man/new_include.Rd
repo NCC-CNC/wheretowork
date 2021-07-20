@@ -47,12 +47,12 @@ f1 <- system.file(
   package = "wheretowork"
 )
 f2 <- system.file(
- "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
- package = "wheretowork"
+  "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
+  package = "wheretowork"
 )
 f3 <- system.file(
- "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
- package = "wheretowork"
+  "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
+  package = "wheretowork"
 )
 
 # create new dataset
@@ -66,5 +66,4 @@ w <- new_include(name = "Protected areas", variable = v)
 
 # print object
 print(w)
-
 }

@@ -21,8 +21,7 @@ MultiTheme <- R6::R6Class(
     #' @param feature `list` of [Feature] objects.
     #' @param feature_order `numeric` vector.
     #' @return A new MultiTheme object.
-    initialize = function(
-      id, name, feature, feature_order) {
+    initialize = function(id, name, feature, feature_order) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -38,14 +37,19 @@ MultiTheme <- R6::R6Class(
         is.numeric(feature_order),
         assertthat::noNA(feature_order),
         length(feature_order) == length(feature),
-        identical(anyDuplicated(feature_order), 0L))
+        identical(anyDuplicated(feature_order), 0L)
+      )
       ## assert all feature have ame units
       assertthat::assert_that(
         n_distinct(
           vapply(
-            feature, FUN.VALUE = character(1),
-            function(x) x$variable$units)) == 1,
-        msg = "argument to `feature` contains elements with different units")
+            feature,
+            FUN.VALUE = character(1),
+            function(x) x$variable$units
+          )
+        ) == 1,
+        msg = "argument to `feature` contains elements with different units"
+      )
       ## set fields
       self$id <- id
       self$name <- name
@@ -63,13 +67,15 @@ MultiTheme <- R6::R6Class(
     #' Set relative order for displaying features on a map.
     #' @param value `numeric` vector of new orders.
     set_feature_order = function(value) {
-      if (is.list(value))
+      if (is.list(value)) {
         value <- unlist(value, recursive = TRUE, use.names = TRUE)
+      }
       assertthat::assert_that(
         is.numeric(value),
         assertthat::noNA(value),
         length(value) == length(self$feature),
-        identical(anyDuplicated(value), 0L))
+        identical(anyDuplicated(value), 0L)
+      )
       self$feature_order <- value
       invisible(self)
     },
@@ -150,12 +156,12 @@ MultiTheme <- R6::R6Class(
 #'   package = "wheretowork"
 #' )
 #' f2 <- system.file(
-#'  "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
-#'  package = "wheretowork"
+#'   "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
+#'   package = "wheretowork"
 #' )
 #' f3 <- system.file(
-#'  "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
-#'  package = "wheretowork"
+#'   "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
+#'   package = "wheretowork"
 #' )
 #'
 #' # create new dataset
@@ -173,21 +179,21 @@ MultiTheme <- R6::R6Class(
 #'
 #' # create a theme using the features
 #' mt <- new_multi_theme(
-#'   name = "Endangered species", feature = list(f1, f2, f3))
+#'   name = "Endangered species", feature = list(f1, f2, f3)
+#' )
 #'
 #' # print object
 #' print(mt)
-#'
 #' @export
-new_multi_theme <- function(
-  name,
-  feature,
-  feature_order = as.double(rev(seq_along(feature))),
-  id = uuid::UUIDgenerate()) {
+new_multi_theme <- function(name,
+                            feature,
+                            feature_order = as.double(rev(seq_along(feature))),
+                            id = uuid::UUIDgenerate()) {
   # return new feature
   MultiTheme$new(
     id = id,
     name = name,
     feature = feature,
-    feature_order = feature_order)
+    feature_order = feature_order
+  )
 }

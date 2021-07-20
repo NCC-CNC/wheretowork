@@ -51,9 +51,9 @@ Parameter <- R6::R6Class(
     #' @param units `character` value.
     #' @return A new Parameter object.
     ## constructor
-    initialize = function(
-      id, name, status,
-      value, min_value, max_value, step_value, hide, units) {
+    initialize = function(id, name, status,
+                          value, min_value, max_value, step_value,
+                          hide, units) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -124,7 +124,8 @@ Parameter <- R6::R6Class(
       paste0(
         self$name,
         " ", start, "status: ", self$status,
-        ", value: ", round(self$value, 2), " ", self$units, end)
+        ", value: ", round(self$value, 2), " ", self$units, end
+      )
     },
 
     #' @description
@@ -150,7 +151,8 @@ Parameter <- R6::R6Class(
       assertthat::assert_that(
         assertthat::is.string(name),
         assertthat::noNA(name),
-        name %in% c("status", "value"))
+        name %in% c("status", "value")
+      )
       if (identical(name, "status")) {
         out <- self$get_status()
       } else if (identical(name, "value")) {
@@ -167,7 +169,8 @@ Parameter <- R6::R6Class(
     set_status = function(value) {
       assertthat::assert_that(
         assertthat::is.flag(value),
-        assertthat::noNA(value))
+        assertthat::noNA(value)
+      )
       self$status <- value
       invisible(self)
     },
@@ -180,7 +183,8 @@ Parameter <- R6::R6Class(
         assertthat::is.number(value),
         assertthat::noNA(value),
         value >= self$min_value,
-        value <= self$max_value)
+        value <= self$max_value
+      )
       self$value <- value
       invisible(self)
     },
@@ -194,7 +198,8 @@ Parameter <- R6::R6Class(
       assertthat::assert_that(
         assertthat::is.string(name),
         assertthat::noNA(name),
-        name %in% c("status", "value"))
+        name %in% c("status", "value")
+      )
       if (identical(name, "status")) {
         self$set_status(value)
       } else if (identical(name, "value")) {
@@ -237,7 +242,6 @@ Parameter <- R6::R6Class(
         units = self$units
       )
     }
-
   )
 )
 
@@ -275,12 +279,11 @@ Parameter <- R6::R6Class(
 #'
 #' # print object
 #' print(p)
-#'
 #' @export
-new_parameter <- function(
-  name, status = TRUE,
-  value = 0, min_value = 0, max_value = 100, step_value = 1,
-  hide = FALSE, units = "", id = uuid::UUIDgenerate()) {
+new_parameter <- function(name, status = TRUE, value = 0,
+                          min_value = 0, max_value = 100, step_value = 1,
+                          hide = FALSE, units = "",
+                          id = uuid::UUIDgenerate()) {
   Parameter$new(
     id = id,
     name = name,
@@ -290,5 +293,6 @@ new_parameter <- function(
     value = value,
     step_value = step_value,
     hide = hide,
-    units = units)
+    units = units
+  )
 }

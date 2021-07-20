@@ -13,15 +13,18 @@ leaflet_map <- function() {
   home_js <- paste0(
     "function(btn, map) {",
     "Shiny.setInputValue(\"home_button\", Math.random());",
-    "}")
+    "}"
+  )
   hide_js <- paste0(
     "function(btn, map) {",
     "Shiny.setInputValue(\"hide_button\", Math.random());",
-    "}")
+    "}"
+  )
   print_js <- paste0(
     "function(btn, map) {",
     "Shiny.setInputValue(\"print_button\", Math.random());",
-    "}")
+    "}"
+  )
 
   # create map
   map <-
@@ -29,10 +32,12 @@ leaflet_map <- function() {
     leaflet::leaflet() %>%
     ## add basemap
     leaflet::addProviderTiles(
-      leaflet::providers$Esri.WorldImagery) %>%
+      leaflet::providers$Esri.WorldImagery
+    ) %>%
     ## specify default view window
     leaflet::flyToBounds(
-      -165, -30, 165, 60) %>%
+      -165, -30, 165, 60
+    ) %>%
     ## add home button
     leaflet::addEasyButton(
       leaflet::easyButton(
@@ -68,15 +73,19 @@ leaflet_map <- function() {
     ) %>%
     ## add history buttons
     leaflet.extras2::addHistory(
-      options = leaflet.extras2::historyOptions(position = "topleft")) %>%
+      options = leaflet.extras2::historyOptions(position = "topleft")
+    ) %>%
     ## add scale bar
     leaflet::addScaleBar(
-      position = "bottomleft")
+      position = "bottomleft"
+    )
 
   # remove outdated font awesome dependency
   idx <- vapply(
-    map$dependencies, FUN.VALUE = logical(1),
-    function(x) x$name == "fontawesome" && x$version == "4.7.0")
+    map$dependencies,
+    FUN.VALUE = logical(1),
+    function(x) x$name == "fontawesome" && x$version == "4.7.0"
+  )
   map$dependencies <- map$dependencies[which(!idx)]
 
   # return result

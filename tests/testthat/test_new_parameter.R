@@ -11,7 +11,8 @@ test_that("initialization", {
     step_value = 0.03,
     units = "asdf",
     hide = TRUE,
-    id = "P1")
+    id = "P1"
+  )
   # run tests
   print(x)
   expect_is(x$repr(), "character")
@@ -35,7 +36,8 @@ test_that("get methods", {
     min_value = 0.01,
     max_value = 0.9,
     step_value = 0.03,
-    id = "P1")
+    id = "P1"
+  )
   # run tests
   expect_identical(x$get_value(), 0.2)
   expect_identical(x$get_status(), FALSE)
@@ -52,7 +54,8 @@ test_that("set methods", {
     min_value = 0.01,
     max_value = 0.9,
     step_value = 0.03,
-    id = "P1")
+    id = "P1"
+  )
   # run tests
   x$set_value(0.8)
   x$set_status(TRUE)
@@ -75,7 +78,8 @@ test_that("export method", {
     step_value = 0.03,
     hide = TRUE,
     units = "asdf",
-    id = "P1")
+    id = "P1"
+  )
   # run tests
   expect_equal(
     x$export(),
@@ -103,7 +107,8 @@ test_that("widget methods", {
     step_value = 0.03,
     units = "asdf",
     hide = TRUE,
-    id = "P1")
+    id = "P1"
+  )
   # run tests
   ## solution settings
   expect_identical(
@@ -117,6 +122,7 @@ test_that("widget methods", {
       step_value = 0.03,
       status = FALSE,
       hide = TRUE,
-      units = "asdf")
+      units = "asdf"
+    )
   )
 })

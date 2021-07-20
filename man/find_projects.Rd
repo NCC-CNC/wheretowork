@@ -17,6 +17,5 @@ and names of projects found in the directory.
 Find project files in a directory.
 }
 \examples{
-#TODO
-
+# TODO
 }

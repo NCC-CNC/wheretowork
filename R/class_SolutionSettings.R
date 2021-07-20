@@ -48,7 +48,8 @@ SolutionSettings <- R6::R6Class(
         all_list_elements_inherit(themes, "Theme"),
         all_list_elements_inherit(weights, "Weight"),
         all_list_elements_inherit(includes, "Include"),
-        all_list_elements_inherit(parameters, "Parameter"))
+        all_list_elements_inherit(parameters, "Parameter")
+      )
       self$themes <- themes
       self$weights <- weights
       self$includes <- includes
@@ -68,7 +69,7 @@ SolutionSettings <- R6::R6Class(
       if (length(self$themes) > 0) {
         message("  themes: ")
         for (x in vapply(self$themes, function(x) x$repr(), character(1))) {
-          message("    " , gsub(nl(), paste0(nl(), "    "), x, fixed = TRUE))
+          message("    ", gsub(nl(), paste0(nl(), "    "), x, fixed = TRUE))
         }
       } else {
         message("  themes: none")
@@ -77,7 +78,7 @@ SolutionSettings <- R6::R6Class(
       if (length(self$weights) > 0) {
         message("  weights: ")
         for (x in vapply(self$weights, function(x) x$repr(), character(1))) {
-          message("    " , gsub(nl(), paste0(nl(), "    "), x, fixed = TRUE))
+          message("    ", gsub(nl(), paste0(nl(), "    "), x, fixed = TRUE))
         }
       } else {
         message("  weights: none")
@@ -86,7 +87,7 @@ SolutionSettings <- R6::R6Class(
       if (length(self$includes) > 0) {
         message("  includes: ")
         for (x in vapply(self$includes, function(x) x$repr(), character(1))) {
-          message("    " , gsub(nl(), paste0(nl(), "    "), x, fixed = TRUE))
+          message("    ", gsub(nl(), paste0(nl(), "    "), x, fixed = TRUE))
         }
       } else {
         message("  includes: none")
@@ -95,7 +96,7 @@ SolutionSettings <- R6::R6Class(
       if (length(self$parameters) > 0) {
         message("  parameters: ")
         for (x in vapply(self$parameters, function(x) x$repr(), character(1))) {
-          message("    " , gsub(nl(), paste0(nl(), "    "), x, fixed = TRUE))
+          message("    ", gsub(nl(), paste0(nl(), "    "), x, fixed = TRUE))
         }
       } else {
         message("  parameters: none")
@@ -117,10 +118,12 @@ SolutionSettings <- R6::R6Class(
     get_theme = function(value) {
       assertthat::assert_that(
         assertthat::is.string(value),
-        assertthat::noNA(value))
+        assertthat::noNA(value)
+      )
       assertthat::assert_that(
         value %in% self$theme_ids,
-        msg = paste0("no theme with the id `", value,"`"))
+        msg = paste0("no theme with the id `", value, "`")
+      )
       self$themes[[which(self$theme_ids == value)]]
     },
 
@@ -131,10 +134,12 @@ SolutionSettings <- R6::R6Class(
     get_weight = function(value) {
       assertthat::assert_that(
         assertthat::is.string(value),
-        assertthat::noNA(value))
+        assertthat::noNA(value)
+      )
       assertthat::assert_that(
         value %in% self$weight_ids,
-        msg = paste0("no weight with the id `", value,"`"))
+        msg = paste0("no weight with the id `", value, "`")
+      )
       self$weights[[which(self$weight_ids == value)]]
     },
 
@@ -145,10 +150,12 @@ SolutionSettings <- R6::R6Class(
     get_include = function(value) {
       assertthat::assert_that(
         assertthat::is.string(value),
-        assertthat::noNA(value))
+        assertthat::noNA(value)
+      )
       assertthat::assert_that(
         value %in% self$include_ids,
-        msg = paste0("no include with the id `", value,"`"))
+        msg = paste0("no include with the id `", value, "`")
+      )
       self$includes[[which(self$include_ids == value)]]
     },
 
@@ -159,10 +166,12 @@ SolutionSettings <- R6::R6Class(
     get_parameter = function(value) {
       assertthat::assert_that(
         assertthat::is.string(value),
-        assertthat::noNA(value))
+        assertthat::noNA(value)
+      )
       assertthat::assert_that(
         value %in% self$parameter_ids,
-        msg = paste0("no parameter with the id `", value,"`"))
+        msg = paste0("no parameter with the id `", value, "`")
+      )
       self$parameters[[which(self$parameter_ids == value)]]
     },
 
@@ -188,7 +197,8 @@ SolutionSettings <- R6::R6Class(
         assertthat::is.string(value$setting),
         assertthat::has_name(value, "type"),
         assertthat::is.string(value$type),
-        isTRUE(value$type %in% c("theme", "weight", "include", "parameter")))
+        isTRUE(value$type %in% c("theme", "weight", "include", "parameter"))
+      )
       if (identical(value$type, "theme")) {
         self$get_theme(value$id)$get_setting(value$setting)
       } else if (identical(value$type, "weight")) {
@@ -223,7 +233,8 @@ SolutionSettings <- R6::R6Class(
         assertthat::is.string(value$setting),
         assertthat::has_name(value, "value"),
         assertthat::is.string(value$type),
-        isTRUE(value$type %in% c("theme", "weight", "include", "parameter")))
+        isTRUE(value$type %in% c("theme", "weight", "include", "parameter"))
+      )
       if (identical(value$type, "theme")) {
         self$get_theme(value$id)$set_setting(value$setting, value$value)
       } else if (identical(value$type, "weight")) {
@@ -242,16 +253,20 @@ SolutionSettings <- R6::R6Class(
       list(
         themes =
           lapply(
-            self$themes, function(x) x$get_solution_settings_widget_data()),
+            self$themes, function(x) x$get_solution_settings_widget_data()
+          ),
         weights =
           lapply(
-            self$weights, function(x) x$get_solution_settings_widget_data()),
+            self$weights, function(x) x$get_solution_settings_widget_data()
+          ),
         includes =
           lapply(
-            self$includes, function(x) x$get_solution_settings_widget_data()),
+            self$includes, function(x) x$get_solution_settings_widget_data()
+          ),
         parameters =
           lapply(
-            self$parameters, function(x) x$get_solution_settings_widget_data())
+            self$parameters, function(x) x$get_solution_settings_widget_data()
+          )
       )
     },
 
@@ -273,7 +288,7 @@ SolutionSettings <- R6::R6Class(
         limit =
           do.call(c, lapply(self$themes, function(x) x$get_feature_limit())),
         total =
-          do.call(c,  lapply(self$themes, function(x) x$get_feature_total()))
+          do.call(c, lapply(self$themes, function(x) x$get_feature_total()))
       )
     },
 
@@ -285,7 +300,8 @@ SolutionSettings <- R6::R6Class(
         id = vapply(self$weights, `[[`, character(1), "id"),
         name = vapply(self$weights, `[[`, character(1), "name"),
         status = vapply(self$weights, `[[`, logical(1), "status"),
-        factor = vapply(self$weights, `[[`, numeric(1), "factor"))
+        factor = vapply(self$weights, `[[`, numeric(1), "factor")
+      )
     },
 
     #' @description
@@ -295,7 +311,8 @@ SolutionSettings <- R6::R6Class(
       tibble::tibble(
         id = vapply(self$includes, `[[`, character(1), "id"),
         name = vapply(self$includes, `[[`, character(1), "name"),
-        status = vapply(self$includes, `[[`, logical(1), "status"))
+        status = vapply(self$includes, `[[`, logical(1), "status")
+      )
     },
 
     #' @description
@@ -306,7 +323,8 @@ SolutionSettings <- R6::R6Class(
         id = vapply(self$parameters, `[[`, character(1), "id"),
         name = vapply(self$parameters, `[[`, character(1), "name"),
         status = vapply(self$parameters, `[[`, logical(1), "status"),
-        value = vapply(self$parameters, `[[`, numeric(1), "value"))
+        value = vapply(self$parameters, `[[`, numeric(1), "value")
+      )
     },
 
     #' @description
@@ -354,10 +372,9 @@ SolutionSettings <- R6::R6Class(
     #' Defaults to `self$get_weight_data()`.
     #' @param include_data `[Matrix::sparseMatrix()] with include data.
     #' Defaults to `self$get_include_data()`.
-    update_current_held = function(
-      theme_data = self$get_theme_data(),
-      weight_data = self$get_weight_data(),
-      include_data = self$get_include_data()) {
+    update_current_held = function(theme_data = self$get_theme_data(),
+                                   weight_data = self$get_weight_data(),
+                                   include_data = self$get_include_data()) {
       # assert arguments are valid
       assertthat::assert_that(
         inherits(theme_data, "dgCMatrix"),
@@ -366,7 +383,8 @@ SolutionSettings <- R6::R6Class(
         ncol(theme_data) == ncol(include_data),
         ncol(weight_data) == ncol(include_data),
         nrow(include_data) == length(self$includes),
-        nrow(weight_data) == length(self$weights))
+        nrow(weight_data) == length(self$weights)
+      )
 
       # calculate current status for each planning unit
       curr_status <- include_data
@@ -375,7 +393,8 @@ SolutionSettings <- R6::R6Class(
       }
       curr_status <- matrix(
         as.numeric(colSums(curr_status > 0.5) > 0.5),
-        ncol = ncol(theme_data), nrow = nrow(theme_data))
+        ncol = ncol(theme_data), nrow = nrow(theme_data)
+      )
 
       # calculate current amount held for each feature as a proportion
       curr_feature_held <- rowSums(curr_status * (theme_data))
@@ -404,7 +423,6 @@ SolutionSettings <- R6::R6Class(
       # return self
       invisible(self)
     }
-
   )
 )
 
@@ -429,12 +447,12 @@ SolutionSettings <- R6::R6Class(
 #'   package = "wheretowork"
 #' )
 #' f2 <- system.file(
-#'  "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
-#'  package = "wheretowork"
+#'   "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
+#'   package = "wheretowork"
 #' )
 #' f3 <- system.file(
-#'  "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
-#'  package = "wheretowork"
+#'   "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
+#'   package = "wheretowork"
 #' )
 #'
 #' # create new dataset
@@ -449,18 +467,22 @@ SolutionSettings <- R6::R6Class(
 #' # create a weight using a variable
 #' w <- new_weight(
 #'   name = "Human Footprint Index", variable = v1,
-#'   factor = 90, status = FALSE, id = "W1")
+#'   factor = 90, status = FALSE, id = "W1"
+#' )
 #'
 #' # create features using variables
 #' f1 <- new_feature(
 #'   name = "Possum", variable = v2,
-#'   goal = 0.2, status = FALSE, current = 0.5, id = "F1")
+#'   goal = 0.2, status = FALSE, current = 0.5, id = "F1"
+#' )
 #' f2 <- new_feature(
 #'   name = "Forests", variable = v3,
-#'   goal = 0.3, status = FALSE, current = 0.9, id = "F2")
+#'   goal = 0.3, status = FALSE, current = 0.9, id = "F2"
+#' )
 #' f3 <- new_feature(
 #'   name = "Shrubs", variable = v4,
-#'   goal = 0.6, status = TRUE, current = 0.4, id = "F3")
+#'   goal = 0.6, status = TRUE, current = 0.4, id = "F3"
+#' )
 #'
 #' # create themes using the features
 #' t1 <- new_single_theme("Species", f1, id = "T1")
@@ -469,7 +491,8 @@ SolutionSettings <- R6::R6Class(
 #' # create an included using a variable
 #' i <- new_include(
 #'   name = "Protected areas", variable = v5,
-#'   status = FALSE, id = "I1")
+#'   status = FALSE, id = "I1"
+#' )
 #'
 #' # create parameters
 #' p1 <- new_parameter(name = "Spatial clustering")
@@ -478,14 +501,15 @@ SolutionSettings <- R6::R6Class(
 #' # create solution settings using the themes and weight
 #' ss <- new_solution_settings(
 #'   themes = list(t1, t2), weights = list(w), includes = list(i),
-#'   parameters = list(p1, p2))
+#'   parameters = list(p1, p2)
+#' )
 #'
 #' # print object
 #' print(ss)
-#'
 #' @export
 new_solution_settings <- function(themes, weights, includes, parameters) {
   SolutionSettings$new(
     themes = themes, weights = weights, includes = includes,
-    parameters =  parameters)
+    parameters = parameters
+  )
 }

@@ -42,9 +42,8 @@ Solution <- R6::R6Class(
     #' @param theme_results `list` of [ThemeResults] objects.
     #' @param weight_results `list` of [WeightResults] objects.
     #' @return A new Solution object.
-    initialize = function(
-      id, name, variable, visible, statistics, theme_results,
-      weight_results) {
+    initialize = function(id, name, variable, visible,
+                          statistics, theme_results, weight_results) {
       # assert arguments are valid
       assertthat::assert_that(
         assertthat::is.string(id),
@@ -59,13 +58,14 @@ Solution <- R6::R6Class(
         is.list(theme_results),
         all_list_elements_inherit(theme_results, "ThemeResults"),
         is.list(weight_results),
-        all_list_elements_inherit(weight_results, "WeightResults"))
+        all_list_elements_inherit(weight_results, "WeightResults")
+      )
       # assign fields
       self$id <- id
       self$name <- name
       self$variable <- variable
       self$visible <- visible
-      self$statistics  <- statistics
+      self$statistics <- statistics
       self$theme_results <- theme_results
       self$weight_results <- weight_results
     },
@@ -84,10 +84,12 @@ Solution <- R6::R6Class(
         start,
         paste(
           vapply(self$statistics, function(x) x$repr(), character(1)),
-          collapse = ", "),
+          collapse = ", "
+        ),
         end,
         nl(),
-        "  variable: ", self$variable$repr())
+        "  variable: ", self$variable$repr()
+      )
     },
 
     #' @description
@@ -130,7 +132,8 @@ Solution <- R6::R6Class(
       assertthat::assert_that(
         assertthat::is.string(name),
         assertthat::noNA(name),
-        name %in% c("visible"))
+        name %in% c("visible")
+      )
       if (identical(name, "visible")) {
         out <- self$get_visible()
       } else {
@@ -145,7 +148,8 @@ Solution <- R6::R6Class(
     set_visible = function(value) {
       assertthat::assert_that(
         assertthat::is.flag(value),
-        assertthat::noNA(value))
+        assertthat::noNA(value)
+      )
       self$visible <- value
       invisible(self)
     },
@@ -156,7 +160,8 @@ Solution <- R6::R6Class(
     get_theme_results_data = function() {
       # compile data
       x <- tibble::as_tibble(plyr::ldply(
-        self$theme_results, function(x) x$get_results_data()))
+        self$theme_results, function(x) x$get_results_data()
+      ))
       # return formatted table
       tibble::tibble(
         Theme = x$name,
@@ -196,7 +201,8 @@ Solution <- R6::R6Class(
     get_weight_results_data = function() {
       # compile results
       x <- tibble::as_tibble(plyr::ldply(
-        self$weight_results, function(x) x$get_results_data()))
+        self$weight_results, function(x) x$get_results_data()
+      ))
       # return data for plotting
       tibble::tibble(
         Weight = x$name,
@@ -224,7 +230,8 @@ Solution <- R6::R6Class(
       action_js <- htmlwidgets::JS(
         "function ( e, dt, node, config ) {",
         "  $('#theme_results_button')[0].click();",
-        "}")
+        "}"
+      )
       ## render table
       DT::datatable(
         x,
@@ -294,7 +301,8 @@ Solution <- R6::R6Class(
       action_js <- htmlwidgets::JS(
         "function ( e, dt, node, config ) {",
         "  $('#weight_results_button')[0].click();",
-        "}")
+        "}"
+      )
       ## render table
       DT::datatable(
         x,
@@ -321,7 +329,7 @@ Solution <- R6::R6Class(
               text = as.character(shiny::icon("file-download")),
               title = "Download spreadsheet",
               action = action_js
-           )
+            )
           )
         ),
         container = htmltools::tags$table(
@@ -357,7 +365,8 @@ Solution <- R6::R6Class(
       assertthat::assert_that(
         assertthat::is.string(name),
         assertthat::noNA(name),
-        name %in% c("visible"))
+        name %in% c("visible")
+      )
       if (identical(name, "visible")) {
         self$set_visible(value)
       } else {
@@ -375,13 +384,16 @@ Solution <- R6::R6Class(
         name = self$name,
         statistics = lapply(
           self$statistics,
-          function(x) x$get_widget_data()),
+          function(x) x$get_widget_data()
+        ),
         theme_results = lapply(
           self$theme_results,
-          function(x) x$get_widget_data()),
+          function(x) x$get_widget_data()
+        ),
         weight_results = lapply(
           self$weight_results,
-          function(x) x$get_widget_data()),
+          function(x) x$get_widget_data()
+        ),
         solution_color = scales::alpha(last(self$variable$legend$colors), 1)
       )
     },
@@ -417,7 +429,6 @@ Solution <- R6::R6Class(
     update_on_map = function(x, zindex) {
       self$variable$update_render(x, self$id, zindex, self$visible)
     }
-
   )
 )
 
@@ -440,12 +451,11 @@ Solution <- R6::R6Class(
 #' @inheritParams new_multi_theme
 #'
 #' @examples
-#' #TODO
-#'
+#' # TODO
 #' @export
-new_solution <- function(
-  name, variable, visible, statistics,
-  theme_results, weight_results, id = uuid::UUIDgenerate()) {
+new_solution <- function(name, variable, visible, statistics,
+                         theme_results, weight_results,
+                         id = uuid::UUIDgenerate()) {
   Solution$new(
     name = name,
     variable = variable,
@@ -453,5 +463,6 @@ new_solution <- function(
     statistics = statistics,
     theme_results = theme_results,
     weight_results = weight_results,
-    id = id)
+    id = id
+  )
 }

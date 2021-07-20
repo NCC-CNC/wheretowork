@@ -13,7 +13,8 @@ all_list_elements_inherit <- function(x, class) {
   assertthat::assert_that(
     is.list(x),
     is.character(class),
-    assertthat::noNA(class))
+    assertthat::noNA(class)
+  )
   all(vapply(x, inherits, logical(1), class))
 }
 
@@ -103,22 +104,24 @@ example_theme_names <- function() {
           "extdata", "data", "Clements-Checklist-v2019-August-2019.xlsx",
           package = "wheretowork"
         ),
-        sheet = 1)
-   })
-   # format column names
-   d <- stats::setNames(d, gsub(" ", "_", tolower(names(d)), fixed = TRUE))
-   d <- tibble::as_tibble(d)
-   # select relevant columns
-   d <- d[, c("english_name", "family")]
-   # subset to include only species with English common names
-   d <- stats::na.omit(d)
-   # remove duplicates
-   d <- d[!duplicated(d$english_name), ]
-   # extract English family names
-   d$family <-
+        sheet = 1
+      )
+  })
+  # format column names
+  d <- stats::setNames(d, gsub(" ", "_", tolower(names(d)), fixed = TRUE))
+  d <- tibble::as_tibble(d)
+  # select relevant columns
+  d <- d[, c("english_name", "family")]
+  # subset to include only species with English common names
+  d <- stats::na.omit(d)
+  # remove duplicates
+  d <- d[!duplicated(d$english_name), ]
+  # extract English family names
+  d$family <-
     gsub(
       "[\\(\\)]", "",
-      regmatches(d$family, gregexpr("\\(.*?\\)", d$family)))
+      regmatches(d$family, gregexpr("\\(.*?\\)", d$family))
+    )
   # rename columns for output
   d <- stats::setNames(d, c("feature", "theme"))
   # return result
@@ -138,7 +141,8 @@ example_theme_names <- function() {
 make_valid_names <- function(x) {
   assertthat::assert_that(
     is.character(x),
-    assertthat::noNA(x))
+    assertthat::noNA(x)
+  )
   x <- make.names(x)
   x <- gsub(pattern = ".", replacement = "_", x, fixed = TRUE)
   x <- gsub(pattern = "(_)\\1+", replacement = "\\1", x)

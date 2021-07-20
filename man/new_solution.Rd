@@ -34,6 +34,5 @@ Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenera
 Create a new \link{Solution} object.
 }
 \examples{
-#TODO
-
+# TODO
 }

@@ -16,7 +16,8 @@ exportSidebarPane <- function(id) {
   # assert arguments are valid
   assertthat::assert_that(
     assertthat::is.string(id),
-    assertthat::noNA(id))
+    assertthat::noNA(id)
+  )
 
   # create sidebar
   leaflet.extras2::sidebar_pane(

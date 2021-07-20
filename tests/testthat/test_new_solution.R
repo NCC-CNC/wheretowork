@@ -6,17 +6,26 @@ test_that("initialization", {
   names(rd) <- c("a", "b", "solution_1")
   d <- new_dataset_from_auto(rd)
   v1 <- new_variable(
-    d, index = 1, total = 45, units = "ha",
+    d,
+    index = 1, total = 45, units = "ha",
     legend = new_continuous_legend(
-      min_value = 0, max_value = 100, colors = c("#FFFFFF", "#112233")))
+      min_value = 0, max_value = 100, colors = c("#FFFFFF", "#112233")
+    )
+  )
   v2 <- new_variable(
-    d, index = 2, total = 89, units = "ha",
+    d,
+    index = 2, total = 89, units = "ha",
     legend = new_continuous_legend(
-      min_value = 0, max_value = 20, colors = c("#FFFFFF", "#445566")))
+      min_value = 0, max_value = 20, colors = c("#FFFFFF", "#445566")
+    )
+  )
   v3 <- new_variable(
-    d, index = "solution_1", total = 12, units = "ha",
+    d,
+    index = "solution_1", total = 12, units = "ha",
     legend = new_categorical_legend(
-      values = c(0, 1), colors = c("#FFFFFF", "#000000")))
+      values = c(0, 1), colors = c("#FFFFFF", "#000000")
+    )
+  )
   w <- new_weight(
     name = "Human Footprint Index",
     variable = v1,
@@ -26,11 +35,13 @@ test_that("initialization", {
     min_factor = 0.01,
     max_factor = 0.9,
     step_factor = 0.03,
-    id = "FID1")
+    id = "FID1"
+  )
   wr <- new_weight_results(
     weight = w,
     held = 0.9,
-    id = "RID1")
+    id = "RID1"
+  )
   f <- new_feature(
     name = "F1",
     variable = v2,
@@ -42,19 +53,23 @@ test_that("initialization", {
     step_goal = 0.02,
     limit_goal = 0.05,
     current = 0.034,
-    id = "FID1")
+    id = "FID1"
+  )
   fr <- new_feature_results(
     feature = f,
     held = 0.9,
-    id = "RID1")
+    id = "RID1"
+  )
   th <- new_theme(
     name = "FS",
     feature = f,
-    id = "FS1")
+    id = "FS1"
+  )
   thr <- new_theme_results(
     theme = th,
     feature_results = fr,
-    id = "RID2")
+    id = "RID2"
+  )
   s1 <- new_statistic("Area", 12, "ha")
   s2 <- new_statistic("Perimeter", 10, "km")
   x <- new_solution(
@@ -64,7 +79,8 @@ test_that("initialization", {
     statistics = list(s1, s2),
     theme_results = list(thr),
     weight_results = list(wr),
-    id = "solution1")
+    id = "solution1"
+  )
   # run tests
   expect_is(x, "Solution")
   print(x)
@@ -88,17 +104,26 @@ test_that("get methods", {
   names(rd) <- c("a", "b", "solution_1")
   d <- new_dataset_from_auto(rd)
   v1 <- new_variable(
-    d, index = 1, total = 45, units = "ha",
+    d,
+    index = 1, total = 45, units = "ha",
     legend = new_continuous_legend(
-      min_value = 0, max_value = 100, colors = c("#FFFFFF", "#112233")))
+      min_value = 0, max_value = 100, colors = c("#FFFFFF", "#112233")
+    )
+  )
   v2 <- new_variable(
-    d, index = 2, total = 89, units = "ha",
+    d,
+    index = 2, total = 89, units = "ha",
     legend = new_continuous_legend(
-      min_value = 0, max_value = 20, colors = c("#FFFFFF", "#445566")))
+      min_value = 0, max_value = 20, colors = c("#FFFFFF", "#445566")
+    )
+  )
   v3 <- new_variable(
-    d, index = "solution_1", total = 12, units = "ha",
+    d,
+    index = "solution_1", total = 12, units = "ha",
     legend = new_categorical_legend(
-      values = c(0, 1), colors = c("#FFFFFF", "#000000")))
+      values = c(0, 1), colors = c("#FFFFFF", "#000000")
+    )
+  )
   w <- new_weight(
     name = "Human Footprint Index",
     variable = v1,
@@ -108,11 +133,13 @@ test_that("get methods", {
     min_factor = 0.01,
     max_factor = 0.9,
     step_factor = 0.03,
-    id = "FID1")
+    id = "FID1"
+  )
   wr <- new_weight_results(
     weight = w,
     held = 0.9,
-    id = "RID1")
+    id = "RID1"
+  )
   f <- new_feature(
     name = "F1",
     variable = v2,
@@ -124,19 +151,23 @@ test_that("get methods", {
     step_goal = 0.02,
     limit_goal = 0.05,
     current = 0.034,
-    id = "FID1")
+    id = "FID1"
+  )
   fr <- new_feature_results(
     feature = f,
     held = 0.9,
-    id = "RID1")
+    id = "RID1"
+  )
   th <- new_theme(
     name = "FS",
     feature = f,
-    id = "FS1")
+    id = "FS1"
+  )
   thr <- new_theme_results(
     theme = th,
     feature_results = fr,
-    id = "RID2")
+    id = "RID2"
+  )
   s1 <- new_statistic("Area", 12, "ha")
   s2 <- new_statistic("Perimeter", 10, "km")
   x <- new_solution(
@@ -146,7 +177,8 @@ test_that("get methods", {
     statistics = list(s1, s2),
     theme_results = list(thr),
     weight_results = list(wr),
-    id = "solution1")
+    id = "solution1"
+  )
   # run tests
   expect_equal(x$get_visible(), FALSE)
 })
@@ -158,17 +190,26 @@ test_that("set methods", {
   names(rd) <- c("a", "b", "solution_1")
   d <- new_dataset_from_auto(rd)
   v1 <- new_variable(
-    d, index = 1, total = 45, units = "ha",
+    d,
+    index = 1, total = 45, units = "ha",
     legend = new_continuous_legend(
-      min_value = 0, max_value = 100, colors = c("#FFFFFF", "#112233")))
+      min_value = 0, max_value = 100, colors = c("#FFFFFF", "#112233")
+    )
+  )
   v2 <- new_variable(
-    d, index = 2, total = 89, units = "ha",
+    d,
+    index = 2, total = 89, units = "ha",
     legend = new_continuous_legend(
-      min_value = 0, max_value = 20, colors = c("#FFFFFF", "#445566")))
+      min_value = 0, max_value = 20, colors = c("#FFFFFF", "#445566")
+    )
+  )
   v3 <- new_variable(
-    d, index = "solution_1", total = 12, units = "ha",
+    d,
+    index = "solution_1", total = 12, units = "ha",
     legend = new_categorical_legend(
-      values = c(0, 1), colors = c("#FFFFFF", "#000000")))
+      values = c(0, 1), colors = c("#FFFFFF", "#000000")
+    )
+  )
   w <- new_weight(
     name = "Human Footprint Index",
     variable = v1,
@@ -178,11 +219,13 @@ test_that("set methods", {
     min_factor = 0.01,
     max_factor = 0.9,
     step_factor = 0.03,
-    id = "FID1")
+    id = "FID1"
+  )
   wr <- new_weight_results(
     weight = w,
     held = 0.9,
-    id = "RID1")
+    id = "RID1"
+  )
   f <- new_feature(
     name = "F1",
     variable = v2,
@@ -194,19 +237,23 @@ test_that("set methods", {
     step_goal = 0.02,
     limit_goal = 0.05,
     current = 0.034,
-    id = "FID1")
+    id = "FID1"
+  )
   fr <- new_feature_results(
     feature = f,
     held = 0.9,
-    id = "RID1")
+    id = "RID1"
+  )
   th <- new_theme(
     name = "FS",
     feature = f,
-    id = "FS1")
+    id = "FS1"
+  )
   thr <- new_theme_results(
     theme = th,
     feature_results = fr,
-    id = "RID2")
+    id = "RID2"
+  )
   s1 <- new_statistic("Area", 12, "ha")
   s2 <- new_statistic("Perimeter", 10, "km")
   x <- new_solution(
@@ -216,7 +263,8 @@ test_that("set methods", {
     statistics = list(s1, s2),
     theme_results = list(thr),
     weight_results = list(wr),
-    id = "solution1")
+    id = "solution1"
+  )
   # run tests
   expect_equal(x$get_visible(), FALSE)
   x$set_visible(TRUE)
@@ -229,17 +277,26 @@ test_that("widget methods", {
   names(rd) <- c("a", "b", "solution_1")
   d <- new_dataset_from_auto(rd)
   v1 <- new_variable(
-    d, index = 1, total = 45, units = "ha",
+    d,
+    index = 1, total = 45, units = "ha",
     legend = new_continuous_legend(
-      min_value = 0, max_value = 100, colors = c("#FFFFFF", "#112233")))
+      min_value = 0, max_value = 100, colors = c("#FFFFFF", "#112233")
+    )
+  )
   v2 <- new_variable(
-    d, index = 2, total = 89, units = "ha",
+    d,
+    index = 2, total = 89, units = "ha",
     legend = new_continuous_legend(
-      min_value = 0, max_value = 20, colors = c("#FFFFFF", "#445566")))
+      min_value = 0, max_value = 20, colors = c("#FFFFFF", "#445566")
+    )
+  )
   v3 <- new_variable(
-    d, index = "solution_1", total = 12, units = "ha",
+    d,
+    index = "solution_1", total = 12, units = "ha",
     legend = new_categorical_legend(
-      values = c(0, 1), colors = c("#FFFFFF", "#000000")))
+      values = c(0, 1), colors = c("#FFFFFF", "#000000")
+    )
+  )
   w <- new_weight(
     name = "Human Footprint Index",
     variable = v1,
@@ -249,11 +306,13 @@ test_that("widget methods", {
     min_factor = 0.01,
     max_factor = 0.9,
     step_factor = 0.03,
-    id = "FID1")
+    id = "FID1"
+  )
   wr <- new_weight_results(
     weight = w,
     held = 0.9,
-    id = "RID1")
+    id = "RID1"
+  )
   f <- new_feature(
     name = "F1",
     variable = v2,
@@ -265,19 +324,23 @@ test_that("widget methods", {
     step_goal = 0.02,
     limit_goal = 0.05,
     current = 0.034,
-    id = "FID1")
+    id = "FID1"
+  )
   fr <- new_feature_results(
     feature = f,
     held = 0.9,
-    id = "RID1")
+    id = "RID1"
+  )
   th <- new_theme(
     name = "FS",
     feature = f,
-    id = "FS1")
+    id = "FS1"
+  )
   thr <- new_theme_results(
     theme = th,
     feature_results = fr,
-    id = "RID2")
+    id = "RID2"
+  )
   s1 <- new_statistic("Area", 12, "ha")
   s2 <- new_statistic("Perimeter", 10, "km")
   x <- new_solution(
@@ -287,7 +350,8 @@ test_that("widget methods", {
     statistics = list(s1, s2),
     theme_results = list(thr),
     weight_results = list(wr),
-    id = "solution1")
+    id = "solution1"
+  )
   # run tests
   ## solution results widget
   expect_identical(
@@ -298,7 +362,7 @@ test_that("widget methods", {
       statistics = list(s1$get_widget_data(), s2$get_widget_data()),
       theme_results = list(thr$get_widget_data()),
       weight_results = list(wr$get_widget_data()),
-      solution_color =  scales::alpha(last(x$variable$legend$colors), 1)
+      solution_color = scales::alpha(last(x$variable$legend$colors), 1)
     )
   )
   ## map manager widget

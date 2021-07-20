@@ -15,11 +15,13 @@ test_that("initialization", {
     step_goal = 0.03,
     limit_goal = 0.2,
     current = 0.56,
-    id = "FID1")
+    id = "FID1"
+  )
   x <- new_feature_results(
     feature = f,
     held = 0.9,
-    id = "RID1")
+    id = "RID1"
+  )
   # run tests
   print(x)
   expect_is(x$repr(), "character")

@@ -15,11 +15,13 @@ test_that("initialization", {
     step_goal = 0.02,
     limit_goal = 0.05,
     current = 0.2567,
-    id = "FID1")
+    id = "FID1"
+  )
   x <- new_single_theme(
     name = "FS",
     feature = f,
-    id = "FS1")
+    id = "FS1"
+  )
   # run tests
   print(x)
   expect_is(x$repr(), "character")
@@ -43,11 +45,13 @@ test_that("export method", {
     step_goal = 0.02,
     limit_goal = 0.05,
     current = 0.2567,
-    id = "FID1")
+    id = "FID1"
+  )
   x <- new_single_theme(
     name = "FS",
     feature = f,
-    id = "FS1")
+    id = "FS1"
+  )
   # run tests
   expect_equal(
     x$export(),
@@ -73,11 +77,13 @@ test_that("get methods", {
     step_goal = 0.02,
     limit_goal = 0.05,
     current = 0.2567,
-    id = "FID1")
+    id = "FID1"
+  )
   x <- new_single_theme(
     name = "FS",
     feature = f,
-    id = "FS1")
+    id = "FS1"
+  )
   # run tests
   expect_identical(x$get_feature_goal(), 0.2)
   expect_identical(x$get_feature_visible(), TRUE)
@@ -106,11 +112,13 @@ test_that("set methods", {
     step_goal = 0.02,
     limit_goal = 0.05,
     current = 0.2567,
-    id = "FID1")
+    id = "FID1"
+  )
   x <- new_single_theme(
     name = "FS",
     feature = f,
-    id = "FS1")
+    id = "FS1"
+  )
   # run tests
   x$set_feature_goal(0.8)
   x$set_feature_visible(FALSE)
@@ -147,11 +155,13 @@ test_that("widget methods", {
     step_goal = 0.02,
     limit_goal = 0.05,
     current = 0.034,
-    id = "FID1")
+    id = "FID1"
+  )
   x <- new_single_theme(
     name = "FS",
     feature = f,
-    id = "FS1")
+    id = "FS1"
+  )
   # run tests
   ## solution settings
   expect_identical(

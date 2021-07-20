@@ -88,12 +88,12 @@ ThemeResults <- R6::R6Class(
 #'   package = "wheretowork"
 #' )
 #' f2 <- system.file(
-#'  "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
-#'  package = "wheretowork"
+#'   "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
+#'   package = "wheretowork"
 #' )
 #' f3 <- system.file(
-#'  "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
-#'  package = "wheretowork"
+#'   "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
+#'   package = "wheretowork"
 #' )
 #'
 #' # create new dataset
@@ -116,12 +116,12 @@ ThemeResults <- R6::R6Class(
 #'
 #' # print object
 #' print(thr)
-#'
 #' @export
-new_theme_results <- function(
-  theme, feature_results, id = uuid::UUIDgenerate()) {
+new_theme_results <- function(theme, feature_results,
+                              id = uuid::UUIDgenerate()) {
   assertthat::assert_that(
-    is.list(feature_results) || inherits(feature_results, "FeatureResults"))
+    is.list(feature_results) || inherits(feature_results, "FeatureResults")
+  )
   if (inherits(feature_results, "FeatureResults")) {
     feature_results <- list(feature_results)
   }
@@ -129,12 +129,14 @@ new_theme_results <- function(
     out <- SingleThemeResults$new(
       id = id,
       theme = theme,
-      feature_results = feature_results)
+      feature_results = feature_results
+    )
   } else {
     out <- MultiThemeResults$new(
       id = id,
       theme = theme,
-      feature_results = feature_results)
+      feature_results = feature_results
+    )
   }
   out
 }

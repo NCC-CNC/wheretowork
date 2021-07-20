@@ -17,8 +17,7 @@ SingleTheme <- R6::R6Class(
     #' @param name `character` value.
     #' @param feature `list` of a single [Feature] object.
     #' @return A new SingleTheme object.
-    initialize = function(
-      id, name, feature) {
+    initialize = function(id, name, feature) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -30,7 +29,8 @@ SingleTheme <- R6::R6Class(
         #### feature
         is.list(feature),
         length(feature) == 1,
-        inherits(feature[[1]], "Feature"))
+        inherits(feature[[1]], "Feature")
+      )
       ## set fields
       self$id <- id
       self$name <- name
@@ -112,12 +112,12 @@ SingleTheme <- R6::R6Class(
 #'   package = "wheretowork"
 #' )
 #' f2 <- system.file(
-#'  "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
-#'  package = "wheretowork"
+#'   "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
+#'   package = "wheretowork"
 #' )
 #' f3 <- system.file(
-#'  "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
-#'  package = "wheretowork"
+#'   "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
+#'   package = "wheretowork"
 #' )
 #'
 #' # create new dataset
@@ -134,12 +134,10 @@ SingleTheme <- R6::R6Class(
 #'
 #' # print object
 #' print(st)
-#'
 #' @export
-new_single_theme <- function(
-  name,
-  feature,
-  id = uuid::UUIDgenerate()) {
+new_single_theme <- function(name,
+                             feature,
+                             id = uuid::UUIDgenerate()) {
   # convert to list
   if (inherits(feature, "Feature")) {
     feature <- list(feature)
@@ -148,5 +146,6 @@ new_single_theme <- function(
   SingleTheme$new(
     id = id,
     feature = feature,
-    name = name)
+    name = name
+  )
 }

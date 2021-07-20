@@ -196,13 +196,14 @@ NULL
 #' @seealso [solutionSettings()].
 #'
 #' @export
-updateSolutionSettings <- function(
-  session = shiny::getDefaultReactiveDomain(), inputId, value) {
+updateSolutionSettings <- function(session = shiny::getDefaultReactiveDomain(),
+                                   inputId, value) {
   # assert valid arguments
   assertthat::assert_that(
     assertthat::is.string(inputId),
     assertthat::noNA(inputId),
-    is.list(value))
+    is.list(value)
+  )
   assertthat::assert_that(
     assertthat::has_name(value, "id"),
     assertthat::is.string(value$id),
@@ -213,34 +214,39 @@ updateSolutionSettings <- function(
     assertthat::has_name(value, "value"),
     assertthat::has_name(value, "type"),
     assertthat::is.string(value$type),
-    assertthat::noNA(value$type))
+    assertthat::noNA(value$type)
+  )
 
   # assert value contains valid settings
   ## define valid setting names and value classes
   assertthat::assert_that(
-    value$type %in% c("weight", "theme", "include", "parameter"))
+    value$type %in% c("weight", "theme", "include", "parameter")
+  )
   if (identical(value$type, "theme")) {
     param_names <- c(
       "name", "status", "view",
-      "group_goal", "feature_goal", "feature_status", "feature_current")
+      "group_goal", "feature_goal", "feature_status", "feature_current"
+    )
     param_classes <- c(
       "character", "logical", "character",
-      "numeric", "numeric", "logical", "numeric")
+      "numeric", "numeric", "logical", "numeric"
+    )
   } else if (identical(value$type, "weight")) {
     param_names <- c("name", "status", "factor")
     param_classes <- c("character", "logical", "numeric")
   } else if (identical(value$type, "include")) {
-      param_names <- c("name", "status")
-      param_classes <- c("character", "logical")
+    param_names <- c("name", "status")
+    param_classes <- c("character", "logical")
   } else if (identical(value$type, "parameter")) {
-      param_names <- c("name", "status", "value")
-      param_classes <- c("character", "logical", "numeric")
+    param_names <- c("name", "status", "value")
+    param_classes <- c("character", "logical", "numeric")
   }
 
   ## sanity check
   assertthat::assert_that(
     length(param_names) == length(param_classes),
-    msg = "internal validation failed")
+    msg = "internal validation failed"
+  )
 
   ## coerce integer values to double values
   if (is.integer(value$value)) {
@@ -253,27 +259,33 @@ updateSolutionSettings <- function(
     msg = paste0(
       value$type,
       "s must have a `setting` equal to one of the following: ",
-      paste(paste0("\"", param_names, "\""), collapse = ", "))
+      paste(paste0("\"", param_names, "\""), collapse = ", ")
+    )
   )
   assertthat::assert_that(
     inherits(
       value$value,
-      param_classes[[which(param_names == value$setting)]]),
+      param_classes[[which(param_names == value$setting)]]
+    ),
     msg = paste0(
       "the \"", value$setting,
       "\" setting must have a ",
       param_classes[[which(param_names == value$setting)]],
-      " `value`")
+      " `value`"
+    )
   )
   if (identical(value$setting, "view")) {
     assertthat::assert_that(
       value$value %in% c("single", "group"),
       msg = paste0(
         "the \"view\" setting must have a \"single\" ",
-        "or \"group\" `value`."))
+        "or \"group\" `value`."
+      )
+    )
   }
 
   # pass data to widget
   session$sendCustomMessage(
-    "solutionSettings:update", list(id = inputId, value = value))
+    "solutionSettings:update", list(id = inputId, value = value)
+  )
 }

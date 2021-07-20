@@ -22,7 +22,7 @@ test_that("spatial file (vector)", {
     package = "wheretowork"
   )
   f2 <- system.file(
-    "extdata", "projects", "sim_vector","sim_vector_spatial.dbf",
+    "extdata", "projects", "sim_vector", "sim_vector_spatial.dbf",
     package = "wheretowork"
   )
   f3 <- system.file(
@@ -32,7 +32,7 @@ test_that("spatial file (vector)", {
   f4 <- system.file(
     "extdata", "projects", "sim_vector", "sim_vector_spatial.prj",
     package = "wheretowork"
-   )
+  )
   expect_true(isTRUE(is_valid_spatial_file(c(f1, f2, f3, f4))))
 })
 

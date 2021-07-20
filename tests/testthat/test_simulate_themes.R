@@ -9,11 +9,11 @@ test_that("simple dataset (single)", {
   expect_length(x, 2)
   expect_true(all_list_elements_inherit(x, "Theme"))
   expect_equal(
-    sum(vapply(x, function(x) inherits(x, "SingleTheme"),  logical(1))),
+    sum(vapply(x, function(x) inherits(x, "SingleTheme"), logical(1))),
     1
   )
   expect_equal(
-    sum(vapply(x, function(x) inherits(x, "MultiTheme"),  logical(1))),
+    sum(vapply(x, function(x) inherits(x, "MultiTheme"), logical(1))),
     1
   )
 })
@@ -27,11 +27,11 @@ test_that("simple dataset (multiple)", {
   expect_length(x, 4)
   expect_true(all_list_elements_inherit(x, "Theme"))
   expect_equal(
-    sum(vapply(x, function(x) inherits(x, "SingleTheme"),  logical(1))),
+    sum(vapply(x, function(x) inherits(x, "SingleTheme"), logical(1))),
     2
   )
   expect_equal(
-    sum(vapply(x, function(x) inherits(x, "MultiTheme"),  logical(1))),
+    sum(vapply(x, function(x) inherits(x, "MultiTheme"), logical(1))),
     2
   )
 })
@@ -45,11 +45,11 @@ test_that("large dataset", {
   expect_length(x, 4)
   expect_true(all_list_elements_inherit(x, "Theme"))
   expect_equal(
-    sum(vapply(x, function(x) inherits(x, "SingleTheme"),  logical(1))),
+    sum(vapply(x, function(x) inherits(x, "SingleTheme"), logical(1))),
     2
   )
   expect_equal(
-    sum(vapply(x, function(x) inherits(x, "MultiTheme"),  logical(1))),
+    sum(vapply(x, function(x) inherits(x, "MultiTheme"), logical(1))),
     2
   )
 })

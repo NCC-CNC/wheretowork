@@ -33,10 +33,12 @@ spatial_data_type.sf <- function(x, index = 1, ...) {
   assertthat::assert_that(
     inherits(x, "sf"),
     assertthat::is.string(index) || assertthat::is.count(index),
-    assertthat::noNA(index))
+    assertthat::noNA(index)
+  )
   if (is.character(index)) {
     assertthat::assert_that(
-      assertthat::has_name(x, index))
+      assertthat::has_name(x, index)
+    )
   }
 
   # determine if data are continuous or categorical
@@ -57,10 +59,12 @@ spatial_data_type.Raster <- function(x, index = 1, max_sample = 1000, ...) {
     assertthat::is.count(max_sample),
     assertthat::noNA(max_sample),
     assertthat::is.string(index) || assertthat::is.count(index),
-    assertthat::noNA(index))
+    assertthat::noNA(index)
+  )
   if (is.character(index)) {
     assertthat::assert_that(
-      index %in% names(x))
+      index %in% names(x)
+    )
   }
 
   # convert index to integer if field name supplied

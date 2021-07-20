@@ -26,14 +26,12 @@ mm_legend_component_scaffold <- function() {
 #' @return `shiny.tag` object.
 #'
 #' @noRd
-mm_header_component_scaffold <- function(
-  id = uuid::UUIDgenerate(),
-  icon = shiny::icon("map-marker-alt"),
-  remove_button = FALSE) {
+mm_header_component_scaffold <- function(id = uuid::UUIDgenerate(),
+                                         icon = shiny::icon("map-marker-alt"),
+                                         remove_button = FALSE) {
   # return scaffold
   htmltools::tags$div(
     class = "header",
-
     htmltools::tags$label(
       class = "view-container",
       `data-toggle` = "tooltip",
@@ -43,11 +41,11 @@ mm_header_component_scaffold <- function(
       title = "Show/hide legend",
       htmltools::tags$input(
         class = "view-checkbox",
-        type = "checkbox"),
+        type = "checkbox"
+      ),
       htmltools::tags$i(class = "far fa-minus-square checked"),
       htmltools::tags$i(class = "far fa-plus-square unchecked")
     ),
-
     htmltools::tags$label(
       class = "visible-container",
       `data-toggle` = "tooltip",
@@ -57,12 +55,13 @@ mm_header_component_scaffold <- function(
       title = "Show/hide layer",
       htmltools::tags$input(
         class = "visible-checkbox",
-        type = "checkbox"),
+        type = "checkbox"
+      ),
       htmltools::tags$i(class = "fa fa-eye checked"),
       htmltools::tags$i(class = "fa fa-eye-slash unchecked")
     ),
     htmltools::tags$label(
-       class = "name-label",
+      class = "name-label",
       `data-toggle` = "tooltip",
       `data-placement` = "top",
       `data-delay` = "{\"show\":500, \"hide\":100}",
@@ -70,7 +69,7 @@ mm_header_component_scaffold <- function(
       title = "Layer name",
     ),
     htmltools::tags$div(
-       class = "icon-container",
+      class = "icon-container",
       `data-toggle` = "tooltip",
       `data-placement` = "top",
       `data-delay` = "{\"show\":500, \"hide\":100}",
@@ -120,11 +119,11 @@ mm_subheader_component_scaffold <- function(id = uuid::UUIDgenerate()) {
       title = "Show/hide legend",
       htmltools::tags$input(
         class = "view-checkbox",
-        type = "checkbox"),
+        type = "checkbox"
+      ),
       htmltools::tags$i(class = "far fa-minus-square checked"),
       htmltools::tags$i(class = "far fa-plus-square unchecked")
     ),
-
     htmltools::tags$label(
       class = "visible-container",
       `data-toggle` = "tooltip",
@@ -134,11 +133,11 @@ mm_subheader_component_scaffold <- function(id = uuid::UUIDgenerate()) {
       title = "Show/hide feature",
       htmltools::tags$input(
         class = "visible-checkbox",
-        type = "checkbox"),
+        type = "checkbox"
+      ),
       htmltools::tags$i(class = "fa fa-eye checked"),
       htmltools::tags$i(class = "fa fa-eye-slash unchecked")
     ),
-
     htmltools::tags$label(
       class = "name-label",
       `data-toggle` = "tooltip",

@@ -39,8 +39,7 @@ Include <- R6::R6Class(
     #' @param status `logical` value.
     #' @return A new Lock object.
     ## constructor
-    initialize = function(
-      id, name, variable, mandatory, visible, status) {
+    initialize = function(id, name, variable, mandatory, visible, status) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -94,7 +93,8 @@ Include <- R6::R6Class(
       paste0(
         self$name,
         " ", start, "status: ", self$status, end, nl(),
-        "  variable: ", self$variable$repr())
+        "  variable: ", self$variable$repr()
+      )
     },
 
     #' @description
@@ -141,7 +141,8 @@ Include <- R6::R6Class(
       assertthat::assert_that(
         assertthat::is.string(name),
         assertthat::noNA(name),
-        name %in% c("status", "visible"))
+        name %in% c("status", "visible")
+      )
       if (identical(name, "status")) {
         out <- self$get_status()
       } else if (identical(name, "visible")) {
@@ -158,7 +159,8 @@ Include <- R6::R6Class(
     set_visible = function(value) {
       assertthat::assert_that(
         assertthat::is.flag(value),
-        assertthat::noNA(value))
+        assertthat::noNA(value)
+      )
       self$visible <- value
       invisible(self)
     },
@@ -169,7 +171,8 @@ Include <- R6::R6Class(
     set_status = function(value) {
       assertthat::assert_that(
         assertthat::is.flag(value),
-        assertthat::noNA(value))
+        assertthat::noNA(value)
+      )
       self$status <- value
       invisible(self)
     },
@@ -183,7 +186,8 @@ Include <- R6::R6Class(
       assertthat::assert_that(
         assertthat::is.string(name),
         assertthat::noNA(name),
-        name %in% c("status", "visible"))
+        name %in% c("status", "visible")
+      )
       if (identical(name, "status")) {
         self$set_status(value)
       } else if (identical(name, "visible")) {
@@ -250,7 +254,6 @@ Include <- R6::R6Class(
     update_on_map = function(x, zindex) {
       self$variable$update_render(x, self$id, zindex, self$visible)
     }
-
   )
 )
 
@@ -273,12 +276,12 @@ Include <- R6::R6Class(
 #'   package = "wheretowork"
 #' )
 #' f2 <- system.file(
-#'  "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
-#'  package = "wheretowork"
+#'   "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
+#'   package = "wheretowork"
 #' )
 #' f3 <- system.file(
-#'  "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
-#'  package = "wheretowork"
+#'   "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
+#'   package = "wheretowork"
 #' )
 #'
 #' # create new dataset
@@ -292,17 +295,16 @@ Include <- R6::R6Class(
 #'
 #' # print object
 #' print(w)
-#'
 #' @export
-new_include <- function(
-  name, variable, mandatory = FALSE,
-  visible = TRUE, status = TRUE,
-  id = uuid::UUIDgenerate()) {
+new_include <- function(name, variable, mandatory = FALSE,
+                        visible = TRUE, status = TRUE,
+                        id = uuid::UUIDgenerate()) {
   Include$new(
     id = id,
     name = name,
     variable = variable,
     mandatory = mandatory,
     visible = visible,
-    status = status)
+    status = status
+  )
 }

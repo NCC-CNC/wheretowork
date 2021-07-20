@@ -7,7 +7,8 @@ test_that("single variable", {
   attribute_data <- tibble::tibble(
     V1 = runif(length(idx)),
     V2 = runif(length(idx)),
-    `_index` = idx)
+    `_index` = idx
+  )
   boundary_data <- prioritizr::boundary_matrix(spatial_data)
   # create dataset
   d <- new_dataset(
@@ -16,7 +17,8 @@ test_that("single variable", {
     boundary_path = "memory",
     spatial_data = spatial_data,
     attribute_data = attribute_data,
-    boundary_data = boundary_data)
+    boundary_data = boundary_data
+  )
   # create variable
   v <- new_variable_from_auto(dataset = d, index = "V1")
   # create object
@@ -36,7 +38,8 @@ test_that("multiple variables", {
   attribute_data <- tibble::tibble(
     V1 = runif(length(idx)),
     V2 = runif(length(idx)),
-    `_index` = idx)
+    `_index` = idx
+  )
   boundary_data <- prioritizr::boundary_matrix(spatial_data)
   # create dataset
   d <- new_dataset(
@@ -45,7 +48,8 @@ test_that("multiple variables", {
     boundary_path = "memory",
     spatial_data = spatial_data,
     attribute_data = attribute_data,
-    boundary_data = boundary_data)
+    boundary_data = boundary_data
+  )
   # create variables
   v1 <- new_variable_from_auto(dataset = d, index = "V1")
   v2 <- new_variable_from_auto(dataset = d, index = "V2")

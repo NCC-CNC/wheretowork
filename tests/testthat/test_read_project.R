@@ -21,7 +21,8 @@ test_that("raster data", {
     dataset = d,
     name = "test",
     f1, f2, f3, f4,
-    mode = "beginner")
+    mode = "beginner"
+  )
   # import data
   x <- read_project(f1, f2, f3, f4)
   # force ids, file paths, and meta-data to be the same
@@ -77,7 +78,8 @@ test_that("spatial data", {
     dataset = d,
     name = "test",
     f1, f2, f3, f4,
-    mode = "beginner")
+    mode = "beginner"
+  )
   # import data
   x <- read_project(f1, f2, f3, f4)
   # force ids, file paths, and meta-data to be the same
@@ -133,7 +135,8 @@ test_that("default spatial, boundary, attribute paths", {
     dataset = d,
     name = "test",
     f1, f2, f3, f4,
-    mode = "beginner")
+    mode = "beginner"
+  )
   # import data
   x <- read_project(f1)
   # force ids, file paths, and meta-data to be the same

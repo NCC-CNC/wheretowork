@@ -22,9 +22,9 @@ server_export_data <- quote({
       write_spatial_data(
         x = app_data$dataset$get_index(input$exportPane_fields),
         path = con,
-        name = "data")
+        name = "data"
+      )
     },
     contentType = "application/zip"
   )
-
 })

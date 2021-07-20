@@ -10,17 +10,19 @@ NULL
 #' @inheritParams updateMapManagerLayer
 #'
 #' @export
-addSolutionResults <- function(
-  session = shiny::getDefaultReactiveDomain(), inputId, value) {
+addSolutionResults <- function(session = shiny::getDefaultReactiveDomain(),
+                               inputId, value) {
   # assert valid arguments
   assertthat::assert_that(
     assertthat::is.string(inputId),
     assertthat::noNA(inputId),
-    inherits(value, "Solution"))
+    inherits(value, "Solution")
+  )
   # pass data to widget
   session$sendCustomMessage(
     "solutionResults:addSolution",
-    list(id = inputId, value = value$get_solution_results_widget_data()))
+    list(id = inputId, value = value$get_solution_results_widget_data())
+  )
 }
 
 #' Drop a solution results
@@ -32,17 +34,19 @@ addSolutionResults <- function(
 #' @inheritParams updateMapManagerLayer
 #'
 #' @export
-dropSolutionResults <- function(
-  session = shiny::getDefaultReactiveDomain(), inputId, value) {
+dropSolutionResults <- function(session = shiny::getDefaultReactiveDomain(),
+                                inputId, value) {
   # assert valid arguments
   assertthat::assert_that(
     assertthat::is.string(inputId),
     assertthat::noNA(inputId),
     assertthat::is.string(value),
-    assertthat::noNA(value))
+    assertthat::noNA(value)
+  )
   # pass data to widget
   session$sendCustomMessage(
-    "solutionResults:dropSolution", list(id = inputId, value = value))
+    "solutionResults:dropSolution", list(id = inputId, value = value)
+  )
 }
 
 #' Show solution results
@@ -54,15 +58,17 @@ dropSolutionResults <- function(
 #' @inheritParams updateMapManagerLayer
 #'
 #' @export
-showSolutionResults <- function(
-  session = shiny::getDefaultReactiveDomain(), inputId, value) {
+showSolutionResults <- function(session = shiny::getDefaultReactiveDomain(),
+                                inputId, value) {
   # assert valid arguments
   assertthat::assert_that(
     assertthat::is.string(inputId),
     assertthat::noNA(inputId),
     assertthat::is.string(value),
-    assertthat::noNA(value))
+    assertthat::noNA(value)
+  )
   # pass data to widget
   session$sendCustomMessage(
-    "solutionResults:showSolution", list(id = inputId, value = value))
+    "solutionResults:showSolution", list(id = inputId, value = value)
+  )
 }

@@ -162,7 +162,7 @@ Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUI
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># import data</span></span>
 <span class='r-in'><span class='va'>r</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/warning.html'>suppressWarnings</a></span><span class='op'>(</span><span class='fu'>raster</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/raster/man/raster.html'>raster</a></span><span class='op'>(</span><span class='va'>f</span><span class='op'>)</span><span class='op'>)</span></span>
-<span class='r-in'><span class='va'>r</span> <span class='op'>&lt;-</span> <span class='fu'>raster</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/raster/man/stack.html'>stack</a></span><span class='op'>(</span><span class='va'>r</span>, <span class='va'>r</span> <span class='op'>*</span> <span class='fl'>2</span>, <span class='va'>r</span> <span class='op'>*</span> <span class='fl'>3</span>, <span class='va'>r</span><span class='op'>*</span> <span class='fl'>4</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>r</span> <span class='op'>&lt;-</span> <span class='fu'>raster</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/raster/man/stack.html'>stack</a></span><span class='op'>(</span><span class='va'>r</span>, <span class='va'>r</span> <span class='op'>*</span> <span class='fl'>2</span>, <span class='va'>r</span> <span class='op'>*</span> <span class='fl'>3</span>, <span class='va'>r</span> <span class='op'>*</span> <span class='fl'>4</span><span class='op'>)</span></span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># create new dataset</span></span>
 <span class='r-in'><span class='va'>d</span> <span class='op'>&lt;-</span> <span class='fu'>new_dataset_from_auto</span><span class='op'>(</span><span class='va'>r</span><span class='op'>)</span></span>
@@ -174,7 +174,6 @@ Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUI
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>     spatial: memory</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>     attribute: memory</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>     boundary: memory</span>
-<span class='r-in'></span>
 </code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

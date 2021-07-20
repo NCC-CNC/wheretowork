@@ -122,7 +122,7 @@
     <p>Write spatial data to disk as a zip archive.</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>write_spatial_data</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>path</span>, name <span class='op'>=</span> <span class='fu'>tools</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/r/tools/fileutils.html'>file_path_sans_ext</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/basename.html'>basename</a></span><span class='op'>(</span><span class='va'>path</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></code></pre></div>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>write_spatial_data</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>path</span>, name <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -138,7 +138,7 @@
     <tr>
       <th>name</th>
       <td><p><code>character</code> name of the spatial data inside the zip archive.
-Defaults to the file name of <code>path</code>.</p></td>
+Defaults to <code>NULL</code> such that the argument is the file name of <code>path</code>.</p></td>
     </tr>
     </table>
 

@@ -11,8 +11,9 @@ test_that("vector data", {
   expect_true(
     all(
       paste0(tools::file_path_sans_ext(
-        basename(f)), c(".shp", ".prj", ".dbf", ".shx")) %in%
-      unzip(f, list = TRUE)$Name
+        basename(f)
+      ), c(".shp", ".prj", ".dbf", ".shx")) %in%
+        unzip(f, list = TRUE)$Name
     )
   )
 })
@@ -28,7 +29,7 @@ test_that("raster data", {
   expect_true(
     all(
       paste0(tools::file_path_sans_ext(basename(f)), c(".tif", ".txt")) %in%
-      unzip(f, list = TRUE)$Name
+        unzip(f, list = TRUE)$Name
     )
   )
 })

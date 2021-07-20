@@ -26,8 +26,8 @@ NULL
 #' }
 #'
 #' @export
-solutionResults <- function(
-  x = list(), width = NULL, height = NULL, elementId = NULL) {
+solutionResults <- function(x = list(), width = NULL, height = NULL,
+                            elementId = NULL) {
   # assert arguments are valid
   assertthat::assert_that(is.list(x))
   if (length(x) > 0) {
@@ -38,7 +38,8 @@ solutionResults <- function(
   if (length(x) > 0) {
     p <- list(
       api = list(),
-      solutions = lapply(x, function(x) x$get_solution_results_widget_data()))
+      solutions = lapply(x, function(x) x$get_solution_results_widget_data())
+    )
   } else {
     p <- list(api = list(), solutions = list())
   }
@@ -80,17 +81,23 @@ solutionResults <- function(
 #' @name solutionResults-shiny
 #'
 #' @export
-solutionResultsOutput <- function(outputId, width = "100%", height = "auto"){
+solutionResultsOutput <- function(outputId, width = "100%", height = "auto") {
   htmlwidgets::shinyWidgetOutput(
-    outputId, "solutionResults", width, height, package = "wheretowork")
+    outputId, "solutionResults", width, height,
+    package = "wheretowork"
+  )
 }
 
 #' @rdname solutionResults-shiny
 #' @export
 renderSolutionResults <- function(expr, env = parent.frame(), quoted = FALSE) {
-  if (!quoted) { expr <- substitute(expr) } # force quoted
+  if (!quoted) {
+    expr <- substitute(expr)
+  } # force quoted
   htmlwidgets::shinyRenderWidget(
-    expr, solutionResultsOutput, env, quoted = TRUE)
+    expr, solutionResultsOutput, env,
+    quoted = TRUE
+  )
 }
 
 # Add custom HTML for the widget (automatically used by htmlwidgets)

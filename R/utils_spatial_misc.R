@@ -11,13 +11,13 @@ NULL
 #'
 #' @examples
 #' shapefile_field_names(system.file("shape/nc.shp", package = "sf"))
-#'
 #' @export
 shapefile_field_names <- function(x) {
   # assert arguments are valid
   assertthat::assert_that(
     assertthat::is.string(x),
-    endsWith(x, ".shp"))
+    endsWith(x, ".shp")
+  )
   # find layer name
   l <- sf::st_layers(x)$name[[1]]
   # prepare query
@@ -56,10 +56,13 @@ reserve_sizes <- function(x, areas, boundary_matrix) {
     ## boundary matrix
     inherits(boundary_matrix, c("dsCMatrix", "dgCMatrix")),
     nrow(boundary_matrix) == ncol(boundary_matrix),
-    nrow(boundary_matrix) == length(x))
+    nrow(boundary_matrix) == length(x)
+  )
 
   # return NA if no planning units selected, then return NA
-  if (sum(x) < 0.5) return(NA_real_)
+  if (sum(x) < 0.5) {
+    return(NA_real_)
+  }
 
   # create adjacency matrix to describe relationships among units
   idx <- which(x > 0.5)

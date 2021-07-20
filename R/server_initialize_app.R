@@ -57,5 +57,4 @@ server_initialize_app <- quote({
 
   # hide elements
   shinyjs::hideElement("importModal_spatial_text")
-
 })

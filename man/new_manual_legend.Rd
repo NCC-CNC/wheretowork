@@ -25,5 +25,4 @@ l <- new_manual_legend(c("#000000", "#AAAAAA"), c("a", "b"))
 
 # print object
 print(l)
-
 }

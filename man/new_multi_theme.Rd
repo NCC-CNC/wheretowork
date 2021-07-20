@@ -35,12 +35,12 @@ f1 <- system.file(
   package = "wheretowork"
 )
 f2 <- system.file(
- "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
- package = "wheretowork"
+  "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
+  package = "wheretowork"
 )
 f3 <- system.file(
- "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
- package = "wheretowork"
+  "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
+  package = "wheretowork"
 )
 
 # create new dataset
@@ -58,9 +58,9 @@ f3 <- new_feature(name = "Palms", variable = v3)
 
 # create a theme using the features
 mt <- new_multi_theme(
-  name = "Endangered species", feature = list(f1, f2, f3))
+  name = "Endangered species", feature = list(f1, f2, f3)
+)
 
 # print object
 print(mt)
-
 }

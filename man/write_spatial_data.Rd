@@ -4,7 +4,7 @@
 \alias{write_spatial_data}
 \title{Write spatial data}
 \usage{
-write_spatial_data(x, path, name = tools::file_path_sans_ext(basename(path)))
+write_spatial_data(x, path, name = NULL)
 }
 \arguments{
 \item{x}{\code{\link[sf:sf]{sf::st_sf()}} or \code{\link[raster:stack]{raster::stack()}} object.}
@@ -12,7 +12,7 @@ write_spatial_data(x, path, name = tools::file_path_sans_ext(basename(path)))
 \item{path}{\code{character} file path to save zip archive.}
 
 \item{name}{\code{character} name of the spatial data inside the zip archive.
-Defaults to the file name of \code{path}.}
+Defaults to \code{NULL} such that the argument is the file name of \code{path}.}
 }
 \value{
 Invisible \code{TRUE} indicating success.

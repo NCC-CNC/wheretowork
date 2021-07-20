@@ -27,8 +27,9 @@ simulate_solution <- function(dataset, themes, weights, includes = list()) {
     length(themes) >= 1,
     length(weights) >= 1,
     all_list_elements_inherit(themes, "Theme"),
-    all_list_elements_inherit(weights, "Weight"))
-  if (length(includes) > 0 ) {
+    all_list_elements_inherit(weights, "Weight")
+  )
+  if (length(includes) > 0) {
     all_list_elements_inherit(includes, "Include")
   }
 
@@ -39,7 +40,8 @@ simulate_solution <- function(dataset, themes, weights, includes = list()) {
   # simulate statistics
   statistics <- list(
     new_statistic("Total area", stats::runif(1, 1, 1000), "ha"),
-    new_statistic("Total perimeter", stats::runif(1, 1, 1000), "km"))
+    new_statistic("Total perimeter", stats::runif(1, 1, 1000), "km")
+  )
 
   # simulate weight results
   weight_results <- lapply(weights, function(x) {

@@ -57,19 +57,23 @@ import_data <- function(x, mode) {
   map <- leaflet::leafletProxy("map")
   leaflet::flyToBounds(
     map, app_data$bbox$xmin, app_data$bbox$ymin,
-    app_data$bbox$xmax, app_data$bbox$ymax)
+    app_data$bbox$xmax, app_data$bbox$ymax
+  )
   leaflet::fitBounds(
     map, app_data$bbox$xmin, app_data$bbox$ymin,
-    app_data$bbox$xmax, app_data$bbox$ymax)
+    app_data$bbox$xmax, app_data$bbox$ymax
+  )
   app_data$mm$initialize_map(map)
 
   ## render sidebars on map
   leaflet.extras2::addSidebar(
-    map, id = "analysisSidebar",
+    map,
+    id = "analysisSidebar",
     options = list(position = "right", fit = FALSE)
   )
   leaflet.extras2::addSidebar(
-    map, id = "dataSidebar",
+    map,
+    id = "dataSidebar",
     options = list(position = "left", fit = FALSE)
   )
 
@@ -85,10 +89,12 @@ import_data <- function(x, mode) {
 
   ## open sidebars
   leaflet.extras2::openSidebar(
-    map, id = "mapManagerPane", sidebar_id = "dataSidebar"
+    map,
+    id = "mapManagerPane", sidebar_id = "dataSidebar"
   )
   leaflet.extras2::openSidebar(
-    map, id = "newSolutionPane", sidebar_id = "analysisSidebar"
+    map,
+    id = "newSolutionPane", sidebar_id = "analysisSidebar"
   )
 
   ## remove startup mode

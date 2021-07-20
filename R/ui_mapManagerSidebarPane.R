@@ -24,9 +24,8 @@ NULL
 #' }
 #'
 #' @export
-mapManagerSidebarPane <- function(
-  id,
-  mapManagerId = paste0(id, "_settings")) {
+mapManagerSidebarPane <- function(id,
+                                  mapManagerId = paste0(id, "_settings")) {
   # assert arguments are valid
   assertthat::assert_that(
     ### id
@@ -34,7 +33,8 @@ mapManagerSidebarPane <- function(
     assertthat::noNA(id),
     ### mapManagerId
     assertthat::is.string(mapManagerId),
-    assertthat::noNA(mapManagerId))
+    assertthat::noNA(mapManagerId)
+  )
 
   # create sidebar widget
   ## create sidebar
@@ -57,5 +57,4 @@ mapManagerSidebarPane <- function(
 
   # return result
   w
-
 }

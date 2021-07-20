@@ -10,7 +10,8 @@ NULL
 #' @param solutionResultsId `character` identifier for the
 #'   [solutionResults()] widget to create within the sidebar pane.
 #'   This widget is used to  display results for solutions.
-#'   Defaults to `paste0(id, "_results")`.
+#'   Defaults to `NULL` such that the default argument is
+#'   `paste0(id, "_results")`.
 #'
 #' @details
 #' This is designed to be used as an argument to
@@ -28,17 +29,19 @@ NULL
 #' }
 #'
 #' @export
-solutionResultsSidebarPane <- function(
-  id,
-  solutionResultsId = paste0(id, "_results")) {
+solutionResultsSidebarPane <- function(id, solutionResultsId = NULL) {
   # assert arguments are valid
+  if (is.null(solutionResultsId)) {
+    solutionResultsId <- paste0(id, "_results")
+  }
   assertthat::assert_that(
     ### id
     assertthat::is.string(id),
     assertthat::noNA(id),
-    ### solutionResultsId
+    ## solutionResultsId
     assertthat::is.string(solutionResultsId),
-    assertthat::noNA(solutionResultsId))
+    assertthat::noNA(solutionResultsId)
+  )
 
   # create sidebar widget
   ## create sidebar
@@ -61,5 +64,4 @@ solutionResultsSidebarPane <- function(
 
   # return result
   w
-
 }

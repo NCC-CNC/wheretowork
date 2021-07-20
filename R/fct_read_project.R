@@ -45,12 +45,12 @@ NULL
 #'   package = "wheretowork"
 #' )
 #' f3 <- system.file(
-#'  "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
-#'  package = "wheretowork"
+#'   "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
+#'   package = "wheretowork"
 #' )
 #' f4 <- system.file(
-#'  "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
-#'  package = "wheretowork"
+#'   "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
+#'   package = "wheretowork"
 #' )
 #'
 #' # read project
@@ -58,37 +58,40 @@ NULL
 #'
 #' # print project
 #' print(x)
-#'
 #' @export
-read_project <- function(
-  path,
-  spatial_path = NULL,
-  attribute_path = NULL,
-  boundary_path = NULL,
-  mode = NULL) {
+read_project <- function(path,
+                         spatial_path = NULL,
+                         attribute_path = NULL,
+                         boundary_path = NULL,
+                         mode = NULL) {
   # assert arguments are valid
   assertthat::assert_that(
     assertthat::is.string(path),
-    assertthat::noNA(path))
+    assertthat::noNA(path)
+  )
   if (!is.null(spatial_path)) {
     assertthat::assert_that(
       assertthat::is.string(spatial_path),
-      assertthat::noNA(spatial_path))
+      assertthat::noNA(spatial_path)
+    )
   }
   if (!is.null(attribute_path)) {
     assertthat::assert_that(
       assertthat::is.string(attribute_path),
-      assertthat::noNA(attribute_path))
+      assertthat::noNA(attribute_path)
+    )
   }
   if (!is.null(boundary_path)) {
     assertthat::assert_that(
       assertthat::is.string(boundary_path),
-      assertthat::noNA(boundary_path))
+      assertthat::noNA(boundary_path)
+    )
   }
   if (!is.null(mode)) {
     assertthat::assert_that(
       assertthat::is.string(mode),
-      assertthat::noNA(mode))
+      assertthat::noNA(mode)
+    )
   }
 
   # import configuration file
@@ -124,7 +127,8 @@ read_project <- function(
           "\"",
           tools::file_path_sans_ext(basename(x$spatial_path)),
           c(".shp", ".dbf", ".prj", ".shx"),
-          "\""),
+          "\""
+        ),
         collapse = ", "
       )
   } else {
@@ -148,7 +152,8 @@ read_project <- function(
   d <- new_dataset(
     spatial_path = spatial_path,
     attribute_path = attribute_path,
-    boundary_path = boundary_path)
+    boundary_path = boundary_path
+  )
 
   # import themes
   ## import data
@@ -264,7 +269,8 @@ read_project <- function(
   # calculate current amount held for each feature within each theme
   ss <- new_solution_settings(
     themes = themes, weights = weights, includes = includes,
-    parameters = list())
+    parameters = list()
+  )
   ss$update_current_held()
 
   # return result

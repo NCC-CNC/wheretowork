@@ -17,12 +17,15 @@ extract_data_matrix <- function(x) {
   assertthat::assert_that(
     is.list(x),
     all_list_elements_inherit(x, "Variable"),
-    n_distinct(vapply(x, function(z) z$dataset$id, character(1))) == 1)
+    n_distinct(vapply(x, function(z) z$dataset$id, character(1))) == 1
+  )
   # get attribute data
   d <- x[[1]]$dataset$get_attribute_data()
   # extract variable indices
   idx <- vapply(x, FUN.VALUE = integer(1), function(z) {
-    if (is.numeric(z$index)) return(as.integer(z$index))
+    if (is.numeric(z$index)) {
+      return(as.integer(z$index))
+    }
     which(z$index == names(d))
   })
   # return result

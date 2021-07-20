@@ -43,12 +43,12 @@ f1 <- system.file(
   package = "wheretowork"
 )
 f2 <- system.file(
- "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
- package = "wheretowork"
+  "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
+  package = "wheretowork"
 )
 f3 <- system.file(
- "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
- package = "wheretowork"
+  "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
+  package = "wheretowork"
 )
 
 # create new dataset
@@ -56,11 +56,13 @@ d <- new_dataset(f1, f2, f3)
 
 # create new variable
 v <- new_variable_from_metadata(
-  d, list(index = 1, units = "ha", type = "continuous",
-          colors = c("#000000", "#AAAAAA"), total = 12,
-          min_value = 1, max_value = 3))
+  d, list(
+    index = 1, units = "ha", type = "continuous",
+    colors = c("#000000", "#AAAAAA"), total = 12,
+    min_value = 1, max_value = 3
+  )
+)
 
 # print object
 print(v)
-
 }

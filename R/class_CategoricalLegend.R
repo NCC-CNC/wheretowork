@@ -26,7 +26,8 @@ CategoricalLegend <- R6::R6Class(
         is.character(colors),
         assertthat::noNA(colors),
         all(nchar(colors) %in% c(7, 9)),
-        all(substr(colors, 1, 1) == "#"))
+        all(substr(colors, 1, 1) == "#")
+      )
       self$values <- values
       self$colors <- colors
     },
@@ -91,7 +92,6 @@ CategoricalLegend <- R6::R6Class(
 #'
 #' # print object
 #' print(l)
-#'
 #' @export
 new_categorical_legend <- function(values, colors) {
   CategoricalLegend$new(values = values, colors)

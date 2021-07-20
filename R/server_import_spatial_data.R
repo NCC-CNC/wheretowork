@@ -35,7 +35,8 @@ server_import_spatial_data <- quote({
     ## prepare settings
     settings_data <-
       plyr::rbind.fill(lapply(
-        input$importModal_spatial_settings, as.data.frame))
+        input$importModal_spatial_settings, as.data.frame
+      ))
     settings_data <- settings_data[settings_data$import, , drop = FALSE]
 
     ## verify that at least one theme is selected
@@ -136,5 +137,4 @@ server_import_spatial_data <- quote({
     ## remove modal
     shiny::removeModal(session)
   })
-
 })

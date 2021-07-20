@@ -36,3 +36,4 @@ pkgdown
 .dockerignore
 Dockerfile
 docker-compose.yml
+.lintr

@@ -25,5 +25,4 @@ x <- new_statistic(name = "Area", value = 12, units = "ha")
 
 # print object
 print(x)
-
 }

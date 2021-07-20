@@ -46,12 +46,12 @@ f1 <- system.file(
   package = "wheretowork"
 )
 f2 <- system.file(
- "extdata", "projects", "sim_raster", "sim_raster_attribute.csv.gz",
- package = "wheretowork"
+  "extdata", "projects", "sim_raster", "sim_raster_attribute.csv.gz",
+  package = "wheretowork"
 )
 f3 <- system.file(
- "extdata", "projects", "sim_raster","sim_raster_boundary.csv.gz",
- package = "wheretowork"
+  "extdata", "projects", "sim_raster", "sim_raster_boundary.csv.gz",
+  package = "wheretowork"
 )
 
 # create new dataset
@@ -72,6 +72,6 @@ write_project(
   path = tempfile(),
   spatial_path = tempfile(fileext = ".tif"),
   attribute_path = tempfile(fileext = ".csv.gz"),
-  boundary_path = tempfile(fileext = ".csv.gz"))
-
+  boundary_path = tempfile(fileext = ".csv.gz")
+)
 }

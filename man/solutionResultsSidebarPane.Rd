@@ -4,7 +4,7 @@
 \alias{solutionResultsSidebarPane}
 \title{Solution results sidebar pane}
 \usage{
-solutionResultsSidebarPane(id, solutionResultsId = paste0(id, "_results"))
+solutionResultsSidebarPane(id, solutionResultsId = NULL)
 }
 \arguments{
 \item{id}{\code{character} identifier for the sidebar pane.}
@@ -12,7 +12,8 @@ solutionResultsSidebarPane(id, solutionResultsId = paste0(id, "_results"))
 \item{solutionResultsId}{\code{character} identifier for the
 \code{\link[=solutionResults]{solutionResults()}} widget to create within the sidebar pane.
 This widget is used to  display results for solutions.
-Defaults to \code{paste0(id, "_results")}.}
+Defaults to \code{NULL} such that the default argument is
+\code{paste0(id, "_results")}.}
 }
 \value{
 A \code{shiny.tag} object with the sidebar pane.

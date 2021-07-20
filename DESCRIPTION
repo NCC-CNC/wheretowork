@@ -1,8 +1,14 @@
 Package: wheretowork
-Title: Systematic conservation planning application
+Title: Interactive systematic conservation planning application
 Version: 0.0.0.9000
 Description:
-  Interactive application for systematic conservation planning
+    Launch an interactive web application for systematic conservation planning.
+    Data can be accessed using projects available on disk, uploaded using
+    project files, or uploaded in shapefile format. Prioritizations are
+    generated using mixed integer programming techniques. The performance of
+    candidate prioritizations can be examined using summary statistics,
+    interactive charts, and tables. Finally, data and prioritizations can also
+    be downloaded for subsequent analysis.
 Authors@R: c(
   person(c('Jeffrey', 'O'), 'Hanson',
     email='jeffrey.hanson@uqconnect.edu.au', role = c('aut', 'cre'),
@@ -107,8 +113,8 @@ Collate:
     'class_Statistic.R'
     'class_WeightResults.R'
     'fct_find_projects.R'
-    'fct_generate_min_set_solution.R'
-    'fct_generate_min_shortfall_solution.R'
+    'fct_min_set_solution.R'
+    'fct_min_shortfall_solution.R'
     'fct_read_project.R'
     'fct_simulate_includes.R'
     'fct_simulate_legends.R'

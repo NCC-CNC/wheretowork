@@ -84,7 +84,8 @@ WeightResults <- R6::R6Class(
         " ", start, "status: ", self$status,
         ", factor: ", round(self$factor, 2),
         ", held: ", round(self$held, 2), end, nl(),
-        "  weight: ", self$weight$repr())
+        "  weight: ", self$weight$repr()
+      )
     },
 
     #' @description
@@ -141,12 +142,12 @@ WeightResults <- R6::R6Class(
 #'   package = "wheretowork"
 #' )
 #' f2 <- system.file(
-#'  "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
-#'  package = "wheretowork"
+#'   "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
+#'   package = "wheretowork"
 #' )
 #' f3 <- system.file(
-#'  "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
-#'  package = "wheretowork"
+#'   "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
+#'   package = "wheretowork"
 #' )
 #'
 #' # create new dataset
@@ -163,12 +164,11 @@ WeightResults <- R6::R6Class(
 #'
 #' # print object
 #' print(w)
-#'
 #' @export
-new_weight_results <- function(
-  weight, held, id = uuid::UUIDgenerate()) {
+new_weight_results <- function(weight, held, id = uuid::UUIDgenerate()) {
   WeightResults$new(
     id = id,
     weight = weight,
-    held = held)
+    held = held
+  )
 }

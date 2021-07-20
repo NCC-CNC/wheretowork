@@ -15,7 +15,8 @@ test_that("initialization", {
     limit_goal = 0.02,
     step_goal = 0.05,
     current = 0.245,
-    id = "FID1")
+    id = "FID1"
+  )
   f2 <- new_feature(
     name = "F2",
     variable = new_variable_from_auto(dataset = d, index = 2, units = "ha"),
@@ -27,11 +28,13 @@ test_that("initialization", {
     limit_goal = 0.021,
     step_goal = 0.051,
     current = 0.5,
-    id = "FID2")
+    id = "FID2"
+  )
   x <- new_multi_theme(
     name = "MF",
     feature = list(f1, f2),
-    id = "MF1")
+    id = "MF1"
+  )
   # run tests
   print(x)
   expect_is(x$repr(), "character")
@@ -55,7 +58,8 @@ test_that("get methods", {
     limit_goal = 0.02,
     step_goal = 0.05,
     current = 0.245,
-    id = "FID1")
+    id = "FID1"
+  )
   f2 <- new_feature(
     name = "F2",
     variable = new_variable_from_auto(dataset = d, index = 2, units = "ha"),
@@ -67,11 +71,13 @@ test_that("get methods", {
     limit_goal = 0.021,
     step_goal = 0.051,
     current = 0.5,
-    id = "FID2")
+    id = "FID2"
+  )
   x <- new_multi_theme(
     name = "MF",
     feature = list(f1, f2),
-    id = "MF1")
+    id = "MF1"
+  )
   # run tests
   expect_identical(x$get_feature_goal(), c(0.2, 0.21))
   expect_identical(x$get_feature_visible(), c(TRUE, FALSE))
@@ -100,7 +106,8 @@ test_that("set methods", {
     limit_goal = 0.02,
     step_goal = 0.05,
     current = 0.245,
-    id = "FID1")
+    id = "FID1"
+  )
   f2 <- new_feature(
     name = "F2",
     variable = new_variable_from_auto(dataset = d, index = 2, units = "ha"),
@@ -112,11 +119,13 @@ test_that("set methods", {
     limit_goal = 0.021,
     step_goal = 0.051,
     current = 0.5,
-    id = "FID2")
+    id = "FID2"
+  )
   x <- new_multi_theme(
     name = "MF",
     feature = list(f1, f2),
-    id = "MF1")
+    id = "MF1"
+  )
   # run tests
   x$set_feature_goal(c(0.89, 0.26))
   x$set_feature_status(c(TRUE, FALSE))
@@ -153,7 +162,8 @@ test_that("export method", {
     limit_goal = 0.02,
     step_goal = 0.05,
     current = 0.245,
-    id = "FID1")
+    id = "FID1"
+  )
   f2 <- new_feature(
     name = "F2",
     variable = new_variable_from_auto(dataset = d, index = 2, units = "ha"),
@@ -165,11 +175,13 @@ test_that("export method", {
     limit_goal = 0.021,
     step_goal = 0.051,
     current = 0.5,
-    id = "FID2")
+    id = "FID2"
+  )
   x <- new_multi_theme(
     name = "MF",
     feature = list(f1, f2),
-    id = "MF1")
+    id = "MF1"
+  )
   # run tests
   expect_equal(
     x$export(),
@@ -195,7 +207,8 @@ test_that("widget methods", {
     limit_goal = 0.02,
     step_goal = 0.05,
     current = 0.245,
-    id = "FID1")
+    id = "FID1"
+  )
   f2 <- new_feature(
     name = "F2",
     variable = new_variable_from_auto(dataset = d, index = 2, units = "ha"),
@@ -207,11 +220,13 @@ test_that("widget methods", {
     limit_goal = 0.021,
     step_goal = 0.051,
     current = 0.523,
-    id = "FID2")
+    id = "FID2"
+  )
   x <- new_multi_theme(
     name = "MF",
     feature = list(f1, f2),
-    id = "MF1")
+    id = "MF1"
+  )
   # run tests
   ## solution settings
   expect_identical(
@@ -236,14 +251,15 @@ test_that("widget methods", {
   expect_identical(
     x$get_map_manager_widget_data(),
     list(
-        id = "MF1",
-        name = "MF",
-        feature_name = c("F1", "F2"),
-        feature_id = c("FID1", "FID2"),
-        feature_visible = c(TRUE, FALSE),
-        feature_legend =
-          lapply(x$feature, function(x) x$variable$legend$get_widget_data()),
-          units = "ha",
-        type = "theme")
+      id = "MF1",
+      name = "MF",
+      feature_name = c("F1", "F2"),
+      feature_id = c("FID1", "FID2"),
+      feature_visible = c(TRUE, FALSE),
+      feature_legend =
+        lapply(x$feature, function(x) x$variable$legend$get_widget_data()),
+      units = "ha",
+      type = "theme"
+    )
   )
 })

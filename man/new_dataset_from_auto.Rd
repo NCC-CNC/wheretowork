@@ -34,12 +34,11 @@ f <- system.file(
 
 # import data
 r <- suppressWarnings(raster::raster(f))
-r <- raster::stack(r, r * 2, r * 3, r* 4)
+r <- raster::stack(r, r * 2, r * 3, r * 4)
 
 # create new dataset
 d <- new_dataset_from_auto(r)
 
 # print object
 print(d)
-
 }

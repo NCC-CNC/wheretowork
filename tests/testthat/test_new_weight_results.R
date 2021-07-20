@@ -14,11 +14,13 @@ test_that("initialization", {
     min_factor = 0.01,
     max_factor = 0.9,
     step_factor = 0.03,
-    id = "FID1")
+    id = "FID1"
+  )
   x <- new_weight_results(
     weight = w,
     held = 0.9,
-    id = "RID1")
+    id = "RID1"
+  )
   # run tests
   print(x)
   expect_is(x$repr(), "character")
@@ -43,13 +45,15 @@ test_that("results methods", {
     min_factor = 0.01,
     max_factor = 0.9,
     step_factor = 0.03,
-    id = "FID1")
+    id = "FID1"
+  )
   w$factor <- 0.8
   w$status <- TRUE
   x <- new_weight_results(
     weight = w,
     held = 0.9,
-    id = "RID1")
+    id = "RID1"
+  )
   # run tests
   expect_identical(
     x$get_results_data(),
@@ -79,13 +83,15 @@ test_that("widget methods", {
     min_factor = 0.01,
     max_factor = 0.9,
     step_factor = 0.03,
-    id = "FID1")
+    id = "FID1"
+  )
   w$factor <- 0.8
   w$status <- TRUE
   x <- new_weight_results(
     weight = w,
     held = 0.9,
-    id = "RID1")
+    id = "RID1"
+  )
   # run tests
   expect_identical(
     x$get_widget_data(),

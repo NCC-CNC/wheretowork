@@ -19,7 +19,7 @@ server_export_spreadsheets <- quote({
       # find selected solution
       i <- which(
         app_data$solution_ids ==
-        input$solutionResultsPane_results_modal_select
+          input$solutionResultsPane_results_modal_select
       )
       # return path based on name of selected solution
       paste0(names(app_data$solution_ids)[i], "_theme_results.xlsx")
@@ -28,7 +28,7 @@ server_export_spreadsheets <- quote({
       # find selected solution
       i <- which(
         app_data$solution_ids ==
-        input$solutionResultsPane_results_modal_select
+          input$solutionResultsPane_results_modal_select
       )
       # generate table
       x <- as.data.frame(
@@ -47,7 +47,7 @@ server_export_spreadsheets <- quote({
       # find selected solution
       i <- which(
         app_data$solution_ids ==
-        input$solutionResultsPane_results_modal_select
+          input$solutionResultsPane_results_modal_select
       )
       # return path based on name of selected solution
       paste0(names(app_data$solution_ids)[i], "_weight_results.xlsx")
@@ -56,7 +56,7 @@ server_export_spreadsheets <- quote({
       # find selected solution
       i <- which(
         app_data$solution_ids ==
-        input$solutionResultsPane_results_modal_select
+          input$solutionResultsPane_results_modal_select
       )
       # generate table
       x <- as.data.frame(
@@ -68,5 +68,4 @@ server_export_spreadsheets <- quote({
     },
     contentType = "application/zip"
   )
-
 })

@@ -13,7 +13,6 @@
 #'
 #' @noRd
 server_verify_spatial_uploads <- quote({
-
   shiny::observeEvent(input$importModal_spatial_spatial_file, {
     ## specify dependencies
     shiny::req(input$importModal_spatial_spatial_file)
@@ -56,5 +55,4 @@ server_verify_spatial_uploads <- quote({
     # show help text
     shinyjs::showElement("importModal_spatial_text")
   })
-
 })

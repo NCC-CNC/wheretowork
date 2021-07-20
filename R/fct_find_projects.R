@@ -8,8 +8,7 @@
 #'  and names of projects found in the directory.
 #'
 #' @examples
-#' #TODO
-#'
+#' # TODO
 #' @export
 find_projects <- function(x) {
   # assert argument is valid
@@ -27,7 +26,9 @@ find_projects <- function(x) {
   out$name <-
     vapply(out$path, FUN.VALUE = character(1), function(x) {
       v <- is_valid_configuration_file(x)
-      if (!isTRUE(v)) return(NA_character_)
+      if (!isTRUE(v)) {
+        return(NA_character_)
+      }
       yaml::read_yaml(x)$name[[1]]
     })
 

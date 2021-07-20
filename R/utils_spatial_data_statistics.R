@@ -37,7 +37,8 @@ spatial_data_statistics.sf <- function(x, type, index = 1) {
   )
   if (is.character(index)) {
     assertthat::assert_that(
-      assertthat::has_name(x, index))
+      assertthat::has_name(x, index)
+    )
   }
 
   # convert index to integer if field name supplied
@@ -51,12 +52,14 @@ spatial_data_statistics.sf <- function(x, type, index = 1) {
     out <- list(
       total = sum(x[[index]], na.rm = TRUE),
       min_value = min(x[[index]], na.rm = TRUE),
-      max_value = max(x[[index]], na.rm = TRUE))
+      max_value = max(x[[index]], na.rm = TRUE)
+    )
   } else {
     ## categorical data
     out <- list(
       total = sum(x[[index]], na.rm = TRUE),
-      values = sort(unique(x[[index]], na.rm = TRUE)))
+      values = sort(unique(x[[index]], na.rm = TRUE))
+    )
   }
 
   # return result
@@ -77,7 +80,8 @@ spatial_data_statistics.Raster <- function(x, type, index = 1) {
   )
   if (is.character(index)) {
     assertthat::assert_that(
-      index %in% names(x))
+      index %in% names(x)
+    )
   }
 
   # convert index to integer if field name supplied
@@ -91,12 +95,14 @@ spatial_data_statistics.Raster <- function(x, type, index = 1) {
     out <- list(
       total = raster::cellStats(x[[index]], "sum"),
       min_value = raster::cellStats(x[[index]], "min"),
-      max_value = raster::cellStats(x[[index]], "max"))
+      max_value = raster::cellStats(x[[index]], "max")
+    )
   } else {
     ## categorical data
     out <- list(
       total = raster::cellStats(x[[index]], "sum"),
-      values = raster::unique(x[[index]], na.last = NA))
+      values = raster::unique(x[[index]], na.last = NA)
+    )
   }
 
   # return result

@@ -41,9 +41,8 @@ Dataset <- R6::R6Class(
     #' @param attribute_data [tibble::tibble()] object.
     #' @param boundary_data [Matrix::sparseMatrix()] object.
     #' @return A new Dataset object.
-    initialize = function(
-      id, spatial_path, attribute_path, boundary_path,
-      spatial_data, attribute_data, boundary_data) {
+    initialize = function(id, spatial_path, attribute_path, boundary_path,
+                          spatial_data, attribute_data, boundary_data) {
       ## assert that arguments are valid
       assertthat::assert_that(
         ## id
@@ -170,17 +169,22 @@ Dataset <- R6::R6Class(
         ### import data
         self$attribute_data <-
           tibble::as_tibble(data.table::fread(
-            self$attribute_path, data.table = FALSE))
+            self$attribute_path,
+            data.table = FALSE
+          ))
         ## validate attribute data
         assertthat::assert_that(
           assertthat::has_name(self$attribute_data, "_index"),
-          last(names(self$attribute_data)) == "_index")
+          last(names(self$attribute_data)) == "_index"
+        )
       }
       ## boundary data
       if (is.null(self$boundary_data)) {
         ### import data
         bd <- tibble::as_tibble(data.table::fread(
-            self$boundary_path, data.table = FALSE))
+          self$boundary_path,
+          data.table = FALSE
+        ))
         ### convert to matrix
         self$boundary_data <-
           Matrix::sparseMatrix(
@@ -205,7 +209,8 @@ Dataset <- R6::R6Class(
         assertthat::is.string(attribute_path),
         assertthat::noNA(attribute_path),
         assertthat::is.string(boundary_path),
-        assertthat::noNA(boundary_path))
+        assertthat::noNA(boundary_path)
+      )
       self$import()
       # spatial data
       if (inherits(self$spatial_data, "sf")) {
@@ -215,17 +220,23 @@ Dataset <- R6::R6Class(
       } else {
         suppressWarnings({
           raster::writeRaster(
-            self$spatial_data, spatial_path, overwrite = TRUE, NAflag = -9999)
+            self$spatial_data, spatial_path,
+            overwrite = TRUE, NAflag = -9999
+          )
         })
       }
       # attribute data
       data.table::fwrite(
-        self$attribute_data, attribute_path, sep = ",", row.names = FALSE)
+        self$attribute_data, attribute_path,
+        sep = ",", row.names = FALSE
+      )
       # boundary data
       bd <- methods::as(self$boundary_data, "dsTMatrix")
       data.table::fwrite(
         tibble::tibble(i = bd@i, j = bd@j, x = bd@x),
-        boundary_path, sep = ",", row.names = FALSE)
+        boundary_path,
+        sep = ",", row.names = FALSE
+      )
       # return result
       invisible(self)
     },
@@ -297,7 +308,8 @@ Dataset <- R6::R6Class(
         assertthat::is.flag(native),
         assertthat::noNA(native),
         assertthat::is.flag(expand),
-        assertthat::noNA(expand))
+        assertthat::noNA(expand)
+      )
       # get extent
       self$import()
       # generate extent object
@@ -307,7 +319,8 @@ Dataset <- R6::R6Class(
       } else {
         # if not native, then reproject data and extract extent
         ext <- methods::as(raster::extent(
-          self$get_spatial_data()), "SpatialPolygons")
+          self$get_spatial_data()
+        ), "SpatialPolygons")
         ## prepare bounding box
         ext <- sf::st_set_crs(sf::st_as_sf(ext), self$get_crs())
         ## convert to WGS1984
@@ -325,7 +338,8 @@ Dataset <- R6::R6Class(
           xmin = unname(ext@xmin),
           xmax = unname(ext@xmax),
           ymin = unname(ext@ymin),
-          ymax = unname(ext@ymax))
+          ymax = unname(ext@ymax)
+        )
       }
       # if using lon/lat CRS, then ensure valid extent
       if (!native) {
@@ -378,7 +392,8 @@ Dataset <- R6::R6Class(
       assertthat::assert_that(
         is.character(index) || is.numeric(index),
         assertthat::noNA(index),
-        all(self$has_index(index)))
+        all(self$has_index(index))
+      )
       self$import()
       idx <- self$attribute_data[["_index"]]
       if (inherits(self$spatial_data, "Raster")) {
@@ -415,7 +430,8 @@ Dataset <- R6::R6Class(
     has_index = function(index) {
       assertthat::assert_that(
         is.character(index) || is.numeric(index),
-        assertthat::noNA(index))
+        assertthat::noNA(index)
+      )
       self$import()
       if (is.numeric(index)) {
         out <-
@@ -447,7 +463,8 @@ Dataset <- R6::R6Class(
       assertthat::assert_that(
         assertthat::is.string(index) || assertthat::is.count(index),
         assertthat::noNA(index),
-        length(values) == nrow(self$attribute_data))
+        length(values) == nrow(self$attribute_data)
+      )
       # if index is an integer, then generate new column name
       # because each column must have a name
       if (is.numeric(index)) {
@@ -457,12 +474,13 @@ Dataset <- R6::R6Class(
       self$attribute_data[[index]] <- values
       # re-order columns
       self$attribute_data <-
-        self$attribute_data[,
-          c(setdiff(names(self$attribute_data), "_index"), "_index")]
+        self$attribute_data[
+          ,
+          c(setdiff(names(self$attribute_data), "_index"), "_index")
+        ]
       # return self
       invisible(self)
     }
-
   )
 )
 
@@ -500,12 +518,12 @@ Dataset <- R6::R6Class(
 #'   package = "wheretowork"
 #' )
 #' f2 <- system.file(
-#'  "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
-#'  package = "wheretowork"
+#'   "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
+#'   package = "wheretowork"
 #' )
 #' f3 <- system.file(
-#'  "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
-#'  package = "wheretowork"
+#'   "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
+#'   package = "wheretowork"
 #' )
 #'
 #' # create new dataset
@@ -513,12 +531,11 @@ Dataset <- R6::R6Class(
 #'
 #' # print object
 #' print(d)
-#'
 #' @export
-new_dataset <- function(
-  spatial_path, attribute_path, boundary_path,
-  spatial_data = NULL, attribute_data = NULL, boundary_data = NULL,
-  id = uuid::UUIDgenerate()) {
+new_dataset <- function(spatial_path, attribute_path, boundary_path,
+                        spatial_data = NULL, attribute_data = NULL,
+                        boundary_data = NULL,
+                        id = uuid::UUIDgenerate()) {
   # verify that data are supplied when specifying that data
   # are stored in memory
   if (identical(spatial_path, "memory")) {
@@ -567,19 +584,19 @@ new_dataset <- function(
 #'
 #' # import data
 #' r <- suppressWarnings(raster::raster(f))
-#' r <- raster::stack(r, r * 2, r * 3, r* 4)
+#' r <- raster::stack(r, r * 2, r * 3, r * 4)
 #'
 #' # create new dataset
 #' d <- new_dataset_from_auto(r)
 #'
 #' # print object
 #' print(d)
-#'
 #' @export
 new_dataset_from_auto <- function(x, id = uuid::UUIDgenerate()) {
   # assert arguments are valid
   assertthat::assert_that(
-    inherits(x, c("sf", "Raster")))
+    inherits(x, c("sf", "Raster"))
+  )
 
   # prepare geometry data
   if (inherits(x, "sf")) {
@@ -609,7 +626,7 @@ new_dataset_from_auto <- function(x, id = uuid::UUIDgenerate()) {
     }
   } else {
     correct_crs <- methods::as(sf::st_crs(3857), "CRS")
-    if (!raster::compareCRS(spatial_data_crs,  correct_crs)) {
+    if (!raster::compareCRS(spatial_data_crs, correct_crs)) {
       spatial_data <- raster::projectRaster(spatial_data, correct_crs)
     }
   }

@@ -56,14 +56,6 @@ reference:
       - updateMapManagerOrder
       - updateMapManagerLayer
 
-  - title: Solution settings widget
-    desc: >
-      Functions for creating and updating the widget.
-    contents:
-      - solutionSettings
-      - solutionSettings-shiny
-      - updateSolutionSettings
-
   - title: Solution results widget
     desc: >
       Functions for creating and updating the widget.
@@ -125,8 +117,8 @@ reference:
     desc: >
       Functions used to generate solutions.
     contents:
-      - generate_min_set_solution
-      - generate_min_shortfall_solution
+      - min_set_solution
+      - min_shortfall_solution
 
   - title: Project functions
     desc: >
@@ -167,7 +159,7 @@ reference:
       - shapefile_field_names
       - reserve_sizes
 
-  - title: Miscallenous functions
+  - title: Miscellaneous functions
     contents:
       - color_palette
       - error_message

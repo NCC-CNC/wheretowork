@@ -15,7 +15,8 @@ ss_goal_component_scaffold <- function(type) {
   assertthat::assert_that(
     assertthat::is.string(type),
     assertthat::noNA(type),
-    type %in% c("weight", "theme"))
+    type %in% c("weight", "theme")
+  )
   htmltools::tags$div(
     class = "goal",
     htmltools::tags$div(
@@ -31,7 +32,8 @@ ss_goal_component_scaffold <- function(type) {
           `data-placement` = "top",
           `data-delay` = "{\"show\":500, \"hide\":100}",
           `data-container` = "body",
-          title = "Current coverage by existing conservation areas")
+          title = "Current coverage by existing conservation areas"
+        )
       ),
       htmltools::tags$div(
         class = "sub-status-info",
@@ -44,7 +46,8 @@ ss_goal_component_scaffold <- function(type) {
           `data-placement` = "top",
           `data-delay` = "{\"show\":500, \"hide\":100}",
           `data-container` = "body",
-          title = "Goal for generating solutions")
+          title = "Goal for generating solutions"
+        )
       ),
     ),
     ss_slider_component_scaffold(bar = "current-bar", type)
@@ -65,7 +68,8 @@ ss_group_goal_component_scaffold <- function(type) {
   assertthat::assert_that(
     assertthat::is.string(type),
     assertthat::noNA(type),
-    type %in% c("weight", "theme"))
+    type %in% c("weight", "theme")
+  )
   htmltools::tags$div(
     class = "goal",
     htmltools::tags$div(
@@ -81,7 +85,8 @@ ss_group_goal_component_scaffold <- function(type) {
           `data-placement` = "top",
           `data-delay` = "{\"show\":500, \"hide\":100}",
           `data-container` = "body",
-          title = "Current coverage by existing conservation areas")
+          title = "Current coverage by existing conservation areas"
+        )
       ),
       htmltools::tags$div(
         class = "sub-status-info",
@@ -94,11 +99,13 @@ ss_group_goal_component_scaffold <- function(type) {
           `data-placement` = "top",
           `data-delay` = "{\"show\":500, \"hide\":100}",
           `data-container` = "body",
-          title = "Goal for generating solutions")
+          title = "Goal for generating solutions"
+        )
       ),
     ),
     ss_slider_component_scaffold(bar = c(
-      "current-max-bar", "current-min-bar"), type)
+      "current-max-bar", "current-min-bar"
+    ), type)
   )
 }
 
@@ -120,11 +127,13 @@ ss_slider_component_scaffold <- function(type, bar = NULL) {
   assertthat::assert_that(
     assertthat::is.string(type),
     assertthat::noNA(type),
-    type %in% c("weight", "theme", "parameter"))
+    type %in% c("weight", "theme", "parameter")
+  )
   if (!is.null(bar)) {
     assertthat::assert_that(
       is.character(bar),
-      assertthat::noNA(bar))
+      assertthat::noNA(bar)
+    )
   }
 
   # initialize slider
@@ -135,36 +144,41 @@ ss_slider_component_scaffold <- function(type, bar = NULL) {
     `data-delay` = "{\"show\":500, \"hide\":100}",
     `data-container` = "body",
     title =
-      switch(
-        type,
+      switch(type,
         "weight" = "Set the factor",
         "theme" = "Set the goal",
         "parameter" = "Set the parameter value"
       )
-    )
+  )
 
   # add bars if needed
   if (!is.null(bar)) {
     # add bar cap
     out <-
-      htmltools::tagAppendChild(out,
-        htmltools::tags$div(class = "bar-cap"))
+      htmltools::tagAppendChild(
+        out,
+        htmltools::tags$div(class = "bar-cap")
+      )
     # add bars
     bars <- do.call(
-        htmltools::tagAppendChildren,
-        append(
-          list(htmltools::tags$div(class = "bars has-current-bar")),
-          lapply(bar, function(x) htmltools::tags$div(class = x))))
+      htmltools::tagAppendChildren,
+      append(
+        list(htmltools::tags$div(class = "bars has-current-bar")),
+        lapply(bar, function(x) htmltools::tags$div(class = x))
+      )
+    )
     out <-
       htmltools::tagAppendChild(out, bars)
-
   }
   # add container for slider widget if needed
-  out <- htmltools::tagAppendChild(out,
+  out <- htmltools::tagAppendChild(
+    out,
     htmltools::tags$div(
       class =
-        paste("widget",
-          ifelse(!is.null(bar), "has-current-bar", "no-current-bar")),
+        paste(
+          "widget",
+          ifelse(!is.null(bar), "has-current-bar", "no-current-bar")
+        ),
       htmltools::tags$div(class = "noUiSlider-widget disable-if-inactive")
     )
   )
@@ -186,7 +200,8 @@ ss_header_component_scaffold <- function(type, id = uuid::UUIDgenerate()) {
   #  assert arguments are valid
   assertthat::assert_that(
     assertthat::is.string(type),
-    assertthat::noNA(type))
+    assertthat::noNA(type)
+  )
 
   # HTML scaffold
   htmltools::tags$div(
@@ -220,7 +235,7 @@ ss_header_component_scaffold <- function(type, id = uuid::UUIDgenerate()) {
   )
 }
 
-ss_subheader_component_scaffold<- function(id = uuid::UUIDgenerate()) {
+ss_subheader_component_scaffold <- function(id = uuid::UUIDgenerate()) {
   htmltools::tags$div(
     class = "sub-header",
     htmltools::tags$label(

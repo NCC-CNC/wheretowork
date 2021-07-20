@@ -77,30 +77,35 @@ NULL
 #' @seealso [mapManager()].
 #'
 #' @export
-updateMapManagerLayer <- function(
-  session = shiny::getDefaultReactiveDomain(), inputId, value) {
+updateMapManagerLayer <- function(session = shiny::getDefaultReactiveDomain(),
+                                  inputId, value) {
   # assert valid arguments
   assertthat::assert_that(
     assertthat::is.string(inputId),
     assertthat::noNA(inputId),
-    is.list(value))
+    is.list(value)
+  )
   assertthat::assert_that(
     assertthat::has_name(value, "setting"),
     assertthat::is.string(value$setting),
     assertthat::noNA(value$setting),
-    assertthat::has_name(value, "value"))
+    assertthat::has_name(value, "value")
+  )
 
   # assert value contains valid settings
   ## define valid setting names and value classes
   param_names <- c(
-    "name", "visible", "feature_order", "feature_visible")
-    param_classes <- c(
-    "character", "logical", "numeric", "logical")
+    "name", "visible", "feature_order", "feature_visible"
+  )
+  param_classes <- c(
+    "character", "logical", "numeric", "logical"
+  )
 
   ## sanity check
   assertthat::assert_that(
     length(param_names) == length(param_classes),
-    msg = "internal validation failed")
+    msg = "internal validation failed"
+  )
 
   ## coerce integer values to double values
   if (is.integer(value$value)) {
@@ -113,22 +118,26 @@ updateMapManagerLayer <- function(
     msg = paste0(
       value$type,
       "s must have a `setting` equal to one of the following: ",
-      paste(paste0("\"", param_names, "\""), collapse = ", "))
+      paste(paste0("\"", param_names, "\""), collapse = ", ")
+    )
   )
   assertthat::assert_that(
     inherits(
       value$value,
-      param_classes[[which(param_names == value$setting)]]),
+      param_classes[[which(param_names == value$setting)]]
+    ),
     msg = paste0(
       "the \"", value$setting,
       "\" setting must have a ",
       param_classes[[which(param_names == value$setting)]],
-      " `value`")
+      " `value`"
+    )
   )
 
   # pass data to widget
   session$sendCustomMessage(
-    "mapManager:updateLayer", list(id = inputId, value = value))
+    "mapManager:updateLayer", list(id = inputId, value = value)
+  )
 }
 
 #' Add a layer in a map manager widget
@@ -142,17 +151,19 @@ updateMapManagerLayer <- function(
 #' @seealso [mapManager()].
 #'
 #' @export
-addMapManagerLayer <- function(
-  session = shiny::getDefaultReactiveDomain(), inputId, value) {
+addMapManagerLayer <- function(session = shiny::getDefaultReactiveDomain(),
+                               inputId, value) {
   # assert valid arguments
   assertthat::assert_that(
     assertthat::is.string(inputId),
     assertthat::noNA(inputId),
-    inherits(value, c("Theme", "Weight", "Solution", "Include")))
+    inherits(value, c("Theme", "Weight", "Solution", "Include"))
+  )
   # pass data to widget
   session$sendCustomMessage(
     "mapManager:addLayer",
-    list(id = inputId, value = value$get_map_manager_widget_data()))
+    list(id = inputId, value = value$get_map_manager_widget_data())
+  )
 }
 
 #' Drop a layer from a map manager widget
@@ -166,17 +177,19 @@ addMapManagerLayer <- function(
 #' @seealso [mapManager()].
 #'
 #' @export
-dropMapManagerLayer <- function(
-  session = shiny::getDefaultReactiveDomain(), inputId, value) {
+dropMapManagerLayer <- function(session = shiny::getDefaultReactiveDomain(),
+                                inputId, value) {
   # assert valid arguments
   assertthat::assert_that(
     assertthat::is.string(inputId),
     assertthat::noNA(inputId),
     assertthat::is.string(value),
-    assertthat::noNA(value))
+    assertthat::noNA(value)
+  )
   # pass data to widget
   session$sendCustomMessage(
-    "mapManager:dropLayer", list(id = inputId, value = value))
+    "mapManager:dropLayer", list(id = inputId, value = value)
+  )
 }
 
 #' Update map manager widget ordering
@@ -193,17 +206,19 @@ dropMapManagerLayer <- function(
 #' @seealso [mapManager()].
 #'
 #' @export
-updateMapManagerOrder <- function(
-  session = shiny::getDefaultReactiveDomain(), inputId, value) {
+updateMapManagerOrder <- function(session = shiny::getDefaultReactiveDomain(),
+                                  inputId, value) {
   # assert valid arguments
   assertthat::assert_that(
     assertthat::is.string(inputId),
     assertthat::noNA(inputId),
     is.numeric(value),
     assertthat::noNA(value),
-    identical(anyDuplicated(value), 0L))
+    identical(anyDuplicated(value), 0L)
+  )
 
   # pass data to widget
   session$sendCustomMessage(
-    "mapManager:updateOrder", list(id = inputId, value = value))
+    "mapManager:updateOrder", list(id = inputId, value = value)
+  )
 }

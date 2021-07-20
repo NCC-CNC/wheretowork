@@ -127,12 +127,6 @@
     <loc>/reference/find_projects.html</loc>
   </url>
   <url>
-    <loc>/reference/generate_min_set_solution.html</loc>
-  </url>
-  <url>
-    <loc>/reference/generate_min_shortfall_solution.html</loc>
-  </url>
-  <url>
     <loc>/reference/get_golem_config.html</loc>
   </url>
   <url>
@@ -176,6 +170,12 @@
   </url>
   <url>
     <loc>/reference/mapManagerSidebarPane.html</loc>
+  </url>
+  <url>
+    <loc>/reference/min_set_solution.html</loc>
+  </url>
+  <url>
+    <loc>/reference/min_shortfall_solution.html</loc>
   </url>
   <url>
     <loc>/reference/newSolutionSidebarPane.html</loc>

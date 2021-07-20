@@ -20,82 +20,86 @@ server_generate_new_solution <- quote({
 
   # generate new solution when button pressed
   shiny::observeEvent(
-    input$newSolutionPane_settings_button, {
-    ## specify dependencies
-    shiny::req(input$newSolutionPane_settings_button)
-    shiny::req(input$newSolutionPane_settings_name)
-    shiny::req(input$newSolutionPane_settings_color)
+    input$newSolutionPane_settings_button,
+    {
+      ## specify dependencies
+      shiny::req(input$newSolutionPane_settings_button)
+      shiny::req(input$newSolutionPane_settings_name)
+      shiny::req(input$newSolutionPane_settings_color)
 
-    ## update generate solution inputs
-    disable_html_element("newSolutionPane_settings_button")
-    disable_html_element("newSolutionPane_settings_name")
-    disable_html_element("newSolutionPane_settings_color")
+      ## update generate solution inputs
+      disable_html_element("newSolutionPane_settings_button")
+      disable_html_element("newSolutionPane_settings_name")
+      disable_html_element("newSolutionPane_settings_color")
 
-    ### preliminary calculations
-    curr_name <- input$newSolutionPane_settings_name
-    curr_gap <- get_golem_config("gap")
-    curr_boundary_value <-
-      (app_data$ss$get_parameter("spatial_parameter")$value *
-       app_data$ss$get_parameter("spatial_parameter")$status) / 100
-    curr_color <- scales::alpha(input$newSolutionPane_settings_color, 0.8)
-    curr_type <- app_data$ss$get_parameter("budget_parameter")$status
-    curr_area_budget <-
-      app_data$ss$get_parameter("budget_parameter")$value / 100
+      ### preliminary calculations
+      curr_name <- input$newSolutionPane_settings_name
+      curr_gap <- get_golem_config("gap")
+      curr_boundary_value <-
+        (app_data$ss$get_parameter("spatial_parameter")$value *
+          app_data$ss$get_parameter("spatial_parameter")$status) / 100
+      curr_color <- scales::alpha(input$newSolutionPane_settings_color, 0.8)
+      curr_type <- app_data$ss$get_parameter("budget_parameter")$status
+      curr_area_budget <-
+        app_data$ss$get_parameter("budget_parameter")$value / 100
 
-    ## generate solution
-    future::future(packages = "wheretowork", seed = NULL, {
-      if (curr_type) {
-        ### if budget specified, then use the min shortfall formulation
-        s <- try(
-          generate_min_shortfall_solution(
-            name = curr_name,
-            area_budget_proportion = curr_area_budget,
-            dataset = app_data$dataset,
-            settings = app_data$ss,
-            theme_data = app_data$theme_data,
-            weight_data = app_data$weight_data,
-            include_data = app_data$include_data,
-            boundary_data = app_data$boundary_data,
-            gap = curr_gap,
-            boundary_budget_proportion = curr_boundary_value,
-            legend_color = curr_color
-          ),
-          silent = TRUE
-        )
-      } else {
-        ### else, then use the min set formulation
-        s <- try(
-          generate_min_set_solution(
-            name = curr_name,
-            dataset = app_data$dataset,
-            settings = app_data$ss,
-            theme_data = app_data$theme_data,
-            weight_data = app_data$weight_data,
-            include_data = app_data$include_data,
-            boundary_data = app_data$boundary_data,
-            gap = curr_gap,
-            boundary_gap = curr_boundary_value,
-            legend_color = curr_color
-          ),
-          silent = TRUE
-        )
-      }
-      s
-    }) %...>%
-    user_solution() %...!%
-    (function(error) {
-      user_solution(NULL)
-      warning(error)
-    })
-    ## this needed to implement asynchronous processing,
-    ## see https://github.com/rstudio/promises/issues/23
-    NULL
-  })
+      ## generate solution
+      future::future(packages = "wheretowork", seed = NULL, {
+        if (curr_type) {
+          ### if budget specified, then use the min shortfall formulation
+          s <- try(
+            min_shortfall_solution(
+              name = curr_name,
+              area_budget_proportion = curr_area_budget,
+              dataset = app_data$dataset,
+              settings = app_data$ss,
+              theme_data = app_data$theme_data,
+              weight_data = app_data$weight_data,
+              include_data = app_data$include_data,
+              boundary_data = app_data$boundary_data,
+              gap = curr_gap,
+              boundary_budget_proportion = curr_boundary_value,
+              legend_color = curr_color
+            ),
+            silent = TRUE
+          )
+        } else {
+          ### else, then use the min set formulation
+          s <- try(
+            min_set_solution(
+              name = curr_name,
+              dataset = app_data$dataset,
+              settings = app_data$ss,
+              theme_data = app_data$theme_data,
+              weight_data = app_data$weight_data,
+              include_data = app_data$include_data,
+              boundary_data = app_data$boundary_data,
+              gap = curr_gap,
+              boundary_gap = curr_boundary_value,
+              legend_color = curr_color
+            ),
+            silent = TRUE
+          )
+        }
+        s
+      }) %...>%
+        user_solution() %...!%
+        (function(error) {
+          user_solution(NULL)
+          warning(error)
+        })
+      ## this needed to implement asynchronous processing,
+      ## see https://github.com/rstudio/promises/issues/23
+      NULL
+    }
+  )
 
   # add solution to map when generating new solution
   shiny::observeEvent(user_solution(), {
     ## specify dependencies
-    if (is.null(user_solution())) return()
+    if (is.null(user_solution())) {
+      return()
+    }
 
     ## extract solution
     s <- user_solution()
@@ -103,8 +107,7 @@ server_generate_new_solution <- quote({
     ## if failed to generate solution...
     if (inherits(s, "try-error")) {
       ## identify error message to show
-      msg <- switch(
-        attr(s, "condition")$message,
+      msg <- switch(attr(s, "condition")$message,
         "code_1" = paste(
           "The \"Total area budget\" setting is too low given the selected",
           "Includes. Try increasing the total area budget or deselecting ",
@@ -162,7 +165,8 @@ server_generate_new_solution <- quote({
     addMapManagerLayer(
       session = session,
       inputId = "mapManagerPane_settings",
-      value = s)
+      value = s
+    )
 
     ## add new solution to solution results widget
     addSolutionResults(
@@ -204,7 +208,9 @@ server_generate_new_solution <- quote({
 
     ## show solution results sidebar
     leaflet.extras2::openSidebar(
-      map, id = "solutionResultsPane", sidebar_id = "analysisSidebar")
+      map,
+      id = "solutionResultsPane", sidebar_id = "analysisSidebar"
+    )
 
     ## reset solution name
     shiny::updateTextInput(
@@ -225,5 +231,4 @@ server_generate_new_solution <- quote({
     disable_html_element("newSolutionPane_settings_button")
     enable_html_element("newSolutionPane_settings_color")
   })
-
 })

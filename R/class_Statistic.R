@@ -32,7 +32,8 @@ Statistic <- R6::R6Class(
         assertthat::is.string(name),
         assertthat::noNA(name),
         assertthat::is.string(units),
-        assertthat::noNA(units))
+        assertthat::noNA(units)
+      )
       self$name <- name
       self$value <- value
       self$units <- units
@@ -58,7 +59,7 @@ Statistic <- R6::R6Class(
     #' Get widget data.
     #' @return `list` object.
     get_widget_data = function() {
-      list(name = self$name, value = self$value,  units = self$units)
+      list(name = self$name, value = self$value, units = self$units)
     }
   )
 )
@@ -81,7 +82,6 @@ Statistic <- R6::R6Class(
 #'
 #' # print object
 #' print(x)
-#'
 #' @export
 new_statistic <- function(name, value, units) {
   Statistic$new(name = name, value = value, units = units)

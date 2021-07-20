@@ -17,7 +17,8 @@ import_realistic_vector_data <- function() {
       "extdata", "data", "ECODISTRICT_V2_2_SHP.zip",
       package = "wheretowork"
     ),
-    exdir = data_dir)
+    exdir = data_dir
+  )
   # import data
   x <- sf::read_sf(file.path(data_dir, "ECODISTRICT_V2_2_SHP.shp"))
   # clean data
@@ -42,7 +43,8 @@ import_simple_vector_data <- function() {
   x <-
     sf::st_as_sf(raster::rasterToPolygons(import_simple_raster_data()))
   x <- sf::st_sf(
-    tibble::tibble(id = seq_len(nrow(x)), geometry = sf::st_geometry(x)))
+    tibble::tibble(id = seq_len(nrow(x)), geometry = sf::st_geometry(x))
+  )
   attr(x, "agr") <- NULL
   sf::st_transform(x, 4326)
 }

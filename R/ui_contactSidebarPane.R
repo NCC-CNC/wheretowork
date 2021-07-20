@@ -23,7 +23,8 @@ contactSidebarPane <- function(id) {
   assertthat::assert_that(
     ### id
     assertthat::is.string(id),
-    assertthat::noNA(id))
+    assertthat::noNA(id)
+  )
 
   # create sidebar widget
   ## create sidebar
@@ -35,8 +36,8 @@ contactSidebarPane <- function(id) {
       class = "sidebar-pane-content",
       htmltools::tags$div(
         class = "sidebar-pane-inner",
-      htmltools::tags$div(
-        class = "generic-container",
+        htmltools::tags$div(
+          class = "generic-container",
           htmltools::tags$p(
             class = "text-left",
             "If you have any questions, comments, or concerns with ",

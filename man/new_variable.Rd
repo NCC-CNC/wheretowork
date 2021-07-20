@@ -31,22 +31,23 @@ f1 <- system.file(
   package = "wheretowork"
 )
 f2 <- system.file(
- "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
- package = "wheretowork"
+  "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
+  package = "wheretowork"
 )
 f3 <- system.file(
- "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
- package = "wheretowork"
+  "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
+  package = "wheretowork"
 )
 
 # create new dataset
 d <- new_dataset(f1, f2, f3)
 
 # create new variable
-v <- new_variable(d, index = 1, total = 12, units = "ha",
-  legend = new_continuous_legend(1, 100, c("#000000", "#AAAAAA")))
+v <- new_variable(d,
+  index = 1, total = 12, units = "ha",
+  legend = new_continuous_legend(1, 100, c("#000000", "#AAAAAA"))
+)
 
 # print object
 print(v)
-
 }

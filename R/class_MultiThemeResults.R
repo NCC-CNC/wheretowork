@@ -22,20 +22,22 @@ MultiThemeResults <- R6::R6Class(
           vapply(
             self$feature_results,
             function(x) x$feature$name,
-            character(1)),
+            character(1)
+          ),
         feature_status =
-          vapply(self$feature_results, `[[` , logical(1), "status"),
+          vapply(self$feature_results, `[[`, logical(1), "status"),
         feature_total_amount =
           vapply(
             self$feature_results,
             function(x) x$feature$variable$total,
-            numeric(1)),
+            numeric(1)
+          ),
         feature_current_held =
-          vapply(self$feature_results, `[[` , numeric(1), "current"),
+          vapply(self$feature_results, `[[`, numeric(1), "current"),
         feature_goal =
-          vapply(self$feature_results, `[[` , numeric(1), "goal"),
+          vapply(self$feature_results, `[[`, numeric(1), "goal"),
         feature_solution_held =
-          vapply(self$feature_results, `[[` , numeric(1), "held"),
+          vapply(self$feature_results, `[[`, numeric(1), "held"),
         units = self$feature_results[[1]]$feature$variable$units,
       )
     },
@@ -51,22 +53,24 @@ MultiThemeResults <- R6::R6Class(
           vapply(
             self$feature_results,
             function(x) x$feature$name,
-            character(1)),
+            character(1)
+          ),
         feature_id =
-          vapply(self$feature_results, `[[` , character(1), "id"),
+          vapply(self$feature_results, `[[`, character(1), "id"),
         feature_status =
-          vapply(self$feature_results, `[[` , logical(1), "status"),
+          vapply(self$feature_results, `[[`, logical(1), "status"),
         feature_total_amount =
           vapply(
             self$feature_results,
             function(x) x$feature$variable$total,
-            numeric(1)),
+            numeric(1)
+          ),
         feature_current_held =
-          vapply(self$feature_results, `[[` , numeric(1), "current"),
+          vapply(self$feature_results, `[[`, numeric(1), "current"),
         feature_goal =
-          vapply(self$feature_results, `[[` , numeric(1), "goal"),
+          vapply(self$feature_results, `[[`, numeric(1), "goal"),
         feature_solution_held =
-          vapply(self$feature_results, `[[` , numeric(1), "held"),
+          vapply(self$feature_results, `[[`, numeric(1), "held"),
         units = self$feature_results[[1]]$feature$variable$units,
         type = "theme_results"
       )

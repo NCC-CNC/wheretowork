@@ -91,11 +91,13 @@ color_palette <- function(x, n = NULL) {
   # assert arguments are valid
   assertthat::assert_that(
     assertthat::is.string(x),
-    assertthat::noNA(x))
+    assertthat::noNA(x)
+  )
   if (!is.null(n)) {
     assertthat::assert_that(
       assertthat::is.count(n),
-      assertthat::noNA(n))
+      assertthat::noNA(n)
+    )
   }
   if (identical(x, "random")) {
     if (is.null(n)) {
@@ -115,7 +117,7 @@ color_palette <- function(x, n = NULL) {
   } else {
     out <- c()
     i <- 1
-    while(length(out) < n) {
+    while (length(out) < n) {
       out <- c(out, color_palette_n_colors(pals[i], n - length(out)))
       i <- i + 1
     }
@@ -123,7 +125,6 @@ color_palette <- function(x, n = NULL) {
 
   # return result
   out
-
 }
 
 #' Extract all colors from palette
@@ -167,7 +168,8 @@ color_palette_n_colors <- function(x, n) {
   # assert arguments are valid
   assertthat::assert_that(
     assertthat::is.string(x),
-    assertthat::is.count(n))
+    assertthat::is.count(n)
+  )
   # extract color brewer palette data
   bp <- as.data.frame(RColorBrewer::brewer.pal.info)
   # generate colors

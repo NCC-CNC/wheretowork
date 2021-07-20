@@ -57,5 +57,4 @@ p <- new_parameter(name = "Spatial clustering")
 
 # print object
 print(p)
-
 }

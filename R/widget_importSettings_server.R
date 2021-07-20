@@ -13,16 +13,18 @@ NULL
 #' @seealso [importSettings()].
 #'
 #' @export
-cleanImportSettings <- function(
-  session = shiny::getDefaultReactiveDomain(), inputId) {
+cleanImportSettings <- function(session = shiny::getDefaultReactiveDomain(),
+                                inputId) {
   # assert valid arguments
   assertthat::assert_that(
     assertthat::is.string(inputId),
-    assertthat::noNA(inputId))
+    assertthat::noNA(inputId)
+  )
 
   # pass data to widget
   session$sendCustomMessage(
-    "importSettings:clean", list(id = inputId))
+    "importSettings:clean", list(id = inputId)
+  )
 }
 
 #' Update import settings widget
@@ -39,16 +41,18 @@ cleanImportSettings <- function(
 #' @seealso [importSettings()].
 #'
 #' @export
-updateImportSettings <- function(
-  session = shiny::getDefaultReactiveDomain(), inputId, value) {
+updateImportSettings <- function(session = shiny::getDefaultReactiveDomain(),
+                                 inputId, value) {
   # assert valid arguments
   assertthat::assert_that(
     assertthat::is.string(inputId),
     assertthat::noNA(inputId),
     is.character(value),
     assertthat::noNA(value),
-    identical(anyDuplicated(value), 0L))
+    identical(anyDuplicated(value), 0L)
+  )
   # pass data to widget
   session$sendCustomMessage(
-    "importSettings:update", list(id = inputId, value = value))
+    "importSettings:update", list(id = inputId, value = value)
+  )
 }

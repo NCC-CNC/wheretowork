@@ -22,25 +22,25 @@ NULL
 #' # read vector data
 #' f2 <- system.file("shape/nc.shp", package = "sf")
 #' read_spatial_data(f2)
-#'
 #' @export
 read_spatial_data <- function(x) {
   # assert argument is valid
   assertthat::assert_that(
     assertthat::is.string(x),
-    assertthat::noNA(x))
+    assertthat::noNA(x)
+  )
   # deduce format automatically
   rast_ext <- c("grd", "asc", "sdat", "rst", "nc", "tif", "envi", "bil", "img")
   if (tools::file_ext(x) %in% rast_ext) {
-      out <- raster::raster(x)
+    out <- raster::raster(x)
   } else {
     suppressMessages({
-       out <- sf::read_sf(x)
-       if ("geom" %in% names(out)) {
-         names(out)[names(out) == "geom"] <- "geometry"
-         attr(out, "sf_column") <-  "geometry"
-       }
-       attr(out, "agr") <- NULL
+      out <- sf::read_sf(x)
+      if ("geom" %in% names(out)) {
+        names(out)[names(out) == "geom"] <- "geometry"
+        attr(out, "sf_column") <- "geometry"
+      }
+      attr(out, "agr") <- NULL
     })
   }
   # return result
@@ -56,7 +56,7 @@ read_spatial_data <- function(x) {
 #' @param path `character` file path to save zip archive.
 #'
 #' @param name `character` name of the spatial data inside the zip archive.
-#'  Defaults to the file name of `path`.
+#'  Defaults to `NULL` such that the argument is the file name of `path`.
 #'
 #' @details
 #' This function saves the spatial dataset as a zip archive.
@@ -66,15 +66,18 @@ read_spatial_data <- function(x) {
 #' @return Invisible `TRUE` indicating success.
 #'
 #' @export
-write_spatial_data <- function(
-  x, path, name = tools::file_path_sans_ext(basename(path))) {
+write_spatial_data <- function(x, path, name = NULL) {
+  if (is.null(name)) {
+    name <- tools::file_path_sans_ext(basename(path))
+  }
   assertthat::assert_that(
     inherits(x, c("sf", "Raster")),
     assertthat::is.string(path),
     assertthat::noNA(path),
     endsWith(path, ".zip"),
     assertthat::is.string(name),
-    assertthat::noNA(name))
+    assertthat::noNA(name)
+  )
   # create temporary directory
   td <- tempfile()
   dir.create(td, showWarnings = TRUE, recursive = TRUE)
@@ -87,7 +90,8 @@ write_spatial_data <- function(
     suppressWarnings({
       writeNamedRaster(
         x = x, filename = file.path(td, paste0(name, ".tif")),
-        overwrite = TRUE, NAflag = -9999)
+        overwrite = TRUE, NAflag = -9999
+      )
     })
   }
   # add files to zip archive

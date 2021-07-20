@@ -22,11 +22,12 @@ importModal <- function(id) {
   # assert arguments are valid
   assertthat::assert_that(
     assertthat::is.string(id),
-    assertthat::noNA(id))
+    assertthat::noNA(id)
+  )
 
   # create modal
   shiny::modalDialog(
-    title =htmltools::tags$p(
+    title = htmltools::tags$p(
       "Welcome to the Location App",
       style = "text-align:center"
     ),
@@ -144,6 +145,5 @@ importModal <- function(id) {
     shinyBS::bsAlert(
       anchorId = paste0(id, "_alert")
     )
-
   )
 }

@@ -56,10 +56,9 @@ Feature <- R6::R6Class(
     #' @param step_goal `numeric` value.
     #' @param current `numeric` value.
     #' @return A new Feature object.
-    initialize = function(
-      id, name, variable, visible, status,
-      goal, min_goal, max_goal, step_goal, limit_goal,
-      current) {
+    initialize = function(id, name, variable, visible, status,
+                          goal, min_goal, max_goal, step_goal, limit_goal,
+                          current) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -98,7 +97,8 @@ Feature <- R6::R6Class(
         assertthat::is.number(current),
         assertthat::noNA(current),
         isTRUE(current >= 0),
-        isTRUE(current <= 1))
+        isTRUE(current <= 1)
+      )
       ### set fields
       self$id <- id
       self$name <- name
@@ -141,7 +141,8 @@ Feature <- R6::R6Class(
         " ", start, "status: ", self$status,
         ", current: ", round(self$current, 2),
         ", goal: ", round(self$goal, 2), end, nl(),
-        "  variable: ", self$variable$repr())
+        "  variable: ", self$variable$repr()
+      )
     },
 
     #' @description
@@ -185,8 +186,9 @@ Feature <- R6::R6Class(
     set_visible = function(value) {
       assertthat::assert_that(
         assertthat::is.flag(value),
-        assertthat::noNA(value))
-      self$visible = value
+        assertthat::noNA(value)
+      )
+      self$visible <- value
       invisible(self)
     },
 
@@ -196,8 +198,9 @@ Feature <- R6::R6Class(
     set_status = function(value) {
       assertthat::assert_that(
         assertthat::is.flag(value),
-        assertthat::noNA(value))
-      self$status = value
+        assertthat::noNA(value)
+      )
+      self$status <- value
       invisible(self)
     },
 
@@ -210,7 +213,8 @@ Feature <- R6::R6Class(
         assertthat::noNA(value),
         value >= self$min_goal,
         value <= self$max_goal,
-        value >= self$limit_goal)
+        value >= self$limit_goal
+      )
       self$goal <- value
       invisible(self)
     },
@@ -221,7 +225,8 @@ Feature <- R6::R6Class(
     set_current = function(value) {
       assertthat::assert_that(
         assertthat::is.number(value),
-        assertthat::noNA(value))
+        assertthat::noNA(value)
+      )
       self$current <- value
       invisible(self)
     },
@@ -242,7 +247,6 @@ Feature <- R6::R6Class(
         limit_goal = self$limit_goal
       )
     }
-
   )
 )
 
@@ -307,12 +311,12 @@ Feature <- R6::R6Class(
 #'   package = "wheretowork"
 #' )
 #' f2 <- system.file(
-#'  "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
-#'  package = "wheretowork"
+#'   "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
+#'   package = "wheretowork"
 #' )
 #' f3 <- system.file(
-#'  "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
-#'  package = "wheretowork"
+#'   "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
+#'   package = "wheretowork"
 #' )
 #'
 #' # create new dataset
@@ -326,20 +330,18 @@ Feature <- R6::R6Class(
 #'
 #' # print object
 #' print(f)
-#'
 #' @export
-new_feature <- function(
-    name,
-    variable,
-    visible = TRUE,
-    status = TRUE,
-    goal = 0.1,
-    min_goal = 0,
-    max_goal = 1.0,
-    step_goal = 0.01,
-    limit_goal = 0.1,
-    current = 0,
-    id = uuid::UUIDgenerate()) {
+new_feature <- function(name,
+                        variable,
+                        visible = TRUE,
+                        status = TRUE,
+                        goal = 0.1,
+                        min_goal = 0,
+                        max_goal = 1.0,
+                        step_goal = 0.01,
+                        limit_goal = 0.1,
+                        current = 0,
+                        id = uuid::UUIDgenerate()) {
   # return new feature
   Feature$new(
     id = id,
@@ -352,5 +354,6 @@ new_feature <- function(
     max_goal = max_goal,
     step_goal = step_goal,
     limit_goal = limit_goal,
-    current = current)
+    current = current
+  )
 }

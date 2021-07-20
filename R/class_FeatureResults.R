@@ -67,8 +67,10 @@ FeatureResults <- R6::R6Class(
       message("  current: ", round(self$current, 2))
       message("  goal: ", round(self$goal, 2))
       message("  held: ", round(self$held, 2))
-      message("  feature: ",
-       gsub("\n", "\n  ", self$feature$repr()))
+      message(
+        "  feature: ",
+        gsub("\n", "\n  ", self$feature$repr())
+      )
       invisible(self)
     },
 
@@ -86,9 +88,9 @@ FeatureResults <- R6::R6Class(
         ", current: ", round(self$current, 2), end, nl(),
         ", goal: ", round(self$goal, 2), end, nl(),
         ", held: ", round(self$held, 2), end, nl(),
-        "  feature: ", self$feature$repr())
+        "  feature: ", self$feature$repr()
+      )
     }
-
   )
 )
 
@@ -112,12 +114,12 @@ FeatureResults <- R6::R6Class(
 #'   package = "wheretowork"
 #' )
 #' f2 <- system.file(
-#'  "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
-#'  package = "wheretowork"
+#'   "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
+#'   package = "wheretowork"
 #' )
 #' f3 <- system.file(
-#'  "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
-#'  package = "wheretowork"
+#'   "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
+#'   package = "wheretowork"
 #' )
 #'
 #' # create new dataset
@@ -134,12 +136,11 @@ FeatureResults <- R6::R6Class(
 #'
 #' # print object
 #' print(fr)
-#'
 #' @export
-new_feature_results <- function(
-  feature, held, id = uuid::UUIDgenerate()) {
+new_feature_results <- function(feature, held, id = uuid::UUIDgenerate()) {
   FeatureResults$new(
     id = id,
     feature = feature,
-    held = held)
+    held = held
+  )
 }

@@ -52,8 +52,8 @@ solutionResultsModal <- function(id, trigger) {
               `data-dismiss` = "modal",
               htmltools::tags$span(htmltools::HTML("&times;"))
             ),
-          htmltools::tags$div(
-            class = "modal-header-content",
+            htmltools::tags$div(
+              class = "modal-header-content",
               ### solution select container
               htmltools::tags$div(
                 class = "select-container",
@@ -72,9 +72,10 @@ solutionResultsModal <- function(id, trigger) {
                   label = NULL,
                   choices = c(
                     `<i class='fa fa-star'></i>Themes` = "themes",
-                    `<i class='fa fa-weight-hanging'></i>Weights` = "weights"),
-                 justified = FALSE,
-                 size  = "normal"
+                    `<i class='fa fa-weight-hanging'></i>Weights` = "weights"
+                  ),
+                  justified = FALSE,
+                  size = "normal"
                 ),
               ),
               ## download buttons
@@ -109,6 +110,8 @@ solutionResultsModal <- function(id, trigger) {
     )
 
   # attach dependencies
-  htmltools::attachDependencies(out,
-    htmltools::htmlDependencies(shinyBS::bsModal("x", "y", "z")))
+  htmltools::attachDependencies(
+    out,
+    htmltools::htmlDependencies(shinyBS::bsModal("x", "y", "z"))
+  )
 }

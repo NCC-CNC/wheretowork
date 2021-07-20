@@ -54,7 +54,9 @@ server_update_map <- quote({
           disable_html_css_selector("#analysisSidebar li:nth-child(2)")
           #### open solution settings sidebar
           leaflet.extras2::openSidebar(
-            map, id = "newSolutionPane", sidebar_id = "analysisSidebar")
+            map,
+            id = "newSolutionPane", sidebar_id = "analysisSidebar"
+          )
         }
       }
 
@@ -92,8 +94,9 @@ server_update_map <- quote({
         value = list(
           id = x$id,
           setting = "visible",
-          value = FALSE)
+          value = FALSE
         )
+      )
       TRUE
     })
 
@@ -112,7 +115,8 @@ server_update_map <- quote({
       lng1 = app_data$bbox$xmin,
       lat1 = app_data$bbox$ymin,
       lng2 = app_data$bbox$xmax,
-      lat2 = app_data$bbox$ymax)
+      lat2 = app_data$bbox$ymax
+    )
   })
 
   # update map based on print button
@@ -124,7 +128,7 @@ server_update_map <- quote({
     leaflet.extras2::easyprintMap(
       map = leaflet::leafletProxy("map"),
       sizeModes = "A4Landscape",
-      filename = "map")
+      filename = "map"
+    )
   })
-
 })

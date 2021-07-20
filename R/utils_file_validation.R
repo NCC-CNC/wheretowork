@@ -29,8 +29,10 @@ is_valid_configuration_file <- function(x) {
 
   # check if YAML file contains correct keys
   key_names <-
-    c("name", "spatial_path", "attribute_path", "boundary_path",
-      "mode", "themes")
+    c(
+      "name", "spatial_path", "attribute_path", "boundary_path",
+      "mode", "themes"
+    )
   if (!all(c(key_names) %in% names(f))) {
     return("Error: YAML file is missing data")
   }
@@ -84,11 +86,11 @@ is_valid_spatial_file <- function(x) {
     if (
       !raster::compareCRS(
         methods::as(sf::st_crs(f), "CRS"),
-        methods::as(sf::st_crs(4326), "CRS"))
-      ) {
+        methods::as(sf::st_crs(4326), "CRS")
+      )
+    ) {
       return("Error: coordinate reference system must be EPSG:4326")
     }
-
   } else if (any(endsWith(x, ".tif"))) {
     ## extract tif file
     p <- x[endsWith(x, ".tif")]
@@ -103,11 +105,11 @@ is_valid_spatial_file <- function(x) {
     if (
       !raster::compareCRS(
         methods::as(sf::st_crs(f), "CRS"),
-        methods::as(sf::st_crs(3857), "CRS"))
-      ) {
+        methods::as(sf::st_crs(3857), "CRS")
+      )
+    ) {
       return("Error: coordinate reference system must be EPSG:3857")
     }
-
   } else {
     ## throw error because file is not ESRI Shapefile or GeoTIFF
     return("Error: not valid spatial data file format.")

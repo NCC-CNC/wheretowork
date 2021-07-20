@@ -36,8 +36,7 @@ NULL
 #' }
 #'
 #' @export
-mapManager <- function(
-  x, width = NULL, height = NULL, elementId = NULL) {
+mapManager <- function(x, width = NULL, height = NULL, elementId = NULL) {
   # assert that arguments are valid
   assertthat::assert_that(inherits(x, "MapManager"))
 
@@ -50,7 +49,8 @@ mapManager <- function(
     package = "wheretowork",
     elementId = elementId,
     dependencies = c(
-      htmltools::htmlDependencies(shiny::icon("map-marked-alt")))
+      htmltools::htmlDependencies(shiny::icon("map-marked-alt"))
+    )
   )
 }
 
@@ -75,15 +75,19 @@ mapManager <- function(
 #' @name mapManager-shiny
 #'
 #' @export
-mapManagerOutput <- function(outputId, width = "100%", height = "auto"){
+mapManagerOutput <- function(outputId, width = "100%", height = "auto") {
   htmlwidgets::shinyWidgetOutput(
-    outputId, "mapManager", width, height, package = "wheretowork")
+    outputId, "mapManager", width, height,
+    package = "wheretowork"
+  )
 }
 
 #' @rdname mapManager-shiny
 #' @export
 renderMapManager <- function(expr, env = parent.frame(), quoted = FALSE) {
-  if (!quoted) { expr <- substitute(expr) } # force quoted
+  if (!quoted) {
+    expr <- substitute(expr)
+  } # force quoted
   htmlwidgets::shinyRenderWidget(expr, mapManagerOutput, env, quoted = TRUE)
 }
 
@@ -112,12 +116,13 @@ mapManager_html <- function(id, style, class, ...) {
       htmltools::tags$template(
         class = "solution-layer-template",
         htmltools::tags$div(
-          class  = "map-manager-layer",
+          class = "map-manager-layer",
           htmltools::tags$div(
             class = "solution-layer",
             mm_header_component_scaffold(
               icon = shiny::icon("rocket"),
-              remove_button = TRUE),
+              remove_button = TRUE
+            ),
             htmltools::tags$div(
               class = "layer-legend-container",
               mm_legend_component_scaffold()
@@ -134,7 +139,7 @@ mapManager_html <- function(id, style, class, ...) {
       htmltools::tags$template(
         class = "include-layer-template",
         htmltools::tags$div(
-          class  = "map-manager-layer",
+          class = "map-manager-layer",
           htmltools::tags$div(
             class = "include-layer",
             mm_header_component_scaffold(
@@ -156,7 +161,7 @@ mapManager_html <- function(id, style, class, ...) {
       htmltools::tags$template(
         class = "weight-layer-template",
         htmltools::tags$div(
-          class  = "map-manager-layer",
+          class = "map-manager-layer",
           htmltools::tags$div(
             class = "weight-layer",
             mm_header_component_scaffold(
@@ -178,7 +183,7 @@ mapManager_html <- function(id, style, class, ...) {
       htmltools::tags$template(
         class = "single-theme-layer-template",
         htmltools::tags$div(
-          class  = "map-manager-layer",
+          class = "map-manager-layer",
           htmltools::tags$div(
             class = "theme-layer",
             mm_header_component_scaffold(
@@ -202,13 +207,13 @@ mapManager_html <- function(id, style, class, ...) {
         class = "multi-theme-layer-template",
         htmltools::tags$div(
           class = "map-manager-layer",
+          htmltools::tags$div(
+            class = "theme-layer",
+            mm_header_component_scaffold(
+              icon = shiny::icon("star")
+            ),
             htmltools::tags$div(
-              class = "theme-layer",
-              mm_header_component_scaffold(
-                icon = shiny::icon("star")
-              ),
-              htmltools::tags$div(
-                class = "main"
+              class = "main"
             )
           )
         )

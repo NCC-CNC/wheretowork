@@ -8,7 +8,8 @@ NULL
 #' @param solutionSettingsId `character` identifier for the
 #'   [solutionSettings()] widget to create within the sidebar pane.
 #'   This widget is used to control the settings for new solutions.
-#'   Defaults to `paste0(id, "_settings")`.
+#'   Defaults to `NULL` such that the default argument is
+#'   `paste0(id, "_settings")`.
 #'
 #' @inheritParams solutionResultsSidebarPane
 #'
@@ -22,17 +23,19 @@ NULL
 #' }
 #' }
 #' @export
-newSolutionSidebarPane <- function(
-  id,
-  solutionSettingsId = paste0(id, "_settings")) {
+newSolutionSidebarPane <- function(id, solutionSettingsId = NULL) {
   # assert arguments are valid
+  if (is.null(solutionSettingsId)) {
+    solutionSettingsId <- paste0(id, "_settings")
+  }
   assertthat::assert_that(
     ### id
     assertthat::is.string(id),
     assertthat::noNA(id),
-    ### solutionSettingsId
+    ## solutionSettingsId
     assertthat::is.string(solutionSettingsId),
-    assertthat::noNA(solutionSettingsId))
+    assertthat::noNA(solutionSettingsId)
+  )
 
   # create sidebar widget
   ## create sidebar
@@ -56,5 +59,4 @@ newSolutionSidebarPane <- function(
 
   # return result
   w
-
 }

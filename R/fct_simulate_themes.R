@@ -29,12 +29,12 @@ NULL
 #'   package = "wheretowork"
 #' )
 #' f2 <- system.file(
-#'  "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
-#'  package = "wheretowork"
+#'   "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
+#'   package = "wheretowork"
 #' )
 #' f3 <- system.file(
-#'  "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
-#'  package = "wheretowork"
+#'   "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
+#'   package = "wheretowork"
 #' )
 #'
 #' # create new dataset
@@ -45,10 +45,9 @@ NULL
 #'
 #' # print results
 #' print(x)
-#'
 #' @export
-simulate_themes <- function(
-  dataset, n_single_themes, n_multi_themes, lambda = 5) {
+simulate_themes <- function(dataset, n_single_themes, n_multi_themes,
+                            lambda = 5) {
   # assert arguments are valid
   assertthat::assert_that(
     ## data
@@ -62,7 +61,8 @@ simulate_themes <- function(
     n_single_themes + n_multi_themes > 0,
     ## lambda
     assertthat::is.number(lambda),
-    assertthat::noNA(lambda))
+    assertthat::noNA(lambda)
+  )
 
   # extract data
   data <- dataset$get_spatial_data()
@@ -120,7 +120,10 @@ simulate_themes <- function(
   tn_meta <-
     tibble::as_tibble(
       as.data.frame(stats::aggregate(
-        tn$theme, by = list(tn$theme), FUN = length)))
+        tn$theme,
+        by = list(tn$theme), FUN = length
+      ))
+    )
   tn_meta <- stats::setNames(tn_meta, c("theme", "n"))
   ## select names
   mt_idx <- numeric(n_multi_themes)
@@ -147,11 +150,13 @@ simulate_themes <- function(
       #### simulate continuous data
       curr_mtd <-
         simulate_continuous_spatial_data(
-          data, mt_n_features[i])
+          data, mt_n_features[i]
+        )
     } else {
       #### simulate categorical data
       curr_mtd <- simulate_categorical_spatial_data(
-        data, mt_n_features[i])
+        data, mt_n_features[i]
+      )
     }
     names(curr_mtd)[seq_len(mt_n_features[i])] <- curr_tn_index
     ### add theme data to dataset
@@ -162,7 +167,8 @@ simulate_themes <- function(
     } else {
       for (j in seq_along(curr_tn_index)) {
         dataset$add_index(
-          curr_tn_index[[j]], curr_mtd[[curr_tn_index[[j]]]][idx])
+          curr_tn_index[[j]], curr_mtd[[curr_tn_index[[j]]]][idx]
+        )
       }
     }
     ### create features

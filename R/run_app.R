@@ -5,13 +5,11 @@
 #' @inheritParams shiny::shinyApp
 #'
 #' @export
-run_app <- function(
-  onStart = purrr::partial(eval, expr = app_global, envir = globalenv()),
-  options = list(),
-  enableBookmarking = NULL,
-  uiPattern = "/",
-  ...
-) {
+run_app <- function(onStart = purrr::partial(eval, expr = app_global, envir = globalenv()),
+                    options = list(),
+                    enableBookmarking = NULL,
+                    uiPattern = "/",
+                    ...) {
   # launch app
   golem::with_golem_options(
     app = shiny::shinyApp(

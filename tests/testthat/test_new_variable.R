@@ -7,7 +7,8 @@ test_that("initialization", {
   l <- new_continuous_legend(1, 100, c("#000000", "#AAAAAA"))
   # create object
   x <- new_variable(
-    dataset = d, index = 2, total = 12, units = "ha", legend = l)
+    dataset = d, index = 2, total = 12, units = "ha", legend = l
+  )
   # run tests
   expect_is(x, "Variable")
   expect_is(x$repr(), "character")
@@ -25,7 +26,8 @@ test_that("methods", {
   l <- new_continuous_legend(1, 100, c("#000000", "#AAAAAA"))
   # create object
   x <- new_variable(
-    dataset = d, index = 1, total = 12, units = "ha", legend = l)
+    dataset = d, index = 1, total = 12, units = "ha", legend = l
+  )
   # run tests
   expect_true(x$verify())
   x$index <- 1000
@@ -41,7 +43,8 @@ test_that("export method", {
   l <- new_continuous_legend(1, 100, c("#000000", "#AAAAAA"))
   # create object
   x <- new_variable(
-    dataset = d, index = 2, total = 12, units = "ha", legend = l)
+    dataset = d, index = 2, total = 12, units = "ha", legend = l
+  )
   # run tests
   expect_identical(
     x$export(),
@@ -59,7 +62,8 @@ test_that("new_variable_from_auto (continuous)", {
   d <- new_dataset_from_auto(rd)
   # create object
   x <- new_variable_from_auto(
-    dataset = d, index = 2, units = "ha", colors = "viridis")
+    dataset = d, index = 2, units = "ha", colors = "viridis"
+  )
   # run tests
   expect_is(x, "Variable")
   expect_is(x$repr(), "character")
@@ -69,10 +73,12 @@ test_that("new_variable_from_auto (continuous)", {
   expect_identical(x$units, "ha")
   expect_equal(
     x$legend,
-   new_continuous_legend(
-     raster::cellStats(rd[[2]], "min"),
-     raster::cellStats(rd[[2]], "max"),
-     color_palette("viridis", 5)))
+    new_continuous_legend(
+      raster::cellStats(rd[[2]], "min"),
+      raster::cellStats(rd[[2]], "max"),
+      color_palette("viridis", 5)
+    )
+  )
 })
 
 test_that("new_variable_from_auto (categorical)", {
@@ -81,7 +87,8 @@ test_that("new_variable_from_auto (categorical)", {
   d <- new_dataset_from_auto(rd)
   # create object
   x <- new_variable_from_auto(
-    dataset = d, index = 1, units = "ha", colors = "viridis")
+    dataset = d, index = 1, units = "ha", colors = "viridis"
+  )
   # run tests
   expect_is(x, "Variable")
   expect_is(x$repr(), "character")
@@ -92,7 +99,8 @@ test_that("new_variable_from_auto (categorical)", {
     x$legend,
     new_categorical_legend(
       seq_len(raster::cellStats(rd[[1]], "max")),
-      color_palette("viridis", raster::cellStats(rd[[1]], "max")))
+      color_palette("viridis", raster::cellStats(rd[[1]], "max"))
+    )
   )
 })
 
@@ -106,7 +114,9 @@ test_that("new_variable_from_metadata (continuous)", {
     metadata =
       list(
         index = 1, type = "continuous", units = "ha", colors = "viridis",
-        min_value = 1, max_value = 5, total = 11))
+        min_value = 1, max_value = 5, total = 11
+      )
+  )
   # run tests
   expect_is(x, "Variable")
   expect_is(x$repr(), "character")
@@ -130,7 +140,9 @@ test_that("new_variable_from_metadata (categorical)", {
     metadata =
       list(
         index = 1, type = "categorical", units = "ha", colors = "viridis",
-        total = 11, values = seq(1, 6)))
+        total = 11, values = seq(1, 6)
+      )
+  )
   # run tests
   expect_is(x, "Variable")
   expect_is(x$repr(), "character")

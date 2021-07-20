@@ -38,7 +38,7 @@ Theme <- R6::R6Class(
       message("  name:      ", self$name)
       message("  feature: ")
       for (x in vapply(self$feature[po], function(x) x$repr(), character(1))) {
-        message("    " , gsub("\n", "\n    ", x))
+        message("    ", gsub("\n", "\n    ", x))
       }
       invisible(self)
     },
@@ -59,7 +59,10 @@ Theme <- R6::R6Class(
               nl(), paste0(nl(), "  "),
               vapply(self$feature[po], function(x) x$repr(), character(1))
             ),
-            collapse = nl())))
+            collapse = nl()
+          )
+        )
+      )
     },
 
     #' @description
@@ -74,7 +77,9 @@ Theme <- R6::R6Class(
     #' @return `character` vector.
     get_layer_index = function() {
       vapply(
-        self$feature, FUN.VALUE = character(1), function(x) x$variable$index)
+        self$feature,
+        FUN.VALUE = character(1), function(x) x$variable$index
+      )
     },
 
     #' @description
@@ -151,8 +156,11 @@ Theme <- R6::R6Class(
       assertthat::assert_that(
         assertthat::is.string(name),
         assertthat::noNA(name),
-        name %in% c("feature_status", "feature_goal", "feature_visible",
-                    "feature_order", "feature_current", "visible"))
+        name %in% c(
+          "feature_status", "feature_goal", "feature_visible",
+          "feature_order", "feature_current", "visible"
+        )
+      )
       if (identical(name, "feature_status")) {
         out <- self$get_feature_status()
       } else if (identical(name, "feature_goal")) {
@@ -177,7 +185,8 @@ Theme <- R6::R6Class(
     set_visible = function(value) {
       assertthat::assert_that(
         assertthat::is.flag(value),
-        assertthat::noNA(value))
+        assertthat::noNA(value)
+      )
       self$set_feature_visible(rep(value, length(self$feature)))
       invisible(self)
     },
@@ -187,12 +196,14 @@ Theme <- R6::R6Class(
     #' @param value `logical` vector containing a value for each feature.
     #'   A `list` of `logical` values can also be supplied.
     set_feature_visible = function(value) {
-      if (is.list(value))
+      if (is.list(value)) {
         value <- unlist(value, recursive = TRUE, use.names = TRUE)
+      }
       assertthat::assert_that(
         is.logical(value),
         assertthat::noNA(value),
-        length(value) == length(self$feature))
+        length(value) == length(self$feature)
+      )
       for (i in seq_along(value)) {
         self$feature[[i]]$set_visible(value[[i]])
       }
@@ -204,12 +215,14 @@ Theme <- R6::R6Class(
     #' @param value `logical` vector containing a value for each feature.
     #'   A `list` of `logical` values can also be supplied.
     set_feature_status = function(value) {
-      if (is.list(value))
+      if (is.list(value)) {
         value <- unlist(value, recursive = TRUE, use.names = TRUE)
+      }
       assertthat::assert_that(
         is.logical(value),
         assertthat::noNA(value),
-        length(value) == length(self$feature))
+        length(value) == length(self$feature)
+      )
       for (i in seq_along(value)) {
         self$feature[[i]]$set_status(value[[i]])
       }
@@ -221,12 +234,14 @@ Theme <- R6::R6Class(
     #' @param value `numeric` vector containing a value for each feature.
     #'   A `list` of `numeric` values can also be supplied.
     set_feature_goal = function(value) {
-      if (is.list(value))
+      if (is.list(value)) {
         value <- unlist(value, recursive = TRUE, use.names = TRUE)
+      }
       assertthat::assert_that(
         is.numeric(value),
         assertthat::noNA(value),
-        length(value) == length(self$feature))
+        length(value) == length(self$feature)
+      )
       for (i in seq_along(value)) {
         self$feature[[i]]$set_goal(value[[i]])
       }
@@ -238,12 +253,14 @@ Theme <- R6::R6Class(
     #' @param value `numeric` vector containing a value for each feature.
     #'   A `list` of `numeric` values can also be supplied.
     set_feature_current = function(value) {
-      if (is.list(value))
+      if (is.list(value)) {
         value <- unlist(value, recursive = TRUE, use.names = TRUE)
+      }
       assertthat::assert_that(
         is.numeric(value),
         assertthat::noNA(value),
-        length(value) == length(self$feature))
+        length(value) == length(self$feature)
+      )
       for (i in seq_along(value)) {
         self$feature[[i]]$set_current(value[[i]])
       }
@@ -262,8 +279,11 @@ Theme <- R6::R6Class(
         assertthat::is.string(name),
         assertthat::noNA(name),
         name %in%
-          c("feature_status", "feature_goal", "feature_visible",
-            "feature_order", "feature_current", "visible"))
+          c(
+            "feature_status", "feature_goal", "feature_visible",
+            "feature_order", "feature_current", "visible"
+          )
+      )
       if (identical(name, "feature_status")) {
         self$set_feature_status(value)
       } else if (identical(name, "feature_goal")) {
@@ -328,7 +348,6 @@ Theme <- R6::R6Class(
       # return result
       x
     }
-
   )
 )
 
@@ -350,12 +369,12 @@ Theme <- R6::R6Class(
 #'   package = "wheretowork"
 #' )
 #' f2 <- system.file(
-#'  "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
-#'  package = "wheretowork"
+#'   "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
+#'   package = "wheretowork"
 #' )
 #' f3 <- system.file(
-#'  "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
-#'  package = "wheretowork"
+#'   "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
+#'   package = "wheretowork"
 #' )
 #'
 #' # create new dataset
@@ -372,15 +391,15 @@ Theme <- R6::R6Class(
 #'
 #' # print object
 #' print(x)
-#'
 #' @export
 new_theme <- function(...) {
   args <- list(...)
   assertthat::assert_that(
     !is.null(args$feature),
-    msg = "missing `feature` argument")
+    msg = "missing `feature` argument"
+  )
   if (inherits(args$feature, "Feature") ||
-     (is.list(args$feature) && length(args$feature) == 1)) {
+    (is.list(args$feature) && length(args$feature) == 1)) {
     out <- do.call(what = new_single_theme, args = args)
   } else {
     out <- do.call(what = new_multi_theme, args = args)

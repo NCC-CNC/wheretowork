@@ -15,7 +15,6 @@ It is primarily used for testing the package.
 }
 \examples{
 print(simulate_continuous_legend())
-
 }
 \seealso{
 \code{\link[=new_categorical_legend]{new_categorical_legend()}}.

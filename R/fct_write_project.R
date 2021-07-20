@@ -31,12 +31,12 @@ NULL
 #'   package = "wheretowork"
 #' )
 #' f2 <- system.file(
-#'  "extdata", "projects", "sim_raster", "sim_raster_attribute.csv.gz",
-#'  package = "wheretowork"
+#'   "extdata", "projects", "sim_raster", "sim_raster_attribute.csv.gz",
+#'   package = "wheretowork"
 #' )
 #' f3 <- system.file(
-#'  "extdata", "projects", "sim_raster","sim_raster_boundary.csv.gz",
-#'  package = "wheretowork"
+#'   "extdata", "projects", "sim_raster", "sim_raster_boundary.csv.gz",
+#'   package = "wheretowork"
 #' )
 #'
 #' # create new dataset
@@ -57,12 +57,12 @@ NULL
 #'   path = tempfile(),
 #'   spatial_path = tempfile(fileext = ".tif"),
 #'   attribute_path = tempfile(fileext = ".csv.gz"),
-#'   boundary_path = tempfile(fileext = ".csv.gz"))
-#'
+#'   boundary_path = tempfile(fileext = ".csv.gz")
+#' )
 #' @export
-write_project <- function(
-  x, dataset, path, name, spatial_path, attribute_path, boundary_path,
-  mode = "advanced") {
+write_project <- function(x, dataset, path, name,
+                          spatial_path, attribute_path, boundary_path,
+                          mode = "advanced") {
   # assert arguments are valid
   assertthat::assert_that(
     is.list(x),
@@ -79,7 +79,8 @@ write_project <- function(
     assertthat::is.string(boundary_path),
     assertthat::noNA(boundary_path),
     assertthat::is.string(mode),
-    assertthat::noNA(mode))
+    assertthat::noNA(mode)
+  )
 
   # create setting list for themes
   themes_idx <- vapply(x, inherits, what = "Theme", logical(1))

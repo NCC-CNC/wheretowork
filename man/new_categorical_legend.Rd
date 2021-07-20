@@ -24,5 +24,4 @@ l <- new_categorical_legend(c(0, 1, 2), c("#000000", "#444444", "#AAAAAA"))
 
 # print object
 print(l)
-
 }

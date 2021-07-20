@@ -30,7 +30,8 @@ MapManager <- R6::R6Class(
       assertthat::assert_that(
         is.list(layers),
         all_list_elements_inherit(
-          layers, c("Include", "Weight", "Theme", "Solution")),
+          layers, c("Include", "Weight", "Theme", "Solution")
+        ),
         length(order) == length(layers),
         is.numeric(order),
         setequal(order, seq_along(layers))
@@ -50,7 +51,7 @@ MapManager <- R6::R6Class(
         po <- order(self$get_order(), decreasing = TRUE)
         message("  layers: ")
         for (x in vapply(self$layers[po], function(x) x$repr(), character(1))) {
-          message("    " , gsub(nl(), paste0(nl(), "    "), x, fixed = TRUE))
+          message("    ", gsub(nl(), paste0(nl(), "    "), x, fixed = TRUE))
         }
       } else {
         message("  layers: none")
@@ -78,10 +79,12 @@ MapManager <- R6::R6Class(
     get_layer = function(value) {
       assertthat::assert_that(
         assertthat::is.string(value),
-        assertthat::noNA(value))
+        assertthat::noNA(value)
+      )
       assertthat::assert_that(
         value %in% self$ids,
-        msg = paste0("no layer with the id `", value,"`"))
+        msg = paste0("no layer with the id `", value, "`")
+      )
       self$layers[[which(self$ids == value)]]
     },
 
@@ -91,7 +94,8 @@ MapManager <- R6::R6Class(
     get_layer_names = function() {
       unlist(
         lapply(self$layers, function(x) x$get_layer_name()),
-        recursive = TRUE, use.names = FALSE)
+        recursive = TRUE, use.names = FALSE
+      )
     },
 
     #' @description
@@ -100,7 +104,8 @@ MapManager <- R6::R6Class(
     get_layer_indices = function() {
       unlist(
         lapply(self$layers, function(x) x$get_layer_index()),
-        recursive = TRUE, use.names = FALSE)
+        recursive = TRUE, use.names = FALSE
+      )
     },
 
     #' @description
@@ -119,7 +124,8 @@ MapManager <- R6::R6Class(
       assertthat::assert_that(
         is.list(value),
         assertthat::has_name(value, "setting"),
-        assertthat::is.string(value$setting))
+        assertthat::is.string(value$setting)
+      )
       if (is.null(value$id)) {
         # map manager settings
         if (identical(value$setting, "order")) {
@@ -132,8 +138,9 @@ MapManager <- R6::R6Class(
         assertthat::assert_that(
           assertthat::has_name(value, "id"),
           assertthat::is.string(value$id),
-          value$id %in% self$ids)
-          return(self$get_layer(value$id)$get_setting(value$setting))
+          value$id %in% self$ids
+        )
+        return(self$get_layer(value$id)$get_setting(value$setting))
       }
     },
 
@@ -141,12 +148,14 @@ MapManager <- R6::R6Class(
     #' Set information on the plot order of each layer.
     #' @param value `logical` vector indicating if each layer is visible or not.
     set_order = function(value) {
-      if (is.list(value))
+      if (is.list(value)) {
         value <- unlist(value, recursive = TRUE, use.names = TRUE)
+      }
       assertthat::assert_that(
         is.numeric(value),
         assertthat::noNA(value),
-        length(value) == length(self$layers))
+        length(value) == length(self$layers)
+      )
       self$order <- value
       invisible(self)
     },
@@ -158,7 +167,8 @@ MapManager <- R6::R6Class(
     set_visible = function(value) {
       assertthat::assert_that(
         assertthat::is.flag(value),
-        assertthat::noNA(value))
+        assertthat::noNA(value)
+      )
       vapply(self$layers, FUN.VALUE = logical(1), function(x) {
         x$set_visible(value)
         TRUE
@@ -185,7 +195,8 @@ MapManager <- R6::R6Class(
       assertthat::assert_that(
         is.list(value),
         assertthat::has_name(value, "setting"),
-        assertthat::is.string(value$setting))
+        assertthat::is.string(value$setting)
+      )
       if (identical(value$setting, "remove")) {
         stop("$drop_layer() must be called directly.")
       } else if (is.null(value$id)) {
@@ -200,8 +211,9 @@ MapManager <- R6::R6Class(
         assertthat::assert_that(
           assertthat::has_name(value, "id"),
           assertthat::is.string(value$id),
-          value$id %in% self$ids)
-          self$get_layer(value$id)$set_setting(value$setting, value$value)
+          value$id %in% self$ids
+        )
+        self$get_layer(value$id)$set_setting(value$setting, value$value)
       }
       invisible(self)
     },
@@ -214,19 +226,24 @@ MapManager <- R6::R6Class(
       # assert arguments are valid
       assertthat::assert_that(
         inherits(value, c("Weight", "Theme", "Solution")),
-        inherits(map, "leaflet_proxy"))
+        inherits(map, "leaflet_proxy")
+      )
       assertthat::assert_that(
         !value$id %in% self$ids,
         msg = paste0(
           "cannot add new layer because the id `", value$id,
-          "` already exists"))
+          "` already exists"
+        )
+      )
       # add layer from object
       self$layers[[length(self$layers) + 1]] <- value
       self$ids <- c(self$ids, value$id)
       self$order <- c(self$order, max(self$order) + 1)
       # update map
       self$layers[[length(self$layers)]]$render_on_map(
-        map, zindex = last(self$order) * 100)
+        map,
+        zindex = last(self$order) * 100
+      )
       # return invisible self
       invisible(self)
     },
@@ -240,12 +257,15 @@ MapManager <- R6::R6Class(
       assertthat::assert_that(
         assertthat::is.string(value),
         assertthat::noNA(value),
-        inherits(map, "leaflet_proxy"))
+        inherits(map, "leaflet_proxy")
+      )
       assertthat::assert_that(
         value %in% self$ids,
         msg = paste0(
           "cannot drop layer because the id `", value,
-          "` doesn't exist"))
+          "` doesn't exist"
+        )
+      )
       # drop layer from object
       idx <- which(self$ids != value)
       self$layers <- self$layers[idx]
@@ -284,7 +304,7 @@ MapManager <- R6::R6Class(
         map <- self$layers[[i]]$render_on_map(map, zindex = zv[i])
       }
       # return result
-       invisible(map)
+      invisible(map)
     },
 
     #' @description
@@ -299,7 +319,6 @@ MapManager <- R6::R6Class(
       }
       invisible(self)
     }
-
   )
 )
 
@@ -326,12 +345,12 @@ MapManager <- R6::R6Class(
 #'   package = "wheretowork"
 #' )
 #' f2 <- system.file(
-#'  "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
-#'  package = "wheretowork"
+#'   "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
+#'   package = "wheretowork"
 #' )
 #' f3 <- system.file(
-#'  "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
-#'  package = "wheretowork"
+#'   "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
+#'   package = "wheretowork"
 #' )
 #'
 #' # create new dataset
@@ -346,18 +365,22 @@ MapManager <- R6::R6Class(
 #' # create a weight using a variable
 #' w <- new_weight(
 #'   name = "Human Footprint Index", variable = v1,
-#'   factor = 90, status = FALSE, id = "W1")
+#'   factor = 90, status = FALSE, id = "W1"
+#' )
 #'
 #' # create features using variables
 #' f1 <- new_feature(
 #'   name = "Possum", variable = v2,
-#'   goal = 0.2, status = FALSE, current = 0.5, id = "F1")
+#'   goal = 0.2, status = FALSE, current = 0.5, id = "F1"
+#' )
 #' f2 <- new_feature(
 #'   name = "Forests", variable = v3,
-#'   goal = 0.3, status = FALSE, current = 0.9, id = "F2")
+#'   goal = 0.3, status = FALSE, current = 0.9, id = "F2"
+#' )
 #' f3 <- new_feature(
 #'   name = "Shrubs", variable = v4,
-#'   goal = 0.6, status = TRUE, current = 0.4, id = "F3")
+#'   goal = 0.6, status = TRUE, current = 0.4, id = "F3"
+#' )
 #'
 #' # create themes using the features
 #' t1 <- new_single_theme("Species", f1, id = "T1")
@@ -368,9 +391,7 @@ MapManager <- R6::R6Class(
 #'
 #' # print object
 #' print(mm)
-#'
 #' @export
-new_map_manager <- function(
-  layers, order = rev(seq_along(layers))) {
+new_map_manager <- function(layers, order = rev(seq_along(layers))) {
   MapManager$new(layers = layers, order = order)
 }

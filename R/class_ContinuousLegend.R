@@ -39,7 +39,8 @@ ContinuousLegend <- R6::R6Class(
         is.character(colors),
         assertthat::noNA(min_value),
         all(nchar(colors) %in% c(7, 9)),
-        all(substr(colors, 1, 1) == "#"))
+        all(substr(colors, 1, 1) == "#")
+      )
       self$min_value <- min_value
       self$max_value <- max_value
       self$colors <- colors
@@ -93,7 +94,6 @@ ContinuousLegend <- R6::R6Class(
         colors = self$colors
       )
     }
-
   )
 )
 
@@ -120,9 +120,9 @@ ContinuousLegend <- R6::R6Class(
 #'
 #' # print object
 #' print(l)
-#'
 #' @export
 new_continuous_legend <- function(min_value, max_value, colors, n = 4) {
   ContinuousLegend$new(
-    min_value = min_value, max_value = max_value, colors = colors, n = n)
+    min_value = min_value, max_value = max_value, colors = colors, n = n
+  )
 }

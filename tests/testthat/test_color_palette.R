@@ -17,16 +17,20 @@ test_that("single viridisLite palette (n = NULL)", {
 test_that("multiple RColorBrewer palette (n = 12)", {
   expect_equal(
     color_palette("Greens;Purples", 12),
-    c(RColorBrewer::brewer.pal(9, "Greens"),
-      RColorBrewer::brewer.pal(3, "Purples"))
+    c(
+      RColorBrewer::brewer.pal(9, "Greens"),
+      RColorBrewer::brewer.pal(3, "Purples")
+    )
   )
 })
 
 test_that("multiple RColorBrewer palette (n = NULL)", {
   expect_equal(
     color_palette("Greens;Purples", NULL),
-    c(RColorBrewer::brewer.pal(9, "Greens"),
-      RColorBrewer::brewer.pal(9, "Purples"))
+    c(
+      RColorBrewer::brewer.pal(9, "Greens"),
+      RColorBrewer::brewer.pal(9, "Purples")
+    )
   )
 })
 
@@ -47,8 +51,10 @@ test_that("multiple viridisLite palette (n = NULL)", {
 test_that("multiple viridisLite palette (n = NULL)", {
   expect_equal(
     color_palette("viridis;magma", NULL),
-    c(viridisLite::viridis(5, option = "viridis"),
-      viridisLite::viridis(5, option = "magma"))
+    c(
+      viridisLite::viridis(5, option = "viridis"),
+      viridisLite::viridis(5, option = "magma")
+    )
   )
 })
 

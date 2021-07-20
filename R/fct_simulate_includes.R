@@ -20,12 +20,12 @@ NULL
 #'   package = "wheretowork"
 #' )
 #' f2 <- system.file(
-#'  "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
-#'  package = "wheretowork"
+#'   "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
+#'   package = "wheretowork"
 #' )
 #' f3 <- system.file(
-#'  "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
-#'  package = "wheretowork"
+#'   "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
+#'   package = "wheretowork"
 #' )
 #'
 #' # create new dataset
@@ -36,17 +36,16 @@ NULL
 #'
 #' # print results
 #' print(x)
-#'
 #' @export
-simulate_includes <- function(
-  dataset, n) {
+simulate_includes <- function(dataset, n) {
   # assert arguments are valid
   assertthat::assert_that(
     ## data
     inherits(dataset, c("Dataset")),
     ## weights
     assertthat::is.count(n),
-    assertthat::noNA(n))
+    assertthat::noNA(n)
+  )
 
   # extract data
   data <- dataset$get_spatial_data()

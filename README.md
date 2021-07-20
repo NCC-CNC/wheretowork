@@ -1,7 +1,7 @@
 
 <!--- README.md is generated from README.Rmd. Please edit that file -->
 
-# Where to Work: Interactive application for systematic conservation planning
+# Where to Work: Interactive systematic conservation planning application
 
 [![lifecycle](https://img.shields.io/badge/Lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 [![Docker

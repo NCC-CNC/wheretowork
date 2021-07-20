@@ -27,7 +27,8 @@ server_update_solution_settings <- quote({
       ### update object
       app_data$ss$update_current_held(
         theme_data = app_data$theme_data,
-        include_data = app_data$include_data)
+        include_data = app_data$include_data
+      )
 
       ### update widget
       vapply(app_data$themes, FUN.VALUE = logical(1), function(x) {
@@ -46,5 +47,4 @@ server_update_solution_settings <- quote({
       })
     }
   })
-
 })

@@ -5,14 +5,16 @@ test_that("initialization", {
   d <- new_dataset_from_auto(import_simple_raster_data())
   v <- new_variable(
     dataset = d, index = 1, total = 200, units = "",
-    legend = simulate_include_legend())
+    legend = simulate_include_legend()
+  )
   x <- new_include(
     name = "National protected areas",
     variable = v,
     mandatory = TRUE,
     visible = FALSE,
     status = FALSE,
-    id = "FID1")
+    id = "FID1"
+  )
   # run tests
   print(x)
   expect_is(x$repr(), "character")
@@ -29,14 +31,16 @@ test_that("get methods", {
   d <- new_dataset_from_auto(import_simple_raster_data())
   v <- new_variable(
     dataset = d, index = 1, total = 200, units = "",
-    legend = simulate_include_legend())
+    legend = simulate_include_legend()
+  )
   x <- new_include(
     name = "National protected areas",
     variable = v,
     mandatory = TRUE,
     visible = TRUE,
     status = FALSE,
-    id = "FID1")
+    id = "FID1"
+  )
   # run tests
   expect_identical(x$get_status(), FALSE)
   expect_identical(x$get_visible(), TRUE)
@@ -47,14 +51,16 @@ test_that("set methods", {
   d <- new_dataset_from_auto(import_simple_raster_data())
   v <- new_variable(
     dataset = d, index = 1, total = 200, units = "",
-    legend = simulate_include_legend())
+    legend = simulate_include_legend()
+  )
   x <- new_include(
     name = "National protected areas",
     variable = v,
     mandatory = TRUE,
     visible = FALSE,
     status = FALSE,
-    id = "FID1")
+    id = "FID1"
+  )
   # run tests
   x$set_status(TRUE)
   x$set_visible(FALSE)
@@ -67,14 +73,16 @@ test_that("export method", {
   d <- new_dataset_from_auto(import_simple_raster_data())
   v <- new_variable(
     dataset = d, index = 1, total = 200, units = "",
-    legend = simulate_include_legend())
+    legend = simulate_include_legend()
+  )
   x <- new_include(
     name = "National protected areas",
     variable = v,
     mandatory = TRUE,
     visible = FALSE,
     status = FALSE,
-    id = "FID1")
+    id = "FID1"
+  )
   # run tests
   expect_identical(
     x$export(),
@@ -93,14 +101,16 @@ test_that("widget methods", {
   d <- new_dataset_from_auto(import_simple_raster_data())
   v <- new_variable(
     dataset = d, index = 1, total = 200, units = "",
-    legend = simulate_include_legend())
+    legend = simulate_include_legend()
+  )
   x <- new_include(
     name = "National protected areas",
     variable = v,
     mandatory = TRUE,
     visible = FALSE,
     status = FALSE,
-    id = "FID1")
+    id = "FID1"
+  )
   # run tests
   ## solution settings
   expect_identical(
@@ -109,7 +119,8 @@ test_that("widget methods", {
       id = "FID1",
       name = "National protected areas",
       status = FALSE,
-      mandatory = TRUE)
+      mandatory = TRUE
+    )
   )
   ## map manager settings
   expect_identical(
@@ -120,6 +131,7 @@ test_that("widget methods", {
       visible = FALSE,
       legend = v$legend$get_widget_data(),
       units = "",
-      type = "include")
+      type = "include"
+    )
   )
 })

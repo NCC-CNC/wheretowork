@@ -122,7 +122,7 @@
     <p>Constructs a sidebar pane for displaying solution results.</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>solutionResultsSidebarPane</span><span class='op'>(</span><span class='va'>id</span>, solutionResultsId <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>id</span>, <span class='st'>"_results"</span><span class='op'>)</span><span class='op'>)</span></code></pre></div>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>solutionResultsSidebarPane</span><span class='op'>(</span><span class='va'>id</span>, solutionResultsId <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -136,7 +136,8 @@
       <td><p><code>character</code> identifier for the
 <code><a href='solutionResults-widget.html'>solutionResults()</a></code> widget to create within the sidebar pane.
 This widget is used to  display results for solutions.
-Defaults to <code>paste0(id, "_results")</code>.</p></td>
+Defaults to <code>NULL</code> such that the default argument is
+<code>paste0(id, "_results")</code>.</p></td>
     </tr>
     </table>
 

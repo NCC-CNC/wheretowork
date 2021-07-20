@@ -49,8 +49,11 @@ Variable <- R6::R6Class(
         assertthat::is.string(units),
         assertthat::noNA(units),
         #### legend
-        inherits(legend,
-          c("ContinuousLegend", "CategoricalLegend", "ManualLegend")))
+        inherits(
+          legend,
+          c("ContinuousLegend", "CategoricalLegend", "ManualLegend")
+        )
+      )
       ### set fields
       self$dataset <- dataset
       self$total <- total
@@ -88,7 +91,8 @@ Variable <- R6::R6Class(
         self$dataset$repr(),
         "#", self$index,
         " ", start, "total: ", round(self$total, 2), " ",
-        self$units, end)
+        self$units, end
+      )
     },
 
     #' @description
@@ -98,7 +102,9 @@ Variable <- R6::R6Class(
       assertthat::assert_that(
         self$dataset$has_index(self$index),
         msg = paste0(
-          "dataset does not have variable at index \"", self$index, "\""))
+          "dataset does not have variable at index \"", self$index, "\""
+        )
+      )
       invisible(TRUE)
     },
 
@@ -133,7 +139,8 @@ Variable <- R6::R6Class(
         inherits(x, c("leaflet", "leaflet_proxy")),
         assertthat::is.string(id),
         assertthat::is.number(zindex),
-        assertthat::is.flag(visible))
+        assertthat::is.flag(visible)
+      )
       # extract data
       d <- self$get_data()
       # add map pane for variable
@@ -152,7 +159,8 @@ Variable <- R6::R6Class(
             method = self$legend$get_resample_method(),
             colors = self$legend$get_color_map(),
             group = id,
-            pane = pane_id)
+            pane = pane_id
+          )
         })
       } else if (inherits(d, "sf")) {
         ## prepare data
@@ -178,7 +186,8 @@ Variable <- R6::R6Class(
           color = col,
           fillColor = col,
           group = id,
-          options = leaflet::pathOptions(pane = pane_id))
+          options = leaflet::pathOptions(pane = pane_id)
+        )
       }
       # return result
       x
@@ -197,7 +206,8 @@ Variable <- R6::R6Class(
         inherits(x, "leaflet_proxy"),
         assertthat::is.string(id),
         assertthat::is.number(zindex),
-        assertthat::is.flag(visible))
+        assertthat::is.flag(visible)
+      )
       # update map pane to update variable
       leaflet::updateMapPane(x, paste0("pane-", id), zindex, visible)
     }
@@ -228,29 +238,31 @@ Variable <- R6::R6Class(
 #'   package = "wheretowork"
 #' )
 #' f2 <- system.file(
-#'  "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
-#'  package = "wheretowork"
+#'   "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
+#'   package = "wheretowork"
 #' )
 #' f3 <- system.file(
-#'  "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
-#'  package = "wheretowork"
+#'   "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
+#'   package = "wheretowork"
 #' )
 #'
 #' # create new dataset
 #' d <- new_dataset(f1, f2, f3)
 #'
 #' # create new variable
-#' v <- new_variable(d, index = 1, total = 12, units = "ha",
-#'   legend = new_continuous_legend(1, 100, c("#000000", "#AAAAAA")))
+#' v <- new_variable(d,
+#'   index = 1, total = 12, units = "ha",
+#'   legend = new_continuous_legend(1, 100, c("#000000", "#AAAAAA"))
+#' )
 #'
 #' # print object
 #' print(v)
-#'
 #' @export
 new_variable <- function(dataset, index, units, total, legend) {
   Variable$new(
     dataset = dataset, index = index,
-    total = total, units = units, legend = legend)
+    total = total, units = units, legend = legend
+  )
 }
 
 #' New variable from automatic calculations
@@ -289,12 +301,12 @@ new_variable <- function(dataset, index, units, total, legend) {
 #'   package = "wheretowork"
 #' )
 #' f2 <- system.file(
-#'  "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
-#'  package = "wheretowork"
+#'   "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
+#'   package = "wheretowork"
 #' )
 #' f3 <- system.file(
-#'  "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
-#'  package = "wheretowork"
+#'   "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
+#'   package = "wheretowork"
 #' )
 #'
 #' # create new dataset
@@ -305,10 +317,10 @@ new_variable <- function(dataset, index, units, total, legend) {
 #'
 #' # print object
 #' print(v)
-#'
 #' @export
-new_variable_from_auto <- function(
-  dataset, index, units = "", type = "auto", colors = "random") {
+new_variable_from_auto <- function(dataset, index,
+                                   units = "", type = "auto",
+                                   colors = "random") {
   # assert arguments are valid
   assertthat::assert_that(
     ## dataset
@@ -326,7 +338,8 @@ new_variable_from_auto <- function(
     ## colors
     is.character(colors),
     assertthat::noNA(colors),
-    length(colors) >= 1)
+    length(colors) >= 1
+  )
 
   # import dataset
   d <- dataset$get_index(index)
@@ -343,13 +356,15 @@ new_variable_from_auto <- function(
   new_variable_from_metadata(
     dataset = dataset,
     metadata =
-    append(
-      list(
-        index = index,
-        units = units,
-        type = type,
-        colors = colors),
-      s)
+      append(
+        list(
+          index = index,
+          units = units,
+          type = type,
+          colors = colors
+        ),
+        s
+      )
   )
 }
 
@@ -390,12 +405,12 @@ new_variable_from_auto <- function(
 #'   package = "wheretowork"
 #' )
 #' f2 <- system.file(
-#'  "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
-#'  package = "wheretowork"
+#'   "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
+#'   package = "wheretowork"
 #' )
 #' f3 <- system.file(
-#'  "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
-#'  package = "wheretowork"
+#'   "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
+#'   package = "wheretowork"
 #' )
 #'
 #' # create new dataset
@@ -403,13 +418,15 @@ new_variable_from_auto <- function(
 #'
 #' # create new variable
 #' v <- new_variable_from_metadata(
-#'   d, list(index = 1, units = "ha", type = "continuous",
-#'           colors = c("#000000", "#AAAAAA"), total = 12,
-#'           min_value = 1, max_value = 3))
+#'   d, list(
+#'     index = 1, units = "ha", type = "continuous",
+#'     colors = c("#000000", "#AAAAAA"), total = 12,
+#'     min_value = 1, max_value = 3
+#'   )
+#' )
 #'
 #' # print object
 #' print(v)
-#'
 #' @export
 new_variable_from_metadata <- function(dataset, metadata) {
   # assert arguments are valid
@@ -417,7 +434,8 @@ new_variable_from_metadata <- function(dataset, metadata) {
     ## dataset
     inherits(dataset, "Dataset"),
     ## metadata
-    is.list(metadata))
+    is.list(metadata)
+  )
   assertthat::assert_that(
     ## index
     assertthat::is.string(metadata$index) ||
@@ -435,19 +453,22 @@ new_variable_from_metadata <- function(dataset, metadata) {
     assertthat::noNA(metadata$colors),
     ## total
     assertthat::is.number(metadata$total),
-    assertthat::noNA(metadata$total))
+    assertthat::noNA(metadata$total)
+  )
   if (identical(metadata$type, "continuous")) {
     ## continuous metrics
     assertthat::assert_that(
       assertthat::is.number(metadata$min_value),
       assertthat::noNA(metadata$min_value),
       assertthat::is.number(metadata$max_value),
-      assertthat::noNA(metadata$max_value))
+      assertthat::noNA(metadata$max_value)
+    )
   } else {
     ## categorical metrics
     assertthat::assert_that(
       is.numeric(metadata$values),
-      assertthat::noNA(metadata$values))
+      assertthat::noNA(metadata$values)
+    )
   }
 
   # validate colors
@@ -456,12 +477,14 @@ new_variable_from_metadata <- function(dataset, metadata) {
     ## then verify if colors are represented using hexadecimal format
     assertthat::assert_that(
       all(startsWith(metadata$colors, "#")),
-      all(nchar(metadata$colors) %in% c(7, 9)))
+      all(nchar(metadata$colors) %in% c(7, 9))
+    )
   } else {
     ## if first element of colors does not start with hash symbol,
     ## then assume it should be the name of a palette
     assertthat::assert_that(
-      length(metadata$colors) == 1)
+      length(metadata$colors) == 1
+    )
   }
 
   # prepare colors
@@ -482,14 +505,18 @@ new_variable_from_metadata <- function(dataset, metadata) {
         msg = paste0(
           metadata$type, " data has ", length(metadata$values),
           " unique values and so ",
-          "the argument to \"colors\" must contain this many elements."))
+          "the argument to \"colors\" must contain this many elements."
+        )
+      )
     } else {
       ## verify that at least two colors supplied for continuous legend
       assertthat::assert_that(
         length(colors) >= 2,
         msg = paste0(
           metadata$type,
-          " data requires at least 2 colors to create a color ramp."))
+          " data requires at least 2 colors to create a color ramp."
+        )
+      )
     }
   }
 
@@ -498,15 +525,18 @@ new_variable_from_metadata <- function(dataset, metadata) {
     legend <- new_continuous_legend(
       min_value = metadata$min_value,
       max_value = metadata$max_value,
-      colors = colors)
+      colors = colors
+    )
   } else {
     legend <- new_categorical_legend(
       values = metadata$values,
-      colors = colors)
+      colors = colors
+    )
   }
 
   # create object
   Variable$new(
     dataset = dataset, index = metadata$index, total = metadata$total,
-    units = metadata$units, legend = legend)
+    units = metadata$units, legend = legend
+  )
 }

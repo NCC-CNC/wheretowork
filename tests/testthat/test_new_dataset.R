@@ -7,7 +7,8 @@ test_that("raster (from memory)", {
   attribute_data <- tibble::tibble(
     V1 = runif(length(idx)),
     V2 = runif(length(idx)),
-    `_index` = idx)
+    `_index` = idx
+  )
   boundary_data <- prioritizr::boundary_matrix(spatial_data)
   # create object
   x <- new_dataset(
@@ -16,7 +17,8 @@ test_that("raster (from memory)", {
     boundary_path = "memory",
     spatial_data = spatial_data,
     attribute_data = attribute_data,
-    boundary_data = boundary_data)
+    boundary_data = boundary_data
+  )
   # run tests
   print(x)
   expect_is(x$repr(), "character")
@@ -79,7 +81,8 @@ test_that("raster (from memory)", {
     x$get_bbox(),
     setNames(
       as.list(as.list(raster::extent(spatial_data))),
-      c("xmin", "xmax", "ymin", "ymax"))
+      c("xmin", "xmax", "ymin", "ymax")
+    )
   )
 })
 
@@ -90,7 +93,8 @@ test_that("methods (sf from memory)", {
   attribute_data <- tibble::tibble(
     V1 = runif(length(idx)),
     V2 = runif(length(idx)),
-    `_index` = idx)
+    `_index` = idx
+  )
   boundary_data <- prioritizr::boundary_matrix(spatial_data)
   # create object
   x <- new_dataset(
@@ -99,7 +103,8 @@ test_that("methods (sf from memory)", {
     boundary_path = "memory",
     spatial_data = spatial_data,
     attribute_data = attribute_data,
-    boundary_data = boundary_data)
+    boundary_data = boundary_data
+  )
   # run tests
   print(x)
   expect_is(x$repr(), "character")
@@ -140,7 +145,8 @@ test_that("methods (sf from memory)", {
     x$get_bbox(),
     setNames(
       as.list(as.list(raster::extent(spatial_data))),
-      c("xmin", "xmax", "ymin", "ymax"))
+      c("xmin", "xmax", "ymin", "ymax")
+    )
   )
 })
 
@@ -151,7 +157,8 @@ test_that("raster (from file)", {
   attribute_data <- tibble::tibble(
     V1 = runif(length(idx)),
     V2 = runif(length(idx)),
-    `_index` = idx)
+    `_index` = idx
+  )
   boundary_data <- prioritizr::boundary_matrix(spatial_data)[idx, idx]
   # create object from memory
   d <- new_dataset(
@@ -160,7 +167,8 @@ test_that("raster (from file)", {
     boundary_path = "memory",
     spatial_data = spatial_data,
     attribute_data = attribute_data,
-    boundary_data = boundary_data)
+    boundary_data = boundary_data
+  )
   # write object to disk
   f1 <- tempfile(fileext = ".tif")
   f2 <- tempfile(fileext = ".csv.gz")
@@ -189,7 +197,8 @@ test_that("raster (from file)", {
     x$get_bbox(),
     setNames(
       as.list(as.list(raster::extent(spatial_data))),
-      c("xmin", "xmax", "ymin", "ymax"))
+      c("xmin", "xmax", "ymin", "ymax")
+    )
   )
 })
 
@@ -200,7 +209,8 @@ test_that("methods (sf from file)", {
   attribute_data <- tibble::tibble(
     V1 = runif(length(idx)),
     V2 = runif(length(idx)),
-    `_index` = idx)
+    `_index` = idx
+  )
   boundary_data <- prioritizr::boundary_matrix(spatial_data)
   # create object from memory
   d <- new_dataset(
@@ -209,7 +219,8 @@ test_that("methods (sf from file)", {
     boundary_path = "memory",
     spatial_data = spatial_data,
     attribute_data = attribute_data,
-    boundary_data = boundary_data)
+    boundary_data = boundary_data
+  )
   # write object to disk
   f1 <- tempfile(fileext = ".shp")
   f2 <- tempfile(fileext = ".csv.gz")
@@ -244,6 +255,7 @@ test_that("methods (sf from file)", {
     x$get_bbox(),
     setNames(
       as.list(as.list(raster::extent(spatial_data))),
-      c("xmin", "xmax", "ymin", "ymax"))
+      c("xmin", "xmax", "ymin", "ymax")
+    )
   )
 })

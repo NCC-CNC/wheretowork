@@ -17,7 +17,7 @@ NULL
 #' @docType package
 #'
 #' @examples
-#' #TODO
+#' # TODO
 NULL
 
 # define global variables to pass package checks

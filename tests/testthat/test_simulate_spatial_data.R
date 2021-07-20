@@ -10,7 +10,10 @@ test_that("proportion (raster)", {
   expect_equal(names(x), c("V1", "V2"))
   expect_true(
     raster::compareRaster(
-      x, d, res = TRUE, tolerance = 1e-5, stopiffalse = FALSE))
+      x, d,
+      res = TRUE, tolerance = 1e-5, stopiffalse = FALSE
+    )
+  )
   expect_gte(min(raster::cellStats(x, "min")), 0)
   expect_lte(max(raster::cellStats(x, "max")), 1)
 })
@@ -37,7 +40,10 @@ test_that("continuous (raster)", {
   expect_equal(names(x), c("V1", "V2"))
   expect_true(
     raster::compareRaster(
-      x, d, res = TRUE, tolerance = 1e-5, stopiffalse = FALSE))
+      x, d,
+      res = TRUE, tolerance = 1e-5, stopiffalse = FALSE
+    )
+  )
   expect_gte(min(raster::cellStats(x, "min")), 0)
 })
 
@@ -62,7 +68,10 @@ test_that("categorical (raster)", {
   expect_equal(names(x), c("V1", "V2"))
   expect_true(
     raster::compareRaster(
-      x, d, res = TRUE, tolerance = 1e-5, stopiffalse = FALSE))
+      x, d,
+      res = TRUE, tolerance = 1e-5, stopiffalse = FALSE
+    )
+  )
   expect_gte(min(raster::cellStats(x, "min")), 0)
   expect_lte(max(raster::cellStats(x, "max")), 11)
   expect_lte(n_distinct(c(raster::values(x))), 11)

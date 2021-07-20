@@ -27,7 +27,8 @@ ManualLegend <- R6::R6Class(
         all(substr(colors, 1, 1) == "#"),
         is.character(labels),
         assertthat::noNA(labels),
-        length(colors) == length(labels))
+        length(colors) == length(labels)
+      )
       self$colors <- colors
       self$labels <- labels
     },
@@ -73,7 +74,6 @@ ManualLegend <- R6::R6Class(
         labels = self$labels
       )
     }
-
   )
 )
 
@@ -95,7 +95,6 @@ ManualLegend <- R6::R6Class(
 #'
 #' # print object
 #' print(l)
-#'
 #' @export
 new_manual_legend <- function(colors, labels) {
   ManualLegend$new(colors, labels)

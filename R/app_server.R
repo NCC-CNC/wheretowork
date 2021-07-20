@@ -3,7 +3,7 @@
 #' @param input,output,session Internal parameters for {shiny}.
 #'     DO NOT REMOVE.
 #' @noRd
-app_server <- function(input, output, session ) {
+app_server <- function(input, output, session) {
 
   # initialization
   ## initialize app

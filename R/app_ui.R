@@ -11,8 +11,8 @@ app_ui <- function(request) {
     # app content
     shiny::fillPage(
 
-    ## manually insert shinyBS JS code
-    htmltools::tags$script(src = "www/shinyBS-copy.js"),
+      ## manually insert shinyBS JS code
+      htmltools::tags$script(src = "www/shinyBS-copy.js"),
 
       ## start up screen
       shinybusy::busy_start_up(
@@ -51,7 +51,6 @@ app_ui <- function(request) {
         newSolutionSidebarPane(id = "newSolutionPane"),
         solutionResultsSidebarPane(id = "solutionResultsPane")
       )
-
     )
   )
 }
@@ -63,7 +62,7 @@ app_ui <- function(request) {
 #'
 #' @importFrom golem add_resource_path activate_js favicon bundle_resources
 #' @noRd
-golem_add_external_resources <- function(){
+golem_add_external_resources <- function() {
   # add resources
   golem::add_resource_path(
     "www", app_sys("app/www")

@@ -58,8 +58,7 @@ NULL
 #' @rdname solutionSettings-widget
 #'
 #' @export
-solutionSettings <- function(
-  x, width = NULL, height = NULL, elementId = NULL) {
+solutionSettings <- function(x, width = NULL, height = NULL, elementId = NULL) {
   # assert arguments are valid
   assertthat::assert_that(inherits(x, "SolutionSettings"))
 
@@ -76,9 +75,11 @@ solutionSettings <- function(
     package = "wheretowork",
     elementId = elementId,
     dependencies = c(
-        htmltools::htmlDependencies(shiny::icon("map-marked-alt")),
-        htmltools::htmlDependencies(
-          shinyBS::bsCollapse(shinyBS::bsCollapsePanel("id"))))
+      htmltools::htmlDependencies(shiny::icon("map-marked-alt")),
+      htmltools::htmlDependencies(
+        shinyBS::bsCollapse(shinyBS::bsCollapsePanel("id"))
+      )
+    )
   )
 }
 
@@ -103,18 +104,23 @@ solutionSettings <- function(
 #' @name solutionSettings-shiny
 #'
 #' @export
-solutionSettingsOutput <- function(
-  outputId, width = "100%", height = "auto"){
+solutionSettingsOutput <- function(outputId, width = "100%", height = "auto") {
   htmlwidgets::shinyWidgetOutput(
-    outputId, "solutionSettings", width, height, package = "wheretowork")
+    outputId, "solutionSettings", width, height,
+    package = "wheretowork"
+  )
 }
 
 #' @rdname solutionSettings-shiny
 #' @export
 renderSolutionSettings <- function(expr, env = parent.frame(), quoted = FALSE) {
-  if (!quoted) { expr <- substitute(expr) } # force quoted
+  if (!quoted) {
+    expr <- substitute(expr)
+  } # force quoted
   htmlwidgets::shinyRenderWidget(
-    expr, solutionSettingsOutput, env, quoted = TRUE)
+    expr, solutionSettingsOutput, env,
+    quoted = TRUE
+  )
 }
 
 # Add custom HTML for the widget (automatically used by htmlwidgets)
@@ -189,7 +195,6 @@ solutionSettings_html <- function(id, style, class, ...) {
             placeholder = "enter solution name"
           ),
         ),
-
         htmltools::tags$div(
           class = "solution-footer-color",
           colourpicker::colourInput(
@@ -200,7 +205,6 @@ solutionSettings_html <- function(id, style, class, ...) {
             palette = "limited"
           )
         ),
-
         htmltools::tags$div(
           class = "solution-footer-button",
           shinyFeedback::loadingButton(

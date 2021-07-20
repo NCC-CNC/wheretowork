@@ -12,7 +12,6 @@ NULL
 #'
 #' @examples
 #' print(simulate_continuous_legend())
-#'
 #' @export
 simulate_continuous_legend <- function() {
   # randomly pick colors for legend
@@ -23,7 +22,8 @@ simulate_continuous_legend <- function() {
   new_continuous_legend(
     min_value = stats::runif(1, 0, 50),
     max_value = stats::runif(1, 51, 100),
-    colors = col)
+    colors = col
+  )
 }
 
 #' Simulate categorical legend
@@ -35,7 +35,6 @@ simulate_continuous_legend <- function() {
 #'
 #' @examples
 #' print(simulate_continuous_legend())
-#'
 #' @seealso [new_categorical_legend()].
 #'
 #' @export
@@ -63,7 +62,6 @@ simulate_categorical_legend <- function() {
 #'
 #' @examples
 #' print(simulate_solution_legend())
-#'
 #' @export
 simulate_solution_legend <- function() {
   # randomly pick number of values for legend
@@ -77,7 +75,8 @@ simulate_solution_legend <- function() {
   # return legend
   new_manual_legend(
     colors = c("#00FFFF00", col[1]),
-    labels = c("not selected", "selected"))
+    labels = c("not selected", "selected")
+  )
 }
 
 #' Simulate include legend
@@ -89,7 +88,6 @@ simulate_solution_legend <- function() {
 #'
 #' @examples
 #' print(simulate_include_legend())
-#'
 #' @export
 simulate_include_legend <- function() {
   # randomly pick number of values for legend
@@ -103,5 +101,6 @@ simulate_include_legend <- function() {
   # return legend
   new_manual_legend(
     colors = c("#00FFFF00", col[1]),
-    labels = c("not included", "included"))
+    labels = c("not included", "included")
+  )
 }

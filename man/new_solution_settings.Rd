@@ -28,12 +28,12 @@ f1 <- system.file(
   package = "wheretowork"
 )
 f2 <- system.file(
- "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
- package = "wheretowork"
+  "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
+  package = "wheretowork"
 )
 f3 <- system.file(
- "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
- package = "wheretowork"
+  "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
+  package = "wheretowork"
 )
 
 # create new dataset
@@ -48,18 +48,22 @@ v5 <- new_variable_from_auto(dataset = d, index = 5)
 # create a weight using a variable
 w <- new_weight(
   name = "Human Footprint Index", variable = v1,
-  factor = 90, status = FALSE, id = "W1")
+  factor = 90, status = FALSE, id = "W1"
+)
 
 # create features using variables
 f1 <- new_feature(
   name = "Possum", variable = v2,
-  goal = 0.2, status = FALSE, current = 0.5, id = "F1")
+  goal = 0.2, status = FALSE, current = 0.5, id = "F1"
+)
 f2 <- new_feature(
   name = "Forests", variable = v3,
-  goal = 0.3, status = FALSE, current = 0.9, id = "F2")
+  goal = 0.3, status = FALSE, current = 0.9, id = "F2"
+)
 f3 <- new_feature(
   name = "Shrubs", variable = v4,
-  goal = 0.6, status = TRUE, current = 0.4, id = "F3")
+  goal = 0.6, status = TRUE, current = 0.4, id = "F3"
+)
 
 # create themes using the features
 t1 <- new_single_theme("Species", f1, id = "T1")
@@ -68,7 +72,8 @@ t2 <- new_multi_theme("Ecoregions", list(f2, f3), id = "T2")
 # create an included using a variable
 i <- new_include(
   name = "Protected areas", variable = v5,
-  status = FALSE, id = "I1")
+  status = FALSE, id = "I1"
+)
 
 # create parameters
 p1 <- new_parameter(name = "Spatial clustering")
@@ -77,9 +82,9 @@ p2 <- new_parameter(name = "Optimality gap")
 # create solution settings using the themes and weight
 ss <- new_solution_settings(
   themes = list(t1, t2), weights = list(w), includes = list(i),
-  parameters = list(p1, p2))
+  parameters = list(p1, p2)
+)
 
 # print object
 print(ss)
-
 }

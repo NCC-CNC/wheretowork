@@ -14,7 +14,8 @@ test_that("initialization", {
     min_factor = 0.01,
     max_factor = 0.9,
     step_factor = 0.03,
-    id = "FID1")
+    id = "FID1"
+  )
   # run tests
   print(x)
   expect_is(x$repr(), "character")
@@ -44,7 +45,8 @@ test_that("get methods", {
     min_factor = 0.01,
     max_factor = 0.9,
     step_factor = 0.03,
-    id = "FID1")
+    id = "FID1"
+  )
   # run tests
   expect_identical(x$get_factor(), 0.2)
   expect_identical(x$get_visible(), TRUE)
@@ -69,7 +71,8 @@ test_that("set methods", {
     min_factor = 0.01,
     max_factor = 0.9,
     step_factor = 0.03,
-    id = "FID1")
+    id = "FID1"
+  )
   # run tests
   x$set_factor(0.8)
   x$set_status(TRUE)
@@ -103,7 +106,8 @@ test_that("export method", {
     min_factor = 0.01,
     max_factor = 0.9,
     step_factor = 0.03,
-    id = "FID1")
+    id = "FID1"
+  )
   # run tests
   expect_equal(
     x$export(),
@@ -126,7 +130,8 @@ test_that("widget methods", {
   d <- new_dataset_from_auto(import_simple_raster_data())
   v <- new_variable(
     dataset = d, index = 1, total = 200, units = "ha",
-    legend = simulate_continuous_legend())
+    legend = simulate_continuous_legend()
+  )
   x <- new_weight(
     name = "Human Footprint Index",
     variable = v,
@@ -135,7 +140,8 @@ test_that("widget methods", {
     min_factor = 0.01,
     max_factor = 0.9,
     step_factor = 0.03,
-    id = "FID1")
+    id = "FID1"
+  )
   # run tests
   ## solution settings
   expect_identical(
@@ -147,7 +153,8 @@ test_that("widget methods", {
       max_factor = 0.9,
       factor = 0.2,
       step_factor = 0.03,
-      status = FALSE)
+      status = FALSE
+    )
   )
   ## map manager settings
   expect_identical(
@@ -158,6 +165,7 @@ test_that("widget methods", {
       visible = TRUE,
       legend = v$legend$get_widget_data(),
       units = "ha",
-      type = "weight")
+      type = "weight"
+    )
   )
 })

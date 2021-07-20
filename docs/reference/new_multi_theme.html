@@ -163,12 +163,12 @@ Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUI
 <span class='r-in'>  package <span class='op'>=</span> <span class='st'>"wheretowork"</span></span>
 <span class='r-in'><span class='op'>)</span></span>
 <span class='r-in'><span class='va'>f2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span></span>
-<span class='r-in'> <span class='st'>"extdata"</span>,  <span class='st'>"projects"</span>, <span class='st'>"sim_raster"</span>, <span class='st'>"sim_raster_attribute.csv.gz"</span>,</span>
-<span class='r-in'> package <span class='op'>=</span> <span class='st'>"wheretowork"</span></span>
+<span class='r-in'>  <span class='st'>"extdata"</span>,  <span class='st'>"projects"</span>, <span class='st'>"sim_raster"</span>, <span class='st'>"sim_raster_attribute.csv.gz"</span>,</span>
+<span class='r-in'>  package <span class='op'>=</span> <span class='st'>"wheretowork"</span></span>
 <span class='r-in'><span class='op'>)</span></span>
 <span class='r-in'><span class='va'>f3</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span></span>
-<span class='r-in'> <span class='st'>"extdata"</span>,  <span class='st'>"projects"</span>, <span class='st'>"sim_raster"</span>, <span class='st'>"sim_raster_boundary.csv.gz"</span>,</span>
-<span class='r-in'> package <span class='op'>=</span> <span class='st'>"wheretowork"</span></span>
+<span class='r-in'>  <span class='st'>"extdata"</span>,  <span class='st'>"projects"</span>, <span class='st'>"sim_raster"</span>, <span class='st'>"sim_raster_boundary.csv.gz"</span>,</span>
+<span class='r-in'>  package <span class='op'>=</span> <span class='st'>"wheretowork"</span></span>
 <span class='r-in'><span class='op'>)</span></span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># create new dataset</span></span>
@@ -186,12 +186,13 @@ Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUI
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># create a theme using the features</span></span>
 <span class='r-in'><span class='va'>mt</span> <span class='op'>&lt;-</span> <span class='fu'>new_multi_theme</span><span class='op'>(</span></span>
-<span class='r-in'>  name <span class='op'>=</span> <span class='st'>"Endangered species"</span>, feature <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>f1</span>, <span class='va'>f2</span>, <span class='va'>f3</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'>  name <span class='op'>=</span> <span class='st'>"Endangered species"</span>, feature <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>f1</span>, <span class='va'>f2</span>, <span class='va'>f3</span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>)</span></span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># print object</span></span>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>mt</span><span class='op'>)</span></span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Theme</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        ae94eae6-e83e-4589-9341-64daffa22a8f</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        9ad26432-42c5-470f-aebc-11f5860ce03a</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Endangered species</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   feature: </span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>     Pangolin [status: TRUE, current: 0, goal: 0.1]</span>
@@ -200,7 +201,6 @@ Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUI
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Purple_Honeycreeper [total: 1349 ]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>     Palms [status: TRUE, current: 0, goal: 0.1]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Least_Boobook [total: 430 ]</span>
-<span class='r-in'></span>
 </code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
