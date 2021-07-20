@@ -101,7 +101,6 @@ test_that("export method", {
       variable = x$variable$export(),
       status = FALSE,
       visible = TRUE,
-      current = 0.89,
       factor = 0.2
     )
   )

@@ -334,7 +334,6 @@ weights:
       - '#00441B'
   status: yes
   visible: yes
-  current: 0.52
   factor: 0.0
 - name: Tourism and recreation
   variable:
@@ -357,7 +356,6 @@ weights:
       - '#B15928'
   status: yes
   visible: yes
-  current: 0.57
   factor: 0.0
 - name: Habitat intactness index
   variable:
@@ -377,7 +375,6 @@ weights:
       - '#000000'
   status: yes
   visible: yes
-  current: 0.41
   factor: 0.0
 includes:
 - name: RAMSAR Sites

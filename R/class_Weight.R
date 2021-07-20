@@ -327,7 +327,6 @@ Weight <- R6::R6Class(
         variable = self$variable$export(),
         status = self$status,
         visible = self$visible,
-        current = self$current,
         factor = self$factor
       )
     },

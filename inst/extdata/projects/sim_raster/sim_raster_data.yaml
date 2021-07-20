@@ -371,7 +371,6 @@ weights:
       - '#00441B'
   status: yes
   visible: yes
-  current: 0.2
   factor: 0.0
 - name: Grazing
   variable:
@@ -390,7 +389,6 @@ weights:
       - '#B3B3B3'
   status: yes
   visible: yes
-  current: 0.39
   factor: 0.0
 - name: Population count
   variable:
@@ -412,7 +410,6 @@ weights:
       - '#006837'
   status: yes
   visible: yes
-  current: 0.36
   factor: 0.0
 includes:
 - name: OECM areas

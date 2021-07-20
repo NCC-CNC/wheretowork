@@ -168,7 +168,7 @@ read_project <- function(path,
             status = f$status,
             goal = f$goal,
             limit_goal = ifelse(adv_mode, 0, f$limit_goal),
-            current = 0,
+            current = 0, # place-holder value, this is calculated later
             variable = new_variable_from_auto(
               dataset = d,
               index = f$variable$index,
@@ -202,6 +202,7 @@ read_project <- function(path,
         visible = x$visible,
         status = x$status,
         factor = x$factor,
+        current = 0, # place-holder value, this is calculated later
         variable = new_variable_from_auto(
           dataset = d,
           index = x$variable$index,
