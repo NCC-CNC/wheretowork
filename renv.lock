@@ -648,11 +648,11 @@
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
-      "RemoteRepo": "leaflet.extras2",
       "RemoteUsername": "NCC-CNC",
-      "RemoteRef": "HEAD",
+      "RemoteRepo": "leaflet.extras2",
+      "RemoteRef": "master",
       "RemoteSha": "a5b18590b7e3421994caa22a9fec89f8deef2c05",
-      "Hash": "553cba1a250d06a06169eb0d61a77d3e"
+      "Hash": "bfe618fec268a6b07feb628d367ee19d"
     },
     "leaflet.providers": {
       "Package": "leaflet.providers",
@@ -911,11 +911,11 @@
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
-      "RemoteRepo": "rcbc",
       "RemoteUsername": "dirkschumacher",
-      "RemoteRef": "HEAD",
+      "RemoteRepo": "rcbc",
+      "RemoteRef": "master",
       "RemoteSha": "f7e3997c7709240c7a84da40a3d65913b62e76d3",
-      "Hash": "b0b3fc9bc55738adc010ca29e9567c90"
+      "Hash": "72ad90107805928a4476e8ed1a0972af"
     },
     "rcmdcheck": {
       "Package": "rcmdcheck",
