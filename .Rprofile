@@ -8,6 +8,12 @@ options(shiny.autoload.r = FALSE)
 # active renv package management
 source("renv/activate.R")
 
+# load default packages when R is run interactively
+if (interactive()) {
+  library(devtools)
+  library(testthat)
+}
+
 # set default browser as google-chrome if possible
 if (file.exists("/usr/bin/google-chrome")) {
   options(browser = "/usr/bin/google-chrome")
