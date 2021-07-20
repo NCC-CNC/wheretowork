@@ -25,17 +25,19 @@ The _Where to Work_ application is a decision support tool to help prioritize co
 
 ## Usage
 
-The application is [available online here](https://natureconservancy.ca/en/). **TODO: insert more details.**
+The application is [available online here](https://natureconservancy.ca/en/). **Please note that you must use [Google Chrome](https://www.google.com/chrome/) for it to work.**.
 
 ## Installation
 
-The application is available as [an online service](https://natureconservancy.ca/en/). As such, most users should not need to install the application to use it. If you _absolutely must_ run the application from your own computer, then you will first need to install the [Docker Engine](https://docs.docker.com/get-docker/) software. After installing this software, you can install the application from [DockerHub](https://hub.docker.com/repository/docker/naturecons/wheretowork). To install and launch the latest official version, please use the following system command:
+The application is available as an online service provided by the [Nature Conservancy of Canada](https://natureconservancy.ca/en/). As such, you don't need to install the application on your computer to use it: just go to [this link and it's ready to go](https://natureconservancy.ca/en/). If you need to run the application on your own computer, then please use the following instructions.
+
+You will need to install the [Docker Engine](https://www.docker.com/) software to run the application (see [here for instructions](https://docs.docker.com/get-docker/)). After installing this software, you can then install the application from its [DockerHub repository](https://hub.docker.com/repository/docker/naturecons/wheretowork). Specifically, to install and launch the latest official version, please use the following system command:
 
 ```{bash, eval = FALSE}
 docker run -dp 3838:3838 --name wheretowork -it naturecons/wheretowork:latest
 ```
 
-You can then view the application by opening the following link in [Google Chrome](https://www.google.com/chrome/): http://localhost:3838. After you have finished using the application, you can terminate it using the following system command:
+You can then view the application by opening the following link in [Google Chrome](https://www.google.com/chrome/): http://localhost:3838. After you have finished using the application, you can terminate it using the following system command. **Note that if you don't terminate the application once you are finished using it, then it will continue running in the background.**
 
 ```{bash, eval = FALSE}
 docker rm -f wheretowork
@@ -47,7 +49,7 @@ Alternatively, the latest development version can be installed using the followi
 docker run -dp 3838:3838 --name wheretowork -it naturecons/wheretowork:devel
 ```
 
-Similar to the official version, you can access the developmental version of the application by opening the following link in [Google Chrome](https://www.google.com/chrome/): http://localhost:3838. Also note that you should terminate the application once you are finished using it (per the same system command listed previously for terminating the application).
+Similar to the official version, you can access the developmental version of the application by opening the following link in [Google Chrome](https://www.google.com/chrome/): http://localhost:3838. Also note that you should terminate the developmental version of the application once you are finished using it (using the same code above for the official version).
 
 ## Contributing
 
