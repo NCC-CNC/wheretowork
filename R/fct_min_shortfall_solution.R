@@ -6,36 +6,16 @@ NULL
 #' Create a new [Solution] object by generating a prioritization
 #' using the minimum shortfall formulation of the reserve selection problem.
 #'
-#' @param name `character` name for new solution.
-#'
-#' @param dataset [Dataset] object to store the solution.
-#'
-#' @param settings [SolutionSettings] object with settings.
+#' @inheritParams min_set_solution
 #'
 #' @param area_budget_proportion `numeric` budget for the solution.
 #'   This should be a proportion (with values ranging between 0 and 1)
 #'   indicating the maximum spatial extent of the solution.
 #'
-#' @param theme_data [Matrix::sparseMatrix()] containing the theme data.
-#'  Defaults to being automatically calculated from `settings`.
-#'
-#' @param weight_data [Matrix::sparseMatrix()] containing the weight data.
-#'  Defaults to being automatically calculated from `settings`.
-#'
-#' @param include_data [Matrix::sparseMatrix()] containing the include data.
-#'  Defaults to being automatically calculated from `settings`.
-#'
-#' @param boundary_data [Matrix::sparseMatrix()] containing the boundary data.
-#'  Defaults to being automatically extracted from `dataset`.
-#'
-#' @param gap `numeric` relative optimality gap value. Defaults to 0.
-#'
 #' @param boundary_budget_proportion `numeric` gap value used to control
 #'   the level of spatial clustering in the solution. Defaults to 0.1
 #'
-#' @param legend_color `character` legend color.
-#'
-#' @return A [Solution] object containing the solution.
+#' @inherit min_set_solution return
 #'
 #' @examples
 #' # TODO.
@@ -48,7 +28,8 @@ min_shortfall_solution <- function(name, dataset, settings,
                                    boundary_data = dataset$get_boundary_data(),
                                    gap = 0,
                                    boundary_budget_proportion = 0.1,
-                                   legend_color = "#FF0000") {
+                                   legend_color = "#FF0000",
+                                   cache = cachem::cache_mem()) {
   # validate arguments
   assertthat::assert_that(
     ## name
@@ -79,7 +60,9 @@ min_shortfall_solution <- function(name, dataset, settings,
     isTRUE(boundary_budget_proportion <= 1),
     ## legend_color
     assertthat::is.string(legend_color),
-    assertthat::noNA(legend_color)
+    assertthat::noNA(legend_color),
+    ## cache
+    inherits(cache, "cachem")
   )
 
   # prepare settings
@@ -165,29 +148,47 @@ min_shortfall_solution <- function(name, dataset, settings,
     data.frame(id = seq_len(nrow(theme_settings)), name = theme_settings$id)
 
   # generate initial prioritization
-  ## this simply just aims to maximize feature representation given
-  ## the area budget, and locked in/out constraints
-  initial_problem <-
-    suppressWarnings(prioritizr::problem(cost, features, theme_data)) %>%
-    prioritizr::add_min_shortfall_objective(budget = initial_budget) %>%
-    prioritizr::add_manual_targets(targets) %>%
-    prioritizr::add_binary_decisions() %>%
-    prioritizr::add_cbc_solver(gap = gap, verbose = FALSE)
-  ### add locked in constraints if needed
-  if (any(locked_in)) {
+  ## generate cache key based on settings
+  key <- digest::digest(
+    list(
+      themes = theme_settings,
+      weights = weight_settings,
+      includes = include_settings,
+      area_budget_proportion = area_budget_proportion
+    )
+  )
+  ## if key is missing then generate the solution
+  if (!isTRUE(cache$exists(key))) {
+    ## this prioritization just aims to maximize feature representation given
+    ## the area budget, and locked in/out constraints
     initial_problem <-
-      initial_problem %>%
-      prioritizr::add_locked_in_constraints(locked_in)
+      suppressWarnings(prioritizr::problem(cost, features, theme_data)) %>%
+      prioritizr::add_min_shortfall_objective(budget = initial_budget) %>%
+      prioritizr::add_manual_targets(targets) %>%
+      prioritizr::add_binary_decisions() %>%
+      prioritizr::add_cbc_solver(gap = gap, verbose = FALSE)
+    ## add locked in constraints if needed
+    if (any(locked_in)) {
+      initial_problem <-
+        initial_problem %>%
+        prioritizr::add_locked_in_constraints(locked_in)
+    }
+    ## add locked out constraints if needed
+    if (any(locked_out)) {
+      initial_problem <-
+        initial_problem %>%
+        prioritizr::add_locked_out_constraints(locked_out)
+    }
+    ## generate solution
+    initial_solution <- c(
+      prioritizr::solve(initial_problem, run_checks = FALSE)
+    )
+    ### store solution in cache
+    cache$set(key, list(problem = initial_problem, solution = initial_solution))
   }
-  ### add locked out constraints if needed
-  if (any(locked_out)) {
-    initial_problem <-
-      initial_problem %>%
-      prioritizr::add_locked_out_constraints(locked_out)
-  }
-  ### generate solution
-  initial_solution <-
-    c(prioritizr::solve(initial_problem, run_checks = FALSE))
+  ## extract solution from cache
+  initial_problem <- cache$get(key)$problem
+  initial_solution <- cache$get(key)$solution
 
   # generate second prioritization
   ## this formulation aims to minimize fragmentation,

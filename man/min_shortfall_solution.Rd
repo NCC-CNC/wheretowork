@@ -15,7 +15,8 @@ min_shortfall_solution(
   boundary_data = dataset$get_boundary_data(),
   gap = 0,
   boundary_budget_proportion = 0.1,
-  legend_color = "#FF0000"
+  legend_color = "#FF0000",
+  cache = cachem::cache_mem()
 )
 }
 \arguments{
@@ -47,6 +48,10 @@ Defaults to being automatically extracted from \code{dataset}.}
 the level of spatial clustering in the solution. Defaults to 0.1}
 
 \item{legend_color}{\code{character} legend color.}
+
+\item{cache}{\code{\link[cachem:cache_mem]{cachem::cache_mem()}} object used to cache intermediate
+calculations.
+Defaults to an empty cache such that (effectively) no cache is used.}
 }
 \value{
 A \link{Solution} object containing the solution.

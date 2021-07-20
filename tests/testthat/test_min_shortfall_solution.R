@@ -29,7 +29,7 @@ test_that("no spatial clustering", {
   ## create a weight using dataset
   w <- new_weight(
     name = "Human Footprint Index", variable = v1,
-    factor = 90, status = FALSE, id = "W1"
+    factor = 90, status = TRUE, id = "W1"
   )
   ## create a weight using dataset
   incl <- new_include(
@@ -60,8 +60,10 @@ test_that("no spatial clustering", {
     themes = list(t1, t2), weights = list(w), includes = list(incl),
     parameters = list(p1, p2)
   )
-  ## create object
-  x <- min_shortfall_solution(
+  ## create cache
+  cache <- cachem::cache_mem()
+  ## create object (run analysis without using cache)
+  x1 <- min_shortfall_solution(
     name = "solution01",
     dataset = d,
     settings = ss,
@@ -69,10 +71,25 @@ test_that("no spatial clustering", {
     gap =
       ss$get_parameter("P2")$value * ss$get_parameter("P2")$status,
     boundary_budget_proportion =
-      ss$get_parameter("P1")$value * ss$get_parameter("P1")$status
+      ss$get_parameter("P1")$value * ss$get_parameter("P1")$status,
+    cache = cache
+  )
+  ## create object (run analysis and use results from cache)
+  x2 <- min_shortfall_solution(
+    name = "solution01",
+    dataset = d,
+    settings = ss,
+    area_budget_proportion = 0.7,
+    gap =
+      ss$get_parameter("P2")$value * ss$get_parameter("P2")$status,
+    boundary_budget_proportion =
+      ss$get_parameter("P1")$value * ss$get_parameter("P1")$status,
+    cache = cache
   )
   # run tests
-  expect_is(x, "Solution")
+  expect_is(x1, "Solution")
+  expect_is(x2, "Solution")
+  expect_equal(x1$variable$get_data(), x1$variable$get_data())
 })
 
 test_that("spatial clustering", {
@@ -104,7 +121,7 @@ test_that("spatial clustering", {
   ## create a weight using dataset
   w <- new_weight(
     name = "Human Footprint Index", variable = v1,
-    factor = 90, status = FALSE, id = "W1"
+    factor = 90, status = TRUE, id = "W1"
   )
   ## create a weight using dataset
   incl <- new_include(

@@ -31,6 +31,10 @@ NULL
 #'
 #' @param legend_color `character` legend color.
 #'
+#' @param cache [cachem::cache_mem()] object used to cache intermediate
+#'  calculations.
+#'  Defaults to an empty cache such that (effectively) no cache is used.
+#'
 #' @return A [Solution] object containing the solution.
 #'
 #' @examples
@@ -43,7 +47,8 @@ min_set_solution <- function(name, dataset, settings,
                              boundary_data = dataset$get_boundary_data(),
                              gap = 0,
                              boundary_gap = 0.1,
-                             legend_color = "#FF0000") {
+                             legend_color = "#FF0000",
+                             cache = cachem::cache_mem()) {
   # validate arguments
   assertthat::assert_that(
     ## name
@@ -67,7 +72,9 @@ min_set_solution <- function(name, dataset, settings,
     assertthat::noNA(boundary_gap),
     ## legend_color
     assertthat::is.string(legend_color),
-    assertthat::noNA(legend_color)
+    assertthat::noNA(legend_color),
+    ## cache
+    inherits(cache, "cachem")
   )
 
   # prepare settings
@@ -129,22 +136,40 @@ min_set_solution <- function(name, dataset, settings,
     data.frame(id = seq_len(nrow(theme_settings)), name = theme_settings$id)
 
   # generate initial prioritization
-  ## this simply just aims to minimize cost
-  initial_problem <-
-    suppressWarnings(prioritizr::problem(cost, features, theme_data)) %>%
-    prioritizr::add_min_set_objective() %>%
-    prioritizr::add_manual_targets(targets) %>%
-    prioritizr::add_binary_decisions() %>%
-    prioritizr::add_cbc_solver(gap = gap, verbose = FALSE)
-  ### add locked in constraints if needed
-  if (any(locked_in)) {
+  ## generate cache key based on settings
+  key <- digest::digest(
+    list(
+      themes = theme_settings,
+      weights = weight_settings,
+      includes = include_settings
+    )
+  )
+
+  ## if key is missing then generate the solution
+  if (!isTRUE(cache$exists(key))) {
+    ### this prioritization just aims to minimize cost
     initial_problem <-
-      initial_problem %>%
-      prioritizr::add_locked_in_constraints(locked_in)
+      suppressWarnings(prioritizr::problem(cost, features, theme_data)) %>%
+      prioritizr::add_min_set_objective() %>%
+      prioritizr::add_manual_targets(targets) %>%
+      prioritizr::add_binary_decisions() %>%
+      prioritizr::add_cbc_solver(gap = gap, verbose = FALSE)
+    ### add locked in constraints if needed
+    if (any(locked_in)) {
+      initial_problem <-
+        initial_problem %>%
+        prioritizr::add_locked_in_constraints(locked_in)
+    }
+    ### generate solution
+    initial_solution <- c(
+      prioritizr::solve(initial_problem, run_checks = FALSE)
+    )
+    ### store solution in cache
+    cache$set(key, list(problem = initial_problem, solution = initial_solution))
   }
-  ### generate solution
-  initial_solution <-
-    c(prioritizr::solve(initial_problem, run_checks = FALSE))
+  ## extract solution from cache
+  initial_problem <- cache$get(key)$problem
+  initial_solution <- cache$get(key)$solution
 
   # generate second prioritization
   ## this formulation aims to minimize fragmentation,

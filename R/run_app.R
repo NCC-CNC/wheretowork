@@ -5,7 +5,9 @@
 #' @inheritParams shiny::shinyApp
 #'
 #' @export
-run_app <- function(onStart = purrr::partial(eval, expr = app_global, envir = globalenv()),
+run_app <- function(onStart = purrr::partial(
+                      eval, expr = app_global, envir = globalenv()
+                    ),
                     options = list(),
                     enableBookmarking = NULL,
                     uiPattern = "/",

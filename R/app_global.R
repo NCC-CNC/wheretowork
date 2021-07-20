@@ -59,6 +59,7 @@ app_global <- quote({
       weights = NULL,
       includes = NULL,
       solutions = list(),
+      cache = cachem::cache_mem(),
       ## data
       bbox = NULL,
       theme_data = NULL,

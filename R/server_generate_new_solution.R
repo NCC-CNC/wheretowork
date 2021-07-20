@@ -59,7 +59,8 @@ server_generate_new_solution <- quote({
               boundary_data = app_data$boundary_data,
               gap = curr_gap,
               boundary_budget_proportion = curr_boundary_value,
-              legend_color = curr_color
+              legend_color = curr_color,
+              cache = app_data$cache
             ),
             silent = TRUE
           )
@@ -76,18 +77,22 @@ server_generate_new_solution <- quote({
               boundary_data = app_data$boundary_data,
               gap = curr_gap,
               boundary_gap = curr_boundary_value,
-              legend_color = curr_color
+              legend_color = curr_color,
+              cache = app_data$cache
             ),
             silent = TRUE
           )
         }
-        s
+        list(solution = s, cache = app_data$cache)
       }) %...>%
-        user_solution() %...!%
+      (function(result) {
+        user_solution(result$solution)
+        app_data$cache <- result$cache
+      }) %...!%
         (function(error) {
           user_solution(NULL)
           warning(error)
-        })
+      })
       ## this needed to implement asynchronous processing,
       ## see https://github.com/rstudio/promises/issues/23
       NULL
