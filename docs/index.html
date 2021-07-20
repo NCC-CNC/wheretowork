@@ -47,7 +47,14 @@
   <a href="news/index.html">Changelog</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/NCC-CNC/wheretowork/">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -64,20 +71,21 @@
 <a href="#where-to-work-interactive-application-for-systematic-conservation-planning" class="anchor" aria-hidden="true"></a>Where to Work: Interactive application for systematic conservation planning</h1></div>
 
 <p>The <em>Where to Work</em> application is a decision support tool to help prioritize conservation efforts for the <a href="https://natureconservancy.ca/en/" class="external-link">Nature Conservancy of Canada</a>.</p>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor" aria-hidden="true"></a>Installation</h2>
-<p>The latest official version can be installed from <a href="https://hub.docker.com/repository/docker/naturecons/wheretowork" class="external-link">DockerHub</a>. After <a href="https://docs.docker.com/get-docker/" class="external-link">installing Docker on your system</a>, please use the following system command to install the application:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-dp</span> 3838:3838 <span class="at">-it</span> naturecons/wheretowork:latest</span></code></pre></div>
-<p>You can then view the application by opening the following link in <a href="https://www.google.com/chrome/" class="external-link">Google Chrome</a>: <a href="http://localhost:3838" class="external-link uri">http://localhost:3838</a>.</p>
-<p>Alternatively, the latest development version can be installed using the following system command. Please note that while developmental versions may contain additional features not present in the official version, they may also contain defects.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-dp</span> 3838:3838 <span class="at">-it</span> naturecons/wheretowork:devel</span></code></pre></div>
-<p>You can then view the development version of the application – similar to the official version – by opening the following link in <a href="https://www.google.com/chrome/" class="external-link">Google Chrome</a>: <a href="http://localhost:3838" class="external-link uri">http://localhost:3838</a>.</p>
-</div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor" aria-hidden="true"></a>Usage</h2>
-<p>TODO.</p>
+<p>The application is <a href="https://natureconservancy.ca/en/" class="external-link">available online here</a>. <strong>TODO: insert more details.</strong></p>
+</div>
+<div id="installation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#installation" class="anchor" aria-hidden="true"></a>Installation</h2>
+<p>The application is available as <a href="https://natureconservancy.ca/en/" class="external-link">an online service</a>. As such, most users should not need to install the application to use it. If you <em>absolutely must</em> run the application from your own computer, then you will first need to install the <a href="https://docs.docker.com/get-docker/" class="external-link">Docker Engine</a> software. After installing this software, you can install the application from <a href="https://hub.docker.com/repository/docker/naturecons/wheretowork" class="external-link">DockerHub</a>. To install and launch the latest official version, please use the following system command:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-dp</span> 3838:3838 <span class="at">--name</span> wheretowork <span class="at">-it</span> naturecons/wheretowork:latest</span></code></pre></div>
+<p>You can then view the application by opening the following link in <a href="https://www.google.com/chrome/" class="external-link">Google Chrome</a>: <a href="http://localhost:3838" class="external-link uri">http://localhost:3838</a>. After you have finished using the application, you can terminate it using the following system command:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> rm <span class="at">-f</span> wheretowork</span></code></pre></div>
+<p>Alternatively, the latest development version can be installed using the following system command. Please note that while developmental versions may contain additional features not present in the official version, they may also contain defects.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-dp</span> 3838:3838 <span class="at">--name</span> wheretowork <span class="at">-it</span> naturecons/wheretowork:devel</span></code></pre></div>
+<p>Similar to the official version, you can access the developmental version of the application by opening the following link in <a href="https://www.google.com/chrome/" class="external-link">Google Chrome</a>: <a href="http://localhost:3838" class="external-link uri">http://localhost:3838</a>. Also note that you should terminate the application once you are finished using it (per the same system command listed previously for terminating the application).</p>
 </div>
 <div id="contributing" class="section level2">
 <h2 class="hasAnchor">
@@ -120,7 +128,17 @@
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <div class="license">
+    <div class="links">
+<h2 data-toc-skip>Links</h2>
+<ul class="list-unstyled">
+<li>Browse source code at <br><a href="https://github.com/NCC-CNC/wheretowork/">https://​github.com/​NCC-CNC/​wheretowork/​</a>
+</li>
+<li>Report a bug at <br><a href="https://github.com/NCC-CNC/wheretowork/issues">https://​github.com/​NCC-CNC/​wheretowork/​issues</a>
+</li>
+</ul>
+</div>
+
+<div class="license">
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li><a href="https://www.r-project.org/Licenses/GPL-3">GPL-3</a></li>
@@ -142,11 +160,7 @@
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/Lifecycle-experimental-orange.svg" alt="lifecycle"></a></li>
-<li><a href="https://github.com/NCC-CNC/wheretowork/actions" class="external-link"><img src="https://img.shields.io/github/workflow/status/NCC-CNC/wheretowork/Ubuntu/master.svg?label=Ubuntu" alt="R-CMD-check-Ubuntu"></a></li>
-<li><a href="https://github.com/NCC-CNC/wheretowork/actions" class="external-link"><img src="https://img.shields.io/github/workflow/status/NCC-CNC/wheretowork/Windows/master.svg?label=Windows" alt="R-CMD-check-Windows"></a></li>
-<li><a href="https://github.com/NCC-CNC/wheretowork/actions" class="external-link"><img src="https://img.shields.io/github/workflow/status/NCC-CNC/wheretowork/Mac%20OSX/master.svg?label=Mac%20OSX" alt="R-CMD-check-Mac-OSX"></a></li>
 <li><a href="https://hub.docker.com/r/naturecons/wheretowork" class="external-link"><img src="https://img.shields.io/docker/cloud/build/naturecons/wheretowork?label=Docker%20build" alt="Docker Status"></a></li>
-<li><a href="https://codecov.io/github/NCC-CNC/wheretowork?branch=master" class="external-link"><img src="https://codecov.io/github/NCC-CNC/wheretowork/coverage.svg?branch=master" alt="Coverage Status"></a></li>
 </ul>
 </div>
 
