@@ -47,7 +47,7 @@ spellcheck:
 
 ## install package
 install:
-	R --slave -e "devtools::install_local(getwd(), force = TRUE)"
+	R --slave -e "devtools::install_local(getwd(), force = TRUE, upgrade = 'never')"
 
 ## build entire site
 site:
@@ -64,17 +64,20 @@ debug:
 	R -e "options(golem.app.prod = FALSE); golem::run_dev()"
 
 ## launch local version inside Docker container
-demo:
-	docker run -dp 3838:3838 --name wheretowork -it wheretowork-image
+demo-start:
+	docker-compose up
 	google-chrome "http://localhost:3838"
 
-demo-bash:
-	docker exec -it wheretowork bash
+demo-skill:
+	docker-compose down
 
 ## launch released version inside Docker container
-launch:
+launch-start:
 	docker run -dp 3838:3838 --name wheretowork -it naturecons/wheretowork
 	google-chrome "http://localhost:3838"
+
+launch-kill:
+	docker rm --force wheretowork
 
 ## deploy app on shinyapps.io
 shinyapps:
