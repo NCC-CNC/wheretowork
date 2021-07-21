@@ -28,7 +28,7 @@ importModal <- function(id) {
   # create modal
   shiny::modalDialog(
     title = htmltools::tags$p(
-      "Welcome to the Location App",
+      "Welcome to Where To Work",
       style = "text-align:center"
     ),
     easyClose = FALSE,
