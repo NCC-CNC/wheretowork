@@ -192,7 +192,7 @@ solutionSettings_html <- function(id, style, class, ...) {
             NULL,
             value = "",
             width = "100%",
-            placeholder = "enter solution name"
+            placeholder = "enter name (required)"
           ),
         ),
         htmltools::tags$div(
