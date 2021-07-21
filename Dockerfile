@@ -20,6 +20,7 @@ RUN add-apt-repository ppa:ubuntugis/ubuntugis-unstable && \
       libproj-dev \
       coinor-libcbc-dev \
       coinor-libclp-dev \
+      coinor-libsymphony-dev \
       libharfbuzz-dev \
       libfribidi-dev
 

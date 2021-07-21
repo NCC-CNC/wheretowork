@@ -90,7 +90,7 @@ min_shortfall_solution <- function(name, dataset, settings,
     )
   ## round values down to account for floating point issues
   targets$target <- floor(targets$target * 1e+3) / 1e+3
-  ## adjust values to prevent CBC from throwing an error and crashing R session
+  ## adjust values to prevent solver from throwing error and crashing R session
   targets$target <- pmax(targets$target, 1e-5)
 
   # calculate locked in values
@@ -164,7 +164,7 @@ min_shortfall_solution <- function(name, dataset, settings,
       prioritizr::add_min_shortfall_objective(budget = initial_budget) %>%
       prioritizr::add_manual_targets(targets) %>%
       prioritizr::add_binary_decisions() %>%
-      prioritizr::add_cbc_solver(gap = gap, verbose = FALSE)
+      prioritizr::add_rsymphony_solver(gap = gap, verbose = TRUE)
     ## add locked in constraints if needed
     if (any(locked_in)) {
       initial_problem <-
@@ -207,6 +207,7 @@ min_shortfall_solution <- function(name, dataset, settings,
     ### to be as near as possible to the budget, even if the result has
     ### high perimeter because we included planning units with high perimeter
     adj_data <- boundary_data
+    adj_data@x <- rep(1, length(adj_data@x))
     Matrix::diag(adj_data) <- 0
     adj_data <- Matrix::drop0(adj_data)
     ### generate prioritization
@@ -237,7 +238,7 @@ min_shortfall_solution <- function(name, dataset, settings,
         )
       ) %>%
       prioritizr::add_binary_decisions() %>%
-      prioritizr::add_cbc_solver(gap = gap, verbose = FALSE)
+      prioritizr::add_cbc_solver(gap = gap, verbose = TRUE)
     ### add locked in constraints if needed
     if (any(locked_in)) {
       main_problem <-

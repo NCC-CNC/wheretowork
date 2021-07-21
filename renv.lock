@@ -114,6 +114,13 @@
       "Repository": "CRAN",
       "Hash": "d34bcef6e2df81ab2d44c7fbe8b4d3f0"
     },
+    "Rsymphony": {
+      "Package": "Rsymphony",
+      "Version": "0.1-31",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "81050aa684032d6db264aa60ed1d59d7"
+    },
     "ape": {
       "Package": "ape",
       "Version": "5.5",
