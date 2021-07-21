@@ -26,8 +26,8 @@ NULL
 #'
 #' @param gap `numeric` relative optimality gap value. Defaults to 0.
 #'
-#' @param boundary_gap `numeric` gap value used to control
-#'   the level of spatial clustering in the solution. Defaults to 0.1
+#' @param boundary_gap `numeric` value used to control
+#'   the level of spatial clustering in the solution. Defaults to 0.1.
 #'
 #' @param legend_color `character` legend color.
 #'
@@ -78,7 +78,7 @@ min_set_solution <- function(name, dataset, settings,
   )
 
   # prepare settings
-  ## extract values
+  ## extract values from settings
   theme_settings <- settings$get_theme_settings()
   weight_settings <- settings$get_weight_settings()
   include_settings <- settings$get_include_settings()
@@ -339,6 +339,7 @@ min_set_solution <- function(name, dataset, settings,
     name = name,
     variable = v,
     visible = TRUE,
+    parameters = lapply(settings$parameters, function(x) x$clone()),
     statistics = statistics_results,
     theme_results = theme_results,
     weight_results = weight_results,

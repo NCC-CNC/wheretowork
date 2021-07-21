@@ -35,7 +35,7 @@ server_generate_new_solution <- quote({
       ### preliminary calculations
       curr_name <- input$newSolutionPane_settings_name
       curr_gap <- get_golem_config("gap")
-      curr_boundary_value <-
+      curr_boundary_gap <-
         (app_data$ss$get_parameter("spatial_parameter")$value *
           app_data$ss$get_parameter("spatial_parameter")$status) / 100
       curr_color <- scales::alpha(input$newSolutionPane_settings_color, 0.8)
@@ -58,7 +58,7 @@ server_generate_new_solution <- quote({
               include_data = app_data$include_data,
               boundary_data = app_data$boundary_data,
               gap = curr_gap,
-              boundary_budget_proportion = curr_boundary_value,
+              boundary_gap = curr_boundary_gap,
               legend_color = curr_color,
               cache = app_data$cache
             ),
@@ -76,7 +76,7 @@ server_generate_new_solution <- quote({
               include_data = app_data$include_data,
               boundary_data = app_data$boundary_data,
               gap = curr_gap,
-              boundary_gap = curr_boundary_value,
+              boundary_gap = curr_boundary_gap,
               legend_color = curr_color,
               cache = app_data$cache
             ),

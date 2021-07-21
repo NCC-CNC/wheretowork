@@ -134,7 +134,7 @@ using the minimum shortfall formulation of the reserve selection problem.</p>
   include_data <span class='op'>=</span> <span class='va'>settings</span><span class='op'>$</span><span class='fu'>get_include_data</span><span class='op'>(</span><span class='op'>)</span>,
   boundary_data <span class='op'>=</span> <span class='va'>dataset</span><span class='op'>$</span><span class='fu'>get_boundary_data</span><span class='op'>(</span><span class='op'>)</span>,
   gap <span class='op'>=</span> <span class='fl'>0</span>,
-  boundary_budget_proportion <span class='op'>=</span> <span class='fl'>0.1</span>,
+  boundary_gap <span class='op'>=</span> <span class='fl'>0.1</span>,
   legend_color <span class='op'>=</span> <span class='st'>"#FF0000"</span>,
   cache <span class='op'>=</span> <span class='fu'>cachem</span><span class='fu'>::</span><span class='fu'><a href='https://cachem.r-lib.org/reference/cache_mem.html'>cache_mem</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>)</span></code></pre></div>
@@ -185,9 +185,9 @@ Defaults to being automatically extracted from <code>dataset</code>.</p></td>
       <td><p><code>numeric</code> relative optimality gap value. Defaults to 0.</p></td>
     </tr>
     <tr>
-      <th>boundary_budget_proportion</th>
-      <td><p><code>numeric</code> gap value used to control
-the level of spatial clustering in the solution. Defaults to 0.1</p></td>
+      <th>boundary_gap</th>
+      <td><p><code>numeric</code> value used to control
+the level of spatial clustering in the solution. Defaults to 0.1.</p></td>
     </tr>
     <tr>
       <th>legend_color</th>

@@ -51,7 +51,8 @@
   align-items: stretch;
 }
 
-.solution-results .statistics-results {
+.solution-results .statistics-results,
+.solution-results .parameters-results {
   padding: 10px;
 }
 
@@ -82,19 +83,34 @@
   align-items: center;
 }
 
-/* statistics */
-.solution-results .statistics-results {
+/* summary panel */
+.solution-results .statistics-columns,
+.solution-results .parameters-columns {
   display: flex;
   flex-direction: row;
 }
 
-.solution-results .statistics-results .names,
-.solution-results .statistics-results .values {
+.solution-results .statistics-columns .names,
+.solution-results .statistics-columns .values,
+.solution-results .parameters-columns .names,
+.solution-results .parameters-columns .values {
   display: flex;
   flex-direction: column;
 }
 
-.solution-results .statistics-results .values label {
-  margin-left: 20px;
+.solution-results .statistics-columns .names,
+.solution-results .parameters-columns .names {
+  min-width: 180px;
+}
+
+.solution-results .panel-content-inner h4,
+.solution-results .panel-content-inner h4 {
+  margin-left: 10px;
+  margin-bottom: 0px;
+}
+
+.solution-results .statistics-results .values label,
+.solution-results .parameters-results .values label {
+  margin-left: 5px;
   font-weight: 400 !important;
 }

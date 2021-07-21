@@ -4,11 +4,11 @@ class ParameterSetting {
     manager,
     id,
     name,
+    status,
+    value,
     min_value,
     max_value,
-    value,
     step_value,
-    status,
     hide,
     units
   ) {

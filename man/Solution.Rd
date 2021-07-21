@@ -25,6 +25,8 @@ Definition for the Solution class.
 
 \item{\code{variable}}{\link{Variable} object.}
 
+\item{\code{parameters}}{\code{list} of \link{Parameter} objects}
+
 \item{\code{statistics}}{\code{list} of \link{Statistic} objects}
 
 \item{\code{theme_results}}{\code{list} of \link{ThemeResults} objects.}
@@ -68,6 +70,7 @@ Create a Solution object.
   variable,
   visible,
   statistics,
+  parameters,
   theme_results,
   weight_results
 )}\if{html}{\out{</div>}}
@@ -85,6 +88,8 @@ Create a Solution object.
 \item{\code{visible}}{\code{logical} value.}
 
 \item{\code{statistics}}{\code{list} of \link{Statistic} objects.}
+
+\item{\code{parameters}}{\code{list} of \link{Statistic} objects.}
 
 \item{\code{theme_results}}{\code{list} of \link{ThemeResults} objects.}
 

@@ -112,15 +112,15 @@ test_that("widget methods", {
   # run tests
   ## solution settings
   expect_identical(
-    x$get_solution_settings_widget_data(),
+    x$get_widget_data(),
     list(
       id = "P1",
       name = "Spatial clumping",
+      status = FALSE,
+      value = 0.2,
       min_value = 0.01,
       max_value = 0.9,
-      value = 0.2,
       step_value = 0.03,
-      status = FALSE,
       hide = TRUE,
       units = "asdf"
     )

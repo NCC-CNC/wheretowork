@@ -23,6 +23,9 @@ Solution <- R6::R6Class(
     #' @field variable [Variable] object.
     variable = NULL,
 
+    #' @field parameters `list` of [Parameter] objects
+    parameters = NULL,
+
     #' @field statistics `list` of [Statistic] objects
     statistics = NULL,
 
@@ -38,12 +41,14 @@ Solution <- R6::R6Class(
     #' @param name `character` value.
     #' @param variable [Variable] object.
     #' @param visible `logical` value.
+    #' @param parameters `list` of [Statistic] objects.
     #' @param statistics `list` of [Statistic] objects.
     #' @param theme_results `list` of [ThemeResults] objects.
     #' @param weight_results `list` of [WeightResults] objects.
     #' @return A new Solution object.
     initialize = function(id, name, variable, visible,
-                          statistics, theme_results, weight_results) {
+                          statistics, parameters,
+                          theme_results, weight_results) {
       # assert arguments are valid
       assertthat::assert_that(
         assertthat::is.string(id),
@@ -53,6 +58,8 @@ Solution <- R6::R6Class(
         inherits(variable, "Variable"),
         assertthat::is.flag(visible),
         assertthat::noNA(visible),
+        is.list(parameters),
+        all_list_elements_inherit(parameters, "Parameter"),
         is.list(statistics),
         all_list_elements_inherit(statistics, "Statistic"),
         is.list(theme_results),
@@ -65,6 +72,7 @@ Solution <- R6::R6Class(
       self$name <- name
       self$variable <- variable
       self$visible <- visible
+      self$parameters <- parameters
       self$statistics <- statistics
       self$theme_results <- theme_results
       self$weight_results <- weight_results
@@ -82,6 +90,10 @@ Solution <- R6::R6Class(
         self$name,
         " ",
         start,
+        paste(
+          vapply(self$parameters, function(x) x$repr(), character(1)),
+          collapse = ", "
+        ),
         paste(
           vapply(self$statistics, function(x) x$repr(), character(1)),
           collapse = ", "
@@ -382,6 +394,10 @@ Solution <- R6::R6Class(
       list(
         id = self$id,
         name = self$name,
+        parameters = lapply(
+          self$parameters,
+          function(x) x$get_widget_data()
+        ),
         statistics = lapply(
           self$statistics,
           function(x) x$get_widget_data()
@@ -442,6 +458,8 @@ Solution <- R6::R6Class(
 #'
 #' @param visible `logical` should the solution be visible on a map?
 #'
+#' @param parameters `list` of [Parameter] objects.
+#'
 #' @param statistics `list` of [Statistic] objects.
 #'
 #' @param theme_results `list` of [ThemeResults] objects.
@@ -453,13 +471,16 @@ Solution <- R6::R6Class(
 #' @examples
 #' # TODO
 #' @export
-new_solution <- function(name, variable, visible, statistics,
+new_solution <- function(name, variable, visible,
+                         parameters,
+                         statistics,
                          theme_results, weight_results,
                          id = uuid::UUIDgenerate()) {
   Solution$new(
     name = name,
     variable = variable,
     visible = visible,
+    parameters = parameters,
     statistics = statistics,
     theme_results = theme_results,
     weight_results = weight_results,

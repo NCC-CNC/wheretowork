@@ -66,10 +66,12 @@ test_that("initialization", {
   )
   s1 <- new_statistic("Area", 12, "ha")
   s2 <- new_statistic("Perimeter", 10, "km")
+  p <- new_parameter("budget", value = 12)
   x <- new_solution(
     name = "solution001",
     variable = v3,
     visible = FALSE,
+    parameters = list(p),
     statistics = list(s1, s2),
     theme_results = list(thr),
     weight_results = list(wr),
@@ -81,7 +83,7 @@ test_that("initialization", {
   expect_identical(x$name, "solution001")
   expect_identical(x$variable, v3)
   expect_identical(x$visible, FALSE)
-  expect_identical(x$visible, FALSE)
+  expect_equal(x$parameters, list(p))
   expect_identical(x$statistics, list(s1, s2))
   expect_identical(x$theme_results, list(thr))
   expect_identical(x$weight_results, list(wr))
@@ -156,12 +158,14 @@ test_that("get methods", {
     feature_results = fr,
     id = "RID2"
   )
+  p <- new_parameter("budget", value = 12)
   s1 <- new_statistic("Area", 12, "ha")
   s2 <- new_statistic("Perimeter", 10, "km")
   x <- new_solution(
     name = "solution001",
     variable = v3,
     visible = FALSE,
+    parameters = list(p),
     statistics = list(s1, s2),
     theme_results = list(thr),
     weight_results = list(wr),
@@ -238,10 +242,12 @@ test_that("set methods", {
   )
   s1 <- new_statistic("Area", 12, "ha")
   s2 <- new_statistic("Perimeter", 10, "km")
+  p <- new_parameter("budget", value = 12)
   x <- new_solution(
     name = "solution001",
     variable = v3,
     visible = FALSE,
+    parameters = list(p),
     statistics = list(s1, s2),
     theme_results = list(thr),
     weight_results = list(wr),
@@ -317,12 +323,14 @@ test_that("widget methods", {
     feature_results = fr,
     id = "RID2"
   )
+  p <- new_parameter("budget", value = 12)
   s1 <- new_statistic("Area", 12, "ha")
   s2 <- new_statistic("Perimeter", 10, "km")
   x <- new_solution(
     name = "solution001",
     variable = v3,
     visible = FALSE,
+    parameters = list(p),
     statistics = list(s1, s2),
     theme_results = list(thr),
     weight_results = list(wr),
@@ -335,6 +343,7 @@ test_that("widget methods", {
     list(
       id = "solution1",
       name = "solution001",
+      parameters = list(p$get_widget_data()),
       statistics = list(s1$get_widget_data(), s2$get_widget_data()),
       theme_results = list(thr$get_widget_data()),
       weight_results = list(wr$get_widget_data()),

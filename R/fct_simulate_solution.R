@@ -88,6 +88,20 @@ simulate_solution <- function(dataset, themes, weights, includes = list()) {
     name = sub("_", " ", vidx, fixed = TRUE),
     variable = v,
     visible = TRUE,
+    parameters = list(
+      new_parameter(
+        name = "Total area budget",
+        value = 0,
+        status = FALSE,
+        hide = TRUE,
+        units = "%"
+      ),
+      new_parameter(
+        name = "Spatial clustering",
+        value = 0,
+        units = "%"
+      )
+    ),
     statistics = statistics,
     theme_results = theme_results,
     weight_results = weight_results

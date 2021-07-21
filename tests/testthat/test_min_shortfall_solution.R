@@ -70,7 +70,7 @@ test_that("no spatial clustering", {
     area_budget_proportion = 0.7,
     gap =
       ss$get_parameter("P2")$value * ss$get_parameter("P2")$status,
-    boundary_budget_proportion =
+    boundary_gap =
       ss$get_parameter("P1")$value * ss$get_parameter("P1")$status,
     cache = cache
   )
@@ -82,7 +82,7 @@ test_that("no spatial clustering", {
     area_budget_proportion = 0.7,
     gap =
       ss$get_parameter("P2")$value * ss$get_parameter("P2")$status,
-    boundary_budget_proportion =
+    boundary_gap =
       ss$get_parameter("P1")$value * ss$get_parameter("P1")$status,
     cache = cache
   )
@@ -160,7 +160,7 @@ test_that("spatial clustering", {
     area_budget_proportion = 0.7,
     gap =
       ss$get_parameter("P2")$value * ss$get_parameter("P2")$status,
-    boundary_budget_proportion =
+    boundary_gap =
       (ss$get_parameter("P1")$value *
         ss$get_parameter("P1")$status) / 100
   )

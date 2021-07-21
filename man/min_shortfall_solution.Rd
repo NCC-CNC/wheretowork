@@ -14,7 +14,7 @@ min_shortfall_solution(
   include_data = settings$get_include_data(),
   boundary_data = dataset$get_boundary_data(),
   gap = 0,
-  boundary_budget_proportion = 0.1,
+  boundary_gap = 0.1,
   legend_color = "#FF0000",
   cache = cachem::cache_mem()
 )
@@ -44,8 +44,8 @@ Defaults to being automatically extracted from \code{dataset}.}
 
 \item{gap}{\code{numeric} relative optimality gap value. Defaults to 0.}
 
-\item{boundary_budget_proportion}{\code{numeric} gap value used to control
-the level of spatial clustering in the solution. Defaults to 0.1}
+\item{boundary_gap}{\code{numeric} value used to control
+the level of spatial clustering in the solution. Defaults to 0.1.}
 
 \item{legend_color}{\code{character} legend color.}
 

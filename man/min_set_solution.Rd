@@ -39,8 +39,8 @@ Defaults to being automatically extracted from \code{dataset}.}
 
 \item{gap}{\code{numeric} relative optimality gap value. Defaults to 0.}
 
-\item{boundary_gap}{\code{numeric} gap value used to control
-the level of spatial clustering in the solution. Defaults to 0.1}
+\item{boundary_gap}{\code{numeric} value used to control
+the level of spatial clustering in the solution. Defaults to 0.1.}
 
 \item{legend_color}{\code{character} legend color.}
 

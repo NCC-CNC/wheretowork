@@ -264,7 +264,7 @@ SolutionSettings <- R6::R6Class(
           ),
         parameters =
           lapply(
-            self$parameters, function(x) x$get_solution_settings_widget_data()
+            self$parameters, function(x) x$get_widget_data()
           )
       )
     },
@@ -508,7 +508,9 @@ SolutionSettings <- R6::R6Class(
 #' @export
 new_solution_settings <- function(themes, weights, includes, parameters) {
   SolutionSettings$new(
-    themes = themes, weights = weights, includes = includes,
+    themes = themes,
+    weights = weights,
+    includes = includes,
     parameters = parameters
   )
 }

@@ -3,6 +3,7 @@ function newSolution(manager, x) {
     manager,
     x.id,
     x.name,
+    x.parameters,
     x.statistics,
     x.theme_results,
     x.weight_results,
@@ -17,6 +18,21 @@ function newStatistics(manager, x) {
     x.map((y) => y.value),
     x.map((y) => y.units),
     x.map((y) => y.proportion)
+  );
+}
+
+function newParameters(manager, x) {
+  return new Parameters(
+    manager,
+    x.map((y) => y.id),
+    x.map((y) => y.name),
+    x.map((y) => y.status),
+    x.map((y) => y.value),
+    x.map((y) => y.min_value),
+    x.map((y) => y.max_value),
+    x.map((y) => y.step_value),
+    x.map((y) => y.hide),
+    x.map((y) => y.units)
   );
 }
 

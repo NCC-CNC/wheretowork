@@ -4,6 +4,7 @@ class Solution {
     manager,
     id,
     name,
+    parameters,
     statistics,
     theme_results,
     weight_results,
@@ -13,11 +14,19 @@ class Solution {
     this.id = id;
     this.name = name;
 
+    // parameters results
+    this.parameters_el = document.createElement("div");
+    this.parameters_el.classList.add("parameters-results");
+    this.parameters_el.appendChild(
+      newParameters(manager, parameters).render()
+    );
+
     // statistics results
     this.statistics_el = document.createElement("div");
     this.statistics_el.classList.add("statistics-results");
     this.statistics_el.appendChild(
-      newStatistics(manager, statistics).render());
+      newStatistics(manager, statistics).render()
+    );
 
     // theme results
     this.themes_el = document.createElement("div");
@@ -37,6 +46,10 @@ class Solution {
   }
 
   /* render method */
+  render_parameters(el) {
+    el.appendChild(this.parameters_el);
+  }
+
   render_statistics(el) {
     el.appendChild(this.statistics_el);
   }

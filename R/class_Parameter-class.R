@@ -211,17 +211,16 @@ Parameter <- R6::R6Class(
     },
 
     #' @description
-    #' Get data for displaying the theme in a [solutionSettings()] widget.
-    #' @return `list` with widget data.
-    get_solution_settings_widget_data = function() {
+    #' Get data for displaying the parameter in a widget.
+    get_widget_data = function() {
       list(
         id = self$id,
         name = self$name,
+        status = self$status,
+        value = self$value,
         min_value = self$min_value,
         max_value = self$max_value,
-        value = self$value,
         step_value = self$step_value,
-        status = self$status,
         hide = self$hide,
         units = self$units
       )

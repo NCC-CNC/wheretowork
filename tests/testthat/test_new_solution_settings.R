@@ -454,7 +454,7 @@ test_that("widget methods", {
         incl$get_solution_settings_widget_data()
       ),
       parameters = list(
-        p1$get_solution_settings_widget_data()
+        p1$get_widget_data()
       )
     )
   )

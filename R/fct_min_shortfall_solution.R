@@ -7,13 +7,10 @@ NULL
 #' using the minimum shortfall formulation of the reserve selection problem.
 #'
 #' @inheritParams min_set_solution
-#'
+#
 #' @param area_budget_proportion `numeric` budget for the solution.
 #'   This should be a proportion (with values ranging between 0 and 1)
 #'   indicating the maximum spatial extent of the solution.
-#'
-#' @param boundary_budget_proportion `numeric` gap value used to control
-#'   the level of spatial clustering in the solution. Defaults to 0.1
 #'
 #' @inherit min_set_solution return
 #'
@@ -27,7 +24,7 @@ min_shortfall_solution <- function(name, dataset, settings,
                                    include_data = settings$get_include_data(),
                                    boundary_data = dataset$get_boundary_data(),
                                    gap = 0,
-                                   boundary_budget_proportion = 0.1,
+                                   boundary_gap = 0.1,
                                    legend_color = "#FF0000",
                                    cache = cachem::cache_mem()) {
   # validate arguments
@@ -53,20 +50,21 @@ min_shortfall_solution <- function(name, dataset, settings,
     ## gap
     assertthat::is.number(gap),
     assertthat::noNA(gap),
-    ## boundary_budget_proportion
-    assertthat::is.number(boundary_budget_proportion),
-    assertthat::noNA(boundary_budget_proportion),
-    isTRUE(boundary_budget_proportion >= 0),
-    isTRUE(boundary_budget_proportion <= 1),
     ## legend_color
     assertthat::is.string(legend_color),
     assertthat::noNA(legend_color),
+    ## boundary_gap
+    assertthat::is.number(boundary_gap),
+    assertthat::noNA(boundary_gap),
+    isTRUE(boundary_gap >= 0),
+    isTRUE(boundary_gap <= 1),
     ## cache
     inherits(cache, "cachem")
   )
 
+
   # prepare settings
-  ## extract values
+  ## extract values from settings
   theme_settings <- settings$get_theme_settings()
   weight_settings <- settings$get_weight_settings()
   include_settings <- settings$get_include_settings()
@@ -132,8 +130,8 @@ min_shortfall_solution <- function(name, dataset, settings,
 
   # calculate budgets for multi-objective optimization
   total_budget <- sum(cost) * area_budget_proportion
-  if (boundary_budget_proportion >= 1e-5) {
-    initial_budget <- (1 - boundary_budget_proportion) * total_budget
+  if (boundary_gap >= 1e-5) {
+    initial_budget <- (1 - boundary_gap) * total_budget
   } else {
     initial_budget <- total_budget
   }
@@ -193,7 +191,7 @@ min_shortfall_solution <- function(name, dataset, settings,
   # generate second prioritization
   ## this formulation aims to minimize fragmentation,
   ## whilst ensuring that total cost does do not exceed the budget
-  if (boundary_budget_proportion >= 1e-5) {
+  if (boundary_gap >= 1e-5) {
     ### calculate targets based on feature representation in initial solution
     main_targets <- targets
     main_targets$target <- rowSums(
@@ -381,6 +379,7 @@ min_shortfall_solution <- function(name, dataset, settings,
     name = name,
     variable = v,
     visible = TRUE,
+    parameters = lapply(settings$parameters, function(x) x$clone()),
     statistics = statistics_results,
     theme_results = theme_results,
     weight_results = weight_results,

@@ -9,6 +9,8 @@ class SolutionResults {
     // set fields to store HTML elements
     this.select_el =
       this.el.querySelector(`#${id}_select`);
+    this.parameters_el =
+      this.el.querySelector(".parameters");
     this.statistics_el =
       this.el.querySelector(".statistics");
     this.themes_el =
@@ -40,10 +42,12 @@ class SolutionResults {
     // if solution found, then show it in the widget
     if (idx > -1) {
       // clear solution from panels
+      removeAllChildNodes(this.parameters_el);
       removeAllChildNodes(this.statistics_el);
       removeAllChildNodes(this.themes_el);
       removeAllChildNodes(this.weights_el);
       // add new solution to solution results container
+      this.solutions[idx].render_parameters(this.parameters_el)
       this.solutions[idx].render_statistics(this.statistics_el)
       this.solutions[idx].render_themes(this.themes_el);
       this.solutions[idx].render_weights(this.weights_el);

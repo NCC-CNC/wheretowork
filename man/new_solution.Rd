@@ -8,6 +8,7 @@ new_solution(
   name,
   variable,
   visible,
+  parameters,
   statistics,
   theme_results,
   weight_results,
@@ -20,6 +21,8 @@ new_solution(
 \item{variable}{\link{Variable} object with the solution.}
 
 \item{visible}{\code{logical} should the solution be visible on a map?}
+
+\item{parameters}{\code{list} of \link{Parameter} objects.}
 
 \item{statistics}{\code{list} of \link{Statistic} objects.}
 

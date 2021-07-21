@@ -49,7 +49,7 @@ Definition for the Parameter class.
 \item \href{#method-set_status}{\code{Parameter$set_status()}}
 \item \href{#method-set_value}{\code{Parameter$set_value()}}
 \item \href{#method-set_setting}{\code{Parameter$set_setting()}}
-\item \href{#method-get_solution_settings_widget_data}{\code{Parameter$get_solution_settings_widget_data()}}
+\item \href{#method-get_widget_data}{\code{Parameter$get_widget_data()}}
 \item \href{#method-export}{\code{Parameter$export()}}
 \item \href{#method-clone}{\code{Parameter$clone()}}
 }
@@ -243,17 +243,14 @@ Available options are \code{"status"}, or \code{"value"}.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_solution_settings_widget_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_solution_settings_widget_data}{}}}
-\subsection{Method \code{get_solution_settings_widget_data()}}{
-Get data for displaying the theme in a \code{\link[=solutionSettings]{solutionSettings()}} widget.
+\if{html}{\out{<a id="method-get_widget_data"></a>}}
+\if{latex}{\out{\hypertarget{method-get_widget_data}{}}}
+\subsection{Method \code{get_widget_data()}}{
+Get data for displaying the parameter in a widget.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Parameter$get_solution_settings_widget_data()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Parameter$get_widget_data()}\if{html}{\out{</div>}}
 }
 
-\subsection{Returns}{
-\code{list} with widget data.
-}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-export"></a>}}
