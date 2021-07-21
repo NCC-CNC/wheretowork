@@ -2,7 +2,8 @@ name: Deploy to Heroku
 on:
   push:
     branches:
-      - main
+      - master
+
 jobs:
   main:
     name: Deploy  Build and deploy Shiny app
