@@ -120,6 +120,12 @@ server_generate_new_solution <- quote({
         ),
         "Something went wrong, please try again."
       )
+      ## throw warning in development mode
+      if (golem::app_dev()) {
+        whereami::whereami()
+        cli::cli_verbatim(s)
+        cli::rule()
+      }
       ## display modal
       shinyalert::shinyalert(
         title = "Oops",
@@ -139,14 +145,6 @@ server_generate_new_solution <- quote({
       enable_html_element("solutionResultsPane_results_button")
       enable_html_element("newSolutionPane_settings_color")
       enable_html_element("newSolutionPane_settings_name")
-      ## throw warning in development mode
-      if (golem::app_dev()) {
-        cli::cli_h1("Error")
-        cli::rule()
-        whereami::whereami()
-        cli::cli_verbatim(s)
-        cli::rule()
-      }
       ## exit
       return()
     }
