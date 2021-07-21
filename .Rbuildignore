@@ -37,3 +37,4 @@ pkgdown
 Dockerfile
 docker-compose.yml
 .lintr
+.heroku.yml
