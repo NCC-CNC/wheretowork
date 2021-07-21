@@ -15,7 +15,8 @@ function newStatistics(manager, x) {
     manager,
     x.map((y) => y.name),
     x.map((y) => y.value),
-    x.map((y) => y.units)
+    x.map((y) => y.units),
+    x.map((y) => y.proportion)
   );
 }
 

@@ -22,6 +22,8 @@ Definition for the Statistic class.
 \item{\code{value}}{\code{numeric} value}
 
 \item{\code{units}}{\code{character} value.}
+
+\item{\code{proportion}}{\code{numeric} value}
 }
 \if{html}{\out{</div>}}
 }
@@ -41,7 +43,7 @@ Definition for the Statistic class.
 \subsection{Method \code{new()}}{
 Create a Statistic object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Statistic$new(name, value, units)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Statistic$new(name, value, units, proportion)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -52,6 +54,8 @@ Create a Statistic object.
 \item{\code{value}}{\code{numeric} value}
 
 \item{\code{units}}{\code{character} value.}
+
+\item{\code{proportion}}{\code{numeric} value.}
 }
 \if{html}{\out{</div>}}
 }

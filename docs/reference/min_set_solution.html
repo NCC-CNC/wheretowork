@@ -134,7 +134,8 @@ using the minimum set formulation of the reserve selection problem.</p>
   boundary_data <span class='op'>=</span> <span class='va'>dataset</span><span class='op'>$</span><span class='fu'>get_boundary_data</span><span class='op'>(</span><span class='op'>)</span>,
   gap <span class='op'>=</span> <span class='fl'>0</span>,
   boundary_gap <span class='op'>=</span> <span class='fl'>0.1</span>,
-  legend_color <span class='op'>=</span> <span class='st'>"#FF0000"</span>
+  legend_color <span class='op'>=</span> <span class='st'>"#FF0000"</span>,
+  cache <span class='op'>=</span> <span class='fu'>cachem</span><span class='fu'>::</span><span class='fu'><a href='https://cachem.r-lib.org/reference/cache_mem.html'>cache_mem</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -184,6 +185,12 @@ the level of spatial clustering in the solution. Defaults to 0.1</p></td>
     <tr>
       <th>legend_color</th>
       <td><p><code>character</code> legend color.</p></td>
+    </tr>
+    <tr>
+      <th>cache</th>
+      <td><p><code><a href='https://cachem.r-lib.org/reference/cache_mem.html'>cachem::cache_mem()</a></code> object used to cache intermediate
+calculations.
+Defaults to an empty cache such that (effectively) no cache is used.</p></td>
     </tr>
     </table>
 

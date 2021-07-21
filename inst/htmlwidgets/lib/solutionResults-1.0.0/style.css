@@ -85,10 +85,7 @@
 /* statistics */
 .solution-results .statistics-results {
   display: flex;
-}
-
-.solution-results .statistics-results .names {
-  margin-right: 30px;
+  flex-direction: row;
 }
 
 .solution-results .statistics-results .names,
@@ -98,5 +95,6 @@
 }
 
 .solution-results .statistics-results .values label {
+  margin-left: 20px;
   font-weight: 400 !important;
 }

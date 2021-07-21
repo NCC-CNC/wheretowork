@@ -239,9 +239,10 @@ min_set_solution <- function(name, dataset, settings,
   statistics_results <-
     list(
       new_statistic(
-        name = "Total size",
+        name = "Total area",
         value = area_m * 1e-6,
-        units = stringi::stri_unescape_unicode("km\\u00B2")
+        units = stringi::stri_unescape_unicode("km\\u00B2"),
+        proportion = area_m / sum(pu_areas)
       ),
       new_statistic(
         name = "Total perimeter",
