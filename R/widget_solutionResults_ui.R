@@ -148,7 +148,7 @@ solutionResults_html <- function(id, style, class, ...) {
               shinyBS::bsCollapsePanel(
                 title = htmltools::tags$span(
                   shiny::icon("chart-line"),
-                  "Statistics"
+                  "Summary"
                 ),
                 value = paste0(id, "_collapseStatisticPanel"),
                 htmltools::tags$div(
