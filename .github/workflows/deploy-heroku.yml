@@ -1,11 +1,12 @@
 name: Deploy to Heroku
+
 on:
   push:
     branches:
       - master
 
 jobs:
-  main:
+  deploy:
     name: Deploy  Build and deploy Shiny app
     runs-on: ubuntu-latest
     steps:
