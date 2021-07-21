@@ -19,7 +19,9 @@ RUN add-apt-repository ppa:ubuntugis/ubuntugis-unstable && \
       libgeos-dev \
       libproj-dev \
       coinor-libcbc-dev \
-      coinor-libclp-dev
+      coinor-libclp-dev \
+      libharfbuzz-dev \
+      libfribidi-dev
 
 # install R packages needed to setup renv
 RUN Rscript -e 'install.packages(c("renv", "remotes"))'
