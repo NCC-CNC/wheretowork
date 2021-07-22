@@ -9,6 +9,14 @@ app_server <- function(input, output, session) {
   ## initialize app
   eval(server_initialize_app)
 
+  ## prevent timeout on Heroku if needed
+  if (identical(Sys.getenv("HEROKU"), "TRUE")) {
+    shiny::observe({
+      shiny::invalidateLater(10000)
+      cat(".")
+    })
+  }
+
   # import data
   ## import data using builtin import option
   eval(server_import_builtin_data)
