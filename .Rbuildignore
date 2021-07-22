@@ -38,3 +38,4 @@ Dockerfile
 docker-compose.yml
 .lintr
 .heroku.yml
+heroku.yml
