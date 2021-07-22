@@ -32,7 +32,7 @@ COPY --chown=shiny:shiny . /srv/shiny-server
 RUN chmod -R 755 /srv/shiny-server/
 
 # set port for shiny server if PORT variable specified
-RUN [ "${PORT+1}" ] || PORT=3838
+RUN if [ -z "$PORT" ]; then PORT=3838; fi
 RUN sed -i -e 's@listen 3838@listen '"$PORT"'@g' /etc/shiny-server/shiny-server.conf
 
 # set user
