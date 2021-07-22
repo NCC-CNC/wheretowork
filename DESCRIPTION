@@ -23,6 +23,7 @@ Imports:
     assertthat (>= 0.2.0),
     cachem (>= 1.0.5),
     cli (>= 3.0.0),
+    markdown (>= 1.1),
     digest (>= 0.6.27),
     stringi (>= 1.7.3),
     tools (>= 4.0.5),
