@@ -35,6 +35,7 @@ server_generate_new_solution <- quote({
       ### preliminary calculations
       curr_name <- input$newSolutionPane_settings_name
       curr_gap <- get_golem_config("gap")
+      curr_verbose <- get_golem_config("verbose")
       curr_boundary_gap <-
         (app_data$ss$get_parameter("spatial_parameter")$value *
           app_data$ss$get_parameter("spatial_parameter")$status) / 100
@@ -60,7 +61,8 @@ server_generate_new_solution <- quote({
               gap = curr_gap,
               boundary_gap = curr_boundary_gap,
               legend_color = curr_color,
-              cache = app_data$cache
+              cache = app_data$cache,
+              verbose = curr_verbose
             ),
             silent = TRUE
           )
@@ -78,7 +80,8 @@ server_generate_new_solution <- quote({
               gap = curr_gap,
               boundary_gap = curr_boundary_gap,
               legend_color = curr_color,
-              cache = app_data$cache
+              cache = app_data$cache,
+              verbose = curr_verbose
             ),
             silent = TRUE
           )
@@ -187,7 +190,7 @@ server_generate_new_solution <- quote({
     )
 
     ## add new solution to export sidebar
-    shiny::updateSelectizeInput(
+    shinyWidgets::updatePickerInput(
       session = session,
       inputId = "exportPane_fields",
       choices = stats::setNames(
