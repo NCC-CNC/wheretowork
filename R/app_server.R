@@ -6,6 +6,8 @@
 app_server <- function(input, output, session) {
 
   # initialization
+  ## spawn new process so that users in different process
+  try(system("touch restart.txt"), silent = TRUE)
   ## initialize app
   eval(server_initialize_app)
 
