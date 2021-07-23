@@ -1,13 +1,13 @@
 app_global <- quote({
   # initialize asynchronous processing
-  if (identical(get_golem_config("strategy"), "auto")) {
+  if (identical(wheretowork::get_golem_config("strategy"), "auto")) {
     if (identical(Sys.getenv("R_CONFIG_ACTIVE"), "shinyapps")) {
       future::plan("sequential")
     } else {
       future::plan("multisession")
     }
   } else {
-    future::plan(get_golem_config("strategy"))
+    future::plan(wheretowork::get_golem_config("strategy"))
   }
 
   # set seed for reproducibility
@@ -15,7 +15,7 @@ app_global <- quote({
 
   # define parameters for solution settings
   area_budget_parameter <-
-    new_parameter(
+    wheretowork::new_parameter(
       name = "Total area budget",
       status = FALSE,
       value = 0,
@@ -28,7 +28,7 @@ app_global <- quote({
     )
 
   boundary_gap_parameter <-
-    new_parameter(
+    wheretowork::new_parameter(
       name = "Spatial clustering",
       status = FALSE,
       value = 0,
@@ -74,9 +74,9 @@ app_global <- quote({
   )
 
   # find built-in projects
-  project_dir <- get_golem_config("projects")
+  project_dir <- wheretowork::get_golem_config("projects")
   if (identical(project_dir, "default")) {
     project_dir <- system.file("extdata", "projects", package = "wheretowork")
   }
-  project_data <- find_projects(project_dir)
+  project_data <- wheretowork::find_projects(project_dir)
 })

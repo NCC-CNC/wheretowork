@@ -9,7 +9,9 @@ golem::detach_all_attached()
 golem::document_and_reload()
 
 # Install package for asynchronous processing
-renv::install(".", upgrade = "never", force = TRUE)
+if (!identical(getOption("quick"), TRUE)) {
+  renv::install(".", upgrade = "never", force = TRUE)
+}
 
 # Run the application
 run_app(options = list(launch.browser = TRUE))

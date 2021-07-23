@@ -2,8 +2,12 @@
 # To deploy, run: rsconnect::deployApp()
 # Or use the blue button on top of this file
 
-# load package
-pkgload::load_all(export_all = FALSE, helpers = FALSE, attach_testthat = FALSE)
+# load package if possible
+if (file.exists("DESCRIPTION")) {
+  pkgload::load_all(
+    export_all = FALSE, helpers = FALSE, attach_testthat = FALSE
+  )
+}
 
 # set application production mode
 if (is.null(getOption("golem.app.prod"))) {

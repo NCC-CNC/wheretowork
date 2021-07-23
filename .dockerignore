@@ -3,3 +3,5 @@
 renv/library
 renv/local
 renv/staging
+Dockerfile
+docker-compose.yml

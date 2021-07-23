@@ -19,6 +19,7 @@ jobs:
           HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
           DOCKERFILE_NAME: "Dockerfile"
+          DOCKERFILE_TARGET: "heroku"
           DOCKER_OPTIONS: "--no-cache"
         run: |
           cd ${DOCKERFILE_DIRECTORY}
@@ -29,6 +30,7 @@ jobs:
           docker build \
             --file ${DOCKERFILE_NAME} \
             ${DOCKER_OPTIONS} \
+            --target ${DOCKERFILE_TARGET} \
             --tag registry.heroku.com/${HEROKU_APP_NAME}/web .
           heroku container:push web --app ${HEROKU_APP_NAME}
           heroku container:release web --app ${HEROKU_APP_NAME}

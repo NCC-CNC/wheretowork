@@ -1,14 +1,14 @@
 # source image
-FROM rocker/shiny:4.1.0
+FROM rocker/shiny:4.1.0 AS base
 
-# remove example apps
+## remove example apps
 RUN rm -rf /srv/shiny-server/*
 
-# install system libraries
+## install system libraries
 RUN apt-get update && apt-get install -y \
   software-properties-common
 
-# install R package dependencies
+## install R package dependencies
 RUN add-apt-repository ppa:ubuntugis/ubuntugis-unstable && \
     apt-get update && apt-get install -y \
       libcurl4-gnutls-dev \
@@ -21,29 +21,69 @@ RUN add-apt-repository ppa:ubuntugis/ubuntugis-unstable && \
       coinor-libcbc-dev \
       coinor-libclp-dev \
       coinor-libsymphony-dev \
+      coinor-libcgl-dev \
       libharfbuzz-dev \
-      libfribidi-dev
+      libfribidi-dev \
+      libfontconfig1-dev \
+    && rm -rf /var/lib/apt/lists/*
 
-# install R packages needed to setup renv
-RUN Rscript -e 'install.packages(c("renv", "remotes"))'
+## install R packages
+RUN mkdir /renv
+COPY renv.lock /renv/renv.lock
+RUN cd /renv && \
+    Rscript -e 'install.packages(c("renv", "remotes"))' && \
+    Rscript -e 'renv::restore()'
 
-# copy the app
-COPY --chown=shiny:shiny . /srv/shiny-server
-RUN chmod -R 755 /srv/shiny-server/
+## install app
+RUN mkdir /app
+COPY inst /app/inst
+COPY man /app/man
+COPY R /app/R
+COPY .Rbuildignore /app
+COPY DESCRIPTION /app
+COPY NAMESPACE /app
 
-# set port for shiny server if PORT variable specified
-RUN if [ -z "$PORT" ]; then PORT=3838; fi
-RUN sed -i -e 's@listen 3838@listen '"$PORT"'@g' /etc/shiny-server/shiny-server.conf
+RUN cd /app && \
+    Rscript -e 'remotes::install_local(upgrade = "never")' && \
+    rm -rf /app
 
-# set user
+## set working directory
+WORKDIR /tmp
+RUN touch restart.txt && \
+    chmod 777 restart.txt
+
+# update shiny server configuration
+RUN cp  /etc/shiny-server/shiny-server.conf /tmp/shiny-server.conf && \
+    sed -i 's/run_as shiny;/run_as shiny;preserve_logs true;/g' /tmp/shiny-server.conf && \
+    cp  /tmp/shiny-server.conf /etc/shiny-server/shiny-server.conf && \
+    cat /etc/shiny-server/shiny-server.conf
+
+# set command
+CMD ["/bin/bash"]
+
+# Heroku image
+FROM base AS heroku
+
+## set user
 USER shiny
 
-# install R packages using renv
-RUN cd /srv/shiny-server && Rscript -e 'renv::restore()'
-RUN cd /srv/shiny-server && Rscript -e 'remotes::install_local(upgrade = "never")'
+# expose port (for local deployment only)
+EXPOSE $PORT
 
-# select port
+## run app
+CMD R -e 'options(shiny.port=as.numeric(Sys.getenv("PORT")),shiny.host="0.0.0.0");wheretowork::run_app()'
+
+# main image
+FROM base AS main
+
+## set user
+USER shiny
+
+## select port
 EXPOSE 3838
+
+# copy app file for shiny server
+COPY --chown=shiny:shiny app.R /srv/shiny-server
 
 # run app
 CMD ["/usr/bin/shiny-server"]

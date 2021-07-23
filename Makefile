@@ -63,13 +63,16 @@ quicksite:
 debug:
 	R -e "options(golem.app.prod = FALSE); golem::run_dev()"
 
+quick-debug:
+	R -e "options(golem.app.prod = FALSE, quick = TRUE); golem::run_dev()"
+
 ## launch local version inside Docker container
 demo-start:
-	docker-compose up
+	docker-compose up web
 	google-chrome "http://localhost:3838"
 
 demo-skill:
-	docker-compose down
+	docker-compose down web
 
 ## launch released version inside Docker container
 launch-start:
