@@ -83,3 +83,18 @@
 .easy-button-button {
   font-size: large;
 }
+
+/* button sizing */
+.leaflet-control {
+  align-self:flex-start;
+}
+
+.leaflet-touch .leaflet-control-layers-toggle {
+  height: 30px !important;
+  width: 30px !important;
+  background-image: url(globe-americas-solid.png) !important;
+  background-size: 20px 20px !important;
+}
+.leaflet-retina .leaflet-control-layers-toggle  {
+  background-image: url(globe-americas-solid.png) !important;
+}

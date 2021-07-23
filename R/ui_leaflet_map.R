@@ -30,9 +30,18 @@ leaflet_map <- function() {
   map <-
     ## initialize leaflet map
     leaflet::leaflet() %>%
-    ## add basemap
+    ## add basemaps
     leaflet::addProviderTiles(
-      leaflet::providers$Esri.WorldImagery
+      leaflet::providers$Esri.WorldImagery,
+      group = "Satellite"
+    ) %>%
+    leaflet::addProviderTiles(
+      leaflet::providers$Esri.WorldStreetMap,
+      group = "Street view"
+    ) %>%
+    leaflet::addProviderTiles(
+      leaflet::providers$Stamen.Toner,
+      group = "Monochrome"
     ) %>%
     ## specify default view window
     leaflet::flyToBounds(
@@ -74,6 +83,12 @@ leaflet_map <- function() {
     ## add history buttons
     leaflet.extras2::addHistory(
       options = leaflet.extras2::historyOptions(position = "topleft")
+    ) %>%
+    ## add basemap controls
+    leaflet::addLayersControl(
+      baseGroups = c("Satellite", "Street view", "Monochrome"),
+      options = leaflet::layersControlOptions(collapsed = TRUE),
+      position = "topleft"
     ) %>%
     ## add scale bar
     leaflet::addScaleBar(
