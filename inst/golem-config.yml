@@ -21,9 +21,13 @@ default:
   ### otherwise, "multisession" is used.
   strategy: "auto"
 
+  ## verbosity
+  verbose: true
+
 production:
   mode: "project"
   strategy: "multisession"
+  verbose: false
 
 dev:
   golem_wd: !expr here::here()

@@ -16,7 +16,8 @@ min_shortfall_solution(
   gap = 0,
   boundary_gap = 0.1,
   legend_color = "#FF0000",
-  cache = cachem::cache_mem()
+  cache = cachem::cache_mem(),
+  verbose = FALSE
 )
 }
 \arguments{
@@ -52,6 +53,9 @@ the level of spatial clustering in the solution. Defaults to 0.1.}
 \item{cache}{\code{\link[cachem:cache_mem]{cachem::cache_mem()}} object used to cache intermediate
 calculations.
 Defaults to an empty cache such that (effectively) no cache is used.}
+
+\item{verbose}{\code{logical} value indicating if information should be
+displayed when generating solutions. Defaults to \code{FALSE}.}
 }
 \value{
 A \link{Solution} object containing the solution.

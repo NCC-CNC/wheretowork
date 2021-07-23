@@ -35,6 +35,9 @@ NULL
 #'  calculations.
 #'  Defaults to an empty cache such that (effectively) no cache is used.
 #'
+#' @param verbose `logical` value indicating if information should be
+#'  displayed when generating solutions. Defaults to `FALSE`.
+#'
 #' @return A [Solution] object containing the solution.
 #'
 #' @examples
@@ -48,7 +51,8 @@ min_set_solution <- function(name, dataset, settings,
                              gap = 0,
                              boundary_gap = 0.1,
                              legend_color = "#FF0000",
-                             cache = cachem::cache_mem()) {
+                             cache = cachem::cache_mem(),
+                             verbose = FALSE) {
   # validate arguments
   assertthat::assert_that(
     ## name
@@ -118,8 +122,8 @@ min_set_solution <- function(name, dataset, settings,
   wn <- weight_data
   for (i in seq_along(nrow(wn))) {
     wn[i, ] <- zscale(wn[i, ])
+    wn[i, ] <- scales::rescale(wn[i, ], to = c(0.01, 1))
   }
-  wn@x <- wn@x + abs(min(wn@x)) + 1
   ## apply factors and status settings
   cost <- matrix(
     weight_settings$factor * weight_settings$status,

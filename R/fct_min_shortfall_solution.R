@@ -26,7 +26,8 @@ min_shortfall_solution <- function(name, dataset, settings,
                                    gap = 0,
                                    boundary_gap = 0.1,
                                    legend_color = "#FF0000",
-                                   cache = cachem::cache_mem()) {
+                                   cache = cachem::cache_mem(),
+                                   verbose = FALSE) {
   # validate arguments
   assertthat::assert_that(
     ## name
@@ -164,7 +165,7 @@ min_shortfall_solution <- function(name, dataset, settings,
       prioritizr::add_min_shortfall_objective(budget = initial_budget) %>%
       prioritizr::add_manual_targets(targets) %>%
       prioritizr::add_binary_decisions() %>%
-      prioritizr::add_rsymphony_solver(gap = gap, verbose = TRUE)
+      prioritizr::add_cbc_solver(gap = gap, verbose = verbose)
     ## add locked in constraints if needed
     if (any(locked_in)) {
       initial_problem <-
@@ -238,7 +239,7 @@ min_shortfall_solution <- function(name, dataset, settings,
         )
       ) %>%
       prioritizr::add_binary_decisions() %>%
-      prioritizr::add_cbc_solver(gap = gap, verbose = TRUE)
+      prioritizr::add_cbc_solver(gap = gap, verbose = verbose)
     ### add locked in constraints if needed
     if (any(locked_in)) {
       main_problem <-
