@@ -39,6 +39,7 @@ exportSidebarPane <- function(id) {
             label = "Select data and solutions to download",
             choices = c(),
             multiple = TRUE,
+            options = list(placeholder = "select data (required)"),
             width = "100%"
           ),
 

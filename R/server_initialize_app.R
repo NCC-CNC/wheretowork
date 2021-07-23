@@ -51,6 +51,7 @@ server_initialize_app <- quote({
   disable_html_element("importModal_manual_button")
   disable_html_element("importModal_spatial_button")
   disable_html_element("solutionResultsPane_results_button")
+  shinyjs::disable("exportPane_button")
 
   # disable solution results sidebar button
   disable_html_css_selector("#analysisSidebar li:nth-child(2)")

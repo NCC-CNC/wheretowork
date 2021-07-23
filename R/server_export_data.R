@@ -13,6 +13,16 @@
 #' @noRd
 server_export_data <- quote({
 
+  # disable button if no fields selected
+  shiny::observeEvent(input$exportPane_fields, ignoreNULL = FALSE, {
+    ## enable/disable if none specified
+    if (length(input$exportPane_fields) > 0) {
+      shinyjs::enable("exportPane_button")
+    } else {
+      shinyjs::disable("exportPane_button")
+    }
+  })
+
   # set download button behavior
   output$exportPane_button <- shiny::downloadHandler(
     filename = function() {
@@ -27,4 +37,5 @@ server_export_data <- quote({
     },
     contentType = "application/zip"
   )
+
 })

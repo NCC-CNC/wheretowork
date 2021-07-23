@@ -190,7 +190,7 @@ server_generate_new_solution <- quote({
     )
 
     ## add new solution to export sidebar
-    shinyWidgets::updatePickerInput(
+    shiny::updateSelectizeInput(
       session = session,
       inputId = "exportPane_fields",
       choices = stats::setNames(
