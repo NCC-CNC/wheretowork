@@ -267,7 +267,7 @@ read_project <- function(path,
     )
   )
 
-  # calculate current amount held for each feature within each theme
+  # calculate current amount held for each feature within each theme + weight
   ss <- new_solution_settings(
     themes = themes, weights = weights, includes = includes,
     parameters = list()
