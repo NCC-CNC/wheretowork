@@ -46,7 +46,7 @@ function newWeightResults(manager, x, solution_color) {
     x.total_amount,
     x.current_held,
     x.solution_held,
-    x.units,
+    x.units || "units",
     solution_color
   );
 }
@@ -64,7 +64,7 @@ function newThemeResults(manager, x, solution_color) {
       x.feature_current_held,
       x.feature_goal,
       x.feature_solution_held,
-      x.units,
+      x.units || "units",
       x.mandatory,
       x.round,
       x.icon,
@@ -82,7 +82,7 @@ function newThemeResults(manager, x, solution_color) {
       x.feature_current_held,
       x.feature_goal,
       x.feature_solution_held,
-      x.units,
+      x.units || "units",
       x.mandatory,
       x.round,
       x.icon,

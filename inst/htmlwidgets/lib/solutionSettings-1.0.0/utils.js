@@ -52,7 +52,7 @@ function newThemeSetting(manager, x) {
       x.feature_goal,
       x.feature_limit_goal,
       x.feature_step_goal,
-      x.units
+      x.units || "units"
     );
   } else {
     var y = new MultiThemeSetting(
@@ -69,7 +69,7 @@ function newThemeSetting(manager, x) {
       x.feature_goal,
       x.feature_limit_goal,
       x.feature_step_goal,
-      x.units
+      x.units || "units"
     );
   }
   return y;

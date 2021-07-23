@@ -234,7 +234,7 @@ class ThemeSolutionChart {
             .text(() =>
               `${self.locale[attr]}: ≥ ` +
               `${Math.round(Math.min(...parsedData[attr]) * 100)}% `+
-              `(≥${m} ${self.data[0].units || "units"})`)
+              `(≥${m} ${self.data[0].units})`)
             .style("color", self.colors[attr]);
         }
       })
