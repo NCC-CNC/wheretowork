@@ -112,7 +112,8 @@ server_import_spatial_data <- quote({
     x$weights <- lapply(
       settings_data$name[settings_data$type == "weight"], function(y) {
         new_weight(
-          name = y, variable = new_variable_from_auto(x$dataset, index = y)
+          name = y, variable = new_variable_from_auto(x$dataset, index = y),
+          status = FALSE
         )
       }
     )
@@ -129,6 +130,13 @@ server_import_spatial_data <- quote({
         )
       }
     )
+
+    ### calculate current amount held for each theme and weight
+    ss <- new_solution_settings(
+      themes = x$themes, weights = x$weights, includes = x$includes,
+      parameters = list()
+    )
+    ss$update_current_held()
 
     ## import data
     environment(import_data) <- environment()
