@@ -24,6 +24,12 @@ NULL
 #'  the contents of `path`. If the `mode` is `"advanced"`, then
 #'  goal limits and mandatory include settings are disabled.
 #'
+#' @details
+#' Note that the status field for themes and weights will automatically
+#' be set to `FALSE` if the goal/weight values are zero.
+#' This is to ensure that the application starts with a sensible
+#' combination of settings.
+#'
 #' @return A `list` containing the following elements:
 #' \describe{
 #' \item{name}{A `character` value indicating the name.}
@@ -165,7 +171,7 @@ read_project <- function(path,
           new_feature(
             name = f$name,
             visible = f$visible,
-            status = f$status,
+            status = f$status && (f$goal > 1e-5),
             goal = f$goal,
             limit_goal = ifelse(adv_mode, 0, f$limit_goal),
             current = 0, # place-holder value, this is calculated later
@@ -200,7 +206,7 @@ read_project <- function(path,
       new_weight(
         name = x$name,
         visible = x$visible,
-        status = x$status,
+        status = x$status && (x$factor > 1e-5),
         factor = x$factor,
         current = 0, # place-holder value, this is calculated later
         variable = new_variable_from_auto(

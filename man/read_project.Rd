@@ -46,6 +46,12 @@ A \code{list} containing the following elements:
 \description{
 Read a project from disk.
 }
+\details{
+Note that the status field for themes and weights will automatically
+be set to \code{FALSE} if the goal/weight values are zero.
+This is to ensure that the application starts with a sensible
+combination of settings.
+}
 \examples{
 # find data file paths
 f1 <- system.file(

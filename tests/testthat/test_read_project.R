@@ -10,6 +10,11 @@ test_that("raster data", {
   # manually calculate current amount held
   ss <- new_solution_settings(sim_themes, sim_weights, sim_includes, list())
   ss$update_current_held()
+  # manually set weight factors
+  sim_weights <- lapply(sim_weights, function(x) {
+    x$factor <- round(runif(1, 0.1), 3)
+    x
+  })
   # generate file paths
   f1 <- tempfile(fileext = ".yaml")
   f2 <- tempfile(fileext = ".tif")
@@ -72,6 +77,11 @@ test_that("spatial data", {
   # manually calculate current amount held
   ss <- new_solution_settings(sim_themes, sim_weights, sim_includes, list())
   ss$update_current_held()
+  # manually set weight factors
+  sim_weights <- lapply(sim_weights, function(x) {
+    x$factor <- round(runif(1, 0.1), 3)
+    x
+  })
   # save configuration file
   write_project(
     x = sim_layers,
@@ -124,6 +134,11 @@ test_that("default spatial, boundary, attribute paths", {
   # manually calculate current amount held
   ss <- new_solution_settings(sim_themes, sim_weights, sim_includes, list())
   ss$update_current_held()
+  # manually set weight factors
+  sim_weights <- lapply(sim_weights, function(x) {
+    x$factor <- round(runif(1, 0.1), 3)
+    x
+  })
   # generate file paths
   f1 <- tempfile(fileext = ".yaml")
   f2 <- tempfile(fileext = ".tif")
