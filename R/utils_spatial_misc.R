@@ -84,3 +84,37 @@ reserve_sizes <- function(x, areas, boundary_matrix) {
     sum(areas[clu$membership == i])
   })
 }
+
+#' Calculate coverage
+#'
+#' Calculate how well a solution covers data.
+#'
+#' @param x `numeric` solution values.
+#'
+#' @param data [Matrix::sparseMatrix()] object.
+#'
+#' @return `numeric` vector.
+#'
+#' @examples
+#' # load dependency
+#' library(Matrix)
+#'
+#' # simulate solution values for 10 planning units
+#' solution_values <- sample(c(0, 1), 10, replace = TRUE)
+#'
+#' # simulate data for 5 features in those 10 planning units
+#' feature_data <- as(matrix(runif(10 * 5), ncol = 10), "dgCMatrix")
+#'
+#' # calculate coverage
+#' calculate_coverage(solution_values, feature_data)
+#' @export
+calculate_coverage <- function(x, data) {
+  assertthat::assert_that(
+    is.numeric(x),
+    inherits(data, "dgCMatrix")
+  )
+  out <- matrix(x, byrow = TRUE, ncol = ncol(data), nrow = nrow(data))
+  out <- rowSums(out * data) / Matrix::rowSums(data)
+  names(out) <- rownames(data)
+  out
+}

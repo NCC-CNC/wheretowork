@@ -1,4 +1,11 @@
 app_global <- quote({
+  # print initial memory usage
+  if (isTRUE(wheretowork::get_golem_config("monitor"))) {
+      cli::cli_rule()
+      golem::print_dev("Initial memory used: ")
+      golem::print_dev(pryr::mem_used())
+  }
+
   # initialize asynchronous processing
   if (identical(wheretowork::get_golem_config("strategy"), "auto")) {
     if (identical(Sys.getenv("R_CONFIG_ACTIVE"), "shinyapps")) {
@@ -12,33 +19,6 @@ app_global <- quote({
 
   # set seed for reproducibility
   set.seed(200)
-
-  # define parameters for solution settings
-  area_budget_parameter <-
-    wheretowork::new_parameter(
-      name = "Total area budget",
-      status = FALSE,
-      value = 0,
-      min_value = 0,
-      max_value = 100,
-      step_value = 1,
-      units = "%",
-      hide = TRUE,
-      id = "budget_parameter"
-    )
-
-  boundary_gap_parameter <-
-    wheretowork::new_parameter(
-      name = "Spatial clustering",
-      status = FALSE,
-      value = 0,
-      min_value = 0,
-      max_value = 100,
-      step_value = 1,
-      units = "%",
-      hide = FALSE,
-      id = "spatial_parameter"
-    )
 
   # define global variables
   ## note that we use an environment here because they are mutable objects and
@@ -54,7 +34,6 @@ app_global <- quote({
       mode = NULL,
       ## objects
       dataset = NULL,
-      parameters = list(boundary_gap_parameter),
       themes = NULL,
       weights = NULL,
       includes = NULL,
@@ -65,7 +44,9 @@ app_global <- quote({
       theme_data = NULL,
       weight_data = NULL,
       include_data = NULL,
+      area_data = NULL,
       boundary_data = NULL,
+      new_solution_id = NULL,
       solution_ids = character(0),
       ## widgets
       mm = NULL,
@@ -79,4 +60,5 @@ app_global <- quote({
     project_dir <- system.file("extdata", "projects", package = "wheretowork")
   }
   project_data <- wheretowork::find_projects(project_dir)
+
 })

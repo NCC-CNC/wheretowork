@@ -7,7 +7,7 @@
 run_app(
   onStart = purrr::partial(eval, expr = app_global, envir = globalenv()),
   options = list(),
-  enableBookmarking = NULL,
+  enableBookmarking = "disable",
   uiPattern = "/",
   ...
 )

@@ -64,7 +64,7 @@ ThemeResults <- R6::R6Class(
     #'   Defaults to `"]"`.
     #' @return `character` value.
     repr = function(start = "[", end = "]") {
-      "TODO"
+      "ThemeResults object"
     },
 
     #' @description

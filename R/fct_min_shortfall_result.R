@@ -1,0 +1,372 @@
+#' @include internal.R
+NULL
+
+#' Generate result using minimum shortfall formulation
+#'
+#' Create a new [Result] object by generating a prioritization
+#' using the minimum shortfall formulation of the reserve selection problem.
+#'
+#' @inheritParams min_set_result
+#
+#' @param area_budget_proportion `numeric` budget for the solution.
+#'   This should be a proportion (with values ranging between 0 and 1)
+#'   indicating the maximum spatial extent of the solution.
+#'
+#' @inherit min_set_result return
+#'
+#' @examples
+#' # find data file paths
+#' f1 <- system.file(
+#'   "extdata", "projects", "sim_raster", "sim_raster_spatial.tif",
+#'   package = "wheretowork"
+#' )
+#' f2 <- system.file(
+#'   "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
+#'   package = "wheretowork"
+#' )
+#' f3 <- system.file(
+#'   "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
+#'   package = "wheretowork"
+#' )
+#'
+#' # create new dataset
+#' d <- new_dataset(f1, f2, f3)
+#' # create variables
+#' v1 <- new_variable_from_auto(dataset = d, index = 1)
+#' v2 <- new_variable_from_auto(dataset = d, index = 2)
+#' v3 <- new_variable_from_auto(dataset = d, index = 3)
+#' v4 <- new_variable_from_auto(dataset = d, index = 4)
+#' v5 <- new_variable_from_auto(dataset = d, index = 5)
+#'
+#' # create a weight using a variable
+#' w <- new_weight(
+#'   name = "Human Footprint Index", variable = v1,
+#'   factor = 90, status = FALSE, id = "W1"
+#' )
+#'
+#' # create features using variables
+#' f1 <- new_feature(
+#'   name = "Possum", variable = v2,
+#'   goal = 0.2, status = FALSE, current = 0.5, id = "F1"
+#' )
+#' f2 <- new_feature(
+#'   name = "Forests", variable = v3,
+#'   goal = 0.3, status = FALSE, current = 0.9, id = "F2"
+#' )
+#' f3 <- new_feature(
+#'   name = "Shrubs", variable = v4,
+#'   goal = 0.6, status = TRUE, current = 0.4, id = "F3"
+#' )
+#'
+#' # create themes using the features
+#' t1 <- new_theme("Species", f1, id = "T1")
+#' t2 <- new_theme("Ecoregions", list(f2, f3), id = "T2")
+#'
+#' # create an included using a variable
+#' i <- new_include(
+#'   name = "Protected areas", variable = v5,
+#'   status = FALSE, id = "I1"
+#' )
+#'
+#' # create parameters
+#' p1 <- new_parameter(name = "Spatial clustering")
+#' p2 <- new_parameter(name = "Optimality gap")
+#'
+#' # create solution settings using the themes and weight
+#' ss <- new_solution_settings(
+#'   themes = list(t1, t2), weights = list(w), includes = list(i),
+#'   parameters = list(p1, p2)
+#' )
+#'
+#' # create result
+#' x <- min_shortfall_result(
+#'  id = "R1",
+#'  area_budget_proportion = 0.78,
+#'  area_data = d$get_planning_unit_areas(),
+#'  boundary_data = d$get_boundary_data(),
+#'  theme_data = ss$get_theme_data(),
+#'  weight_data = ss$get_weight_data(),
+#'  include_data = ss$get_include_data(),
+#'  theme_settings = ss$get_theme_settings(),
+#'  weight_settings = ss$get_weight_settings(),
+#'  include_settings = ss$get_include_settings(),
+#'  parameters = ss$parameters,
+#'  gap = p2$value * p2$status,
+#'  boundary_gap = p1$value * p1$status
+#' )
+#'
+#' # print object
+#' print(x)
+#' @export
+min_shortfall_result <- function(area_budget_proportion,
+                                 area_data,
+                                 boundary_data,
+                                 theme_data,
+                                 weight_data,
+                                 include_data,
+                                 theme_settings,
+                                 weight_settings,
+                                 include_settings,
+                                 parameters,
+                                 gap = 0,
+                                 boundary_gap = 0.1,
+                                 cache = cachem::cache_mem(),
+                                 verbose = FALSE,
+                                 id = uuid::UUIDgenerate()) {
+  # validate arguments
+  assertthat::assert_that(
+    ## id
+    assertthat::is.string(id),
+    assertthat::noNA(id),
+    ## area_budget_proportion
+    assertthat::is.number(area_budget_proportion),
+    assertthat::noNA(area_budget_proportion),
+    isTRUE(area_budget_proportion >= 0),
+    isTRUE(area_budget_proportion <= 1),
+    ## area_data
+    is.numeric(area_data),
+    assertthat::noNA(area_data),
+    ## boundary_data
+    inherits(boundary_data, c("dsCMatrix", "dgCMatrix")),
+    ncol(boundary_data) == length(area_data),
+    ## theme_data
+    inherits(theme_data, "dgCMatrix"),
+    ncol(theme_data) == length(area_data),
+    ## weight_data
+    inherits(weight_data, "dgCMatrix"),
+    ncol(weight_data) == length(area_data),
+    ## include_data
+    inherits(include_data, "dgCMatrix"),
+    ncol(include_data) == length(area_data),
+    ## theme_settings
+    inherits(theme_settings, "data.frame"),
+    identical(theme_settings$id, rownames(theme_data)),
+    ## weight_settings
+    inherits(weight_settings, "data.frame"),
+    identical(weight_settings$id, rownames(weight_data)),
+    ## include_settings
+    inherits(include_settings, "data.frame"),
+    identical(include_settings$id, rownames(include_data)),
+    ## parameters
+    is.list(parameters),
+    all_list_elements_inherit(parameters, "Parameter"),
+    ## gap
+    assertthat::is.number(gap),
+    assertthat::noNA(gap),
+    ## boundary_gap
+    assertthat::is.number(boundary_gap),
+    assertthat::noNA(boundary_gap),
+    ## cache
+    inherits(cache, "cachem")
+  )
+
+  # calculate targets
+  ## extract values
+  targets <-
+    tibble::tibble(
+      feature = theme_settings$id,
+      type = "absolute",
+      sense = ">=",
+      target = dplyr::if_else(
+        theme_settings$status,
+        theme_settings$total * theme_settings$goal,
+        theme_settings$total * theme_settings$limit
+      )
+    )
+  ## round values down to account for floating point issues
+  targets$target <- floor(targets$target * 1e+3) / 1e+3
+  ## adjust values to prevent solver from throwing error and crashing R session
+  targets$target <- pmax(targets$target, 1e-5)
+
+  # calculate locked in values
+  locked_in <- matrix(
+    include_settings$status,
+    byrow = TRUE,
+    nrow = nrow(include_data), ncol = ncol(include_data)
+  )
+  locked_in <- as.logical(colSums(locked_in * include_data) > 0)
+
+  # calculate locked out values
+  ## initialize matrix
+  locked_out <- as.matrix(weight_data)
+  ## identify planning units to lock out per each weight
+  for (i in seq_len(nrow(locked_out))) {
+    ## skip if not using weights
+    if (!weight_settings$status[i]) {
+      locked_out[i, ] <- FALSE
+    } else {
+      ## identify threshold
+      thresh <- quantile(
+        x = locked_out[i, ],
+        probs = min((100 - weight_settings$factor[i]) / 100, 1),
+        names = FALSE
+      )
+      ## identify planning units to lock out for given weight
+      locked_out[i, ] <- locked_out[i, ] > thresh
+    }
+  }
+  ## identify planning unit to lock out for solutions
+  ## note that locked in planning units are not locked out
+  locked_out <- !locked_in & (colSums(locked_out) > 0.5)
+
+  # calculate cost values
+  cost <- scales::rescale(area_data, to = c(0.01, 1))
+
+  # calculate budgets for multi-objective optimization
+  total_budget <- sum(cost) * area_budget_proportion
+  if (boundary_gap >= 1e-5) {
+    initial_budget <- (1 - boundary_gap) * total_budget
+  } else {
+    initial_budget <- total_budget
+  }
+
+  # verify that problem if feasible with locked in planning units
+  if (sum(cost[locked_in]) > min(initial_budget, total_budget)) {
+    stop("code_1")
+  }
+
+  # calculate feature data
+  features <-
+    data.frame(id = seq_len(nrow(theme_settings)), name = theme_settings$id)
+
+  # generate cache key based on settings
+  key <- digest::digest(
+    list(
+      themes = theme_settings,
+      weights = weight_settings,
+      includes = include_settings,
+      area_budget_proportion = area_budget_proportion
+    )
+  )
+
+  ## generate initial prioritization problem
+  ### this prioritization just aims to maximize feature representation given
+  ### the area budget, and locked in/out constraints
+  initial_problem <-
+    suppressWarnings(prioritizr::problem(cost, features, theme_data)) %>%
+    prioritizr::add_min_shortfall_objective(budget = initial_budget) %>%
+    prioritizr::add_manual_targets(targets) %>%
+    prioritizr::add_binary_decisions() %>%
+    prioritizr::add_cbc_solver(gap = gap, verbose = verbose)
+  ## add locked in constraints if needed
+  if (any(locked_in)) {
+    initial_problem <-
+      initial_problem %>%
+      prioritizr::add_locked_in_constraints(locked_in)
+  }
+  ## add locked out constraints if needed
+  if (any(locked_out)) {
+    initial_problem <-
+      initial_problem %>%
+      prioritizr::add_locked_out_constraints(locked_out)
+  }
+
+  ## generate solution
+  if (!isTRUE(cache$exists(key))) {
+    ### solve problem to generate solution if needed
+    initial_solution <- c(
+      prioritizr::solve(initial_problem, run_checks = FALSE)
+    )
+    ### store solution in cache
+    cache$set(key, initial_solution)
+  }
+  ## extract solution from cache
+  initial_solution <- cache$get(key)
+
+  # generate second prioritization
+  ## this formulation aims to minimize fragmentation,
+  ## whilst ensuring that total cost does do not exceed the budget
+  if (boundary_gap >= 1e-5) {
+    ### calculate targets based on feature representation in initial solution
+    main_targets <- targets
+    main_targets$target <- rowSums(
+      matrix(
+        initial_solution,
+        byrow = TRUE,
+        ncol = ncol(theme_data), nrow = nrow(theme_data)
+      ) *
+        theme_data
+    )
+    ### prepare adjacency matrix for connectivity penalties
+    ### note we use connectivity penalties because we want the solution
+    ### to be as near as possible to the budget, even if the result has
+    ### high perimeter because we included planning units with high perimeter
+    adj_data <- boundary_data
+    adj_data@x <- rep(1, length(adj_data@x))
+    Matrix::diag(adj_data) <- 0
+    adj_data <- Matrix::drop0(adj_data)
+    ### generate prioritization
+    main_problem <-
+      suppressWarnings(
+        prioritizr::problem(
+          rep(0, length(cost)),
+          rbind(
+            features,
+            data.frame(id = nrow(main_targets) + 1, name = "cost")
+          ),
+          rbind(theme_data, cost)
+        )
+      ) %>%
+      prioritizr::add_min_set_objective() %>%
+      prioritizr::add_connectivity_penalties(
+        penalty = 1, data = adj_data
+      ) %>%
+      prioritizr::add_manual_targets(
+        rbind(
+          main_targets,
+          tibble::tibble(
+            feature = "cost",
+            type = "absolute",
+            sense = "<=",
+            target = total_budget
+          )
+        )
+      ) %>%
+      prioritizr::add_binary_decisions() %>%
+      prioritizr::add_cbc_solver(gap = gap, verbose = verbose)
+    ### add locked in constraints if needed
+    if (any(locked_in)) {
+      main_problem <-
+        main_problem %>%
+        prioritizr::add_locked_in_constraints(locked_in)
+    }
+    ### add locked out constraints if needed
+    if (any(locked_out)) {
+      main_problem <-
+        main_problem %>%
+        prioritizr::add_locked_out_constraints(locked_out)
+    }
+    ### generate solution
+    main_solution <-
+      c(prioritizr::solve(main_problem, run_checks = FALSE))
+  } else {
+    ### if the boundary_gap setting is very low,
+    ### then we will just use the initial solution because the
+    ### second prioritization is unlikely to be very different from the first
+    main_solution <- initial_solution
+    main_problem <- initial_problem
+  }
+
+  # calculate spatial variables
+  total_area <- sum(main_solution * area_data)
+  total_perimeter <- prioritizr::eval_boundary_summary(
+    x = main_problem,
+    solution = main_solution,
+    data = boundary_data
+  )$boundary[[1]]
+
+
+  # generate results object
+  new_result(
+    values = main_solution,
+    area = total_area,
+    perimeter = total_perimeter,
+    theme_coverage = calculate_coverage(main_solution, theme_data),
+    weight_coverage = calculate_coverage(main_solution, weight_data),
+    include_coverage = calculate_coverage(main_solution, include_data),
+    theme_settings = theme_settings,
+    weight_settings = weight_settings,
+    include_settings = include_settings,
+    parameters = parameters
+  )
+}

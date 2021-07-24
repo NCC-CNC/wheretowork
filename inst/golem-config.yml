@@ -24,10 +24,14 @@ default:
   ## verbosity
   verbose: true
 
+  ## monitor memory usage
+  monitor: true
+
 production:
   mode: "project"
   strategy: "multisession"
   verbose: false
+  monitor: false
 
 dev:
   golem_wd: !expr here::here()

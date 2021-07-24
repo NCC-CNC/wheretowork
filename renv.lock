@@ -877,6 +877,13 @@
       "Repository": "CRAN",
       "Hash": "50b405c6419e921b9e9360cc9ebbcf2d"
     },
+    "pryr": {
+      "Package": "pryr",
+      "Version": "0.1.4",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "bdc2df7c4155553e5a97a56a6c9f0a0d"
+    },
     "ps": {
       "Package": "ps",
       "Version": "1.6.0",

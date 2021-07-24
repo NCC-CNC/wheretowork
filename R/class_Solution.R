@@ -445,6 +445,7 @@ Solution <- R6::R6Class(
     update_on_map = function(x, zindex) {
       self$variable$update_render(x, self$id, zindex, self$visible)
     }
+
   )
 )
 
@@ -486,4 +487,162 @@ new_solution <- function(name, variable, visible,
     weight_results = weight_results,
     id = id
   )
+}
+
+#' New solution from result
+#'
+#' Create a new [Solution] object using a [Result] object
+#'
+#' @inheritParams new_solution
+#'
+#' @param dataset [Dataset] object.
+#'
+#' @param settings [SolutionSettings] object.
+#'
+#' @param result [Result] object.
+#'
+#' @param legend [ManualLegend] object.
+#'
+#' @return A [Solution] object.
+#'
+#' @examples
+#' #TODO
+#' @export
+new_solution_from_result <- function(name, visible, dataset, settings, result,
+                                     legend, id = uuid::UUIDgenerate()) {
+  # assert arguments are valid
+  assertthat::assert_that(
+    ## name
+    assertthat::is.string(name),
+    assertthat::noNA(name),
+    ## visible
+    assertthat::is.flag(visible),
+    assertthat::noNA(visible),
+    ## dataset
+    inherits(dataset, "Dataset"),
+    ## settings
+    inherits(settings, "SolutionSettings"),
+    ## result
+    inherits(result, "Result"),
+    ## legend
+    inherits(legend, "ManualLegend"),
+    ## id
+    assertthat::is.string(id),
+    assertthat::noNA(id)
+  )
+
+  # calculate statistics
+  ## preliminary calculations
+  area_data <- dataset$get_planning_unit_areas()
+  reserve_sizes_m <-
+    reserve_sizes(
+      x = result$values,
+      areas = area_data,
+      boundary_matrix = dataset$get_boundary_data()
+    )
+  ## generate statistics
+  statistics_results <-
+    list(
+      new_statistic(
+        name = "Total area",
+        value = result$area * 1e-6,
+        units = stringi::stri_unescape_unicode("km\\u00B2"),
+        proportion = result$area / sum(area_data)
+      ),
+      new_statistic(
+        name = "Total perimeter",
+        value = result$perimeter * 1e-3,
+        units = "km"
+      ),
+      new_statistic(
+        name = "Total number of reserves",
+        value = length(reserve_sizes_m),
+        units = ""
+      ),
+      new_statistic(
+        name = "Smallest reserve size",
+        value = min(reserve_sizes_m) * 1e-6,
+        units = stringi::stri_unescape_unicode("km\\u00B2")
+      ),
+      new_statistic(
+        name = "Average reserve size",
+        value = mean(reserve_sizes_m) * 1e-6,
+        units = stringi::stri_unescape_unicode("km\\u00B2")
+      ),
+      new_statistic(
+        name = "Largest reserve size",
+        value = max(reserve_sizes_m) * 1e-6,
+        units = stringi::stri_unescape_unicode("km\\u00B2")
+      )
+    )
+
+  # weight results
+  weight_results <- lapply(seq_along(settings$weights), function(i) {
+    ## copy the weight object
+    w <- settings$weights[[i]]$clone(deep = FALSE)
+    ## apply settings from weight_settings
+    k <- which(result$weight_settings$id == w$id)
+    assertthat::assert_that(assertthat::is.count(k))
+    w$set_status(result$weight_settings$status[[k]])
+    w$set_factor(result$weight_settings$factor[[k]])
+    ## return weight results
+    new_weight_results(
+      weight = w,
+      held = result$weight_coverage[[w$id]]
+    )
+  })
+
+  # theme results
+  theme_results <- lapply(seq_along(settings$themes), function(i) {
+    ## copy the theme object
+    th <- settings$themes[[i]]$clone(deep = FALSE)
+    ## apply feature settings
+    th$feature <- lapply(seq_along(th$feature), function(j) {
+      ## copy the feature object
+      f <- th$feature[[j]]$clone(deep = FALSE)
+      ## apply settings from theme_settings
+      k <- which(result$theme_settings$id == f$id)
+      f$set_status(result$theme_settings$status[k])
+      f$set_goal(result$theme_settings$goal[k])
+      ## return feature
+      f
+    })
+    ### generate theme results
+    new_theme_results(
+      theme = th,
+      feature_results = lapply(seq_along(th$feature), function(j) {
+        new_feature_results(
+          feature = th$feature[[j]],
+          held = result$theme_coverage[[th$feature[[j]]$id]]
+        )
+      })
+    )
+  })
+
+  # generate index for storing data
+  idx <- last(make.names(c(dataset$get_names(), name), unique = TRUE))
+  idx <- gsub(".", "_", idx, fixed = TRUE)
+
+  # create variable to store solution
+  dataset$add_index(index = idx, values = result$values)
+  v <- new_variable(
+    dataset = dataset,
+    index = idx,
+    total = sum(result$values),
+    units = "",
+    legend = legend
+  )
+
+  # return solution object
+  new_solution(
+    name = name,
+    variable = v,
+    visible = visible,
+    parameters = result$parameters,
+    statistics = statistics_results,
+    theme_results = theme_results,
+    weight_results = weight_results,
+    id = id
+  )
+
 }

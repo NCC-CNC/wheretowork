@@ -15,8 +15,8 @@
 #' @noRd
 server_generate_new_solution <- quote({
 
-  # create reactive value to store new solutions
-  user_solution <- shiny::reactiveVal()
+  # create reactive value to store new results
+  new_user_result <- shiny::reactiveVal()
 
   # generate new solution when button pressed
   shiny::observeEvent(
@@ -32,68 +32,93 @@ server_generate_new_solution <- quote({
       disable_html_element("newSolutionPane_settings_name")
       disable_html_element("newSolutionPane_settings_color")
 
-      ### preliminary calculations
+      ## generate id and store it in app_data
+      curr_id <- uuid::UUIDgenerate()
+      app_data$new_solution_id <- curr_id
+
+      ## extract values for generating result
+      ### settings
+      curr_theme_settings <- app_data$ss$get_theme_settings()
+      curr_weight_settings <- app_data$ss$get_weight_settings()
+      curr_include_settings <- app_data$ss$get_include_settings()
+      ### data
+      curr_area_data <- app_data$area_data
+      curr_boundary_data <- app_data$boundary_data
+      curr_theme_data <- app_data$theme_data
+      curr_weight_data <- app_data$weight_data
+      curr_include_data <- app_data$include_data
+      ### arguments for generating result
       curr_name <- input$newSolutionPane_settings_name
       curr_gap <- get_golem_config("gap")
       curr_verbose <- get_golem_config("verbose")
+      curr_color <- scales::alpha(input$newSolutionPane_settings_color, 0.8)
+      curr_type <- app_data$ss$get_parameter("budget_parameter")$status
+      curr_cache <- app_data$cache
+      curr_area_budget <-
+        app_data$ss$get_parameter("budget_parameter")$value / 100
       curr_boundary_gap <-
         (app_data$ss$get_parameter("spatial_parameter")$value *
           app_data$ss$get_parameter("spatial_parameter")$status) / 100
-      curr_color <- scales::alpha(input$newSolutionPane_settings_color, 0.8)
-      curr_type <- app_data$ss$get_parameter("budget_parameter")$status
-      curr_area_budget <-
-        app_data$ss$get_parameter("budget_parameter")$value / 100
+      curr_parameters <-
+        lapply(app_data$ss$parameters, function(x) x$clone())
 
-      ## generate solution
+      ## generate result
       future::future(packages = "wheretowork", seed = NULL, {
         if (curr_type) {
           ### if budget specified, then use the min shortfall formulation
-          s <- try(
-            min_shortfall_solution(
-              name = curr_name,
+          r <- try(
+            min_shortfall_result(
+              id = curr_id,
               area_budget_proportion = curr_area_budget,
-              dataset = app_data$dataset,
-              settings = app_data$ss,
-              theme_data = app_data$theme_data,
-              weight_data = app_data$weight_data,
-              include_data = app_data$include_data,
-              boundary_data = app_data$boundary_data,
+              area_data = curr_area_data,
+              boundary_data = curr_boundary_data,
+              theme_data = curr_theme_data,
+              weight_data = curr_weight_data,
+              include_data = curr_include_data,
+              theme_settings = curr_theme_settings,
+              weight_settings = curr_weight_settings,
+              include_settings = curr_include_settings,
+              parameters = curr_parameters,
               gap = curr_gap,
               boundary_gap = curr_boundary_gap,
-              legend_color = curr_color,
-              cache = app_data$cache,
+              cache = curr_cache,
               verbose = curr_verbose
             ),
             silent = TRUE
           )
         } else {
           ### else, then use the min set formulation
-          s <- try(
-            min_set_solution(
-              name = curr_name,
-              dataset = app_data$dataset,
-              settings = app_data$ss,
-              theme_data = app_data$theme_data,
-              weight_data = app_data$weight_data,
-              include_data = app_data$include_data,
-              boundary_data = app_data$boundary_data,
+          r <- try(
+            min_set_result(
+              id = curr_id,
+              area_data = curr_area_data,
+              boundary_data = curr_boundary_data,
+              theme_data = curr_theme_data,
+              weight_data = curr_weight_data,
+              include_data = curr_include_data,
+              theme_settings = curr_theme_settings,
+              weight_settings = curr_weight_settings,
+              include_settings = curr_include_settings,
+              parameters = curr_parameters,
               gap = curr_gap,
               boundary_gap = curr_boundary_gap,
-              legend_color = curr_color,
-              cache = app_data$cache,
+              cache = curr_cache,
               verbose = curr_verbose
             ),
             silent = TRUE
           )
         }
-        list(solution = s, cache = app_data$cache)
+        list(
+          id = curr_id, name = curr_name, color = curr_color,
+          result = r, cache = curr_cache
+        )
       }) %...>%
       (function(result) {
-        user_solution(result$solution)
+        new_user_result(result)
         app_data$cache <- result$cache
       }) %...!%
         (function(error) {
-          user_solution(NULL)
+          new_user_result(NULL)
           warning(error)
       })
       ## this needed to implement asynchronous processing,
@@ -103,19 +128,22 @@ server_generate_new_solution <- quote({
   )
 
   # add solution to map when generating new solution
-  shiny::observeEvent(user_solution(), {
+  shiny::observeEvent(new_user_result(), {
     ## specify dependencies
-    if (is.null(user_solution())) {
+    if (is.null(new_user_result())) {
+      return()
+    }
+    if (!identical(new_user_result()$id, app_data$new_solution_id)) {
       return()
     }
 
-    ## extract solution
-    s <- user_solution()
+    ## extract result
+    r <- new_user_result()
 
     ## if failed to generate solution...
-    if (inherits(s, "try-error")) {
-      ## identify error message to show
-      msg <- switch(attr(s, "condition")$message,
+    if (inherits(r$result, "try-error")) {
+      ### identify error message to show
+      msg <- switch(attr(r$result, "condition")$message,
         "code_1" = paste(
           "The \"Total area budget\" setting is too low given the selected",
           "Includes. Try increasing the total area budget or deselecting ",
@@ -123,13 +151,13 @@ server_generate_new_solution <- quote({
         ),
         "Something went wrong, please try again."
       )
-      ## throw warning in development mode
+      ### throw warning in development mode
       if (golem::app_dev()) {
         whereami::whereami()
-        cli::cli_verbatim(s)
+        cli::cli_verbatim(r$result)
         cli::rule()
       }
-      ## display modal
+      ### display modal
       shinyalert::shinyalert(
         title = "Oops",
         text = msg,
@@ -143,7 +171,7 @@ server_generate_new_solution <- quote({
         confirmButtonCol = "#0275d8",
         animation = TRUE
       )
-      ## reset button
+      ### reset button
       shinyFeedback::resetLoadingButton("newSolutionPane_settings_button")
       enable_html_element("solutionResultsPane_results_button")
       enable_html_element("newSolutionPane_settings_color")
@@ -152,15 +180,20 @@ server_generate_new_solution <- quote({
       return()
     }
 
-    ## since the asynchronous processing creates a solution and
-    ## stores it's values in a new dataset object, we need to:
-    ## (1) copy the solution values into app_data$dataset and
-    ## (2) update the solution to look in app_data$dataset for its values
-    app_data$dataset$add_index(
-      index = s$variable$index,
-      values = s$variable$dataset$attribute_data[[s$variable$index]]
+    ## generate solution from result
+    s <- new_solution_from_result(
+      id = uuid::UUIDgenerate(),
+      result = r$result,
+      name = r$name,
+      visible = TRUE,
+      dataset = app_data$dataset,
+      settings = app_data$ss,
+      legend = new_manual_legend(
+        colors = c("#00FFFF00", r$color),
+        labels = c("not selected", "selected")
+      )
     )
-    s$variable$dataset <- app_data$dataset
+    rm(r)
 
     ## make leaflet proxy
     map <- leaflet::leafletProxy("map")
@@ -245,4 +278,5 @@ server_generate_new_solution <- quote({
     disable_html_element("newSolutionPane_settings_button")
     enable_html_element("newSolutionPane_settings_color")
   })
+
 })

@@ -1,4 +1,4 @@
-context("min_set_solution")
+context("min_set_result")
 
 test_that("no spatial clustering", {
   # create object
@@ -63,27 +63,41 @@ test_that("no spatial clustering", {
   ## create cache
   cache <- cachem::cache_mem()
   ## create object (run analysis without using cache)
-  x1 <- min_set_solution(
-    name = "solution01",
-    dataset = d,
-    settings = ss,
+  x1 <- min_set_result(
+    id = "R1",
+    area_data = d$get_planning_unit_areas(),
+    boundary_data = d$get_boundary_data(),
+    theme_data = ss$get_theme_data(),
+    weight_data = ss$get_weight_data(),
+    include_data = ss$get_include_data(),
+    theme_settings = ss$get_theme_settings(),
+    weight_settings = ss$get_weight_settings(),
+    include_settings = ss$get_include_settings(),
+    parameters = ss$parameters,
     gap = ss$get_parameter("P2")$value * ss$get_parameter("P2")$status,
     boundary_gap = ss$get_parameter("P1")$value * ss$get_parameter("P1")$status,
     cache = cache
   )
   ## create object (run analysis and use results from cache)
-  x2 <- min_set_solution(
-    name = "solution01",
-    dataset = d,
-    settings = ss,
+  x2 <- min_set_result(
+    id = "R1",
+    area_data = d$get_planning_unit_areas(),
+    boundary_data = d$get_boundary_data(),
+    theme_data = ss$get_theme_data(),
+    weight_data = ss$get_weight_data(),
+    include_data = ss$get_include_data(),
+    theme_settings = ss$get_theme_settings(),
+    weight_settings = ss$get_weight_settings(),
+    include_settings = ss$get_include_settings(),
+    parameters = ss$parameters,
     gap = ss$get_parameter("P2")$value * ss$get_parameter("P2")$status,
     boundary_gap = ss$get_parameter("P1")$value * ss$get_parameter("P1")$status,
     cache = cache
   )
   # run tests
-  expect_is(x1, "Solution")
-  expect_is(x2, "Solution")
-  expect_equal(x1$variable$get_data(), x1$variable$get_data())
+  expect_is(x1, "Result")
+  expect_is(x2, "Result")
+  expect_equal(x1$values, x2$values)
 })
 
 test_that("spatial clustering", {
@@ -147,14 +161,20 @@ test_that("spatial clustering", {
     parameters = list(p1, p2)
   )
   ## create object
-  x <- min_set_solution(
-    name = "solution01",
-    dataset = d,
-    settings = ss,
+  x <- min_set_result(
+    id = "R1",
+    area_data = d$get_planning_unit_areas(),
+    boundary_data = d$get_boundary_data(),
+    theme_data = ss$get_theme_data(),
+    weight_data = ss$get_weight_data(),
+    include_data = ss$get_include_data(),
+    theme_settings = ss$get_theme_settings(),
+    weight_settings = ss$get_weight_settings(),
+    include_settings = ss$get_include_settings(),
+    parameters = ss$parameters,
     gap = ss$get_parameter("P2")$value * ss$get_parameter("P2")$status,
-    boundary_gap =
-      (ss$get_parameter("P1")$value * ss$get_parameter("P1")$status) / 100
+    boundary_gap = ss$get_parameter("P1")$value * ss$get_parameter("P1")$status,
   )
   # run tests
-  expect_is(x, "Solution")
+  expect_is(x, "Result")
 })

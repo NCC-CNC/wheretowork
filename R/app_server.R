@@ -11,11 +11,15 @@ app_server <- function(input, output, session) {
   ## initialize app
   eval(server_initialize_app)
 
-  ## prevent timeout on Heroku if needed
-  if (identical(Sys.getenv("HEROKU"), "TRUE")) {
+  ## print debugging information
+  if (isTRUE(wheretowork::get_golem_config("monitor"))) {
     shiny::observe({
-      shiny::invalidateLater(10000)
-      cat(".")
+      shiny::invalidateLater(3000)
+      cli::cli_rule()
+      golem::print_dev("Total memory used: ")
+      golem::print_dev(pryr::mem_used())
+      golem::print_dev("  app_data")
+      golem::print_dev(pryr::object_size(app_data))
     })
   }
 
