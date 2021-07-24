@@ -68,11 +68,11 @@ quick-debug:
 
 ## launch local version inside Docker container
 demo-start:
-	docker-compose up web
+	docker-compose up --build main
 	google-chrome "http://localhost:3838"
 
-demo-skill:
-	docker-compose down web
+demo-kill:
+	docker-compose down
 
 ## launch released version inside Docker container
 launch-start:
