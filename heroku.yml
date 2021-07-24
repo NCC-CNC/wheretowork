@@ -1,9 +1,0 @@
-build:
-  docker:
-    web:
-      dockerfile: greg
-      target: heroku
-release:
-  docker:
-    image: web
-    target: heroku
