@@ -37,4 +37,4 @@ pkgdown
 Dockerfile
 docker-compose.yml
 .lintr
-.restart.txt
+restart.txt
