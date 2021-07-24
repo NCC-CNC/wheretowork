@@ -12,7 +12,7 @@
 #'
 #' @export
 import_data <- function(x, mode) {
-  ## store variables
+  # store variables
   app_data$dataset <- x$dataset
   app_data$themes <- x$themes
   app_data$weights <- x$weights
@@ -24,7 +24,34 @@ import_data <- function(x, mode) {
     app_data$mode <- mode
   }
 
-  ## store widgets
+  # create parameters
+  area_budget_parameter <-
+    wheretowork::new_parameter(
+      name = "Total area budget",
+      status = FALSE,
+      value = 0,
+      min_value = 0,
+      max_value = 100,
+      step_value = 1,
+      units = "%",
+      hide = TRUE,
+      id = "budget_parameter"
+    )
+
+  boundary_gap_parameter <-
+    wheretowork::new_parameter(
+      name = "Spatial clustering",
+      status = FALSE,
+      value = 0,
+      min_value = 0,
+      max_value = 100,
+      step_value = 1,
+      units = "%",
+      hide = FALSE,
+      id = "spatial_parameter"
+    )
+
+  # store widgets
   app_data$mm <- new_map_manager(
     append(app_data$themes, append(app_data$weights, app_data$includes))
   )
@@ -35,25 +62,26 @@ import_data <- function(x, mode) {
     parameters = list(area_budget_parameter, boundary_gap_parameter)
   )
 
-  ## store  data
+  # store  data
   app_data$bbox <- x$dataset$get_bbox(native = FALSE, expand = TRUE)
   app_data$theme_data <- app_data$ss$get_theme_data()
   app_data$weight_data <- app_data$ss$get_weight_data()
   app_data$include_data <- app_data$ss$get_include_data()
   app_data$boundary_data <- app_data$dataset$get_boundary_data()
+  app_data$area_data <- app_data$dataset$get_planning_unit_areas()
 
-  ## set app mode
+  # set app mode
   shinyjs::runjs(paste0("document.body.classList.add('", app_data$mode, "');"))
 
-  ## update map manager sidebar
+  # update map manager sidebar
   output$mapManagerPane_settings <-
     renderMapManager(mapManager(app_data$mm))
 
-  ## update new solution sidebar
+  # update new solution sidebar
   output$newSolutionPane_settings <-
     renderSolutionSettings(solutionSettings(app_data$ss))
 
-  ## update map
+  # update map
   map <- leaflet::leafletProxy("map")
   leaflet::flyToBounds(
     map, app_data$bbox$xmin, app_data$bbox$ymin,
@@ -65,7 +93,7 @@ import_data <- function(x, mode) {
   )
   app_data$mm$initialize_map(map)
 
-  ## render sidebars on map
+  # render sidebars on map
   leaflet.extras2::addSidebar(
     map,
     id = "analysisSidebar",
@@ -77,7 +105,7 @@ import_data <- function(x, mode) {
     options = list(position = "left", fit = FALSE)
   )
 
-  ## update export field names
+  # update export field names
   shiny::updateSelectizeInput(
     session = session,
     inputId = "exportPane_fields",
@@ -87,7 +115,7 @@ import_data <- function(x, mode) {
     )
   )
 
-  ## open sidebars
+  # open sidebars
   leaflet.extras2::openSidebar(
     map,
     id = "mapManagerPane", sidebar_id = "dataSidebar"
@@ -97,10 +125,10 @@ import_data <- function(x, mode) {
     id = "newSolutionPane", sidebar_id = "analysisSidebar"
   )
 
-  ## remove startup mode
+  # remove startup mode
   ## this makes the buttons and scalebar visible
   shinyjs::runjs("document.body.classList.remove('startup');")
 
-  ## return success
+  # return success
   invisible(TRUE)
 }

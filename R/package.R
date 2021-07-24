@@ -27,8 +27,6 @@ utils::globalVariables(
     "absolute_area",
     "absolute_perimeter",
     "statistics",
-    "area_budget_parameter",
-    "boundary_gap_parameter",
     "session",
     "app_data",
     "project_data",
