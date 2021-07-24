@@ -7,12 +7,3 @@ services:
       target: main
     ports:
       - "3838:3838"
-  heroku:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: heroku
-    ports:
-      - "3837:3837"
-    environment:
-      - PORT=3837

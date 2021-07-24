@@ -62,18 +62,6 @@ RUN touch restart.txt && \
 # set command
 CMD ["/bin/bash"]
 
-# Heroku image
-FROM base AS heroku
-
-## set user
-USER shiny
-
-# expose port (for local deployment only)
-EXPOSE $PORT
-
-## run app
-CMD R -e 'options(shiny.port=as.numeric(Sys.getenv("PORT")),shiny.host="0.0.0.0");wheretowork::run_app()'
-
 # main image
 FROM base AS main
 
