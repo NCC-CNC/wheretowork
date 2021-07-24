@@ -53,10 +53,11 @@ RUN touch restart.txt && \
     chmod 777 restart.txt
 
 # update shiny server configuration
-RUN cp  /etc/shiny-server/shiny-server.conf /tmp/shiny-server.conf && \
-    sed -i 's/run_as shiny;/run_as shiny;preserve_logs true;/g' /tmp/shiny-server.conf && \
-    cp  /tmp/shiny-server.conf /etc/shiny-server/shiny-server.conf && \
-    cat /etc/shiny-server/shiny-server.conf
+# RUN cp  /etc/shiny-server/shiny-server.conf /tmp/shiny-server.conf && \
+#    sed -i 's/run_as shiny;/run_as shiny;preserve_logs true;/g' \
+#      /tmp/shiny-server.conf && \
+#    cp  /tmp/shiny-server.conf /etc/shiny-server/shiny-server.conf && \
+#    cat /etc/shiny-server/shiny-server.conf
 
 # set command
 CMD ["/bin/bash"]
