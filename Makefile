@@ -67,9 +67,8 @@ quick-debug:
 	R -e "options(golem.app.prod = FALSE, quick = TRUE); golem::run_dev()"
 
 ## launch local version inside Docker container
-demo-start:
+demo:
 	docker-compose up --build main
-	google-chrome "http://localhost:3838"
 
 demo-kill:
 	docker-compose down
@@ -77,7 +76,6 @@ demo-kill:
 ## launch released version inside Docker container
 launch-start:
 	docker run -dp 3838:3838 --name wheretowork -it naturecons/wheretowork
-	google-chrome "http://localhost:3838"
 
 launch-kill:
 	docker rm --force wheretowork
@@ -96,4 +94,4 @@ image:
 snapshot:
 	R -e "renv::snapshot()"
 
-.PHONY: clean data readme test check install man spellcheck examples site quicksite snapshot deploy demo image debug snapshot
+.PHONY: clean data readme test check install man spellcheck examples site quicksite snapshot deploy demo demo-kill image debug snapshot
