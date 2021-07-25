@@ -13,21 +13,21 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      #
-      # - name: Build image
-      #   env:
-      #     DOCKERFILE_NAME: "Dockerfile"
-      #     DOCKERFILE_TARGET: "shinyapps"
-      #     DOCKERHUB_REPO: "naturecons/wheretowork"
-      #     DOCKER_OPTIONS: ""
-      #   run: |
-      #     docker pull ${DOCKERHUB_REPO}
-      #     docker build \
-      #       --file ${DOCKERFILE_NAME} \
-      #       --target ${DOCKERFILE_TARGET} \
-      #       ${DOCKER_OPTIONS} \
-      #       shinyapps .
-      #
+      
+      - name: Build image
+        env:
+          DOCKERFILE_NAME: "Dockerfile"
+          DOCKERFILE_TARGET: "shinyapps"
+          DOCKERHUB_REPO: "naturecons/wheretowork"
+          DOCKER_OPTIONS: ""
+        run: |
+          docker pull ${DOCKERHUB_REPO}
+          docker build \
+            --file ${DOCKERFILE_NAME} \
+            --target ${DOCKERFILE_TARGET} \
+            ${DOCKER_OPTIONS} \
+            shinyapps .
+
       # - name: Deploy
       #   env:
       #     SHINYAPPS_APPNAME: "wheretowork"
