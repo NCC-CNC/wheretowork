@@ -104,7 +104,7 @@ class MultiThemeLayer {
       createLegend(this.single_legend_el[i], feature_legend[i], units);
     }
 
-    // set listeners to update user interfance
+    // set listeners to update user interface
     if (HTMLWidgets.shinyMode) {
       /// show/hide main container
       this.view_el.addEventListener("change", function () {
@@ -131,7 +131,7 @@ class MultiThemeLayer {
         });
       }
       /// set all features to be visible/invisible when overall
-      /// visisble button clicked
+      /// visible button clicked
       this.visible_el.addEventListener("change", function () {
         const checked = this.checked;
         for (let i = 0; i < that.n_features; ++i) {
@@ -145,10 +145,11 @@ class MultiThemeLayer {
       /// overall visible button
       this.visible_el.addEventListener("change", function () {
         const checked = this.checked;
+        that.single_visible_values = Array(that.n_features).fill(checked);
         Shiny.setInputValue(manager, {
           id: id,
           setting: "feature_visible",
-          value: Array(that.n_features).fill(checked),
+          value: that.single_visible_values
         });
       });
 
