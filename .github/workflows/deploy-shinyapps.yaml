@@ -25,7 +25,8 @@ jobs:
             --file ${DOCKERFILE_NAME} \
             --target ${DOCKERFILE_TARGET} \
             ${DOCKER_OPTIONS} \
-            shinyapps .
+            --tag shinyapps \
+            .
 
       - name: Deploy
         env:
