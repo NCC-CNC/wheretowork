@@ -17,7 +17,7 @@ default:
 
   ## future plan strategy
   ### if "auto", then:
-  ###   if on Shiny apps (per R_CONFIG_ACTIVE variable): "sequential"
+  ###   if on Shiny apps (per R_CONFIG_ACTIVE variable): "multicore"
   ###   else if on Unix systems: "multicore"
   ###   else "multisession"
   strategy: "auto"

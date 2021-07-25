@@ -14,7 +14,7 @@ app_global <- quote({
   strategy <- wheretowork::get_golem_config("strategy")
   if (identical(strategy, "auto")) {
     if (identical(Sys.getenv("R_CONFIG_ACTIVE"), "shinyapps")) {
-      strategy <- "sequential"
+      strategy <- "multicore"
     } else if (identical(.Platform$OS.type, "unix")) {
       strategy <- "multicore"
     } else {
@@ -28,7 +28,7 @@ app_global <- quote({
   ## implement strategy
   golem::print_dev(paste("plan strategy:", strategy))
   assertthat::assert_that(
-    strategy %in% c("sequential", "multicore", "multisession"),
+    strategy %in% c("sequential", "cluster", "multicore", "multisession"),
     msg = "not a valid strategy"
   )
   suppressWarnings(future::plan(strategy, workers = 2))
