@@ -9,7 +9,7 @@ default:
   gap: 0.01
 
   ## mode for importing projects
-  mode: "advanced"
+  mode: "beginner"
 
   ## directory containing the projects
   ## "default" = system.file("extdata", "projects", package = "wheretowork")
