@@ -44,11 +44,9 @@ COPY DESCRIPTION /app
 COPY NAMESPACE /app
 
 RUN cd /app && \
-    Rscript -e 'remotes::install_local(upgrade = "never")' && \
-    rm -rf /app
+    Rscript -e 'remotes::install_local(upgrade = "never")'
 
 ## set working directory
-WORKDIR /tmp
 RUN touch restart.txt && \
     chmod 777 restart.txt
 
@@ -62,6 +60,23 @@ RUN touch restart.txt && \
 # set command
 CMD ["/bin/bash"]
 
+# shinyapps deployment image
+## source image
+FROM base AS shinyapps
+
+# install latest version of rsconnect is installed
+ADD https://cran.r-project.org/web/packages/rsconnect/index.html /tmp/rsconnect.html
+RUN Rscript -e "remotes::install_cran('rsconnect', force = TRUE)"
+
+# copy app file for deployment
+COPY app.R /app
+
+# set working directory
+WORKDIR /app
+
+## run app
+CMD Rscript -e "rsconnect::setAccountInfo(name=Sys.getenv('SHINYAPPS_USER'), token=Sys.getenv('SHINYAPPS_TOKEN'), secret=Sys.getenv('SHINYAPPS_SECRET')); rsconnect::deployApp('.', appName='$SHINYAPPS_APPNAME')"
+
 # main image
 FROM base AS main
 
@@ -71,8 +86,10 @@ USER shiny
 ## select port
 EXPOSE 3838
 
-# copy app file for shiny server
+## copy app file for shiny server
 COPY --chown=shiny:shiny app.R /srv/shiny-server
 
-# run app
+WORKDIR /tmp
+
+## run app
 CMD ["/usr/bin/shiny-server"]

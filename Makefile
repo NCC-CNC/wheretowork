@@ -82,7 +82,7 @@ launch-kill:
 
 ## deploy app on shinyapps.io
 shinyapps:
-	R -e "options('golem.app.prod' = FALSE);rsconnect::deployApp(getwd(), appName = 'where-to-work', launch.browser = TRUE)"
+	R -e "rsconnect::deployApp(getwd(), appName = 'where-to-work', launch.browser = TRUE)"
 
 # Docker commands
 ## create local Docker image
