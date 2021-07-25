@@ -127,7 +127,7 @@
   spatial_path <span class='op'>=</span> <span class='cn'>NULL</span>,
   attribute_path <span class='op'>=</span> <span class='cn'>NULL</span>,
   boundary_path <span class='op'>=</span> <span class='cn'>NULL</span>,
-  mode <span class='op'>=</span> <span class='cn'>NULL</span>
+  mode <span class='op'>=</span> <span class='st'>"project"</span>
 <span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -158,7 +158,7 @@ the argument to <code>path</code>.</p></td>
     <tr>
       <th>mode</th>
       <td><p><code>character</code> mode for importing the objects.
-Defaults to <code>NULL</code> such that the mode is determined based on
+Defaults to <code>"project"</code> such that the mode is determined based on
 the contents of <code>path</code>. If the <code>mode</code> is <code>"advanced"</code>, then
 goal limits and mandatory include settings are disabled.</p></td>
     </tr>
@@ -176,6 +176,12 @@ goal limits and mandatory include settings are disabled.</p></td>
 
 </dl>
 
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Note that the status field for themes and weights will automatically
+be set to <code>FALSE</code> if the goal/weight values are zero.
+This is to ensure that the application starts with a sensible
+combination of settings.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='co'># find data file paths</span></span>
@@ -207,14 +213,14 @@ goal limits and mandatory include settings are disabled.</p></td>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $dataset</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Dataset</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   paths:</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     spatial: /tmp/RtmpOVh7hx/temp_libpath41f066f1f051c/wheretowork/extdata/projects/sim_raster/sim_raster_spatial.tif</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     attribute: /tmp/RtmpOVh7hx/temp_libpath41f066f1f051c/wheretowork/extdata/projects/sim_raster/sim_raster_attribute.csv.gz</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     boundary: /tmp/RtmpOVh7hx/temp_libpath41f066f1f051c/wheretowork/extdata/projects/sim_raster/sim_raster_boundary.csv.gz</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     spatial: /tmp/RtmprKjmSt/temp_libpath189f5819a9aa57/wheretowork/extdata/projects/sim_raster/sim_raster_spatial.tif</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     attribute: /tmp/RtmprKjmSt/temp_libpath189f5819a9aa57/wheretowork/extdata/projects/sim_raster/sim_raster_attribute.csv.gz</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     boundary: /tmp/RtmprKjmSt/temp_libpath189f5819a9aa57/wheretowork/extdata/projects/sim_raster/sim_raster_boundary.csv.gz</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $themes</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $themes[[1]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Theme</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        bebfd5a0-af45-49ab-8063-00596ccc2d43</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        3b325793-af23-4935-a05f-cadee5ff3c85</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Olive-headed Lorikeet</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   feature: </span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>     Olive-headed Lorikeet habitat [status: TRUE, current: 0.77, goal: 0.83]</span>
@@ -222,7 +228,7 @@ goal limits and mandatory include settings are disabled.</p></td>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $themes[[2]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Theme</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        cea95479-e017-4d56-a230-65aa207d173e</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        4f62bc67-bd19-4165-b071-b3a6671df53c</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Purple Honeycreeper</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   feature: </span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>     Purple Honeycreeper habitat [status: TRUE, current: 0.77, goal: 0.7]</span>
@@ -230,7 +236,7 @@ goal limits and mandatory include settings are disabled.</p></td>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $themes[[3]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Theme</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        4a37c3fc-8c0b-4a7d-a1eb-4ac2400d7d5a</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        5f67ba1d-6a2d-4d1c-ad2c-0b26b311106f</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Least Boobook</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   feature: </span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>     Least Boobook habitat [status: TRUE, current: 0.76, goal: 0.7]</span>
@@ -238,7 +244,7 @@ goal limits and mandatory include settings are disabled.</p></td>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $themes[[4]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Theme</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        7f2e6ef5-9a4f-48dd-aef8-70ea764b7140</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        feadd689-4263-4713-9011-b4a9c0fc9afd</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Wagtails and Pipits</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   feature: </span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>     Eastern Yellow Wagtail (Green-headed) [status: TRUE, current: 0.78, goal: 0.69]</span>
@@ -262,7 +268,7 @@ goal limits and mandatory include settings are disabled.</p></td>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $themes[[5]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Theme</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        a2b86044-a3d1-40f0-b88f-e111abdeac35</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        12fd1cd1-fc30-49d0-839c-b08973c3959c</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Penduline-Tits</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   feature: </span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>     Eurasian Penduline-Tit [status: TRUE, current: 0.77, goal: 0.56]</span>
@@ -280,39 +286,39 @@ goal limits and mandatory include settings are disabled.</p></td>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $weights</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $weights[[1]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Weight</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       6cdb7243-611e-4fc2-8a64-359dec8dd6ed</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       76a7d6c0-2ccd-4f9d-a66a-364a74d6ffad</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:     Fire</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   variable: .../sim_raster_spatial.tif#Fire [total: 147.75 ha]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   current:  0.77</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   visible:  TRUE</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   status:   TRUE</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   status:   FALSE</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   factor:   0</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $weights[[2]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Weight</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       cc7244bb-c16d-4dd8-9110-595958844773</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       f971651a-6fc1-4cbe-a3e8-042f5a7f31a0</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:     Grazing</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   variable: .../sim_raster_spatial.tif#Grazing [total: 152.52 ha]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   current:  0.77</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   visible:  TRUE</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   status:   TRUE</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   status:   FALSE</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   factor:   0</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $weights[[3]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Weight</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       fc1b73c4-e822-4800-9c95-20f24b5e41a8</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       cd61d298-3027-4786-a7c6-42452d3fe584</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:     Population count</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   variable: .../sim_raster_spatial.tif#Population_count [total: 146.2 ha]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   current:  0.76</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   visible:  TRUE</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   status:   TRUE</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   status:   FALSE</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   factor:   0</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $includes</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $includes[[1]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Include</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       a1ba7143-4ddc-40a5-883f-8a8c6b9e3d3d</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       d663b953-edb2-4976-b0de-cac2b928e281</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:     OECM areas</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   variable: .../sim_raster_spatial.tif#OECM_areas [total: 156 ]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   visible:  TRUE</span>
@@ -320,7 +326,7 @@ goal limits and mandatory include settings are disabled.</p></td>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $includes[[2]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Include</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       0bc9d799-709f-4340-a250-0d3f7d2c9c63</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       a2865a6d-9c29-4219-814a-e5ed5fee057b</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:     RAMSAR Sites</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   variable: .../sim_raster_spatial.tif#RAMSAR_Sites [total: 146 ]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   visible:  TRUE</span>

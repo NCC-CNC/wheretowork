@@ -40,6 +40,9 @@
     <loc>/reference/Parameter.html</loc>
   </url>
   <url>
+    <loc>/reference/Result.html</loc>
+  </url>
+  <url>
     <loc>/reference/Solution.html</loc>
   </url>
   <url>
@@ -74,6 +77,9 @@
   </url>
   <url>
     <loc>/reference/addSolutionResults.html</loc>
+  </url>
+  <url>
+    <loc>/reference/calculate_coverage.html</loc>
   </url>
   <url>
     <loc>/reference/cleanImportSettings.html</loc>
@@ -160,7 +166,13 @@
     <loc>/reference/mapManagerSidebarPane.html</loc>
   </url>
   <url>
+    <loc>/reference/min_set_result.html</loc>
+  </url>
+  <url>
     <loc>/reference/min_set_solution.html</loc>
+  </url>
+  <url>
+    <loc>/reference/min_shortfall_result.html</loc>
   </url>
   <url>
     <loc>/reference/min_shortfall_solution.html</loc>
@@ -199,7 +211,13 @@
     <loc>/reference/new_parameter.html</loc>
   </url>
   <url>
+    <loc>/reference/new_result.html</loc>
+  </url>
+  <url>
     <loc>/reference/new_solution.html</loc>
+  </url>
+  <url>
+    <loc>/reference/new_solution_from_result.html</loc>
   </url>
   <url>
     <loc>/reference/new_solution_settings.html</loc>

@@ -91,6 +91,7 @@ reference:
     desc: >
       Definititions for classes used to organize data.
     contents:
+      - Result
       - ContinuousLegend
       - CategoricalLegend
       - ManualLegend
@@ -109,12 +110,12 @@ reference:
       - WeightResults
       - ThemeResults
 
-  - title: Solution functions
+  - title: Result functions
     desc: >
-      Functions used to generate solutions.
+      Functions used to generate results.
     contents:
-      - min_set_solution
-      - min_shortfall_solution
+      - min_set_result
+      - min_shortfall_result
 
   - title: Project functions
     desc: >
@@ -154,6 +155,7 @@ reference:
       - write_spatial_data
       - shapefile_field_names
       - reserve_sizes
+      - calculate_coverage
 
   - title: Miscellaneous functions
     contents:
