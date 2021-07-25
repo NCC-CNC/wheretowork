@@ -22,7 +22,7 @@ jobs:
         env:
           DOCKERFILE_NAME: "Dockerfile"
           DOCKERFILE_TARGET: "shinyapps"
-          DOCKERHUB_REPO: "naturecons/wheretowork"
+          DOCKERHUB_REPO: "naturecons/wheretowork:devel"
           DOCKER_OPTIONS: ""
         run: |
           docker pull ${DOCKERHUB_REPO}
