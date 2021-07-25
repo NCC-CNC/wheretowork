@@ -18,9 +18,9 @@ server_import_manual_data <- quote({
     ## validation
     if (
       !is.character(app_data$configuration_path) ||
-        !is.character(app_data$spatial_path) ||
-        !is.character(app_data$attribute_path) ||
-        !is.character(app_data$boundary_path)) {
+      !is.character(app_data$spatial_path) ||
+      !is.character(app_data$attribute_path) ||
+      !is.character(app_data$boundary_path)) {
       return()
     }
 
@@ -71,7 +71,7 @@ server_import_manual_data <- quote({
 
     ## import data
     environment(import_data) <- environment()
-    import_data(x = x, mode = mode)
+    import_data(x = x, mode = get_golem_config("mode"))
 
     ## remove modal
     shiny::removeModal(session)
