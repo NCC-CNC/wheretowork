@@ -52,6 +52,7 @@ server_initialize_app <- quote({
   disable_html_element("importModal_spatial_button")
   disable_html_element("solutionResultsPane_results_button")
   shinyjs::disable("exportPane_button")
+  shinyjs::disable("newSolutionPane_settings_stop_button")
 
   # disable solution results sidebar button
   disable_html_css_selector("#analysisSidebar li:nth-child(2)")
@@ -61,6 +62,17 @@ server_initialize_app <- quote({
     "$('#newSolutionPane_settings_name')",
     ".attr('maxlength', 18)"
   ))
+
+  # manually update solution settings sidebar content,
+  # if can't manually stop processing
+  if (!identical(strategy, "multicore")) {
+    # hide solution stop button if not supported
+    shinyjs::runjs("$('.solution-footer-stop-button').hide()")
+    # resize the start button
+    shinyjs::runjs(
+      "$('#newSolutionPane_settings_start_button').css('width','150px;')"
+    )
+  }
 
   # hide elements
   shinyjs::hideElement("importModal_spatial_text")

@@ -18,6 +18,7 @@ min_shortfall_result(
   gap = 0,
   boundary_gap = 0.1,
   cache = cachem::cache_mem(),
+  time_limit = .Machine$integer.max,
   verbose = FALSE,
   id = uuid::UUIDgenerate()
 )
@@ -53,6 +54,9 @@ the level of spatial clustering in the solution. Defaults to 0.1.}
 \item{cache}{\code{\link[cachem:cache_mem]{cachem::cache_mem()}} object used to cache intermediate
 calculations.
 Defaults to an empty cache such that (effectively) no cache is used.}
+
+\item{time_limit}{\code{numeric} time limit (seconds) for generating solutions.
+Defaults to the maximum integer.}
 
 \item{verbose}{\code{logical} value indicating if information should be
 displayed when generating solutions. Defaults to \code{FALSE}.}

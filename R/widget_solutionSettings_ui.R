@@ -38,10 +38,10 @@ NULL
 #' text box is a `character` string. It can be queried using
 #' `id_name` where `id` is the argument to `elementId`.
 #'
-#' The widget also contains a button. The server value for this
-#' button is an `integer` indicating the number of times the button
-#' has been clicked. It can be queried using `id_button` where
-#' `id` is the argument to `elementId`.
+#' The widget also contains two buttons. The server valuees for these
+#' buttons is an `integer` indicating the number of times they
+#' has been clicked. They can be queried using `id_start_button`
+#' and `id_stop_button` where `id` is the argument to `elementId`.
 #'
 #' The widget also contains a color picker. The server value for this
 #' button is an `character` indicating the current color. It can be queried
@@ -206,11 +206,20 @@ solutionSettings_html <- function(id, style, class, ...) {
           )
         ),
         htmltools::tags$div(
-          class = "solution-footer-button",
+          class = "solution-footer-start-button",
           shinyFeedback::loadingButton(
-            inputId = paste0(id, "_button"),
-            label = "Generate solution",
-            loadingLabel = "Optimizing..."
+            inputId = paste0(id, "_start_button"),
+            label = "Optimize!",
+            loadingLabel = "",
+            style = "width: 100px;"
+          )
+        ),
+        htmltools::tags$div(
+          class = "solution-footer-stop-button",
+          shinyBS::bsButton(
+            inputId = paste0(id, "_stop_button"),
+            label = "Stop",
+            style = "danger"
           )
         )
       )

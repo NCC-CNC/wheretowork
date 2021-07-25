@@ -73,7 +73,8 @@
   align-items: center;
   margin: 0;
   width: 100%;
-  padding-right: 0px;
+  padding-right: 5px;
+  overflow-x: hide;
   flex-wrap: wrap;
   left: 20px;
 }
@@ -81,11 +82,6 @@
 /* -- items*/
 .solution-footer .form-group.shiny-input-container {
   margin-bottom: 0px;
-}
-
-/* -- button */
-.solution-footer-button {
-  margin-right: 3px;
 }
 
 /* -- color picker */

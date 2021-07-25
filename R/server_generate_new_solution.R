@@ -18,17 +18,38 @@ server_generate_new_solution <- quote({
   # create reactive value to store new results
   new_user_result <- shiny::reactiveVal()
 
-  # generate new solution when button pressed
-  shiny::observeEvent(
-    input$newSolutionPane_settings_button,
-    {
+  # stop processing when stop button solution pressed
+  shiny::observeEvent(input$newSolutionPane_settings_stop_button, {
+    ## specify dependencies
+    shiny::req(input$newSolutionPane_settings_stop_button)
+    shiny::req(app_data$new_solution_id)
+
+    ## stop processing if possible given strategy
+    if (identical(strategy, "multicore")) {
+      ## kill task if possible
+      suppressWarnings(ipc::stopMulticoreFuture(app_data$task))
+
+      ## reset app state
+      app_data$new_solution_id <- NULL
+
+      ## reset buttons and input widgets
+      shinyFeedback::resetLoadingButton("newSolutionPane_settings_start_button")
+      enable_html_element("newSolutionPane_settings_start_button")
+      enable_html_element("newSolutionPane_settings_name")
+      enable_html_element("newSolutionPane_settings_color")
+      shinyjs::disable("newSolutionPane_settings_stop_button")
+    }
+  })
+
+  # generate new solution when start button pressed
+  shiny::observeEvent(input$newSolutionPane_settings_start_button, {
       ## specify dependencies
-      shiny::req(input$newSolutionPane_settings_button)
+      shiny::req(input$newSolutionPane_settings_start_button)
       shiny::req(input$newSolutionPane_settings_name)
       shiny::req(input$newSolutionPane_settings_color)
 
       ## update generate solution inputs
-      disable_html_element("newSolutionPane_settings_button")
+      disable_html_element("newSolutionPane_settings_start_button")
       disable_html_element("newSolutionPane_settings_name")
       disable_html_element("newSolutionPane_settings_color")
 
@@ -48,6 +69,7 @@ server_generate_new_solution <- quote({
       curr_weight_data <- app_data$weight_data
       curr_include_data <- app_data$include_data
       ### arguments for generating result
+      curr_time_limit <- get_golem_config("solver_time_limit")
       curr_name <- input$newSolutionPane_settings_name
       curr_gap <- get_golem_config("gap")
       curr_verbose <- get_golem_config("verbose")
@@ -62,10 +84,14 @@ server_generate_new_solution <- quote({
       curr_parameters <-
         lapply(app_data$ss$parameters, function(x) x$clone())
 
-      ## generate result
-      future::future(packages = "wheretowork", seed = NULL, {
+      ## enable stop button
+      shinyjs::enable("newSolutionPane_settings_stop_button")
+
+      ## generate result using asynchronous task
+      app_data$task <- future::future(packages = "wheretowork", seed = NULL, {
+        ### main processing
         if (curr_type) {
-          ### if budget specified, then use the min shortfall formulation
+          #### if budget specified, then use the min shortfall formulation
           r <- try(
             min_shortfall_result(
               id = curr_id,
@@ -82,12 +108,13 @@ server_generate_new_solution <- quote({
               gap = curr_gap,
               boundary_gap = curr_boundary_gap,
               cache = curr_cache,
+              time_limit = curr_time_limit,
               verbose = curr_verbose
             ),
             silent = TRUE
           )
         } else {
-          ### else, then use the min set formulation
+          #### else, then use the min set formulation
           r <- try(
             min_set_result(
               id = curr_id,
@@ -103,24 +130,33 @@ server_generate_new_solution <- quote({
               gap = curr_gap,
               boundary_gap = curr_boundary_gap,
               cache = curr_cache,
+              time_limit = curr_time_limit,
               verbose = curr_verbose
             ),
             silent = TRUE
           )
         }
+        ## return result
         list(
           id = curr_id, name = curr_name, color = curr_color,
           result = r, cache = curr_cache
         )
-      }) %...>%
-      (function(result) {
-        new_user_result(result)
-        app_data$cache <- result$cache
-      }) %...!%
+      })
+      ## add promises to handle result once asynchronous task finished
+      prom <-
+        (app_data$task) %...>%
+        (function(result) {
+          new_user_result(result)
+          app_data$cache <- result$cache
+        }) %...!%
         (function(error) {
           new_user_result(NULL)
-          warning(error)
-      })
+          if (!is.null(app_data$new_solution_id)) {
+            warning(error)
+          }
+          NULL
+        })
+
       ## this needed to implement asynchronous processing,
       ## see https://github.com/rstudio/promises/issues/23
       NULL
@@ -130,12 +166,15 @@ server_generate_new_solution <- quote({
   # add solution to map when generating new solution
   shiny::observeEvent(new_user_result(), {
     ## specify dependencies
-    if (is.null(new_user_result())) {
+    if (is.null(new_user_result()) || is.null(app_data$new_solution_id)) {
       return()
     }
     if (!identical(new_user_result()$id, app_data$new_solution_id)) {
       return()
     }
+
+    ## disable stop button
+    shinyjs::disable("newSolutionPane_settings_stop_button")
 
     ## extract result
     r <- new_user_result()
@@ -172,7 +211,7 @@ server_generate_new_solution <- quote({
         animation = TRUE
       )
       ### reset button
-      shinyFeedback::resetLoadingButton("newSolutionPane_settings_button")
+      shinyFeedback::resetLoadingButton("newSolutionPane_settings_start_button")
       enable_html_element("solutionResultsPane_results_button")
       enable_html_element("newSolutionPane_settings_color")
       enable_html_element("newSolutionPane_settings_name")
@@ -265,7 +304,6 @@ server_generate_new_solution <- quote({
       inputId = "newSolutionPane_settings_name",
       value = ""
     )
-    enable_html_element("newSolutionPane_settings_name")
 
     ## enable solution results modal button after generating first solution
     if (length(app_data$solutions) == 1) {
@@ -273,10 +311,11 @@ server_generate_new_solution <- quote({
       enable_html_css_selector("#analysisSidebar li:nth-child(2)")
     }
 
-    ## reset generate new solution buttons
-    shinyFeedback::resetLoadingButton("newSolutionPane_settings_button")
-    disable_html_element("newSolutionPane_settings_button")
+    ## reset buttons and input widgets
+    shinyFeedback::resetLoadingButton("newSolutionPane_settings_start_button")
+    enable_html_element("newSolutionPane_settings_name")
     enable_html_element("newSolutionPane_settings_color")
+    disable_html_element("newSolutionPane_settings_start_button")
   })
 
 })

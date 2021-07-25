@@ -16,20 +16,30 @@ default:
   projects: "default"
 
   ## future plan strategy
-  ### if "auto", then "sequential" is used on Shiny apps
-  ### (per R_CONFIG_ACTIVE variable),
-  ### otherwise, "multisession" is used.
+  ### if "auto", then:
+  ###   if on Shiny apps (per R_CONFIG_ACTIVE variable): "sequential"
+  ###   else if on Unix systems: "multicore"
+  ###   else "multisession"
   strategy: "auto"
 
   ## verbosity
-  verbose: true
+  verbose: false
 
   ## monitor memory usage
-  monitor: true
+  monitor: false
+
+  ## time limit (seconds) for generating solutions
+  ## i.e. maximum time that users should wait for when generating solutions
+  solver_time_limit: 3600 # one hour
+
+  ## time out (seconds) for worker processes
+  ## i.e. maximum time that worker process should remain active after
+  ## contacting controller process
+  worker_time_out: 3600 # one hour
 
 production:
   mode: "project"
-  strategy: "multisession"
+  strategy: "auto"
   verbose: false
   monitor: false
 

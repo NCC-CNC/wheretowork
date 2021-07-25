@@ -35,6 +35,9 @@ NULL
 #'  calculations.
 #'  Defaults to an empty cache such that (effectively) no cache is used.
 #'
+#' @param time_limit `numeric` time limit (seconds) for generating solutions.
+#'  Defaults to the maximum integer.
+#'
 #' @param verbose `logical` value indicating if information should be
 #'  displayed when generating solutions. Defaults to `FALSE`.
 #'
@@ -135,6 +138,7 @@ min_set_result <- function(area_data,
                            gap = 0,
                            boundary_gap = 0.1,
                            cache = cachem::cache_mem(),
+                           time_limit = .Machine$integer.max,
                            verbose = FALSE,
                            id = uuid::UUIDgenerate()) {
   # validate arguments
@@ -241,7 +245,9 @@ min_set_result <- function(area_data,
     prioritizr::add_min_set_objective() %>%
     prioritizr::add_manual_targets(targets) %>%
     prioritizr::add_binary_decisions() %>%
-    prioritizr::add_cbc_solver(gap = gap, verbose = FALSE)
+    prioritizr::add_cbc_solver(
+      gap = gap, verbose = verbose, time_limit = time_limit
+    )
   ### add locked in constraints if needed
   if (any(locked_in)) {
     initial_problem <-
@@ -292,7 +298,9 @@ min_set_result <- function(area_data,
         )
       ) %>%
       prioritizr::add_binary_decisions() %>%
-      prioritizr::add_cbc_solver(gap = gap, verbose = FALSE)
+      prioritizr::add_cbc_solver(
+        gap = gap, verbose = verbose, time_limit = time_limit
+      )
     ### add locked in constraints if needed
     if (any(locked_in)) {
       main_problem <-

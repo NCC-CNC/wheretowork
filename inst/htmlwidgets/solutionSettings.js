@@ -28,7 +28,8 @@ HTMLWidgets.widget({
           // render HTML elements
           handle.render();
           // set the button to disabled by default
-          const button_el = document.getElementById(elementId + "_button");
+          const button_el =
+            document.getElementById(elementId + "_start_button");
           button_el.setAttribute("disabled", "");
           // make the button disabled when the text box is empty
           const name_el = document.getElementById(elementId + "_name");

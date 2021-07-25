@@ -111,6 +111,7 @@ min_shortfall_result <- function(area_budget_proportion,
                                  gap = 0,
                                  boundary_gap = 0.1,
                                  cache = cachem::cache_mem(),
+                                 time_limit = .Machine$integer.max,
                                  verbose = FALSE,
                                  id = uuid::UUIDgenerate()) {
   # validate arguments
@@ -247,7 +248,9 @@ min_shortfall_result <- function(area_budget_proportion,
     prioritizr::add_min_shortfall_objective(budget = initial_budget) %>%
     prioritizr::add_manual_targets(targets) %>%
     prioritizr::add_binary_decisions() %>%
-    prioritizr::add_cbc_solver(gap = gap, verbose = verbose)
+    prioritizr::add_cbc_solver(
+      gap = gap, verbose = verbose, time_limit = time_limit
+    )
   ## add locked in constraints if needed
   if (any(locked_in)) {
     initial_problem <-
@@ -323,7 +326,9 @@ min_shortfall_result <- function(area_budget_proportion,
         )
       ) %>%
       prioritizr::add_binary_decisions() %>%
-      prioritizr::add_cbc_solver(gap = gap, verbose = verbose)
+      prioritizr::add_cbc_solver(
+        gap = gap, verbose = verbose, time_limit = time_limit
+      )
     ### add locked in constraints if needed
     if (any(locked_in)) {
       main_problem <-

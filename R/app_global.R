@@ -1,4 +1,7 @@
 app_global <- quote({
+  # set seed for reproducibility
+  set.seed(200)
+
   # print initial memory usage
   if (isTRUE(wheretowork::get_golem_config("monitor"))) {
       cli::cli_rule()
@@ -7,18 +10,28 @@ app_global <- quote({
   }
 
   # initialize asynchronous processing
-  if (identical(wheretowork::get_golem_config("strategy"), "auto")) {
+  ## identify strategy
+  strategy <- wheretowork::get_golem_config("strategy")
+  if (identical(strategy, "auto")) {
     if (identical(Sys.getenv("R_CONFIG_ACTIVE"), "shinyapps")) {
-      future::plan("sequential")
+      strategy <- "sequential"
+    } else if (identical(.Platform$OS.type, "unix")) {
+      strategy <- "multicore"
     } else {
-      future::plan("multisession")
+      strategy <- "multisession"
     }
-  } else {
-    future::plan(wheretowork::get_golem_config("strategy"))
   }
-
-  # set seed for reproducibility
-  set.seed(200)
+  ## set future settings
+  options(
+    future.wait.timeout = wheretowork::get_golem_config("worker_time_out")
+  )
+  ## implement strategy
+  golem::print_dev(paste("plan strategy:", strategy))
+  assertthat::assert_that(
+    strategy %in% c("sequential", "multicore", "multisession"),
+    msg = "not a valid strategy"
+  )
+  suppressWarnings(future::plan(strategy, workers = 2))
 
   # define global variables
   ## note that we use an environment here because they are mutable objects and
@@ -46,11 +59,13 @@ app_global <- quote({
       include_data = NULL,
       area_data = NULL,
       boundary_data = NULL,
-      new_solution_id = NULL,
       solution_ids = character(0),
       ## widgets
       mm = NULL,
-      ss = NULL
+      ss = NULL,
+      ## state variables
+      new_solution_id = NULL,
+      task = NULL
     )
   )
 
