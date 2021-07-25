@@ -20,7 +20,7 @@ NULL
 #'  the argument to `path`.
 #'
 #' @param mode `character` mode for importing the objects.
-#'  Defaults to `NULL` such that the mode is determined based on
+#'  Defaults to `"project"` such that the mode is determined based on
 #'  the contents of `path`. If the `mode` is `"advanced"`, then
 #'  goal limits and mandatory include settings are disabled.
 #'
@@ -69,11 +69,13 @@ read_project <- function(path,
                          spatial_path = NULL,
                          attribute_path = NULL,
                          boundary_path = NULL,
-                         mode = NULL) {
+                         mode = "project") {
   # assert arguments are valid
   assertthat::assert_that(
     assertthat::is.string(path),
-    assertthat::noNA(path)
+    assertthat::noNA(path),
+    assertthat::is.string(mode),
+    assertthat::noNA(mode)
   )
   if (!is.null(spatial_path)) {
     assertthat::assert_that(
@@ -93,12 +95,6 @@ read_project <- function(path,
       assertthat::noNA(boundary_path)
     )
   }
-  if (!is.null(mode)) {
-    assertthat::assert_that(
-      assertthat::is.string(mode),
-      assertthat::noNA(mode)
-    )
-  }
 
   # import configuration file
   ## read file
@@ -108,11 +104,11 @@ read_project <- function(path,
   }
 
   # determine if advanced mode
-  adv_mode <- identical(mode, "advanced")
-  if (is.null(mode)) {
+  if (identical(mode, "project")) {
     adv_mode <- identical(x$mode, "advanced")
+  } else {
+    adv_mode <- identical(mode, "advanced")
   }
-
 
   # set file paths if needed
   if (is.null(spatial_path)) {
@@ -281,6 +277,6 @@ read_project <- function(path,
     themes = themes,
     weights = weights,
     includes = includes,
-    mode = ifelse(is.null(mode), x$mode, mode)
+    mode = ifelse(identical(mode, "project"), x$mode, mode)
   )
 }

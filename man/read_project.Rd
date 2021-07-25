@@ -9,7 +9,7 @@ read_project(
   spatial_path = NULL,
   attribute_path = NULL,
   boundary_path = NULL,
-  mode = NULL
+  mode = "project"
 )
 }
 \arguments{
@@ -28,7 +28,7 @@ Defaults to \code{NULL} such that the file path is determined using
 the argument to \code{path}.}
 
 \item{mode}{\code{character} mode for importing the objects.
-Defaults to \code{NULL} such that the mode is determined based on
+Defaults to \code{"project"} such that the mode is determined based on
 the contents of \code{path}. If the \code{mode} is \code{"advanced"}, then
 goal limits and mandatory include settings are disabled.}
 }
