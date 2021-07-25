@@ -1,10 +1,10 @@
-name: Deploy shinyapps.io
-
 on:
   push:
     branches:
       - main
       - master
+
+name: Deploy shinyapps.io
 
 jobs:
   deploy:
