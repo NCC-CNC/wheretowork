@@ -24,9 +24,20 @@ class MultiThemeResults {
     this.el = document.createElement("div");
     this.el.classList.add("multi-theme-result");
 
-    // manually coerce goals to zero if status is false
+    // update goals
     const manual_feature_goal = feature_goal.map((x, i) => {
-      return feature_status[i] ? x : 0
+      // manually coerce goals to zero if status is false
+      let out = feature_status[i] ? x : 0;
+      // fiddle goal to ensure correct bolding in widget
+      out -= out > 1.0e-5 ? 1.0e-5 : 0;
+      // return result
+      return out
+    });
+
+    // update feature held
+    const manual_feature_solution_held = feature_solution_held.map((x, i) => {
+      // fiddle goal to ensure correct bolding in widget
+      return x > 1.0e-5 ? x - 1.0e-5 : x;
     });
 
     // create chart
@@ -36,7 +47,7 @@ class MultiThemeResults {
         feature_name,
         feature_goal: manual_feature_goal[index],
         feature_current_held: feature_current_held[index],
-        feature_solution_held: feature_solution_held[index],
+        feature_solution_held: manual_feature_solution_held[index],
         feature_total_amount: feature_total_amount[index],
         feature_status: feature_status[index],
         total: 1,
