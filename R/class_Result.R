@@ -94,15 +94,23 @@ Result <- R6::R6Class(
         #### weight_settings
         inherits(weight_settings, "data.frame"),
         nrow(weight_settings) == length(weight_coverage),
-        identical(weight_settings$id, names(weight_coverage)),
         #### include_settings
         inherits(include_settings, "data.frame"),
         nrow(include_settings) == length(include_coverage),
-        identical(include_settings$id, names(include_coverage)),
         #### parameters
         is.list(parameters),
         all_list_elements_inherit(parameters, "Parameter")
       )
+      if (nrow(weight_settings) > 0) {
+        assertthat::assert_that(
+          identical(weight_settings$id, names(weight_coverage))
+        )
+      }
+      if (nrow(include_settings) > 0) {
+        assertthat::assert_that(
+          identical(include_settings$id, names(include_coverage))
+        )
+      }
       ### set fields
       self$id <- id
       self$area <- area

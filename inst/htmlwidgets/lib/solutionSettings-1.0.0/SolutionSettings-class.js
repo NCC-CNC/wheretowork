@@ -69,11 +69,33 @@ class SolutionSettings {
 
     // weights
     const weight_panel = this.container.querySelector(".weights");
-    this.weights.forEach((x) => weight_panel.appendChild(x.render()));
+    if (this.weights.length > 0) {
+      this.weights.forEach((x) => weight_panel.appendChild(x.render()));
+    } else {
+      weight_panel.appendChild(
+        document.importNode(
+          document
+          .getElementById(this.id)
+          .querySelector(".no-weights-template")
+          .content,
+        true)
+      );
+    }
 
     // includes
     const include_panel = this.container.querySelector(".includes");
-    this.includes.forEach((x) => include_panel.appendChild(x.render()));
+    if (this.includes.length > 0) {
+      this.includes.forEach((x) => include_panel.appendChild(x.render()));
+    } else {
+      include_panel.appendChild(
+        document.importNode(
+          document
+          .getElementById(this.id)
+          .querySelector(".no-includes-template")
+          .content,
+        true)
+      );
+    }
 
     // parameters
     const parameter_panel = this.container.querySelector(".parameters");

@@ -113,8 +113,12 @@ calculate_coverage <- function(x, data) {
     is.numeric(x),
     inherits(data, "dgCMatrix")
   )
-  out <- matrix(x, byrow = TRUE, ncol = ncol(data), nrow = nrow(data))
-  out <- rowSums(out * data) / Matrix::rowSums(data)
-  names(out) <- rownames(data)
+  if (nrow(data) > 0) {
+    out <- matrix(x, byrow = TRUE, ncol = ncol(data), nrow = nrow(data))
+    out <- rowSums(out * data) / Matrix::rowSums(data)
+    names(out) <- rownames(data)
+  } else {
+    out <- numeric(0)
+  }
   out
 }

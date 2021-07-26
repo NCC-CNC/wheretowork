@@ -141,13 +141,14 @@ min_shortfall_result <- function(area_budget_proportion,
     ncol(include_data) == length(area_data),
     ## theme_settings
     inherits(theme_settings, "data.frame"),
+    nrow(theme_settings) == nrow(theme_data),
     identical(theme_settings$id, rownames(theme_data)),
     ## weight_settings
     inherits(weight_settings, "data.frame"),
-    identical(weight_settings$id, rownames(weight_data)),
+    nrow(weight_settings) == nrow(weight_data),
     ## include_settings
     inherits(include_settings, "data.frame"),
-    identical(include_settings$id, rownames(include_data)),
+    nrow(include_settings) == nrow(include_data),
     ## parameters
     is.list(parameters),
     all_list_elements_inherit(parameters, "Parameter"),
@@ -160,6 +161,16 @@ min_shortfall_result <- function(area_budget_proportion,
     ## cache
     inherits(cache, "cachem")
   )
+  if (nrow(weight_settings) > 0) {
+    assertthat::assert_that(
+      identical(weight_settings$id, rownames(weight_data))
+    )
+  }
+  if (nrow(include_settings) > 0) {
+    assertthat::assert_that(
+      identical(include_settings$id, rownames(include_data))
+    )
+  }
 
   # calculate targets
   ## extract values
@@ -180,31 +191,43 @@ min_shortfall_result <- function(area_budget_proportion,
   targets$target <- pmax(targets$target, 1e-5)
 
   # calculate locked in values
-  locked_in <- matrix(
-    include_settings$status,
-    byrow = TRUE,
-    nrow = nrow(include_data), ncol = ncol(include_data)
-  )
-  locked_in <- as.logical(colSums(locked_in * include_data) > 0)
+  if (nrow(include_data) > 0) {
+    ## if includes present, then use data and settings
+    locked_in <- matrix(
+      include_settings$status,
+      byrow = TRUE,
+      nrow = nrow(include_data), ncol = ncol(include_data)
+    )
+    locked_in <- as.logical(colSums(locked_in * include_data) > 0)
+  } else {
+    ## if no includes present, then lock nothing in
+    locked_in <- rep(FALSE, ncol(include_data))
+  }
 
   # calculate locked out values
-  ## initialize matrix
-  locked_out <- as.matrix(weight_data)
-  ## identify planning units to lock out per each weight
-  for (i in seq_len(nrow(locked_out))) {
-    ## skip if not using weights
-    if (!weight_settings$status[i]) {
-      locked_out[i, ] <- FALSE
-    } else {
-      ## identify threshold
-      thresh <- quantile(
-        x = locked_out[i, ],
-        probs = min((100 - weight_settings$factor[i]) / 100, 1),
-        names = FALSE
-      )
-      ## identify planning units to lock out for given weight
-      locked_out[i, ] <- locked_out[i, ] > thresh
+  if (nrow(weight_data) > 0) {
+    ## if weights present, then use data and settings
+    ### initialize matrix
+    locked_out <- as.matrix(weight_data)
+    ### identify planning units to lock out per each weight
+    for (i in seq_len(nrow(locked_out))) {
+      ## skip if not using weights
+      if (!weight_settings$status[i]) {
+        locked_out[i, ] <- FALSE
+      } else {
+        ### identify threshold
+        thresh <- quantile(
+          x = locked_out[i, ],
+          probs = min((100 - weight_settings$factor[i]) / 100, 1),
+          names = FALSE
+        )
+        ### identify planning units to lock out for given weight
+        locked_out[i, ] <- locked_out[i, ] > thresh
+      }
     }
+  } else {
+    ## if no weights present, then lock nothing out
+    locked_out <- matrix(0, nrow = 1, ncol = ncol(weight_data))
   }
   ## identify planning unit to lock out for solutions
   ## note that locked in planning units are not locked out

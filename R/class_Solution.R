@@ -212,20 +212,31 @@ Solution <- R6::R6Class(
     #' @return [tibble::tibble()] object.
     get_weight_results_data = function() {
       # compile results
-      x <- tibble::as_tibble(plyr::ldply(
-        self$weight_results, function(x) x$get_results_data()
-      ))
-      # return data for plotting
-      tibble::tibble(
-        Weight = x$name,
-        Status = dplyr::if_else(x$status, "Enabled", "Disabled"),
-        Factor = round(x$factor, 2),
-        `Total (units)` = paste(round(x$total, 2), x$units),
-        `Current (%)` = round(x$current * 100, 2),
-        `Current (units)` = paste(round(x$current * x$total, 2), x$units),
-        `Solution (%)` = round(x$held * 100, 2),
-        `Solution (units)` = paste(round(x$current * x$total, 2), x$units),
-      )
+      if (length(self$weight_results) > 0) {
+        ## if weights are present, then use result
+        ### extract results
+        x <- tibble::as_tibble(plyr::ldply(
+          self$weight_results, function(x) x$get_results_data()
+        ))
+        ### format results
+        out <- tibble::tibble(
+          Weight = x$name,
+          Status = dplyr::if_else(x$status, "Enabled", "Disabled"),
+          Factor = round(x$factor, 2),
+          `Total (units)` = paste(round(x$total, 2), x$units),
+          `Current (%)` = round(x$current * 100, 2),
+          `Current (units)` = paste(round(x$current * x$total, 2), x$units),
+          `Solution (%)` = round(x$held * 100, 2),
+          `Solution (units)` = paste(round(x$current * x$total, 2), x$units),
+        )
+      } else {
+        ## if no weights are present, then use return
+        out <- tibble::tibble(
+          `Description` = "No weights specified"
+        )
+      }
+      # return results
+      out
     },
 
     #' @description
@@ -304,47 +315,22 @@ Solution <- R6::R6Class(
     #' Render weight results.
     #' @return [DT::datatable()] object.
     render_weight_results = function() {
-      ## generate table
+      # generate table
       x <- self$get_weight_results_data()
-      ## add in extra column
-      x$space1 <- " "
-      x <- x[, c(seq_len(6), 9, c(7, 8)), drop = FALSE]
-      ## define JS for button
+      # add in extra column
+      if (ncol(x) > 1) {
+        x$space1 <- " "
+        x <- x[, c(seq_len(6), 9, c(7, 8)), drop = FALSE]
+      }
+      # define JS for button
       action_js <- htmlwidgets::JS(
         "function ( e, dt, node, config ) {",
         "  $('#weight_results_button')[0].click();",
         "}"
       )
-      ## render table
-      DT::datatable(
-        x,
-        rownames = FALSE, escape = TRUE,
-        editable = FALSE, selection = "none",
-        fillContainer = TRUE, extensions = "Buttons",
-        options = list(
-          ### align columns
-          columnDefs = list(
-            list(className = "dt-left", targets = 0),
-            list(className = "dt-center", targets = 1:8),
-            list(className = "spacer", "sortable" = FALSE, targets = 6)
-          ),
-          ### disable paging
-          paging = FALSE,
-          scrollY = "calc(100vh - 295px)",
-          scrollY = "100%",
-          scrollCollapse = TRUE,
-          ### download button
-          dom = "Bfrtip",
-          buttons = list(
-            list(
-              extend = "collection",
-              text = as.character(shiny::icon("file-download")),
-              title = "Download spreadsheet",
-              action = action_js
-            )
-          )
-        ),
-        container = htmltools::tags$table(
+      # define container
+      if (ncol(x) > 1) {
+         container <- htmltools::tags$table(
           class = "display",
           htmltools::tags$thead(
             htmltools::tags$tr(
@@ -362,6 +348,50 @@ Solution <- R6::R6Class(
             ),
             htmltools::tags$tr(
               lapply(rep(c("(%)", "(units)"), 2), htmltools::tags$th)
+            )
+          )
+        )
+      } else {
+        container <- rlang::missing_arg()
+      }
+      # define columns
+      if (ncol(x) > 1) {
+        column_defs <- list(
+          list(className = "dt-left", targets = 0),
+          list(className = "dt-center", targets = 1:8),
+          list(className = "spacer", "sortable" = FALSE, targets = 6)
+        )
+      } else {
+        column_defs <- list(
+          list(className = "dt-left", targets = 0)
+        )
+      }
+      # render table
+      DT::datatable(
+        x,
+        rownames = FALSE,
+        escape = TRUE,
+        editable = FALSE,
+        selection = "none",
+        fillContainer = TRUE,
+        extensions = "Buttons",
+        container = container,
+        options = list(
+          ## align columns
+          columnDefs = column_defs,
+          ## disable paging
+          paging = FALSE,
+          scrollY = "calc(100vh - 295px)",
+          scrollY = "100%",
+          scrollCollapse = TRUE,
+          ## download button
+          dom = "Bfrtip",
+          buttons = list(
+            list(
+              extend = "collection",
+              text = as.character(shiny::icon("file-download")),
+              title = "Download spreadsheet",
+              action = action_js
             )
           )
         )

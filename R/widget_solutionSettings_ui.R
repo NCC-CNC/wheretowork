@@ -337,6 +337,37 @@ solutionSettings_html <- function(id, style, class, ...) {
       )
     )
 
+  # add HTML template scaffolds for static content
+  ## no weights scaffold
+  x <-
+    htmltools::tagAppendChild(
+      x,
+      htmltools::tags$template(
+        class = "no-weights-template",
+        htmltools::tags$div(
+          class = paste("empty-setting solution-setting"),
+          htmltools::tags$label(
+            "No weights specified."
+          )
+        )
+      )
+    )
+
+  ## no includes scaffold
+  x <-
+    htmltools::tagAppendChild(
+      x,
+      htmltools::tags$template(
+        class = "no-includes-template",
+        htmltools::tags$div(
+          class = paste("empty-setting solution-setting"),
+          htmltools::tags$label(
+            "No includes specified."
+          )
+        )
+      )
+    )
+
   # return HTML
   x
 }

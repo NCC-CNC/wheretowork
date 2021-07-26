@@ -83,6 +83,19 @@
   align-items: center;
 }
 
+/* empty result */
+.solution-results .empty-result {
+  width: 100%;
+}
+
+.solution-results .empty-result label {
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  font-weight: 400;
+}
+
 /* summary panel */
 .solution-results .statistics-columns,
 .solution-results .parameters-columns {

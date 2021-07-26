@@ -71,6 +71,63 @@ test_that("initialization", {
   expect_identical(x$parameter_ids, "P1")
 })
 
+test_that("initialization (no weights or includes)", {
+  # create object
+  ## create dataset
+  rd <- simulate_binary_spatial_data(import_simple_raster_data(), 5)
+  d <- new_dataset_from_auto(rd)
+  ## create variables
+  v1 <- new_variable(
+    dataset = d, index = 1, total = 12, units = "ha",
+    legend = simulate_continuous_legend()
+  )
+  v2 <- new_variable(
+    dataset = d, index = 2, total = 14, units = "ha",
+    legend = simulate_continuous_legend()
+  )
+  v3 <- new_variable(
+    dataset = d, index = 3, total = 78, units = "ha",
+    legend = simulate_continuous_legend()
+  )
+  v4 <- new_variable(
+    dataset = d, index = 4, total = 90, units = "ha",
+    legend = simulate_continuous_legend()
+  )
+  ## create features using dataset
+  f1 <- new_feature(
+    name = "Possum", variable = v2,
+    goal = 0.2, status = FALSE, current = 0.5, id = "F1"
+  )
+  f2 <- new_feature(
+    name = "Forests", variable = v3,
+    goal = 0.3, status = FALSE, current = 0.9, id = "F2"
+  )
+  f3 <- new_feature(
+    name = "Shrubs", variable = v4,
+    goal = 0.6, status = TRUE, current = 0.4, id = "F3"
+  )
+  ## create themes using the features
+  t1 <- new_theme("Species", f1, id = "T1")
+  t2 <- new_theme("Ecoregions", list(f2, f3), id = "T2")
+  ## create parameter
+  p1 <- new_parameter("Spatial clustering", id = "P1")
+  ## create solution setting
+  x <- new_solution_settings(
+    themes = list(t1, t2), weights = list(), includes = list(),
+    parameters = list(p1)
+  )
+  # run tests
+  print(x)
+  expect_is(x$repr(), "character")
+  expect_equal(x$themes, list(t1, t2))
+  expect_equal(x$weights, list())
+  expect_equal(x$includes, list())
+  expect_identical(x$theme_ids, c("T1", "T2"))
+  expect_identical(x$weight_ids, character(0))
+  expect_identical(x$include_ids, character(0))
+  expect_identical(x$parameter_ids, "P1")
+})
+
 test_that("get methods", {
   # create object
   ## create dataset
@@ -206,6 +263,66 @@ test_that("get methods", {
   expect_is(x$get_theme_settings(), "data.frame")
   expect_is(x$get_weight_settings(), "data.frame")
   expect_is(x$get_include_settings(), "data.frame")
+})
+
+test_that("get (no weights or includes)", {
+  # create object
+  ## create dataset
+  rd <- simulate_binary_spatial_data(import_simple_raster_data(), 5)
+  d <- new_dataset_from_auto(rd)
+  ## create variables
+  v1 <- new_variable(
+    dataset = d, index = 1, total = 12, units = "ha",
+    legend = simulate_continuous_legend()
+  )
+  v2 <- new_variable(
+    dataset = d, index = 2, total = 14, units = "ha",
+    legend = simulate_continuous_legend()
+  )
+  v3 <- new_variable(
+    dataset = d, index = 3, total = 78, units = "ha",
+    legend = simulate_continuous_legend()
+  )
+  v4 <- new_variable(
+    dataset = d, index = 4, total = 90, units = "ha",
+    legend = simulate_continuous_legend()
+  )
+  ## create features using dataset
+  f1 <- new_feature(
+    name = "Possum", variable = v2,
+    goal = 0.2, status = FALSE, current = 0.5, id = "F1"
+  )
+  f2 <- new_feature(
+    name = "Forests", variable = v3,
+    goal = 0.3, status = FALSE, current = 0.9, id = "F2"
+  )
+  f3 <- new_feature(
+    name = "Shrubs", variable = v4,
+    goal = 0.6, status = TRUE, current = 0.4, id = "F3"
+  )
+  ## create themes using the features
+  t1 <- new_theme("Species", f1, id = "T1")
+  t2 <- new_theme("Ecoregions", list(f2, f3), id = "T2")
+  ## create parameter
+  p1 <- new_parameter("Spatial clustering", id = "P1")
+  ## create solution setting
+  x <- new_solution_settings(
+    themes = list(t1, t2), weights = list(), includes = list(),
+    parameters = list(p1)
+  )
+  # run tests
+  ## get data
+  expect_is(x$get_theme_data(), "dgCMatrix")
+  expect_is(x$get_weight_data(), "dgCMatrix")
+  expect_equal(nrow(x$get_weight_data()), 0)
+  expect_is(x$get_include_data(), "dgCMatrix")
+  expect_equal(nrow(x$get_include_data()), 0)
+  ## get settings
+  expect_is(x$get_theme_settings(), "data.frame")
+  expect_is(x$get_weight_settings(), "data.frame")
+  expect_equal(nrow(x$get_weight_settings()), 0)
+  expect_is(x$get_include_settings(), "data.frame")
+  expect_equal(nrow(x$get_include_settings()), 0)
 })
 
 test_that("set methods", {

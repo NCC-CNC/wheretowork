@@ -115,6 +115,13 @@
   background: white;
 }
 
+.empty-setting.solution-setting label {
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  font-weight: 400;
+}
+
 .weight-setting.solution-setting,
 .include-setting.solution-setting,
 .parameter-setting.solution-setting {

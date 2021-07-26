@@ -1,0 +1,354 @@
+name: Example GeoTIFF dataset (themes)
+spatial_path: sim_raster2_spatial.tif
+attribute_path: sim_raster2_attribute.csv.gz
+boundary_path: sim_raster2_boundary.csv.gz
+mode: advanced
+themes:
+- name: Olive-headed Lorikeet
+  feature:
+  - name: Olive-headed Lorikeet habitat
+    variable:
+      index: Olive_headed_Lorikeet
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#FFFFB2'
+        - '#FED976'
+        - '#FEB24C'
+        - '#FD8D3C'
+        - '#F03B20'
+        - '#BD0026'
+    status: yes
+    visible: yes
+    goal: 0.83
+    limit_goal: 0.02
+- name: Purple Honeycreeper
+  feature:
+  - name: Purple Honeycreeper habitat
+    variable:
+      index: Purple_Honeycreeper
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#FFF7EC'
+        - '#FEE8C8'
+        - '#FDD49E'
+        - '#FDBB84'
+        - '#FC8D59'
+        - '#EF6548'
+        - '#D7301F'
+        - '#990000'
+    status: yes
+    visible: yes
+    goal: 0.7
+    limit_goal: 0.36
+- name: Least Boobook
+  feature:
+  - name: Least Boobook habitat
+    variable:
+      index: Least_Boobook
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#FC8D59'
+        - '#FFFFBF'
+    status: yes
+    visible: yes
+    goal: 0.7
+    limit_goal: 0.33
+- name: Wagtails and Pipits
+  feature:
+  - name: Eastern Yellow Wagtail (Green-headed)
+    variable:
+      index: Eastern_Yellow_Wagtail_Green_headed_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFF5F0'
+        - '#FEE0D2'
+        - '#FCBBA1'
+        - '#FC9272'
+        - '#FB6A4A'
+        - '#EF3B2C'
+        - '#CB181D'
+        - '#A50F15'
+        - '#67000D'
+    status: yes
+    visible: yes
+    goal: 0.69
+    limit_goal: 0.04
+  - name: Alpine Pipit
+    variable:
+      index: Alpine_Pipit
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFF7EC'
+        - '#FEE8C8'
+        - '#FDD49E'
+        - '#FDBB84'
+        - '#FC8D59'
+        - '#EF6548'
+        - '#D7301F'
+        - '#B30000'
+        - '#7F0000'
+    status: yes
+    visible: yes
+    goal: 0.55
+    limit_goal: 0.05
+  - name: Mountain Wagtail
+    variable:
+      index: Mountain_Wagtail
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#8E0152'
+        - '#C51B7D'
+        - '#DE77AE'
+        - '#F1B6DA'
+        - '#FDE0EF'
+        - '#F7F7F7'
+        - '#E6F5D0'
+        - '#B8E186'
+        - '#7FBC41'
+        - '#4D9221'
+        - '#276419'
+    status: yes
+    visible: yes
+    goal: 0.53
+    limit_goal: 0.28
+  - name: Yellow-breasted Pipit
+    variable:
+      index: Yellow_breasted_Pipit
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFFFD9'
+        - '#EDF8B1'
+        - '#C7E9B4'
+        - '#7FCDBB'
+        - '#41B6C4'
+        - '#1D91C0'
+        - '#225EA8'
+        - '#253494'
+        - '#081D58'
+    status: yes
+    visible: yes
+    goal: 0.52
+    limit_goal: 0.08
+  - name: African Pipit (Yemen)
+    variable:
+      index: African_Pipit_Yemen_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#8E0152'
+        - '#C51B7D'
+        - '#DE77AE'
+        - '#F1B6DA'
+        - '#FDE0EF'
+        - '#F7F7F7'
+        - '#E6F5D0'
+        - '#B8E186'
+        - '#7FBC41'
+        - '#4D9221'
+        - '#276419'
+    status: yes
+    visible: yes
+    goal: 0.72
+    limit_goal: 0.18
+  - name: Long-billed Pipit (Indian)
+    variable:
+      index: Long_billed_Pipit_Indian_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#66C2A5'
+        - '#FC8D62'
+        - '#8DA0CB'
+        - '#E78AC3'
+        - '#A6D854'
+        - '#FFD92F'
+        - '#E5C494'
+        - '#B3B3B3'
+    status: yes
+    visible: yes
+    goal: 0.57
+    limit_goal: 0.35
+  - name: Buffy Pipit
+    variable:
+      index: Buffy_Pipit
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#A6CEE3'
+        - '#1F78B4'
+        - '#B2DF8A'
+        - '#33A02C'
+        - '#FB9A99'
+        - '#E31A1C'
+        - '#FDBF6F'
+        - '#FF7F00'
+        - '#CAB2D6'
+        - '#6A3D9A'
+        - '#FFFF99'
+        - '#B15928'
+    status: yes
+    visible: yes
+    goal: 0.5
+    limit_goal: 0.24
+  - name: Rock Pipit (Western)
+    variable:
+      index: Rock_Pipit_Western_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#E41A1C'
+        - '#377EB8'
+        - '#4DAF4A'
+        - '#984EA3'
+        - '#FF7F00'
+        - '#FFFF33'
+        - '#A65628'
+        - '#F781BF'
+        - '#999999'
+    status: yes
+    visible: yes
+    goal: 0.54
+    limit_goal: 0.03
+  - name: Western Yellow Wagtail (lutea)
+    variable:
+      index: Western_Yellow_Wagtail_lutea_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFF7FB'
+        - '#ECE2F0'
+        - '#D0D1E6'
+        - '#A6BDDB'
+        - '#67A9CF'
+        - '#3690C0'
+        - '#02818A'
+        - '#016C59'
+        - '#014636'
+    status: yes
+    visible: yes
+    goal: 0.81
+    limit_goal: 0.21
+- name: Penduline-Tits
+  feature:
+  - name: Eurasian Penduline-Tit
+    variable:
+      index: Eurasian_Penduline_Tit
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#8E0152'
+        - '#C51B7D'
+        - '#DE77AE'
+        - '#F1B6DA'
+        - '#FDE0EF'
+        - '#F7F7F7'
+        - '#E6F5D0'
+        - '#B8E186'
+        - '#7FBC41'
+        - '#4D9221'
+        - '#276419'
+    status: yes
+    visible: yes
+    goal: 0.56
+    limit_goal: 0.32
+  - name: African Penduline-Tit (Slaty-backed)
+    variable:
+      index: African_Penduline_Tit_Slaty_backed_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFFFCC'
+        - '#FFEDA0'
+        - '#FED976'
+        - '#FEB24C'
+        - '#FD8D3C'
+        - '#FC4E2A'
+        - '#E31A1C'
+        - '#BD0026'
+        - '#800026'
+    status: yes
+    visible: yes
+    goal: 0.56
+    limit_goal: 0.38
+  - name: Yellow Penduline-Tit
+    variable:
+      index: Yellow_Penduline_Tit
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#F7FCFD'
+        - '#E5F5F9'
+        - '#CCECE6'
+        - '#99D8C9'
+        - '#66C2A4'
+        - '#41AE76'
+        - '#238B45'
+        - '#006D2C'
+        - '#00441B'
+    status: yes
+    visible: yes
+    goal: 0.6
+    limit_goal: 0.31
+  - name: Verdin
+    variable:
+      index: Verdin
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#F7FBFF'
+        - '#DEEBF7'
+        - '#C6DBEF'
+        - '#9ECAE1'
+        - '#6BAED6'
+        - '#4292C6'
+        - '#2171B5'
+        - '#08519C'
+        - '#08306B'
+    status: yes
+    visible: yes
+    goal: 0.56
+    limit_goal: 0.32
+  - name: Mouse-colored Penduline-Tit
+    variable:
+      index: Mouse_colored_Penduline_Tit
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#7FC97F'
+        - '#BEAED4'
+        - '#FDC086'
+        - '#FFFF99'
+        - '#386CB0'
+        - '#F0027F'
+        - '#BF5B17'
+        - '#666666'
+    status: yes
+    visible: yes
+    goal: 0.51
+    limit_goal: 0.32
+weights: []
+includes: []

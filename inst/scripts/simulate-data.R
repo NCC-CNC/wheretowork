@@ -36,11 +36,32 @@ sim_vector_data <-
     )
   )
 
+# Create projects with only themes
+sim_raster_data2 <- sim_raster_data[seq_len(n_single_themes + n_multi_themes)]
+sim_vector_data2 <- sim_vector_data[seq_len(n_single_themes + n_multi_themes)]
+
 # Remove "layer" from attribute data
 raster_data$attribute_data <- raster_data$attribute_data[, -1, drop = FALSE]
 
 # Exports
-## raster project
+## create folders if needed
+dir.create(
+  "inst/extdata/projects/sim_raster", recursive = TRUE, showWarnings = FALSE
+)
+dir.create(
+  "inst/extdata/projects/sim_vector", recursive = TRUE, showWarnings = FALSE
+)
+dir.create(
+  "inst/extdata/projects/sim_raster2", recursive = TRUE, showWarnings = FALSE
+)
+dir.create(
+  "inst/extdata/projects/sim_vector2", recursive = TRUE, showWarnings = FALSE
+)
+dir.create(
+  "inst/extdata/shapefile", recursive = TRUE, showWarnings = FALSE
+)
+
+## raster project (with themes + includes + weights)
 write_project(
   x = sim_raster_data,
   dataset = raster_data,
@@ -55,7 +76,7 @@ write_project(
     "inst/extdata/projects/sim_raster/sim_raster_boundary.csv.gz",
   mode = "advanced")
 
-## vector project
+## vector project (with themes + includes + weights)
 write_project(
   x = sim_vector_data,
   dataset = vector_data,
@@ -68,6 +89,36 @@ write_project(
     "inst/extdata/projects/sim_vector/sim_vector_attribute.csv.gz",
   boundary_path =
     "inst/extdata/projects/sim_vector/sim_vector_boundary.csv.gz",
+  mode = "beginner")
+
+## raster project (with only themes)
+write_project(
+  x = sim_raster_data2,
+  dataset = raster_data,
+  name = "Example GeoTIFF dataset (themes)",
+  path =
+    "inst/extdata/projects/sim_raster2/sim_raster2_data.yaml",
+  spatial_path =
+    "inst/extdata/projects/sim_raster2/sim_raster2_spatial.tif",
+  attribute_path =
+    "inst/extdata/projects/sim_raster2/sim_raster2_attribute.csv.gz",
+  boundary_path =
+    "inst/extdata/projects/sim_raster2/sim_raster2_boundary.csv.gz",
+  mode = "advanced")
+
+## vector project (with only themes)
+write_project(
+  x = sim_vector_data2,
+  dataset = vector_data,
+  name = "Example Shapefile dataset (themes)",
+  path =
+    "inst/extdata/projects/sim_vector2/sim_vector2_data.yaml",
+  spatial_path =
+    "inst/extdata/projects/sim_vector2/sim_vector2_spatial.shp",
+  attribute_path =
+    "inst/extdata/projects/sim_vector2/sim_vector2_attribute.csv.gz",
+  boundary_path =
+    "inst/extdata/projects/sim_vector2/sim_vector2_boundary.csv.gz",
   mode = "beginner")
 
 ## shapefile

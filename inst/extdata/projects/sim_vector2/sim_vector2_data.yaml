@@ -1,0 +1,319 @@
+name: Example Shapefile dataset (themes)
+spatial_path: sim_vector2_spatial.shp
+attribute_path: sim_vector2_attribute.csv.gz
+boundary_path: sim_vector2_boundary.csv.gz
+mode: beginner
+themes:
+- name: Jerdon's Nightjar
+  feature:
+  - name: Jerdon's Nightjar habitat
+    variable:
+      index: Jerdon_s_Nightjar
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#E66101'
+        - '#FDB863'
+        - '#B2ABD2'
+        - '#5E3C99'
+    status: yes
+    visible: yes
+    goal: 0.63
+    limit_goal: 0.09
+- name: Plain Leaf Warbler
+  feature:
+  - name: Plain Leaf Warbler habitat
+    variable:
+      index: Plain_Leaf_Warbler
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#F7FCFD'
+        - '#E5F5F9'
+        - '#CCECE6'
+        - '#99D8C9'
+        - '#66C2A4'
+        - '#41AE76'
+        - '#238B45'
+        - '#006D2C'
+        - '#00441B'
+    status: yes
+    visible: yes
+    goal: 0.88
+    limit_goal: 0.09
+- name: Nicobar Scrubfowl
+  feature:
+  - name: Nicobar Scrubfowl habitat
+    variable:
+      index: Nicobar_Scrubfowl
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#F7FCF5'
+        - '#E5F5E0'
+        - '#C7E9C0'
+        - '#A1D99B'
+        - '#74C476'
+        - '#41AB5D'
+        - '#238B45'
+        - '#006D2C'
+        - '#00441B'
+    status: yes
+    visible: yes
+    goal: 0.75
+    limit_goal: 0.38
+- name: Kiwis
+  feature:
+  - name: Southern Brown Kiwi
+    variable:
+      index: Southern_Brown_Kiwi
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#67001F'
+        - '#B2182B'
+        - '#D6604D'
+        - '#F4A582'
+        - '#FDDBC7'
+        - '#F7F7F7'
+        - '#D1E5F0'
+        - '#92C5DE'
+        - '#4393C3'
+        - '#2166AC'
+        - '#053061'
+    status: yes
+    visible: yes
+    goal: 0.56
+    limit_goal: 0.19
+  - name: Southern Brown Kiwi (Stewart I.)
+    variable:
+      index: Southern_Brown_Kiwi_Stewart_I_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#543005'
+        - '#8C510A'
+        - '#BF812D'
+        - '#DFC27D'
+        - '#F6E8C3'
+        - '#F5F5F5'
+        - '#C7EAE5'
+        - '#80CDC1'
+        - '#35978F'
+        - '#01665E'
+        - '#003C30'
+    status: yes
+    visible: yes
+    goal: 0.68
+    limit_goal: 0.15
+  - name: Okarito Brown Kiwi
+    variable:
+      index: Okarito_Brown_Kiwi
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFFFD9'
+        - '#EDF8B1'
+        - '#C7E9B4'
+        - '#7FCDBB'
+        - '#41B6C4'
+        - '#1D91C0'
+        - '#225EA8'
+        - '#253494'
+        - '#081D58'
+    status: yes
+    visible: yes
+    goal: 0.68
+    limit_goal: 0.06
+  - name: Little Spotted Kiwi
+    variable:
+      index: Little_Spotted_Kiwi
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#66C2A5'
+        - '#FC8D62'
+        - '#8DA0CB'
+        - '#E78AC3'
+        - '#A6D854'
+        - '#FFD92F'
+        - '#E5C494'
+        - '#B3B3B3'
+    status: yes
+    visible: yes
+    goal: 0.54
+    limit_goal: 0.19
+  - name: North Island Brown Kiwi
+    variable:
+      index: North_Island_Brown_Kiwi
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFF7FB'
+        - '#ECE7F2'
+        - '#D0D1E6'
+        - '#A6BDDB'
+        - '#74A9CF'
+        - '#3690C0'
+        - '#0570B0'
+        - '#045A8D'
+        - '#023858'
+    status: yes
+    visible: yes
+    goal: 0.59
+    limit_goal: 0.34
+  - name: Southern Brown Kiwi (South I.)
+    variable:
+      index: Southern_Brown_Kiwi_South_I_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#40004B'
+        - '#762A83'
+        - '#9970AB'
+        - '#C2A5CF'
+        - '#E7D4E8'
+        - '#F7F7F7'
+        - '#D9F0D3'
+        - '#A6DBA0'
+        - '#5AAE61'
+        - '#1B7837'
+        - '#00441B'
+    status: yes
+    visible: yes
+    goal: 0.71
+    limit_goal: 0.08
+- name: Southern Storm-Petrels
+  feature:
+  - name: Elliot's Storm-Petrel
+    variable:
+      index: Elliot_s_Storm_Petrel
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#40004B'
+        - '#762A83'
+        - '#9970AB'
+        - '#C2A5CF'
+        - '#E7D4E8'
+        - '#F7F7F7'
+        - '#D9F0D3'
+        - '#A6DBA0'
+        - '#5AAE61'
+        - '#1B7837'
+        - '#00441B'
+    status: yes
+    visible: yes
+    goal: 0.79
+    limit_goal: 0.16
+  - name: Gray-backed Storm-Petrel
+    variable:
+      index: Gray_backed_Storm_Petrel
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#F7F4F9'
+        - '#E7E1EF'
+        - '#D4B9DA'
+        - '#C994C7'
+        - '#DF65B0'
+        - '#E7298A'
+        - '#CE1256'
+        - '#980043'
+        - '#67001F'
+    status: yes
+    visible: yes
+    goal: 0.72
+    limit_goal: 0.01
+  - name: Wilson's Storm-Petrel (Fuegian)
+    variable:
+      index: Wilson_s_Storm_Petrel_Fuegian_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFF5F0'
+        - '#FEE0D2'
+        - '#FCBBA1'
+        - '#FC9272'
+        - '#FB6A4A'
+        - '#EF3B2C'
+        - '#CB181D'
+        - '#A50F15'
+        - '#67000D'
+    status: yes
+    visible: yes
+    goal: 0.83
+    limit_goal: 0.07
+  - name: Wilson's Storm-Petrel
+    variable:
+      index: Wilson_s_Storm_Petrel
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFF7F3'
+        - '#FDE0DD'
+        - '#FCC5C0'
+        - '#FA9FB5'
+        - '#F768A1'
+        - '#DD3497'
+        - '#AE017E'
+        - '#7A0177'
+        - '#49006A'
+    status: yes
+    visible: yes
+    goal: 0.7
+    limit_goal: 0.07
+  - name: New Zealand Storm-Petrel
+    variable:
+      index: New_Zealand_Storm_Petrel
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#F7FCFD'
+        - '#E0ECF4'
+        - '#BFD3E6'
+        - '#9EBCDA'
+        - '#8C96C6'
+        - '#8C6BB1'
+        - '#88419D'
+        - '#810F7C'
+        - '#4D004B'
+    status: yes
+    visible: yes
+    goal: 0.82
+    limit_goal: 0.29
+  - name: Polynesian Storm-Petrel
+    variable:
+      index: Polynesian_Storm_Petrel
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#7FC97F'
+        - '#BEAED4'
+        - '#FDC086'
+        - '#FFFF99'
+        - '#386CB0'
+        - '#F0027F'
+        - '#BF5B17'
+        - '#666666'
+    status: yes
+    visible: yes
+    goal: 0.73
+    limit_goal: 0.15
+weights: []
+includes: []

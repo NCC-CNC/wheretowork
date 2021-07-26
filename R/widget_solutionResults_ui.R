@@ -187,6 +187,21 @@ solutionResults_html <- function(id, style, class, ...) {
       )
     )
 
+  # add HTML template scaffolds for static content
+  x <-
+    htmltools::tagAppendChild(
+      x,
+      htmltools::tags$template(
+        class = "no-weights-template",
+        htmltools::tags$div(
+          class = paste("empty-result"),
+          htmltools::tags$label(
+            "No weights specified."
+          )
+        )
+      )
+    )
+
   # return result
   x
 }

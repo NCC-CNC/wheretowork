@@ -9,17 +9,17 @@ SolutionSettings <- R6::R6Class(
   public = list(
 
     #' @field theme_ids `character` vector of identifiers for the themes.
-    theme_ids = NULL,
+    theme_ids = character(0),
 
     #' @field weight_ids `character` vector of identifiers for the weights.
-    weight_ids = NULL,
+    weight_ids = character(0),
 
     #' @field include_ids `character` vector of identifiers for the includes.
-    include_ids = NULL,
+    include_ids = character(0),
 
     #' @field parameter_ids `character` vector of identifiers for the
     #'  parameters.
-    parameter_ids = NULL,
+    parameter_ids = character(0),
 
     #' @field themes `list` of [Theme] objects.
     themes = NULL,
@@ -346,9 +346,19 @@ SolutionSettings <- R6::R6Class(
     #' Get weight matrix data.
     #' @return [Matrix::sparseMatrix()] with data.
     get_weight_data = function() {
-      v <- lapply(self$weights, `[[`, "variable")
-      out <- extract_data_matrix(v)
-      rownames(out) <- vapply(self$weights, `[[`, character(1), "id")
+      if (length(self$weights) > 0) {
+        # if weights are present, then create matrix using them
+        v <- lapply(self$weights, `[[`, "variable")
+        out <- extract_data_matrix(v)
+        rownames(out) <- vapply(self$weights, `[[`, character(1), "id")
+      } else {
+        # if no weights are present, then create empty matrix
+        n_pu <- length(
+          self$themes[[1]]$feature[[1]]$variable$dataset$
+            get_planning_unit_indices()
+        )
+        out <- methods::as(matrix(nrow = 0, ncol = n_pu), "dgCMatrix")
+      }
       out
     },
 
@@ -356,9 +366,19 @@ SolutionSettings <- R6::R6Class(
     #' Get includes matrix data.
     #' @return [Matrix::sparseMatrix()] with data.
     get_include_data = function() {
-      v <- lapply(self$includes, `[[`, "variable")
-      out <- extract_data_matrix(v)
-      rownames(out) <- vapply(self$includes, `[[`, character(1), "id")
+      if (length(self$includes) > 0) {
+        # if includes are present, then create matrix using them
+        v <- lapply(self$includes, `[[`, "variable")
+        out <- extract_data_matrix(v)
+        rownames(out) <- vapply(self$includes, `[[`, character(1), "id")
+      } else {
+        # if no includes are present, then create empty matrix
+        n_pu <- length(
+          self$themes[[1]]$feature[[1]]$variable$dataset$
+            get_planning_unit_indices()
+        )
+        out <- methods::as(matrix(nrow = 0, ncol = n_pu), "dgCMatrix")
+      }
       out
     },
 
@@ -384,39 +404,53 @@ SolutionSettings <- R6::R6Class(
         nrow(include_data) == length(self$includes),
         nrow(weight_data) == length(self$weights)
       )
-
       # calculate current status for each planning unit
       curr_status <- include_data
-      for (i in seq_len(nrow(curr_status))) {
-        curr_status[i, ] <- curr_status[i, ] * self$includes[[i]]$status
+      if (nrow(include_data) > 0) {
+        ## if includes are present, then use their data
+        for (i in seq_len(nrow(curr_status))) {
+          curr_status[i, ] <- curr_status[i, ] * self$includes[[i]]$status
+        }
+        curr_status <-as.numeric(colSums(curr_status > 0.5) > 0.5)
+      } else {
+        ## if no includes are present, then set place holder of zeros
+        curr_status <- rep(0, ncol(theme_data))
       }
-      curr_status <- matrix(
-        as.numeric(colSums(curr_status > 0.5) > 0.5),
-        ncol = ncol(theme_data), nrow = nrow(theme_data)
-      )
 
-      # calculate current amount held for each feature as a proportion
-      curr_feature_held <- rowSums(curr_status * (theme_data))
+      # themes
+      ## calculate current amount held for each feature as a proportion
+      curr_theme_status <- matrix(
+        curr_status, byrow = TRUE,
+        ncol = ncol(theme_data), nrow  = nrow(theme_data)
+      )
+      curr_feature_held <- rowSums(curr_theme_status * (theme_data))
       curr_feature_held <- curr_feature_held / rowSums(theme_data)
       names(curr_feature_held) <- rownames(theme_data)
 
-      # calculate current amount held for each weight as a proportion
-      curr_weight_held <- rowSums(curr_status * (theme_data))
-      curr_weight_held <- curr_weight_held / rowSums(theme_data)
-      names(curr_weight_held) <- rownames(weight_data)
-
-      # update the current amount for each theme
+      ## update the current amount for each theme
       for (i in seq_along(self$themes)) {
         self$themes[[i]]$set_feature_current(
           unname(curr_feature_held[self$themes[[i]]$get_feature_id()])
         )
       }
 
-      # update the current amount for each weight
-      for (i in seq_along(self$weights)) {
-        self$weights[[i]]$set_current(
-          unname(curr_weight_held[self$weights[[i]]$id])
+      # weights
+      if (nrow(weight_data) > 0) {
+        ## calculate current amount held for each weight as a proportion
+        curr_weight_status <- matrix(
+          curr_status, byrow = TRUE,
+          ncol = ncol(weight_data), nrow  = nrow(weight_data)
         )
+        curr_weight_held <- rowSums(curr_status * (weight_data))
+        curr_weight_held <- curr_weight_held / rowSums(weight_data)
+        names(curr_weight_held) <- rownames(weight_data)
+
+        ## update the current amount for each weight
+        for (i in seq_along(self$weights)) {
+          self$weights[[i]]$set_current(
+            unname(curr_weight_held[self$weights[[i]]$id])
+          )
+        }
       }
 
       # return self

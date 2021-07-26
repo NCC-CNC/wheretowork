@@ -163,13 +163,14 @@ min_set_result <- function(area_data,
     ncol(include_data) == length(area_data),
     ## theme_settings
     inherits(theme_settings, "data.frame"),
+    nrow(theme_settings) == nrow(theme_data),
     identical(theme_settings$id, rownames(theme_data)),
     ## weight_settings
     inherits(weight_settings, "data.frame"),
-    identical(weight_settings$id, rownames(weight_data)),
+    nrow(weight_settings) == nrow(weight_data),
     ## include_settings
     inherits(include_settings, "data.frame"),
-    identical(include_settings$id, rownames(include_data)),
+    nrow(include_settings) == nrow(include_data),
     ## parameters
     is.list(parameters),
     all_list_elements_inherit(parameters, "Parameter"),
@@ -182,48 +183,69 @@ min_set_result <- function(area_data,
     ## cache
     inherits(cache, "cachem")
   )
+  if (nrow(weight_settings) > 0) {
+    assertthat::assert_that(
+      identical(weight_settings$id, rownames(weight_data))
+    )
+  }
+  if (nrow(include_settings) > 0) {
+    assertthat::assert_that(
+      identical(include_settings$id, rownames(include_data))
+    )
+  }
 
   # calculate targets
   ## extract values
-  targets <-
-    tibble::tibble(
-      feature = theme_settings$id,
-      type = "absolute",
-      sense = ">=",
-      target = dplyr::if_else(
-        theme_settings$status,
-        theme_settings$total * theme_settings$goal,
-        theme_settings$total * theme_settings$limit
-      )
+  targets <- tibble::tibble(
+    feature = theme_settings$id,
+    type = "absolute",
+    sense = ">=",
+    target = dplyr::if_else(
+      theme_settings$status,
+      theme_settings$total * theme_settings$goal,
+      theme_settings$total * theme_settings$limit
     )
+  )
   ## round values down to account for floating point issues
   targets$target <- floor(targets$target * 1e+3) / 1e+3
 
   # calculate locked in values
-  locked_in <- matrix(
-    include_settings$status,
-    byrow = TRUE,
-    nrow = nrow(include_data), ncol = ncol(include_data)
-  )
-  locked_in <- as.logical(colSums(locked_in * include_data) > 0)
+  if (nrow(include_data) > 0) {
+    ## if includes present, then use data and settings
+    locked_in <- matrix(
+      include_settings$status,
+      byrow = TRUE,
+      nrow = nrow(include_data), ncol = ncol(include_data)
+    )
+    locked_in <- as.logical(colSums(locked_in * include_data) > 0)
+  } else {
+    ## if no includes present, then lock nothing in
+    locked_in <- rep(FALSE, ncol(include_data))
+  }
 
   # calculate cost values
-  ## normalize cost values
-  wn <- weight_data
-  for (i in seq_along(nrow(wn))) {
-    wn[i, ] <- zscale(wn[i, ])
-    wn[i, ] <- scales::rescale(wn[i, ], to = c(0.01, 1))
+  if (nrow(weight_data) > 0) {
+    ## if weights present, then use data and settings
+    ### normalize cost values
+    wn <- weight_data
+    for (i in seq_along(nrow(wn))) {
+      wn[i, ] <- zscale(wn[i, ])
+      wn[i, ] <- scales::rescale(wn[i, ], to = c(0.01, 1))
+    }
+    ### apply factors and status settings
+    cost <- matrix(
+      weight_settings$factor * weight_settings$status,
+      byrow = TRUE,
+      nrow = nrow(wn), ncol = ncol(wn)
+    )
+    ### calculate total cost by summing together all weight values
+    cost <- colSums(cost * wn)
+    ### re-scale cost values to avoid numerical issues
+    cost <- scales::rescale(cost, to = c(0.01, 1000))
+  } else {
+    ## if no weights present, then set cost values as constant
+    cost <- rep(1, ncol(weight_data))
   }
-  ## apply factors and status settings
-  cost <- matrix(
-    weight_settings$factor * weight_settings$status,
-    byrow = TRUE,
-    nrow = nrow(wn), ncol = ncol(wn)
-  )
-  ## calculate total cost by summing together all weight values
-  cost <- colSums(cost * wn)
-  ## re-scale cost values to avoid numerical issues
-  cost <- scales::rescale(cost, to = c(0.01, 1000))
 
   # calculate feature data
   features <-

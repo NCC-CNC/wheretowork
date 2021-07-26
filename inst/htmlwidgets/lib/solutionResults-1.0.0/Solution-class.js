@@ -39,10 +39,21 @@ class Solution {
     // weight results
     this.weights_el = document.createElement("div");
     this.weights_el.classList.add("weights-results");
-    weight_results.forEach((x) => {
+    if (weight_results.length > 0) {
+      weight_results.forEach((x) => {
+        this.weights_el.appendChild(
+          newWeightResults(manager, x, solution_color).render());
+      });
+    } else {
       this.weights_el.appendChild(
-        newWeightResults(manager, x, solution_color).render());
-    });
+        document.importNode(
+          document
+          .getElementById(manager)
+          .querySelector(".no-weights-template")
+          .content,
+        true)
+      );
+    }
   }
 
   /* render method */
