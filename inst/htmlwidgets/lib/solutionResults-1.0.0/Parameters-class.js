@@ -41,7 +41,6 @@ class Parameters {
         l.innerText += "Not specified"
       } else {
         /// add number
-        console.log("here");
         v = values[index] * statuses[index];
         l.innerText += `${roundToDigits(v, 2).toLocaleString("en-US")}`;
         /// add units
