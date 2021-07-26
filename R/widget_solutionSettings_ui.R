@@ -146,8 +146,8 @@ solutionSettings_html <- function(id, style, class, ...) {
                   "Themes describe facets of biodiversity that are important",
                   "for conservation (e.g. species, habitats, ecosystems).",
                   "To help safeguard them,",
-                  "you can set goals for themes so that they are adequately",
-                  "covered by solutions."
+                  "you can set goals for themes to increase their coverage",
+                  "within solutions."
                 ),
                 options = list(container = "body")
               )
@@ -170,8 +170,8 @@ solutionSettings_html <- function(id, style, class, ...) {
                   "impede conservation efforts ",
                   "(e.g. human population density).",
                   "To help avoid places with such properties,",
-                  "you can set factors for weights so that solutions will",
-                  "not select them."
+                  "you can set factors for weights to reduce their coverage",
+                  "within solutions."
                 ),
                 options = list(container = "body")
               )
@@ -193,9 +193,9 @@ solutionSettings_html <- function(id, style, class, ...) {
                   "Includes describe places that are currently managed for",
                   "conservation",
                   "(e.g. protected areas, national parks).",
-                  "To incorporate existing existing conservation efforts,",
+                  "To build on existing conservation efforts,",
                   "you can toggle includes on so that they",
-                  "are selected in solutions."
+                  "are selected within solutions."
                 ),
                 options = list(container = "body")
               )
