@@ -61,8 +61,7 @@ class WeightSolutionChart {
       .append("div")
       .text(() =>
         `Current: ${Math.round(d.current_held * 100)}% ` +
-        `${Math.round(d.current_held * d.total_amount)} ` +
-        `${d.units || "units"}`)
+        `(${Math.round(d.current_held * d.total_amount)} ${d.units})`)
       .style("font-weight", type === "current_held" ? "bold" : "normal")
       .style("color", this.colors.current_held);
     // solution held
