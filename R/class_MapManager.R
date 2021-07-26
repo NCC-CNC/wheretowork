@@ -242,7 +242,7 @@ MapManager <- R6::R6Class(
       # update map
       self$layers[[length(self$layers)]]$render_on_map(
         map,
-        zindex = last(self$order) * 100
+        zindex = 100 + (last(self$order) * 100)
       )
       # return invisible self
       invisible(self)
@@ -298,7 +298,7 @@ MapManager <- R6::R6Class(
     #' @param map [leaflet::leafletProxy] object.
     initialize_map = function(map) {
       # compute zIndex values for layers
-      zv <- self$order * 100
+      zv <- 100 + (self$order * 100)
       # add layers
       for (i in seq_along(self$layers)) {
         map <- self$layers[[i]]$render_on_map(map, zindex = zv[i])
@@ -312,7 +312,7 @@ MapManager <- R6::R6Class(
     #' @param map [leaflet::leafletProxy()] object.
     update_map = function(map) {
       # compute zIndex values
-      zv <- self$order * 100
+      zv <- 100 + (self$order * 100)
       # update layers
       for (i in seq_along(self$layers)) {
         self$layers[[i]]$update_on_map(map, zindex = zv[i])
