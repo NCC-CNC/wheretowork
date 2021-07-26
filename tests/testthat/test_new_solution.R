@@ -26,6 +26,13 @@ test_that("initialization", {
       values = c(0, 1), colors = c("#FFFFFF", "#000000")
     )
   )
+  v4 <- new_variable(
+    d,
+    index = 3, total = 90, units = "ha",
+    legend = new_categorical_legend(
+      values = c(0, 1), colors = c("#FFFFFF", "#000000")
+    )
+  )
   w <- new_weight(
     name = "Human Footprint Index",
     variable = v1,
@@ -64,6 +71,18 @@ test_that("initialization", {
     feature_results = fr,
     id = "RID2"
   )
+  i <- new_include(
+    name = "Protected areas",
+    variable = v4,
+    visible = FALSE,
+    status = FALSE,
+    id = "FID1"
+  )
+  ir <- new_include_results(
+    include = i,
+    held = 0.78,
+    id = "IID1"
+  )
   s1 <- new_statistic("Area", 12, "ha")
   s2 <- new_statistic("Perimeter", 10, "km")
   p <- new_parameter("budget", value = 12)
@@ -75,6 +94,7 @@ test_that("initialization", {
     statistics = list(s1, s2),
     theme_results = list(thr),
     weight_results = list(wr),
+    include_results = list(ir),
     id = "solution1"
   )
   # run tests
@@ -87,14 +107,17 @@ test_that("initialization", {
   expect_identical(x$statistics, list(s1, s2))
   expect_identical(x$theme_results, list(thr))
   expect_identical(x$weight_results, list(wr))
+  expect_identical(x$include_results, list(ir))
   expect_identical(x$id, "solution1")
   expect_is(x$get_theme_results_data(), "data.frame")
   expect_is(x$get_weight_results_data(), "data.frame")
+  expect_is(x$get_include_results_data(), "data.frame")
   expect_is(x$render_theme_results(), "datatables")
   expect_is(x$render_weight_results(), "datatables")
+  expect_is(x$render_include_results(), "datatables")
 })
 
-test_that("initialization (no weights)", {
+test_that("initialization (no weights or includes)", {
   # create object
   rd <- simulate_binary_spatial_data(import_simple_raster_data(), 3)
   names(rd) <- c("a", "b", "solution_1")
@@ -156,6 +179,7 @@ test_that("initialization (no weights)", {
     statistics = list(s1, s2),
     theme_results = list(thr),
     weight_results = list(),
+    include_results = list(),
     id = "solution1"
   )
   # run tests
@@ -168,11 +192,14 @@ test_that("initialization (no weights)", {
   expect_identical(x$statistics, list(s1, s2))
   expect_identical(x$theme_results, list(thr))
   expect_identical(x$weight_results, list())
+  expect_identical(x$include_results, list())
   expect_identical(x$id, "solution1")
   expect_is(x$get_theme_results_data(), "data.frame")
   expect_is(x$get_weight_results_data(), "data.frame")
+  expect_is(x$get_include_results_data(), "data.frame")
   expect_is(x$render_theme_results(), "datatables")
   expect_is(x$render_weight_results(), "datatables")
+  expect_is(x$render_include_results(), "datatables")
 })
 
 test_that("initialization (from Result object)", {
@@ -274,41 +301,21 @@ test_that("get methods", {
   d <- new_dataset_from_auto(rd)
   v1 <- new_variable(
     d,
-    index = 1, total = 45, units = "ha",
-    legend = new_continuous_legend(
-      min_value = 0, max_value = 100, colors = c("#FFFFFF", "#112233")
-    )
-  )
-  v2 <- new_variable(
-    d,
     index = 2, total = 89, units = "ha",
     legend = new_continuous_legend(
       min_value = 0, max_value = 20, colors = c("#FFFFFF", "#445566")
     )
   )
-  v3 <- new_variable(
+  v2 <- new_variable(
     d,
     index = "solution_1", total = 12, units = "ha",
     legend = new_categorical_legend(
       values = c(0, 1), colors = c("#FFFFFF", "#000000")
     )
   )
-  w <- new_weight(
-    name = "Human Footprint Index",
-    variable = v1,
-    visible = FALSE,
-    status = FALSE,
-    factor = 0.2,
-    id = "FID1"
-  )
-  wr <- new_weight_results(
-    weight = w,
-    held = 0.9,
-    id = "RID1"
-  )
   f <- new_feature(
     name = "F1",
-    variable = v2,
+    variable = v1,
     visible = FALSE,
     status = FALSE,
     goal = 0.2,
@@ -336,12 +343,13 @@ test_that("get methods", {
   s2 <- new_statistic("Perimeter", 10, "km")
   x <- new_solution(
     name = "solution001",
-    variable = v3,
+    variable = v2,
     visible = FALSE,
     parameters = list(p),
     statistics = list(s1, s2),
     theme_results = list(thr),
-    weight_results = list(wr),
+    weight_results = list(),
+    include_results = list(),
     id = "solution1"
   )
   # run tests
@@ -356,41 +364,21 @@ test_that("set methods", {
   d <- new_dataset_from_auto(rd)
   v1 <- new_variable(
     d,
-    index = 1, total = 45, units = "ha",
-    legend = new_continuous_legend(
-      min_value = 0, max_value = 100, colors = c("#FFFFFF", "#112233")
-    )
-  )
-  v2 <- new_variable(
-    d,
     index = 2, total = 89, units = "ha",
     legend = new_continuous_legend(
       min_value = 0, max_value = 20, colors = c("#FFFFFF", "#445566")
     )
   )
-  v3 <- new_variable(
+  v2 <- new_variable(
     d,
     index = "solution_1", total = 12, units = "ha",
     legend = new_categorical_legend(
       values = c(0, 1), colors = c("#FFFFFF", "#000000")
     )
   )
-  w <- new_weight(
-    name = "Human Footprint Index",
-    variable = v1,
-    visible = FALSE,
-    status = FALSE,
-    factor = 0.2,
-    id = "FID1"
-  )
-  wr <- new_weight_results(
-    weight = w,
-    held = 0.9,
-    id = "RID1"
-  )
   f <- new_feature(
     name = "F1",
-    variable = v2,
+    variable = v1,
     visible = FALSE,
     status = FALSE,
     goal = 0.2,
@@ -418,12 +406,13 @@ test_that("set methods", {
   p <- new_parameter("budget", value = 12)
   x <- new_solution(
     name = "solution001",
-    variable = v3,
+    variable = v2,
     visible = FALSE,
     parameters = list(p),
     statistics = list(s1, s2),
     theme_results = list(thr),
-    weight_results = list(wr),
+    weight_results = list(),
+    include_results = list(),
     id = "solution1"
   )
   # run tests
@@ -458,6 +447,14 @@ test_that("widget methods", {
       values = c(0, 1), colors = c("#FFFFFF", "#000000")
     )
   )
+  v4 <- new_variable(
+    d,
+    index = 3, total = 90, units = "ha",
+    legend = new_categorical_legend(
+      values = c(0, 1), colors = c("#FFFFFF", "#000000")
+    )
+  )
+
   w <- new_weight(
     name = "Human Footprint Index",
     variable = v1,
@@ -496,6 +493,18 @@ test_that("widget methods", {
     feature_results = fr,
     id = "RID2"
   )
+  i <- new_include(
+    name = "Protected areas",
+    variable = v4,
+    visible = FALSE,
+    status = FALSE,
+    id = "FID1"
+  )
+  ir <- new_include_results(
+    include = i,
+    held = 0.78,
+    id = "IID1"
+  )
   p <- new_parameter("budget", value = 12)
   s1 <- new_statistic("Area", 12, "ha")
   s2 <- new_statistic("Perimeter", 10, "km")
@@ -507,6 +516,7 @@ test_that("widget methods", {
     statistics = list(s1, s2),
     theme_results = list(thr),
     weight_results = list(wr),
+    include_results = list(ir),
     id = "solution1"
   )
   # run tests
@@ -520,6 +530,7 @@ test_that("widget methods", {
       statistics = list(s1$get_widget_data(), s2$get_widget_data()),
       theme_results = list(thr$get_widget_data()),
       weight_results = list(wr$get_widget_data()),
+      include_results = list(ir$get_widget_data()),
       solution_color = scales::alpha(last(x$variable$legend$colors), 1)
     )
   )

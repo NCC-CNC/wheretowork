@@ -4,10 +4,10 @@ on:
       - main
       - master
 
-name: Deploy shinyapps.io
+name: Deploy to shinyapps.io
 
 jobs:
-  deploy:
+  Deploy-shinyapps:
     runs-on: Ubuntu-20.04
     steps:
       - name: Checkout

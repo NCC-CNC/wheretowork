@@ -8,6 +8,7 @@ class Solution {
     statistics,
     theme_results,
     weight_results,
+    include_results,
     solution_color
   ) {
     // set fields
@@ -54,6 +55,25 @@ class Solution {
         true)
       );
     }
+
+    // include results
+    this.includes_el = document.createElement("div");
+    this.includes_el.classList.add("includes-results");
+    if (include_results.length > 0) {
+      include_results.forEach((x) => {
+        this.includes_el.appendChild(
+          newIncludeResults(manager, x, solution_color).render());
+      });
+    } else {
+      this.includes_el.appendChild(
+        document.importNode(
+          document
+          .getElementById(manager)
+          .querySelector(".no-includes-template")
+          .content,
+        true)
+      );
+    }
   }
 
   /* render method */
@@ -71,6 +91,10 @@ class Solution {
 
   render_weights(el) {
     el.appendChild(this.weights_el);
+  }
+
+  render_includes(el) {
+    el.appendChild(this.includes_el);
   }
 
 }

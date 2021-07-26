@@ -7,6 +7,7 @@ function newSolution(manager, x) {
     x.statistics,
     x.theme_results,
     x.weight_results,
+    x.include_results,
     x.solution_color
   );
 }
@@ -45,6 +46,19 @@ function newWeightResults(manager, x, solution_color) {
     x.factor,
     x.total_amount,
     x.current_held,
+    x.solution_held,
+    x.units || "units",
+    solution_color
+  );
+}
+
+function newIncludeResults(manager, x, solution_color) {
+  return new IncludeResults(
+    manager,
+    x.id,
+    x.name,
+    x.status,
+    x.total_amount,
     x.solution_held,
     x.units || "units",
     solution_color

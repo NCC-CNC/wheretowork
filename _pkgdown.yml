@@ -108,6 +108,7 @@ reference:
       - MapManager
       - FeatureResults
       - WeightResults
+      - IncludeResults
       - ThemeResults
 
   - title: Result functions

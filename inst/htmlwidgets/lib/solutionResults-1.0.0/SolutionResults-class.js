@@ -17,6 +17,8 @@ class SolutionResults {
       this.el.querySelector(".themes");
     this.weights_el =
       this.el.querySelector(".weights");
+    this.includes_el =
+      this.el.querySelector(".includes");
   }
 
   /* update methods */
@@ -46,11 +48,13 @@ class SolutionResults {
       removeAllChildNodes(this.statistics_el);
       removeAllChildNodes(this.themes_el);
       removeAllChildNodes(this.weights_el);
+      removeAllChildNodes(this.includes_el);
       // add new solution to solution results container
       this.solutions[idx].render_parameters(this.parameters_el)
       this.solutions[idx].render_statistics(this.statistics_el)
       this.solutions[idx].render_themes(this.themes_el);
       this.solutions[idx].render_weights(this.weights_el);
+      this.solutions[idx].render_includes(this.includes_el);
     }
   }
 

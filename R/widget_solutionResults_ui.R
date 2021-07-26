@@ -180,6 +180,17 @@ solutionResults_html <- function(id, style, class, ...) {
                   class = "panel-content-inner",
                   htmltools::tags$div(class = "weights")
                 )
+              ),
+              shinyBS::bsCollapsePanel(
+                title = htmltools::tags$span(
+                  shiny::icon("lock"),
+                  "Includes"
+                ),
+                value = paste0(id, "_collapseIncludePanel"),
+                htmltools::tags$div(
+                  class = "panel-content-inner",
+                  htmltools::tags$div(class = "includes")
+                )
               )
             )
           )
@@ -188,6 +199,7 @@ solutionResults_html <- function(id, style, class, ...) {
     )
 
   # add HTML template scaffolds for static content
+  ## no weights specified
   x <-
     htmltools::tagAppendChild(
       x,
@@ -197,6 +209,20 @@ solutionResults_html <- function(id, style, class, ...) {
           class = paste("empty-result"),
           htmltools::tags$label(
             "No weights specified."
+          )
+        )
+      )
+    )
+  ## no includes specified
+  x <-
+    htmltools::tagAppendChild(
+      x,
+      htmltools::tags$template(
+        class = "no-includes-template",
+        htmltools::tags$div(
+          class = paste("empty-result"),
+          htmltools::tags$label(
+            "No includes specified."
           )
         )
       )

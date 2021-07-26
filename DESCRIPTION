@@ -105,6 +105,7 @@ Collate:
     'class_Feature.R'
     'class_FeatureResults.R'
     'class_Include.R'
+    'class_IncludeResults.R'
     'class_ManualLegend.R'
     'class_Solution.R'
     'class_Theme.R'

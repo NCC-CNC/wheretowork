@@ -32,6 +32,8 @@ Definition for the Solution class.
 \item{\code{theme_results}}{\code{list} of \link{ThemeResults} objects.}
 
 \item{\code{weight_results}}{\code{list} of \link{WeightResults} objects.}
+
+\item{\code{include_results}}{\code{list} of \link{IncludeResults} objects.}
 }
 \if{html}{\out{</div>}}
 }
@@ -48,8 +50,10 @@ Definition for the Solution class.
 \item \href{#method-set_visible}{\code{Solution$set_visible()}}
 \item \href{#method-get_theme_results_data}{\code{Solution$get_theme_results_data()}}
 \item \href{#method-get_weight_results_data}{\code{Solution$get_weight_results_data()}}
+\item \href{#method-get_include_results_data}{\code{Solution$get_include_results_data()}}
 \item \href{#method-render_theme_results}{\code{Solution$render_theme_results()}}
 \item \href{#method-render_weight_results}{\code{Solution$render_weight_results()}}
+\item \href{#method-render_include_results}{\code{Solution$render_include_results()}}
 \item \href{#method-set_setting}{\code{Solution$set_setting()}}
 \item \href{#method-get_solution_results_widget_data}{\code{Solution$get_solution_results_widget_data()}}
 \item \href{#method-get_map_manager_widget_data}{\code{Solution$get_map_manager_widget_data()}}
@@ -72,7 +76,8 @@ Create a Solution object.
   statistics,
   parameters,
   theme_results,
-  weight_results
+  weight_results,
+  include_results
 )}\if{html}{\out{</div>}}
 }
 
@@ -94,6 +99,8 @@ Create a Solution object.
 \item{\code{theme_results}}{\code{list} of \link{ThemeResults} objects.}
 
 \item{\code{weight_results}}{\code{list} of \link{WeightResults} objects.}
+
+\item{\code{include_results}}{\code{list} of \link{IncludeResults} objects.}
 }
 \if{html}{\out{</div>}}
 }
@@ -246,6 +253,19 @@ Get weight results.
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_include_results_data"></a>}}
+\if{latex}{\out{\hypertarget{method-get_include_results_data}{}}}
+\subsection{Method \code{get_include_results_data()}}{
+Get weight results.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Solution$get_include_results_data()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{\link[tibble:tibble]{tibble::tibble()}} object.
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-render_theme_results"></a>}}
 \if{latex}{\out{\hypertarget{method-render_theme_results}{}}}
 \subsection{Method \code{render_theme_results()}}{
@@ -265,6 +285,19 @@ Render theme results.
 Render weight results.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Solution$render_weight_results()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{\link[DT:datatable]{DT::datatable()}} object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-render_include_results"></a>}}
+\if{latex}{\out{\hypertarget{method-render_include_results}{}}}
+\subsection{Method \code{render_include_results()}}{
+Render include results.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Solution$render_include_results()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{

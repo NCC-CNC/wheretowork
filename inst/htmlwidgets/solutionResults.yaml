@@ -18,6 +18,7 @@ dependencies:
       - MultiThemeResults-class.js
       - SingleThemeResults-class.js
       - WeightResults-class.js
+      - IncludeResults-class.js
       - Solution-class.js
       - SolutionResults-class.js
       - Statistics-class.js
@@ -25,6 +26,7 @@ dependencies:
       - utils.js
       - ThemeSolutionChart-class.js
       - WeightSolutionChart-class.js
+      - IncludeSolutionChart-class.js
     stylesheet:
       - style.css
 

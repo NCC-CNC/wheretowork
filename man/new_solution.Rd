@@ -12,6 +12,7 @@ new_solution(
   statistics,
   theme_results,
   weight_results,
+  include_results,
   id = uuid::UUIDgenerate()
 )
 }
@@ -29,6 +30,8 @@ new_solution(
 \item{theme_results}{\code{list} of \link{ThemeResults} objects.}
 
 \item{weight_results}{\code{list} of \link{WeightResults} objects.}
+
+\item{include_results}{\code{list} of \link{IncludeResults} objects.}
 
 \item{id}{\code{character} unique identifier.
 Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}

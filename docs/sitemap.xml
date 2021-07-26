@@ -31,6 +31,9 @@
     <loc>/reference/Include.html</loc>
   </url>
   <url>
+    <loc>/reference/IncludeResults.html</loc>
+  </url>
+  <url>
     <loc>/reference/ManualLegend.html</loc>
   </url>
   <url>
@@ -200,6 +203,9 @@
   </url>
   <url>
     <loc>/reference/new_include.html</loc>
+  </url>
+  <url>
+    <loc>/reference/new_include_results.html</loc>
   </url>
   <url>
     <loc>/reference/new_manual_legend.html</loc>

@@ -50,5 +50,10 @@ server_update_solution_results <- quote({
       DT::renderDT({
         app_data$solutions[[i]]$render_weight_results()
       })
+    ## render include results
+    output$solutionResultsPane_results_modal_includes_table <-
+      DT::renderDT({
+        app_data$solutions[[i]]$render_include_results()
+      })
   })
 })

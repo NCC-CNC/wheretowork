@@ -51,7 +51,8 @@
 
 /* download buttons */
 #theme_results_button,
-#weight_results_button {
+#weight_results_button,
+#include_results_button {
   visibility: hidden;
 }
 

@@ -48,6 +48,11 @@ simulate_solution <- function(dataset, themes, weights, includes = list()) {
     new_weight_results(x, held = stats::runif(1, 0.05, 0.9))
   })
 
+  # simulate weight results
+  include_results <- lapply(includes, function(x) {
+    new_include_results(x, held = 1)
+  })
+
   # simulate theme results
   theme_results <- lapply(themes, function(x) {
     fr <- lapply(x$feature, function(z) {
@@ -104,6 +109,7 @@ simulate_solution <- function(dataset, themes, weights, includes = list()) {
     ),
     statistics = statistics,
     theme_results = theme_results,
-    weight_results = weight_results
+    weight_results = weight_results,
+    include_results = include_results
   )
 }

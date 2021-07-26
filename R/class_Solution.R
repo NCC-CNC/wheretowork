@@ -35,6 +35,9 @@ Solution <- R6::R6Class(
     #' @field weight_results `list` of [WeightResults] objects.
     weight_results = NULL,
 
+    #' @field include_results `list` of [IncludeResults] objects.
+    include_results = NULL,
+
     #' @description
     #' Create a Solution object.
     #' @param id `character` value.
@@ -45,10 +48,14 @@ Solution <- R6::R6Class(
     #' @param statistics `list` of [Statistic] objects.
     #' @param theme_results `list` of [ThemeResults] objects.
     #' @param weight_results `list` of [WeightResults] objects.
+    #' @param include_results `list` of [IncludeResults] objects.
     #' @return A new Solution object.
     initialize = function(id, name, variable, visible,
-                          statistics, parameters,
-                          theme_results, weight_results) {
+                          statistics,
+                          parameters,
+                          theme_results,
+                          weight_results,
+                          include_results) {
       # assert arguments are valid
       assertthat::assert_that(
         assertthat::is.string(id),
@@ -65,7 +72,9 @@ Solution <- R6::R6Class(
         is.list(theme_results),
         all_list_elements_inherit(theme_results, "ThemeResults"),
         is.list(weight_results),
-        all_list_elements_inherit(weight_results, "WeightResults")
+        all_list_elements_inherit(weight_results, "WeightResults"),
+        is.list(include_results),
+        all_list_elements_inherit(include_results, "IncludeResults")
       )
       # assign fields
       self$id <- id
@@ -76,6 +85,7 @@ Solution <- R6::R6Class(
       self$statistics <- statistics
       self$theme_results <- theme_results
       self$weight_results <- weight_results
+      self$include_results <- include_results
     },
 
     #' @description
@@ -227,12 +237,41 @@ Solution <- R6::R6Class(
           `Current (%)` = round(x$current * 100, 2),
           `Current (units)` = paste(round(x$current * x$total, 2), x$units),
           `Solution (%)` = round(x$held * 100, 2),
-          `Solution (units)` = paste(round(x$current * x$total, 2), x$units),
+          `Solution (units)` = paste(round(x$held * x$total, 2), x$units),
         )
       } else {
         ## if no weights are present, then use return
         out <- tibble::tibble(
           `Description` = "No weights specified"
+        )
+      }
+      # return results
+      out
+    },
+
+    #' @description
+    #' Get weight results.
+    #' @return [tibble::tibble()] object.
+    get_include_results_data = function() {
+      # compile results
+      if (length(self$include_results) > 0) {
+        ## if weights are present, then use result
+        ### extract results
+        x <- tibble::as_tibble(plyr::ldply(
+          self$include_results, function(x) x$get_results_data()
+        ))
+        ### format results
+        out <- tibble::tibble(
+          Include = x$name,
+          Status = dplyr::if_else(x$status, "Enabled", "Disabled"),
+          `Total (units)` = paste(round(x$total, 2), x$units),
+          `Solution (%)` = round(x$held * 100, 2),
+          `Solution (units)` = paste(round(x$held * x$total, 2), x$units)
+        )
+      } else {
+        ## if no weights are present, then use return
+        out <- tibble::tibble(
+          `Description` = "No includes specified"
         )
       }
       # return results
@@ -399,6 +438,82 @@ Solution <- R6::R6Class(
     },
 
     #' @description
+    #' Render include results.
+    #' @return [DT::datatable()] object.
+    render_include_results = function() {
+      # generate table
+      x <- self$get_include_results_data()
+      # define JS for button
+      action_js <- htmlwidgets::JS(
+        "function ( e, dt, node, config ) {",
+        "  $('#include_results_button')[0].click();",
+        "}"
+      )
+      # define container
+      if (ncol(x) > 1) {
+         container <- htmltools::tags$table(
+          class = "display",
+          htmltools::tags$thead(
+            htmltools::tags$tr(
+              htmltools::tags$th(rowspan = 2, "Include"),
+              htmltools::tags$th(rowspan = 2, "Status"),
+              htmltools::tags$th(rowspan = 2, "Total (units)"),
+              htmltools::tags$th(
+                class = "dt-center", colspan = 2, "Solution"
+              )
+            ),
+            htmltools::tags$tr(
+              lapply(c("(%)", "(units)"), htmltools::tags$th)
+            )
+          )
+        )
+      } else {
+        container <- rlang::missing_arg()
+      }
+      # define columns
+      if (ncol(x) > 1) {
+        column_defs <- list(
+          list(className = "dt-left", targets = 0),
+          list(className = "dt-center", targets = 1:4)
+        )
+      } else {
+        column_defs <- list(
+          list(className = "dt-left", targets = 0)
+        )
+      }
+      # render table
+      DT::datatable(
+        x,
+        rownames = FALSE,
+        escape = TRUE,
+        editable = FALSE,
+        selection = "none",
+        fillContainer = TRUE,
+        extensions = "Buttons",
+        container = container,
+        options = list(
+          ## align columns
+          columnDefs = column_defs,
+          ## disable paging
+          paging = FALSE,
+          scrollY = "calc(100vh - 295px)",
+          scrollY = "100%",
+          scrollCollapse = TRUE,
+          ## download button
+          dom = "Bfrtip",
+          buttons = list(
+            list(
+              extend = "collection",
+              text = as.character(shiny::icon("file-download")),
+              title = "Download spreadsheet",
+              action = action_js
+            )
+          )
+        )
+      )
+    },
+
+    #' @description
     #' Set setting.
     #' @param name `character` setting name.
     #' Available options are `"visible"``.
@@ -438,6 +553,10 @@ Solution <- R6::R6Class(
         ),
         weight_results = lapply(
           self$weight_results,
+          function(x) x$get_widget_data()
+        ),
+        include_results = lapply(
+          self$include_results,
           function(x) x$get_widget_data()
         ),
         solution_color = scales::alpha(last(self$variable$legend$colors), 1)
@@ -497,6 +616,8 @@ Solution <- R6::R6Class(
 #'
 #' @param weight_results `list` of [WeightResults] objects.
 #'
+#' @param include_results `list` of [IncludeResults] objects.
+#'
 #' @inheritParams new_theme
 #'
 #' @examples
@@ -505,7 +626,9 @@ Solution <- R6::R6Class(
 new_solution <- function(name, variable, visible,
                          parameters,
                          statistics,
-                         theme_results, weight_results,
+                         theme_results,
+                         weight_results,
+                         include_results,
                          id = uuid::UUIDgenerate()) {
   Solution$new(
     name = name,
@@ -515,6 +638,7 @@ new_solution <- function(name, variable, visible,
     statistics = statistics,
     theme_results = theme_results,
     weight_results = weight_results,
+    include_results = include_results,
     id = id
   )
 }
@@ -606,6 +730,21 @@ new_solution_from_result <- function(name, visible, dataset, settings, result,
       )
     )
 
+  # include results
+  include_results <- lapply(seq_along(settings$includes), function(i) {
+    ## copy the include object
+    incl <- settings$includes[[i]]$clone(deep = FALSE)
+    ## apply settings from weight_settings
+    k <- which(result$include_settings$id == incl$id)
+    assertthat::assert_that(assertthat::is.count(k))
+    incl$set_status(result$include_settings$status[[k]])
+    ## return weight results
+    new_include_results(
+      include = incl,
+      held = result$include_coverage[[incl$id]]
+    )
+  })
+
   # weight results
   weight_results <- lapply(seq_along(settings$weights), function(i) {
     ## copy the weight object
@@ -672,6 +811,7 @@ new_solution_from_result <- function(name, visible, dataset, settings, result,
     statistics = statistics_results,
     theme_results = theme_results,
     weight_results = weight_results,
+    include_results = include_results,
     id = id
   )
 

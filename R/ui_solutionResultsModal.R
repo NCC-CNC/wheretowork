@@ -72,7 +72,8 @@ solutionResultsModal <- function(id, trigger) {
                   label = NULL,
                   choices = c(
                     `<i class='fa fa-star'></i>Themes` = "themes",
-                    `<i class='fa fa-weight-hanging'></i>Weights` = "weights"
+                    `<i class='fa fa-weight-hanging'></i>Weights` = "weights",
+                    `<i class='fa fa-lock'></i>Includes` = "includes"
                   ),
                   justified = FALSE,
                   size = "normal"
@@ -87,6 +88,11 @@ solutionResultsModal <- function(id, trigger) {
               shiny::downloadButton(
                 outputId = "weight_results_button",
                 label = "Download weight results",
+                class = "btn-sm"
+              ),
+              shiny::downloadButton(
+                outputId = "include_results_button",
+                label = "Download include results",
                 class = "btn-sm"
               )
             )
@@ -103,6 +109,11 @@ solutionResultsModal <- function(id, trigger) {
             shiny::conditionalPanel(
               condition = paste0("input.", id, "_radio == 'weights'"),
               DT::DTOutput(outputId = paste0(id, "_weights_table"))
+            ),
+            ### includes panel
+            shiny::conditionalPanel(
+              condition = paste0("input.", id, "_radio == 'includes'"),
+              DT::DTOutput(outputId = paste0(id, "_includes_table"))
             )
           )
         )
