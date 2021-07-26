@@ -214,7 +214,7 @@ min_set_result <- function(area_data,
     ## if includes present, then use data and settings
     locked_in <- matrix(
       include_settings$status,
-      byrow = TRUE,
+      byrow = FALSE,
       nrow = nrow(include_data), ncol = ncol(include_data)
     )
     locked_in <- as.logical(colSums(locked_in * include_data) > 0)
