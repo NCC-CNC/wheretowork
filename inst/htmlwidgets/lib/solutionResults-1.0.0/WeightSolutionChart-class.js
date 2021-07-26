@@ -127,7 +127,6 @@ class WeightSolutionChart {
     const allowed_keys = {
       current_held: true,
       solution_held: true,
-      total: true
     };
     const data = this.data[0];
     const sortable = [];
@@ -137,6 +136,8 @@ class WeightSolutionChart {
       }
     }
     sortable.sort(function(a, b) { return b[1] - a[1]; });
+    sortable.unshift(["total", data["total"]]);
+
     let delay = 1000;
     for (let i = 0; i < sortable.length; ++i) {
       this.renderArcs(svg, tooltip, sortable[i][0], delay);
