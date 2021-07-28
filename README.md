@@ -80,7 +80,8 @@ if (!require(remotes)) install.packages("remotes")
 remotes::install_github("NCC-CNC/wheretowork@*release")
 ```
 
-You can then run the application using the following R code:
+You can then use the following R code to run the application and
+automatically open it in your web browser:
 
 ``` r
 wheretowork::run_app()
