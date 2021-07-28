@@ -29,9 +29,11 @@ The application is [available online here](https://natureconservancy.ca/en/). **
 
 ## Installation
 
-The application is available as an online service provided by the [Nature Conservancy of Canada](https://natureconservancy.ca/en/). As such, you don't need to install the application on your computer to use it: just go to [this link and it's ready to go](https://natureconservancy.ca/en/). If you need to run the application on your own computer, then please use the following instructions.
+The application is available as an online service provided by the [Nature Conservancy of Canada](https://natureconservancy.ca/en/). As such, you don't need to install it on your computer to use: just go to [this link and it's ready to go](https://natureconservancy.ca/en/). If you need to run the application on your own computer, then you can run it using [Docker](https://www.docker.com/) or the [R statistical computing environment](https://www.r-project.org/).
 
-You will need to install the [Docker Engine](https://www.docker.com/) software to run the application (see [here for instructions](https://docs.docker.com/get-docker/)). After installing this software, you can then install the application from its [DockerHub repository](https://hub.docker.com/repository/docker/naturecons/wheretowork). Specifically, to install and launch the latest official version, please use the following system command:
+### Using Docker
+
+To run the application using this method, you will need to install the [Docker Engine](https://www.docker.com/) software ([see here for instructions](https://docs.docker.com/get-docker/)). After completing this step, you can install the application from the [DockerHub repository](https://hub.docker.com/repository/docker/naturecons/wheretowork). Specifically, please use the following system command to install the latest official version of the application:
 
 ```{bash, eval = FALSE}
 docker run -dp 3838:3838 --name wheretowork -it naturecons/wheretowork:latest
@@ -43,13 +45,35 @@ You can then view the application by opening the following link in [Google Chrom
 docker rm -f wheretowork
 ```
 
-Alternatively, the latest development version can be installed using the following system command. Please note that while developmental versions may contain additional features not present in the official version, they may also contain defects.
+Additionally, the latest development version can be installed using the following system command. Please note that while developmental versions may contain additional features not present in the official version, they may also contain defects.
 
 ```{bash, eval = FALSE}
 docker run -dp 3838:3838 --name wheretowork -it naturecons/wheretowork:devel
 ```
 
 Similar to the official version, you can access the developmental version of the application by opening the following link in [Google Chrome](https://www.google.com/chrome/): http://localhost:3838. Also note that you should terminate the developmental version of the application once you are finished using it (using the same code above for the official version).
+
+### Using R
+
+To run the application using this method, you will need to install the [R statistical computing environment](https://www.r-project.org/). After completing the installation, you can install the latest official version of the application by using the following R code:
+
+```{r, eval = FALSE}
+if (!require(remotes)) install.packages("remotes")
+remotes::install_github("NCC-CNC/wheretowork@*release")
+```
+
+You can then run the application using the following R code:
+
+```{r, eval = FALSE}
+wheretowork::run_app()
+```
+
+Additionally, the latest development version can be installed using the following R code. Please note that while developmental versions may contain additional features not present in the official version, they may also contain defects.
+
+```{r, eval = FALSE}
+if (!require(remotes)) install.packages("remotes")
+remotes::install_github("NCC-CNC/wheretowork")
+```
 
 ## Contributing
 
