@@ -27,18 +27,35 @@ HTMLWidgets.widget({
             opts.themes, opts.weights, opts.includes, opts.parameters);
           // render HTML elements
           handle.render();
-          // set the button to disabled by default
-          const button_el =
+          // set the start and stop buttons are disabled by default
+          const start_button_el =
             document.getElementById(elementId + "_start_button");
-          button_el.setAttribute("disabled", "");
+          const stop_button_el =
+            document.getElementById(elementId + "_stop_button");
+          start_button_el.setAttribute("disabled", "");
+          stop_button_el.setAttribute("disabled", "");
           // make the button disabled when the text box is empty
           const name_el = document.getElementById(elementId + "_name");
           name_el.addEventListener("input", function() {
             if (name_el.value.length === 0) {
-              button_el.setAttribute("disabled", "");
+              start_button_el.setAttribute("disabled", "");
             } else {
-              button_el.removeAttribute("disabled");
+              start_button_el.removeAttribute("disabled");
             }
+          });
+          // remove button tooltips are removed on click
+          start_button_el.addEventListener("click", function(e) {
+            $(".tooltip.fade.top.in").tooltip("hide");
+          });
+          stop_button_el.addEventListener("click", function(e) {
+            $(".tooltip.fade.top.in").tooltip("hide");
+          });
+          // add color picker tooltip
+          $("#" + elementId + "_color").tooltip({
+            title: "Select a color for the new solution",
+            trigger: "hover",
+            placement: "top",
+            container: "body"
           });
         }
       },

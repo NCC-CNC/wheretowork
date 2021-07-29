@@ -233,6 +233,10 @@ solutionSettings_html <- function(id, style, class, ...) {
         class = "solution-footer",
         htmltools::tags$div(
           class = "solution-footer-name",
+          `data-toggle` = "tooltip",
+          `data-placement` = "top",
+          `data-container` = "body",
+          title = "Specify a name for the new solution",
           shiny::textInput(
             inputId = paste0(id, "_name"),
             NULL,
@@ -253,15 +257,27 @@ solutionSettings_html <- function(id, style, class, ...) {
         ),
         htmltools::tags$div(
           class = "solution-footer-start-button",
+          `data-toggle` = "tooltip",
+          `data-placement` = "top",
+          `data-container` = "body",
+          title = paste(
+            "Generate a new solution using the Themes, Weight, Includes,",
+            "and Settings"
+          ),
           shinyFeedback::loadingButton(
             inputId = paste0(id, "_start_button"),
             label = "Optimize!",
+            class = "btn btn-primary",
             loadingLabel = "",
             style = "width: 100px;"
           )
         ),
         htmltools::tags$div(
           class = "solution-footer-stop-button",
+          `data-toggle` = "tooltip",
+          `data-placement` = "top",
+          `data-container` = "body",
+          title = "Stop the optimization",
           shinyBS::bsButton(
             inputId = paste0(id, "_stop_button"),
             label = "Stop",
