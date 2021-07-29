@@ -47,8 +47,6 @@ class SingleThemeSetting {
     // set initial values
     /// name
     this.name_el.innerText = name;
-    /// status
-    this.status_el.checked = feature_status;
     /// goal
     noUiSlider.create(this.goal_el, {
       start: feature_goal,
@@ -65,8 +63,10 @@ class SingleThemeSetting {
         feature_current_held, this.total, "Current", this.units);
     /// current bar width
     style_current_bar(this.current_bar_el, feature_current_held);
+    /// status
+    this.updateStatus(feature_status);
 
-    // set listeners to update user interfance
+    // set listeners to update user interface
     if (HTMLWidgets.shinyMode) {
       /// enforce minimum limit
       this.goal_el.noUiSlider.on("change", function (values, handle) {
@@ -161,10 +161,7 @@ class SingleThemeSetting {
       }
     }
     // update HTML element styles
-    let els =
-      document
-      .getElementById(this.elementId)
-      .querySelectorAll(".disable-if-inactive");
+    let els = this.el.querySelectorAll(".disable-if-inactive");
     if (value) {
       els.forEach((x) => x.removeAttribute("disabled"));
     } else {

@@ -38,8 +38,6 @@ class ParameterSetting {
     // set initial values
     /// name
     this.name_el.innerText = name;
-    /// status
-    this.status_el.checked = status;
     /// value
     noUiSlider.create(this.value_el, {
       start: value,
@@ -52,6 +50,8 @@ class ParameterSetting {
         "max": max_value
       }
     });
+    /// status
+    this.updateStatus(status);
 
     // set listeners to update user interface
     /// enable/disable widget on click
@@ -147,8 +147,7 @@ class ParameterSetting {
       }
     }
     // update HTML element styles
-    let els =
-      document.getElementById(this.elementId).querySelectorAll(
+    let els = this.el.querySelectorAll(
         ".disable-if-inactive, .disable-if-inactive.icon i");
     if (value) {
       els.forEach((x) => x.removeAttribute("disabled"));

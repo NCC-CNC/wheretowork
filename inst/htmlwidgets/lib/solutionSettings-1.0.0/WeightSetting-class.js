@@ -34,8 +34,6 @@ class WeightSetting {
     // set initial values
     /// name
     this.name_el.innerText = name;
-    /// status
-    this.status_el.checked = status;
     /// factor
     noUiSlider.create(this.factor_el, {
       start: factor,
@@ -48,6 +46,8 @@ class WeightSetting {
         "max": max_factor
       }
     });
+    /// status
+    this.updateStatus(status);
 
     // set listeners to update user interface
     /// enable/disable widget on click
@@ -128,9 +128,7 @@ class WeightSetting {
         this.factor_el.noUiSlider.set(0);
       }
     }
-    // update HTML element styles
-    let els =
-      document.getElementById(this.elementId).querySelectorAll(
+    let els = this.el.querySelectorAll(
         ".disable-if-inactive, .disable-if-inactive.icon i");
     if (value) {
       els.forEach((x) => x.removeAttribute("disabled"));

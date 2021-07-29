@@ -144,9 +144,6 @@ class MultiThemeSetting {
     // set initial theme values
     /// name
     this.name_el.innerText = name;
-    /// status
-    this.status_el.checked = feature_status.some((x) => x);
-
     // set initial group values
     /// current text
     this.group_current_label_el.innerText =
@@ -174,8 +171,6 @@ class MultiThemeSetting {
     for (let i = 0; i < this.n_features; ++i) {
       /// name text
       single_name_el[i].innerText = feature_name[i];
-      /// status
-      this.single_status_el[i].checked = feature_status[i];
       /// current text
       this.single_current_label_el[i].innerText =
         single_current_label_text(
@@ -198,7 +193,13 @@ class MultiThemeSetting {
       });
     }
 
-    // set listeners to update user interfance
+    // set status
+    this.updateFeatureStatus(feature_status);
+    if (!feature_status.some(x => x)) {
+      this.updateStatus(false);
+    }
+
+    // set listeners to update user interface
     if (HTMLWidgets.shinyMode) {
       /// group view
       //// enforce minimum limit
@@ -446,10 +447,7 @@ class MultiThemeSetting {
     }
     // update HTML element styles
     this.single_status_values.fill(value);
-    let els =
-      document
-      .getElementById(this.elementId)
-      .querySelectorAll(
+    let els = this.el.querySelectorAll(
         `.disable-if-inactive, ` +
         `.sub-header .status-checkbox`);
     if (value) {
@@ -474,7 +472,7 @@ class MultiThemeSetting {
 
   updateFeatureStatus(value) {
     // manually override group status
-    if (value.some(x => x) && (!this.status_el.checked)) {
+    if (value.some(x => x) && (this.status_el.checked !== true)) {
       this.updateStatus(true);
     }
     // update status variable
@@ -497,10 +495,7 @@ class MultiThemeSetting {
         }
       }
       /// update HTML element styles
-      let els =
-        document
-        .getElementById(this.elementId)
-        .querySelectorAll(
+      let els = this.el.querySelectorAll(
           `[id="${this.feature_id[i]}"] .disable-if-inactive`);
       if (value[i]) {
         els.forEach((x) => x.removeAttribute("disabled"));
