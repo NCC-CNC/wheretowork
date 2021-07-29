@@ -30,9 +30,8 @@ ss_goal_component_scaffold <- function(type) {
           class = "current-label",
           `data-toggle` = "tooltip",
           `data-placement` = "top",
-          `data-delay` = "{\"show\":500, \"hide\":100}",
           `data-container` = "body",
-          title = "Current coverage by existing conservation areas"
+          title = "Current coverage by Includes"
         )
       ),
       htmltools::tags$div(
@@ -44,7 +43,6 @@ ss_goal_component_scaffold <- function(type) {
           class = "slider-label disable-if-inactive",
           `data-toggle` = "tooltip",
           `data-placement` = "top",
-          `data-delay` = "{\"show\":500, \"hide\":100}",
           `data-container` = "body",
           title = "Goal for generating solutions"
         )
@@ -83,9 +81,8 @@ ss_group_goal_component_scaffold <- function(type) {
           class = "current-label",
           `data-toggle` = "tooltip",
           `data-placement` = "top",
-          `data-delay` = "{\"show\":500, \"hide\":100}",
           `data-container` = "body",
-          title = "Current coverage by existing conservation areas"
+          title = "Current coverage by Includes"
         )
       ),
       htmltools::tags$div(
@@ -97,7 +94,6 @@ ss_group_goal_component_scaffold <- function(type) {
           class = "slider-label disable-if-inactive",
           `data-toggle` = "tooltip",
           `data-placement` = "top",
-          `data-delay` = "{\"show\":500, \"hide\":100}",
           `data-container` = "body",
           title = "Goal for generating solutions"
         )
@@ -141,7 +137,6 @@ ss_slider_component_scaffold <- function(type, bar = NULL) {
     class = "slider",
     `data-toggle` = "tooltip",
     `data-placement` = "bottom",
-    `data-delay` = "{\"show\":500, \"hide\":100}",
     `data-container` = "body",
     title =
       switch(type,
@@ -208,12 +203,6 @@ ss_header_component_scaffold <- function(type, id = uuid::UUIDgenerate()) {
     class = "header",
     htmltools::tags$label(
       class = "el-switch",
-      `data-toggle` = "tooltip",
-      `data-placement` = "top",
-      `data-delay` = "{\"show\":500, \"hide\":100}",
-      `data-container` = "body",
-      title =
-        paste0("Enable/disable the ", type, " when generating a solution"),
       htmltools::tags$input(
         type = "checkbox",
         class = "status-checkbox status",
@@ -221,16 +210,16 @@ ss_header_component_scaffold <- function(type, id = uuid::UUIDgenerate()) {
       ),
       htmltools::tags$span(
         class = "el-switch-style",
+        `data-toggle` = "tooltip",
+        `data-placement` = "top",
+        `data-container` = "body",
+        title =
+          paste0("Enable/disable the ", type, " when generating a solution"),
         `for` = id
+      ),
+      htmltools::tags$label(
+        class = "name-label disable-if-inactive"
       )
-    ),
-    htmltools::tags$label(
-      class = "name-label disable-if-inactive",
-      `data-toggle` = "tooltip",
-      `data-placement` = "top",
-      `data-delay` = "{\"show\":500, \"hide\":100}",
-      `data-container` = "body",
-      title = paste0("Name of the ", type)
     )
   )
 }
@@ -240,11 +229,6 @@ ss_subheader_component_scaffold <- function(id = uuid::UUIDgenerate()) {
     class = "sub-header",
     htmltools::tags$label(
       class = "el-switch el-switch-sm",
-      `data-toggle` = "tooltip",
-      `data-placement` = "top",
-      `data-delay` = "{\"show\":500, \"hide\":100}",
-      `data-container` = "body",
-      title = "Enable/disable the feature when generating a solution",
       htmltools::tags$input(
         type = "checkbox",
         class = "status-checkbox status",
@@ -252,16 +236,15 @@ ss_subheader_component_scaffold <- function(id = uuid::UUIDgenerate()) {
       ),
       htmltools::tags$span(
         class = "el-switch-style",
+        `data-toggle` = "tooltip",
+        `data-placement` = "top",
+        `data-container` = "body",
+        title = "Enable/disable the feature when generating a solution",
         `for` = id
+      ),
+      htmltools::tags$label(
+        class = "name-label disable-if-inactive"
       )
-    ),
-    htmltools::tags$label(
-      class = "name-label disable-if-inactive",
-      `data-toggle` = "tooltip",
-      `data-placement` = "top",
-      `data-delay` = "{\"show\":500, \"hide\":100}",
-      `data-container` = "body",
-      title = "Name of the feature",
     )
   )
 }

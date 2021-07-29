@@ -22,7 +22,7 @@ NULL
 #' \item{name}{`character` name of the field/layer.}
 #' \item{import}{`logical` value indicating if the field/layer should be used.}
 #' \item{type}{`character` value. Available options are
-#'  `"theme"`, `"weight"`, or `"include"`.}
+#'  `"Theme"`, `"Weight"`, or `"Include"`.}
 #' }
 #'
 #' @rdname importSettings-widget
@@ -142,9 +142,9 @@ importSettings_html <- function(id, style, class, ...) {
           htmltools::tags$p(class = "form-control"),
           htmltools::tags$select(
             class = "form-control",
-            htmltools::tags$option("theme"),
-            htmltools::tags$option("weight"),
-            htmltools::tags$option("include")
+            htmltools::tags$option("Theme"),
+            htmltools::tags$option("Weight"),
+            htmltools::tags$option("Include")
           )
         )
       )

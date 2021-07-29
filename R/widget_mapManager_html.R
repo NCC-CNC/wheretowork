@@ -29,6 +29,19 @@ mm_legend_component_scaffold <- function() {
 mm_header_component_scaffold <- function(id = uuid::UUIDgenerate(),
                                          icon = shiny::icon("map-marker-alt"),
                                          remove_button = FALSE) {
+  # create tooltip text for type
+  if (identical(icon$attribs$class, "fa fa-star")) {
+    icon_tooltip_text <- "This layer is a Theme"
+  } else if (identical(icon$attribs$class, "fa fa-weight-hanging")) {
+    icon_tooltip_text <- "This layer is a Weight"
+  } else if (identical(icon$attribs$class, "fa fa-lock")) {
+    icon_tooltip_text <- "This layer is an Include"
+  } else if (identical(icon$attribs$class, "fa fa-rocket")) {
+    icon_tooltip_text <- "This layer is a solution"
+  } else {
+    icon_tooltip_text <- "This layer is a miscellaneous layer"
+  }
+
   # return scaffold
   htmltools::tags$div(
     class = "header",
@@ -36,7 +49,6 @@ mm_header_component_scaffold <- function(id = uuid::UUIDgenerate(),
       class = "view-container",
       `data-toggle` = "tooltip",
       `data-placement` = "top",
-      `data-delay` = "{\"show\":500, \"hide\":100}",
       `data-container` = "body",
       title = "Show/hide legend",
       htmltools::tags$input(
@@ -50,7 +62,6 @@ mm_header_component_scaffold <- function(id = uuid::UUIDgenerate(),
       class = "visible-container",
       `data-toggle` = "tooltip",
       `data-placement` = "top",
-      `data-delay` = "{\"show\":500, \"hide\":100}",
       `data-container` = "body",
       title = "Show/hide layer",
       htmltools::tags$input(
@@ -61,20 +72,14 @@ mm_header_component_scaffold <- function(id = uuid::UUIDgenerate(),
       htmltools::tags$i(class = "fa fa-eye-slash unchecked")
     ),
     htmltools::tags$label(
-      class = "name-label",
-      `data-toggle` = "tooltip",
-      `data-placement` = "top",
-      `data-delay` = "{\"show\":500, \"hide\":100}",
-      `data-container` = "body",
-      title = "Layer name",
+      class = "name-label"
     ),
     htmltools::tags$div(
       class = "icon-container",
       `data-toggle` = "tooltip",
       `data-placement` = "top",
-      `data-delay` = "{\"show\":500, \"hide\":100}",
       `data-container` = "body",
-      title = "Layer type",
+      title = icon_tooltip_text,
       icon
     ),
     if (remove_button) {
@@ -83,7 +88,6 @@ mm_header_component_scaffold <- function(id = uuid::UUIDgenerate(),
         type = "button",
         `data-toggle` = "tooltip",
         `data-placement` = "top",
-        `data-delay` = "{\"show\":500, \"hide\":100}",
         `data-container` = "body",
         title = "Remove layer",
         htmltools::tags$i(class = "fa fa-trash-alt")
@@ -114,7 +118,6 @@ mm_subheader_component_scaffold <- function(id = uuid::UUIDgenerate()) {
       class = "view-container",
       `data-toggle` = "tooltip",
       `data-placement` = "top",
-      `data-delay` = "{\"show\":500, \"hide\":100}",
       `data-container` = "body",
       title = "Show/hide legend",
       htmltools::tags$input(
@@ -128,7 +131,6 @@ mm_subheader_component_scaffold <- function(id = uuid::UUIDgenerate()) {
       class = "visible-container",
       `data-toggle` = "tooltip",
       `data-placement` = "top",
-      `data-delay` = "{\"show\":500, \"hide\":100}",
       `data-container` = "body",
       title = "Show/hide feature",
       htmltools::tags$input(
@@ -142,7 +144,6 @@ mm_subheader_component_scaffold <- function(id = uuid::UUIDgenerate()) {
       class = "name-label",
       `data-toggle` = "tooltip",
       `data-placement` = "top",
-      `data-delay` = "{\"show\":500, \"hide\":100}",
       `data-container` = "body",
       title = "Name of the feature",
     )

@@ -38,6 +38,7 @@ server_import_spatial_data <- quote({
         input$importModal_spatial_settings, as.data.frame
       ))
     settings_data <- settings_data[settings_data$import, , drop = FALSE]
+    settings_data$type <- tolower(settings_data$type)
 
     ## verify that at least one theme is selected
     if (!any(settings_data$type == "theme")) {
