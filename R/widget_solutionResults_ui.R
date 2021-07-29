@@ -153,7 +153,7 @@ solutionResults_html <- function(id, style, class, ...) {
                 value = paste0(id, "_collapseStatisticPanel"),
                 htmltools::tags$div(
                   class = "panel-content-inner",
-                  htmltools::tags$h4("Parameters"),
+                  htmltools::tags$h4("Settings"),
                   htmltools::tags$div(class = "parameters"),
                   htmltools::tags$h4("Statistics"),
                   htmltools::tags$div(class = "statistics")
