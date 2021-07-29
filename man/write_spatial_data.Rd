@@ -4,24 +4,30 @@
 \alias{write_spatial_data}
 \title{Write spatial data}
 \usage{
-write_spatial_data(x, path, name = NULL)
+write_spatial_data(x, dir, name)
 }
 \arguments{
 \item{x}{\code{\link[sf:sf]{sf::st_sf()}} or \code{\link[raster:stack]{raster::stack()}} object.}
 
-\item{path}{\code{character} file path to save zip archive.}
+\item{dir}{\code{character} directory to save data.}
 
-\item{name}{\code{character} name of the spatial data inside the zip archive.
-Defaults to \code{NULL} such that the argument is the file name of \code{path}.}
+\item{name}{\code{character} name of the spatial data file.}
 }
 \value{
 Invisible \code{TRUE} indicating success.
 }
 \description{
-Write spatial data to disk as a zip archive.
+Write spatial data to disk.
 }
-\details{
-This function saves the spatial dataset as a zip archive.
-Vector data are saved in ESRI Shapefile format and raster data
-are saved as a GeoTIFF with layer names stored in a plain text file.
+\examples{
+# read and write raster data
+f1 <- system.file("external/rlogo.grd", package = "raster")
+d1 <- read_spatial_data(f1)
+write_spatial_data(d1, tempdir(), "rlogo")
+
+# read and write vector data
+f2 <- system.file("shape/nc.shp", package = "sf")
+read_spatial_data(f2)
+write_spatial_data(d1, tempdir(), "nc")
+
 }

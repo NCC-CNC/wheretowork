@@ -29,11 +29,36 @@ server_export_data <- quote({
       paste0("prioritization-", Sys.Date(), ".zip")
     },
     content = function(con) {
+      # create temporary directory to save data
+      td <- tempfile()
+      dir.create(td, recursive = TRUE, showWarnings = FALSE)
+      # save Excel spreadsheets with solution results
+      ## find solutions to save
+      export_solutions <- vapply(
+        app_data$solutions, FUN.VALUE = logical(1), function(x) {
+          x$get_layer_index() %in% input$exportPane_fields
+      })
+      ## save results
+      lapply(app_data$solutions[export_solutions], function(x) {
+        openxlsx::write.xlsx(
+          list(
+            Summary = x$get_summary_results_data(),
+            Themes = x$get_theme_results_data(),
+            Weights = x$get_weight_results_data(),
+            Includes = x$get_include_results_data()
+          ),
+          file = file.path(td, paste0(x$get_layer_name(), ".xlsx")),
+          overwrite = TRUE
+        )
+      })
+      # save spatial data
       write_spatial_data(
         x = app_data$dataset$get_index(input$exportPane_fields),
-        path = con,
+        dir = td,
         name = "data"
       )
+      # zip files
+      withr::with_dir(td, utils::zip(con, dir(td), flags = "-qq"))
     },
     contentType = "application/zip"
   )

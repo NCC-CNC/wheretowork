@@ -49,53 +49,49 @@ read_spatial_data <- function(x) {
 
 #' Write spatial data
 #'
-#' Write spatial data to disk as a zip archive.
+#' Write spatial data to disk.
 #'
 #' @param x [sf::st_sf()] or [raster::stack()] object.
 #'
-#' @param path `character` file path to save zip archive.
+#' @param dir `character` directory to save data.
 #'
-#' @param name `character` name of the spatial data inside the zip archive.
-#'  Defaults to `NULL` such that the argument is the file name of `path`.
-#'
-#' @details
-#' This function saves the spatial dataset as a zip archive.
-#' Vector data are saved in ESRI Shapefile format and raster data
-#' are saved as a GeoTIFF with layer names stored in a plain text file.
+#' @param name `character` name of the spatial data file.
 #'
 #' @return Invisible `TRUE` indicating success.
 #'
+#' @examples
+#' # read and write raster data
+#' f1 <- system.file("external/rlogo.grd", package = "raster")
+#' d1 <- read_spatial_data(f1)
+#' write_spatial_data(d1, tempdir(), "rlogo")
+#'
+#' # read and write vector data
+#' f2 <- system.file("shape/nc.shp", package = "sf")
+#' read_spatial_data(f2)
+#' write_spatial_data(d1, tempdir(), "nc")
+#'
 #' @export
-write_spatial_data <- function(x, path, name = NULL) {
-  if (is.null(name)) {
-    name <- tools::file_path_sans_ext(basename(path))
-  }
+write_spatial_data <- function(x, dir, name) {
   assertthat::assert_that(
     inherits(x, c("sf", "Raster")),
-    assertthat::is.string(path),
-    assertthat::noNA(path),
-    endsWith(path, ".zip"),
+    assertthat::is.string(dir),
+    assertthat::noNA(dir),
     assertthat::is.string(name),
     assertthat::noNA(name)
   )
-  # create temporary directory
-  td <- tempfile()
-  dir.create(td, showWarnings = TRUE, recursive = TRUE)
   # save data to disk
   if (inherits(x, "sf")) {
     ## save vector data in ESRI Shapefile format
-    sf::write_sf(x, file.path(td, paste0(name, ".shp")))
+    sf::write_sf(x, file.path(dir, paste0(name, ".shp")))
   } else {
     ## save raster data in GeoTIFF format
     suppressWarnings({
       writeNamedRaster(
-        x = x, filename = file.path(td, paste0(name, ".tif")),
+        x = x, filename = file.path(dir, paste0(name, ".tif")),
         overwrite = TRUE, NAflag = -9999
       )
     })
   }
-  # add files to zip archive
-  withr::with_dir(td, utils::zip(path, dir(td), flags = "-qq"))
   # return success
-  file.exists(path)
+  invisible(TRUE)
 }
