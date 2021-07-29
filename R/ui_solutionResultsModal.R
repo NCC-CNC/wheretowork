@@ -71,6 +71,7 @@ solutionResultsModal <- function(id, trigger) {
                   inputId = paste0(id, "_radio"),
                   label = NULL,
                   choices = c(
+                    `<i class='fa fa-chart-line'></i>Summary` = "summary",
                     `<i class='fa fa-star'></i>Themes` = "themes",
                     `<i class='fa fa-weight-hanging'></i>Weights` = "weights",
                     `<i class='fa fa-lock'></i>Includes` = "includes"
@@ -80,6 +81,11 @@ solutionResultsModal <- function(id, trigger) {
                 ),
               ),
               ## download buttons
+              shiny::downloadButton(
+                outputId = "summary_results_button",
+                label = "Download summary results",
+                class = "btn-sm"
+              ),
               shiny::downloadButton(
                 outputId = "theme_results_button",
                 label = "Download theme results",
@@ -100,17 +106,18 @@ solutionResultsModal <- function(id, trigger) {
           ## body
           htmltools::tags$div(
             class = "modal-body",
-            ### themes panel
+            shiny::conditionalPanel(
+              condition = paste0("input.", id, "_radio == 'summary'"),
+              DT::DTOutput(outputId = paste0(id, "_summary_table"))
+            ),
             shiny::conditionalPanel(
               condition = paste0("input.", id, "_radio == 'themes'"),
               DT::DTOutput(outputId = paste0(id, "_themes_table"))
             ),
-            ### weights panel
             shiny::conditionalPanel(
               condition = paste0("input.", id, "_radio == 'weights'"),
               DT::DTOutput(outputId = paste0(id, "_weights_table"))
             ),
-            ### includes panel
             shiny::conditionalPanel(
               condition = paste0("input.", id, "_radio == 'includes'"),
               DT::DTOutput(outputId = paste0(id, "_includes_table"))

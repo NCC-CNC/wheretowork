@@ -25,6 +25,7 @@ test_that("initialization", {
   expect_equal(x$step_value, 0.03)
   expect_equal(x$hide, TRUE)
   expect_equal(x$units, "asdf")
+  expect_is(x$get_results_data(), "data.frame")
 })
 
 test_that("get methods", {

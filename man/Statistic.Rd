@@ -34,6 +34,7 @@ Definition for the Statistic class.
 \item \href{#method-print}{\code{Statistic$print()}}
 \item \href{#method-repr}{\code{Statistic$repr()}}
 \item \href{#method-get_widget_data}{\code{Statistic$get_widget_data()}}
+\item \href{#method-get_results_data}{\code{Statistic$get_results_data()}}
 \item \href{#method-clone}{\code{Statistic$clone()}}
 }
 }
@@ -111,6 +112,19 @@ Get widget data.
 
 \subsection{Returns}{
 \code{list} object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_results_data"></a>}}
+\if{latex}{\out{\hypertarget{method-get_results_data}{}}}
+\subsection{Method \code{get_results_data()}}{
+Get results data.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Statistic$get_results_data()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{data.frame} object.
 }
 }
 \if{html}{\out{<hr>}}

@@ -177,6 +177,45 @@ Solution <- R6::R6Class(
     },
 
     #' @description
+    #' Get summary results.
+    #' @return [tibble::tibble()] object.
+    get_summary_results_data = function() {
+      # compile data
+      rd <- tibble::as_tibble(plyr::ldply(
+         self$statistics, function(x) x$get_results_data()))
+      pd <- tibble::as_tibble(plyr::ldply(
+         self$parameters, function(x) x$get_results_data()))
+      # prepare statistics data
+      rd$type <- "statistic"
+      rd$hide <- FALSE
+      # prepare parameters data
+      pd$type <- "setting"
+      pd$proportion <- NA_real_
+      pd$proportion[pd$units == "%"] <- pd$value[pd$units == "%"]
+      pd$value[pd$units == "%"] <- NA_real_
+      # combine data
+      x <- dplyr::bind_rows(pd, rd)
+      x$value_text <- dplyr::if_else(
+        is.na(x$value), rep("", nrow(x)), paste(round(x$value, 2), x$units)
+      )
+      x$value_text <- dplyr::if_else(x$hide, "None specified", x$value_text)
+      x$proportion_text <- round(x$proportion * 100, 2)
+      x$proportion_text <- dplyr::if_else(
+        is.na(x$proportion_text), "", as.character(x$proportion_text)
+      )
+      x$proportion_text <- dplyr::if_else(
+        x$hide, "None specified", x$proportion_text
+      )
+      # return formatted table
+      tibble::tibble(
+        `Name` = x$name,
+        `Type` = x$type,
+        `Value (%)` = x$proportion_text,
+        `Value (units)` = x$value_text
+      )
+    },
+
+    #' @description
     #' Get theme results.
     #' @return [tibble::tibble()] object.
     get_theme_results_data = function() {
@@ -276,6 +315,63 @@ Solution <- R6::R6Class(
       }
       # return results
       out
+    },
+
+    #' @description
+    #' Render summary results.
+    #' @return [DT::datatable()] object.
+    render_summary_results = function() {
+      ## generate results
+      x <- self$get_summary_results_data()
+      ## define JS for button
+      action_js <- htmlwidgets::JS(
+        "function ( e, dt, node, config ) {",
+        "  $('#summary_results_button')[0].click();",
+        "}"
+      )
+      ## render table
+      DT::datatable(
+        x,
+        rownames = FALSE, escape = TRUE,
+        editable = FALSE, selection = "none",
+        fillContainer = TRUE, extensions = "Buttons",
+        options = list(
+          ### align columns
+          columnDefs = list(
+            list(className = "dt-left", targets = 0:1),
+            list(className = "dt-center", targets = c(2:3))
+          ),
+          ### disable paging
+          paging = FALSE,
+          scrollY = "calc(100vh - 295px)",
+          scrollCollapse = TRUE,
+          ### download button
+          dom = "Bfrtip",
+          buttons = list(
+            list(
+              extend = "collection",
+              text = as.character(shiny::icon("file-download")),
+              title = "Download spreadsheet",
+              action = action_js
+            )
+          )
+        ),
+        container = htmltools::tags$table(
+          class = "display",
+          htmltools::tags$thead(
+            htmltools::tags$tr(
+              htmltools::tags$th(rowspan = 2, "Name"),
+              htmltools::tags$th(rowspan = 2, "Type"),
+              htmltools::tags$th(
+                class = "dt-center", colspan = 2, "Value"
+              )
+            ),
+            htmltools::tags$tr(
+              lapply(c("(%)", "(units)"), htmltools::tags$th)
+            )
+          )
+        )
+      )
     },
 
     #' @description

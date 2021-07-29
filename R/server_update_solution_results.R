@@ -40,6 +40,11 @@ server_update_solution_results <- quote({
     i <- which(
       app_data$solution_ids == input$solutionResultsPane_results_modal_select
     )
+    ## render summary results
+    output$solutionResultsPane_results_modal_summary_table <-
+      DT::renderDT({
+        app_data$solutions[[i]]$render_summary_results()
+      })
     ## render theme results
     output$solutionResultsPane_results_modal_themes_table <-
       DT::renderDT({

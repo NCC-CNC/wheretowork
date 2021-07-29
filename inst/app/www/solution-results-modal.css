@@ -50,10 +50,12 @@
 }
 
 /* download buttons */
+#summary_results_button,
 #theme_results_button,
 #weight_results_button,
 #include_results_button {
   visibility: hidden;
+  width: 5px;
 }
 
 /* tables */

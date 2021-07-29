@@ -240,7 +240,20 @@ Parameter <- R6::R6Class(
         hide = self$hide,
         units = self$units
       )
+    },
+
+    #' @description
+    #' Get results data.
+    #' @return `data.frame` object.
+    get_results_data = function() {
+      data.frame(
+        name = self$name,
+        value = self$value,
+        units = self$units,
+        hide = self$hide
+      )
     }
+
   )
 )
 

@@ -51,6 +51,7 @@ Definition for the Parameter class.
 \item \href{#method-set_setting}{\code{Parameter$set_setting()}}
 \item \href{#method-get_widget_data}{\code{Parameter$get_widget_data()}}
 \item \href{#method-export}{\code{Parameter$export()}}
+\item \href{#method-get_results_data}{\code{Parameter$get_results_data()}}
 \item \href{#method-clone}{\code{Parameter$clone()}}
 }
 }
@@ -263,6 +264,19 @@ Export settings.
 
 \subsection{Returns}{
 \code{list} object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_results_data"></a>}}
+\if{latex}{\out{\hypertarget{method-get_results_data}{}}}
+\subsection{Method \code{get_results_data()}}{
+Get results data.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Parameter$get_results_data()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{data.frame} object.
 }
 }
 \if{html}{\out{<hr>}}

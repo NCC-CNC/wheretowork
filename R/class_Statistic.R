@@ -75,7 +75,20 @@ Statistic <- R6::R6Class(
         units = self$units,
         proportion = self$proportion
       )
+    },
+
+    #' @description
+    #' Get results data.
+    #' @return `data.frame` object.
+    get_results_data = function() {
+      data.frame(
+        name = self$name,
+        value = self$value,
+        units = self$units,
+        proportion = self$proportion
+      )
     }
+
   )
 )
 

@@ -168,9 +168,11 @@ Solution class" />
 <li><p><a href='#method-get_visible'><code>Solution$get_visible()</code></a></p></li>
 <li><p><a href='#method-get_setting'><code>Solution$get_setting()</code></a></p></li>
 <li><p><a href='#method-set_visible'><code>Solution$set_visible()</code></a></p></li>
+<li><p><a href='#method-get_summary_results_data'><code>Solution$get_summary_results_data()</code></a></p></li>
 <li><p><a href='#method-get_theme_results_data'><code>Solution$get_theme_results_data()</code></a></p></li>
 <li><p><a href='#method-get_weight_results_data'><code>Solution$get_weight_results_data()</code></a></p></li>
 <li><p><a href='#method-get_include_results_data'><code>Solution$get_include_results_data()</code></a></p></li>
+<li><p><a href='#method-render_summary_results'><code>Solution$render_summary_results()</code></a></p></li>
 <li><p><a href='#method-render_theme_results'><code>Solution$render_theme_results()</code></a></p></li>
 <li><p><a href='#method-render_weight_results'><code>Solution$render_weight_results()</code></a></p></li>
 <li><p><a href='#method-render_include_results'><code>Solution$render_include_results()</code></a></p></li>
@@ -390,6 +392,19 @@ Available options are <code>"visible"</code>.</p></dd>
 
 </dl><p></div></p>
 <p><hr>
+<a id="method-get_summary_results_data"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>get_summary_results_data()</code></h3>
+<p>Get summary results.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Solution</span><span class='op'>$</span><span class='fu'>get_summary_results_data</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble::tibble()</a></code> object.</p>
+<h3 class='hasAnchor' id='list-get-summary-results-data-'><a class='anchor' aria-hidden='true' href='#list-get-summary-results-data-'></a>Method <code>get_summary_results_data()</code></h3>
+<p>Get summary results.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Solution</span><span class='op'>$</span><span class='fu'>get_summary_results_data</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble::tibble()</a></code> object.</p>
+<p><hr>
 <a id="method-get_theme_results_data"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>get_theme_results_data()</code></h3>
 <p>Get theme results.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
 <p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Solution</span><span class='op'>$</span><span class='fu'>get_theme_results_data</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
@@ -428,6 +443,19 @@ Available options are <code>"visible"</code>.</p></dd>
 
 <h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
 <p><code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble::tibble()</a></code> object.</p>
+<p><hr>
+<a id="method-render_summary_results"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>render_summary_results()</code></h3>
+<p>Render summary results.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Solution</span><span class='op'>$</span><span class='fu'>render_summary_results</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code><a href='https://rdrr.io/pkg/DT/man/datatable.html'>DT::datatable()</a></code> object.</p>
+<h3 class='hasAnchor' id='list-render-summary-results-'><a class='anchor' aria-hidden='true' href='#list-render-summary-results-'></a>Method <code>render_summary_results()</code></h3>
+<p>Render summary results.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Solution</span><span class='op'>$</span><span class='fu'>render_summary_results</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code><a href='https://rdrr.io/pkg/DT/man/datatable.html'>DT::datatable()</a></code> object.</p>
 <p><hr>
 <a id="method-render_theme_results"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>render_theme_results()</code></h3>
 <p>Render theme results.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>

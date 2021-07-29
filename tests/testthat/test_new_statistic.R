@@ -11,6 +11,7 @@ test_that("initialization", {
   expect_identical(x$value, 12)
   expect_identical(x$units, "ha")
   expect_identical(x$proportion, 0.2)
+  expect_is(x$get_results_data(), "data.frame")
 })
 
 test_that("widget method", {

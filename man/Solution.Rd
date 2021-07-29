@@ -48,9 +48,11 @@ Definition for the Solution class.
 \item \href{#method-get_visible}{\code{Solution$get_visible()}}
 \item \href{#method-get_setting}{\code{Solution$get_setting()}}
 \item \href{#method-set_visible}{\code{Solution$set_visible()}}
+\item \href{#method-get_summary_results_data}{\code{Solution$get_summary_results_data()}}
 \item \href{#method-get_theme_results_data}{\code{Solution$get_theme_results_data()}}
 \item \href{#method-get_weight_results_data}{\code{Solution$get_weight_results_data()}}
 \item \href{#method-get_include_results_data}{\code{Solution$get_include_results_data()}}
+\item \href{#method-render_summary_results}{\code{Solution$render_summary_results()}}
 \item \href{#method-render_theme_results}{\code{Solution$render_theme_results()}}
 \item \href{#method-render_weight_results}{\code{Solution$render_weight_results()}}
 \item \href{#method-render_include_results}{\code{Solution$render_include_results()}}
@@ -227,6 +229,19 @@ Set visible.
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_summary_results_data"></a>}}
+\if{latex}{\out{\hypertarget{method-get_summary_results_data}{}}}
+\subsection{Method \code{get_summary_results_data()}}{
+Get summary results.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Solution$get_summary_results_data()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{\link[tibble:tibble]{tibble::tibble()}} object.
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_theme_results_data"></a>}}
 \if{latex}{\out{\hypertarget{method-get_theme_results_data}{}}}
 \subsection{Method \code{get_theme_results_data()}}{
@@ -263,6 +278,19 @@ Get weight results.
 
 \subsection{Returns}{
 \code{\link[tibble:tibble]{tibble::tibble()}} object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-render_summary_results"></a>}}
+\if{latex}{\out{\hypertarget{method-render_summary_results}{}}}
+\subsection{Method \code{render_summary_results()}}{
+Render summary results.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Solution$render_summary_results()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{\link[DT:datatable]{DT::datatable()}} object.
 }
 }
 \if{html}{\out{<hr>}}
