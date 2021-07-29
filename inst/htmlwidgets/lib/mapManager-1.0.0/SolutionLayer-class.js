@@ -67,6 +67,12 @@ class SolutionLayer {
       });
       /// remove button
       this.remove_el.addEventListener("click", function () {
+        /// remove all tooltips
+        /// (ideally we would ONLY remove tooltips for this layer
+        ///  but this cludge will suffice for now)
+        const els  = document.querySelectorAll("[role='tooltip']");
+        els.forEach((x) => x.parentElement.removeChild(x));
+        /// tell backend to remove layer
         Shiny.setInputValue(manager, {
           id: id,
           setting: "remove",
