@@ -27,18 +27,33 @@ mm_legend_component_scaffold <- function() {
 #'
 #' @noRd
 mm_header_component_scaffold <- function(id = uuid::UUIDgenerate(),
-                                         icon = shiny::icon("map-marker-alt"),
+                                         type = "layer",
                                          remove_button = FALSE) {
   # create tooltip text for type
-  if (identical(icon$attribs$class, "fa fa-star")) {
-    icon_tooltip_text <- "This layer is a Theme"
-  } else if (identical(icon$attribs$class, "fa fa-weight-hanging")) {
-    icon_tooltip_text <- "This layer is a Weight"
-  } else if (identical(icon$attribs$class, "fa fa-lock")) {
-    icon_tooltip_text <- "This layer is an Include"
-  } else if (identical(icon$attribs$class, "fa fa-rocket")) {
-    icon_tooltip_text <- "This layer is a solution"
+  if (identical(type, "theme")) {
+    icon <- shiny::icon("star")
+    remove_tooltip_text <- "Delete Theme"
+    visible_tooltip_text <- "Show/hide Theme on map"
+    icon_tooltip_text <- "This is a Theme"
+  } else if (identical(type, "weight")) {
+    icon <- shiny::icon("weight-hanging")
+    remove_tooltip_text <- "Delete Weight"
+    visible_tooltip_text <- "Show/hide Weight on map"
+    icon_tooltip_text <- "This is a Weight"
+  } else if (identical(type, "include")) {
+    icon <- shiny::icon("lock")
+    remove_tooltip_text <- "Delete Include"
+    visible_tooltip_text <- "Show/hide Include on map"
+    icon_tooltip_text <- "This is an Include"
+  } else if (identical(type, "solution")) {
+    icon <- shiny::icon("rocket")
+    remove_tooltip_text <- "Delete solution"
+    visible_tooltip_text <- "Show/hide solution on map"
+    icon_tooltip_text <- "This is a solution"
   } else {
+    icon <- shiny::icon("map-marker-alt")
+    remove_tooltip_text <- "Delete layer"
+    visible_tooltip_text <- "Show/hide layer on map"
     icon_tooltip_text <- "This layer is a miscellaneous layer"
   }
 
@@ -63,7 +78,7 @@ mm_header_component_scaffold <- function(id = uuid::UUIDgenerate(),
       `data-toggle` = "tooltip",
       `data-placement` = "top",
       `data-container` = "body",
-      title = "Show/hide layer",
+      title = visible_tooltip_text,
       htmltools::tags$input(
         class = "visible-checkbox",
         type = "checkbox"
@@ -89,7 +104,7 @@ mm_header_component_scaffold <- function(id = uuid::UUIDgenerate(),
         `data-toggle` = "tooltip",
         `data-placement` = "top",
         `data-container` = "body",
-        title = "Remove layer",
+        title = remove_tooltip_text,
         htmltools::tags$i(class = "fa fa-trash-alt")
       )
     } else {
@@ -132,7 +147,7 @@ mm_subheader_component_scaffold <- function(id = uuid::UUIDgenerate()) {
       `data-toggle` = "tooltip",
       `data-placement` = "top",
       `data-container` = "body",
-      title = "Show/hide feature",
+      title = "Show/hide feature on map",
       htmltools::tags$input(
         class = "visible-checkbox",
         type = "checkbox"
@@ -142,10 +157,6 @@ mm_subheader_component_scaffold <- function(id = uuid::UUIDgenerate()) {
     ),
     htmltools::tags$label(
       class = "name-label",
-      `data-toggle` = "tooltip",
-      `data-placement` = "top",
-      `data-container` = "body",
-      title = "Name of the feature",
     )
   )
 }

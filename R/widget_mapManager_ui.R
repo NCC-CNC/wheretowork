@@ -120,7 +120,7 @@ mapManager_html <- function(id, style, class, ...) {
           htmltools::tags$div(
             class = "solution-layer",
             mm_header_component_scaffold(
-              icon = shiny::icon("rocket"),
+              type = "solution",
               remove_button = TRUE
             ),
             htmltools::tags$div(
@@ -142,9 +142,7 @@ mapManager_html <- function(id, style, class, ...) {
           class = "map-manager-layer",
           htmltools::tags$div(
             class = "include-layer",
-            mm_header_component_scaffold(
-              icon = shiny::icon("lock"),
-            ),
+            mm_header_component_scaffold(type = "include"),
             htmltools::tags$div(
               class = "layer-legend-container",
               mm_legend_component_scaffold()
@@ -164,9 +162,7 @@ mapManager_html <- function(id, style, class, ...) {
           class = "map-manager-layer",
           htmltools::tags$div(
             class = "weight-layer",
-            mm_header_component_scaffold(
-              icon = shiny::icon("weight-hanging")
-            ),
+            mm_header_component_scaffold(type = "weight"),
             htmltools::tags$div(
               class = "layer-legend-container",
               mm_legend_component_scaffold()
@@ -186,9 +182,7 @@ mapManager_html <- function(id, style, class, ...) {
           class = "map-manager-layer",
           htmltools::tags$div(
             class = "theme-layer",
-            mm_header_component_scaffold(
-              icon = shiny::icon("star")
-            ),
+            mm_header_component_scaffold(type = "theme"),
             htmltools::tags$div(
               class = "layer-legend-container",
               mm_legend_component_scaffold()
@@ -209,12 +203,8 @@ mapManager_html <- function(id, style, class, ...) {
           class = "map-manager-layer",
           htmltools::tags$div(
             class = "theme-layer",
-            mm_header_component_scaffold(
-              icon = shiny::icon("star")
-            ),
-            htmltools::tags$div(
-              class = "main"
-            )
+            mm_header_component_scaffold(type = "theme"),
+            htmltools::tags$div(class = "main")
           )
         )
       )
