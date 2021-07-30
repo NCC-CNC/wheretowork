@@ -6,6 +6,7 @@
   flex-direction: column;
   flex: 1 1 auto;
   overflow-y: hidden;
+  line-height: 1.1;
 }
 
 /* solution-settings */
@@ -150,6 +151,7 @@
   padding-bottom: 0px;
   display: flex;
   align-items: center;
+  gap: 3px;
 }
 
 /* header container */
@@ -159,9 +161,7 @@
 
 .solution-setting .header .name-label {
   font-size: 14px;
-  margin-left: 5px;
-  margin-bottom: 0px;
-  margin-bottom: -4px;
+  margin: 0px;
 }
 
 .solution-setting .header .el-switch {
@@ -175,13 +175,11 @@
 .solution-setting .sub-header .name-label {
   font-size: 12px;
   font-weight: 700;
-  margin-left: 5px;
   margin-bottom: 0px;
-  margin-bottom: -3px;
 }
 
 .solution-setting .sub-header .el-switch {
-  font-size: 8px;
+  font-size: 7px;
   margin-bottom: 0;
   padding-bottom: 0;
 }
@@ -211,7 +209,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 0px;
-  padding-top: 2px;
+  margin-top: 2px;
   padding-left: 5px;
   padding-right: 5px;
   flex-basis: 50%;
@@ -234,15 +232,14 @@
   flex-basis: 50%;
   box-sizing: border-box;
   width: 100%;
+  gap: 2px;
 }
 
 /* --  labels */
 .solution-setting .status-info label {
   font-size: 12px;
   font-weight: 400;
-  vertical-align: middle;
-  margin-left: 2px;
-  margin-bottom: -4px;
+  margin-bottom: 0px;
 }
 
 /* --  symbols */

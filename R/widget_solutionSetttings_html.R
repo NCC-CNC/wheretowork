@@ -216,10 +216,10 @@ ss_header_component_scaffold <- function(type, id = uuid::UUIDgenerate()) {
         title =
           paste0("Enable/disable the ", type, " when generating a solution"),
         `for` = id
-      ),
-      htmltools::tags$label(
-        class = "name-label disable-if-inactive"
       )
+    ),
+    htmltools::tags$label(
+      class = "name-label disable-if-inactive"
     )
   )
 }
@@ -241,10 +241,10 @@ ss_subheader_component_scaffold <- function(id = uuid::UUIDgenerate()) {
         `data-container` = "body",
         title = "Enable/disable the feature when generating a solution",
         `for` = id
-      ),
-      htmltools::tags$label(
-        class = "name-label disable-if-inactive"
       )
+    ),
+    htmltools::tags$label(
+      class = "name-label disable-if-inactive"
     )
   )
 }
