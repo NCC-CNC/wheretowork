@@ -49,6 +49,7 @@ jobs:
           -e SHINYAPPS_USER=${{ secrets.SHINYAPPS_USER }} \
           -e SHINYAPPS_TOKEN=${{ secrets.SHINYAPPS_TOKEN }} \
           -e SHINYAPPS_SECRET=${{ secrets.SHINYAPPS_SECRET }} \
+          -e SHINYAPPS_APPNAME=$SHINYAPPS_APPNAME \
           shinyapps:latest
 
       - name: Move cache
