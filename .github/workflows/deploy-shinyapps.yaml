@@ -34,8 +34,10 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v2
         with:
+          context: .
           push: false
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/wheretowork:devel
+          target: shinyapps
+          tags: shinyapps
 
       - name: Deploy
         env:
@@ -44,4 +46,9 @@ jobs:
           SHINYAPPS_TOKEN: ${{ secrets.SHINYAPPS_TOKEN }}
           SHINYAPPS_SECRET: ${{ secrets.SHINYAPPS_SECRET }}
         run: |
-          docker run user/app:shinyapps
+          docker run shinyapps
+
+      - name: Move cache
+        run: |
+          rm -rf /tmp/.buildx-cache
+          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
