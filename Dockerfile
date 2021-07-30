@@ -75,7 +75,7 @@ COPY app.R /app
 WORKDIR /app
 
 ## run app
-CMD Rscript -e "rsconnect::setAccountInfo(name=Sys.getenv('SHINYAPPS_USER'), token=Sys.getenv('SHINYAPPS_TOKEN'), secret=Sys.getenv('SHINYAPPS_SECRET')); rsconnect::deployApp('.', appName='$SHINYAPPS_APPNAME')"
+CMD Rscript -e "print('here1');rsconnect::setAccountInfo(name=Sys.getenv('SHINYAPPS_USER'), token=Sys.getenv('SHINYAPPS_TOKEN'),secret=Sys.getenv('SHINYAPPS_SECRET'));print('here2');rsconnect::deployApp('.', appName='$SHINYAPPS_APPNAME');print('here3');"
 
 # main image
 FROM base AS main
