@@ -70,6 +70,15 @@ leaflet_map <- function() {
         onClick = htmlwidgets::JS(hide_js)
       )
     ) %>%
+    ## add help button
+    leaflet::addEasyButton(
+      leaflet::easyButton(
+        title = "Help",
+        icon = shiny::icon("question"),
+        position = "topleft",
+        onClick = htmlwidgets::JS(help_js)
+      )
+    ) %>%
     ## add screenshot button
     leaflet.extras2::addEasyprint(
       options = leaflet.extras2::easyprintOptions(
@@ -85,24 +94,15 @@ leaflet_map <- function() {
         onClick = htmlwidgets::JS(print_js)
       )
     ) %>%
-    ## add history buttons
-    leaflet.extras2::addHistory(
-      options = leaflet.extras2::historyOptions(position = "topleft")
-    ) %>%
     ## add basemap controls
     leaflet::addLayersControl(
       baseGroups = c("Satellite", "Street view", "Monochrome"),
       options = leaflet::layersControlOptions(collapsed = TRUE),
       position = "topleft"
     ) %>%
-    ## add help button
-    leaflet::addEasyButton(
-      leaflet::easyButton(
-        title = "Help",
-        icon = shiny::icon("question"),
-        position = "topleft",
-        onClick = htmlwidgets::JS(help_js)
-      )
+    ## add history buttons
+    leaflet.extras2::addHistory(
+      options = leaflet.extras2::historyOptions(position = "topleft")
     ) %>%
     ## add scale bar
     leaflet::addScaleBar(
