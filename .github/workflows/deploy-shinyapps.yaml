@@ -23,14 +23,12 @@ jobs:
           DOCKERFILE_NAME: "Dockerfile"
           DOCKERFILE_TARGET: "shinyapps"
           DOCKERHUB_REPO: "naturecons/wheretowork:devel"
-          DOCKER_OPTIONS: ""
         run: |
           docker pull ${DOCKERHUB_REPO}
           docker build \
             --file ${DOCKERFILE_NAME} \
             --target ${DOCKERFILE_TARGET} \
             --tag shinyapps \
-            ${DOCKER_OPTIONS} \
             .
 
       - name: Deploy
