@@ -25,6 +25,11 @@ leaflet_map <- function() {
     "Shiny.setInputValue(\"print_button\", Math.random());",
     "}"
   )
+  help_js <- paste0(
+    "function(btn, map) {",
+    "Shiny.setInputValue(\"help_button\", Math.random());",
+    "}"
+  )
 
   # create map
   map <-
@@ -89,6 +94,15 @@ leaflet_map <- function() {
       baseGroups = c("Satellite", "Street view", "Monochrome"),
       options = leaflet::layersControlOptions(collapsed = TRUE),
       position = "topleft"
+    ) %>%
+    ## add help button
+    leaflet::addEasyButton(
+      leaflet::easyButton(
+        title = "Help",
+        icon = shiny::icon("question"),
+        position = "topleft",
+        onClick = htmlwidgets::JS(help_js)
+      )
     ) %>%
     ## add scale bar
     leaflet::addScaleBar(

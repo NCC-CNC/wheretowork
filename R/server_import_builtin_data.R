@@ -57,7 +57,13 @@ server_import_builtin_data <- quote({
     environment(import_data) <- environment()
     import_data(x = x, mode = get_golem_config("mode"))
 
-    ## remove modal
+    ## remove data modal
     shiny::removeModal(session)
+
+    ## show help modal if beginner
+    if (identical(app_data$mode, "beginner")) {
+      shinyBS::toggleModal(session, modalId = "helpModal", toggle = "open")
+    }
+
   })
 })

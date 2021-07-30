@@ -30,7 +30,7 @@ solutionResultsModal <- function(id, trigger) {
         "$('#", id, "').on('show.bs.modal', function() {",
         "  setTimeout(function() {",
         "  $('#", id, "').appendTo('body');",
-        "$('.modal-backdrop').addClass('solution-results-modal-backdrop');",
+        "$('.modal-backdrop').addClass('sbs-modal-backdrop');",
         "})});"
       ))),
       class = "solution-results-modal modal sbs-modal fade",

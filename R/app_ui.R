@@ -26,6 +26,9 @@ app_ui <- function(request) {
       ## leaflet map
       leaflet::leafletOutput("map", width = "100%", height = "100%"),
 
+      ## help modal
+      helpModal("helpModal", trigger = "help_button"),
+
       ## data sidebar (appears on left)
       leaflet.extras2::sidebar_tabs(
         id = "dataSidebar",

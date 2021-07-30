@@ -75,5 +75,11 @@ server_import_manual_data <- quote({
 
     ## remove modal
     shiny::removeModal(session)
+
+    ## show help modal
+    if (identical(app_data$mode, "beginner")) {
+      shinyBS::toggleModal(session, modalId = "helpModal", toggle = "open")
+    }
+
   })
 })

@@ -76,4 +76,12 @@ server_initialize_app <- quote({
 
   # hide elements
   shinyjs::hideElement("importModal_spatial_text")
+
+  # add help modal button trigger
+  observeEvent(input$help_button, {
+    shinyBS::toggleModal(
+      session = session, modalId = "helpModal", toggle = "open"
+    )
+  })
+
 })

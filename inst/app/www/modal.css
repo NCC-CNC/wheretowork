@@ -8,3 +8,21 @@
   /* max-height: calc(100vh - 410px) !important; */
   max-height: calc(100vh - 440px) !important;
 }
+
+/* -- modal */
+.modal.sbs-modal {
+  overflow-y: hidden;
+  z-index: 999999;
+}
+
+/* -- define modal-xl class for wide modal */
+@media (min-width: 768px) {
+  .modal-xl {
+    width: 90%;
+    max-width : 1200px;
+  }
+}
+
+.sbs-modal-backdrop {
+  z-index: 999998;
+}
