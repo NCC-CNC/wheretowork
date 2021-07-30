@@ -11,12 +11,7 @@ NULL
 #' @return `shiny.tag` object.
 #'
 #' @noRd
-ss_goal_component_scaffold <- function(type) {
-  assertthat::assert_that(
-    assertthat::is.string(type),
-    assertthat::noNA(type),
-    type %in% c("weight", "theme")
-  )
+ss_goal_component_scaffold <- function() {
   htmltools::tags$div(
     class = "goal",
     htmltools::tags$div(
@@ -31,6 +26,7 @@ ss_goal_component_scaffold <- function(type) {
           `data-toggle` = "tooltip",
           `data-placement` = "top",
           `data-container` = "body",
+          `data-trigger` = "hover",
           title = "Current coverage by Includes"
         )
       ),
@@ -44,11 +40,19 @@ ss_goal_component_scaffold <- function(type) {
           `data-toggle` = "tooltip",
           `data-placement` = "top",
           `data-container` = "body",
+          `data-trigger` = "hover",
           title = "Goal for generating solutions"
         )
-      ),
+      )
     ),
-    ss_slider_component_scaffold(bar = "current-bar", type)
+    htmltools::tags$div(
+      `data-toggle` = "tooltip",
+      `data-placement` = "bottom",
+      `data-container` = "body",
+      `data-trigger` = "hover",
+      title = "Set the goal",
+      ss_slider_component_scaffold(bar = "current-bar")
+    )
   )
 }
 
@@ -62,12 +66,7 @@ ss_goal_component_scaffold <- function(type) {
 #' @return `shiny.tag` object.
 #'
 #' @noRd
-ss_group_goal_component_scaffold <- function(type) {
-  assertthat::assert_that(
-    assertthat::is.string(type),
-    assertthat::noNA(type),
-    type %in% c("weight", "theme")
-  )
+ss_group_goal_component_scaffold <- function() {
   htmltools::tags$div(
     class = "goal",
     htmltools::tags$div(
@@ -82,6 +81,7 @@ ss_group_goal_component_scaffold <- function(type) {
           `data-toggle` = "tooltip",
           `data-placement` = "top",
           `data-container` = "body",
+          `data-trigger` = "hover",
           title = "Current coverage by Includes"
         )
       ),
@@ -95,13 +95,21 @@ ss_group_goal_component_scaffold <- function(type) {
           `data-toggle` = "tooltip",
           `data-placement` = "top",
           `data-container` = "body",
+          `data-trigger` = "hover",
           title = "Goal for generating solutions"
         )
       ),
     ),
-    ss_slider_component_scaffold(bar = c(
-      "current-max-bar", "current-min-bar"
-    ), type)
+    htmltools::tags$div(
+      `data-toggle` = "tooltip",
+      `data-placement` = "bottom",
+      `data-container` = "body",
+      `data-trigger` = "hover",
+      title = "Set goals for all features in the Theme",
+      ss_slider_component_scaffold(
+        bar = c("current-max-bar", "current-min-bar")
+      )
+    )
   )
 }
 
@@ -110,21 +118,14 @@ ss_group_goal_component_scaffold <- function(type) {
 #' Create a HTML scaffold for a slider component of the
 #' the [solutionSettings()] widget.
 #'
-#' @param type `character` name of parent widget.
-#'
 #' @param bar `character` names of classes for bars to include.
 #'  Defaults to `NULL` such that no bars are included.
 #'
 #' @return `shiny.tag` object.
 #'
 #' @noRd
-ss_slider_component_scaffold <- function(type, bar = NULL) {
+ss_slider_component_scaffold <- function(bar = NULL) {
   # assert arguments are valid
-  assertthat::assert_that(
-    assertthat::is.string(type),
-    assertthat::noNA(type),
-    type %in% c("weight", "theme", "parameter")
-  )
   if (!is.null(bar)) {
     assertthat::assert_that(
       is.character(bar),
@@ -133,18 +134,7 @@ ss_slider_component_scaffold <- function(type, bar = NULL) {
   }
 
   # initialize slider
-  out <- htmltools::tags$div(
-    class = "slider",
-    `data-toggle` = "tooltip",
-    `data-placement` = "bottom",
-    `data-container` = "body",
-    title =
-      switch(type,
-        "weight" = "Set the factor",
-        "theme" = "Set the goal",
-        "parameter" = "Set the parameter value"
-      )
-  )
+  out <- htmltools::tags$div(class = "slider")
 
   # add bars if needed
   if (!is.null(bar)) {
@@ -213,8 +203,12 @@ ss_header_component_scaffold <- function(type, id = uuid::UUIDgenerate()) {
         `data-toggle` = "tooltip",
         `data-placement` = "top",
         `data-container` = "body",
-        title =
-          paste0("Enable/disable the ", type, " when generating a solution"),
+        `data-trigger` = "hover",
+        title = paste(
+          "Enable/disable the ",
+          tools::toTitleCase(type),
+          " when generating a solution"
+        ),
         `for` = id
       )
     ),
@@ -239,6 +233,7 @@ ss_subheader_component_scaffold <- function(id = uuid::UUIDgenerate()) {
         `data-toggle` = "tooltip",
         `data-placement` = "top",
         `data-container` = "body",
+        `data-trigger` = "hover",
         title = "Enable/disable the feature when generating a solution",
         `for` = id
       )

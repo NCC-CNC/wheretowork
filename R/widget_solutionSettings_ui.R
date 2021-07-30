@@ -261,15 +261,15 @@ solutionSettings_html <- function(id, style, class, ...) {
           `data-placement` = "top",
           `data-container` = "body",
           title = paste(
-            "Generate a new solution using the Themes, Weight, Includes,",
+            "Generate a new solution using the Themes, Weights, Includes,",
             "and Settings"
           ),
           shinyFeedback::loadingButton(
             inputId = paste0(id, "_start_button"),
-            label = "Optimize!",
+            label = "Generate solution",
             class = "btn btn-primary",
             loadingLabel = "",
-            style = "width: 100px;"
+            style = "width: 150px;"
           )
         ),
         htmltools::tags$div(
@@ -277,10 +277,11 @@ solutionSettings_html <- function(id, style, class, ...) {
           `data-toggle` = "tooltip",
           `data-placement` = "top",
           `data-container` = "body",
-          title = "Stop the optimization",
+          title = "Stop optimizing",
           shinyBS::bsButton(
             inputId = paste0(id, "_stop_button"),
-            label = "Stop",
+            label = "",
+            icon = shiny::icon("ban"),
             style = "danger"
           )
         )
@@ -299,8 +300,13 @@ solutionSettings_html <- function(id, style, class, ...) {
           ss_header_component_scaffold("parameter"),
           htmltools::tags$div(
             class = "parameter-slider",
-            ss_slider_component_scaffold("parameter")
-          ),
+            `data-toggle` = "tooltip",
+            `data-placement` = "bottom",
+            `data-container` = "body",
+            `data-trigger` = "hover",
+            title = "Set the parameter value",
+            ss_slider_component_scaffold()
+          )
         )
       )
     )
@@ -329,7 +335,12 @@ solutionSettings_html <- function(id, style, class, ...) {
           ss_header_component_scaffold("weight"),
           htmltools::tags$div(
             class = "weight-slider",
-            ss_slider_component_scaffold("weight")
+            `data-toggle` = "tooltip",
+            `data-placement` = "bottom",
+            `data-container` = "body",
+            `data-trigger` = "hover",
+            title = "Set the factor",
+            ss_slider_component_scaffold()
           ),
         )
       )
@@ -344,7 +355,7 @@ solutionSettings_html <- function(id, style, class, ...) {
         htmltools::tags$div(
           class = "single-theme-setting solution-setting",
           ss_header_component_scaffold("theme"),
-          ss_goal_component_scaffold("theme")
+          ss_goal_component_scaffold()
         )
       )
     )
@@ -369,7 +380,7 @@ solutionSettings_html <- function(id, style, class, ...) {
                 "group",
                 htmltools::tags$div(
                   class = "group-view",
-                  ss_group_goal_component_scaffold("theme")
+                  ss_group_goal_component_scaffold()
                 )
               ),
               ## single view
@@ -394,7 +405,7 @@ solutionSettings_html <- function(id, style, class, ...) {
         htmltools::tags$div(
           class = "single-container",
           ss_subheader_component_scaffold(),
-          ss_goal_component_scaffold("theme")
+          ss_goal_component_scaffold()
         )
       )
     )
