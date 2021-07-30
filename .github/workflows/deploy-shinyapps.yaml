@@ -44,11 +44,12 @@ jobs:
       - name: Deploy
         env:
           SHINYAPPS_APPNAME: "wheretowork"
-          SHINYAPPS_USER: ${{ secrets.SHINYAPPS_USER }}
-          SHINYAPPS_TOKEN: ${{ secrets.SHINYAPPS_TOKEN }}
-          SHINYAPPS_SECRET: ${{ secrets.SHINYAPPS_SECRET }}
         run: |
-          docker run shinyapps:latest
+          docker run \
+          -e SHINYAPPS_USER=${{ secrets.SHINYAPPS_USER }} \
+          -e SHINYAPPS_TOKEN=${{ secrets.SHINYAPPS_TOKEN }} \
+          -e SHINYAPPS_SECRET=${{ secrets.SHINYAPPS_SECRET }} \
+          shinyapps:latest
 
       - name: Move cache
         run: |
