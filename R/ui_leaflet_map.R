@@ -117,6 +117,21 @@ leaflet_map <- function() {
   )
   map$dependencies <- map$dependencies[which(!idx)]
 
+  # add custom JS code to make Bootstrap tooltips
+  map <- htmlwidgets::onRender(map, "
+  function(el, x) {
+     document
+     .querySelectorAll('.leaflet-top *[title]:not([title=\"\"]')
+     .forEach((x) => {
+       $(x).tooltip({
+         trigger: 'hover',
+         placement: 'top',
+         container: 'body',
+         placement: 'bottom'
+      });
+     });
+  }")
+
   # return result
   map
 }
