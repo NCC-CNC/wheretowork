@@ -44,7 +44,7 @@ class IncludeSolutionChart {
       .select(el)
       .append("svg")
       .attr("width", this.width)
-      .attr("height", this.height * 0.60)
+      .attr("height", this.height * 0.50)
       .append("g")
       .attr("transform", `translate(${this.width / 2},${this.height / 2})`);
   }

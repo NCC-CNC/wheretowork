@@ -166,8 +166,49 @@ solutionResults_html <- function(id, style, class, ...) {
                 ),
                 value = paste0(id, "_collapseThemePanel"),
                 htmltools::tags$div(
-                  class = "panel-content-inner",
-                  htmltools::tags$div(class = "themes")
+                  htmltools::tags$div(
+                    class = "panel-content-inner",
+                    htmltools::tags$div(class = "themes")
+                  ),
+                  htmltools::tags$div(
+                    class = "legend",
+                    htmltools::tags$span(
+                      class = "legend-item",
+                      htmltools::tags$span(class = "legend-current-symbol"),
+                      htmltools::tags$label(
+                        class = "legend-current-label",
+                        `data-toggle` = "tooltip",
+                        `data-placement` = "top",
+                        `data-container` = "body",
+                        title = "Current coverage by Includes",
+                        "Current"
+                      ),
+                    ),
+                    htmltools::tags$span(
+                      class = "legend-item",
+                      htmltools::tags$span(class = "legend-goal-symbol"),
+                      htmltools::tags$label(
+                        class = "legend-goal-label",
+                        `data-toggle` = "tooltip",
+                        `data-placement` = "top",
+                        `data-container` = "body",
+                        title = "Goal used to generate solution",
+                        "Goal"
+                      ),
+                    ),
+                    htmltools::tags$span(
+                      class = "legend-item",
+                      htmltools::tags$span(class = "legend-solution-symbol"),
+                      htmltools::tags$label(
+                        class = "legend-solution-label",
+                        `data-toggle` = "tooltip",
+                        `data-placement` = "top",
+                        `data-container` = "body",
+                        title = "Coverage by solution",
+                        "Solution"
+                      )
+                    )
+                  )
                 )
               ),
               shinyBS::bsCollapsePanel(
@@ -177,8 +218,37 @@ solutionResults_html <- function(id, style, class, ...) {
                 ),
                 value = paste0(id, "_collapseWeightPanel"),
                 htmltools::tags$div(
-                  class = "panel-content-inner",
-                  htmltools::tags$div(class = "weights")
+                  htmltools::tags$div(
+                    class = "panel-content-inner",
+                    htmltools::tags$div(class = "weights")
+                  ),
+                  htmltools::tags$div(
+                    class = "legend",
+                    htmltools::tags$span(
+                      class = "legend-item",
+                      htmltools::tags$span(class = "legend-current-symbol"),
+                      htmltools::tags$label(
+                        class = "legend-current-label",
+                        `data-toggle` = "tooltip",
+                        `data-placement` = "top",
+                        `data-container` = "body",
+                        title = "Current coverage by Includes",
+                        "Current"
+                      ),
+                    ),
+                    htmltools::tags$span(
+                      class = "legend-item",
+                      htmltools::tags$span(class = "legend-solution-symbol"),
+                      htmltools::tags$label(
+                        class = "legend-solution-label",
+                        `data-toggle` = "tooltip",
+                        `data-placement` = "top",
+                        `data-container` = "body",
+                        title = "Coverage by solution",
+                        "Solution"
+                      )
+                    )
+                  )
                 )
               ),
               shinyBS::bsCollapsePanel(
@@ -188,8 +258,25 @@ solutionResults_html <- function(id, style, class, ...) {
                 ),
                 value = paste0(id, "_collapseIncludePanel"),
                 htmltools::tags$div(
-                  class = "panel-content-inner",
-                  htmltools::tags$div(class = "includes")
+                  htmltools::tags$div(
+                    class = "panel-content-inner",
+                    htmltools::tags$div(class = "includes")
+                  ),
+                  htmltools::tags$div(
+                    class = "legend",
+                    htmltools::tags$span(
+                      class = "legend-item",
+                      htmltools::tags$span(class = "legend-solution-symbol"),
+                      htmltools::tags$label(
+                        class = "legend-solution-label",
+                        `data-toggle` = "tooltip",
+                        `data-placement` = "top",
+                        `data-container` = "body",
+                        title = "Coverage by solution",
+                        "Solution"
+                      )
+                    )
+                  )
                 )
               )
             )

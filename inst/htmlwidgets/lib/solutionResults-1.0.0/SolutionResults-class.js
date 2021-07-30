@@ -49,6 +49,13 @@ class SolutionResults {
       removeAllChildNodes(this.themes_el);
       removeAllChildNodes(this.weights_el);
       removeAllChildNodes(this.includes_el);
+      // update color shown in legends
+      document
+      .querySelectorAll(".solution-results .legend .legend-solution-symbol")
+      .forEach((x) => {
+        x.style.backgroundColor = this.solutions[idx].solution_color;
+        x.style.color = this.solutions[idx].solution_color;
+      });
       // add new solution to solution results container
       this.solutions[idx].render_parameters(this.parameters_el)
       this.solutions[idx].render_statistics(this.statistics_el)

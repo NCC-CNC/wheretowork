@@ -14,6 +14,7 @@ class Solution {
     // set fields
     this.id = id;
     this.name = name;
+    this.solution_color = solution_color
 
     // parameters results
     this.parameters_el = document.createElement("div");

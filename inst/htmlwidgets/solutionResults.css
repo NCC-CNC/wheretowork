@@ -1,0 +1,12 @@
+/* color styling */
+* {
+  --active: #073b4c;
+  --current: #06d6a0;
+  --current-transparent: #06d6a066;
+  --slider: #118ab2;
+  --icon: #0d1321;
+  --sub-icon: #0d1321;
+  --inactive: #B8B8B8;
+  --border: black;
+  --symbol-border: #D3D3D3;
+}
