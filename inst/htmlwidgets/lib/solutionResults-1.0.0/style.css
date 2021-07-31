@@ -12,15 +12,21 @@
   justify-content: space-between;
   margin-top: 3px;
   margin-bottom: 5px;
+  gap: 3px;
 }
 
 /* -- select input */
-.solution-results .solution-results-header .dropdown {
-  width: 220px !important;
+.solution-results .solution-results-header .input-group {
+  flex-grow: 1;
 }
 
 .solution-results .solution-results-header .bs-caret {
   margin-left: 95% !important;
+}
+
+/* --- button */
+.solution-results .solution-results-header .action-button i {
+  margin-right: 0px !important;
 }
 
 /* panel titles */

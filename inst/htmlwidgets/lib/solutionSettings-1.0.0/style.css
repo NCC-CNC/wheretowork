@@ -78,6 +78,7 @@
   overflow-x: hide;
   flex-wrap: wrap;
   left: 20px;
+  gap: 3px;
 }
 
 /* -- items*/
@@ -95,6 +96,10 @@
   padding-right: 0px !important;
 }
 
+.solution-footer-color .colourpicker-panel {
+  left: -50px;
+}
+
 /* -- colourpicker-input-container */
 .solution-footer-color .colourpicker-input-container {
   width: 25px;
@@ -109,6 +114,11 @@
 .solution-footer-stop-button button {
   padding-left: 6px;
   padding-right: 6px;
+}
+
+/* solution name input */
+.solution-footer-name {
+  flex-grow: 1;
 }
 
 /* view containers */

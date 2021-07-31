@@ -123,10 +123,15 @@ solutionResults_html <- function(id, style, class, ...) {
             # modal button
             htmltools::tags$div(
               class = "solution-button-container",
+              `data-toggle` = "tooltip",
+              `data-placement` = "top",
+              `data-container` = "body",
+              `data-placement` = "bottom",
+              title = "View solution results in tables",
               # button to import data
               shinyBS::bsButton(
                 inputId = paste0(id, "_button"),
-                label = "View data",
+                label = "",
                 icon = shiny::icon("table"),
                 style = "primary",
                 type = "action"
@@ -147,8 +152,18 @@ solutionResults_html <- function(id, style, class, ...) {
               open = paste0(id, "_collapseStatisticPanel"),
               shinyBS::bsCollapsePanel(
                 title = htmltools::tags$span(
-                  shiny::icon("chart-line"),
-                  "Summary"
+                  shinyBS::tipify(
+                    el = htmltools::tags$span(
+                      shiny::icon("chart-line"),
+                      "Summary"
+                    ),
+                    title = paste(
+                      "Summary of the solution. This panel shows the Settings",
+                      "used to generate the solution, and statistics",
+                      "that describe its spatial configuration."
+                    ),
+                    options = list(container = "body")
+                  )
                 ),
                 value = paste0(id, "_collapseStatisticPanel"),
                 htmltools::tags$div(
@@ -161,8 +176,20 @@ solutionResults_html <- function(id, style, class, ...) {
               ),
               shinyBS::bsCollapsePanel(
                 title = htmltools::tags$span(
-                  shiny::icon("star"),
-                  "Themes"
+                  shinyBS::tipify(
+                    el = htmltools::tags$span(
+                      shiny::icon("star"),
+                      "Themes"
+                    ),
+                    title = paste(
+                      "Theme results for the solution.",
+                      "This panel shows how well the Themes are covered",
+                      "by the solution. It also shows how well the Themes are",
+                      "covered by the Includes used to generate the solution,",
+                      "and Theme goals used to generate the solution."
+                    ),
+                    options = list(container = "body")
+                  )
                 ),
                 value = paste0(id, "_collapseThemePanel"),
                 htmltools::tags$div(
@@ -180,8 +207,10 @@ solutionResults_html <- function(id, style, class, ...) {
                         `data-toggle` = "tooltip",
                         `data-placement` = "top",
                         `data-container` = "body",
-                        title = "Current coverage by Includes",
-                        "Current"
+                        title = paste(
+                          "Coverage by Includes used to generate solution"
+                        ),
+                        "Includes"
                       ),
                     ),
                     htmltools::tags$span(
@@ -213,8 +242,20 @@ solutionResults_html <- function(id, style, class, ...) {
               ),
               shinyBS::bsCollapsePanel(
                 title = htmltools::tags$span(
-                  shiny::icon("weight-hanging"),
-                  "Weights"
+                  shinyBS::tipify(
+                    el = htmltools::tags$span(
+                      shiny::icon("weight-hanging"),
+                      "Weights"
+                    ),
+                    title = paste(
+                      "Weight results for the solution.",
+                      "This panel shows how well the Weights are covered",
+                      "by the solution. It also shows how well the Weights are",
+                      "covered by the Includes used to generate the solution,",
+                      "and Weight factors used to generate the solution."
+                    ),
+                    options = list(container = "body")
+                  )
                 ),
                 value = paste0(id, "_collapseWeightPanel"),
                 htmltools::tags$div(
@@ -232,8 +273,10 @@ solutionResults_html <- function(id, style, class, ...) {
                         `data-toggle` = "tooltip",
                         `data-placement` = "top",
                         `data-container` = "body",
-                        title = "Current coverage by Includes",
-                        "Current"
+                        title = paste(
+                          "Coverage by Includes used to generate solution"
+                        ),
+                        "Includes"
                       ),
                     ),
                     htmltools::tags$span(
@@ -253,8 +296,18 @@ solutionResults_html <- function(id, style, class, ...) {
               ),
               shinyBS::bsCollapsePanel(
                 title = htmltools::tags$span(
-                  shiny::icon("lock"),
-                  "Includes"
+                  shinyBS::tipify(
+                    el = htmltools::tags$span(
+                      shiny::icon("lock"),
+                      "Includes"
+                    ),
+                    title = paste(
+                      "Includes results for the solution.",
+                      "This panel shows how well the Includes are covered",
+                      "by the solution."
+                    ),
+                    options = list(container = "body")
+                  )
                 ),
                 value = paste0(id, "_collapseIncludePanel"),
                 htmltools::tags$div(

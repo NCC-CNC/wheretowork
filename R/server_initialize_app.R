@@ -57,12 +57,6 @@ server_initialize_app <- quote({
   # disable solution results sidebar button
   disable_html_css_selector("#analysisSidebar li:nth-child(2)")
 
-  # enforce character limit for new solution names
-  shinyjs::runjs(paste0(
-    "$('#newSolutionPane_settings_name')",
-    ".attr('maxlength', 18)"
-  ))
-
   # manually update solution settings sidebar content,
   # if can't manually stop processing
   if (!identical(strategy, "multicore")) {

@@ -43,6 +43,7 @@ HTMLWidgets.widget({
               start_button_el.removeAttribute("disabled");
             }
           });
+          name_el.setAttribute("maxlength", "21");
           // remove button tooltips are removed on click
           start_button_el.addEventListener("click", function(e) {
             $(".tooltip.fade.top.in").tooltip("hide");

@@ -266,10 +266,10 @@ solutionSettings_html <- function(id, style, class, ...) {
           ),
           shinyFeedback::loadingButton(
             inputId = paste0(id, "_start_button"),
-            label = "Generate solution",
+            label = "Optimize!",
             class = "btn btn-primary",
             loadingLabel = "",
-            style = "width: 150px;"
+            style = "width: 86px;"
           )
         ),
         htmltools::tags$div(

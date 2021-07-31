@@ -29,6 +29,8 @@ HTMLWidgets.widget({
             });
             handle.showSolution(opts.solutions[0].id);
           }
+          // enable tooltips
+          $(container).find('[data-toggle="tooltip"]').tooltip();
         }
 
       },
