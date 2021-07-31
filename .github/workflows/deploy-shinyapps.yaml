@@ -15,8 +15,6 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
-        with:
-          driver: docker
 
       - name: Cache Docker layers
         uses: actions/cache@v2
@@ -37,9 +35,12 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
+          load: true
           push: false
           target: shinyapps
           tags: shinyapps:latest
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache-new
 
       - name: Deploy
         env:
