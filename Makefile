@@ -81,6 +81,7 @@ launch-kill:
 	docker rm --force wheretowork
 
 ## deploy Docker swarm for debugging application
+## view it at: http://127.0.0.1:3939/
 deploy:
 	docker swarm init --advertise-addr 127.0.0.1 --listen-addr 0.0.0.0 && \
 	set -a; . ./debug.env; set +a && \
@@ -91,8 +92,9 @@ deploy-kill:
 	docker swarm leave --force
 
 ## deploy Docker swarm for production
+## view it at: http://127.0.0.1:3939/
 prod:
-	docker swarm init && \
+	docker swarm init --advertise-addr 127.0.0.1 --listen-addr 0.0.0.0 && \
 	set -a; . ./prod.env; set +a && \
 	docker stack deploy wheretoworkapp -c docker-compose.yml
 
@@ -104,7 +106,7 @@ prod-update:
 	echo "TODO"
 
 ## force kill networks
-kill-network:
+network-kill:
 	docker network disconnect -f wheretoworkapp_default wheretoworkapp_default-endpoint
 	docker network prune -f
 

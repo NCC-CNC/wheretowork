@@ -40,6 +40,7 @@ default:
 
 production:
   mode: "project"
+  projects: "/projects"
   strategy: "auto"
   verbose: false
   monitor: false

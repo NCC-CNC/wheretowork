@@ -17,7 +17,7 @@ services:
       target: main
     image: naturecons/wheretowork:latest
     ports:
-      - "${HOST_PORT}:3838"
+      - "3939:3838"
     volumes:
       - "${PROJECT_DIRECTORY}"
     deploy:
