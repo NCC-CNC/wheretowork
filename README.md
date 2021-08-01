@@ -13,9 +13,10 @@ Canada](https://natureconservancy.ca/en/).
 
 ## Usage
 
-The application is [available online
-here](https://natureconservancy.ca/en/). **Please note that you should use
-[Google Chrome](https://www.google.com/chrome/).**.
+The application is [available
+online](http://nature3939-vm01.carleton.ca/wheretowork). **Please note
+that you must use [Google Chrome](https://www.google.com/chrome/) for it
+to work.**.
 
 ## Installation
 

@@ -101,6 +101,12 @@ prod-kill:
 	docker swarm leave --force
 
 prod-update:
+	echo "TODO"
+
+## force kill networks
+kill-network:
+	docker network disconnect -f wheretoworkapp_default wheretoworkapp_default-endpoint
+	docker network prune -f
 
 ## deploy app on shinyapps.io
 shinyapps:
