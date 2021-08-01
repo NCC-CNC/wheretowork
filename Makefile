@@ -75,7 +75,7 @@ demo-kill:
 
 ## launch released version inside Docker container
 launch:
-	docker run -dp 3838:3838 --name wheretowork -it naturecons/wheretowork
+	docker run -dp 3939:3838 --name wheretowork -it naturecons/wheretowork
 
 launch-kill:
 	docker rm --force wheretowork

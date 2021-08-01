@@ -89,6 +89,11 @@ EXPOSE 3838
 ## copy app file for shiny server
 COPY --chown=shiny:shiny app.R /srv/shiny-server
 
+## store environmental variables
+ENV R_CONFIG_ACTIVE=production
+RUN env | grep R_CONFIG_ACTIVE > /home/shiny/.Renviron
+
+## set working directory
 WORKDIR /tmp
 
 ## run app

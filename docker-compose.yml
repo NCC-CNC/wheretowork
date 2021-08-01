@@ -19,7 +19,7 @@ services:
     ports:
       - "3939:3838"
     volumes:
-      - "${PROJECT_DIRECTORY}"
+      - "${PROJECT_DIRECTORY}:/projects"
     deploy:
       replicas: "${REPLICAS}"
       restart_policy:

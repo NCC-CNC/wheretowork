@@ -10,9 +10,7 @@ if (file.exists("DESCRIPTION")) {
 }
 
 # set application production mode
-if (
-  is.null(getOption("golem.app.prod")) &&
-  !identical(Sys.getenv("R_CONFIG_ACTIVE"), "shinyapps")) {
+if (is.null(getOption("golem.app.prod"))) {
   options("golem.app.prod" = TRUE)
 }
 
