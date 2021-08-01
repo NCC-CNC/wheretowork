@@ -36,5 +36,7 @@ pkgdown
 .dockerignore
 Dockerfile
 docker-compose.yml
+debug.env
+prod.env
 .lintr
 restart.txt

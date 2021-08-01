@@ -1,14 +1,34 @@
 version: "3.9"
 services:
-  shinyapps:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: shinyapps
+  visualizer:
+    image: dockersamples/visualizer:stable
+    ports:
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+
   main:
     build:
       context: .
       dockerfile: Dockerfile
       target: main
+    image: naturecons/wheretowork:latest
     ports:
-      - "3838:3838"
+      - "${HOST_PORT}:3838"
+    volumes:
+      - "${PROJECT_DIRECTORY}"
+    deploy:
+      replicas: "${REPLICAS}"
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          memory: "${MEMORY_LIMIT}"
+    networks:
+      - app
+
+networks:
+  app:

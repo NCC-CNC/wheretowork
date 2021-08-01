@@ -68,17 +68,39 @@ quick-debug:
 
 ## launch local version inside Docker container
 demo:
-	docker-compose up --build main
+	docker-compose --env-file ./debug.env up --build main
 
 demo-kill:
-	docker-compose down
+	docker-compose --env-file ./debug.env down
 
 ## launch released version inside Docker container
-launch-start:
+launch:
 	docker run -dp 3838:3838 --name wheretowork -it naturecons/wheretowork
 
 launch-kill:
 	docker rm --force wheretowork
+
+## deploy Docker swarm for debugging application
+deploy:
+	docker swarm init --advertise-addr 127.0.0.1 --listen-addr 0.0.0.0 && \
+	set -a; . ./debug.env; set +a && \
+	docker stack deploy wheretoworkapp -c docker-compose.yml
+
+deploy-kill:
+	docker stack rm wheretoworkapp
+	docker swarm leave --force
+
+## deploy Docker swarm for production
+prod:
+	docker swarm init && \
+	set -a; . ./prod.env; set +a && \
+	docker stack deploy wheretoworkapp -c docker-compose.yml
+
+prod-kill:
+	docker stack rm wheretoworkapp
+	docker swarm leave --force
+
+prod-update:
 
 ## deploy app on shinyapps.io
 shinyapps:
@@ -89,7 +111,7 @@ shinyapps:
 image:
 	docker build -t wheretowork-image .
 
-# renv copmmands
+# renv commands
 ## snapshot R package dependencies
 snapshot:
 	R -e "renv::snapshot()"
