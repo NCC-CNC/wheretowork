@@ -47,6 +47,14 @@ newSolutionSidebarPane <- function(id, solutionSettingsId = NULL) {
       ### container
       htmltools::tags$div(
         class = "sidebar-pane-content",
+        htmltools::tags$script(paste0("
+          $('a[href=\"#", id, "\"]').tooltip({
+            container: 'body',
+            trigger: 'hover',
+            placement: 'left',
+            title: 'Open sidebar for generating new solutions'
+          });
+        ")),
         htmltools::tags$div(
           class = "new-solution-pane",
           htmltools::tags$div(

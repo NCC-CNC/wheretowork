@@ -34,6 +34,14 @@ contactSidebarPane <- function(id) {
     icon = NULL,
     htmltools::tags$div(
       class = "sidebar-pane-content",
+      htmltools::tags$script(paste0("
+        $('a[href=\"#", id, "\"]').tooltip({
+          container: 'body',
+          trigger: 'hover',
+          placement: 'right',
+          title: 'Open sidebar with contact information'
+        });
+      ")),
       htmltools::tags$div(
         class = "sidebar-pane-inner",
         htmltools::tags$div(

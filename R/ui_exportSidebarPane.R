@@ -28,6 +28,14 @@ exportSidebarPane <- function(id) {
     # sidebar pane content
     htmltools::tags$div(
       class = "sidebar-pane-content",
+      htmltools::tags$script(paste0("
+        $('a[href=\"#", id, "\"]').tooltip({
+          container: 'body',
+          trigger: 'hover',
+          placement: 'right',
+          title: 'Open sidebar for downloading data and solutions'
+        });
+      ")),
       htmltools::tags$div(
         class = "sidebar-pane-inner",
         htmltools::tags$div(

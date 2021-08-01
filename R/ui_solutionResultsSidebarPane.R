@@ -52,6 +52,14 @@ solutionResultsSidebarPane <- function(id, solutionResultsId = NULL) {
       icon = NULL,
       htmltools::tags$div(
         class = "sidebar-pane-content",
+        htmltools::tags$script(paste0("
+          $('a[href=\"#", id, "\"]').tooltip({
+            container: 'body',
+            trigger: 'hover',
+            placement: 'left',
+            title: 'Open sidebar for evaluating solutions'
+          });
+        ")),
         htmltools::tags$div(
           class = "solution-results-pane",
           htmltools::tags$div(

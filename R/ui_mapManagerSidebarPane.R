@@ -45,6 +45,14 @@ mapManagerSidebarPane <- function(id,
       icon = NULL,
       htmltools::tags$div(
         class = "sidebar-pane-content",
+        htmltools::tags$script(paste0("
+          $('a[href=\"#", id, "\"]').tooltip({
+            container: 'body',
+            trigger: 'hover',
+            placement: 'right',
+            title: 'Open sidebar for controlling data shown on the map'
+          });
+        ")),
         htmltools::tags$div(
           class = "sidebar-pane-inner",
           htmltools::tags$div(
