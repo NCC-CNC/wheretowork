@@ -1,5 +1,6 @@
 .git
 *.log
+**/*.log
 renv/library
 renv/local
 renv/staging

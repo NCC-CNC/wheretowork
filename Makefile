@@ -68,7 +68,7 @@ quick-debug:
 
 ## launch local version inside Docker container
 demo:
-	docker-compose --env-file ./.env.dev up --build main
+	docker-compose --env-file ./.env.dev up --build
 
 demo-kill:
 	docker-compose --env-file ./.env.dev down

@@ -40,3 +40,4 @@ docker-compose.yml
 .env.prod
 .lintr
 restart.txt
+inst/log

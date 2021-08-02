@@ -80,13 +80,14 @@ CMD Rscript -e "rsconnect::setAccountInfo(name=Sys.getenv('SHINYAPPS_USER'), tok
 # main image
 FROM base AS main
 
-RUN rm -f /usr/bin/shiny-server.sh
-
 ## set user
-USER shiny
+# USER shiny
 
 ## select port
-EXPOSE 3838
+EXPOSE 80
+
+## copy shiny server config file
+COPY inst/shiny-server.conf /etc/shiny-server/shiny-server.conf
 
 ## copy app file for shiny server
 COPY --chown=shiny:shiny app.R /srv/shiny-server
@@ -99,4 +100,4 @@ RUN env | grep R_CONFIG_ACTIVE > /home/shiny/.Renviron
 WORKDIR /home/shiny
 
 ## run app
-CMD ["shiny-server"]
+CMD ["/usr/bin/shiny-server"]
