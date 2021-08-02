@@ -25,7 +25,7 @@ The _Where to Work_ application is a decision support tool to help prioritize co
 
 ## Usage
 
-The application is [available online](http://nature-vm01.carleton.ca/wheretowork). **Please note that you must use [Google Chrome](https://www.google.com/chrome/) for it to work.**.
+The application is [available online](https://ncc.carleton.ca//wheretowork). **Please note that you must use [Google Chrome](https://www.google.com/chrome/) for it to work.**.
 
 ## Installation
 
@@ -77,34 +77,51 @@ remotes::install_github("NCC-CNC/wheretowork")
 
 ## Deployment
 
-This application can be deployed using a [nginx web server](https://www.nginx.com/). To achieve this, first install nginx with the following code:
+This application can be deployed using a [nginx web server](https://www.nginx.com/). To achieve this, you first need to install and configure the web server ([see here for instructions](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-18-04)). After setting up the web server, you need to update the firewall rules to permit access to port 3939. This is because port 3939 is to serve the application:
 
 ```{bash, eval = FALSE}
-sudo apt update
-sudo apt install nginx
+sudo ufw allow 3939/tcp
 ```
 
-Next, add the following text to the nginx configuration file (typically found at `/etc/nginx/nginx.conf`):
 
 ```
-    ##
-    # wheretowork application
-    ##
+  ##
+  # wheretowork application
+  ##
+  location /wheretowork/ {
 
-    server {
-      listen 80;
-      location /wheretowork {
-        proxy_pass http://127.0.0.1:3939;
-        proxy_set_header Host $host;3838
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      }
-    }
+    proxy_set_header    Host $host;
+    proxy_set_header    X-Real-IP $remote_addr;
+    proxy_set_header    X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header    X-Forwarded-Proto $scheme;
+    proxy_pass          http://localhost:3939;
+    proxy_read_timeout  20d;
+    proxy_buffering     off;
+
+    proxy_set_header    Upgrade $http_upgrade;
+    proxy_set_header    Connection $connection_upgrade;
+    proxy_http_version  1.1;
+    proxy_redirect      http://localhost:3939/ $scheme://$host/wheretowork;
+
+
+  }
 ```
 
-After com
+Next, restart the web server using the following command. This is important so that it will use the updated configuration file:
+
+```{bash, eval = FALSE}
+sudo nginx -s reload
+```
 
 Finally, enter the command `sudo make prod` to launch the application. The application can now be accessed at `http://mywebsite.com/wheretowork`, where `mywebsite.com` is the domain of your website.
+
+
+```
+http://nature-vm01.carleton.ca:3939
+https://ncc.carleton.ca//wheretowork
+sudo nginx -s reload
+```
+
 
 ## Contributing
 

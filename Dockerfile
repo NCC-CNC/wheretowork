@@ -80,6 +80,8 @@ CMD Rscript -e "rsconnect::setAccountInfo(name=Sys.getenv('SHINYAPPS_USER'), tok
 # main image
 FROM base AS main
 
+RUN rm -f /usr/bin/shiny-server.sh
+
 ## set user
 USER shiny
 
@@ -94,7 +96,7 @@ ENV R_CONFIG_ACTIVE=production
 RUN env | grep R_CONFIG_ACTIVE > /home/shiny/.Renviron
 
 ## set working directory
-WORKDIR /tmp
+WORKDIR /home/shiny
 
 ## run app
-CMD ["/usr/bin/shiny-server"]
+CMD ["shiny-server"]

@@ -1,5 +1,6 @@
 version: "3.9"
 services:
+
   visualizer:
     image: dockersamples/visualizer:stable
     ports:
@@ -9,6 +10,13 @@ services:
     deploy:
       placement:
         constraints: [node.role == manager]
+
+  watchtower:
+    image: v2tec/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /root/.docker/config.json:/config.json
+    command: --schedule "0 0 * * *" --cleanup
 
   main:
     build:

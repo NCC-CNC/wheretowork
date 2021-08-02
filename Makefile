@@ -68,10 +68,10 @@ quick-debug:
 
 ## launch local version inside Docker container
 demo:
-	docker-compose --env-file ./debug.env up --build main
+	docker-compose --env-file ./.env.dev up --build main
 
 demo-kill:
-	docker-compose --env-file ./debug.env down
+	docker-compose --env-file ./.env.dev down
 
 ## launch released version inside Docker container
 launch:
@@ -84,7 +84,7 @@ launch-kill:
 ## view it at: http://127.0.0.1:3939/
 deploy:
 	docker swarm init --advertise-addr 127.0.0.1 --listen-addr 0.0.0.0 && \
-	set -a; . ./debug.env; set +a && \
+	set -a; . ./.env.dev; set +a && \
 	docker stack deploy wheretoworkapp -c docker-compose.yml
 
 deploy-kill:
@@ -92,10 +92,10 @@ deploy-kill:
 	docker swarm leave --force
 
 ## deploy Docker swarm for production
-## view it at: http://127.0.0.1:3939/
+## view it at: http://localhost:3939/
 prod:
-	docker swarm init --advertise-addr 127.0.0.1 --listen-addr 0.0.0.0 && \
-	set -a; . ./prod.env; set +a && \
+	docker swarm init && \
+	set -a; . ./.env.prod; set +a && \
 	docker stack deploy wheretoworkapp -c docker-compose.yml
 
 prod-kill:
@@ -107,7 +107,7 @@ prod-update:
 
 ## force kill networks
 network-kill:
-	docker network disconnect -f wheretoworkapp_default wheretoworkapp_default-endpoint
+	docker network disconnect -f wheretoworkapp_default wheretoworkapp_default-endpoint || docker network disconnect -f wheretoworkapp_app wheretoworkapp_app-endpoint
 	docker network prune -f
 
 ## deploy app on shinyapps.io
