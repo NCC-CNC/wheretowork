@@ -8,54 +8,34 @@ services:
       - /root/.docker/config.json:/config.json
     command: --schedule "0 0 * * *" --cleanup
 
-  balancer:
-    image: traefik:v1.7
-    command: --docker \
-      --docker.watch \
-      --docker.domain=localhost \
-      --web \
-      --loglevel=${LOG_LEVEL}
+  shinyproxy:
+    image: openanalytics/shinyproxy:2.5.0
+    restart: on-failure
+    networks:
+      - net
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./shinyproxy-logs/server:/log
+      - ./shinyproxy-logs/container:/container-logs
+      - ./inst/application.yml:/opt/shinyproxy/application.yml
     ports:
-        - "80:80"
-        - "443:443"
-        - "8080:8080"
-    volumes:
-        - /var/run/docker.sock:/var/run/docker.sock
-    deploy:
-      mode: replicated
-      replicas: 1
-      resources:
-        limits:
-          memory: 1G
-      placement:
-        constraints: [node.role == manager]
-    networks:
-      - net
+      - "8080:8080"
 
-  shiny:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: main
-    image: naturecons/wheretowork:latest
-    volumes:
-      - "${PROJECT_DIRECTORY}:/projects"
-      - "${LOG_DIRECTORY}:/var/log/shiny-server/"
-    deploy:
-      mode: replicated
-      replicas: "${REPLICAS}"
-      restart_policy:
-        condition: on-failure
-      resources:
-        limits:
-          memory: "${MEMORY_LIMIT}"
-    networks:
-      - net
-    labels:
-      - "traefik.docker.network=ssp_net"
-      - "traefik.port=3838"
-      - "traefik.frontend.rule=PathPrefix:/;"
-      - "traefik.backend.loadbalancer.sticky=true"
+  # shiny:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #     target: main
+  #   image: naturecons/wheretowork:latest
+  #   volumes:
+  #     - "${PROJECT_DIRECTORY}:/projects"
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         memory: "${MEMORY_LIMIT}"
+  #   networks:
+  #     - net
 
 networks:
   net:
+    name: net

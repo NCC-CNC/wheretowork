@@ -107,7 +107,7 @@ prod-update:
 
 ## force kill networks
 network-kill:
-	docker network disconnect -f wheretoworkapp_default wheretoworkapp_default-endpoint || docker network disconnect -f wheretoworkapp_app wheretoworkapp_app-endpoint
+	docker network disconnect -f wheretoworkapp_default wheretoworkapp_default-endpoint || docker network disconnect -f wheretoworkapp_net wheretoworkapp_net-endpoint
 	docker network prune -f
 
 ## deploy app on shinyapps.io

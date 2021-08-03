@@ -1,4 +1,4 @@
-# source image
+# base image
 FROM rocker/shiny:4.1.0 AS base
 
 ## remove example apps
@@ -42,6 +42,7 @@ COPY R /app/R
 COPY .Rbuildignore /app
 COPY DESCRIPTION /app
 COPY NAMESPACE /app
+COPY inst/Rprofile.site /usr/local/lib/R/etc/Rprofile.site
 RUN cd /app && \
     Rscript -e 'remotes::install_local(upgrade = "never")'
 
@@ -68,27 +69,11 @@ CMD Rscript -e "rsconnect::setAccountInfo(name=Sys.getenv('SHINYAPPS_USER'), tok
 # main image
 FROM base AS main
 
-## allow shiny server to spawn processes for different users
-RUN cd /srv/shiny-server && \
-    touch restart.txt && \
-    chmod 666 restart.txt
-
 ## set user
 USER shiny
 
 ## select port
 EXPOSE 3838
-
-## copy shiny server config file
-COPY inst/shiny-server.conf /etc/shiny-server/shiny-server.conf
-
-## prepare log directory
-RUN mkdir -p /var/log/shiny-server && \
-    chown shiny.shiny /var/log/shiny-server && \
-    chmod -R 666 /var/log/shiny-server
-
-## copy app file for shiny server
-COPY --chown=shiny:shiny app.R /srv/shiny-server
 
 ## store environmental variables
 ENV R_CONFIG_ACTIVE=production
@@ -98,4 +83,4 @@ RUN env | grep R_CONFIG_ACTIVE > /home/shiny/.Renviron
 WORKDIR /home/shiny
 
 ## run app
-CMD ["/usr/bin/shiny-server"]
+CMD ["R", "-e", "wheretowork::run_app()"]

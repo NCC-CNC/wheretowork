@@ -1,0 +1,17 @@
+proxy:
+  title: wheretowork application
+  port: 8080
+  authentication: none
+  container-backend: docker-swarm
+  docker:
+      internal-networking: true
+  specs:
+  - id: wheretowork
+    display-name: wheretowork application
+    container-cmd: ["R", "-e", "wheretowork::run_app()"]
+    container-image: NCC-CNC/wheretowork
+    container-network: net
+
+logging:
+  file:
+    shinyproxy.log
