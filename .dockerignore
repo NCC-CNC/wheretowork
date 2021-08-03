@@ -1,7 +1,9 @@
 .git
 *.log
+**/*.log
 renv/library
 renv/local
 renv/staging
 Dockerfile
 docker-compose.yml
+inst/log

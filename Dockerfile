@@ -42,20 +42,8 @@ COPY R /app/R
 COPY .Rbuildignore /app
 COPY DESCRIPTION /app
 COPY NAMESPACE /app
-
 RUN cd /app && \
     Rscript -e 'remotes::install_local(upgrade = "never")'
-
-## set working directory
-RUN touch restart.txt && \
-    chmod 777 restart.txt
-
-# update shiny server configuration
-# RUN cp  /etc/shiny-server/shiny-server.conf /tmp/shiny-server.conf && \
-#    sed -i 's/run_as shiny;/run_as shiny;preserve_logs true;/g' \
-#      /tmp/shiny-server.conf && \
-#    cp  /tmp/shiny-server.conf /etc/shiny-server/shiny-server.conf && \
-#    cat /etc/shiny-server/shiny-server.conf
 
 # set command
 CMD ["/bin/bash"]
@@ -80,13 +68,24 @@ CMD Rscript -e "rsconnect::setAccountInfo(name=Sys.getenv('SHINYAPPS_USER'), tok
 # main image
 FROM base AS main
 
-RUN rm -f /usr/bin/shiny-server.sh
+## allow shiny server to spawn processes for different users
+RUN cd /srv/shiny-server && \
+    touch restart.txt && \
+    chmod 666 restart.txt
 
 ## set user
 USER shiny
 
 ## select port
 EXPOSE 3838
+
+## copy shiny server config file
+COPY inst/shiny-server.conf /etc/shiny-server/shiny-server.conf
+
+## prepare log directory
+RUN mkdir -p /var/log/shiny-server && \
+    chown shiny.shiny /var/log/shiny-server && \
+    chmod -R 666 /var/log/shiny-server
 
 ## copy app file for shiny server
 COPY --chown=shiny:shiny app.R /srv/shiny-server
@@ -99,4 +98,4 @@ RUN env | grep R_CONFIG_ACTIVE > /home/shiny/.Renviron
 WORKDIR /home/shiny
 
 ## run app
-CMD ["shiny-server"]
+CMD ["/usr/bin/shiny-server"]
