@@ -17,7 +17,6 @@ services:
       --loglevel=${LOG_LEVEL}
     ports:
         - "80:80"
-        - "443:443"
         - "8080:8080"
     volumes:
         - /var/run/docker.sock:/var/run/docker.sock
@@ -52,8 +51,8 @@ services:
     networks:
       - net
     labels:
-      - "traefik.docker.network=ssp_net"
       - "traefik.port=3838"
+      - "traefik.docker.network=ssp_net"
       - "traefik.frontend.rule=PathPrefix:/;"
       - "traefik.backend.loadbalancer.sticky=true"
 
