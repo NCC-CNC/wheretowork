@@ -81,7 +81,7 @@ launch-kill:
 	docker rm --force wheretowork
 
 ## deploy Docker swarm for debugging application
-## view it at: http://127.0.0.1:3939/
+## view it at: http://127.0.0.1:8080/
 deploy:
 	docker swarm init --advertise-addr 127.0.0.1 --listen-addr 0.0.0.0 && \
 	set -a; . ./.env.dev; set +a && \
@@ -92,7 +92,7 @@ deploy-kill:
 	docker swarm leave --force
 
 ## deploy Docker swarm for production
-## view it at: http://localhost:3939/
+## view it at: http://localhost:8080/
 prod:
 	docker swarm init && \
 	set -a; . ./.env.prod; set +a && \
@@ -118,6 +118,11 @@ shinyapps:
 ## create local Docker image
 image:
 	docker build -t wheretowork-image .
+
+## delete all local containers and images
+reset:
+	docker rm $(docker ps -aq) || \
+	docker rmi -f $(docker images -aq)
 
 # renv commands
 ## snapshot R package dependencies

@@ -1,40 +1,28 @@
 version: "3.9"
 services:
 
-  updater:
-    image: v2tec/watchtower
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /root/.docker/config.json:/config.json
-    command: --schedule "0 0 * * *" --cleanup
-
   shinyproxy:
-    image: openanalytics/shinyproxy:2.5.0
-    restart: on-failure
+    build:
+      context: .
+      target: shinyproxy
+    environment:
+      - WORK_DIRECTORY=${PWD}
+      - PROJECT_DIRECTORY=${PROJECT_DIRECTORY}
+      - R_CONFIG_ACTIVE=${R_CONFIG_ACTIVE}
+    deploy:
+      restart_policy:
+        condition: on-failure
     networks:
       - net
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./shinyproxy-logs/server:/log
       - ./shinyproxy-logs/container:/container-logs
-      - ./inst/application.yml:/opt/shinyproxy/application.yml
+      - ./inst/shinyproxy/application.yml:/opt/shinyproxy/application.yml
+      - ./inst/shinyproxy/shinyproxy-2.5.0.jar:/opt/shinyproxy/shinyproxy.jar
+      - ./inst/app/www/favicon.ico:/opt/shinyproxy/favicon.ico
     ports:
       - "8080:8080"
-
-  # shiny:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #     target: main
-  #   image: naturecons/wheretowork:latest
-  #   volumes:
-  #     - "${PROJECT_DIRECTORY}:/projects"
-  #   deploy:
-  #     resources:
-  #       limits:
-  #         memory: "${MEMORY_LIMIT}"
-  #   networks:
-  #     - net
 
 networks:
   net:

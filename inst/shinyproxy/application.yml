@@ -1,0 +1,36 @@
+# see here for options: https://www.shinyproxy.io/documentation/configuration
+proxy:
+  title: Nature Conservancy of Canada
+  port: 8080
+  heartbeat-rate: 10000
+  heartbeat-timeout: 600000
+  authentication: none
+  hide-navbar: true
+  container-log-path: /container-logs
+  favicon-path: /opt/shinyproxy/favicon.ico
+  docker:
+    internal-networking: true
+    container-network: "net"
+  specs:
+  - id: wheretowork
+    display-name: Where To Work
+    description: Interactive systematic conservation planning application
+    container-cmd: ["/usr/local/bin/Rscript", "/home/shiny/app/app.R"]
+    container-image: naturecons/wheretowork
+    container-wait-time: 60000
+    container-network: "${proxy.docker.container-network}"
+    container-volumes: ["${PROJECT_DIRECTORY}:/projects"]
+    container-env:
+      user: "shiny"
+      R_CONFIG_ACTIVE: "${R_CONFIG_ACTIVE}"
+
+logging:
+  level:
+    root: WARN
+  file:
+    name: /log/shinyproxy.log
+
+server:
+  # useForwardHeaders: true
+  servlet:
+    context-path:  /

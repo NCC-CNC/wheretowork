@@ -7,3 +7,4 @@ renv/staging
 Dockerfile
 docker-compose.yml
 inst/log
+inst/shinyproxy
