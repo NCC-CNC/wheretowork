@@ -21,7 +21,9 @@ check.log
 spell.log
 gp.log
 examples.log
+restart.txt
 inst/log/*
+*.log
 
 # system files
 .directory
