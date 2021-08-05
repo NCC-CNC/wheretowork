@@ -72,6 +72,7 @@ reference:
     contents:
       - leaflet_map
       - importModal
+      - helpModal
       - solutionResultsModal
       - horizontalPickerInput
 

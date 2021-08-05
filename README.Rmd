@@ -33,95 +33,32 @@ The application is available as an online service provided by the [Nature Conser
 
 ### Using Docker
 
-To run the application using this method, you will need to install the [Docker Engine](https://www.docker.com/) software ([see here for instructions](https://docs.docker.com/get-docker/)). After completing this step, you can install the application from the [DockerHub repository](https://hub.docker.com/repository/docker/naturecons/wheretowork). Specifically, please use the following system command to install the latest official version of the application:
+To run the application using this method, you will need to install the [Docker Engine](https://www.docker.com/) software ([see here for instructions](https://docs.docker.com/get-docker/)). After completing this step, you can install the application from the [DockerHub repository](https://hub.docker.com/repository/docker/naturecons/wheretowork). Specifically, please use the following system command:
 
 ```{bash, eval = FALSE}
-docker run -dp 3939:3939 --name wheretowork -it naturecons/wheretowork:latest
+docker run -dp 3838:3838 --name wheretowork -it naturecons/wheretowork:latest
 ```
 
-You can then view the application by opening the following link in [Google Chrome](https://www.google.com/chrome/): http://localhost:3939. After you have finished using the application, you can terminate it using the following system command. **Note that if you don't terminate the application once you are finished using it, then it will continue running in the background.**
+You can then view the application by opening the following link in [Google Chrome](https://www.google.com/chrome/): http://localhost:3838. After you have finished using the application, you can terminate it using the following system command. **Note that if you don't terminate the application once you are finished using it, then it will continue running in the background.**
 
 ```{bash, eval = FALSE}
 docker rm -f wheretowork
 ```
 
-Additionally, the latest development version can be installed using the following system command. Please note that while developmental versions may contain additional features not present in the official version, they may also contain defects.
-
-```{bash, eval = FALSE}
-docker run -dp 3939:3939 --name wheretowork -it naturecons/wheretowork:devel
-```
-
-Similar to the official version, you can access the developmental version of the application by opening the following link in [Google Chrome](https://www.google.com/chrome/): http://localhost:3939. Also note that you should terminate the developmental version of the application once you are finished using it (using the same code above for the official version).
-
 ### Using R
 
-To run the application using this method, you will need to install the [R statistical computing environment](https://www.r-project.org/). After completing the installation, you can install the latest official version of the application by using the following R code:
-
-```{r, eval = FALSE}
-if (!require(remotes)) install.packages("remotes")
-remotes::install_github("NCC-CNC/wheretowork@*release")
-```
-
-You can then use the following R code to run the application and automatically open it in your web browser:
-
-```{r, eval = FALSE}
-wheretowork::run_app()
-```
-
-Additionally, the latest development version can be installed using the following R code. Please note that while developmental versions may contain additional features not present in the official version, they may also contain defects.
+To run the application using this method, you will need to install the [R statistical computing environment](https://www.r-project.org/). After completing the installation, you can install the application using the following R code:
 
 ```{r, eval = FALSE}
 if (!require(remotes)) install.packages("remotes")
 remotes::install_github("NCC-CNC/wheretowork")
 ```
 
-## Deployment
+You can then use the following R code to start the application and open it in your web browser:
 
-This application can be deployed using a [nginx web server](https://www.nginx.com/). To achieve this, you first need to install and configure the web server ([see here for instructions](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-18-04)). After setting up the web server, you need to update the firewall rules to permit access to port 3939. This is because port 3939 is to serve the application:
-
-```{bash, eval = FALSE}
-sudo ufw allow 3939/tcp
+```{r, eval = FALSE}
+wheretowork::run_app()
 ```
-
-
-```
-  ##
-  # wheretowork application
-  ##
-  location /wheretowork/ {
-
-    proxy_set_header    Host $host;
-    proxy_set_header    X-Real-IP $remote_addr;
-    proxy_set_header    X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header    X-Forwarded-Proto $scheme;
-    proxy_pass          http://localhost:3939;
-    proxy_read_timeout  20d;
-    proxy_buffering     off;
-
-    proxy_set_header    Upgrade $http_upgrade;
-    proxy_set_header    Connection $connection_upgrade;
-    proxy_http_version  1.1;
-    proxy_redirect      http://localhost:3939/ $scheme://$host/wheretowork;
-
-
-  }
-```
-
-Next, restart the web server using the following command. This is important so that it will use the updated configuration file:
-
-```{bash, eval = FALSE}
-sudo nginx -s reload
-```
-
-Finally, enter the command `sudo make prod` to launch the application. The application can now be accessed at `http://mywebsite.com/wheretowork`, where `mywebsite.com` is the domain of your website.
-
-
-```
-http://nature-vm01.carleton.ca:3939
-https://ncc.carleton.ca//wheretowork
-sudo nginx -s reload
-```
-
 
 ## Contributing
 

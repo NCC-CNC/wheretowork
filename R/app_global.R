@@ -70,10 +70,22 @@ app_global <- quote({
   )
 
   # find built-in projects
-  project_dir <- wheretowork::get_golem_config("projects")
-  if (identical(project_dir, "default")) {
+  # if environmental variable "FORCE_DEFAULT_PROJECTS=true":
+  #   then use built-in projects
+  # if "projects: default" in golem-config.yml:
+  #   then use built-in projects
+  # else:
+  #   then import projects from location specified in golem-config.yml
+  if (!identical(Sys.getenv("FORCE_DEFAULT_PROJECTS"), "true")) {
+    project_dir <- wheretowork::get_golem_config("projects")
+    if (identical(project_dir, "default")) {
+      project_dir <- system.file("extdata", "projects", package = "wheretowork")
+    }
+  } else {
     project_dir <- system.file("extdata", "projects", package = "wheretowork")
   }
+
+  # import projects
   project_data <- wheretowork::find_projects(project_dir)
 
 })

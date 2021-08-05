@@ -1,29 +1,19 @@
 version: "3.9"
 services:
-
-  shinyproxy:
+  app:
     build:
       context: .
-      target: shinyproxy
-    environment:
-      - WORK_DIRECTORY=${PWD}
-      - PROJECT_DIRECTORY=${PROJECT_DIRECTORY}
-      - R_CONFIG_ACTIVE=${R_CONFIG_ACTIVE}
-    deploy:
-      restart_policy:
-        condition: on-failure
-    networks:
-      - net
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ./shinyproxy-logs/server:/log
-      - ./shinyproxy-logs/container:/container-logs
-      - ./inst/shinyproxy/application.yml:/opt/shinyproxy/application.yml
-      - ./inst/shinyproxy/shinyproxy-2.5.0.jar:/opt/shinyproxy/shinyproxy.jar
-      - ./inst/app/www/favicon.ico:/opt/shinyproxy/favicon.ico
+      dockerfile: Dockerfile
+      target: shiny
+    image: naturecons/wheretowork
     ports:
-      - "8080:8080"
-
-networks:
-  net:
-    name: net
+      - "3838:3838"
+    environment:
+      # environmental variables defined in ./.env
+      - FORCE_DEFAULT_PROJECTS
+      - PROJECT_DIRECTORY
+      - LOG_DIRECTORY
+      - R_CONFIG_ACTIVE
+    volumes:
+      - "${PROJECT_DIRECTORY}:/projects"
+      - "${LOG_DIRECTORY}:/var/log/shiny-server/"

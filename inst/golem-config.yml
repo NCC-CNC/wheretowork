@@ -38,12 +38,28 @@ default:
   ## contacting controller process
   worker_time_out: 3600 # one hour
 
-production:
-  mode: "project"
+# developemnt configuration
+dev:
+  golem_wd: !expr here::here()
+
+# production configurations
+beginner:
+  mode: "beginner"
   projects: "/projects"
   strategy: "auto"
   verbose: false
   monitor: false
 
-dev:
-  golem_wd: !expr here::here()
+advanced:
+  mode: "advanced"
+  projects: "/projects"
+  strategy: "auto"
+  verbose: false
+  monitor: false
+
+project:
+  mode: "project"
+  projects: "/projects"
+  strategy: "auto"
+  verbose: false
+  monitor: false

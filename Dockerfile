@@ -1,12 +1,3 @@
-# shinyproxy image
-FROM openjdk:8-jre AS shinyproxy
-
-RUN mkdir -p /opt/shinyproxy/
-
-WORKDIR /opt/shinyproxy/
-
-CMD ["java", "-jar", "/opt/shinyproxy/shinyproxy.jar"]
-
 # base image
 FROM rocker/shiny:4.1.0 AS base
 
@@ -51,7 +42,6 @@ COPY R /app/R
 COPY .Rbuildignore /app
 COPY DESCRIPTION /app
 COPY NAMESPACE /app
-COPY inst/Rprofile.site /usr/local/lib/R/etc/Rprofile.site
 RUN cd /app && \
     Rscript -e 'remotes::install_local(upgrade = "never")'
 
@@ -78,14 +68,18 @@ CMD Rscript -e "rsconnect::setAccountInfo(name=Sys.getenv('SHINYAPPS_USER'), tok
 # shiny image
 FROM base AS shiny
 
-## define environmental variables
-ARG R_CONFIG_ACTIVE default
-
 ## set user
 USER shiny
 
 ## select port
 EXPOSE 3838
+
+## configure shiny
+## store environmental variables
+ENV R_SHINY_PORT=3838
+ENV R_SHINY_HOST=0.0.0.0
+RUN env | grep R_SHINY_PORT > /home/shiny/.Renviron && \
+    env | grep R_SHINY_HOST >> /home/shiny/.Renviron
 
 ## set working directory
 RUN mkdir /home/shiny/app

@@ -68,56 +68,27 @@ quick-debug:
 
 ## launch local version inside Docker container
 demo:
-	docker-compose --env-file ./.env.dev up --build
+	docker-compose up --build
 
 demo-kill:
-	docker-compose --env-file ./.env.dev down
+	docker-compose down
 
 ## launch released version inside Docker container
 launch:
-	docker run -dp 3939:3838 --name wheretowork -it naturecons/wheretowork
+	docker run -dp 3838:3838 --name wheretowork -it naturecons/wheretowork
 
 launch-kill:
 	docker rm --force wheretowork
-
-## deploy Docker swarm for debugging application
-## view it at: http://127.0.0.1:8080/
-deploy:
-	docker swarm init --advertise-addr 127.0.0.1 --listen-addr 0.0.0.0 && \
-	set -a; . ./.env.dev; set +a && \
-	docker stack deploy wheretoworkapp -c docker-compose.yml
-
-deploy-kill:
-	docker stack rm wheretoworkapp
-	docker swarm leave --force
-
-## deploy Docker swarm for production
-## view it at: http://localhost:8080/
-prod:
-	docker swarm init && \
-	set -a; . ./.env.prod; set +a && \
-	docker stack deploy wheretoworkapp -c docker-compose.yml
-
-prod-kill:
-	docker stack rm wheretoworkapp
-	docker swarm leave --force
-
-prod-update:
-	echo "TODO"
-
-## force kill networks
-network-kill:
-	docker network disconnect -f wheretoworkapp_default wheretoworkapp_default-endpoint || docker network disconnect -f wheretoworkapp_net wheretoworkapp_net-endpoint
-	docker network prune -f
 
 ## deploy app on shinyapps.io
 shinyapps:
 	R -e "rsconnect::deployApp(getwd(), appName = 'wheretowork', launch.browser = TRUE)"
 
 # Docker commands
-## create local Docker image
+## create local image and push to docker
 image:
-	docker build -t wheretowork-image .
+	docker build -t naturecons/wheretowork:latest .
+	docker push naturecons/wheretowork:latest
 
 ## delete all local containers and images
 reset:

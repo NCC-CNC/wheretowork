@@ -14,9 +14,9 @@ Canada](https://natureconservancy.ca/en/).
 ## Usage
 
 The application is [available
-online](http://nature3939-vm01.carleton.ca/wheretowork). **Please note
-that you must use [Google Chrome](https://www.google.com/chrome/) for it
-to work.**.
+online](https://ncc.carleton.ca//wheretowork). **Please note that you
+must use [Google Chrome](https://www.google.com/chrome/) for it to
+work.**.
 
 ## Installation
 
@@ -35,8 +35,7 @@ To run the application using this method, you will need to install the
 instructions](https://docs.docker.com/get-docker/)). After completing
 this step, you can install the application from the [DockerHub
 repository](https://hub.docker.com/repository/docker/naturecons/wheretowork).
-Specifically, please use the following system command to install the
-latest official version of the application:
+Specifically, please use the following system command:
 
 ``` bash
 docker run -dp 3838:3838 --name wheretowork -it naturecons/wheretowork:latest
@@ -53,49 +52,23 @@ it will continue running in the background.**
 docker rm -f wheretowork
 ```
 
-Additionally, the latest development version can be installed using the
-following system command. Please note that while developmental versions
-may contain additional features not present in the official version,
-they may also contain defects.
-
-``` bash
-docker run -dp 3838:3838 --name wheretowork -it naturecons/wheretowork:devel
-```
-
-Similar to the official version, you can access the developmental
-version of the application by opening the following link in [Google
-Chrome](https://www.google.com/chrome/): <http://localhost:3838>. Also
-note that you should terminate the developmental version of the
-application once you are finished using it (using the same code above
-for the official version).
-
 ### Using R
 
 To run the application using this method, you will need to install the
 [R statistical computing environment](https://www.r-project.org/). After
-completing the installation, you can install the latest official version
-of the application by using the following R code:
-
-``` r
-if (!require(remotes)) install.packages("remotes")
-remotes::install_github("NCC-CNC/wheretowork@*release")
-```
-
-You can then use the following R code to run the application and
-automatically open it in your web browser:
-
-``` r
-wheretowork::run_app()
-```
-
-Additionally, the latest development version can be installed using the
-following R code. Please note that while developmental versions may
-contain additional features not present in the official version, they
-may also contain defects.
+completing the installation, you can install the application using the
+following R code:
 
 ``` r
 if (!require(remotes)) install.packages("remotes")
 remotes::install_github("NCC-CNC/wheretowork")
+```
+
+You can then use the following R code to start the application and open
+it in your web browser:
+
+``` r
+wheretowork::run_app()
 ```
 
 ## Contributing
