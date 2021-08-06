@@ -11,8 +11,22 @@ app_ui <- function(request) {
     # app content
     shiny::fillPage(
 
-      ## manually insert shinyBS JS code
-      htmltools::tags$script(src = "www/shinyBS-copy.js"),
+      ## suppress dependencies that fail to import correctly
+     htmltools::suppressDependencies("shinyBS"),
+     htmltools::suppressDependencies("bootstrap-select"),
+
+      ## manually insert code dependencies so they import correctly
+      htmltools::tags$head(
+        ### shinyBS just doesn't work inside Docker containers
+        htmltools::tags$script(src = "www/shinyBS-copy.js"),
+        ### shinyWidgets has invalid SourceMap configuration
+        htmltools::tags$script(src = "www/bootstrap-select-copy.min.js"),
+        htmltools::tags$link(
+          rel = "stylesheet",
+          type = "text/css",
+          href = "www/bootstrap-select-copy.min.css"
+        )
+      ),
 
       ## start up screen
       shinybusy::busy_start_up(

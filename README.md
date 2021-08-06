@@ -13,25 +13,42 @@ Canada](https://natureconservancy.ca/en/).
 
 ## Usage
 
-The application is [available
-online](https://ncc.carleton.ca//wheretowork). **Please note that you
-must use [Google Chrome](https://www.google.com/chrome/) for it to
-work.**.
+The application is [available online](TODO). **Please note that you must
+use [Google Chrome](https://www.google.com/chrome/) for it to work.**.
 
 ## Installation
 
 The application is available as an online service provided by the
-[Nature Conservancy of Canada](https://natureconservancy.ca/en/). As
-such, you don’t need to install it on your computer to use: just go to
-[this link and it’s ready to go](https://natureconservancy.ca/en/). If
-you need to run the application on your own computer, then you can run
-it using [Docker](https://www.docker.com/) or the [R statistical
-computing environment](https://www.r-project.org/).
+[Nature Conservancy of Canada](https://natureconservancy.ca/en/). If you
+need to run the application on your own computer, then you can run it
+using the [R statistical computing
+environment](https://www.r-project.org/),
+[Docker](https://www.docker.com/), or [Docker
+Compose](https://docs.docker.com/compose/).
+
+### Using R
+
+To use this method, you will need to install the [R statistical
+computing environment](https://www.r-project.org/). After completing the
+installation, you can install the application using the following R
+code:
+
+``` r
+if (!require(remotes)) install.packages("remotes")
+remotes::install_github("NCC-CNC/wheretowork")
+```
+
+You can then use the following R code to start the application and open
+it in your web browser:
+
+``` r
+wheretowork::run_app()
+```
 
 ### Using Docker
 
-To run the application using this method, you will need to install the
-[Docker Engine](https://www.docker.com/) software ([see here for
+To use this method, you will need to install [Docker
+Engine](https://www.docker.com/) ([see here for
 instructions](https://docs.docker.com/get-docker/)). After completing
 this step, you can install the application from the [DockerHub
 repository](https://hub.docker.com/repository/docker/naturecons/wheretowork).
@@ -52,23 +69,30 @@ it will continue running in the background.**
 docker rm -f wheretowork
 ```
 
-### Using R
+### Using Docker Compose
 
-To run the application using this method, you will need to install the
-[R statistical computing environment](https://www.r-project.org/). After
-completing the installation, you can install the application using the
-following R code:
+To use this method, you will need to install [Docker
+Engine](https://www.docker.com/) ([see here for
+instructions](https://docs.docker.com/get-docker/)) and Docker Compose
+([see here for instructions](https://docs.docker.com/compose/install/)).
+After installing both programs, you can install the application by
+[cloning this
+repository](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository)
+and then using the following system command:
 
-``` r
-if (!require(remotes)) install.packages("remotes")
-remotes::install_github("NCC-CNC/wheretowork")
+``` bash
+docker-compose up --build
 ```
 
-You can then use the following R code to start the application and open
-it in your web browser:
+You can then view the application by opening the following link in
+[Google Chrome](https://www.google.com/chrome/):
+<http://localhost:3838>. After you have finished using the application,
+you can terminate it using the following system command. **Note that if
+you don’t terminate the application once you are finished using it, then
+it will continue running in the background.**
 
-``` r
-wheretowork::run_app()
+``` bash
+docker-compose down
 ```
 
 ## Contributing
@@ -79,10 +103,10 @@ statistical computing environment](https://www.r-project.org/).
 Specifically, it uses the [`golem`
 framework](https://thinkr-open.github.io/golem/). This means that the
 application is effectively an [R package](https://r-pkgs.org/) that
-contains code for defining and launching the application (see
-[here](https://engineering-shiny.org/) for more details). The R code
-files (located in the `./R` directory) are organized the following
-system of naming conventions:
+contains code for defining and launching the application ([see here for
+more details](https://engineering-shiny.org/)). The R code files
+(located in the `./R` directory) are organized using the following
+naming conventions:
 
 -   `app_*`: Defines the web application:
     -   `app_config.R`: Imports configuration settings.

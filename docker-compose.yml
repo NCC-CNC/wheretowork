@@ -12,8 +12,6 @@ services:
       # environmental variables defined in ./.env
       - FORCE_DEFAULT_PROJECTS
       - PROJECT_DIRECTORY
-      - LOG_DIRECTORY
       - R_CONFIG_ACTIVE
     volumes:
       - "${PROJECT_DIRECTORY}:/projects"
-      - "${LOG_DIRECTORY}:/var/log/shiny-server/"
