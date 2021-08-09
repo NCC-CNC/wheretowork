@@ -21,7 +21,7 @@ w = 3.0
 ow = "400"
 ```
 
-The _Where to Work_ application is a decision support tool to help prioritize conservation efforts for the [Nature Conservancy of Canada](https://natureconservancy.ca/en/).
+The _Where To Work_ application is a decision support tool to help prioritize conservation efforts for the [Nature Conservancy of Canada](https://natureconservancy.ca/en/).
 
 ## Usage
 
@@ -92,4 +92,4 @@ The application is a [Shiny web application](https://mastering-shiny.org/) devel
 
 ## Getting help
 
-If you have any questions about using the _Where to Work_ application or suggestions for improving it, please contact [Dr. Richard Schuster](https://www.richard-schuster.com/) ([richard.schuster@natureconservancy.ca](mailto:richard.schuster@natureconservancy.ca)) or [Prof. Joe Bennett](https://carleton.ca/bennett-lab/lab-members/) ([JosephBennett@cunet.carleton.ca](mailto:mailto:JosephBennett@cunet.carleton.ca)).
+If you have any questions about using the _Where To Work_ application or suggestions for improving it, please contact [Dr. Richard Schuster](https://www.richard-schuster.com/) ([richard.schuster@natureconservancy.ca](mailto:richard.schuster@natureconservancy.ca)) or [Prof. Joe Bennett](https://carleton.ca/bennett-lab/lab-members/) ([JosephBennett@cunet.carleton.ca](mailto:mailto:JosephBennett@cunet.carleton.ca)).

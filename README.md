@@ -7,7 +7,7 @@
 [![Docker
 Status](https://img.shields.io/docker/cloud/build/naturecons/wheretowork?label=Docker%20build)](https://hub.docker.com/r/naturecons/wheretowork)
 
-The *Where to Work* application is a decision support tool to help
+The *Where To Work* application is a decision support tool to help
 prioritize conservation efforts for the [Nature Conservancy of
 Canada](https://natureconservancy.ca/en/).
 
@@ -136,7 +136,7 @@ naming conventions:
 
 ## Getting help
 
-If you have any questions about using the *Where to Work* application or
+If you have any questions about using the *Where To Work* application or
 suggestions for improving it, please contact [Dr. Richard
 Schuster](https://www.richard-schuster.com/)
 (<richard.schuster@natureconservancy.ca>) or [Prof. Joe
