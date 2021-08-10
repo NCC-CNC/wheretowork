@@ -45,7 +45,7 @@
 .solution-results .panel-content-inner {
   overflow-y: scroll;
   overflow-x: hidden;
-  max-height: calc(100vh - 259px);
+  max-height: calc(100vh - 312px);
 }
 
 .solution-results .themes-results,
