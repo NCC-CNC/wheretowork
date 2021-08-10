@@ -5,8 +5,15 @@
 \alias{wheretowork}
 \title{wheretowork: Systematic conservation planning application.}
 \description{
-TODO.
+The application is a decision support tool to help prioritize conservation
+efforts for the Nature Conservancy of Canada. It provides an interactive
+interface for conducting systematic conservation planning exercises, and
+uses mathematical optimization algorithms to generate solutions.
 }
 \examples{
-# TODO
+\donttest{
+if (interactive()) {
+run_app()
+}
+}
 }

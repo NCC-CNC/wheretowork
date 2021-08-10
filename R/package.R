@@ -10,14 +10,22 @@ NULL
 
 #' wheretowork: Systematic conservation planning application.
 #'
-#' TODO.
+#' The application is a decision support tool to help prioritize conservation
+#' efforts for the Nature Conservancy of Canada. It provides an interactive
+#' interface for conducting systematic conservation planning exercises, and
+#' uses mathematical optimization algorithms to generate solutions.
 #'
 #' @name wheretowork
 #'
 #' @docType package
 #'
 #' @examples
-#' # TODO
+#' \donttest{
+#  # launch application
+#' if (interactive()) {
+#' run_app()
+#' }
+#' }
 NULL
 
 # define global variables to pass package checks

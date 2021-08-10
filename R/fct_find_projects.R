@@ -8,7 +8,11 @@
 #'  and names of projects found in the directory.
 #'
 #' @examples
-#' # TODO
+#' # find directory with built-in projects
+#' d <- system.file("extdata", "projects", package = "wheretowork")
+#'
+#' # list projects in directory
+#' find_projects(d)
 #' @export
 find_projects <- function(x) {
   # assert argument is valid

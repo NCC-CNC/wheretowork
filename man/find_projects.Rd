@@ -17,5 +17,9 @@ and names of projects found in the directory.
 Find project files in a directory.
 }
 \examples{
-# TODO
+# find directory with built-in projects
+d <- system.file("extdata", "projects", package = "wheretowork")
+
+# list projects in directory
+find_projects(d)
 }
