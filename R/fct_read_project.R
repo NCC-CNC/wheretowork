@@ -227,7 +227,6 @@ read_project <- function(path,
     )
   )
 
-
   # import includes
   ## import data
   includes <- lapply(x$includes, function(x) {
