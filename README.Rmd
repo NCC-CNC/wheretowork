@@ -70,7 +70,8 @@ docker rm -f wheretowork
 To use this method, you will need to install [Docker Engine](https://www.docker.com/) ([see here for instructions](https://docs.docker.com/get-docker/)) and Docker Compose ([see here for instructions](https://docs.docker.com/compose/install/)). After installing both programs, you can install the application by [cloning this repository](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository) and then using the following system command:
 
 ```{bash, eval = FALSE}
-docker-compose up --build
+docker-compose pull
+docker-compose up -d
 ```
 
 You can then view the application by opening the following link in [Google Chrome](https://www.google.com/chrome/): http://localhost:3838. After you have finished using the application, you can terminate it using the following system command. **Note that if you don't terminate the application once you are finished using it, then it will continue running in the background.**

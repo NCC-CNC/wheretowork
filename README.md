@@ -89,7 +89,8 @@ repository](https://docs.github.com/en/github/creating-cloning-and-archiving-rep
 and then using the following system command:
 
 ``` bash
-docker-compose up --build
+docker-compose pull
+docker-compose up -d
 ```
 
 You can then view the application by opening the following link in
