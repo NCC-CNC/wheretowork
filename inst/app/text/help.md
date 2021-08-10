@@ -1,1 +1,1 @@
-**TODO.**
+The application is still under development and so the text for this popup has not yet been finalized. In the interim, you can learn about the functionality of this application by hovering the mouse over buttons, text inputs, and various user interface components. If you require assistance, please contact Richard Schuster (richard.schuster@glel.carleton.ca).
