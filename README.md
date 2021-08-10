@@ -86,7 +86,7 @@ instructions](https://docs.docker.com/get-docker/)) and Docker Compose
 After installing both programs, you can install the application by
 [cloning this
 repository](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository)
-and then using the following system command:
+and then using the following system commands:
 
 ``` bash
 docker-compose pull
@@ -145,8 +145,11 @@ naming conventions:
 
 ## Getting help
 
-If you have any questions about using the *Where To Work* application or
-suggestions for improving it, please contact [Dr. Richard
+Thank you for checking out this application. If you encounter any
+software defects (e.g. application crashes, unexpected behavior, or
+spelling mistakes), please feel free to post them on the [issue
+tracker](https://github.com/NCC-CNC/wheretowork/issues). If you have any
+questions about using this application, please contact [Dr. Richard
 Schuster](https://www.richard-schuster.com/)
 (<richard.schuster@natureconservancy.ca>) or [Prof. Joe
 Bennett](https://carleton.ca/bennett-lab/lab-members/)

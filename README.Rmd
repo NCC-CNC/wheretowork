@@ -67,7 +67,7 @@ docker rm -f wheretowork
 
 ### Using Docker Compose
 
-To use this method, you will need to install [Docker Engine](https://www.docker.com/) ([see here for instructions](https://docs.docker.com/get-docker/)) and Docker Compose ([see here for instructions](https://docs.docker.com/compose/install/)). After installing both programs, you can install the application by [cloning this repository](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository) and then using the following system command:
+To use this method, you will need to install [Docker Engine](https://www.docker.com/) ([see here for instructions](https://docs.docker.com/get-docker/)) and Docker Compose ([see here for instructions](https://docs.docker.com/compose/install/)). After installing both programs, you can install the application by [cloning this repository](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository) and then using the following system commands:
 
 ```{bash, eval = FALSE}
 docker-compose pull
@@ -98,4 +98,4 @@ The application is a [Shiny web application](https://mastering-shiny.org/) devel
 
 ## Getting help
 
-If you have any questions about using the _Where To Work_ application or suggestions for improving it, please contact [Dr. Richard Schuster](https://www.richard-schuster.com/) ([richard.schuster@natureconservancy.ca](mailto:richard.schuster@natureconservancy.ca)) or [Prof. Joe Bennett](https://carleton.ca/bennett-lab/lab-members/) ([JosephBennett@cunet.carleton.ca](mailto:mailto:JosephBennett@cunet.carleton.ca)).
+Thank you for checking out this application. If you encounter any software defects (e.g. application crashes, unexpected behavior, or spelling mistakes), please feel free to post them on the [issue tracker](https://github.com/NCC-CNC/wheretowork/issues). If you have any questions about using this application, please contact [Dr. Richard Schuster](https://www.richard-schuster.com/) ([richard.schuster@natureconservancy.ca](mailto:richard.schuster@natureconservancy.ca)) or [Prof. Joe Bennett](https://carleton.ca/bennett-lab/lab-members/) ([JosephBennett@cunet.carleton.ca](mailto:mailto:JosephBennett@cunet.carleton.ca)).
