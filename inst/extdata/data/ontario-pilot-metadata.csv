@@ -1,0 +1,28 @@
+name,type,file,color
+Forest,theme,R1km_Habitat_Forest.tif,#006837
+Interior Forest,theme,R1km_Habitat_Forest_Interior.tif,#78c679
+Natural Cover,theme,R1km_Habitat_Natural.tif,#ffffcc
+PSW Habitat,theme,R1km_Habitat_PSW.tif,#ce1256
+PSW Habitat (2% cut-off),theme,R1km_Habitat_PSW_2.tif,#df65b0
+PSW Habitat (25% cut-off),theme,R1km_Habitat_PSW_25.tif,#d7b5d8
+Water,theme,R1km_Habitat_Water.tif,#a6cee3
+Wetland,theme,R1km_Habitat_Wetland.tif,#3690c0
+Wetland (25% cut-off),theme,R1km_Habitat_Wetland_25.tif,#02818a
+TNC Crisis Ecosystems,theme,R1km_TNC_Crisis_Ecosystems.tif,#000000
+TNC Last Chance Ecosystems,theme,R1km_TNC_Last_Chance_Ecosystems.tif,#fbb4ae
+Policy Areas,include,R1km_Policy_Area.tif,#cccccc
+A2A Area,theme,R1km_A2A_Area.tif,#fdcdac
+Protected Areas,include,R1km_Protected_Area.tif,#b3e2cd
+Protected Areas (buffered),include,R1km_Protected_Areas_Plus_Buffer.tif,#e6f5c9
+Aggregate Threats,weight,R1km_Threats_Aggregate.tif,#e41a1c
+Built-up Areas,weight,R1km_Threats_Builtup.tif,#ff7f00
+Dams,weight,R1km_Threats_Dams.tif,#386cb0
+Hydroelectric Stations,weight,R1km_Threats_Hydro_Station.tif,#984ea3
+Active Mines,weight,R1km_Threats_Mines_Active.tif,YlOrBr
+Mining Activity,weight,R1km_Threats_Mining.tif,Oranges
+Peat Production,weight,R1km_Threats_Peat.tif,#a65628
+Railways,weight,R1km_Threats_Rail.tif,#666666
+Roads,weight,R1km_Threats_Roads.tif,Greys
+Utility Lines,weight,R1km_Threats_Utility_Lines.tif,#e6ab02
+Water Power Stations,weight,R1km_Threats_Water_Power.tif,#7570b3
+Protected Areas (distance),weight,R1km_Protected_Area_Distance_M.tif,viridis

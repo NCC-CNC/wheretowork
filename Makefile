@@ -19,6 +19,7 @@ man:
 
 ## simulate data
 data:
+	R --slave -e "source('inst/scripts/format-ontario-pilot-data.R')"
 	R --slave -e "source('inst/scripts/simulate-data.R')"
 
 ## reubild readme

@@ -1,0 +1,400 @@
+name: Ontario pilot dataset
+spatial_path: ontario_pilot_spatial.tif
+attribute_path: ontario_pilot_attribute.csv.gz
+boundary_path: ontario_pilot_boundary.csv.gz
+mode: advanced
+themes:
+- name: Forest
+  feature:
+  - name: R1km_Habitat_Forest
+    variable:
+      index: R1km_Habitat_Forest
+      units: ''
+      legend:
+        type: categorical
+        colors:
+        - '#00000000'
+        - '#006837'
+    status: yes
+    visible: yes
+    goal: 0.2
+    limit_goal: 0.0
+- name: Interior Forest
+  feature:
+  - name: R1km_Habitat_Forest_Interior
+    variable:
+      index: R1km_Habitat_Forest_Interior
+      units: ''
+      legend:
+        type: categorical
+        colors:
+        - '#00000000'
+        - '#78c679'
+    status: yes
+    visible: yes
+    goal: 0.2
+    limit_goal: 0.0
+- name: Natural Cover
+  feature:
+  - name: R1km_Habitat_Natural
+    variable:
+      index: R1km_Habitat_Natural
+      units: ''
+      legend:
+        type: categorical
+        colors:
+        - '#00000000'
+        - '#ffffcc'
+    status: yes
+    visible: yes
+    goal: 0.2
+    limit_goal: 0.0
+- name: PSW Habitat
+  feature:
+  - name: R1km_Habitat_PSW
+    variable:
+      index: R1km_Habitat_PSW
+      units: ''
+      legend:
+        type: categorical
+        colors:
+        - '#00000000'
+        - '#ce1256'
+    status: yes
+    visible: yes
+    goal: 0.2
+    limit_goal: 0.0
+- name: PSW Habitat (2% cut-off)
+  feature:
+  - name: R1km_Habitat_PSW_2
+    variable:
+      index: R1km_Habitat_PSW_2
+      units: ''
+      legend:
+        type: categorical
+        colors:
+        - '#00000000'
+        - '#df65b0'
+    status: yes
+    visible: yes
+    goal: 0.2
+    limit_goal: 0.0
+- name: PSW Habitat (25% cut-off)
+  feature:
+  - name: R1km_Habitat_PSW_25
+    variable:
+      index: R1km_Habitat_PSW_25
+      units: ''
+      legend:
+        type: categorical
+        colors:
+        - '#00000000'
+        - '#d7b5d8'
+    status: yes
+    visible: yes
+    goal: 0.2
+    limit_goal: 0.0
+- name: Water
+  feature:
+  - name: R1km_Habitat_Water
+    variable:
+      index: R1km_Habitat_Water
+      units: ''
+      legend:
+        type: categorical
+        colors:
+        - '#00000000'
+        - '#a6cee3'
+    status: yes
+    visible: yes
+    goal: 0.2
+    limit_goal: 0.0
+- name: Wetland
+  feature:
+  - name: R1km_Habitat_Wetland
+    variable:
+      index: R1km_Habitat_Wetland
+      units: ''
+      legend:
+        type: categorical
+        colors:
+        - '#00000000'
+        - '#3690c0'
+    status: yes
+    visible: yes
+    goal: 0.2
+    limit_goal: 0.0
+- name: Wetland (25% cut-off)
+  feature:
+  - name: R1km_Habitat_Wetland_25
+    variable:
+      index: R1km_Habitat_Wetland_25
+      units: ''
+      legend:
+        type: categorical
+        colors:
+        - '#00000000'
+        - '#02818a'
+    status: yes
+    visible: yes
+    goal: 0.2
+    limit_goal: 0.0
+- name: TNC Last Chance Ecosystems
+  feature:
+  - name: R1km_TNC_Last_Chance_Ecosystems
+    variable:
+      index: R1km_TNC_Last_Chance_Ecosystems
+      units: ''
+      legend:
+        type: categorical
+        colors:
+        - '#00000000'
+        - '#fbb4ae'
+    status: yes
+    visible: yes
+    goal: 0.2
+    limit_goal: 0.0
+- name: A2A Area
+  feature:
+  - name: R1km_A2A_Area
+    variable:
+      index: R1km_A2A_Area
+      units: ''
+      legend:
+        type: categorical
+        colors:
+        - '#00000000'
+        - '#fdcdac'
+    status: yes
+    visible: yes
+    goal: 0.2
+    limit_goal: 0.0
+- name: TNC Crisis Ecosystems (Endangered)
+  feature:
+  - name: layer.1
+    variable:
+      index: layer.1
+      units: ''
+      legend:
+        type: categorical
+        colors:
+        - '#00000000'
+        - '#fd8d3c'
+    status: yes
+    visible: yes
+    goal: 0.2
+    limit_goal: 0.0
+- name: TNC Crisis Ecosystems (Vulnerable)
+  feature:
+  - name: layer.2
+    variable:
+      index: layer.2
+      units: ''
+      legend:
+        type: categorical
+        colors:
+        - '#00000000'
+        - '#800026'
+    status: yes
+    visible: yes
+    goal: 0.2
+    limit_goal: 0.0
+weights:
+- name: Aggregate Threats
+  variable:
+    index: R1km_Threats_Aggregate
+    units: ''
+    legend:
+      type: categorical
+      colors:
+      - '#00000000'
+      - '#e41a1c'
+  status: yes
+  visible: yes
+  factor: 0.0
+- name: Built-up Areas
+  variable:
+    index: R1km_Threats_Builtup
+    units: ''
+    legend:
+      type: categorical
+      colors:
+      - '#00000000'
+      - '#ff7f00'
+  status: yes
+  visible: yes
+  factor: 0.0
+- name: Dams
+  variable:
+    index: R1km_Threats_Dams
+    units: ''
+    legend:
+      type: categorical
+      colors:
+      - '#00000000'
+      - '#386cb0'
+  status: yes
+  visible: yes
+  factor: 0.0
+- name: Hydroelectric Stations
+  variable:
+    index: R1km_Threats_Hydro_Station
+    units: ''
+    legend:
+      type: categorical
+      colors:
+      - '#00000000'
+      - '#984ea3'
+  status: yes
+  visible: yes
+  factor: 0.0
+- name: Active Mines
+  variable:
+    index: R1km_Threats_Mines_Active
+    units: ''
+    legend:
+      type: categorical
+      colors:
+      - '#FFF7BC'
+      - '#FEC44F'
+      - '#D95F0E'
+  status: yes
+  visible: yes
+  factor: 0.0
+- name: Mining Activity
+  variable:
+    index: R1km_Threats_Mining
+    units: ''
+    legend:
+      type: categorical
+      colors:
+      - '#FEE6CE'
+      - '#FDAE6B'
+      - '#E6550D'
+  status: yes
+  visible: yes
+  factor: 0.0
+- name: Peat Production
+  variable:
+    index: R1km_Threats_Peat
+    units: ''
+    legend:
+      type: categorical
+      colors:
+      - '#00000000'
+      - '#a65628'
+  status: yes
+  visible: yes
+  factor: 0.0
+- name: Railways
+  variable:
+    index: R1km_Threats_Rail
+    units: ''
+    legend:
+      type: categorical
+      colors:
+      - '#00000000'
+      - '#666666'
+  status: yes
+  visible: yes
+  factor: 0.0
+- name: Roads
+  variable:
+    index: R1km_Threats_Roads
+    units: ''
+    legend:
+      type: categorical
+      colors:
+      - '#F7F7F7'
+      - '#CCCCCC'
+      - '#969696'
+      - '#636363'
+      - '#252525'
+  status: yes
+  visible: yes
+  factor: 0.0
+- name: Utility Lines
+  variable:
+    index: R1km_Threats_Utility_Lines
+    units: ''
+    legend:
+      type: categorical
+      colors:
+      - '#00000000'
+      - '#e6ab02'
+  status: yes
+  visible: yes
+  factor: 0.0
+- name: Water Power Stations
+  variable:
+    index: R1km_Threats_Water_Power
+    units: ''
+    legend:
+      type: categorical
+      colors:
+      - '#00000000'
+      - '#7570b3'
+  status: yes
+  visible: yes
+  factor: 0.0
+- name: Protected Areas (distance)
+  variable:
+    index: R1km_Protected_Area_Distance_M
+    units: ''
+    legend:
+      type: continuous
+      colors:
+      - '#440154FF'
+      - '#3B528BFF'
+      - '#21908CFF'
+      - '#5DC863FF'
+      - '#FDE725FF'
+  status: yes
+  visible: yes
+  factor: 0.0
+includes:
+- name: Policy Areas
+  variable:
+    index: R1km_Policy_Area
+    units: ''
+    legend:
+      type: manual
+      colors:
+      - '#00000000'
+      - '#cccccc'
+      labels:
+      - not included
+      - include
+  mandatory: no
+  status: yes
+  visible: yes
+- name: Protected Areas
+  variable:
+    index: R1km_Protected_Area
+    units: ''
+    legend:
+      type: manual
+      colors:
+      - '#00000000'
+      - '#b3e2cd'
+      labels:
+      - not included
+      - include
+  mandatory: no
+  status: yes
+  visible: yes
+- name: Protected Areas (buffered)
+  variable:
+    index: R1km_Protected_Areas_Plus_Buffer
+    units: ''
+    legend:
+      type: manual
+      colors:
+      - '#00000000'
+      - '#e6f5c9'
+      labels:
+      - not included
+      - include
+  mandatory: no
+  status: yes
+  visible: yes
