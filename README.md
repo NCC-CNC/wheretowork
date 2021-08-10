@@ -9,12 +9,15 @@ Status](https://img.shields.io/docker/cloud/build/naturecons/wheretowork?label=D
 
 The *Where To Work* application is a decision support tool to help
 prioritize conservation efforts for the [Nature Conservancy of
-Canada](https://natureconservancy.ca/en/).
+Canada](https://natureconservancy.ca/en/). It provides an interactive
+interface for conducting systematic conservation planning exercises, and
+uses mathematical optimization algorithms to generate solutions.
 
 ## Usage
 
-The application is [available online](TODO). **Please note that you must
-use [Google Chrome](https://www.google.com/chrome/) for it to work.**.
+The application is [available online](https://ncc.carleton.ca). Please
+note that you must use [Google Chrome](https://www.google.com/chrome/)
+for it to work.
 
 ## Installation
 
