@@ -69,7 +69,7 @@ quick-debug:
 
 ## launch local version inside Docker container
 demo:
-	docker-compose up --build
+	docker-compose up --build -d
 
 demo-kill:
 	docker-compose down
