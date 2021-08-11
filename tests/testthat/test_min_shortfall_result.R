@@ -1,6 +1,7 @@
 context("min_shortfall_result")
 
 test_that("no spatial clustering", {
+  skip_on_ci()
   # create object
   ## create dataset
   rd <- simulate_binary_spatial_data(import_simple_raster_data(), 5)
@@ -103,6 +104,7 @@ test_that("no spatial clustering", {
 })
 
 test_that("spatial clustering", {
+  skip_on_ci()
   # create object
   ## create dataset
   rd <- simulate_binary_spatial_data(import_simple_raster_data(), 5)
@@ -184,6 +186,7 @@ test_that("spatial clustering", {
 })
 
 test_that("no includes", {
+  skip_on_ci()
   # create object
   ## create dataset
   rd <- simulate_binary_spatial_data(import_simple_raster_data(), 5)
@@ -259,6 +262,7 @@ test_that("no includes", {
 })
 
 test_that("no weights", {
+  skip_on_ci()
   # create object
   ## create dataset
   rd <- simulate_binary_spatial_data(import_simple_raster_data(), 5)
