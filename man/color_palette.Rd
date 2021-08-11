@@ -40,7 +40,7 @@ Specifically, available palettes include:
 \item \verb{"BrBG}" (see \code{\link[RColorBrewer:ColorBrewer]{RColorBrewer::brewer.pal()}})
 \item \verb{"PiYG}" (see \code{\link[RColorBrewer:ColorBrewer]{RColorBrewer::brewer.pal()}})
 \item \verb{"PRGn}" (see \code{\link[RColorBrewer:ColorBrewer]{RColorBrewer::brewer.pal()}})
-\item \verb{"PuOr}" (see \url{RColorBrewer::brewer.pal})
+\item \verb{"PuOr}" (see \code{\link[RColorBrewer:ColorBrewer]{RColorBrewer::brewer.pal()}})
 \item \verb{"RdBu}" (see \code{\link[RColorBrewer:ColorBrewer]{RColorBrewer::brewer.pal()}})
 \item \verb{"RdGy}" (see \code{\link[RColorBrewer:ColorBrewer]{RColorBrewer::brewer.pal()}})
 \item \verb{"RdYlBu}" (see \code{\link[RColorBrewer:ColorBrewer]{RColorBrewer::brewer.pal()}})
