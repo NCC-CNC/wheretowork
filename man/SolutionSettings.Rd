@@ -9,7 +9,7 @@ Solution settings class
 Solution settings class
 }
 \details{
-Definition for the SolutionSettings class.
+Definition for the \code{SolutionSettings} class.
 
 The argument to \code{value} should be a \code{list} with the following elements:
 \describe{
@@ -82,7 +82,7 @@ parameters.}
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
-Create a SolutionSettings object.
+Create a \code{SolutionSettings} object.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$new(themes, weights, includes, parameters)}\if{html}{\out{</div>}}
 }
@@ -101,7 +101,7 @@ Create a SolutionSettings object.
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A new SolutionSettings object.
+A new \code{SolutionSettings} object.
 }
 }
 \if{html}{\out{<hr>}}

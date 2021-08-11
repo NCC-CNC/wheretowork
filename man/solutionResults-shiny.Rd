@@ -4,7 +4,7 @@
 \alias{solutionResults-shiny}
 \alias{solutionResultsOutput}
 \alias{renderSolutionResults}
-\title{Shiny bindings for solutionResults}
+\title{Shiny bindings for \code{solutionResults}}
 \usage{
 solutionResultsOutput(outputId, width = "100\%", height = "auto")
 

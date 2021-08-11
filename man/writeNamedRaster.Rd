@@ -11,7 +11,7 @@ writeNamedRaster(x, filename, ...)
 
 \item{filename}{\code{character} file path.}
 
-\item{...}{arguments passed to \link[raster:writeRaster]{raster::writeRaster}.}
+\item{...}{arguments passed to \code{\link[raster:writeRaster]{raster::writeRaster()}}.}
 }
 \value{
 None.

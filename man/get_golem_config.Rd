@@ -2,7 +2,7 @@
 % Please edit documentation in R/app_config.R
 \name{get_golem_config}
 \alias{get_golem_config}
-\title{Read App Config}
+\title{Read App Configuration}
 \usage{
 get_golem_config(
   value,
@@ -11,13 +11,13 @@ get_golem_config(
 )
 }
 \arguments{
-\item{value}{Value to retrieve from the config file.}
+\item{value}{Value to retrieve from the configuration file.}
 
 \item{config}{GOLEM_CONFIG_ACTIVE value. If unset, R_CONFIG_ACTIVE.
 If unset, "default".}
 
-\item{use_parent}{Logical, scan the parent directory for config file.}
+\item{use_parent}{Logical, scan the parent directory for configuration file.}
 }
 \description{
-Read App Config
+Read App Configuration
 }

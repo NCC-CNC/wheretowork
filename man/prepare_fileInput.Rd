@@ -13,7 +13,7 @@ prepare_fileInput(x)
 \code{character} file paths.
 }
 \description{
-Prepare files uploaded using \link[shiny:fileInput]{shiny::fileInput}.
+Prepare files uploaded using \code{\link[shiny:fileInput]{shiny::fileInput()}}.
 }
 \details{
 This function renames files to their original file names after

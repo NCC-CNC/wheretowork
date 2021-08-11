@@ -2,14 +2,14 @@
 % Please edit documentation in R/class_ContinuousLegend.R
 \name{ContinuousLegend}
 \alias{ContinuousLegend}
-\title{ContinuousLegend class}
+\title{Continuous legend class}
 \description{
-ContinuousLegend class
+Continuous legend class
 
-ContinuousLegend class
+Continuous legend class
 }
 \details{
-Definition for the ContinuousLegend class.
+Definition for the \code{ContinuousLegend} class.
 }
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
@@ -39,7 +39,7 @@ Definition for the ContinuousLegend class.
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
-Create a ContinuousLegend object.
+Create a \code{ContinuousLegend} object.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ContinuousLegend$new(min_value, max_value, colors, n)}\if{html}{\out{</div>}}
 }
@@ -58,7 +58,7 @@ Create a ContinuousLegend object.
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A new ContinuousLegend object.
+A new \code{ContinuousLegend} object.
 }
 }
 \if{html}{\out{<hr>}}
@@ -71,7 +71,7 @@ Get data for creating a widget.
 }
 
 \subsection{Returns}{
-A new ContinuousLegend object.
+A new \code{ContinuousLegend} object.
 }
 }
 \if{html}{\out{<hr>}}

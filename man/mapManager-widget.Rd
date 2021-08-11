@@ -7,7 +7,7 @@
 mapManager(x, width = NULL, height = NULL, elementId = NULL)
 }
 \arguments{
-\item{x}{MapManager object.}
+\item{x}{\link{MapManager} object.}
 
 \item{width}{\code{character} width of the displayed widget.
 Defaults to \code{NULL} such that the widget is automatically sized.}

@@ -4,7 +4,7 @@
 \alias{mapManager-shiny}
 \alias{mapManagerOutput}
 \alias{renderMapManager}
-\title{Shiny bindings for mapManager}
+\title{Shiny bindings for \code{mapManager}}
 \usage{
 mapManagerOutput(outputId, width = "100\%", height = "auto")
 

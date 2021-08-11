@@ -2,14 +2,14 @@
 % Please edit documentation in R/class_ManualLegend.R
 \name{ManualLegend}
 \alias{ManualLegend}
-\title{ManualLegend class}
+\title{Manual legend class}
 \description{
-ManualLegend class
+Manual legend class
 
-ManualLegend class
+Manual legend class
 }
 \details{
-Definition for the ManualLegend class.
+Definition for the \code{ManualLegend} class.
 }
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
@@ -35,7 +35,7 @@ Definition for the ManualLegend class.
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
-Create a ManualLegend object.
+Create a \code{ManualLegend} object.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ManualLegend$new(colors, labels)}\if{html}{\out{</div>}}
 }
@@ -50,7 +50,7 @@ Create a ManualLegend object.
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A new ManualLegend object.
+A new \code{ManualLegend} object.
 }
 }
 \if{html}{\out{<hr>}}

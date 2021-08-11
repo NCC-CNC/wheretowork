@@ -2,14 +2,14 @@
 % Please edit documentation in R/class_CategoricalLegend.R
 \name{CategoricalLegend}
 \alias{CategoricalLegend}
-\title{CategoricalLegend class}
+\title{Categorical legend class}
 \description{
-CategoricalLegend class
+Categorical legend class
 
-CategoricalLegend class
+Categorical legend class
 }
 \details{
-Definition for the CategoricalLegend class.
+Definition for the \code{CategoricalLegend} class.
 }
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
@@ -35,7 +35,7 @@ Definition for the CategoricalLegend class.
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
-Create a CategoricalLegend object.
+Create a \code{CategoricalLegend} object.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{CategoricalLegend$new(values, colors)}\if{html}{\out{</div>}}
 }
@@ -50,7 +50,7 @@ Create a CategoricalLegend object.
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A new CategoricalLegend object.
+A new \code{CategoricalLegend} object.
 }
 }
 \if{html}{\out{<hr>}}
@@ -63,7 +63,7 @@ Get data for creating a widget.
 }
 
 \subsection{Returns}{
-A new CategoricalLegend object.
+A new \code{CategoricalLegend} object.
 }
 }
 \if{html}{\out{<hr>}}

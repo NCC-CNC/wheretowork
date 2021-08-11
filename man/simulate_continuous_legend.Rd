@@ -10,7 +10,7 @@ simulate_continuous_legend()
 A \link{ContinuousLegend} object.
 }
 \description{
-This function simulates a continuous legend (\link{ContinuousLegend}) object.
+This function simulates a continuous legend object.
 It is primarily used for testing the package.
 }
 \examples{

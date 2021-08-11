@@ -2,14 +2,14 @@
 % Please edit documentation in R/class_IncludeResults.R
 \name{IncludeResults}
 \alias{IncludeResults}
-\title{IncludeResults class}
+\title{Include results class}
 \description{
-IncludeResults class
+Include results class
 
-IncludeResults class
+Include results class
 }
 \details{
-Definition for the IncludeResults class.
+Definition for the \code{IncludeResults} class.
 }
 \seealso{
 \code{\link[=new_include_results]{new_include_results()}}.
@@ -42,7 +42,7 @@ Definition for the IncludeResults class.
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
-Create a new IncludeResults object.
+Create a new \code{IncludeResults} object.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{IncludeResults$new(id, include, held)}\if{html}{\out{</div>}}
 }
@@ -59,7 +59,7 @@ Create a new IncludeResults object.
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A new IncludeResults object.
+A new \code{IncludeResults} object.
 }
 }
 \if{html}{\out{<hr>}}

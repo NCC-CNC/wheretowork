@@ -7,11 +7,12 @@
 horizontalPickerInput(...)
 }
 \arguments{
-\item{...}{arguments passed to \link[shinyWidgets:pickerInput]{shinyWidgets::pickerInput}.}
+\item{...}{arguments passed to \code{\link[shinyWidgets:pickerInput]{shinyWidgets::pickerInput()}}.}
 }
 \value{
-A select list control that can be added to a UI definition.
+A select list control that can be added to a user interface
+definition.
 }
 \description{
-Create a horizontal \link[shinyWidgets:pickerInput]{shinyWidgets::pickerInput}.
+Create a horizontal \code{\link[shinyWidgets:pickerInput]{shinyWidgets::pickerInput()}}.
 }

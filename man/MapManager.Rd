@@ -9,7 +9,7 @@ Map manager class
 Map manager class
 }
 \details{
-Definition for the MapManager class.
+Definition for the \code{MapManager} class.
 
 The argument to \code{value} should be a \code{list} with the following elements:
 \describe{
@@ -66,7 +66,7 @@ appear beneath every other layer.}
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
-Create a MapManager object.
+Create a \code{MapManager} object.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{MapManager$new(layers, order)}\if{html}{\out{</div>}}
 }
@@ -82,7 +82,7 @@ objects.}
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A new MapManager object.
+A new \code{MapManager} object.
 }
 }
 \if{html}{\out{<hr>}}

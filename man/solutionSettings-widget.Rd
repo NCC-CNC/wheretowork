@@ -43,7 +43,7 @@ The widget also contains a text box. The server value for this
 text box is a \code{character} string. It can be queried using
 \code{id_name} where \code{id} is the argument to \code{elementId}.
 
-The widget also contains two buttons. The server valuees for these
+The widget also contains two buttons. The server values for these
 buttons is an \code{integer} indicating the number of times they
 has been clicked. They can be queried using \code{id_start_button}
 and \code{id_stop_button} where \code{id} is the argument to \code{elementId}.

@@ -2,14 +2,14 @@
 % Please edit documentation in R/class_FeatureResults.R
 \name{FeatureResults}
 \alias{FeatureResults}
-\title{FeatureResults class}
+\title{Feature results class}
 \description{
-FeatureResults class
+Feature results class
 
-FeatureResults class
+Feature results class
 }
 \details{
-Definition for the FeatureResults class.
+Definition for the \code{FeatureResults} class.
 }
 \seealso{
 \code{\link[=new_feature_results]{new_feature_results()}}.
@@ -44,7 +44,7 @@ Definition for the FeatureResults class.
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
-Create a new FeatureResults object.
+Create a new \code{FeatureResults} object.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FeatureResults$new(id, feature, held)}\if{html}{\out{</div>}}
 }
@@ -61,7 +61,7 @@ Create a new FeatureResults object.
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A new FeatureResults object.
+A new \code{FeatureResults} object.
 }
 }
 \if{html}{\out{<hr>}}

@@ -2,14 +2,14 @@
 % Please edit documentation in R/class_WeightResults.R
 \name{WeightResults}
 \alias{WeightResults}
-\title{WeightResults class}
+\title{Weight results class}
 \description{
-WeightResults class
+Weight results class
 
-WeightResults class
+Weight results class
 }
 \details{
-Definition for the WeightResults class.
+Definition for the \code{WeightResults} class.
 }
 \seealso{
 \code{\link[=new_weight_results]{new_weight_results()}}.
@@ -46,7 +46,7 @@ Definition for the WeightResults class.
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
-Create a new WeightResults object.
+Create a new \code{WeightResults} object.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{WeightResults$new(id, weight, held)}\if{html}{\out{</div>}}
 }
@@ -63,7 +63,7 @@ Create a new WeightResults object.
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A new WeightResults object.
+A new \code{WeightResults} object.
 }
 }
 \if{html}{\out{<hr>}}

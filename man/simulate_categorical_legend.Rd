@@ -10,7 +10,7 @@ simulate_categorical_legend()
 A \link{CategoricalLegend} object.
 }
 \description{
-This function simulates a categorical legend (\link{CategoricalLegend}) object.
+This function simulates a categorical legend object.
 It is primarily used for testing the package.
 }
 \examples{

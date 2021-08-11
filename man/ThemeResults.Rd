@@ -2,14 +2,14 @@
 % Please edit documentation in R/class_ThemeResults.R
 \name{ThemeResults}
 \alias{ThemeResults}
-\title{ThemeResults class}
+\title{Theme results class}
 \description{
-ThemeResults class
+Theme results class
 
-ThemeResults class
+Theme results class
 }
 \details{
-Definition for the ThemeResults class.
+Definition for the \code{ThemeResults} class.
 }
 \seealso{
 \code{\link[=new_theme_results]{new_theme_results()}}.
@@ -40,7 +40,7 @@ Definition for the ThemeResults class.
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
-Create a new ThemeResults object.
+Create a new \code{ThemeResults} object.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ThemeResults$new(id, theme, feature_results)}\if{html}{\out{</div>}}
 }
@@ -57,7 +57,7 @@ Create a new ThemeResults object.
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A new ThemeResults object.
+A new \code{ThemeResults} object.
 }
 }
 \if{html}{\out{<hr>}}

@@ -4,7 +4,7 @@
 \alias{importSettings-shiny}
 \alias{importSettingsOutput}
 \alias{renderImportSettings}
-\title{Shiny bindings for importSettings}
+\title{Shiny bindings for \code{importSettings}}
 \usage{
 importSettingsOutput(outputId, width = "100\%", height = "auto")
 
