@@ -77,7 +77,9 @@ is_valid_spatial_file <- function(x) {
       return("Error: not valid ESRI Shapefile format")
     }
     qu <- paste0("SELECT * FROM \"", l, "\" WHERE FID <= 5")
-    f <- try(sf::read_sf(dsn = p, layer = l, query = qu), silent = TRUE)
+    f <- suppressWarnings(
+      try(sf::read_sf(dsn = p, layer = l, query = qu), silent = TRUE)
+    )
     if (inherits(f, "try-error")) {
       return("Error: not valid ESRI Shapefile format")
     }
