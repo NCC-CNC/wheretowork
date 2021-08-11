@@ -1,9 +1,9 @@
 #' @include internal.R
 NULL
 
-#' ManualLegend class
+#' Manual legend class
 #'
-#' Definition for the ManualLegend class.
+#' Definition for the `ManualLegend` class.
 ManualLegend <- R6::R6Class(
   "ManualLegend",
   public = list(
@@ -15,10 +15,10 @@ ManualLegend <- R6::R6Class(
     labels = NA_character_,
 
     #' @description
-    #' Create a ManualLegend object.
+    #' Create a `ManualLegend` object.
     #' @param colors `character` vector of colors.
     #' @param labels `character` vector of labels.
-    #' @return A new ManualLegend object.
+    #' @return A new `ManualLegend` object.
     initialize = function(colors, labels) {
       assertthat::assert_that(
         is.character(colors),

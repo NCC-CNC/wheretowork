@@ -3,20 +3,17 @@ NULL
 
 #' Horizontal picker input
 #'
-#' Create a horizontal [shinyWidgets::pickerInput].
+#' Create a horizontal [shinyWidgets::pickerInput()].
 #'
-#' @param ... arguments passed to [shinyWidgets::pickerInput].
+#' @param ... arguments passed to [shinyWidgets::pickerInput()].
 #'
-#' @return  A select list control that can be added to a UI definition.
+#' @return  A select list control that can be added to a user interface
+#'   definition.
 #'
 #' @export
 horizontalPickerInput <- function(...) {
   # create select input
   w <- shinyWidgets::pickerInput(..., width = "fit", inline = TRUE)
-
-  # # add style class to select input
-  # w$children[[2]]$attribs$class <-
-  #   paste(w$children[[2]]$attribs$class, "form-control-sm")
 
   # change from-group to input-group
   w$attribs[[1]] <- "input-group shiny-input-container"

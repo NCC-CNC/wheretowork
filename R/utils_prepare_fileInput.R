@@ -3,7 +3,7 @@ NULL
 
 #' Prepare file input
 #'
-#' Prepare files uploaded using [shiny::fileInput].
+#' Prepare files uploaded using [shiny::fileInput()].
 #'
 #' @param x `data.frame` object.
 #'

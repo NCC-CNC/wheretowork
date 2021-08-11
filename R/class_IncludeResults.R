@@ -1,9 +1,9 @@
 #' @include internal.R class_Variable.R
 NULL
 
-#' IncludeResults class
+#' Include results class
 #'
-#' Definition for the IncludeResults class.
+#' Definition for the `IncludeResults` class.
 #'
 #' @seealso [new_include_results()].
 #'
@@ -24,11 +24,11 @@ IncludeResults <- R6::R6Class(
     held = NA_real_,
 
     #' @description
-    #' Create a new IncludeResults object.
+    #' Create a new `IncludeResults` object.
     #' @param id `character` value.
     #' @param include [Include] object.
     #' @param held `numeric` value.
-    #' @return A new IncludeResults object.
+    #' @return A new `IncludeResults` object.
     ## constructor
     initialize = function(id, include, held) {
       ### assert that arguments are valid

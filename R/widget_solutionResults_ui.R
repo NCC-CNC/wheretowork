@@ -60,7 +60,7 @@ solutionResults <- function(x = list(), width = NULL, height = NULL,
   )
 }
 
-#' Shiny bindings for solutionResults
+#' Shiny bindings for `solutionResults`
 #'
 #' Use `solutionResultsOutput()` to create a user interface element,
 #' and `renderSolutionResults()` to render the widget.

@@ -1,9 +1,9 @@
 #' @include internal.R
 NULL
 
-#' ContinuousLegend class
+#' Continuous legend class
 #'
-#' Definition for the ContinuousLegend class.
+#' Definition for the `ContinuousLegend` class.
 ContinuousLegend <- R6::R6Class(
   "ContinuousLegend",
   public = list(
@@ -21,12 +21,12 @@ ContinuousLegend <- R6::R6Class(
     n = NA_real_,
 
     #' @description
-    #' Create a ContinuousLegend object.
+    #' Create a `ContinuousLegend` object.
     #' @param min_value `numeric` value.
     #' @param max_value `numeric` value.
     #' @param colors `character` vector of colors.
     #' @param n `numeric` value.
-    #' @return A new ContinuousLegend object.
+    #' @return A new `ContinuousLegend` object.
     initialize = function(min_value, max_value, colors, n) {
       assertthat::assert_that(
         assertthat::is.number(min_value),
@@ -49,7 +49,7 @@ ContinuousLegend <- R6::R6Class(
 
     #' @description
     #' Get data for creating a widget.
-    #' @return A new ContinuousLegend object.
+    #' @return A new `ContinuousLegend` object.
     get_widget_data = function() {
       # calculate breaks
       br <- scales::breaks_extended(n = self$n)(

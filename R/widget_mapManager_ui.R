@@ -7,7 +7,7 @@ NULL
 #' This widget is designed to be used in conjunction with an existing
 #' Leaflet Map within a Shiny web application.
 #'
-#' @param x MapManager object.
+#' @param x [MapManager] object.
 #'
 #' @inheritParams solutionSettings
 #'
@@ -54,7 +54,7 @@ mapManager <- function(x, width = NULL, height = NULL, elementId = NULL) {
   )
 }
 
-#' Shiny bindings for mapManager
+#' Shiny bindings for `mapManager`
 #'
 #' Use `mapManagerOutput()` to create a user interface element,
 #' and `renderMapManager()` to render the widget.

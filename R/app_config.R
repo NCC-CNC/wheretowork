@@ -1,7 +1,7 @@
-#' Access files in the current app
+#' Access files in the current application
 #'
 #' NOTE: If you manually change your package name in the DESCRIPTION,
-#' don't forget to change it here too, and in the config file.
+#' don't forget to change it here too, and in the configuration file.
 #' For a safer name change mechanism, use the `golem::set_golem_name()`
 #' function.
 #'
@@ -13,12 +13,12 @@ app_sys <- function(...) {
   system.file(..., package = "wheretowork")
 }
 
-#' Read App Config
+#' Read App Configuration
 #'
-#' @param value Value to retrieve from the config file.
+#' @param value Value to retrieve from the configuration file.
 #' @param config GOLEM_CONFIG_ACTIVE value. If unset, R_CONFIG_ACTIVE.
 #' If unset, "default".
-#' @param use_parent Logical, scan the parent directory for config file.
+#' @param use_parent Logical, scan the parent directory for configuration file.
 #'
 #' @export
 get_golem_config <- function(value,

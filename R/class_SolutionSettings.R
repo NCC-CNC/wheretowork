@@ -3,7 +3,7 @@ NULL
 
 #' Solution settings class
 #'
-#' Definition for the SolutionSettings class.
+#' Definition for the `SolutionSettings` class.
 SolutionSettings <- R6::R6Class(
   "SolutionSettings",
   public = list(
@@ -34,12 +34,12 @@ SolutionSettings <- R6::R6Class(
     parameters = NULL,
 
     #' @description
-    #' Create a SolutionSettings object.
+    #' Create a `SolutionSettings` object.
     #' @param themes `list` of [Theme] objects.
     #' @param weights `list` of [Weight] objects.
     #' @param includes `list` of [Include] objects.
     #' @param parameters `list` of [Parameter] objects.
-    #' @return A new SolutionSettings object.
+    #' @return A new `SolutionSettings` object.
     initialize = function(themes, weights, includes, parameters) {
       assertthat::assert_that(
         is.list(themes),

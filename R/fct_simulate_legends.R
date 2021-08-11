@@ -3,7 +3,7 @@ NULL
 
 #' Simulate continuous legend
 #'
-#' This function simulates a continuous legend ([ContinuousLegend]) object.
+#' This function simulates a continuous legend object.
 #' It is primarily used for testing the package.
 #'
 #' @return A [ContinuousLegend] object.
@@ -28,7 +28,7 @@ simulate_continuous_legend <- function() {
 
 #' Simulate categorical legend
 #'
-#' This function simulates a categorical legend ([CategoricalLegend]) object.
+#' This function simulates a categorical legend object.
 #' It is primarily used for testing the package.
 #'
 #' @return A [CategoricalLegend] object.

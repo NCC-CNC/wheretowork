@@ -65,7 +65,7 @@ importSettings <- function(buttonId, x = NULL, width = NULL, height = NULL,
   )
 }
 
-#' Shiny bindings for importSettings
+#' Shiny bindings for `importSettings`
 #'
 #' Use `importSettingsOutput()` to create a user interface element,
 #' and `renderImportSettings()` to render the widget.

@@ -1,9 +1,9 @@
 #' @include internal.R class_Variable.R
 NULL
 
-#' WeightResults class
+#' Weight results class
 #'
-#' Definition for the WeightResults class.
+#' Definition for the `WeightResults` class.
 #'
 #' @seealso [new_weight_results()].
 #'
@@ -30,11 +30,11 @@ WeightResults <- R6::R6Class(
     held = NA_real_,
 
     #' @description
-    #' Create a new WeightResults object.
+    #' Create a new `WeightResults` object.
     #' @param id `character` value.
     #' @param weight [Weight] object.
     #' @param held `numeric` value.
-    #' @return A new WeightResults object.
+    #' @return A new `WeightResults` object.
     ## constructor
     initialize = function(id, weight, held) {
       ### assert that arguments are valid

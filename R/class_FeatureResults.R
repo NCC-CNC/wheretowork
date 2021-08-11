@@ -1,9 +1,9 @@
 #' @include internal.R class_Variable.R
 NULL
 
-#' FeatureResults class
+#' Feature results class
 #'
-#' Definition for the FeatureResults class.
+#' Definition for the `FeatureResults` class.
 #'
 #' @seealso [new_feature_results()].
 #'
@@ -30,11 +30,11 @@ FeatureResults <- R6::R6Class(
     held = NA_real_,
 
     #' @description
-    #' Create a new FeatureResults object.
+    #' Create a new `FeatureResults` object.
     #' @param id `character` value.
     #' @param feature [Feature] value.
     #' @param held `character` value.
-    #' @return A new FeatureResults object.
+    #' @return A new `FeatureResults` object.
     ## constructor
     initialize = function(id, feature, held) {
       ### assert that arguments are valid

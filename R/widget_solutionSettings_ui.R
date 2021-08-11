@@ -38,7 +38,7 @@ NULL
 #' text box is a `character` string. It can be queried using
 #' `id_name` where `id` is the argument to `elementId`.
 #'
-#' The widget also contains two buttons. The server valuees for these
+#' The widget also contains two buttons. The server values for these
 #' buttons is an `integer` indicating the number of times they
 #' has been clicked. They can be queried using `id_start_button`
 #' and `id_stop_button` where `id` is the argument to `elementId`.
@@ -83,7 +83,7 @@ solutionSettings <- function(x, width = NULL, height = NULL, elementId = NULL) {
   )
 }
 
-#' Shiny bindings for solutionSettings
+#' Shiny bindings for `solutionSettings`
 #'
 #' Use `solutionSettingsOutput()` to create a user interface element,
 #' and `renderSolutionSettings()` to render the widget.

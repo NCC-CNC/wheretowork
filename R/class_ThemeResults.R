@@ -1,9 +1,9 @@
 #' @include internal.R class_Variable.R
 NULL
 
-#' ThemeResults class
+#' Theme results class
 #'
-#' Definition for the ThemeResults class.
+#' Definition for the `ThemeResults` class.
 #'
 #' @seealso [new_theme_results()].
 #'
@@ -21,11 +21,11 @@ ThemeResults <- R6::R6Class(
     feature_results = NULL,
 
     #' @description
-    #' Create a new ThemeResults object.
+    #' Create a new `ThemeResults` object.
     #' @param id `character` value.
     #' @param theme `[Theme] object.
     #' @param feature_results `list` of [FeatureResults] objects.
-    #' @return A new ThemeResults object.
+    #' @return A new `ThemeResults` object.
     ## constructor
     initialize = function(id, theme, feature_results) {
       ### assert that arguments are valid

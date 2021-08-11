@@ -1,9 +1,9 @@
 #' @include internal.R
 NULL
 
-#' CategoricalLegend class
+#' Categorical legend class
 #'
-#' Definition for the CategoricalLegend class.
+#' Definition for the `CategoricalLegend` class.
 CategoricalLegend <- R6::R6Class(
   "CategoricalLegend",
   public = list(
@@ -15,10 +15,10 @@ CategoricalLegend <- R6::R6Class(
     colors = NA_character_,
 
     #' @description
-    #' Create a CategoricalLegend object.
+    #' Create a `CategoricalLegend` object.
     #' @param values `numeric` value.
     #' @param colors `character` vector of colors.
-    #' @return A new CategoricalLegend object.
+    #' @return A new `CategoricalLegend` object.
     initialize = function(values, colors) {
       assertthat::assert_that(
         is.numeric(values),
@@ -34,7 +34,7 @@ CategoricalLegend <- R6::R6Class(
 
     #' @description
     #' Get data for creating a widget.
-    #' @return A new CategoricalLegend object.
+    #' @return A new `CategoricalLegend` object.
     get_widget_data = function() {
       list(
         values = self$values,

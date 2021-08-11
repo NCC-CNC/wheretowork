@@ -4,7 +4,7 @@ NULL
 #' Map manager class
 #'
 #'
-#' Definition for the MapManager class.
+#' Definition for the `MapManager` class.
 MapManager <- R6::R6Class(
   "MapManager",
   public = list(
@@ -21,11 +21,11 @@ MapManager <- R6::R6Class(
     order = NA_real_,
 
     #' @description
-    #' Create a MapManager object.
+    #' Create a `MapManager` object.
     #' @param layers `list` of [Theme], [Weight], [Include], [Solution]
     #'  objects.
     #' @param order `numeric` vector.
-    #' @return A new MapManager object.
+    #' @return A new `MapManager` object.
     initialize = function(layers, order) {
       assertthat::assert_that(
         is.list(layers),

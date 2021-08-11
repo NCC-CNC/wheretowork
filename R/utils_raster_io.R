@@ -7,7 +7,7 @@
 #'
 #' @param filename `character` file path.
 #'
-#' @param ... arguments passed to [raster::writeRaster].
+#' @param ... arguments passed to [raster::writeRaster()].
 #'
 #' @details This file saves a raster object to disk along with
 #'   a text file containing the layer names of the raster.
