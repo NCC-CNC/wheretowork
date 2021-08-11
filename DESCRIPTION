@@ -88,6 +88,7 @@ Depends:
     sf (>= 0.9.8),
 License: GPL-3
 Encoding: UTF-8
+Language: en-US
 URL: https://NCC-CNC.github.io/wheretowork/
 BugReports: https://github.com/NCC-CNC/wheretowork/issues
 Roxygen: list(markdown = TRUE)

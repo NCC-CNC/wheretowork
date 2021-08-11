@@ -38,6 +38,8 @@
 
 
 
+  <link href="../extra.css" rel="stylesheet">
+  
 
 <meta property="og:title" content="Simulate themes — simulate_themes" />
 <meta property="og:description" content="This function simulates Theme objects." />
@@ -177,70 +179,62 @@ Defaults to 5.</p></td>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># simulate data</span></span>
 <span class='r-in'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>simulate_themes</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>d</span>, n_single_themes <span class='op'>=</span> <span class='fl'>3</span>, n_multi_themes <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> ...</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> .........</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ..</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ......</span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># print results</span></span>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> [[1]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Theme</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        c81d5260-3cd9-4c07-a7b1-1d45ef618d3d</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Mountain Cacique (Bolivian)</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        3944a505-c5e8-4907-8490-61d8698aa2ca</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Lanceolated Warbler</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   feature: </span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Mountain Cacique (Bolivian) habitat [status: TRUE, current: 0.21, goal: 0.51]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Mountain_Cacique_Bolivian_ [total: 17016.42 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Lanceolated Warbler habitat [status: TRUE, current: 0.31, goal: 0.72]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Lanceolated_Warbler [total: 18091.75 ha]</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> [[2]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Theme</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        38ffd99d-e10c-49da-9148-9baa3a56399b</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Spotted Imperial-Pigeon</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        48056452-1468-4157-b739-bcae2d4e4621</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Buff-faced Pygmy-Parrot</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   feature: </span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Spotted Imperial-Pigeon habitat [status: TRUE, current: 0.42, goal: 0.78]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Spotted_Imperial_Pigeon [total: 1585 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Buff-faced Pygmy-Parrot habitat [status: TRUE, current: 0.2, goal: 0.89]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Buff_faced_Pygmy_Parrot [total: 1550 ha]</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> [[3]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Theme</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        86a9d0b9-1c3a-4352-a242-08045456005f</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Spotted Ground-Thrush (Upemba)</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        5817faf9-7bf7-4347-8a7a-8112a44565f3</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Blue-black Grassquit</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   feature: </span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Spotted Ground-Thrush (Upemba) habitat [status: TRUE, current: 0.37, goal: 0.7]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Spotted_Ground_Thrush_Upemba_ [total: 11650.44 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Blue-black Grassquit habitat [status: TRUE, current: 0.39, goal: 0.65]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Blue_black_Grassquit [total: 5085.44 ha]</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> [[4]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Theme</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        2f5485f5-1717-4811-b1a4-052ac2bcf89f</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Kiwis</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        100d8092-fc54-47b3-aa7d-a5d4c5b430eb</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Mitrospingid Tanagers</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   feature: </span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Southern Brown Kiwi (South I.) [status: TRUE, current: 0.15, goal: 0.5]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Southern_Brown_Kiwi_South_I_ [total: 2562.48 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Little Spotted Kiwi [status: TRUE, current: 0.41, goal: 0.79]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Little_Spotted_Kiwi [total: 9734.59 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     North Island Brown Kiwi [status: TRUE, current: 0.47, goal: 0.85]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#North_Island_Brown_Kiwi [total: 242.12 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Olive-green Tanager [status: TRUE, current: 0.45, goal: 0.88]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Olive_green_Tanager [total: 1365 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Olive-backed Tanager [status: TRUE, current: 0.29, goal: 0.68]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Olive_backed_Tanager [total: 1105 ha]</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> [[5]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Theme</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        b09c49c3-066d-4b14-b497-c4d1fd46a6f6</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Jacamars</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        2fcc4558-4126-41c9-aad8-297049885bc1</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Long-tailed Tits</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   feature: </span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     White-throated Jacamar [status: TRUE, current: 0.34, goal: 0.8]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#White_throated_Jacamar [total: 2660.92 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Dusky-backed Jacamar [status: TRUE, current: 0.26, goal: 0.85]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Dusky_backed_Jacamar [total: 17298.69 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Purus Jacamar [status: TRUE, current: 0.5, goal: 0.75]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Purus_Jacamar [total: 9017.74 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     White-chinned Jacamar [status: TRUE, current: 0.3, goal: 0.54]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#White_chinned_Jacamar [total: 12824.3 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Brown Jacamar [status: TRUE, current: 0.45, goal: 0.89]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Brown_Jacamar [total: 17489.43 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Yellow-billed Jacamar (Cerise-crowned) [status: TRUE, current: 0.13, goal: 0.81]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Yellow_billed_Jacamar_Cerise_crowned_ [total: 16295.13 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Three-toed Jacamar [status: TRUE, current: 0.44, goal: 0.81]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Three_toed_Jacamar [total: 17214.64 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Rufous-tailed Jacamar (Spot-tailed) [status: TRUE, current: 0.52, goal: 0.74]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Rufous_tailed_Jacamar_Spot_tailed_ [total: 14469.06 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Paradise Jacamar [status: TRUE, current: 0.48, goal: 0.71]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Paradise_Jacamar [total: 7347.9 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     White-cheeked Tit [status: TRUE, current: 0.12, goal: 0.67]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#White_cheeked_Tit [total: 900 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Black-browed Tit (Burmese) [status: TRUE, current: 0.1, goal: 0.88]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Black_browed_Tit_Burmese_ [total: 1308 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Black-browed Tit (Black-browed) [status: TRUE, current: 0.48, goal: 0.68]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Black_browed_Tit_Black_browed_ [total: 1150 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Black-throated Tit (Gray-crowned) [status: TRUE, current: 0.53, goal: 0.52]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Black_throated_Tit_Gray_crowned_ [total: 1281 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Crested Tit-Warbler [status: TRUE, current: 0.35, goal: 0.58]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Crested_Tit_Warbler [total: 1807 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Bushtit (Pacific) [status: TRUE, current: 0.47, goal: 0.71]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Bushtit_Pacific_ [total: 1359 ha]</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 </code></pre></div>
   </div>

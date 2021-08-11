@@ -32,6 +32,8 @@ The _Where To Work_ application is a decision support tool to help prioritize co
 
 The application is [available online](https://ncc.carleton.ca). Please note that you must use [Google Chrome](https://www.google.com/chrome/) for it to work.
 
+<table><tr><td><img class="screenshot" src="man/figures/screenshot.png" align="center" width="100%"/></td></tr></table>
+
 ## Installation
 
 The application is available as an online service provided by the [Nature Conservancy of Canada](https://natureconservancy.ca/en/). If you need to run the application on your own computer, then you can run it using the [R statistical computing environment](https://www.r-project.org/), [Docker](https://www.docker.com/), or [Docker Compose](https://docs.docker.com/compose/).
