@@ -55,6 +55,9 @@ class Statistics {
       const l = document.createElement("label");
       if (typeof(x) === "number") {
         l.innerText = `(${roundToDigits(x * 100, 0)}%)`;
+      } else {
+        l.innerText = "TEXT";
+        l.style.visibility = "hidden"
       }
       proportions_el.appendChild(l);
     });

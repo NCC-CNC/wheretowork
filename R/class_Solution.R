@@ -930,6 +930,12 @@ new_solution_from_result <- function(name, visible, dataset, settings, result,
         units = "km"
       ),
       new_statistic(
+        name = "Total number of planning units",
+        value = sum(result$values, na.rm = TRUE),
+        units = "",
+        proportion = mean(result$values > 0.5, na.rm = TRUE)
+      ),
+      new_statistic(
         name = "Total number of reserves",
         value = length(reserve_sizes_m),
         units = ""
