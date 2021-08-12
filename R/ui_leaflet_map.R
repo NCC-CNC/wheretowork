@@ -55,7 +55,7 @@ leaflet_map <- function(sidebar_ids) {
       group = "Street view"
     ) %>%
     leaflet::addProviderTiles(
-      leaflet::providers$Stamen.Toner,
+      leaflet::providers$CartoDB.DarkMatter,
       group = "Monochrome"
     ) %>%
     ## specify default view window
