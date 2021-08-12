@@ -78,7 +78,7 @@ class ThemeSolutionChart {
     // compute status
     /// current stats
     const current_stats =
-      `Current: ${Math.round(d_current[1] * 100)}% ` +
+      `Included: ${Math.round(d_current[1] * 100)}% ` +
       `(${Math.round(d_current[1] * d_current[4])} ${d_current[6]})`;
     /// goal stats
     let goal_stats =
