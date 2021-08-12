@@ -93,18 +93,6 @@ import_data <- function(x, mode) {
   )
   app_data$mm$initialize_map(map)
 
-  # render sidebars on map
-  leaflet.extras2::addSidebar(
-    map,
-    id = "analysisSidebar",
-    options = list(position = "right", fit = FALSE)
-  )
-  leaflet.extras2::addSidebar(
-    map,
-    id = "dataSidebar",
-    options = list(position = "left", fit = FALSE)
-  )
-
   # update export field names
   shiny::updateSelectizeInput(
     session = session,
@@ -114,6 +102,10 @@ import_data <- function(x, mode) {
       app_data$mm$get_layer_names()
     )
   )
+
+  # make sidebars visible
+  shinyjs::runjs("$('#dataSidebar').css('display','block');")
+  shinyjs::runjs("$('#analysisSidebar').css('display','block');")
 
   # open sidebars
   leaflet.extras2::openSidebar(

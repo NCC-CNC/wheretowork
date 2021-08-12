@@ -1,7 +1,6 @@
 /* hide leaflet controls on app start up */
 .startup .leaflet-top,
-.startup .leaflet-bottom
-.startup .sidebar {
+.startup .leaflet-bottom {
   visibility: hidden;
 }
 

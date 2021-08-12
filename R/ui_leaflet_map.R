@@ -5,10 +5,20 @@ NULL
 #'
 #' Create a leaflet map with customized default settings.
 #'
+#' @param sidebar_ids `character` vector containing HTML identifiers for
+#' the left and right sidebars.
+#'
 #' @return [leaflet::leaflet()] object.
 #'
 #' @export
-leaflet_map <- function() {
+leaflet_map <- function(sidebar_ids) {
+  # assert arguments are valid
+  assertthat::assert_that(
+    is.character(sidebar_ids),
+    length(sidebar_ids) == 2,
+    assertthat::noNA(sidebar_ids)
+  )
+
   # prepare JS code for buttons
   home_js <- paste0(
     "function(btn, map) {",
@@ -107,6 +117,18 @@ leaflet_map <- function() {
     ## add scale bar
     leaflet::addScaleBar(
       position = "bottomleft"
+    )
+
+  # add sidebars
+  map <-
+    map %>%
+    leaflet.extras2::addSidebar(
+      id =  sidebar_ids[[1]],
+      options = list(position = "left", fit = FALSE)
+    ) %>%
+    leaflet.extras2::addSidebar(
+      id = sidebar_ids[[2]],
+      options = list(position = "right", fit = FALSE)
     )
 
   # remove outdated font awesome dependency

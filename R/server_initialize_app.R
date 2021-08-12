@@ -17,12 +17,16 @@ server_initialize_app <- quote({
   ## hides leaflet buttons + scalebar
   shinyjs::runjs("document.body.classList.add('startup');")
 
+  # make sidebars hidden
+  shinyjs::runjs("$('#dataSidebar').css('display','none');")
+  shinyjs::runjs("$('#analysisSidebar').css('display','none');")
+
   # display import modal on start up
   shiny::showModal(importModal(id = "importModal"))
 
   # initialize map
   output$map <- leaflet::renderLeaflet({
-    leaflet_map()
+    leaflet_map(c("dataSidebar", "analysisSidebar"))
   })
 
   # initialize spatial import settings

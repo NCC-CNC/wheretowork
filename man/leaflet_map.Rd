@@ -4,7 +4,11 @@
 \alias{leaflet_map}
 \title{Leaflet map}
 \usage{
-leaflet_map()
+leaflet_map(sidebar_ids)
+}
+\arguments{
+\item{sidebar_ids}{\code{character} vector containing HTML identifiers for
+the left and right sidebars.}
 }
 \value{
 \code{\link[leaflet:leaflet]{leaflet::leaflet()}} object.
