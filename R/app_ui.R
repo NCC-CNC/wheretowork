@@ -12,8 +12,8 @@ app_ui <- function(request) {
     shiny::fillPage(
 
       ## suppress dependencies that fail to import correctly
-     htmltools::suppressDependencies("shinyBS"),
-     htmltools::suppressDependencies("bootstrap-select"),
+      htmltools::suppressDependencies("shinyBS"),
+      htmltools::suppressDependencies("bootstrap-select"),
 
       ## manually insert code dependencies so they import correctly
       htmltools::tags$head(
