@@ -26,25 +26,52 @@ class SingleThemeResults {
 
     // update goal
     /// manually coerce goal to zero if status is false
-    let manual_feature_goal = feature_status ? feature_goal : 0;
-    manual_feature_goal -= manual_feature_goal > 1.0e-5 ? 1.0e-5 : 0;
+    let adj_feature_goal = feature_status ? feature_goal : 0;
 
-    // update solution held
-    let manual_feature_solution_held = feature_solution_held;
-    manual_feature_solution_held -=
-      manual_feature_solution_held > 1.0e-5 ? 1.0e-5 : 0;
+    // create padded versions of the data to plot
+    let plot_feature_goal = adj_feature_goal;
+    let plot_feature_current_held = feature_current_held;
+    let plot_feature_solution_held = feature_solution_held;
+
+    // fix overlap issues when there are ties
+    /// add padding to goal if goal == current
+    if (Math.abs(feature_goal - feature_current_held) < 0.01) {
+      plot_feature_goal += 0.01;
+    }
+    /// add padding to solution if solution == current
+    if (Math.abs(feature_solution_held - feature_current_held) < 0.01) {
+      plot_feature_solution_held += 0.01;
+    }
+    /// add padding to solution if solution == goal
+    if (Math.abs(feature_solution_held - feature_goal) < 0.01) {
+      plot_feature_solution_held += 0.01;
+    }
+
+    // clamp maximum values for plotted valuessolutions
+    plot_feature_current_held = Math.min(plot_feature_current_held, 0.9998);
+    plot_feature_goal = Math.min(plot_feature_goal, 0.9998);
+    plot_feature_solution_held = Math.min(plot_feature_solution_held, 1.0);
 
     // create chart
     const chart = new ThemeSolutionChart(
       [{
         name,
         feature_name: name, // show theme name to avoid confusion
-        feature_goal: manual_feature_goal,
-        feature_current_held,
-        feature_solution_held: manual_feature_solution_held,
+        feature_goal: [
+          adj_feature_goal,
+          plot_feature_goal
+        ],
+        feature_current_held: [
+          feature_current_held,
+          plot_feature_current_held
+        ],
+        feature_solution_held: [
+          feature_solution_held,
+          plot_feature_solution_held
+        ],
         feature_total_amount,
         feature_status,
-        total: 1,
+        total: [1, 1],
         units,
       }], {
         feature_goal: "#118ab2",

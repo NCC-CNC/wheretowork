@@ -78,16 +78,16 @@ class ThemeSolutionChart {
     // compute status
     /// current stats
     const current_stats =
-      `Included: ${Math.round(d_current[1] * 100)}% ` +
-      `(${Math.round(d_current[1] * d_current[4])} ${d_current[6]})`;
+      `Included: ${Math.round(d_current[1][0] * 100)}% ` +
+      `(${Math.round(d_current[1][0] * d_current[4])} ${d_current[6]})`;
     /// goal stats
     let goal_stats =
-      `Goal: ${Math.round(d_goal[1] * 100)}% ` +
-      `(${Math.round(d_goal[1] * d_goal[4])} ${d_goal[6]})`;
+      `Goal: ${Math.round(d_goal[1][0] * 100)}% ` +
+      `(${Math.round(d_goal[1][0] * d_goal[4])} ${d_goal[6]})`;
     /// solution stats
     const solution_stats =
-      `Solution: ${Math.round(d_solution[1] * 100)}% ` +
-      `(${Math.round(d_solution[1] * d_solution[4])} ${d_solution[6]})`;
+      `Solution: ${Math.round(d_solution[1][0] * 100)}% ` +
+      `(${Math.round(d_solution[1][0] * d_solution[4])} ${d_solution[6]})`;
     // add tooltips
     /// current held
     tooltip
@@ -110,30 +110,31 @@ class ThemeSolutionChart {
   }
 
   renderArcs(svg, tooltip) {
+    // initialization
     const self = this;
     const inner_rings_length = Object.keys(this.colors).length;
     const sorted_data = [];
+    // sort data to determine plotting order for current/goal/solution arcs
     for (let i = 0; i < this.data.length; ++i) {
       const datum = this.data[i];
       const sortable = [];
-      for (const key in datum) {
-        if (!isNaN(datum[key]) && key in this.colors) {
-          sortable.push([
-            key,
-            datum[key],
-            this.colors[key],
-            datum.feature_name,
-            datum.feature_total_amount,
-            datum.feature_status,
-            datum.units,
-          ]);
-        }
+      for (const key of Object.keys(this.colors)) {
+        sortable.push([
+          key,
+          datum[key],
+          this.colors[key],
+          datum.feature_name,
+          datum.feature_total_amount,
+          datum.feature_status,
+          datum.units,
+        ]);
       }
       sortable.sort(function(a, b) {
-        return b[1] - a[1];
+        return b[1][1] - a[1][1];
       });
       sorted_data.push(sortable);
     }
+    // add arcs to display the data
     for (let j = 0; j < inner_rings_length; ++j) {
       svg
         .append("g")
@@ -145,9 +146,9 @@ class ThemeSolutionChart {
         .attr("fill", (d) => { return d[j][2]; })
         .style("cursor", "pointer")
         .on("mouseover", function(e, d) {
-          // determine type
+          /// determine type
           const type = d[j][0];
-          // if not rendering total arc, then make arc slightly thicker
+          /// if not rendering total arc, then make arc slightly thicker
           if (type !== "total") {
             let strokeWidth = self.arcWidth * 0.4;
             strokeWidth = strokeWidth > 4 ? 4 : strokeWidth;
@@ -156,17 +157,17 @@ class ThemeSolutionChart {
               .attr("stroke", d[j][2])
               .attr("stroke-width", strokeWidth);
           }
-          // add tooltip to show statistics
+          /// add tooltip to show statistics
           tooltip
             .style("display", "inline")
             .style("top", `${e.clientY + 5}px`)
             .style("left", `${e.clientX + 5}px`);
-          // show stats in tool tip
+          /// show stats in tool tip
           tooltip
             .append("div")
             .text(`${d[j][3]}`)
             .style("color", d[j][5] ? "black" : "#B8B8B8");
-          // append tooltip content
+          /// append tooltip content
           self.showStats(
             d.find((x) => x[0] === "feature_current_held"),
             d.find((x) => x[0] === "feature_goal"),
@@ -190,7 +191,7 @@ class ThemeSolutionChart {
         .delay((_, i) => i * 200)
         .duration(1000)
         .attrTween("d", (d, i) => {
-          const interpolate = d3.interpolate(0, d[j][1]);
+          const interpolate = d3.interpolate(0, d[j][1][1]);
           return t => this.createArc(interpolate(t), i);
         });
     }
@@ -220,9 +221,10 @@ class ThemeSolutionChart {
         };
         for (const datum of self.data) {
           for (const key in parsedData) {
-            parsedData[key].push(datum[key]);
+            parsedData[key].push(datum[key][0]);
           }
         }
+
         const attrs =
           ["feature_current_held", "feature_goal", "feature_solution_held"];
         for (let i = attrs.length; i > 0; --i) {
