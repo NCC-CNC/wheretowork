@@ -54,7 +54,6 @@ server_initialize_app <- quote({
   # disable buttons that require inputs
   disable_html_element("importModal_manual_button")
   disable_html_element("importModal_spatial_button")
-  disable_html_element("solutionResultsPane_results_button")
   shinyjs::disable("exportPane_button")
   shinyjs::disable("newSolutionPane_settings_stop_button")
 

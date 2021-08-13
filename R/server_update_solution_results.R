@@ -36,6 +36,9 @@ server_update_solution_results <- quote({
       !input$solutionResultsPane_results_select %in% app_data$solution_ids) {
       return()
     }
+
+    print("here4")
+
     ## find selected solution
     i <- which(
       app_data$solution_ids == input$solutionResultsPane_results_modal_select

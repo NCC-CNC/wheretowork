@@ -212,7 +212,6 @@ server_generate_new_solution <- quote({
       )
       ### reset button
       shinyFeedback::resetLoadingButton("newSolutionPane_settings_start_button")
-      enable_html_element("solutionResultsPane_results_button")
       enable_html_element("newSolutionPane_settings_color")
       enable_html_element("newSolutionPane_settings_name")
       ## exit
@@ -307,7 +306,6 @@ server_generate_new_solution <- quote({
 
     ## enable solution results modal button after generating first solution
     if (length(app_data$solutions) == 1) {
-      enable_html_element("solutionResultsPane_results_button")
       enable_html_css_selector("#analysisSidebar li:nth-child(2)")
     }
 
