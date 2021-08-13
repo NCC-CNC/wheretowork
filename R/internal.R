@@ -167,3 +167,22 @@ color_opacity <- function(x) {
   out[nc9] <- strtoi(substr(x[nc9], 8, 9), base = 16) / 255
   out
 }
+
+#' Wrap text
+#'
+#' Wrap text for displaying in the application.
+#'
+#' @param x `character` vector
+#'
+#' @param width `integer` width. Defaults to 20.
+#'
+#' @return `character` vector
+#'
+#' @noRd
+wrap_text <- function(x, width = 20)
+  vapply(x, FUN.VALUE = character(1), function(x) {
+  paste(
+    stringi::stri_wrap(x[[1]], width = width, whitespace_only = FALSE),
+    collapse = "\n"
+  )
+})

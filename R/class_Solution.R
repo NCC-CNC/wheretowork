@@ -390,6 +390,9 @@ Solution <- R6::R6Class(
         "  $('#theme_results_button')[0].click();",
         "}"
       )
+      ## wrap text columns
+      x[[1]] <- wrap_text(x[[1]], 10)
+      x[[2]] <- wrap_text(x[[2]], 10)
       ## render table
       DT::datatable(
         x,
@@ -452,6 +455,8 @@ Solution <- R6::R6Class(
     render_weight_results = function() {
       # generate table
       x <- self$get_weight_results_data()
+      # wrap text columns
+      x[[1]] <- wrap_text(x[[1]], 10)
       # add in extra column
       if (ncol(x) > 1) {
         x$space1 <- " "
@@ -539,6 +544,8 @@ Solution <- R6::R6Class(
     render_include_results = function() {
       # generate table
       x <- self$get_include_results_data()
+      # wrap text columns
+      x[[1]] <- wrap_text(x[[1]], 10)
       # define JS for button
       action_js <- htmlwidgets::JS(
         "function ( e, dt, node, config ) {",
