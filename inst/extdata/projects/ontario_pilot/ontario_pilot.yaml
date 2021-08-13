@@ -31,7 +31,7 @@ themes:
         - '#00000000'
         - '#78c679'
     status: yes
-    visible: yes
+    visible: no
     goal: 0.2
     limit_goal: 0.0
 - name: Natural Cover
@@ -46,7 +46,7 @@ themes:
         - '#00000000'
         - '#ffffcc'
     status: yes
-    visible: yes
+    visible: no
     goal: 0.2
     limit_goal: 0.0
 - name: PSW Habitat
@@ -61,7 +61,7 @@ themes:
         - '#00000000'
         - '#ce1256'
     status: yes
-    visible: yes
+    visible: no
     goal: 0.2
     limit_goal: 0.0
 - name: PSW Habitat (2% cut-off)
@@ -76,7 +76,7 @@ themes:
         - '#00000000'
         - '#df65b0'
     status: yes
-    visible: yes
+    visible: no
     goal: 0.2
     limit_goal: 0.0
 - name: PSW Habitat (25% cut-off)
@@ -91,7 +91,7 @@ themes:
         - '#00000000'
         - '#d7b5d8'
     status: yes
-    visible: yes
+    visible: no
     goal: 0.2
     limit_goal: 0.0
 - name: Water
@@ -106,7 +106,7 @@ themes:
         - '#00000000'
         - '#a6cee3'
     status: yes
-    visible: yes
+    visible: no
     goal: 0.2
     limit_goal: 0.0
 - name: Wetland
@@ -121,7 +121,7 @@ themes:
         - '#00000000'
         - '#3690c0'
     status: yes
-    visible: yes
+    visible: no
     goal: 0.2
     limit_goal: 0.0
 - name: Wetland (25% cut-off)
@@ -136,7 +136,7 @@ themes:
         - '#00000000'
         - '#02818a'
     status: yes
-    visible: yes
+    visible: no
     goal: 0.2
     limit_goal: 0.0
 - name: TNC Last Chance Ecosystems
@@ -151,7 +151,7 @@ themes:
         - '#00000000'
         - '#fbb4ae'
     status: yes
-    visible: yes
+    visible: no
     goal: 0.2
     limit_goal: 0.0
 - name: A2A Area
@@ -166,7 +166,7 @@ themes:
         - '#00000000'
         - '#fdcdac'
     status: yes
-    visible: yes
+    visible: no
     goal: 0.2
     limit_goal: 0.0
 - name: TNC Crisis Ecosystems (Endangered)
@@ -181,7 +181,7 @@ themes:
         - '#00000000'
         - '#fd8d3c'
     status: yes
-    visible: yes
+    visible: no
     goal: 0.2
     limit_goal: 0.0
 - name: TNC Crisis Ecosystems (Vulnerable)
@@ -196,7 +196,7 @@ themes:
         - '#00000000'
         - '#800026'
     status: yes
-    visible: yes
+    visible: no
     goal: 0.2
     limit_goal: 0.0
 weights:
@@ -210,7 +210,7 @@ weights:
       - '#00000000'
       - '#e41a1c'
   status: yes
-  visible: yes
+  visible: no
   factor: 0.0
 - name: Built-up Areas
   variable:
@@ -222,7 +222,7 @@ weights:
       - '#00000000'
       - '#ff7f00'
   status: yes
-  visible: yes
+  visible: no
   factor: 0.0
 - name: Dams
   variable:
@@ -234,7 +234,7 @@ weights:
       - '#00000000'
       - '#386cb0'
   status: yes
-  visible: yes
+  visible: no
   factor: 0.0
 - name: Hydroelectric Stations
   variable:
@@ -246,7 +246,7 @@ weights:
       - '#00000000'
       - '#984ea3'
   status: yes
-  visible: yes
+  visible: no
   factor: 0.0
 - name: Active Mines
   variable:
@@ -259,7 +259,7 @@ weights:
       - '#FEC44F'
       - '#D95F0E'
   status: yes
-  visible: yes
+  visible: no
   factor: 0.0
 - name: Mining Activity
   variable:
@@ -272,7 +272,7 @@ weights:
       - '#FDAE6B'
       - '#E6550D'
   status: yes
-  visible: yes
+  visible: no
   factor: 0.0
 - name: Peat Production
   variable:
@@ -284,7 +284,7 @@ weights:
       - '#00000000'
       - '#a65628'
   status: yes
-  visible: yes
+  visible: no
   factor: 0.0
 - name: Railways
   variable:
@@ -296,7 +296,7 @@ weights:
       - '#00000000'
       - '#666666'
   status: yes
-  visible: yes
+  visible: no
   factor: 0.0
 - name: Roads
   variable:
@@ -311,7 +311,7 @@ weights:
       - '#636363'
       - '#252525'
   status: yes
-  visible: yes
+  visible: no
   factor: 0.0
 - name: Utility Lines
   variable:
@@ -323,7 +323,7 @@ weights:
       - '#00000000'
       - '#e6ab02'
   status: yes
-  visible: yes
+  visible: no
   factor: 0.0
 - name: Water Power Stations
   variable:
@@ -335,7 +335,7 @@ weights:
       - '#00000000'
       - '#7570b3'
   status: yes
-  visible: yes
+  visible: no
   factor: 0.0
 - name: Protected Areas (distance)
   variable:
@@ -350,7 +350,7 @@ weights:
       - '#5DC863FF'
       - '#FDE725FF'
   status: yes
-  visible: yes
+  visible: no
   factor: 0.0
 includes:
 - name: Policy Areas
@@ -367,7 +367,7 @@ includes:
       - include
   mandatory: no
   status: yes
-  visible: yes
+  visible: no
 - name: Protected Areas
   variable:
     index: R1km_Protected_Area
@@ -382,7 +382,7 @@ includes:
       - include
   mandatory: no
   status: yes
-  visible: yes
+  visible: no
 - name: Protected Areas (buffered)
   variable:
     index: R1km_Protected_Areas_Plus_Buffer
@@ -397,4 +397,4 @@ includes:
       - include
   mandatory: no
   status: yes
-  visible: yes
+  visible: no

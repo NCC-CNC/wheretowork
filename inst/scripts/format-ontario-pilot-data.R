@@ -116,6 +116,7 @@ themes <- lapply(seq_len(raster::nlayers(theme_data)), function(i) {
       goal = 0.2,
       current = 0,
       limit_goal = 0,
+      visible = i == 1L,
       variable = new_variable(
         dataset = dataset,
         index = names(theme_data)[i],
@@ -134,6 +135,7 @@ themes <- lapply(seq_len(raster::nlayers(theme_data)), function(i) {
 includes <- lapply(seq_len(raster::nlayers(include_data)), function(i) {
   new_include(
     name = include_names[i],
+    visible = FALSE,
     variable = new_variable(
       dataset = dataset,
       index = names(include_data)[i],
@@ -171,7 +173,7 @@ weights <- lapply(seq_len(raster::nlayers(weight_data)), function(i) {
     )
   }
   #### create weight
-  new_weight(name = weight_names[i], variable = v)
+  new_weight(name = weight_names[i], variable = v, visible = FALSE)
 })
 
 # Exports
