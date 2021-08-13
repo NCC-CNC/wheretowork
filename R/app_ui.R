@@ -85,25 +85,6 @@ app_ui <- function(request) {
 #' @importFrom golem add_resource_path activate_js favicon bundle_resources
 #' @noRd
 golem_add_external_resources <- function() {
-  # Google Analytics
-  ga_id <- Sys.getenv("GOOGLE_ANALYTICS_ID")
-  if (nchar(ga_id) > 0) {
-    ga_js <- htmltools::tagList(
-      htmltools::tags$script(
-        async = "",
-        src = paste0("https://www.googletagmanager.com/gtag/js?id=", ga_id)
-      ),
-      htmltools::tags$script(
-        htmltools::HTML(paste0("
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {dataLayer.push(arguments);}
-        gtag(\"js\", new Date());
-        gtag(\"config\", \"", ga_id, "\");
-        "))
-      )
-    )
-  }
-
   # add resources
   golem::add_resource_path(
     "www", app_sys("app/www")
@@ -116,11 +97,6 @@ golem_add_external_resources <- function() {
       path = app_sys("app/www"),
       app_title = "Where To Work"
     ),
-
-    ## Google Analytics
-    if (nchar(ga_id) > 0) {
-      ga_js
-    },
 
     ## favicon
     golem::favicon(),
