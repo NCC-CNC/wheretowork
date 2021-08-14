@@ -205,29 +205,26 @@ min_shortfall_result <- function(area_budget_proportion,
   }
 
   # calculate locked out values
+  ## initialize matrix
+  locked_out <- matrix(
+    FALSE, nrow = nrow(weight_data), ncol = ncol(weight_data)
+  )
+  ## if weights present, then use data and settings
   if (nrow(weight_data) > 0) {
-    ## if weights present, then use data and settings
-    ### initialize matrix
-    locked_out <- as.matrix(weight_data)
     ### identify planning units to lock out per each weight
     for (i in seq_len(nrow(locked_out))) {
       ## skip if not using weights
-      if (!weight_settings$status[i]) {
-        locked_out[i, ] <- FALSE
-      } else {
+      if (weight_settings$status[i]) {
         ### identify threshold
         thresh <- quantile(
-          x = locked_out[i, ],
+          x = weight_data[i, ],
           probs = min((100 - weight_settings$factor[i]) / 100, 1),
           names = FALSE
         )
         ### identify planning units to lock out for given weight
-        locked_out[i, ] <- locked_out[i, ] > thresh
+        locked_out[i, ] <- weight_data[i, ] > thresh
       }
     }
-  } else {
-    ## if no weights present, then lock nothing out
-    locked_out <- matrix(0, nrow = 1, ncol = ncol(weight_data))
   }
   ## identify planning unit to lock out for solutions
   ## note that locked in planning units are not locked out
