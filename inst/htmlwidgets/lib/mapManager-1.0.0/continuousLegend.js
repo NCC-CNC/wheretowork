@@ -43,6 +43,7 @@ function continuousLegend(el, x, units) {
   colorbar.className = "color-bar";
   let colorbar_background = "linear-gradient(180deg";
   let colorbar_position = undefined;
+  x.colors = x.colors.reverse();
   for (let i = 0; i < x.colors.length; ++i) {
     colorbar_position = (i / x.colors.length) * 100;
     colorbar_background +=

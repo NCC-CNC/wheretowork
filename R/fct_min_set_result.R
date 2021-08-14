@@ -230,11 +230,15 @@ min_set_result <- function(area_data,
     wn <- weight_data
     for (i in seq_along(nrow(wn))) {
       wn[i, ] <- zscale(wn[i, ])
-      wn[i, ] <- scales::rescale(wn[i, ], to = c(0.01, 1))
+      if (abs(min(weight_data[i, ], na.rm = TRUE)) < 1e-10) {
+        wn[i, ] <- scales::rescale(wn[i, ], to = c(0, 1))
+      } else {
+        wn[i, ] <- scales::rescale(wn[i, ], to = c(0.01, 1))
+      }
     }
     ### apply factors and status settings
     cost <- matrix(
-      weight_settings$factor * weight_settings$status,
+      rep(weight_settings$factor * weight_settings$status, each = ncol(wn)),
       byrow = TRUE,
       nrow = nrow(wn), ncol = ncol(wn)
     )
@@ -246,6 +250,10 @@ min_set_result <- function(area_data,
     ## if no weights present, then set cost values as constant
     cost <- rep(1, ncol(weight_data))
   }
+
+
+  print(summary("cost summary"))
+  print(summary(cost))
 
   # calculate feature data
   features <-
