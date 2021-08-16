@@ -13,6 +13,42 @@
 #' @noRd
 server_initialize_app <- quote({
 
+  # define application data
+  ## note that we use an environment here because they are mutable objects and
+  ## so we don't have to worry about using the super-assignment operator
+  app_data <- list2env(
+    list(
+      ## file paths
+      configuration_path = NULL,
+      spatial_path = NULL,
+      boundary_path = NULL,
+      attribute_path = NULL,
+      ## settings
+      mode = NULL,
+      ## objects
+      dataset = NULL,
+      themes = NULL,
+      weights = NULL,
+      includes = NULL,
+      solutions = list(),
+      cache = cachem::cache_mem(),
+      ## data
+      bbox = NULL,
+      theme_data = NULL,
+      weight_data = NULL,
+      include_data = NULL,
+      area_data = NULL,
+      boundary_data = NULL,
+      solution_ids = character(0),
+      ## widgets
+      mm = NULL,
+      ss = NULL,
+      ## state variables
+      new_solution_id = NULL,
+      task = NULL
+    )
+  )
+
   # activate start up mode
   ## hides leaflet buttons + scalebar
   shinyjs::runjs("document.body.classList.add('startup');")
