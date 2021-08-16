@@ -30,6 +30,11 @@ leaflet_map <- function(sidebar_ids) {
     "Shiny.setInputValue(\"hide_button\", Math.random());",
     "}"
   )
+  show_js <- paste0(
+    "function(btn, map) {",
+    "Shiny.setInputValue(\"show_button\", Math.random());",
+    "}"
+  )
   print_js <- paste0(
     "function(btn, map) {",
     "Shiny.setInputValue(\"print_button\", Math.random());",
@@ -71,13 +76,21 @@ leaflet_map <- function(sidebar_ids) {
         onClick = htmlwidgets::JS(home_js)
       )
     ) %>%
-    ## add hide layers button
-    leaflet::addEasyButton(
+    ## show/hide layers buttons
+    leaflet::addEasyButtonBar(
       leaflet::easyButton(
-        title = "Hide layers",
+        id = "hideAllLayers",
+        title = "Hide all layers",
         icon = shiny::icon("eye-slash"),
         position = "topleft",
         onClick = htmlwidgets::JS(hide_js)
+      ),
+      leaflet::easyButton(
+        id = "showAllLayers",
+        title = "Show all layers",
+        icon = shiny::icon("eye"),
+        position = "topleft",
+        onClick = htmlwidgets::JS(show_js)
       )
     ) %>%
     ## add help button

@@ -46,10 +46,34 @@
   margin-right: 5px !important;
 }
 
+/* display show/hide buttons horizontally */
+.leaflet-bar.easy-button-container.leaflet-control{
+  display: flex;
+}
+
 /* display zoom buttons horizontally */
 .leaflet-control-zoom.leaflet-bar.leaflet-control {
   margin-left: 0px;
   display: flex;
+}
+
+#hideAllLayers {
+  /* border radius */
+  border-top-left-radius: 2px !important;
+  border-bottom-left-radius: 2px !important;
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+  /* border colors */
+  border-bottom: 0;
+  border-right: 1px solid #ccc;
+}
+
+#showAllLayers {
+  /* border radius */
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+  border-top-right-radius: 2px !important;
+  border-bottom-right-radius: 2px !important;
 }
 
 /* zoom in button */

@@ -104,6 +104,32 @@ server_update_map <- quote({
     app_data$mm$update_map(leaflet::leafletProxy("map"))
   })
 
+  # update map based on show button
+  shiny::observeEvent(input$show_button, {
+    ## specify dependencies
+    shiny::req(input$show_button)
+
+    ## update map manager object
+    app_data$mm$set_visible(TRUE)
+
+    ## update map manager widget
+    vapply(app_data$mm$layers, FUN.VALUE = logical(1), function(x) {
+      updateMapManagerLayer(
+        session = session,
+        inputId = "mapManagerPane_settings",
+        value = list(
+          id = x$id,
+          setting = "visible",
+          value = TRUE
+        )
+      )
+      TRUE
+    })
+
+    ## update map
+    app_data$mm$update_map(leaflet::leafletProxy("map"))
+  })
+
   # update map based on home button
   shiny::observeEvent(input$home_button, {
     ## specify dependencies
