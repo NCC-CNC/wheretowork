@@ -251,10 +251,6 @@ min_set_result <- function(area_data,
     cost <- rep(1, ncol(weight_data))
   }
 
-
-  print(summary("cost summary"))
-  print(summary(cost))
-
   # calculate feature data
   features <-
     data.frame(id = seq_len(nrow(theme_settings)), name = theme_settings$id)
