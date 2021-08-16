@@ -205,6 +205,7 @@ test_that("initialization (no weights or includes)", {
 })
 
 test_that("initialization (from Result object)", {
+  skip_on_ci()
   # create object
   ## create dataset
   rd <- simulate_binary_spatial_data(import_simple_raster_data(), 5)
