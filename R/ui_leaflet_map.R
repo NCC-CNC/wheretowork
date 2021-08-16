@@ -67,6 +67,10 @@ leaflet_map <- function(sidebar_ids) {
     leaflet::flyToBounds(
       -165, -30, 165, 60
     ) %>%
+    ## set map bounds
+    leaflet::setMaxBounds(
+      -200, -100, 200, 100
+    ) %>%
     ## add home button
     leaflet::addEasyButton(
       leaflet::easyButton(
