@@ -926,6 +926,12 @@ new_solution_from_result <- function(name, visible, dataset, settings, result,
   statistics_results <-
     list(
       new_statistic(
+        name = "Total number of planning units",
+        value = sum(result$values, na.rm = TRUE),
+        units = "",
+        proportion = mean(result$values > 0.5, na.rm = TRUE)
+      ),
+      new_statistic(
         name = "Total area",
         value = result$area * 1e-6,
         units = stringi::stri_unescape_unicode("km\\u00B2"),
@@ -935,12 +941,6 @@ new_solution_from_result <- function(name, visible, dataset, settings, result,
         name = "Total perimeter",
         value = result$perimeter * 1e-3,
         units = "km"
-      ),
-      new_statistic(
-        name = "Total number of planning units",
-        value = sum(result$values, na.rm = TRUE),
-        units = "",
-        proportion = mean(result$values > 0.5, na.rm = TRUE)
       ),
       new_statistic(
         name = "Total number of reserves",
