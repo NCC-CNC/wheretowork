@@ -69,9 +69,11 @@ server_generate_new_solution <- quote({
       curr_weight_data <- app_data$weight_data
       curr_include_data <- app_data$include_data
       ### arguments for generating result
-      curr_time_limit <- get_golem_config("solver_time_limit")
+      curr_time_limit_1 <- get_golem_config("solver_time_limit_1")
+      curr_time_limit_2 <- get_golem_config("solver_time_limit_2")
       curr_name <- input$newSolutionPane_settings_name
-      curr_gap <- get_golem_config("gap")
+      curr_gap_1 <- get_golem_config("solver_gap_1")
+      curr_gap_2 <- get_golem_config("solver_gap_2")
       curr_verbose <- get_golem_config("verbose")
       curr_color <- scales::alpha(input$newSolutionPane_settings_color, 0.8)
       curr_type <- app_data$ss$get_parameter("budget_parameter")$status
@@ -105,10 +107,12 @@ server_generate_new_solution <- quote({
               weight_settings = curr_weight_settings,
               include_settings = curr_include_settings,
               parameters = curr_parameters,
-              gap = curr_gap,
+              gap_1 = curr_gap_1,
+              gap_2 = curr_gap_2,
               boundary_gap = curr_boundary_gap,
               cache = curr_cache,
-              time_limit = curr_time_limit,
+              time_limit_1 = curr_time_limit_1,
+              time_limit_2 = curr_time_limit_2,
               verbose = curr_verbose
             ),
             silent = TRUE
@@ -127,10 +131,12 @@ server_generate_new_solution <- quote({
               weight_settings = curr_weight_settings,
               include_settings = curr_include_settings,
               parameters = curr_parameters,
-              gap = curr_gap,
+              gap_1 = curr_gap_1,
+              gap_2 = curr_gap_2,
               boundary_gap = curr_boundary_gap,
               cache = curr_cache,
-              time_limit = curr_time_limit,
+              time_limit_1 = curr_time_limit_1,
+              time_limit_2 = curr_time_limit_2,
               verbose = curr_verbose
             ),
             silent = TRUE

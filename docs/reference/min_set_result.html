@@ -136,10 +136,12 @@ using the minimum set formulation of the reserve selection problem.</p>
   <span class='va'>weight_settings</span>,
   <span class='va'>include_settings</span>,
   <span class='va'>parameters</span>,
-  gap <span class='op'>=</span> <span class='fl'>0</span>,
+  gap_1 <span class='op'>=</span> <span class='fl'>0</span>,
+  gap_2 <span class='op'>=</span> <span class='fl'>0</span>,
   boundary_gap <span class='op'>=</span> <span class='fl'>0.1</span>,
   cache <span class='op'>=</span> <span class='fu'>cachem</span><span class='fu'>::</span><span class='fu'><a href='https://cachem.r-lib.org/reference/cache_mem.html'>cache_mem</a></span><span class='op'>(</span><span class='op'>)</span>,
-  time_limit <span class='op'>=</span> <span class='va'>.Machine</span><span class='op'>$</span><span class='va'>integer.max</span>,
+  time_limit_1 <span class='op'>=</span> <span class='va'>.Machine</span><span class='op'>$</span><span class='va'>integer.max</span>,
+  time_limit_2 <span class='op'>=</span> <span class='va'>.Machine</span><span class='op'>$</span><span class='va'>integer.max</span>,
   verbose <span class='op'>=</span> <span class='cn'>FALSE</span>,
   id <span class='op'>=</span> <span class='fu'>uuid</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/uuid/man/UUIDgenerate.html'>UUIDgenerate</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>)</span></code></pre></div>
@@ -184,8 +186,15 @@ using the minimum set formulation of the reserve selection problem.</p>
       <td><p><code>list</code> of <a href='Parameter.html'>Parameter</a> objects.</p></td>
     </tr>
     <tr>
-      <th>gap</th>
-      <td><p><code>numeric</code> relative optimality gap value. Defaults to 0.</p></td>
+      <th>gap_1</th>
+      <td><p><code>numeric</code> relative optimality gap value for initial
+optimization.
+Defaults to 0.</p></td>
+    </tr>
+    <tr>
+      <th>gap_2</th>
+      <td><p><code>numeric</code> relative optimality gap value for spatial clustering.
+Defaults to 0.</p></td>
     </tr>
     <tr>
       <th>boundary_gap</th>
@@ -199,8 +208,15 @@ calculations.
 Defaults to an empty cache such that (effectively) no cache is used.</p></td>
     </tr>
     <tr>
-      <th>time_limit</th>
-      <td><p><code>numeric</code> time limit (seconds) for generating solutions.
+      <th>time_limit_1</th>
+      <td><p><code>numeric</code> time limit (seconds) for initial
+optimization run.
+Defaults to the maximum integer.</p></td>
+    </tr>
+    <tr>
+      <th>time_limit_2</th>
+      <td><p><code>numeric</code> time limit (seconds) for spatial clustering
+optimization run.
 Defaults to the maximum integer.</p></td>
     </tr>
     <tr>
@@ -294,7 +310,7 @@ displayed when generating solutions. Defaults to <code>FALSE</code>.</p></td>
 <span class='r-in'> weight_settings <span class='op'>=</span> <span class='va'>ss</span><span class='op'>$</span><span class='fu'>get_weight_settings</span><span class='op'>(</span><span class='op'>)</span>,</span>
 <span class='r-in'> include_settings <span class='op'>=</span> <span class='va'>ss</span><span class='op'>$</span><span class='fu'>get_include_settings</span><span class='op'>(</span><span class='op'>)</span>,</span>
 <span class='r-in'> parameters <span class='op'>=</span> <span class='va'>ss</span><span class='op'>$</span><span class='va'>parameters</span>,</span>
-<span class='r-in'> gap <span class='op'>=</span> <span class='va'>p2</span><span class='op'>$</span><span class='va'>value</span> <span class='op'>*</span> <span class='va'>p2</span><span class='op'>$</span><span class='va'>status</span>,</span>
+<span class='r-in'> gap_1 <span class='op'>=</span> <span class='va'>p2</span><span class='op'>$</span><span class='va'>value</span> <span class='op'>*</span> <span class='va'>p2</span><span class='op'>$</span><span class='va'>status</span>,</span>
 <span class='r-in'> boundary_gap <span class='op'>=</span> <span class='va'>p1</span><span class='op'>$</span><span class='va'>value</span> <span class='op'>*</span> <span class='va'>p1</span><span class='op'>$</span><span class='va'>status</span></span>
 <span class='r-in'><span class='op'>)</span></span>
 <span class='r-in'></span>

@@ -208,6 +208,7 @@ test_that("initialization (from Result object)", {
   skip_on_ci()
   # create object
   ## create dataset
+  RandomFields::RFoptions(seed = 200)
   rd <- simulate_binary_spatial_data(import_simple_raster_data(), 5)
   d <- new_dataset_from_auto(rd)
   ## create variables
@@ -277,7 +278,7 @@ test_that("initialization (from Result object)", {
     weight_settings = ss$get_weight_settings(),
     include_settings = ss$get_include_settings(),
     parameters = ss$parameters,
-    gap = ss$get_parameter("P2")$value * ss$get_parameter("P2")$status,
+    gap_1 = ss$get_parameter("P2")$value * ss$get_parameter("P2")$status,
     boundary_gap = ss$get_parameter("P1")$value * ss$get_parameter("P1")$status
   )
   ## create object

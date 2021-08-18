@@ -186,3 +186,33 @@ wrap_text <- function(x, width = 20)
     collapse = "\n"
   )
 })
+
+
+# copied from prioritizr::internal_eval_rare_richness_importance
+prioritizr_internal_eval_rare_richness_importance <- function(x, indices,
+                                                              rescale) {
+  assertthat::assert_that(
+    inherits(x, "ConservationProblem"),
+    prioritizr::number_of_zones(x) == 1,
+    is.integer(indices), length(indices) > 0,
+    assertthat::is.flag(rescale))
+  # calculate rarity weighted richness for each selected planning unit
+  rs <- x$feature_abundances_in_total_units()
+  m <- matrix(apply(x$data$rij_matrix[[1]], 1, max, na.rm = TRUE),
+              nrow = nrow(rs), ncol = length(indices), byrow = FALSE)
+  out <- x$data$rij_matrix[[1]][, indices, drop = FALSE]
+  ## account for divide by zero issues result in NaNs
+  out <- (out / m)
+  out[!is.finite(out)] <- 0
+  ## account for divide by zero issues result in NaNs
+  out <- out / rs[, rep.int(1, ncol(out)), drop = FALSE]
+  out[!is.finite(out)] <- 0
+  out <- colSums(out)
+  # rescale values if specified
+  if (rescale) {
+    rescale_ind <- is.finite(out) & (abs(out) > 1e-10)
+    out[rescale_ind] <- scales::rescale(out[rescale_ind], to = c(0.01, 1))
+  }
+  # return result
+  out
+}

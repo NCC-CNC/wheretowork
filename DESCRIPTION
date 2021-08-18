@@ -182,4 +182,5 @@ Remotes:
     r-lib/pkgdown,
     NCC-CNC/leaflet.extras2,
     NCC-CNC/leaflet@pane-extra,
-    dirkschumacher/rcbc
+    jeffreyhanson/rcbc,
+    prioritizr/prioritizr@rcbc-start-sol,

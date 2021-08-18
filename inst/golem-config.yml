@@ -5,9 +5,6 @@ default:
   app_prod: no
 
   # app variables
-  ## optimality gap for optimization
-  gap: 0.01
-
   ## mode for importing projects
   ## available options include: "advanced", "beginner", and "project"
   mode: "project"
@@ -29,14 +26,19 @@ default:
   ## monitor memory usage
   monitor: false
 
+  ## optimality gap
+  solver_gap_1: 0.1 # 10% from optimality for initial optimization
+  solver_gap_2: 0.5 # 50% from optimality for spatial clustering optimization
+
   ## time limit (seconds) for generating solutions
   ## i.e. maximum time that users should wait for when generating solutions
-  solver_time_limit: 3600 # one hour
+  solver_time_limit_1: 3600 # one hour for generating initial solution
+  solver_time_limit_2: 300 # 5 minutes for spatial clustering optimization
 
   ## time out (seconds) for worker processes
   ## i.e. maximum time that worker process should remain active after
   ## contacting controller process
-  worker_time_out: 3600 # one hour
+  worker_time_out: 7200 # two hours
 
 # developemnt configuration
 dev:

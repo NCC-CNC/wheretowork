@@ -15,10 +15,12 @@ min_shortfall_result(
   weight_settings,
   include_settings,
   parameters,
-  gap = 0,
+  gap_1 = 0,
+  gap_2 = 0,
   boundary_gap = 0.1,
   cache = cachem::cache_mem(),
-  time_limit = .Machine$integer.max,
+  time_limit_1 = .Machine$integer.max,
+  time_limit_2 = .Machine$integer.max,
   verbose = FALSE,
   id = uuid::UUIDgenerate()
 )
@@ -46,7 +48,12 @@ indicating the maximum spatial extent of the solution.}
 
 \item{parameters}{\code{list} of \link{Parameter} objects.}
 
-\item{gap}{\code{numeric} relative optimality gap value. Defaults to 0.}
+\item{gap_1}{\code{numeric} relative optimality gap value for initial
+optimization.
+Defaults to 0.}
+
+\item{gap_2}{\code{numeric} relative optimality gap value for spatial clustering.
+Defaults to 0.}
 
 \item{boundary_gap}{\code{numeric} value used to control
 the level of spatial clustering in the solution. Defaults to 0.1.}
@@ -55,7 +62,12 @@ the level of spatial clustering in the solution. Defaults to 0.1.}
 calculations.
 Defaults to an empty cache such that (effectively) no cache is used.}
 
-\item{time_limit}{\code{numeric} time limit (seconds) for generating solutions.
+\item{time_limit_1}{\code{numeric} time limit (seconds) for initial
+optimization run.
+Defaults to the maximum integer.}
+
+\item{time_limit_2}{\code{numeric} time limit (seconds) for spatial clustering
+optimization run.
 Defaults to the maximum integer.}
 
 \item{verbose}{\code{logical} value indicating if information should be
@@ -147,7 +159,7 @@ x <- min_shortfall_result(
  weight_settings = ss$get_weight_settings(),
  include_settings = ss$get_include_settings(),
  parameters = ss$parameters,
- gap = p2$value * p2$status,
+ gap_1 = p2$value * p2$status,
  boundary_gap = p1$value * p1$status
 )
 

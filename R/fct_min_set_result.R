@@ -26,7 +26,12 @@ NULL
 #'
 #' @param parameters  `list` of [Parameter] objects.
 #'
-#' @param gap `numeric` relative optimality gap value. Defaults to 0.
+#' @param gap_1 `numeric` relative optimality gap value for initial
+#'   optimization.
+#'   Defaults to 0.
+#'
+#' @param gap_2 `numeric` relative optimality gap value for spatial clustering.
+#'   Defaults to 0.
 #'
 #' @param boundary_gap `numeric` value used to control
 #'   the level of spatial clustering in the solution. Defaults to 0.1.
@@ -35,7 +40,12 @@ NULL
 #'  calculations.
 #'  Defaults to an empty cache such that (effectively) no cache is used.
 #'
-#' @param time_limit `numeric` time limit (seconds) for generating solutions.
+#' @param time_limit_1 `numeric` time limit (seconds) for initial
+#'   optimization run.
+#'  Defaults to the maximum integer.
+#'
+#' @param time_limit_2 `numeric` time limit (seconds) for spatial clustering
+#'   optimization run.
 #'  Defaults to the maximum integer.
 #'
 #' @param verbose `logical` value indicating if information should be
@@ -119,7 +129,7 @@ NULL
 #'  weight_settings = ss$get_weight_settings(),
 #'  include_settings = ss$get_include_settings(),
 #'  parameters = ss$parameters,
-#'  gap = p2$value * p2$status,
+#'  gap_1 = p2$value * p2$status,
 #'  boundary_gap = p1$value * p1$status
 #' )
 #'
@@ -135,10 +145,12 @@ min_set_result <- function(area_data,
                            weight_settings,
                            include_settings,
                            parameters,
-                           gap = 0,
+                           gap_1 = 0,
+                           gap_2 = 0,
                            boundary_gap = 0.1,
                            cache = cachem::cache_mem(),
-                           time_limit = .Machine$integer.max,
+                           time_limit_1 = .Machine$integer.max,
+                           time_limit_2 = .Machine$integer.max,
                            verbose = FALSE,
                            id = uuid::UUIDgenerate()) {
   # validate arguments
@@ -174,9 +186,18 @@ min_set_result <- function(area_data,
     ## parameters
     is.list(parameters),
     all_list_elements_inherit(parameters, "Parameter"),
-    ## gap
-    assertthat::is.number(gap),
-    assertthat::noNA(gap),
+    ## gap_1
+    assertthat::is.number(gap_1),
+    assertthat::noNA(gap_1),
+    ## gap_2
+    assertthat::is.number(gap_2),
+    assertthat::noNA(gap_2),
+    ## time_limit_1
+    assertthat::is.count(time_limit_1),
+    assertthat::noNA(time_limit_1),
+    ## time_limit_2
+    assertthat::is.count(time_limit_2),
+    assertthat::noNA(time_limit_2),
     ## boundary_gap
     assertthat::is.number(boundary_gap),
     assertthat::noNA(boundary_gap),
@@ -272,7 +293,7 @@ min_set_result <- function(area_data,
     prioritizr::add_manual_targets(targets) %>%
     prioritizr::add_binary_decisions() %>%
     prioritizr::add_cbc_solver(
-      gap = gap, verbose = verbose, time_limit = time_limit
+      verbose = verbose, gap = gap_1, time_limit = time_limit_1
     )
   ### add locked in constraints if needed
   if (any(locked_in)) {
@@ -299,6 +320,27 @@ min_set_result <- function(area_data,
   if (boundary_gap >= 1e-5) {
     ### calculate cost constraint for new prioritization
     max_cost <- sum(initial_solution * cost) * (boundary_gap + 1)
+    ### identify "important" planning units to lock in to speed up process
+    rwr <- prioritizr::eval_rare_richness_importance(
+      initial_problem, initial_solution
+    )
+    if (any(rwr >= 1e-5)) {
+      rwr_threshold <- stats::median(rwr[rwr > 1e-5])
+      locked_in <- locked_in | ((rwr >= rwr_threshold) & (rwr > 1e-5))
+    }
+    ### prepare boundary data as connectivity data based on "importance"
+    #### calculate importance
+    rwr_raw <- prioritizr_internal_eval_rare_richness_importance(
+      initial_problem, seq_along(cost), TRUE
+    )
+    #### create matrix
+    con_data <- boundary_data
+    Matrix::diag(con_data) <- 0
+    con_data <- Matrix::drop0(con_data)
+    con_data <- methods::as(con_data, "dgTMatrix")
+    con_data@x <- rwr_raw[con_data@i + 1] + cost[con_data@j + 1]
+    con_data@x <- scales::rescale(con_data@x, to = c(1, 0.01))
+    con_data <- Matrix::drop0(con_data)
     ### generate prioritization
     main_problem <-
       suppressWarnings(
@@ -309,8 +351,8 @@ min_set_result <- function(area_data,
         )
       ) %>%
       prioritizr::add_min_set_objective() %>%
-      prioritizr::add_boundary_penalties(
-        penalty = 1, data = boundary_data
+      prioritizr::add_connectivity_penalties(
+        penalty = 1, data = con_data
       ) %>%
       prioritizr::add_manual_targets(
         rbind(
@@ -325,7 +367,8 @@ min_set_result <- function(area_data,
       ) %>%
       prioritizr::add_binary_decisions() %>%
       prioritizr::add_cbc_solver(
-        gap = gap, verbose = verbose, time_limit = time_limit
+        verbose = verbose, gap = gap_2, time_limit = time_limit_2,
+        start_solution = pmax(initial_solution, locked_in)
       )
     ### add locked in constraints if needed
     if (any(locked_in)) {

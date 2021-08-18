@@ -91,7 +91,7 @@ NULL
 #'  weight_settings = ss$get_weight_settings(),
 #'  include_settings = ss$get_include_settings(),
 #'  parameters = ss$parameters,
-#'  gap = p2$value * p2$status,
+#'  gap_1 = p2$value * p2$status,
 #'  boundary_gap = p1$value * p1$status
 #' )
 #'
@@ -108,10 +108,12 @@ min_shortfall_result <- function(area_budget_proportion,
                                  weight_settings,
                                  include_settings,
                                  parameters,
-                                 gap = 0,
+                                 gap_1 = 0,
+                                 gap_2 = 0,
                                  boundary_gap = 0.1,
                                  cache = cachem::cache_mem(),
-                                 time_limit = .Machine$integer.max,
+                                 time_limit_1 = .Machine$integer.max,
+                                 time_limit_2 = .Machine$integer.max,
                                  verbose = FALSE,
                                  id = uuid::UUIDgenerate()) {
   # validate arguments
@@ -124,6 +126,12 @@ min_shortfall_result <- function(area_budget_proportion,
     assertthat::noNA(area_budget_proportion),
     isTRUE(area_budget_proportion >= 0),
     isTRUE(area_budget_proportion <= 1),
+    ## time_limit_1
+    assertthat::is.count(time_limit_1),
+    assertthat::noNA(time_limit_1),
+    ## time_limit_2
+    assertthat::is.count(time_limit_2),
+    assertthat::noNA(time_limit_2),
     ## area_data
     is.numeric(area_data),
     assertthat::noNA(area_data),
@@ -152,9 +160,12 @@ min_shortfall_result <- function(area_budget_proportion,
     ## parameters
     is.list(parameters),
     all_list_elements_inherit(parameters, "Parameter"),
-    ## gap
-    assertthat::is.number(gap),
-    assertthat::noNA(gap),
+    ## gap_1
+    assertthat::is.number(gap_1),
+    assertthat::noNA(gap_1),
+    ## gap_2
+    assertthat::is.number(gap_2),
+    assertthat::noNA(gap_2),
     ## boundary_gap
     assertthat::is.number(boundary_gap),
     assertthat::noNA(boundary_gap),
@@ -269,7 +280,7 @@ min_shortfall_result <- function(area_budget_proportion,
     prioritizr::add_manual_targets(targets) %>%
     prioritizr::add_binary_decisions() %>%
     prioritizr::add_cbc_solver(
-      gap = gap, verbose = verbose, time_limit = time_limit
+      verbose = verbose, gap = gap_1, time_limit = time_limit_1
     )
   ## add locked in constraints if needed
   if (any(locked_in)) {
@@ -347,7 +358,8 @@ min_shortfall_result <- function(area_budget_proportion,
       ) %>%
       prioritizr::add_binary_decisions() %>%
       prioritizr::add_cbc_solver(
-        gap = gap, verbose = verbose, time_limit = time_limit
+         verbose = verbose, gap = gap_2, time_limit = time_limit_2,
+        start_solution = initial_solution
       )
     ### add locked in constraints if needed
     if (any(locked_in)) {
@@ -379,7 +391,6 @@ min_shortfall_result <- function(area_budget_proportion,
     solution = main_solution,
     data = boundary_data
   )$boundary[[1]]
-
 
   # generate results object
   new_result(
