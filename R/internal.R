@@ -179,14 +179,32 @@ color_opacity <- function(x) {
 #' @return `character` vector
 #'
 #' @noRd
-wrap_text <- function(x, width = 20)
-  vapply(x, FUN.VALUE = character(1), function(x) {
-  paste(
-    stringi::stri_wrap(x[[1]], width = width, whitespace_only = FALSE),
-    collapse = "\n"
-  )
-})
-
+wrap_text <- function(x, width = 13) {
+  vapply(x, USE.NAMES = FALSE, FUN.VALUE = character(1), function(x) {
+    # replace punctuation with spaces, and wrap text
+    x2 <- paste(
+      stringi::stri_wrap(
+        gsub("[^[:alnum:]]", " ", x),
+        normalize = FALSE,
+        width = width,
+        whitespace_only = TRUE,
+        use_length = FALSE
+      ),
+      collapse = "\n"
+    )
+    # find new line characters
+    i <- c(gregexpr("\n", x2, fixed = TRUE)[[1]])[[1]]
+    # return input if no new line characters inserted
+    if (identical(i, -1L)) return(x)
+    # insert new line characters where needed
+    for (ii in i) {
+      x <- paste0(
+        substr(x, 1, ii), "</div><div>", substr(x, ii + 1, nchar(x))
+      )
+    }
+    paste0("<div>", x, "</div>")
+  })
+}
 
 # copied from prioritizr::internal_eval_rare_richness_importance
 prioritizr_internal_eval_rare_richness_importance <- function(x, indices,

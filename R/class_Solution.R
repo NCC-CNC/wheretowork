@@ -228,31 +228,32 @@ Solution <- R6::R6Class(
         Theme = x$name,
         Feature = x$feature_name,
         Status = dplyr::if_else(x$feature_status, "Enabled", "Disabled"),
-        `Total (units)` =
-          paste(
-            round(x$feature_total_amount, 2), x$units
+        `Total (units)` = paste(
+          round(x$feature_total_amount, 2), x$units
+        ),
+        `Current (%)` = round(x$feature_current_held * 100, 2),
+        `Current (units)` = paste(
+          round(x$feature_current_held * x$feature_total_amount, 2),
+          x$units
+        ),
+        `Goal (%)` = round(x$feature_status * x$feature_goal * 100, 2),
+        `Goal (units)` = paste(
+          round(
+            x$feature_status * x$feature_goal * x$feature_total_amount, 2
           ),
-        `Current (%)` =
-          round(x$feature_current_held * 100, 2),
-        `Current (units)` =
-          paste(
-            round(x$feature_current_held * x$feature_total_amount, 2),
-            x$units
-          ),
-        `Goal (%)` =
-          round(x$feature_goal * 100, 2),
-        `Goal (units)` =
-          paste(
-            round(x$feature_goal * x$feature_total_amount, 2),
-            x$units
-          ),
-        `Solution (%)` =
-          round(x$feature_solution_held * 100, 2),
-        `Solution (units)` =
-          paste(
-            round(x$feature_solution_held * x$feature_total_amount, 2),
-            x$units
-          )
+          x$units
+        ),
+        `Solution (%)` = round(x$feature_solution_held * 100, 2),
+        `Solution (units)` = paste(
+          round(x$feature_solution_held * x$feature_total_amount, 2),
+          x$units
+        ),
+        `Met` = dplyr::case_when(
+          !x$feature_status ~ "NA",
+          (x$feature_solution_held >=
+            (x$feature_status * x$feature_goal)) ~ "Yes",
+          TRUE ~ "No"
+        )
       )
     },
 
@@ -380,10 +381,30 @@ Solution <- R6::R6Class(
     render_theme_results = function() {
       ## generate results
       x <- self$get_theme_results_data()
+      # replace met column values with icons
+      x$Met <- unname(vapply(x$Met, FUN.VALUE = character(1), function(i) {
+        if (identical(i, "Yes")) {
+          out <- htmltools::tags$i(
+            class = "fa fa-check-circle",
+            style = "color: #5cb85c"
+          )
+        } else if (identical(i, "No")) {
+          out <- htmltools::tags$i(
+            class = "fa fa-times-circle",
+            style = "color: #dc3545"
+          )
+        } else {
+          out <- htmltools::tags$i(
+            class = "fa fa-dot-circle",
+            style = "color: #adb5bd"
+          )
+        }
+        as.character(out)
+      }))
       ## add in extra column
       x$space1 <- " "
       x$space2 <- " "
-      x <- x[, c(seq_len(6), 11, c(7, 8), 12, c(9, 10)), drop = FALSE]
+      x <- x[, c(seq_len(6), 12, c(7, 8), 13, c(9, 10), 11), drop = FALSE]
       ## define JS for button
       action_js <- htmlwidgets::JS(
         "function ( e, dt, node, config ) {",
@@ -391,20 +412,27 @@ Solution <- R6::R6Class(
         "}"
       )
       ## wrap text columns
-      x[[1]] <- wrap_text(x[[1]], 10)
-      x[[2]] <- wrap_text(x[[2]], 10)
+      x[[1]] <- wrap_text(x[[1]])
+      x[[2]] <- wrap_text(x[[2]])
+
+
+      print("x[[2]]")
+      print(x[[2]])
+
       ## render table
       DT::datatable(
         x,
-        rownames = FALSE, escape = TRUE,
+        rownames = FALSE, escape = FALSE,
         editable = FALSE, selection = "none",
         fillContainer = TRUE, extensions = "Buttons",
         options = list(
           ### align columns
           columnDefs = list(
             list(className = "dt-left", targets = 0:1),
-            list(className = "dt-center", targets = 2:11),
-            list(className = "spacer", "sortable" = FALSE, targets = c(6, 9))
+            list(className = "dt-center", targets = 2:12),
+            list(
+              className = "spacer", "sortable" = FALSE,  targets = c(6, 9)
+            )
           ),
           ### disable paging
           paging = FALSE,
@@ -439,10 +467,12 @@ Solution <- R6::R6Class(
               htmltools::tags$th(rowspan = 2),
               htmltools::tags$th(
                 class = "dt-center", colspan = 2, "Solution"
-              )
+              ),
+              htmltools::tags$th(rowspan = 2, "Met"),
             ),
             htmltools::tags$tr(
-              lapply(rep(c("(%)", "(units)"), 3), htmltools::tags$th)
+              lapply(rep(c("(%)", "(units)"), 3), htmltools::tags$th
+              )
             )
           )
         )
@@ -456,7 +486,7 @@ Solution <- R6::R6Class(
       # generate table
       x <- self$get_weight_results_data()
       # wrap text columns
-      x[[1]] <- wrap_text(x[[1]], 10)
+      x[[1]] <- wrap_text(x[[1]])
       # add in extra column
       if (ncol(x) > 1) {
         x$space1 <- " "
@@ -545,7 +575,7 @@ Solution <- R6::R6Class(
       # generate table
       x <- self$get_include_results_data()
       # wrap text columns
-      x[[1]] <- wrap_text(x[[1]], 10)
+      x[[1]] <- wrap_text(x[[1]])
       # define JS for button
       action_js <- htmlwidgets::JS(
         "function ( e, dt, node, config ) {",
