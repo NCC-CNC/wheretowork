@@ -43,48 +43,50 @@ server_generate_new_solution <- quote({
 
   # generate new solution when start button pressed
   shiny::observeEvent(input$newSolutionPane_settings_start_button, {
-      ## specify dependencies
-      shiny::req(input$newSolutionPane_settings_start_button)
-      shiny::req(input$newSolutionPane_settings_name)
-      shiny::req(input$newSolutionPane_settings_color)
+    ## specify dependencies
+    shiny::req(input$newSolutionPane_settings_start_button)
+    shiny::req(input$newSolutionPane_settings_name)
+    shiny::req(input$newSolutionPane_settings_color)
 
-      ## update generate solution inputs
-      disable_html_element("newSolutionPane_settings_start_button")
-      disable_html_element("newSolutionPane_settings_name")
-      disable_html_element("newSolutionPane_settings_color")
+    ## update generate solution inputs
+    disable_html_element("newSolutionPane_settings_start_button")
+    disable_html_element("newSolutionPane_settings_name")
+    disable_html_element("newSolutionPane_settings_color")
 
-      ## generate id and store it in app_data
-      curr_id <- uuid::UUIDgenerate()
-      app_data$new_solution_id <- curr_id
+    ## generate id and store it in app_data
+    curr_id <- uuid::UUIDgenerate()
+    app_data$new_solution_id <- curr_id
 
-      ## extract values for generating result
-      ### settings
-      curr_theme_settings <- app_data$ss$get_theme_settings()
-      curr_weight_settings <- app_data$ss$get_weight_settings()
-      curr_include_settings <- app_data$ss$get_include_settings()
-      ### data
-      curr_area_data <- app_data$area_data
-      curr_boundary_data <- app_data$boundary_data
-      curr_theme_data <- app_data$theme_data
-      curr_weight_data <- app_data$weight_data
-      curr_include_data <- app_data$include_data
-      ### arguments for generating result
-      curr_time_limit_1 <- get_golem_config("solver_time_limit_1")
-      curr_time_limit_2 <- get_golem_config("solver_time_limit_2")
-      curr_name <- input$newSolutionPane_settings_name
-      curr_gap_1 <- get_golem_config("solver_gap_1")
-      curr_gap_2 <- get_golem_config("solver_gap_2")
-      curr_verbose <- get_golem_config("verbose")
-      curr_color <- scales::alpha(input$newSolutionPane_settings_color, 0.8)
-      curr_type <- app_data$ss$get_parameter("budget_parameter")$status
-      curr_cache <- app_data$cache
-      curr_area_budget <-
-        app_data$ss$get_parameter("budget_parameter")$value / 100
-      curr_boundary_gap <-
-        (app_data$ss$get_parameter("spatial_parameter")$value *
-          app_data$ss$get_parameter("spatial_parameter")$status) / 100
-      curr_parameters <-
-        lapply(app_data$ss$parameters, function(x) x$clone())
+    ## extract values for generating result
+    ### settings
+    curr_theme_settings <- app_data$ss$get_theme_settings()
+    curr_weight_settings <- app_data$ss$get_weight_settings()
+    curr_include_settings <- app_data$ss$get_include_settings()
+    ### data
+    curr_area_data <- app_data$area_data
+    curr_boundary_data <- app_data$boundary_data
+    curr_theme_data <- app_data$theme_data
+    curr_weight_data <- app_data$weight_data
+    curr_include_data <- app_data$include_data
+    ### arguments for generating result
+    curr_time_limit_1 <- get_golem_config("solver_time_limit_1")
+    curr_time_limit_2 <- get_golem_config("solver_time_limit_2")
+    curr_name <- input$newSolutionPane_settings_name
+    curr_gap_1 <- get_golem_config("solver_gap_1")
+    curr_gap_2 <- get_golem_config("solver_gap_2")
+    curr_verbose <- get_golem_config("verbose")
+    curr_color <- scales::alpha(input$newSolutionPane_settings_color, 0.8)
+    curr_type <- app_data$ss$get_parameter("budget_parameter")$status
+    curr_cache <- app_data$cache
+    curr_area_budget <- c(
+      app_data$ss$get_parameter("budget_parameter")$value *
+      app_data$ss$get_parameter("budget_parameter")$status
+    ) / 100
+    curr_boundary_gap <- c(
+      app_data$ss$get_parameter("spatial_parameter")$value *
+      app_data$ss$get_parameter("spatial_parameter")$status
+    ) / 100
+    curr_parameters <- lapply(app_data$ss$parameters, function(x) x$clone())
 
     ## if failed to generate solution...
     if (!any(curr_theme_settings$status > 0.5)) {

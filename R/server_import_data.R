@@ -29,8 +29,8 @@ import_data <- function(x, mode) {
     wheretowork::new_parameter(
       name = "Total area budget",
       status = FALSE,
-      value = 0,
-      min_value = 0,
+      value = 1,
+      min_value = 1,
       max_value = 100,
       step_value = 1,
       units = "%",
@@ -42,12 +42,12 @@ import_data <- function(x, mode) {
     wheretowork::new_parameter(
       name = "Spatial clustering",
       status = FALSE,
-      value = 0,
-      min_value = 0,
+      value = 1,
+      min_value = 1,
       max_value = 100,
       step_value = 1,
       units = "%",
-      hide = FALSE,
+      hide = TRUE,
       id = "spatial_parameter"
     )
 

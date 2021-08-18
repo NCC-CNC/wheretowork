@@ -52,6 +52,12 @@ class ParameterSetting {
     });
     /// status
     this.updateStatus(status);
+    /// hide slider if needed
+    if (status) {
+      this.value_container_el.style.display = "block";
+    } else {
+      this.value_container_el.style.display = "none";
+    }
 
     // set listeners to update user interface
     /// enable/disable widget on click
@@ -64,7 +70,7 @@ class ParameterSetting {
           that.value_el.noUiSlider.set(that.previous_value);
         } else {
           that.previous_value = that.value_el.noUiSlider.get();
-          that.value_el.noUiSlider.set(0);
+          that.value_el.noUiSlider.set(min_value);
         }
         /// hide slider if needed
         if (that.hide) {
@@ -135,7 +141,7 @@ class ParameterSetting {
         this.value_el.noUiSlider.set(this.previous_value);
       } else {
         this.previous_value = this.value_el.noUiSlider.get();
-        this.value_el.noUiSlider.set(0);
+        this.value_el.noUiSlider.set(min_value);
       }
       /// hide slider if needed
       if (that.hide) {
