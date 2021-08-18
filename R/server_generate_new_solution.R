@@ -86,6 +86,37 @@ server_generate_new_solution <- quote({
       curr_parameters <-
         lapply(app_data$ss$parameters, function(x) x$clone())
 
+    ## if failed to generate solution...
+    if (!any(curr_theme_settings$status > 0.5)) {
+      ### identify error message to show
+      msg <- paste(
+        "All Themes have been disabled.",
+        "In order to generate a solution,",
+        "please enable at least one Theme and try again."
+      )
+      ### display modal
+      shinyalert::shinyalert(
+        title = "Oops",
+        text = msg,
+        size = "s",
+        closeOnEsc = TRUE,
+        closeOnClickOutside = TRUE,
+        type = "error",
+        showConfirmButton = TRUE,
+        confirmButtonText = "OK",
+        timer = 0,
+        confirmButtonCol = "#0275d8",
+        animation = TRUE
+      )
+      ### reset buttons
+      shinyFeedback::resetLoadingButton("newSolutionPane_settings_start_button")
+      disable_html_element("newSolutionPane_settings_name")
+      disable_html_element("newSolutionPane_settings_color")
+      ## exit
+      return()
+    }
+
+
       ## enable stop button
       shinyjs::enable("newSolutionPane_settings_stop_button")
 
