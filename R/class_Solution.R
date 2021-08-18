@@ -414,11 +414,6 @@ Solution <- R6::R6Class(
       ## wrap text columns
       x[[1]] <- wrap_text(x[[1]])
       x[[2]] <- wrap_text(x[[2]])
-
-
-      print("x[[2]]")
-      print(x[[2]])
-
       ## render table
       DT::datatable(
         x,
