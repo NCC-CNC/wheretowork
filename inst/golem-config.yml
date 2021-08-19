@@ -40,7 +40,7 @@ default:
   ## contacting controller process
   worker_time_out: 7200 # two hours
 
-# developemnt configuration
+# development configuration
 dev:
   golem_wd: !expr here::here()
 
