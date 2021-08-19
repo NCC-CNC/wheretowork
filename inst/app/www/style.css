@@ -13,3 +13,11 @@
   overflow-x: hidden;
   box-sizing: border-box;
 }
+
+/* style text in tables */
+.cell-text {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+}

@@ -333,9 +333,12 @@ Solution <- R6::R6Class(
       ## render table
       DT::datatable(
         x,
-        rownames = FALSE, escape = TRUE,
-        editable = FALSE, selection = "none",
-        fillContainer = TRUE, extensions = "Buttons",
+        rownames = FALSE,
+        escape = FALSE,
+        editable = FALSE,
+        selection = "none",
+        fillContainer = TRUE,
+        extensions = "Buttons",
         options = list(
           ### align columns
           columnDefs = list(
@@ -417,9 +420,12 @@ Solution <- R6::R6Class(
       ## render table
       DT::datatable(
         x,
-        rownames = FALSE, escape = FALSE,
-        editable = FALSE, selection = "none",
-        fillContainer = TRUE, extensions = "Buttons",
+        rownames = FALSE,
+        escape = FALSE,
+        editable = FALSE,
+        selection = "none",
+        fillContainer = TRUE,
+        extensions = "Buttons",
         options = list(
           ### align columns
           columnDefs = list(
@@ -466,8 +472,12 @@ Solution <- R6::R6Class(
               htmltools::tags$th(rowspan = 2, "Met"),
             ),
             htmltools::tags$tr(
-              lapply(rep(c("(%)", "(units)"), 3), htmltools::tags$th
-              )
+              htmltools::tags$th("(%)"),
+              htmltools::tags$th("(units)"),
+              htmltools::tags$th("(%)"),
+              htmltools::tags$th("(units)"),
+              htmltools::tags$th("(%)"),
+              htmltools::tags$th("(units)"),
             )
           )
         )
@@ -535,7 +545,7 @@ Solution <- R6::R6Class(
       DT::datatable(
         x,
         rownames = FALSE,
-        escape = TRUE,
+        escape = FALSE,
         editable = FALSE,
         selection = "none",
         fillContainer = TRUE,
@@ -613,7 +623,7 @@ Solution <- R6::R6Class(
       DT::datatable(
         x,
         rownames = FALSE,
-        escape = TRUE,
+        escape = FALSE,
         editable = FALSE,
         selection = "none",
         fillContainer = TRUE,
