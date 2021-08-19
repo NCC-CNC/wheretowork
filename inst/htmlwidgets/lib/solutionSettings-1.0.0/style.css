@@ -166,7 +166,7 @@
   padding-left: 5px;
   padding-bottom: 0px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 3px;
 }
 
@@ -178,6 +178,7 @@
 .solution-setting .header .name-label {
   font-size: 14px;
   margin: 0px;
+  word-break: break-all;
 }
 
 .solution-setting .header .el-switch {
@@ -192,6 +193,7 @@
   font-size: 12px;
   font-weight: 700;
   margin-bottom: 0px;
+  word-break: break-all;
 }
 
 .solution-setting .sub-header .el-switch {

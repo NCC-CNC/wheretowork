@@ -37,12 +37,18 @@
 
 /* header container */
 .map-manager-layer .header {
+  display: flex;
+  align-items: flex-start;
+  gap: 3px;
   font-size: 14px;
 }
 
+.map-manager-layer .header .name-label {
+  word-break: break-all;
+}
+
 .map-manager-layer .header .remove-button {
-  float: right;
-  margin-left: 5px;
+  margin-left: auto;
   margin-top: 0px;
   padding-top: 0;
   padding-bottom: 0;
@@ -51,15 +57,22 @@
 }
 
 .map-manager-layer .header .icon-container {
-  float: right;
+  margin-left: auto;
   margin-right: 5px;
   margin-bottom: 5px;
 }
 
 /* sub-header container */
+.map-manager-layer .sub-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 3px;
+}
+
 .map-manager-layer .sub-header .name-label {
   font-size: 12px;
   font-weight: 700;
+  word-break: break-all;
 }
 
 /* view checkbox */

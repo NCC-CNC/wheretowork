@@ -118,7 +118,11 @@ solutionResults_html <- function(id, style, class, ...) {
               inputId = paste0(id, "_select"),
               label = "Solution:",
               choices = c("NA" = "NA"),
-              selected = NULL
+              selected = NULL,
+              options = list(
+                `dropdown-align-right` = "true",
+                `container` = "body"
+              )
             ),
             # modal button
             htmltools::tags$div(

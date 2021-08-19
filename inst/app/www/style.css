@@ -21,3 +21,8 @@
   flex-direction: row;
   flex-wrap: wrap;
 }
+
+/* ensure drop down menus in shinyWidgets::pickerInput is always on top */
+.bs-container.dropdown {
+  z-index: 99999999;
+}

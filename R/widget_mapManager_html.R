@@ -89,14 +89,6 @@ mm_header_component_scaffold <- function(id = uuid::UUIDgenerate(),
     htmltools::tags$label(
       class = "name-label"
     ),
-    htmltools::tags$div(
-      class = "icon-container",
-      `data-toggle` = "tooltip",
-      `data-placement` = "top",
-      `data-container` = "body",
-      title = icon_tooltip_text,
-      icon
-    ),
     if (remove_button) {
       htmltools::tags$button(
         class = "remove-button",
@@ -109,7 +101,15 @@ mm_header_component_scaffold <- function(id = uuid::UUIDgenerate(),
       )
     } else {
       NULL
-    }
+    },
+    htmltools::tags$div(
+      class = "icon-container",
+      `data-toggle` = "tooltip",
+      `data-placement` = "top",
+      `data-container` = "body",
+      title = icon_tooltip_text,
+      icon
+    )
   )
 }
 

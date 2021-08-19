@@ -61,7 +61,8 @@ solutionResultsModal <- function(id, trigger) {
                   inputId = paste0(id, "_select"),
                   choices = "NA",
                   label = "Solution:",
-                  multiple = FALSE
+                  multiple = FALSE,
+                  options = list(`container` = "body")
                 )
               ),
               ### radio button container
