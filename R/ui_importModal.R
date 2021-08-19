@@ -106,7 +106,7 @@ importModal <- function(id) {
         paste0(id, "_manual_spatial_file"),
         "Select spatial data",
         multiple = TRUE,
-        accept = c(".shp", ".shx", ".prj", ".dbf", ".cpg", ".tif"),
+        accept = c(".shp", ".shx", ".prj", ".dbf", ".cpg"),
       ),
       shiny::fileInput(
         paste0(id, "_manual_attribute_file"),
