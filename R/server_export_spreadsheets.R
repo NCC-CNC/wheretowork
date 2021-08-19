@@ -36,7 +36,7 @@ server_export_spreadsheets <- quote({
         stringsAsFactors = FALSE
       )
       # save table
-      openxlsx::write.xlsx(x, file = con, overwrite = TRUE)
+      write_excel_workbook(x, con)
     },
     contentType = "application/zip"
   )
@@ -64,7 +64,7 @@ server_export_spreadsheets <- quote({
         stringsAsFactors = FALSE
       )
       # save table
-      openxlsx::write.xlsx(x, file = con, overwrite = TRUE)
+      write_excel_workbook(x, con)
     },
     contentType = "application/zip"
   )
@@ -92,7 +92,7 @@ server_export_spreadsheets <- quote({
         stringsAsFactors = FALSE
       )
       # save table
-      openxlsx::write.xlsx(x, file = con, overwrite = TRUE)
+      write_excel_workbook(x, con)
     },
     contentType = "application/zip"
   )
@@ -120,7 +120,7 @@ server_export_spreadsheets <- quote({
         stringsAsFactors = FALSE
       )
       # save table
-      openxlsx::write.xlsx(x, file = con, overwrite = TRUE)
+      write_excel_workbook(x, con)
     },
     contentType = "application/zip"
   )

@@ -171,6 +171,7 @@ Collate:
     'utils_spatial_data_type.R'
     'utils_spatial_io.R'
     'utils_spatial_misc.R'
+    'utils_write_excel_workbook.R'
     'widget_importSettings_server.R'
     'widget_importSettings_ui.R'
     'widget_mapManager_html.R'

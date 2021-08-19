@@ -40,15 +40,14 @@ server_export_data <- quote({
       })
       ## save results
       lapply(app_data$solutions[export_solutions], function(x) {
-        openxlsx::write.xlsx(
+        write_excel_workbook(
           list(
             Summary = x$get_summary_results_data(),
             Themes = x$get_theme_results_data(),
             Weights = x$get_weight_results_data(),
             Includes = x$get_include_results_data()
           ),
-          file = file.path(td, paste0(x$get_layer_name(), ".xlsx")),
-          overwrite = TRUE
+          file.path(td, paste0(x$get_layer_name(), ".xlsx"))
         )
       })
       # save spatial data
