@@ -171,9 +171,9 @@ themes:
     limit_goal: 0.0
 - name: TNC Crisis Ecosystems (Endangered)
   feature:
-  - name: layer.1
+  - name: layer_1
     variable:
-      index: layer.1
+      index: layer_1
       units: ''
       legend:
         type: categorical
@@ -186,9 +186,9 @@ themes:
     limit_goal: 0.0
 - name: TNC Crisis Ecosystems (Vulnerable)
   feature:
-  - name: layer.2
+  - name: layer_2
     variable:
-      index: layer.2
+      index: layer_2
       units: ''
       legend:
         type: categorical

@@ -68,6 +68,7 @@ idx <- which(names(theme_data) != "R1km_TNC_Crisis_Ecosystems")
 theme_data <- raster::stack(
   theme_data[[idx]], tnc_crisis_endangered_raster, tnc_crisis_vulnerable_raster
 )
+names(theme_data) <- gsub(".", "_", names(theme_data), fixed = TRUE)
 theme_names <- c(
   metadata$name[metadata$type == "theme"][idx],
   "TNC Crisis Ecosystems (Endangered)",
