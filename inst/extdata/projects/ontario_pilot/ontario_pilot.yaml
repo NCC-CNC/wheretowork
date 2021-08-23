@@ -352,6 +352,21 @@ weights:
   status: yes
   visible: no
   factor: 0.0
+- name: Policy Areas (distance)
+  variable:
+    index: R1km_Policy_Area_Distance_M
+    units: ''
+    legend:
+      type: continuous
+      colors:
+      - '#000004FF'
+      - '#51127CFF'
+      - '#B63679FF'
+      - '#FB8861FF'
+      - '#FCFDBFFF'
+  status: yes
+  visible: no
+  factor: 0.0
 includes:
 - name: Policy Areas
   variable:
