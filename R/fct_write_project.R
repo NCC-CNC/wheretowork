@@ -96,7 +96,7 @@ write_project <- function(x, dataset, path, name,
 
   # create full settings list
   params <- list(
-    name = name,
+    name = enc2utf8(name),
     spatial_path = basename(spatial_path),
     attribute_path = basename(attribute_path),
     boundary_path = basename(boundary_path),

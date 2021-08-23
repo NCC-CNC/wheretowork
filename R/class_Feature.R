@@ -66,6 +66,7 @@ Feature <- R6::R6Class(
         #### name
         assertthat::is.string(name),
         assertthat::noNA(name),
+        isFALSE(grepl(".", name, fixed = TRUE)),
         #### variable
         inherits(variable, "Variable"),
         #### visible
@@ -235,7 +236,7 @@ Feature <- R6::R6Class(
     #' @return `list` object.
     export = function() {
       list(
-        name = self$name,
+        name = enc2utf8(self$name),
         variable = self$variable$export(),
         status = self$status,
         visible = self$visible,
