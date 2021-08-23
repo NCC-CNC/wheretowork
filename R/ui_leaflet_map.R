@@ -63,6 +63,10 @@ leaflet_map <- function(sidebar_ids) {
       leaflet::providers$CartoDB.DarkMatter,
       group = "Monochrome"
     ) %>%
+    leaflet::addProviderTiles(
+      leaflet::providers$CartoDB.Positron,
+      group = "Gray scale"
+    ) %>%
     ## specify default view window
     leaflet::flyToBounds(
       -165, -30, 165, 60
@@ -123,7 +127,7 @@ leaflet_map <- function(sidebar_ids) {
     ) %>%
     ## add basemap controls
     leaflet::addLayersControl(
-      baseGroups = c("Satellite", "Street view", "Monochrome"),
+      baseGroups = c("Satellite", "Street view", "Monochrome", "Gray scale"),
       options = leaflet::layersControlOptions(collapsed = TRUE),
       position = "topleft"
     ) %>%
