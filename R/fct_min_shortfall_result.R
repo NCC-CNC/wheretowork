@@ -41,7 +41,7 @@ NULL
 #' # create a weight using a variable
 #' w <- new_weight(
 #'   name = "Human Footprint Index", variable = v1,
-#'   factor = 90, status = FALSE, id = "W1"
+#'   factor = -90, status = FALSE, id = "W1"
 #' )
 #'
 #' # create features using variables
@@ -183,6 +183,16 @@ min_shortfall_result <- function(area_budget_proportion,
     )
   }
 
+  # generate feature data
+  features <- data.frame(
+    id = seq_len(nrow(theme_settings)),
+    name = theme_settings$id,
+    stringsAsFactors = FALSE
+  )
+
+  # generate rij data
+  rij_data <- theme_data
+
   # calculate targets
   ## extract values
   targets <-
@@ -215,31 +225,52 @@ min_shortfall_result <- function(area_budget_proportion,
     locked_in <- rep(FALSE, ncol(include_data))
   }
 
-  # calculate locked out values
-  ## initialize matrix
-  locked_out <- matrix(
-    FALSE, nrow = nrow(weight_data), ncol = ncol(weight_data)
-  )
-  ## if weights present, then use data and settings
-  if (nrow(weight_data) > 0) {
-    ### identify planning units to lock out per each weight
-    for (i in seq_len(nrow(locked_out))) {
-      ## skip if not using weights
-      if (weight_settings$status[i]) {
-        ### identify threshold
-        thresh <- quantile(
-          x = weight_data[i, ],
-          probs = min((100 - weight_settings$factor[i]) / 100, 1),
-          names = FALSE
-        )
-        ### identify planning units to lock out for given weight
-        locked_out[i, ] <- weight_data[i, ] > thresh
-      }
+  # calculate weight data
+  ## process weights with positive factors
+  wn_pos_idx <- which(weight_settings$status & (weight_settings$factor > 0))
+  if (length(wn_pos_idx) > 0) {
+    ### add these weights as features
+    features <- rbind(
+      features,
+      data.frame(
+        id = max(features$id) + seq_along(wn_pos_idx),
+        name = weight_settings$id[wn_pos_idx],
+        stringsAsFactors = FALSE
+      )
+    )
+    ### add these weights to rij data
+    wn_pos_data <- weight_data[wn_pos_idx, , drop = FALSE]
+    for (i in seq_len(nrow(wn_pos_data))) {
+      wn_pos_data[i, ] <- scales::rescale(wn_pos_data[i, ], to = c(0.01, 100))
     }
+    rij_data <- rbind(rij_data, wn_pos_data)
+    ### add these weights to targets
+    targets <- dplyr::bind_rows(
+      targets,
+      tibble::tibble(
+        feature = weight_settings$id[wn_pos_idx],
+        type = "absolute",
+        sense = ">=",
+        target = c(
+          Matrix::rowSums(wn_pos_data) *
+          (weight_settings$factor[wn_pos_idx] / 100)
+        )
+      )
+    )
   }
-  ## identify planning unit to lock out for solutions
-  ## note that locked in planning units are not locked out
-  locked_out <- !locked_in & (colSums(locked_out) > 0.5)
+  ## process weights with negative factors
+  wn_neg_idx <- which(weight_settings$status & (weight_settings$factor < 0))
+  if (length(wn_neg_idx) > 0) {
+    ### add these weights to rij data
+    wn_neg_data <- weight_data[wn_neg_idx, , drop = FALSE]
+    for (i in seq_len(nrow(wn_neg_data))) {
+      wn_neg_data[i, ] <- scales::rescale(wn_neg_data[i, ], to = c(0.01, 100))
+    }
+    wn_neg_thresholds <- c(
+      Matrix::rowSums(wn_neg_data) *
+      (1 - abs(weight_settings$factor[wn_neg_idx] / 100))
+    )
+  }
 
   # calculate cost values
   cost <- scales::rescale(area_data, to = c(0.01, 1))
@@ -257,10 +288,6 @@ min_shortfall_result <- function(area_budget_proportion,
     stop("code_1")
   }
 
-  # calculate feature data
-  features <-
-    data.frame(id = seq_len(nrow(theme_settings)), name = theme_settings$id)
-
   # generate cache key based on settings
   key <- digest::digest(
     list(
@@ -275,7 +302,7 @@ min_shortfall_result <- function(area_budget_proportion,
   ### this prioritization just aims to maximize feature representation given
   ### the area budget, and locked in/out constraints
   initial_problem <-
-    suppressWarnings(prioritizr::problem(cost, features, theme_data)) %>%
+    suppressWarnings(prioritizr::problem(cost, features, rij_data)) %>%
     prioritizr::add_min_shortfall_objective(budget = initial_budget) %>%
     prioritizr::add_manual_targets(targets) %>%
     prioritizr::add_binary_decisions() %>%
@@ -288,11 +315,16 @@ min_shortfall_result <- function(area_budget_proportion,
       initial_problem %>%
       prioritizr::add_locked_in_constraints(locked_in)
   }
-  ## add locked out constraints if needed
-  if (any(locked_out)) {
-    initial_problem <-
-      initial_problem %>%
-      prioritizr::add_locked_out_constraints(locked_out)
+  ### add linear constraints if needed
+  if (length(wn_neg_idx) > 0) {
+    for (i in seq_len(nrow(wn_neg_data))) {
+      initial_problem <- prioritizr::add_linear_constraints(
+        initial_problem,
+        threshold = wn_neg_thresholds[i],
+        sense = "<=",
+        data = wn_neg_data[i, ]
+      )
+    }
   }
 
   ## generate solution
@@ -317,9 +349,9 @@ min_shortfall_result <- function(area_budget_proportion,
       matrix(
         initial_solution,
         byrow = TRUE,
-        ncol = ncol(theme_data), nrow = nrow(theme_data)
+        ncol = ncol(rij_data), nrow = nrow(rij_data)
       ) *
-        theme_data
+      rij_data
     )
     ### prepare adjacency matrix for connectivity penalties
     ### note we use connectivity penalties because we want the solution
@@ -338,7 +370,7 @@ min_shortfall_result <- function(area_budget_proportion,
             features,
             data.frame(id = nrow(main_targets) + 1, name = "cost")
           ),
-          rbind(theme_data, cost)
+          rbind(rij_data, cost)
         )
       ) %>%
       prioritizr::add_min_set_objective() %>%
@@ -367,11 +399,16 @@ min_shortfall_result <- function(area_budget_proportion,
         main_problem %>%
         prioritizr::add_locked_in_constraints(locked_in)
     }
-    ### add locked out constraints if needed
-    if (any(locked_out)) {
-      main_problem <-
-        main_problem %>%
-        prioritizr::add_locked_out_constraints(locked_out)
+    ### add linear constraints if needed
+    if (length(wn_neg_idx) > 0) {
+      for (i in seq_len(nrow(wn_neg_data))) {
+        main_problem <- prioritizr::add_linear_constraints(
+          main_problem,
+          threshold = wn_neg_thresholds[i],
+          sense = "<=",
+          data = wn_neg_data[i, ]
+        )
+      }
     }
     ### generate solution
     main_solution <-

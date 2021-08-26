@@ -38,7 +38,7 @@ test_that("initialization", {
     variable = v1,
     visible = FALSE,
     status = FALSE,
-    factor = 0.2,
+    factor = -0.2,
     id = "FID1"
   )
   wr <- new_weight_results(
@@ -464,7 +464,7 @@ test_that("widget methods", {
     variable = v1,
     visible = FALSE,
     status = FALSE,
-    factor = 0.2,
+    factor = -0.2,
     id = "FID1"
   )
   wr <- new_weight_results(

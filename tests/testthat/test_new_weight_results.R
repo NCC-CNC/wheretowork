@@ -10,7 +10,7 @@ test_that("initialization", {
     visible = FALSE,
     status = FALSE,
     current = 0.45,
-    factor = 0.2,
+    factor = -0.2,
     id = "FID1"
   )
   x <- new_weight_results(
@@ -23,7 +23,7 @@ test_that("initialization", {
   expect_is(x$repr(), "character")
   expect_identical(x$id, "RID1")
   expect_identical(x$status, FALSE)
-  expect_identical(x$factor, 0.2)
+  expect_identical(x$factor, -0.2)
   expect_identical(x$held, 0.9)
   expect_identical(x$current, 0.45)
 })
@@ -38,7 +38,7 @@ test_that("results methods", {
     visible = FALSE,
     status = FALSE,
     current = 0.45,
-    factor = 0.2,
+    factor = -0.2,
     id = "FID1"
   )
   w$factor <- 0.8
@@ -73,10 +73,10 @@ test_that("widget methods", {
     visible = FALSE,
     status = FALSE,
     current = 0.45,
-    factor = 0.2,
+    factor = -0.2,
     id = "FID1"
   )
-  w$factor <- 0.8
+  w$factor <- -0.8
   w$status <- TRUE
   x <- new_weight_results(
     weight = w,
@@ -90,7 +90,7 @@ test_that("widget methods", {
       id = "RID1",
       name = "Human Footprint Index",
       status = TRUE,
-      factor = 0.8,
+      factor = -0.8,
       total_amount = v$total,
       current_held = 0.45,
       solution_held = 0.9,

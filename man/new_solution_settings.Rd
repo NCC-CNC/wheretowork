@@ -48,7 +48,7 @@ v5 <- new_variable_from_auto(dataset = d, index = 5)
 # create a weight using a variable
 w <- new_weight(
   name = "Human Footprint Index", variable = v1,
-  factor = 90, status = FALSE, id = "W1"
+  factor = -90, status = FALSE, id = "W1"
 )
 
 # create features using variables

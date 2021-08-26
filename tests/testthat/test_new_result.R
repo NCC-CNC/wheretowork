@@ -29,7 +29,7 @@ test_that("initialization", {
   ## create a weight using dataset
   w <- new_weight(
     name = "Human Footprint Index", variable = v1,
-    factor = 90, status = TRUE, id = "W1"
+    factor = -90, status = TRUE, id = "W1"
   )
   ## create a weight using dataset
   incl <- new_include(

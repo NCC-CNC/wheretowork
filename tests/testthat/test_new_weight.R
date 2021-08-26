@@ -9,7 +9,7 @@ test_that("initialization", {
     variable = v,
     visible = FALSE,
     status = FALSE,
-    factor = 0.2,
+    factor = -0.2,
     current = 0.89,
     id = "FID1"
   )
@@ -22,7 +22,7 @@ test_that("initialization", {
   expect_equal(x$visible, FALSE)
   expect_equal(x$status, FALSE)
   expect_equal(x$current, 0.89)
-  expect_equal(x$factor, 0.2)
+  expect_equal(x$factor, -0.2)
 })
 
 test_that("get methods", {
@@ -35,11 +35,11 @@ test_that("get methods", {
     visible = TRUE,
     status = FALSE,
     current = 0.89,
-    factor = 0.2,
+    factor = -0.2,
     id = "FID1"
   )
   # run tests
-  expect_identical(x$get_factor(), 0.2)
+  expect_identical(x$get_factor(), -0.2)
   expect_identical(x$get_visible(), TRUE)
   expect_identical(x$get_status(), FALSE)
   expect_identical(x$get_current(), 0.89)
@@ -58,7 +58,7 @@ test_that("set methods", {
     visible = TRUE,
     status = FALSE,
     current = 0.89,
-    factor = 0.2,
+    factor = -0.2,
     id = "FID1"
   )
   # run tests
@@ -90,7 +90,7 @@ test_that("export method", {
     visible = TRUE,
     status = FALSE,
     current = 0.89,
-    factor = 0.2,
+    factor = -0.2,
     id = "FID1"
   )
   # run tests
@@ -101,7 +101,7 @@ test_that("export method", {
       variable = x$variable$export(),
       status = FALSE,
       visible = TRUE,
-      factor = 0.2
+      factor = -0.2
     )
   )
 })
@@ -117,7 +117,7 @@ test_that("widget methods", {
     name = "Human Footprint Index",
     variable = v,
     status = FALSE,
-    factor = 0.2,
+    factor = -0.2,
     id = "FID1"
   )
   # run tests
@@ -128,8 +128,8 @@ test_that("widget methods", {
       id = "FID1",
       name = "Human Footprint Index",
       status = FALSE,
-      factor = 0.2,
-      min_factor = 0,
+      factor = -0.2,
+      min_factor = -100,
       max_factor = 100,
       step_factor = 1
     )

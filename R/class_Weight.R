@@ -403,7 +403,7 @@ new_weight <- function(name, variable,
     status = status,
     current = current,
     factor = factor,
-    min_factor = 0,
+    min_factor = -100,
     max_factor = 100,
     step_factor = 1
   )

@@ -146,6 +146,7 @@ make_valid_names <- function(x) {
   x <- make.names(x)
   x <- gsub(pattern = ".", replacement = "_", x, fixed = TRUE)
   x <- gsub(pattern = "(_)\\1+", replacement = "\\1", x)
+  x <- gsub(pattern = ".", replacement = "_", x, fixed = TRUE)
   x
 }
 

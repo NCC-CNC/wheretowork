@@ -29,7 +29,7 @@ test_that("initialization", {
   ## create a weight using dataset
   w <- new_weight(
     name = "Human Footprint Index", variable = v1,
-    factor = 90, status = FALSE, id = "W1"
+    factor = -90, status = FALSE, id = "W1"
   )
   ## create a weight using dataset
   incl <- new_include(
@@ -157,7 +157,7 @@ test_that("get methods", {
   ## create a weight using dataset
   w <- new_weight(
     name = "Human Footprint Index", variable = v1,
-    factor = 90, status = FALSE, id = "W1"
+    factor = -90, status = FALSE, id = "W1"
   )
   ## create a weight using dataset
   incl <- new_include(
@@ -227,7 +227,7 @@ test_that("get methods", {
     x$get_setting(
       list(id = "W1", setting = "factor", type = "weight")
     ),
-    90
+    -90
   )
   expect_equal(
     x$get_setting(
@@ -354,7 +354,7 @@ test_that("set methods", {
   ## create a weight using dataset
   w <- new_weight(
     name = "Human Footprint Index", variable = v1,
-    factor = 90, status = FALSE, id = "W1"
+    factor = -90, status = FALSE, id = "W1"
   )
   ## create a weight using dataset
   incl <- new_include(
@@ -526,7 +526,7 @@ test_that("widget methods", {
   ## create a weight using dataset
   w <- new_weight(
     name = "Human Footprint Index", variable = v1,
-    factor = 90, status = FALSE, id = "W1"
+    factor = -90, status = FALSE, id = "W1"
   )
   ## create a weight using dataset
   incl <- new_include(

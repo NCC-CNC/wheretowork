@@ -80,7 +80,7 @@ NULL
 #' # create a weight using a variable
 #' w <- new_weight(
 #'   name = "Human Footprint Index", variable = v1,
-#'   factor = 90, status = FALSE, id = "W1"
+#'   factor = -90, status = FALSE, id = "W1"
 #' )
 #'
 #' # create features using variables
@@ -248,20 +248,34 @@ min_set_result <- function(area_data,
   if (nrow(weight_data) > 0) {
     ## if weights present, then use data and settings
     ### normalize cost values
-    wn <- weight_data
-    for (i in seq_along(nrow(wn))) {
+    wn_idx <- which(weight_settings$status > 0)
+    wn <- weight_data[wn_idx, , drop = FALSE]
+    for (i in seq_len(nrow(wn))) {
+      #### z-score weight data
       wn[i, ] <- zscale(wn[i, ])
-      if (abs(min(weight_data[i, ], na.rm = TRUE)) < 1e-10) {
-        wn[i, ] <- scales::rescale(wn[i, ], to = c(0, 1))
+      ### determine if zeros present in data
+      has_zero <- abs(min(wn[i, ], na.rm = TRUE)) < 1e-10
+      if (weight_settings$factor[wn_idx[i]] > 0) {
+        ### if positive weight,
+        ### then re-scale so that larger values mean lower costs
+        wn[i, ] <- scales::rescale(
+          wn[i, ], to = c(1, ifelse(has_zero, 0, 0.01))
+        )
       } else {
-        wn[i, ] <- scales::rescale(wn[i, ], to = c(0.01, 1))
+        ### if negative weight,
+        ### then re-scale so that larger values mean higher costs
+        wn[i, ] <- scales::rescale(
+          wn[i, ], to = c(ifelse(has_zero, 0, 0.01), 1)
+        )
       }
     }
+
     ### apply factors and status settings
     cost <- matrix(
-      rep(weight_settings$factor * weight_settings$status, each = ncol(wn)),
+      rep(abs(weight_settings$factor[wn_idx]), each = ncol(wn)),
       byrow = TRUE,
-      nrow = nrow(wn), ncol = ncol(wn)
+      nrow = nrow(wn),
+      ncol = ncol(wn)
     )
     ### calculate total cost by summing together all weight values
     cost <- colSums(cost * wn)

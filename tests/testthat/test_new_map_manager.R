@@ -25,7 +25,7 @@ test_that("initialization", {
   ## create a weight using a dataset
   w <- new_weight(
     name = "Human Footprint Index", variable = v1,
-    factor = 90, status = FALSE, id = "W1"
+    factor = -90, status = FALSE, id = "W1"
   )
   ## create features using datasets
   f1 <- new_feature(
@@ -89,7 +89,7 @@ test_that("get methods", {
   ## create a weight using a dataset
   w <- new_weight(
     name = "Human Footprint Index", variable = v1,
-    factor = 90, status = FALSE, id = "W1"
+    factor = -90, status = FALSE, id = "W1"
   )
   ## create features using datasets
   f1 <- new_feature(
@@ -164,7 +164,7 @@ test_that("set methods", {
   ## create a weight using a dataset
   w <- new_weight(
     name = "Human Footprint Index", variable = v1,
-    factor = 90, status = FALSE, id = "W1"
+    factor = -90, status = FALSE, id = "W1"
   )
   ## create features using datasets
   f1 <- new_feature(
@@ -259,7 +259,7 @@ test_that("widget methods", {
   ## create a weight using a dataset
   w <- new_weight(
     name = "Human Footprint Index", variable = v1,
-    factor = 90, status = FALSE, id = "W1"
+    factor = -90, status = FALSE, id = "W1"
   )
   ## create features using datasets
   f1 <- new_feature(
