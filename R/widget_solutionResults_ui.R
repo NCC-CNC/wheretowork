@@ -253,8 +253,8 @@ solutionResults_html <- function(id, style, class, ...) {
                     ),
                     title = paste(
                       "Weight results for the solution.",
-                      "This panel shows how well the Weights are covered",
-                      "by the solution. It also shows how well the Weights are",
+                      "This panel shows how much the Weights are covered",
+                      "by the solution. It also shows how much the Weights are",
                       "covered by the Includes used to generate the solution,",
                       "and Weight factors used to generate the solution."
                     ),

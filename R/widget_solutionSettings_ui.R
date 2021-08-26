@@ -166,12 +166,16 @@ solutionSettings_html <- function(id, style, class, ...) {
                   "Weights"
                 ),
                 title = paste(
-                  "Weights describe properties of places that can",
-                  "impede conservation efforts ",
-                  "(e.g. human population density).",
-                  "To help avoid places with such properties,",
-                  "you can set factors for weights to reduce their coverage",
-                  "within solutions."
+                  "Weights describe properties of places that",
+                  "should be considered when generating solutions.",
+                  "To alter how much they are covered by solutions,",
+                  "you can set factors for them.",
+                  "Positive factors (i.e. values > 0) indicate that",
+                  "it is more important for solutions to cover a weight",
+                  "(e.g. landscape naturalness).",
+                  "Negative factors (i.e. values < 0) indicate that",
+                  "it is more important for solutions to avoid a weight",
+                  "(e.g. human population density)."
                 ),
                 options = list(container = "body")
               )
