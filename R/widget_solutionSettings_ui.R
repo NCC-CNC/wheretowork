@@ -169,13 +169,7 @@ solutionSettings_html <- function(id, style, class, ...) {
                   "Weights describe properties of places that",
                   "should be considered when generating solutions.",
                   "To alter how much they are covered by solutions,",
-                  "you can set factors for them.",
-                  "Positive factors (i.e. values > 0) indicate that",
-                  "it is more important for solutions to cover a weight",
-                  "(e.g. landscape naturalness).",
-                  "Negative factors (i.e. values < 0) indicate that",
-                  "it is more important for solutions to avoid a weight",
-                  "(e.g. human population density)."
+                  "you can set factors for them."
                 ),
                 options = list(container = "body")
               )
@@ -343,7 +337,15 @@ solutionSettings_html <- function(id, style, class, ...) {
             `data-placement` = "bottom",
             `data-container` = "body",
             `data-trigger` = "hover",
-            title = "Set the factor",
+            title = paste(
+              "Set the factor.",
+              "Positive factors (i.e. values > 0) indicate that",
+              "it is more important for solutions to cover a weight",
+              "(e.g. landscape naturalness).",
+              "Negative factors (i.e. values < 0) indicate that",
+              "it is more important for solutions to avoid a weight",
+              "(e.g. human population density)."
+            ),
             ss_slider_component_scaffold()
           ),
         )
