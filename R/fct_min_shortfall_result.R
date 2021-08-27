@@ -298,46 +298,63 @@ min_shortfall_result <- function(area_budget_proportion,
     )
   )
 
-  ## generate initial prioritization problem
-  ### this prioritization just aims to maximize feature representation given
-  ### the area budget, and locked in/out constraints
-  initial_problem <-
-    suppressWarnings(prioritizr::problem(cost, features, rij_data)) %>%
-    prioritizr::add_min_shortfall_objective(budget = initial_budget) %>%
-    prioritizr::add_manual_targets(targets) %>%
-    prioritizr::add_binary_decisions() %>%
-    prioritizr::add_cbc_solver(
-      verbose = verbose, gap = gap_1, time_limit = time_limit_1
-    )
-  ## add locked in constraints if needed
-  if (any(locked_in)) {
-    initial_problem <-
-      initial_problem %>%
-      prioritizr::add_locked_in_constraints(locked_in)
-  }
-  ### add linear constraints if needed
-  if (length(wn_neg_idx) > 0) {
-    for (i in seq_len(nrow(wn_neg_data))) {
-      initial_problem <- prioritizr::add_linear_constraints(
-        initial_problem,
-        threshold = wn_neg_thresholds[i],
-        sense = "<=",
-        data = wn_neg_data[i, ]
-      )
-    }
-  }
-
-  ## generate solution
+  # generate solution
   if (!isTRUE(cache$exists(key))) {
-    ### solve problem to generate solution if needed
-    initial_solution <- c(
+    ## extract indices for planning unit with at least some data
+    initial_pu_idx <- which(
+      Matrix::colSums(theme_data) > 0 |
+      Matrix::colSums(weight_data) > 0 |
+      Matrix::colSums(include_data) > 0
+    )
+    ## generate initial prioritization problem with subset of planning units
+    ## this is needed to prevent CBC from crashing, #158
+    ## this prioritization just aims to maximize feature representation given
+    ## the area budget, and locked in/out constraints
+    initial_problem <-
+      suppressWarnings(prioritizr::problem(
+        x = cost[initial_pu_idx],
+        features = features,
+        rij_matrix = theme_data[, initial_pu_idx, drop = FALSE])
+      ) %>%
+      prioritizr::add_min_shortfall_objective(budget = initial_budget) %>%
+      prioritizr::add_manual_targets(targets) %>%
+      prioritizr::add_binary_decisions() %>%
+      prioritizr::add_cbc_solver(
+        verbose = verbose, gap = gap_1, time_limit = time_limit_1
+      )
+    ## add locked in constraints if needed
+    if (any(locked_in[initial_pu_idx])) {
+      initial_problem <-
+        initial_problem %>%
+        prioritizr::add_locked_in_constraints(locked_in[initial_pu_idx])
+    }
+    ### add linear constraints if needed
+    if (length(wn_neg_idx) > 0) {
+      for (i in seq_len(nrow(wn_neg_data))) {
+        initial_problem <- prioritizr::add_linear_constraints(
+          initial_problem,
+          threshold = wn_neg_thresholds[i],
+          sense = "<=",
+          data = wn_neg_data[i, initial_pu_idx]
+        )
+      }
+    }
+    ## solve problem to generate solution if needed
+    initial_solution <- rep(0, length(cost))
+    initial_solution[initial_pu_idx] <- c(
       prioritizr::solve(initial_problem, run_checks = FALSE)
     )
-    ### store solution in cache
+    ## store solution in cache
     cache$set(key, initial_solution)
   }
+
+  # extract/prepare solution and problem for for subsequent analysis
   ## extract solution from cache
   initial_solution <- cache$get(key)
+  ## initial problem formulation with all planning units
+  initial_problem <- suppressWarnings(prioritizr::problem(
+    x = cost, features = features, rij_matrix = theme_data
+  ))
 
   # generate second prioritization
   ## this formulation aims to minimize fragmentation,

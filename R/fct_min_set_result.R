@@ -299,34 +299,51 @@ min_set_result <- function(area_data,
     )
   )
 
-  ## generate initial prioritization problem
-  ### this problem just aims to minimize cost
-  initial_problem <-
-    suppressWarnings(prioritizr::problem(cost, features, theme_data)) %>%
-    prioritizr::add_min_set_objective() %>%
-    prioritizr::add_manual_targets(targets) %>%
-    prioritizr::add_binary_decisions() %>%
-    prioritizr::add_cbc_solver(
-      verbose = verbose, gap = gap_1, time_limit = time_limit_1
-    )
-  ### add locked in constraints if needed
-  if (any(locked_in)) {
-    initial_problem <-
-      initial_problem %>%
-      prioritizr::add_locked_in_constraints(locked_in)
-  }
-
-  ## generate solution
+  # generate solution
   if (!isTRUE(cache$exists(key))) {
+    ## extract indices for planning unit with at least some data
+    initial_pu_idx <- which(
+      Matrix::colSums(theme_data) > 0 |
+      Matrix::colSums(weight_data) > 0 |
+      Matrix::colSums(include_data) > 0
+    )
+    ## generate initial prioritization problem with subset of planning units
+    ## this is needed to prevent CBC from crashing, #158
+    ### this problem just aims to minimize cost
+    initial_problem <-
+      suppressWarnings(prioritizr::problem(
+        x = cost[initial_pu_idx],
+        features = features,
+        rij_matrix = theme_data[, initial_pu_idx, drop = FALSE])
+      ) %>%
+      prioritizr::add_min_set_objective() %>%
+      prioritizr::add_manual_targets(targets) %>%
+      prioritizr::add_binary_decisions() %>%
+      prioritizr::add_cbc_solver(
+        verbose = verbose, gap = gap_1, time_limit = time_limit_1
+      )
+    ### add locked in constraints if needed
+    if (any(locked_in[initial_pu_idx])) {
+      initial_problem <-
+        initial_problem %>%
+        prioritizr::add_locked_in_constraints(locked_in[initial_pu_idx])
+    }
     ### solve problem to generate solution if needed
-    initial_solution <- c(
+    initial_solution <- rep(0, length(cost))
+    initial_solution[initial_pu_idx] <- c(
       prioritizr::solve(initial_problem, run_checks = FALSE)
     )
     ### store solution in cache
     cache$set(key, initial_solution)
   }
+
+  # extract/prepare solution and problem for for subsequent analysis
   ## extract solution from cache
   initial_solution <- cache$get(key)
+  ## initial problem formulation with all planning units
+  initial_problem <- suppressWarnings(prioritizr::problem(
+    x = cost, features = features, rij_matrix = theme_data
+  ))
 
   # generate second prioritization
   ## this formulation aims to minimize fragmentation,
