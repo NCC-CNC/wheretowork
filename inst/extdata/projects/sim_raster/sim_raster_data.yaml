@@ -4,11 +4,11 @@ attribute_path: sim_raster_attribute.csv.gz
 boundary_path: sim_raster_boundary.csv.gz
 mode: advanced
 themes:
-- name: Olive-headed Lorikeet
+- name: Brown-necked Parrot (Brown-necked)
   feature:
-  - name: Olive-headed Lorikeet habitat
+  - name: Brown-necked Parrot (Brown-necked) habitat
     variable:
-      index: Olive_headed_Lorikeet
+      index: Brown_necked_Parrot_Brown_necked_
       units: ha
       legend:
         type: categorical
@@ -23,11 +23,11 @@ themes:
     visible: yes
     goal: 0.83
     limit_goal: 0.02
-- name: Purple Honeycreeper
+- name: Gough Island Finch
   feature:
-  - name: Purple Honeycreeper habitat
+  - name: Gough Island Finch habitat
     variable:
-      index: Purple_Honeycreeper
+      index: Gough_Island_Finch
       units: ha
       legend:
         type: categorical
@@ -44,11 +44,11 @@ themes:
     visible: yes
     goal: 0.7
     limit_goal: 0.36
-- name: Least Boobook
+- name: Manus Boobook
   feature:
-  - name: Least Boobook habitat
+  - name: Manus Boobook habitat
     variable:
-      index: Least_Boobook
+      index: Manus_Boobook
       units: ha
       legend:
         type: categorical
@@ -59,11 +59,11 @@ themes:
     visible: yes
     goal: 0.7
     limit_goal: 0.33
-- name: Wagtails and Pipits
+- name: Waxbills and Allies
   feature:
-  - name: Eastern Yellow Wagtail (Green-headed)
+  - name: Red-faced Crimsonwing
     variable:
-      index: Eastern_Yellow_Wagtail_Green_headed_
+      index: Red_faced_Crimsonwing
       units: ha
       legend:
         type: continuous
@@ -81,9 +81,9 @@ themes:
     visible: yes
     goal: 0.69
     limit_goal: 0.04
-  - name: Alpine Pipit
+  - name: African Firefinch
     variable:
-      index: Alpine_Pipit
+      index: African_Firefinch
       units: ha
       legend:
         type: continuous
@@ -101,9 +101,9 @@ themes:
     visible: yes
     goal: 0.55
     limit_goal: 0.05
-  - name: Mountain Wagtail
+  - name: Black-and-white Mannikin (Red-backed)
     variable:
-      index: Mountain_Wagtail
+      index: Black_and_white_Mannikin_Red_backed_
       units: ha
       legend:
         type: continuous
@@ -123,9 +123,9 @@ themes:
     visible: yes
     goal: 0.53
     limit_goal: 0.28
-  - name: Yellow-breasted Pipit
+  - name: Black-throated Finch (White-rumped)
     variable:
-      index: Yellow_breasted_Pipit
+      index: Black_throated_Finch_White_rumped_
       units: ha
       legend:
         type: continuous
@@ -143,9 +143,9 @@ themes:
     visible: yes
     goal: 0.52
     limit_goal: 0.08
-  - name: African Pipit (Yemen)
+  - name: Crimson Seedcracker
     variable:
-      index: African_Pipit_Yemen_
+      index: Crimson_Seedcracker
       units: ha
       legend:
         type: continuous
@@ -165,9 +165,9 @@ themes:
     visible: yes
     goal: 0.72
     limit_goal: 0.18
-  - name: Long-billed Pipit (Indian)
+  - name: Royal Parrotfinch
     variable:
-      index: Long_billed_Pipit_Indian_
+      index: Royal_Parrotfinch
       units: ha
       legend:
         type: continuous
@@ -184,9 +184,9 @@ themes:
     visible: yes
     goal: 0.57
     limit_goal: 0.35
-  - name: Buffy Pipit
+  - name: Red-billed Firefinch
     variable:
-      index: Buffy_Pipit
+      index: Red_billed_Firefinch
       units: ha
       legend:
         type: continuous
@@ -207,9 +207,9 @@ themes:
     visible: yes
     goal: 0.5
     limit_goal: 0.24
-  - name: Rock Pipit (Western)
+  - name: Quailfinch (Black-faced)
     variable:
-      index: Rock_Pipit_Western_
+      index: Quailfinch_Black_faced_
       units: ha
       legend:
         type: continuous
@@ -227,9 +227,9 @@ themes:
     visible: yes
     goal: 0.54
     limit_goal: 0.03
-  - name: Western Yellow Wagtail (lutea)
+  - name: White-collared Oliveback
     variable:
-      index: Western_Yellow_Wagtail_lutea_
+      index: White_collared_Oliveback
       units: ha
       legend:
         type: continuous

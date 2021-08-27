@@ -54,7 +54,8 @@ zscale <- function(x) {
 #'
 #' @noRd
 example_include_names <- function() {
-  tibble::as_tibble(
+  # import data
+  out <- tibble::as_tibble(
     utils::read.table(
       system.file(
         "extdata", "data", "example-includes.csv",
@@ -65,6 +66,8 @@ example_include_names <- function() {
       header = TRUE
     )
   )
+  # return only valid names
+  out[!grepl(".", out$name, fixed = TRUE), , drop = TRUE]
 }
 
 #' Example weight names
@@ -75,7 +78,8 @@ example_include_names <- function() {
 #'
 #' @noRd
 example_weight_names <- function() {
-  tibble::as_tibble(
+  # import data
+  out <- tibble::as_tibble(
     utils::read.table(
       system.file(
         "extdata", "data", "example-weights.csv",
@@ -86,6 +90,8 @@ example_weight_names <- function() {
       header = TRUE
     )
   )
+  # return only valid names
+  out[!grepl(".", out$name, fixed = TRUE), , drop = TRUE]
 }
 
 #' Example theme names
@@ -114,6 +120,12 @@ example_theme_names <- function() {
   d <- d[, c("english_name", "family")]
   # subset to include only species with English common names
   d <- stats::na.omit(d)
+  # remove invalid names
+  valid <- c(
+    !grepl(".", d$english_name, fixed = TRUE) &
+    !grepl(".", d$family, fixed = TRUE)
+  )
+  d <- d[valid, , drop = FALSE]
   # remove duplicates
   d <- d[!duplicated(d$english_name), ]
   # extract English family names

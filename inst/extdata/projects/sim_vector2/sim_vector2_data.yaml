@@ -4,11 +4,11 @@ attribute_path: sim_vector2_attribute.csv.gz
 boundary_path: sim_vector2_boundary.csv.gz
 mode: beginner
 themes:
-- name: Jerdon's Nightjar
+- name: Indian Nightjar
   feature:
-  - name: Jerdon's Nightjar habitat
+  - name: Indian Nightjar habitat
     variable:
-      index: Jerdon_s_Nightjar
+      index: Indian_Nightjar
       units: ha
       legend:
         type: categorical
@@ -21,11 +21,11 @@ themes:
     visible: yes
     goal: 0.63
     limit_goal: 0.09
-- name: Plain Leaf Warbler
+- name: Yellow-vented Warbler
   feature:
-  - name: Plain Leaf Warbler habitat
+  - name: Yellow-vented Warbler habitat
     variable:
-      index: Plain_Leaf_Warbler
+      index: Yellow_vented_Warbler
       units: ha
       legend:
         type: continuous
@@ -43,11 +43,11 @@ themes:
     visible: yes
     goal: 0.88
     limit_goal: 0.09
-- name: Nicobar Scrubfowl
+- name: Tanimbar Scrubfowl
   feature:
-  - name: Nicobar Scrubfowl habitat
+  - name: Tanimbar Scrubfowl habitat
     variable:
-      index: Nicobar_Scrubfowl
+      index: Tanimbar_Scrubfowl
       units: ha
       legend:
         type: continuous
@@ -65,11 +65,11 @@ themes:
     visible: yes
     goal: 0.75
     limit_goal: 0.38
-- name: Kiwis
+- name: Laughingthrushes and Allies
   feature:
-  - name: Southern Brown Kiwi
+  - name: Rusty-fronted Barwing
     variable:
-      index: Southern_Brown_Kiwi
+      index: Rusty_fronted_Barwing
       units: ha
       legend:
         type: continuous
@@ -89,9 +89,9 @@ themes:
     visible: yes
     goal: 0.56
     limit_goal: 0.19
-  - name: Southern Brown Kiwi (Stewart I.)
+  - name: Rufous-cheeked Laughingthrush
     variable:
-      index: Southern_Brown_Kiwi_Stewart_I_
+      index: Rufous_cheeked_Laughingthrush
       units: ha
       legend:
         type: continuous
@@ -111,9 +111,9 @@ themes:
     visible: yes
     goal: 0.68
     limit_goal: 0.15
-  - name: Okarito Brown Kiwi
+  - name: Moustached Laughingthrush (Western)
     variable:
-      index: Okarito_Brown_Kiwi
+      index: Moustached_Laughingthrush_Western_
       units: ha
       legend:
         type: continuous
@@ -131,9 +131,9 @@ themes:
     visible: yes
     goal: 0.68
     limit_goal: 0.06
-  - name: Little Spotted Kiwi
+  - name: Collared Laughingthrush
     variable:
-      index: Little_Spotted_Kiwi
+      index: Collared_Laughingthrush
       units: ha
       legend:
         type: continuous
@@ -150,9 +150,9 @@ themes:
     visible: yes
     goal: 0.54
     limit_goal: 0.19
-  - name: North Island Brown Kiwi
+  - name: Blue-winged Minla
     variable:
-      index: North_Island_Brown_Kiwi
+      index: Blue_winged_Minla
       units: ha
       legend:
         type: continuous
@@ -170,9 +170,9 @@ themes:
     visible: yes
     goal: 0.59
     limit_goal: 0.34
-  - name: Southern Brown Kiwi (South I.)
+  - name: Dusky Babbler
     variable:
-      index: Southern_Brown_Kiwi_South_I_
+      index: Dusky_Babbler
       units: ha
       legend:
         type: continuous
@@ -192,11 +192,11 @@ themes:
     visible: yes
     goal: 0.71
     limit_goal: 0.08
-- name: Southern Storm-Petrels
+- name: Starlings
   feature:
-  - name: Elliot's Storm-Petrel
+  - name: Long-tailed Glossy Starling
     variable:
-      index: Elliot_s_Storm_Petrel
+      index: Long_tailed_Glossy_Starling
       units: ha
       legend:
         type: continuous
@@ -216,9 +216,9 @@ themes:
     visible: yes
     goal: 0.79
     limit_goal: 0.16
-  - name: Gray-backed Storm-Petrel
+  - name: Waller's Starling (Preuss's)
     variable:
-      index: Gray_backed_Storm_Petrel
+      index: Waller_s_Starling_Preuss_s_
       units: ha
       legend:
         type: continuous
@@ -236,9 +236,9 @@ themes:
     visible: yes
     goal: 0.72
     limit_goal: 0.01
-  - name: Wilson's Storm-Petrel (Fuegian)
+  - name: Magpie Starling
     variable:
-      index: Wilson_s_Storm_Petrel_Fuegian_
+      index: Magpie_Starling
       units: ha
       legend:
         type: continuous
@@ -256,9 +256,9 @@ themes:
     visible: yes
     goal: 0.83
     limit_goal: 0.07
-  - name: Wilson's Storm-Petrel
+  - name: Madagascar Starling
     variable:
-      index: Wilson_s_Storm_Petrel
+      index: Madagascar_Starling
       units: ha
       legend:
         type: continuous
@@ -276,9 +276,9 @@ themes:
     visible: yes
     goal: 0.7
     limit_goal: 0.07
-  - name: New Zealand Storm-Petrel
+  - name: Great Myna
     variable:
-      index: New_Zealand_Storm_Petrel
+      index: Great_Myna
       units: ha
       legend:
         type: continuous
@@ -296,9 +296,9 @@ themes:
     visible: yes
     goal: 0.82
     limit_goal: 0.29
-  - name: Polynesian Storm-Petrel
+  - name: Meves's Starling (Cunene)
     variable:
-      index: Polynesian_Storm_Petrel
+      index: Meves_s_Starling_Cunene_
       units: ha
       legend:
         type: continuous
