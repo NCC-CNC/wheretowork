@@ -24,6 +24,14 @@ import_data <- function(x, mode) {
     app_data$mode <- mode
   }
 
+  # force default weight factors to be 99 under beginner mode
+  # this because the beginner mode does not provide widgets to update weights
+  if (identical(mode, "beginner") || identical(app_data$mode, "beginner")) {
+    for (i in seq_along(app_data$weights)) {
+      app_data$weights[[i]]$factor <- -99
+    }
+  }
+
   # create parameters
   area_budget_parameter <-
     wheretowork::new_parameter(
