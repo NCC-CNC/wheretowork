@@ -314,7 +314,7 @@ min_shortfall_result <- function(area_budget_proportion,
       suppressWarnings(prioritizr::problem(
         x = cost[initial_pu_idx],
         features = features,
-        rij_matrix = theme_data[, initial_pu_idx, drop = FALSE])
+        rij_matrix = rij_data[, initial_pu_idx, drop = FALSE])
       ) %>%
       prioritizr::add_min_shortfall_objective(budget = initial_budget) %>%
       prioritizr::add_manual_targets(targets) %>%
@@ -353,7 +353,7 @@ min_shortfall_result <- function(area_budget_proportion,
   initial_solution <- cache$get(key)
   ## initial problem formulation with all planning units
   initial_problem <- suppressWarnings(prioritizr::problem(
-    x = cost, features = features, rij_matrix = theme_data
+    x = cost, features = features, rij_matrix = rij_data
   ))
 
   # generate second prioritization
