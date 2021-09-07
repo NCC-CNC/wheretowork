@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.1.0",
+    "Version": "4.1.1",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -1114,10 +1114,10 @@
     },
     "sf": {
       "Package": "sf",
-      "Version": "1.0-1",
+      "Version": "1.0-2",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "559b46e3609f1b0dbcf9eada54fb6ee0"
+      "Hash": "464dca3e4f0bb13cf202630bfed2753a"
     },
     "shiny": {
       "Package": "shiny",
