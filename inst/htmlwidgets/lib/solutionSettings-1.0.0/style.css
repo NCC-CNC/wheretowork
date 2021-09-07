@@ -117,6 +117,17 @@
   padding-right: 6px;
 }
 
+/* reset button */
+.solution-settings .reset-button {
+  padding: 0;
+  margin-left: 0px;
+  margin-top: 0px;
+  border: 0;
+  padding-top: 2px;
+  font-size: 11px;
+  background: #fff;
+}
+
 /* solution name input */
 .solution-footer-name {
   flex-grow: 1;
@@ -284,7 +295,8 @@
 
 /* -- inactive styling */
 .solution-setting label[disabled],
-.solution-setting i[disabled] {
+.solution-setting i[disabled],
+.solution-setting button[disabled] {
   color: var(--inactive) !important;
 }
 

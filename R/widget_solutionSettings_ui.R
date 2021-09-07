@@ -360,7 +360,7 @@ solutionSettings_html <- function(id, style, class, ...) {
         class = "single-theme-setting-template",
         htmltools::tags$div(
           class = "single-theme-setting solution-setting",
-          ss_header_component_scaffold("theme"),
+          ss_header_component_scaffold("theme", reset_button = TRUE),
           ss_goal_component_scaffold()
         )
       )
@@ -375,7 +375,7 @@ solutionSettings_html <- function(id, style, class, ...) {
         class = "multi-theme-setting-template",
         htmltools::tags$div(
           class = "multi-theme-setting solution-setting",
-          ss_header_component_scaffold("theme"),
+          ss_header_component_scaffold("theme", reset_button = TRUE),
           htmltools::tags$div(
             class = "main",
             shiny::tabsetPanel(

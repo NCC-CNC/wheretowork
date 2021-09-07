@@ -178,15 +178,28 @@ ss_slider_component_scaffold <- function(bar = NULL) {
 #'
 #' @inheritParams ss_slider_component_scaffold
 #'
+#' @param reset_button `logical` indicating if a reset button should be
+#'   included. Defaults to `FALSE`.
+#'
 #' @return `shiny.tag` object.
 #'
 #' @noRd
-ss_header_component_scaffold <- function(type, id = uuid::UUIDgenerate()) {
-  #  assert arguments are valid
+ss_header_component_scaffold <- function(
+  type, reset_button = FALSE, id = uuid::UUIDgenerate()) {
+  # assert arguments are valid
   assertthat::assert_that(
     assertthat::is.string(type),
-    assertthat::noNA(type)
+    assertthat::noNA(type),
+    assertthat::is.flag(reset_button)
   )
+
+  if (reset_button) {
+    if (type == "theme") {
+      reset_button_text <- "Reset to default goal"
+    } else {
+      reset_button_text <- "Reset to default"
+    }
+  }
 
   # HTML scaffold
   htmltools::tags$div(
@@ -212,6 +225,18 @@ ss_header_component_scaffold <- function(type, id = uuid::UUIDgenerate()) {
         `for` = id
       )
     ),
+    if (reset_button) {
+      htmltools::tags$button(
+        class = "reset-button disable-if-inactive",
+        type = "button",
+        `data-toggle` = "tooltip",
+        `data-placement` = "top",
+        `data-container` = "body",
+        `data-trigger` = "hover",
+        title = reset_button_text,
+        htmltools::tags$i(class = "fa fa-redo")
+      )
+    },
     htmltools::tags$label(
       class = "name-label disable-if-inactive"
     )

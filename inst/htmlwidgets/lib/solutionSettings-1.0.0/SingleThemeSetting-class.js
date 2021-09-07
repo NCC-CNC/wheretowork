@@ -29,6 +29,7 @@ class SingleThemeSetting {
     this.name_el = this.el.querySelector(".name-label");
     this.status_el = this.el.querySelector(".status-checkbox");
     this.goal_el = this.el.querySelector(".noUiSlider-widget");
+    this.reset_el = this.el.querySelector(".reset-button");
     this.current_label_el = this.el.querySelector(".current-label");
     this.current_bar_el = this.el.querySelector(".current-bar");
     this.limit = feature_limit_goal;
@@ -101,6 +102,11 @@ class SingleThemeSetting {
           els.forEach((x) => x.setAttribute("disabled", ""));
         }
       });
+      /// reset button
+      this.reset_el.addEventListener("click", function () {
+        that.previous_goal = that.goal_el.noUiSlider.get();
+        that.goal_el.noUiSlider.set(feature_goal);
+      })
     }
 
     // set listeners to pass data to Shiny
