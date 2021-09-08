@@ -30,14 +30,14 @@ Include <- R6::R6Class(
     status = NA,
 
     #' @description
-    #' Create a new Lock object.
+    #' Create a new Include object.
     #' @param id `character` value.
     #' @param name `character` value.
     #' @param variable [Variable] object.
     #' @param mandatory `logical` value.
     #' @param visible `logical` value.
     #' @param status `logical` value.
-    #' @return A new Lock object.
+    #' @return A new Include object.
     ## constructor
     initialize = function(id, name, variable, mandatory, visible, status) {
       ### assert that arguments are valid

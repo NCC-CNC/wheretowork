@@ -58,7 +58,7 @@ Definition for the Include class.
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
-Create a new Lock object.
+Create a new Include object.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Include$new(id, name, variable, mandatory, visible, status)}\if{html}{\out{</div>}}
 }
@@ -81,7 +81,7 @@ Create a new Lock object.
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A new Lock object.
+A new Include object.
 }
 }
 \if{html}{\out{<hr>}}
