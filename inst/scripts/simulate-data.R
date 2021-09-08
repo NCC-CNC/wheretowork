@@ -109,7 +109,7 @@ write_project(
   attribute_path =
     "inst/extdata/projects/sim_raster2/sim_raster2_attribute.csv.gz",
   boundary_path =
-    "inst/extdata/projects/sim_raster2/sim_raster2_boundary.csv.gz",
+    "inst/extdata/projects/sim_raster2/sim_raster2_boundary.dat.gz",
   mode = "advanced"
 )
 
@@ -125,7 +125,7 @@ write_project(
   attribute_path =
     "inst/extdata/projects/sim_vector2/sim_vector2_attribute.csv.gz",
   boundary_path =
-    "inst/extdata/projects/sim_vector2/sim_vector2_boundary.csv.gz",
+    "inst/extdata/projects/sim_vector2/sim_vector2_boundary.dat.gz",
   mode = "beginner"
 )
 

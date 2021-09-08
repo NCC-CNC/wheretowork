@@ -1,7 +1,7 @@
 name: Example GeoTIFF dataset (themes)
 spatial_path: sim_raster2_spatial.tif
 attribute_path: sim_raster2_attribute.csv.gz
-boundary_path: sim_raster2_boundary.csv.gz
+boundary_path: sim_raster2_boundary.dat.gz
 mode: advanced
 themes:
 - name: Brown-necked Parrot (Brown-necked)

@@ -1,7 +1,7 @@
 name: Example Shapefile dataset (themes)
 spatial_path: sim_vector2_spatial.shp
 attribute_path: sim_vector2_attribute.csv.gz
-boundary_path: sim_vector2_boundary.csv.gz
+boundary_path: sim_vector2_boundary.dat.gz
 mode: beginner
 themes:
 - name: Indian Nightjar

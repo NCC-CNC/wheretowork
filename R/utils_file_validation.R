@@ -175,12 +175,20 @@ is_valid_boundary_file <- function(x) {
   assertthat::assert_that(assertthat::is.string(x))
 
   # check if YAML file based on file name
-  if (!endsWith(x, ".csv") && !endsWith(x, ".csv.gz")) {
-    return("Error: file must have a \".csv\" or \".csv.gz\" extension")
+  if (
+    !endsWith(x, ".csv") &&
+    !endsWith(x, ".csv.gz") &&
+    !endsWith(x, ".dat") &&
+    !endsWith(x, ".dat.gz")
+  ) {
+    return(paste0(
+      "Error: file must have a \".csv\", \".csv.gz\" ",
+      "\".dat\", or \".dat.gz\" extension"
+    ))
   }
 
   # try importing file
-  f <- try(data.table::fread(x, data.table = FALSE), silent = TRUE)
+  f <- try(data.table::fread(x, sep = ",", data.table = FALSE), silent = TRUE)
 
   # check if can be parsed as valid file
   if (inherits(f, "try-error")) {
@@ -193,8 +201,14 @@ is_valid_boundary_file <- function(x) {
   }
 
   # check if has correct columns
-  if (!identical(names(f), c("i", "j", "x"))) {
-    return("Error: file does not contain valid boundary data")
+  if (endsWith(x, ".csv") || endsWith(x, ".csv.gz")) {
+    if (!identical(names(f), c("i", "j", "x"))) {
+      return("Error: file does not contain valid boundary data")
+    }
+  } else {
+    if (!identical(names(f), c("id1", "id2", "boundary"))) {
+      return("Error: file does not contain valid boundary data")
+    }
   }
 
   # return success

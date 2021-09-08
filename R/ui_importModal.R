@@ -119,7 +119,7 @@ importModal <- function(id) {
         paste0(id, "_manual_boundary_file"),
         "Select boundary data",
         multiple = FALSE,
-        accept = c(".csv", ".csv.gz")
+        accept = c(".csv", ".csv.gz", ".dat", ".dat.gz")
       )
     ),
 

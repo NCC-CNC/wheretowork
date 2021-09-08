@@ -185,13 +185,32 @@ Dataset <- R6::R6Class(
           self$boundary_path,
           data.table = FALSE
         ))
-        ### convert to matrix
-        self$boundary_data <-
-          Matrix::sparseMatrix(
+        ### convert to matrix format
+        if (
+          endsWith(self$boundary_path, ".csv") ||
+          endsWith(self$boundary_path, ".csv.gz")
+        ) {
+          #### format data as .csv or .csv.gz format
+          self$boundary_data <- Matrix::sparseMatrix(
             i = bd[[1]], j = bd[[2]], x = bd[[3]],
             index1 = FALSE, repr = "C", symmetric = TRUE,
             dims = rep(nrow(self$attribute_data), 2)
           )
+        } else if (
+          endsWith(self$boundary_path, ".dat") ||
+          endsWith(self$boundary_path, ".dat.gz")
+        ) {
+          #### format data as .dat or .dat.gz format
+          self$boundary_data <- Matrix::sparseMatrix(
+            i = match(bd[[1]], self$attribute_data[["_index"]]),
+            j = match(bd[[2]], self$attribute_data[["_index"]]),
+            x = bd[[3]],
+            index1 = TRUE, repr = "C", symmetric = TRUE,
+            dims = rep(nrow(self$attribute_data), 2)
+          )
+        } else {
+          stop("boundary_path is not a recognized file extension.")
+        }
       }
       invisible(self)
     },
@@ -232,11 +251,32 @@ Dataset <- R6::R6Class(
       )
       # boundary data
       bd <- methods::as(self$boundary_data, "dsTMatrix")
-      data.table::fwrite(
-        tibble::tibble(i = bd@i, j = bd@j, x = bd@x),
-        boundary_path,
-        sep = ",", row.names = FALSE
-      )
+      ### if data in .csv or .csv.fz format
+      if (
+        endsWith(boundary_path, ".csv") ||
+        endsWith(boundary_path, ".csv.gz")
+      ) {
+        data.table::fwrite(
+          tibble::tibble(i = bd@i, j = bd@j, x = bd@x),
+          boundary_path,
+          sep = ",", row.names = FALSE
+        )
+      } else if (
+        endsWith(boundary_path, ".dat") ||
+        endsWith(boundary_path, ".dat.gz")
+      ) {
+        data.table::fwrite(
+          tibble::tibble(
+            id1 = self$attribute_data[["_index"]][bd@i + 1],
+            id2 = self$attribute_data[["_index"]][bd@j + 1],
+            boundary = bd@x
+          ),
+          boundary_path,
+          sep = ",", row.names = FALSE
+        )
+      } else {
+        stop("boundary_path is not a recognized file extension.")
+      }
       # return result
       invisible(self)
     },
