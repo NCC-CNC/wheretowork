@@ -32,17 +32,79 @@ server_import_builtin_data <- quote({
     )
 
     ## throw error if needed
-    if (inherits(x, "try-error")) {
-      ## display error message on import alert
-      shinyBS::createAlert(
-        session = session,
-        anchorId = "importModal_alert",
-        alertId = "import_error_alert",
+    if (inherits(x, c("try-error", "error"))) {
+
+      ## try to parse project author details
+      project_config <- try(
+        yaml::read_yaml(input$importModal_name), silent = TRUE
+      )
+      if (inherits(project_config, "try-error")) {
+          project_author_name <- get_golem_config("default_project_name")
+          project_author_email <- get_golem_config("default_project_email")
+      } else {
+        if (assertthat::is.string(project_config$author_name) &&
+            assertthat::is.string(project_config$author_email)) {
+          project_author_name <- project_config$author_name
+          project_author_email <- project_config$author_email
+        } else {
+          project_author_name <- get_golem_config("default_project_name")
+          project_author_email <- get_golem_config("default_project_email")
+        }
+      }
+
+      ## prepare download link
+      output$importModal_log_link <- shiny::downloadHandler(
+        filename = function() {
+          paste0(
+            tools::file_path_sans_ext(basename(input$importModal_name)),
+            "_log.zip"
+          )
+        },
+        content = function(con) {
+          # create temporary directory to assemble zip file
+          td <- tempfile()
+          dir.create(td, showWarnings = FALSE, recursive = FALSE)
+          # save log file to temporary directory
+          writeLines(error_log(x), file.path(td, "error-log.txt"))
+          # copy confgiuration file to temporary directory
+          file.copy(input$importModal_name, td)
+          # zip files
+          withr::with_dir(td, utils::zip(con, files = dir(td)))
+        }
+      )
+
+      ## display error message
+      shinyalert::shinyalert(
         title = "Oops...",
-        content = "Something went wrong importing this project",
-        style = "danger",
-        dismiss = TRUE,
-        append = FALSE
+        type = "error",
+        closeOnEsc = TRUE,
+        closeOnClickOutside = TRUE,
+        html = TRUE,
+        showCancelButton = FALSE,
+        showConfirmButton = TRUE,
+        confirmButtonCol = "#337ab7",
+        text = htmltools::tags$span(
+          htmltools::tags$span(
+            paste0(
+              "Something went wrong when importing this project. ",
+              "This is likely due to a mistake in the project data. ",
+              "To resolve this issue, please download the error log "
+            ),
+            .noWS = "outside"
+          ),
+          shiny::downloadLink(
+            outputId = "importModal_log_link",
+            label = "(download here)"
+          ),
+          htmltools::tags$span(
+            paste0(" and email it to ", project_author_name, " "),
+            .noWS = "outside"
+          ),
+          htmltools::tags$a(
+            paste0("(", project_author_email, ")"),
+            href = paste0("mailto:", project_author_email)
+          )
+        )
       )
 
       ## reset import button
@@ -52,6 +114,8 @@ server_import_builtin_data <- quote({
       ## exit
       return()
     }
+
+    print("here4")
 
     ## import data
     environment(import_data) <- environment()

@@ -1,4 +1,6 @@
 name: Ontario pilot dataset
+author_name: Richard Schuster
+author_email: richard.schuster@natureconservancy.ca
 spatial_path: ontario_pilot_spatial.tif
 attribute_path: ontario_pilot_attribute.csv.gz
 boundary_path: ontario_pilot_boundary.csv.gz

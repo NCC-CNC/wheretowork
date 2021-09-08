@@ -1,4 +1,6 @@
 name: Example GeoTIFF dataset
+author_name: Richard Schuster
+author_email: richard.schuster@natureconservancy.ca
 spatial_path: sim_raster_spatial.tif
 attribute_path: sim_raster_attribute.csv.gz
 boundary_path: sim_raster_boundary.csv.gz

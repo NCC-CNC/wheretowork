@@ -40,6 +40,10 @@ default:
   ## contacting controller process
   worker_time_out: 7200 # two hours
 
+  ## contact details
+  default_project_name: "Richard Schuster"
+  default_project_email: "richard.schuster@natureconservancy.ca"
+
 # development configuration
 dev:
   golem_wd: !expr here::here()

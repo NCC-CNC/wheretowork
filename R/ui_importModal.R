@@ -52,7 +52,8 @@ importModal <- function(id) {
           inputId = paste0(id, "_manual_button"),
           label = "Import",
           loadingLabel = "Loading..."
-        )
+        ),
+
       ),
       # spatial button
       shiny::conditionalPanel(
@@ -139,11 +140,7 @@ importModal <- function(id) {
         "Select fields"
       ),
       importSettingsOutput(outputId = paste0(id, "_spatial_settings"))
-    ),
-
-    # error alert
-    shinyBS::bsAlert(
-      anchorId = paste0(id, "_alert")
     )
+
   )
 }

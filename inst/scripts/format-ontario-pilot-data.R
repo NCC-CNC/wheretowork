@@ -196,5 +196,7 @@ write_project(
     "inst/extdata/projects/ontario_pilot/ontario_pilot_attribute.csv.gz",
   boundary_path =
     "inst/extdata/projects/ontario_pilot/ontario_pilot_boundary.csv.gz",
-  mode = "advanced"
+  mode = "advanced",
+  author_name = "Richard Schuster",
+  author_email = "richard.schuster@natureconservancy.ca"
 )

@@ -163,6 +163,7 @@ reference:
     contents:
       - color_palette
       - error_message
+      - error_log
       - extract_data_matrix
       - prepare_fileInput
       - import_data

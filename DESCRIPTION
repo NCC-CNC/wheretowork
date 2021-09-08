@@ -160,7 +160,7 @@ Collate:
     'ui_solutionResultsSidebarPane.R'
     'utils_acknowledge_packages.R'
     'utils_color_palette.R'
-    'utils_error_message.R'
+    'utils_error_misc.R'
     'utils_extract_data_matrix.R'
     'utils_file_validation.R'
     'utils_import_spatial_data.R'

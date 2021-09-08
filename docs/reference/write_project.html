@@ -132,7 +132,9 @@
   <span class='va'>spatial_path</span>,
   <span class='va'>attribute_path</span>,
   <span class='va'>boundary_path</span>,
-  mode <span class='op'>=</span> <span class='st'>"advanced"</span>
+  mode <span class='op'>=</span> <span class='st'>"advanced"</span>,
+  author_name <span class='op'>=</span> <span class='cn'>NULL</span>,
+  author_email <span class='op'>=</span> <span class='cn'>NULL</span>
 <span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -171,6 +173,20 @@
       <td><p><code>character</code> mode for running the application.
 Defaults to <code>"advanced"</code>.</p></td>
     </tr>
+    <tr>
+      <th>author_name</th>
+      <td><p><code>character</code> name of the project author.
+Defaults to <code>NULL</code> such that no author name is encoded in the
+project configuration file. This means that the application
+will report default contact details.</p></td>
+    </tr>
+    <tr>
+      <th>author_email</th>
+      <td><p><code>character</code> email address of the project author.
+Defaults to <code>NULL</code> such that no email address is encoded in the
+project configuration file. This means that the application
+will report default contact details.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -197,7 +213,7 @@ Defaults to <code>"advanced"</code>.</p></td>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># simulate themes and weights</span></span>
 <span class='r-in'><span class='va'>th</span> <span class='op'>&lt;-</span> <span class='fu'><a href='simulate_themes.html'>simulate_themes</a></span><span class='op'>(</span><span class='va'>d</span>, <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>2</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> .....</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ....</span>
 <span class='r-in'><span class='va'>w</span> <span class='op'>&lt;-</span> <span class='fu'><a href='simulate_weights.html'>simulate_weights</a></span><span class='op'>(</span><span class='va'>d</span>, <span class='fl'>1</span><span class='op'>)</span></span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># combine themes and weights into a list</span></span>

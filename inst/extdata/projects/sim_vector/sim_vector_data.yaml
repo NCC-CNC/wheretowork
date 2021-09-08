@@ -1,4 +1,6 @@
 name: Example Shapefile dataset
+author_name: Richard Schuster
+author_email: richard.schuster@natureconservancy.ca
 spatial_path: sim_vector_spatial.shp
 attribute_path: sim_vector_attribute.csv.gz
 boundary_path: sim_vector_boundary.csv.gz

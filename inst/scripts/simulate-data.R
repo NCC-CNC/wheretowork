@@ -74,7 +74,10 @@ write_project(
     "inst/extdata/projects/sim_raster/sim_raster_attribute.csv.gz",
   boundary_path =
     "inst/extdata/projects/sim_raster/sim_raster_boundary.csv.gz",
-  mode = "advanced")
+  mode = "advanced",
+  author_name = "Richard Schuster",
+  author_email = "richard.schuster@natureconservancy.ca"
+)
 
 ## vector project (with themes + includes + weights)
 write_project(
@@ -89,7 +92,10 @@ write_project(
     "inst/extdata/projects/sim_vector/sim_vector_attribute.csv.gz",
   boundary_path =
     "inst/extdata/projects/sim_vector/sim_vector_boundary.csv.gz",
-  mode = "beginner")
+  mode = "beginner",
+  author_name = "Richard Schuster",
+  author_email = "richard.schuster@natureconservancy.ca"
+)
 
 ## raster project (with only themes)
 write_project(
@@ -104,7 +110,8 @@ write_project(
     "inst/extdata/projects/sim_raster2/sim_raster2_attribute.csv.gz",
   boundary_path =
     "inst/extdata/projects/sim_raster2/sim_raster2_boundary.csv.gz",
-  mode = "advanced")
+  mode = "advanced"
+)
 
 ## vector project (with only themes)
 write_project(
@@ -119,7 +126,8 @@ write_project(
     "inst/extdata/projects/sim_vector2/sim_vector2_attribute.csv.gz",
   boundary_path =
     "inst/extdata/projects/sim_vector2/sim_vector2_boundary.csv.gz",
-  mode = "beginner")
+  mode = "beginner"
+)
 
 ## shapefile
 {vector_data$spatial_data} %>%

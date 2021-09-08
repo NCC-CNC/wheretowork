@@ -12,7 +12,9 @@ write_project(
   spatial_path,
   attribute_path,
   boundary_path,
-  mode = "advanced"
+  mode = "advanced",
+  author_name = NULL,
+  author_email = NULL
 )
 }
 \arguments{
@@ -32,6 +34,16 @@ write_project(
 
 \item{mode}{\code{character} mode for running the application.
 Defaults to \code{"advanced"}.}
+
+\item{author_name}{\code{character} name of the project author.
+Defaults to \code{NULL} such that no author name is encoded in the
+project configuration file. This means that the application
+will report default contact details.}
+
+\item{author_email}{\code{character} email address of the project author.
+Defaults to \code{NULL} such that no email address is encoded in the
+project configuration file. This means that the application
+will report default contact details.}
 }
 \value{
 Invisible \code{TRUE} indicating success.

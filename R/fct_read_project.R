@@ -157,19 +157,24 @@ read_project <- function(path,
     boundary_path = boundary_path
   )
 
+  # initialize error variables
+  error_msg <- c()
+  error_log <- list()
+
   # import themes
   ## import data
   themes <- lapply(x$themes, function(x) {
-    try(
+    ### create object
+    out <- try(
       new_theme(
         name = x$name,
         feature = lapply(x$feature, function(f) {
           new_feature(
             name = f$name,
             visible = f$visible,
-            status = f$status && (f$goal > 1e-5),
+            status = f$status,
             goal = f$goal,
-            limit_goal = ifelse(adv_mode, 0, f$limit_goal),
+            limit_goal = f$limit_goal,
             current = 0, # place-holder value, this is calculated later
             variable = new_variable_from_auto(
               dataset = d,
@@ -183,26 +188,46 @@ read_project <- function(path,
       ),
       silent = FALSE
     )
+    ### return error if needed
+    if (inherits(out, "try-error")) {
+      return(out)
+    }
+    ### override settings
+    for (i in seq_along(out$feature)) {
+      if (out$feature[[i]]$goal < 1e-5) {
+        out$feature[[i]]$status <- FALSE
+      }
+      if (adv_mode) {
+        out$feature[[i]]$limit_goal <- 0
+      }
+    }
+    ### return result
+    out
   })
-  ## throw error message if needed
+  ## update error details if needed
   fail <- vapply(themes, inherits, logical(1), "try-error")
-  fail <- vapply(x$themes[fail], `[[`, character(1), "name")
-  assertthat::assert_that(
-    length(fail) == 0,
-    msg = paste0(
-      "failed to import the following themes: ",
-      paste(paste0("\"", fail, "\""), collapse = ", ")
-    )
-  )
+  if (any(fail)) {
+    error_msg <- c(error_msg, paste0(
+      "Failed to import the following Themes: ",
+      paste(
+        paste0("\"", vapply(x$themes[fail], `[[`, character(1), "name"), "\""),
+        collapse = ", "
+      )
+    ))
+    error_log <- append(error_log, lapply(which(fail), function(i) {
+      list(name = x$themes[[i]]$name, details = themes[[i]])
+    }))
+  }
 
   # import weights
   ## import data
   weights <- lapply(x$weights, function(x) {
-    try(
+    ### create object
+    out <- try(
       new_weight(
         name = x$name,
         visible = x$visible,
-        status = x$status && (x$factor > 1e-5),
+        status = x$status,
         factor = x$factor,
         current = 0, # place-holder value, this is calculated later
         variable = new_variable_from_auto(
@@ -215,52 +240,91 @@ read_project <- function(path,
       ),
       silent = TRUE
     )
+    ### return error if needed
+    if (inherits(out, "try-error")) {
+      return(out)
+    }
+    ### override settings
+    if (x$factor < 1e-5) {
+      out$status <- FALSE
+    }
+    ### return result
+    out
   })
-  ## throw error message if needed
+  ## update error details if needed
   fail <- vapply(weights, inherits, logical(1), "try-error")
-  fail <- vapply(x$weights[fail], `[[`, character(1), "name")
-  assertthat::assert_that(
-    length(fail) == 0,
-    msg = paste0(
-      "failed to import the following includes: ",
-      paste(paste0("\"", fail, "\""), collapse = ", ")
-    )
-  )
+  if (any(fail)) {
+    error_msg <- c(error_msg, paste0(
+      "Failed to import the following Weights: ",
+      paste(
+        paste0(
+          "\"", vapply(x$weights[fail], `[[`, character(1), "name"), "\""
+        ),
+        collapse = ", "
+      )
+    ))
+    error_log <- append(error_log, lapply(which(fail), function(i) {
+      list(name = x$weights[[i]]$name, details = weights[[i]])
+    }))
+  }
 
   # import includes
   ## import data
   includes <- lapply(x$includes, function(x) {
-    try(
+    ### create object
+    out <- try(
       new_include(
         name = x$name,
-        variable =
-          new_variable(
-            dataset = d,
-            index = x$variable$index,
-            units = x$variable$units,
-            total = sum(d$get_attribute_data()[[x$variable$index]]),
-            legend = new_manual_legend(
-              colors = x$variable$legend$colors,
-              labels = x$variable$legend$labels
-            )
-          ),
+        variable = new_variable(
+          dataset = d,
+          index = x$variable$index,
+          units = x$variable$units,
+          total = sum(d$get_attribute_data()[[x$variable$index]]),
+          legend = new_manual_legend(
+            colors = x$variable$legend$colors,
+            labels = x$variable$legend$labels
+          )
+        ),
         visible = x$visible,
         status = x$status,
-        mandatory = ifelse(adv_mode, FALSE, x$mandatory)
+        mandatory = x$mandatory
       ),
       silent = FALSE
     )
+    ### return error if needed
+    if (inherits(out, "try-error")) {
+      return(out)
+    }
+    ### override settings
+    if (adv_mode) {
+      out$mandatory <- FALSE
+    }
+    ### return result
+    out
   })
-  ## throw error message if needed
+  ## update error details if needed
   fail <- vapply(includes, inherits, logical(1), "try-error")
-  fail <- vapply(x$includes[fail], `[[`, character(1), "name")
-  assertthat::assert_that(
-    length(fail) == 0,
-    msg = paste0(
-      "failed to import the following includes: ",
-      paste(paste0("\"", fail, "\""), collapse = ", ")
-    )
-  )
+  if (any(fail)) {
+    error_msg <- c(error_msg, paste0(
+      "Failed to import the following Includes: ",
+      paste(
+        paste0(
+          "\"", vapply(x$includes[fail], `[[`, character(1), "name"), "\""
+        ),
+        collapse = ", "
+      )
+    ))
+    error_log <- append(error_log, lapply(which(fail), function(i) {
+      list(name = x$includes[[i]]$name, details = includes[[i]])
+    }))
+  }
+
+  # throw error message if needed
+  if (length(error_msg) > 0) {
+    error_msg <- simpleError(paste(error_msg, collapse = "\n"))
+    attr(error_msg, "log") <- error_log
+    return(error_msg)
+  }
 
   # calculate current amount held for each feature within each theme + weight
   ss <- new_solution_settings(
@@ -272,6 +336,8 @@ read_project <- function(path,
   # return result
   list(
     name = x$name,
+    author_name = x$author_name,
+    author_email = x$author_email,
     dataset = d,
     themes = themes,
     weights = weights,

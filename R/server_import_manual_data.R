@@ -48,14 +48,31 @@ server_import_manual_data <- quote({
     )
 
     ## throw error if needed
-    if (inherits(x, "try-error")) {
+    if (inherits(x, c("try-error", "error"))) {
+      ## prepare download link
+      output$importModal_log_link <- shiny::downloadHandler(
+        filename = function() {
+          paste0(basename(app_data$configuration_path), "_error_log.txt")
+        },
+        content = function(con) {
+          writeLines(error_log(x), con)
+        }
+      )
+
       ## display error message on import alert
       shinyBS::createAlert(
         session = session,
         anchorId = "importModal_alert",
         alertId = "import_error_alert",
         title = "Oops...",
-        content = error_message(x),
+        content = htmltools::tags$span(
+          error_message(x),
+          shiny::downloadLink(
+            outputId = "importModal_log_link",
+            label = "(download error log)"
+          ),
+          "."
+        ),
         style = "danger",
         dismiss = TRUE,
         append = FALSE

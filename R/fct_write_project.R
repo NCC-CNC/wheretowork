@@ -22,6 +22,19 @@ NULL
 #' @param mode `character` mode for running the application.
 #'   Defaults to `"advanced"`.
 #'
+#' @param author_name `character` name of the project author.
+#'   Defaults to `NULL` such that no author name is encoded in the
+#'   project configuration file. This means that the application
+#'   will report default contact details.
+#'
+#' @param author_email `character` email address of the project author.
+#'   Defaults to `NULL` such that no email address is encoded in the
+#'   project configuration file. This means that the application
+#'   will report default contact details.
+#'
+#' @param mode `character` mode for running the application.
+#'   Defaults to `"advanced"`.
+#'
 #' @return Invisible `TRUE` indicating success.
 #'
 #' @examples
@@ -62,7 +75,8 @@ NULL
 #' @export
 write_project <- function(x, dataset, path, name,
                           spatial_path, attribute_path, boundary_path,
-                          mode = "advanced") {
+                          mode = "advanced",
+                          author_name = NULL, author_email = NULL) {
   # assert arguments are valid
   assertthat::assert_that(
     is.list(x),
@@ -81,6 +95,21 @@ write_project <- function(x, dataset, path, name,
     assertthat::is.string(mode),
     assertthat::noNA(mode)
   )
+  if (!is.null(author_name)) {
+    assertthat::assert_that(
+      assertthat::is.string(author_name),
+      assertthat::noNA(author_name)
+    )
+  }
+  if (!is.null(author_email)) {
+    assertthat::assert_that(
+      assertthat::is.string(author_email),
+      assertthat::noNA(author_email)
+    )
+  }
+  if (!identical(class(author_name), class(author_email))) {
+    stop("Both arguments to author_name and author_email must be supplied")
+  }
 
   # create setting list for themes
   themes_idx <- vapply(x, inherits, what = "Theme", logical(1))
@@ -95,16 +124,22 @@ write_project <- function(x, dataset, path, name,
   includes_params <- lapply(x[includes_idx], function(x) x$export())
 
   # create full settings list
-  params <- list(
-    name = enc2utf8(name),
-    spatial_path = basename(spatial_path),
-    attribute_path = basename(attribute_path),
-    boundary_path = basename(boundary_path),
-    mode = mode,
-    themes = themes_params,
-    weights = weights_params,
-    includes = includes_params
-  )
+  ## add project name
+  params <- list()
+  params$name <- enc2utf8(name)
+  ## add contact details
+  if (!is.null(author_name)) {
+    params$author_name <- author_name
+    params$author_email <- author_email
+  }
+  ## add data
+  params$spatial_path <- basename(spatial_path)
+  params$attribute_path <- basename(attribute_path)
+  params$boundary_path <- basename(boundary_path)
+  params$mode <- mode
+  params$themes <- themes_params
+  params$weights <- weights_params
+  params$includes <- includes_params
 
   # save configuration file to disk
   yaml::write_yaml(params, path)
