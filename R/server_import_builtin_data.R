@@ -115,8 +115,6 @@ server_import_builtin_data <- quote({
       return()
     }
 
-    print("here4")
-
     ## import data
     environment(import_data) <- environment()
     import_data(x = x, mode = get_golem_config("mode"))
