@@ -76,6 +76,11 @@
   word-break: break-all;
 }
 
+.map-manager-layer .sub-header .provenance-container i {
+  font-size: 12px;
+  margin-right: 3px;
+}
+
 /* view checkbox */
 .map-manager-layer .view-container input[type="checkbox"],
 .map-manager-layer .view-container .checked {

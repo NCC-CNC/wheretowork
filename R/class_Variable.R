@@ -25,6 +25,9 @@ Variable <- R6::R6Class(
     #' @field legend `Legend` object.
     legend = NULL,
 
+    #' @field provenance [Provenance] object.
+    provenance = NULL,
+
     #' @description
     #' Create a Variable object.
     #' @param dataset `Dataset` value.
@@ -32,8 +35,9 @@ Variable <- R6::R6Class(
     #' @param total `numeric` value.
     #' @param units `character` value.
     #' @param legend `Legend` object.
+    #' @param provenance [Provenance] object.
     #' @return A new Variable object.
-    initialize = function(dataset, index, total, units, legend) {
+    initialize = function(dataset, index, total, units, legend, provenance) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### dataset
@@ -52,13 +56,16 @@ Variable <- R6::R6Class(
         inherits(
           legend,
           c("ContinuousLegend", "CategoricalLegend", "ManualLegend")
-        )
+        ),
+        #### provenance
+        inherits(provenance, "Provenance")
       )
       ### set fields
       self$dataset <- dataset
       self$total <- total
       self$units <- units
       self$legend <- legend
+      self$provenance <- provenance
       assertthat::assert_that(dataset$has_index(index))
       if (is.numeric(index)) {
         self$index <- dataset$get_names()[[index]]
@@ -76,6 +83,7 @@ Variable <- R6::R6Class(
       message("  index:   ", self$index)
       message("  total:   ", round(self$total, 2))
       message("  units:   ", self$units)
+      message("  provenance:   ", self$provenance$repr())
       invisible(self)
     },
 
@@ -122,7 +130,8 @@ Variable <- R6::R6Class(
       list(
         index = self$index,
         units = self$units,
-        legend = self$legend$export()
+        legend = self$legend$export(),
+        provenance = self$provenance$export()
       )
     },
 
@@ -229,6 +238,9 @@ Variable <- R6::R6Class(
 #'
 #' @param legend `Legend` object.
 #'
+#' @param provenance  [Provenance] object.
+#'   Defaults to `new_provenance_from_source("missing")`.
+#'
 #' @return A [Variable] object.
 #'
 #' @examples
@@ -258,10 +270,12 @@ Variable <- R6::R6Class(
 #' # print object
 #' print(v)
 #' @export
-new_variable <- function(dataset, index, units, total, legend) {
+new_variable <- function(dataset, index, units, total, legend,
+                         provenance = new_provenance_from_source("missing")) {
   Variable$new(
     dataset = dataset, index = index,
-    total = total, units = units, legend = legend
+    total = total, units = units, legend = legend,
+    provenance = provenance
   )
 }
 
@@ -283,6 +297,10 @@ new_variable <- function(dataset, index, units, total, legend) {
 #' @param colors `character` object containing the colors for visualization
 #'   (see Details for more information).
 #'   Defaults to `"random"` such that colors are randomly generated.
+#'
+#' @param provenance `character` value indicating the type of provenance.
+#'   The argument must be a valid type (see [new_provenance_from_source()]).
+#'   Defaults to `"missing"`.
 #'
 #' @details
 #' The argument to `colors` can be a vector of different colors
@@ -320,7 +338,8 @@ new_variable <- function(dataset, index, units, total, legend) {
 #' @export
 new_variable_from_auto <- function(dataset, index,
                                    units = "", type = "auto",
-                                   colors = "random") {
+                                   colors = "random",
+                                   provenance = "missing") {
   # assert arguments are valid
   assertthat::assert_that(
     ## dataset
@@ -338,7 +357,10 @@ new_variable_from_auto <- function(dataset, index,
     ## colors
     is.character(colors),
     assertthat::noNA(colors),
-    length(colors) >= 1
+    length(colors) >= 1,
+    ## provenance
+    assertthat::is.string(provenance),
+    assertthat::noNA(provenance)
   )
 
   # import dataset
@@ -355,16 +377,16 @@ new_variable_from_auto <- function(dataset, index,
   # create new variable using automatically deduced settings
   new_variable_from_metadata(
     dataset = dataset,
-    metadata =
-      append(
-        list(
-          index = index,
-          units = units,
-          type = type,
-          colors = colors
-        ),
-        s
-      )
+    metadata = append(
+      list(
+        index = index,
+        units = units,
+        colors = colors,
+        type = type,
+        provenance = provenance
+      ),
+      s
+    )
   )
 }
 
@@ -386,8 +408,9 @@ new_variable_from_auto <- function(dataset, index,
 #'   with the data within the dataset that has the data.}
 #' \item{"units"}{`character` units for the values in the underlying data.}
 #' \item{"type"}{`character` indicating if the data contain
-#'   continuous (`"continuous"`) or categorical (`"categorical"`)
-#'   numerical values.}
+#'   continuous (`"continuous"`) or categorical (`"categorical"`) values.}
+#' \item{"provenance"}{`character` indicating the data source.
+#'   (see [new_provenance_from_source()]).}
 #' \item{"colors"}{`character` vector containing colors for visualization.}
 #' \item{"total"}{`numeric` sum of all values in dataset.}
 #' \item{"min_value"}{`numeric` minimum value in dataset.
@@ -421,7 +444,7 @@ new_variable_from_auto <- function(dataset, index,
 #'   d, list(
 #'     index = 1, units = "ha", type = "continuous",
 #'     colors = c("#000000", "#AAAAAA"), total = 12,
-#'     min_value = 1, max_value = 3
+#'     min_value = 1, max_value = 3, provenance = "missing"
 #'   )
 #' )
 #'
@@ -453,7 +476,10 @@ new_variable_from_metadata <- function(dataset, metadata) {
     assertthat::noNA(metadata$colors),
     ## total
     assertthat::is.number(metadata$total),
-    assertthat::noNA(metadata$total)
+    assertthat::noNA(metadata$total),
+    ## provenance
+    assertthat::is.string(metadata$provenance),
+    assertthat::noNA(metadata$provenance)
   )
   if (identical(metadata$type, "continuous")) {
     ## continuous metrics
@@ -537,6 +563,7 @@ new_variable_from_metadata <- function(dataset, metadata) {
   # create object
   Variable$new(
     dataset = dataset, index = metadata$index, total = metadata$total,
-    units = metadata$units, legend = legend
+    units = metadata$units, legend = legend,
+    provenance = new_provenance_from_source(metadata$provenance)
   )
 }

@@ -8,7 +8,8 @@ class WeightSetting {
     max_factor,
     factor,
     step_factor,
-    status
+    status,
+    provenance
   ) {
     // class fields
     this.id = id;
@@ -48,6 +49,10 @@ class WeightSetting {
     });
     /// status
     this.updateStatus(status);
+    /// provenance
+    createProvenance(
+      this.el.querySelector(".provenance-container"), provenance
+    );
 
     // set listeners to update user interface
     /// enable/disable widget on click

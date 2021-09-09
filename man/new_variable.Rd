@@ -4,7 +4,14 @@
 \alias{new_variable}
 \title{New variable}
 \usage{
-new_variable(dataset, index, units, total, legend)
+new_variable(
+  dataset,
+  index,
+  units,
+  total,
+  legend,
+  provenance = new_provenance_from_source("missing")
+)
 }
 \arguments{
 \item{dataset}{\code{Dataset} file path for the dataset.}
@@ -17,6 +24,9 @@ the data.}
 \item{total}{\code{numeric} total amount of all values in the underlying data.}
 
 \item{legend}{\code{Legend} object.}
+
+\item{provenance}{\link{Provenance} object.
+Defaults to \code{new_provenance_from_source("missing")}.}
 }
 \value{
 A \link{Variable} object.

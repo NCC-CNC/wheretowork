@@ -33,3 +33,27 @@ function removeAllChildNodes(parent) {
         parent.removeChild(parent.firstChild);
     }
 }
+
+// obtained form
+// https://stackoverflow.com/a/63418989/3483791
+const getUniqueBy = (arr, prop) => {
+  const set = new Set;
+  return arr.filter(o => !set.has(o[prop]) && set.add(o[prop]));
+};
+
+// create data provenance icon
+function createProvenance(el, provenance) {
+  const icon_el = document.createElement("i");
+  icon_el.setAttribute("data-toggle", "tooltip");
+  icon_el.setAttribute("data-placement", "top");
+  icon_el.setAttribute("data-container", "body");
+  icon_el.setAttribute("title", provenance.description);
+  if (provenance.icon === "canadian-maple-leaf") {
+    icon_el.classList.add("fab");
+  } else {
+    icon_el.classList.add("fas");
+  }
+  icon_el.classList.add("fa-" + provenance.icon);
+  icon_el.style.color = provenance.color;
+  el.appendChild(icon_el);
+}

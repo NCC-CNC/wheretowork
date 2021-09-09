@@ -301,7 +301,8 @@ Weight <- R6::R6Class(
         factor = self$factor,
         min_factor = self$min_factor,
         max_factor = self$max_factor,
-        step_factor = self$step_factor
+        step_factor = self$step_factor,
+        provenance = self$variable$provenance$get_widget_data()
       )
     },
 
@@ -315,6 +316,7 @@ Weight <- R6::R6Class(
         visible = self$visible,
         legend = self$variable$legend$get_widget_data(),
         units = self$variable$units,
+        provenance = self$variable$provenance$get_widget_data(),
         type = "weight"
       )
     },

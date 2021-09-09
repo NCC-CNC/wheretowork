@@ -14,6 +14,7 @@ class MultiThemeSetting {
     feature_goal,
     feature_limit_goal,
     feature_step_goal,
+    feature_provenance,
     units
   ) {
     // class fields
@@ -116,6 +117,8 @@ class MultiThemeSetting {
       single_panel_el.querySelectorAll(".current-bar");
     let single_widget_el =
       single_panel_el.querySelectorAll(".widget");
+    let single_prov_el =
+      single_panel_el.querySelectorAll(".provenance-container");
 
     // attach id to elements
     /// main container
@@ -167,6 +170,10 @@ class MultiThemeSetting {
         "max": Math.min.apply(Math, feature_max_goal)
       },
     });
+    /// provenance
+    const unique_provs = getUniqueBy(feature_provenance, "name");
+    let prov_el = this.el.querySelector(".header .provenance-container");
+    unique_provs.forEach((x) => createProvenance(prov_el, x));
 
     // set initial single values
     for (let i = 0; i < this.n_features; ++i) {
@@ -192,6 +199,8 @@ class MultiThemeSetting {
           "max": feature_max_goal[i]
         }
       });
+      /// provenance
+      createProvenance(single_prov_el[i], feature_provenance[i]);
     }
 
     // set status

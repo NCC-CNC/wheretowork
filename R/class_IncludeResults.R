@@ -101,6 +101,7 @@ IncludeResults <- R6::R6Class(
         total_amount = self$include$variable$total,
         solution_held = self$held,
         units = self$include$variable$units,
+        provenance = self$include$variable$provenance$get_widget_data(),
         type = "include_results"
       )
     }

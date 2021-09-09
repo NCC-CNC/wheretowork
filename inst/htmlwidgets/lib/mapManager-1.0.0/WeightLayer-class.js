@@ -6,7 +6,8 @@ class WeightLayer {
     name,
     visible,
     legend,
-    units
+    units,
+    provenance
   ) {
     // class fields
     this.id = id;
@@ -38,6 +39,10 @@ class WeightLayer {
     this.view_el.checked = true;
     /// legend
     createLegend(this.legend_el, legend, units);
+    /// provenance
+    createProvenance(
+      this.el.querySelector(".provenance-container"), provenance
+    );
 
     // set listeners to update user interfance, show/hide legends checkbox
     if (HTMLWidgets.shinyMode) {

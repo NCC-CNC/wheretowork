@@ -207,7 +207,8 @@ Include <- R6::R6Class(
         id = self$id,
         name = self$name,
         status = self$status,
-        mandatory = self$mandatory
+        mandatory = self$mandatory,
+        provenance = self$variable$provenance$get_widget_data()
       )
     },
 
@@ -221,6 +222,7 @@ Include <- R6::R6Class(
         visible = self$visible,
         legend = self$variable$legend$get_widget_data(),
         units = self$variable$units,
+        provenance = self$variable$provenance$get_widget_data(),
         type = "include"
       )
     },

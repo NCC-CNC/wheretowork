@@ -85,7 +85,8 @@ simulate_weights <- function(dataset, n) {
       current = round(stats::runif(1, 0.1, 0.6), 2),
       variable =
         new_variable_from_auto(
-          dataset = dataset, index = wn_index[[i]], units = "ha"
+          dataset = dataset, index = wn_index[[i]], units = "ha",
+          provenance = sample(c("regional", "national"), 1)
         )
     )
   })

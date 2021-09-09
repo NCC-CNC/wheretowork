@@ -10,6 +10,7 @@ class WeightResults {
     current_held,
     solution_held,
     units,
+    provenance,
     solution_color
   ) {
     // declare fields
@@ -40,6 +41,13 @@ class WeightResults {
 
     // render chart on HTML element
     chart.render(this.el);
+
+    // add provenance
+    createProvenance(
+      this.el.querySelector(".provenance-container label"), provenance
+    );
+    $(this.el).find('[data-toggle="tooltip"]').tooltip()
+
   }
 
   /* render method */

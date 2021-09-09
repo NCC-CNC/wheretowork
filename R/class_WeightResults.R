@@ -15,7 +15,7 @@ WeightResults <- R6::R6Class(
     id = NA_character_,
 
     #' @field weight [Weight] object.
-    weight = NA_character_,
+    weight = NULL,
 
     #' @field status `logical` value.
     status = NA,
@@ -116,6 +116,7 @@ WeightResults <- R6::R6Class(
         current_held = self$current,
         solution_held = self$held,
         units = self$weight$variable$units,
+        provenance = self$weight$variable$provenance$get_widget_data(),
         type = "weight_results"
       )
     }

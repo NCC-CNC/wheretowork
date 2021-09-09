@@ -9,7 +9,8 @@ new_variable_from_auto(
   index,
   units = "",
   type = "auto",
-  colors = "random"
+  colors = "random",
+  provenance = "missing"
 )
 }
 \arguments{
@@ -28,6 +29,10 @@ Defaults to \code{"auto"} such that data are automatically identified.}
 \item{colors}{\code{character} object containing the colors for visualization
 (see Details for more information).
 Defaults to \code{"random"} such that colors are randomly generated.}
+
+\item{provenance}{\code{character} value indicating the type of provenance.
+The argument must be a valid type (see \code{\link[=new_provenance_from_source]{new_provenance_from_source()}}).
+Defaults to \code{"missing"}.}
 }
 \value{
 A \link{Variable} object.

@@ -81,7 +81,10 @@ simulate_includes <- function(dataset, n) {
           index = ln_index[[i]],
           units = "",
           total = sum(ld[[i]][idx]),
-          legend = simulate_include_legend()
+          legend = simulate_include_legend(),
+          provenance = new_provenance_from_source(
+            sample(c("regional", "national"), 1)
+          )
         )
     )
   })

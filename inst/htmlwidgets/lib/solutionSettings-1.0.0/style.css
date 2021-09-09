@@ -189,6 +189,7 @@
 .solution-setting .header .name-label {
   font-size: 14px;
   margin: 0px;
+  margin-right: auto;
   word-break: break-all;
 }
 
@@ -199,11 +200,19 @@
   margin-bottom: 0;
 }
 
+.solution-setting .header .provenance-container {
+  font-size: 14px;
+  margin-right: 3px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
 /* sub-header container */
 .solution-setting .sub-header .name-label {
   font-size: 12px;
   font-weight: 700;
   margin-bottom: 0px;
+  margin-right: auto;
   word-break: break-all;
 }
 
@@ -211,6 +220,13 @@
   font-size: 7px;
   margin-bottom: 0;
   padding-bottom: 0;
+}
+
+.solution-setting .sub-header .provenance-container {
+  font-size: 12px;
+  margin-right: 3px;
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 
 /* icon and sub-icon containers */

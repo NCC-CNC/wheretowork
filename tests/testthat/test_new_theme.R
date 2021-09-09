@@ -164,6 +164,7 @@ test_that("widget methods (single feature)", {
       feature_goal = 0.2,
       feature_limit_goal = 0.05,
       feature_step_goal = 0.01,
+      feature_provenance = list(v$provenance$get_widget_data()),
       units = "ha"
     )
   )
@@ -177,6 +178,7 @@ test_that("widget methods (single feature)", {
       feature_id = "FID1",
       feature_visible = FALSE,
       feature_legend = list(v$legend$get_widget_data()),
+      feature_provenance = list(v$provenance$get_widget_data()),
       units = "ha",
       type = "theme"
     )
@@ -397,6 +399,9 @@ test_that("widget methods (multiple features)", {
       feature_goal = c(0.2, 0.21),
       feature_limit_goal = c(0.02, 0.021),
       feature_step_goal = c(0.01, 0.01),
+      feature_provenance = lapply(
+        x$feature, function(x) x$variable$provenance$get_widget_data()
+      ),
       units = "ha"
     )
   )
@@ -409,8 +414,12 @@ test_that("widget methods (multiple features)", {
       feature_name = c("F1", "F2"),
       feature_id = c("FID1", "FID2"),
       feature_visible = c(TRUE, FALSE),
-      feature_legend =
-        lapply(x$feature, function(x) x$variable$legend$get_widget_data()),
+      feature_legend = lapply(
+        x$feature, function(x) x$variable$legend$get_widget_data()
+      ),
+      feature_provenance = lapply(
+        x$feature, function(x) x$variable$provenance$get_widget_data()
+      ),
       units = "ha",
       type = "theme"
     )

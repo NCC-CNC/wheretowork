@@ -11,6 +11,7 @@ class MultiThemeResults {
     feature_current_held,
     feature_goal,
     feature_solution_held,
+    feature_provenance,
     units,
     mandatory,
     round,
@@ -89,6 +90,13 @@ class MultiThemeResults {
 
     // render chart on HTML element
     chart.render(this.el);
+
+    // add provenance
+    const unique_provs = getUniqueBy(feature_provenance, "name");
+    let prov_el = this.el.querySelector(".provenance-container label");
+    unique_provs.forEach((x) => createProvenance(prov_el, x));
+    $(this.el).find('[data-toggle="tooltip"]').tooltip()
+
   }
 
   /* render method */

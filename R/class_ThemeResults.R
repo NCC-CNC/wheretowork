@@ -131,6 +131,10 @@ ThemeResults <- R6::R6Class(
         feature_solution_held = vapply(
           self$feature_results, `[[`, numeric(1), "held"
         ),
+        feature_provenance = lapply(
+          self$feature_results,
+          function(x) x$feature$variable$provenance$get_widget_data()
+        ),
         units = self$feature_results[[1]]$feature$variable$units,
         type = "theme_results"
       )

@@ -151,8 +151,9 @@ previously calculated metadata can be used.</p>
 with the data within the dataset that has the data.</p></dd>
 <dt>"units"</dt><dd><p><code>character</code> units for the values in the underlying data.</p></dd>
 <dt>"type"</dt><dd><p><code>character</code> indicating if the data contain
-continuous (<code>"continuous"</code>) or categorical (<code>"categorical"</code>)
-numerical values.</p></dd>
+continuous (<code>"continuous"</code>) or categorical (<code>"categorical"</code>) values.</p></dd>
+<dt>"provenance"</dt><dd><p><code>character</code> indicating the data source.
+(see <code><a href='new_provenance_from_source.html'>new_provenance_from_source()</a></code>).</p></dd>
 <dt>"colors"</dt><dd><p><code>character</code> vector containing colors for visualization.</p></dd>
 <dt>"total"</dt><dd><p><code>numeric</code> sum of all values in dataset.</p></dd>
 <dt>"min_value"</dt><dd><p><code>numeric</code> minimum value in dataset.
@@ -188,7 +189,7 @@ Required only for categorical data.</p></dd>
 <span class='r-in'>  <span class='va'>d</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span></span>
 <span class='r-in'>    index <span class='op'>=</span> <span class='fl'>1</span>, units <span class='op'>=</span> <span class='st'>"ha"</span>, type <span class='op'>=</span> <span class='st'>"continuous"</span>,</span>
 <span class='r-in'>    colors <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"#000000"</span>, <span class='st'>"#AAAAAA"</span><span class='op'>)</span>, total <span class='op'>=</span> <span class='fl'>12</span>,</span>
-<span class='r-in'>    min_value <span class='op'>=</span> <span class='fl'>1</span>, max_value <span class='op'>=</span> <span class='fl'>3</span></span>
+<span class='r-in'>    min_value <span class='op'>=</span> <span class='fl'>1</span>, max_value <span class='op'>=</span> <span class='fl'>3</span>, provenance <span class='op'>=</span> <span class='st'>"missing"</span></span>
 <span class='r-in'>  <span class='op'>)</span></span>
 <span class='r-in'><span class='op'>)</span></span>
 <span class='r-in'></span>
@@ -196,9 +197,10 @@ Required only for categorical data.</p></dd>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>v</span><span class='op'>)</span></span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Variable</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   dataset: .../sim_raster_spatial.tif</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   index:   Olive_headed_Lorikeet</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   index:   Brown_necked_Parrot_Brown_necked_</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   total:   12</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   units:   ha</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   provenance:   missing</span>
 </code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

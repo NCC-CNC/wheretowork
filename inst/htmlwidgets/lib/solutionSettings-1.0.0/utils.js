@@ -7,7 +7,8 @@ function newWeightSetting(manager, x) {
     x.max_factor,
     x.factor,
     x.step_factor,
-    x.status
+    x.status,
+    x.provenance
   );
 }
 
@@ -17,7 +18,8 @@ function newIncludeSetting(manager, x) {
     x.id,
     x.name,
     x.status,
-    x.mandatory
+    x.mandatory,
+    x.provenance
   );
 }
 
@@ -52,6 +54,7 @@ function newThemeSetting(manager, x) {
       x.feature_goal,
       x.feature_limit_goal,
       x.feature_step_goal,
+      x.feature_provenance[0],
       x.units || "units"
     );
   } else {
@@ -69,6 +72,7 @@ function newThemeSetting(manager, x) {
       x.feature_goal,
       x.feature_limit_goal,
       x.feature_step_goal,
+      x.feature_provenance,
       x.units || "units"
     );
   }

@@ -8,6 +8,7 @@ class MultiThemeLayer {
     feature_name,
     feature_visible,
     feature_legend,
+    feature_provenance,
     units
   ) {
     // class fields
@@ -52,6 +53,8 @@ class MultiThemeLayer {
     this.single_legend_el = this.main_el.querySelectorAll(".legend");
     const single_view_el = this.main_el.querySelectorAll(".view-checkbox");
     const single_name_el = this.main_el.querySelectorAll(".name-label");
+    const single_prov_el =
+      this.main_el.querySelectorAll(".provenance-container");
     const mapManagerLayer = this.el.querySelector(".map-manager-layer");
 
     // attach id to elements
@@ -91,8 +94,14 @@ class MultiThemeLayer {
     this.visible_el.checked = feature_visible.some((x) => x);
     /// view (i.e. show legend?), defaults to true
     this.view_el.checked = true;
+    /// provenance
+    const unique_provs = getUniqueBy(feature_provenance, "name");
+    let prov_el = this.el.querySelector(".header .provenance-container");
+    unique_provs.forEach((x) => createProvenance(prov_el, x));
 
     // set values for each feature
+    let curr_prov_el = undefined;
+    let curr_prov_icon_el = undefined;
     for (let i = 0; i < this.n_features; ++i) {
       /// name
       single_name_el[i].innerText = feature_name[i];
@@ -102,6 +111,8 @@ class MultiThemeLayer {
       single_view_el[i].checked = true;
       /// legend
       createLegend(this.single_legend_el[i], feature_legend[i], units);
+      /// provenance
+      createProvenance(single_prov_el[i], feature_provenance[i]);
     }
 
     // set listeners to update user interface

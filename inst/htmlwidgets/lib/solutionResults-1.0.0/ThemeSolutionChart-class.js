@@ -201,6 +201,8 @@ class ThemeSolutionChart {
     const self = this;
     const any_active = self.data.some((x) => x.feature_status);
     d3.select(el)
+      .append("span")
+      .attr("class", "provenance-container")
       .append("label")
       .style("cursor", "pointer")
       .style("max-width", "110px")

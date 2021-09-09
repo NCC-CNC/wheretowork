@@ -43,6 +43,9 @@
     <loc>/reference/Parameter.html</loc>
   </url>
   <url>
+    <loc>/reference/Provenance.html</loc>
+  </url>
+  <url>
     <loc>/reference/Result.html</loc>
   </url>
   <url>
@@ -215,6 +218,12 @@
   </url>
   <url>
     <loc>/reference/new_parameter.html</loc>
+  </url>
+  <url>
+    <loc>/reference/new_provenance.html</loc>
+  </url>
+  <url>
+    <loc>/reference/new_provenance_from_source.html</loc>
   </url>
   <url>
     <loc>/reference/new_result.html</loc>

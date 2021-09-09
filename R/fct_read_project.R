@@ -181,7 +181,8 @@ read_project <- function(path,
               index = f$variable$index,
               units = f$variable$units,
               type = f$variable$legend$type,
-              colors = f$variable$legend$colors
+              colors = f$variable$legend$colors,
+              provenance = f$variable$provenance %||% "missing"
             )
           )
         })
@@ -235,7 +236,8 @@ read_project <- function(path,
           index = x$variable$index,
           units = x$variable$units,
           type = x$variable$legend$type,
-          colors = x$variable$legend$colors
+          colors = x$variable$legend$colors,
+          provenance = x$variable$provenance %||% "missing"
         )
       ),
       silent = TRUE
@@ -283,6 +285,9 @@ read_project <- function(path,
           legend = new_manual_legend(
             colors = x$variable$legend$colors,
             labels = x$variable$legend$labels
+          ),
+          provenance = new_provenance_from_source(
+            x$variable$provenance %||% "missing"
           )
         ),
         visible = x$visible,

@@ -26,6 +26,8 @@ Definition for the Variable class.
 \item{\code{units}}{\code{character} value.}
 
 \item{\code{legend}}{\code{Legend} object.}
+
+\item{\code{provenance}}{\link{Provenance} object.}
 }
 \if{html}{\out{</div>}}
 }
@@ -49,7 +51,7 @@ Definition for the Variable class.
 \subsection{Method \code{new()}}{
 Create a Variable object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Variable$new(dataset, index, total, units, legend)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Variable$new(dataset, index, total, units, legend, provenance)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -64,6 +66,8 @@ Create a Variable object.
 \item{\code{units}}{\code{character} value.}
 
 \item{\code{legend}}{\code{Legend} object.}
+
+\item{\code{provenance}}{\link{Provenance} object.}
 }
 \if{html}{\out{</div>}}
 }

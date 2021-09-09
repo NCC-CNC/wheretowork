@@ -119,7 +119,8 @@ test_that("widget methods", {
       id = "FID1",
       name = "National protected areas",
       status = FALSE,
-      mandatory = TRUE
+      mandatory = TRUE,
+      provenance = v$provenance$get_widget_data()
     )
   )
   ## map manager settings
@@ -131,6 +132,7 @@ test_that("widget methods", {
       visible = FALSE,
       legend = v$legend$get_widget_data(),
       units = "",
+      provenance = v$provenance$get_widget_data(),
       type = "include"
     )
   )

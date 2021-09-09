@@ -8,6 +8,7 @@ class IncludeResults {
     total_amount,
     solution_held,
     units,
+    provenance,
     solution_color
   ) {
     // declare fields
@@ -31,6 +32,12 @@ class IncludeResults {
 
     // render chart on HTML element
     chart.render(this.el);
+
+    // add provenance
+    createProvenance(
+      this.el.querySelector(".provenance-container label"), provenance
+    );
+    $(this.el).find('[data-toggle="tooltip"]').tooltip()
   }
 
   /* render method */

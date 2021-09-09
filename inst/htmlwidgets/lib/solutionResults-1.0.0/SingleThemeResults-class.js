@@ -11,6 +11,7 @@ class SingleThemeResults {
     feature_current_held,
     feature_goal,
     feature_solution_held,
+    feature_provenance,
     units,
     mandatory,
     round,
@@ -83,6 +84,13 @@ class SingleThemeResults {
 
     // render chart on HTML element
     chart.render(this.el);
+
+    // add provenance
+    createProvenance(
+      this.el.querySelector(".provenance-container label"), feature_provenance
+    );
+    $(this.el).find('[data-toggle="tooltip"]').tooltip()
+
   }
 
   /* render method */

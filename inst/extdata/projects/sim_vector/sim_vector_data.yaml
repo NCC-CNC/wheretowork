@@ -6,281 +6,122 @@ attribute_path: sim_vector_attribute.csv.gz
 boundary_path: sim_vector_boundary.csv.gz
 mode: beginner
 themes:
-- name: Indian Nightjar
+- name: House Wren (Grenada)
   feature:
-  - name: Indian Nightjar habitat
+  - name: House Wren (Grenada) habitat
     variable:
-      index: Indian_Nightjar
+      index: House_Wren_Grenada_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#8E0152'
+        - '#C51B7D'
+        - '#DE77AE'
+        - '#F1B6DA'
+        - '#FDE0EF'
+        - '#F7F7F7'
+        - '#E6F5D0'
+        - '#B8E186'
+        - '#7FBC41'
+        - '#4D9221'
+        - '#276419'
+      provenance: regional
+    status: yes
+    visible: yes
+    goal: 0.9
+    limit_goal: 0.33
+- name: White-headed Woodhoopoe (Oku)
+  feature:
+  - name: White-headed Woodhoopoe (Oku) habitat
+    variable:
+      index: White_headed_Woodhoopoe_Oku_
       units: ha
       legend:
         type: categorical
         colors:
-        - '#E66101'
-        - '#FDB863'
-        - '#B2ABD2'
-        - '#5E3C99'
+        - '#7FC97F'
+        - '#BEAED4'
+        - '#FDC086'
+        - '#FFFF99'
+        - '#386CB0'
+        - '#F0027F'
+        - '#BF5B17'
+      provenance: regional
     status: yes
     visible: yes
-    goal: 0.63
-    limit_goal: 0.09
-- name: Yellow-vented Warbler
+    goal: 0.57
+    limit_goal: 0.35
+- name: Elliot's Storm-Petrel
   feature:
-  - name: Yellow-vented Warbler habitat
+  - name: Elliot's Storm-Petrel habitat
     variable:
-      index: Yellow_vented_Warbler
+      index: Elliot_s_Storm_Petrel
       units: ha
       legend:
         type: continuous
         colors:
-        - '#F7FCFD'
-        - '#E5F5F9'
-        - '#CCECE6'
-        - '#99D8C9'
-        - '#66C2A4'
-        - '#41AE76'
-        - '#238B45'
-        - '#006D2C'
-        - '#00441B'
-    status: yes
-    visible: yes
-    goal: 0.88
-    limit_goal: 0.09
-- name: Tanimbar Scrubfowl
-  feature:
-  - name: Tanimbar Scrubfowl habitat
-    variable:
-      index: Tanimbar_Scrubfowl
-      units: ha
-      legend:
-        type: continuous
-        colors:
-        - '#F7FCF5'
-        - '#E5F5E0'
-        - '#C7E9C0'
-        - '#A1D99B'
-        - '#74C476'
-        - '#41AB5D'
-        - '#238B45'
-        - '#006D2C'
-        - '#00441B'
-    status: yes
-    visible: yes
-    goal: 0.75
-    limit_goal: 0.38
-- name: Laughingthrushes and Allies
-  feature:
-  - name: Rusty-fronted Barwing
-    variable:
-      index: Rusty_fronted_Barwing
-      units: ha
-      legend:
-        type: continuous
-        colors:
-        - '#67001F'
-        - '#B2182B'
-        - '#D6604D'
-        - '#F4A582'
-        - '#FDDBC7'
-        - '#F7F7F7'
-        - '#D1E5F0'
-        - '#92C5DE'
-        - '#4393C3'
-        - '#2166AC'
-        - '#053061'
+        - '#FFFFFF'
+        - '#F0F0F0'
+        - '#D9D9D9'
+        - '#BDBDBD'
+        - '#969696'
+        - '#737373'
+        - '#525252'
+        - '#252525'
+        - '#000000'
+      provenance: national
     status: yes
     visible: yes
     goal: 0.56
-    limit_goal: 0.19
-  - name: Rufous-cheeked Laughingthrush
-    variable:
-      index: Rufous_cheeked_Laughingthrush
-      units: ha
-      legend:
-        type: continuous
-        colors:
-        - '#543005'
-        - '#8C510A'
-        - '#BF812D'
-        - '#DFC27D'
-        - '#F6E8C3'
-        - '#F5F5F5'
-        - '#C7EAE5'
-        - '#80CDC1'
-        - '#35978F'
-        - '#01665E'
-        - '#003C30'
-    status: yes
-    visible: yes
-    goal: 0.68
-    limit_goal: 0.15
-  - name: Moustached Laughingthrush (Western)
-    variable:
-      index: Moustached_Laughingthrush_Western_
-      units: ha
-      legend:
-        type: continuous
-        colors:
-        - '#FFFFD9'
-        - '#EDF8B1'
-        - '#C7E9B4'
-        - '#7FCDBB'
-        - '#41B6C4'
-        - '#1D91C0'
-        - '#225EA8'
-        - '#253494'
-        - '#081D58'
-    status: yes
-    visible: yes
-    goal: 0.68
-    limit_goal: 0.06
-  - name: Collared Laughingthrush
-    variable:
-      index: Collared_Laughingthrush
-      units: ha
-      legend:
-        type: continuous
-        colors:
-        - '#66C2A5'
-        - '#FC8D62'
-        - '#8DA0CB'
-        - '#E78AC3'
-        - '#A6D854'
-        - '#FFD92F'
-        - '#E5C494'
-        - '#B3B3B3'
-    status: yes
-    visible: yes
-    goal: 0.54
-    limit_goal: 0.19
-  - name: Blue-winged Minla
-    variable:
-      index: Blue_winged_Minla
-      units: ha
-      legend:
-        type: continuous
-        colors:
-        - '#FFF7FB'
-        - '#ECE7F2'
-        - '#D0D1E6'
-        - '#A6BDDB'
-        - '#74A9CF'
-        - '#3690C0'
-        - '#0570B0'
-        - '#045A8D'
-        - '#023858'
-    status: yes
-    visible: yes
-    goal: 0.59
-    limit_goal: 0.34
-  - name: Dusky Babbler
-    variable:
-      index: Dusky_Babbler
-      units: ha
-      legend:
-        type: continuous
-        colors:
-        - '#40004B'
-        - '#762A83'
-        - '#9970AB'
-        - '#C2A5CF'
-        - '#E7D4E8'
-        - '#F7F7F7'
-        - '#D9F0D3'
-        - '#A6DBA0'
-        - '#5AAE61'
-        - '#1B7837'
-        - '#00441B'
-    status: yes
-    visible: yes
-    goal: 0.71
-    limit_goal: 0.08
-- name: Starlings
+    limit_goal: 0.35
+- name: Cuckooshrikes
   feature:
-  - name: Long-tailed Glossy Starling
+  - name: Boyer's Cuckooshrike
     variable:
-      index: Long_tailed_Glossy_Starling
+      index: Boyer_s_Cuckooshrike
       units: ha
       legend:
         type: continuous
         colors:
-        - '#40004B'
-        - '#762A83'
-        - '#9970AB'
-        - '#C2A5CF'
-        - '#E7D4E8'
-        - '#F7F7F7'
-        - '#D9F0D3'
-        - '#A6DBA0'
-        - '#5AAE61'
-        - '#1B7837'
-        - '#00441B'
+        - '#F7FCF0'
+        - '#E0F3DB'
+        - '#CCEBC5'
+        - '#A8DDB5'
+        - '#7BCCC4'
+        - '#4EB3D3'
+        - '#2B8CBE'
+        - '#0868AC'
+        - '#084081'
+      provenance: regional
     status: yes
     visible: yes
-    goal: 0.79
-    limit_goal: 0.16
-  - name: Waller's Starling (Preuss's)
+    goal: 0.8
+    limit_goal: 0.37
+  - name: Gray-chinned Minivet (Gray-chinned)
     variable:
-      index: Waller_s_Starling_Preuss_s_
+      index: Gray_chinned_Minivet_Gray_chinned_
       units: ha
       legend:
         type: continuous
         colors:
-        - '#F7F4F9'
-        - '#E7E1EF'
-        - '#D4B9DA'
-        - '#C994C7'
-        - '#DF65B0'
-        - '#E7298A'
-        - '#CE1256'
-        - '#980043'
-        - '#67001F'
+        - '#FCFBFD'
+        - '#EFEDF5'
+        - '#DADAEB'
+        - '#BCBDDC'
+        - '#9E9AC8'
+        - '#807DBA'
+        - '#6A51A3'
+        - '#54278F'
+        - '#3F007D'
+      provenance: national
     status: yes
     visible: yes
-    goal: 0.72
+    goal: 0.8
     limit_goal: 0.01
-  - name: Magpie Starling
+  - name: Scarlet Minivet
     variable:
-      index: Magpie_Starling
-      units: ha
-      legend:
-        type: continuous
-        colors:
-        - '#FFF5F0'
-        - '#FEE0D2'
-        - '#FCBBA1'
-        - '#FC9272'
-        - '#FB6A4A'
-        - '#EF3B2C'
-        - '#CB181D'
-        - '#A50F15'
-        - '#67000D'
-    status: yes
-    visible: yes
-    goal: 0.83
-    limit_goal: 0.07
-  - name: Madagascar Starling
-    variable:
-      index: Madagascar_Starling
-      units: ha
-      legend:
-        type: continuous
-        colors:
-        - '#FFF7F3'
-        - '#FDE0DD'
-        - '#FCC5C0'
-        - '#FA9FB5'
-        - '#F768A1'
-        - '#DD3497'
-        - '#AE017E'
-        - '#7A0177'
-        - '#49006A'
-    status: yes
-    visible: yes
-    goal: 0.7
-    limit_goal: 0.07
-  - name: Great Myna
-    variable:
-      index: Great_Myna
+      index: Scarlet_Minivet
       units: ha
       legend:
         type: continuous
@@ -294,13 +135,35 @@ themes:
         - '#88419D'
         - '#810F7C'
         - '#4D004B'
+      provenance: national
     status: yes
     visible: yes
-    goal: 0.82
-    limit_goal: 0.29
-  - name: Meves's Starling (Cunene)
+    goal: 0.88
+    limit_goal: 0.09
+  - name: Ground Cuckooshrike
     variable:
-      index: Meves_s_Starling_Cunene_
+      index: Ground_Cuckooshrike
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FCFBFD'
+        - '#EFEDF5'
+        - '#DADAEB'
+        - '#BCBDDC'
+        - '#9E9AC8'
+        - '#807DBA'
+        - '#6A51A3'
+        - '#54278F'
+        - '#3F007D'
+      provenance: national
+    status: yes
+    visible: yes
+    goal: 0.8
+    limit_goal: 0.32
+  - name: Oriole Cuckooshrike
+    variable:
+      index: Oriole_Cuckooshrike
       units: ha
       legend:
         type: continuous
@@ -313,84 +176,312 @@ themes:
         - '#F0027F'
         - '#BF5B17'
         - '#666666'
+      provenance: national
     status: yes
     visible: yes
-    goal: 0.73
-    limit_goal: 0.15
+    goal: 0.89
+    limit_goal: 0.25
+  - name: Reunion Cuckooshrike
+    variable:
+      index: Reunion_Cuckooshrike
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#8DD3C7'
+        - '#FFFFB3'
+        - '#BEBADA'
+        - '#FB8072'
+        - '#80B1D3'
+        - '#FDB462'
+        - '#B3DE69'
+        - '#FCCDE5'
+        - '#D9D9D9'
+        - '#BC80BD'
+        - '#CCEBC5'
+        - '#FFED6F'
+      provenance: national
+    status: yes
+    visible: yes
+    goal: 0.58
+    limit_goal: 0.38
+  - name: Gray-chinned Minivet (Gray-throated)
+    variable:
+      index: Gray_chinned_Minivet_Gray_throated_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FBB4AE'
+        - '#B3CDE3'
+        - '#CCEBC5'
+        - '#DECBE4'
+        - '#FED9A6'
+        - '#FFFFCC'
+        - '#E5D8BD'
+        - '#FDDAEC'
+        - '#F2F2F2'
+      provenance: national
+    status: yes
+    visible: yes
+    goal: 0.87
+    limit_goal: 0.38
+  - name: Pied Triller
+    variable:
+      index: Pied_Triller
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#F7FBFF'
+        - '#DEEBF7'
+        - '#C6DBEF'
+        - '#9ECAE1'
+        - '#6BAED6'
+        - '#4292C6'
+        - '#2171B5'
+        - '#08519C'
+        - '#08306B'
+      provenance: regional
+    status: yes
+    visible: yes
+    goal: 0.78
+    limit_goal: 0.21
+  - name: Common Cicadabird (Rossel)
+    variable:
+      index: Common_Cicadabird_Rossel_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#F7FCF5'
+        - '#E5F5E0'
+        - '#C7E9C0'
+        - '#A1D99B'
+        - '#74C476'
+        - '#41AB5D'
+        - '#238B45'
+        - '#006D2C'
+        - '#00441B'
+      provenance: regional
+    status: yes
+    visible: yes
+    goal: 0.61
+    limit_goal: 0.4
+  - name: Varied Triller
+    variable:
+      index: Varied_Triller
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFFFD9'
+        - '#EDF8B1'
+        - '#C7E9B4'
+        - '#7FCDBB'
+        - '#41B6C4'
+        - '#1D91C0'
+        - '#225EA8'
+        - '#253494'
+        - '#081D58'
+      provenance: regional
+    status: yes
+    visible: yes
+    goal: 0.85
+    limit_goal: 0.11
+- name: Old World Buntings
+  feature:
+  - name: Rufous-backed Bunting
+    variable:
+      index: Rufous_backed_Bunting
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#E41A1C'
+        - '#377EB8'
+        - '#4DAF4A'
+        - '#984EA3'
+        - '#FF7F00'
+        - '#FFFF33'
+        - '#A65628'
+        - '#F781BF'
+      provenance: national
+    status: yes
+    visible: yes
+    goal: 0.78
+    limit_goal: 0.26
+  - name: Cabanis's Bunting
+    variable:
+      index: Cabanis_s_Bunting
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#FEEBE2'
+        - '#FCC5C0'
+        - '#FA9FB5'
+        - '#F768A1'
+        - '#C51B8A'
+        - '#7A0177'
+      provenance: national
+    status: yes
+    visible: yes
+    goal: 0.69
+    limit_goal: 0.09
+  - name: Yellowhammer
+    variable:
+      index: Yellowhammer
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#D8B365'
+        - '#F5F5F5'
+      provenance: regional
+    status: yes
+    visible: yes
+    goal: 0.86
+    limit_goal: 0.1
+  - name: Brown-rumped Bunting
+    variable:
+      index: Brown_rumped_Bunting
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#F7F4F9'
+        - '#E7E1EF'
+        - '#D4B9DA'
+        - '#C994C7'
+        - '#DF65B0'
+        - '#E7298A'
+        - '#CE1256'
+        - '#980043'
+        - '#67001F'
+        - '#EDF8B1'
+      provenance: regional
+    status: yes
+    visible: yes
+    goal: 0.77
+    limit_goal: 0.13
+  - name: Gray-necked Bunting
+    variable:
+      index: Gray_necked_Bunting
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#CA0020'
+        - '#F4A582'
+        - '#BABABA'
+        - '#404040'
+      provenance: regional
+    status: yes
+    visible: yes
+    goal: 0.65
+    limit_goal: 0.38
+  - name: White-capped Bunting
+    variable:
+      index: White_capped_Bunting
+      units: ha
+      legend:
+        type: categorical
+        colors:
+        - '#8DD3C7'
+        - '#FFFFB3'
+        - '#BEBADA'
+        - '#FB8072'
+        - '#80B1D3'
+        - '#FDB462'
+        - '#B3DE69'
+        - '#FCCDE5'
+        - '#D9D9D9'
+        - '#BC80BD'
+      provenance: regional
+    status: yes
+    visible: yes
+    goal: 0.56
+    limit_goal: 0.05
 weights:
-- name: Tsunami threat
+- name: Marine vessel traffic (threat)
   variable:
-    index: Tsunami_threat
+    index: Marine_vessel_traffic_threat_
     units: ha
     legend:
       type: continuous
       colors:
-      - '#F7FCFD'
-      - '#E5F5F9'
-      - '#CCECE6'
-      - '#99D8C9'
-      - '#66C2A4'
-      - '#41AE76'
-      - '#238B45'
-      - '#006D2C'
-      - '#00441B'
-  status: yes
-  visible: yes
-  factor: 0.0
-- name: Tourism and recreation
-  variable:
-    index: Tourism_and_recreation
-    units: ha
-    legend:
-      type: continuous
-      colors:
-      - '#A6CEE3'
-      - '#1F78B4'
-      - '#B2DF8A'
-      - '#33A02C'
-      - '#FB9A99'
-      - '#E31A1C'
-      - '#FDBF6F'
-      - '#FF7F00'
-      - '#CAB2D6'
-      - '#6A3D9A'
-      - '#FFFF99'
-      - '#B15928'
-  status: yes
-  visible: yes
-  factor: 0.0
-- name: Habitat intactness index
-  variable:
-    index: Habitat_intactness_index
-    units: ha
-    legend:
-      type: continuous
-      colors:
+      - '#67001F'
+      - '#B2182B'
+      - '#D6604D'
+      - '#F4A582'
+      - '#FDDBC7'
       - '#FFFFFF'
-      - '#F0F0F0'
-      - '#D9D9D9'
-      - '#BDBDBD'
-      - '#969696'
-      - '#737373'
-      - '#525252'
-      - '#252525'
-      - '#000000'
+      - '#E0E0E0'
+      - '#BABABA'
+      - '#878787'
+      - '#4D4D4D'
+      - '#1A1A1A'
+    provenance: national
+  status: yes
+  visible: yes
+  factor: 0.0
+- name: Population count
+  variable:
+    index: Population_count
+    units: ha
+    legend:
+      type: continuous
+      colors:
+      - '#67001F'
+      - '#B2182B'
+      - '#D6604D'
+      - '#F4A582'
+      - '#FDDBC7'
+      - '#F7F7F7'
+      - '#D1E5F0'
+      - '#92C5DE'
+      - '#4393C3'
+      - '#2166AC'
+      - '#053061'
+    provenance: national
+  status: yes
+  visible: yes
+  factor: 0.0
+- name: Roads
+  variable:
+    index: Roads
+    units: ha
+    legend:
+      type: continuous
+      colors:
+      - '#FBB4AE'
+      - '#B3CDE3'
+      - '#CCEBC5'
+      - '#DECBE4'
+      - '#FED9A6'
+      - '#FFFFCC'
+      - '#E5D8BD'
+      - '#FDDAEC'
+      - '#F2F2F2'
+    provenance: national
   status: yes
   visible: yes
   factor: 0.0
 includes:
-- name: RAMSAR Sites
+- name: National protected areas
   variable:
-    index: RAMSAR_Sites
+    index: National_protected_areas
     units: ''
     legend:
       type: manual
       colors:
       - '#00FFFF00'
-      - '#66C2A5'
+      - '#8DD3C7'
       labels:
       - not included
       - included
+    provenance: national
   mandatory: no
   status: yes
   visible: yes
@@ -402,10 +493,11 @@ includes:
       type: manual
       colors:
       - '#00FFFF00'
-      - '#B3E2CD'
+      - '#A6CEE3'
       labels:
       - not included
       - included
+    provenance: regional
   mandatory: no
   status: yes
   visible: yes

@@ -239,6 +239,9 @@ ss_header_component_scaffold <- function(
     },
     htmltools::tags$label(
       class = "name-label disable-if-inactive"
+    ),
+    htmltools::tags$div(
+      class = "provenance-container"
     )
   )
 }
@@ -265,6 +268,9 @@ ss_subheader_component_scaffold <- function(id = uuid::UUIDgenerate()) {
     ),
     htmltools::tags$label(
       class = "name-label disable-if-inactive"
+    ),
+    htmltools::tags$div(
+      class = "provenance-container"
     )
   )
 }

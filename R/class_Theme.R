@@ -401,7 +401,11 @@ Theme <- R6::R6Class(
         feature_step_goal = vapply(
           self$feature, `[[`, numeric(1), "step_goal"
         ),
+        feature_provenance = lapply(
+          self$feature, function(x) x$variable$provenance$get_widget_data()
+        ),
         units = self$feature[[1]]$variable$units
+
       )
     },
 
@@ -420,6 +424,9 @@ Theme <- R6::R6Class(
           vapply(self$feature, `[[`, logical(1), "visible"),
         feature_legend =
           lapply(self$feature, function(x) x$variable$legend$get_widget_data()),
+        feature_provenance = lapply(
+          self$feature, function(x) x$variable$provenance$get_widget_data()
+        ),
         units = self$feature[[1]]$variable$units,
         type = "theme"
       )

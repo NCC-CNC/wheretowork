@@ -95,20 +95,19 @@ simulate_themes <- function(dataset, n_single_themes, n_multi_themes,
       dataset$add_index(st_index[i], std[[1]][idx])
     }
     ### create theme
-    st[[i]] <-
-      new_theme(
-        name = st_names[i],
-        new_feature(
-          name = paste0(st_names[i], " habitat"),
-          goal = round(stats::runif(1, 0.5, 0.9), 2),
-          current = round(stats::runif(1, 0.1, 0.6), 2),
-          limit_goal = round(stats::runif(1, 0, 0.4), 2),
-          variable =
-            new_variable_from_auto(
-              dataset = dataset, index = st_index[[i]], units = "ha"
-            )
+    st[[i]] <- new_theme(
+      name = st_names[i],
+      new_feature(
+        name = paste0(st_names[i], " habitat"),
+        goal = round(stats::runif(1, 0.5, 0.9), 2),
+        current = round(stats::runif(1, 0.1, 0.6), 2),
+        limit_goal = round(stats::runif(1, 0, 0.4), 2),
+        variable = new_variable_from_auto(
+          dataset = dataset, index = st_index[[i]], units = "ha",
+          provenance = sample(c("regional", "national"), 1)
         )
       )
+    )
   }
 
   # simulate multi themes
@@ -180,7 +179,8 @@ simulate_themes <- function(dataset, n_single_themes, n_multi_themes,
         limit_goal = round(stats::runif(1, 0, 0.4), 2),
         variable =
           new_variable_from_auto(
-            dataset = dataset, index = curr_tn_index[[j]], units = "ha"
+            dataset = dataset, index = curr_tn_index[[j]], units = "ha",
+            provenance = sample(c("regional", "national"), 1)
           )
       )
     })

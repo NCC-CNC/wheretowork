@@ -27,7 +27,8 @@ function newLayer(manager, x) {
       x.name,
       x.visible,
       x.legend,
-      x.units
+      x.units,
+      x.provenance
     );
   } else if (x.type == "weight") {
     return new WeightLayer(
@@ -36,7 +37,8 @@ function newLayer(manager, x) {
       x.name,
       x.visible,
       x.legend,
-      x.units
+      x.units,
+      x.provenance
     );
   } else {
     if (typeof(x.feature_name) === "string") {
@@ -48,6 +50,7 @@ function newLayer(manager, x) {
         x.feature_name,
         x.feature_visible,
         x.feature_legend[0],
+        x.feature_provenance[0],
         x.units
       );
     } else {
@@ -59,6 +62,7 @@ function newLayer(manager, x) {
         x.feature_name,
         x.feature_visible,
         x.feature_legend,
+        x.feature_provenance,
         x.units
       );
     }

@@ -14,6 +14,7 @@ class SingleThemeSetting {
     feature_goal,
     feature_limit_goal,
     feature_step_goal,
+    feature_provenance,
     units
   ) {
     // class fields
@@ -66,6 +67,10 @@ class SingleThemeSetting {
     style_current_bar(this.current_bar_el, feature_current_held);
     /// status
     this.updateStatus(feature_status);
+    /// provenance
+    createProvenance(
+      this.el.querySelector(".provenance-container"), feature_provenance
+    );
 
     // set listeners to update user interface
     if (HTMLWidgets.shinyMode) {

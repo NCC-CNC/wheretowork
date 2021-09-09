@@ -137,7 +137,8 @@ functions because it requires performing geospatial operations.</p>
   <span class='va'>index</span>,
   units <span class='op'>=</span> <span class='st'>""</span>,
   type <span class='op'>=</span> <span class='st'>"auto"</span>,
-  colors <span class='op'>=</span> <span class='st'>"random"</span>
+  colors <span class='op'>=</span> <span class='st'>"random"</span>,
+  provenance <span class='op'>=</span> <span class='st'>"missing"</span>
 <span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -168,6 +169,12 @@ Defaults to <code>"auto"</code> such that data are automatically identified.</p>
       <td><p><code>character</code> object containing the colors for visualization
 (see Details for more information).
 Defaults to <code>"random"</code> such that colors are randomly generated.</p></td>
+    </tr>
+    <tr>
+      <th>provenance</th>
+      <td><p><code>character</code> value indicating the type of provenance.
+The argument must be a valid type (see <code><a href='new_provenance_from_source.html'>new_provenance_from_source()</a></code>).
+Defaults to <code>"missing"</code>.</p></td>
     </tr>
     </table>
 
@@ -205,9 +212,10 @@ colors are generated using a randomly selected palette.</p>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>v</span><span class='op'>)</span></span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Variable</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   dataset: .../sim_raster_spatial.tif</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   index:   Olive_headed_Lorikeet</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   index:   Brown_necked_Parrot_Brown_necked_</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   total:   1052</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   units:   </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   provenance:   missing</span>
 </code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

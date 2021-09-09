@@ -48,6 +48,7 @@ function newWeightResults(manager, x, solution_color) {
     x.current_held,
     x.solution_held,
     x.units || "units",
+    x.provenance,
     solution_color
   );
 }
@@ -61,6 +62,7 @@ function newIncludeResults(manager, x, solution_color) {
     x.total_amount,
     x.solution_held,
     x.units || "units",
+    x.provenance,
     solution_color
   );
 }
@@ -78,6 +80,7 @@ function newThemeResults(manager, x, solution_color) {
       x.feature_current_held,
       x.feature_goal,
       x.feature_solution_held,
+      x.feature_provenance[0],
       x.units || "units",
       x.mandatory,
       x.round,
@@ -96,6 +99,7 @@ function newThemeResults(manager, x, solution_color) {
       x.feature_current_held,
       x.feature_goal,
       x.feature_solution_held,
+      x.feature_provenance,
       x.units || "units",
       x.mandatory,
       x.round,
@@ -104,4 +108,14 @@ function newThemeResults(manager, x, solution_color) {
     );
   }
   return y;
+}
+
+function splitStringIntoSpans(x) {
+  let out = document.createElement("span");
+  x.split(" ").forEach((x) => {
+    let s = document.createElement("span");
+    s.innerText = x;
+    out.appendChild(s);
+  })
+  return out;
 }

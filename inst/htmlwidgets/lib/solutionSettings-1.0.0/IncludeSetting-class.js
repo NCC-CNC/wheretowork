@@ -5,7 +5,8 @@ class IncludeSetting {
     id,
     name,
     status,
-    mandatory
+    mandatory,
+    provenance
   ) {
     // class fields
     this.id = id;
@@ -31,6 +32,10 @@ class IncludeSetting {
     this.name_el.innerText = name;
     /// status
     this.status_el.checked = status;
+    /// provenance
+    createProvenance(
+      this.el.querySelector(".provenance-container"), provenance
+    );
 
     // disable switches if include is mandatory
     if (mandatory) {

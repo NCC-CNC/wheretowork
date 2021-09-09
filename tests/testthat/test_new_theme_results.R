@@ -122,6 +122,9 @@ test_that("widget methods (single feature)", {
       feature_current_held = f$current,
       feature_goal = fr$goal,
       feature_solution_held = fr$held,
+      feature_provenance = list(
+        fr$feature$variable$provenance$get_widget_data()
+      ),
       units = v$units,
       type = "theme_results"
     )
@@ -337,6 +340,10 @@ test_that("widget methods (multiple features)", {
       feature_solution_held = c(
         fr[[1]]$held,
         fr[[2]]$held
+      ),
+      feature_provenance = list(
+        fr[[1]]$feature$variable$provenance$get_widget_data(),
+        fr[[2]]$feature$variable$provenance$get_widget_data()
       ),
       units = v1$units,
       type = "theme_results"

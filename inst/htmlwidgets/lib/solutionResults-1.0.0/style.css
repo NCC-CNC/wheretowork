@@ -166,3 +166,8 @@
   border: 1px solid var(--symbol-border);
   box-sizing: border-box;
 }
+
+.solution-results .provenance-container i {
+  font-size: 12px;
+  padding-left: 2px;
+}

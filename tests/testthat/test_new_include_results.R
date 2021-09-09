@@ -79,6 +79,7 @@ test_that("widget methods", {
       total_amount = v$total,
       solution_held = 0.9,
       units = v$units,
+      provenance = v$provenance$get_widget_data(),
       type = "include_results"
     )
   )

@@ -37,6 +37,15 @@ last <- function(x) {
   x[[length(x)]]
 }
 
+# alias for roxygen2:::`%||%`
+`%||%` <- function(a, b) {
+  if (length(a) > 0) {
+    return(a)
+  } else {
+    return(b)
+  }
+}
+
 # alias for (x - mean(x)) / sd(x)
 zscale <- function(x) {
   sdx <- stats::sd(x, na.rm = TRUE)

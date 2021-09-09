@@ -8,6 +8,7 @@ class SingleThemeLayer {
     feature_name,
     feature_visible,
     feature_legend,
+    feature_provenance,
     units
   ) {
     // class fields
@@ -41,6 +42,10 @@ class SingleThemeLayer {
     this.view_el.checked = true;
     /// legend
     createLegend(this.legend_el, feature_legend, units);
+    /// provenance
+    createProvenance(
+      this.el.querySelector(".provenance-container"), feature_provenance
+    );
 
     // set listeners to update user interfance
     /// show/hide legend on click

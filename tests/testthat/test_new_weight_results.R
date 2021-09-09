@@ -95,6 +95,7 @@ test_that("widget methods", {
       current_held = 0.45,
       solution_held = 0.9,
       units = v$units,
+      provenance = v$provenance$get_widget_data(),
       type = "weight_results"
     )
   )

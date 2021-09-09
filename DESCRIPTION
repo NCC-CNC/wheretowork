@@ -113,6 +113,7 @@ Collate:
     'class_Weight.R'
     'class_MapManager.R'
     'class_Parameter-class.R'
+    'class_Provenance.R'
     'class_Result.R'
     'class_SolutionSettings.R'
     'class_Statistic.R'

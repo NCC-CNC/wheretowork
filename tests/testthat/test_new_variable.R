@@ -5,9 +5,11 @@ test_that("initialization", {
   rd <- simulate_proportion_spatial_data(import_simple_raster_data(), 2)
   d <- new_dataset_from_auto(rd)
   l <- new_continuous_legend(1, 100, c("#000000", "#AAAAAA"))
+  p <- new_provenance_from_source("regional")
   # create object
   x <- new_variable(
-    dataset = d, index = 2, total = 12, units = "ha", legend = l
+    dataset = d, index = 2, total = 12, units = "ha", legend = l,
+    provenance = p
   )
   # run tests
   expect_is(x, "Variable")
@@ -41,9 +43,11 @@ test_that("export method", {
   rd <- simulate_proportion_spatial_data(import_simple_raster_data(), 2)
   d <- new_dataset_from_auto(rd)
   l <- new_continuous_legend(1, 100, c("#000000", "#AAAAAA"))
+  p <- new_provenance_from_source("regional")
   # create object
   x <- new_variable(
-    dataset = d, index = 2, total = 12, units = "ha", legend = l
+    dataset = d, index = 2, total = 12, units = "ha", legend = l,
+    provenance = p
   )
   # run tests
   expect_identical(
@@ -51,7 +55,8 @@ test_that("export method", {
     list(
       index = names(rd)[[2]],
       units = "ha",
-      legend = l$export()
+      legend = l$export(),
+      provenance = p$export()
     )
   )
 })
@@ -111,11 +116,10 @@ test_that("new_variable_from_metadata (continuous)", {
   # create object
   x <- new_variable_from_metadata(
     dataset = d,
-    metadata =
-      list(
-        index = 1, type = "continuous", units = "ha", colors = "viridis",
-        min_value = 1, max_value = 5, total = 11
-      )
+    metadata = list(
+      index = 1, type = "continuous", units = "ha", colors = "viridis",
+      min_value = 1, max_value = 5, total = 11, provenance = "missing"
+    )
   )
   # run tests
   expect_is(x, "Variable")
@@ -137,11 +141,10 @@ test_that("new_variable_from_metadata (categorical)", {
   # create object
   x <- new_variable_from_metadata(
     dataset = d,
-    metadata =
-      list(
-        index = 1, type = "categorical", units = "ha", colors = "viridis",
-        total = 11, values = seq(1, 6)
-      )
+    metadata = list(
+      index = 1, type = "categorical", units = "ha", colors = "viridis",
+      total = 11, values = seq(1, 6), provenance = "missing"
+    )
   )
   # run tests
   expect_is(x, "Variable")

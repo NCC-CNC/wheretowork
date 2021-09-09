@@ -21,6 +21,7 @@ themes:
         - '#FD8D3C'
         - '#F03B20'
         - '#BD0026'
+      provenance: regional
     status: yes
     visible: yes
     goal: 0.83
@@ -34,14 +35,15 @@ themes:
       legend:
         type: categorical
         colors:
-        - '#FFF7EC'
-        - '#FEE8C8'
-        - '#FDD49E'
-        - '#FDBB84'
-        - '#FC8D59'
-        - '#EF6548'
-        - '#D7301F'
-        - '#990000'
+        - '#FFFFCC'
+        - '#FFEDA0'
+        - '#FED976'
+        - '#FEB24C'
+        - '#FD8D3C'
+        - '#FC4E2A'
+        - '#E31A1C'
+        - '#B10026'
+      provenance: regional
     status: yes
     visible: yes
     goal: 0.7
@@ -55,8 +57,9 @@ themes:
       legend:
         type: categorical
         colors:
-        - '#FC8D59'
-        - '#FFFFBF'
+        - '#E0ECF4'
+        - '#9EBCDA'
+      provenance: regional
     status: yes
     visible: yes
     goal: 0.7
@@ -79,6 +82,7 @@ themes:
         - '#CB181D'
         - '#A50F15'
         - '#67000D'
+      provenance: regional
     status: yes
     visible: yes
     goal: 0.69
@@ -99,6 +103,7 @@ themes:
         - '#D7301F'
         - '#B30000'
         - '#7F0000'
+      provenance: national
     status: yes
     visible: yes
     goal: 0.55
@@ -110,21 +115,20 @@ themes:
       legend:
         type: continuous
         colors:
-        - '#8E0152'
-        - '#C51B7D'
-        - '#DE77AE'
-        - '#F1B6DA'
-        - '#FDE0EF'
-        - '#F7F7F7'
-        - '#E6F5D0'
-        - '#B8E186'
-        - '#7FBC41'
-        - '#4D9221'
-        - '#276419'
+        - '#FFFFE5'
+        - '#FFF7BC'
+        - '#FEE391'
+        - '#FEC44F'
+        - '#FE9929'
+        - '#EC7014'
+        - '#CC4C02'
+        - '#993404'
+        - '#662506'
+      provenance: national
     status: yes
     visible: yes
     goal: 0.53
-    limit_goal: 0.28
+    limit_goal: 0.14
   - name: Black-throated Finch (White-rumped)
     variable:
       index: Black_throated_Finch_White_rumped_
@@ -132,26 +136,6 @@ themes:
       legend:
         type: continuous
         colors:
-        - '#FFFFD9'
-        - '#EDF8B1'
-        - '#C7E9B4'
-        - '#7FCDBB'
-        - '#41B6C4'
-        - '#1D91C0'
-        - '#225EA8'
-        - '#253494'
-        - '#081D58'
-    status: yes
-    visible: yes
-    goal: 0.52
-    limit_goal: 0.08
-  - name: Crimson Seedcracker
-    variable:
-      index: Crimson_Seedcracker
-      units: ha
-      legend:
-        type: continuous
-        colors:
         - '#8E0152'
         - '#C51B7D'
         - '#DE77AE'
@@ -163,55 +147,34 @@ themes:
         - '#7FBC41'
         - '#4D9221'
         - '#276419'
+      provenance: national
     status: yes
     visible: yes
     goal: 0.72
     limit_goal: 0.18
+  - name: Crimson Seedcracker
+    variable:
+      index: Crimson_Seedcracker
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#7FC97F'
+        - '#BEAED4'
+        - '#FDC086'
+        - '#FFFF99'
+        - '#386CB0'
+        - '#F0027F'
+        - '#BF5B17'
+        - '#666666'
+      provenance: national
+    status: yes
+    visible: yes
+    goal: 0.61
+    limit_goal: 0.0
   - name: Royal Parrotfinch
     variable:
       index: Royal_Parrotfinch
-      units: ha
-      legend:
-        type: continuous
-        colors:
-        - '#66C2A5'
-        - '#FC8D62'
-        - '#8DA0CB'
-        - '#E78AC3'
-        - '#A6D854'
-        - '#FFD92F'
-        - '#E5C494'
-        - '#B3B3B3'
-    status: yes
-    visible: yes
-    goal: 0.57
-    limit_goal: 0.35
-  - name: Red-billed Firefinch
-    variable:
-      index: Red_billed_Firefinch
-      units: ha
-      legend:
-        type: continuous
-        colors:
-        - '#A6CEE3'
-        - '#1F78B4'
-        - '#B2DF8A'
-        - '#33A02C'
-        - '#FB9A99'
-        - '#E31A1C'
-        - '#FDBF6F'
-        - '#FF7F00'
-        - '#CAB2D6'
-        - '#6A3D9A'
-        - '#FFFF99'
-        - '#B15928'
-    status: yes
-    visible: yes
-    goal: 0.5
-    limit_goal: 0.24
-  - name: Quailfinch (Black-faced)
-    variable:
-      index: Quailfinch_Black_faced_
       units: ha
       legend:
         type: continuous
@@ -225,13 +188,14 @@ themes:
         - '#A65628'
         - '#F781BF'
         - '#999999'
+      provenance: national
     status: yes
     visible: yes
     goal: 0.54
     limit_goal: 0.03
-  - name: White-collared Oliveback
+  - name: Red-billed Firefinch
     variable:
-      index: White_collared_Oliveback
+      index: Red_billed_Firefinch
       units: ha
       legend:
         type: continuous
@@ -245,10 +209,52 @@ themes:
         - '#02818A'
         - '#016C59'
         - '#014636'
+      provenance: national
     status: yes
     visible: yes
     goal: 0.81
     limit_goal: 0.21
+  - name: Quailfinch (Black-faced)
+    variable:
+      index: Quailfinch_Black_faced_
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#66C2A5'
+        - '#FC8D62'
+        - '#8DA0CB'
+        - '#E78AC3'
+        - '#A6D854'
+        - '#FFD92F'
+        - '#E5C494'
+        - '#B3B3B3'
+      provenance: national
+    status: yes
+    visible: yes
+    goal: 0.76
+    limit_goal: 0.14
+  - name: White-collared Oliveback
+    variable:
+      index: White_collared_Oliveback
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#FFFFFF'
+        - '#F0F0F0'
+        - '#D9D9D9'
+        - '#BDBDBD'
+        - '#969696'
+        - '#737373'
+        - '#525252'
+        - '#252525'
+        - '#000000'
+      provenance: regional
+    status: yes
+    visible: yes
+    goal: 0.86
+    limit_goal: 0.03
 - name: Penduline-Tits
   feature:
   - name: Eurasian Penduline-Tit
@@ -258,64 +264,64 @@ themes:
       legend:
         type: continuous
         colors:
-        - '#8E0152'
-        - '#C51B7D'
-        - '#DE77AE'
-        - '#F1B6DA'
-        - '#FDE0EF'
-        - '#F7F7F7'
-        - '#E6F5D0'
-        - '#B8E186'
-        - '#7FBC41'
-        - '#4D9221'
-        - '#276419'
+        - '#FFF7F3'
+        - '#FDE0DD'
+        - '#FCC5C0'
+        - '#FA9FB5'
+        - '#F768A1'
+        - '#DD3497'
+        - '#AE017E'
+        - '#7A0177'
+        - '#49006A'
+      provenance: national
     status: yes
     visible: yes
-    goal: 0.56
-    limit_goal: 0.32
-  - name: African Penduline-Tit (Slaty-backed)
-    variable:
-      index: African_Penduline_Tit_Slaty_backed_
-      units: ha
-      legend:
-        type: continuous
-        colors:
-        - '#FFFFCC'
-        - '#FFEDA0'
-        - '#FED976'
-        - '#FEB24C'
-        - '#FD8D3C'
-        - '#FC4E2A'
-        - '#E31A1C'
-        - '#BD0026'
-        - '#800026'
-    status: yes
-    visible: yes
-    goal: 0.56
-    limit_goal: 0.38
-  - name: Yellow Penduline-Tit
-    variable:
-      index: Yellow_Penduline_Tit
-      units: ha
-      legend:
-        type: continuous
-        colors:
-        - '#F7FCFD'
-        - '#E5F5F9'
-        - '#CCECE6'
-        - '#99D8C9'
-        - '#66C2A4'
-        - '#41AE76'
-        - '#238B45'
-        - '#006D2C'
-        - '#00441B'
-    status: yes
-    visible: yes
-    goal: 0.6
-    limit_goal: 0.31
+    goal: 0.8
+    limit_goal: 0.03
   - name: Verdin
     variable:
       index: Verdin
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#66C2A5'
+        - '#FC8D62'
+        - '#8DA0CB'
+        - '#E78AC3'
+        - '#A6D854'
+        - '#FFD92F'
+        - '#E5C494'
+        - '#B3B3B3'
+      provenance: national
+    status: yes
+    visible: yes
+    goal: 0.64
+    limit_goal: 0.01
+  - name: Mouse-colored Penduline-Tit
+    variable:
+      index: Mouse_colored_Penduline_Tit
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#F7F4F9'
+        - '#E7E1EF'
+        - '#D4B9DA'
+        - '#C994C7'
+        - '#DF65B0'
+        - '#E7298A'
+        - '#CE1256'
+        - '#980043'
+        - '#67001F'
+      provenance: national
+    status: yes
+    visible: yes
+    goal: 0.66
+    limit_goal: 0.28
+  - name: Forest Penduline-Tit
+    variable:
+      index: Forest_Penduline_Tit
       units: ha
       legend:
         type: continuous
@@ -329,33 +335,35 @@ themes:
         - '#2171B5'
         - '#08519C'
         - '#08306B'
+      provenance: regional
     status: yes
     visible: yes
-    goal: 0.56
-    limit_goal: 0.32
-  - name: Mouse-colored Penduline-Tit
+    goal: 0.68
+    limit_goal: 0.1
+  - name: Chinese Penduline-Tit
     variable:
-      index: Mouse_colored_Penduline_Tit
+      index: Chinese_Penduline_Tit
       units: ha
       legend:
         type: continuous
         colors:
-        - '#7FC97F'
-        - '#BEAED4'
-        - '#FDC086'
-        - '#FFFF99'
-        - '#386CB0'
-        - '#F0027F'
-        - '#BF5B17'
-        - '#666666'
+        - '#B3E2CD'
+        - '#FDCDAC'
+        - '#CBD5E8'
+        - '#F4CAE4'
+        - '#E6F5C9'
+        - '#FFF2AE'
+        - '#F1E2CC'
+        - '#CCCCCC'
+      provenance: national
     status: yes
     visible: yes
-    goal: 0.51
-    limit_goal: 0.32
+    goal: 0.8
+    limit_goal: 0.08
 weights:
-- name: Fire
+- name: Landscape naturalness
   variable:
-    index: Fire
+    index: Landscape_naturalness
     units: ha
     legend:
       type: continuous
@@ -371,76 +379,80 @@ weights:
       - '#5AAE61'
       - '#1B7837'
       - '#00441B'
+    provenance: regional
   status: yes
   visible: yes
   factor: 0.0
-- name: Grazing
+- name: Archaeological site
   variable:
-    index: Grazing
+    index: Archaeological_site
     units: ha
     legend:
       type: continuous
       colors:
-      - '#66C2A5'
-      - '#FC8D62'
-      - '#8DA0CB'
-      - '#E78AC3'
-      - '#A6D854'
-      - '#FFD92F'
-      - '#E5C494'
-      - '#B3B3B3'
+      - '#FBB4AE'
+      - '#B3CDE3'
+      - '#CCEBC5'
+      - '#DECBE4'
+      - '#FED9A6'
+      - '#FFFFCC'
+      - '#E5D8BD'
+      - '#FDDAEC'
+      - '#F2F2F2'
+    provenance: national
   status: yes
   visible: yes
   factor: 0.0
-- name: Population count
+- name: Engagement potential
   variable:
-    index: Population_count
+    index: Engagement_potential
     units: ha
     legend:
       type: continuous
       colors:
-      - '#A50026'
-      - '#D73027'
-      - '#F46D43'
-      - '#FDAE61'
-      - '#FEE08B'
-      - '#FFFFBF'
-      - '#D9EF8B'
-      - '#A6D96A'
-      - '#66BD63'
-      - '#1A9850'
-      - '#006837'
+      - '#FFFFFF'
+      - '#F0F0F0'
+      - '#D9D9D9'
+      - '#BDBDBD'
+      - '#969696'
+      - '#737373'
+      - '#525252'
+      - '#252525'
+      - '#000000'
+    provenance: national
   status: yes
   visible: yes
   factor: 0.0
 includes:
-- name: OECM areas
+- name: National protected areas
   variable:
-    index: OECM_areas
+    index: National_protected_areas
     units: ''
     legend:
       type: manual
       colors:
       - '#00FFFF00'
-      - '#1B9E77'
+      - '#8DD3C7'
       labels:
       - not included
       - included
+    provenance: regional
   mandatory: no
   status: yes
   visible: yes
-- name: RAMSAR Sites
+- name: Key Biodiversity Areas
   variable:
-    index: RAMSAR_Sites
+    index: Key_Biodiversity_Areas
     units: ''
     legend:
       type: manual
       colors:
       - '#00FFFF00'
-      - '#66C2A5'
+      - '#8DD3C7'
       labels:
       - not included
       - included
+    provenance: national
   mandatory: no
   status: yes
   visible: yes

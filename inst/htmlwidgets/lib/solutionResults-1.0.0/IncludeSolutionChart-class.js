@@ -147,6 +147,8 @@ class IncludeSolutionChart {
     d3.select(el)
       .style("max-width", "110px")
       .style("text-align", "center")
+      .append("span")
+      .attr("class", "provenance-container")
       .append("label")
       .style("color", this.data[0].status ? "black" : "#B8B8B8")
       .node()

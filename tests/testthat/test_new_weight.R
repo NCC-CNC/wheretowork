@@ -131,7 +131,8 @@ test_that("widget methods", {
       factor = -0.2,
       min_factor = -100,
       max_factor = 100,
-      step_factor = 1
+      step_factor = 1,
+      provenance = v$provenance$get_widget_data()
     )
   )
   ## map manager settings
@@ -143,6 +144,7 @@ test_that("widget methods", {
       visible = TRUE,
       legend = v$legend$get_widget_data(),
       units = "ha",
+      provenance = v$provenance$get_widget_data(),
       type = "weight"
     )
   )

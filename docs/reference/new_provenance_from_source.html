@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Simulate includes — simulate_includes • wheretowork</title>
+<title>New provenance from source — new_provenance_from_source • wheretowork</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Simulate includes — simulate_includes" />
-<meta property="og:description" content="This function simulates Include objects." />
+<meta property="og:title" content="New provenance from source — new_provenance_from_source" />
+<meta property="og:description" content="Create a new Provenance object from a recognized source." />
 
 
 
@@ -115,77 +115,39 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Simulate includes</h1>
-    <small class="dont-index">Source: <a href='https://github.com/NCC-CNC/wheretowork/blob/master/R/fct_simulate_includes.R'><code>R/fct_simulate_includes.R</code></a></small>
-    <div class="hidden name"><code>simulate_includes.Rd</code></div>
+    <h1>New provenance from source</h1>
+    <small class="dont-index">Source: <a href='https://github.com/NCC-CNC/wheretowork/blob/master/R/class_Provenance.R'><code>R/class_Provenance.R</code></a></small>
+    <div class="hidden name"><code>new_provenance_from_source.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function simulates <a href='Include.html'>Include</a> objects.</p>
+    <p>Create a new <a href='Provenance.html'>Provenance</a> object from a recognized source.</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>simulate_includes</span><span class='op'>(</span><span class='va'>dataset</span>, <span class='va'>n</span><span class='op'>)</span></code></pre></div>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>new_provenance_from_source</span><span class='op'>(</span><span class='va'>source</span><span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>dataset</th>
-      <td><p><a href='Dataset.html'>Dataset</a> object.</p></td>
-    </tr>
-    <tr>
-      <th>n</th>
-      <td><p><code>integer</code> number of objects to simulate.</p></td>
+      <th>source</th>
+      <td><p><code>character</code> provenance type.
+Available options include <code>"national"</code>, <code>"regional"</code>, or <code>"missing"</code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code>list</code> of simulated <a href='Include.html'>Include</a> objects.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><a href='new_include.html'>new_include</a>.</p></div>
+    <p>A <a href='Provenance.html'>Provenance</a> object.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='co'># find data file paths</span></span>
-<span class='r-in'><span class='va'>f1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span></span>
-<span class='r-in'>  <span class='st'>"extdata"</span>, <span class='st'>"projects"</span>, <span class='st'>"sim_raster"</span>, <span class='st'>"sim_raster_spatial.tif"</span>,</span>
-<span class='r-in'>  package <span class='op'>=</span> <span class='st'>"wheretowork"</span></span>
-<span class='r-in'><span class='op'>)</span></span>
-<span class='r-in'><span class='va'>f2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span></span>
-<span class='r-in'>  <span class='st'>"extdata"</span>,  <span class='st'>"projects"</span>, <span class='st'>"sim_raster"</span>, <span class='st'>"sim_raster_attribute.csv.gz"</span>,</span>
-<span class='r-in'>  package <span class='op'>=</span> <span class='st'>"wheretowork"</span></span>
-<span class='r-in'><span class='op'>)</span></span>
-<span class='r-in'><span class='va'>f3</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span></span>
-<span class='r-in'>  <span class='st'>"extdata"</span>,  <span class='st'>"projects"</span>, <span class='st'>"sim_raster"</span>, <span class='st'>"sim_raster_boundary.csv.gz"</span>,</span>
-<span class='r-in'>  package <span class='op'>=</span> <span class='st'>"wheretowork"</span></span>
-<span class='r-in'><span class='op'>)</span></span>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='co'># create a provenance</span></span>
+<span class='r-in'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>new_provenance_from_source</span><span class='op'>(</span><span class='st'>"missing"</span><span class='op'>)</span></span>
 <span class='r-in'></span>
-<span class='r-in'><span class='co'># create new dataset</span></span>
-<span class='r-in'><span class='va'>d</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_dataset.html'>new_dataset</a></span><span class='op'>(</span><span class='va'>f1</span>, <span class='va'>f2</span>, <span class='va'>f3</span><span class='op'>)</span></span>
-<span class='r-in'></span>
-<span class='r-in'><span class='co'># simulate data</span></span>
-<span class='r-in'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>simulate_includes</span><span class='op'>(</span>dataset <span class='op'>=</span> <span class='va'>d</span>, n <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> ..</span>
-<span class='r-in'></span>
-<span class='r-in'><span class='co'># print results</span></span>
+<span class='r-in'><span class='co'># print object</span></span>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> [[1]]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> Include</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       1e1b14e7-4d8a-4cfe-9fa4-0915377ce59b</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:     National protected areas</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   variable: .../sim_raster_spatial.tif#National_protected_areas [total: 150 ]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   visible:  TRUE</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   status:   TRUE</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> [[2]]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> Include</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       d0a379e6-1805-4bf7-ad57-e421d7333239</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:     Special Protection Area</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   variable: .../sim_raster_spatial.tif#Special_Protection_Area [total: 160 ]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   visible:  TRUE</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   status:   TRUE</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> missing</span>
+<span class='r-in'></span>
 </code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

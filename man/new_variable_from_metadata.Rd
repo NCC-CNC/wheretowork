@@ -24,8 +24,9 @@ The argument to \code{metadata} should contain the following elements:
 with the data within the dataset that has the data.}
 \item{"units"}{\code{character} units for the values in the underlying data.}
 \item{"type"}{\code{character} indicating if the data contain
-continuous (\code{"continuous"}) or categorical (\code{"categorical"})
-numerical values.}
+continuous (\code{"continuous"}) or categorical (\code{"categorical"}) values.}
+\item{"provenance"}{\code{character} indicating the data source.
+(see \code{\link[=new_provenance_from_source]{new_provenance_from_source()}}).}
 \item{"colors"}{\code{character} vector containing colors for visualization.}
 \item{"total"}{\code{numeric} sum of all values in dataset.}
 \item{"min_value"}{\code{numeric} minimum value in dataset.
@@ -59,7 +60,7 @@ v <- new_variable_from_metadata(
   d, list(
     index = 1, units = "ha", type = "continuous",
     colors = c("#000000", "#AAAAAA"), total = 12,
-    min_value = 1, max_value = 3
+    min_value = 1, max_value = 3, provenance = "missing"
   )
 )
 
