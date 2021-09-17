@@ -223,10 +223,13 @@ class ThemeSolutionChart {
         };
         for (const datum of self.data) {
           for (const key in parsedData) {
-            parsedData[key].push(datum[key][0]);
+            if (typeof(datum[key]) === "number") {
+              parsedData[key].push(datum[key]);
+            } else {
+              parsedData[key].push(datum[key][0]);
+            }
           }
         }
-
         const attrs =
           ["feature_current_held", "feature_goal", "feature_solution_held"];
         for (let i = attrs.length; i > 0; --i) {
