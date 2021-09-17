@@ -234,6 +234,7 @@ solutionSettings_html <- function(id, style, class, ...) {
           `data-toggle` = "tooltip",
           `data-placement` = "top",
           `data-container` = "body",
+          `data-trigger` = "hover",
           title = "Specify a name for the new solution",
           shiny::textInput(
             inputId = paste0(id, "_name"),
@@ -258,6 +259,7 @@ solutionSettings_html <- function(id, style, class, ...) {
           `data-toggle` = "tooltip",
           `data-placement` = "top",
           `data-container` = "body",
+          `data-trigger` = "hover",
           title = paste(
             "Generate a new solution using the Themes, Weights, Includes,",
             "and Settings"
@@ -275,6 +277,7 @@ solutionSettings_html <- function(id, style, class, ...) {
           `data-toggle` = "tooltip",
           `data-placement` = "top",
           `data-container` = "body",
+          `data-trigger` = "hover",
           title = "Stop optimizing",
           shinyBS::bsButton(
             inputId = paste0(id, "_stop_button"),
