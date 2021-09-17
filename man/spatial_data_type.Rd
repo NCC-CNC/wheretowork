@@ -10,7 +10,7 @@ spatial_data_type(x, index = 1, ...)
 
 \method{spatial_data_type}{sf}(x, index = 1, ...)
 
-\method{spatial_data_type}{Raster}(x, index = 1, max_sample = 1000, ...)
+\method{spatial_data_type}{Raster}(x, index = 1, max_sample = 10000, ...)
 }
 \arguments{
 \item{x}{\code{\link[sf:sf]{sf::st_sf()}} or \code{\link[raster:stack]{raster::stack()}} dataset object.}
@@ -24,7 +24,7 @@ statistics.}
 
 \item{max_sample}{\code{integer} maximum number of cells in a raster stack
 to sample when checking if the data are continuous or categorical.
-Defaults to 1000.}
+Defaults to 10000.}
 }
 \value{
 A \code{character} indicating if the data are \code{"continuous"} or

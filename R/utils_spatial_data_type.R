@@ -14,7 +14,7 @@ NULL
 #'
 #' @param max_sample `integer` maximum number of cells in a raster stack
 #'  to sample when checking if the data are continuous or categorical.
-#'  Defaults to 1000.
+#'  Defaults to 10000.
 #'
 #' @param ... not used.
 #'
@@ -52,7 +52,7 @@ spatial_data_type.sf <- function(x, index = 1, ...) {
 
 #' @rdname spatial_data_type
 #' @export
-spatial_data_type.Raster <- function(x, index = 1, max_sample = 1000, ...) {
+spatial_data_type.Raster <- function(x, index = 1, max_sample = 10000, ...) {
   # assert valid arguments
   assertthat::assert_that(
     inherits(x, "Raster"),
@@ -65,10 +65,8 @@ spatial_data_type.Raster <- function(x, index = 1, max_sample = 1000, ...) {
     assertthat::assert_that(
       index %in% names(x)
     )
+    index <- which(names(x) == index)
   }
-
-  # convert index to integer if field name supplied
-  index <- which(names(x) == index)
 
   # extract layer
   x <- x[[index]]
