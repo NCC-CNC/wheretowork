@@ -17,6 +17,8 @@ Definition for the Variable class.
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
+\item{\code{id}}{\code{character} unique identifier.}
+
 \item{\code{dataset}}{\code{Dataset} object.}
 
 \item{\code{index}}{\code{character} value.}
@@ -28,6 +30,8 @@ Definition for the Variable class.
 \item{\code{legend}}{\code{Legend} object.}
 
 \item{\code{provenance}}{\link{Provenance} object.}
+
+\item{\code{tileset}}{\code{NULL} or \code{character} value.}
 }
 \if{html}{\out{</div>}}
 }
@@ -40,6 +44,7 @@ Definition for the Variable class.
 \item \href{#method-verify}{\code{Variable$verify()}}
 \item \href{#method-get_data}{\code{Variable$get_data()}}
 \item \href{#method-export}{\code{Variable$export()}}
+\item \href{#method-write_tiles}{\code{Variable$write_tiles()}}
 \item \href{#method-render}{\code{Variable$render()}}
 \item \href{#method-update_render}{\code{Variable$update_render()}}
 \item \href{#method-clone}{\code{Variable$clone()}}
@@ -51,12 +56,14 @@ Definition for the Variable class.
 \subsection{Method \code{new()}}{
 Create a Variable object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Variable$new(dataset, index, total, units, legend, provenance)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Variable$new(id, dataset, index, total, units, legend, provenance, tileset)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
+\item{\code{id}}{\code{character} value.}
+
 \item{\code{dataset}}{\code{Dataset} value.}
 
 \item{\code{index}}{\code{character} or \code{integer} value.}
@@ -68,6 +75,8 @@ Create a Variable object.
 \item{\code{legend}}{\code{Legend} object.}
 
 \item{\code{provenance}}{\link{Provenance} object.}
+
+\item{\code{tileset}}{\code{NULL} or \code{character} value.}
 }
 \if{html}{\out{</div>}}
 }
@@ -153,6 +162,23 @@ Export settings
 
 \subsection{Returns}{
 \code{list} object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-write_tiles"></a>}}
+\if{latex}{\out{\hypertarget{method-write_tiles}{}}}
+\subsection{Method \code{write_tiles()}}{
+Write tiles to disk
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Variable$write_tiles(tile_path)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{tile_path}}{\code{character} file path.}
+}
+\if{html}{\out{</div>}}
 }
 }
 \if{html}{\out{<hr>}}

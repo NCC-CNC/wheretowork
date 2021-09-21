@@ -31,6 +31,9 @@ Dataset <- R6::R6Class(
     #' @field boundary_data `NULL`, or [Matrix::sparseMatrix()] object.
     boundary_data = NULL,
 
+    #' @field tile_path `NULL`, or `character` file path.
+    tile_path = NULL,
+
     #' @description
     #' Create a Dataset object.
     #' @param id `character` value.
@@ -40,9 +43,11 @@ Dataset <- R6::R6Class(
     #' @param spatial_data [sf::st_sf()], or [raster::raster()] object.
     #' @param attribute_data [tibble::tibble()] object.
     #' @param boundary_data [Matrix::sparseMatrix()] object.
+    #' @param tile_path `NULL`, or `character` file path.
     #' @return A new Dataset object.
     initialize = function(id, spatial_path, attribute_path, boundary_path,
-                          spatial_data, attribute_data, boundary_data) {
+                          spatial_data, attribute_data, boundary_data,
+                          tile_path) {
       ## assert that arguments are valid
       assertthat::assert_that(
         ## id
@@ -62,7 +67,9 @@ Dataset <- R6::R6Class(
         ## attribute_data
         inherits(attribute_data, c("NULL", "data.frame")),
         ## boundary_data
-        inherits(boundary_data, c("NULL", "dsCMatrix"))
+        inherits(boundary_data, c("NULL", "dsCMatrix")),
+        ## tile_path
+        inherits(tile_path, c("NULL", "character"))
       )
       ## validate paths
       if (!identical(spatial_path, "memory")) {
@@ -74,6 +81,12 @@ Dataset <- R6::R6Class(
       if (!identical(boundary_path, "memory")) {
         assertthat::assert_that(assertthat::is.readable(boundary_path))
       }
+      if (!is.null(tile_path)) {
+        assertthat::assert_that(
+          assertthat::is.string(tile_path),
+          assertthat::noNA(tile_path)
+        )
+      }
       ## set fields
       self$id <- id
       self$spatial_path <- spatial_path
@@ -82,6 +95,7 @@ Dataset <- R6::R6Class(
       self$spatial_data <- spatial_data
       self$attribute_data <- attribute_data
       self$boundary_data <- boundary_data
+      self$tile_path <- tile_path
 
       ### validate crs
       if (inherits(self$spatial_data, "sf")) {
@@ -120,6 +134,7 @@ Dataset <- R6::R6Class(
       message("    spatial: ", self$spatial_path)
       message("    attribute: ", self$attribute_path)
       message("    boundary: ", self$boundary_path)
+      message("    tiles: ", self$tile_path)
       invisible(self)
     },
 
@@ -546,6 +561,10 @@ Dataset <- R6::R6Class(
 #'   Defaults to `NULL` such that data are automatically imported
 #'   using the argument to `boundary_path`.
 #'
+#' @param tile_path `character` file path for parent directory containing
+#'   tile directories.
+#'   Defaults to `NULL` such that no tiles are used.
+#'
 #' @param id `character` unique identifier.
 #'   Defaults to a random identifier ([uuid::UUIDgenerate()]).
 #'
@@ -574,7 +593,7 @@ Dataset <- R6::R6Class(
 #' @export
 new_dataset <- function(spatial_path, attribute_path, boundary_path,
                         spatial_data = NULL, attribute_data = NULL,
-                        boundary_data = NULL,
+                        boundary_data = NULL, tile_path = NULL,
                         id = uuid::UUIDgenerate()) {
   # verify that data are supplied when specifying that data
   # are stored in memory
@@ -595,7 +614,8 @@ new_dataset <- function(spatial_path, attribute_path, boundary_path,
     boundary_path = boundary_path,
     spatial_data = spatial_data,
     attribute_data = attribute_data,
-    boundary_data = boundary_data
+    boundary_data = boundary_data,
+    tile_path = tile_path
   )
 }
 
@@ -687,12 +707,13 @@ new_dataset_from_auto <- function(x, id = uuid::UUIDgenerate()) {
 
   # create new dataset
   Dataset$new(
+    id = id,
     spatial_path = "memory",
     attribute_path = "memory",
     boundary_path = "memory",
     spatial_data = spatial_data,
     attribute_data = attribute_data,
     boundary_data = bm,
-    id = id
+    tile_path = NULL
   )
 }

@@ -9,6 +9,8 @@ NULL
 Variable <- R6::R6Class(
   "Variable",
   public = list(
+    #' @field id `character` unique identifier.
+    id = NA_character_,
 
     #' @field dataset `Dataset` object.
     dataset = NULL,
@@ -28,18 +30,27 @@ Variable <- R6::R6Class(
     #' @field provenance [Provenance] object.
     provenance = NULL,
 
+    #' @field tileset `NULL` or `character` value.
+    tileset = NULL,
+
     #' @description
     #' Create a Variable object.
     #' @param dataset `Dataset` value.
+    #' @param id `character` value.
     #' @param index `character` or `integer` value.
     #' @param total `numeric` value.
     #' @param units `character` value.
     #' @param legend `Legend` object.
     #' @param provenance [Provenance] object.
+    #' @param tileset `NULL` or `character` value.
     #' @return A new Variable object.
-    initialize = function(dataset, index, total, units, legend, provenance) {
+    initialize = function(id, dataset, index, total, units, legend, provenance,
+                          tileset) {
       ### assert that arguments are valid
       assertthat::assert_that(
+        #### id
+        assertthat::is.string(id),
+        assertthat::noNA(id),
         #### dataset
         inherits(dataset, "Dataset"),
         ## index
@@ -52,6 +63,8 @@ Variable <- R6::R6Class(
         #### units
         assertthat::is.string(units),
         assertthat::noNA(units),
+        #### tileset
+        inherits(tileset, c("NULL", "character")),
         #### legend
         inherits(
           legend,
@@ -60,12 +73,21 @@ Variable <- R6::R6Class(
         #### provenance
         inherits(provenance, "Provenance")
       )
+      if (!is.null(tileset)) {
+        assertthat::assert_that(
+          assertthat::is.string(tileset),
+          assertthat::noNA(tileset)
+        )
+      }
+
       ### set fields
+      self$id <- id
       self$dataset <- dataset
       self$total <- total
       self$units <- units
       self$legend <- legend
       self$provenance <- provenance
+      self$tileset <- tileset
       assertthat::assert_that(dataset$has_index(index))
       if (is.numeric(index)) {
         self$index <- dataset$get_names()[[index]]
@@ -79,11 +101,13 @@ Variable <- R6::R6Class(
     #' @param ... not used.
     print = function(...) {
       message("Variable")
-      message("  dataset: ", self$dataset$repr())
-      message("  index:   ", self$index)
-      message("  total:   ", round(self$total, 2))
-      message("  units:   ", self$units)
-      message("  provenance:   ", self$provenance$repr())
+      message("  id:         ", self$id)
+      message("  dataset:    ", self$dataset$repr())
+      message("  index:      ", self$index)
+      message("  total:      ", round(self$total, 2))
+      message("  units:      ", self$units)
+      message("  provenance: ", self$provenance$repr())
+      message("  tileset:    ", self$tileset)
       invisible(self)
     },
 
@@ -127,12 +151,60 @@ Variable <- R6::R6Class(
     #' Export settings
     #' @return `list` object.
     export = function() {
-      list(
+      out <- list(
         index = self$index,
         units = self$units,
         legend = self$legend$export(),
         provenance = self$provenance$export()
       )
+      if (is.character(self$tileset)) {
+        out$tileset <- basename(self$tileset)
+      }
+      out
+    },
+
+    #' @description
+    #' Write tiles to disk
+    #' @param tile_path `character` file path.
+    write_tiles = function(tile_path) {
+      # assert valid argument
+      assertthat::assert_that(
+        assertthat::is.string(tile_path),
+        assertthat::noNA(tile_path)
+      )
+      # extract data
+      d <- self$get_data()
+      if (inherits(self$spatial_data, "sf")) {
+        stop("Cannot generate tiles for vector (sf) data")
+      }
+      # convert raster to RGB raster stack based on ramp
+      d <- rgb_raster_brick(d, self$legend$get_color_map())
+      # disaggregate
+      # if (min(raster::res(d)) > 5000) {
+      #   d <- raster::disaggregate(d, fact = ceiling(raster::res(d) / 5000))
+      # }
+      # create directory to save tiles
+      tp <- file.path(
+        tile_path, basename(tempfile(pattern = "tile", tmpdir = tile_path))
+      )
+      dir.create(tp, showWarnings = FALSE, recursive = TRUE)
+      # save data
+      tf <- tempfile(fileext = ".tif")
+      # write file
+      suppressWarnings(
+        raster::writeRaster(d, tf, overwrite = TRUE, datatype = "INT1U")
+      )
+      # make tiles
+      r <- tiler::tile(
+        file = tf, tiles = tp, zoom = "0-5", viewer = FALSE, reproject = FALSE
+      )
+      # clean up
+      unlink(tf, force = TRUE)
+      # store tile path
+      self$dataset$tile_path <- tile_path
+      self$tileset <- basename(tp)
+      # return success
+      invisible(TRUE)
     },
 
     #' @description
@@ -156,7 +228,21 @@ Variable <- R6::R6Class(
       pane_id <- paste0("pane-", id)
       x <- leaflet::addMapPane(x, pane_id, zindex, visible)
       # add data to leaflet map
-      if (inherits(d, "Raster")) {
+      if (is.character(self$tileset) && is.character(self$dataset$tile_path)) {
+        ## add tile data
+        shiny::addResourcePath(
+          prefix = self$tileset,
+          directoryPath = file.path(self$dataset$tile_path, self$tileset)
+        )
+        x <- leaflet::addTiles(
+          map = x,
+          urlTemplate = file.path(self$tileset, "{z}/{x}/{y}.png"),
+          group = id,
+          options = leaflet::tileOptions(
+            tms = TRUE, pane = pane_id, opacity = 0.8
+          )
+        )
+      } else  if (inherits(d, "Raster")) {
         ## add raster data
         suppressWarnings({
           x <- leaflet::addRasterImage(
@@ -241,6 +327,12 @@ Variable <- R6::R6Class(
 #' @param provenance  [Provenance] object.
 #'   Defaults to `new_provenance_from_source("missing")`.
 #'
+#' @param tileset `character` value indicating name of tileset to render data.
+#'   Defaults to `NULL` such that no tileset is used for rendering data.
+#'
+#' @param id `character` unique identifier.
+#'   Defaults to a random identifier ([uuid::UUIDgenerate()]).
+#'
 #' @return A [Variable] object.
 #'
 #' @examples
@@ -271,11 +363,13 @@ Variable <- R6::R6Class(
 #' print(v)
 #' @export
 new_variable <- function(dataset, index, units, total, legend,
-                         provenance = new_provenance_from_source("missing")) {
+                         provenance = new_provenance_from_source("missing"),
+                         tileset = NULL,
+                         id = uuid::UUIDgenerate()) {
   Variable$new(
-    dataset = dataset, index = index,
+    id = id, dataset = dataset, index = index,
     total = total, units = units, legend = legend,
-    provenance = provenance
+    provenance = provenance, tileset = tileset
   )
 }
 
@@ -301,6 +395,9 @@ new_variable <- function(dataset, index, units, total, legend,
 #' @param provenance `character` value indicating the type of provenance.
 #'   The argument must be a valid type (see [new_provenance_from_source()]).
 #'   Defaults to `"missing"`.
+#'
+#' @param tileset `character` file path for tiles.
+#'   Defaults to `NULL` indicating that no tiles are available.
 #'
 #' @details
 #' The argument to `colors` can be a vector of different colors
@@ -339,7 +436,8 @@ new_variable <- function(dataset, index, units, total, legend,
 new_variable_from_auto <- function(dataset, index,
                                    units = "", type = "auto",
                                    colors = "random",
-                                   provenance = "missing") {
+                                   provenance = "missing",
+                                   tileset = NULL) {
   # assert arguments are valid
   assertthat::assert_that(
     ## dataset
@@ -383,7 +481,8 @@ new_variable_from_auto <- function(dataset, index,
         units = units,
         colors = colors,
         type = type,
-        provenance = provenance
+        provenance = provenance,
+        tileset = tileset
       ),
       s
     )
@@ -411,6 +510,7 @@ new_variable_from_auto <- function(dataset, index,
 #'   continuous (`"continuous"`) or categorical (`"categorical"`) values.}
 #' \item{"provenance"}{`character` indicating the data source.
 #'   (see [new_provenance_from_source()]).}
+#' \item{"tileset"}{`character` or `NULL` indicating the tileset.}
 #' \item{"colors"}{`character` vector containing colors for visualization.}
 #' \item{"total"}{`numeric` sum of all values in dataset.}
 #' \item{"min_value"}{`numeric` minimum value in dataset.
@@ -562,8 +662,10 @@ new_variable_from_metadata <- function(dataset, metadata) {
 
   # create object
   Variable$new(
+    id = uuid::UUIDgenerate(),
     dataset = dataset, index = metadata$index, total = metadata$total,
     units = metadata$units, legend = legend,
-    provenance = new_provenance_from_source(metadata$provenance)
+    provenance = new_provenance_from_source(metadata$provenance),
+    tileset = metadata$tileset
   )
 }

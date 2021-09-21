@@ -9,11 +9,13 @@ test_that("initialization", {
   # create object
   x <- new_variable(
     dataset = d, index = 2, total = 12, units = "ha", legend = l,
-    provenance = p
+    provenance = p, id = "v1", tileset = "asdf"
   )
   # run tests
   expect_is(x, "Variable")
   expect_is(x$repr(), "character")
+  expect_identical(x$id, "v1")
+  expect_identical(x$tileset, "asdf")
   expect_identical(x$dataset, d)
   expect_identical(x$index, names(rd)[[2]])
   expect_identical(x$total, 12)
@@ -59,6 +61,22 @@ test_that("export method", {
       provenance = p$export()
     )
   )
+})
+
+test_that("write_tiles method", {
+  # prepare data
+  rd <- simulate_proportion_spatial_data(import_simple_raster_data(), 2)
+  d <- new_dataset_from_auto(rd)
+  l <- new_continuous_legend(0, 1, viridis::viridis(10))
+  td <- tempfile()
+  # create object
+  x <- new_variable(
+    dataset = d, index = 2, total = 12, units = "ha", legend = l
+  )
+  # run tests
+  x$write_tiles(td)
+  expect_true(file.exists(file.path(td, x$id)))
+  expect_gte(length(dir(file.path(td, x$id), "^.*\\.png", recursive = TRUE)), 1)
 })
 
 test_that("new_variable_from_auto (continuous)", {

@@ -159,6 +159,7 @@ reference:
       - shapefile_field_names
       - reserve_sizes
       - calculate_coverage
+      - rgb_raster_brick
 
   - title: Miscellaneous functions
     contents:

@@ -11,6 +11,7 @@ new_dataset(
   spatial_data = NULL,
   attribute_data = NULL,
   boundary_data = NULL,
+  tile_path = NULL,
   id = uuid::UUIDgenerate()
 )
 }
@@ -32,6 +33,10 @@ using the argument to \code{attribute_path}.}
 \item{boundary_data}{\code{NULL}, or \code{\link[Matrix:sparseMatrix]{Matrix::sparseMatrix()}} object.
 Defaults to \code{NULL} such that data are automatically imported
 using the argument to \code{boundary_path}.}
+
+\item{tile_path}{\code{character} file path for parent directory containing
+tile directories.
+Defaults to \code{NULL} such that no tiles are used.}
 
 \item{id}{\code{character} unique identifier.
 Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}

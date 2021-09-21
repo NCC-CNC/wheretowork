@@ -9,6 +9,7 @@ read_project(
   spatial_path = NULL,
   attribute_path = NULL,
   boundary_path = NULL,
+  tile_path = NULL,
   mode = "project"
 )
 }
@@ -24,6 +25,10 @@ Defaults to \code{NULL} such that the file path is determined using
 the argument to \code{path}.}
 
 \item{boundary_path}{\code{character} file path for boundary data.
+Defaults to \code{NULL} such that the file path is determined using
+the argument to \code{path}.}
+
+\item{tile_path}{\code{character} file path for tiles.
 Defaults to \code{NULL} such that the file path is determined using
 the argument to \code{path}.}
 

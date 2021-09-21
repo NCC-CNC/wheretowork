@@ -10,7 +10,9 @@ new_variable(
   units,
   total,
   legend,
-  provenance = new_provenance_from_source("missing")
+  provenance = new_provenance_from_source("missing"),
+  tileset = NULL,
+  id = uuid::UUIDgenerate()
 )
 }
 \arguments{
@@ -27,6 +29,12 @@ the data.}
 
 \item{provenance}{\link{Provenance} object.
 Defaults to \code{new_provenance_from_source("missing")}.}
+
+\item{tileset}{\code{character} value indicating name of tileset to render data.
+Defaults to \code{NULL} such that no tileset is used for rendering data.}
+
+\item{id}{\code{character} unique identifier.
+Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}
 }
 \value{
 A \link{Variable} object.

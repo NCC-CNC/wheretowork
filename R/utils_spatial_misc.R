@@ -122,3 +122,55 @@ calculate_coverage <- function(x, data) {
   }
   out
 }
+
+#' RGB raster
+#'
+#' Create a RGB (red-blue-green) raster brick to render a raster layer based
+#' on a color legend function.
+#'
+#' @param x `RasterLayer` object.
+#'
+#' @param fun `function` containing a color legend function
+#'  (e.g. [leaflet::colorNumeric()].
+#'
+#' @return `RasterBrick` object.
+#'
+#' @examples
+#' # create raster
+#' f <- system.file(
+#'   "extdata", "projects", "sim_raster", "sim_raster_spatial.tif",
+#'   package = "wheretowork"
+#' )
+#' r <- raster(f)
+#' r[] <- runif(f, ncell(r))
+#'
+#' # create legend function
+#' l <- leaflet::colorNumeric(palette = "viridis", domain = c(0, 1))
+#'
+#' # plot raster (using default color ramp)
+#' plot(r)
+#'
+#' # create RGB raster
+#' r2 <- rgb_raster_brick(r, l)
+#'
+#' # plot RGB raster
+#' plotRGB(r2)
+#'
+#' @export
+rgb_raster_brick <- function(x, fun) {
+  # assert arguments are valid
+  assertthat::assert_that(
+    inherits(x, "Raster"),
+    raster::nlayers(x) == 1,
+    is.function(fun)
+  )
+  # create output
+  cols <- fun(raster::getValues(x))
+  out <- raster::setValues(
+    raster::brick(x[[1]]), t(col2rgb(cols, alpha = TRUE))
+  )
+  raster::mask(
+    out[[seq_len(3)]], mask = out[[4]],
+    maskvalue = 0, updatevalue = 255
+  )
+}

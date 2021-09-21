@@ -27,6 +27,7 @@ with the data within the dataset that has the data.}
 continuous (\code{"continuous"}) or categorical (\code{"categorical"}) values.}
 \item{"provenance"}{\code{character} indicating the data source.
 (see \code{\link[=new_provenance_from_source]{new_provenance_from_source()}}).}
+\item{"tileset"}{\code{character} or \code{NULL} indicating the tileset.}
 \item{"colors"}{\code{character} vector containing colors for visualization.}
 \item{"total"}{\code{numeric} sum of all values in dataset.}
 \item{"min_value"}{\code{numeric} minimum value in dataset.

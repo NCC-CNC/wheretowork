@@ -79,6 +79,30 @@ write_project(
   author_email = "richard.schuster@natureconservancy.ca"
 )
 
+## raster project using tiles (with themes + includes + weights)
+### delete existing data if needed
+if (file.exists("inst/extdata/projects/sim_raster3")) {
+  unlink("inst/extdata/projects/sim_raster3", force = TRUE, recursive = TRUE)
+}
+### write data
+write_project(
+  x = sim_raster_data,
+  dataset = raster_data,
+  name = "Example GeoTIFF dataset (tiles)",
+  path =
+    "inst/extdata/projects/sim_raster3/sim_raster3_data.yaml",
+  spatial_path =
+    "inst/extdata/projects/sim_raster3/sim_raster3_spatial.tif",
+  attribute_path =
+    "inst/extdata/projects/sim_raster3/sim_raster3_attribute.csv.gz",
+  boundary_path =
+    "inst/extdata/projects/sim_raster3/sim_raster3_boundary.csv.gz",
+  mode = "advanced",
+  author_name = "Richard Schuster",
+  author_email = "richard.schuster@natureconservancy.ca",
+  tile_path = "inst/extdata/projects/sim_raster3/tiles"
+)
+
 ## vector project (with themes + includes + weights)
 write_project(
   x = sim_vector_data,

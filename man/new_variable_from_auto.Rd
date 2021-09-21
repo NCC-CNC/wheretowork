@@ -10,7 +10,8 @@ new_variable_from_auto(
   units = "",
   type = "auto",
   colors = "random",
-  provenance = "missing"
+  provenance = "missing",
+  tileset = NULL
 )
 }
 \arguments{
@@ -33,6 +34,9 @@ Defaults to \code{"random"} such that colors are randomly generated.}
 \item{provenance}{\code{character} value indicating the type of provenance.
 The argument must be a valid type (see \code{\link[=new_provenance_from_source]{new_provenance_from_source()}}).
 Defaults to \code{"missing"}.}
+
+\item{tileset}{\code{character} file path for tiles.
+Defaults to \code{NULL} indicating that no tiles are available.}
 }
 \value{
 A \link{Variable} object.

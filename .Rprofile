@@ -18,3 +18,8 @@ if (interactive()) {
 if (file.exists("/usr/bin/google-chrome")) {
   options(browser = "/usr/bin/google-chrome")
 }
+
+# set tiler options for Ubuntu
+if (identical(.Platform$OS.type, "unix")) {
+  tiler::tiler_options(python = "python3")
+}

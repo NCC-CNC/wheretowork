@@ -14,7 +14,8 @@ write_project(
   boundary_path,
   mode = "advanced",
   author_name = NULL,
-  author_email = NULL
+  author_email = NULL,
+  tile_path = NULL
 )
 }
 \arguments{
@@ -44,6 +45,9 @@ will report default contact details.}
 Defaults to \code{NULL} such that no email address is encoded in the
 project configuration file. This means that the application
 will report default contact details.}
+
+\item{tile_path}{\code{character} file path for tiles.
+Defaults to `NULL, such that no tiles are created.}
 }
 \value{
 Invisible \code{TRUE} indicating success.

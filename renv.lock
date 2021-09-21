@@ -469,6 +469,20 @@
       "Repository": "CRAN",
       "Hash": "4d243a9c10b00589889fe32314ffd902"
     },
+    "geojsonsf": {
+      "Package": "geojsonsf",
+      "Version": "2.0.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "8bf70c1328f68761115943b68e565dc6"
+    },
+    "geometries": {
+      "Package": "geometries",
+      "Version": "0.2.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "be29054e97e756ade56d13a89c6d5243"
+    },
     "gert": {
       "Package": "gert",
       "Version": "1.3.0",
@@ -623,6 +637,13 @@
       "Repository": "CRAN",
       "Hash": "5aab57a3bd297eee1c1d862735972182"
     },
+    "jsonify": {
+      "Package": "jsonify",
+      "Version": "1.2.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "f435875f0eb7de52ade944ed82ee9089"
+    },
     "jsonlite": {
       "Package": "jsonlite",
       "Version": "1.7.2",
@@ -664,6 +685,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "d908914ae53b04d4c0c0fd72ecc35370"
+    },
+    "leafem": {
+      "Package": "leafem",
+      "Version": "0.1.6",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "39682b851cfb151d02be19c5575bdc00"
     },
     "leaflet": {
       "Package": "leaflet",
@@ -786,6 +814,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "0d6cc4c357e7602bb3eee299f4cfc2a5"
+    },
+    "palr": {
+      "Package": "palr",
+      "Version": "0.3.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "3c812a6fc41caba1f05e8ff6216a7c35"
     },
     "parallelly": {
       "Package": "parallelly",
@@ -938,6 +973,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "663065eff8c6c08eaa9955c6f478ee7a"
+    },
+    "rapidjsonr": {
+      "Package": "rapidjsonr",
+      "Version": "1.2.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "88b9f48c93d17cdb811b54079a6a414f"
     },
     "rappdirs": {
       "Package": "rappdirs",
@@ -1119,6 +1161,13 @@
       "Repository": "CRAN",
       "Hash": "464dca3e4f0bb13cf202630bfed2753a"
     },
+    "sfheaders": {
+      "Package": "sfheaders",
+      "Version": "0.4.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "c1bd5fbd6bed3c16a20df15d9bc20c55"
+    },
     "shiny": {
       "Package": "shiny",
       "Version": "1.6.0",
@@ -1244,6 +1293,18 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "7243004a708d06d4716717fa1ff5b2fe"
+    },
+    "tiler": {
+      "Package": "tiler",
+      "Version": "0.2.5.9999993",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "NCC-CNC",
+      "RemoteRepo": "tiler",
+      "RemoteRef": "master",
+      "RemoteSha": "3758457db00124c1247f304e4b7fd6f4bbd1c47f",
+      "Hash": "1686e6f690a7dcc2b5b34b029aac6c0e"
     },
     "tinytex": {
       "Package": "tinytex",

@@ -19,6 +19,10 @@ NULL
 #'  Defaults to `NULL` such that the file path is determined using
 #'  the argument to `path`.
 #'
+#' @param tile_path `character` file path for tiles.
+#'  Defaults to `NULL` such that the file path is determined using
+#'  the argument to `path`.
+#'
 #' @param mode `character` mode for importing the objects.
 #'  Defaults to `"project"` such that the mode is determined based on
 #'  the contents of `path`. If the `mode` is `"advanced"`, then
@@ -69,6 +73,7 @@ read_project <- function(path,
                          spatial_path = NULL,
                          attribute_path = NULL,
                          boundary_path = NULL,
+                         tile_path = NULL,
                          mode = "project") {
   # assert arguments are valid
   assertthat::assert_that(
@@ -95,6 +100,12 @@ read_project <- function(path,
       assertthat::noNA(boundary_path)
     )
   }
+  if (!is.null(tile_path)) {
+    assertthat::assert_that(
+      assertthat::is.string(tile_path),
+      assertthat::noNA(tile_path)
+    )
+  }
 
   # import configuration file
   ## read file
@@ -119,6 +130,9 @@ read_project <- function(path,
   }
   if (is.null(boundary_path)) {
     boundary_path <- file.path(dirname(path), basename(x$boundary_path))
+  }
+  if (is.null(tile_path) && !is.null(x$tile_path)) {
+    tile_path <- file.path(dirname(path), basename(x$tile_path))
   }
 
   ## verify that file names listed in file match arguments
@@ -149,12 +163,19 @@ read_project <- function(path,
     identical(basename(boundary_path), basename(x$boundary_path)),
     msg = paste0("boundary file should be \"", basename(x$boundary_path), "\"")
   )
+  if (!is.null(tile_path)) {
+    assertthat::assert_that(
+      identical(basename(tile_path), basename(x$tile_path)),
+      msg = paste0("tile path should be \"", basename(x$tile_path), "\"")
+    )
+  }
 
   # create dataset
   d <- new_dataset(
     spatial_path = spatial_path,
     attribute_path = attribute_path,
-    boundary_path = boundary_path
+    boundary_path = boundary_path,
+    tile_path = tile_path
   )
 
   # initialize error variables
@@ -182,7 +203,8 @@ read_project <- function(path,
               units = f$variable$units,
               type = f$variable$legend$type,
               colors = f$variable$legend$colors,
-              provenance = f$variable$provenance %||% "missing"
+              provenance = f$variable$provenance %||% "missing",
+              tileset = f$variable$tileset
             )
           )
         })
@@ -237,7 +259,8 @@ read_project <- function(path,
           units = x$variable$units,
           type = x$variable$legend$type,
           colors = x$variable$legend$colors,
-          provenance = x$variable$provenance %||% "missing"
+          provenance = x$variable$provenance %||% "missing",
+          tileset = x$variable$tileset
         )
       ),
       silent = TRUE
@@ -288,7 +311,8 @@ read_project <- function(path,
           ),
           provenance = new_provenance_from_source(
             x$variable$provenance %||% "missing"
-          )
+          ),
+          tileset = x$variable$tileset
         ),
         visible = x$visible,
         status = x$status,

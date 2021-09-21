@@ -33,6 +33,8 @@ file path on disk.
 \item{\code{attribute_data}}{\code{NULL}, or \code{\link[tibble:tibble]{tibble::tibble()}} object.}
 
 \item{\code{boundary_data}}{\code{NULL}, or \code{\link[Matrix:sparseMatrix]{Matrix::sparseMatrix()}} object.}
+
+\item{\code{tile_path}}{\code{NULL}, or \code{character} file path.}
 }
 \if{html}{\out{</div>}}
 }
@@ -73,7 +75,8 @@ Create a Dataset object.
   boundary_path,
   spatial_data,
   attribute_data,
-  boundary_data
+  boundary_data,
+  tile_path
 )}\if{html}{\out{</div>}}
 }
 
@@ -93,6 +96,8 @@ Create a Dataset object.
 \item{\code{attribute_data}}{\code{\link[tibble:tibble]{tibble::tibble()}} object.}
 
 \item{\code{boundary_data}}{\code{\link[Matrix:sparseMatrix]{Matrix::sparseMatrix()}} object.}
+
+\item{\code{tile_path}}{\code{NULL}, or \code{character} file path.}
 }
 \if{html}{\out{</div>}}
 }

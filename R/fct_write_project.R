@@ -35,6 +35,9 @@ NULL
 #' @param mode `character` mode for running the application.
 #'   Defaults to `"advanced"`.
 #'
+#' @param tile_path `character` file path for tiles.
+#'   Defaults to `NULL, such that no tiles are created.
+#'
 #' @return Invisible `TRUE` indicating success.
 #'
 #' @examples
@@ -76,7 +79,8 @@ NULL
 write_project <- function(x, dataset, path, name,
                           spatial_path, attribute_path, boundary_path,
                           mode = "advanced",
-                          author_name = NULL, author_email = NULL) {
+                          author_name = NULL, author_email = NULL,
+                          tile_path = NULL) {
   # assert arguments are valid
   assertthat::assert_that(
     is.list(x),
@@ -110,17 +114,37 @@ write_project <- function(x, dataset, path, name,
   if (!identical(class(author_name), class(author_email))) {
     stop("Both arguments to author_name and author_email must be supplied")
   }
+  if (!is.null(tile_path)) {
+    assertthat::assert_that(
+      assertthat::is.string(tile_path),
+      assertthat::noNA(tile_path)
+    )
+  }
 
-  # create setting list for themes
+  # identify data
   themes_idx <- vapply(x, inherits, what = "Theme", logical(1))
-  themes_params <- lapply(x[themes_idx], function(x) x$export())
-
-  # create setting list for weights
   weights_idx <- vapply(x, inherits, what = "Weight", logical(1))
-  weights_params <- lapply(x[weights_idx], function(x) x$export())
-
-  # create setting list for includes
   includes_idx <- vapply(x, inherits, what = "Include", logical(1))
+
+  # save tiles
+  if (!is.null(tile_path)) {
+    ## create folder
+    dir.create(tile_path, showWarnings = FALSE, recursive = TRUE)
+    ## themes
+    lapply(x[themes_idx], function(x) {
+      lapply(x$feature, function(y) {
+        y$variable$write_tiles(tile_path)
+      })
+    })
+    ## weights
+    lapply(x[weights_idx], function(x) x$variable$write_tiles(tile_path))
+    ## includes
+    lapply(x[includes_idx], function(x) x$variable$write_tiles(tile_path))
+  }
+
+  # create setting lists
+  themes_params <- lapply(x[themes_idx], function(x) x$export())
+  weights_params <- lapply(x[weights_idx], function(x) x$export())
   includes_params <- lapply(x[includes_idx], function(x) x$export())
 
   # create full settings list
@@ -132,10 +156,14 @@ write_project <- function(x, dataset, path, name,
     params$author_name <- author_name
     params$author_email <- author_email
   }
-  ## add data
+  ## add paths
   params$spatial_path <- basename(spatial_path)
   params$attribute_path <- basename(attribute_path)
   params$boundary_path <- basename(boundary_path)
+  if (!is.null(tile_path)) {
+    params$tile_path <- basename(tile_path)
+  }
+  ## add metadata
   params$mode <- mode
   params$themes <- themes_params
   params$weights <- weights_params

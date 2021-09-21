@@ -67,6 +67,9 @@ Imports:
     leaflet.extras2 (>= 1.1.0),
     colourpicker (>= 1.1.0),
     DT (>= 0.18),
+    tiler (>= 0.2.5.9999993),
+    palr (>= 0.3.0),
+    leafem (>= 0.1.6)
 Suggests:
     testthat (>= 2.0.1),
     knitr (>= 1.2.0),
@@ -182,6 +185,7 @@ Collate:
     'widget_solutionSetttings_html.R'
 Remotes:
     r-lib/pkgdown,
+    NCC-CNC/tiler,
     NCC-CNC/leaflet.extras2,
     NCC-CNC/leaflet@pane-extra,
     jeffreyhanson/rcbc,
