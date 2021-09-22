@@ -6,6 +6,74 @@ attribute_path: ontario_pilot_attribute.csv.gz
 boundary_path: ontario_pilot_boundary.csv.gz
 mode: advanced
 themes:
+- name: Alvar
+  feature:
+  - name: R1km_Habitat_Alvar
+    variable:
+      index: R1km_Habitat_Alvar
+      units: ''
+      legend:
+        type: categorical
+        colors:
+        - '#00000000'
+        - '#02818a'
+      provenance: missing
+    status: yes
+    visible: yes
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+- name: Bedrock (2% cut-off)
+  feature:
+  - name: R1km_Habitat_Bedrock_2
+    variable:
+      index: R1km_Habitat_Bedrock_2
+      units: ''
+      legend:
+        type: categorical
+        colors:
+        - '#00000000'
+        - '#3279a8'
+      provenance: missing
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+- name: Bedrock (25% cut-off)
+  feature:
+  - name: R1km_Habitat_Bedrock_25
+    variable:
+      index: R1km_Habitat_Bedrock_25
+      units: ''
+      legend:
+        type: categorical
+        colors:
+        - '#00000000'
+        - '#3250a8'
+      provenance: missing
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+- name: Bedrock (50% cut-off)
+  feature:
+  - name: R1km_Habitat_Bedrock_50
+    variable:
+      index: R1km_Habitat_Bedrock_50
+      units: ''
+      legend:
+        type: categorical
+        colors:
+        - '#00000000'
+        - '#3432a8'
+      provenance: missing
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
 - name: Forest
   feature:
   - name: R1km_Habitat_Forest
@@ -19,7 +87,7 @@ themes:
         - '#006837'
       provenance: missing
     status: yes
-    visible: yes
+    visible: no
     hidden: no
     goal: 0.2
     limit_goal: 0.0
@@ -34,6 +102,40 @@ themes:
         colors:
         - '#00000000'
         - '#78c679'
+      provenance: missing
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+- name: Ginseng
+  feature:
+  - name: R1km_Habitat_Ginseng
+    variable:
+      index: R1km_Habitat_Ginseng
+      units: ''
+      legend:
+        type: categorical
+        colors:
+        - '#00000000'
+        - '#45942c'
+      provenance: missing
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+- name: Grassland
+  feature:
+  - name: R1km_Habitat_Grassland
+    variable:
+      index: R1km_Habitat_Grassland
+      units: ''
+      legend:
+        type: categorical
+        colors:
+        - '#00000000'
+        - '#e0df75'
       provenance: missing
     status: yes
     visible: no
@@ -399,23 +501,6 @@ weights:
       - '#21908CFF'
       - '#5DC863FF'
       - '#FDE725FF'
-    provenance: missing
-  status: yes
-  visible: no
-  hidden: no
-  factor: 0.0
-- name: Policy Areas (distance)
-  variable:
-    index: R1km_Policy_Area_Distance_M
-    units: ''
-    legend:
-      type: continuous
-      colors:
-      - '#000004FF'
-      - '#51127CFF'
-      - '#B63679FF'
-      - '#FB8861FF'
-      - '#FCFDBFFF'
     provenance: missing
   status: yes
   visible: no
