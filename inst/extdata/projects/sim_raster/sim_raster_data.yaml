@@ -24,6 +24,7 @@ themes:
       provenance: regional
     status: yes
     visible: yes
+    hidden: no
     goal: 0.83
     limit_goal: 0.02
 - name: Gough Island Finch
@@ -46,6 +47,7 @@ themes:
       provenance: regional
     status: yes
     visible: yes
+    hidden: no
     goal: 0.7
     limit_goal: 0.36
 - name: Manus Boobook
@@ -62,6 +64,7 @@ themes:
       provenance: regional
     status: yes
     visible: yes
+    hidden: no
     goal: 0.7
     limit_goal: 0.33
 - name: Waxbills and Allies
@@ -85,6 +88,7 @@ themes:
       provenance: regional
     status: yes
     visible: yes
+    hidden: no
     goal: 0.69
     limit_goal: 0.04
   - name: African Firefinch
@@ -106,6 +110,7 @@ themes:
       provenance: national
     status: yes
     visible: yes
+    hidden: no
     goal: 0.55
     limit_goal: 0.05
   - name: Black-and-white Mannikin (Red-backed)
@@ -127,6 +132,7 @@ themes:
       provenance: national
     status: yes
     visible: yes
+    hidden: no
     goal: 0.53
     limit_goal: 0.14
   - name: Black-throated Finch (White-rumped)
@@ -150,6 +156,7 @@ themes:
       provenance: national
     status: yes
     visible: yes
+    hidden: no
     goal: 0.72
     limit_goal: 0.18
   - name: Crimson Seedcracker
@@ -170,6 +177,7 @@ themes:
       provenance: national
     status: yes
     visible: yes
+    hidden: no
     goal: 0.61
     limit_goal: 0.0
   - name: Royal Parrotfinch
@@ -191,6 +199,7 @@ themes:
       provenance: national
     status: yes
     visible: yes
+    hidden: no
     goal: 0.54
     limit_goal: 0.03
   - name: Red-billed Firefinch
@@ -212,6 +221,7 @@ themes:
       provenance: national
     status: yes
     visible: yes
+    hidden: no
     goal: 0.81
     limit_goal: 0.21
   - name: Quailfinch (Black-faced)
@@ -232,6 +242,7 @@ themes:
       provenance: national
     status: yes
     visible: yes
+    hidden: no
     goal: 0.76
     limit_goal: 0.14
   - name: White-collared Oliveback
@@ -253,6 +264,7 @@ themes:
       provenance: regional
     status: yes
     visible: yes
+    hidden: no
     goal: 0.86
     limit_goal: 0.03
 - name: Penduline-Tits
@@ -276,6 +288,7 @@ themes:
       provenance: national
     status: yes
     visible: yes
+    hidden: no
     goal: 0.8
     limit_goal: 0.03
   - name: Verdin
@@ -296,6 +309,7 @@ themes:
       provenance: national
     status: yes
     visible: yes
+    hidden: no
     goal: 0.64
     limit_goal: 0.01
   - name: Mouse-colored Penduline-Tit
@@ -317,6 +331,7 @@ themes:
       provenance: national
     status: yes
     visible: yes
+    hidden: no
     goal: 0.66
     limit_goal: 0.28
   - name: Forest Penduline-Tit
@@ -338,6 +353,7 @@ themes:
       provenance: regional
     status: yes
     visible: yes
+    hidden: no
     goal: 0.68
     limit_goal: 0.1
   - name: Chinese Penduline-Tit
@@ -358,6 +374,7 @@ themes:
       provenance: national
     status: yes
     visible: yes
+    hidden: no
     goal: 0.8
     limit_goal: 0.08
 weights:
@@ -382,6 +399,7 @@ weights:
     provenance: regional
   status: yes
   visible: yes
+  hidden: no
   factor: 0.0
 - name: Archaeological site
   variable:
@@ -402,6 +420,7 @@ weights:
     provenance: national
   status: yes
   visible: yes
+  hidden: no
   factor: 0.0
 - name: Engagement potential
   variable:
@@ -422,6 +441,7 @@ weights:
     provenance: national
   status: yes
   visible: yes
+  hidden: no
   factor: 0.0
 includes:
 - name: National protected areas
@@ -440,6 +460,7 @@ includes:
   mandatory: no
   status: yes
   visible: yes
+  hidden: no
 - name: Key Biodiversity Areas
   variable:
     index: Key_Biodiversity_Areas
@@ -456,3 +477,4 @@ includes:
   mandatory: no
   status: yes
   visible: yes
+  hidden: no

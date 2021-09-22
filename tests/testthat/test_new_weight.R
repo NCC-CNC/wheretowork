@@ -8,6 +8,7 @@ test_that("initialization", {
     name = "Human Footprint Index",
     variable = v,
     visible = FALSE,
+    hidden = TRUE,
     status = FALSE,
     factor = -0.2,
     current = 0.89,
@@ -20,6 +21,7 @@ test_that("initialization", {
   expect_equal(x$name, "Human Footprint Index")
   expect_equal(x$variable, v)
   expect_equal(x$visible, FALSE)
+  expect_equal(x$hidden, TRUE)
   expect_equal(x$status, FALSE)
   expect_equal(x$current, 0.89)
   expect_equal(x$factor, -0.2)
@@ -33,6 +35,7 @@ test_that("get methods", {
     name = "Human Footprint Index",
     variable = v,
     visible = TRUE,
+    hidden = FALSE,
     status = FALSE,
     current = 0.89,
     factor = -0.2,
@@ -41,6 +44,7 @@ test_that("get methods", {
   # run tests
   expect_identical(x$get_factor(), -0.2)
   expect_identical(x$get_visible(), TRUE)
+  expect_identical(x$get_hidden(), FALSE)
   expect_identical(x$get_status(), FALSE)
   expect_identical(x$get_current(), 0.89)
   expect_identical(x$get_setting("factor"), x$get_factor())
@@ -88,6 +92,7 @@ test_that("export method", {
     name = "Human Footprint Index",
     variable = v,
     visible = TRUE,
+    hidden = FALSE,
     status = FALSE,
     current = 0.89,
     factor = -0.2,
@@ -101,6 +106,7 @@ test_that("export method", {
       variable = x$variable$export(),
       status = FALSE,
       visible = TRUE,
+      hidden = FALSE,
       factor = -0.2
     )
   )
@@ -142,6 +148,7 @@ test_that("widget methods", {
       id = "FID1",
       name = "Human Footprint Index",
       visible = TRUE,
+      hidden = FALSE,
       legend = v$legend$get_widget_data(),
       units = "ha",
       provenance = v$provenance$get_widget_data(),

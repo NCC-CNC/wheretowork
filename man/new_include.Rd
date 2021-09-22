@@ -9,6 +9,7 @@ new_include(
   variable,
   mandatory = FALSE,
   visible = TRUE,
+  hidden = FALSE,
   status = TRUE,
   id = uuid::UUIDgenerate()
 )
@@ -24,12 +25,18 @@ for generating solutions.}
 \item{visible}{\code{logical} The initial visible value.
 This is used to determine if the feature is displayed (or not)
 or not the map.
-Defaults to \code{TRUE}}
+Defaults to \code{TRUE}.}
+
+\item{hidden}{\code{logical} The hidden value.
+This is used to determine if the feature is can ever be displayed (or not)
+or not the map. Unlike \code{visible}, if this parameter is \code{FALSE} then a
+feature can never be viewed on the map.
+Defaults to \code{FALSE}.}
 
 \item{status}{\code{logical} The initial status value.
 This is used to display information on whether the feature is
 selected (or not) for subsequent analysis.
-Defaults to \code{TRUE}}
+Defaults to \code{TRUE}.}
 
 \item{id}{\code{character} unique identifier.
 Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}

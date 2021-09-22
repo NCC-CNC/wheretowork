@@ -25,6 +25,8 @@ Definition for the Weight class.
 
 \item{\code{visible}}{\code{logical} value.}
 
+\item{\code{hidden}}{\code{logical} value.}
+
 \item{\code{status}}{\code{logical} value.}
 
 \item{\code{current}}{\code{numeric} value.}
@@ -48,6 +50,7 @@ Definition for the Weight class.
 \item \href{#method-get_layer_name}{\code{Weight$get_layer_name()}}
 \item \href{#method-get_layer_index}{\code{Weight$get_layer_index()}}
 \item \href{#method-get_visible}{\code{Weight$get_visible()}}
+\item \href{#method-get_hidden}{\code{Weight$get_hidden()}}
 \item \href{#method-get_status}{\code{Weight$get_status()}}
 \item \href{#method-get_current}{\code{Weight$get_current()}}
 \item \href{#method-get_factor}{\code{Weight$get_factor()}}
@@ -77,6 +80,7 @@ Create a new Weight object.
   name,
   variable,
   visible,
+  hidden,
   status,
   current,
   factor,
@@ -96,6 +100,8 @@ Create a new Weight object.
 \item{\code{variable}}{\link{Variable} object.}
 
 \item{\code{visible}}{\code{logical} value.}
+
+\item{\code{hidden}}{\code{logical} value.}
 
 \item{\code{status}}{\code{logical} value.}
 
@@ -189,6 +195,19 @@ Get layer index values.
 Get visible.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Weight$get_visible()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{logical} value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_hidden"></a>}}
+\if{latex}{\out{\hypertarget{method-get_hidden}{}}}
+\subsection{Method \code{get_hidden()}}{
+Get hidden.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Weight$get_hidden()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{

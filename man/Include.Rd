@@ -27,6 +27,8 @@ Definition for the Include class.
 
 \item{\code{visible}}{\code{logical} value.}
 
+\item{\code{hidden}}{\code{logical} value.}
+
 \item{\code{status}}{\code{logical} value.}
 }
 \if{html}{\out{</div>}}
@@ -40,6 +42,7 @@ Definition for the Include class.
 \item \href{#method-get_layer_name}{\code{Include$get_layer_name()}}
 \item \href{#method-get_layer_index}{\code{Include$get_layer_index()}}
 \item \href{#method-get_visible}{\code{Include$get_visible()}}
+\item \href{#method-get_hidden}{\code{Include$get_hidden()}}
 \item \href{#method-get_status}{\code{Include$get_status()}}
 \item \href{#method-get_data}{\code{Include$get_data()}}
 \item \href{#method-get_setting}{\code{Include$get_setting()}}
@@ -60,7 +63,7 @@ Definition for the Include class.
 \subsection{Method \code{new()}}{
 Create a new Include object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Include$new(id, name, variable, mandatory, visible, status)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Include$new(id, name, variable, mandatory, visible, hidden, status)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -75,6 +78,8 @@ Create a new Include object.
 \item{\code{mandatory}}{\code{logical} value.}
 
 \item{\code{visible}}{\code{logical} value.}
+
+\item{\code{hidden}}{\code{logical} value.}
 
 \item{\code{status}}{\code{logical} value.}
 }
@@ -158,6 +163,19 @@ Get layer index values.
 Get visible.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Include$get_visible()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{logical} value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_hidden"></a>}}
+\if{latex}{\out{\hypertarget{method-get_hidden}{}}}
+\subsection{Method \code{get_hidden()}}{
+Get visible.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Include$get_hidden()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{

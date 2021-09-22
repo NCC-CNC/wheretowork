@@ -5,6 +5,7 @@ class WeightLayer {
     id,
     name,
     visible,
+    hidden,
     legend,
     units,
     provenance
@@ -22,13 +23,15 @@ class WeightLayer {
     this.visible_el = this.el.querySelector(".visible-checkbox");
     this.name_el = this.el.querySelector(".name-label");
     this.legend_el = this.el.querySelector(".legend");
+    this.hidden = hidden;
 
     // local variables
     const that = this;
+    const mapManagerLayer = this.el.querySelector(".map-manager-layer");
 
     // attach id to element
-    this.el.querySelector(".map-manager-layer").setAttribute("data-id", id);
-    this.el.querySelector(".map-manager-layer").id = id;
+    mapManagerLayer.setAttribute("data-id", id);
+    mapManagerLayer.id = id;
 
     // set initial values
     /// name
@@ -43,6 +46,19 @@ class WeightLayer {
     createProvenance(
       this.el.querySelector(".provenance-container"), provenance
     );
+    /// hidden
+    if (hidden) {
+      mapManagerLayer.classList.add("hidden-layer");
+      mapManagerLayer.setAttribute("disabled", "");
+      this.view_el.checked = false;
+      this.view_el.setAttribute("disabled", "");
+      this.view_el.parentElement.classList.add("no-click");
+      this.visible_el.setAttribute("disabled", "");
+      this.visible_el.parentElement.classList.add("no-click");
+      that.legend_el.style.display = "none";
+      removeAllTooltips(mapManagerLayer);
+      addHiddenTooltip(mapManagerLayer);
+    }
 
     // set listeners to update user interfance, show/hide legends checkbox
     if (HTMLWidgets.shinyMode) {
@@ -82,7 +98,9 @@ class WeightLayer {
   }
 
   updateVisible(value) {
-    this.visible_el.checked = value;
+    if (!this.hidden) {
+      this.visible_el.checked = value;
+    }
   }
 
   updateName(value) {

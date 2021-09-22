@@ -8,6 +8,7 @@ new_weight(
   name,
   variable,
   visible = TRUE,
+  hidden = FALSE,
   status = TRUE,
   current = 0,
   factor = 0,
@@ -22,12 +23,18 @@ new_weight(
 \item{visible}{\code{logical} The initial visible value.
 This is used to determine if the feature is displayed (or not)
 or not the map.
-Defaults to \code{TRUE}}
+Defaults to \code{TRUE}.}
+
+\item{hidden}{\code{logical} The hidden value.
+This is used to determine if the feature is can ever be displayed (or not)
+or not the map. Unlike \code{visible}, if this parameter is \code{FALSE} then a
+feature can never be viewed on the map.
+Defaults to \code{FALSE}.}
 
 \item{status}{\code{logical} The initial status value.
 This is used to display information on whether the feature is
 selected (or not) for subsequent analysis.
-Defaults to \code{TRUE}}
+Defaults to \code{TRUE}.}
 
 \item{current}{\code{numeric} current proportion of values held in existing
 conservation areas (e.g. 0.1 = 10\%).}

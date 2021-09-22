@@ -12,6 +12,7 @@ test_that("initialization", {
     variable = v,
     mandatory = TRUE,
     visible = FALSE,
+    hidden = TRUE,
     status = FALSE,
     id = "FID1"
   )
@@ -22,6 +23,7 @@ test_that("initialization", {
   expect_identical(x$mandatory, TRUE)
   expect_identical(x$variable, v)
   expect_identical(x$visible, FALSE)
+  expect_identical(x$hidden, TRUE)
   expect_identical(x$status, FALSE)
   expect_identical(x$id, "FID1")
 })
@@ -38,12 +40,14 @@ test_that("get methods", {
     variable = v,
     mandatory = TRUE,
     visible = TRUE,
+    hidden = FALSE,
     status = FALSE,
     id = "FID1"
   )
   # run tests
   expect_identical(x$get_status(), FALSE)
   expect_identical(x$get_visible(), TRUE)
+  expect_identical(x$get_hidden(), FALSE)
 })
 
 test_that("set methods", {
@@ -80,6 +84,7 @@ test_that("export method", {
     variable = v,
     mandatory = TRUE,
     visible = FALSE,
+    hidden = TRUE,
     status = FALSE,
     id = "FID1"
   )
@@ -91,7 +96,8 @@ test_that("export method", {
       variable = x$variable$export(),
       mandatory = TRUE,
       status = FALSE,
-      visible = FALSE
+      visible = FALSE,
+      hidden = TRUE
     )
   )
 })
@@ -108,6 +114,7 @@ test_that("widget methods", {
     variable = v,
     mandatory = TRUE,
     visible = FALSE,
+    hidden = FALSE,
     status = FALSE,
     id = "FID1"
   )
@@ -130,6 +137,7 @@ test_that("widget methods", {
       id = "FID1",
       name = "National protected areas",
       visible = FALSE,
+      hidden = FALSE,
       legend = v$legend$get_widget_data(),
       units = "",
       provenance = v$provenance$get_widget_data(),

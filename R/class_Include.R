@@ -26,6 +26,9 @@ Include <- R6::R6Class(
     #' @field visible `logical` value.
     visible = NA,
 
+    #' @field hidden `logical` value.
+    hidden = NA,
+
     #' @field status `logical` value.
     status = NA,
 
@@ -36,10 +39,12 @@ Include <- R6::R6Class(
     #' @param variable [Variable] object.
     #' @param mandatory `logical` value.
     #' @param visible `logical` value.
+    #' @param hidden `logical` value.
     #' @param status `logical` value.
     #' @return A new Include object.
     ## constructor
-    initialize = function(id, name, variable, mandatory, visible, status) {
+    initialize = function(id, name, variable, mandatory, visible, hidden,
+                          status) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -57,6 +62,9 @@ Include <- R6::R6Class(
         #### visible
         assertthat::is.flag(visible),
         assertthat::noNA(visible),
+        #### hidden
+        assertthat::is.flag(hidden),
+        assertthat::noNA(hidden),
         #### status
         assertthat::is.flag(status),
         assertthat::noNA(status)
@@ -66,7 +74,8 @@ Include <- R6::R6Class(
       self$variable <- variable
       self$name <- name
       self$status <- status
-      self$visible <- visible
+      self$visible <- visible && !hidden
+      self$hidden <- hidden
       self$mandatory <- mandatory
     },
 
@@ -79,6 +88,7 @@ Include <- R6::R6Class(
       message("  name:     ", self$name)
       message("  variable: ", self$variable$repr())
       message("  visible:  ", self$visible)
+      message("  hidden:  ", self$hidden)
       message("  status:   ", self$status)
       invisible(self)
     },
@@ -117,6 +127,13 @@ Include <- R6::R6Class(
     #' @return `logical` value.
     get_visible = function() {
       self$visible
+    },
+
+    #' @description
+    #' Get visible.
+    #' @return `logical` value.
+    get_hidden = function() {
+      self$hidden
     },
 
     #' @description
@@ -163,6 +180,9 @@ Include <- R6::R6Class(
         assertthat::noNA(value)
       )
       self$visible <- value
+      if (self$hidden) {
+        self$visible <- FALSE
+      }
       invisible(self)
     },
 
@@ -220,6 +240,7 @@ Include <- R6::R6Class(
         id = self$id,
         name = self$name,
         visible = self$visible,
+        hidden = self$hidden,
         legend = self$variable$legend$get_widget_data(),
         units = self$variable$units,
         provenance = self$variable$provenance$get_widget_data(),
@@ -236,7 +257,8 @@ Include <- R6::R6Class(
         variable = self$variable$export(),
         mandatory = self$mandatory,
         status = self$status,
-        visible = self$visible
+        visible = self$visible,
+        hidden = self$hidden
       )
     },
 
@@ -246,6 +268,7 @@ Include <- R6::R6Class(
     #' @param zindex `numeric` z-index for ordering.
     #' @return [leaflet::leaflet()] object.
     render_on_map = function(x, zindex) {
+      if (self$hidden) return(x) # don't render on map if hidden
       self$variable$render(x, self$id, zindex, self$visible)
     },
 
@@ -255,6 +278,7 @@ Include <- R6::R6Class(
     #' @param zindex `numeric` z-index for ordering.
     #' @return [leaflet::leafletProxy()] object.
     update_on_map = function(x, zindex) {
+      if (self$hidden) return(x) # don't render on map if hidden
       self$variable$update_render(x, self$id, zindex, self$visible)
     }
   )
@@ -300,7 +324,7 @@ Include <- R6::R6Class(
 #' print(w)
 #' @export
 new_include <- function(name, variable, mandatory = FALSE,
-                        visible = TRUE, status = TRUE,
+                        visible = TRUE, hidden = FALSE, status = TRUE,
                         id = uuid::UUIDgenerate()) {
   Include$new(
     id = id,
@@ -308,6 +332,7 @@ new_include <- function(name, variable, mandatory = FALSE,
     variable = variable,
     mandatory = mandatory,
     visible = visible,
+    hidden = hidden,
     status = status
   )
 }

@@ -7,6 +7,7 @@ class MultiThemeLayer {
     feature_id,
     feature_name,
     feature_visible,
+    feature_hidden,
     feature_legend,
     feature_provenance,
     units
@@ -20,6 +21,7 @@ class MultiThemeLayer {
     this.single_visible_el = undefined;
     this.single_legend_el = undefined;
     this.sortable = undefined;
+    this.feature_hidden = feature_hidden;
 
     /// HTML container
     this.el =
@@ -113,6 +115,32 @@ class MultiThemeLayer {
       createLegend(this.single_legend_el[i], feature_legend[i], units);
       /// provenance
       createProvenance(single_prov_el[i], feature_provenance[i]);
+      /// feature_hidden
+      if (feature_hidden[i]) {
+        this.main_el.children[i].classList.add("hidden-layer");
+        this.main_el.children[i].setAttribute("disabled", "");
+        single_view_el[i].checked = false;
+        single_view_el[i].setAttribute("disabled", "");
+        single_view_el[i].parentElement.classList.add("no-click");
+        this.single_visible_el[i].setAttribute("disabled", "");
+        this.single_visible_el[i].parentElement.classList.add("no-click");
+        this.single_legend_el[i].style.display = "none";
+        removeAllTooltips(this.main_el.children[i]);
+        addHiddenTooltip(this.main_el.children[i]);
+      }
+    }
+
+    // set feature hidden for overall widget if all features are hidden
+    if (feature_hidden.every((x) => x)) {
+        mapManagerLayer.classList.add("hidden-layer");
+        mapManagerLayer.setAttribute("disabled", "");
+        this.view_el.checked = false;
+        this.view_el.setAttribute("disabled", "");
+        this.view_el.parentElement.classList.add("no-click");
+        this.visible_el.setAttribute("disabled", "");
+        this.visible_el.parentElement.classList.add("no-click");
+        removeAllTooltips(mapManagerLayer);
+        addHiddenTooltip(mapManagerLayer);
     }
 
     // set listeners to update user interface
@@ -197,20 +225,18 @@ class MultiThemeLayer {
   }
 
   updateVisible(value) {
-    this.single_visible_values.fill(value);
-    this.visible_el.checked = value;
-    for (let i = 0; i < this.n_features; ++i) {
-      this.single_visible_el[i].checked = value;
-    }
+    const value2 = new Array(this.n_features).fill(value);
+    this.updateFeatureVisible(value2);
   }
 
   updateFeatureVisible(value) {
-    this.single_visible_values = value;
-    if (value.some((x) => x) && (!this.visible_el.checked)) {
+    const value2 = value.map((x, i) => x && !this.feature_hidden[i]);
+    this.single_visible_values = value2;
+    if (value2.some((x) => x) && (!this.visible_el.checked)) {
       this.visible_el.checked = true;
     }
     for (let i = 0; i < this.n_features; ++i) {
-      this.single_visible_el[i].checked = value[i];
+      this.single_visible_el[i].checked = value2[i];
     }
   }
 

@@ -23,6 +23,9 @@ Weight <- R6::R6Class(
     #' @field visible `logical` value.
     visible = NA,
 
+    #' @field hidden `logical` value.
+    hidden = NA,
+
     #' @field status `logical` value.
     status = NA,
 
@@ -47,6 +50,7 @@ Weight <- R6::R6Class(
     #' @param name `character` value.
     #' @param variable [Variable] object.
     #' @param visible `logical` value.
+    #' @param hidden `logical` value.
     #' @param status `logical` value.
     #' @param current `logical` value.
     #' @param factor `numeric` initial factor value.
@@ -55,7 +59,7 @@ Weight <- R6::R6Class(
     #' @param step_factor `numeric` step factor value.
     #' @return A new Weight object.
     ## constructor
-    initialize = function(id, name, variable, visible, status, current,
+    initialize = function(id, name, variable, visible, hidden, status, current,
                           factor, min_factor, max_factor, step_factor) {
       ### assert that arguments are valid
       assertthat::assert_that(
@@ -71,6 +75,9 @@ Weight <- R6::R6Class(
         #### visible
         assertthat::is.flag(visible),
         assertthat::noNA(visible),
+        #### hidden
+        assertthat::is.flag(hidden),
+        assertthat::noNA(hidden),
         #### status
         assertthat::is.flag(status),
         assertthat::noNA(status),
@@ -101,7 +108,8 @@ Weight <- R6::R6Class(
       self$name <- name
       self$status <- status
       self$current <- current
-      self$visible <- visible
+      self$visible <- visible && !hidden
+      self$hidden <- hidden
       self$factor <- factor
       self$min_factor <- min_factor
       self$max_factor <- max_factor
@@ -118,6 +126,7 @@ Weight <- R6::R6Class(
       message("  variable: ", self$variable$repr())
       message("  current:  ", round(self$current, 2))
       message("  visible:  ", self$visible)
+      message("  hidden:  ", self$hidden)
       message("  status:   ", self$status)
       message("  factor:   ", round(self$factor, 2))
       invisible(self)
@@ -159,6 +168,13 @@ Weight <- R6::R6Class(
     #' @return `logical` value.
     get_visible = function() {
       self$visible
+    },
+
+    #' @description
+    #' Get hidden.
+    #' @return `logical` value.
+    get_hidden = function() {
+      self$hidden
     },
 
     #' @description
@@ -223,6 +239,9 @@ Weight <- R6::R6Class(
         assertthat::noNA(value)
       )
       self$visible <- value
+      if (self$hidden) {
+        self$visible <- FALSE
+      }
       invisible(self)
     },
 
@@ -314,6 +333,7 @@ Weight <- R6::R6Class(
         id = self$id,
         name = self$name,
         visible = self$visible,
+        hidden = self$hidden,
         legend = self$variable$legend$get_widget_data(),
         units = self$variable$units,
         provenance = self$variable$provenance$get_widget_data(),
@@ -330,6 +350,7 @@ Weight <- R6::R6Class(
         variable = self$variable$export(),
         status = self$status,
         visible = self$visible,
+        hidden = self$hidden,
         factor = self$factor
       )
     },
@@ -340,6 +361,7 @@ Weight <- R6::R6Class(
     #' @param zindex `numeric` z-index for ordering.
     #' @return [leaflet::leaflet()] object.
     render_on_map = function(x, zindex) {
+      if (self$hidden) return(x) # don't render on map if hidden
       self$variable$render(x, self$id, zindex, self$visible)
     },
 
@@ -349,6 +371,7 @@ Weight <- R6::R6Class(
     #' @param zindex `numeric` z-index for ordering.
     #' @return [leaflet::leafletProxy()] object.
     update_on_map = function(x, zindex) {
+      if (self$hidden) return(x) # don't render on map if hidden
       self$variable$update_render(x, self$id, zindex, self$visible)
     }
   )
@@ -394,7 +417,7 @@ Weight <- R6::R6Class(
 #' print(w)
 #' @export
 new_weight <- function(name, variable,
-                       visible = TRUE, status = TRUE,
+                       visible = TRUE, hidden = FALSE, status = TRUE,
                        current = 0, factor = 0,
                        id = uuid::UUIDgenerate()) {
   Weight$new(
@@ -402,6 +425,7 @@ new_weight <- function(name, variable,
     name = name,
     variable = variable,
     visible = visible,
+    hidden = hidden,
     status = status,
     current = current,
     factor = factor,
