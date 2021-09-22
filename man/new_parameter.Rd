@@ -22,7 +22,7 @@ new_parameter(
 \item{status}{\code{logical} The initial status value.
 This is used to display information on whether the feature is
 selected (or not) for subsequent analysis.
-Defaults to \code{TRUE}}
+Defaults to \code{TRUE}.}
 
 \item{value}{\code{numeric} initial value.
 Defaults to 0.}

@@ -42,6 +42,7 @@ Definition for the Theme class.
 \item \href{#method-get_feature_total}{\code{Theme$get_feature_total()}}
 \item \href{#method-get_visible}{\code{Theme$get_visible()}}
 \item \href{#method-get_feature_visible}{\code{Theme$get_feature_visible()}}
+\item \href{#method-get_feature_hidden}{\code{Theme$get_feature_hidden()}}
 \item \href{#method-get_feature_status}{\code{Theme$get_feature_status()}}
 \item \href{#method-get_feature_goal}{\code{Theme$get_feature_goal()}}
 \item \href{#method-get_feature_order}{\code{Theme$get_feature_order()}}
@@ -219,7 +220,7 @@ Get feature current.
 \if{html}{\out{<a id="method-get_visible"></a>}}
 \if{latex}{\out{\hypertarget{method-get_visible}{}}}
 \subsection{Method \code{get_visible()}}{
-Set visible value for all features.
+Get visible value for all features.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Theme$get_visible()}\if{html}{\out{</div>}}
 }
@@ -235,6 +236,19 @@ Set visible value for all features.
 Get feature visible values.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Theme$get_feature_visible()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{logical} vector with status value(s).
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_feature_hidden"></a>}}
+\if{latex}{\out{\hypertarget{method-get_feature_hidden}{}}}
+\subsection{Method \code{get_feature_hidden()}}{
+Get feature hidden values.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$get_feature_hidden()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{

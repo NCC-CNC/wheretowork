@@ -20,6 +20,7 @@ themes:
       provenance: missing
     status: yes
     visible: yes
+    hidden: no
     goal: 0.2
     limit_goal: 0.0
 - name: Interior Forest
@@ -36,6 +37,7 @@ themes:
       provenance: missing
     status: yes
     visible: no
+    hidden: no
     goal: 0.2
     limit_goal: 0.0
 - name: Natural Cover
@@ -52,6 +54,7 @@ themes:
       provenance: missing
     status: yes
     visible: no
+    hidden: no
     goal: 0.2
     limit_goal: 0.0
 - name: PSW Habitat
@@ -68,6 +71,7 @@ themes:
       provenance: missing
     status: yes
     visible: no
+    hidden: no
     goal: 0.2
     limit_goal: 0.0
 - name: PSW Habitat (2% cut-off)
@@ -84,6 +88,7 @@ themes:
       provenance: missing
     status: yes
     visible: no
+    hidden: no
     goal: 0.2
     limit_goal: 0.0
 - name: PSW Habitat (25% cut-off)
@@ -100,6 +105,7 @@ themes:
       provenance: missing
     status: yes
     visible: no
+    hidden: no
     goal: 0.2
     limit_goal: 0.0
 - name: Water
@@ -116,6 +122,7 @@ themes:
       provenance: missing
     status: yes
     visible: no
+    hidden: no
     goal: 0.2
     limit_goal: 0.0
 - name: Wetland
@@ -132,6 +139,7 @@ themes:
       provenance: missing
     status: yes
     visible: no
+    hidden: no
     goal: 0.2
     limit_goal: 0.0
 - name: Wetland (25% cut-off)
@@ -148,6 +156,7 @@ themes:
       provenance: missing
     status: yes
     visible: no
+    hidden: no
     goal: 0.2
     limit_goal: 0.0
 - name: TNC Last Chance Ecosystems
@@ -164,6 +173,7 @@ themes:
       provenance: missing
     status: yes
     visible: no
+    hidden: no
     goal: 0.2
     limit_goal: 0.0
 - name: A2A Area
@@ -180,6 +190,7 @@ themes:
       provenance: missing
     status: yes
     visible: no
+    hidden: no
     goal: 0.2
     limit_goal: 0.0
 - name: TNC Crisis Ecosystems (Endangered)
@@ -196,6 +207,7 @@ themes:
       provenance: missing
     status: yes
     visible: no
+    hidden: no
     goal: 0.2
     limit_goal: 0.0
 - name: TNC Crisis Ecosystems (Vulnerable)
@@ -212,6 +224,7 @@ themes:
       provenance: missing
     status: yes
     visible: no
+    hidden: no
     goal: 0.2
     limit_goal: 0.0
 weights:
@@ -227,6 +240,7 @@ weights:
     provenance: missing
   status: yes
   visible: no
+  hidden: no
   factor: 0.0
 - name: Built-up Areas
   variable:
@@ -240,6 +254,7 @@ weights:
     provenance: missing
   status: yes
   visible: no
+  hidden: no
   factor: 0.0
 - name: Dams
   variable:
@@ -253,6 +268,7 @@ weights:
     provenance: missing
   status: yes
   visible: no
+  hidden: no
   factor: 0.0
 - name: Hydroelectric Stations
   variable:
@@ -266,6 +282,7 @@ weights:
     provenance: missing
   status: yes
   visible: no
+  hidden: no
   factor: 0.0
 - name: Active Mines
   variable:
@@ -280,6 +297,7 @@ weights:
     provenance: missing
   status: yes
   visible: no
+  hidden: no
   factor: 0.0
 - name: Mining Activity
   variable:
@@ -294,6 +312,7 @@ weights:
     provenance: missing
   status: yes
   visible: no
+  hidden: no
   factor: 0.0
 - name: Peat Production
   variable:
@@ -307,6 +326,7 @@ weights:
     provenance: missing
   status: yes
   visible: no
+  hidden: no
   factor: 0.0
 - name: Railways
   variable:
@@ -320,6 +340,7 @@ weights:
     provenance: missing
   status: yes
   visible: no
+  hidden: no
   factor: 0.0
 - name: Roads
   variable:
@@ -336,6 +357,7 @@ weights:
     provenance: missing
   status: yes
   visible: no
+  hidden: no
   factor: 0.0
 - name: Utility Lines
   variable:
@@ -349,6 +371,7 @@ weights:
     provenance: missing
   status: yes
   visible: no
+  hidden: no
   factor: 0.0
 - name: Water Power Stations
   variable:
@@ -362,6 +385,7 @@ weights:
     provenance: missing
   status: yes
   visible: no
+  hidden: no
   factor: 0.0
 - name: Protected Areas (distance)
   variable:
@@ -378,6 +402,7 @@ weights:
     provenance: missing
   status: yes
   visible: no
+  hidden: no
   factor: 0.0
 - name: Policy Areas (distance)
   variable:
@@ -394,6 +419,7 @@ weights:
     provenance: missing
   status: yes
   visible: no
+  hidden: no
   factor: 0.0
 includes:
 - name: Policy Areas
@@ -412,6 +438,7 @@ includes:
   mandatory: no
   status: yes
   visible: no
+  hidden: no
 - name: Protected Areas
   variable:
     index: R1km_Protected_Area
@@ -428,6 +455,7 @@ includes:
   mandatory: no
   status: yes
   visible: no
+  hidden: no
 - name: Protected Areas (buffered)
   variable:
     index: R1km_Protected_Areas_Plus_Buffer
@@ -444,3 +472,4 @@ includes:
   mandatory: no
   status: yes
   visible: no
+  hidden: no

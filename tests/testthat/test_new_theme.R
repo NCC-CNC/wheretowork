@@ -64,6 +64,7 @@ test_that("get methods (single feature)", {
     name = "F1",
     variable = v,
     visible = TRUE,
+    hidden = FALSE,
     status = FALSE,
     goal = 0.2,
     limit_goal = 0.05,
@@ -78,6 +79,7 @@ test_that("get methods (single feature)", {
   # run tests
   expect_identical(x$get_feature_goal(), 0.2)
   expect_identical(x$get_feature_visible(), TRUE)
+  expect_identical(x$get_feature_hidden(), FALSE)
   expect_identical(x$get_visible(), TRUE)
   expect_identical(x$get_feature_status(), FALSE)
   expect_identical(x$get_feature_current(), 0.2567)
@@ -136,6 +138,7 @@ test_that("widget methods (single feature)", {
     name = "F1",
     variable = v,
     visible = FALSE,
+    hidden = FALSE,
     status = FALSE,
     goal = 0.2,
     limit_goal = 0.05,
@@ -177,6 +180,7 @@ test_that("widget methods (single feature)", {
       feature_name = "F1",
       feature_id = "FID1",
       feature_visible = FALSE,
+      feature_hidden = FALSE,
       feature_legend = list(v$legend$get_widget_data()),
       feature_provenance = list(v$provenance$get_widget_data()),
       units = "ha",
@@ -193,6 +197,7 @@ test_that("initialization (multiple features)", {
     name = "F1",
     variable = new_variable_from_auto(dataset = d, index = 1, units = "ha"),
     visible = TRUE,
+    hidden = FALSE,
     status = FALSE,
     goal = 0.2,
     limit_goal = 0.02,
@@ -203,6 +208,7 @@ test_that("initialization (multiple features)", {
     name = "F2",
     variable = new_variable_from_auto(dataset = d, index = 2, units = "ha"),
     visible = FALSE,
+    hidden = TRUE,
     status = TRUE,
     goal = 0.21,
     limit_goal = 0.021,
@@ -230,6 +236,7 @@ test_that("get methods (multiple features)", {
     name = "F1",
     variable = new_variable_from_auto(dataset = d, index = 1, units = "ha"),
     visible = TRUE,
+    hidden = FALSE,
     status = FALSE,
     goal = 0.2,
     limit_goal = 0.02,
@@ -240,6 +247,7 @@ test_that("get methods (multiple features)", {
     name = "F2",
     variable = new_variable_from_auto(dataset = d, index = 2, units = "ha"),
     visible = FALSE,
+    hidden = TRUE,
     status = TRUE,
     goal = 0.21,
     limit_goal = 0.021,
@@ -254,6 +262,7 @@ test_that("get methods (multiple features)", {
   # run tests
   expect_identical(x$get_feature_goal(), c(0.2, 0.21))
   expect_identical(x$get_feature_visible(), c(TRUE, FALSE))
+  expect_identical(x$get_feature_hidden(), c(FALSE, TRUE))
   expect_identical(x$get_visible(), TRUE)
   expect_identical(x$get_feature_status(), c(FALSE, TRUE))
   expect_identical(x$get_feature_current(), c(0.245, 0.5))
@@ -322,6 +331,7 @@ test_that("export method (multiple features)", {
     name = "F1",
     variable = new_variable_from_auto(dataset = d, index = 1, units = "ha"),
     visible = TRUE,
+    hidden = FALSE,
     status = FALSE,
     goal = 0.2,
     limit_goal = 0.02,
@@ -332,6 +342,7 @@ test_that("export method (multiple features)", {
     name = "F2",
     variable = new_variable_from_auto(dataset = d, index = 2, units = "ha"),
     visible = FALSE,
+    hidden = TRUE,
     status = TRUE,
     goal = 0.21,
     limit_goal = 0.021,
@@ -361,6 +372,7 @@ test_that("widget methods (multiple features)", {
     name = "F1",
     variable = new_variable_from_auto(dataset = d, index = 1, units = "ha"),
     visible = TRUE,
+    hidden = FALSE,
     status = FALSE,
     goal = 0.2,
     limit_goal = 0.02,
@@ -371,6 +383,7 @@ test_that("widget methods (multiple features)", {
     name = "F2",
     variable = new_variable_from_auto(dataset = d, index = 2, units = "ha"),
     visible = FALSE,
+    hidden = TRUE,
     status = TRUE,
     goal = 0.21,
     limit_goal = 0.021,
@@ -414,6 +427,7 @@ test_that("widget methods (multiple features)", {
       feature_name = c("F1", "F2"),
       feature_id = c("FID1", "FID2"),
       feature_visible = c(TRUE, FALSE),
+      feature_hidden = c(FALSE, TRUE),
       feature_legend = lapply(
         x$feature, function(x) x$variable$legend$get_widget_data()
       ),

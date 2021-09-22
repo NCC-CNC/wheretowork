@@ -128,6 +128,7 @@
   <span class='va'>name</span>,
   <span class='va'>variable</span>,
   visible <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  hidden <span class='op'>=</span> <span class='cn'>FALSE</span>,
   status <span class='op'>=</span> <span class='cn'>TRUE</span>,
   current <span class='op'>=</span> <span class='fl'>0</span>,
   factor <span class='op'>=</span> <span class='fl'>0</span>,
@@ -150,14 +151,22 @@
       <td><p><code>logical</code> The initial visible value.
 This is used to determine if the feature is displayed (or not)
 or not the map.
-Defaults to <code>TRUE</code></p></td>
+Defaults to <code>TRUE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>hidden</th>
+      <td><p><code>logical</code> The hidden value.
+This is used to determine if the feature is can ever be displayed (or not)
+or not the map. Unlike <code>visible</code>, if this parameter is <code>FALSE</code> then a
+feature can never be viewed on the map.
+Defaults to <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>status</th>
       <td><p><code>logical</code> The initial status value.
 This is used to display information on whether the feature is
 selected (or not) for subsequent analysis.
-Defaults to <code>TRUE</code></p></td>
+Defaults to <code>TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>current</th>
@@ -207,11 +216,12 @@ Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUI
 <span class='r-in'><span class='co'># print object</span></span>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>w</span><span class='op'>)</span></span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Weight</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       a7ce59b2-fb01-467a-a454-a04108ad94c9</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       7ff99c96-59a0-4237-a4fa-b0d102f30c00</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:     NDVI</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   variable: .../sim_raster_spatial.tif#Brown_necked_Parrot_Brown_necked_ [total: 1052 ]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   current:  0</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   visible:  TRUE</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   hidden:  FALSE</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   status:   TRUE</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   factor:   0</span>
 </code></pre></div>

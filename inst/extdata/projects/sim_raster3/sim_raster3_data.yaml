@@ -1,7 +1,9 @@
-name: Example GeoTIFF dataset (themes)
-spatial_path: sim_raster2_spatial.tif
-attribute_path: sim_raster2_attribute.csv.gz
-boundary_path: sim_raster2_boundary.dat.gz
+name: Example GeoTIFF dataset (hidden)
+author_name: Richard Schuster
+author_email: richard.schuster@natureconservancy.ca
+spatial_path: sim_raster3_spatial.tif
+attribute_path: sim_raster3_attribute.csv.gz
+boundary_path: sim_raster3_boundary.csv.gz
 mode: advanced
 themes:
 - name: Brown-necked Parrot (Brown-necked)
@@ -21,8 +23,8 @@ themes:
         - '#BD0026'
       provenance: regional
     status: yes
-    visible: yes
-    hidden: no
+    visible: no
+    hidden: yes
     goal: 0.83
     limit_goal: 0.02
 - name: Gough Island Finch
@@ -85,8 +87,8 @@ themes:
         - '#67000D'
       provenance: regional
     status: yes
-    visible: yes
-    hidden: no
+    visible: no
+    hidden: yes
     goal: 0.69
     limit_goal: 0.04
   - name: African Firefinch
@@ -285,8 +287,8 @@ themes:
         - '#49006A'
       provenance: national
     status: yes
-    visible: yes
-    hidden: no
+    visible: no
+    hidden: yes
     goal: 0.8
     limit_goal: 0.03
   - name: Verdin
@@ -306,8 +308,8 @@ themes:
         - '#B3B3B3'
       provenance: national
     status: yes
-    visible: yes
-    hidden: no
+    visible: no
+    hidden: yes
     goal: 0.64
     limit_goal: 0.01
   - name: Mouse-colored Penduline-Tit
@@ -328,8 +330,8 @@ themes:
         - '#67001F'
       provenance: national
     status: yes
-    visible: yes
-    hidden: no
+    visible: no
+    hidden: yes
     goal: 0.66
     limit_goal: 0.28
   - name: Forest Penduline-Tit
@@ -350,8 +352,8 @@ themes:
         - '#08306B'
       provenance: regional
     status: yes
-    visible: yes
-    hidden: no
+    visible: no
+    hidden: yes
     goal: 0.68
     limit_goal: 0.1
   - name: Chinese Penduline-Tit
@@ -371,9 +373,108 @@ themes:
         - '#CCCCCC'
       provenance: national
     status: yes
-    visible: yes
-    hidden: no
+    visible: no
+    hidden: yes
     goal: 0.8
     limit_goal: 0.08
-weights: []
-includes: []
+weights:
+- name: Landscape naturalness
+  variable:
+    index: Landscape_naturalness
+    units: ha
+    legend:
+      type: continuous
+      colors:
+      - '#40004B'
+      - '#762A83'
+      - '#9970AB'
+      - '#C2A5CF'
+      - '#E7D4E8'
+      - '#F7F7F7'
+      - '#D9F0D3'
+      - '#A6DBA0'
+      - '#5AAE61'
+      - '#1B7837'
+      - '#00441B'
+    provenance: regional
+  status: yes
+  visible: no
+  hidden: yes
+  factor: 0.0
+- name: Archaeological site
+  variable:
+    index: Archaeological_site
+    units: ha
+    legend:
+      type: continuous
+      colors:
+      - '#FBB4AE'
+      - '#B3CDE3'
+      - '#CCEBC5'
+      - '#DECBE4'
+      - '#FED9A6'
+      - '#FFFFCC'
+      - '#E5D8BD'
+      - '#FDDAEC'
+      - '#F2F2F2'
+    provenance: national
+  status: yes
+  visible: yes
+  hidden: no
+  factor: 0.0
+- name: Engagement potential
+  variable:
+    index: Engagement_potential
+    units: ha
+    legend:
+      type: continuous
+      colors:
+      - '#FFFFFF'
+      - '#F0F0F0'
+      - '#D9D9D9'
+      - '#BDBDBD'
+      - '#969696'
+      - '#737373'
+      - '#525252'
+      - '#252525'
+      - '#000000'
+    provenance: national
+  status: yes
+  visible: yes
+  hidden: no
+  factor: 0.0
+includes:
+- name: National protected areas
+  variable:
+    index: National_protected_areas
+    units: ''
+    legend:
+      type: manual
+      colors:
+      - '#00FFFF00'
+      - '#8DD3C7'
+      labels:
+      - not included
+      - included
+    provenance: regional
+  mandatory: no
+  status: yes
+  visible: no
+  hidden: yes
+- name: Key Biodiversity Areas
+  variable:
+    index: Key_Biodiversity_Areas
+    units: ''
+    legend:
+      type: manual
+      colors:
+      - '#00FFFF00'
+      - '#8DD3C7'
+      labels:
+      - not included
+      - included
+    provenance: national
+  mandatory: no
+  status: yes
+  visible: yes
+  hidden: no

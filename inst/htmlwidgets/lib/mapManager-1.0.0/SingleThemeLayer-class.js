@@ -7,6 +7,7 @@ class SingleThemeLayer {
     feature_id,
     feature_name,
     feature_visible,
+    feature_hidden,
     feature_legend,
     feature_provenance,
     units
@@ -24,6 +25,7 @@ class SingleThemeLayer {
     this.visible_el = this.el.querySelector(".visible-checkbox");
     this.name_el = this.el.querySelector(".name-label");
     this.legend_el = this.el.querySelector(".legend");
+    this.feature_hidden = feature_hidden;
 
     // local variables
     const that = this;
@@ -46,6 +48,19 @@ class SingleThemeLayer {
     createProvenance(
       this.el.querySelector(".provenance-container"), feature_provenance
     );
+    /// hidden
+    if (feature_hidden) {
+      mapManagerLayer.classList.add("hidden-layer");
+      mapManagerLayer.setAttribute("disabled", "");
+      this.view_el.checked = false;
+      this.view_el.setAttribute("disabled", "");
+      this.view_el.parentElement.classList.add("no-click");
+      this.visible_el.setAttribute("disabled", "");
+      this.visible_el.parentElement.classList.add("no-click");
+      that.legend_el.style.display = "none";
+      removeAllTooltips(mapManagerLayer);
+      addHiddenTooltip(mapManagerLayer);
+    }
 
     // set listeners to update user interfance
     /// show/hide legend on click
@@ -88,11 +103,15 @@ class SingleThemeLayer {
   }
 
   updateVisible(value) {
-    this.visible_el.checked = value;
+    if (!this.feature_hidden) {
+      this.visible_el.checked = value;
+    }
   }
 
   updateFeatureVisible(value) {
-    this.visible_el.checked = value;
+    if (!this.feature_hidden) {
+      this.visible_el.checked = value;
+    }
   }
 
   updateName(value) {

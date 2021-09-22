@@ -11,6 +11,7 @@ test_that("initialization", {
     name = "Intact Alvar",
     variable = v,
     visible = FALSE,
+    hidden = TRUE,
     status = FALSE,
     goal = 0.2,
     limit_goal = 0.2,
@@ -23,6 +24,7 @@ test_that("initialization", {
   expect_identical(x$name, "Intact Alvar")
   expect_identical(x$variable, v)
   expect_identical(x$visible, FALSE)
+  expect_identical(x$hidden, TRUE)
   expect_identical(x$status, FALSE)
   expect_identical(x$goal, 0.2)
   expect_identical(x$limit_goal, 0.2)
@@ -41,6 +43,7 @@ test_that("get methods", {
     name = "Intact Alvar",
     variable = v,
     visible = TRUE,
+    hidden = FALSE,
     status = FALSE,
     goal = 0.2,
     limit_goal = 0.2,
@@ -51,6 +54,7 @@ test_that("get methods", {
   expect_identical(x$get_goal(), 0.2)
   expect_identical(x$get_status(), FALSE)
   expect_identical(x$get_visible(), TRUE)
+  expect_identical(x$get_hidden(), FALSE)
   expect_identical(x$get_current(), 0.56)
 })
 
@@ -93,6 +97,7 @@ test_that("export method", {
     name = "Intact Alvar",
     variable = v,
     visible = FALSE,
+    hidden = TRUE,
     status = FALSE,
     goal = 0.2,
     limit_goal = 0.2,
@@ -106,6 +111,7 @@ test_that("export method", {
       variable = x$variable$export(),
       status = FALSE,
       visible = FALSE,
+      hidden = TRUE,
       goal = 0.2,
       limit_goal = 0.2
     )

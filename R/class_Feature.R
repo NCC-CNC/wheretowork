@@ -21,6 +21,9 @@ Feature <- R6::R6Class(
     #' @field visible `logical` value.
     visible = NA,
 
+    #' @field hidden `logical` value.
+    hidden = NA,
+
     #' @field status `logical` value.
     status = NA,
 
@@ -48,6 +51,7 @@ Feature <- R6::R6Class(
     #' @param name `character` value.
     #' @param variable [Variable] .
     #' @param visible `logical` value.
+    #' @param hidden `logical` value.
     #' @param status `logical` value.
     #' @param min_goal `numeric` value.
     #' @param max_goal `numeric` value.
@@ -56,7 +60,7 @@ Feature <- R6::R6Class(
     #' @param step_goal `numeric` value.
     #' @param current `numeric` value.
     #' @return A new Feature object.
-    initialize = function(id, name, variable, visible, status, current,
+    initialize = function(id, name, variable, visible, hidden, status, current,
                           goal, limit_goal, min_goal, max_goal, step_goal) {
       ### assert that arguments are valid
       assertthat::assert_that(
@@ -72,6 +76,9 @@ Feature <- R6::R6Class(
         #### visible
         assertthat::is.flag(visible),
         assertthat::noNA(visible),
+        #### hidden
+        assertthat::is.flag(hidden),
+        assertthat::noNA(hidden),
         #### status
         assertthat::is.flag(status),
         assertthat::noNA(status),
@@ -103,7 +110,8 @@ Feature <- R6::R6Class(
       self$id <- id
       self$name <- name
       self$variable <- variable
-      self$visible <- visible
+      self$visible <- visible && !hidden
+      self$hidden <- hidden
       self$status <- status
       self$goal <- goal
       self$min_goal <- min_goal
@@ -118,13 +126,14 @@ Feature <- R6::R6Class(
     #' @param ... not used.
     print = function(...) {
       message("Feature")
-      message("  id:      ", self$id)
-      message("  name:    ", self$name)
-      message("  variable:   ", self$variable$repr())
+      message("  id:       ", self$id)
+      message("  name:     ", self$name)
+      message("  variable: ", self$variable$repr())
       message("  visible:  ", self$visible)
-      message("  status:  ", self$status)
-      message("  current: ", round(self$current, 2))
-      message("  goal:    ", round(self$goal, 2))
+      message("  hidden:   ", self$hidden)
+      message("  status:   ", self$status)
+      message("  current:  ", round(self$current, 2))
+      message("  goal:     ", round(self$goal, 2))
       invisible(self)
     },
 
@@ -146,14 +155,21 @@ Feature <- R6::R6Class(
     },
 
     #' @description
+    #' Get hidden.
+    #' @return `logical` value.
+    get_hidden = function() {
+      self$hidden
+    },
+
+    #' @description
     #' Get visible.
-    #' @return `numeric` value.
+    #' @return `logical` value.
     get_visible = function() {
       self$visible
     },
 
     #' @description
-    #' Get current.
+    #' Get current (proportion) coverage.
     #' @return `numeric` value.
     get_current = function() {
       self$current
@@ -167,7 +183,7 @@ Feature <- R6::R6Class(
     },
 
     #' @description
-    #' Get goal.
+    #' Get goal (proportion) coverage.
     #' @return `numeric` value.
     get_goal = function() {
       self$goal
@@ -189,6 +205,9 @@ Feature <- R6::R6Class(
         assertthat::noNA(value)
       )
       self$visible <- value
+      if (self$hidden) {
+        self$visible <- FALSE
+      }
       invisible(self)
     },
 
@@ -240,6 +259,7 @@ Feature <- R6::R6Class(
         variable = self$variable$export(),
         status = self$status,
         visible = self$visible,
+        hidden = self$hidden,
         goal = self$goal,
         limit_goal = self$limit_goal
       )
@@ -258,12 +278,18 @@ Feature <- R6::R6Class(
 #' @param visible `logical` The initial visible value.
 #'   This is used to determine if the feature is displayed (or not)
 #'   or not the map.
-#'   Defaults to `TRUE`
+#'   Defaults to `TRUE`.
+#'
+#' @param hidden `logical` The hidden value.
+#'   This is used to determine if the feature is can ever be displayed (or not)
+#'   or not the map. Unlike `visible`, if this parameter is `FALSE` then a
+#'   feature can never be viewed on the map.
+#'   Defaults to `FALSE`.
 #'
 #' @param status `logical` The initial status value.
 #'   This is used to display information on whether the feature is
 #'   selected (or not) for subsequent analysis.
-#'   Defaults to `TRUE`
+#'   Defaults to `TRUE`.
 #'
 #' @param goal `numeric` The initial goal for the feature.
 #'   Note that goal values are specified as proportions, such that a
@@ -314,6 +340,7 @@ Feature <- R6::R6Class(
 new_feature <- function(name,
                         variable,
                         visible = TRUE,
+                        hidden = FALSE,
                         status = TRUE,
                         current = 0,
                         goal = 0.1,
@@ -325,6 +352,7 @@ new_feature <- function(name,
     name = name,
     variable = variable,
     visible = visible,
+    hidden = hidden,
     status = status,
     current = current,
     goal = goal,

@@ -25,6 +25,8 @@ Definition for the Feature class.
 
 \item{\code{visible}}{\code{logical} value.}
 
+\item{\code{hidden}}{\code{logical} value.}
+
 \item{\code{status}}{\code{logical} value.}
 
 \item{\code{current}}{\code{numeric} value.}
@@ -47,6 +49,7 @@ Definition for the Feature class.
 \item \href{#method-new}{\code{Feature$new()}}
 \item \href{#method-print}{\code{Feature$print()}}
 \item \href{#method-repr}{\code{Feature$repr()}}
+\item \href{#method-get_hidden}{\code{Feature$get_hidden()}}
 \item \href{#method-get_visible}{\code{Feature$get_visible()}}
 \item \href{#method-get_current}{\code{Feature$get_current()}}
 \item \href{#method-get_status}{\code{Feature$get_status()}}
@@ -71,6 +74,7 @@ Create a Feature object.
   name,
   variable,
   visible,
+  hidden,
   status,
   current,
   goal,
@@ -91,6 +95,8 @@ Create a Feature object.
 \item{\code{variable}}{\link{Variable} .}
 
 \item{\code{visible}}{\code{logical} value.}
+
+\item{\code{hidden}}{\code{logical} value.}
 
 \item{\code{status}}{\code{logical} value.}
 
@@ -154,6 +160,19 @@ Defaults to \code{"]"}.}
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_hidden"></a>}}
+\if{latex}{\out{\hypertarget{method-get_hidden}{}}}
+\subsection{Method \code{get_hidden()}}{
+Get hidden.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Feature$get_hidden()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{logical} value.
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_visible"></a>}}
 \if{latex}{\out{\hypertarget{method-get_visible}{}}}
 \subsection{Method \code{get_visible()}}{
@@ -163,14 +182,14 @@ Get visible.
 }
 
 \subsection{Returns}{
-\code{numeric} value.
+\code{logical} value.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_current"></a>}}
 \if{latex}{\out{\hypertarget{method-get_current}{}}}
 \subsection{Method \code{get_current()}}{
-Get current.
+Get current (proportion) coverage.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Feature$get_current()}\if{html}{\out{</div>}}
 }
@@ -196,7 +215,7 @@ Get status.
 \if{html}{\out{<a id="method-get_goal"></a>}}
 \if{latex}{\out{\hypertarget{method-get_goal}{}}}
 \subsection{Method \code{get_goal()}}{
-Get goal.
+Get goal (proportion) coverage.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Feature$get_goal()}\if{html}{\out{</div>}}
 }

@@ -19,10 +19,20 @@
   margin-left: 17px;
 }
 
+.map-manager-layer.hidden-layer,
+.single-container.hidden-layer {
+  background: var(--inactive);
+}
+
 /* ghost styling */
 .ghost {
   background: #C8EBFB;
   opacity: 0.2;
+}
+
+/* no click styling */
+.no-click {
+  cursor: not-allowed;
 }
 
 /* header and sub-header */

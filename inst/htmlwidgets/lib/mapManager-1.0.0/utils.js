@@ -26,6 +26,7 @@ function newLayer(manager, x) {
       x.id,
       x.name,
       x.visible,
+      x.hidden,
       x.legend,
       x.units,
       x.provenance
@@ -36,6 +37,7 @@ function newLayer(manager, x) {
       x.id,
       x.name,
       x.visible,
+      x.hidden,
       x.legend,
       x.units,
       x.provenance
@@ -49,6 +51,7 @@ function newLayer(manager, x) {
         x.feature_id,
         x.feature_name,
         x.feature_visible,
+        x.feature_hidden,
         x.feature_legend[0],
         x.feature_provenance[0],
         x.units
@@ -61,10 +64,31 @@ function newLayer(manager, x) {
         x.feature_id,
         x.feature_name,
         x.feature_visible,
+        x.feature_hidden,
         x.feature_legend,
         x.feature_provenance,
         x.units
       );
     }
   }
+}
+
+function addHiddenTooltip(el) {
+  el.setAttribute("data-toggle", "tooltip");
+  el.setAttribute("data-placement", "bottom");
+  el.setAttribute("data-container", "body");
+  el.setAttribute("data-trigger", "hover");
+  el.setAttribute("title", "Data cannot be shown on map");
+}
+
+function removeAllTooltips(el) {
+  el
+  .querySelectorAll("[data-toggle='tooltip']")
+  .forEach((x) => {
+    x.removeAttribute("data-toggle");
+    x.removeAttribute("data-placement");
+    x.removeAttribute("data-delay");
+    x.removeAttribute("data-container");
+    x.removeAttribute("title");
+  });
 }

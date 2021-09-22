@@ -40,6 +40,34 @@ sim_vector_data <-
 sim_raster_data2 <- sim_raster_data[seq_len(n_single_themes + n_multi_themes)]
 sim_vector_data2 <- sim_vector_data[seq_len(n_single_themes + n_multi_themes)]
 
+# Create project with some hidden layers
+sim_raster_data3 <- lapply(sim_raster_data, function(x) x$clone(deep = TRUE))
+## single theme
+idx <- 1
+sim_raster_data3[[idx]]$feature[[1]]$hidden <- TRUE
+sim_raster_data3[[idx]]$feature[[1]]$visible <- FALSE
+## multi theme (only first feature not visible)
+idx <- n_single_themes + 1
+sim_raster_data3[[idx]]$feature[[1]]$hidden <- TRUE
+sim_raster_data3[[idx]]$feature[[1]]$visible <- FALSE
+## multi theme (all features not visible)
+idx <- n_single_themes + 2
+sim_raster_data3[[idx]]$feature <- lapply(
+  sim_raster_data3[[idx]]$feature, function(x) {
+    x$hidden <- TRUE
+    x$visible <- FALSE
+    x
+  }
+)
+## weight
+idx <- n_single_themes + n_multi_themes + 1
+sim_raster_data3[[idx]]$hidden <- TRUE
+sim_raster_data3[[idx]]$visible <- FALSE
+## include
+idx <- n_single_themes + n_multi_themes + n_weights + 1
+sim_raster_data3[[idx]]$hidden <- TRUE
+sim_raster_data3[[idx]]$visible <- FALSE
+
 # Remove "layer" from attribute data
 raster_data$attribute_data <- raster_data$attribute_data[, -1, drop = FALSE]
 
@@ -49,10 +77,13 @@ dir.create(
   "inst/extdata/projects/sim_raster", recursive = TRUE, showWarnings = FALSE
 )
 dir.create(
-  "inst/extdata/projects/sim_vector", recursive = TRUE, showWarnings = FALSE
+  "inst/extdata/projects/sim_raster2", recursive = TRUE, showWarnings = FALSE
 )
 dir.create(
-  "inst/extdata/projects/sim_raster2", recursive = TRUE, showWarnings = FALSE
+  "inst/extdata/projects/sim_raster3", recursive = TRUE, showWarnings = FALSE
+)
+dir.create(
+  "inst/extdata/projects/sim_vector", recursive = TRUE, showWarnings = FALSE
 )
 dir.create(
   "inst/extdata/projects/sim_vector2", recursive = TRUE, showWarnings = FALSE
@@ -79,6 +110,40 @@ write_project(
   author_email = "richard.schuster@natureconservancy.ca"
 )
 
+## raster project (with only themes)
+write_project(
+  x = sim_raster_data2,
+  dataset = raster_data,
+  name = "Example GeoTIFF dataset (themes)",
+  path =
+    "inst/extdata/projects/sim_raster2/sim_raster2_data.yaml",
+  spatial_path =
+    "inst/extdata/projects/sim_raster2/sim_raster2_spatial.tif",
+  attribute_path =
+    "inst/extdata/projects/sim_raster2/sim_raster2_attribute.csv.gz",
+  boundary_path =
+    "inst/extdata/projects/sim_raster2/sim_raster2_boundary.dat.gz",
+  mode = "advanced"
+)
+
+## raster project (with themes + includes + weights, and some hidden)
+write_project(
+  x = sim_raster_data3,
+  dataset = raster_data,
+  name = "Example GeoTIFF dataset (hidden)",
+  path =
+    "inst/extdata/projects/sim_raster3/sim_raster3_data.yaml",
+  spatial_path =
+    "inst/extdata/projects/sim_raster3/sim_raster3_spatial.tif",
+  attribute_path =
+    "inst/extdata/projects/sim_raster3/sim_raster3_attribute.csv.gz",
+  boundary_path =
+    "inst/extdata/projects/sim_raster3/sim_raster3_boundary.csv.gz",
+  mode = "advanced",
+  author_name = "Richard Schuster",
+  author_email = "richard.schuster@natureconservancy.ca"
+)
+
 ## vector project (with themes + includes + weights)
 write_project(
   x = sim_vector_data,
@@ -95,22 +160,6 @@ write_project(
   mode = "beginner",
   author_name = "Richard Schuster",
   author_email = "richard.schuster@natureconservancy.ca"
-)
-
-## raster project (with only themes)
-write_project(
-  x = sim_raster_data2,
-  dataset = raster_data,
-  name = "Example GeoTIFF dataset (themes)",
-  path =
-    "inst/extdata/projects/sim_raster2/sim_raster2_data.yaml",
-  spatial_path =
-    "inst/extdata/projects/sim_raster2/sim_raster2_spatial.tif",
-  attribute_path =
-    "inst/extdata/projects/sim_raster2/sim_raster2_attribute.csv.gz",
-  boundary_path =
-    "inst/extdata/projects/sim_raster2/sim_raster2_boundary.dat.gz",
-  mode = "advanced"
 )
 
 ## vector project (with only themes)

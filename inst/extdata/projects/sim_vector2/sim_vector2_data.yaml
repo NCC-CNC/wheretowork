@@ -27,6 +27,7 @@ themes:
       provenance: regional
     status: yes
     visible: yes
+    hidden: no
     goal: 0.9
     limit_goal: 0.33
 - name: White-headed Woodhoopoe (Oku)
@@ -48,6 +49,7 @@ themes:
       provenance: regional
     status: yes
     visible: yes
+    hidden: no
     goal: 0.57
     limit_goal: 0.35
 - name: Elliot's Storm-Petrel
@@ -71,6 +73,7 @@ themes:
       provenance: national
     status: yes
     visible: yes
+    hidden: no
     goal: 0.56
     limit_goal: 0.35
 - name: Cuckooshrikes
@@ -94,6 +97,7 @@ themes:
       provenance: regional
     status: yes
     visible: yes
+    hidden: no
     goal: 0.8
     limit_goal: 0.37
   - name: Gray-chinned Minivet (Gray-chinned)
@@ -115,6 +119,7 @@ themes:
       provenance: national
     status: yes
     visible: yes
+    hidden: no
     goal: 0.8
     limit_goal: 0.01
   - name: Scarlet Minivet
@@ -136,6 +141,7 @@ themes:
       provenance: national
     status: yes
     visible: yes
+    hidden: no
     goal: 0.88
     limit_goal: 0.09
   - name: Ground Cuckooshrike
@@ -157,6 +163,7 @@ themes:
       provenance: national
     status: yes
     visible: yes
+    hidden: no
     goal: 0.8
     limit_goal: 0.32
   - name: Oriole Cuckooshrike
@@ -177,6 +184,7 @@ themes:
       provenance: national
     status: yes
     visible: yes
+    hidden: no
     goal: 0.89
     limit_goal: 0.25
   - name: Reunion Cuckooshrike
@@ -201,6 +209,7 @@ themes:
       provenance: national
     status: yes
     visible: yes
+    hidden: no
     goal: 0.58
     limit_goal: 0.38
   - name: Gray-chinned Minivet (Gray-throated)
@@ -222,6 +231,7 @@ themes:
       provenance: national
     status: yes
     visible: yes
+    hidden: no
     goal: 0.87
     limit_goal: 0.38
   - name: Pied Triller
@@ -243,6 +253,7 @@ themes:
       provenance: regional
     status: yes
     visible: yes
+    hidden: no
     goal: 0.78
     limit_goal: 0.21
   - name: Common Cicadabird (Rossel)
@@ -264,6 +275,7 @@ themes:
       provenance: regional
     status: yes
     visible: yes
+    hidden: no
     goal: 0.61
     limit_goal: 0.4
   - name: Varied Triller
@@ -285,6 +297,7 @@ themes:
       provenance: regional
     status: yes
     visible: yes
+    hidden: no
     goal: 0.85
     limit_goal: 0.11
 - name: Old World Buntings
@@ -307,6 +320,7 @@ themes:
       provenance: national
     status: yes
     visible: yes
+    hidden: no
     goal: 0.78
     limit_goal: 0.26
   - name: Cabanis's Bunting
@@ -325,6 +339,7 @@ themes:
       provenance: national
     status: yes
     visible: yes
+    hidden: no
     goal: 0.69
     limit_goal: 0.09
   - name: Yellowhammer
@@ -339,6 +354,7 @@ themes:
       provenance: regional
     status: yes
     visible: yes
+    hidden: no
     goal: 0.86
     limit_goal: 0.1
   - name: Brown-rumped Bunting
@@ -361,6 +377,7 @@ themes:
       provenance: regional
     status: yes
     visible: yes
+    hidden: no
     goal: 0.77
     limit_goal: 0.13
   - name: Gray-necked Bunting
@@ -377,6 +394,7 @@ themes:
       provenance: regional
     status: yes
     visible: yes
+    hidden: no
     goal: 0.65
     limit_goal: 0.38
   - name: White-capped Bunting
@@ -399,6 +417,7 @@ themes:
       provenance: regional
     status: yes
     visible: yes
+    hidden: no
     goal: 0.56
     limit_goal: 0.05
 weights: []

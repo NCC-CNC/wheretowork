@@ -8,6 +8,18 @@ NULL
 #' @seealso [new_theme()].
 Theme <- R6::R6Class(
   "Theme",
+  private = list(
+    deep_clone = function(name, value) {
+      # With x$clone(deep=TRUE) is called, the deep_clone gets invoked once for
+      # each field, with the name and value.
+      if (name == "feature") {
+        lapply(value, function(x) x$clone(deep = TRUE))
+      } else {
+        # For all other fields, just return the value
+        value
+      }
+    }
+  ),
   public = list(
 
     #' @field id `character` value.
@@ -156,18 +168,24 @@ Theme <- R6::R6Class(
     },
 
     #' @description
-    #' Set visible value for all features.
+    #' Get visible value for all features.
     #' @return `logical` value.
     get_visible = function() {
       any(self$get_feature_visible())
     },
-
 
     #' @description
     #' Get feature visible values.
     #' @return `logical` vector with status value(s).
     get_feature_visible = function() {
       vapply(self$feature, `[[`, logical(1), "visible")
+    },
+
+    #' @description
+    #' Get feature hidden values.
+    #' @return `logical` vector with status value(s).
+    get_feature_hidden = function() {
+      vapply(self$feature, `[[`, logical(1), "hidden")
     },
 
     #' @description
@@ -422,6 +440,8 @@ Theme <- R6::R6Class(
           vapply(self$feature, `[[`, character(1), "id"),
         feature_visible =
           vapply(self$feature, `[[`, logical(1), "visible"),
+        feature_hidden =
+          vapply(self$feature, `[[`, logical(1), "hidden"),
         feature_legend =
           lapply(self$feature, function(x) x$variable$legend$get_widget_data()),
         feature_provenance = lapply(
@@ -444,7 +464,9 @@ Theme <- R6::R6Class(
       fv <- self$get_feature_visible()
       # add feature data
       for (i in seq_along(self$feature)) {
-        x <- self$feature[[i]]$variable$render(x, fid[i], fo[i], fv[i])
+        if (!self$feature[[i]]$hidden) {
+          x <- self$feature[[i]]$variable$render(x, fid[i], fo[i], fv[i])
+        }
       }
       # return result
       x
@@ -462,7 +484,9 @@ Theme <- R6::R6Class(
       fv <- self$get_feature_visible()
       # add feature data
       for (i in seq_along(self$feature)) {
-        x <- self$feature[[i]]$variable$update_render(x, fid[i], fo[i], fv[i])
+        if (!self$feature[[i]]$hidden) {
+          x <- self$feature[[i]]$variable$update_render(x, fid[i], fo[i], fv[i])
+        }
       }
       # return result
       x

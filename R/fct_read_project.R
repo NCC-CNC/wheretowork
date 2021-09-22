@@ -172,6 +172,7 @@ read_project <- function(path,
           new_feature(
             name = f$name,
             visible = f$visible,
+            hidden = f$hidden %||% FALSE,
             status = f$status,
             goal = f$goal,
             limit_goal = f$limit_goal,
@@ -228,6 +229,7 @@ read_project <- function(path,
       new_weight(
         name = x$name,
         visible = x$visible,
+        hidden = x$hidden %||% FALSE,
         status = x$status,
         factor = x$factor,
         current = 0, # place-holder value, this is calculated later
@@ -291,6 +293,7 @@ read_project <- function(path,
           )
         ),
         visible = x$visible,
+        hidden =  x$hidden %||% FALSE,
         status = x$status,
         mandatory = x$mandatory
       ),
