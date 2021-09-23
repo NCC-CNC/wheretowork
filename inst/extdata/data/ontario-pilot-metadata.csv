@@ -18,6 +18,7 @@ TNC Crisis Ecosystems,theme,R1km_TNC_Crisis_Ecosystems.tif,#000000
 TNC Last Chance Ecosystems,theme,R1km_TNC_Last_Chance_Ecosystems.tif,#fbb4ae
 Policy Areas,include,R1km_Policy_Area.tif,#cccccc
 A2A Area,theme,R1km_A2A_Area.tif,#fdcdac
+Parcels,theme,R1km_Phase_1_Parcels.tif,#362ec9
 Protected Areas,include,R1km_Protected_Area.tif,#b3e2cd
 Protected Areas (buffered),include,R1km_Protected_Areas_Plus_Buffer.tif,#e6f5c9
 Aggregate Threats,weight,R1km_Threats_Aggregate.tif,#e41a1c

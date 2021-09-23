@@ -295,6 +295,23 @@ themes:
     hidden: no
     goal: 0.2
     limit_goal: 0.0
+- name: Parcels
+  feature:
+  - name: R1km_Phase_1_Parcels
+    variable:
+      index: R1km_Phase_1_Parcels
+      units: ''
+      legend:
+        type: categorical
+        colors:
+        - '#00000000'
+        - '#362ec9'
+      provenance: missing
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
 - name: TNC Crisis Ecosystems (Endangered)
   feature:
   - name: layer_1
