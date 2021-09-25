@@ -122,11 +122,12 @@ class MultiThemeLayer {
         single_view_el[i].checked = false;
         single_view_el[i].setAttribute("disabled", "");
         single_view_el[i].parentElement.classList.add("no-click");
+        removeAllTooltips(single_view_el[i].parentElement);
         this.single_visible_el[i].setAttribute("disabled", "");
         this.single_visible_el[i].parentElement.classList.add("no-click");
+        removeAllTooltips(this.single_visible_el[i].parentElement);
         this.single_legend_el[i].style.display = "none";
-        removeAllTooltips(this.main_el.children[i]);
-        addHiddenTooltip(this.main_el.children[i]);
+        removeAllTooltips(this.single_legend_el[i]);
       }
     }
 
@@ -134,12 +135,9 @@ class MultiThemeLayer {
     if (feature_hidden.every((x) => x)) {
         mapManagerLayer.classList.add("hidden-layer");
         mapManagerLayer.setAttribute("disabled", "");
-        this.view_el.checked = false;
-        this.view_el.setAttribute("disabled", "");
-        this.view_el.parentElement.classList.add("no-click");
         this.visible_el.setAttribute("disabled", "");
         this.visible_el.parentElement.classList.add("no-click");
-        removeAllTooltips(mapManagerLayer);
+        removeAllTooltips(this.visible_el.parentElement);
         addHiddenTooltip(mapManagerLayer);
     }
 

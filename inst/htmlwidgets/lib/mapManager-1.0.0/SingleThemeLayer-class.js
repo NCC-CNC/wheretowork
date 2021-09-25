@@ -55,10 +55,12 @@ class SingleThemeLayer {
       this.view_el.checked = false;
       this.view_el.setAttribute("disabled", "");
       this.view_el.parentElement.classList.add("no-click");
+      removeAllTooltips(this.view_el.parentElement);
       this.visible_el.setAttribute("disabled", "");
       this.visible_el.parentElement.classList.add("no-click");
-      that.legend_el.style.display = "none";
-      removeAllTooltips(mapManagerLayer);
+      removeAllTooltips(this.visible_el.parentElement);
+      this.legend_el.style.display = "none";
+      removeAllTooltips(this.legend_el);
       addHiddenTooltip(mapManagerLayer);
     }
 
