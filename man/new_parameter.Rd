@@ -13,6 +13,8 @@ new_parameter(
   step_value = 1,
   hide = FALSE,
   units = "",
+  reference_value = NA_real_,
+  reference_units = "",
   id = uuid::UUIDgenerate()
 )
 }
@@ -41,6 +43,16 @@ Defaults to \code{FALSE}.}
 
 \item{units}{\code{character} units.
 Defaults to an empty \code{character} object.}
+
+\item{reference_value}{\code{numeric} reference value.
+This parameter is useful if the \code{value} is a relative value,
+because the total expected amount (i.e. \code{reference_value * value})
+can be reported.
+Defaults to \code{NA_real_} indicating that no reference value information
+should be reported.}
+
+\item{reference_units}{\code{character} units for the reference value.
+Defaults to "".}
 
 \item{id}{\code{character} unique identifier.
 Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}

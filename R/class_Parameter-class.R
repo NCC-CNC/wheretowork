@@ -38,6 +38,12 @@ Parameter <- R6::R6Class(
     #' @field units `character` value.
     units = NA_character_,
 
+    #' @field reference_value `numeric` reference value.
+    reference_value = NA_real_,
+
+    #' @field reference_units `character` units for reference value.
+    reference_units = NA_character_,
+
     #' @description
     #' Create a new Parameter object.
     #' @param id `character` value.
@@ -49,11 +55,13 @@ Parameter <- R6::R6Class(
     #' @param step_value `numeric` step value.
     #' @param hide `logical` value.
     #' @param units `character` value.
+    #' @param reference_value `numeric` value.
+    #' @param reference_units `character` value.
     #' @return A new Parameter object.
     ## constructor
     initialize = function(id, name, status,
-                          value, min_value, max_value, step_value,
-                          hide, units) {
+                          value, min_value, max_value, step_value, hide, units,
+                          reference_value, reference_units) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -82,6 +90,11 @@ Parameter <- R6::R6Class(
         assertthat::is.number(step_value),
         assertthat::noNA(step_value),
         step_value <= max_value,
+        #### reference_value
+        assertthat::is.number(reference_value),
+        #### reference_units
+        assertthat::is.string(reference_units),
+        assertthat::noNA(reference_units),
         #### hide
         assertthat::is.flag(hide),
         assertthat::noNA(hide),
@@ -97,6 +110,8 @@ Parameter <- R6::R6Class(
       self$min_value <- min_value
       self$max_value <- max_value
       self$step_value <- step_value
+      self$reference_value <- reference_value
+      self$reference_units <- reference_units
       self$hide <- hide
       self$units <- units
     },
@@ -110,6 +125,9 @@ Parameter <- R6::R6Class(
       message("  name:     ", self$name)
       message("  status:   ", self$status)
       message("  value:   ", round(self$value, 2), " ", self$units)
+      message(
+        "  reference_value:   ",  round(self$reference_value, 2), " ",
+        self$reference_units)
       invisible(self)
     },
 
@@ -222,7 +240,9 @@ Parameter <- R6::R6Class(
         max_value = self$max_value,
         step_value = self$step_value,
         hide = self$hide,
-        units = self$units
+        units = self$units,
+        reference_value = self$reference_value,
+        reference_units = self$reference_units
       )
     },
 
@@ -238,7 +258,9 @@ Parameter <- R6::R6Class(
         max_value = self$max_value,
         step_value = self$step_value,
         hide = self$hide,
-        units = self$units
+        units = self$units,
+        reference_value = self$reference_value,
+        reference_units = self$reference_units
       )
     },
 
@@ -273,6 +295,16 @@ Parameter <- R6::R6Class(
 #' @param step_value `numeric` step value.
 #'   Defaults to 1.
 #'
+#' @param reference_value `numeric` reference value.
+#'   This parameter is useful if the `value` is a relative value,
+#'   because the total expected amount (i.e. `reference_value * value`)
+#'   can be reported.
+#'   Defaults to `NA_real_` indicating that no reference value information
+#'   should be reported.
+#'
+#' @param reference_units `character` units for the reference value.
+#'   Defaults to "".
+#'
 #' @param units `character` units.
 #'   Defaults to an empty `character` object.
 #'
@@ -295,6 +327,8 @@ Parameter <- R6::R6Class(
 new_parameter <- function(name, status = TRUE, value = 0,
                           min_value = 0, max_value = 100, step_value = 1,
                           hide = FALSE, units = "",
+                          reference_value = NA_real_,
+                          reference_units = "",
                           id = uuid::UUIDgenerate()) {
   Parameter$new(
     id = id,
@@ -305,6 +339,8 @@ new_parameter <- function(name, status = TRUE, value = 0,
     value = value,
     step_value = step_value,
     hide = hide,
+    reference_value = reference_value,
+    reference_units = reference_units,
     units = units
   )
 }
