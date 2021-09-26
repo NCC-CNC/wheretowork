@@ -240,6 +240,9 @@ ss_header_component_scaffold <- function(
     htmltools::tags$label(
       class = "name-label disable-if-inactive"
     ),
+    if (type == "parameter") {
+      htmltools::tags$label(class = "reference-label")
+    },
     htmltools::tags$div(
       class = "provenance-container"
     )

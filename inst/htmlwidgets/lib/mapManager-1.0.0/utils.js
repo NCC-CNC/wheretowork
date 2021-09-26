@@ -82,6 +82,13 @@ function addHiddenTooltip(el) {
 }
 
 function removeAllTooltips(el) {
+  // remove attributes from element
+  el.removeAttribute("data-toggle");
+  el.removeAttribute("data-placement");
+  el.removeAttribute("data-delay");
+  el.removeAttribute("data-container");
+  el.removeAttribute("title");
+  // remove attributes from children
   el
   .querySelectorAll("[data-toggle='tooltip']")
   .forEach((x) => {

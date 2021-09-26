@@ -11,6 +11,8 @@ test_that("initialization", {
     step_value = 0.03,
     units = "asdf",
     hide = TRUE,
+    reference_value = 900,
+    reference_units = "ha",
     id = "P1"
   )
   # run tests
@@ -25,6 +27,8 @@ test_that("initialization", {
   expect_equal(x$step_value, 0.03)
   expect_equal(x$hide, TRUE)
   expect_equal(x$units, "asdf")
+  expect_equal(x$reference_value, 900)
+  expect_equal(x$reference_units, "ha")
   expect_is(x$get_results_data(), "data.frame")
 })
 
@@ -79,6 +83,8 @@ test_that("export method", {
     step_value = 0.03,
     hide = TRUE,
     units = "asdf",
+    reference_value = 900,
+    reference_units = "ha",
     id = "P1"
   )
   # run tests
@@ -92,7 +98,9 @@ test_that("export method", {
       max_value = 0.9,
       step_value = 0.03,
       hide = TRUE,
-      units = "asdf"
+      units = "asdf",
+      reference_value = 900,
+      reference_units = "ha"
     )
   )
 })
@@ -108,6 +116,8 @@ test_that("widget methods", {
     step_value = 0.03,
     units = "asdf",
     hide = TRUE,
+    reference_value = 600,
+    reference_units = "fizzbuzz",
     id = "P1"
   )
   # run tests
@@ -123,7 +133,9 @@ test_that("widget methods", {
       max_value = 0.9,
       step_value = 0.03,
       hide = TRUE,
-      units = "asdf"
+      units = "asdf",
+      reference_value = 600,
+      reference_units = "fizzbuzz"
     )
   )
 })

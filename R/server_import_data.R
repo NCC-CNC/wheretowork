@@ -33,6 +33,10 @@ import_data <- function(x, mode) {
   }
 
   # create parameters
+  area_ref_value <- sum(app_data$dataset$get_planning_unit_areas()) / 100
+  area_ref_value <- as.numeric(
+    units::set_units(units::set_units(area_ref_value, "m^2"), "km^2")
+  )
   area_budget_parameter <-
     wheretowork::new_parameter(
       name = "Total area budget",
@@ -42,6 +46,8 @@ import_data <- function(x, mode) {
       max_value = 100,
       step_value = 1,
       units = "%",
+      reference_value = area_ref_value,
+      reference_units = stringi::stri_unescape_unicode("km\\u00B2"),
       hide = TRUE,
       id = "budget_parameter"
     )
