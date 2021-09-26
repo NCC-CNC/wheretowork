@@ -1,6 +1,12 @@
 name,type,file,color
+Alvar,theme,R1km_Habitat_Alvar.tif,#02818a
+Bedrock (2% cut-off),theme,R1km_Habitat_Bedrock_2.tif,#3279a8
+Bedrock (25% cut-off),theme,R1km_Habitat_Bedrock_25.tif,#3250a8
+Bedrock (50% cut-off),theme,R1km_Habitat_Bedrock_50.tif,#3432a8
 Forest,theme,R1km_Habitat_Forest.tif,#006837
 Interior Forest,theme,R1km_Habitat_Forest_Interior.tif,#78c679
+Ginseng,theme,R1km_Habitat_Ginseng.tif,#45942c
+Grassland,theme,R1km_Habitat_Grassland.tif,#e0df75
 Natural Cover,theme,R1km_Habitat_Natural.tif,#ffffcc
 PSW Habitat,theme,R1km_Habitat_PSW.tif,#ce1256
 PSW Habitat (2% cut-off),theme,R1km_Habitat_PSW_2.tif,#df65b0
@@ -12,6 +18,7 @@ TNC Crisis Ecosystems,theme,R1km_TNC_Crisis_Ecosystems.tif,#000000
 TNC Last Chance Ecosystems,theme,R1km_TNC_Last_Chance_Ecosystems.tif,#fbb4ae
 Policy Areas,include,R1km_Policy_Area.tif,#cccccc
 A2A Area,theme,R1km_A2A_Area.tif,#fdcdac
+Parcels,theme,R1km_Phase_1_Parcels.tif,#362ec9
 Protected Areas,include,R1km_Protected_Area.tif,#b3e2cd
 Protected Areas (buffered),include,R1km_Protected_Areas_Plus_Buffer.tif,#e6f5c9
 Aggregate Threats,weight,R1km_Threats_Aggregate.tif,#e41a1c
@@ -26,4 +33,3 @@ Roads,weight,R1km_Threats_Roads.tif,Greys
 Utility Lines,weight,R1km_Threats_Utility_Lines.tif,#e6ab02
 Water Power Stations,weight,R1km_Threats_Water_Power.tif,#7570b3
 Protected Areas (distance),weight,R1km_Protected_Area_Distance_M.tif,viridis
-Policy Areas (distance),weight,R1km_Policy_Area_Distance_M.tif,magma
