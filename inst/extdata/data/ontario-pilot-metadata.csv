@@ -14,10 +14,10 @@ PSW Habitat (25% cut-off),theme,R1km_Habitat_PSW_25.tif,#d7b5d8
 Water,theme,R1km_Habitat_Water.tif,#a6cee3
 Wetland,theme,R1km_Habitat_Wetland.tif,#3690c0
 Wetland (25% cut-off),theme,R1km_Habitat_Wetland_25.tif,#02818a
-TNC Crisis Ecosystems,theme,R1km_TNC_Crisis_Ecosystems.tif,#000000
-TNC Last Chance Ecosystems,theme,R1km_TNC_Last_Chance_Ecosystems.tif,#fbb4ae
-Policy Areas,include,R1km_Policy_Area.tif,#cccccc
-A2A Area,theme,R1km_A2A_Area.tif,#fdcdac
+TNC Crisis Ecosystems,weight,R1km_TNC_Crisis_Ecosystems.tif,#000000
+TNC Last Chance Ecosystems,weight,R1km_TNC_Last_Chance_Ecosystems.tif,#fbb4ae
+Policy Areas,weight,R1km_Policy_Area.tif,#cccccc
+A2A Area,weight,R1km_A2A_Area.tif,#fdcdac
 Parcels,theme,R1km_Phase_1_Parcels.tif,#362ec9
 Protected Areas,include,R1km_Protected_Area.tif,#b3e2cd
 Protected Areas (buffered),include,R1km_Protected_Areas_Plus_Buffer.tif,#e6f5c9

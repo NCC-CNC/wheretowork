@@ -261,40 +261,6 @@ themes:
     hidden: no
     goal: 0.2
     limit_goal: 0.0
-- name: TNC Last Chance Ecosystems
-  feature:
-  - name: R1km_TNC_Last_Chance_Ecosystems
-    variable:
-      index: R1km_TNC_Last_Chance_Ecosystems
-      units: ''
-      legend:
-        type: categorical
-        colors:
-        - '#00000000'
-        - '#fbb4ae'
-      provenance: missing
-    status: yes
-    visible: no
-    hidden: no
-    goal: 0.2
-    limit_goal: 0.0
-- name: A2A Area
-  feature:
-  - name: R1km_A2A_Area
-    variable:
-      index: R1km_A2A_Area
-      units: ''
-      legend:
-        type: categorical
-        colors:
-        - '#00000000'
-        - '#fdcdac'
-      provenance: missing
-    status: yes
-    visible: no
-    hidden: no
-    goal: 0.2
-    limit_goal: 0.0
 - name: Parcels
   feature:
   - name: R1km_Phase_1_Parcels
@@ -312,41 +278,49 @@ themes:
     hidden: no
     goal: 0.2
     limit_goal: 0.0
-- name: TNC Crisis Ecosystems (Endangered)
-  feature:
-  - name: layer_1
-    variable:
-      index: layer_1
-      units: ''
-      legend:
-        type: categorical
-        colors:
-        - '#00000000'
-        - '#fd8d3c'
-      provenance: missing
-    status: yes
-    visible: no
-    hidden: no
-    goal: 0.2
-    limit_goal: 0.0
-- name: TNC Crisis Ecosystems (Vulnerable)
-  feature:
-  - name: layer_2
-    variable:
-      index: layer_2
-      units: ''
-      legend:
-        type: categorical
-        colors:
-        - '#00000000'
-        - '#800026'
-      provenance: missing
-    status: yes
-    visible: no
-    hidden: no
-    goal: 0.2
-    limit_goal: 0.0
 weights:
+- name: TNC Last Chance Ecosystems
+  variable:
+    index: R1km_TNC_Last_Chance_Ecosystems
+    units: ''
+    legend:
+      type: categorical
+      colors:
+      - '#00000000'
+      - '#fbb4ae'
+    provenance: missing
+  status: yes
+  visible: no
+  hidden: no
+  factor: 0.0
+- name: Policy Areas
+  variable:
+    index: R1km_Policy_Area
+    units: ''
+    legend:
+      type: categorical
+      colors:
+      - '#00000000'
+      - '#cccccc'
+    provenance: missing
+  status: yes
+  visible: no
+  hidden: no
+  factor: 0.0
+- name: A2A Area
+  variable:
+    index: R1km_A2A_Area
+    units: ''
+    legend:
+      type: categorical
+      colors:
+      - '#00000000'
+      - '#fdcdac'
+    provenance: missing
+  status: yes
+  visible: no
+  hidden: no
+  factor: 0.0
 - name: Aggregate Threats
   variable:
     index: R1km_Threats_Aggregate
@@ -523,24 +497,35 @@ weights:
   visible: no
   hidden: no
   factor: 0.0
-includes:
-- name: Policy Areas
+- name: TNC Crisis Ecosystems (Endangered)
   variable:
-    index: R1km_Policy_Area
+    index: layer_1
     units: ''
     legend:
-      type: manual
+      type: categorical
       colors:
       - '#00000000'
-      - '#cccccc'
-      labels:
-      - not included
-      - include
+      - '#fd8d3c'
     provenance: missing
-  mandatory: no
   status: yes
   visible: no
   hidden: no
+  factor: 0.0
+- name: TNC Crisis Ecosystems (Vulnerable)
+  variable:
+    index: layer_2
+    units: ''
+    legend:
+      type: categorical
+      colors:
+      - '#00000000'
+      - '#800026'
+    provenance: missing
+  status: yes
+  visible: no
+  hidden: no
+  factor: 0.0
+includes:
 - name: Protected Areas
   variable:
     index: R1km_Protected_Area

@@ -56,29 +56,9 @@ weight_data <- raster_data[[which(metadata$type == "weight")]]
 
 # Main processing
 ## prepare theme data
-### extract crisis ecosystems
-tnc_crisis_raster <- theme_data[["R1km_TNC_Crisis_Ecosystems"]]
-tnc_crisis_endangered_raster <- round(tnc_crisis_raster > 1.5)
-tnc_crisis_vulnerable_raster <- round(
-  tnc_crisis_raster > 0.5 & tnc_crisis_raster < 1.5
-)
-
-## add layers to theme data
-idx <- which(names(theme_data) != "R1km_TNC_Crisis_Ecosystems")
-theme_data <- raster::stack(
-  theme_data[[idx]], tnc_crisis_endangered_raster, tnc_crisis_vulnerable_raster
-)
 names(theme_data) <- gsub(".", "_", names(theme_data), fixed = TRUE)
-theme_names <- c(
-  metadata$name[metadata$type == "theme"][idx],
-  "TNC Crisis Ecosystems (Endangered)",
-  "TNC Crisis Ecosystems (Vulnerable)"
-)
-theme_colors <- c(
-  metadata$color[metadata$type == "theme"][idx],
-  "#fd8d3c",
-  "#800026"
-)
+theme_names <- metadata$name[metadata$type == "theme"]
+theme_colors <- metadata$color[metadata$type == "theme"]
 
 ## prepare include data
 include_data <- round(include_data > 0.5)
@@ -87,8 +67,31 @@ include_colors <- metadata$color[metadata$type == "include"]
 
 ## prepare weight data
 weight_data <- raster::clamp(weight_data, lower = 0)
-weight_names <- metadata$name[metadata$type == "weight"]
-weight_colors <- metadata$color[metadata$type == "weight"]
+
+### extract crisis ecosystems
+tnc_crisis_raster <- weight_data[["R1km_TNC_Crisis_Ecosystems"]]
+tnc_crisis_endangered_raster <- round(tnc_crisis_raster > 1.5)
+tnc_crisis_vulnerable_raster <- round(
+  tnc_crisis_raster > 0.5 & tnc_crisis_raster < 1.5
+)
+
+## add layers to weight data
+idx <- which(names(weight_data) != "R1km_TNC_Crisis_Ecosystems")
+weight_data <- raster::stack(
+  weight_data[[idx]], tnc_crisis_endangered_raster, tnc_crisis_vulnerable_raster
+)
+names(weight_data) <- gsub(".", "_", names(weight_data), fixed = TRUE)
+weight_names <- c(
+  metadata$name[metadata$type == "weight"][idx],
+  "TNC Crisis Ecosystems (Endangered)",
+  "TNC Crisis Ecosystems (Vulnerable)"
+)
+weight_colors <- c(
+  metadata$color[metadata$type == "weight"][idx],
+  "#fd8d3c",
+  "#800026"
+)
+
 
 ## validate processed data
 assertthat::assert_that(
