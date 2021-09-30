@@ -287,8 +287,10 @@ min_set_result <- function(area_data,
   }
 
   # calculate feature data
-  features <-
-    data.frame(id = seq_len(nrow(theme_settings)), name = theme_settings$id)
+  features <- data.frame(
+    id = seq_len(nrow(theme_settings)),
+    name = theme_settings$id
+  )
 
   # generate cache key based on settings
   key <- digest::digest(
@@ -299,6 +301,23 @@ min_set_result <- function(area_data,
     )
   )
 
+  ## add fake feature to avoid sparsity data crashing with CBC, #173
+  fake_feature_name <- uuid::UUIDgenerate()
+  features_inc_fake <- rbind(
+    features,
+    data.frame(id = nrow(features) + 1, name = fake_feature_name)
+  )
+  targets_inc_fake <- rbind(
+    targets,
+    tibble::tibble(
+      feature = fake_feature_name,
+      type = "absolute",
+      sense = ">=",
+      target = 0
+    )
+  )
+  theme_data_inc_fake <- rbind(theme_data, round(runif(ncol(theme_data)), 3))
+
   # generate solution
   if (!isTRUE(cache$exists(key))) {
     ## extract indices for planning unit with at least some data
@@ -307,17 +326,18 @@ min_set_result <- function(area_data,
       Matrix::colSums(weight_data) > 0 |
       Matrix::colSums(include_data) > 0
     )
+
     ## generate initial prioritization problem with subset of planning units
     ## this is needed to prevent CBC from crashing, #158
     ### this problem just aims to minimize cost
     initial_problem <-
       suppressWarnings(prioritizr::problem(
         x = cost[initial_pu_idx],
-        features = features,
-        rij_matrix = theme_data[, initial_pu_idx, drop = FALSE])
+        features = features_inc_fake,
+        rij_matrix = theme_data_inc_fake[, initial_pu_idx, drop = FALSE])
       ) %>%
       prioritizr::add_min_set_objective() %>%
-      prioritizr::add_manual_targets(targets) %>%
+      prioritizr::add_manual_targets(targets_inc_fake) %>%
       prioritizr::add_binary_decisions() %>%
       prioritizr::add_cbc_solver(
         verbose = verbose, gap = gap_1, time_limit = time_limit_1
