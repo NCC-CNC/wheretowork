@@ -31,7 +31,7 @@ class IncludeSetting {
     /// name
     this.name_el.innerText = name;
     /// status
-    this.status_el.checked = status;
+    this.updateStatus(status);
     /// provenance
     createProvenance(
       this.el.querySelector(".provenance-container"), provenance
@@ -92,9 +92,8 @@ class IncludeSetting {
 
   updateStatus(value) {
     this.status_el.checked = value;
-    let els =
-      document.getElementById(this.elementId).querySelectorAll(
-        ".disable-if-inactive, .disable-if-inactive.icon i");
+    let els = this.el.querySelectorAll(
+      ".disable-if-inactive, .disable-if-inactive.icon i");
     if (value) {
       els.forEach((x) => x.removeAttribute("disabled"));
     } else {
