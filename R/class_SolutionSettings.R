@@ -411,7 +411,7 @@ SolutionSettings <- R6::R6Class(
         for (i in seq_len(nrow(curr_status))) {
           curr_status[i, ] <- curr_status[i, ] * self$includes[[i]]$status
         }
-        curr_status <-as.numeric(colSums(curr_status > 0.5) > 0.5)
+        curr_status <- as.numeric(colSums(curr_status > 0.5) > 0.5)
       } else {
         ## if no includes are present, then set place holder of zeros
         curr_status <- rep(0, ncol(theme_data))
@@ -419,14 +419,7 @@ SolutionSettings <- R6::R6Class(
 
       # themes
       ## calculate current amount held for each feature as a proportion
-      curr_theme_status <- matrix(
-        curr_status, byrow = TRUE,
-        ncol = ncol(theme_data), nrow  = nrow(theme_data)
-      )
-      curr_feature_held <- rowSums(curr_theme_status * (theme_data))
-      curr_feature_held <- curr_feature_held / rowSums(theme_data)
-      names(curr_feature_held) <- rownames(theme_data)
-
+      curr_feature_held <- calculate_coverage(curr_status, theme_data)
       ## update the current amount for each theme
       for (i in seq_along(self$themes)) {
         self$themes[[i]]$set_feature_current(
@@ -437,14 +430,7 @@ SolutionSettings <- R6::R6Class(
       # weights
       if (nrow(weight_data) > 0) {
         ## calculate current amount held for each weight as a proportion
-        curr_weight_status <- matrix(
-          curr_status, byrow = TRUE,
-          ncol = ncol(weight_data), nrow  = nrow(weight_data)
-        )
-        curr_weight_held <- rowSums(curr_status * (weight_data))
-        curr_weight_held <- curr_weight_held / rowSums(weight_data)
-        names(curr_weight_held) <- rownames(weight_data)
-
+        curr_weight_held <- calculate_coverage(curr_status, weight_data)
         ## update the current amount for each weight
         for (i in seq_along(self$weights)) {
           self$weights[[i]]$set_current(
