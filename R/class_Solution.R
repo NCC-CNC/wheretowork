@@ -1,7 +1,6 @@
 #' @include internal.R
 NULL
 
-
 #' Solution class
 #'
 #' Definition for the Solution class.
