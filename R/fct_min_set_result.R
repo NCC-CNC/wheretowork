@@ -316,7 +316,10 @@ min_set_result <- function(area_data,
       target = 0
     )
   )
-  theme_data_inc_fake <- rbind(theme_data, round(runif(ncol(theme_data)), 3))
+  theme_data_inc_fake <- rbind(
+    theme_data,
+    round(stats::runif(ncol(theme_data)), 3)
+  )
 
   # generate solution
   if (!isTRUE(cache$exists(key))) {
