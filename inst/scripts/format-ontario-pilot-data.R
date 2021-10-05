@@ -92,7 +92,6 @@ weight_colors <- c(
   "#800026"
 )
 
-
 ## validate processed data
 assertthat::assert_that(
   ### themes
@@ -136,6 +135,7 @@ themes <- lapply(seq_len(raster::nlayers(theme_data)), function(i) {
 })
 
 ### create includes
+#### initialize includes
 includes <- lapply(seq_len(raster::nlayers(include_data)), function(i) {
   new_include(
     name = include_names[i],
@@ -152,6 +152,11 @@ includes <- lapply(seq_len(raster::nlayers(include_data)), function(i) {
     )
   )
 })
+
+### manually coerce "Protected areas (buffered) weight to disabled by default
+idx <- which(names(include_data) == "R1km_Protected_Areas_Plus_Buffer")
+assertthat::assert_that(assertthat::is.count(idx))
+includes[[idx]]$status <- FALSE
 
 ### create weights
 weights <- lapply(seq_len(raster::nlayers(weight_data)), function(i) {
