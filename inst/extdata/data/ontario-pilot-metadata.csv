@@ -33,3 +33,6 @@ Roads,weight,R1km_Threats_Roads.tif,Greys
 Utility Lines,weight,R1km_Threats_Utility_Lines.tif,#e6ab02
 Water Power Stations,weight,R1km_Threats_Water_Power.tif,#7570b3
 Protected Areas (distance),weight,R1km_Protected_Area_Distance_M.tif,viridis
+Corridor EW,weight,R1km_Corridor_EW.tif,#006d2c
+Corridor NS,weight,R1km_Corridor_NS.tif,#006d2c
+Ownership blocks,weight,R1km_Ownership_Blocks.tif,#045a8d

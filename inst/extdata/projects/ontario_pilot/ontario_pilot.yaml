@@ -497,6 +497,48 @@ weights:
   visible: no
   hidden: no
   factor: 0.0
+- name: Corridor EW
+  variable:
+    index: R1km_Corridor_EW
+    units: ''
+    legend:
+      type: categorical
+      colors:
+      - '#00000000'
+      - '#006d2c'
+    provenance: missing
+  status: yes
+  visible: no
+  hidden: no
+  factor: 0.0
+- name: Corridor NS
+  variable:
+    index: R1km_Corridor_NS
+    units: ''
+    legend:
+      type: categorical
+      colors:
+      - '#00000000'
+      - '#006d2c'
+    provenance: missing
+  status: yes
+  visible: no
+  hidden: no
+  factor: 0.0
+- name: Ownership blocks
+  variable:
+    index: R1km_Ownership_Blocks
+    units: ''
+    legend:
+      type: categorical
+      colors:
+      - '#00000000'
+      - '#045a8d'
+    provenance: missing
+  status: yes
+  visible: no
+  hidden: no
+  factor: 0.0
 - name: TNC Crisis Ecosystems (Endangered)
   variable:
     index: layer_1
