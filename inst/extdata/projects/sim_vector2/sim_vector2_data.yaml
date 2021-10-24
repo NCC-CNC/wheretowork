@@ -1,8 +1,11 @@
 name: Example Shapefile dataset (themes)
+author_name: Richard Schuster
+author_email: richard.schuster@natureconservancy.ca
+mode: beginner
+user_groups: private
 spatial_path: sim_vector2_spatial.shp
 attribute_path: sim_vector2_attribute.csv.gz
 boundary_path: sim_vector2_boundary.dat.gz
-mode: beginner
 themes:
 - name: House Wren (Grenada)
   feature:

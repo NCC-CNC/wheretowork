@@ -4,10 +4,14 @@
 \alias{find_projects}
 \title{Find projects}
 \usage{
-find_projects(x)
+find_projects(x, user_groups = "public")
 }
 \arguments{
 \item{x}{\code{character} directory path.}
+
+\item{user_groups}{\code{character} vector of project group names available that
+can be imported.
+Defaults to \code{"public"}.}
 }
 \value{
 \code{\link[tibble:tibble]{tibble::tibble()}} object containing the configuration files
@@ -15,6 +19,10 @@ and names of projects found in the directory.
 }
 \description{
 Find project files in a directory.
+}
+\details{
+Projects that are missing user group information are automatically
+assigned to the \code{"private"} user group.
 }
 \examples{
 # find directory with built-in projects

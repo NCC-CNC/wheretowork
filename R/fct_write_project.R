@@ -35,6 +35,10 @@ NULL
 #' @param mode `character` mode for running the application.
 #'   Defaults to `"advanced"`.
 #'
+#' @param user_groups `character` vector of user groups than can
+#'   access the dataset.
+#'   Defaults to `"public"`.
+#'
 #' @return Invisible `TRUE` indicating success.
 #'
 #' @examples
@@ -75,7 +79,7 @@ NULL
 #' @export
 write_project <- function(x, dataset, path, name,
                           spatial_path, attribute_path, boundary_path,
-                          mode = "advanced",
+                          mode = "advanced", user_groups = "public",
                           author_name = NULL, author_email = NULL) {
   # assert arguments are valid
   assertthat::assert_that(
@@ -93,7 +97,9 @@ write_project <- function(x, dataset, path, name,
     assertthat::is.string(boundary_path),
     assertthat::noNA(boundary_path),
     assertthat::is.string(mode),
-    assertthat::noNA(mode)
+    assertthat::noNA(mode),
+    is.character(user_groups),
+    assertthat::noNA(user_groups)
   )
   if (!is.null(author_name)) {
     assertthat::assert_that(
@@ -132,11 +138,14 @@ write_project <- function(x, dataset, path, name,
     params$author_name <- author_name
     params$author_email <- author_email
   }
+  ## specify application mode
+  params$mode <- mode
+  ## add user groups
+  params$user_groups <- user_groups
   ## add data
   params$spatial_path <- basename(spatial_path)
   params$attribute_path <- basename(attribute_path)
   params$boundary_path <- basename(boundary_path)
-  params$mode <- mode
   params$themes <- themes_params
   params$weights <- weights_params
   params$includes <- includes_params

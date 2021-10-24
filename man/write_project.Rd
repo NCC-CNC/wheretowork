@@ -13,6 +13,7 @@ write_project(
   attribute_path,
   boundary_path,
   mode = "advanced",
+  user_groups = "public",
   author_name = NULL,
   author_email = NULL
 )
@@ -34,6 +35,10 @@ write_project(
 
 \item{mode}{\code{character} mode for running the application.
 Defaults to \code{"advanced"}.}
+
+\item{user_groups}{\code{character} vector of user groups than can
+access the dataset.
+Defaults to \code{"public"}.}
 
 \item{author_name}{\code{character} name of the project author.
 Defaults to \code{NULL} such that no author name is encoded in the

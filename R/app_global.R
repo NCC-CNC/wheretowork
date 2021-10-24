@@ -35,21 +35,31 @@ app_global <- quote({
 
   # find built-in projects
   # if environmental variable "FORCE_DEFAULT_PROJECTS=true":
-  #   then use built-in projects
-  # if "projects: default" in golem-config.yml:
-  #   then use built-in projects
+  #   then use built-in projects distributed with shiny app
+  #
+  # elif "projects: default" in golem-config.yml:
+  #   then use built-in projects distributed with shiny app
+  #
+  # elif environmental variable "SHINYPROXY_USERGROUPS=public"
+  #   then use projects only public projects available at the
+  #   location "projects" location in golem config
+  #
   # else:
   #   then import projects from location specified in golem-config.yml
-  if (!identical(Sys.getenv("FORCE_DEFAULT_PROJECTS"), "true")) {
-    project_dir <- wheretowork::get_golem_config("projects")
-    if (identical(project_dir, "default")) {
-      project_dir <- system.file("extdata", "projects", package = "wheretowork")
-    }
-  } else {
-    project_dir <- system.file("extdata", "projects", package = "wheretowork")
-  }
 
-  # import projects
-  project_data <- wheretowork::find_projects(project_dir)
+  # set user group
+  user_groups <- Sys.getenv("SHINYPROXY_USERGROUPS")
+  if (nchar(user_group) == 0) {
+    user_group <- "public"
+  }
+  user_groups <- strsplit(user_groups, ",", fixed = TRUE)[[1]]
+
+  if (identical(Sys.getenv("FORCE_DEFAULT_PROJECTS"), "true")) {
+    project_dir <- system.file("extdata", "projects", package = "wheretowork")
+  } else if (identical(wheretowork::get_golem_config("projects"), "default")) {
+    project_dir <- system.file("extdata", "projects", package = "wheretowork")
+  } else {
+    project_data <- wheretowork::find_projects(project_dir, user_groups)
+  }
 
 })
