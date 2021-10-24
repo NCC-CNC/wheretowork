@@ -22,6 +22,15 @@ data:
 	R --slave -e "source('inst/scripts/format-ontario-pilot-data.R')"
 	R --slave -e "source('inst/scripts/simulate-data.R')"
 
+## copy data to production directory
+prod-data:
+	cd /opt/wheretowork/projects & rm -rf ontario_pilot
+	cd /opt/wheretowork/projects & rm -rf sim_raster
+	cd /opt/wheretowork/projects & rm -rf sim_raster2
+	cd /opt/wheretowork/projects & rm -rf sim_raster3
+	cd /opt/wheretowork/projects & rm -rf sim_vector
+	cd /opt/wheretowork/projects & rm -rf sim_vector2
+
 ## reubild readme
 readme:
 	R --slave -e "rmarkdown::render('README.Rmd')"
