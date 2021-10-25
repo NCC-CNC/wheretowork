@@ -23,6 +23,8 @@ Find project files in a directory.
 \details{
 Projects that are missing user group information are automatically
 assigned to the \code{"private"} user group.
+Additionally, note that \code{"admin"} is a special user group that can
+access all projects.
 }
 \examples{
 # find directory with built-in projects

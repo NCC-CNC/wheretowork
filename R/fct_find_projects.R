@@ -11,6 +11,8 @@
 #' @details
 #' Projects that are missing user group information are automatically
 #' assigned to the `"private"` user group.
+#' Additionally, note that `"admin"` is a special user group that can
+#' access all projects.
 #'
 #' @return [tibble::tibble()] object containing the configuration files
 #'  and names of projects found in the directory.
