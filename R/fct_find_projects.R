@@ -52,13 +52,17 @@ find_projects <- function(x, user_groups = "public") {
   })
 
   # identify if in project in available groups
-  out$status <- vapply(project_configs, FUN.VALUE = logical(1), function(x) {
-    if (is.null(x)) return(NA_character_)
-    if (is.null(x$user_group)) {
-      x$user_group <- "private" # default project user group to private
-    }
-    any(user_groups %in% x$user_group)
-  })
+  if ("admin" %in% user_groups) {
+    out$status <- TRUE
+  } else {
+    out$status <- vapply(project_configs, FUN.VALUE = logical(1), function(x) {
+      if (is.null(x)) return(NA_character_)
+      if (is.null(x$user_group)) {
+        x$user_group <- "private" # default project user group to private
+      }
+      any(user_groups %in% x$user_group)
+    })
+  }
 
   # exclude invalid project files
   out <- out[which(!is.na(out$name) & out$status), , drop = FALSE]
