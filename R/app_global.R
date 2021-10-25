@@ -49,25 +49,21 @@ app_global <- quote({
 
   # set user group
   user_groups <- Sys.getenv("SHINYPROXY_USERGROUPS")
-  if (nchar(user_group) == 0) {
-    user_group <- "public"
+  if (nchar(user_groups) == 0) {
+    user_groups <- "public"
   }
   user_groups <- strsplit(user_groups, ",", fixed = TRUE)[[1]]
 
-  print("##############")
-  print("user_groups")
-  print(user_groups)
-  print("##############")
+  # set project data directory
+  if (identical(Sys.getenv("FORCE_DEFAULT_PROJECTS"), "true")) {
+    project_dir <- system.file("extdata", "projects", package = "wheretowork")
+  } else if (identical(wheretowork::get_golem_config("projects"), "default")) {
+    project_dir <- system.file("extdata", "projects", package = "wheretowork")
+  } else {
+    project_dir <- wheretowork::get_golem_config("projects")
+  }
 
-  # if (identical(Sys.getenv("FORCE_DEFAULT_PROJECTS"), "true")) {
-  #   project_dir <- system.file("extdata", "projects", package = "wheretowork")
-  # } else if (identical(wheretowork::get_golem_config("projects"), "default")) {
-  #   project_dir <- system.file("extdata", "projects", package = "wheretowork")
-  # } else {
-  #   project_data <- wheretowork::find_projects(project_dir, user_groups)
-  # }
-
-  project_dir <- system.file("extdata", "projects", package = "wheretowork")
-  project_data <- wheretowork::find_projects(project_dir, "public")
+  # import projects
+  project_data <- wheretowork::find_projects(project_dir, user_groups)
 
 })
