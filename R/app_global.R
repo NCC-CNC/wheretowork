@@ -70,15 +70,4 @@ app_global <- quote({
   # import projects
   project_data <- wheretowork::find_projects(project_dir, user_groups)
 
-
-  # debugging
-  print("################")
-  print("project_dir")
-  print(project_dir)
-  print("user_groups")
-  print(user_groups)
-  print("project_data")
-  print(as.data.frame(project_data))
-  print("################")
-
 })
