@@ -2,7 +2,7 @@ name: Example GeoTIFF dataset (themes)
 author_name: Richard Schuster
 author_email: richard.schuster@natureconservancy.ca
 mode: advanced
-user_groups: private
+user_groups: admin
 spatial_path: sim_raster2_spatial.tif
 attribute_path: sim_raster2_attribute.csv.gz
 boundary_path: sim_raster2_boundary.dat.gz

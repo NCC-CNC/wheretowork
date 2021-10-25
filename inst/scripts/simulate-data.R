@@ -125,7 +125,7 @@ write_project(
   boundary_path =
     "inst/extdata/projects/sim_raster2/sim_raster2_boundary.dat.gz",
   mode = "advanced",
-  user_groups = "private",
+  user_groups = "admin",
   author_name = "Richard Schuster",
   author_email = "richard.schuster@natureconservancy.ca"
 )
@@ -144,7 +144,7 @@ write_project(
   boundary_path =
     "inst/extdata/projects/sim_raster3/sim_raster3_boundary.csv.gz",
   mode = "advanced",
-  user_groups = "private",
+  user_groups = "admin",
   author_name = "Richard Schuster",
   author_email = "richard.schuster@natureconservancy.ca"
 )
@@ -182,7 +182,7 @@ write_project(
   boundary_path =
     "inst/extdata/projects/sim_vector2/sim_vector2_boundary.dat.gz",
   mode = "beginner",
-  user_groups = "private",
+  user_groups = "admin",
   author_name = "Richard Schuster",
   author_email = "richard.schuster@natureconservancy.ca"
 )
