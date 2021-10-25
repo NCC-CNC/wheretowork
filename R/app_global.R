@@ -54,12 +54,20 @@ app_global <- quote({
   }
   user_groups <- strsplit(user_groups, ",", fixed = TRUE)[[1]]
 
-  if (identical(Sys.getenv("FORCE_DEFAULT_PROJECTS"), "true")) {
-    project_dir <- system.file("extdata", "projects", package = "wheretowork")
-  } else if (identical(wheretowork::get_golem_config("projects"), "default")) {
-    project_dir <- system.file("extdata", "projects", package = "wheretowork")
-  } else {
-    project_data <- wheretowork::find_projects(project_dir, user_groups)
-  }
+  print("##############")
+  print("user_groups")
+  print(user_groups)
+  print("##############")
+
+  # if (identical(Sys.getenv("FORCE_DEFAULT_PROJECTS"), "true")) {
+  #   project_dir <- system.file("extdata", "projects", package = "wheretowork")
+  # } else if (identical(wheretowork::get_golem_config("projects"), "default")) {
+  #   project_dir <- system.file("extdata", "projects", package = "wheretowork")
+  # } else {
+  #   project_data <- wheretowork::find_projects(project_dir, user_groups)
+  # }
+
+  project_dir <- system.file("extdata", "projects", package = "wheretowork")
+  project_data <- wheretowork::find_projects(project_dir, "public")
 
 })
