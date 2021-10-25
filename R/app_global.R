@@ -48,7 +48,8 @@ app_global <- quote({
   #   then import projects from location specified in golem-config.yml
 
   # set user group
-  user_groups <- tolower(Sys.getenv("SHINYPROXY_USERGROUPS"))
+  user_groups <- Sys.getenv("SHINYPROXY_USERGROUPS")
+  user_groups <- tolower(gsub(" ", "", user_groups, fixed = TRUE))
   if (nchar(user_groups) == 0) {
     user_groups <- "public"
   }
