@@ -27,7 +27,7 @@ test_that("singe user group", {
 test_that("multiple user groups", {
   # create object
   d <- system.file("extdata", "projects", package = "wheretowork")
-  x <- find_projects(d, c("public", "private"))
+  x <- find_projects(d, c("public", "admin"))
   # tests
   expect_is(x, "tbl_df")
   expect_named(x, c("path", "name", "status"))
