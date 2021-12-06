@@ -9,6 +9,9 @@ app_global <- quote({
       golem::print_dev(pryr::mem_used())
   }
 
+  # initialize file upload limits
+  options(shiny.maxRequestSize = 40*1024^2) # 40MB
+
   # initialize asynchronous processing
   ## identify strategy
   strategy <- wheretowork::get_golem_config("strategy")
