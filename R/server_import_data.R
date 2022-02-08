@@ -121,6 +121,9 @@ import_data <- function(x, mode) {
   shinyjs::runjs("$('#dataSidebar').css('display','block');")
   shinyjs::runjs("$('#analysisSidebar').css('display','block');")
 
+  # make title visible
+  shinyjs::runjs("$('#app_title').css('display','block');")
+
   # open sidebars
   leaflet.extras2::openSidebar(
     map,

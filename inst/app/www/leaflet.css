@@ -1,7 +1,27 @@
 /* hide leaflet controls on app start up */
+.startup .leaflet-title,
 .startup .leaflet-top,
 .startup .leaflet-bottom {
   visibility: hidden;
+}
+
+.leaflet-title {
+  display: none;
+  z-index: 9995;
+  position: absolute;
+  transform: translate(-50%);
+  top: 0;
+  left: 50%;
+  margin-top: 10px;
+  color: #333;
+  font-size: 40px;
+  background-color: #fff;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 4px;
+  border: 2px solid rgba(0,0,0,0.2);
+  background-clip: padding-box;
+  cursor: default;
 }
 
 /* hide easy print button */
@@ -42,6 +62,7 @@
 }
 
 .leaflet-top.leaflet-left .leaflet-control {
+  margin-top: 60px !important;
   margin-left: 5px !important;
   margin-right: 5px !important;
 }

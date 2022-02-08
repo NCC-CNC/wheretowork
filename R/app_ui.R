@@ -37,6 +37,13 @@ app_ui <- function(request) {
         background = "#001329"
       ),
 
+      ## title
+      shiny::h3(
+        "Where To Work",
+        id = "app_title",
+        class = "leaflet-title"
+      ),
+
       ## leaflet map
       leaflet::leafletOutput("map", width = "100%", height = "100%"),
 
