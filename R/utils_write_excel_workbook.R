@@ -67,7 +67,7 @@ write_excel_workbook <- function(x, path) {
       x[[i]], FUN.VALUE = logical(1), USE.NAMES = FALSE, function(x) {
         if (is.numeric(x)) return(TRUE)
         z <- suppressWarnings(as.numeric(trimws(as.character(x))))
-        return (all(!is.na(z)))
+        return(all(!is.na(z)))
     })
 
     rows <- 1 + seq_len(nrow(x[[1]]))
