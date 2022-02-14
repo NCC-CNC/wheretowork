@@ -71,8 +71,8 @@ Theme <- R6::R6Class(
         msg = "argument to `feature` contains elements with different units"
       )
       ## set fields
-      self$id <- id
-      self$name <- name
+      self$id <- enc2ascii(id)
+      self$name <- enc2ascii(name)
       self$feature <- feature
       self$feature_order <- feature_order
     },
@@ -496,7 +496,7 @@ Theme <- R6::R6Class(
     #' @return `list` object.
     export = function() {
       list(
-        name = enc2utf8(self$name),
+        name = enc2ascii(self$name),
         feature = lapply(self$feature, function(x) x$export())
       )
     }

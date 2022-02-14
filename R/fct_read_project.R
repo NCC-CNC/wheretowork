@@ -98,7 +98,10 @@ read_project <- function(path,
 
   # import configuration file
   ## read file
-  x <- try(yaml::read_yaml(path), silent = TRUE)
+  x <- try(
+    yaml::yaml.load(enc2utf8(paste(readLines(path), collapse = "\n"))),
+    silent = TRUE
+  )
   if (inherits(x, "try-error")) {
     stop("configuration file is not a valid YAML file.")
   }

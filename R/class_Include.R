@@ -69,9 +69,9 @@ Include <- R6::R6Class(
         assertthat::noNA(status)
       )
       ### set fields
-      self$id <- id
+      self$id <- enc2ascii(id)
+      self$name <- enc2ascii(name)
       self$variable <- variable
-      self$name <- name
       self$status <- status
       self$visible <- visible && !hidden
       self$hidden <- hidden
@@ -252,7 +252,7 @@ Include <- R6::R6Class(
     #' @return `list` object.
     export = function() {
       list(
-        name = enc2utf8(self$name),
+        name = enc2ascii(self$name),
         variable = self$variable$export(),
         mandatory = self$mandatory,
         status = self$status,
