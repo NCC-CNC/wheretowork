@@ -6,7 +6,7 @@ test_that("raster (standard boundary format)", {
   sim_weights <- simulate_weights(d, 2)
   sim_themes <- simulate_themes(d, 2, 2, 2)
   sim_includes <- simulate_includes(d, 2)
-  # manually insert periods into the names to verify this doesn't cause issues
+  # manually insert periods into they don't cause issues
   sim_themes[[1]]$name <- ".fake.fake.theme."
   sim_themes[[2]]$feature[[1]]$name <- ".fake.fake.feature."
   sim_weights[[1]]$name <- ".fake.fake.weight."
