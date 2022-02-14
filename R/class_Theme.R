@@ -50,7 +50,6 @@ Theme <- R6::R6Class(
         #### name
         assertthat::is.string(name),
         assertthat::noNA(name),
-        isFALSE(grepl(".", name, fixed = TRUE)),
         #### feature
         is.list(feature),
         all_list_elements_inherit(feature, "Feature"),

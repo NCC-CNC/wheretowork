@@ -69,7 +69,6 @@ Weight <- R6::R6Class(
         #### name
         assertthat::is.string(name),
         assertthat::noNA(name),
-        isFALSE(grepl(".", name, fixed = TRUE)),
         ### variable
         inherits(variable, "Variable"),
         #### visible
