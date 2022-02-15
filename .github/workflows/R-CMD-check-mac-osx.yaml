@@ -75,7 +75,7 @@ jobs:
           remotes::install_cran("rcmdcheck")
           remotes::install_cran("covr")
           remotes::install_bioc("lpsymphony")
-          remotes::install_github("dirkschumacher/rcbc", args = "--configure-args='INCLUDE_DIR=/usr/local/opt/cbc/include LIB_DIR=/usr/local/opt/cbc/lib'")
+          remotes::install_github("dirkschumacher/rcbc", configure.args = "INCLUDE_DIR=/usr/local/opt/cbc/include LIB_DIR=/usr/local/opt/cbc/lib")
         shell: Rscript {0}
 
       - name: Session information
