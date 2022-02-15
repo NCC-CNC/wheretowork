@@ -132,7 +132,7 @@ write_project <- function(x, dataset, path, name,
   # create full settings list
   ## add project name
   params <- list()
-  params$name <- enc2utf8(name)
+  params$name <- name
   ## add contact details
   if (!is.null(author_name)) {
     params$author_name <- author_name
@@ -149,6 +149,9 @@ write_project <- function(x, dataset, path, name,
   params$themes <- themes_params
   params$weights <- weights_params
   params$includes <- includes_params
+
+  # coerce characters to ASCII
+  params <- enc2ascii(params)
 
   # save configuration file to disk
   yaml::write_yaml(params, path)

@@ -69,7 +69,6 @@ Weight <- R6::R6Class(
         #### name
         assertthat::is.string(name),
         assertthat::noNA(name),
-        isFALSE(grepl(".", name, fixed = TRUE)),
         ### variable
         inherits(variable, "Variable"),
         #### visible
@@ -103,8 +102,8 @@ Weight <- R6::R6Class(
         step_factor <= max_factor
       )
       ### set fields
-      self$id <- id
-      self$variable <- variable
+      self$id <- enc2ascii(id)
+      self$variable <- enc2ascii(variable)
       self$name <- name
       self$status <- status
       self$current <- current
@@ -346,7 +345,7 @@ Weight <- R6::R6Class(
     #' @return `list` object.
     export = function() {
       list(
-        name = enc2utf8(self$name),
+        name = enc2ascii(self$name),
         variable = self$variable$export(),
         status = self$status,
         visible = self$visible,
