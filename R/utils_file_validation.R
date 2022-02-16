@@ -76,12 +76,17 @@ is_valid_spatial_file <- function(x) {
     if (inherits(l, "try-error")) {
       return("Error: not valid ESRI Shapefile format")
     }
-    qu <- paste0("SELECT * FROM \"", l, "\" WHERE FID <= 5")
-    f <- suppressWarnings(
-      try(sf::read_sf(dsn = p, layer = l, query = qu), silent = TRUE)
-    )
+    f <- suppressWarnings(try(sf::read_sf(p), silent = TRUE))
     if (inherits(f, "try-error")) {
       return("Error: not valid ESRI Shapefile format")
+    }
+
+    ## try to any fix geometry issues
+    f <- try(repair_spatial_data(f), silent = TRUE)
+    if (inherits(f, "try-error") || !all(sf::st_is_valid(f))) {
+      return(
+        "Error: ESRI Shapefile geometry needs repairing"
+      )
     }
 
     ## verify correct projection

@@ -139,8 +139,12 @@ importModal <- function(id) {
         class = "control-label",
         "Select fields"
       ),
-      importSettingsOutput(outputId = paste0(id, "_spatial_settings"))
+      importSettingsOutput(outputId = paste0(id, "_spatial_settings")),
+      htmltools::tags$label(
+        id = paste0(id, "_spatial_note"),
+        class = "control-label",
+        "Note that non-numeric data are excluded."
+      )
     )
-
   )
 }

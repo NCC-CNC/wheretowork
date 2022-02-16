@@ -156,6 +156,7 @@ reference:
       - writeNamedRaster
       - read_spatial_data
       - write_spatial_data
+      - repair_spatial_data
       - shapefile_field_names
       - reserve_sizes
       - calculate_coverage
