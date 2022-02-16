@@ -7,12 +7,16 @@ NULL
 #'
 #' @param x `character` path.
 #'
+#' @param inherits `character` class to return only column names that
+#' contain a certain type of data.
+#' Defaults to `NULL` such that all column names are returned.
+#'
 #' @return `character` vector of field names.
 #'
 #' @examples
 #' shapefile_field_names(system.file("shape/nc.shp", package = "sf"))
 #' @export
-shapefile_field_names <- function(x) {
+shapefile_field_names <- function(x, inherits = NULL) {
   # assert arguments are valid
   assertthat::assert_that(
     assertthat::is.string(x),
@@ -23,9 +27,41 @@ shapefile_field_names <- function(x) {
   # prepare query
   qu <- paste0("SELECT * FROM \"", l, "\" WHERE FID <= 2")
   # import shapefile
-  s <- sf::read_sf(dsn = x, layer = l, query = qu)
-  # return field names (excluding geometry column)
-  setdiff(names(s), attr(s, "sf_column"))
+  s <- sf::read_sf(dsn = x, query = qu)
+  # drop geometry data
+  s <- sf::st_drop_geometry(s)
+  # if inherits is specified, then subset columns with specified data type
+  if (!is.null(inherits)) {
+    s <- dplyr::select_if(s, function(x) inherits(x, inherits))
+  }
+  # return column names
+  names(s)
+}
+
+#' Repair spatial data
+#'
+#' Repair geometry in a spatial dataset.
+#'
+#' @param x [sf::st_sf()] object.
+#'
+#' @return [sf::st_sf()] object.
+#'
+#' @examples
+#' path <- system.file("shape/nc.shp", package = "sf")
+#' g <- sf::read_sf(path)
+#' repair_spatial_data(g)
+#' @export
+repair_spatial_data <- function(x) {
+  # assert arguments are valid
+  assertthat::assert_that(
+    inherits(x, "sf")
+  )
+
+  # repair geometry
+  x <- sf::st_make_valid(x)
+
+  # return result
+  x
 }
 
 #' Reserve sizes

@@ -48,7 +48,7 @@ server_verify_spatial_uploads <- quote({
     updateImportSettings(
       session = session,
       inputId = "importModal_spatial_settings",
-      value = shapefile_field_names(app_data$spatial_path)
+      value = shapefile_field_names(app_data$spatial_path, inherits = "numeric")
     )
     ## enable import button if all files are uploaded
     enable_html_element("importModal_spatial_button")

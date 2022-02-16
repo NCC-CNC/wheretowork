@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.1.1",
+    "Version": "4.1.2",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -962,8 +962,8 @@
       "RemoteUsername": "jeffreyhanson",
       "RemoteRepo": "rcbc",
       "RemoteRef": "master",
-      "RemoteSha": "c923fad46bd7148680cbb12561918a824a5b39c9",
-      "Hash": "7ba4af27f01e9d5171456f922c769dcc"
+      "RemoteSha": "bdad49a23dc558cbc44a616244dcb2126a6035b5",
+      "Hash": "89c9b8f199d0254577acb275d5465c38"
     },
     "rcmdcheck": {
       "Package": "rcmdcheck",
@@ -1079,10 +1079,10 @@
     },
     "s2": {
       "Package": "s2",
-      "Version": "1.0.6",
+      "Version": "1.0.7",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "fb018249cc4b7ae7147d511fd33ddf82"
+      "Hash": "cedf9ef196a446ee8080c14267e69410"
     },
     "sass": {
       "Package": "sass",
@@ -1114,10 +1114,10 @@
     },
     "sf": {
       "Package": "sf",
-      "Version": "1.0-2",
+      "Version": "1.0-6",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "464dca3e4f0bb13cf202630bfed2753a"
+      "Hash": "9b7b141f7844870dda255584d62775a9"
     },
     "shiny": {
       "Package": "shiny",
@@ -1373,10 +1373,10 @@
     },
     "yaml": {
       "Package": "yaml",
-      "Version": "2.2.1",
+      "Version": "2.2.2",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "2826c5d9efb0a88f657c7a679c7106db"
+      "Hash": "4597f73aad7d32c2913ec33a345f900b"
     },
     "zip": {
       "Package": "zip",
