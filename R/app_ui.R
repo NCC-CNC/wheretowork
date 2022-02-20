@@ -105,9 +105,6 @@ golem_add_external_resources <- function() {
       app_title = "Where To Work"
     ),
 
-    ## favicon
-    golem::favicon(),
-
     ## dependencies
     shinyFeedback::useShinyFeedback(),
     shinyjs::useShinyjs(),
