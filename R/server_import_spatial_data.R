@@ -24,14 +24,6 @@ server_import_spatial_data <- quote({
     ## update import button
     disable_html_element("importModal_spatial_button")
 
-    ## remove alert if needed
-    try(
-      shinyBS::closeAlert(
-        session = session, alertId = "import_error_alert"
-      ),
-      silent = TRUE
-    )
-
     ## prepare settings
     settings_data <-
       plyr::rbind.fill(lapply(
@@ -42,20 +34,22 @@ server_import_spatial_data <- quote({
 
     ## verify that at least one theme is selected
     if (!any(settings_data$type == "theme")) {
-      shinyBS::createAlert(
-        session = session,
-        anchorId = "importModal_alert",
-        alertId = "import_error_alert",
+      ### create alert
+      shinyalert::shinyalert(
         title = "Oops...",
-        content = "Error: at least one theme must be selected",
-        style = "danger",
-        dismiss = TRUE,
-        append = FALSE
+        type = "error",
+        closeOnEsc = TRUE,
+        closeOnClickOutside = TRUE,
+        html = FALSE,
+        showCancelButton = FALSE,
+        showConfirmButton = TRUE,
+        confirmButtonCol = "#337ab7",
+        text = "Error: at least one theme must be selected",
       )
-      ## reset import button
+      ### reset import button
       shinyFeedback::resetLoadingButton("importModal_spatial_button")
       enable_html_element("importModal_spatial_button")
-      ## exit
+      ### exit
       return()
     }
 
@@ -65,25 +59,64 @@ server_import_spatial_data <- quote({
       silent = TRUE
     )
 
-    ## throw error if needed
+    ## throw error if import failed needed
     if (inherits(rd, "try-error")) {
-      ## display error message on import alert
-      shinyBS::createAlert(
-        session = session,
-        anchorId = "importModal_alert",
-        alertId = "import_error_alert",
+      ### create alert
+      shinyalert::shinyalert(
         title = "Oops...",
-        content = "Error: not valid ESRI Shapefile format",
-        style = "danger",
-        dismiss = TRUE,
-        append = FALSE
+        type = "error",
+        closeOnEsc = TRUE,
+        closeOnClickOutside = TRUE,
+        html = FALSE,
+        showCancelButton = FALSE,
+        showConfirmButton = TRUE,
+        confirmButtonCol = "#337ab7",
+        text = "Error: not valid ESRI Shapefile format",
       )
-      ## reset import button
+      ### reset import button
       shinyFeedback::resetLoadingButton("importModal_spatial_button")
       enable_html_element("importModal_spatial_button")
-      ## exit
+      ### exit
       return()
     }
+
+    ## throw error if shapefile contains missing values
+    ad <- sf::st_drop_geometry(rd)
+    ad <- ad[, settings_data$name, drop = FALSE]
+    ad <- setNames(
+      vapply(ad, function(x) any(is.na(x)), FUN.VALUE = logical(1)),
+      names(ad)
+    )
+    if (any(ad)) {
+      ### display error message on import alert
+      shinyalert::shinyalert(
+        title = "Oops...",
+        type = "error",
+        closeOnEsc = TRUE,
+        closeOnClickOutside = TRUE,
+        html = FALSE,
+        showCancelButton = FALSE,
+        showConfirmButton = TRUE,
+        confirmButtonCol = "#337ab7",
+        text = paste0(
+          "Error: ESRI Shapefile has missing (NA / NULL) values in the ",
+          "column(s): ",
+          paste(paste0("\"", names(ad)[which(ad)], "\""), collapse = ", "),
+          ".\nAs such, these columns cannot be used to specify Themes, ",
+          "Weights, or Includes. Please exclude them from the analysis ",
+          "(by un-checking their respective checkboxes), or update ",
+          "the ESRI Shapefile so that these columns do not have any missing ",
+          " values."
+        )
+      )
+      ### reset import button
+      shinyFeedback::resetLoadingButton("importModal_spatial_button")
+      enable_html_element("importModal_spatial_button")
+      ### exit
+      return()
+    }
+    ## clean up
+    rm(ad)
 
     ## prepare data for import
     ### initialize list

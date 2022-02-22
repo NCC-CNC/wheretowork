@@ -31,7 +31,13 @@ HTMLWidgets.widget({
                   const v1 = x.querySelector("p").innerText;
                   const v2 = x.querySelector("input").checked;
                   const v3 = x.querySelector("select").value;
-                  value[i] = {name: v1, import: v2, type: v3};
+                  value[i] = {
+                    name: v1,
+                    import: v2,
+                    type: v3,
+                    // random number to ensure reactive trigger - don't delete!
+                    nonce: Math.random()
+                  };
               });
               /// send message to backend
               Shiny.setInputValue(elementId, value);

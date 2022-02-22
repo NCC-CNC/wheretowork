@@ -42,6 +42,8 @@ containing:
 \item{import}{\code{logical} value indicating if the field/layer should be used.}
 \item{type}{\code{character} value. Available options are
 \code{"Theme"}, \code{"Weight"}, or \code{"Include"}.}
+\item{nonce}{\code{numeric} random value used to ensure that updates trigger
+when the button is clicked.}
 }
 }
 

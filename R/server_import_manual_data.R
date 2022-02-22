@@ -27,14 +27,6 @@ server_import_manual_data <- quote({
     ## update import button
     disable_html_element("importModal_manual_button")
 
-    ## remove alert if needed
-    try(
-      shinyBS::closeAlert(
-        session = session, alertId = "import_error_alert"
-      ),
-      silent = TRUE
-    )
-
     ## import configuration
     x <- try(
       read_project(
