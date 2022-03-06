@@ -7,6 +7,7 @@ options(shiny.autoload.r = FALSE)
 
 # configure R for installing rcbc on macOS
 if (identical(Sys.info()[["sysname"]], "Darwin")) {
+  message("configuring R for installation of rcbc assuming HomeBrew CBC installation")
   options(
     configure.vars = list(
       rcbc = "INCLUDE_DIR=/usr/local/opt/cbc/include LIB_DIR=/usr/local/opt/cbc/lib"
