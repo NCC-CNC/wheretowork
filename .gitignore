@@ -6,14 +6,6 @@ doc
 *.dll
 .DS_Store
 
-# R profile files
-*.Rproj.user
-*.Rhistory
-.Rproj.user
-^.Rproj.user
-.Rproj.user/*
-/.Rproj.user/
-
 # log files
 gurobi.log
 test.log
@@ -43,3 +35,7 @@ Meta/*
 # shinyapps.io
 rsconnect
 ^rsconnect
+
+# R profile files
+*.Rhistory
+.Rproj.user/

@@ -23,6 +23,8 @@ NULL
 #' \item{import}{`logical` value indicating if the field/layer should be used.}
 #' \item{type}{`character` value. Available options are
 #'  `"Theme"`, `"Weight"`, or `"Include"`.}
+#' \item{nonce}{`numeric` random value used to ensure that updates trigger
+#'  when the button is clicked.}
 #' }
 #'
 #' @rdname importSettings-widget

@@ -83,8 +83,9 @@ Dataset <- R6::R6Class(
       self$attribute_data <- attribute_data
       self$boundary_data <- boundary_data
 
-      ### validate crs
+      ### validate data
       if (inherits(self$spatial_data, "sf")) {
+        #### CRS
         assertthat::assert_that(
           raster::compareCRS(
             methods::as(sf::st_crs(self$spatial_data), "CRS"),
@@ -93,6 +94,7 @@ Dataset <- R6::R6Class(
           msg = "vector data must be EPSG:4236"
         )
       } else if (inherits(self$spatial_data, "Raster")) {
+        #### CRS
         assertthat::assert_that(
           raster::compareCRS(
             methods::as(sf::st_crs(self$spatial_data), "CRS"),
@@ -145,8 +147,9 @@ Dataset <- R6::R6Class(
         suppressWarnings({
           self$spatial_data <- read_spatial_data(self$spatial_path)
         })
-        ### validate crs
+        ### validate data
         if (inherits(self$spatial_data, "sf")) {
+          #### CRS
           assertthat::assert_that(
             raster::compareCRS(
               methods::as(sf::st_crs(self$spatial_data), "CRS"),
@@ -653,8 +656,14 @@ new_dataset_from_auto <- function(x, id = uuid::UUIDgenerate()) {
     attribute_data <- raster::as.data.frame(x, na.rm = FALSE)
     pu_idx <- rowSums(is.na(as.matrix(attribute_data)))
     attribute_data <- tibble::as_tibble(attribute_data)
+    attribute_data <- dplyr::select_if(attribute_data, is.numeric)
     attribute_data[["_index"]] <- seq_len(nrow(attribute_data))
     attribute_data <- attribute_data[pu_idx < 0.5, , drop = FALSE]
+  }
+
+  # fix geometry if needed
+  if (inherits(spatial_data, "sf")) {
+    spatial_data <- repair_spatial_data(spatial_data)
   }
 
   # reproject the dataset as needed

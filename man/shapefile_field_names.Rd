@@ -4,10 +4,14 @@
 \alias{shapefile_field_names}
 \title{Shapefile field names}
 \usage{
-shapefile_field_names(x)
+shapefile_field_names(x, inherits = NULL)
 }
 \arguments{
 \item{x}{\code{character} path.}
+
+\item{inherits}{\code{character} class to return only column names that
+contain a certain type of data.
+Defaults to \code{NULL} such that all column names are returned.}
 }
 \value{
 \code{character} vector of field names.
