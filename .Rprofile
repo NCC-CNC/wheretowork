@@ -5,6 +5,15 @@
 ## be sucessfully installed as an R package.
 options(shiny.autoload.r = FALSE)
 
+# configure R for installing rcbc on macOS
+if (identical(Sys.info()[["sysname"]], "Darwin")) {
+  options(
+    configure.vars = list(
+      rcbc = "INCLUDE_DIR=/usr/local/opt/cbc/include LIB_DIR=/usr/local/opt/cbc/lib"
+    )
+  )
+}
+
 # active renv package management
 source("renv/activate.R")
 
