@@ -346,7 +346,7 @@ Solution <- R6::R6Class(
           ),
           ### disable paging
           paging = FALSE,
-          scrollY = "calc(100vh - 295px)",
+          scrollY = "clamp(300px, calc(100vh - 295px), 10000px)",
           scrollCollapse = TRUE,
           ### download button
           dom = "Bfrtip",
@@ -436,7 +436,7 @@ Solution <- R6::R6Class(
           ),
           ### disable paging
           paging = FALSE,
-          scrollY = "calc(100vh - 295px)",
+          scrollY = "clamp(300px, calc(100vh - 295px), 10000px)",
           scrollCollapse = TRUE,
           ### download button
           dom = "Bfrtip",
@@ -555,8 +555,7 @@ Solution <- R6::R6Class(
           columnDefs = column_defs,
           ## disable paging
           paging = FALSE,
-          scrollY = "calc(100vh - 295px)",
-          scrollY = "100%",
+          scrollY = "clamp(300px, calc(100vh - 295px), 10000px)",
           scrollCollapse = TRUE,
           ## download button
           dom = "Bfrtip",
@@ -633,8 +632,7 @@ Solution <- R6::R6Class(
           columnDefs = column_defs,
           ## disable paging
           paging = FALSE,
-          scrollY = "calc(100vh - 295px)",
-          scrollY = "100%",
+          scrollY = "clamp(300px, calc(100vh - 295px), 10000px)",
           scrollCollapse = TRUE,
           ## download button
           dom = "Bfrtip",

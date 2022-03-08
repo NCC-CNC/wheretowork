@@ -48,3 +48,7 @@
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
+
+.solution-results-modal .dataTables_scrollBody {
+  height: clamp(300px, calc(100vh - 295px), 10000px) !important;
+}
