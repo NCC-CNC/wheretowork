@@ -13,66 +13,6 @@
     <loc>/news/index.html</loc>
   </url>
   <url>
-    <loc>/reference/CategoricalLegend.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ContinuousLegend.html</loc>
-  </url>
-  <url>
-    <loc>/reference/Dataset.html</loc>
-  </url>
-  <url>
-    <loc>/reference/Feature.html</loc>
-  </url>
-  <url>
-    <loc>/reference/FeatureResults.html</loc>
-  </url>
-  <url>
-    <loc>/reference/Include.html</loc>
-  </url>
-  <url>
-    <loc>/reference/IncludeResults.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ManualLegend.html</loc>
-  </url>
-  <url>
-    <loc>/reference/MapManager.html</loc>
-  </url>
-  <url>
-    <loc>/reference/Parameter.html</loc>
-  </url>
-  <url>
-    <loc>/reference/Provenance.html</loc>
-  </url>
-  <url>
-    <loc>/reference/Result.html</loc>
-  </url>
-  <url>
-    <loc>/reference/Solution.html</loc>
-  </url>
-  <url>
-    <loc>/reference/SolutionSettings.html</loc>
-  </url>
-  <url>
-    <loc>/reference/Statistic.html</loc>
-  </url>
-  <url>
-    <loc>/reference/Theme.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ThemeResults.html</loc>
-  </url>
-  <url>
-    <loc>/reference/Variable.html</loc>
-  </url>
-  <url>
-    <loc>/reference/Weight.html</loc>
-  </url>
-  <url>
-    <loc>/reference/WeightResults.html</loc>
-  </url>
-  <url>
     <loc>/reference/acknowledge_packages.html</loc>
   </url>
   <url>
@@ -88,6 +28,9 @@
     <loc>/reference/calculate_coverage.html</loc>
   </url>
   <url>
+    <loc>/reference/CategoricalLegend.html</loc>
+  </url>
+  <url>
     <loc>/reference/cleanImportSettings.html</loc>
   </url>
   <url>
@@ -95,6 +38,12 @@
   </url>
   <url>
     <loc>/reference/contactSidebarPane.html</loc>
+  </url>
+  <url>
+    <loc>/reference/ContinuousLegend.html</loc>
+  </url>
+  <url>
+    <loc>/reference/Dataset.html</loc>
   </url>
   <url>
     <loc>/reference/disable_html_css_selector.html</loc>
@@ -127,6 +76,12 @@
     <loc>/reference/extract_data_matrix.html</loc>
   </url>
   <url>
+    <loc>/reference/Feature.html</loc>
+  </url>
+  <url>
+    <loc>/reference/FeatureResults.html</loc>
+  </url>
+  <url>
     <loc>/reference/find_projects.html</loc>
   </url>
   <url>
@@ -151,6 +106,12 @@
     <loc>/reference/import_data.html</loc>
   </url>
   <url>
+    <loc>/reference/Include.html</loc>
+  </url>
+  <url>
+    <loc>/reference/IncludeResults.html</loc>
+  </url>
+  <url>
     <loc>/reference/index.html</loc>
   </url>
   <url>
@@ -169,10 +130,16 @@
     <loc>/reference/leaflet_map.html</loc>
   </url>
   <url>
+    <loc>/reference/ManualLegend.html</loc>
+  </url>
+  <url>
     <loc>/reference/mapManager-shiny.html</loc>
   </url>
   <url>
     <loc>/reference/mapManager-widget.html</loc>
+  </url>
+  <url>
+    <loc>/reference/MapManager.html</loc>
   </url>
   <url>
     <loc>/reference/mapManagerSidebarPane.html</loc>
@@ -262,7 +229,13 @@
     <loc>/reference/new_weight_results.html</loc>
   </url>
   <url>
+    <loc>/reference/Parameter.html</loc>
+  </url>
+  <url>
     <loc>/reference/prepare_fileInput.html</loc>
+  </url>
+  <url>
+    <loc>/reference/Provenance.html</loc>
   </url>
   <url>
     <loc>/reference/readNamedRaster.html</loc>
@@ -280,6 +253,9 @@
     <loc>/reference/reserve_sizes.html</loc>
   </url>
   <url>
+    <loc>/reference/Result.html</loc>
+  </url>
+  <url>
     <loc>/reference/run_app.html</loc>
   </url>
   <url>
@@ -295,10 +271,10 @@
     <loc>/reference/simulate_continuous_legend.html</loc>
   </url>
   <url>
-    <loc>/reference/simulate_include_legend.html</loc>
+    <loc>/reference/simulate_includes.html</loc>
   </url>
   <url>
-    <loc>/reference/simulate_includes.html</loc>
+    <loc>/reference/simulate_include_legend.html</loc>
   </url>
   <url>
     <loc>/reference/simulate_solution.html</loc>
@@ -311,6 +287,9 @@
   </url>
   <url>
     <loc>/reference/simulate_weights.html</loc>
+  </url>
+  <url>
+    <loc>/reference/Solution.html</loc>
   </url>
   <url>
     <loc>/reference/solutionResults-shiny.html</loc>
@@ -331,10 +310,22 @@
     <loc>/reference/solutionSettings-widget.html</loc>
   </url>
   <url>
+    <loc>/reference/SolutionSettings.html</loc>
+  </url>
+  <url>
     <loc>/reference/spatial_data_statistics.html</loc>
   </url>
   <url>
     <loc>/reference/spatial_data_type.html</loc>
+  </url>
+  <url>
+    <loc>/reference/Statistic.html</loc>
+  </url>
+  <url>
+    <loc>/reference/Theme.html</loc>
+  </url>
+  <url>
+    <loc>/reference/ThemeResults.html</loc>
   </url>
   <url>
     <loc>/reference/updateImportSettings.html</loc>
@@ -347,6 +338,15 @@
   </url>
   <url>
     <loc>/reference/updateSolutionSettings.html</loc>
+  </url>
+  <url>
+    <loc>/reference/Variable.html</loc>
+  </url>
+  <url>
+    <loc>/reference/Weight.html</loc>
+  </url>
+  <url>
+    <loc>/reference/WeightResults.html</loc>
   </url>
   <url>
     <loc>/reference/wheretowork.html</loc>
