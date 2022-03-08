@@ -3,7 +3,7 @@
 
 # Where to Work: Interactive systematic conservation planning application
 
-[![lifecycle](https://img.shields.io/badge/Lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+[![lifecycle](https://img.shields.io/badge/Lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 [![R-CMD-check-Ubuntu](https://img.shields.io/github/workflow/status/NCC-CNC/wheretowork/Ubuntu/master.svg?label=Ubuntu)](https://github.com/NCC-CNC/wheretowork/actions)
 [![R-CMD-check-Windows](https://img.shields.io/github/workflow/status/NCC-CNC/wheretowork/Windows/master.svg?label=Windows)](https://github.com/NCC-CNC/wheretowork/actions)
 [![R-CMD-check-Mac-OSX](https://img.shields.io/github/workflow/status/NCC-CNC/wheretowork/Mac%20OSX/master.svg?label=Mac%20OSX)](https://github.com/NCC-CNC/wheretowork/actions)

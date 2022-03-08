@@ -75,13 +75,20 @@
   <div class="contents col-md-9">
 <div id="where-to-work-interactive-systematic-conservation-planning-application" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#where-to-work-interactive-systematic-conservation-planning-application" class="anchor" aria-hidden="true"></a>Where to Work: Interactive systematic conservation planning application</h1></div>
+<a href="#where-to-work-interactive-systematic-conservation-planning-application" class="anchor" aria-hidden="true"></a>Where to Work: Interactive systematic conservation planning
+application</h1></div>
 
-<p>The <em>Where To Work</em> application is a decision support tool to help prioritize conservation efforts for the <a href="https://natureconservancy.ca/en/" class="external-link">Nature Conservancy of Canada</a>. It provides an interactive interface for conducting systematic conservation planning exercises, and uses mathematical optimization algorithms to generate solutions.</p>
+<p>The <em>Where To Work</em> application is a decision support tool to
+help prioritize conservation efforts for the <a href="https://natureconservancy.ca/en/" class="external-link">Nature Conservancy of
+Canada</a>. It provides an interactive interface for conducting
+systematic conservation planning exercises, and uses mathematical
+optimization algorithms to generate solutions.</p>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor" aria-hidden="true"></a>Usage</h2>
-<p>The application is <a href="https://ncc.carleton.ca" class="external-link">available online</a>. Please note that you must use <a href="https://www.google.com/chrome/" class="external-link">Google Chrome</a> for it to work.</p>
+<p>The application is <a href="https://ncc.carleton.ca" class="external-link">available
+online</a>. Please note that you must use <a href="https://www.google.com/chrome/" class="external-link">Google Chrome</a> for it to
+work.</p>
 <table class="table"><tr>
 <td>
 <img class="screenshot" src="reference/figures/screenshot.png" align="center" width="100%">
@@ -91,40 +98,68 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor" aria-hidden="true"></a>Installation</h2>
-<p>The application is available as an online service provided by the <a href="https://natureconservancy.ca/en/" class="external-link">Nature Conservancy of Canada</a>. If you need to run the application on your own computer, then you can run it using the <a href="https://www.r-project.org/" class="external-link">R statistical computing environment</a>, <a href="https://www.docker.com/" class="external-link">Docker</a>, or <a href="https://docs.docker.com/compose/" class="external-link">Docker Compose</a>.</p>
+<p>The application is available as an online service provided by the <a href="https://natureconservancy.ca/en/" class="external-link">Nature Conservancy of
+Canada</a>. If you need to run the application on your own computer,
+then you can run it using the <a href="https://www.r-project.org/" class="external-link">R
+statistical computing environment</a>, <a href="https://www.docker.com/" class="external-link">Docker</a>, or <a href="https://docs.docker.com/compose/" class="external-link">Docker Compose</a>.</p>
 <div id="using-r" class="section level3">
 <h3 class="hasAnchor">
 <a href="#using-r" class="anchor" aria-hidden="true"></a>Using R</h3>
-<p>To use this method, you will need to install the <a href="https://www.r-project.org/" class="external-link">R statistical computing environment</a>. After completing the installation, you can install the application using the following R code:</p>
+<p>To use this method, you will need to install the <a href="https://www.r-project.org/" class="external-link">R statistical computing
+environment</a>. After completing the installation, you can install the
+application using the following R code:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://remotes.r-lib.org" class="external-link">remotes</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
 <span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"NCC-CNC/wheretowork"</span><span class="op">)</span></code></pre></div>
-<p>You can then use the following R code to start the application and open it in your web browser:</p>
+<p>You can then use the following R code to start the application and
+open it in your web browser:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">wheretowork</span><span class="fu">::</span><span class="fu"><a href="reference/run_app.html">run_app</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="using-docker" class="section level3">
 <h3 class="hasAnchor">
 <a href="#using-docker" class="anchor" aria-hidden="true"></a>Using Docker</h3>
-<p>To use this method, you will need to install <a href="https://www.docker.com/" class="external-link">Docker Engine</a> (<a href="https://docs.docker.com/get-docker/" class="external-link">see here for instructions</a>). After completing this step, you can install the application from the <a href="https://hub.docker.com/repository/docker/naturecons/wheretowork" class="external-link">DockerHub repository</a>. Specifically, please use the following system command:</p>
+<p>To use this method, you will need to install <a href="https://www.docker.com/" class="external-link">Docker Engine</a> (<a href="https://docs.docker.com/get-docker/" class="external-link">see here for
+instructions</a>). After completing this step, you can install the
+application from the <a href="https://hub.docker.com/repository/docker/naturecons/wheretowork" class="external-link">DockerHub
+repository</a>. Specifically, please use the following system
+command:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-dp</span> 3838:3838 <span class="at">--name</span> wheretowork <span class="at">-it</span> naturecons/wheretowork:latest</span></code></pre></div>
-<p>You can then view the application by opening the following link in <a href="https://www.google.com/chrome/" class="external-link">Google Chrome</a>: <a href="http://localhost:3838" class="external-link uri">http://localhost:3838</a>. After you have finished using the application, you can terminate it using the following system command. <strong>Note that if you don’t terminate the application once you are finished using it, then it will continue running in the background.</strong></p>
+<p>You can then view the application by opening the following link in <a href="https://www.google.com/chrome/" class="external-link">Google Chrome</a>: <a href="http://localhost:3838" class="external-link uri">http://localhost:3838</a>.
+After you have finished using the application, you can terminate it
+using the following system command. <strong>Note that if you don’t
+terminate the application once you are finished using it, then it will
+continue running in the background.</strong></p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> rm <span class="at">-f</span> wheretowork</span></code></pre></div>
 </div>
 <div id="using-docker-compose" class="section level3">
 <h3 class="hasAnchor">
 <a href="#using-docker-compose" class="anchor" aria-hidden="true"></a>Using Docker Compose</h3>
-<p>To use this method, you will need to install <a href="https://www.docker.com/" class="external-link">Docker Engine</a> (<a href="https://docs.docker.com/get-docker/" class="external-link">see here for instructions</a>) and Docker Compose (<a href="https://docs.docker.com/compose/install/" class="external-link">see here for instructions</a>). After installing both programs, you can install the application by <a href="https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository" class="external-link">cloning this repository</a> and then using the following system commands:</p>
+<p>To use this method, you will need to install <a href="https://www.docker.com/" class="external-link">Docker Engine</a> (<a href="https://docs.docker.com/get-docker/" class="external-link">see here for
+instructions</a>) and Docker Compose (<a href="https://docs.docker.com/compose/install/" class="external-link">see here for
+instructions</a>). After installing both programs, you can install the
+application by <a href="https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository" class="external-link">cloning
+this repository</a> and then using the following system commands:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker-compose</span> pull</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker-compose</span> up <span class="at">-d</span></span></code></pre></div>
-<p>You can then view the application by opening the following link in <a href="https://www.google.com/chrome/" class="external-link">Google Chrome</a>: <a href="http://localhost:3838" class="external-link uri">http://localhost:3838</a>. After you have finished using the application, you can terminate it using the following system command. <strong>Note that if you don’t terminate the application once you are finished using it, then it will continue running in the background.</strong></p>
+<p>You can then view the application by opening the following link in <a href="https://www.google.com/chrome/" class="external-link">Google Chrome</a>: <a href="http://localhost:3838" class="external-link uri">http://localhost:3838</a>.
+After you have finished using the application, you can terminate it
+using the following system command. <strong>Note that if you don’t
+terminate the application once you are finished using it, then it will
+continue running in the background.</strong></p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker-compose</span> down</span></code></pre></div>
 </div>
 </div>
 <div id="contributing" class="section level2">
 <h2 class="hasAnchor">
 <a href="#contributing" class="anchor" aria-hidden="true"></a>Contributing</h2>
-<p>The application is a <a href="https://mastering-shiny.org/" class="external-link">Shiny web application</a> developed using the <a href="https://www.r-project.org/" class="external-link">R statistical computing environment</a>. Specifically, it uses the <a href="https://thinkr-open.github.io/golem/" class="external-link"><code>golem</code> framework</a>. This means that the application is effectively an <a href="https://r-pkgs.org/" class="external-link">R package</a> that contains code for defining and launching the application (<a href="https://engineering-shiny.org/" class="external-link">see here for more details</a>). The R code files (located in the <code>./R</code> directory) are organized using the following naming conventions:</p>
+<p>The application is a <a href="https://mastering-shiny.org/" class="external-link">Shiny web
+application</a> developed using the <a href="https://www.r-project.org/" class="external-link">R statistical computing
+environment</a>. Specifically, it uses the <a href="https://thinkr-open.github.io/golem/" class="external-link"><code>golem</code>
+framework</a>. This means that the application is effectively an <a href="https://r-pkgs.org/" class="external-link">R package</a> that contains code for defining
+and launching the application (<a href="https://engineering-shiny.org/" class="external-link">see here for more details</a>).
+The R code files (located in the <code>./R</code> directory) are
+organized using the following naming conventions:</p>
 <ul>
 <li>
 <code>app_*</code>: Defines the web application:
@@ -132,31 +167,51 @@
 <li>
 <code>app_config.R</code>: Imports configuration settings.</li>
 <li>
-<code>app_global.R</code>: Initializes the application. It performs a similar to the <code>global.R</code> file in typical Shiny applications.</li>
+<code>app_global.R</code>: Initializes the application. It performs
+a similar to the <code>global.R</code> file in typical Shiny
+applications.</li>
 <li>
-<code>app_server.R</code>: Defines the (back-end) server-side logic for the application. It performs a similar role to the <code>server.R</code> file in typical Shiny applications.</li>
+<code>app_server.R</code>: Defines the (back-end) server-side logic
+for the application. It performs a similar role to the
+<code>server.R</code> file in typical Shiny applications.</li>
 <li>
-<code>app_ui.R</code>: Defines the (font-end) user interface for the application. It performs a similar role to the <code>ui.R</code> file in typical Shiny applications.</li>
+<code>app_ui.R</code>: Defines the (font-end) user interface for the
+application. It performs a similar role to the <code>ui.R</code> file in
+typical Shiny applications.</li>
 </ul>
 </li>
 <li>
-<code>server_*</code>: Defines components used to assemble the server-side logic for the application.</li>
+<code>server_*</code>: Defines components used to assemble the
+server-side logic for the application.</li>
 <li>
-<code>ui_</code>*: Defines functions used to programmatically create HTML elements for the front-end of the application.</li>
+<code>ui_</code>*: Defines functions used to programmatically create
+HTML elements for the front-end of the application.</li>
 <li>
-<code>class_*</code>: Defines object orientated programming classes used in the back-end of the application. These classes are implemented using <a href="https://r6.r-lib.org/" class="external-link">R6 class system</a>.</li>
+<code>class_*</code>: Defines object orientated programming classes
+used in the back-end of the application. These classes are implemented
+using <a href="https://r6.r-lib.org/" class="external-link">R6 class system</a>.</li>
 <li>
-<code>fct_*</code>: Defines R functions used in the back-end of the application. These files contain code used to perform analyses and manipulate the classes.</li>
+<code>fct_*</code>: Defines R functions used in the back-end of the
+application. These files contain code used to perform analyses and
+manipulate the classes.</li>
 <li>
-<code>widget_*</code>: Defines custom widgets used by the application. These widgets are implemented using the <a href="https://www.htmlwidgets.org/" class="external-link"><code>htmlwidgets</code> framework</a>.</li>
+<code>widget_*</code>: Defines custom widgets used by the
+application. These widgets are implemented using the <a href="https://www.htmlwidgets.org/" class="external-link"><code>htmlwidgets</code>
+framework</a>.</li>
 <li>
-<code>utils_*</code>: Defines utility R functions used in the back-end of the application.</li>
+<code>utils_*</code>: Defines utility R functions used in the
+back-end of the application.</li>
 </ul>
 </div>
 <div id="getting-help" class="section level2">
 <h2 class="hasAnchor">
 <a href="#getting-help" class="anchor" aria-hidden="true"></a>Getting help</h2>
-<p>Thank you for checking out this application. If you encounter any software defects (e.g. application crashes, unexpected behavior, or spelling mistakes), please feel free to post them on the <a href="https://github.com/NCC-CNC/wheretowork/issues" class="external-link">issue tracker</a>. If you have any questions about using this application, please contact <a href="https://www.richard-schuster.com/" class="external-link">Dr. Richard Schuster</a> (<a href="mailto:richard.schuster@natureconservancy.ca" class="email">richard.schuster@natureconservancy.ca</a>) or <a href="https://carleton.ca/bennett-lab/lab-members/" class="external-link">Prof. Joe Bennett</a> (<a href="mailto:mailto:JosephBennett@cunet.carleton.ca">JosephBennett@cunet.carleton.ca</a>).</p>
+<p>Thank you for checking out this application. If you encounter any
+software defects (e.g. application crashes, unexpected behavior, or
+spelling mistakes), please feel free to post them on the <a href="https://github.com/NCC-CNC/wheretowork/issues" class="external-link">issue tracker</a>.
+If you have any questions about using this application, please contact
+<a href="https://www.richard-schuster.com/" class="external-link">Dr. Richard Schuster</a> (<a href="mailto:richard.schuster@natureconservancy.ca" class="email">richard.schuster@natureconservancy.ca</a>) or <a href="https://carleton.ca/bennett-lab/lab-members/" class="external-link">Prof. Joe
+Bennett</a> (<a href="mailto:mailto:JosephBennett@cunet.carleton.ca">JosephBennett@cunet.carleton.ca</a>).</p>
 </div>
 </div>
   </div>
@@ -193,7 +248,7 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/Lifecycle-experimental-orange.svg" alt="lifecycle"></a></li>
+<li><a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/Lifecycle-stable-brightgreen.svg" alt="lifecycle"></a></li>
 <li><a href="https://github.com/NCC-CNC/wheretowork/actions" class="external-link"><img src="https://img.shields.io/github/workflow/status/NCC-CNC/wheretowork/Ubuntu/master.svg?label=Ubuntu" alt="R-CMD-check-Ubuntu"></a></li>
 <li><a href="https://github.com/NCC-CNC/wheretowork/actions" class="external-link"><img src="https://img.shields.io/github/workflow/status/NCC-CNC/wheretowork/Windows/master.svg?label=Windows" alt="R-CMD-check-Windows"></a></li>
 <li><a href="https://github.com/NCC-CNC/wheretowork/actions" class="external-link"><img src="https://img.shields.io/github/workflow/status/NCC-CNC/wheretowork/Mac%20OSX/master.svg?label=Mac%20OSX" alt="R-CMD-check-Mac-OSX"></a></li>
@@ -208,12 +263,12 @@
 
       <footer><div class="copyright">
   <p></p>
-<p>Developed by <a href="https://jeffrey-hanson.com" class="external-link">Jeffrey O Hanson</a>, <a href="http://www.richard-schuster.com" class="external-link">Richard Schuster</a>.</p>
+<p>Developed by <a href="https://jeffrey-hanson.com" class="external-link">Jeffrey OHanson</a>, <a href="http://www.richard-schuster.com" class="external-link">RichardSchuster</a>.</p>
 </div>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>1.6.1.9001.</p>
 </div>
 
       </footer>
