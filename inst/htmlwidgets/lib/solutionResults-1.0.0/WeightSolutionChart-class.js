@@ -162,6 +162,7 @@ class WeightSolutionChart {
   renderTitle(el) {
     d3.select(el)
       .style("max-width", "110px")
+      .style("word-break", "break-word")
       .style("text-align", "center")
       .append("span")
       .attr("class", "provenance-container")

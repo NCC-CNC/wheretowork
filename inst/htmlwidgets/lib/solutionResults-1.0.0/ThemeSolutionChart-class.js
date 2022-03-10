@@ -206,6 +206,7 @@ class ThemeSolutionChart {
       .append("label")
       .style("cursor", "pointer")
       .style("max-width", "110px")
+      .style("word-break", "break-word")
       .style("text-align", "center")
       .style("color", any_active ? "black" : "#B8B8B8")
       .on("mouseover", function(e) {

@@ -147,6 +147,7 @@ class IncludeSolutionChart {
     d3.select(el)
       .style("max-width", "110px")
       .style("text-align", "center")
+      .style("word-break", "break-word")
       .append("span")
       .attr("class", "provenance-container")
       .append("label")
