@@ -48,23 +48,6 @@ RUN cd /app && \
 # set command
 CMD ["/bin/bash"]
 
-# shinyapps deployment image
-## source image
-FROM base AS shinyapps
-
-# install latest version of rsconnect is installed
-ADD https://cran.r-project.org/web/packages/rsconnect/index.html /tmp/rsconnect.html
-RUN Rscript -e "remotes::install_cran('rsconnect', force = TRUE)"
-
-# copy app file for deployment
-COPY app.R /app
-
-# set working directory
-WORKDIR /app
-
-## run app
-CMD Rscript -e "rsconnect::setAccountInfo(name=Sys.getenv('SHINYAPPS_USER'), token=Sys.getenv('SHINYAPPS_TOKEN'),secret=Sys.getenv('SHINYAPPS_SECRET'));rsconnect::deployApp('.', appName=Sys.getenv('SHINYAPPS_APPNAME'))"
-
 # shiny image
 FROM base AS shiny
 
