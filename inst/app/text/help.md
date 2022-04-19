@@ -1,1 +1,53 @@
-The application is still under development and so the text for this popup has not yet been finalized. In the interim, you can learn about the functionality of this application by hovering the mouse over buttons, icons, text inputs, and other user interface components. If you require assistance, please contact Richard Schuster (richard.schuster@glel.carleton.ca).
+The Where to Work tool is a web-based, decision support tool for building and solving systematic conservation planning problems. To achieve this, it employs integer programming techniques to formulate mathematical optimization problems and uses exact algorithms to find near-optimal results. As a consequence, the tool can quickly analyze large and complex datasets and perform real-time analysis to help facilitate stakeholder discussions. Although this tool can help identify optimized solutions to real-world conservation problems, it is not a substitute for conservation decision making. Since the results depend on input data -- and such data may omit important considerations -- the tool is intended to help inform decision making. Here we provide a brief overview of the tool. Please refer the manual for further details.
+
+#### Data
+
+The tool uses spatially explicit data to identify priorities for conservation. These data can include themes, weights, and includes. We describe each of these different data types below.
+
+**Themes:** Themes describe facets of biodiversity that are important for conservation (e.g., species, habitats, ecosystems). To help safeguard Themes, you can set goals to ensure a minimum level of coverage by solutions (e.g., setting a goal of 20% ensures that 20% of the overall spatial extent of the theme is covered by the solution). Some Themes can contain multiple components that are termed Features. For example, a Theme pertaining to Threatened Species may contain Features, wherein each Feature corresponds to a different species.
+
+**Weights:** A weight describes properties of places that can impede or improve conservation efforts. Set the weight factor between –100 and 100 to indicate how important is to avoid or cover (respectively) a given weight in the solution. To completely avoid a weight (e.g., to avoid all areas with mining leases), use a value of -100 (i.e., ensure that planning units with the lowest possible values in the weight dataset are selected). To include as much of the weight as possible (e.g., to include all areas of cultural significance), use a value of 100 (i.e., ensure that planning units with the highest possible values in the weight dataset are selected). Setting a value of zero (deselecting the weight using the toggle) means that it is not considered at all in the prioritization.
+
+**Includes:** An Include refers to areas that are already managed for conservation. This is important to consider so that solutions build on the current reserve network. It can also be useful to generate solutions that do not consider current reserves, such as to explore counterfactuals and management plans generated using other processes (e.g., what if we built a new system from scratch?).
+
+#### User interface
+
+The tool has three main components that comprise the user interface. These components include (i) buttons on the top of the map, (ii) a left sidebar for visualizing and downloading data, and (iii) a right sidebar for generating and evaluating solutions. We cover each of these components below.
+
+**Map buttons:** These buttons provide the following functionality.
+
+<ul class = "middle-icon">
+<li><div><span class = "leaflet-touch"><span class = "leaflet-bar easy-button-container leaflet-control"><button class = "easy-button-button leaflet-bar-part"><icon class = "fa fa-xs fa-question"></button></span></span><p>Open this help popup again.</p></div></li>
+
+<li><div><span class = "leaflet-touch"><span class = "leaflet-bar easy-button-container leaflet-control"><button class = "easy-button-button leaflet-bar-part"><icon class = "fa fa-xs fa-home"></button></span></span><p>Zoom the map to show the full extent of the data.</p></div></li>
+
+<li><div><span class = "leaflet-touch"><span class = "history-control leaflet-bar leaflet-control horizontal"><a class = "history-back-button"><icon class = "fa fa-xs fa-caret-left"></a><a class = "history-forward-button"><icon class = "fa fa-xs fa-caret-right"></a></span></span><p>Switch between previous spatial extents on the map.</p></div></li>
+
+<li><div><span class = "leaflet-touch"><span class = "leaflet-bar easy-button-container leaflet-control"><button class = "easy-button-button leaflet-interactive leaflet-bar-part hide-all-layers"><icon class = "fa fa-xs fa-eye-slash"></button><button class = "easy-button-button leaflet-interactive leaflet-bar-part show-all-layers"><icon class = "fa fa-xs fa-eye"></button></span></span><p>Hide or show all data on the map.</p></div></li>
+
+<li><div><span class = "leaflet-touch"><span class = "leaflet-bar easy-button-container leaflet-control"><button class = "easy-button-button leaflet-interactive leaflet-bar-part"><icon class = "fa fa-xs fa-print"></button></span></span><p>Save the map as an image.</p></div></li>
+
+<li><div><span class = "leaflet-touch"><span class = "leaflet-bar easy-button-container leaflet-control"><button class = "easy-button-button leaflet-interactive leaflet-bar-part"><icon class = "fa fa-xs fa-globe"></button></span></span><p>Hover over the button to select a different base map.</p></div></li>
+
+</ul>
+</br>
+
+**Left sidebar:** The left sidebar primarily contains panes for visualizing the data. It also contains panes that provide contact details for the development team, and acknowledgments for individuals, organizations, and underlying software that have contributed to the tool. We will describe each of these panes below. To open one of these panes, click on the matching icon in the sidebar.
+<ul class = "middle-icon">
+<li><div><span class = "leaflet-touch"><span class = "leaflet-bar easy-button-container leaflet-control"><button class = "easy-button-button leaflet-interactive leaflet-bar-part"><icon class = "fa fa-xs fa-layer-group"></button></span></span><p>The <em>Table of contents pane</em> is used to interactively visualize data on the map. Each layer corresponds to a theme (<icon class = "fa fa-xs fa-star"></icon>), weight (<icon class = "fa fa-xs fa-weight-hanging"></icon>), or include (<icon class = "fa fa-xs fa-lock"></icon>) (as indicated by the icons). These layers can be re-ordered by dragging and dropping them, and toggled to show or hide them (using the <icon class = "fa fa-xs fa-eye"></icon>/<icon class = "fa fa-xs fa-eye-slash" style="color:red"></icon> buttons).</p></div></li>
+<li><div><span class = "leaflet-touch"><span class = "leaflet-bar easy-button-container leaflet-control"><button class = "easy-button-button leaflet-interactive leaflet-bar-part"><icon class = "fa fa-xs fa-download"></button></span></span><p>The <em>Download pane</em> can be used to download data and results. Specifically, spatially explicit datasets for the themes, weights, and includes can be downloaded (e.g., in raster or vector format). Additionally, solutions can be downloaded too, along with statistics summarizing their performance.</p></div></li>
+<li><div><span class = "leaflet-touch"><span class = "leaflet-bar easy-button-container leaflet-control"><button class = "easy-button-button leaflet-interactive leaflet-bar-part"><icon class = "fa fa-xs fa-envelope"></button></span></span><p>The <em>Contact pane</em> provides information for contacting the development team.</p></div></li>
+<li><div><span class = "leaflet-touch"><span class = "leaflet-bar easy-button-container leaflet-control"><button class = "easy-button-button leaflet-interactive leaflet-bar-part"><icon class = "fa fa-xs fa-heart"></button></span></span><p>The <em>Acknowledgments pane</em> details all the contributions and support provided by various individuals and organizations. Additionally, this pane describes all the open source software that underpins the tool.</p></div></li>
+
+</ul>
+</br>
+
+
+**Right sidebar:** The right sidebar contains panes for generating new solutions and evaluating them. To open one of these panes, click on the matching icon in the sidebar.
+
+<ul>
+<li><div><span class = "leaflet-touch"><span class = "leaflet-bar easy-button-container leaflet-control"><button class = "easy-button-button leaflet-interactive leaflet-bar-part"><icon class = "fa fa-xs fa-rocket"></button></span></span><p>The <em>New solution pane</em> is used to generate new solutions. Here, you can set various parameters for each of the themes (under the <em>Themes panel</em>), weights (under the <em>Weights panel</em>), and includes (under the <em>Includes panel</em>). For example, you can use sliders to specify the goal for each theme (i.e., specifying the minimum desired amount for each theme to be secured within a solution). You can also use sliders to specify the factor for each weight (i.e., specifying the relative importance of each weight). Additionally, you can specify settings to customize the optimization process (under <em>Settings panel</em>). These settings include imposing a limit (budget) on the maximum amount of area that can be selected, and controlling the level of spatial clustering in the solution. After specifying all these parameters, you can enter a name for the new solution, select a display color for it, and then click the "Optimize" button to generate a new solution (using inputs along the bottom of the <em>New solution pane</em>). Once the optimization process has finished, the new solution will then appear in <em>Table of contents pane</em>, and the <em>Solution results pane</em> will open so you can evaluate the solution.</p></div></li>
+<li><div><span class = "leaflet-touch"><span class = "leaflet-bar easy-button-container leaflet-control"><button class = "easy-button-button leaflet-interactive leaflet-bar-part"><icon class = "fa fa-xs fa-tachometer-alt"></button></span></span><p>The <em>Solution results pane</em> is used to evaluate solutions. It provides statistics that summarize various characteristics of the solution (under the <em>Summary panel</em> ), such as the total area encompassed by the solution and the number of individual reserves within the solution. It also provides pie charts to visualize how much the solution represents each of themes (under the <em>Themes panel</em>), weights (under the <em>Weights</em> panel), and the includes (under the <em>Includes panel</em>). These pie charts show the amount of coverage by selected includes (shown in green), as well as the solution (shown in the color selected for displaying the solution). In addition to the pie charts, this information can be viewed in tabular form (i.e., by clicking on the table button).</p></div></li>
+
+</ul>
+</br>

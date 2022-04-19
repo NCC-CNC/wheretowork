@@ -14,6 +14,11 @@
   z-index: 999999;
 }
 
+/* -- modal body */
+.modal.sbs-modal .modal-body {
+  max-height: calc(100vh - 130px);
+}
+
 /* -- define modal-xl class for wide modal */
 @media (min-width: 768px) {
   .modal-xl {
