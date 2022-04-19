@@ -61,7 +61,7 @@ jobs:
 
       - name: Check
         run: |
-          rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran", "--no-build-vignettes"), error_on = "warning", check_dir = "check")
+          try(rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran", "--no-build-vignettes"), error_on = "warning", check_dir = "check"))
           message(paste(readLines('D:/a/wheretowork/wheretowork/check/wheretowork.Rcheck/00install.out'), collapse = "\n"))
         shell: Rscript {0}
 
