@@ -1,0 +1,56 @@
+/* help modal */
+.help-modal .modal-body {
+  overflow-y: scroll !important;
+}
+
+.help-modal .leaflet-control {
+  margin-left: 5px;
+  margin-right: 5px;
+  border: 2px solid rgba(0,0,0,0.2);
+  background-clip: padding-box;
+}
+
+.help-modal .show-all-layers {
+  /* border radius */
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+  border-top-right-radius: 2px !important;
+  border-bottom-right-radius: 2px !important;
+}
+.help-modal .hide-all-layers {
+  /* border radius */
+  border-top-left-radius: 2px !important;
+  border-bottom-left-radius: 2px !important;
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+  /* border colors */
+  border-bottom: 0;
+  border-right: 1px solid #ccc;
+}
+
+.help-modal {
+  list-style-position: inside;
+}
+
+.help-modal .leaflet-touch button {
+  line-height: 0px !important;
+}
+
+.help-modal li {
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.help-modal li > div {
+  display: flex;
+  flex-direction: row;
+}
+.help-modal .middle-icon li > div {
+  align-items: center;
+}
+
+.help-modal li > div > p {
+  margin-bottom: 0px !important;
+}
