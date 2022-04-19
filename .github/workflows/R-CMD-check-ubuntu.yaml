@@ -24,8 +24,7 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: ubuntu-20.04, r: 'release'}
-          - {os: ubuntu-20.04, r: 'devel'}
+          - {os: ubuntu-20.04, r: '4.1.0'}
 
     env:
       _R_REMOTES_NO_ERRORS_FROM_WARNINGS_: true
@@ -87,6 +86,5 @@ jobs:
         shell: bash
 
       - name: Test coverage
-        if: runner.os == 'Linux' && matrix.config.r == 'release'
         run: covr::codecov()
         shell: Rscript {0}
