@@ -865,16 +865,16 @@
     },
     "prioritizr": {
       "Package": "prioritizr",
-      "Version": "7.1.0.2",
+      "Version": "7.1.1",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteUsername": "prioritizr",
       "RemoteRepo": "prioritizr",
-      "RemoteRef": "rcbc-start-sol",
-      "RemoteSha": "7741b72f585745df72f77d5994818549bc926040",
-      "Remotes": "jeffreyhanson/rcbc",
-      "Hash": "ab2ccb8a7af39e1f34bd45cb991f2a32"
+      "RemoteRef": "master",
+      "RemoteSha": "589d21bc361161277ecc1a1feec2d86658a7ecdf",
+      "Remotes": "dirkschumacher/rcbc",
+      "Hash": "40482d7731942b2effadf62ab91c26a7"
     },
     "processx": {
       "Package": "processx",
@@ -959,11 +959,11 @@
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
-      "RemoteUsername": "jeffreyhanson",
+      "RemoteUsername": "dirkschumacher",
       "RemoteRepo": "rcbc",
       "RemoteRef": "master",
-      "RemoteSha": "bdad49a23dc558cbc44a616244dcb2126a6035b5",
-      "Hash": "89c9b8f199d0254577acb275d5465c38"
+      "RemoteSha": "bb608fbb497d00113feeff38c398efc9c6842b1f",
+      "Hash": "ec45951b9fc3b6b42972b4fb31d77dbd"
     },
     "rcmdcheck": {
       "Package": "rcmdcheck",
