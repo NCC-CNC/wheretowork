@@ -1016,10 +1016,10 @@
     },
     "rgeos": {
       "Package": "rgeos",
-      "Version": "0.5-5",
+      "Version": "0.5-9",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "94a44c3f0d49ceb80c385610696873ca"
+      "Hash": "7cfa4f73a070042ecf141d5c1d1bfcae"
     },
     "rlang": {
       "Package": "rlang",
