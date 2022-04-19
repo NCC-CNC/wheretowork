@@ -46,6 +46,7 @@ jobs:
       - name: Install dependencies
         run: |
           options(install.packages.compile.from.source = "always")
+          options(pkgType = "source")
           install.packages(c("renv", "remotes"))
           renv::restore()
           remotes::install_cran("rcmdcheck")
