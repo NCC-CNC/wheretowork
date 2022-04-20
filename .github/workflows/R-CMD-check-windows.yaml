@@ -24,7 +24,7 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: windows-latest, r: 'release'}
+          - {os: windows-latest, r: '4.1.0'}
 
     env:
       _R_REMOTES_NO_ERRORS_FROM_WARNINGS_: true
@@ -43,17 +43,21 @@ jobs:
 
       - uses: r-lib/actions/setup-pandoc@v1
 
-      - name: Query dependencies
+      - name: Install system dependencies
         run: |
-          install.packages('remotes')
-          saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
-          writeLines(sprintf("R-%i.%i", getRversion()$major, getRversion()$minor), ".github/R-version")
-        shell: Rscript {0}
+          pacman -Sy mingw-w64-x86_64-gmp --noconfirm
+          pacman -Sy mingw-w64-x86_64-glpk --noconfirm
+          pacman -Sy mingw-w64-x86_64-libxml2 --noconfirm
+        shell: bash
 
       - name: Install dependencies
         run: |
-          options(install.packages.compile.from.source = "never")
-          remotes::install_deps(dependencies = TRUE)
+          options(install.packages.compile.from.source = "always")
+          options(pkgType = "source")
+          Sys.setenv(LIB_XML = "$(MINGW_PREFIX)")
+          Sys.setenv(GLPK_HOME = "$(MINGW_PREFIX)")
+          install.packages(c("renv", "remotes"))
+          renv::restore()
           remotes::install_cran("rcmdcheck")
           remotes::install_cran("covr")
         shell: Rscript {0}
@@ -67,7 +71,7 @@ jobs:
 
       - name: Check
         run: |
-          rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran", "--no-build-vignettes"), error_on = "warning", check_dir = "check")
+          rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran", "--no-build-vignettes", "--no-multiarch"), error_on = "warning", check_dir = "check")
         shell: Rscript {0}
 
       - name: Show testthat output
