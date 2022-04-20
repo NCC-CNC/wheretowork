@@ -50,9 +50,16 @@ server_export_data <- quote({
           file.path(td, paste0(x$get_layer_name(), ".xlsx"))
         )
       })
+      # prepare spatial data for export
+      ## if we are saving a shapefile, then include an "_index" column
+      ## with the planning unit indices
+      d <- app_data$dataset$get_index(input$exportPane_fields)
+      if (inherits(d, "sf")) {
+        d[["index"]] <- app_data$dataset$get_planning_unit_indices()
+      }
       # save spatial data
       write_spatial_data(
-        x = app_data$dataset$get_index(input$exportPane_fields),
+        x = d,
         dir = td,
         name = "data"
       )
