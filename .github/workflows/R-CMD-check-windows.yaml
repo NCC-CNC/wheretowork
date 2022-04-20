@@ -54,6 +54,8 @@ jobs:
         run: |
           options(install.packages.compile.from.source = "always")
           options(pkgType = "source")
+          Sys.setenv(LIB_XML = "$(MINGW_PREFIX)")
+          Sys.setenv(GLPK_HOME = "$(MINGW_PREFIX)")
           install.packages(c("renv", "remotes"))
           renv::restore()
           remotes::install_cran("rcmdcheck")
