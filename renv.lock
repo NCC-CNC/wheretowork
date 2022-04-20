@@ -116,10 +116,10 @@
     },
     "Rsymphony": {
       "Package": "Rsymphony",
-      "Version": "0.1-31",
+      "Version": "0.1-33",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "81050aa684032d6db264aa60ed1d59d7"
+      "Hash": "3f55239fe534fe91e739c77d99a4ffbf"
     },
     "ape": {
       "Package": "ape",
