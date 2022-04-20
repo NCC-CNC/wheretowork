@@ -40,6 +40,7 @@ server_export_data <- quote({
       })
       ## save results
       lapply(app_data$solutions[export_solutions], function(x) {
+        ### save excel workbook
         write_excel_workbook(
           list(
             Summary = x$get_summary_results_data(),
@@ -48,6 +49,26 @@ server_export_data <- quote({
             Includes = x$get_include_results_data()
           ),
           file.path(td, paste0(x$get_layer_name(), ".xlsx"))
+        )
+        ### save CSV spreadsheets
+        Map(
+          write.csv,
+          x = list(
+            x$get_summary_results_data(),
+            x$get_theme_results_data(),
+            x$get_weight_results_data(),
+            x$get_include_results_data()
+          ),
+          file = file.path(
+            td,
+            paste0(
+              x$get_layer_name(),
+              "_",
+              c("summary", "themes", "weights", "includes"),
+              ".csv"
+            )
+          ),
+          row.names = FALSE
         )
       })
       # prepare spatial data for export
