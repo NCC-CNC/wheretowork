@@ -51,7 +51,6 @@ Imports:
     fasterize (>= 1.0.3),
     rgdal (>= 1.5.23),
     rcbc (>= 0.1.0.9001),
-    Rsymphony (>= 0.1.31),
     RandomFields (>= 3.3.8),
     shiny (>= 1.6.0),
     ipc (>= 0.1.3),
