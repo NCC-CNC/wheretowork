@@ -1,1 +1,1 @@
-The Where To Work application is proudly developed by the [Nature Conservancy of Canada](https://natureconservancy.ca/).
+The Where To Work application was developed by Jeffrey Hanson, Jaimie Vincent, and Joe Bennett at Carleton University and Richard Schuster at the Nature Conservancy of Canada. The work by Carleton University was completed under contract with the Nature Conservancy of Canada. This work was supported by generous contributions by Environment and Climate Change Canada and the Royal Bank of Canada.
