@@ -73,7 +73,7 @@ importModal <- function(id) {
       choices = c(
         "built-in project" = "builtin",
         "upload project data" = "manual",
-        "spatial dataset" = "spatial"
+        "upload shapefile" = "spatial"
       ),
       selected = "built-in project",
       multiple = FALSE

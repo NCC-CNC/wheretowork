@@ -46,4 +46,3 @@ utils::globalVariables(
 tmp1 <- rgdal::readOGR
 tmp1 <- R.utils::gzip
 tmp1 <- rcbc::cbc_solve
-tmp1 <- Rsymphony::Rsymphony_solve_LP

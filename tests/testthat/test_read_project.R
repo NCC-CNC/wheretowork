@@ -7,10 +7,10 @@ test_that("raster (standard boundary format)", {
   sim_themes <- simulate_themes(d, 2, 2, 2)
   sim_includes <- simulate_includes(d, 2)
   # manually insert periods into they don't cause issues
-  sim_themes[[1]]$name <- ".fake.fake.theme."
-  sim_themes[[2]]$feature[[1]]$name <- ".fake.fake.feature."
-  sim_weights[[1]]$name <- ".fake.fake.weight."
-  sim_includes[[2]]$name <- "fake.fake.include."
+  sim_themes[[1]]$name <- "fake_fake_theme_"
+  sim_themes[[2]]$feature[[1]]$name <- "fake_fake_feature_"
+  sim_weights[[1]]$name <- "fake_fake_weight_"
+  sim_includes[[2]]$name <- "fake_fake_include_"
   # compile layers
   sim_layers <- append(sim_themes, append(sim_weights, sim_includes))
   # manually calculate current amount held
