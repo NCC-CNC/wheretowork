@@ -14,6 +14,12 @@ NULL
 #'
 #' @noRd
 simulate_proportion_spatial_data <- function(x, n = 1) {
+  # assert RandomFields exists
+  assertthat::assert_that(
+    requireNamespace("RandomFields"), 
+    msg = "please install the \"RandomFields\" package"
+  )
+  
   simulate_spatial_data(
     x = x,
     n = n,
@@ -32,6 +38,12 @@ simulate_proportion_spatial_data <- function(x, n = 1) {
 #'
 #' @noRd
 simulate_continuous_spatial_data <- function(x, n = 1) {
+  # assert RandomFields exists
+  assertthat::assert_that(
+    requireNamespace("RandomFields"), 
+    msg = "please install the \"RandomFields\" package"
+  )  
+  
   simulate_spatial_data(
     x = x,
     n = n,
@@ -55,6 +67,12 @@ simulate_continuous_spatial_data <- function(x, n = 1) {
 #'
 #' @noRd
 simulate_categorical_spatial_data <- function(x, n = 1) {
+  # assert RandomFields exists
+  assertthat::assert_that(
+    requireNamespace("RandomFields"), 
+    msg = "please install the \"RandomFields\" package"
+  )
+  
   simulate_spatial_data(
     x = x,
     n = n,
@@ -76,6 +94,12 @@ simulate_categorical_spatial_data <- function(x, n = 1) {
 #'
 #' @noRd
 simulate_binary_spatial_data <- function(x, n = 1) {
+  # assert RandomFields exists
+  assertthat::assert_that(
+    requireNamespace("RandomFields"), 
+    msg = "please install the \"RandomFields\" package"
+  )  
+  
   simulate_spatial_data(
     x = x,
     n = n,
@@ -96,6 +120,12 @@ simulate_binary_spatial_data <- function(x, n = 1) {
 #'
 #' @noRd
 simulate_spatial_data <- function(x, n, model, transform) {
+  # assert RandomFields exists
+  assertthat::assert_that(
+    requireNamespace("RandomFields"), 
+    msg = "please install the \"RandomFields\" package"
+  )   
+  
   # assert argument is valid
   assertthat::assert_that(
     inherits(x, c("sf", "Raster")),
@@ -141,6 +171,12 @@ simulate_spatial_data <- function(x, n, model, transform) {
 #'
 #' @noRd
 simulate_random_field <- function(model, n, coords, transform) {
+  # assert RandomFields exists
+  assertthat::assert_that(
+    requireNamespace("RandomFields"), 
+    msg = "please install the \"RandomFields\" package"
+  )  
+  
   # assert arguments are valid
   assertthat::assert_that(
     inherits(model, "RMmodel"),

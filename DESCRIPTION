@@ -51,7 +51,6 @@ Imports:
     fasterize (>= 1.0.3),
     rgdal (>= 1.5.23),
     rcbc (>= 0.1.0.9001),
-    RandomFields (>= 3.3.8),
     shiny (>= 1.6.0),
     ipc (>= 0.1.3),
     golem (>= 0.3.1),
@@ -79,6 +78,7 @@ Suggests:
     devtools (>= 2.4.2),
     whereami (>= 0.1.9),
     pkgdown (>= 1.6.1.9001),
+    RandomFields (>= 3.3.8),
 Depends:
     R (>= 4.0.0),
     shinyBS (>= 0.6.1),
