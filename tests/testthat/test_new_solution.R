@@ -204,9 +204,9 @@ test_that("initialization (no weights or includes)", {
   expect_is(x$render_include_results(), "datatables")
 })
 
-skip_if_not_installed("RandomFields")
 test_that("initialization (from Result object)", {
   skip_on_ci()
+  skip_if_not_installed("RandomFields")  
   # create object
   ## create dataset
   RandomFields::RFoptions(seed = 200)

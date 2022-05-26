@@ -77,8 +77,8 @@ test_that("categorical (raster)", {
   expect_lte(n_distinct(c(raster::values(x))), 11)
 })
 
-skip_if_not_installed("RandomFields")
 test_that("categorical (sf)", {
+  skip_if_not_installed("RandomFields")  
   # create data
   RandomFields::RFoptions(seed = 500)
   d <- import_simple_vector_data()

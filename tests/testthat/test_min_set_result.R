@@ -1,8 +1,8 @@
 context("min_set_result")
 
-skip_if_not_installed("RandomFields")
 test_that("no spatial clustering", {
   skip_on_ci()
+  skip_if_not_installed("RandomFields")
   # create object
   ## create dataset
   RandomFields::RFoptions(seed = 200)
@@ -103,9 +103,9 @@ test_that("no spatial clustering", {
   expect_equal(x1$values, x2$values)
 })
 
-skip_if_not_installed("RandomFields")
 test_that("spatial clustering", {
   skip_on_ci()
+  skip_if_not_installed("RandomFields")
   # create object
   ## create dataset
   RandomFields::RFoptions(seed = 200)
@@ -185,9 +185,9 @@ test_that("spatial clustering", {
   expect_is(x, "Result")
 })
 
-skip_if_not_installed("RandomFields")
 test_that("no weights", {
   skip_on_ci()
+  skip_if_not_installed("RandomFields")  
   # create object
   ## create dataset
   RandomFields::RFoptions(seed = 200)
@@ -262,9 +262,9 @@ test_that("no weights", {
   expect_is(x, "Result")
 })
 
-skip_if_not_installed("RandomFields")
 test_that("no includes", {
   skip_on_ci()
+  skip_if_not_installed("RandomFields")  
   # create object
   ## create dataset
   RandomFields::RFoptions(seed = 200)
@@ -339,9 +339,9 @@ test_that("no includes", {
   expect_is(x, "Result")
 })
 
-skip_if_not_installed("RandomFields")
 test_that("mixed weights", {
   skip_on_ci()
+  skip_if_not_installed("RandomFields")  
   # create object
   ## create dataset
   RandomFields::RFoptions(seed = 200)
