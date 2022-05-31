@@ -47,8 +47,6 @@ NULL
 #'  print(x)
 #' }
 #'
-#' # print results
-#' print(x)
 #' @export
 simulate_themes <- function(dataset, n_single_themes, n_multi_themes,
                             lambda = 5) {

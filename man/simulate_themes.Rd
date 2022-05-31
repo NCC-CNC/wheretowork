@@ -51,8 +51,6 @@ if (requireNamespace("RandomFields")) {
  print(x)
 }
 
-# print results
-print(x)
 }
 \seealso{
 \link{new_theme}.
