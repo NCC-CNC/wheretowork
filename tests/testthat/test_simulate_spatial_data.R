@@ -1,6 +1,7 @@
 context("simulate spatial data")
 
 test_that("proportion (raster)", {
+  skip_if_not_installed("RandomFields")
   # create data
   d <- import_simple_raster_data()
   x <- simulate_proportion_spatial_data(d, 2)
@@ -19,6 +20,7 @@ test_that("proportion (raster)", {
 })
 
 test_that("proportion (sf)", {
+  skip_if_not_installed("RandomFields")
   # create data
   d <- import_simple_vector_data()
   x <- simulate_proportion_spatial_data(d, 2)
@@ -31,6 +33,7 @@ test_that("proportion (sf)", {
 })
 
 test_that("continuous (raster)", {
+  skip_if_not_installed("RandomFields")
   # create data
   d <- import_simple_raster_data()
   x <- simulate_continuous_spatial_data(d, 2)
@@ -48,6 +51,7 @@ test_that("continuous (raster)", {
 })
 
 test_that("continuous (sf)", {
+  skip_if_not_installed("RandomFields")
   # create data
   d <- import_simple_vector_data()
   x <- simulate_continuous_spatial_data(d, 2)
@@ -59,6 +63,7 @@ test_that("continuous (sf)", {
 })
 
 test_that("categorical (raster)", {
+  skip_if_not_installed("RandomFields")
   # create data
   d <- import_simple_raster_data()
   x <- simulate_categorical_spatial_data(d, 2)
