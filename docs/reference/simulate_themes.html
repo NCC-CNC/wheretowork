@@ -178,71 +178,127 @@ Defaults to 5.</p></td>
 <span class='r-in'><span class='va'>d</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_dataset.html'>new_dataset</a></span><span class='op'>(</span><span class='va'>f1</span>, <span class='va'>f2</span>, <span class='va'>f3</span><span class='op'>)</span></span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># simulate data</span></span>
-<span class='r-in'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>simulate_themes</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>d</span>, n_single_themes <span class='op'>=</span> <span class='fl'>3</span>, n_multi_themes <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span></span>
+<span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span><span class='op'>(</span><span class='st'>"RandomFields"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span class='r-in'> <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>simulate_themes</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>d</span>, n_single_themes <span class='op'>=</span> <span class='fl'>3</span>, n_multi_themes <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span></span>
+<span class='r-in'> <span class='co'># print results</span></span>
+<span class='r-in'> <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>}</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> .....</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> .......</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> .....</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[1]]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Theme</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        0edf39e6-79f8-46c8-8369-2c451d52c9c0</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Tufted Flycatcher</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   feature: </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Tufted Flycatcher habitat [status: TRUE, current: 0.4, goal: 0.64]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Tufted_Flycatcher [total: 7225.61 ha]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[2]]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Theme</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        de225018-45f6-4384-893b-723ab78d6d9b</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Sudan Golden Sparrow</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   feature: </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Sudan Golden Sparrow habitat [status: TRUE, current: 0.5, goal: 0.77]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Sudan_Golden_Sparrow [total: 1308 ha]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[3]]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Theme</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        d18b9480-8991-4e1c-b96e-4fbe828c00d0</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Chestnut-headed Partridge (Siamese)</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   feature: </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Chestnut-headed Partridge (Siamese) habitat [status: TRUE, current: 0.18, goal: 0.68]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Chestnut_headed_Partridge_Siamese_ [total: 4662.2 ha]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[4]]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Theme</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        5b52989e-ccd9-4687-b6b2-eafd977face8</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Boobies and Gannets</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   feature: </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Brown Booby (Forster's) [status: TRUE, current: 0.27, goal: 0.61]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Brown_Booby_Forster_s_ [total: 1139 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Brown Booby (Atlantic) [status: TRUE, current: 0.33, goal: 0.56]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Brown_Booby_Atlantic_ [total: 1440 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Cape Gannet [status: TRUE, current: 0.28, goal: 0.57]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Cape_Gannet [total: 1594 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Brown Booby (Brewster's) [status: TRUE, current: 0.17, goal: 0.59]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Brown_Booby_Brewster_s_ [total: 836 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Red-footed Booby (Atlantic) [status: TRUE, current: 0.43, goal: 0.69]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Red_footed_Booby_Atlantic_ [total: 808 ha]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[5]]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Theme</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        6a266691-bec4-4a4c-9af0-be4662683184</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Indigobirds</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   feature: </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Cameroon Indigobird [status: TRUE, current: 0.1, goal: 0.65]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Cameroon_Indigobird [total: 746 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Eastern Paradise-Whydah [status: TRUE, current: 0.24, goal: 0.83]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Eastern_Paradise_Whydah [total: 1089 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Togo Paradise-Whydah [status: TRUE, current: 0.5, goal: 0.59]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Togo_Paradise_Whydah [total: 574 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Exclamatory Paradise-Whydah [status: TRUE, current: 0.2, goal: 0.87]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Exclamatory_Paradise_Whydah [total: 474 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Straw-tailed Whydah [status: TRUE, current: 0.54, goal: 0.85]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Straw_tailed_Whydah [total: 1314 ha]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># print results</span></span>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> [[1]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Theme</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        f72967f2-69ff-4d1d-b3da-5dcc10cb66d2</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Eastern Yellow-billed Hornbill</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        0edf39e6-79f8-46c8-8369-2c451d52c9c0</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Tufted Flycatcher</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   feature: </span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Eastern Yellow-billed Hornbill habitat [status: TRUE, current: 0.47, goal: 0.78]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Eastern_Yellow_billed_Hornbill [total: 2543.68 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Tufted Flycatcher habitat [status: TRUE, current: 0.4, goal: 0.64]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Tufted_Flycatcher [total: 7225.61 ha]</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> [[2]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Theme</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        ec7003ed-1b49-4111-885e-70d3e9c7019e</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Collared Inca (Gould's)</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        de225018-45f6-4384-893b-723ab78d6d9b</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Sudan Golden Sparrow</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   feature: </span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Collared Inca (Gould's) habitat [status: TRUE, current: 0.44, goal: 0.64]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Collared_Inca_Gould_s_ [total: 9971.96 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Sudan Golden Sparrow habitat [status: TRUE, current: 0.5, goal: 0.77]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Sudan_Golden_Sparrow [total: 1308 ha]</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> [[3]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Theme</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        cf45b130-1867-488b-af9c-55d88140ccbc</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Chestnut-breasted Partridge</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        d18b9480-8991-4e1c-b96e-4fbe828c00d0</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Chestnut-headed Partridge (Siamese)</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   feature: </span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Chestnut-breasted Partridge habitat [status: TRUE, current: 0.49, goal: 0.87]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Chestnut_breasted_Partridge [total: 1217 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Chestnut-headed Partridge (Siamese) habitat [status: TRUE, current: 0.18, goal: 0.68]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Chestnut_headed_Partridge_Siamese_ [total: 4662.2 ha]</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> [[4]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Theme</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        9c5c1db2-24d0-4a74-b029-e622fe4ac934</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Cuckoos</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        5b52989e-ccd9-4687-b6b2-eafd977face8</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Boobies and Gannets</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   feature: </span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Dwarf Koel [status: TRUE, current: 0.46, goal: 0.7]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Dwarf_Koel [total: 5087 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Little Bronze-Cuckoo (Banda) [status: TRUE, current: 0.43, goal: 0.9]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Little_Bronze_Cuckoo_Banda_ [total: 217.32 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Gabon Coucal [status: TRUE, current: 0.23, goal: 0.86]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Gabon_Coucal [total: 4774.01 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Running Coua [status: TRUE, current: 0.5, goal: 0.52]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Running_Coua [total: 21752.1 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Crested Coua (Crested) [status: TRUE, current: 0.31, goal: 0.65]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Crested_Coua_Crested_ [total: 17752.16 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Brown Booby (Forster's) [status: TRUE, current: 0.27, goal: 0.61]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Brown_Booby_Forster_s_ [total: 1139 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Brown Booby (Atlantic) [status: TRUE, current: 0.33, goal: 0.56]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Brown_Booby_Atlantic_ [total: 1440 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Cape Gannet [status: TRUE, current: 0.28, goal: 0.57]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Cape_Gannet [total: 1594 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Brown Booby (Brewster's) [status: TRUE, current: 0.17, goal: 0.59]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Brown_Booby_Brewster_s_ [total: 836 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Red-footed Booby (Atlantic) [status: TRUE, current: 0.43, goal: 0.69]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Red_footed_Booby_Atlantic_ [total: 808 ha]</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> [[5]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Theme</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        749b47c5-b894-472c-b27a-383a11168041</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Cormorants and Shags</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        6a266691-bec4-4a4c-9af0-be4662683184</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Indigobirds</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   feature: </span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Magellanic Cormorant [status: TRUE, current: 0.2, goal: 0.78]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Magellanic_Cormorant [total: 4689.34 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Great Cormorant (North Atlantic) [status: TRUE, current: 0.32, goal: 0.63]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Great_Cormorant_North_Atlantic_ [total: 8010.78 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Little Black Cormorant [status: TRUE, current: 0.18, goal: 0.76]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Little_Black_Cormorant [total: 16426.73 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Bounty Islands Shag [status: TRUE, current: 0.42, goal: 0.85]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Bounty_Islands_Shag [total: 11452.06 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Macquarie Shag [status: TRUE, current: 0.27, goal: 0.63]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Macquarie_Shag [total: 239.89 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     New Zealand King Shag [status: TRUE, current: 0.26, goal: 0.73]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#New_Zealand_King_Shag [total: 12581.88 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Little Pied Cormorant [status: TRUE, current: 0.56, goal: 0.89]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Little_Pied_Cormorant [total: 9766.07 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Cameroon Indigobird [status: TRUE, current: 0.1, goal: 0.65]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Cameroon_Indigobird [total: 746 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Eastern Paradise-Whydah [status: TRUE, current: 0.24, goal: 0.83]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Eastern_Paradise_Whydah [total: 1089 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Togo Paradise-Whydah [status: TRUE, current: 0.5, goal: 0.59]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Togo_Paradise_Whydah [total: 574 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Exclamatory Paradise-Whydah [status: TRUE, current: 0.2, goal: 0.87]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Exclamatory_Paradise_Whydah [total: 474 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Straw-tailed Whydah [status: TRUE, current: 0.54, goal: 0.85]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Straw_tailed_Whydah [total: 1314 ha]</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 </code></pre></div>
   </div>

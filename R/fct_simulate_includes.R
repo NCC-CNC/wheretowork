@@ -34,9 +34,8 @@ NULL
 #' # simulate data
 #' if (requireNamespace("RandomFields")) {
 #'  x <- simulate_includes(dataset = d, n = 2)
-#'  
-#' # print results
-#' print(x)
+#'  # print results
+#'  print(x)
 #' }
 #'
 #' @export
