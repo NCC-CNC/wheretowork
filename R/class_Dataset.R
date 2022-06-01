@@ -95,13 +95,9 @@ Dataset <- R6::R6Class(
         )
       } else if (inherits(self$spatial_data, "Raster")) {
         #### CRS
-        assertthat::assert_that(
-          raster::compareCRS(
-            methods::as(sf::st_crs(self$spatial_data), "CRS"),
-            methods::as(sf::st_crs(3857), "CRS")
-          ),
-          msg = "raster data must be EPSG:3857"
-        )
+        # COME BACK TO THIS: VALIDATION TO CHECK THAT A CRS IS DEFINED
+        # assertthat::assert_that(
+        #)
       }
 
       ## validate attribute data
@@ -158,13 +154,10 @@ Dataset <- R6::R6Class(
             msg = "vector data must be EPSG:4326"
           )
         } else if (inherits(self$spatial_data, "Raster")) {
-          assertthat::assert_that(
-            raster::compareCRS(
-              methods::as(sf::st_crs(self$spatial_data), "CRS"),
-              methods::as(sf::st_crs(3857), "CRS")
-            ),
-            msg = "raster data must be EPSG:3857"
-          )
+          #### CRS
+          # COME BACK TO THIS: VALIDATION TO CHECK THAT A CRS IS DEFINED
+          # assertthat::assert_that(
+          #)
         }
       }
       ## attribute data
@@ -666,30 +659,9 @@ new_dataset_from_auto <- function(x, id = uuid::UUIDgenerate()) {
     spatial_data <- repair_spatial_data(spatial_data)
   }
 
-  # reproject the dataset as needed
-  spatial_data_crs <- methods::as(sf::st_crs(spatial_data), "CRS")
-  if (inherits(spatial_data, "sf")) {
-    correct_crs <- methods::as(sf::st_crs(4326), "CRS")
-    if (!raster::compareCRS(spatial_data_crs, correct_crs)) {
-      spatial_data <- sf::st_transform(spatial_data, 4326)
-    }
-  } else {
-    correct_crs <- methods::as(sf::st_crs(3857), "CRS")
-    if (!raster::compareCRS(spatial_data_crs, correct_crs)) {
-      spatial_data <- raster::projectRaster(spatial_data, correct_crs)
-    }
-  }
-
-  # if dataset is in EPSG:4326 then reproject it for boundary calculations
-  if (raster::isLonLat(correct_crs)) {
-    reproj_spatial_data <- sf::st_transform(spatial_data, 3857)
-  } else {
-    reproj_spatial_data <- spatial_data
-  }
-
   # prepare boundary data
   str_tree <- inherits(x, "sf") && !identical(Sys.info()[["sysname"]], "Darwin")
-  bm <- prioritizr::boundary_matrix(reproj_spatial_data, str_tree = str_tree)
+  bm <- prioritizr::boundary_matrix(spatial_data, str_tree = str_tree)
   if (inherits(x, "Raster")) {
     bm <- bm[attribute_data[["_index"]], attribute_data[["_index"]]]
   }
