@@ -41,10 +41,12 @@ NULL
 #' d <- new_dataset(f1, f2, f3)
 #'
 #' # simulate data
-#' x <- simulate_themes(data = d, n_single_themes = 3, n_multi_themes = 2)
+#' if (requireNamespace("RandomFields")) {
+#'  x <- simulate_themes(data = d, n_single_themes = 3, n_multi_themes = 2)
+#'  # print results
+#'  print(x)
+#' }
 #'
-#' # print results
-#' print(x)
 #' @export
 simulate_themes <- function(dataset, n_single_themes, n_multi_themes,
                             lambda = 5) {

@@ -164,18 +164,19 @@
 <span class='r-in'><span class='co'># create new dataset</span></span>
 <span class='r-in'><span class='va'>d</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_dataset.html'>new_dataset</a></span><span class='op'>(</span><span class='va'>f1</span>, <span class='va'>f2</span>, <span class='va'>f3</span><span class='op'>)</span></span>
 <span class='r-in'></span>
-<span class='r-in'><span class='co'># simulate data</span></span>
-<span class='r-in'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>simulate_weights</span><span class='op'>(</span>dataset <span class='op'>=</span> <span class='va'>d</span>, n <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span></span>
+<span class='r-in'><span class='co'>#' # simulate data</span></span>
+<span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span><span class='op'>(</span><span class='st'>"RandomFields"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span class='r-in'> <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>simulate_weights</span><span class='op'>(</span>dataset <span class='op'>=</span> <span class='va'>d</span>, n <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span></span>
+<span class='r-in'> <span class='co'># print results</span></span>
+<span class='r-in'> <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>}</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> ..</span>
-<span class='r-in'></span>
-<span class='r-in'><span class='co'># print results</span></span>
-<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> [[1]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Weight</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       6f4492d9-be22-4911-9543-2f2c8d32467e</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:     Engagement potential</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   variable: .../sim_raster_spatial.tif#Engagement_potential [total: 148.49 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   current:  0.46</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       e5075e84-9236-4b80-9697-7d9795f76336</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:     Invasive species</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   variable: .../sim_raster_spatial.tif#Invasive_species [total: 149.33 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   current:  0.58</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   visible:  TRUE</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   hidden:  FALSE</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   status:   TRUE</span>
@@ -183,15 +184,16 @@
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> [[2]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Weight</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       c46dd0ce-a9d3-491b-a93f-d68559aab8ba</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:     Marine vessel traffic (threat)</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   variable: .../sim_raster_spatial.tif#Marine_vessel_traffic_threat_ [total: 145.83 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   current:  0.14</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       6f08ae35-f0f6-4b96-a8d3-ff889e383c07</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:     Rugged terrain</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   variable: .../sim_raster_spatial.tif#Rugged_terrain [total: 146.3 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   current:  0.4</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   visible:  TRUE</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   hidden:  FALSE</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   status:   TRUE</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   factor:   0</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-in'></span>
 </code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -2,6 +2,7 @@ context("min_shortfall_result")
 
 test_that("no spatial clustering", {
   skip_on_ci()
+  skip_if_not_installed("RandomFields")  
   # create object
   ## create dataset
   RandomFields::RFoptions(seed = 200)
@@ -106,6 +107,7 @@ test_that("no spatial clustering", {
 
 test_that("spatial clustering", {
   skip_on_ci()
+  skip_if_not_installed("RandomFields")  
   # create object
   ## create dataset
   RandomFields::RFoptions(seed = 200)
@@ -189,6 +191,7 @@ test_that("spatial clustering", {
 
 test_that("no includes", {
   skip_on_ci()
+  skip_if_not_installed("RandomFields")  
   # create object
   ## create dataset
   RandomFields::RFoptions(seed = 200)
@@ -266,6 +269,7 @@ test_that("no includes", {
 
 test_that("no weights", {
   skip_on_ci()
+  skip_if_not_installed("RandomFields")
   # create object
   ## create dataset
   RandomFields::RFoptions(seed = 200)
@@ -343,6 +347,7 @@ test_that("no weights", {
 
 test_that("mixed weights", {
   skip_on_ci()
+  skip_if_not_installed("RandomFields")
   # create object
   ## create dataset
   RandomFields::RFoptions(seed = 200)

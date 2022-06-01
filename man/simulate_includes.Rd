@@ -36,10 +36,12 @@ f3 <- system.file(
 d <- new_dataset(f1, f2, f3)
 
 # simulate data
-x <- simulate_includes(dataset = d, n = 2)
+if (requireNamespace("RandomFields")) {
+ x <- simulate_includes(dataset = d, n = 2)
+ # print results
+ print(x)
+}
 
-# print results
-print(x)
 }
 \seealso{
 \link{new_include}.

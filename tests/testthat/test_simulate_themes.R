@@ -1,6 +1,7 @@
 context("simulate_themes")
 
 test_that("simple dataset (single feature)", {
+  skip_if_not_installed("RandomFields")
   # create object
   d <- new_dataset_from_auto(import_simple_raster_data())
   x <- simulate_themes(d, 1, 1)
@@ -19,6 +20,7 @@ test_that("simple dataset (single feature)", {
 })
 
 test_that("simple dataset (multiple features)", {
+  skip_if_not_installed("RandomFields")
   # create object
   d <- new_dataset_from_auto(import_simple_raster_data())
   x <- simulate_themes(d, 3, 2, 2)
@@ -37,6 +39,7 @@ test_that("simple dataset (multiple features)", {
 })
 
 test_that("large dataset", {
+  skip_if_not_installed("RandomFields")
   # create object
   d <- new_dataset_from_auto(import_realistic_raster_data())
   x <- simulate_themes(d, 3, 2, 2)

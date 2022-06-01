@@ -1,6 +1,7 @@
 context("new_variable")
 
 test_that("initialization", {
+  skip_if_not_installed("RandomFields")
   # prepare data
   rd <- simulate_proportion_spatial_data(import_simple_raster_data(), 2)
   d <- new_dataset_from_auto(rd)
@@ -22,6 +23,7 @@ test_that("initialization", {
 })
 
 test_that("methods", {
+  skip_if_not_installed("RandomFields")
   # prepare data
   rd <- simulate_proportion_spatial_data(import_simple_raster_data(), 2)
   d <- new_dataset_from_auto(rd)
@@ -39,6 +41,7 @@ test_that("methods", {
 })
 
 test_that("export method", {
+  skip_if_not_installed("RandomFields")
   # prepare data
   rd <- simulate_proportion_spatial_data(import_simple_raster_data(), 2)
   d <- new_dataset_from_auto(rd)
@@ -62,6 +65,7 @@ test_that("export method", {
 })
 
 test_that("new_variable_from_auto (continuous)", {
+  skip_if_not_installed("RandomFields")
   # prepare data
   rd <- simulate_continuous_spatial_data(import_simple_raster_data(), 2)
   d <- new_dataset_from_auto(rd)
@@ -87,6 +91,7 @@ test_that("new_variable_from_auto (continuous)", {
 })
 
 test_that("new_variable_from_auto (categorical)", {
+  skip_if_not_installed("RandomFields")
   # prepare data
   rd <- simulate_categorical_spatial_data(import_simple_raster_data(), 2)
   d <- new_dataset_from_auto(rd)
