@@ -202,7 +202,7 @@ dir.create(
 write_project(
   x = append(themes, append(includes, weights)),
   dataset = dataset,
-  name = "Ontario pilot dataset",
+  name = "Ontario pilot dataset Albers",
   path =
     "inst/extdata/projects/ontario_pilot_albers/ontario_pilot.yaml",
   spatial_path =
