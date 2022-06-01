@@ -42,40 +42,42 @@ NULL
 #' @return Invisible `TRUE` indicating success.
 #'
 #' @examples
-#' # find data file paths
-#' f1 <- system.file(
-#'   "extdata", "projects", "sim_raster", "sim_raster_spatial.tif",
-#'   package = "wheretowork"
-#' )
-#' f2 <- system.file(
-#'   "extdata", "projects", "sim_raster", "sim_raster_attribute.csv.gz",
-#'   package = "wheretowork"
-#' )
-#' f3 <- system.file(
-#'   "extdata", "projects", "sim_raster", "sim_raster_boundary.csv.gz",
-#'   package = "wheretowork"
-#' )
+#' if (requireNamespace("RandomFields")) {
+#'  # find data file paths
+#'  f1 <- system.file(
+#'    "extdata", "projects", "sim_raster", "sim_raster_spatial.tif",
+#'    package = "wheretowork"
+#'  )
+#'  f2 <- system.file(
+#'    "extdata", "projects", "sim_raster", "sim_raster_attribute.csv.gz",
+#'    package = "wheretowork"
+#'  )
+#'  f3 <- system.file(
+#'    "extdata", "projects", "sim_raster", "sim_raster_boundary.csv.gz",
+#'    package = "wheretowork"
+#'  )
 #'
-#' # create new dataset
-#' d <- new_dataset(f1, f2, f3)
+#'  # create new dataset
+#'  d <- new_dataset(f1, f2, f3)
 #'
-#' # simulate themes and weights
-#' th <- simulate_themes(d, 1, 1, 2)
-#' w <- simulate_weights(d, 1)
+#'  # simulate themes and weights
+#'  th <- simulate_themes(d, 1, 1, 2)
+#'  w <- simulate_weights(d, 1)
 #'
-#' # combine themes and weights into a list
-#' l <- append(th, w)
+#'  # combine themes and weights into a list
+#'  l <- append(th, w)
 #'
-#' # save project
-#' write_project(
-#'   x = l,
-#'   name = "example",
-#'   dataset = d,
-#'   path = tempfile(),
-#'   spatial_path = tempfile(fileext = ".tif"),
-#'   attribute_path = tempfile(fileext = ".csv.gz"),
-#'   boundary_path = tempfile(fileext = ".csv.gz")
-#' )
+#'  # save project
+#'  write_project(
+#'    x = l,
+#'    name = "example",
+#'    dataset = d,
+#'    path = tempfile(),
+#'    spatial_path = tempfile(fileext = ".tif"),
+#'    attribute_path = tempfile(fileext = ".csv.gz"),
+#'    boundary_path = tempfile(fileext = ".csv.gz")
+#'  )
+#'}  
 #' @export
 write_project <- function(x, dataset, path, name,
                           spatial_path, attribute_path, boundary_path,
