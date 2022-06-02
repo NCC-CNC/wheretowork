@@ -10,6 +10,7 @@ test_that("singe user group", {
   expect_equal(
     x$name,
     c("Ontario pilot dataset",
+      "Ontario pilot dataset Albers",
       "Example GeoTIFF dataset",
       "Example Shapefile dataset"
     )
@@ -17,6 +18,7 @@ test_that("singe user group", {
   expect_equal(
     basename(x$path),
     c("ontario_pilot.yaml",
+      "ontario_pilot.yaml",
       "sim_raster_data.yaml",
       "sim_vector_data.yaml"
     )
@@ -35,6 +37,7 @@ test_that("multiple user groups", {
     x$name,
     c(
       "Ontario pilot dataset",
+      "Ontario pilot dataset Albers",
       "Example GeoTIFF dataset",
       "Example GeoTIFF dataset (themes)",
       "Example GeoTIFF dataset (hidden)",
@@ -45,6 +48,7 @@ test_that("multiple user groups", {
   expect_equal(
     basename(x$path),
     c("ontario_pilot.yaml",
+      "ontario_pilot.yaml",
       "sim_raster_data.yaml",
       "sim_raster2_data.yaml",
       "sim_raster3_data.yaml",
