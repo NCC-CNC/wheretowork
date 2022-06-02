@@ -91,12 +91,10 @@ is_valid_spatial_file <- function(x) {
 
     ## verify correct projection
     if (
-      !raster::compareCRS(
-        methods::as(sf::st_crs(f), "CRS"),
-        methods::as(sf::st_crs(4326), "CRS")
+      is.na(methods::as(sf::st_crs(f), "CRS"))
       )
-    ) {
-      return("Error: coordinate reference system must be EPSG:4326")
+    {
+      return("Error: coordinate reference system must be defined")
     }
   } else if (any(endsWith(x, ".tif"))) {
     ## extract tif file

@@ -172,8 +172,17 @@ Variable <- R6::R6Class(
           )
         })
       } else if (inherits(d, "sf")) {
+        ## re-project sf to 4326 for display (if necessary)
+        if (
+          !raster::compareCRS(
+          methods::as(sf::st_crs(d), "CRS"),
+          methods::as(sf::st_crs(4326), "CRS"))
+          ) {
+           d <- sf::st_transform(d, 4326)
+          }
         ## prepare data
-        d <- sf::as_Spatial(d)
+        d <- sf::as_Spatial(d)        
+        
         if (inherits(d, "SpatialPolygonsDataFrame")) {
           f <- leaflet::addPolygons
         } else if (inherits(d, "SpatialLinesDataFrame")) {

@@ -87,11 +87,9 @@ Dataset <- R6::R6Class(
       if (inherits(self$spatial_data, "sf")) {
         #### CRS
         assertthat::assert_that(
-          raster::compareCRS(
-            methods::as(sf::st_crs(self$spatial_data), "CRS"),
-            methods::as(sf::st_crs(4326), "CRS")
+          !is.na(methods::as(sf::st_crs(self$spatial_data), "CRS")
           ),
-          msg = "vector data must be EPSG:4236"
+          msg = "vector data must have a defined CRS"
         )
       } else if (inherits(self$spatial_data, "Raster")) {
         #### CRS
@@ -149,11 +147,9 @@ Dataset <- R6::R6Class(
         if (inherits(self$spatial_data, "sf")) {
           #### CRS
           assertthat::assert_that(
-            raster::compareCRS(
-              methods::as(sf::st_crs(self$spatial_data), "CRS"),
-              methods::as(sf::st_crs(4326), "CRS")
+            !is.na(methods::as(sf::st_crs(self$spatial_data), "CRS")
             ),
-            msg = "vector data must be EPSG:4326"
+            msg = "vector data must have a defined CRS"
           )
         } else if (inherits(self$spatial_data, "Raster")) {
           #### CRS
