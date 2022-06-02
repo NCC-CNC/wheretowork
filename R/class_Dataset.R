@@ -95,9 +95,11 @@ Dataset <- R6::R6Class(
         )
       } else if (inherits(self$spatial_data, "Raster")) {
         #### CRS
-        # COME BACK TO THIS: VALIDATION TO CHECK THAT A CRS IS DEFINED
-        # assertthat::assert_that(
-        #)
+        assertthat::assert_that(
+          !is.na(methods::as(sf::st_crs(self$spatial_data), "CRS")
+          ),
+          msg = "raster data must have a defined CRS"
+        )
       }
 
       ## validate attribute data
@@ -155,9 +157,11 @@ Dataset <- R6::R6Class(
           )
         } else if (inherits(self$spatial_data, "Raster")) {
           #### CRS
-          # COME BACK TO THIS: VALIDATION TO CHECK THAT A CRS IS DEFINED
-          # assertthat::assert_that(
-          #)
+           assertthat::assert_that(
+            !is.na(methods::as(sf::st_crs(self$spatial_data), "CRS")
+            ),
+            msg = "raster data must have a defined CRS"
+          )
         }
       }
       ## attribute data
