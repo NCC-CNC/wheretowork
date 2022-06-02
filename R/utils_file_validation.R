@@ -108,14 +108,12 @@ is_valid_spatial_file <- function(x) {
       return("Error: not valid GeoTIFF file format")
     }
 
-    ## verify correct projection
+    ## verify a projection is defined
     if (
-      !raster::compareCRS(
-        methods::as(sf::st_crs(f), "CRS"),
-        methods::as(sf::st_crs(3857), "CRS")
-      )
-    ) {
-      return("Error: coordinate reference system must be EPSG:3857")
+        is.na(methods::as(sf::st_crs(f), "CRS"))
+        )
+      {
+      return("Error: a coordinate reference system must be defined")
     }
   } else {
     ## throw error because file is not ESRI Shapefile or GeoTIFF
