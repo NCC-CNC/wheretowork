@@ -18,7 +18,7 @@ test_that("singe user group", {
   expect_equal(
     basename(x$path),
     c("ontario_pilot.yaml",
-      "ontario_pilot.yaml",
+      "ontario_pilot_albers.yaml",
       "sim_raster_data.yaml",
       "sim_vector_data.yaml"
     )
@@ -48,7 +48,7 @@ test_that("multiple user groups", {
   expect_equal(
     basename(x$path),
     c("ontario_pilot.yaml",
-      "ontario_pilot.yaml",
+      "ontario_pilot_albers.yaml",
       "sim_raster_data.yaml",
       "sim_raster2_data.yaml",
       "sim_raster3_data.yaml",

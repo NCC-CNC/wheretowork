@@ -204,13 +204,13 @@ write_project(
   dataset = dataset,
   name = "Ontario pilot dataset Albers",
   path =
-    "inst/extdata/projects/ontario_pilot_albers/ontario_pilot.yaml",
+    "inst/extdata/projects/ontario_pilot_albers/ontario_pilot_albers.yaml",
   spatial_path =
-    "inst/extdata/projects/ontario_pilot_albers/ontario_pilot_spatial.tif",
+    "inst/extdata/projects/ontario_pilot_albers/ontario_pilot_albers_spatial.tif",
   attribute_path =
-    "inst/extdata/projects/ontario_pilot_albers/ontario_pilot_attribute.csv.gz",
+    "inst/extdata/projects/ontario_pilot_albers/ontario_pilot_albers_attribute_albers.csv.gz",
   boundary_path =
-    "inst/extdata/projects/ontario_pilot_albers/ontario_pilot_boundary.csv.gz",
+    "inst/extdata/projects/ontario_pilot_albers/ontario_pilot_albers_boundary.csv.gz",
   mode = "advanced",
   author_name = "Richard Schuster",
   author_email = "richard.schuster@natureconservancy.ca"

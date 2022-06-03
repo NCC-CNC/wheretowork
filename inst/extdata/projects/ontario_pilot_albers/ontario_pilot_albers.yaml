@@ -3,9 +3,9 @@ author_name: Richard Schuster
 author_email: richard.schuster@natureconservancy.ca
 mode: advanced
 user_groups: public
-spatial_path: ontario_pilot_spatial.tif
-attribute_path: ontario_pilot_attribute.csv.gz
-boundary_path: ontario_pilot_boundary.csv.gz
+spatial_path: ontario_pilot_albers_spatial.tif
+attribute_path: ontario_pilot_albers_attribute_albers.csv.gz
+boundary_path: ontario_pilot_albers_boundary.csv.gz
 themes:
 - name: Alvar
   feature:
