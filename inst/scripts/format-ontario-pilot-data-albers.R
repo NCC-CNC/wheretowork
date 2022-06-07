@@ -208,7 +208,7 @@ write_project(
   spatial_path =
     "inst/extdata/projects/ontario_pilot_albers/ontario_pilot_albers_spatial.tif",
   attribute_path =
-    "inst/extdata/projects/ontario_pilot_albers/ontario_pilot_albers_attribute_albers.csv.gz",
+    "inst/extdata/projects/ontario_pilot_albers/ontario_pilot_albers_attribute.csv.gz",
   boundary_path =
     "inst/extdata/projects/ontario_pilot_albers/ontario_pilot_albers_boundary.csv.gz",
   mode = "advanced",
