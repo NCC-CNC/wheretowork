@@ -29,11 +29,12 @@ test_that("spatial file (vector)", {
     "extdata", "projects", "sim_vector", "sim_vector_spatial.shx",
     package = "wheretowork"
   )
+  # WGS84. is_valid_spatial_file output only TRUE with a projected CRS
   f4 <- system.file(
     "extdata", "projects", "sim_vector", "sim_vector_spatial.prj",
     package = "wheretowork"
   )
-  expect_true(isTRUE(is_valid_spatial_file(c(f1, f2, f3, f4))))
+  expect_false(isTRUE(is_valid_spatial_file(c(f1, f2, f3, f4))))
 })
 
 test_that("attribute file", {
