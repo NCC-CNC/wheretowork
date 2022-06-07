@@ -658,10 +658,17 @@ new_dataset_from_auto <- function(x, id = uuid::UUIDgenerate()) {
   if (inherits(spatial_data, "sf")) {
     spatial_data <- repair_spatial_data(spatial_data)
   }
+  
+  # re-project sf if CRS is not projected. only used for generating boundary
+  if (inherits(spatial_data, "sf") & (sf::st_is_longlat(spatial_data))) {
+    bm_spatial_data  <- sf::st_transform(spatial_data, 3857)
+  } else {
+    bm_spatial_data <- spatial_data
+  }
 
   # prepare boundary data
   str_tree <- inherits(x, "sf") && !identical(Sys.info()[["sysname"]], "Darwin")
-  bm <- prioritizr::boundary_matrix(spatial_data, str_tree = str_tree)
+  bm <- prioritizr::boundary_matrix(bm_spatial_data, str_tree = str_tree)
   if (inherits(x, "Raster")) {
     bm <- bm[attribute_data[["_index"]], attribute_data[["_index"]]]
   }
