@@ -660,7 +660,7 @@ new_dataset_from_auto <- function(x, id = uuid::UUIDgenerate()) {
   }
   
   # re-project sf if CRS is not projected. only used for generating boundary
-  if (inherits(spatial_data, "sf") & (sf::st_is_longlat(spatial_data))) {
+  if (inherits(spatial_data, "sf") && (sf::st_is_longlat(spatial_data))) {
     bm_spatial_data  <- sf::st_transform(spatial_data, 3857)
   } else {
     bm_spatial_data <- spatial_data
