@@ -26,18 +26,29 @@ server_verify_spatial_uploads <- quote({
     )
     ## validate file format
     if (!isTRUE(v)) {
-      ### display feedback on file input
-      shinyFeedback::showFeedbackDanger(
-        inputId = "importModal_spatial_spatial_file",
-        text = v
-      )
-      ### update variable to indicate no valid configuration file
-      app_data$spatial_path <- NULL
-      ### disable import button
-      disable_html_element("importModal_spatial_button")
-      ## exit
-      return()
-    }
+      # Error message
+      if (stringi::stri_split_fixed(v,":")[[1]][1] == "Error") {
+        ### display feedback on file input
+        shinyFeedback::showFeedbackDanger(
+          inputId = "importModal_spatial_spatial_file",
+          text = v
+        )
+        ### update variable to indicate no valid configuration file
+        app_data$spatial_path <- NULL
+        ### disable import button
+        disable_html_element("importModal_spatial_button")
+        ## exit
+        return() 
+      }
+      # Warning message - user can continue
+      if (stringi::stri_split_fixed(v,":")[[1]][1] == "Warning") {
+        ### display feedback on file input
+        shinyFeedback::showFeedbackWarning(
+          inputId = "importModal_spatial_spatial_file",
+          text = v
+        )
+      }
+    }  
     ## update app state given with shapefile path
     app_data$spatial_path <- f[endsWith(f, ".shp")]
     ## display feedback on file input
