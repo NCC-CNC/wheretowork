@@ -163,3 +163,28 @@ test_that("new_variable_from_metadata (categorical)", {
     new_categorical_legend(seq(1, 6), color_palette("viridis", 6))
   )
 })
+
+test_that("render (project on the fly)", {
+  # find data file paths
+  f1 <- system.file(
+    "extdata", "projects", "ontario_pilot_albers", "ontario_pilot_albers_spatial.tif",
+    package = "wheretowork"
+  )
+  f2 <- system.file(
+    "extdata",  "projects", "ontario_pilot_albers", "ontario_pilot_albers_attribute.csv.gz",
+    package = "wheretowork"
+  )
+  f3 <- system.file(
+    "extdata",  "projects", "ontario_pilot_albers", "ontario_pilot_albers_boundary.csv.gz",
+    package = "wheretowork"
+  )
+  # create object
+  d <- new_dataset(f1, f2, f3)
+  v <- new_variable_from_auto(dataset = d, index = "R1km_Habitat_Forest", units = "km2")
+  # render on map
+  l <- leaflet::leaflet() %>% leaflet::addTiles()
+  m <- v$render(x = l, id = "id", zindex = 1000, visible = TRUE)
+  # run tests
+  expect_is(m, "leaflet")
+})
+
