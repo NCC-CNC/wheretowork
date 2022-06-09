@@ -157,13 +157,19 @@ Variable <- R6::R6Class(
       x <- leaflet::addMapPane(x, pane_id, zindex, visible)
       # add data to leaflet map
       if (inherits(d, "Raster")) {
+        # Set project on the fly flag
+        if (self$dataset$get_crs()[[1]] == "WGS 84 / Pseudo-Mercator") {
+          project_on_fly <- FALSE
+        } else {
+          project_on_fly <- TRUE
+        }
         ## add raster data
         suppressWarnings({
           x <- leaflet::addRasterImage(
             map = x,
             x = d,
             opacity = 0.8,
-            project = TRUE,
+            project = project_on_fly,
             maxBytes = 1 * 1024 * 1024, # 1MB max size
             method = self$legend$get_resample_method(),
             colors = self$legend$get_color_map(),
