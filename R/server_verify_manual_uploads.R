@@ -69,7 +69,7 @@ server_verify_manual_uploads <- quote({
     ## validate file format
     if (!isTRUE(v)) {
       # Error message
-      if (stringi::stri_split_fixed(v,":")[[1]][1] == "Error") {
+      if (startsWith(v, "Error")) {
         ### display feedback on file input
         shinyFeedback::showFeedbackDanger(
           inputId = "importModal_manual_spatial_file",
@@ -83,7 +83,7 @@ server_verify_manual_uploads <- quote({
         return()
       }
       # Warning message - user can continue
-      if (stringi::stri_split_fixed(v,":")[[1]][1] == "Warning") {
+      if (startsWith(v, "Warning")) {
         ### display feedback on file input
         shinyFeedback::showFeedbackWarning(
           inputId = "importModal_manual_spatial_file",

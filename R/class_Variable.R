@@ -158,7 +158,7 @@ Variable <- R6::R6Class(
       # add data to leaflet map
       if (inherits(d, "Raster")) {
         # Set project on the fly flag
-        if (self$dataset$get_crs()[[1]] == "WGS 84 / Pseudo-Mercator") {
+        if (self$dataset$get_crs() == st_crs(3857)) {
           project_on_fly <- FALSE
         } else {
           project_on_fly <- TRUE
