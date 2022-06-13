@@ -35,7 +35,7 @@ find_projects <- function(x, user_groups = "public") {
 
   # find project files
   out <- tibble::tibble(
-    path = dir(x, "^.*\\.yaml", full.names = TRUE, recursive = TRUE)
+    path = dir(x, "^.*\\.yaml$", full.names = TRUE, recursive = TRUE)
   )
 
   # import project data
@@ -58,7 +58,7 @@ find_projects <- function(x, user_groups = "public") {
     out$status <- TRUE
   } else {
     out$status <- vapply(project_configs, FUN.VALUE = logical(1), function(x) {
-      if (is.null(x)) return(NA_character_)
+      if (is.null(x)) return(FALSE)
       if (is.null(x$user_group)) {
         x$user_group <- "private" # default project user group to private
       }
