@@ -89,14 +89,11 @@ is_valid_spatial_file <- function(x) {
       )
     }
 
-    ## verify correct projection
-    if (
-      !raster::compareCRS(
-        methods::as(sf::st_crs(f), "CRS"),
-        methods::as(sf::st_crs(4326), "CRS")
-      )
-    ) {
-      return("Error: coordinate reference system must be EPSG:4326")
+    ## verify projection (vector)
+    if (is.na(methods::as(sf::st_crs(f), "CRS"))) {
+      return("Error: coordinate reference system must be defined")
+    } else if (sf::st_is_longlat(f)) {
+      return("Warning: projected coordinate system recommended")
     }
   } else if (any(endsWith(x, ".tif"))) {
     ## extract tif file
@@ -108,14 +105,11 @@ is_valid_spatial_file <- function(x) {
       return("Error: not valid GeoTIFF file format")
     }
 
-    ## verify correct projection
-    if (
-      !raster::compareCRS(
-        methods::as(sf::st_crs(f), "CRS"),
-        methods::as(sf::st_crs(3857), "CRS")
-      )
-    ) {
-      return("Error: coordinate reference system must be EPSG:3857")
+    ## verify projection (raster)
+    if (is.na(methods::as(sf::st_crs(f), "CRS"))) {
+      return("Error: coordinate reference system must be defined")
+    } else if (raster::isLonLat(f)) {
+      return("Error: projected coordinate system required")
     }
   } else {
     ## throw error because file is not ESRI Shapefile or GeoTIFF

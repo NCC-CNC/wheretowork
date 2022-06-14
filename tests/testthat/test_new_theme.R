@@ -444,3 +444,44 @@ test_that("widget methods (multiple features)", {
     )
   )
 })
+
+test_that("render on map (project on the fly)", {
+  # find data file paths
+  f1 <- system.file(
+    "extdata", "projects", "ontario_pilot_albers", "ontario_pilot_albers_spatial.tif",
+    package = "wheretowork"
+  )
+  
+  f2 <- system.file(
+    "extdata",  "projects", "ontario_pilot_albers", "ontario_pilot_albers_attribute.csv.gz",
+    package = "wheretowork"
+  )
+  f3 <- system.file(
+    "extdata",  "projects", "ontario_pilot_albers", "ontario_pilot_albers_boundary.csv.gz",
+    package = "wheretowork"
+  )
+  
+  # create object
+  d <- new_dataset(f1, f2, f3)
+  v <- new_variable_from_auto(dataset = d, index = "R1km_Habitat_Forest", units = "km2")
+  f <- new_feature(
+    name = "Forest",
+    variable = v,
+    visible = TRUE,
+    status = FALSE,
+    goal = 0.2,
+    limit_goal = 0.05,
+    current = 0.2567,
+    id = "FID1"
+  )
+  t <- new_theme(
+    name = "Habitat",
+    feature = f,
+    id = "TID1"
+  )
+  # render map
+  l <- leaflet::leaflet() %>% leaflet::addTiles()
+  m <- t$render_on_map(x = l, zindex = 1000)
+  # run tests
+  expect_is(m, "leaflet")
+})

@@ -157,13 +157,19 @@ Variable <- R6::R6Class(
       x <- leaflet::addMapPane(x, pane_id, zindex, visible)
       # add data to leaflet map
       if (inherits(d, "Raster")) {
+        # Set project on the fly flag
+        if (self$dataset$get_crs() == st_crs(3857)) {
+          project_on_fly <- FALSE
+        } else {
+          project_on_fly <- TRUE
+        }
         ## add raster data
         suppressWarnings({
           x <- leaflet::addRasterImage(
             map = x,
             x = d,
             opacity = 0.8,
-            project = FALSE,
+            project = project_on_fly,
             maxBytes = 1 * 1024 * 1024, # 1MB max size
             method = self$legend$get_resample_method(),
             colors = self$legend$get_color_map(),
@@ -172,8 +178,17 @@ Variable <- R6::R6Class(
           )
         })
       } else if (inherits(d, "sf")) {
+        ## re-project sf to 4326 for display (if necessary)
+        if (
+          !raster::compareCRS(
+          methods::as(sf::st_crs(d), "CRS"),
+          methods::as(sf::st_crs(4326), "CRS"))
+          ) {
+           d <- sf::st_transform(d, 4326)
+          }
         ## prepare data
-        d <- sf::as_Spatial(d)
+        d <- sf::as_Spatial(d)        
+        
         if (inherits(d, "SpatialPolygonsDataFrame")) {
           f <- leaflet::addPolygons
         } else if (inherits(d, "SpatialLinesDataFrame")) {
