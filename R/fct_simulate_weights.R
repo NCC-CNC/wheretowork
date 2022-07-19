@@ -9,6 +9,9 @@ NULL
 #'
 #' @param n `integer` number of weights to simulate.
 #'
+#' @param continuous `logical` should the data be continuous? 
+#' Defaults to `TRUE`.
+#' 
 #' @return A `list` of simulated [Weight] objects.
 #'
 #' @seealso [new_weight].
@@ -39,14 +42,17 @@ NULL
 #' }
 #' 
 #' @export
-simulate_weights <- function(dataset, n) {
+simulate_weights <- function(dataset, n, continuous = TRUE) {
+  
   # assert arguments are valid
   assertthat::assert_that(
     ## data
     inherits(dataset, c("Dataset")),
     ## weights
     assertthat::is.count(n),
-    assertthat::noNA(n)
+    assertthat::noNA(n),
+    assertthat::is.flag(continuous),
+    assertthat::noNA(continuous)
   )
 
   # extract data
@@ -67,7 +73,11 @@ simulate_weights <- function(dataset, n) {
   wn_index <- make_valid_names(wn[[1]])
 
   # simulate underlying data values
-  wd <- simulate_proportion_spatial_data(data, n)
+  if (continuous) {
+    wd <- simulate_proportion_spatial_data(data, n)
+  } else {
+    wd <- simulate_categorical_spatial_data(data, n)
+  }  
   names(wd)[seq_len(n)] <- wn_index
   if (inherits(data, "sf")) {
     for (i in seq_along(wn_index)) {
@@ -82,14 +92,24 @@ simulate_weights <- function(dataset, n) {
 
   # generate weights
   w <- lapply(seq_len(n), function(i) {
+    if (continuous) {
+      v <- new_variable_from_auto(dataset = dataset, index = wn_index[[i]], 
+        units = "ha",provenance = sample(c("regional", "national"), 1)
+      )
+    } else {
+      d <- dataset$get_attribute_data()[[wn_index[[i]]]]
+      u <- c(na.omit(unique(d)))
+      cp <- color_palette(x = "random", n = length(u))
+      v <- new_variable(dataset = dataset, index = wn_index[[i]], 
+        units = "ha", legend = new_manual_legend(cp, paste("value:", u)), 
+        total = sum(d, na.rm = TRUE),  
+        provenance = new_provenance_from_source("national")) 
+    }
+    
     new_weight(
       name = wn[[1]][i],
       current = round(stats::runif(1, 0.1, 0.6), 2),
-      variable =
-        new_variable_from_auto(
-          dataset = dataset, index = wn_index[[i]], units = "ha",
-          provenance = sample(c("regional", "national"), 1)
-        )
+      variable = v
     )
   })
 
