@@ -17,6 +17,9 @@ NULL
 #'   of features for themes that contain multiple features.
 #'   This parameter is used as a argument to `rpois(n, lambda = lambda)`.
 #'   Defaults to 5.
+#'   
+#' @param continuous `logical` should the data be continuous?  
+#' Defaults to `NA`.
 #'
 #' @return A `list` of simulated [Theme] objects.
 #'
@@ -49,7 +52,8 @@ NULL
 #'
 #' @export
 simulate_themes <- function(dataset, n_single_themes, n_multi_themes,
-                            lambda = 5) {
+                            lambda = 5, continuous = NA) {
+ 
   # assert arguments are valid
   assertthat::assert_that(
     ## data
@@ -63,7 +67,9 @@ simulate_themes <- function(dataset, n_single_themes, n_multi_themes,
     n_single_themes + n_multi_themes > 0,
     ## lambda
     assertthat::is.number(lambda),
-    assertthat::noNA(lambda)
+    assertthat::noNA(lambda),
+    ## continuous
+    class(continuous) == "logical"
   )
 
   # extract data
@@ -82,12 +88,21 @@ simulate_themes <- function(dataset, n_single_themes, n_multi_themes,
   st <- list()
   for (i in seq_len(n_single_themes)) {
     ### simulate features for the theme
-    if (stats::runif(1) > 0.5) {
+    if (is.na(continuous)) {
+      ### Randomly choose which data type to simulate
+      if (stats::runif(1) > 0.5) {
+        #### simulate continuous feature data
+        std <- simulate_continuous_spatial_data(data, 1)
+      } else {
+        #### simulate categorical feature data
+        std <- simulate_categorical_spatial_data(data, 1)
+      }      
+    } else if (continuous) {
       #### simulate continuous feature data
       std <- simulate_continuous_spatial_data(data, 1)
     } else {
       #### simulate categorical feature data
-      std <- simulate_categorical_spatial_data(data, 1)
+      std <- simulate_categorical_spatial_data(data, 1)      
     }
     names(std)[1] <- st_index[i]
     ### append data to dataset
@@ -95,6 +110,24 @@ simulate_themes <- function(dataset, n_single_themes, n_multi_themes,
       dataset$add_index(st_index[i], std[[1]])
     } else {
       dataset$add_index(st_index[i], std[[1]][idx])
+    }
+    
+    ### Check if data is categorical 
+    if (sum(dataset$attribute_data[st_index[i]]) %% 1 == 0) {
+      ### build variable with new manual legend
+      d <- dataset$get_attribute_data()[[st_index[[i]]]]
+      u <- c(na.omit(unique(d)))
+      cp <- color_palette(x = "random", n = length(u))
+      v <- new_variable(dataset = dataset, index = st_index[[i]], 
+        units = "ha", legend = new_manual_legend(cp, paste("value:", u)), 
+        total = sum(d, na.rm = TRUE),
+        provenance = new_provenance_from_source("national"))       
+    } else {
+      ### build variable with auto legend (all data here should be continuous)
+      v = new_variable_from_auto(
+        dataset = dataset, index = st_index[[i]], units = "ha",
+        provenance = sample(c("regional", "national"), 1)
+      )
     }
     ### create theme
     st[[i]] <- new_theme(
@@ -104,10 +137,7 @@ simulate_themes <- function(dataset, n_single_themes, n_multi_themes,
         goal = round(stats::runif(1, 0.5, 0.9), 2),
         current = round(stats::runif(1, 0.1, 0.6), 2),
         limit_goal = round(stats::runif(1, 0, 0.4), 2),
-        variable = new_variable_from_auto(
-          dataset = dataset, index = st_index[[i]], units = "ha",
-          provenance = sample(c("regional", "national"), 1)
-        )
+        variable = v
       )
     )
   }
@@ -147,7 +177,22 @@ simulate_themes <- function(dataset, n_single_themes, n_multi_themes,
       sample(tn$feature[tn$theme == mt_names[i]], mt_n_features[i])
     curr_tn_index <- make_valid_names(curr_tn_names)
     ### simulate features within the theme
-    if (stats::runif(1) > 0.5) {
+    
+    if (is.na(continuous)) {
+      ### Randomly choose which data type to simulate
+      if (stats::runif(1) > 0.5) {
+        #### simulate continuous data
+        curr_mtd <-
+          simulate_continuous_spatial_data(
+            data, mt_n_features[i]
+          )
+      } else {
+        #### simulate categorical data
+        curr_mtd <- simulate_categorical_spatial_data(
+          data, mt_n_features[i]
+        )
+      }      
+    } else if (continuous) {
       #### simulate continuous data
       curr_mtd <-
         simulate_continuous_spatial_data(
@@ -157,8 +202,20 @@ simulate_themes <- function(dataset, n_single_themes, n_multi_themes,
       #### simulate categorical data
       curr_mtd <- simulate_categorical_spatial_data(
         data, mt_n_features[i]
-      )
+      )   
     }
+    # if (stats::runif(1) > 0.5) {
+    #   #### simulate continuous data
+    #   curr_mtd <-
+    #     simulate_continuous_spatial_data(
+    #       data, mt_n_features[i]
+    #     )
+    # } else {
+    #   #### simulate categorical data
+    #   curr_mtd <- simulate_categorical_spatial_data(
+    #     data, mt_n_features[i]
+    #   )
+    # }
     names(curr_mtd)[seq_len(mt_n_features[i])] <- curr_tn_index
     ### add theme data to dataset
     if (inherits(data, "sf")) {
@@ -172,6 +229,23 @@ simulate_themes <- function(dataset, n_single_themes, n_multi_themes,
         )
       }
     }
+    ### Check if data is categorical 
+    if (sum(dataset$attribute_data[curr_tn_index[j]]) %% 1 == 0) {
+      ### build variable with new manual legend
+      d <- dataset$get_attribute_data()[[curr_tn_index[[j]]]]
+      u <- c(na.omit(unique(d)))
+      cp <- color_palette(x = "random", n = length(u))
+      v <- new_variable(dataset = dataset, index = curr_tn_index[[j]], 
+                        units = "ha", legend = new_manual_legend(cp, paste("value:", u)), 
+                        total = sum(d, na.rm = TRUE),
+                        provenance = new_provenance_from_source("national"))       
+    } else {
+      ### build variable with auto legend (all data here should be continuous)
+      v = new_variable_from_auto(
+        dataset = dataset, index = curr_tn_index[[j]], units = "ha",
+        provenance = sample(c("regional", "national"), 1)
+      )
+    }    
     ### create features
     curr_fts <- lapply(seq_len(mt_n_features[i]), function(j) {
       new_feature(
@@ -179,11 +253,7 @@ simulate_themes <- function(dataset, n_single_themes, n_multi_themes,
         goal = round(stats::runif(1, 0.5, 0.9), 2),
         current = round(stats::runif(1, 0.1, 0.6), 2),
         limit_goal = round(stats::runif(1, 0, 0.4), 2),
-        variable =
-          new_variable_from_auto(
-            dataset = dataset, index = curr_tn_index[[j]], units = "ha",
-            provenance = sample(c("regional", "national"), 1)
-          )
+        variable = v
       )
     })
     #### generate theme
