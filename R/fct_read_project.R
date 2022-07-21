@@ -186,7 +186,8 @@ read_project <- function(path,
               units = f$variable$units,
               type = f$variable$legend$type,
               colors = f$variable$legend$colors,
-              provenance = f$variable$provenance %||% "missing"
+              provenance = f$variable$provenance %||% "missing",
+              labels = f$variable$legend$labels %||% "missing"
             )
           )
         })
@@ -242,7 +243,8 @@ read_project <- function(path,
           units = x$variable$units,
           type = x$variable$legend$type,
           colors = x$variable$legend$colors,
-          provenance = x$variable$provenance %||% "missing"
+          provenance = x$variable$provenance %||% "missing",
+          labels = x$variable$legend$labels %||% "missing"
         )
       ),
       silent = TRUE
