@@ -98,7 +98,7 @@ simulate_weights <- function(dataset, n, continuous = TRUE) {
       )
     } else {
       d <- dataset$get_attribute_data()[[wn_index[[i]]]]
-      u <- c(na.omit(unique(d)))
+      u <-  sort(c(na.omit(unique(d))))
       cp <- color_palette(x = "random", n = length(u))
       v <- new_variable(dataset = dataset, index = wn_index[[i]], 
         units = "ha", legend = new_manual_legend(cp, paste("value:", u)), 

@@ -117,7 +117,7 @@ simulate_themes <- function(dataset, n_single_themes, n_multi_themes,
     if (sum(dataset$attribute_data[st_index[i]]) %% 1 == 0) {
       ### build variable with new manual legend
       d <- dataset$get_attribute_data()[[st_index[[i]]]]
-      u <- c(na.omit(unique(d)))
+      u <- sort(c(na.omit(unique(d))))
       cp <- color_palette(x = "random", n = length(u))
       v <- new_variable(dataset = dataset, index = st_index[[i]], 
         units = "ha", legend = new_manual_legend(cp, paste("value:", u)), 
@@ -222,7 +222,7 @@ simulate_themes <- function(dataset, n_single_themes, n_multi_themes,
     if (sum(dataset$attribute_data[curr_tn_index[j]]) %% 1 == 0) {
       ### build variable with new manual legend
       d <- dataset$get_attribute_data()[[curr_tn_index[[j]]]]
-      u <- c(na.omit(unique(d)))
+      u <- sort(c(na.omit(unique(d))))
       cp <- color_palette(x = "random", n = length(u))
       v <- new_variable(dataset = dataset, index = curr_tn_index[[j]], 
                         units = "ha", legend = new_manual_legend(cp, paste("value:", u)), 

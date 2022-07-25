@@ -120,7 +120,7 @@ test_that("new_variable_from_auto (categorical, manual legend)", {
   rd <- simulate_categorical_spatial_data(import_simple_raster_data(), 2)
   d <- new_dataset_from_auto(rd)
   # extract first column in attribute data
-  values <- d$attribute_data[[1]]
+  values <- sort(d$attribute_data[[1]])
   # create character vector of unique values (c("value: 1", ...))
   labels <- paste("value: ", as.character(c(na.omit(unique(values)))), sep = "")
   # create character vector of color pallet, same length as labels
