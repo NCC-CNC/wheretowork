@@ -38,7 +38,7 @@ function categoricalLegend(el, x, units) {
     /// create text component to dispay the text
     let item_label = document.createElement("label");
     item_label.className = "item-label disable-if-inactive";
-    item_label.innerText = `${x.values[i]} ${units}`;
+    item_label.innerText = `${x.values[i]}`;
 
     /// create symbol component to display the color
     let item_symbol = document.createElement("div");
