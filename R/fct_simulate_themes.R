@@ -19,7 +19,8 @@ NULL
 #'   Defaults to 5.
 #'   
 #' @param continuous `logical` should the data be continuous?  
-#' Defaults to `NA`.
+#' Defaults to `NA`. If `NA`, simulated themes are a mix of continuous and
+#' categorical defined by a conditional: `stats::runif(1) > 0.5`
 #'
 #' @return A `list` of simulated [Theme] objects.
 #'
@@ -112,7 +113,7 @@ simulate_themes <- function(dataset, n_single_themes, n_multi_themes,
       dataset$add_index(st_index[i], std[[1]][idx])
     }
     
-    ### Check if data is categorical 
+    ### Check if data is categorical (all categorical data has manual legend)
     if (sum(dataset$attribute_data[st_index[i]]) %% 1 == 0) {
       ### build variable with new manual legend
       d <- dataset$get_attribute_data()[[st_index[[i]]]]
@@ -204,18 +205,6 @@ simulate_themes <- function(dataset, n_single_themes, n_multi_themes,
         data, mt_n_features[i]
       )   
     }
-    # if (stats::runif(1) > 0.5) {
-    #   #### simulate continuous data
-    #   curr_mtd <-
-    #     simulate_continuous_spatial_data(
-    #       data, mt_n_features[i]
-    #     )
-    # } else {
-    #   #### simulate categorical data
-    #   curr_mtd <- simulate_categorical_spatial_data(
-    #     data, mt_n_features[i]
-    #   )
-    # }
     names(curr_mtd)[seq_len(mt_n_features[i])] <- curr_tn_index
     ### add theme data to dataset
     if (inherits(data, "sf")) {
