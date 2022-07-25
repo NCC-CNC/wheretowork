@@ -469,7 +469,8 @@ new_variable_from_auto <- function(dataset, index,
 #'   d, list(
 #'     index = 1, units = "ha", type = "continuous",
 #'     colors = c("#000000", "#AAAAAA"), total = 12,
-#'     min_value = 1, max_value = 3, provenance = "missing"
+#'     min_value = 1, max_value = 3, provenance = "missing", 
+#'     labels = "missing"
 #'   )
 #' )
 #'
