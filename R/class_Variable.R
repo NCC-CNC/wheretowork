@@ -360,7 +360,6 @@ new_variable_from_auto <- function(dataset, index,
                                    colors = "random",
                                    provenance = "missing",
                                    labels = "missing") {
-  
   # assert arguments are valid
   assertthat::assert_that(
     ## dataset

@@ -31,7 +31,7 @@ spatial_data_statistics.sf <- function(x, type, index = 1) {
     inherits(x, "sf"),
     assertthat::is.string(type),
     assertthat::noNA(type),
-    type %in% c("continuous", "categorical"),
+    type %in% c("continuous", "categorical", "manual"),
     assertthat::is.string(index) || assertthat::is.count(index),
     assertthat::noNA(index)
   )
