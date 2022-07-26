@@ -124,7 +124,7 @@
     <p>This function simulates <a href='Weight.html'>Weight</a> objects.</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>simulate_weights</span><span class='op'>(</span><span class='va'>dataset</span>, <span class='va'>n</span><span class='op'>)</span></code></pre></div>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>simulate_weights</span><span class='op'>(</span><span class='va'>dataset</span>, <span class='va'>n</span>, continuous <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -136,6 +136,11 @@
     <tr>
       <th>n</th>
       <td><p><code>integer</code> number of weights to simulate.</p></td>
+    </tr>
+    <tr>
+      <th>continuous</th>
+      <td><p><code>logical</code> should the data be continuous?
+Defaults to <code>TRUE</code>.</p></td>
     </tr>
     </table>
 
@@ -173,10 +178,10 @@
 <span class='r-out co'><span class='r-pr'>#&gt;</span> ..</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> [[1]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Weight</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       e5075e84-9236-4b80-9697-7d9795f76336</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:     Invasive species</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   variable: .../sim_raster_spatial.tif#Invasive_species [total: 149.33 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   current:  0.58</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       5dfdf921-3e45-46bd-a293-bd243413e47e</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:     Archaeological site</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   variable: .../sim_raster_spatial.tif#Archaeological_site [total: 149.35 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   current:  0.39</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   visible:  TRUE</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   hidden:  FALSE</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   status:   TRUE</span>
@@ -184,10 +189,10 @@
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> [[2]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Weight</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       6f08ae35-f0f6-4b96-a8d3-ff889e383c07</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:     Rugged terrain</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   variable: .../sim_raster_spatial.tif#Rugged_terrain [total: 146.3 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   current:  0.4</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       083c68c0-dc00-4edb-9ec9-ae2d3a9067d0</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:     Percent cover of native habitat</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   variable: .../sim_raster_spatial.tif#Percent_cover_of_native_habitat [total: 145.13 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   current:  0.43</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   visible:  TRUE</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   hidden:  FALSE</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   status:   TRUE</span>

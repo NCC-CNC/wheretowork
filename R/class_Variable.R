@@ -445,6 +445,8 @@ new_variable_from_auto <- function(dataset, index,
 #'   Required only for continuous data.}
 #' \item{"values"}{`numeric` vector of unique value in dataset.
 #'   Required only for categorical data.}
+#' \item{"labels"}{`character` vector of unique labels for manual legend.
+#'   Required only for categorical data, manual legend.}
 #' }
 #'
 #' @examples

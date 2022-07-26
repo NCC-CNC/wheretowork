@@ -124,7 +124,13 @@
     <p>This function simulates <a href='Theme.html'>Theme</a> objects.</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>simulate_themes</span><span class='op'>(</span><span class='va'>dataset</span>, <span class='va'>n_single_themes</span>, <span class='va'>n_multi_themes</span>, lambda <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span></code></pre></div>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>simulate_themes</span><span class='op'>(</span>
+  <span class='va'>dataset</span>,
+  <span class='va'>n_single_themes</span>,
+  <span class='va'>n_multi_themes</span>,
+  lambda <span class='op'>=</span> <span class='fl'>5</span>,
+  continuous <span class='op'>=</span> <span class='cn'>NA</span>
+<span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -149,6 +155,12 @@ to simulate.</p></td>
 of features for themes that contain multiple features.
 This parameter is used as a argument to <code>rpois(n, lambda = lambda)</code>.
 Defaults to 5.</p></td>
+    </tr>
+    <tr>
+      <th>continuous</th>
+      <td><p><code>logical</code> should the data be continuous?
+Defaults to <code>NA</code>. If <code>NA</code>, simulated themes are a mix of continuous and
+categorical defined by a conditional: <code>stats::runif(1) &gt; 0.5</code></p></td>
     </tr>
     </table>
 
@@ -183,70 +195,67 @@ Defaults to 5.</p></td>
 <span class='r-in'> <span class='co'># print results</span></span>
 <span class='r-in'> <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></span>
 <span class='r-in'><span class='op'>}</span></span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> Loading required namespace: RandomFields</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> .........</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> ....</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> .....</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> .......</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> [[1]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Theme</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        519c176e-9413-42a0-9689-3068c213916d</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Slaty-headed Parakeet</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        33028337-f1a9-45b2-9baf-987cc5096416</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Eastern Yellow-billed Hornbill</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   feature: </span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Slaty-headed Parakeet habitat [status: TRUE, current: 0.49, goal: 0.54]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Slaty_headed_Parakeet [total: 733 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Eastern Yellow-billed Hornbill habitat [status: TRUE, current: 0.47, goal: 0.78]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Eastern_Yellow_billed_Hornbill [total: 2543.68 ha]</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> [[2]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Theme</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        a9d7a5c1-610a-40dc-a73a-18ccc424bc18</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Orange-cheeked Parrot</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        bc6dc08e-022b-40f8-a6f5-9a68753b9889</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Collared Inca (Gould's)</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   feature: </span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Orange-cheeked Parrot habitat [status: TRUE, current: 0.25, goal: 0.82]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Orange_cheeked_Parrot [total: 11662.15 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Collared Inca (Gould's) habitat [status: TRUE, current: 0.44, goal: 0.64]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Collared_Inca_Gould_s_ [total: 9971.96 ha]</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> [[3]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Theme</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        a3a8def2-0b6a-4267-9913-cb53198f6b2b</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Creamy-breasted Canastero</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        31bc02c1-ff6e-48ff-a85e-613cffa390c6</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Chestnut-breasted Partridge</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   feature: </span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Creamy-breasted Canastero habitat [status: TRUE, current: 0.59, goal: 0.51]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Creamy_breasted_Canastero [total: 1534 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Chestnut-breasted Partridge habitat [status: TRUE, current: 0.49, goal: 0.87]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Chestnut_breasted_Partridge [total: 1217 ha]</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> [[4]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Theme</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        b08c552b-7660-40d8-b028-a2f5eeed543a</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Australasian Treecreepers</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        50b2a15b-7cde-404a-9304-531ad4a59de8</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Cuckoos</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   feature: </span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Black-tailed Treecreeper [status: TRUE, current: 0.5, goal: 0.72]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Black_tailed_Treecreeper [total: 1285 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     White-throated Treecreeper [status: TRUE, current: 0.44, goal: 0.79]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#White_throated_Treecreeper [total: 1280 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Papuan Treecreeper [status: TRUE, current: 0.21, goal: 0.75]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Papuan_Treecreeper [total: 1092 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Rufous Treecreeper [status: TRUE, current: 0.39, goal: 0.7]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Rufous_Treecreeper [total: 1168 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Red-browed Treecreeper [status: TRUE, current: 0.6, goal: 0.74]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Red_browed_Treecreeper [total: 1505 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     White-throated Treecreeper (Little) [status: TRUE, current: 0.37, goal: 0.68]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#White_throated_Treecreeper_Little_ [total: 755 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     White-browed Treecreeper [status: TRUE, current: 0.51, goal: 0.72]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#White_browed_Treecreeper [total: 696 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Brown Treecreeper [status: TRUE, current: 0.1, goal: 0.8]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Brown_Treecreeper [total: 1160 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     White-throated Treecreeper (White-throated) [status: TRUE, current: 0.57, goal: 0.59]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#White_throated_Treecreeper_White_throated_ [total: 1288 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Dwarf Koel [status: TRUE, current: 0.46, goal: 0.7]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Crested_Coua_Crested_ [total: 17752.16 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Little Bronze-Cuckoo (Banda) [status: TRUE, current: 0.6, goal: 0.69]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Crested_Coua_Crested_ [total: 17752.16 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Gabon Coucal [status: TRUE, current: 0.38, goal: 0.84]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Crested_Coua_Crested_ [total: 17752.16 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Running Coua [status: TRUE, current: 0.53, goal: 0.9]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Crested_Coua_Crested_ [total: 17752.16 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Crested Coua (Crested) [status: TRUE, current: 0.4, goal: 0.6]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Crested_Coua_Crested_ [total: 17752.16 ha]</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> [[5]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Theme</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        b4914969-dd95-4700-9d83-5948e6ebdb2e</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Southern Storm-Petrels</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        4fe0ad8c-2445-431c-be0f-5093636b1e4f</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Cormorants and Shags</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   feature: </span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Wilson's Storm-Petrel [status: TRUE, current: 0.24, goal: 0.66]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Wilson_s_Storm_Petrel [total: 423 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     White-bellied Storm-Petrel (White-bellied) [status: TRUE, current: 0.26, goal: 0.87]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#White_bellied_Storm_Petrel_White_bellied_ [total: 1700 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     New Zealand Storm-Petrel [status: TRUE, current: 0.13, goal: 0.77]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#New_Zealand_Storm_Petrel [total: 762 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     White-faced Storm-Petrel [status: TRUE, current: 0.28, goal: 0.6]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#White_faced_Storm_Petrel [total: 613 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Red-faced Cormorant [status: TRUE, current: 0.43, goal: 0.74]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#European_Shag_Atlantic_ [total: 726 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Flightless Cormorant [status: TRUE, current: 0.41, goal: 0.8]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#European_Shag_Atlantic_ [total: 726 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Pelagic Cormorant [status: TRUE, current: 0.59, goal: 0.67]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#European_Shag_Atlantic_ [total: 726 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Pied Cormorant [status: TRUE, current: 0.43, goal: 0.68]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#European_Shag_Atlantic_ [total: 726 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Campbell Islands Shag [status: TRUE, current: 0.29, goal: 0.8]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#European_Shag_Atlantic_ [total: 726 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     European Shag (Moroccan) [status: TRUE, current: 0.32, goal: 0.66]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#European_Shag_Atlantic_ [total: 726 ha]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     European Shag (Atlantic) [status: TRUE, current: 0.29, goal: 0.58]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#European_Shag_Atlantic_ [total: 726 ha]</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-in'></span>
 </code></pre></div>
