@@ -22,7 +22,7 @@ test_that("widget method", {
     list(
       values = c("not selected", "selected"),
       colors = x$colors,
-      type = "CategoricalLegend"
+      type = "ManualLegend"
     )
   )
 })

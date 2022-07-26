@@ -68,7 +68,7 @@ ManualLegend <- R6::R6Class(
       list(
         values = self$labels,
         colors = self$colors,
-        type = "CategoricalLegend"
+        type = "ManualLegend"
       )
     },
 

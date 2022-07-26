@@ -1,0 +1,36 @@
+.manual-legend {
+  width: 95%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-flow: row wrap;
+  align-content: flex-end;
+  margin: 0px;
+  margin-left:23px;
+}
+
+.manual-legend .item {
+  padding: 0px;
+  margin: 0px;
+  margin-right: 10px;
+  margin-bottom: 2px;
+}
+
+.manual-legend .item label {
+  font-size: 10px;
+  font-weight: 400;
+  vertical-align: middle;
+  margin-left: 4px;
+  margin-bottom: 3px;
+}
+
+.manual-legend .item .item-symbol{
+  height: 12px;
+  width: 12px;
+  display: inline-block;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 1px solid var(--symbol-border);
+}

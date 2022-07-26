@@ -1,25 +1,25 @@
-// Create a categorical legend
+// Create a manual legend
 //
-// This function is used to create a categorical legend and insert it
+// This function is used to create a manual legend and insert it
 // into a parent HTML element (i.e. `div` container).
 //
 // @param el HTML element within which to insert the legend.
 //
 // @param x `Array` containing the following `Array` elements.
 //   Note that each of these elements are assumed to have exactly the same
-//   number of elements, such that `x.values.length === x.colors.length`.
-//   elements are assumed to have exactly the same number  :
-//   * `x.values`: `Array` of `number` objects for each item in the legend.
-//   * `x.colors`: `Array` of `string` objects containing colors
-//                 (e.g. `"#112233"`) for each item within the legend.
+//   number of elements, such that `x.values.length === x.colors.length
+//   === x.colors.labels`. elements are assumed to have exactly the same 
+//   number  : * `x.values`: `Array` of `number` objects for each item in the 
+//   legend. * `x.colors`: `Array` of `string` objects containing colors 
+//   (e.g. `"#112233"`) for each item within the legend. * `x.labels`:
+//   Array` of `string` objects containing labels.
 //
-// @param units `string` containing the units for the legend (e.g. `"ha"`).
 //
 // @return `true` indicating success.
-function categoricalLegend(el, x, units) {
+function manualLegend(el, x) {
   // initialize lenged
   let l = document.createElement("div");
-  l.className = "categorical-legend";
+  l.className = "manual-legend";
   l.setAttribute("data-toggle", "tooltip");
   l.setAttribute("data-placement", "bottom");
   l.setAttribute("data-delay", "{\"show\":500, \"hide\":100}");
@@ -38,7 +38,7 @@ function categoricalLegend(el, x, units) {
     /// create text component to dispay the text
     let item_label = document.createElement("label");
     item_label.className = "item-label disable-if-inactive";
-    item_label.innerText = `${x.values[i]} ${units}`;
+    item_label.innerText = `${x.values[i]}`;
 
     /// create symbol component to display the color
     let item_symbol = document.createElement("div");
