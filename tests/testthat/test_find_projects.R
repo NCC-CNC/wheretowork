@@ -14,8 +14,8 @@ test_that("singe user group", {
     c("Example GeoTIFF dataset",
       "Example Shapefile dataset",
       "Ontario pilot dataset",
-      "Ontario pilot dataset Albers",
-      "Ontario pilot dataset Albers NEW"
+      "Ontario pilot dataset Albers"
+      # "Ontario pilot dataset Albers NEW"
     )
   )
   expect_equal(
@@ -23,8 +23,8 @@ test_that("singe user group", {
     c("sim_raster_data.yaml",
       "sim_vector_data.yaml",
       "ontario_pilot.yaml",
-      "ontario_pilot_albers.yaml",
-      "ontario_pilot_albers_NEW.yaml"
+      "ontario_pilot_albers.yaml"
+      # ontario_pilot_albers_NEW.yaml"
     )
   )
   expect_equal(x$status, rep(TRUE, nrow(x)))
@@ -48,8 +48,8 @@ test_that("multiple user groups", {
       "Example Shapefile dataset",
       "Example Shapefile dataset (themes)",
       "Ontario pilot dataset",
-      "Ontario pilot dataset Albers",
-      "Ontario pilot dataset Albers NEW"
+      "Ontario pilot dataset Albers"
+      # "Ontario pilot dataset Albers NEW"
     )
   )
   expect_equal(
@@ -61,8 +61,8 @@ test_that("multiple user groups", {
       "sim_vector_data.yaml",
       "sim_vector2_data.yaml",
       "ontario_pilot.yaml",
-      "ontario_pilot_albers.yaml",
-      "ontario_pilot_albers_NEW.yaml"
+      "ontario_pilot_albers.yaml"
+      # "ontario_pilot_albers_NEW.yaml"
     )
   )
   expect_equal(x$status, rep(TRUE, nrow(x)))

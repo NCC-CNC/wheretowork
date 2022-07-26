@@ -35,6 +35,8 @@ Required only for continuous data.}
 Required only for continuous data.}
 \item{"values"}{\code{numeric} vector of unique value in dataset.
 Required only for categorical data.}
+\item{"labels"}{\code{character} vector of unique labels for manual legend.
+Required only for categorical data, manual legend.}
 }
 }
 \examples{
