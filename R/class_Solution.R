@@ -916,6 +916,7 @@ new_solution <- function(name, variable, visible,
 #'   settings = ss,
 #'   result = r,
 #'   legend =  new_manual_legend(
+#'     values = c(0, 1),
 #'     colors = c("#00FFFF00", "#112233FF"),
 #'     labels = c("not selected", "selected")
 #'   )
