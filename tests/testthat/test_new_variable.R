@@ -140,6 +140,10 @@ test_that("new_variable_from_auto (categorical, manual legend)", {
     length(x$legend$labels),
     length(x$legend$colors)
   )
+  expect_equal(
+    length(x$legend$values),
+    length(x$legend$colors)
+  )
 })
 
 test_that("new_variable_from_metadata (continuous)", {

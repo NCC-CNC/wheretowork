@@ -290,6 +290,7 @@ read_project <- function(path,
           units = x$variable$units,
           total = sum(d$get_attribute_data()[[x$variable$index]]),
           legend = new_manual_legend(
+            values = c(0, 1),
             colors = x$variable$legend$colors,
             labels = x$variable$legend$labels
           ),

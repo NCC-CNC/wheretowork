@@ -120,7 +120,7 @@ simulate_themes <- function(dataset, n_single_themes, n_multi_themes,
       u <- sort(c(na.omit(unique(d))))
       cp <- color_palette(x = "random", n = length(u))
       v <- new_variable(dataset = dataset, index = st_index[[i]], 
-        units = "ha", legend = new_manual_legend(cp, paste("value:", u)), 
+        units = "ha", legend = new_manual_legend(u, cp, paste("value:", u)), 
         total = sum(d, na.rm = TRUE),
         provenance = new_provenance_from_source("national"))       
     } else {
@@ -225,7 +225,8 @@ simulate_themes <- function(dataset, n_single_themes, n_multi_themes,
       u <- sort(c(na.omit(unique(d))))
       cp <- color_palette(x = "random", n = length(u))
       v <- new_variable(dataset = dataset, index = curr_tn_index[[j]], 
-                        units = "ha", legend = new_manual_legend(cp, paste("value:", u)), 
+                        units = "ha", 
+                        legend = new_manual_legend(u, cp, paste("value:", u)), 
                         total = sum(d, na.rm = TRUE),
                         provenance = new_provenance_from_source("national"))       
     } else {

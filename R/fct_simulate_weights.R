@@ -101,7 +101,7 @@ simulate_weights <- function(dataset, n, continuous = TRUE) {
       u <-  sort(c(na.omit(unique(d))))
       cp <- color_palette(x = "random", n = length(u))
       v <- new_variable(dataset = dataset, index = wn_index[[i]], 
-        units = "ha", legend = new_manual_legend(cp, paste("value:", u)), 
+        units = "ha", legend = new_manual_legend(u, cp, paste("value:", u)), 
         total = sum(d, na.rm = TRUE),  
         provenance = new_provenance_from_source("national")) 
     }

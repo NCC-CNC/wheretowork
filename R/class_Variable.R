@@ -163,6 +163,7 @@ Variable <- R6::R6Class(
         } else {
           project_on_fly <- TRUE
         }
+        
         ## add raster data
         suppressWarnings({
           x <- leaflet::addRasterImage(
@@ -370,7 +371,7 @@ new_variable_from_auto <- function(dataset, index,
     ## type
     assertthat::is.string(type),
     assertthat::noNA(type),
-    # type %in% c("continuous", "categorical", "manual"),
+    type %in% c("continuous", "categorical", "manual", "auto"),
     ## units
     assertthat::is.string(units),
     assertthat::noNA(units),
@@ -586,6 +587,7 @@ new_variable_from_metadata <- function(dataset, metadata) {
     )
   } else if (identical(metadata$type, "manual")) {
     legend <- new_manual_legend(
+      values = metadata$values,
       colors = metadata$colors,
       labels = metadata$labels
     )

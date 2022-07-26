@@ -74,6 +74,7 @@ simulate_solution_legend <- function() {
   })
   # return legend
   new_manual_legend(
+    values = c(0, 1),
     colors = c("#00FFFF00", col[1]),
     labels = c("not selected", "selected")
   )
@@ -100,6 +101,7 @@ simulate_include_legend <- function() {
   })
   # return legend
   new_manual_legend(
+    values = c(0, 1),
     colors = c("#00FFFF00", col[1]),
     labels = c("not included", "included")
   )
