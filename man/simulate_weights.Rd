@@ -4,12 +4,15 @@
 \alias{simulate_weights}
 \title{Simulate weights}
 \usage{
-simulate_weights(dataset, n)
+simulate_weights(dataset, n, continuous = TRUE)
 }
 \arguments{
 \item{dataset}{\link{Dataset} object.}
 
 \item{n}{\code{integer} number of weights to simulate.}
+
+\item{continuous}{\code{logical} should the data be continuous?
+Defaults to \code{TRUE}.}
 }
 \value{
 A \code{list} of simulated \link{Weight} objects.

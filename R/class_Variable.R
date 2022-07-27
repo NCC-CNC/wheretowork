@@ -163,6 +163,7 @@ Variable <- R6::R6Class(
         } else {
           project_on_fly <- TRUE
         }
+        
         ## add raster data
         suppressWarnings({
           x <- leaflet::addRasterImage(
@@ -316,6 +317,9 @@ new_variable <- function(dataset, index, units, total, legend,
 #' @param provenance `character` value indicating the type of provenance.
 #'   The argument must be a valid type (see [new_provenance_from_source()]).
 #'   Defaults to `"missing"`.
+#'   
+#' @param labels `character` object containing manual legend labels.
+#'   Defaults to `"missing"`.
 #'
 #' @details
 #' The argument to `colors` can be a vector of different colors
@@ -354,7 +358,8 @@ new_variable <- function(dataset, index, units, total, legend,
 new_variable_from_auto <- function(dataset, index,
                                    units = "", type = "auto",
                                    colors = "random",
-                                   provenance = "missing") {
+                                   provenance = "missing",
+                                   labels = "missing") {
   # assert arguments are valid
   assertthat::assert_that(
     ## dataset
@@ -365,7 +370,7 @@ new_variable_from_auto <- function(dataset, index,
     ## type
     assertthat::is.string(type),
     assertthat::noNA(type),
-    type %in% c("continuous", "categorical", "auto"),
+    type %in% c("continuous", "categorical", "manual", "auto"),
     ## units
     assertthat::is.string(units),
     assertthat::noNA(units),
@@ -375,7 +380,11 @@ new_variable_from_auto <- function(dataset, index,
     length(colors) >= 1,
     ## provenance
     assertthat::is.string(provenance),
-    assertthat::noNA(provenance)
+    assertthat::noNA(provenance),
+    ## labels
+    is.character(labels),
+    assertthat::noNA(labels),
+    length(labels) >= 1
   )
 
   # import dataset
@@ -398,7 +407,8 @@ new_variable_from_auto <- function(dataset, index,
         units = units,
         colors = colors,
         type = type,
-        provenance = provenance
+        provenance = provenance,
+        labels = labels
       ),
       s
     )
@@ -434,6 +444,8 @@ new_variable_from_auto <- function(dataset, index,
 #'   Required only for continuous data.}
 #' \item{"values"}{`numeric` vector of unique value in dataset.
 #'   Required only for categorical data.}
+#' \item{"labels"}{`character` vector of unique labels for manual legend.
+#'   Required only for categorical data, manual legend.}
 #' }
 #'
 #' @examples
@@ -459,7 +471,8 @@ new_variable_from_auto <- function(dataset, index,
 #'   d, list(
 #'     index = 1, units = "ha", type = "continuous",
 #'     colors = c("#000000", "#AAAAAA"), total = 12,
-#'     min_value = 1, max_value = 3, provenance = "missing"
+#'     min_value = 1, max_value = 3, provenance = "missing", 
+#'     labels = "missing"
 #'   )
 #' )
 #'
@@ -485,7 +498,7 @@ new_variable_from_metadata <- function(dataset, metadata) {
     ## type
     assertthat::is.string(metadata$type),
     assertthat::noNA(metadata$type),
-    metadata$type %in% c("continuous", "categorical"),
+    metadata$type %in% c("continuous", "categorical", "manual", "auto"),
     ## colors
     is.character(metadata$colors),
     assertthat::noNA(metadata$colors),
@@ -560,7 +573,7 @@ new_variable_from_metadata <- function(dataset, metadata) {
       )
     }
   }
-
+  
   # create legend
   if (identical(metadata$type, "continuous")) {
     legend <- new_continuous_legend(
@@ -568,12 +581,18 @@ new_variable_from_metadata <- function(dataset, metadata) {
       max_value = metadata$max_value,
       colors = colors
     )
-  } else {
+  } else if (identical(metadata$type, "categorical")) {
     legend <- new_categorical_legend(
       values = metadata$values,
       colors = colors
     )
-  }
+  } else if (identical(metadata$type, "manual")) {
+    legend <- new_manual_legend(
+      values = metadata$values,
+      colors = metadata$colors,
+      labels = metadata$labels
+    )
+  } 
 
   # create object
   Variable$new(

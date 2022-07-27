@@ -14,6 +14,8 @@ Definition for the \code{ManualLegend} class.
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
+\item{\code{values}}{\code{values} vector.}
+
 \item{\code{colors}}{\code{character} vector.}
 
 \item{\code{labels}}{\code{character} vector.}
@@ -37,12 +39,14 @@ Definition for the \code{ManualLegend} class.
 \subsection{Method \code{new()}}{
 Create a \code{ManualLegend} object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ManualLegend$new(colors, labels)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{ManualLegend$new(values, colors, labels)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
+\item{\code{values}}{\code{numeric} vector of values.}
+
 \item{\code{colors}}{\code{character} vector of colors.}
 
 \item{\code{labels}}{\code{character} vector of labels.}

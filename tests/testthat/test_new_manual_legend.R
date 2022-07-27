@@ -3,9 +3,10 @@ context("new_manual_legend")
 test_that("initialization", {
   # create object
   x <- new_manual_legend(
-    c("#000000", "#444444"), c("not selected", "selected")
+    c(9999, -9999), c("#000000", "#444444"), c("not selected", "selected")
   )
   # run tests
+  expect_equal(x$values, c(9999, -9999))
   expect_equal(x$colors, c("#000000", "#444444"))
   expect_equal(x$labels, c("not selected", "selected"))
 })
@@ -13,7 +14,7 @@ test_that("initialization", {
 test_that("widget method", {
   # create object
   x <- new_manual_legend(
-    c("#000000", "#444444"), c("not selected", "selected")
+    c(0, 1), c("#000000", "#444444"), c("not selected", "selected")
   )
   # run tests
   expect_equal(
@@ -21,7 +22,7 @@ test_that("widget method", {
     list(
       values = c("not selected", "selected"),
       colors = x$colors,
-      type = "CategoricalLegend"
+      type = "ManualLegend"
     )
   )
 })

@@ -19,6 +19,7 @@ dependencies:
       - utils.js
       - continuousLegend.js
       - categoricalLegend.js
+      - manualLegend.js
       - IncludeLayer-class.js
       - SolutionLayer-class.js
       - WeightLayer-class.js
@@ -29,6 +30,7 @@ dependencies:
       - style.css
       - continuousLegend.css
       - categoricalLegend.css
+      - manualLegend.css
 
   - name: mapManager-style
     version: 1.0.0
