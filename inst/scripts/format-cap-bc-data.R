@@ -97,7 +97,6 @@ themes <- lapply(seq_len(length(theme_groups)), function(t) {
 
   features_in_themes <- lapply(seq_len(raster::nlayers(theme_data)), function(i) {
     # Variable for the feature
-    print(theme_colors[i])
     if (startsWith(theme_colors[i], "#")) {
       v <- new_variable(
         dataset = dataset,
@@ -119,7 +118,7 @@ themes <- lapply(seq_len(length(theme_groups)), function(t) {
       )
     }
     new_feature(
-      name = names(theme_data)[i],
+      name = theme_names[i],
       visible = i == 1L,
       variable = v,
     )
