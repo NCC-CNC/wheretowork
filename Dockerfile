@@ -45,6 +45,10 @@ COPY NAMESPACE /app
 RUN cd /app && \
     Rscript -e 'remotes::install_local(upgrade = "never")'
 
+## prepare data cap-bc project
+COPY Makefile /app
+RUN cd /app && make cap-bc
+
 # set command
 CMD ["/bin/bash"]
 

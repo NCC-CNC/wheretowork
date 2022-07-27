@@ -17,26 +17,21 @@ all: man readme test check spellcheck
 man:
 	R --slave -e "devtools::document()"
 
-## simulate data
+## CAP-BC project
+compress:
+	rm -rf inst/extdata/data/cap-bc-data.zip
+	zip -j inst/extdata/data/cap-bc-data.zip inst/extdata/data/cap-bc-data/*
+
 data:
-	R --slave -e "source('inst/scripts/format-ontario-pilot-data.R')"
-	R --slave -e "source('inst/scripts/simulate-data.R')"
+	R --slave -e "source('inst/scripts/format-cap-bc-data.R')"
 
 ## copy data to production directory
 prod-data:
-	cd /opt/wheretowork/projects & rm -rf ontario_pilot
-	cd /opt/wheretowork/projects & rm -rf sim_raster
-	cd /opt/wheretowork/projects & rm -rf sim_raster2
-	cd /opt/wheretowork/projects & rm -rf sim_raster3
-	cd /opt/wheretowork/projects & rm -rf sim_vector
-	cd /opt/wheretowork/projects & rm -rf sim_vector2
-	cp -R inst/extdata/projects/ontario_pilot /opt/wheretowork/projects
-	cp -R inst/extdata/projects/sim_raster /opt/wheretowork/projects
-	cp -R inst/extdata/projects/sim_raster2 /opt/wheretowork/projects
-	cp -R inst/extdata/projects/sim_raster3 /opt/wheretowork/projects
-	cp -R inst/extdata/projects/sim_vector /opt/wheretowork/projects
-	cp -R inst/extdata/projects/sim_vector2 /opt/wheretowork/projects
+	rm -rf /usr/local/lib/R/site-library/wheretowork/extdata/projects/cap_bc
+	cp -R inst/extdata/projects/cap_bc /usr/local/lib/R/site-library/wheretowork/extdata/projects
 
+cap-bc: compress data prod-data
+	
 ## reubild readme
 readme:
 	R --slave -e "rmarkdown::render('README.Rmd')"
