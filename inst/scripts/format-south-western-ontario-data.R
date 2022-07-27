@@ -9,13 +9,13 @@ library(dplyr)
 
 ## Zipped up raster variables
 zip_path <- system.file(
-  "extdata", "data", "ontario-pilot-data_new.zip", package = "wheretowork"
+  "extdata", "data", "south-western-ontario.zip", package = "wheretowork"
 )
 
 ## Formatted csv (metadata) that defines variable `Type`, `Theme`, `File_Name`, 
 ## `Label_Name`, `Color`, `Unit` and `Visible` 
 metadata_path <- system.file(
-  "extdata", "data", "ontario-pilot-metadata_new.csv", package = "wheretowork"
+  "extdata", "data", "south-western-ontario.csv", package = "wheretowork"
 )
 
 ## Name of study area (planning unit) raster. Must be nested in `zip_path`
@@ -225,22 +225,22 @@ weights <- lapply(seq_len(raster::nlayers(weight_data)), function(i) {
 
 ## Create output folder if needed
 dir.create(
-  "inst/extdata/projects/ontario_pilot_albers_NEW", recursive = TRUE, showWarnings = FALSE
+  "inst/extdata/projects/south_western_ontario", recursive = TRUE, showWarnings = FALSE
 )
 
 ## Save project to disk
 write_project(
   x = append(themes, append(includes, weights)),
   dataset = dataset,
-  name = "Where To Work Example Dataset",
+  name = "South Western Ontario Example",
   path =
-    "inst/extdata/projects/ontario_pilot_albers_NEW/ontario_pilot_albers_NEW.yaml",
+    "inst/extdata/projects/south_western_ontario/south_western_ontario.yaml",
   spatial_path =
-    "inst/extdata/projects/ontario_pilot_albers_NEW/ontario_pilot_albers_spatial_NEW.tif",
+    "inst/extdata/projects/south_western_ontario/south_western_ontario_spatial.tif",
   attribute_path =
-    "inst/extdata/projects/ontario_pilot_albers_NEW/ontario_pilot_albers_attribute_NEW.csv.gz",
+    "inst/extdata/projects/south_western_ontario/south_western_ontario_attribute.csv.gz",
   boundary_path =
-    "inst/extdata/projects/ontario_pilot_albers_NEW/ontario_pilot_albers_boundary_NEW.csv.gz",
+    "inst/extdata/projects/south_western_ontario/south_western_ontario_boundary.csv.gz",
   mode = "advanced",
   author_name = "Dan Wismer",
   author_email = "daniel.wismer@natureconservancy.ca"

@@ -1,11 +1,11 @@
-name: Where To Work Example Dataset
+name: South Western Ontario Example
 author_name: Dan Wismer
 author_email: daniel.wismer@natureconservancy.ca
 mode: advanced
 user_groups: public
-spatial_path: ontario_pilot_albers_spatial_NEW.tif
-attribute_path: ontario_pilot_albers_attribute_NEW.csv.gz
-boundary_path: ontario_pilot_albers_boundary_NEW.csv.gz
+spatial_path: south_western_ontario_spatial.tif
+attribute_path: south_western_ontario_attribute.csv.gz
+boundary_path: south_western_ontario_boundary.csv.gz
 themes:
 - name: Critical Habitat
   feature:
