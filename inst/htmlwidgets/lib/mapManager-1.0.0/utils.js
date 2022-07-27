@@ -3,6 +3,8 @@ function createLegend(el, x, units) {
     return categoricalLegend(el, x, units);
   } else if (x.type === "ContinuousLegend") {
     return continuousLegend(el, x, units);
+  } else if (x.type === "ManualLegend") {
+    return manualLegend(el, x)
   } else {
     console.error("unrecognized legend")
     console.log(x)

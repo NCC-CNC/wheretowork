@@ -4,9 +4,11 @@
 \alias{new_manual_legend}
 \title{New manual legend}
 \usage{
-new_manual_legend(colors, labels)
+new_manual_legend(values, colors, labels)
 }
 \arguments{
+\item{values}{\code{numeric} Values that are linked to the labels.}
+
 \item{colors}{\code{character} Colors to show in the legend.
 These colors should be in hex format (e.g. \code{"#AABBCC"}).
 Arguments should contain two different colors.}
@@ -21,7 +23,7 @@ Create a new \link{ManualLegend} object.
 }
 \examples{
 # create new object
-l <- new_manual_legend(c("#000000", "#AAAAAA"), c("a", "b"))
+l <- new_manual_legend(c(0, 1), c("#000000", "#AAAAAA"), c("a", "b"))
 
 # print object
 print(l)

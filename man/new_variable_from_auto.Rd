@@ -10,7 +10,8 @@ new_variable_from_auto(
   units = "",
   type = "auto",
   colors = "random",
-  provenance = "missing"
+  provenance = "missing",
+  labels = "missing"
 )
 }
 \arguments{
@@ -32,6 +33,9 @@ Defaults to \code{"random"} such that colors are randomly generated.}
 
 \item{provenance}{\code{character} value indicating the type of provenance.
 The argument must be a valid type (see \code{\link[=new_provenance_from_source]{new_provenance_from_source()}}).
+Defaults to \code{"missing"}.}
+
+\item{labels}{\code{character} object containing manual legend labels.
 Defaults to \code{"missing"}.}
 }
 \value{

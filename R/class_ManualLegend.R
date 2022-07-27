@@ -7,6 +7,9 @@ NULL
 ManualLegend <- R6::R6Class(
   "ManualLegend",
   public = list(
+    
+    #' @field values `values` vector.
+    values = NA_real_,    
 
     #' @field colors `character` vector.
     colors = NA_character_,
@@ -16,19 +19,24 @@ ManualLegend <- R6::R6Class(
 
     #' @description
     #' Create a `ManualLegend` object.
+    #' @param values `numeric` vector of values.
     #' @param colors `character` vector of colors.
     #' @param labels `character` vector of labels.
     #' @return A new `ManualLegend` object.
-    initialize = function(colors, labels) {
+    initialize = function(values, colors, labels) {
       assertthat::assert_that(
+        length(colors) == length(labels),
+        is.numeric(values),
+        assertthat::noNA(values),
+        length(values) == length(labels),        
         is.character(colors),
         assertthat::noNA(colors),
         all(nchar(colors) %in% c(7, 9)),
         all(substr(colors, 1, 1) == "#"),
         is.character(labels),
-        assertthat::noNA(labels),
-        length(colors) == length(labels)
+        assertthat::noNA(labels)
       )
+      self$values <- values
       self$colors <- colors
       self$labels <- labels
     },
@@ -47,7 +55,7 @@ ManualLegend <- R6::R6Class(
       leaflet::colorFactor(
         palette = self$colors,
         domain = NULL,
-        levels = c(0, 1),
+        levels = self$values,
         alpha = TRUE,
         na.color = NA
       )
@@ -60,7 +68,7 @@ ManualLegend <- R6::R6Class(
       list(
         values = self$labels,
         colors = self$colors,
-        type = "CategoricalLegend"
+        type = "ManualLegend"
       )
     },
 
@@ -81,6 +89,8 @@ ManualLegend <- R6::R6Class(
 #'
 #' Create a new [ManualLegend] object.
 #'
+#' @param values `numeric` Values that are linked to the labels.  
+#'
 #' @param colors `character` Colors to show in the legend.
 #'   These colors should be in hex format (e.g. `"#AABBCC"`).
 #'   Arguments should contain two different colors.
@@ -91,11 +101,11 @@ ManualLegend <- R6::R6Class(
 #'
 #' @examples
 #' # create new object
-#' l <- new_manual_legend(c("#000000", "#AAAAAA"), c("a", "b"))
+#' l <- new_manual_legend(c(0, 1), c("#000000", "#AAAAAA"), c("a", "b"))
 #'
 #' # print object
 #' print(l)
 #' @export
-new_manual_legend <- function(colors, labels) {
-  ManualLegend$new(colors, labels)
+new_manual_legend <- function(values, colors, labels) {
+  ManualLegend$new(values, colors, labels)
 }
