@@ -103,6 +103,8 @@ weight_colors <- metadata$Color[metadata$Type == "weight"]
 weight_units <- metadata$Unit[metadata$Type == "weight"]
 weight_visible <- metadata$Visible[metadata$Type == "weight"]
 weight_provenance <- metadata$Provenance[metadata$Type == "weight"]
+weight_legend <- metadata$Legend[metadata$Type == "weight"]
+weight_labels <- metadata$Labels[metadata$Type == "weight"]
 
 ## validate raster stack
 assertthat::assert_that(
@@ -150,9 +152,10 @@ themes <- lapply(seq_along(unique(theme_groups)), function(i) {
         index = curr_theme_data_names[j],
         units = curr_theme_units[j],
         total = raster::cellStats(curr_theme_data[[j]], "sum"),
-        legend = new_categorical_legend(
+        legend = new_manual_legend(
           values = c(0, 1),
-          colors = c("#00000000", curr_theme_colors[j])
+          colors = c("#00000000", curr_theme_colors[j]),
+          labels = c("absence", "presence")
         ),
         provenance = new_provenance_from_source(curr_theme_provenance[j])
       )
@@ -179,8 +182,9 @@ includes <- lapply(seq_len(raster::nlayers(include_data)), function(i) {
       units = include_units[i],
       total = raster::cellStats(include_data[[i]], "sum"),
       legend = new_manual_legend(
-        labels = c("not included", "include"),
-        colors = c("#00000000", include_colors[i])
+        values = c(0, 1),
+        colors = c("#00000000", include_colors[i]),
+        labels = c("not included", "include")
       ),
       provenance = new_provenance_from_source(include_provenance[i])
     )
@@ -190,27 +194,27 @@ includes <- lapply(seq_len(raster::nlayers(include_data)), function(i) {
 ## Create weights ---- 
 ## Loop over each raster in weight_data
 weights <- lapply(seq_len(raster::nlayers(weight_data)), function(i) {
+  print(i)
   ## prepare variable (categorical legend)
-  if (startsWith(weight_colors[i], "#")) {
-    v <- new_variable(
+  if (identical(weight_legend[i], "manual")) {
+    v <- new_variable_from_auto(
       dataset = dataset,
       index = names(weight_data)[i],
       units = weight_units[i],
-      total = raster::cellStats(weight_data[[i]], "sum"),
-      legend = new_categorical_legend(
-        values = c(0, 1),
-        c("#00000000", weight_colors[i])
-      ),
-      provenance = new_provenance_from_source(weight_provenance[i])
+      type = "manual",
+      colors = trimws(unlist(strsplit(weight_colors[i], ","))),
+      provenance = weight_provenance[i],
+      labels = unlist(strsplit(weight_labels[i], ","))
     )
   } else { ## prepare variable (continuous legend, automatically identified)
     v <- new_variable_from_auto(
      dataset = dataset,
      index = names(weight_data)[i],
-     units = "",
+     units = weight_units[i],
      type = "auto",
      colors = weight_colors[i],
-     provenance = weight_provenance[i]
+     provenance = weight_provenance[i],
+     labels = "missing"
     )
   }
   ## Create weight
@@ -228,7 +232,7 @@ dir.create(
 write_project(
   x = append(themes, append(includes, weights)),
   dataset = dataset,
-  name = "Ontario pilot dataset Albers NEW",
+  name = "Where To Work Example Dataset",
   path =
     "inst/extdata/projects/ontario_pilot_albers_NEW/ontario_pilot_albers_NEW.yaml",
   spatial_path =
