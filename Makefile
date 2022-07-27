@@ -20,7 +20,7 @@ man:
 ## CAP-BC project
 compress:
 	rm -rf inst/extdata/data/cap-bc-data.zip
-	zip -j inst/extdata/data/cap-bc-data.zip inst/extdata/data/cap-bc-data/*
+	cd inst/extdata/data/cap-bc-data/ && zip -r ../cap-bc-data.zip *
 
 data:
 	R --slave -e "source('inst/scripts/format-cap-bc-data.R')"
@@ -30,7 +30,7 @@ prod-data:
 	rm -rf /usr/local/lib/R/site-library/wheretowork/extdata/projects/cap_bc
 	cp -R inst/extdata/projects/cap_bc /usr/local/lib/R/site-library/wheretowork/extdata/projects
 
-cap-bc: compress data prod-data
+cap-bc: data prod-data
 	
 ## reubild readme
 readme:

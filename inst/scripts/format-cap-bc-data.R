@@ -5,9 +5,6 @@ library(raster)
 library(dplyr)
 
 ## define variables
-zip_path <- file.path(
-  "inst", "extdata", "data", "cap-bc-data.zip"
-)
 metadata_path <- file.path(
   "inst", "extdata", "data", "cap-bc-metadata.csv"
 )
@@ -15,12 +12,7 @@ study_area_file <- "Planning Units.tif"
 
 # Preliminary processing
 ## prepare raster data
-data_dir <- tempfile()
-dir.create(data_dir, recursive = FALSE,  showWarnings = FALSE)
-unzip(zip_path, exdir = data_dir)
-
-print(data_dir)
-print(list.files(data_dir))
+data_dir <- file.path("inst", "extdata", "data", "cap-bc-data")
 
 ## import metadata
 metadata <- tibble::as_tibble(
@@ -30,7 +22,6 @@ metadata <- tibble::as_tibble(
   )
 )
 
-print(metadata$file)
 print(file.path(data_dir, metadata$file))
 ## validate data
 assertthat::assert_that(
