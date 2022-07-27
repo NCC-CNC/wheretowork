@@ -52,6 +52,10 @@ leaflet_map <- function(sidebar_ids) {
     leaflet::leaflet() %>%
     ## add basemaps
     leaflet::addProviderTiles(
+      leaflet::providers$CartoDB.Positron,
+      group = "Gray scale"
+    ) %>%
+    leaflet::addProviderTiles(
       leaflet::providers$Esri.WorldImagery,
       group = "Satellite"
     ) %>%
@@ -62,10 +66,6 @@ leaflet_map <- function(sidebar_ids) {
     leaflet::addProviderTiles(
       leaflet::providers$CartoDB.DarkMatter,
       group = "Monochrome"
-    ) %>%
-    leaflet::addProviderTiles(
-      leaflet::providers$CartoDB.Positron,
-      group = "Gray scale"
     ) %>%
     ## specify default view window
     leaflet::flyToBounds(
@@ -127,7 +127,7 @@ leaflet_map <- function(sidebar_ids) {
     ) %>%
     ## add basemap controls
     leaflet::addLayersControl(
-      baseGroups = c("Satellite", "Street view", "Monochrome", "Gray scale"),
+      baseGroups = c("Gray scale", "Satellite", "Street view", "Monochrome"),
       options = leaflet::layersControlOptions(collapsed = TRUE),
       position = "topleft"
     ) %>%
