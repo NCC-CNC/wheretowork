@@ -15,7 +15,7 @@ zip_path <- system.file(
 ## Formatted csv (metadata) that defines variable `Type`, `Theme`, `File_Name`, 
 ## `Label_Name`, `Color`, `Unit` and `Visible` 
 metadata_path <- system.file(
-  "extdata", "data", "south-western-ontario.csv", package = "wheretowork"
+  "extdata", "data", "south-western-ontario-metadata.csv", package = "wheretowork"
 )
 
 ## Name of study area (planning unit) raster. Must be nested in `zip_path`
@@ -194,7 +194,6 @@ includes <- lapply(seq_len(raster::nlayers(include_data)), function(i) {
 ## Create weights ---- 
 ## Loop over each raster in weight_data
 weights <- lapply(seq_len(raster::nlayers(weight_data)), function(i) {
-  print(i)
   ## prepare variable (categorical legend)
   if (identical(weight_legend[i], "manual")) {
     v <- new_variable_from_auto(
