@@ -13,8 +13,6 @@ test_that("singe user group", {
     x$name,
     c("Example GeoTIFF dataset",
       "Example Shapefile dataset",
-      "Ontario pilot dataset",
-      "Ontario pilot dataset Albers",
       "South Western Ontario Example"
     )
   )
@@ -22,8 +20,6 @@ test_that("singe user group", {
     basename(x$path),
     c("sim_raster_data.yaml",
       "sim_vector_data.yaml",
-      "ontario_pilot.yaml",
-      "ontario_pilot_albers.yaml",
       "south_western_ontario.yaml"
     )
   )
@@ -47,8 +43,6 @@ test_that("multiple user groups", {
       "Example GeoTIFF dataset (themes)",
       "Example Shapefile dataset",
       "Example Shapefile dataset (themes)",
-      "Ontario pilot dataset",
-      "Ontario pilot dataset Albers",
       "South Western Ontario Example"
     )
   )
@@ -60,8 +54,6 @@ test_that("multiple user groups", {
       "sim_raster2_data.yaml",
       "sim_vector_data.yaml",
       "sim_vector2_data.yaml",
-      "ontario_pilot.yaml",
-      "ontario_pilot_albers.yaml",
       "south_western_ontario.yaml"
     )
   )
