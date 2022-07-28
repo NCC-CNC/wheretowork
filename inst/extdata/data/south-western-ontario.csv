@@ -89,5 +89,6 @@ weight,Human Pressure,R1km_W_LinearDensity_WaterCrs_km2.tif,Stream Density ,GnBu
 weight,Human Pressure,R1km_W_Roads.tif,Road Network ,"#00000000, #e7298a, #7570b3, #d95f02",manual,"no road, tertiary, secondary, primary",,FALSE,national,88,Ranking,"Higher value, greater threat/impact"
 weight,Human Pressure,R1km_W_Human_Disturbance.tif,Canadian Human Footprint ,rocket,continuous,,index,FALSE,national,89,Index,"Higher value, greater threat/impact"
 weight,Climate Change,R1km_W_Climate_Refugia.tif,Climate Refugia ,magma,continuous,,index,FALSE,national,90,Index,"Higher value, greater potential"
+weight,Mean NDVI ,R1km_W_Mean_NDVI.tif,Mean NDVI ,RdYlGn,continuous,,index,FALSE,regional,,Index,
 include,Protected and Policy Areas,R1km_I_Protected.tif,Existing Conservation,#2ca25f,manual,"not included, included",km2,TRUE,national,91,Presence/absence,Cutoff = 0 ha
 include,Other,R1km_I_MilitaryBases.tif,Military Bases,#f7fcb9,manual,"not included, included",km2,FALSE,regional,2,Presence/absence,Cutoff = 0 ha

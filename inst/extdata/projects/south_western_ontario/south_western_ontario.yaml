@@ -1630,6 +1630,29 @@ weights:
   visible: no
   hidden: no
   factor: 0.0
+- name: 'Mean NDVI '
+  variable:
+    index: R1km_W_Mean_NDVI
+    units: index
+    legend:
+      type: continuous
+      colors:
+      - '#A50026'
+      - '#D73027'
+      - '#F46D43'
+      - '#FDAE61'
+      - '#FEE08B'
+      - '#FFFFBF'
+      - '#D9EF8B'
+      - '#A6D96A'
+      - '#66BD63'
+      - '#1A9850'
+      - '#006837'
+    provenance: regional
+  status: yes
+  visible: no
+  hidden: no
+  factor: 0.0
 includes:
 - name: Military Bases
   variable:
