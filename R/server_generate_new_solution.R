@@ -266,6 +266,7 @@ server_generate_new_solution <- quote({
       dataset = app_data$dataset,
       settings = app_data$ss,
       legend = new_manual_legend(
+        values = c(0, 1),
         colors = c("#00FFFF00", r$color),
         labels = c("not selected", "selected")
       )

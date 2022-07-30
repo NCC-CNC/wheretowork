@@ -4,7 +4,13 @@
 \alias{simulate_themes}
 \title{Simulate themes}
 \usage{
-simulate_themes(dataset, n_single_themes, n_multi_themes, lambda = 5)
+simulate_themes(
+  dataset,
+  n_single_themes,
+  n_multi_themes,
+  lambda = 5,
+  continuous = NA
+)
 }
 \arguments{
 \item{dataset}{\link{Dataset} object.}
@@ -19,6 +25,10 @@ to simulate.}
 of features for themes that contain multiple features.
 This parameter is used as a argument to \code{rpois(n, lambda = lambda)}.
 Defaults to 5.}
+
+\item{continuous}{\code{logical} should the data be continuous?
+Defaults to \code{NA}. If \code{NA}, simulated themes are a mix of continuous and
+categorical defined by a conditional: \code{stats::runif(1) > 0.5}}
 }
 \value{
 A \code{list} of simulated \link{Theme} objects.

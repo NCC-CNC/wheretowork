@@ -71,6 +71,13 @@ sim_raster_data3[[idx]]$visible <- FALSE
 # Remove "layer" from attribute data
 raster_data$attribute_data <- raster_data$attribute_data[, -1, drop = FALSE]
 
+# Create project with categorical data and manual legends 
+sim_raster_data4 <-
+  append(
+    simulate_themes(raster_data, n_single_themes, n_multi_themes, continuous = FALSE),
+    simulate_weights(raster_data, n_weights, continuous = FALSE)
+  )
+
 # Exports
 ## create folders if needed
 dir.create(
@@ -81,6 +88,9 @@ dir.create(
 )
 dir.create(
   "inst/extdata/projects/sim_raster3", recursive = TRUE, showWarnings = FALSE
+)
+dir.create(
+  "inst/extdata/projects/sim_raster4", recursive = TRUE, showWarnings = FALSE
 )
 dir.create(
   "inst/extdata/projects/sim_vector", recursive = TRUE, showWarnings = FALSE
@@ -148,6 +158,26 @@ write_project(
   author_name = "Richard Schuster",
   author_email = "richard.schuster@natureconservancy.ca"
 )
+
+## raster project (with themes + weights (categorical, manual legend))
+write_project(
+  x = sim_raster_data4,
+  dataset = raster_data,
+  name = "Example GeoTIFF dataset (legend manual)",
+  path =
+    "inst/extdata/projects/sim_raster4/sim_raster4_data.yaml",
+  spatial_path =
+    "inst/extdata/projects/sim_raster4/sim_raster4_spatial.tif",
+  attribute_path =
+    "inst/extdata/projects/sim_raster4/sim_raster4_attribute.csv.gz",
+  boundary_path =
+    "inst/extdata/projects/sim_raster4/sim_raster4_boundary.csv.gz",
+  mode = "advanced",
+  user_groups = "admin",
+  author_name = "Dan Wismer",
+  author_email = "daniel.wismer@natureconservancy.ca"
+)
+
 
 ## vector project (with themes + includes + weights)
 write_project(

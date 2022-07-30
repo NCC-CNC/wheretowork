@@ -1,0 +1,94 @@
+Type,Theme,File,Name,Color,Legend,Labels,Unit,Visible,Provenance,Order,Description,Notes
+theme,Species at Risk,R1km_T_SAR_AmericanBadgerjacksonisubspecies.tif,American Badger jacksoni subspecies,#fb8072,manual,"absence, presence",km2,FALSE,national,15,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_AwemeBorer.tif,Aweme Borer,#fb8072,manual,"absence, presence",km2,FALSE,national,17,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_BankSwallow.tif,Bank Swallow,#fb8072,manual,"absence, presence",km2,FALSE,national,18,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_BarnSwallow.tif,Barn Swallow,#fb8072,manual,"absence, presence",km2,FALSE,national,,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_BlandingsTurtle.tif,Blandings Turtle,#fb8072,manual,"absence, presence",km2,FALSE,national,19,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_Bobolink.tif,Bobolink,#fb8072,manual,"absence, presence",km2,FALSE,national,20,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_ButlersGartersnake.tif,Butlers Gartersnake,#fb8072,manual,"absence, presence",km2,FALSE,national,21,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_Butternut.tif,Butternut,#fb8072,manual,"absence, presence",km2,FALSE,national,22,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_CanadaWarbler.tif,Canada Warbler,#fb8072,manual,"absence, presence",km2,FALSE,national,23,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_CeruleanWarbler.tif,Cerulean Warbler,#fb8072,manual,"absence, presence",km2,FALSE,national,24,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_ChimneySwift.tif,Chimney Swift,#fb8072,manual,"absence, presence",km2,FALSE,national,25,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_CommonNighthawk.tif,Common Nighthawk,#fb8072,manual,"absence, presence",km2,FALSE,national,26,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_DwarfLakeIris.tif,Dwarf Lake Iris,#fb8072,manual,"absence, presence",km2,FALSE,national,27,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_EasternFoxsnake.tif,Eastern Foxsnake,#fb8072,manual,"absence, presence",km2,FALSE,national,28,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_EasternHognosedSnake.tif,Eastern Hognosed Snake,#fb8072,manual,"absence, presence",km2,FALSE,national,29,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_EasternMeadowlark.tif,Eastern Meadowlark,#fb8072,manual,"absence, presence",km2,FALSE,national,30,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_EasternMilksnake.tif,Eastern Milksnake,#fb8072,manual,"absence, presence",km2,FALSE,national,31,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_EasternMuskTurtle.tif,Eastern Musk Turtle,#fb8072,manual,"absence, presence",km2,FALSE,national,32,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_EasternPrairieFringedorchid.tif,Eastern Prairie Fringedorchid,#fb8072,manual,"absence, presence",km2,FALSE,national,33,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_EasternRibbonsnake.tif,Eastern Ribbonsnake,#fb8072,manual,"absence, presence",km2,FALSE,national,34,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_EasternWhippoorwill.tif,Eastern Whippoorwill,#fb8072,manual,"absence, presence",km2,FALSE,national,35,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_EasternWoodpewee.tif,Eastern Woodpewee,#fb8072,manual,"absence, presence",km2,FALSE,national,36,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_ForkedThreeawnedGrass.tif,Forked Threeawned Grass,#fb8072,manual,"absence, presence",km2,FALSE,national,37,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_GattingersAgalinis.tif,Gattingers Agalinis,#fb8072,manual,"absence, presence",km2,FALSE,national,38,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_GoldenwingedWarbler.tif,Goldenwinged Warbler,#fb8072,manual,"absence, presence",km2,FALSE,national,39,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_GrasshopperSparrowpratensissubspecies.tif,Grasshopper Sparrow,#fb8072,manual,"absence, presence",km2,FALSE,national,40,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_GrayFox.tif,Gray Fox,#fb8072,manual,"absence, presence",km2,FALSE,national,41,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_GypsyCuckooBumbleBee.tif,Gypsy Cuckoo BumbleBee,#fb8072,manual,"absence, presence",km2,FALSE,national,42,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_HartstongueFern.tif,Hartstongue Fern,#fb8072,manual,"absence, presence",km2,TRUE,national,43,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_HenslowsSparrow.tif,Henslows Sparrow,#fb8072,manual,"absence, presence",km2,FALSE,national,44,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_HillsPondweed.tif,Hills Pondweed,#fb8072,manual,"absence, presence",km2,FALSE,national,45,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_HillsThistle.tif,Hills Thistle,#fb8072,manual,"absence, presence",km2,FALSE,national,46,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_HinesEmerald.tif,Hines Emerald,#fb8072,manual,"absence, presence",km2,FALSE,national,47,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_HoodedWarbler.tif,Hooded Warbler,#fb8072,manual,"absence, presence",km2,FALSE,national,48,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_HoughtonsGoldenrod.tif,Houghtons Goldenrod,#fb8072,manual,"absence, presence",km2,FALSE,national,49,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_HungerfordsCrawlingWaterBeetle.tif,Hungerfords Crawling Water Beetle,#fb8072,manual,"absence, presence",km2,FALSE,national,50,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_JeffersonSalamander.tif,Jefferson Salamander,#fb8072,manual,"absence, presence",km2,FALSE,national,51,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_KingRail.tif,King Rail,#fb8072,manual,"absence, presence",km2,FALSE,national,52,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_KirtlandsWarbler.tif,Kirtlands Warbler,#fb8072,manual,"absence, presence",km2,FALSE,national,53,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_LakesideDaisy.tif,Lakeside Daisy,#fb8072,manual,"absence, presence",km2,FALSE,national,54,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_LeastBittern.tif,Least Bittern,#fb8072,manual,"absence, presence",km2,FALSE,national,55,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_LoggerheadShrikeEasternsubspecies.tif,Loggerhead Shrike Eastern Subspecies,#fb8072,manual,"absence, presence",km2,FALSE,national,56,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_LoggerheadShrikemigranssubspecies.tif,Loggerhead Shrikemigrans Subspecies,#fb8072,manual,"absence, presence",km2,FALSE,national,57,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_LouisianaWaterthrush.tif,Louisiana Waterthrush,#fb8072,manual,"absence, presence",km2,FALSE,national,58,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_MacropisCuckooBee.tif,Macropis CuckooBee,#fb8072,manual,"absence, presence",km2,FALSE,national,59,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_Massasauga.tif,Massasauga,#fb8072,manual,"absence, presence",km2,FALSE,national,60,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_Monarch.tif,Monarch,#fb8072,manual,"absence, presence",km2,FALSE,national,61,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_MottledDuskywing.tif,Mottled Duskywing,#fb8072,manual,"absence, presence",km2,FALSE,national,62,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_NorthernLeopardFrog.tif,Northern Leopard Frog,#fb8072,manual,"absence, presence",km2,FALSE,national,63,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_NorthernMapTurtle.tif,Northern Map Turtle,#fb8072,manual,"absence, presence",km2,FALSE,national,64,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_OlivesidedFlycatcher.tif,Olivesided Flycatcher,#fb8072,manual,"absence, presence",km2,FALSE,national,65,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_PitchersThistle.tif,Pitchers Thistle,#fb8072,manual,"absence, presence",km2,FALSE,national,66,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_RedheadedWoodpecker.tif,Redheaded Woodpecker,#fb8072,manual,"absence, presence",km2,FALSE,national,67,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_RustyBlackbird.tif,Rusty Blackbird,#fb8072,manual,"absence, presence",km2,FALSE,national,68,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_RustypatchedBumbleBee.tif,Rustypatched BumbleBee,#fb8072,manual,"absence, presence",km2,FALSE,national,69,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_ShortearedOwl.tif,Shorteared Owl,#fb8072,manual,"absence, presence",km2,FALSE,national,70,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_SnappingTurtle.tif,Snapping Turtle,#fb8072,manual,"absence, presence",km2,FALSE,national,71,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_SpottedTurtle.tif,Spotted Turtle,#fb8072,manual,"absence, presence",km2,FALSE,national,72,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_SpottedWintergreen.tif,Spotted Wintergreen,#fb8072,manual,"absence, presence",km2,FALSE,national,73,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_TuberousIndianplantain.tif,Tuberous Indianplantain,#fb8072,manual,"absence, presence",km2,FALSE,national,74,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_WesternChorusFrog.tif,Western Chorus Frog,#fb8072,manual,"absence, presence",km2,FALSE,national,75,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_WoodThrush.tif,Wood Thrush,#fb8072,manual,"absence, presence",km2,FALSE,national,76,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_YellowbreastedChatvirenssubspecies.tif,Yellowbreasted Chatvirens Subspecies,#fb8072,manual,"absence, presence",km2,FALSE,national,77,Presence/absence,ECCC
+theme,Species at Risk,R1km_T_SAR_YellowRail.tif,Yellow Rail,#fb8072,manual,"absence, presence",km2,FALSE,national,78,Presence/absence,ECCC
+theme,Critical Habitat,R1km_T_SARCH_BlandingsTurtle.tif,Blandings Turtle,#ffd92f,manual,"absence, presence",km2,FALSE,national,4,Presence/absence,ECCC
+theme,Critical Habitat,R1km_T_SARCH_ButlersGarterSnake.tif,Butlers Garter Snake,#ffd92f,manual,"absence, presence",km2,FALSE,national,5,Presence/absence,ECCC
+theme,Critical Habitat,R1km_T_SARCH_CommonMuskTurtle.tif,Common Musk Turtle,#ffd92f,manual,"absence, presence",km2,TRUE,national,6,Presence/absence,ECCC
+theme,Critical Habitat,R1km_T_SARCH_EasternPrairieFringedOrchid.tif,Eastern Prairie Fringed Orchid,#ffd92f,manual,"absence, presence",km2,FALSE,national,7,Presence/absence,ECCC
+theme,Critical Habitat,R1km_T_SARCH_ForkedThreeAwn.tif,Forked Three Awn,#ffd92f,manual,"absence, presence",km2,FALSE,national,8,Presence/absence,ECCC
+theme,Critical Habitat,R1km_T_SARCH_HoodedWarbler.tif,Hooded Warbler,#ffd92f,manual,"absence, presence",km2,FALSE,national,9,Presence/absence,ECCC
+theme,Critical Habitat,R1km_T_SARCH_LeastBittern.tif,Least Bittern,#ffd92f,manual,"absence, presence",km2,FALSE,national,10,Presence/absence,ECCC
+theme,Critical Habitat,R1km_T_SARCH_PipingPlover.tif,Piping Plover,#ffd92f,manual,"absence, presence",km2,FALSE,national,11,Presence/absence,ECCC
+theme,Critical Habitat,R1km_T_SARCH_SpottedTurtle.tif,Spotted Turtle,#ffd92f,manual,"absence, presence",km2,FALSE,national,12,Presence/absence,ECCC
+theme,Critical Habitat,R1km_T_SARCH_WesternChorusFrog.tif,Western Chorus Frog,#ffd92f,manual,"absence, presence",km2,FALSE,national,13,Presence/absence,ECCC
+theme,Critical Habitat,R1km_T_SARCH_WoodTurtle.tif,Wood Turtle,#ffd92f,manual,"absence, presence",km2,FALSE,national,14,Presence/absence,ECCC
+theme,Land Cover,R1km_T_HABITAT_Forest_50.tif,Forest,#006d2c,manual,"absence, presence",km2,FALSE,national,79,Presence/absence,Cutoff = 50 ha
+theme,Land Cover,R1km_T_HABITAT_Wetland_50.tif,Wetland,#c51b8a,manual,"absence, presence",km2,FALSE,national,80,Presence/absence,Cutoff = 50 ha
+theme,Land Cover,R1km_T_HABITAT_Shoreline.tif,Shoreline,#7fcdbb,manual,"inland, shoreline",km2,FALSE,national,81,Presence/absence,
+weight,Land Cover,R1km_T_HABITAT_Shoreline_km.tif,Shoreline Length,mako,continuous,,km,FALSE,national,82,Length (km),Could include as weight instead?
+weight,Protected and Policy Areas,R1km_W_Proximity_PA_km.tif,Proximity to Existing Conservation,viridis,continuous,,km,FALSE,national,83,Proximity,"Lower values, better (closer to existing protected areas)"
+weight,Protected and Policy Areas,R1km_W_NEP.tif,Niagara Escarpment Planning Area,"#00000000, #66c2a5",manual,"outside, inside",km2,TRUE,regional,1,Presence/absence,Cutoff = 0 ha
+weight,Protected and Policy Areas,R1km_W_Proximity_NE_km.tif,Proximity to Niagara Escarpment Planning Area ,viridis,continuous,,km,FALSE,regional,84,Proximity,"Lower values, better"
+weight,Protected and Policy Areas,R1km_W_ORM.tif,Oak Ridges Moraine Planning Area,"#00000000, #2ca25f",manual,"outside, inside",km2,FALSE,regional,85,Presence/absence,Cutoff = 0 ha
+weight,Protected and Policy Areas,R1km_W_Proximity_ORM_km.tif,Proximity to Oak Ridges Moraine Planning Area ,viridis,continuous,,km,FALSE,regional,86,Proximity,"Lower values, better"
+weight,Protected and Policy Areas,R1km_W_KBA.tif,Key Biodiversity Areas,"#00000000, #1c9099",manual,"outside, inside",km2,FALSE,national,87,Presence/absence,Cutoff = 0 ha
+weight,Human Pressure,R1km_W_LinearDensity_Roads_km2.tif,Road Density ,rocket,continuous,,km/km2,FALSE,national,93,Line Density,
+weight,Human Pressure,R1km_W_LinearDensity_WaterCrs_km2.tif,Stream Density ,GnBu,continuous,,km/km2,FALSE,national,94,Line Density,
+weight,Human Pressure,R1km_W_Roads.tif,Road Network ,"#00000000, #e7298a, #7570b3, #d95f02",manual,"no road, tertiary, secondary, primary",,FALSE,national,88,Ranking,"Higher value, greater threat/impact"
+weight,Human Pressure,R1km_W_Human_Disturbance.tif,Canadian Human Footprint ,rocket,continuous,,index,FALSE,national,89,Index,"Higher value, greater threat/impact"
+weight,Climate Change,R1km_W_Climate_Refugia.tif,Climate Refugia ,magma,continuous,,index,FALSE,national,90,Index,"Higher value, greater potential"
+weight,Mean NDVI ,R1km_W_Mean_NDVI.tif,Mean NDVI ,RdYlGn,continuous,,index,FALSE,regional,,Index,
+include,Protected and Policy Areas,R1km_I_Protected.tif,Existing Conservation,#2ca25f,manual,"not included, included",km2,TRUE,national,91,Presence/absence,Cutoff = 0 ha
+include,Other,R1km_I_MilitaryBases.tif,Military Bases,#f7fcb9,manual,"not included, included",km2,FALSE,regional,2,Presence/absence,Cutoff = 0 ha

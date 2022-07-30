@@ -1,0 +1,368 @@
+name: Example GeoTIFF dataset (legend manual)
+author_name: Dan Wismer
+author_email: daniel.wismer@natureconservancy.ca
+mode: advanced
+user_groups: admin
+spatial_path: sim_raster4_spatial.tif
+attribute_path: sim_raster4_attribute.csv.gz
+boundary_path: sim_raster4_boundary.csv.gz
+themes:
+- name: Brown-necked Parrot (Brown-necked)
+  feature:
+  - name: Brown-necked Parrot (Brown-necked) habitat
+    variable:
+      index: Brown_necked_Parrot_Brown_necked_
+      units: ha
+      legend:
+        type: manual
+        colors:
+        - '#E5F5F9'
+        - '#99D8C9'
+        - '#2CA25F'
+        labels:
+        - 'value: 1'
+        - 'value: 2'
+        - 'value: 3'
+      provenance: national
+    status: yes
+    visible: yes
+    hidden: no
+    goal: 0.51
+    limit_goal: 0.2
+- name: Gough Island Finch
+  feature:
+  - name: Gough Island Finch habitat
+    variable:
+      index: Gough_Island_Finch
+      units: ha
+      legend:
+        type: manual
+        colors:
+        - '#E5F5F9'
+        - '#99D8C9'
+        - '#2CA25F'
+        labels:
+        - 'value: 1'
+        - 'value: 2'
+        - 'value: 3'
+      provenance: national
+    status: yes
+    visible: yes
+    hidden: no
+    goal: 0.51
+    limit_goal: 0.2
+- name: Manus Boobook
+  feature:
+  - name: Manus Boobook habitat
+    variable:
+      index: Manus_Boobook
+      units: ha
+      legend:
+        type: manual
+        colors:
+        - '#E5F5F9'
+        - '#99D8C9'
+        - '#2CA25F'
+        labels:
+        - 'value: 1'
+        - 'value: 2'
+        - 'value: 3'
+      provenance: national
+    status: yes
+    visible: yes
+    hidden: no
+    goal: 0.51
+    limit_goal: 0.2
+- name: Guineafowl
+  feature:
+  - name: Crested Guineafowl
+    variable:
+      index: White_breasted_Guineafowl
+      units: ha
+      legend:
+        type: manual
+        colors:
+        - '#B35806'
+        - '#E08214'
+        - '#FDB863'
+        - '#FEE0B6'
+        - '#F7F7F7'
+        - '#D8DAEB'
+        - '#B2ABD2'
+        - '#8073AC'
+        - '#542788'
+        labels:
+        - 'value: 1'
+        - 'value: 2'
+        - 'value: 3'
+        - 'value: 4'
+        - 'value: 5'
+        - 'value: 6'
+        - 'value: 7'
+        - 'value: 8'
+        - 'value: 9'
+      provenance: national
+    status: yes
+    visible: yes
+    hidden: no
+    goal: 0.51
+    limit_goal: 0.2
+  - name: Helmeted Guineafowl (Moroccan)
+    variable:
+      index: White_breasted_Guineafowl
+      units: ha
+      legend:
+        type: manual
+        colors:
+        - '#B35806'
+        - '#E08214'
+        - '#FDB863'
+        - '#FEE0B6'
+        - '#F7F7F7'
+        - '#D8DAEB'
+        - '#B2ABD2'
+        - '#8073AC'
+        - '#542788'
+        labels:
+        - 'value: 1'
+        - 'value: 2'
+        - 'value: 3'
+        - 'value: 4'
+        - 'value: 5'
+        - 'value: 6'
+        - 'value: 7'
+        - 'value: 8'
+        - 'value: 9'
+      provenance: national
+    status: yes
+    visible: yes
+    hidden: no
+    goal: 0.64
+    limit_goal: 0.1
+  - name: Helmeted Guineafowl (Tufted)
+    variable:
+      index: White_breasted_Guineafowl
+      units: ha
+      legend:
+        type: manual
+        colors:
+        - '#B35806'
+        - '#E08214'
+        - '#FDB863'
+        - '#FEE0B6'
+        - '#F7F7F7'
+        - '#D8DAEB'
+        - '#B2ABD2'
+        - '#8073AC'
+        - '#542788'
+        labels:
+        - 'value: 1'
+        - 'value: 2'
+        - 'value: 3'
+        - 'value: 4'
+        - 'value: 5'
+        - 'value: 6'
+        - 'value: 7'
+        - 'value: 8'
+        - 'value: 9'
+      provenance: national
+    status: yes
+    visible: yes
+    hidden: no
+    goal: 0.64
+    limit_goal: 0.01
+  - name: White-breasted Guineafowl
+    variable:
+      index: White_breasted_Guineafowl
+      units: ha
+      legend:
+        type: manual
+        colors:
+        - '#B35806'
+        - '#E08214'
+        - '#FDB863'
+        - '#FEE0B6'
+        - '#F7F7F7'
+        - '#D8DAEB'
+        - '#B2ABD2'
+        - '#8073AC'
+        - '#542788'
+        labels:
+        - 'value: 1'
+        - 'value: 2'
+        - 'value: 3'
+        - 'value: 4'
+        - 'value: 5'
+        - 'value: 6'
+        - 'value: 7'
+        - 'value: 8'
+        - 'value: 9'
+      provenance: national
+    status: yes
+    visible: yes
+    hidden: no
+    goal: 0.65
+    limit_goal: 0.1
+- name: Painted-Snipes
+  feature:
+  - name: South American Painted-Snipe
+    variable:
+      index: Greater_Painted_Snipe
+      units: ha
+      legend:
+        type: manual
+        colors:
+        - '#B35806'
+        - '#E08214'
+        - '#FDB863'
+        - '#FEE0B6'
+        - '#D8DAEB'
+        - '#B2ABD2'
+        - '#8073AC'
+        - '#542788'
+        labels:
+        - 'value: 1'
+        - 'value: 2'
+        - 'value: 3'
+        - 'value: 4'
+        - 'value: 5'
+        - 'value: 6'
+        - 'value: 7'
+        - 'value: 8'
+      provenance: national
+    status: yes
+    visible: yes
+    hidden: no
+    goal: 0.51
+    limit_goal: 0.2
+  - name: Australian Painted-Snipe
+    variable:
+      index: Greater_Painted_Snipe
+      units: ha
+      legend:
+        type: manual
+        colors:
+        - '#B35806'
+        - '#E08214'
+        - '#FDB863'
+        - '#FEE0B6'
+        - '#D8DAEB'
+        - '#B2ABD2'
+        - '#8073AC'
+        - '#542788'
+        labels:
+        - 'value: 1'
+        - 'value: 2'
+        - 'value: 3'
+        - 'value: 4'
+        - 'value: 5'
+        - 'value: 6'
+        - 'value: 7'
+        - 'value: 8'
+      provenance: national
+    status: yes
+    visible: yes
+    hidden: no
+    goal: 0.64
+    limit_goal: 0.1
+  - name: Greater Painted-Snipe
+    variable:
+      index: Greater_Painted_Snipe
+      units: ha
+      legend:
+        type: manual
+        colors:
+        - '#B35806'
+        - '#E08214'
+        - '#FDB863'
+        - '#FEE0B6'
+        - '#D8DAEB'
+        - '#B2ABD2'
+        - '#8073AC'
+        - '#542788'
+        labels:
+        - 'value: 1'
+        - 'value: 2'
+        - 'value: 3'
+        - 'value: 4'
+        - 'value: 5'
+        - 'value: 6'
+        - 'value: 7'
+        - 'value: 8'
+      provenance: national
+    status: yes
+    visible: yes
+    hidden: no
+    goal: 0.64
+    limit_goal: 0.01
+weights:
+- name: Engagement potential
+  variable:
+    index: Engagement_potential
+    units: ha
+    legend:
+      type: manual
+      colors:
+      - '#F1A340'
+      - '#F7F7F7'
+      - '#998EC3'
+      labels:
+      - 'value: 1'
+      - 'value: 2'
+      - 'value: 3'
+    provenance: national
+  status: yes
+  visible: yes
+  hidden: no
+  factor: 0.0
+- name: Archaeological site
+  variable:
+    index: Archaeological_site
+    units: ha
+    legend:
+      type: manual
+      colors:
+      - '#F6EFF7'
+      - '#BDC9E1'
+      - '#67A9CF'
+      - '#02818A'
+      labels:
+      - 'value: 1'
+      - 'value: 2'
+      - 'value: 3'
+      - 'value: 4'
+    provenance: national
+  status: yes
+  visible: yes
+  hidden: no
+  factor: 0.0
+- name: Population density
+  variable:
+    index: Population_density
+    units: ha
+    legend:
+      type: manual
+      colors:
+      - '#F7FCF0'
+      - '#E0F3DB'
+      - '#CCEBC5'
+      - '#A8DDB5'
+      - '#7BCCC4'
+      - '#4EB3D3'
+      - '#2B8CBE'
+      - '#08589E'
+      labels:
+      - 'value: 1'
+      - 'value: 2'
+      - 'value: 3'
+      - 'value: 4'
+      - 'value: 5'
+      - 'value: 6'
+      - 'value: 7'
+      - 'value: 8'
+    provenance: national
+  status: yes
+  visible: yes
+  hidden: no
+  factor: 0.0
+includes: []

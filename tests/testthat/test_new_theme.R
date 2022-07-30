@@ -448,24 +448,24 @@ test_that("widget methods (multiple features)", {
 test_that("render on map (project on the fly)", {
   # find data file paths
   f1 <- system.file(
-    "extdata", "projects", "ontario_pilot_albers", "ontario_pilot_albers_spatial.tif",
+    "extdata", "projects", "south_western_ontario", "south_western_ontario_spatial.tif",
     package = "wheretowork"
   )
   
   f2 <- system.file(
-    "extdata",  "projects", "ontario_pilot_albers", "ontario_pilot_albers_attribute.csv.gz",
+    "extdata",  "projects", "south_western_ontario", "south_western_ontario_attribute.csv.gz",
     package = "wheretowork"
   )
   f3 <- system.file(
-    "extdata",  "projects", "ontario_pilot_albers", "ontario_pilot_albers_boundary.csv.gz",
+    "extdata",  "projects", "south_western_ontario", "south_western_ontario_boundary.csv.gz",
     package = "wheretowork"
   )
   
   # create object
   d <- new_dataset(f1, f2, f3)
-  v <- new_variable_from_auto(dataset = d, index = "R1km_Habitat_Forest", units = "km2")
+  v <- new_variable_from_auto(dataset = d, index = "R1km_W_Roads", units = "km2")
   f <- new_feature(
-    name = "Forest",
+    name = "Road Network",
     variable = v,
     visible = TRUE,
     status = FALSE,
@@ -475,7 +475,7 @@ test_that("render on map (project on the fly)", {
     id = "FID1"
   )
   t <- new_theme(
-    name = "Habitat",
+    name = "Disturbance",
     feature = f,
     id = "TID1"
   )

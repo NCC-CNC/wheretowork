@@ -114,6 +114,38 @@ test_that("new_variable_from_auto (categorical)", {
   )
 })
 
+test_that("new_variable_from_auto (categorical, manual legend)", {
+  skip_if_not_installed("RandomFields")
+  # prepare data
+  rd <- simulate_categorical_spatial_data(import_simple_raster_data(), 2)
+  d <- new_dataset_from_auto(rd)
+  # extract first column in attribute data
+  values <- sort(d$attribute_data[[1]])
+  # create character vector of unique values (c("value: 1", ...))
+  labels <- paste("value: ", as.character(c(na.omit(unique(values)))), sep = "")
+  # create character vector of color pallet, same length as labels
+  cp <- color_palette(x = "random", n = length(labels))
+  # create object
+  x <- new_variable_from_auto(
+    dataset = d, index = 1, units = "ha", type = "manual", colors = cp, 
+    labels = labels
+  )
+  # run tests
+  expect_is(x, "Variable")
+  expect_is(x$repr(), "character")
+  expect_identical(x$dataset, d)
+  expect_identical(x$total, raster::cellStats(rd[[1]], "sum"))
+  expect_identical(x$units, "ha")
+  expect_equal(
+    length(x$legend$labels),
+    length(x$legend$colors)
+  )
+  expect_equal(
+    length(x$legend$values),
+    length(x$legend$colors)
+  )
+})
+
 test_that("new_variable_from_metadata (continuous)", {
   # prepare data
   rd <- import_simple_raster_data()
@@ -123,7 +155,8 @@ test_that("new_variable_from_metadata (continuous)", {
     dataset = d,
     metadata = list(
       index = 1, type = "continuous", units = "ha", colors = "viridis",
-      min_value = 1, max_value = 5, total = 11, provenance = "missing"
+      min_value = 1, max_value = 5, total = 11, provenance = "missing", 
+      labels = "missing"
     )
   )
   # run tests
@@ -148,7 +181,7 @@ test_that("new_variable_from_metadata (categorical)", {
     dataset = d,
     metadata = list(
       index = 1, type = "categorical", units = "ha", colors = "viridis",
-      total = 11, values = seq(1, 6), provenance = "missing"
+      total = 11, values = seq(1, 6), provenance = "missing", labels = "missing"
     )
   )
   # run tests
@@ -164,23 +197,56 @@ test_that("new_variable_from_metadata (categorical)", {
   )
 })
 
+test_that("new_variable_from_metadata (categorical, manual legend)", {
+  # prepare data
+  rd <- import_simple_raster_data()
+  d <- new_dataset_from_auto(rd)
+  # create object
+  x <- new_variable_from_metadata(
+    dataset = d,
+    metadata = list(
+      index = 1, type = "manual", units = "ha", 
+      colors = c("#edf8fb", "#ccece6", "#99d8c9", "#66c2a4", "#2ca25f",
+                 "#006d2c"),
+      total = 11, values = seq(1, 6), provenance = "missing", 
+      labels = c("value: 1", "value: 2", "value: 3", "value: 4", "value: 5",
+                 "value: 6")
+    )
+  )
+  # run tests
+  expect_is(x, "Variable")
+  expect_is(x$repr(), "character")
+  expect_identical(x$dataset, d)
+  expect_identical(x$index, names(rd)[[1]])
+  expect_identical(x$total, 11)
+  expect_identical(x$units, "ha")
+  expect_equal(
+    length(x$legend$labels),
+    length(x$legend$colors)
+  )
+})
+
 test_that("render (project on the fly)", {
   # find data file paths
   f1 <- system.file(
-    "extdata", "projects", "ontario_pilot_albers", "ontario_pilot_albers_spatial.tif",
+    "extdata", "projects", "south_western_ontario", "south_western_ontario_spatial.tif",
     package = "wheretowork"
   )
   f2 <- system.file(
-    "extdata",  "projects", "ontario_pilot_albers", "ontario_pilot_albers_attribute.csv.gz",
+    "extdata",  "projects", "south_western_ontario", "south_western_ontario_attribute.csv.gz",
     package = "wheretowork"
   )
   f3 <- system.file(
-    "extdata",  "projects", "ontario_pilot_albers", "ontario_pilot_albers_boundary.csv.gz",
+    "extdata",  "projects", "south_western_ontario", "south_western_ontario_boundary.csv.gz",
     package = "wheretowork"
   )
   # create object
   d <- new_dataset(f1, f2, f3)
-  v <- new_variable_from_auto(dataset = d, index = "R1km_Habitat_Forest", units = "km2")
+  v <- new_variable_from_auto(dataset = d, index = "R1km_T_SAR_AwemeBorer", 
+                              type = "manual", units = "km2", 
+                              colors = c("#00000000", "#ff0000"),
+                              provenance = "national",
+                              labels = c("absence", "presence"))
   # render on map
   l <- leaflet::leaflet() %>% leaflet::addTiles()
   m <- v$render(x = l, id = "id", zindex = 1000, visible = TRUE)

@@ -138,7 +138,8 @@ functions because it requires performing geospatial operations.</p>
   units <span class='op'>=</span> <span class='st'>""</span>,
   type <span class='op'>=</span> <span class='st'>"auto"</span>,
   colors <span class='op'>=</span> <span class='st'>"random"</span>,
-  provenance <span class='op'>=</span> <span class='st'>"missing"</span>
+  provenance <span class='op'>=</span> <span class='st'>"missing"</span>,
+  labels <span class='op'>=</span> <span class='st'>"missing"</span>
 <span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -174,6 +175,11 @@ Defaults to <code>"random"</code> such that colors are randomly generated.</p></
       <th>provenance</th>
       <td><p><code>character</code> value indicating the type of provenance.
 The argument must be a valid type (see <code><a href='new_provenance_from_source.html'>new_provenance_from_source()</a></code>).
+Defaults to <code>"missing"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>labels</th>
+      <td><p><code>character</code> object containing manual legend labels.
 Defaults to <code>"missing"</code>.</p></td>
     </tr>
     </table>
