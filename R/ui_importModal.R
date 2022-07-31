@@ -28,7 +28,7 @@ importModal <- function(id) {
   # create modal
   shiny::modalDialog(
     title = htmltools::tags$p(
-      "Welcome to Where To Work",
+      "Welcome to CAP-BC",
       style = "text-align:center"
     ),
     easyClose = FALSE,

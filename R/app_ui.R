@@ -39,7 +39,7 @@ app_ui <- function(request) {
 
       ## title
       shiny::h3(
-        "Where To Work",
+        "CAP-BC",
         id = "app_title",
         class = "leaflet-title"
       ),
@@ -102,7 +102,7 @@ golem_add_external_resources <- function() {
     ## bundle CSS and JS files
     golem::bundle_resources(
       path = app_sys("app/www"),
-      app_title = "Where To Work"
+      app_title = "CAP-BC"
     ),
 
     ## dependencies
