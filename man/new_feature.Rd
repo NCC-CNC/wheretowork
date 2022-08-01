@@ -11,7 +11,7 @@ new_feature(
   hidden = FALSE,
   status = TRUE,
   current = 0,
-  goal = 0.1,
+  goal = 0.3,
   limit_goal = 0.1,
   id = uuid::UUIDgenerate()
 )
