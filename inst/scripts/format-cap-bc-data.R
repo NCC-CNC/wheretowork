@@ -4,6 +4,8 @@ devtools::load_all()
 library(raster)
 library(dplyr)
 
+# Get input data file paths ----
+
 ## define variables
 metadata_path <- file.path(
   "inst", "extdata", "data", "cap-bc-metadata.csv"
@@ -14,7 +16,9 @@ study_area_file <- "Planning Units.tif"
 ## prepare raster data
 data_dir <- file.path("inst", "extdata", "data", "cap-bc-data")
 
-## import metadata
+# Read-in data ----
+
+## Import formatted csv (metadata) as tibble
 metadata <- tibble::as_tibble(
   utils::read.table(
     metadata_path, stringsAsFactors = FALSE, sep = ",", header = TRUE,
@@ -22,53 +26,74 @@ metadata <- tibble::as_tibble(
   )
 )
 
-print(file.path(data_dir, metadata$file))
-## validate data
+## Validate metadata
 assertthat::assert_that(
-  all(metadata$type %in% c("theme", "include", "weight")),
-  all(file.exists(file.path(data_dir, metadata$file)))
+  all(metadata$Type %in% c("theme", "include", "weight")),
+  all(file.exists(file.path(data_dir, metadata$File)))
 )
 
-## import data
+## Import study area (planning units) raster
 study_area_data <- raster::raster(file.path(data_dir, study_area_file))
-study_area_data <- raster::projectRaster(
-  study_area_data, crs = as(sf::st_crs(3857), "CRS")
-)
-raster_data <- lapply(file.path(data_dir, metadata$file), function(x) {
-  raster::projectRaster(raster::raster(x), to = study_area_data, method = "ngb")
+
+## Import themes, includes and weights rasters as a raster stack. If raster
+## variable does not stack to study area, re-project raster variable so it aligns
+## to the study area
+raster_data <- lapply(file.path(data_dir, metadata$File), function(x) {
+  raster_x <- raster::raster(x)
+  if (raster::compareRaster(study_area_data, raster_x, stopiffalse=FALSE)) {
+    raster_x
+  } else {
+    print(paste0(names(raster_x), ": can not stack"))
+    print(paste0("... aligning to ", names(study_area_data)))
+    raster::projectRaster(raster_x, to = study_area_data, method = "ngb")
+  }
 }) %>% raster::stack()
 
-## standardize data
+# Pre-Processing ----
+
+## Create a mask layer. The mask layer maps NA cells in the raster stack. Any
+## NA found in a variable will cause the raster stack to all have an NA
 mask_data <- round(
   sum(is.na(raster::stack(study_area_data, raster_data))) < 0.5
 )
+
+## "Clip" all the raster data to the mask layer
 raster_data <- raster::mask(raster_data, mask_data)
 study_area_data <- raster::mask(study_area_data, mask_data)
 
-## extract data
-theme_data <- raster_data[[which(metadata$type == "theme")]]
-include_data <- raster_data[[which(metadata$type == "include")]]
-weight_data <- raster_data[[which(metadata$type == "weight")]]
+# Subset data using metadata tibble ----
 
-# Main processing
-## prepare theme data
+## Prepare theme inputs
+theme_data <- raster_data[[which(metadata$Type == "theme")]]
 names(theme_data) <- gsub(".", "_", names(theme_data), fixed = TRUE)
-theme_groups <- metadata$group[metadata$type == "theme"]
-theme_groups <- theme_groups[!duplicated(theme_groups)]
-theme_names <- metadata$name[metadata$type == "theme"]
-theme_colors <- metadata$color[metadata$type == "theme"]
+theme_names <- metadata$Name[metadata$Type == "theme"]
+theme_groups <- metadata$Theme[metadata$Type == "theme"]
+theme_colors <- metadata$Color[metadata$Type == "theme"]
+theme_labels <- metadata$Labels[metadata$Type == "theme"]
+theme_units <- metadata$Unit[metadata$Type == "theme"]
+theme_visible <- metadata$Visible[metadata$Type == "theme"]
+theme_provenance <- metadata$Provenance[metadata$Type == "theme"]
 
-## prepare include data
+## Prepare include inputs
+include_data <- raster_data[[which(metadata$Type == "include")]]
 include_data <- round(include_data > 0.5)
-include_names <- metadata$name[metadata$type == "include"]
-include_colors <- metadata$color[metadata$type == "include"]
+include_names <- metadata$Name[metadata$Type == "include"]
+include_colors <- metadata$Color[metadata$Type == "include"]
+include_labels <- metadata$Labels[metadata$Type == "include"]
+include_units <- metadata$Unit[metadata$Type == "include"]
+include_visible <- metadata$Visible[metadata$Type == "include"]
+include_provenance <- metadata$Provenance[metadata$Type == "include"]
 
-## prepare weight data
+## Prepare weight inputs
+weight_data <- raster_data[[which(metadata$Type == "weight")]]
 weight_data <- raster::clamp(weight_data, lower = 0)
-
-names(weight_data) <- gsub(".", "_", names(weight_data), fixed = TRUE)
-weight_names <- metadata$name[metadata$type == "weight"]
-weight_colors <- metadata$color[metadata$type == "weight"]
+weight_names <- metadata$Name[metadata$Type == "weight"]
+weight_colors <- metadata$Color[metadata$Type == "weight"]
+weight_labels <- metadata$Labels[metadata$Type == "weight"]
+weight_units <- metadata$Unit[metadata$Type == "weight"]
+weight_visible <- metadata$Visible[metadata$Type == "weight"]
+weight_provenance <- metadata$Provenance[metadata$Type == "weight"]
+weight_legend <- metadata$Legend[metadata$Type == "weight"]
 
 ## validate processed data  TODO
 # assertthat::assert_that(
@@ -82,102 +107,119 @@ weight_colors <- metadata$color[metadata$type == "weight"]
 #   all(raster::cellStats(weight_data, "min") >= 0)
 # )
 
-## create objects
-### create dataset
+# Instantiate Where To Work objects ----
+
+## Create data set
 dataset <- new_dataset_from_auto(
   raster::stack(theme_data, include_data, weight_data)
 )
 
-### create themes
-themes <- lapply(seq_len(length(theme_groups)), function(t) {
-  theme_data <- raster_data[[which(metadata$group == theme_groups[t])]]
-  theme_names <- metadata$name[metadata$group == theme_groups[t]]
-  theme_colors <- metadata$color[metadata$group == theme_groups[t]]
+print("creating themes")
 
+## Create themes ----
+## 1. Loop of unique theme groups.
+themes <- lapply(seq_along(unique(theme_groups)), function(i) {
 
-  features_in_themes <- lapply(seq_len(raster::nlayers(theme_data)), function(i) {
-    # Variable for the feature
-    if (startsWith(theme_colors[i], "#")) {
-      v <- new_variable(
-        dataset = dataset,
-        index = names(theme_data)[i],
-        units = "",
-        total = raster::cellStats(theme_data[[i]], "sum"),
-        legend = new_categorical_legend(
-          values = c(0, 1),
-          c("#00000000", theme_colors[i])
-        )
-      )
-    } else {
-      v <- new_variable_from_auto(
-       dataset = dataset,
-       index = names(theme_data)[i],
-       units = "",
-       type = "auto",
-       colors = theme_colors[i]
-      )
-    }
+  ## 2. store temp variables associated with group (i)
+  curr_theme_groups <- unique(theme_groups)[i]
+  curr_theme_data <- theme_data[[which(theme_groups == curr_theme_groups)]]
+  curr_theme_data_names <- names(curr_theme_data)
+  curr_theme_names <- theme_names[theme_groups == curr_theme_groups]
+  curr_theme_colors <- theme_colors[theme_groups == curr_theme_groups]
+  curr_theme_labels <- theme_labels[theme_groups == curr_theme_groups]
+  curr_theme_units <- theme_units[theme_groups == curr_theme_groups]
+  curr_theme_visible <- theme_visible[theme_groups == curr_theme_groups]
+  curr_theme_provenance <- theme_provenance[theme_groups == curr_theme_groups]
+
+  ## 3. Create list of features (j) associated with group
+  curr_features <- lapply(seq_along(curr_theme_names), function(j) {
     new_feature(
-      name = theme_names[i],
-      visible = i == 1L,
-      variable = v,
+      name = curr_theme_names[j],
+      goal = 0.2,
+      current = 0,
+      limit_goal = 0,
+      visible = curr_theme_visible[j],
+      variable = new_variable(
+        dataset = dataset,
+        index = curr_theme_data_names[j],
+        units = curr_theme_units[j],
+        total = raster::cellStats(curr_theme_data[[j]], "sum"),
+        legend = new_manual_legend(
+          values = c(0, 1),
+          colors = c("#00000000", curr_theme_colors[j]),
+          labels = unlist(strsplit(curr_theme_labels[j], ","))
+        ),
+        provenance = new_provenance_from_source(curr_theme_provenance[j])
+      )
     )
   })
 
-  new_theme(
-    name = theme_groups[t],
-    feature = features_in_themes,
-  )
+  # Create theme from list of features
+  curr_theme <- new_theme(curr_theme_groups,curr_features)
+
+  # return theme
+  curr_theme
 })
 
-### create includes
-#### initialize includes
+
+print("Creating includes")
+
+## Create includes ----
+
+## Loop over each raster in include_data
 includes <- lapply(seq_len(raster::nlayers(include_data)), function(i) {
   new_include(
     name = include_names[i],
-    visible = FALSE,
+    visible = include_visible[i],
     variable = new_variable(
       dataset = dataset,
       index = names(include_data)[i],
-      units = "",
+      units = include_units[i],
       total = raster::cellStats(include_data[[i]], "sum"),
       legend = new_manual_legend(
-        labels = c("not included", "include"),
-        colors = c("#00000000", include_colors[i])
-      )
+        values = c(0, 1),
+        colors = c("#00000000", include_colors[i]),
+        labels = unlist(strsplit(include_labels[i], ","))
+      ),
+      provenance = new_provenance_from_source(include_provenance[i])
     )
   )
 })
 
-### create weights
+print("Creating weights")
+
+## Create weights ----
+## Loop over each raster in weight_data
 weights <- lapply(seq_len(raster::nlayers(weight_data)), function(i) {
-  #### prepare variable
-  if (startsWith(weight_colors[i], "#")) {
-    v <- new_variable(
+  ## prepare variable (categorical legend)
+  if (identical(weight_legend[i], "manual")) {
+    v <- new_variable_from_auto(
       dataset = dataset,
       index = names(weight_data)[i],
-      units = "",
-      total = raster::cellStats(weight_data[[i]], "sum"),
-      legend = new_categorical_legend(
-        values = c(0, 1),
-        c("#00000000", weight_colors[i])
-      )
+      units = weight_units[i],
+      type = "manual",
+      colors = trimws(unlist(strsplit(weight_colors[i], ","))),
+      provenance = weight_provenance[i],
+      labels = unlist(strsplit(weight_labels[i], ","))
     )
-  } else {
+  } else { ## prepare variable (continuous legend, automatically identified)
     v <- new_variable_from_auto(
      dataset = dataset,
      index = names(weight_data)[i],
-     units = "",
+     units = weight_units[i],
      type = "auto",
-     colors = weight_colors[i]
+     colors = weight_colors[i],
+     provenance = weight_provenance[i],
+     labels = "missing"
     )
   }
-  #### create weight
-  new_weight(name = weight_names[i], variable = v, visible = FALSE)
+  ## Create weight
+  new_weight(name = weight_names[i], variable = v, visible = weight_visible[i])
 })
 
-# Exports
-## create folders if needed
+# Export Where To Work objects ----
+
+## Create output folder if needed
 dir.create(
   "inst/extdata/projects/cap_bc", recursive = TRUE, showWarnings = FALSE
 )
@@ -196,6 +238,6 @@ write_project(
   boundary_path =
     "inst/extdata/projects/cap_bc/cap_bc_boundary.csv.gz",
   mode = "advanced",
-  author_name = "Xavier Corredor Llano",
+  author_name = "Xavier C. Llano",
   author_email = "llano@unbc.ca"
 )
