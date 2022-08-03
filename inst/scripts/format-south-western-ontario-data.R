@@ -82,6 +82,7 @@ names(theme_data) <- gsub(".", "_", names(theme_data), fixed = TRUE)
 theme_names <- metadata$Name[metadata$Type == "theme"]
 theme_groups <- metadata$Theme[metadata$Type == "theme"]
 theme_colors <- metadata$Color[metadata$Type == "theme"]
+theme_labels <- metadata$Labels[metadata$Type == "theme"]
 theme_units <- metadata$Unit[metadata$Type == "theme"]
 theme_visible <- metadata$Visible[metadata$Type == "theme"]
 theme_provenance <- metadata$Provenance[metadata$Type == "theme"]
@@ -91,6 +92,7 @@ include_data <- raster_data[[which(metadata$Type == "include")]]
 include_data <- round(include_data > 0.5)
 include_names <- metadata$Name[metadata$Type == "include"]
 include_colors <- metadata$Color[metadata$Type == "include"]
+include_labels <- metadata$Labels[metadata$Type == "include"]
 include_units <- metadata$Unit[metadata$Type == "include"]
 include_visible <- metadata$Visible[metadata$Type == "include"]
 include_provenance <- metadata$Provenance[metadata$Type == "include"]
@@ -100,11 +102,11 @@ weight_data <- raster_data[[which(metadata$Type == "weight")]]
 weight_data <- raster::clamp(weight_data, lower = 0)
 weight_names <- metadata$Name[metadata$Type == "weight"]
 weight_colors <- metadata$Color[metadata$Type == "weight"]
+weight_legend <- metadata$Legend[metadata$Type == "weight"]
+weight_labels <- metadata$Labels[metadata$Type == "weight"]
 weight_units <- metadata$Unit[metadata$Type == "weight"]
 weight_visible <- metadata$Visible[metadata$Type == "weight"]
 weight_provenance <- metadata$Provenance[metadata$Type == "weight"]
-weight_legend <- metadata$Legend[metadata$Type == "weight"]
-weight_labels <- metadata$Labels[metadata$Type == "weight"]
 
 ## validate raster stack
 assertthat::assert_that(
@@ -135,6 +137,7 @@ themes <- lapply(seq_along(unique(theme_groups)), function(i) {
   curr_theme_data_names <- names(curr_theme_data)
   curr_theme_names <- theme_names[theme_groups == curr_theme_groups]
   curr_theme_colors <- theme_colors[theme_groups == curr_theme_groups]
+  curr_theme_labels <- theme_labels[theme_groups == curr_theme_groups]
   curr_theme_units <- theme_units[theme_groups == curr_theme_groups]
   curr_theme_visible <- theme_visible[theme_groups == curr_theme_groups]
   curr_theme_provenance <- theme_provenance[theme_groups == curr_theme_groups] 
@@ -155,7 +158,7 @@ themes <- lapply(seq_along(unique(theme_groups)), function(i) {
         legend = new_manual_legend(
           values = c(0, 1),
           colors = c("#00000000", curr_theme_colors[j]),
-          labels = c("absence", "presence")
+          labels = unlist(lapply(strsplit(curr_theme_labels[j], ","), trimws))
         ),
         provenance = new_provenance_from_source(curr_theme_provenance[j])
       )
@@ -184,7 +187,7 @@ includes <- lapply(seq_len(raster::nlayers(include_data)), function(i) {
       legend = new_manual_legend(
         values = c(0, 1),
         colors = c("#00000000", include_colors[i]),
-        labels = c("not included", "include")
+        labels = unlist(lapply(strsplit(include_labels[i], ","), trimws))
       ),
       provenance = new_provenance_from_source(include_provenance[i])
     )
@@ -202,8 +205,8 @@ weights <- lapply(seq_len(raster::nlayers(weight_data)), function(i) {
       units = weight_units[i],
       type = "manual",
       colors = trimws(unlist(strsplit(weight_colors[i], ","))),
-      provenance = weight_provenance[i],
-      labels = unlist(strsplit(weight_labels[i], ","))
+      provenance = new_provenance_from_source(weight_provenance[i]),
+      labels = unlist(lapply(strsplit(weight_labels[i], ","), trimws))
     )
   } else { ## prepare variable (continuous legend, automatically identified)
     v <- new_variable_from_auto(
@@ -212,7 +215,7 @@ weights <- lapply(seq_len(raster::nlayers(weight_data)), function(i) {
      units = weight_units[i],
      type = "auto",
      colors = weight_colors[i],
-     provenance = weight_provenance[i],
+     provenance = new_provenance_from_source(weight_provenance[i]),
      labels = "missing"
     )
   }
