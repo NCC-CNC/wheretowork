@@ -1,9 +1,8 @@
 /* overall widget */
 .continuous-legend {
-  width: 100%;
-  min-height: 115px;
-  overflow:auto;
-  position:relative;
+  display: flex;
+  flex-direction: column;
+  padding: 3px 0px 3px 20px;
 }
 
 .continuous-legend-plus {
@@ -23,35 +22,35 @@
 }
 
 /* containers */
+.continuous-legend-flex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 .continuous-legend .color-bar {
-  position: absolute;
-  min-height: 103px;
-  width: 22px;
-  display: inline-block;
-  box-sizing: border-box;
+  min-height: 15px;
+  width: 300px;
   border-radius: 5px;
-  border: 1px solid var(--symbol-border);
-  bottom: 5px;
-  left: 22px;
+  border: 1px solid var(--symbol-border);  
 }
 
 .continuous-legend .items {
-  position: absolute;
-  min-height: 100px;
-  width: 60px;
-  display: inline-block;
-  box-sizing: border-box;
-  vertical-align: bottom;
-  bottom: 0px;
-  left: 43px;
+  max-width: 300px;
+  display: flex;
+  justify-content: space-between;  
 }
 
 .continuous-legend .item {
-  display: inline-block;
-  box-sizing: border-box;
-  position: absolute;
-  box-sizing: border-box;
-  vertical-align: baseline;
+  display: flex;
+  flex-direction: column;  
+}
+
+/* units */
+.continuous-legend .colorbar-units {
+  font-size: 10px;
+  font-weight: 400;
+  padding-left: 5px;
 }
 
 /* labels */
@@ -61,15 +60,16 @@
   display: inline-block;
   padding: 0;
   margin: 0;
-  padding-left:3px;
-  /*vertical-align: baseline;*/
 }
 
 /* ticks */
 .continuous-legend .items .tick {
-  height: 2px;
-  width: 5px;
-  display: inline-block;
-  color: var(--symbol-border);
-  background-color: var(--symbol-border);
+    height: 5px;
+    width: 2px;
+    display: inline-block;
+    background-color: var(--symbol-border);
+    color: var(--symbol-border);
+    margin: 0 auto;
 }
+
+

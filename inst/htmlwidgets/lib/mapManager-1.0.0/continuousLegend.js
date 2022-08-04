@@ -29,19 +29,15 @@ function continuousLegend(el, x, units) {
   // initialize leged
   let l = document.createElement("div");
   l.className = "continuous-legend";
-
-  // calculate label/ticks positions
-  /// calculate percentages
-  positions = x.values.map((z) => {
-    return ((z - x.min_value) / (x.max_value - x.min_value)) * 100;
-  });
-  /// replace any NaN values with zero (caused by zero / zero)
-  positions = positions.map((z) => isNaN(z) ? 0 : z);
+  
+  // flex container for color-bar and units
+  let l_flex = document.createElement("div");
+  l_flex.className = "continuous-legend-flex";
 
   // create color bar
   let colorbar = document.createElement("div");
   colorbar.className = "color-bar";
-  let colorbar_background = "linear-gradient(180deg";
+  let colorbar_background = "linear-gradient(to left";
   let colorbar_position = undefined;
   x.colors = x.colors.reverse();
   for (let i = 0; i < x.colors.length; ++i) {
@@ -52,8 +48,13 @@ function continuousLegend(el, x, units) {
   colorbar_background += ")";
   colorbar.style.backgroundColor = x.colors[0];
   colorbar.style.backgroundImage = colorbar_background;
+  
+  // create container for units
+  let colorbar_units = document.createElement("div")
+  colorbar_units.className = "colorbar-units";
+  colorbar_units.innerText = `${units}`
 
-  // create container for color bar ticks and labels
+  // create container for ticks and labels
   let items = document.createElement("div");
   items.className = "items";
   l.setAttribute("data-toggle", "tooltip");
@@ -69,7 +70,7 @@ function continuousLegend(el, x, units) {
     // create container for i'th tick and label
     let item = document.createElement("div");
     item.className = "item";
-    item.style.bottom = positions[i] + "%";
+    // item.style.bottom = positions[i] + "%";
 
     // create tick
     let tick = document.createElement("div");
@@ -80,7 +81,7 @@ function continuousLegend(el, x, units) {
     // create label
     let label = document.createElement("label");
     label.className = "colorbar-label";
-    label.innerText = `${x.values[i]} ${units}`;
+    label.innerText = `${x.values[i]}`;
     item.appendChild(label);
 
     // append to container
@@ -88,11 +89,12 @@ function continuousLegend(el, x, units) {
   }
 
   // construct legend
-  l.appendChild(colorbar);
+  l.appendChild(l_flex)
+  l_flex.appendChild(colorbar)
+  l_flex.appendChild(colorbar_units)
   l.appendChild(items);
 
   // add legend to parent container
   el.appendChild(l);
-
 
 }
