@@ -343,7 +343,7 @@ new_feature <- function(name,
                         status = TRUE,
                         current = 0,
                         goal = 0.3,
-                        limit_goal = 0.1,
+                        limit_goal = 0,
                         id = uuid::UUIDgenerate()) {
   # return new feature
   Feature$new(
