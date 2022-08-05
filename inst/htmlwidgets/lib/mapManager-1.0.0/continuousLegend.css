@@ -51,6 +51,7 @@
   font-size: 10px;
   font-weight: 400;
   padding-left: 5px;
+  margin-right: 5px;
 }
 
 /* labels */
@@ -72,4 +73,26 @@
     margin: 0 auto;
 }
 
+/* small screens */
+@media only screen and (max-width: 991px) {
+  .continuous-legend .color-bar {
+    width: 175px;
+  }
+  
+  .continuous-legend .items {
+    max-width: 175px;
+  }
+  
+}
 
+/* medium screens */
+@media only screen and (max-width: 1199px) and (min-width: 992px) {
+  .continuous-legend .color-bar {
+    width: 250px;
+  }
+  
+  .continuous-legend .items {
+    max-width: 250px;
+  }
+  
+}
