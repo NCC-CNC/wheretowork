@@ -29,14 +29,14 @@
 }
 
 .continuous-legend .color-bar {
-  min-height: 15px;
+  height: 12px;
   width: 300px;
   border-radius: 5px;
   border: 1px solid var(--symbol-border);  
 }
 
 .continuous-legend .items {
-  max-width: 300px;
+  width: 300px;
   display: flex;
   justify-content: space-between;  
 }
@@ -80,7 +80,7 @@
   }
   
   .continuous-legend .items {
-    max-width: 175px;
+    width: 175px;
   }
 }
 
@@ -91,6 +91,6 @@
   }
   
   .continuous-legend .items {
-    max-width: 250px;
+    width: 250px;
   }
 }
