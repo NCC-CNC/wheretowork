@@ -359,7 +359,9 @@ new_variable_from_auto <- function(dataset, index,
                                    units = "", type = "auto",
                                    colors = "random",
                                    provenance = "missing",
-                                   labels = "missing") {
+                                   labels = "missing",
+                                   hidden = FALSE) {
+  
   # assert arguments are valid
   assertthat::assert_that(
     ## dataset
@@ -387,8 +389,8 @@ new_variable_from_auto <- function(dataset, index,
     length(labels) >= 1
   )
 
-  # import dataset
-  d <- dataset$get_index(index)
+  # import attribute table
+  d <- dataset$get_attribute_data()[index]
 
   # if needed, automatically determine data type
   if (identical(type, "auto")) {

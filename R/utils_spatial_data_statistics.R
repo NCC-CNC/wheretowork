@@ -5,7 +5,7 @@ NULL
 #'
 #' Calculate statistics for a spatial dataset.
 #'
-#' @param x [sf::st_sf()] or [raster::stack()] dataset object.
+#' @param x [sf::st_sf()] or [raster::stack()] or [data.frame] dataset object.
 #'
 #' @param type `character` indicating whether the dataset contains
 #'   continuous (i.e. `"continuous"`) or categorical (i.e. `"categorical"`)
@@ -105,6 +105,49 @@ spatial_data_statistics.Raster <- function(x, type, index = 1) {
     )
   }
 
+  # return result
+  out
+}
+
+#' @rdname spatial_data_statistics
+#' @export
+spatial_data_statistics.data.frame <- function(x, type, index = 1) {
+  # assert valid arguments
+  assertthat::assert_that(
+    inherits(x, c('tbl_df', 'tbl', 'data.frame')),
+    assertthat::is.string(type),
+    assertthat::noNA(type),
+    #type %in% c("continuous", "categorical", "manual"),
+    assertthat::is.string(index) || assertthat::is.count(index),
+    assertthat::noNA(index)
+  )
+  if (is.character(index)) {
+    assertthat::assert_that(
+      index %in% names(x)
+    )
+  }
+  
+  # convert index to integer if field name supplied
+  if (is.character(index)) {
+    index <- which(names(x) == index)
+  }
+  
+  # calculate statistics
+  if (identical(type, "continuous")) {
+    ## continuous data
+    out <- list(
+      total = sum(x[[index]]),
+      min_value = min(x[[index]]),
+      max_value = max(x[[index]])
+    )
+  } else {
+    ## categorical data
+    out <- list(
+      total = sum(x[[index]]),
+      values = unique(x[[index]])
+    )
+  }
+  
   # return result
   out
 }
