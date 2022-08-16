@@ -5,6 +5,8 @@ function createLegend(el, x, units) {
     return continuousLegend(el, x, units);
   } else if (x.type === "ManualLegend") {
     return manualLegend(el, x)
+  } else if (x.type === "NullLegend") {
+    return null    
   } else {
     console.error("unrecognized legend")
     console.log(x)
