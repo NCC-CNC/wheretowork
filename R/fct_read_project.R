@@ -70,6 +70,7 @@ read_project <- function(path,
                          attribute_path = NULL,
                          boundary_path = NULL,
                          mode = "project") {
+  
   # assert arguments are valid
   assertthat::assert_that(
     assertthat::is.string(path),
@@ -187,7 +188,8 @@ read_project <- function(path,
               type = f$variable$legend$type,
               colors = f$variable$legend$colors,
               provenance = f$variable$provenance %||% "missing",
-              labels = f$variable$legend$labels %||% "missing"
+              labels = f$variable$legend$labels %||% "missing",
+              hidden = f$hidden %||% FALSE
             )
           )
         })
@@ -244,7 +246,8 @@ read_project <- function(path,
           type = x$variable$legend$type,
           colors = x$variable$legend$colors,
           provenance = x$variable$provenance %||% "missing",
-          labels = x$variable$legend$labels %||% "missing"
+          labels = x$variable$legend$labels %||% "missing",
+          hidden = x$hidden %||% FALSE
         )
       ),
       silent = TRUE
