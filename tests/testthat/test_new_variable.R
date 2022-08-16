@@ -146,6 +146,39 @@ test_that("new_variable_from_auto (categorical, manual legend)", {
   )
 })
 
+test_that("new_variable_from_auto (hidden == TRUE)", {
+  skip_if_not_installed("RandomFields")
+  # prepare data
+  rd <- simulate_categorical_spatial_data(import_simple_raster_data(), 2)
+  d <- new_dataset_from_auto(rd)
+  # extract first column in attribute data
+  values <- sort(d$attribute_data[[1]])
+  # create character vector of unique values (c("value: 1", ...))
+  labels <- paste("value: ", as.character(c(na.omit(unique(values)))), sep = "")
+  # create character vector of color pallet, same length as labels
+  cp <- color_palette(x = "random", n = length(labels))
+  # create object
+  x <- new_variable_from_auto(
+    dataset = d, index = 1, units = "ha", type = "manual", colors = cp, 
+    labels = labels, hidden = TRUE
+  )
+  # run tests
+  expect_is(x, "Variable")
+  expect_is(x$repr(), "character")
+  expect_identical(x$dataset, d)
+  expect_identical(x$total, raster::cellStats(rd[[1]], "sum"))
+  expect_identical(x$units, "ha")
+  expect_equal(
+    length(x$legend$labels),
+    length(x$legend$colors)
+  )
+  expect_equal(
+    length(x$legend$values),
+    length(x$legend$colors)
+  )
+})
+
+
 test_that("new_variable_from_metadata (continuous)", {
   # prepare data
   rd <- import_simple_raster_data()
@@ -246,11 +279,45 @@ test_that("render (project on the fly)", {
                               type = "manual", units = "km2", 
                               colors = c("#00000000", "#ff0000"),
                               provenance = "national",
-                              labels = c("absence", "presence"))
+                              labels = c("absence", "presence"),
+                              hidden = FALSE)
   # render on map
   l <- leaflet::leaflet() %>% leaflet::addTiles()
   m <- v$render(x = l, id = "id", zindex = 1000, visible = TRUE)
   # run tests
   expect_is(m, "leaflet")
+})
+
+test_that("do not render (variable = hidden)", {
+  # find data file paths
+  f1 <- system.file(
+    "extdata", "projects", "south_western_ontario", "south_western_ontario_spatial.tif",
+    package = "wheretowork"
+  )
+  f2 <- system.file(
+    "extdata",  "projects", "south_western_ontario", "south_western_ontario_attribute.csv.gz",
+    package = "wheretowork"
+  )
+  f3 <- system.file(
+    "extdata",  "projects", "south_western_ontario", "south_western_ontario_boundary.csv.gz",
+    package = "wheretowork"
+  )
+  # create object
+  d <- new_dataset(f1, f2, f3)
+  v <- new_variable_from_auto(dataset = d, index = "R1km_T_SAR_AwemeBorer", 
+                              type = "manual", units = "km2", 
+                              colors = c("#00000000", "#ff0000"),
+                              provenance = "national",
+                              labels = c("absence", "presence"),
+                              hidden = TRUE)
+  # render on map
+  l <- leaflet::leaflet() %>% leaflet::addTiles()
+
+  m <- try(
+    v$render(x = l, id = "id", zindex = 1000, visible = TRUE), 
+    silent = TRUE
+  )
+  # run tests
+  expect_is(m, "try-error")
 })
 
