@@ -11,7 +11,8 @@ new_variable_from_auto(
   type = "auto",
   colors = "random",
   provenance = "missing",
-  labels = "missing"
+  labels = "missing",
+  hidden = FALSE
 )
 }
 \arguments{
