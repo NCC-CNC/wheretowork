@@ -144,7 +144,7 @@ spatial_data_statistics.data.frame <- function(x, type, index = 1) {
     ## categorical data
     out <- list(
       total = sum(x[[index]]),
-      values = unique(x[[index]])
+      values = sort(unique(x[[index]]))
     )
   }
   

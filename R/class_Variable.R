@@ -55,7 +55,7 @@ Variable <- R6::R6Class(
         #### legend
         inherits(
           legend,
-          c("ContinuousLegend", "CategoricalLegend", "ManualLegend")
+          c("ContinuousLegend", "CategoricalLegend", "ManualLegend", "NullLegend")
         ),
         #### provenance
         inherits(provenance, "Provenance")
@@ -361,7 +361,6 @@ new_variable_from_auto <- function(dataset, index,
                                    provenance = "missing",
                                    labels = "missing",
                                    hidden = FALSE) {
-  
   # assert arguments are valid
   assertthat::assert_that(
     ## dataset
@@ -391,30 +390,43 @@ new_variable_from_auto <- function(dataset, index,
 
   # import attribute table
   d <- dataset$get_attribute_data()[index]
-
-  # if needed, automatically determine data type
-  if (identical(type, "auto")) {
-    type <- spatial_data_type(d, 1)
+  
+  # if hidden, construct Variable object with no legend
+  if (hidden) {
+    # convert index to integer if field name supplied
+    if (is.character(index)) {
+      index <- which(names(d) == index)
+    }
+    # create Variable object with no legend
+    Variable$new(
+      dataset = dataset, index = index, total = sum(d[[index]]),
+      units = units, legend = new_null_legend(),
+      provenance = new_provenance_from_source(provenance))
+    
+  } else {
+    # if needed, automatically determine data type
+    if (identical(type, "auto")) {
+      type <- spatial_data_type(d, 1)
+    }
+    # compute statistics for data
+    s <- spatial_data_statistics(d, type, 1)    
+    
+    # create new variable using automatically deduced settings
+    new_variable_from_metadata(
+      dataset = dataset,
+      metadata = append(
+        list(
+          index = index,
+          units = units,
+          colors = colors,
+          type = type,
+          provenance = provenance,
+          labels = labels
+        ),
+        s
+      )
+    )    
   }
-
-  # compute statistics for data
-  s <- spatial_data_statistics(d, type, 1)
-
-  # create new variable using automatically deduced settings
-  new_variable_from_metadata(
-    dataset = dataset,
-    metadata = append(
-      list(
-        index = index,
-        units = units,
-        colors = colors,
-        type = type,
-        provenance = provenance,
-        labels = labels
-      ),
-      s
-    )
-  )
 }
 
 #' New variable from metadata
