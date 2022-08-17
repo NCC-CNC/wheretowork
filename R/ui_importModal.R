@@ -120,7 +120,15 @@ importModal <- function(id) {
         "Select boundary data",
         multiple = FALSE,
         accept = c(".csv", ".csv.gz", ".dat", ".dat.gz", ".gz")
-      )
+      ),
+      hr(),
+      shiny::checkboxInput(
+        paste0(id, "_manual_hide_layers"),
+        shiny::HTML("<b> Hide all layers </b> <br> 
+                    recommended for large projects"),
+        value = FALSE
+      )      
+      
     ),
 
     ## spatial method
