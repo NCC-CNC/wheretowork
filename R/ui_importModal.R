@@ -124,7 +124,7 @@ importModal <- function(id) {
       hr(),
       shiny::checkboxInput(
         paste0(id, "_manual_hide_layers"),
-        shiny::HTML("<b> Hide all layers </b> <br> 
+        shiny::HTML("<b> Hide theme, weight and include layers </b> <br> 
                     recommended for large projects"),
         value = FALSE
       )      

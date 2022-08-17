@@ -194,4 +194,12 @@ server_verify_manual_uploads <- quote({
       enable_html_element("importModal_manual_button")
     }
   })
+  
+  
+  # Hide all layers check box
+  shiny::observeEvent(input$importModal_manual_hide_layers, {
+    ### update app state 
+    app_data$mapping <- input$importModal_manual_hide_layers 
+  })
 })
+  

@@ -25,6 +25,7 @@ server_initialize_app <- quote({
       attribute_path = NULL,
       ## settings
       mode = NULL,
+      mapping = NULL,
       ## objects
       dataset = NULL,
       themes = NULL,

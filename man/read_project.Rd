@@ -9,7 +9,8 @@ read_project(
   spatial_path = NULL,
   attribute_path = NULL,
   boundary_path = NULL,
-  mode = "project"
+  mode = "project",
+  mapping = NULL
 )
 }
 \arguments{
