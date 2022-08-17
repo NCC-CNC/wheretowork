@@ -393,16 +393,11 @@ new_variable_from_auto <- function(dataset, index,
   
   # if hidden, construct Variable object with no legend
   if (hidden) {
-    # convert index to integer if field name supplied
-    if (is.character(index)) {
-      index <- which(names(d) == index)
-    }
     # create Variable object with no legend
     Variable$new(
       dataset = dataset, index = index, total = sum(d[[index]]),
       units = units, legend = new_null_legend(),
       provenance = new_provenance_from_source(provenance))
-    
   } else {
     # if needed, automatically determine data type
     if (identical(type, "auto")) {
