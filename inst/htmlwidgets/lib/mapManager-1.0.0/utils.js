@@ -22,7 +22,8 @@ function newLayer(manager, x) {
       x.statistics,
       x.visible,
       x.legend,
-      x.units
+      x.units,
+      x.hidden
     );
   } else if (x.type == "include") {
     return new IncludeLayer(

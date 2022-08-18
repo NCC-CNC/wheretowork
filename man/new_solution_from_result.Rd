@@ -11,7 +11,8 @@ new_solution_from_result(
   settings,
   result,
   legend,
-  id = uuid::UUIDgenerate()
+  id = uuid::UUIDgenerate(),
+  hidden = FALSE
 )
 }
 \arguments{

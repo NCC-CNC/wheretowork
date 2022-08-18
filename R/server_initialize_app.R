@@ -25,7 +25,8 @@ server_initialize_app <- quote({
       attribute_path = NULL,
       ## settings
       mode = NULL,
-      mapping = NULL,
+      mapping = NULL, # enable/disable theme, weight and include layers
+      smapping = NULL, # enable/disable solution layers
       ## objects
       dataset = NULL,
       themes = NULL,

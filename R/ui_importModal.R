@@ -127,6 +127,12 @@ importModal <- function(id) {
         shiny::HTML("<b> Hide theme, weight and include layers </b> <br> 
                     recommended for large projects"),
         value = FALSE
+      ), 
+      shiny::checkboxInput(
+        paste0(id, "_manual_hide_solution"),
+        shiny::HTML("<b> Hide solution </b> <br> 
+                    recommended for large projects"),
+        value = FALSE
       )      
       
     ),

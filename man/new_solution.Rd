@@ -13,7 +13,8 @@ new_solution(
   theme_results,
   weight_results,
   include_results,
-  id = uuid::UUIDgenerate()
+  id = uuid::UUIDgenerate(),
+  hidden = FALSE
 )
 }
 \arguments{
