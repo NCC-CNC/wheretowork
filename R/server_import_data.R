@@ -64,6 +64,19 @@ import_data <- function(x, mode) {
       hide = TRUE,
       id = "spatial_parameter"
     )
+  
+  solution_layer_parameter <-
+    wheretowork::new_parameter(
+      name = "Hide solution layer from map",
+      status = FALSE,
+      value = 1,
+      min_value = 1,
+      max_value = 100,
+      step_value = 1,
+      units = "%",
+      hide = TRUE,
+      id = "solution_layer_parameter"
+    )  
 
   # store widgets
   app_data$mm <- new_map_manager(

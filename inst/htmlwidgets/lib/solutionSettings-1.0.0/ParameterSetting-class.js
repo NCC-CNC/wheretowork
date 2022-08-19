@@ -107,7 +107,7 @@ class ParameterSetting {
         }
         /// hide slider if needed
         if (that.hide) {
-          if (checked) {
+          if (checked && (id !== "solution_layer_parameter")) {
             that.value_container_el.style.display = "block";
             if (that.has_ref) {
               that.ref_el.style.display = "inline";

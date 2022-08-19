@@ -262,8 +262,8 @@ server_generate_new_solution <- quote({
       id = uuid::UUIDgenerate(),
       result = r$result,
       name = r$name,
-      visible = if (app_data$smapping) FALSE else TRUE,
-      hidden = app_data$smapping,
+      visible = if (app_data$ss$get_parameter("solution_layer_parameter")$status) FALSE else TRUE,
+      hidden = app_data$ss$get_parameter("solution_layer_parameter")$status,
       dataset = app_data$dataset,
       settings = app_data$ss,
       legend = new_manual_legend(
