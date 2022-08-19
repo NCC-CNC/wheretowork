@@ -200,10 +200,5 @@ server_verify_manual_uploads <- quote({
     ### update app state 
     app_data$mapping <- input$importModal_manual_hide_layers 
   })
-  # enable / disable all solution layers 
-  shiny::observeEvent(input$importModal_manual_hide_solution, {
-    ### update app state 
-    app_data$smapping <- input$importModal_manual_hide_solution 
-  })  
 })
   
