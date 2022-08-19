@@ -137,7 +137,8 @@ server_import_spatial_data <- quote({
     x$includes <- lapply(
       settings_data$name[settings_data$type == "include"], function(y) {
         new_include(
-          name = y, variable = new_variable_from_auto(x$dataset, index = y)
+          name = y, variable = new_variable_from_auto(x$dataset, index = y),
+          hidden = shiny::isTruthy(app_data$shp_mapping)
         )
       }
     )
@@ -147,7 +148,8 @@ server_import_spatial_data <- quote({
       settings_data$name[settings_data$type == "weight"], function(y) {
         new_weight(
           name = y, variable = new_variable_from_auto(x$dataset, index = y),
-          status = FALSE
+          status = FALSE,
+          hidden = shiny::isTruthy(app_data$shp_mapping)
         )
       }
     )
@@ -159,7 +161,8 @@ server_import_spatial_data <- quote({
           name = y,
           feature = new_feature(
             name = y,
-            variable = new_variable_from_auto(x$dataset, index = y)
+            variable = new_variable_from_auto(x$dataset, index = y),
+            hidden = shiny::isTruthy(app_data$shp_mapping)
           )
         )
       }
