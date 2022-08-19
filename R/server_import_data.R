@@ -86,7 +86,7 @@ import_data <- function(x, mode) {
     themes = app_data$themes,
     weights = app_data$weights,
     includes = app_data$includes,
-    parameters = list(area_budget_parameter, boundary_gap_parameter)
+    parameters = list(area_budget_parameter, boundary_gap_parameter, solution_layer_parameter)
   )
 
   # store  data
