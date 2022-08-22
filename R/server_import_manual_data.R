@@ -35,7 +35,7 @@ server_import_manual_data <- quote({
         attribute_path = app_data$attribute_path,
         boundary_path = app_data$boundary_path,
         mode = get_golem_config("mode"),
-        force_hidden = app_data$manual_mapping
+        force_hidden = app_data$manual_hidden
       ),
       silent = TRUE
     )
