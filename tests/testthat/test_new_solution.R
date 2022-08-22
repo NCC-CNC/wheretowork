@@ -554,7 +554,8 @@ test_that("widget methods", {
       visible = FALSE,
       legend = v3$legend$get_widget_data(),
       units = v3$units,
-      type = "solution"
+      type = "solution",
+      hidden = FALSE
     )
   )
 })

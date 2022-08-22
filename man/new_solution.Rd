@@ -36,6 +36,8 @@ new_solution(
 
 \item{id}{\code{character} unique identifier.
 Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}
+
+\item{hiden}{\code{logical} should the solution be hidden from map?}
 }
 \description{
 Create a new \link{Solution} object.

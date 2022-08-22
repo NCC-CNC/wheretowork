@@ -37,7 +37,7 @@ Solution <- R6::R6Class(
     #' @field include_results `list` of [IncludeResults] objects.
     include_results = NULL,
     
-    #' @field visible `logical` value.
+    #' @field hidden `logical` value.
     hidden = NA,    
 
     #' @description
@@ -774,6 +774,8 @@ Solution <- R6::R6Class(
 #' @param weight_results `list` of [WeightResults] objects.
 #'
 #' @param include_results `list` of [IncludeResults] objects.
+#' 
+#' @param hiden `logical` should the solution be hidden from map?
 #'
 #' @inheritParams new_theme
 #'

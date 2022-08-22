@@ -35,7 +35,7 @@ Definition for the Solution class.
 
 \item{\code{include_results}}{\code{list} of \link{IncludeResults} objects.}
 
-\item{\code{visible}}{\code{logical} value.}
+\item{\code{hidden}}{\code{logical} value.}
 }
 \if{html}{\out{</div>}}
 }
