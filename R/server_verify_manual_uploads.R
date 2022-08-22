@@ -198,7 +198,7 @@ server_verify_manual_uploads <- quote({
   # enable / disable all theme, weight and include layers 
   shiny::observeEvent(input$importModal_manual_hide_layers, {
     ### update app state 
-    app_data$mapping <- input$importModal_manual_hide_layers 
+    app_data$manual_hidden <- input$importModal_manual_hide_layers 
   })
 })
   

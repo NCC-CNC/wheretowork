@@ -69,6 +69,6 @@ server_verify_spatial_uploads <- quote({
   # enable / disable all theme, weight and include layers 
   shiny::observeEvent(input$importModal_spatial_hide_layers, {
     ### update app state 
-    app_data$shp_mapping <- input$importModal_spatial_hide_layers 
+    app_data$shp_hidden <- input$importModal_spatial_hide_layers 
   })  
 })

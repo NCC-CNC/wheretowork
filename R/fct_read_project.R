@@ -70,7 +70,7 @@ read_project <- function(path,
                          attribute_path = NULL,
                          boundary_path = NULL,
                          mode = "project",
-                         mapping = NULL) {
+                         force_hidden = FALSE) {
   
   # assert arguments are valid
   assertthat::assert_that(
@@ -177,7 +177,7 @@ read_project <- function(path,
           new_feature(
             name = f$name,
             visible = f$visible,
-            hidden = shiny::isTruthy(c(f$hidden, mapping)),
+            hidden = shiny::isTruthy(c(f$hidden, force_hidden)),
             status = f$status,
             goal = f$goal,
             limit_goal = f$limit_goal,
@@ -236,7 +236,7 @@ read_project <- function(path,
       new_weight(
         name = x$name,
         visible = x$visible,
-        hidden = shiny::isTruthy(c(x$hidden, mapping)),
+        hidden = shiny::isTruthy(c(x$hidden, force_hidden)),
         status = x$status,
         factor = x$factor,
         current = 0, # place-holder value, this is calculated later
@@ -303,7 +303,7 @@ read_project <- function(path,
           )
         ),
         visible = x$visible,
-        hidden =  shiny::isTruthy(c(x$hidden, mapping)),
+        hidden =  shiny::isTruthy(c(x$hidden, force_hidden)),
         status = x$status,
         mandatory = x$mandatory
       ),

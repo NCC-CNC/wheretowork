@@ -25,8 +25,8 @@ server_initialize_app <- quote({
       attribute_path = NULL,
       ## settings
       mode = NULL,
-      mapping = NULL, # enable/disable theme, weight and include layers: manual
-      shp_mapping = NULL, # enable/disable theme, weight and include layers: shp
+      manual_hidden = NULL, # enable/disable all T, W and I layers
+      shp_hidden = NULL, # enable/disable all T, W and I layers
       ## objects
       dataset = NULL,
       themes = NULL,
