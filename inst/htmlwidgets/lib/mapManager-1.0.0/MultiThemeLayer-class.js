@@ -36,6 +36,9 @@ class MultiThemeLayer {
     this.name_el = this.el.querySelector(".name-label");
     this.main_el = this.el.querySelector(".main");
 
+    // enable view container only for multi theme layers
+    this.el.querySelector(".view-container").style.display = 'inline-block';
+
     // local variables
     const that = this;
 
