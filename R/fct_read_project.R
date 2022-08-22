@@ -177,7 +177,7 @@ read_project <- function(path,
           new_feature(
             name = f$name,
             visible = f$visible,
-            hidden = shiny::isTruthy(c(x$hidden, mapping)),
+            hidden = shiny::isTruthy(c(f$hidden, mapping)),
             status = f$status,
             goal = f$goal,
             limit_goal = f$limit_goal,
