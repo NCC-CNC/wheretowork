@@ -7,21 +7,10 @@ NULL
 NullLegend <- R6::R6Class(
   "NullLegend",
   public = list(
-
-    #' @field values `numeric` vector.
-    values = NULL,
-
-    #' @field colors `character` vector.
-    colors = NULL,
-
     #' @description
     #' Create a `NullLegend` object.
-    #' @param values `NULL` value.
-    #' @param colors `NULL` vector of colors.
     #' @return A new `NullLegend` object.
-    initialize = function(values, colors) {
-      self$values <- NULL
-      self$colors <- NULL
+    initialize = function() {
     },
 
     #' @description
@@ -29,8 +18,6 @@ NullLegend <- R6::R6Class(
     #' @return A new `CategoricalLegend` object.
     get_widget_data = function() {
       list(
-        values = NULL,
-        colors = NULL,
         type = "NullLegend"
       )
     }
@@ -54,6 +41,6 @@ NullLegend <- R6::R6Class(
 #' # print object
 #' print(l)
 #' @export
-new_null_legend <- function(values = NULL, colors = NULL) {
-  NullLegend$new(values = values, colors)
+new_null_legend <- function() {
+  NullLegend$new()
 }

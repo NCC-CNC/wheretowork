@@ -4,7 +4,7 @@
 \alias{new_null_legend}
 \title{New categorical legend}
 \usage{
-new_null_legend(values = NULL, colors = NULL)
+new_null_legend()
 }
 \arguments{
 \item{values}{\code{NULL}}

@@ -10,7 +10,7 @@ read_project(
   attribute_path = NULL,
   boundary_path = NULL,
   mode = "project",
-  mapping = NULL
+  force_hidden = FALSE
 )
 }
 \arguments{

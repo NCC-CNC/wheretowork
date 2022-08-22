@@ -11,15 +11,6 @@ NULL legend class
 \details{
 Definition for the \code{NullLegend} class.
 }
-\section{Public fields}{
-\if{html}{\out{<div class="r6-fields">}}
-\describe{
-\item{\code{values}}{\code{numeric} vector.}
-
-\item{\code{colors}}{\code{character} vector.}
-}
-\if{html}{\out{</div>}}
-}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
@@ -34,18 +25,9 @@ Definition for the \code{NullLegend} class.
 \subsection{Method \code{new()}}{
 Create a \code{NullLegend} object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{NullLegend$new(values, colors)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{NullLegend$new()}\if{html}{\out{</div>}}
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{values}}{\code{NULL} value.}
-
-\item{\code{colors}}{\code{NULL} vector of colors.}
-}
-\if{html}{\out{</div>}}
-}
 \subsection{Returns}{
 A new \code{NullLegend} object.
 }
