@@ -30,6 +30,8 @@ new_solution_from_result(
 
 \item{id}{\code{character} unique identifier.
 Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}
+
+\item{hidden}{\code{logical} should the solution be hidden from map?}
 }
 \value{
 A \link{Solution} object.
@@ -110,7 +112,8 @@ s <- new_solution_from_result(
     values = c(0, 1),
     colors = c("#00FFFF00", "#112233FF"),
     labels = c("not selected", "selected")
-  )
+  ),
+  hidden = FALSE
 )
 
 }

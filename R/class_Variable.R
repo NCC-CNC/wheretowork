@@ -317,9 +317,12 @@ new_variable <- function(dataset, index, units, total, legend,
 #' @param provenance `character` value indicating the type of provenance.
 #'   The argument must be a valid type (see [new_provenance_from_source()]).
 #'   Defaults to `"missing"`.
-#'   
+#'
 #' @param labels `character` object containing manual legend labels.
 #'   Defaults to `"missing"`.
+#'
+#' @param hidden `logical` indicating if variable will be hidden from map.
+#'   Defaults to `"FALSE"`. If hidden, a [NullLegend] is used
 #'
 #' @details
 #' The argument to `colors` can be a vector of different colors

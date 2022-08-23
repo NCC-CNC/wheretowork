@@ -121,7 +121,7 @@ importModal <- function(id) {
         multiple = FALSE,
         accept = c(".csv", ".csv.gz", ".dat", ".dat.gz", ".gz")
       ),
-      hr(),
+      shiny::hr(),
       shiny::checkboxInput(
         paste0(id, "_manual_hide_layers"),
         shiny::HTML("<b> Hide theme, weight and include layers </b> <br> 
@@ -147,14 +147,14 @@ importModal <- function(id) {
         "Select fields"
       ),
       importSettingsOutput(outputId = paste0(id, "_spatial_settings")),
-      hr(),
+      shiny::hr(),
       shiny::checkboxInput(
         paste0(id, "_spatial_hide_layers"),
         shiny::HTML("<b> Hide theme, weight and include layers </b> <br> 
                     recommended for large projects"),
         value = FALSE
       ),
-      hr(),
+      shiny::hr(),
       htmltools::tags$label(
         id = paste0(id, "_spatial_note"),
         class = "control-label",

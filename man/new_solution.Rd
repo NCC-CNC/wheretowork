@@ -37,7 +37,7 @@ new_solution(
 \item{id}{\code{character} unique identifier.
 Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}
 
-\item{hiden}{\code{logical} should the solution be hidden from map?}
+\item{hidden}{\code{logical} should the solution be hidden from map?}
 }
 \description{
 Create a new \link{Solution} object.
@@ -93,7 +93,8 @@ s <- new_solution(
   theme_results = list(tr1),
   weight_results = list(),
   include_results = list(),
-  id = "solution1"
+  id = "solution1",
+  hidden = FALSE
 )
 
 }

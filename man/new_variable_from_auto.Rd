@@ -38,6 +38,9 @@ Defaults to \code{"missing"}.}
 
 \item{labels}{\code{character} object containing manual legend labels.
 Defaults to \code{"missing"}.}
+
+\item{hidden}{\code{logical} indicating if variable will be hidden from map.
+Defaults to \code{"FALSE"}. If hidden, a \link{NullLegend} is used}
 }
 \value{
 A \link{Variable} object.

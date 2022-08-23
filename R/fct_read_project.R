@@ -24,7 +24,7 @@ NULL
 #'  the contents of `path`. If the `mode` is `"advanced"`, then
 #'  goal limits and mandatory include settings are disabled.
 
-#'  @param force_hidden `logical` value for hiding TWI layers at import.
+#' @param force_hidden `logical` value for hiding TWI layers at import.
 #'  Defaults to `"False"` such that hidden TWI layers are determined based on
 #'  the contents of `path`.
 #'

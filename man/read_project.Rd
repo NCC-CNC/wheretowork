@@ -31,8 +31,9 @@ the argument to \code{path}.}
 \item{mode}{\code{character} mode for importing the objects.
 Defaults to \code{"project"} such that the mode is determined based on
 the contents of \code{path}. If the \code{mode} is \code{"advanced"}, then
-goal limits and mandatory include settings are disabled.
-@param force_hidden \code{logical} value for hiding TWI layers at import.
+goal limits and mandatory include settings are disabled.}
+
+\item{force_hidden}{\code{logical} value for hiding TWI layers at import.
 Defaults to \code{"False"} such that hidden TWI layers are determined based on
 the contents of \code{path}.}
 }

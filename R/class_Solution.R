@@ -774,8 +774,8 @@ Solution <- R6::R6Class(
 #' @param weight_results `list` of [WeightResults] objects.
 #'
 #' @param include_results `list` of [IncludeResults] objects.
-#' 
-#' @param hiden `logical` should the solution be hidden from map?
+#'
+#' @param hidden `logical` should the solution be hidden from map?
 #'
 #' @inheritParams new_theme
 #'
@@ -830,7 +830,8 @@ Solution <- R6::R6Class(
 #'   theme_results = list(tr1),
 #'   weight_results = list(),
 #'   include_results = list(),
-#'   id = "solution1"
+#'   id = "solution1",
+#'   hidden = FALSE
 #' )
 #'
 #' @export
@@ -869,6 +870,8 @@ new_solution <- function(name, variable, visible,
 #' @param result [Result] object.
 #'
 #' @param legend [ManualLegend] object.
+#'
+#' @param hidden `logical` should the solution be hidden from map?
 #'
 #' @return A [Solution] object.
 #'
@@ -945,7 +948,8 @@ new_solution <- function(name, variable, visible,
 #'     values = c(0, 1),
 #'     colors = c("#00FFFF00", "#112233FF"),
 #'     labels = c("not selected", "selected")
-#'   )
+#'   ),
+#'   hidden = FALSE
 #' )
 #'
 #' @export
