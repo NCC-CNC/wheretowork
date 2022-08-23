@@ -385,9 +385,12 @@ new_variable_from_auto <- function(dataset, index,
     ## labels
     is.character(labels),
     assertthat::noNA(labels),
-    length(labels) >= 1
+    length(labels) >= 1,
+    ## hidden
+    assertthat::is.flag(hidden),
+    assertthat::noNA(hidden)
   )
-
+  
   # import attribute table
   d <- dataset$get_attribute_data()[index]
   
