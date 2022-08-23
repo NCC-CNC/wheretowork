@@ -23,6 +23,10 @@ NULL
 #'  Defaults to `"project"` such that the mode is determined based on
 #'  the contents of `path`. If the `mode` is `"advanced"`, then
 #'  goal limits and mandatory include settings are disabled.
+
+#'  @param force_hidden `logical` value for hiding TWI layers at import.
+#'  Defaults to `"False"` such that hidden TWI layers are determined based on
+#'  the contents of `path`.
 #'
 #' @details
 #' Note that the status field for themes and weights will automatically
@@ -38,6 +42,7 @@ NULL
 #' \item{weights}{A `list` of [Weight] objects.}
 #' \item{includes}{A `list` of [Include] objects.}
 #' \item{mode}{A `character` value indicating the mode.}
+#' \item{force_hidden}{A `logical` value indicating all TWI will be hidden.}
 #' }
 #'
 #' @examples
