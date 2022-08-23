@@ -534,3 +534,55 @@ test_that("provenance", {
   expect_equal(x$author_name, "Greg McGregerson")
   expect_equal(x$author_email, "greg.mcgregerson@supergreg.greg")
 })
+
+test_that("force hide theme, weight and include", {
+  skip_if_not_installed("RandomFields")
+  # simulate data
+  d <- new_dataset_from_auto(import_simple_raster_data())
+  sim_weights <- simulate_weights(d, 2)
+  sim_themes <- simulate_themes(d, 2, 2, 2)
+  sim_includes <- simulate_includes(d, 2)
+  sim_layers <- append(sim_themes, append(sim_weights, sim_includes))
+  # manually calculate current amount held
+  ss <- new_solution_settings(sim_themes, sim_weights, sim_includes, list())
+  ss$update_current_held()
+  # manually set weight factors
+  sim_weights <- lapply(sim_weights, function(x) {
+    x$factor <- round(runif(1, 0.1), 3)
+    x
+  })
+  # generate file paths
+  f1 <- tempfile(fileext = ".yaml")
+  f2 <- tempfile(fileext = ".tif")
+  f3 <- tempfile(fileext = ".csv.gz")
+  f4 <- tempfile(fileext = ".csv.gz")
+  # save configuration file
+  write_project(
+    x = sim_layers,
+    dataset = d,
+    name = "test",
+    f1, f2, f3, f4,
+    mode = "beginner",
+    author_name = "Greg McGregerson",
+    author_email = "greg.mcgregerson@supergreg.greg"
+  )
+  # import data
+  x <- read_project(f1, f2, f3, f4, force_hidden = TRUE)
+  # tests
+  for (theme in x$themes) {
+    ## features
+    for (feature in theme$feature)
+      expect_is(feature$variable$legend, "NullLegend")
+      expect_identical(feature$hidden, TRUE)
+  }
+  ## weights
+  for (weight in x$weights) {
+    expect_is(weight$variable$legend, "NullLegend")
+    expect_identical(weight$hidden, TRUE)
+  }
+  ## includes
+  for (include in x$includes) {
+    expect_is(include$variable$legend, "NullLegend")
+    expect_identical(include$hidden, TRUE)
+  }   
+})
