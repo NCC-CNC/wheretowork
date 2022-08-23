@@ -195,7 +195,7 @@ read_project <- function(path,
               colors = f$variable$legend$colors,
               provenance = f$variable$provenance %||% "missing",
               labels = f$variable$legend$labels %||% "missing",
-              hidden = f$hidden %||% FALSE
+              hidden = shiny::isTruthy(c(f$hidden, force_hidden))
             )
           )
         })
@@ -253,7 +253,7 @@ read_project <- function(path,
           colors = x$variable$legend$colors,
           provenance = x$variable$provenance %||% "missing",
           labels = x$variable$legend$labels %||% "missing",
-          hidden = x$hidden %||% FALSE
+          hidden = shiny::isTruthy(c(x$hidden, force_hidden))
         )
       ),
       silent = TRUE
@@ -289,6 +289,16 @@ read_project <- function(path,
   # import includes
   ## import data
   includes <- lapply(x$includes, function(x) {
+    ### create legend
+    if (force_hidden || x$hidden) {
+      include_legend <- new_null_legend()
+    } else {
+      include_legend <- new_manual_legend(
+        values = c(0, 1),
+        colors = x$variable$legend$colors,
+        labels = x$variable$legend$labels
+      )
+    }
     ### create object
     out <- try(
       new_include(
@@ -298,11 +308,7 @@ read_project <- function(path,
           index = x$variable$index,
           units = x$variable$units,
           total = sum(d$get_attribute_data()[[x$variable$index]]),
-          legend = new_manual_legend(
-            values = c(0, 1),
-            colors = x$variable$legend$colors,
-            labels = x$variable$legend$labels
-          ),
+          legend = include_legend,
           provenance = new_provenance_from_source(
             x$variable$provenance %||% "missing"
           )
