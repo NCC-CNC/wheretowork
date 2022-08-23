@@ -2,14 +2,9 @@
 % Please edit documentation in R/class_NullLegend.R
 \name{new_null_legend}
 \alias{new_null_legend}
-\title{New categorical legend}
+\title{New null legend}
 \usage{
 new_null_legend()
-}
-\arguments{
-\item{values}{\code{NULL}}
-
-\item{colors}{\code{NULL}}
 }
 \value{
 A \link{NullLegend} object.

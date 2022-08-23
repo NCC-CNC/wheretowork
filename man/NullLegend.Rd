@@ -42,7 +42,7 @@ Get data for creating a widget.
 }
 
 \subsection{Returns}{
-A new \code{CategoricalLegend} object.
+A new \code{NullLegend} object.
 }
 }
 \if{html}{\out{<hr>}}

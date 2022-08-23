@@ -15,7 +15,7 @@ NullLegend <- R6::R6Class(
 
     #' @description
     #' Get data for creating a widget.
-    #' @return A new `CategoricalLegend` object.
+    #' @return A new `NullLegend` object.
     get_widget_data = function() {
       list(
         type = "NullLegend"
@@ -24,13 +24,9 @@ NullLegend <- R6::R6Class(
   )
 )
 
-#' New categorical legend
+#' New null legend
 #'
 #' Create a new [NullLegend] object.
-#'
-#' @param values `NULL` 
-#'
-#' @param colors `NULL` 
 #'
 #' @return A [NullLegend] object.
 #'
