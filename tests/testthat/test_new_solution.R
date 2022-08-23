@@ -557,7 +557,7 @@ test_that("widget methods", {
       theme_results = list(thr$get_widget_data()),
       weight_results = list(wr$get_widget_data()),
       include_results = list(ir$get_widget_data()),
-      solution_color = scales::alpha(last(x$variable$legend$colors), 1)
+      solution_color = scales::alpha(last(x_nohide$variable$legend$colors), 1)
     )
   )
   ## map manager widget
