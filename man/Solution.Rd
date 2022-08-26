@@ -34,6 +34,8 @@ Definition for the Solution class.
 \item{\code{weight_results}}{\code{list} of \link{WeightResults} objects.}
 
 \item{\code{include_results}}{\code{list} of \link{IncludeResults} objects.}
+
+\item{\code{hidden}}{\code{logical} value.}
 }
 \if{html}{\out{</div>}}
 }
@@ -46,6 +48,7 @@ Definition for the Solution class.
 \item \href{#method-get_layer_name}{\code{Solution$get_layer_name()}}
 \item \href{#method-get_layer_index}{\code{Solution$get_layer_index()}}
 \item \href{#method-get_visible}{\code{Solution$get_visible()}}
+\item \href{#method-get_hidden}{\code{Solution$get_hidden()}}
 \item \href{#method-get_setting}{\code{Solution$get_setting()}}
 \item \href{#method-set_visible}{\code{Solution$set_visible()}}
 \item \href{#method-get_summary_results_data}{\code{Solution$get_summary_results_data()}}
@@ -79,7 +82,8 @@ Create a Solution object.
   parameters,
   theme_results,
   weight_results,
-  include_results
+  include_results,
+  hidden
 )}\if{html}{\out{</div>}}
 }
 
@@ -103,6 +107,8 @@ Create a Solution object.
 \item{\code{weight_results}}{\code{list} of \link{WeightResults} objects.}
 
 \item{\code{include_results}}{\code{list} of \link{IncludeResults} objects.}
+
+\item{\code{hidden}}{\code{logical} value.}
 }
 \if{html}{\out{</div>}}
 }
@@ -184,6 +190,19 @@ Get layer index values.
 Get visible.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Solution$get_visible()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{logical} value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_hidden"></a>}}
+\if{latex}{\out{\hypertarget{method-get_hidden}{}}}
+\subsection{Method \code{get_hidden()}}{
+Get hidden.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Solution$get_hidden()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{

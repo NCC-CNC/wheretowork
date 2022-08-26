@@ -55,7 +55,7 @@ Variable <- R6::R6Class(
         #### legend
         inherits(
           legend,
-          c("ContinuousLegend", "CategoricalLegend", "ManualLegend")
+          c("ContinuousLegend", "CategoricalLegend", "ManualLegend", "NullLegend")
         ),
         #### provenance
         inherits(provenance, "Provenance")
@@ -317,9 +317,12 @@ new_variable <- function(dataset, index, units, total, legend,
 #' @param provenance `character` value indicating the type of provenance.
 #'   The argument must be a valid type (see [new_provenance_from_source()]).
 #'   Defaults to `"missing"`.
-#'   
+#'
 #' @param labels `character` object containing manual legend labels.
 #'   Defaults to `"missing"`.
+#'
+#' @param hidden `logical` indicating if variable will be hidden from map.
+#'   Defaults to `"FALSE"`. If hidden, a [NullLegend] is used
 #'
 #' @details
 #' The argument to `colors` can be a vector of different colors
@@ -359,7 +362,8 @@ new_variable_from_auto <- function(dataset, index,
                                    units = "", type = "auto",
                                    colors = "random",
                                    provenance = "missing",
-                                   labels = "missing") {
+                                   labels = "missing",
+                                   hidden = FALSE) {
   # assert arguments are valid
   assertthat::assert_that(
     ## dataset
@@ -384,35 +388,46 @@ new_variable_from_auto <- function(dataset, index,
     ## labels
     is.character(labels),
     assertthat::noNA(labels),
-    length(labels) >= 1
+    length(labels) >= 1,
+    ## hidden
+    assertthat::is.flag(hidden),
+    assertthat::noNA(hidden)
   )
-
-  # import dataset
-  d <- dataset$get_index(index)
-
-  # if needed, automatically determine data type
-  if (identical(type, "auto")) {
-    type <- spatial_data_type(d, 1)
+  
+  # import attribute table
+  d <- dataset$get_attribute_data()[index]
+  
+  # if hidden, construct Variable object with no legend
+  if (hidden) {
+    # create Variable object with no legend
+    Variable$new(
+      dataset = dataset, index = index, total = sum(d[[index]]),
+      units = units, legend = new_null_legend(),
+      provenance = new_provenance_from_source(provenance))
+  } else {
+    # if needed, automatically determine data type
+    if (identical(type, "auto")) {
+      type <- spatial_data_type(d, 1)
+    }
+    # compute statistics for data
+    s <- spatial_data_statistics(d, type, 1)    
+    
+    # create new variable using automatically deduced settings
+    new_variable_from_metadata(
+      dataset = dataset,
+      metadata = append(
+        list(
+          index = index,
+          units = units,
+          colors = colors,
+          type = type,
+          provenance = provenance,
+          labels = labels
+        ),
+        s
+      )
+    )    
   }
-
-  # compute statistics for data
-  s <- spatial_data_statistics(d, type, 1)
-
-  # create new variable using automatically deduced settings
-  new_variable_from_metadata(
-    dataset = dataset,
-    metadata = append(
-      list(
-        index = index,
-        units = units,
-        colors = colors,
-        type = type,
-        provenance = provenance,
-        labels = labels
-      ),
-      s
-    )
-  )
 }
 
 #' New variable from metadata

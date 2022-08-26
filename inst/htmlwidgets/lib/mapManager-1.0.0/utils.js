@@ -5,6 +5,8 @@ function createLegend(el, x, units) {
     return continuousLegend(el, x, units);
   } else if (x.type === "ManualLegend") {
     return manualLegend(el, x)
+  } else if (x.type === "NullLegend") {
+    return null    
   } else {
     console.error("unrecognized legend")
     console.log(x)
@@ -20,7 +22,8 @@ function newLayer(manager, x) {
       x.statistics,
       x.visible,
       x.legend,
-      x.units
+      x.units,
+      x.hidden
     );
   } else if (x.type == "include") {
     return new IncludeLayer(

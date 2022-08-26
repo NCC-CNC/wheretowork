@@ -36,6 +36,9 @@ Solution <- R6::R6Class(
 
     #' @field include_results `list` of [IncludeResults] objects.
     include_results = NULL,
+    
+    #' @field hidden `logical` value.
+    hidden = NA,    
 
     #' @description
     #' Create a Solution object.
@@ -48,13 +51,15 @@ Solution <- R6::R6Class(
     #' @param theme_results `list` of [ThemeResults] objects.
     #' @param weight_results `list` of [WeightResults] objects.
     #' @param include_results `list` of [IncludeResults] objects.
+    #' @param hidden `logical` value.
     #' @return A new Solution object.
     initialize = function(id, name, variable, visible,
                           statistics,
                           parameters,
                           theme_results,
                           weight_results,
-                          include_results) {
+                          include_results,
+                          hidden) {
       # assert arguments are valid
       assertthat::assert_that(
         assertthat::is.string(id),
@@ -73,7 +78,10 @@ Solution <- R6::R6Class(
         is.list(weight_results),
         all_list_elements_inherit(weight_results, "WeightResults"),
         is.list(include_results),
-        all_list_elements_inherit(include_results, "IncludeResults")
+        all_list_elements_inherit(include_results, "IncludeResults"),
+        #### hidden
+        assertthat::is.flag(hidden),
+        assertthat::noNA(hidden)
       )
       # assign fields
       self$id <- id
@@ -85,6 +93,7 @@ Solution <- R6::R6Class(
       self$theme_results <- theme_results
       self$weight_results <- weight_results
       self$include_results <- include_results
+      self$hidden <- hidden
     },
 
     #' @description
@@ -143,6 +152,13 @@ Solution <- R6::R6Class(
     get_visible = function() {
       self$visible
     },
+    
+    #' @description
+    #' Get hidden.
+    #' @return `logical` value.
+    get_hidden = function() {
+      self$hidden
+    },    
 
     #' @description
     #' Get setting.
@@ -172,6 +188,9 @@ Solution <- R6::R6Class(
         assertthat::noNA(value)
       )
       self$visible <- value
+      if (self$hidden) {
+        self$visible <- FALSE
+      }
       invisible(self)
     },
 
@@ -708,7 +727,8 @@ Solution <- R6::R6Class(
         visible = self$visible,
         legend = self$variable$legend$get_widget_data(),
         units = self$variable$units,
-        type = "solution"
+        type = "solution",
+        hidden = self$hidden
       )
     },
 
@@ -718,6 +738,7 @@ Solution <- R6::R6Class(
     #' @param zindex `numeric` z-index for ordering.
     #' @return [leaflet::leaflet()] object.
     render_on_map = function(x, zindex) {
+      if (self$hidden) return(x) # don't render on map if hidden
       self$variable$render(x, self$id, zindex, self$visible)
     },
 
@@ -727,6 +748,7 @@ Solution <- R6::R6Class(
     #' @param zindex `numeric` z-index for ordering.
     #' @return [leaflet::leafletProxy()] object.
     update_on_map = function(x, zindex) {
+      if (self$hidden) return(x) # don't render on map if hidden
       self$variable$update_render(x, self$id, zindex, self$visible)
     }
 
@@ -752,6 +774,8 @@ Solution <- R6::R6Class(
 #' @param weight_results `list` of [WeightResults] objects.
 #'
 #' @param include_results `list` of [IncludeResults] objects.
+#'
+#' @param hidden `logical` should the solution be hidden from map?
 #'
 #' @inheritParams new_theme
 #'
@@ -806,7 +830,8 @@ Solution <- R6::R6Class(
 #'   theme_results = list(tr1),
 #'   weight_results = list(),
 #'   include_results = list(),
-#'   id = "solution1"
+#'   id = "solution1",
+#'   hidden = FALSE
 #' )
 #'
 #' @export
@@ -816,7 +841,8 @@ new_solution <- function(name, variable, visible,
                          theme_results,
                          weight_results,
                          include_results,
-                         id = uuid::UUIDgenerate()) {
+                         id = uuid::UUIDgenerate(),
+                         hidden = FALSE) {
   Solution$new(
     name = name,
     variable = variable,
@@ -826,7 +852,8 @@ new_solution <- function(name, variable, visible,
     theme_results = theme_results,
     weight_results = weight_results,
     include_results = include_results,
-    id = id
+    id = id,
+    hidden = hidden
   )
 }
 
@@ -843,6 +870,8 @@ new_solution <- function(name, variable, visible,
 #' @param result [Result] object.
 #'
 #' @param legend [ManualLegend] object.
+#'
+#' @param hidden `logical` should the solution be hidden from map?
 #'
 #' @return A [Solution] object.
 #'
@@ -919,12 +948,14 @@ new_solution <- function(name, variable, visible,
 #'     values = c(0, 1),
 #'     colors = c("#00FFFF00", "#112233FF"),
 #'     labels = c("not selected", "selected")
-#'   )
+#'   ),
+#'   hidden = FALSE
 #' )
 #'
 #' @export
 new_solution_from_result <- function(name, visible, dataset, settings, result,
-                                     legend, id = uuid::UUIDgenerate()) {
+                                     legend, id = uuid::UUIDgenerate(), 
+                                     hidden = FALSE) {
   # assert arguments are valid
   assertthat::assert_that(
     ## name
@@ -943,7 +974,10 @@ new_solution_from_result <- function(name, visible, dataset, settings, result,
     inherits(legend, "ManualLegend"),
     ## id
     assertthat::is.string(id),
-    assertthat::noNA(id)
+    assertthat::noNA(id),
+    #### hidden
+    assertthat::is.flag(hidden),
+    assertthat::noNA(hidden)
   )
 
   # calculate statistics
@@ -1079,7 +1113,8 @@ new_solution_from_result <- function(name, visible, dataset, settings, result,
     theme_results = theme_results,
     weight_results = weight_results,
     include_results = include_results,
-    id = id
+    id = id,
+    hidden = hidden
   )
 
 }

@@ -66,4 +66,9 @@ server_verify_spatial_uploads <- quote({
     # show help text
     shinyjs::showElement("importModal_spatial_text")
   })
+  # enable / disable all theme, weight and include layers 
+  shiny::observeEvent(input$importModal_spatial_hide_layers, {
+    ### update app state 
+    app_data$shp_hidden <- input$importModal_spatial_hide_layers 
+  })  
 })

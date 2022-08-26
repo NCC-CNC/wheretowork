@@ -23,6 +23,10 @@ NULL
 #'  Defaults to `"project"` such that the mode is determined based on
 #'  the contents of `path`. If the `mode` is `"advanced"`, then
 #'  goal limits and mandatory include settings are disabled.
+
+#' @param force_hidden `logical` value for hiding TWI layers at import.
+#'  Defaults to `"False"` such that hidden TWI layers are determined based on
+#'  the contents of `path`.
 #'
 #' @details
 #' Note that the status field for themes and weights will automatically
@@ -38,6 +42,7 @@ NULL
 #' \item{weights}{A `list` of [Weight] objects.}
 #' \item{includes}{A `list` of [Include] objects.}
 #' \item{mode}{A `character` value indicating the mode.}
+#' \item{force_hidden}{A `logical` value indicating all TWI will be hidden.}
 #' }
 #'
 #' @examples
@@ -69,7 +74,9 @@ read_project <- function(path,
                          spatial_path = NULL,
                          attribute_path = NULL,
                          boundary_path = NULL,
-                         mode = "project") {
+                         mode = "project",
+                         force_hidden = FALSE) {
+  
   # assert arguments are valid
   assertthat::assert_that(
     assertthat::is.string(path),
@@ -175,7 +182,7 @@ read_project <- function(path,
           new_feature(
             name = f$name,
             visible = f$visible,
-            hidden = f$hidden %||% FALSE,
+            hidden = shiny::isTruthy(c(f$hidden, force_hidden)),
             status = f$status,
             goal = f$goal,
             limit_goal = f$limit_goal,
@@ -187,7 +194,8 @@ read_project <- function(path,
               type = f$variable$legend$type,
               colors = f$variable$legend$colors,
               provenance = f$variable$provenance %||% "missing",
-              labels = f$variable$legend$labels %||% "missing"
+              labels = f$variable$legend$labels %||% "missing",
+              hidden = shiny::isTruthy(c(f$hidden, force_hidden))
             )
           )
         })
@@ -233,7 +241,7 @@ read_project <- function(path,
       new_weight(
         name = x$name,
         visible = x$visible,
-        hidden = x$hidden %||% FALSE,
+        hidden = shiny::isTruthy(c(x$hidden, force_hidden)),
         status = x$status,
         factor = x$factor,
         current = 0, # place-holder value, this is calculated later
@@ -244,7 +252,8 @@ read_project <- function(path,
           type = x$variable$legend$type,
           colors = x$variable$legend$colors,
           provenance = x$variable$provenance %||% "missing",
-          labels = x$variable$legend$labels %||% "missing"
+          labels = x$variable$legend$labels %||% "missing",
+          hidden = shiny::isTruthy(c(x$hidden, force_hidden))
         )
       ),
       silent = TRUE
@@ -280,6 +289,16 @@ read_project <- function(path,
   # import includes
   ## import data
   includes <- lapply(x$includes, function(x) {
+    ### create legend
+    if (force_hidden || x$hidden) {
+      include_legend <- new_null_legend()
+    } else {
+      include_legend <- new_manual_legend(
+        values = c(0, 1),
+        colors = x$variable$legend$colors,
+        labels = x$variable$legend$labels
+      )
+    }
     ### create object
     out <- try(
       new_include(
@@ -289,17 +308,13 @@ read_project <- function(path,
           index = x$variable$index,
           units = x$variable$units,
           total = sum(d$get_attribute_data()[[x$variable$index]]),
-          legend = new_manual_legend(
-            values = c(0, 1),
-            colors = x$variable$legend$colors,
-            labels = x$variable$legend$labels
-          ),
+          legend = include_legend,
           provenance = new_provenance_from_source(
             x$variable$provenance %||% "missing"
           )
         ),
         visible = x$visible,
-        hidden =  x$hidden %||% FALSE,
+        hidden =  shiny::isTruthy(c(x$hidden, force_hidden)),
         status = x$status,
         mandatory = x$mandatory
       ),
