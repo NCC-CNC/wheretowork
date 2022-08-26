@@ -163,7 +163,7 @@
 
 .solution-setting .single-view {
   overflow-y: auto;
-  max-height: 150px;
+  max-height: 36vh;
 }
 
 .solution-setting .main {

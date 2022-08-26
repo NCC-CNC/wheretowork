@@ -72,6 +72,11 @@
   margin-bottom: 5px;
 }
 
+.map-manager-layer .main {
+  overflow-y: auto;
+  max-height: 45vh;
+}
+
 /* sub-header container */
 .map-manager-layer .sub-header {
   display: flex;
