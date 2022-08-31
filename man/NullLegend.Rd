@@ -16,6 +16,7 @@ Definition for the \code{NullLegend} class.
 \itemize{
 \item \href{#method-new}{\code{NullLegend$new()}}
 \item \href{#method-get_widget_data}{\code{NullLegend$get_widget_data()}}
+\item \href{#method-export}{\code{NullLegend$export()}}
 \item \href{#method-clone}{\code{NullLegend$clone()}}
 }
 }
@@ -43,6 +44,19 @@ Get data for creating a widget.
 
 \subsection{Returns}{
 A new \code{NullLegend} object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-export"></a>}}
+\if{latex}{\out{\hypertarget{method-export}{}}}
+\subsection{Method \code{export()}}{
+Export settings
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{NullLegend$export()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{list} object.
 }
 }
 \if{html}{\out{<hr>}}

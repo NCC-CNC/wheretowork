@@ -374,7 +374,7 @@ new_variable_from_auto <- function(dataset, index,
     ## type
     assertthat::is.string(type),
     assertthat::noNA(type),
-    type %in% c("continuous", "categorical", "manual", "auto"),
+    type %in% c("continuous", "categorical", "manual", "null", "auto"),
     ## units
     assertthat::is.string(units),
     assertthat::noNA(units),
@@ -513,7 +513,7 @@ new_variable_from_metadata <- function(dataset, metadata) {
     ## type
     assertthat::is.string(metadata$type),
     assertthat::noNA(metadata$type),
-    metadata$type %in% c("continuous", "categorical", "manual", "auto"),
+    metadata$type %in% c("continuous", "categorical", "manual", "null", "auto"),
     ## colors
     is.character(metadata$colors),
     assertthat::noNA(metadata$colors),
