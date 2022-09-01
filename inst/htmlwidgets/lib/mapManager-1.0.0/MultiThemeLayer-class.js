@@ -150,11 +150,9 @@ class MultiThemeLayer {
       this.view_el.addEventListener("change", function () {
         const checked = this.checked;
         if (checked) {
-          that.main_el.style.display = "block";
-          // TODO: insert JS to add animation for maximizing container
+          that.main_el.style.maxHeight = "45vh";
         } else {
-          that.main_el.style.display = "none";
-          // TODO: insert JS to add animation for minimizing container
+          that.main_el.style.maxHeight = "0vh";
         }
       });
       /// show/hide legends

@@ -382,24 +382,23 @@ class MultiThemeSetting {
           });
         }
       });
-
+      /// tab
+      this.single_tab_el.addEventListener("click", function() {
+        Shiny.setInputValue(manager, {
+          id: id,
+          setting: "status",
+          value: that.single_status_values,
+          type: "feature_status"
+        });
+        Shiny.setInputValue(manager, {
+          id: id,
+          setting: "feature_goal",
+          value: that.single_goal_values,
+          type: "theme"
+        });
+      });
       /// single view
       for (let i = 0; i < this.n_features; ++i) {
-        /// tab
-        this.single_tab_el.addEventListener("click", function() {
-          Shiny.setInputValue(manager, {
-            id: id,
-            setting: "status",
-            value: that.single_status_values,
-            type: "feature_status"
-          });
-          Shiny.setInputValue(manager, {
-            id: id,
-            setting: "feature_goal",
-            value: that.single_goal_values,
-            type: "theme"
-          });
-        });
         /// status
         this.single_status_el[i].addEventListener("change", function() {
           that.single_status_values[i] = that.single_status_el[i].checked;
