@@ -20,7 +20,18 @@ NullLegend <- R6::R6Class(
       list(
         type = "NullLegend"
       )
-    }
+    },
+    
+    #' @description
+    #' Export settings
+    #' @return `list` object.
+    export = function() {
+      list(
+        type = "null",
+        colors = "NA",
+        labels = "NA"
+      )
+    }    
   )
 )
 
