@@ -5,7 +5,7 @@ NULL
 #'
 #' Identify if a spatial dataset has continuous or categorical data.
 #'
-#' @param x [sf::st_sf()] or [raster::stack()] dataset object.
+#' @param x [sf::st_sf()] or [raster::stack()] or [data.frame] dataset object.
 #'
 #' @param index `integer` or `character` value indicating the
 #'   field or layer for which to calculate statistics.
@@ -82,6 +82,30 @@ spatial_data_type.Raster <- function(x, index = 1, max_sample = 10000, ...) {
   out <-
     ifelse(n_distinct(x[cells]) > 20, "continuous", "categorical")
 
+  # return result
+  out
+}
+
+#' @rdname spatial_data_type
+#' @export
+spatial_data_type.data.frame <- function(x, index = 1, ...) {
+  # assert valid arguments
+  assertthat::assert_that(
+    inherits(x, c('tbl_df', 'tbl', 'data.frame')),
+    assertthat::is.string(index) || assertthat::is.count(index),
+    assertthat::noNA(index)
+  )
+  if (is.character(index)) {
+    assertthat::assert_that(
+      assertthat::has_name(x, index)
+    )
+  }
+  
+  # determine if data are continuous or categorical
+  ## if there are more than 20 unique values, then we assume it's continuous
+  out <-
+    ifelse(n_distinct(x[[index]]) > 20, "continuous", "categorical")
+  
   # return result
   out
 }

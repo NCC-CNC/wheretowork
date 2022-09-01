@@ -4,6 +4,7 @@
 \alias{spatial_data_type}
 \alias{spatial_data_type.sf}
 \alias{spatial_data_type.Raster}
+\alias{spatial_data_type.data.frame}
 \title{Spatial data type}
 \usage{
 spatial_data_type(x, index = 1, ...)
@@ -11,9 +12,11 @@ spatial_data_type(x, index = 1, ...)
 \method{spatial_data_type}{sf}(x, index = 1, ...)
 
 \method{spatial_data_type}{Raster}(x, index = 1, max_sample = 10000, ...)
+
+\method{spatial_data_type}{data.frame}(x, index = 1, ...)
 }
 \arguments{
-\item{x}{\code{\link[sf:sf]{sf::st_sf()}} or \code{\link[raster:stack]{raster::stack()}} dataset object.}
+\item{x}{\code{\link[sf:sf]{sf::st_sf()}} or \code{\link[raster:stack]{raster::stack()}} or \link{data.frame} dataset object.}
 
 \item{index}{\code{integer} or \code{character} value indicating the
 field or layer for which to calculate statistics.

@@ -7,7 +7,8 @@ class SolutionLayer {
     statistics,
     visible,
     legend,
-    units
+    units,
+    hidden
   ) {
     // class fields
     this.id = id;
@@ -41,6 +42,22 @@ class SolutionLayer {
     this.view_el.checked = true;
     /// legend
     createLegend(this.legend_el, legend, units);
+    
+    /// hidden
+    if (hidden) {
+      mapManagerLayer.classList.add("hidden-layer");
+      mapManagerLayer.setAttribute("disabled", "");
+      this.view_el.checked = false;
+      this.view_el.setAttribute("disabled", "");
+      this.view_el.parentElement.classList.add("no-click");
+      removeAllTooltips(this.view_el.parentElement);
+      this.visible_el.setAttribute("disabled", "");
+      this.visible_el.parentElement.classList.add("no-click");
+      removeAllTooltips(this.visible_el.parentElement);
+      that.legend_el.style.display = "none";
+      removeAllTooltips(this.legend_el);
+      addHiddenTooltip(mapManagerLayer);
+    }    
 
     // set listeners to update user interfance
     if (HTMLWidgets.shinyMode) {
@@ -91,7 +108,9 @@ class SolutionLayer {
   }
 
   updateVisible(value) {
-    this.visible_el.checked = value;
+    if (!this.hidden){
+      this.visible_el.checked = value;
+    }
   }
 
   updateName(value) {

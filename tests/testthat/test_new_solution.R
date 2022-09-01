@@ -519,7 +519,7 @@ test_that("widget methods", {
   p <- new_parameter("budget", value = 12)
   s1 <- new_statistic("Area", 12, "ha")
   s2 <- new_statistic("Perimeter", 10, "km")
-  x <- new_solution(
+  x_nohide <- new_solution(
     name = "solution001",
     variable = v3,
     visible = FALSE,
@@ -528,12 +528,27 @@ test_that("widget methods", {
     theme_results = list(thr),
     weight_results = list(wr),
     include_results = list(ir),
-    id = "solution1"
+    id = "solution1",
+    hidden = FALSE
   )
+  
+  x_hide <- new_solution(
+    name = "solution001",
+    variable = v3,
+    visible = FALSE,
+    parameters = list(p),
+    statistics = list(s1, s2),
+    theme_results = list(thr),
+    weight_results = list(wr),
+    include_results = list(ir),
+    id = "solution1",
+    hidden = TRUE
+  )  
+  
   # run tests
   ## solution results widget
   expect_identical(
-    x$get_solution_results_widget_data(),
+    x_nohide$get_solution_results_widget_data(),
     list(
       id = "solution1",
       name = "solution001",
@@ -542,19 +557,35 @@ test_that("widget methods", {
       theme_results = list(thr$get_widget_data()),
       weight_results = list(wr$get_widget_data()),
       include_results = list(ir$get_widget_data()),
-      solution_color = scales::alpha(last(x$variable$legend$colors), 1)
+      solution_color = scales::alpha(last(x_nohide$variable$legend$colors), 1)
     )
   )
   ## map manager widget
   expect_identical(
-    x$get_map_manager_widget_data(),
+    x_nohide$get_map_manager_widget_data(),
     list(
       id = "solution1",
       name = "solution001",
       visible = FALSE,
       legend = v3$legend$get_widget_data(),
       units = v3$units,
-      type = "solution"
+      type = "solution",
+      hidden = FALSE
     )
   )
+  expect_identical(
+    x_hide$get_map_manager_widget_data(),
+    list(
+      id = "solution1",
+      name = "solution001",
+      visible = FALSE,
+      legend = v3$legend$get_widget_data(),
+      units = v3$units,
+      type = "solution",
+      hidden = TRUE
+    )
+  )  
+  
 })
+
+
