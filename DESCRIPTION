@@ -112,6 +112,7 @@ Collate:
     'class_Theme.R'
     'class_Weight.R'
     'class_MapManager.R'
+    'class_NullLegend.R'
     'class_Parameter-class.R'
     'class_Provenance.R'
     'class_Result.R'
