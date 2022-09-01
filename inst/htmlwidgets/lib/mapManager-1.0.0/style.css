@@ -75,6 +75,7 @@
 .map-manager-layer .main {
   overflow-y: auto;
   max-height: 45vh;
+  transition:all .4s ease;
 }
 
 /* sub-header container */
