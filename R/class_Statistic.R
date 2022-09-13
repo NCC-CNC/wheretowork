@@ -32,13 +32,15 @@ Statistic <- R6::R6Class(
     initialize = function(name, value, units, proportion) {
       assertthat::assert_that(
         assertthat::is.number(value),
-        assertthat::noNA(value),
         assertthat::is.number(proportion),
         assertthat::is.string(name),
         assertthat::noNA(name),
         assertthat::is.string(units),
         assertthat::noNA(units)
       )
+      if (!is.na(value)){
+        assertthat::noNA(value)
+      }
       self$name <- name
       self$value <- value
       self$units <- units
