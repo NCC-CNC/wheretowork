@@ -10,7 +10,8 @@ NULL
 #'
 #' @param area_data `numeric` vector containing the area of each planning unit.
 #'
-#' @param boundary_data [Matrix::sparseMatrix()] containing the boundary data.
+#' @param boundary_data [Matrix::sparseMatrix()] containing the boundary data,
+#' or or `NA`. 
 #'
 #' @param theme_data [Matrix::sparseMatrix()] containing the theme data.
 #'
@@ -162,8 +163,7 @@ min_set_result <- function(area_data,
     is.numeric(area_data),
     assertthat::noNA(area_data),
     ## boundary_data
-    inherits(boundary_data, c("dsCMatrix", "dgCMatrix")),
-    ncol(boundary_data) == length(area_data),
+    inherits(boundary_data, c("dsCMatrix", "dgCMatrix", "logical")),
     ## theme_data
     inherits(theme_data, "dgCMatrix"),
     ncol(theme_data) == length(area_data),
@@ -204,6 +204,12 @@ min_set_result <- function(area_data,
     ## cache
     inherits(cache, "cachem")
   )
+  
+  if (inherits(boundary_data, c("dsCMatrix", "dgCMatrix"))) {
+    assertthat::assert_that(
+      ncol(boundary_data) == length(area_data)
+    )
+  }
   if (nrow(weight_settings) > 0) {
     assertthat::assert_that(
       identical(weight_settings$id, rownames(weight_data))
@@ -371,7 +377,7 @@ min_set_result <- function(area_data,
   # generate second prioritization
   ## this formulation aims to minimize fragmentation,
   ## whilst ensuring that total cost does do not exceed a threshold
-  if (boundary_gap >= 1e-5) {
+  if ((boundary_gap >= 1e-5) && inherits(boundary_data, "dgCMatrix")) {
     ### calculate cost constraint for new prioritization
     max_cost <- sum(initial_solution * cost) * (boundary_gap + 1)
     ### identify "important" planning units to lock in to speed up process
@@ -443,11 +449,15 @@ min_set_result <- function(area_data,
 
   # calculate spatial variables
   total_area <- sum(main_solution * area_data)
-  total_perimeter <- prioritizr::eval_boundary_summary(
-    x = main_problem,
-    solution = main_solution,
-    data = boundary_data
-  )$boundary[[1]]
+  if (inherits(boundary_data, c("dsCMatrix", "dgCMatrix"))) {
+    total_perimeter <- prioritizr::eval_boundary_summary(
+      x = main_problem,
+      solution = main_solution,
+      data = boundary_data
+    )$boundary[[1]]
+  } else {
+    total_perimeter <- NA_real_
+  }
 
   # generate results object
   new_result(
