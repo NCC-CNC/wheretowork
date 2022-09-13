@@ -76,8 +76,7 @@ Result <- R6::R6Class(
         assertthat::is.number(area),
         assertthat::noNA(area),
         ### perimeter
-        assertthat::is.number(perimeter),
-        assertthat::noNA(perimeter),
+        inherits(perimeter, c("numeric")),
         ### theme_coverage
         is.numeric(theme_coverage),
         assertthat::noNA(theme_coverage),
@@ -101,6 +100,12 @@ Result <- R6::R6Class(
         is.list(parameters),
         all_list_elements_inherit(parameters, "Parameter")
       )
+      ### perimeter, not NA_real_
+      if (!is.na(perimeter)) {
+        assertthat::is.number(perimeter)
+        assertthat::noNA(perimeter)
+      }      
+      
       if (nrow(weight_settings) > 0) {
         assertthat::assert_that(
           identical(weight_settings$id, names(weight_coverage))
