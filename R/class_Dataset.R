@@ -28,7 +28,7 @@ Dataset <- R6::R6Class(
     #' @field attribute_data `NULL`, or [tibble::tibble()] object.
     attribute_data = NULL,
 
-    #' @field boundary_data `NULL`, or [Matrix::sparseMatrix()] object.
+    #' @field boundary_data `NULL`, or [Matrix::sparseMatrix()] or `NA` object.
     boundary_data = NULL,
 
     #' @description
@@ -39,10 +39,11 @@ Dataset <- R6::R6Class(
     #' @param boundary_path `character` file path.
     #' @param spatial_data [sf::st_sf()], or [raster::raster()] object.
     #' @param attribute_data [tibble::tibble()] object.
-    #' @param boundary_data [Matrix::sparseMatrix()] object.
+    #' @param boundary_data [Matrix::sparseMatrix()] object or [NA].
     #' @return A new Dataset object.
     initialize = function(id, spatial_path, attribute_path, boundary_path,
                           spatial_data, attribute_data, boundary_data) {
+      
       ## assert that arguments are valid
       assertthat::assert_that(
         ## id
@@ -62,7 +63,7 @@ Dataset <- R6::R6Class(
         ## attribute_data
         inherits(attribute_data, c("NULL", "data.frame")),
         ## boundary_data
-        inherits(boundary_data, c("NULL", "dsCMatrix"))
+        inherits(boundary_data, c("NULL", "dsCMatrix", "logical"))
       )
       ## validate paths
       if (!identical(spatial_path, "memory")) {
@@ -606,10 +607,17 @@ new_dataset <- function(spatial_path, attribute_path, boundary_path,
 #' Create a new [Dataset] object.
 #'
 #' @param x [sf::st_sf()] or [raster::stack()] object.
+#' 
+#' @param skip_bm [`logical`] skip generating boundary data? 
+#'   (See details for more information) 
 #'
 #' @inheritParams new_dataset
 #'
 #' @inherit new_dataset return
+#' 
+#' @details For spatial uploads (shapefile) with many planning units, building
+#'   boundary data can result in a std::bad_alloc error. To avoid this, the 
+#'   user can skip generating a boundary matrix by setting `skip_bm = TRUE`.
 #'
 #' @examples
 #' # find example data
@@ -628,7 +636,8 @@ new_dataset <- function(spatial_path, attribute_path, boundary_path,
 #' # print object
 #' print(d)
 #' @export
-new_dataset_from_auto <- function(x, id = uuid::UUIDgenerate()) {
+new_dataset_from_auto <- function(x, skip_bm = FALSE, id = uuid::UUIDgenerate()) {
+  
   # assert arguments are valid
   assertthat::assert_that(
     inherits(x, c("sf", "Raster"))
@@ -659,20 +668,24 @@ new_dataset_from_auto <- function(x, id = uuid::UUIDgenerate()) {
     spatial_data <- repair_spatial_data(spatial_data)
   }
   
-  # re-project sf if CRS is not projected. only used for generating boundary
-  if (inherits(spatial_data, "sf") && (sf::st_is_longlat(spatial_data))) {
-    bm_spatial_data  <- sf::st_transform(spatial_data, 3857)
+  # build boundary data
+  if (skip_bm) {
+    bm <- NA
   } else {
-    bm_spatial_data <- spatial_data
+    # re-project sf if CRS is not projected. only used for generating boundary
+    if (inherits(spatial_data, "sf") && (sf::st_is_longlat(spatial_data))) {
+      bm_spatial_data  <- sf::st_transform(spatial_data, 3857)
+    } else {
+      bm_spatial_data <- spatial_data
+    }
+    # prepare boundary data
+    str_tree <- inherits(x, "sf") && !identical(Sys.info()[["sysname"]], "Darwin")
+    bm <- prioritizr::boundary_matrix(bm_spatial_data, str_tree = str_tree)
+    if (inherits(x, "Raster")) {
+      bm <- bm[attribute_data[["_index"]], attribute_data[["_index"]]]
+    }    
   }
-
-  # prepare boundary data
-  str_tree <- inherits(x, "sf") && !identical(Sys.info()[["sysname"]], "Darwin")
-  bm <- prioritizr::boundary_matrix(bm_spatial_data, str_tree = str_tree)
-  if (inherits(x, "Raster")) {
-    bm <- bm[attribute_data[["_index"]], attribute_data[["_index"]]]
-  }
-
+  
   # create new dataset
   Dataset$new(
     spatial_path = "memory",
