@@ -23,7 +23,7 @@ Definition for the Result class.
 
 \item{\code{area}}{\code{numeric} value.}
 
-\item{\code{perimeter}}{\code{numeric} value.}
+\item{\code{perimeter}}{\code{numeric} value or \code{NA} logical.}
 
 \item{\code{theme_coverage}}{\code{numeric} value.}
 
