@@ -12,6 +12,7 @@ new_parameter(
   max_value = 100,
   step_value = 1,
   hide = FALSE,
+  disable = FALSE,
   units = "",
   reference_value = NA_real_,
   reference_units = "",
@@ -37,8 +38,11 @@ Defaults to 0.}
 \item{step_value}{\code{numeric} step value.
 Defaults to 1.}
 
-\item{hide}{\code{logical} value indicating if the slider should be
-hidden when the parameter is disabled.
+\item{hide}{\code{logical} indicating if the slider should be
+hidden when the setting switch is on.
+Defaults to \code{FALSE}.}
+
+\item{disable}{\code{logical} indicating if the setting should be disabled.
 Defaults to \code{FALSE}.}
 
 \item{units}{\code{character} units.
