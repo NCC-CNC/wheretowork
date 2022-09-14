@@ -1011,7 +1011,7 @@ new_solution_from_result <- function(name, visible, dataset, settings, result,
       ),
       new_statistic(
         name = "Total number of reserves",
-        value = if(is.na(reserve_sizes_m)) NA_real_ else length(reserve_sizes_m),
+        value = if(any(is.na(reserve_sizes_m))) NA_real_ else length(reserve_sizes_m),
         units = ""
       ),
       new_statistic(
