@@ -377,7 +377,7 @@ min_set_result <- function(area_data,
   # generate second prioritization
   ## this formulation aims to minimize fragmentation,
   ## whilst ensuring that total cost does do not exceed a threshold
-  if ((boundary_gap >= 1e-5) && inherits(boundary_data, "dgCMatrix")) {
+  if ((boundary_gap >= 1e-5) && inherits(boundary_data, c("dsCMatrix", "dgCMatrix"))) {
     ### calculate cost constraint for new prioritization
     max_cost <- sum(initial_solution * cost) * (boundary_gap + 1)
     ### identify "important" planning units to lock in to speed up process

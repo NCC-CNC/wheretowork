@@ -100,7 +100,7 @@ Statistic <- R6::R6Class(
 #'
 #' @param name `character` name of statistic.
 #'
-#' @param value `numeric` value.
+#' @param value `numeric` value or `NA_real_`.
 #'  This parameter describes the statistic in absolute terms (e.g. 30).
 #'
 #' @param units `character` value.
