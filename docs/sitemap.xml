@@ -184,6 +184,9 @@
     <loc>/reference/new_map_manager.html</loc>
   </url>
   <url>
+    <loc>/reference/new_null_legend.html</loc>
+  </url>
+  <url>
     <loc>/reference/new_parameter.html</loc>
   </url>
   <url>
@@ -227,6 +230,9 @@
   </url>
   <url>
     <loc>/reference/new_weight_results.html</loc>
+  </url>
+  <url>
+    <loc>/reference/NullLegend.html</loc>
   </url>
   <url>
     <loc>/reference/Parameter.html</loc>

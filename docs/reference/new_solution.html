@@ -133,7 +133,8 @@
   <span class='va'>theme_results</span>,
   <span class='va'>weight_results</span>,
   <span class='va'>include_results</span>,
-  id <span class='op'>=</span> <span class='fu'>uuid</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/uuid/man/UUIDgenerate.html'>UUIDgenerate</a></span><span class='op'>(</span><span class='op'>)</span>
+  id <span class='op'>=</span> <span class='fu'>uuid</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/uuid/man/UUIDgenerate.html'>UUIDgenerate</a></span><span class='op'>(</span><span class='op'>)</span>,
+  hidden <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -175,6 +176,10 @@
       <th>id</th>
       <td><p><code>character</code> unique identifier.
 Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUIDgenerate.html'>uuid::UUIDgenerate()</a></code>).</p></td>
+    </tr>
+    <tr>
+      <th>hidden</th>
+      <td><p><code>logical</code> should the solution be hidden from map?</p></td>
     </tr>
     </table>
 
@@ -230,7 +235,8 @@ Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUI
 <span class='r-in'>  theme_results <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>tr1</span><span class='op'>)</span>,</span>
 <span class='r-in'>  weight_results <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
 <span class='r-in'>  include_results <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
-<span class='r-in'>  id <span class='op'>=</span> <span class='st'>"solution1"</span></span>
+<span class='r-in'>  id <span class='op'>=</span> <span class='st'>"solution1"</span>,</span>
+<span class='r-in'>  hidden <span class='op'>=</span> <span class='cn'>FALSE</span></span>
 <span class='r-in'><span class='op'>)</span></span>
 <span class='r-in'></span>
 </code></pre></div>
