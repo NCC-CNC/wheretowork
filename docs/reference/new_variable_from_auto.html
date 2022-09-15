@@ -139,7 +139,8 @@ functions because it requires performing geospatial operations.</p>
   type <span class='op'>=</span> <span class='st'>"auto"</span>,
   colors <span class='op'>=</span> <span class='st'>"random"</span>,
   provenance <span class='op'>=</span> <span class='st'>"missing"</span>,
-  labels <span class='op'>=</span> <span class='st'>"missing"</span>
+  labels <span class='op'>=</span> <span class='st'>"missing"</span>,
+  hidden <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -181,6 +182,11 @@ Defaults to <code>"missing"</code>.</p></td>
       <th>labels</th>
       <td><p><code>character</code> object containing manual legend labels.
 Defaults to <code>"missing"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>hidden</th>
+      <td><p><code>logical</code> indicating if variable will be hidden from map.
+Defaults to <code>"FALSE"</code>. If hidden, a <a href='NullLegend.html'>NullLegend</a> is used</p></td>
     </tr>
     </table>
 

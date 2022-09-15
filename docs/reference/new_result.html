@@ -153,7 +153,8 @@ used to generate a <a href='Solution.html'>Solution</a> object.</p>
     </tr>
     <tr>
       <th>perimeter</th>
-      <td><p><code>numeric</code> total perimeter (m) of selected planning units.</p></td>
+      <td><p><code>numeric</code> total perimeter (m) of selected planning units. Or
+<code>NA_real_</code> (see Details for more information).</p></td>
     </tr>
     <tr>
       <th>theme_coverage</th>
@@ -195,6 +196,10 @@ include that is covered by the result.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A <a href='Result.html'>Result</a> object.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>If the boundary matrix was skipped (see <code>new_dataset_from_auto</code>),
+The <code>min_set_result</code> function returns a total_perimeter of <code>NA_real_</code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='co'># find data file paths</span></span>

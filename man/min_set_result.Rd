@@ -27,7 +27,8 @@ min_set_result(
 \arguments{
 \item{area_data}{\code{numeric} vector containing the area of each planning unit.}
 
-\item{boundary_data}{\code{\link[Matrix:sparseMatrix]{Matrix::sparseMatrix()}} containing the boundary data.}
+\item{boundary_data}{\code{\link[Matrix:sparseMatrix]{Matrix::sparseMatrix()}} containing the boundary data,
+or or \code{NA}.}
 
 \item{theme_data}{\code{\link[Matrix:sparseMatrix]{Matrix::sparseMatrix()}} containing the theme data.}
 

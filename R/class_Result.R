@@ -20,7 +20,7 @@ Result <- R6::R6Class(
     #' @field area `numeric` value.
     area = NULL,
 
-    #' @field perimeter `numeric` value.
+    #' @field perimeter `numeric` value or `NA_real_`.
     perimeter = NULL,
 
     #' @field theme_coverage `numeric` value.
@@ -49,7 +49,7 @@ Result <- R6::R6Class(
     #' @param id `character` value.
     #' @param values `numeric` vector.
     #' @param area `numeric` value.
-    #' @param perimeter `numeric` value.
+    #' @param perimeter `numeric` value or `NA_real_`.
     #' @param theme_coverage `numeric` vector.
     #' @param weight_coverage `numeric` vector.
     #' @param include_coverage `numeric` vector.
@@ -76,8 +76,7 @@ Result <- R6::R6Class(
         assertthat::is.number(area),
         assertthat::noNA(area),
         ### perimeter
-        assertthat::is.number(perimeter),
-        assertthat::noNA(perimeter),
+        inherits(perimeter, c("numeric")),
         ### theme_coverage
         is.numeric(theme_coverage),
         assertthat::noNA(theme_coverage),
@@ -101,6 +100,12 @@ Result <- R6::R6Class(
         is.list(parameters),
         all_list_elements_inherit(parameters, "Parameter")
       )
+      ### perimeter, not NA_real_
+      if (!is.na(perimeter)) {
+        assertthat::is.number(perimeter)
+        assertthat::noNA(perimeter)
+      }      
+      
       if (nrow(weight_settings) > 0) {
         assertthat::assert_that(
           identical(weight_settings$id, names(weight_coverage))
@@ -156,7 +161,8 @@ Result <- R6::R6Class(
 #'
 #' @param area `numeric` total area (m^2) of selected planning units.
 #'
-#' @param perimeter `numeric` total perimeter (m) of selected planning units.
+#' @param perimeter `numeric` total perimeter (m) of selected planning units. Or
+#'   `NA_real_` (see Details for more information).
 #'
 #' @param theme_coverage `numeric` vector containing the proportion of each
 #'  feature within each theme that is covered by the result.
@@ -178,6 +184,9 @@ Result <- R6::R6Class(
 #' @param id `character` identifier value.
 #'
 #' @return A [Result] object.
+#' 
+#' @details If the boundary matrix was skipped (see `new_dataset_from_auto`), 
+#'   The `min_set_result` function returns a total_perimeter of `NA_real_`.
 #'
 #' @examples
 #' # find data file paths

@@ -9,7 +9,7 @@ new_statistic(name, value, units, proportion = NA_real_)
 \arguments{
 \item{name}{\code{character} name of statistic.}
 
-\item{value}{\code{numeric} value.
+\item{value}{\code{numeric} value or \code{NA_real_}.
 This parameter describes the statistic in absolute terms (e.g. 30).}
 
 \item{units}{\code{character} value.

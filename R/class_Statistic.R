@@ -32,13 +32,15 @@ Statistic <- R6::R6Class(
     initialize = function(name, value, units, proportion) {
       assertthat::assert_that(
         assertthat::is.number(value),
-        assertthat::noNA(value),
         assertthat::is.number(proportion),
         assertthat::is.string(name),
         assertthat::noNA(name),
         assertthat::is.string(units),
         assertthat::noNA(units)
       )
+      if (!is.na(value)){
+        assertthat::noNA(value)
+      }
       self$name <- name
       self$value <- value
       self$units <- units
@@ -98,7 +100,7 @@ Statistic <- R6::R6Class(
 #'
 #' @param name `character` name of statistic.
 #'
-#' @param value `numeric` value.
+#' @param value `numeric` value or `NA_real_`.
 #'  This parameter describes the statistic in absolute terms (e.g. 30).
 #'
 #' @param units `character` value.
