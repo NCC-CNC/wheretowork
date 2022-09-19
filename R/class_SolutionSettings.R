@@ -41,6 +41,7 @@ SolutionSettings <- R6::R6Class(
     #' @param parameters `list` of [Parameter] objects.
     #' @return A new `SolutionSettings` object.
     initialize = function(themes, weights, includes, parameters) {
+      
       assertthat::assert_that(
         is.list(themes),
         is.list(weights),
@@ -357,7 +358,9 @@ SolutionSettings <- R6::R6Class(
           self$themes[[1]]$feature[[1]]$variable$dataset$
             get_planning_unit_indices()
         )
-        out <- methods::as(matrix(nrow = 0, ncol = n_pu), "dgCMatrix")
+        out <- Matrix::sparseMatrix(
+          i = numeric(0), j = numeric(0), x = numeric(0), dims = c(0, n_pu)
+        )
       }
       out
     },
@@ -377,7 +380,9 @@ SolutionSettings <- R6::R6Class(
           self$themes[[1]]$feature[[1]]$variable$dataset$
             get_planning_unit_indices()
         )
-        out <- methods::as(matrix(nrow = 0, ncol = n_pu), "dgCMatrix")
+        out <- Matrix::sparseMatrix(
+          i = numeric(0), j = numeric(0), x = numeric(0), dims = c(0, n_pu)
+        )
       }
       out
     },
