@@ -29,5 +29,5 @@ extract_data_matrix <- function(x) {
     which(z$index == names(d))
   })
   # return result
-  methods::as(t(as.matrix(d[, idx, drop = FALSE])), "dgCMatrix")
+  Matrix::Matrix(t(as.matrix(d[, idx, drop = FALSE])), sparse = TRUE)
 }
