@@ -34,6 +34,9 @@ Parameter <- R6::R6Class(
 
     #' @field hide `logical` value.
     hide = NA,
+    
+    #' @field disable `logical` value.
+    disable = NA,
 
     #' @field units `character` value.
     units = NA_character_,
@@ -54,14 +57,15 @@ Parameter <- R6::R6Class(
     #' @param max_value `numeric` maximum value.
     #' @param step_value `numeric` step value.
     #' @param hide `logical` value.
+    #' @param disable `logical` value.
     #' @param units `character` value.
     #' @param reference_value `numeric` value.
     #' @param reference_units `character` value.
     #' @return A new Parameter object.
     ## constructor
     initialize = function(id, name, status,
-                          value, min_value, max_value, step_value, hide, units,
-                          reference_value, reference_units) {
+                          value, min_value, max_value, step_value, hide, 
+                          disable, units, reference_value, reference_units) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -98,6 +102,9 @@ Parameter <- R6::R6Class(
         #### hide
         assertthat::is.flag(hide),
         assertthat::noNA(hide),
+        #### disable
+        assertthat::is.flag(disable),
+        assertthat::noNA(disable),        
         #### units
         assertthat::is.string(units),
         assertthat::noNA(units)
@@ -113,6 +120,7 @@ Parameter <- R6::R6Class(
       self$reference_value <- reference_value
       self$reference_units <- reference_units
       self$hide <- hide
+      self$disable <- disable
       self$units <- units
     },
 
@@ -240,6 +248,7 @@ Parameter <- R6::R6Class(
         max_value = self$max_value,
         step_value = self$step_value,
         hide = self$hide,
+        disable = self$disable,
         units = self$units,
         reference_value = self$reference_value,
         reference_units = self$reference_units
@@ -258,6 +267,7 @@ Parameter <- R6::R6Class(
         max_value = self$max_value,
         step_value = self$step_value,
         hide = self$hide,
+        disable = self$disable,
         units = self$units,
         reference_value = self$reference_value,
         reference_units = self$reference_units
@@ -308,9 +318,12 @@ Parameter <- R6::R6Class(
 #' @param units `character` units.
 #'   Defaults to an empty `character` object.
 #'
-#' @param hide `logical` value indicating if the slider should be
-#'   hidden when the parameter is disabled.
+#' @param hide `logical` indicating if the slider should be
+#'   hidden when the setting switch is on.
 #'   Defaults to `FALSE`.
+#'   
+#' @param disable `logical` indicating if the setting should be disabled.
+#'   Defaults to `FALSE`.  
 #'
 #' @inheritParams new_theme
 #' @inheritParams new_feature
@@ -326,7 +339,7 @@ Parameter <- R6::R6Class(
 #' @export
 new_parameter <- function(name, status = TRUE, value = 0,
                           min_value = 0, max_value = 100, step_value = 1,
-                          hide = FALSE, units = "",
+                          hide = FALSE, disable = FALSE, units = "",
                           reference_value = NA_real_,
                           reference_units = "",
                           id = uuid::UUIDgenerate()) {
@@ -339,6 +352,7 @@ new_parameter <- function(name, status = TRUE, value = 0,
     value = value,
     step_value = step_value,
     hide = hide,
+    disable = disable,
     reference_value = reference_value,
     reference_units = reference_units,
     units = units

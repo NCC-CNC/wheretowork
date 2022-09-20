@@ -23,7 +23,8 @@ new_result(
 
 \item{area}{\code{numeric} total area (m^2) of selected planning units.}
 
-\item{perimeter}{\code{numeric} total perimeter (m) of selected planning units.}
+\item{perimeter}{\code{numeric} total perimeter (m) of selected planning units. Or
+\code{NA_real_} (see Details for more information).}
 
 \item{theme_coverage}{\code{numeric} vector containing the proportion of each
 feature within each theme that is covered by the result.}
@@ -50,6 +51,10 @@ A \link{Result} object.
 \description{
 Create a new \link{Result} object. This object is used to store information
 used to generate a \link{Solution} object.
+}
+\details{
+If the boundary matrix was skipped (see \code{new_dataset_from_auto}),
+The \code{min_set_result} function returns a total_perimeter of \code{NA_real_}.
 }
 \examples{
 # find data file paths

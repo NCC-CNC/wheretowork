@@ -13,11 +13,19 @@ unit.}
 \item{areas}{\code{numeric} vector containing the area of each planning unit.}
 
 \item{boundary_matrix}{\code{\link[Matrix:sparseMatrix]{Matrix::sparseMatrix()}} object with boundary length
-data for the planning units.}
+data for the planning units. Or \code{\link{NA}} indicating that no boundary data is
+available (see Details for more information)}
 }
 \value{
 A \code{numeric} vector containing the total area of each reserve.
 }
 \description{
 Calculate the size of individual reserves in a solution.
+}
+\details{
+For spatial uploads (shapefile) with many planning units, building
+boundary data can result in a std::bad_alloc error. To avoid this, the
+user can skip generating a boundary matrix on the \code{new_dataset_from_auto}
+method. For these scenarios, reserve sizes can not be calculated when the
+\code{boundary_matrix} is set to \code{NA}.
 }

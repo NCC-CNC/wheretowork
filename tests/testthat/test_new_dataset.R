@@ -369,3 +369,30 @@ test_that("sf (from Marxan boundary format)", {
     )
   )
 })
+
+test_that("sf, new_dataset_from_auto", {
+  # prepare data
+  spatial_data <- import_simple_vector_data()
+  idx <- seq_len(nrow(spatial_data))
+  attribute_data <- tibble::tibble(
+    V1 = runif(length(idx)),
+    V2 = runif(length(idx)),
+    `_index` = idx
+  )
+  # merge attribute data with spatial data
+  sf_project <- merge(spatial_data, attribute_data, by.x = "id", by.y = "_index")
+  # move id column to last position
+  sf_project <- dplyr::relocate(sf_project, id, .after = last_col())
+  # change id column name to _index
+  names(sf_project)[names(sf_project) == "id"] <- "_index"
+  
+  # create object 
+  d <- new_dataset_from_auto(
+    x = sf_project,
+    skip_bm = TRUE
+  )
+  # run tests
+  expect_equal(is.na(d$get_boundary_data()), TRUE)
+  expect_equal(length(d$get_attribute_data()), length(attribute_data))
+})
+

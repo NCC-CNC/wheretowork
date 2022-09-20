@@ -49,6 +49,7 @@ import_data <- function(x, mode) {
       reference_value = area_ref_value,
       reference_units = stringi::stri_unescape_unicode("km\\u00B2"),
       hide = TRUE,
+      disable = FALSE,
       id = "budget_parameter"
     )
 
@@ -62,6 +63,7 @@ import_data <- function(x, mode) {
       step_value = 1,
       units = "%",
       hide = TRUE,
+      disable = shiny::isTruthy(app_data$shp_hidden),
       id = "spatial_parameter"
     )
   
@@ -75,6 +77,7 @@ import_data <- function(x, mode) {
       step_value = 1,
       units = "%",
       hide = TRUE,
+      disable = FALSE,
       id = "solution_layer_parameter"
     )  
 

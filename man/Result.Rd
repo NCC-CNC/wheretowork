@@ -23,7 +23,7 @@ Definition for the Result class.
 
 \item{\code{area}}{\code{numeric} value.}
 
-\item{\code{perimeter}}{\code{numeric} value.}
+\item{\code{perimeter}}{\code{numeric} value or \code{NA_real_}.}
 
 \item{\code{theme_coverage}}{\code{numeric} value.}
 
@@ -80,7 +80,7 @@ Create a new Result object.
 
 \item{\code{area}}{\code{numeric} value.}
 
-\item{\code{perimeter}}{\code{numeric} value.}
+\item{\code{perimeter}}{\code{numeric} value or \code{NA_real_}.}
 
 \item{\code{theme_coverage}}{\code{numeric} vector.}
 

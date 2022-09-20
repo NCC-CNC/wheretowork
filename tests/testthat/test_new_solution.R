@@ -302,6 +302,127 @@ test_that("initialization (from Result object)", {
   expect_is(x, "Solution")
 })
 
+test_that("initialization (from Result object), sf, no boundary", {
+  skip_on_ci()
+  skip_if_not_installed("RandomFields")  
+  # create object
+  ## create dataset
+  spatial_data <- import_simple_vector_data()
+  idx <- seq_len(nrow(spatial_data))
+  attribute_data <- tibble::tibble(
+    V1 = runif(length(idx)),
+    V2 = runif(length(idx)),
+    V3 = runif(length(idx)),
+    V4 = runif(length(idx)),
+    V5 = runif(length(idx)),
+    `_index` = idx
+  )
+  # merge attribute data with spatial data
+  sf_project <- merge(spatial_data, attribute_data, by.x = "id", by.y = "_index")
+  # move id column to last position
+  sf_project <- dplyr::relocate(sf_project, id, .after = last_col())
+  # change id column name to _index
+  names(sf_project)[names(sf_project) == "id"] <- "_index"
+  
+  # create object 
+  d <- new_dataset_from_auto(
+    x = sf_project,
+    skip_bm = TRUE
+  )
+  ## create variables
+  v1 <- new_variable(
+    dataset = d, index = 1, total = 12, units = "ha",
+    legend = new_null_legend()
+  )
+  v2 <- new_variable(
+    dataset = d, index = 2, total = 14, units = "ha",
+    legend = new_null_legend()
+  )
+  v3 <- new_variable(
+    dataset = d, index = 3, total = 78, units = "ha",
+    legend = new_null_legend()
+  )
+  v4 <- new_variable(
+    dataset = d, index = 4, total = 90, units = "ha",
+    legend = new_null_legend()
+  )
+  v5 <- new_variable(
+    dataset = d, index = 5, total = 90, units = "ha",
+    legend = new_null_legend()
+  )
+  ## create a weight using dataset
+  w <- new_weight(
+    name = "Human Footprint Index", variable = v1,
+    factor = 90, status = TRUE, id = "W1"
+  )
+  ## create a weight using dataset
+  incl <- new_include(
+    name = "Protected areas", variable = v1,
+    status = FALSE, id = "I1"
+  )
+  ## create features using dataset
+  f1 <- new_feature(
+    name = "Possum", variable = v2,
+    goal = 0.2, status = FALSE, current = 0.5, id = "F1"
+  )
+  f2 <- new_feature(
+    name = "Forests", variable = v3,
+    goal = 0.3, status = FALSE, current = 0.9, id = "F2"
+  )
+  f3 <- new_feature(
+    name = "Shrubs", variable = v4,
+    goal = 0.6, status = TRUE, current = 0.4, id = "F3"
+  )
+  ## create themes using the features
+  t1 <- new_theme("Species", f1, id = "T1")
+  t2 <- new_theme("Ecoregions", list(f2, f3), id = "T2")
+  ## create parameter
+  p1 <- new_parameter("Spatial clustering", id = "P1")
+  p2 <- new_parameter("Gap", id = "P2")
+  ## create solution setting
+  ss <- new_solution_settings(
+    themes = list(t1, t2), weights = list(w), includes = list(incl),
+    parameters = list(p1, p2)
+  )
+  ## create result
+  r <- min_set_result(
+    id = "R1",
+    area_data = d$get_planning_unit_areas(),
+    boundary_data = d$get_boundary_data(),
+    theme_data = ss$get_theme_data(),
+    weight_data = ss$get_weight_data(),
+    include_data = ss$get_include_data(),
+    theme_settings = ss$get_theme_settings(),
+    weight_settings = ss$get_weight_settings(),
+    include_settings = ss$get_include_settings(),
+    parameters = ss$parameters,
+    gap_1 = ss$get_parameter("P2")$value * ss$get_parameter("P2")$status,
+    boundary_gap = 0
+  )
+  ## create object
+  x <- new_solution_from_result(
+    id = "S1",
+    result = r,
+    name = "sol",
+    visible = TRUE,
+    dataset = d,
+    settings = ss,
+    legend = new_manual_legend(
+      values = c(0, 1),
+      colors = c("#00FFFF00", "#112233FF"),
+      labels = c("not selected", "selected")
+    )
+  )
+  # run tests
+  expect_equal(is.na(r$perimeter), TRUE)
+  # reserve_sizes statistics should all be ""
+  expect_equal(
+    any(
+      !stringi::stri_isempty(x$get_summary_results_data()[5:9,3][[1]])), FALSE
+    )
+  expect_is(x, "Solution")
+})
+
 test_that("get methods", {
   skip_if_not_installed("RandomFields")
   # create object

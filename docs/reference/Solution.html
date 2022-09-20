@@ -155,6 +155,8 @@ Solution class" />
 
 <dt><code>include_results</code></dt><dd><p><code>list</code> of <a href='IncludeResults.html'>IncludeResults</a> objects.</p></dd>
 
+<dt><code>hidden</code></dt><dd><p><code>logical</code> value.</p></dd>
+
 </dl><p></div></p>
     <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
 
@@ -168,6 +170,7 @@ Solution class" />
 <li><p><a href='#method-get_layer_name'><code>Solution$get_layer_name()</code></a></p></li>
 <li><p><a href='#method-get_layer_index'><code>Solution$get_layer_index()</code></a></p></li>
 <li><p><a href='#method-get_visible'><code>Solution$get_visible()</code></a></p></li>
+<li><p><a href='#method-get_hidden'><code>Solution$get_hidden()</code></a></p></li>
 <li><p><a href='#method-get_setting'><code>Solution$get_setting()</code></a></p></li>
 <li><p><a href='#method-set_visible'><code>Solution$set_visible()</code></a></p></li>
 <li><p><a href='#method-get_summary_results_data'><code>Solution$get_summary_results_data()</code></a></p></li>
@@ -197,7 +200,8 @@ Solution class" />
   <span class='va'>parameters</span>,
   <span class='va'>theme_results</span>,
   <span class='va'>weight_results</span>,
-  <span class='va'>include_results</span>
+  <span class='va'>include_results</span>,
+  <span class='va'>hidden</span>
 <span class='op'>)</span></code></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
@@ -219,6 +223,8 @@ Solution class" />
 <dt><code>weight_results</code></dt><dd><p><code>list</code> of <a href='WeightResults.html'>WeightResults</a> objects.</p></dd>
 
 <dt><code>include_results</code></dt><dd><p><code>list</code> of <a href='IncludeResults.html'>IncludeResults</a> objects.</p></dd>
+
+<dt><code>hidden</code></dt><dd><p><code>logical</code> value.</p></dd>
 
 </dl><p></div></p>
 <h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
@@ -234,7 +240,8 @@ Solution class" />
   <span class='va'>parameters</span>,
   <span class='va'>theme_results</span>,
   <span class='va'>weight_results</span>,
-  <span class='va'>include_results</span>
+  <span class='va'>include_results</span>,
+  <span class='va'>hidden</span>
 <span class='op'>)</span></code></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
@@ -256,6 +263,8 @@ Solution class" />
 <dt><code>weight_results</code></dt><dd><p><code>list</code> of <a href='WeightResults.html'>WeightResults</a> objects.</p></dd>
 
 <dt><code>include_results</code></dt><dd><p><code>list</code> of <a href='IncludeResults.html'>IncludeResults</a> objects.</p></dd>
+
+<dt><code>hidden</code></dt><dd><p><code>logical</code> value.</p></dd>
 
 </dl><p></div></p>
 <h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
@@ -346,6 +355,19 @@ Defaults to <code>"]"</code>.</p></dd>
 <h3 class='hasAnchor' id='list-get-visible-'><a class='anchor' aria-hidden='true' href='#list-get-visible-'></a>Method <code>get_visible()</code></h3>
 <p>Get visible.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
 <p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Solution</span><span class='op'>$</span><span class='fu'>get_visible</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>logical</code> value.</p>
+<p><hr>
+<a id="method-get_hidden"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>get_hidden()</code></h3>
+<p>Get hidden.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Solution</span><span class='op'>$</span><span class='fu'>get_hidden</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>logical</code> value.</p>
+<h3 class='hasAnchor' id='list-get-hidden-'><a class='anchor' aria-hidden='true' href='#list-get-hidden-'></a>Method <code>get_hidden()</code></h3>
+<p>Get hidden.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Solution</span><span class='op'>$</span><span class='fu'>get_hidden</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
 
 <h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
 <p><code>logical</code> value.</p>

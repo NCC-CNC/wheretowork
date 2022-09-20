@@ -10,6 +10,7 @@ class ParameterSetting {
     max_value,
     step_value,
     hide,
+    disable,
     units,
     reference_value,
     reference_units
@@ -31,6 +32,7 @@ class ParameterSetting {
     this.value_container_el = this.el.querySelector(".parameter-slider");
     this.previous_value = value;
     this.hide = hide;
+    this.disable = disable;
 
     // local variables
     let that = this;
@@ -107,6 +109,7 @@ class ParameterSetting {
         }
         /// hide slider if needed
         if (that.hide) {
+          /// hide slider when el-switch is checked
           if (checked && (id !== "solution_layer_parameter")) {
             that.value_container_el.style.display = "block";
             if (that.has_ref) {

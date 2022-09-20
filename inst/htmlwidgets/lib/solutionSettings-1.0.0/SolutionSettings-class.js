@@ -100,7 +100,16 @@ class SolutionSettings {
     // parameters
     const parameter_panel = this.container.querySelector(".parameters");
     this.parameters.forEach((x) => parameter_panel.appendChild(x.render()));
-
+    
+    // disable settings parameter need be
+    for (let i of this.parameters) {
+      if (i.disable){
+       let setting_div = document.getElementById("setting-" + i.id);
+       setting_div.style.cursor = 'not-allowed';
+       setting_div.getElementsByClassName('header')[0].style.pointerEvents = 'none'; 
+      }
+    }
+    
    // initialize tooltips in widget
    $(this.container).find('[data-toggle="tooltip"]').tooltip();
   }

@@ -44,7 +44,7 @@ class Statistics {
           l.innerText += " " + units[index];
         }
       } else {
-        l.innerText = values[index];
+        l.innerText = "Not calculated";
       }
       /// add label to HTML element
       values_el.appendChild(l);

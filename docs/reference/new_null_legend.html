@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Reserve sizes — reserve_sizes • wheretowork</title>
+<title>New null legend — new_null_legend • wheretowork</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Reserve sizes — reserve_sizes" />
-<meta property="og:description" content="Calculate the size of individual reserves in a solution." />
+<meta property="og:title" content="New null legend — new_null_legend" />
+<meta property="og:description" content="Create a new NullLegend object." />
 
 
 
@@ -115,48 +115,35 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Reserve sizes</h1>
-    <small class="dont-index">Source: <a href='https://github.com/NCC-CNC/wheretowork/blob/master/R/utils_spatial_misc.R'><code>R/utils_spatial_misc.R</code></a></small>
-    <div class="hidden name"><code>reserve_sizes.Rd</code></div>
+    <h1>New null legend</h1>
+    <small class="dont-index">Source: <a href='https://github.com/NCC-CNC/wheretowork/blob/master/R/class_NullLegend.R'><code>R/class_NullLegend.R</code></a></small>
+    <div class="hidden name"><code>new_null_legend.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Calculate the size of individual reserves in a solution.</p>
+    <p>Create a new <a href='NullLegend.html'>NullLegend</a> object.</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>reserve_sizes</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>areas</span>, <span class='va'>boundary_matrix</span><span class='op'>)</span></code></pre></div>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>new_null_legend</span><span class='op'>(</span><span class='op'>)</span></code></pre></div>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>x</th>
-      <td><p><code>numeric</code> vector containing the solution values for each planning
-unit.</p></td>
-    </tr>
-    <tr>
-      <th>areas</th>
-      <td><p><code>numeric</code> vector containing the area of each planning unit.</p></td>
-    </tr>
-    <tr>
-      <th>boundary_matrix</th>
-      <td><p><code><a href='https://rdrr.io/pkg/Matrix/man/sparseMatrix.html'>Matrix::sparseMatrix()</a></code> object with boundary length
-data for the planning units. Or <code><a href='https://rdrr.io/r/base/NA.html'>NA</a></code> indicating that no boundary data is
-available (see Details for more information)</p></td>
-    </tr>
-    </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code>numeric</code> vector containing the total area of each reserve.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <p>A <a href='NullLegend.html'>NullLegend</a> object.</p>
 
-    <p>For spatial uploads (shapefile) with many planning units, building
-boundary data can result in a std::bad_alloc error. To avoid this, the
-user can skip generating a boundary matrix on the <code>new_dataset_from_auto</code>
-method. For these scenarios, reserve sizes can not be calculated when the
-<code>boundary_matrix</code> is set to <code>NA</code>.</p>
-
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='co'># create new object</span></span>
+<span class='r-in'><span class='va'>l</span> <span class='op'>&lt;-</span> <span class='fu'>new_null_legend</span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># print object</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>l</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;NullLegend&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   Public:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     clone: function (deep = FALSE) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     export: function () </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     get_widget_data: function () </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     initialize: function () </span>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

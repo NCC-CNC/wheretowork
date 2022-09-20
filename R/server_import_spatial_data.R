@@ -131,7 +131,7 @@ server_import_spatial_data <- quote({
     )
 
     ### generate dataset
-    x$dataset <- new_dataset_from_auto(rd)
+    x$dataset <- new_dataset_from_auto(rd, skip_bm = app_data$shp_hidden)
 
     ### generate includes
     x$includes <- lapply(
