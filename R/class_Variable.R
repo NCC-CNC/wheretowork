@@ -562,6 +562,8 @@ new_variable_from_metadata <- function(dataset, metadata) {
     if (identical(metadata$type, "categorical")) {
       colors <-
         color_palette(metadata$colors, length(metadata$values))
+    } else if (identical(metadata$type, "manual")) {
+      colors <- metadata$colors
     } else {
       colors <- color_palette(metadata$colors, NULL)
     }
