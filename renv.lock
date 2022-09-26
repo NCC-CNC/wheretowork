@@ -826,7 +826,7 @@
       "RemoteRef": "master",
       "RemoteSha": "ce9781a15c7ea07df9fb17a11295ba4abec0b54b",
       "Remotes": "r-lib/downlit",
-      "Hash": "9a2dde79717e20d811de0fc0200a3e1a"
+      "Hash": "b8e79b9aa76014e7c69feb17203a90b2"
     },
     "pkgload": {
       "Package": "pkgload",
@@ -962,8 +962,8 @@
       "RemoteUsername": "dirkschumacher",
       "RemoteRepo": "rcbc",
       "RemoteRef": "master",
-      "RemoteSha": "bb608fbb497d00113feeff38c398efc9c6842b1f",
-      "Hash": "ec45951b9fc3b6b42972b4fb31d77dbd"
+      "RemoteSha": "891907d2f34e0a02fee2ca27a4998dad235a69b4",
+      "Hash": "5ae75f06c98c99f165a4ef1db32de361"
     },
     "rcmdcheck": {
       "Package": "rcmdcheck",
