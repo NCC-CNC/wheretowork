@@ -2,7 +2,7 @@
 .continuous-legend {
   display: flex;
   flex-direction: column;
-  padding: 3px 0px 3px 20px;
+  padding: 3px 0px 3px 10px;
 }
 
 .continuous-legend-plus {

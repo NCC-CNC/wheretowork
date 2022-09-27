@@ -118,6 +118,10 @@
     display: none;
 }
 
+.map-manager-layer .view-container
+{
+    display: none;
+}
 
 /* visible checkbox */
 .map-manager-layer .visible-container input[type="checkbox"],
