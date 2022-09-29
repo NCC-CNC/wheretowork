@@ -50,6 +50,7 @@ import_data <- function(x, mode) {
       reference_units = stringi::stri_unescape_unicode("km\\u00B2"),
       hide = TRUE,
       disable = FALSE,
+      no_slider = FALSE,
       id = "budget_parameter"
     )
 
@@ -64,13 +65,14 @@ import_data <- function(x, mode) {
       units = "%",
       hide = TRUE,
       disable = shiny::isTruthy(app_data$shp_hidden),
+      no_slider = FALSE,
       id = "spatial_parameter"
     )
   
   solution_layer_parameter <-
     wheretowork::new_parameter(
       name = "Hide solution layer from map",
-      status = FALSE,
+      status = shiny::isTruthy(app_data$shp_hidden),
       value = 1,
       min_value = 1,
       max_value = 100,
@@ -78,6 +80,7 @@ import_data <- function(x, mode) {
       units = "%",
       hide = TRUE,
       disable = FALSE,
+      no_slider = TRUE,
       id = "solution_layer_parameter"
     )  
 
