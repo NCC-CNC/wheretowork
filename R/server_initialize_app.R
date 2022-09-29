@@ -25,6 +25,7 @@ server_initialize_app <- quote({
       attribute_path = NULL,
       ## settings
       mode = NULL,
+      builtin_hidden = NULL, # enable/disable all T, W and I layers
       manual_hidden = NULL, # enable/disable all T, W and I layers
       shp_hidden = NULL, # enable/disable all T, W and I layers
       ## objects
