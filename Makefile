@@ -56,6 +56,9 @@ check:
 	echo "\n===== R CMD CHECK =====\n" > check.log 2>&1
 	R --slave -e "devtools::check(build_args = '--no-build-vignettes', args = '--no-build-vignettes', run_dont_test = TRUE, vignettes = FALSE)" >> check.log 2>&1
 
+check-no-multiarch:
+	R --slave -e "devtools::check(args = '--no-multiarch', build_args='--no-multiarch')"
+
 ## check docs for spelling mistakes
 spellcheck:
 	echo "\n===== SPELL CHECK =====\n" > spell.log 2>&1

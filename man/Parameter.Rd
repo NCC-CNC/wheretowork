@@ -35,6 +35,8 @@ Definition for the Parameter class.
 
 \item{\code{disable}}{\code{logical} value.}
 
+\item{\code{no_slider}}{\code{logical} value.}
+
 \item{\code{units}}{\code{character} value.}
 
 \item{\code{reference_value}}{\code{numeric} reference value.}
@@ -77,6 +79,7 @@ Create a new Parameter object.
   step_value,
   hide,
   disable,
+  no_slider,
   units,
   reference_value,
   reference_units
@@ -103,6 +106,8 @@ Create a new Parameter object.
 \item{\code{hide}}{\code{logical} value.}
 
 \item{\code{disable}}{\code{logical} value.}
+
+\item{\code{no_slider}}{\code{logical} value.}
 
 \item{\code{units}}{\code{character} value.}
 

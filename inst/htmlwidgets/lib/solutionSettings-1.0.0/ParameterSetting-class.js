@@ -4,13 +4,14 @@ class ParameterSetting {
     manager,
     id,
     name,
-    status,
+    status, // inital switch value
     value,
     min_value,
     max_value,
     step_value,
     hide,
     disable,
+    no_slider,
     units,
     reference_value,
     reference_units
@@ -33,6 +34,7 @@ class ParameterSetting {
     this.previous_value = value;
     this.hide = hide;
     this.disable = disable;
+    this.no_slider = no_slider;
 
     // local variables
     let that = this;
@@ -57,7 +59,7 @@ class ParameterSetting {
       }
     });
     /// status
-    this.updateStatus(status);
+    this.updateStatus(status, no_slider);
     /// ref label
     this.has_ref = typeof(reference_value) === "number";
     if (this.has_ref) {
@@ -75,7 +77,7 @@ class ParameterSetting {
     }
 
     /// hide slider if needed
-    if (status) {
+    if (status && !no_slider) {
       this.value_container_el.style.display = "block";
       if (this.has_ref) {
         this.ref_el.style.display = "inline";
@@ -109,8 +111,8 @@ class ParameterSetting {
         }
         /// hide slider if needed
         if (that.hide) {
-          /// hide slider when el-switch is checked
-          if (checked && (id !== "solution_layer_parameter")) {
+          /// hide slider 
+          if (checked && !no_slider) {
             that.value_container_el.style.display = "block";
             if (that.has_ref) {
               that.ref_el.style.display = "inline";
@@ -177,7 +179,7 @@ class ParameterSetting {
     this.name_el.innerText = value;
   }
 
-  updateStatus(value) {
+  updateStatus(value, no_slider) {
     // update HTML elements if needed
     if (this.status_el.checked !== value) {
       /// update switch
@@ -198,7 +200,7 @@ class ParameterSetting {
       }
       /// hide slider if needed
       if (this.hide) {
-        if (checked) {
+        if (this.status_el.checked && !no_slider) {
           this.value_container_el.style.display = "block";
           if (this.has_ref) {
             this.ref_el.style.display = "inline";
@@ -211,6 +213,7 @@ class ParameterSetting {
         }
       }
     }
+    
     // update HTML element styles
     let els = this.el.querySelectorAll(
         ".disable-if-inactive, .disable-if-inactive.icon i");

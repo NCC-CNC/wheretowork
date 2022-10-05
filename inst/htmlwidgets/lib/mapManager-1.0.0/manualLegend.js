@@ -28,9 +28,20 @@ function manualLegend(el, x) {
     "title",
     "This dataset has categorical data. " +
     "The legend shows the color associated with each category.");
-
+    
+  // If needed, force values into an array (if manual legend only has 1 value)
+  if (!Array.isArray(x.values)) {
+    x.values = [x.values]
+  }
+  
+  // If needed, force colors into an array (if manual legend only has 1 color)
+  if (!Array.isArray(x.colors)) {
+    x.colors = [x.colors]
+  } 
+  
   // create legend
   for (let i = 0; i < x.values.length; ++i) {
+    
     /// create item to add to legend
     let item = document.createElement("div");
     item.className = "item";

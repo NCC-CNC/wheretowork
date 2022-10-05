@@ -13,6 +13,7 @@ new_parameter(
   step_value = 1,
   hide = FALSE,
   disable = FALSE,
+  no_slider = FALSE,
   units = "",
   reference_value = NA_real_,
   reference_units = "",
@@ -43,6 +44,9 @@ hidden when the setting switch is on.
 Defaults to \code{FALSE}.}
 
 \item{disable}{\code{logical} indicating if the setting should be disabled.
+Defaults to \code{FALSE}.}
+
+\item{no_slider}{\code{logical} indicating if the setting should not have a slider.
 Defaults to \code{FALSE}.}
 
 \item{units}{\code{character} units.
