@@ -1,4 +1,4 @@
-#' @include internal.R class_Weight.R class_Theme.R class_Include.R
+#' @include internal.R class_Weight.R class_Theme.R class_Include.R class_Exclude.R
 NULL
 
 #' Solution settings class
@@ -16,6 +16,9 @@ SolutionSettings <- R6::R6Class(
 
     #' @field include_ids `character` vector of identifiers for the includes.
     include_ids = character(0),
+    
+    #' @field exclude_ids `character` vector of identifiers for the excludes.
+    exclude_ids = character(0),    
 
     #' @field parameter_ids `character` vector of identifiers for the
     #'  parameters.
@@ -29,6 +32,9 @@ SolutionSettings <- R6::R6Class(
 
     #' @field includes `list` of [Include] objects.
     includes = NULL,
+    
+    #' @field excludes `list` of [Exclude] objects.
+    excludes = NULL,    
 
     #' @field parameters `list` of [Parameter] objects.
     parameters = NULL,
@@ -38,9 +44,10 @@ SolutionSettings <- R6::R6Class(
     #' @param themes `list` of [Theme] objects.
     #' @param weights `list` of [Weight] objects.
     #' @param includes `list` of [Include] objects.
+    #' @param excludes `list` of [Exclude] objects.
     #' @param parameters `list` of [Parameter] objects.
     #' @return A new `SolutionSettings` object.
-    initialize = function(themes, weights, includes, parameters) {
+    initialize = function(themes, weights, includes, excludes, parameters) {
       
       assertthat::assert_that(
         is.list(themes),
@@ -48,15 +55,18 @@ SolutionSettings <- R6::R6Class(
         all_list_elements_inherit(themes, "Theme"),
         all_list_elements_inherit(weights, "Weight"),
         all_list_elements_inherit(includes, "Include"),
+        all_list_elements_inherit(excludes, "Exclude"),
         all_list_elements_inherit(parameters, "Parameter")
       )
       self$themes <- themes
       self$weights <- weights
       self$includes <- includes
+      self$excludes <- excludes
       self$parameters <- parameters
       self$theme_ids <- vapply(themes, `[[`, character(1), "id")
       self$weight_ids <- vapply(weights, `[[`, character(1), "id")
       self$include_ids <- vapply(includes, `[[`, character(1), "id")
+      self$exclude_ids <- vapply(excludes, `[[`, character(1), "id")
       self$parameter_ids <- vapply(parameters, `[[`, character(1), "id")
     },
 
@@ -92,6 +102,15 @@ SolutionSettings <- R6::R6Class(
       } else {
         message("  includes: none")
       }
+      ## print excludes
+      if (length(self$excludes) > 0) {
+        message("  excludes: ")
+        for (x in vapply(self$excludes, function(x) x$repr(), character(1))) {
+          message("    ", gsub(nl(), paste0(nl(), "    "), x, fixed = TRUE))
+        }
+      } else {
+        message("  excludes: none")
+      }      
       ## print parameters
       if (length(self$parameters) > 0) {
         message("  parameters: ")
@@ -145,7 +164,7 @@ SolutionSettings <- R6::R6Class(
 
     #' @description
     #' Get an include.
-    #' @param value `character` weight identifier.
+    #' @param value `character` include identifier.
     #' @return [Include] object.
     get_include = function(value) {
       assertthat::assert_that(
@@ -158,6 +177,22 @@ SolutionSettings <- R6::R6Class(
       )
       self$includes[[which(self$include_ids == value)]]
     },
+    
+    #' @description
+    #' Get an exclude.
+    #' @param value `character` exclude identifier.
+    #' @return [Exclude] object.
+    get_exclude = function(value) {
+      assertthat::assert_that(
+        assertthat::is.string(value),
+        assertthat::noNA(value)
+      )
+      assertthat::assert_that(
+        value %in% self$exclude_ids,
+        msg = paste0("no exclude with the id `", value, "`")
+      )
+      self$excludes[[which(self$exclude_ids == value)]]
+    },    
 
     #' @description
     #' Get an parameter.
@@ -176,16 +211,16 @@ SolutionSettings <- R6::R6Class(
     },
 
     #' @description
-    #' Get a setting for a weight, theme, include, or parameter.
+    #' Get a setting for a weight, theme, include, exclude, or parameter.
     #' @param value `list` with new parameter information (see Details section)
     #' @details
     #' The argument to `value` should be a `list` with the following elements:
     #' \describe{
-    #' \item{id}{`character` identifier for theme, weight, or include.}
+    #' \item{id}{`character` identifier for theme, weight, include, or exclude.}
     #' \item{setting}{`character` name of parameter.
     #'   Available options are: `"status"`, `"factor"`, `"value"`, or `"goal"`.}
     #' \item{type}{`character` indicating the type of setting.
-    #'   Available options are: `"theme"`, `"weight"`, `"include"`,
+    #'   Available options are: `"theme"`, `"weight"`, `"include"`, `"exclude"`
     #'   `"parameter"`.}
     #' }
     get_setting = function(value) {
@@ -197,7 +232,7 @@ SolutionSettings <- R6::R6Class(
         assertthat::is.string(value$setting),
         assertthat::has_name(value, "type"),
         assertthat::is.string(value$type),
-        isTRUE(value$type %in% c("theme", "weight", "include", "parameter"))
+        isTRUE(value$type %in% c("theme", "weight", "include", "exclude", "parameter"))
       )
       if (identical(value$type, "theme")) {
         self$get_theme(value$id)$get_setting(value$setting)
@@ -205,6 +240,8 @@ SolutionSettings <- R6::R6Class(
         self$get_weight(value$id)$get_setting(value$setting)
       } else if (identical(value$type, "include")) {
         self$get_include(value$id)$get_setting(value$setting)
+      } else if (identical(value$type, "exclude")) {
+        self$get_exclude(value$id)$get_setting(value$setting)        
       } else if (identical(value$type, "parameter")) {
         self$get_parameter(value$id)$get_setting(value$setting)
       }
@@ -221,7 +258,7 @@ SolutionSettings <- R6::R6Class(
     #'   Available options are: `"status"`, `"factor"`, `"value"`, or `"goal"`.}
     #' \item{value}{`numeric` or `logical` value for new setting.}
     #' \item{type}{`character` indicating the type of setting.
-    #'   Available options are: `"theme"`, `"weight"`, `"include"`,
+    #'   Available options are: `"theme"`, `"weight"`, `"include"`, `"exclude"`,
     #'   `"parameter"`.}
     #' }
     set_setting = function(value) {
@@ -233,7 +270,7 @@ SolutionSettings <- R6::R6Class(
         assertthat::is.string(value$setting),
         assertthat::has_name(value, "value"),
         assertthat::is.string(value$type),
-        isTRUE(value$type %in% c("theme", "weight", "include", "parameter"))
+        isTRUE(value$type %in% c("theme", "weight", "include", "exclude", "parameter"))
       )
       if (identical(value$type, "theme")) {
         self$get_theme(value$id)$set_setting(value$setting, value$value)
@@ -241,6 +278,8 @@ SolutionSettings <- R6::R6Class(
         self$get_weight(value$id)$set_setting(value$setting, value$value)
       } else if (identical(value$type, "include")) {
         self$get_include(value$id)$set_setting(value$setting, value$value)
+      } else if (identical(value$type, "exclude")) {
+        self$get_exclude(value$id)$set_setting(value$setting, value$value)        
       } else if (identical(value$type, "parameter")) {
         self$get_parameter(value$id)$set_setting(value$setting, value$value)
       }
@@ -263,6 +302,10 @@ SolutionSettings <- R6::R6Class(
           lapply(
             self$includes, function(x) x$get_solution_settings_widget_data()
           ),
+        excludes =
+          lapply(
+            self$excludes, function(x) x$get_solution_settings_widget_data()
+          ),        
         parameters =
           lapply(
             self$parameters, function(x) x$get_widget_data()
@@ -314,6 +357,17 @@ SolutionSettings <- R6::R6Class(
         status = vapply(self$includes, `[[`, logical(1), "status")
       )
     },
+    
+    #' @description
+    #' Get exclude settings for generating a prioritization.
+    #' @return [tibble::tibble()] with data.
+    get_exclude_settings = function() {
+      tibble::tibble(
+        id = vapply(self$excludes, `[[`, character(1), "id"),
+        name = vapply(self$excludes, `[[`, character(1), "name"),
+        status = vapply(self$excludes, `[[`, logical(1), "status")
+      )
+    },    
 
     #' @description
     #' Get parameter settings for generating a prioritization.
@@ -386,27 +440,54 @@ SolutionSettings <- R6::R6Class(
       }
       out
     },
+    
+    #' @description
+    #' Get exclude matrix data.
+    #' @return [Matrix::sparseMatrix()] with data.
+    get_exclude_data = function() {
+      if (length(self$excludes) > 0) {
+        # if excludes are present, then create matrix using them
+        v <- lapply(self$excludes, `[[`, "variable")
+        out <- extract_data_matrix(v)
+        rownames(out) <- vapply(self$excludes, `[[`, character(1), "id")
+      } else {
+        # if no excludes are present, then create empty matrix
+        n_pu <- length(
+          self$themes[[1]]$feature[[1]]$variable$dataset$
+            get_planning_unit_indices()
+        )
+        out <- Matrix::sparseMatrix(
+          i = numeric(0), j = numeric(0), x = numeric(0), dims = c(0, n_pu)
+        )
+      }
+      out
+    },    
 
     #' @description
     #' Update the current amount held for each themes and weights automatically
-    #' based on the include statuses.
+    #' based on the include and exclude statuses.
     #' @param theme_data `[Matrix::sparseMatrix()] with theme data.
     #' Defaults to `self$get_theme_data()`.
     #' @param weight_data `[Matrix::sparseMatrix()] with weight data.
     #' Defaults to `self$get_weight_data()`.
     #' @param include_data `[Matrix::sparseMatrix()] with include data.
     #' Defaults to `self$get_include_data()`.
+    #' @param exclude_data `[Matrix::sparseMatrix()] with exclude data.
+    #' Defaults to `self$get_exclude_data()`.
     update_current_held = function(theme_data = self$get_theme_data(),
                                    weight_data = self$get_weight_data(),
-                                   include_data = self$get_include_data()) {
+                                   include_data = self$get_include_data(),
+                                   exclude_data = self$get_exclude_data()) {
       # assert arguments are valid
       assertthat::assert_that(
         inherits(theme_data, "dgCMatrix"),
         inherits(weight_data, "dgCMatrix"),
         inherits(include_data, "dgCMatrix"),
+        inherits(exclude_data, "dgCMatrix"),
         ncol(theme_data) == ncol(include_data),
         ncol(weight_data) == ncol(include_data),
         nrow(include_data) == length(self$includes),
+        nrow(exclude_data) == length(self$excludes),
         nrow(weight_data) == length(self$weights)
       )
       # calculate current status for each planning unit
@@ -454,11 +535,13 @@ SolutionSettings <- R6::R6Class(
 #'
 #' Create a new [SolutionSettings] object.
 #'
-#' @param themes `list` of [Theme] objects. D
+#' @param themes `list` of [Theme] objects.
 #'
 #' @param weights `list` of [Weight] objects.
 #'
 #' @param includes `list` of [Include] objects.
+#' 
+#' @param excludes `list` of [Exclude] objects.
 #'
 #' @param parameters `list` of [Parameter] objects.
 #'
@@ -487,6 +570,7 @@ SolutionSettings <- R6::R6Class(
 #' v3 <- new_variable_from_auto(dataset = d, index = 3)
 #' v4 <- new_variable_from_auto(dataset = d, index = 4)
 #' v5 <- new_variable_from_auto(dataset = d, index = 5)
+#' v6 <- new_variable_from_auto(dataset = d, index = 6)
 #'
 #' # create a weight using a variable
 #' w <- new_weight(
@@ -517,6 +601,12 @@ SolutionSettings <- R6::R6Class(
 #'   name = "Protected areas", variable = v5,
 #'   status = FALSE, id = "I1"
 #' )
+#' 
+#' # create an exclude using a variable
+#' e <- new_exclude(
+#'   name = "Urban areas", variable = v6,
+#'   status = FALSE, id = "E1"
+#' )
 #'
 #' # create parameters
 #' p1 <- new_parameter(name = "Spatial clustering")
@@ -525,17 +615,18 @@ SolutionSettings <- R6::R6Class(
 #' # create solution settings using the themes and weight
 #' ss <- new_solution_settings(
 #'   themes = list(t1, t2), weights = list(w), includes = list(i),
-#'   parameters = list(p1, p2)
+#'   excludes = list(e), parameters = list(p1, p2)
 #' )
 #'
 #' # print object
 #' print(ss)
 #' @export
-new_solution_settings <- function(themes, weights, includes, parameters) {
+new_solution_settings <- function(themes, weights, includes, excludes, parameters) {
   SolutionSettings$new(
     themes = themes,
     weights = weights,
     includes = includes,
+    excludes = excludes,    
     parameters = parameters
   )
 }

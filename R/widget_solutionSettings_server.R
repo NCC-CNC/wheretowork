@@ -192,12 +192,40 @@ NULL
 #' \item{value}{`TRUE`}
 #' \item{type}{`"include"`}
 #' }
+#' 
+#' ## Excludes
+#' Here we detail all possible settings that can be updated for
+#' excludes.
+#'
+#' **Update the name.**
+#' This controls the bold text shown in the header of the exclude.
+#'
+#' \describe{
+#' \item{id}{`"EXCLUDEID"`}
+#' \item{setting}{`"name"`}
+#' \item{value}{`"XX"`}
+#' \item{type}{`"exclude"`}
+#' }
+#'
+#' **Update the status.**
+#' This controls the large switch shown in the header of exclude.
+#' Note that the `value` element must be a `logical` (`TRUE` or `FALSE`) value.
+#'
+#' \describe{
+#' \item{id}{`"EXCLUDEID"`}
+#' \item{setting}{`"status"`}
+#' \item{value}{`TRUE`}
+#' \item{type}{`"exclude"`}
+#' }
 #'
 #' @seealso [solutionSettings()].
 #'
 #' @export
 updateSolutionSettings <- function(session = shiny::getDefaultReactiveDomain(),
                                    inputId, value) {
+  
+  browser()
+  
   # assert valid arguments
   assertthat::assert_that(
     assertthat::is.string(inputId),
@@ -220,7 +248,7 @@ updateSolutionSettings <- function(session = shiny::getDefaultReactiveDomain(),
   # assert value contains valid settings
   ## define valid setting names and value classes
   assertthat::assert_that(
-    value$type %in% c("weight", "theme", "include", "parameter")
+    value$type %in% c("weight", "theme", "include", "exclude", "parameter")
   )
   if (identical(value$type, "theme")) {
     param_names <- c(
@@ -237,6 +265,9 @@ updateSolutionSettings <- function(session = shiny::getDefaultReactiveDomain(),
   } else if (identical(value$type, "include")) {
     param_names <- c("name", "status")
     param_classes <- c("character", "logical")
+  } else if (identical(value$type, "exclude")) {
+    param_names <- c("name", "status")
+    param_classes <- c("character", "logical")    
   } else if (identical(value$type, "parameter")) {
     param_names <- c("name", "status", "value")
     param_classes <- c("character", "logical", "numeric")

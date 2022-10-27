@@ -24,7 +24,7 @@ HTMLWidgets.widget({
           // initialize solution settings manager
           handle = new SolutionSettings(
             elementId, container,
-            opts.themes, opts.weights, opts.includes, opts.parameters);
+            opts.themes, opts.weights, opts.includes, opts.excludes, opts.parameters);
           // render HTML elements
           handle.render();
           // set the start and stop buttons are disabled by default

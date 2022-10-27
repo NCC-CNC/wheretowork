@@ -208,6 +208,29 @@ solutionSettings_html <- function(id, style, class, ...) {
             title = htmltools::tags$span(
               shinyBS::tipify(
                 el = htmltools::tags$span(
+                  shiny::icon("ban"),
+                  "Excludes"
+                ),
+                title = paste(
+                  "Excludes describe places that are no-go for",
+                  "conservation",
+                  "(e.g. urban centers, industrial areas).",
+                  "You can toggle excludes on so that they",
+                  "are not selected within solutions."
+                ),
+                options = list(container = "body")
+              )
+            ),
+            value = paste0(id, "_collapseExcludePanel"),
+            htmltools::tags$div(
+              class = "panel-content-inner",
+              htmltools::tags$div(class = "excludes")
+            )
+          ),          
+          shinyBS::bsCollapsePanel(
+            title = htmltools::tags$span(
+              shinyBS::tipify(
+                el = htmltools::tags$span(
                   shiny::icon("cog"),
                   "Settings"
                 ),
@@ -324,6 +347,19 @@ solutionSettings_html <- function(id, style, class, ...) {
         )
       )
     )
+  
+  ## exclude
+  x <-
+    htmltools::tagAppendChild(
+      x,
+      htmltools::tags$template(
+        class = "exclude-setting-template",
+        htmltools::tags$div(
+          class = paste("exclude-setting solution-setting"),
+          ss_header_component_scaffold("exclude"),
+        )
+      )
+    )  
 
   ## weight
   x <-
@@ -449,6 +485,21 @@ solutionSettings_html <- function(id, style, class, ...) {
         )
       )
     )
+  
+  ## no excludes scaffold
+  x <-
+    htmltools::tagAppendChild(
+      x,
+      htmltools::tags$template(
+        class = "no-excludes-template",
+        htmltools::tags$div(
+          class = paste("empty-setting solution-setting"),
+          htmltools::tags$label(
+            "No excludes specified."
+          )
+        )
+      )
+    )  
 
   # return HTML
   x
