@@ -4,7 +4,7 @@ test_that("initialization", {
   skip_if_not_installed("RandomFields")
   # create object
   ## create dataset
-  rd <- simulate_binary_spatial_data(import_simple_raster_data(), 5)
+  rd <- simulate_binary_spatial_data(import_simple_raster_data(), 6)
   d <- new_dataset_from_auto(rd)
   ## create variables
   v1 <- new_variable(
@@ -27,16 +27,25 @@ test_that("initialization", {
     dataset = d, index = 5, total = 90, units = "ha",
     legend = simulate_include_legend()
   )
+  v6 <- new_variable(
+    dataset = d, index = 6, total = 90, units = "ha",
+    legend = simulate_exclude_legend()
+  )  
   ## create a weight using dataset
   w <- new_weight(
     name = "Human Footprint Index", variable = v1,
     factor = -90, status = TRUE, id = "W1"
   )
-  ## create a weight using dataset
+  ## create an include using dataset
   incl <- new_include(
-    name = "Protected areas", variable = v1,
+    name = "Protected areas", variable = v5,
     status = FALSE, id = "I1"
   )
+  ## create an exclude using dataset
+  e <- new_exclude(
+    name = "Urban areas", variable = v6,
+    status = FALSE, id = "E1"
+  )  
   ## create features using dataset
   f1 <- new_feature(
     name = "Possum", variable = v2,
@@ -59,7 +68,7 @@ test_that("initialization", {
   ## create solution setting
   ss <- new_solution_settings(
     themes = list(t1, t2), weights = list(w), includes = list(incl),
-    parameters = list(p1, p2)
+    excludes = list(e), parameters = list(p1, p2)
   )
   ## create values
   v <- sample(c(0, 1), 10, replace = TRUE)
@@ -95,7 +104,7 @@ test_that("NA_real_ perimeter", {
   skip_if_not_installed("RandomFields")
   # create object
   ## create dataset
-  rd <- simulate_binary_spatial_data(import_simple_raster_data(), 5)
+  rd <- simulate_binary_spatial_data(import_simple_raster_data(), 6)
   d <- new_dataset_from_auto(rd)
   ## create variables
   v1 <- new_variable(
@@ -118,16 +127,25 @@ test_that("NA_real_ perimeter", {
     dataset = d, index = 5, total = 90, units = "ha",
     legend = simulate_include_legend()
   )
+  v6 <- new_variable(
+    dataset = d, index = 6, total = 90, units = "ha",
+    legend = simulate_exclude_legend()
+  )  
   ## create a weight using dataset
   w <- new_weight(
     name = "Human Footprint Index", variable = v1,
     factor = -90, status = TRUE, id = "W1"
   )
-  ## create a weight using dataset
+  ## create an include using dataset
   incl <- new_include(
-    name = "Protected areas", variable = v1,
+    name = "Protected areas", variable = v5,
     status = FALSE, id = "I1"
   )
+  ## create an exclude using dataset
+  e <- new_exclude(
+    name = "Urban areas", variable = v6,
+    status = FALSE, id = "E1"
+  )  
   ## create features using dataset
   f1 <- new_feature(
     name = "Possum", variable = v2,
@@ -150,7 +168,7 @@ test_that("NA_real_ perimeter", {
   ## create solution setting
   ss <- new_solution_settings(
     themes = list(t1, t2), weights = list(w), includes = list(incl),
-    parameters = list(p1, p2)
+    excludes = list(e), parameters = list(p1, p2)
   )
   ## create values
   v <- sample(c(0, 1), 10, replace = TRUE)
