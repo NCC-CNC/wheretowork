@@ -45,6 +45,7 @@ A \code{list} containing the following elements:
 \item{themes}{A \code{list} of \link{Theme} objects.}
 \item{weights}{A \code{list} of \link{Weight} objects.}
 \item{includes}{A \code{list} of \link{Include} objects.}
+\item{excludes}{A \code{list} of \link{Exclude} objects.}
 \item{mode}{A \code{character} value indicating the mode.}
 \item{force_hidden}{A \code{logical} value indicating all TWI will be hidden.}
 }

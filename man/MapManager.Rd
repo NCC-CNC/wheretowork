@@ -30,7 +30,7 @@ Available options are:
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
-\item{\code{layers}}{\code{list} of \link{Theme}, \link{Weight}, \link{Include}, \link{Solution} objects.}
+\item{\code{layers}}{\code{list} of \link{Theme}, \link{Weight}, \link{Include}, \link{Exclude}, \link{Solution} objects.}
 
 \item{\code{ids}}{\code{character} vector of identifiers for the layers.}
 
@@ -74,7 +74,7 @@ Create a \code{MapManager} object.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{layers}}{\code{list} of \link{Theme}, \link{Weight}, \link{Include}, \link{Solution}
+\item{\code{layers}}{\code{list} of \link{Theme}, \link{Weight}, \link{Include}, \link{Exclude}, \link{Solution}
 objects.}
 
 \item{\code{order}}{\code{numeric} vector.}

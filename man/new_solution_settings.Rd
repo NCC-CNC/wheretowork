@@ -4,14 +4,16 @@
 \alias{new_solution_settings}
 \title{New solution settings}
 \usage{
-new_solution_settings(themes, weights, includes, parameters)
+new_solution_settings(themes, weights, includes, excludes, parameters)
 }
 \arguments{
-\item{themes}{\code{list} of \link{Theme} objects. D}
+\item{themes}{\code{list} of \link{Theme} objects.}
 
 \item{weights}{\code{list} of \link{Weight} objects.}
 
 \item{includes}{\code{list} of \link{Include} objects.}
+
+\item{excludes}{\code{list} of \link{Exclude} objects.}
 
 \item{parameters}{\code{list} of \link{Parameter} objects.}
 }
@@ -44,6 +46,7 @@ v2 <- new_variable_from_auto(dataset = d, index = 2)
 v3 <- new_variable_from_auto(dataset = d, index = 3)
 v4 <- new_variable_from_auto(dataset = d, index = 4)
 v5 <- new_variable_from_auto(dataset = d, index = 5)
+v6 <- new_variable_from_auto(dataset = d, index = 6)
 
 # create a weight using a variable
 w <- new_weight(
@@ -75,6 +78,12 @@ i <- new_include(
   status = FALSE, id = "I1"
 )
 
+# create an exclude using a variable
+e <- new_exclude(
+  name = "Urban areas", variable = v6,
+  status = FALSE, id = "E1"
+)
+
 # create parameters
 p1 <- new_parameter(name = "Spatial clustering")
 p2 <- new_parameter(name = "Optimality gap")
@@ -82,7 +91,7 @@ p2 <- new_parameter(name = "Optimality gap")
 # create solution settings using the themes and weight
 ss <- new_solution_settings(
   themes = list(t1, t2), weights = list(w), includes = list(i),
-  parameters = list(p1, p2)
+  excludes = list(e), parameters = list(p1, p2)
 )
 
 # print object

@@ -13,11 +13,11 @@ Definition for the \code{SolutionSettings} class.
 
 The argument to \code{value} should be a \code{list} with the following elements:
 \describe{
-\item{id}{\code{character} identifier for theme, weight, or include.}
+\item{id}{\code{character} identifier for theme, weight, include, or exclude.}
 \item{setting}{\code{character} name of parameter.
 Available options are: \code{"status"}, \code{"factor"}, \code{"value"}, or \code{"goal"}.}
 \item{type}{\code{character} indicating the type of setting.
-Available options are: \code{"theme"}, \code{"weight"}, \code{"include"},
+Available options are: \code{"theme"}, \code{"weight"}, \code{"include"}, \code{"exclude"}
 \code{"parameter"}.}
 }
 
@@ -28,7 +28,7 @@ The argument to \code{value} should be a \code{list} with the following elements
 Available options are: \code{"status"}, \code{"factor"}, \code{"value"}, or \code{"goal"}.}
 \item{value}{\code{numeric} or \code{logical} value for new setting.}
 \item{type}{\code{character} indicating the type of setting.
-Available options are: \code{"theme"}, \code{"weight"}, \code{"include"},
+Available options are: \code{"theme"}, \code{"weight"}, \code{"include"}, \code{"exclude"},
 \code{"parameter"}.}
 }
 }
@@ -41,6 +41,8 @@ Available options are: \code{"theme"}, \code{"weight"}, \code{"include"},
 
 \item{\code{include_ids}}{\code{character} vector of identifiers for the includes.}
 
+\item{\code{exclude_ids}}{\code{character} vector of identifiers for the excludes.}
+
 \item{\code{parameter_ids}}{\code{character} vector of identifiers for the
 parameters.}
 
@@ -49,6 +51,8 @@ parameters.}
 \item{\code{weights}}{\code{list} of \link{Weight} objects.}
 
 \item{\code{includes}}{\code{list} of \link{Include} objects.}
+
+\item{\code{excludes}}{\code{list} of \link{Exclude} objects.}
 
 \item{\code{parameters}}{\code{list} of \link{Parameter} objects.}
 }
@@ -63,6 +67,7 @@ parameters.}
 \item \href{#method-get_theme}{\code{SolutionSettings$get_theme()}}
 \item \href{#method-get_weight}{\code{SolutionSettings$get_weight()}}
 \item \href{#method-get_include}{\code{SolutionSettings$get_include()}}
+\item \href{#method-get_exclude}{\code{SolutionSettings$get_exclude()}}
 \item \href{#method-get_parameter}{\code{SolutionSettings$get_parameter()}}
 \item \href{#method-get_setting}{\code{SolutionSettings$get_setting()}}
 \item \href{#method-set_setting}{\code{SolutionSettings$set_setting()}}
@@ -70,10 +75,12 @@ parameters.}
 \item \href{#method-get_theme_settings}{\code{SolutionSettings$get_theme_settings()}}
 \item \href{#method-get_weight_settings}{\code{SolutionSettings$get_weight_settings()}}
 \item \href{#method-get_include_settings}{\code{SolutionSettings$get_include_settings()}}
+\item \href{#method-get_exclude_settings}{\code{SolutionSettings$get_exclude_settings()}}
 \item \href{#method-get_parameter_settings}{\code{SolutionSettings$get_parameter_settings()}}
 \item \href{#method-get_theme_data}{\code{SolutionSettings$get_theme_data()}}
 \item \href{#method-get_weight_data}{\code{SolutionSettings$get_weight_data()}}
 \item \href{#method-get_include_data}{\code{SolutionSettings$get_include_data()}}
+\item \href{#method-get_exclude_data}{\code{SolutionSettings$get_exclude_data()}}
 \item \href{#method-update_current_held}{\code{SolutionSettings$update_current_held()}}
 \item \href{#method-clone}{\code{SolutionSettings$clone()}}
 }
@@ -84,7 +91,7 @@ parameters.}
 \subsection{Method \code{new()}}{
 Create a \code{SolutionSettings} object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$new(themes, weights, includes, parameters)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$new(themes, weights, includes, excludes, parameters)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -95,6 +102,8 @@ Create a \code{SolutionSettings} object.
 \item{\code{weights}}{\code{list} of \link{Weight} objects.}
 
 \item{\code{includes}}{\code{list} of \link{Include} objects.}
+
+\item{\code{excludes}}{\code{list} of \link{Exclude} objects.}
 
 \item{\code{parameters}}{\code{list} of \link{Parameter} objects.}
 }
@@ -186,12 +195,32 @@ Get an include.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{value}}{\code{character} weight identifier.}
+\item{\code{value}}{\code{character} include identifier.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
 \link{Include} object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_exclude"></a>}}
+\if{latex}{\out{\hypertarget{method-get_exclude}{}}}
+\subsection{Method \code{get_exclude()}}{
+Get an exclude.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$get_exclude(value)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{value}}{\code{character} exclude identifier.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+\link{Exclude} object.
 }
 }
 \if{html}{\out{<hr>}}
@@ -218,7 +247,7 @@ Get an parameter.
 \if{html}{\out{<a id="method-get_setting"></a>}}
 \if{latex}{\out{\hypertarget{method-get_setting}{}}}
 \subsection{Method \code{get_setting()}}{
-Get a setting for a weight, theme, include, or parameter.
+Get a setting for a weight, theme, include, exclude, or parameter.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$get_setting(value)}\if{html}{\out{</div>}}
 }
@@ -301,6 +330,19 @@ Get include settings for generating a prioritization.
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_exclude_settings"></a>}}
+\if{latex}{\out{\hypertarget{method-get_exclude_settings}{}}}
+\subsection{Method \code{get_exclude_settings()}}{
+Get exclude settings for generating a prioritization.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$get_exclude_settings()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{\link[tibble:tibble]{tibble::tibble()}} with data.
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_parameter_settings"></a>}}
 \if{latex}{\out{\hypertarget{method-get_parameter_settings}{}}}
 \subsection{Method \code{get_parameter_settings()}}{
@@ -353,16 +395,30 @@ Get includes matrix data.
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_exclude_data"></a>}}
+\if{latex}{\out{\hypertarget{method-get_exclude_data}{}}}
+\subsection{Method \code{get_exclude_data()}}{
+Get exclude matrix data.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$get_exclude_data()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{\link[Matrix:sparseMatrix]{Matrix::sparseMatrix()}} with data.
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-update_current_held"></a>}}
 \if{latex}{\out{\hypertarget{method-update_current_held}{}}}
 \subsection{Method \code{update_current_held()}}{
 Update the current amount held for each themes and weights automatically
-based on the include statuses.
+based on the include and exclude statuses.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$update_current_held(
   theme_data = self$get_theme_data(),
   weight_data = self$get_weight_data(),
-  include_data = self$get_include_data()
+  include_data = self$get_include_data(),
+  exclude_data = self$get_exclude_data()
 )}\if{html}{\out{</div>}}
 }
 
@@ -374,6 +430,8 @@ based on the include statuses.
 \item{\code{weight_data}}{\verb{[Matrix::sparseMatrix()] with weight data. Defaults to }self$get_weight_data()`.}
 
 \item{\code{include_data}}{\verb{[Matrix::sparseMatrix()] with include data. Defaults to }self$get_include_data()`.}
+
+\item{\code{exclude_data}}{\verb{[Matrix::sparseMatrix()] with exclude data. Defaults to }self$get_exclude_data()`.}
 }
 \if{html}{\out{</div>}}
 }

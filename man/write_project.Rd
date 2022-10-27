@@ -19,7 +19,7 @@ write_project(
 )
 }
 \arguments{
-\item{x}{\code{list} of \link{Theme}, \link{Weight}, and \link{Include} objects.}
+\item{x}{\code{list} of \link{Theme}, \link{Weight}, \link{Include}, and \link{Exclude} objects.}
 
 \item{dataset}{\link{Dataset} object.}
 

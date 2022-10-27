@@ -308,7 +308,7 @@ Solution <- R6::R6Class(
     },
 
     #' @description
-    #' Get weight results.
+    #' Get include results.
     #' @return [tibble::tibble()] object.
     get_include_results_data = function() {
       # compile results
