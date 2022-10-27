@@ -37,6 +37,7 @@ NULL
 #' v3 <- new_variable_from_auto(dataset = d, index = 3)
 #' v4 <- new_variable_from_auto(dataset = d, index = 4)
 #' v5 <- new_variable_from_auto(dataset = d, index = 5)
+#' v6 <- new_variable_from_auto(dataset = d, index = 6)
 #'
 #' # create a weight using a variable
 #' w <- new_weight(
@@ -67,6 +68,12 @@ NULL
 #'   name = "Protected areas", variable = v5,
 #'   status = FALSE, id = "I1"
 #' )
+#' 
+#' # create an excluded using a variable
+#' e <- new_exclude(
+#'   name = "Expensive areas", variable = v6,
+#'   status = FALSE, id = "E1"
+#' )
 #'
 #' # create parameters
 #' p1 <- new_parameter(name = "Spatial clustering")
@@ -75,7 +82,7 @@ NULL
 #' # create solution settings using the themes and weight
 #' ss <- new_solution_settings(
 #'   themes = list(t1, t2), weights = list(w), includes = list(i),
-#'   parameters = list(p1, p2)
+#'   excludes = list(e), parameters = list(p1, p2)
 #' )
 #'
 #' # create result
@@ -87,9 +94,11 @@ NULL
 #'  theme_data = ss$get_theme_data(),
 #'  weight_data = ss$get_weight_data(),
 #'  include_data = ss$get_include_data(),
+#'  exclude_data = ss$get_exclude_data(),
 #'  theme_settings = ss$get_theme_settings(),
 #'  weight_settings = ss$get_weight_settings(),
 #'  include_settings = ss$get_include_settings(),
+#'  exclude_settings = ss$get_exclude_settings(),
 #'  parameters = ss$parameters,
 #'  gap_1 = p2$value * p2$status,
 #'  boundary_gap = p1$value * p1$status
@@ -104,9 +113,11 @@ min_shortfall_result <- function(area_budget_proportion,
                                  theme_data,
                                  weight_data,
                                  include_data,
+                                 exclude_data,
                                  theme_settings,
                                  weight_settings,
                                  include_settings,
+                                 exclude_settings,
                                  parameters,
                                  gap_1 = 0,
                                  gap_2 = 0,
@@ -116,6 +127,9 @@ min_shortfall_result <- function(area_budget_proportion,
                                  time_limit_2 = .Machine$integer.max,
                                  verbose = FALSE,
                                  id = uuid::UUIDgenerate()) {
+  
+  browser()
+  
   # validate arguments
   assertthat::assert_that(
     ## id
@@ -147,6 +161,9 @@ min_shortfall_result <- function(area_budget_proportion,
     ## include_data
     inherits(include_data, "dgCMatrix"),
     ncol(include_data) == length(area_data),
+    ## exclude_data
+    inherits(exclude_data, "dgCMatrix"),
+    ncol(exclude_data) == length(area_data),    
     ## theme_settings
     inherits(theme_settings, "data.frame"),
     nrow(theme_settings) == nrow(theme_data),
@@ -157,6 +174,9 @@ min_shortfall_result <- function(area_budget_proportion,
     ## include_settings
     inherits(include_settings, "data.frame"),
     nrow(include_settings) == nrow(include_data),
+    ## exclude_settings
+    inherits(exclude_settings, "data.frame"),
+    nrow(exclude_settings) == nrow(exclude_data),    
     ## parameters
     is.list(parameters),
     all_list_elements_inherit(parameters, "Parameter"),
@@ -182,6 +202,11 @@ min_shortfall_result <- function(area_budget_proportion,
       identical(include_settings$id, rownames(include_data))
     )
   }
+  if (nrow(exclude_settings) > 0) {
+    assertthat::assert_that(
+      identical(exclude_settings$id, rownames(exclude_data))
+    )
+  }  
 
   # generate feature data
   features <- data.frame(
@@ -224,6 +249,20 @@ min_shortfall_result <- function(area_budget_proportion,
     ## if no includes present, then lock nothing in
     locked_in <- rep(FALSE, ncol(include_data))
   }
+  
+  # calculate locked out values
+  if (nrow(exclude_data) > 0) {
+    ## if excludes present, then use data and settings
+    locked_out <- matrix(
+      exclude_settings$status,
+      byrow = FALSE,
+      nrow = nrow(exclude_data), ncol = ncol(exclude_data)
+    )
+    locked_out <- as.logical(colSums(locked_out * exclude_data) > 0)
+  } else {
+    ## if no excludes present, then lock nothing out
+    locked_out <- rep(FALSE, ncol(exclude_data))
+  }  
 
   # calculate weight data
   ## process weights with positive factors
@@ -294,6 +333,7 @@ min_shortfall_result <- function(area_budget_proportion,
       themes = theme_settings,
       weights = weight_settings,
       includes = include_settings,
+      excludes = exclude_settings,
       area_budget_proportion = area_budget_proportion
     )
   )
@@ -304,7 +344,8 @@ min_shortfall_result <- function(area_budget_proportion,
     initial_pu_idx <- which(
       Matrix::colSums(theme_data) > 0 |
       Matrix::colSums(weight_data) > 0 |
-      Matrix::colSums(include_data) > 0
+      Matrix::colSums(include_data) > 0 |
+      Matrix::colSums(exclude_data) > 0  
     )
     ## generate initial prioritization problem with subset of planning units
     ## this is needed to prevent CBC from crashing, #158
@@ -328,6 +369,12 @@ min_shortfall_result <- function(area_budget_proportion,
         initial_problem %>%
         prioritizr::add_locked_in_constraints(locked_in[initial_pu_idx])
     }
+    ## add locked out constraints if needed
+    if (any(locked_out[initial_pu_idx])) {
+      initial_problem <-
+        initial_problem %>%
+        prioritizr::add_locked_out_constraints(locked_out[initial_pu_idx])
+    }    
     ### add linear constraints if needed
     if (length(wn_neg_idx) > 0) {
       for (i in seq_len(nrow(wn_neg_data))) {
@@ -416,6 +463,12 @@ min_shortfall_result <- function(area_budget_proportion,
         main_problem %>%
         prioritizr::add_locked_in_constraints(locked_in)
     }
+    ### add locked out constraints if needed
+    if (any(locked_out)) {
+      main_problem <-
+        main_problem %>%
+        prioritizr::add_locked_out_constraints(locked_out)
+    }    
     ### add linear constraints if needed
     if (length(wn_neg_idx) > 0) {
       for (i in seq_len(nrow(wn_neg_data))) {
