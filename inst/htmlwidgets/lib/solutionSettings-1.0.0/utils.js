@@ -23,6 +23,17 @@ function newIncludeSetting(manager, x) {
   );
 }
 
+function newExcludeSetting(manager, x) {
+  return new ExcludeSetting(
+    manager,
+    x.id,
+    x.name,
+    x.status,
+    x.mandatory,
+    x.provenance
+  );
+}
+
 function newParameterSetting(manager, x) {
   return new ParameterSetting(
     manager,

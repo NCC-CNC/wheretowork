@@ -1,6 +1,6 @@
 class SolutionSettings {
   /* constructor */
-  constructor(id, container, themes, weights, includes, parameters) {
+  constructor(id, container, themes, weights, includes, excludes, parameters) {
     // set container
     this.id = id,
     this.container = container;
@@ -13,6 +13,9 @@ class SolutionSettings {
 
     // initialize includes
     this.includes = includes.map((x) => newIncludeSetting(id, x));
+    
+    // initialize excludes
+    this.excludes = excludes.map((x) => newExcludeSetting(id, x));    
 
     // initialize parameters
     this.parameters = parameters.map((x) => newParameterSetting(id, x));
@@ -47,6 +50,15 @@ class SolutionSettings {
       } else {
         this.includes[pos].updateSetting(setting, value);
       }
+    } else if (type === "exclude") {
+      const pos = this.excludes.findIndex((x) => x.id === id);
+      if (pos < 0) {
+        console.warn(
+          `SolutionSettings.updateSetting(...) failed due to ` +
+          `no exclude with id: ${id}`);
+      } else {
+        this.excludes[pos].updateSetting(setting, value);
+      }      
     } else if (type === "parameter") {
       const pos = this.parameters.findIndex((x) => x.id === id);
       if (pos < 0) {
@@ -96,6 +108,21 @@ class SolutionSettings {
         true)
       );
     }
+    
+    // excludes
+    const exclude_panel = this.container.querySelector(".excludes");
+    if (this.excludes.length > 0) {
+      this.excludes.forEach((x) => exclude_panel.appendChild(x.render()));
+    } else {
+      exclude_panel.appendChild(
+        document.importNode(
+          document
+          .getElementById(this.id)
+          .querySelector(".no-excludes-template")
+          .content,
+        true)
+      );
+    }    
 
     // parameters
     const parameter_panel = this.container.querySelector(".parameters");
