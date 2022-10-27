@@ -17,6 +17,7 @@ import_data <- function(x, mode) {
   app_data$themes <- x$themes
   app_data$weights <- x$weights
   app_data$includes <- x$includes
+  app_data$excludes <- x$excludes
   if (
     identical(mode, "project") || is.null(mode)) {
     app_data$mode <- x$mode
@@ -86,12 +87,13 @@ import_data <- function(x, mode) {
 
   # store widgets
   app_data$mm <- new_map_manager(
-    append(app_data$themes, append(app_data$weights, app_data$includes))
+   append(append(app_data$themes, append(app_data$weights, app_data$includes)), app_data$excludes) 
   )
   app_data$ss <- new_solution_settings(
     themes = app_data$themes,
     weights = app_data$weights,
     includes = app_data$includes,
+    excludes = app_data$excludes,
     parameters = list(area_budget_parameter, boundary_gap_parameter, solution_layer_parameter)
   )
 
@@ -100,6 +102,7 @@ import_data <- function(x, mode) {
   app_data$theme_data <- app_data$ss$get_theme_data()
   app_data$weight_data <- app_data$ss$get_weight_data()
   app_data$include_data <- app_data$ss$get_include_data()
+  app_data$exclude_data <- app_data$ss$get_exclude_data()
   app_data$boundary_data <- app_data$dataset$get_boundary_data()
   app_data$area_data <- app_data$dataset$get_planning_unit_areas()
 
