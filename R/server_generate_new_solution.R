@@ -43,6 +43,9 @@ server_generate_new_solution <- quote({
 
   # generate new solution when start button pressed
   shiny::observeEvent(input$newSolutionPane_settings_start_button, {
+    
+    browser()
+    
     ## specify dependencies
     shiny::req(input$newSolutionPane_settings_start_button)
     shiny::req(input$newSolutionPane_settings_name)
@@ -62,12 +65,14 @@ server_generate_new_solution <- quote({
     curr_theme_settings <- app_data$ss$get_theme_settings()
     curr_weight_settings <- app_data$ss$get_weight_settings()
     curr_include_settings <- app_data$ss$get_include_settings()
+    curr_exclude_settings <- app_data$ss$get_exclude_settings()
     ### data
     curr_area_data <- app_data$area_data
     curr_boundary_data <- app_data$boundary_data
     curr_theme_data <- app_data$theme_data
     curr_weight_data <- app_data$weight_data
     curr_include_data <- app_data$include_data
+    curr_exclude_data <- app_data$exclude_data
     ### arguments for generating result
     curr_time_limit_1 <- get_golem_config("solver_time_limit_1")
     curr_time_limit_2 <- get_golem_config("solver_time_limit_2")
@@ -136,9 +141,11 @@ server_generate_new_solution <- quote({
               theme_data = curr_theme_data,
               weight_data = curr_weight_data,
               include_data = curr_include_data,
+              exclude_data = curr_exclude_data,
               theme_settings = curr_theme_settings,
               weight_settings = curr_weight_settings,
               include_settings = curr_include_settings,
+              exclude_settings = curr_exclude_settings,
               parameters = curr_parameters,
               gap_1 = curr_gap_1,
               gap_2 = curr_gap_2,
@@ -160,9 +167,11 @@ server_generate_new_solution <- quote({
               theme_data = curr_theme_data,
               weight_data = curr_weight_data,
               include_data = curr_include_data,
+              exclude_data = curr_exclude_data,
               theme_settings = curr_theme_settings,
               weight_settings = curr_weight_settings,
               include_settings = curr_include_settings,
+              exclude_settings = curr_exclude_settings,
               parameters = curr_parameters,
               gap_1 = curr_gap_1,
               gap_2 = curr_gap_2,
