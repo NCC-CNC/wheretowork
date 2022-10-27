@@ -151,6 +151,26 @@ mapManager_html <- function(id, style, class, ...) {
         )
       )
     )
+  
+  ## exclude
+  x <-
+    htmltools::tagAppendChild(
+      x,
+      htmltools::tags$template(
+        class = "exclude-layer-template",
+        htmltools::tags$div(
+          class = "map-manager-layer",
+          htmltools::tags$div(
+            class = "exclude-layer",
+            mm_header_component_scaffold(type = "exclude"),
+            htmltools::tags$div(
+              class = "layer-legend-container",
+              mm_legend_component_scaffold()
+            )
+          )
+        )
+      )
+    )  
 
   ## weight
   x <-

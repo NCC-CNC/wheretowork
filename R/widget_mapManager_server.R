@@ -157,7 +157,7 @@ addMapManagerLayer <- function(session = shiny::getDefaultReactiveDomain(),
   assertthat::assert_that(
     assertthat::is.string(inputId),
     assertthat::noNA(inputId),
-    inherits(value, c("Theme", "Weight", "Solution", "Include"))
+    inherits(value, c("Theme", "Weight", "Solution", "Include", "Exclude"))
   )
   # pass data to widget
   session$sendCustomMessage(
