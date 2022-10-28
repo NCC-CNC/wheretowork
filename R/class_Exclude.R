@@ -317,10 +317,10 @@ Exclude <- R6::R6Class(
 #' v <- new_variable_from_auto(d, index = 1)
 #'
 #' # create a new exclude
-#' w <- new_exclude(name = "Protected areas", variable = v)
+#' e <- new_exclude(name = "Protected areas", variable = v)
 #'
 #' # print object
-#' print(w)
+#' print(e)
 #' @export
 new_exclude <- function(name, variable, mandatory = FALSE,
                         visible = TRUE, hidden = FALSE, status = TRUE,

@@ -915,6 +915,7 @@ new_solution <- function(name, variable, visible,
 #'   themes = list(t1),
 #'   weights = list(),
 #'   includes = list(),
+#'   excludes = list(),
 #'   parameters = list(p1, p2)
 #' )
 #'

@@ -79,6 +79,7 @@ ss <- new_solution_settings(
   themes = list(t1),
   weights = list(),
   includes = list(),
+  excludes = list(),
   parameters = list(p1, p2)
 )
 
