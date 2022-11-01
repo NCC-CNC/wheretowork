@@ -127,9 +127,7 @@ min_shortfall_result <- function(area_budget_proportion,
                                  time_limit_2 = .Machine$integer.max,
                                  verbose = FALSE,
                                  id = uuid::UUIDgenerate()) {
-  
-  browser()
-  
+
   # validate arguments
   assertthat::assert_that(
     ## id
@@ -324,7 +322,9 @@ min_shortfall_result <- function(area_budget_proportion,
 
   # verify that problem if feasible with locked in planning units
   if (sum(cost[locked_in]) > min(initial_budget, total_budget)) {
-    stop("code_1")
+    stop("WtW: Total area budget setting is too low given the selected",
+         "Includes. Try increasing the total area budget or deselecting ",
+         " some of the Includes.")
   }
 
   # generate cache key based on settings

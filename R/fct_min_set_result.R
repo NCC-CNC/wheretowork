@@ -288,8 +288,20 @@ min_set_result <- function(area_data,
   } else {
     ## if no excludes present, then lock nothing out
     locked_out <- rep(FALSE, ncol(exclude_data))
-  }  
-
+  } 
+  
+  # verify that problem if feasible with locked out planning units
+  if (!all(Matrix::rowSums(theme_data[,!locked_out]) >= targets$target)) {
+    # get features that make solution impossible to meet
+    fidx <- which(Matrix::rowSums(theme_data[,!locked_out]) < targets$target)
+    theme_names <- theme_settings[fidx, ]$name
+    theme_names <- paste(paste0('"', theme_names, '"'), collapse = ", ")
+    
+    stop("WtW: Exclude error: the following features can not have their goal", 
+         " met: ", theme_names, ". Try reducing the goals on these features, ", 
+         " deselecting them or turn off exclude layers from the scenario.")
+  } 
+  
   # calculate cost values
   if (nrow(weight_data) > 0) {
     ## if weights present, then use data and settings

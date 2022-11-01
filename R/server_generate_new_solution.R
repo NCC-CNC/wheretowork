@@ -44,8 +44,6 @@ server_generate_new_solution <- quote({
   # generate new solution when start button pressed
   shiny::observeEvent(input$newSolutionPane_settings_start_button, {
     
-    browser()
-    
     ## specify dependencies
     shiny::req(input$newSolutionPane_settings_start_button)
     shiny::req(input$newSolutionPane_settings_name)
@@ -230,14 +228,14 @@ server_generate_new_solution <- quote({
     ## if failed to generate solution...
     if (inherits(r$result, "try-error")) {
       ### identify error message to show
-      msg <- switch(attr(r$result, "condition")$message,
-        "code_1" = paste(
-          "The \"Total area budget\" setting is too low given the selected",
-          "Includes. Try increasing the total area budget or deselecting ",
-          " some of the Includes."
-        ),
-        "Something went wrong, please try again."
-      )
+      msg <- attr(r$result, "condition")$message
+      print(msg)
+      if(startsWith(msg, "WtW:")) {
+        msg <- gsub("WtW: ", "", msg, fixed = TRUE)
+      } else {
+        msg <- "Something went wrong, please try again." 
+      }
+
       ### throw warning in development mode
       if (golem::app_dev()) {
         whereami::whereami()
