@@ -69,7 +69,7 @@ SolutionSettings <- R6::R6Class(
       self$exclude_ids <- vapply(excludes, `[[`, character(1), "id")
       self$parameter_ids <- vapply(parameters, `[[`, character(1), "id")
     },
-
+    
     #' @description
     #' Print the object.
     #' @param ... not used.
@@ -354,7 +354,9 @@ SolutionSettings <- R6::R6Class(
       tibble::tibble(
         id = vapply(self$includes, `[[`, character(1), "id"),
         name = vapply(self$includes, `[[`, character(1), "name"),
-        status = vapply(self$includes, `[[`, logical(1), "status")
+        status = vapply(self$includes, `[[`, logical(1), "status"),
+        overlap = vapply(seq_along(self$get_overlap()$includes), function(i) 
+          dplyr::na_if(paste(self$get_overlap()$includes[[i]], collapse = ", "), ""), character(1))
       )
     },
     
@@ -365,7 +367,9 @@ SolutionSettings <- R6::R6Class(
       tibble::tibble(
         id = vapply(self$excludes, `[[`, character(1), "id"),
         name = vapply(self$excludes, `[[`, character(1), "name"),
-        status = vapply(self$excludes, `[[`, logical(1), "status")
+        status = vapply(self$excludes, `[[`, logical(1), "status"),
+        overlap = vapply(seq_along(self$get_overlap()$excludes), function(i) 
+          dplyr::na_if(paste(self$get_overlap()$excludes[[i]], collapse = ", "), ""), character(1))
       )
     },    
 
@@ -461,7 +465,31 @@ SolutionSettings <- R6::R6Class(
         )
       }
       out
-    },    
+    },
+    
+    #' @description
+    #' Get list of include and exclude names that overlap.
+    #' @return `list` with exclude and include names.    
+    get_overlap = function() {
+      
+      exclude_overlap <- sapply(unlist(lapply(self$excludes, `[[`, "name")), function(x) NULL)
+      include_overlap <- sapply(unlist(lapply(self$includes, `[[`, "name")), function(x) NULL)
+      
+      # Check and document exclude and include overlap
+      if ((length(self$excludes) > 0) & (length(self$includes) > 0)) {
+        for (i in seq_along(self$excludes)){
+          for(j in seq_along(self$includes)) {
+            overlap <- self$get_exclude_data()[i,] * self$get_include_data()[j,]
+            if (sum(overlap) > 0) {
+              exclude_overlap[[self$excludes[[i]]$name]] <- append(exclude_overlap[[self$excludes[[i]]$name]], self$includes[[j]]$name)
+              include_overlap[[self$includes[[j]]$name]] <- append(include_overlap[[self$includes[[j]]$name]], self$excludes[[i]]$name)
+            } 
+          }
+        }
+      }
+      out <- list("excludes" =  exclude_overlap,
+                  "includes" = include_overlap)
+    },
 
     #' @description
     #' Update the current amount held for each themes and weights automatically
@@ -597,15 +625,27 @@ SolutionSettings <- R6::R6Class(
 #' t2 <- new_theme("Ecoregions", list(f2, f3), id = "T2")
 #'
 #' # create an included using a variable
-#' i <- new_include(
+#' i1 <- new_include(
 #'   name = "Protected areas", variable = v5,
 #'   status = FALSE, id = "I1"
 #' )
 #' 
+#' # create an included using a variable
+#' i2 <- new_include(
+#'   name = "Bases", variable = v5,
+#'   status = FALSE, id = "I2"
+#' ) 
+#' 
 #' # create an exclude using a variable
-#' e <- new_exclude(
+#' e1 <- new_exclude(
 #'   name = "Urban areas", variable = v6,
 #'   status = FALSE, id = "E1"
+#' )
+#' 
+#' # create an exclude using a variable
+#' e2 <- new_exclude(
+#'   name = "Pot holes", variable = v3,
+#'   status = FALSE, id = "E2"
 #' )
 #'
 #' # create parameters
@@ -614,8 +654,8 @@ SolutionSettings <- R6::R6Class(
 #'
 #' # create solution settings using the themes and weight
 #' ss <- new_solution_settings(
-#'   themes = list(t1, t2), weights = list(w), includes = list(i),
-#'   excludes = list(e), parameters = list(p1, p2)
+#'   themes = list(t1, t2), weights = list(w), includes = list(i1),
+#'   excludes = list(e1, e2), parameters = list(p1, p2)
 #' )
 #'
 #' # print object
