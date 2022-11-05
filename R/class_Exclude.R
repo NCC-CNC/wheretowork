@@ -323,7 +323,7 @@ Exclude <- R6::R6Class(
 #' print(e)
 #' @export
 new_exclude <- function(name, variable, mandatory = FALSE,
-                        visible = TRUE, hidden = FALSE, status = TRUE,
+                        visible = TRUE, hidden = FALSE, status = FALSE,
                         id = uuid::UUIDgenerate()) {
   Exclude$new(
     id = id,

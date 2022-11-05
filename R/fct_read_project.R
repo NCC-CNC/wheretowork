@@ -385,7 +385,7 @@ read_project <- function(path,
         ),
         visible = x$visible,
         hidden =  shiny::isTruthy(c(x$hidden, force_hidden)),
-        status = x$status,
+        status = FALSE, # force excludes to be off on init
         mandatory = x$mandatory
       ),
       silent = FALSE
