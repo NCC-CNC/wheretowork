@@ -5,6 +5,7 @@ class ExcludeSetting {
     id,
     name,
     status,
+    overlap,
     mandatory,
     provenance
   ) {
@@ -67,6 +68,9 @@ class ExcludeSetting {
       /// status
       this.status_el.addEventListener("change", function () {
         let checked = this.checked;
+        if (checked == true) {
+         console.log(overlap) 
+        }
         Shiny.setInputValue(manager, {
           id: id,
           setting: "status",

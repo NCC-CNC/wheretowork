@@ -223,9 +223,6 @@ NULL
 #' @export
 updateSolutionSettings <- function(session = shiny::getDefaultReactiveDomain(),
                                    inputId, value) {
-  
-  browser()
-  
   # assert valid arguments
   assertthat::assert_that(
     assertthat::is.string(inputId),
@@ -263,11 +260,11 @@ updateSolutionSettings <- function(session = shiny::getDefaultReactiveDomain(),
     param_names <- c("name", "status", "factor")
     param_classes <- c("character", "logical", "numeric")
   } else if (identical(value$type, "include")) {
-    param_names <- c("name", "status")
-    param_classes <- c("character", "logical")
+    param_names <- c("name", "status", "overlap")
+    param_classes <- c("character", "logical", "character")
   } else if (identical(value$type, "exclude")) {
-    param_names <- c("name", "status")
-    param_classes <- c("character", "logical")    
+    param_names <- c("name", "status", "overlap")
+    param_classes <- c("character", "logical", "character")    
   } else if (identical(value$type, "parameter")) {
     param_names <- c("name", "status", "value")
     param_classes <- c("character", "logical", "numeric")

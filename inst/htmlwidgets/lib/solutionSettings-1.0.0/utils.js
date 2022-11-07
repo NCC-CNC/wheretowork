@@ -18,6 +18,7 @@ function newIncludeSetting(manager, x) {
     x.id,
     x.name,
     x.status,
+    x.overlap,
     x.mandatory,
     x.provenance
   );
@@ -29,6 +30,7 @@ function newExcludeSetting(manager, x) {
     x.id,
     x.name,
     x.status,
+    x.overlap,
     x.mandatory,
     x.provenance
   );

@@ -5,6 +5,7 @@ class IncludeSetting {
     id,
     name,
     status,
+    overlap,
     mandatory,
     provenance
   ) {
