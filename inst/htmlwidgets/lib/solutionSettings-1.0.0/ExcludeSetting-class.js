@@ -37,6 +37,12 @@ class ExcludeSetting {
     createProvenance(
       this.el.querySelector(".provenance-container"), provenance
     );
+    // create exclude overlap warning icon 
+    if (overlap) {
+      createWarning(
+        this.el.querySelector(".warning-container"), name, "includes", overlap
+      );      
+    }
 
     // disable switches if exclude is mandatory
     if (mandatory) {
@@ -68,9 +74,6 @@ class ExcludeSetting {
       /// status
       this.status_el.addEventListener("change", function () {
         let checked = this.checked;
-        if (checked == true) {
-         console.log(overlap) 
-        }
         Shiny.setInputValue(manager, {
           id: id,
           setting: "status",
