@@ -490,6 +490,24 @@ SolutionSettings <- R6::R6Class(
       out <- list("excludes" =  exclude_overlap,
                   "includes" = include_overlap)
     },
+    
+    #' @description
+    #' Get list of include and exclude names that overlap.
+    #' @return `list` with exclude and include names.    
+    set_overlap = function() {
+      if ((length(self$excludes) > 0) & (length(self$includes) > 0)) {
+        # update exclude overlap
+        eid <- lapply(self$excludes, `[[`, "id")
+        for (i in seq_along(eid)) {
+          self$excludes[[i]]$overlap <- self$get_exclude_settings()$overlap[i]
+        }
+        # update include overlap
+        iid <- lapply(self$includes, `[[`, "id")
+        for (i in seq_along(iid)) {
+          self$includes[[i]]$overlap <- self$get_include_settings()$overlap[i]
+        }        
+      }
+    },
 
     #' @description
     #' Update the current amount held for each themes and weights automatically

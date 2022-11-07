@@ -96,6 +96,9 @@ import_data <- function(x, mode) {
     excludes = app_data$excludes,
     parameters = list(area_budget_parameter, boundary_gap_parameter, solution_layer_parameter)
   )
+  
+  # exclude / include overlap
+  app_data$ss$set_overlap()
 
   # store  data
   app_data$bbox <- x$dataset$get_bbox(native = FALSE, expand = TRUE)
