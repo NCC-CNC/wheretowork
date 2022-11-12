@@ -181,6 +181,7 @@ read_project <- function(path,
         feature = lapply(x$feature, function(f) {
           new_feature(
             name = f$name,
+            description = f$description,
             visible = f$visible,
             hidden = shiny::isTruthy(c(f$hidden, force_hidden)),
             status = f$status,
@@ -240,6 +241,7 @@ read_project <- function(path,
     out <- try(
       new_weight(
         name = x$name,
+        description = x$description,
         visible = x$visible,
         hidden = shiny::isTruthy(c(x$hidden, force_hidden)),
         status = x$status,
@@ -313,6 +315,7 @@ read_project <- function(path,
             x$variable$provenance %||% "missing"
           )
         ),
+        description = x$description,
         visible = x$visible,
         hidden =  shiny::isTruthy(c(x$hidden, force_hidden)),
         status = x$status,

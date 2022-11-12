@@ -8,6 +8,7 @@ class WeightLayer {
     hidden,
     legend,
     units,
+    description,
     provenance
   ) {
     // class fields
@@ -42,6 +43,8 @@ class WeightLayer {
     this.view_el.checked = true;
     /// legend
     createLegend(this.legend_el, legend, units);
+    /// description
+    createDescription(this.el.querySelector(".description-container"), name, description);
     /// provenance
     createProvenance(
       this.el.querySelector(".provenance-container"), provenance

@@ -9,6 +9,7 @@ class SingleThemeLayer {
     feature_visible,
     feature_hidden,
     feature_legend,
+    feature_description,
     feature_provenance,
     units
   ) {
@@ -44,6 +45,8 @@ class SingleThemeLayer {
     this.view_el.checked = true;
     /// legend
     createLegend(this.legend_el, feature_legend, units);
+    /// description
+    createDescription(this.el.querySelector(".description-container"), name, feature_description);
     /// provenance
     createProvenance(
       this.el.querySelector(".provenance-container"), feature_provenance

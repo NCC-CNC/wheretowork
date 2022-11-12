@@ -34,6 +34,7 @@ function newLayer(manager, x) {
       x.hidden,
       x.legend,
       x.units,
+      x.description,
       x.provenance
     );
   } else if (x.type == "weight") {
@@ -45,6 +46,7 @@ function newLayer(manager, x) {
       x.hidden,
       x.legend,
       x.units,
+      x.description,
       x.provenance
     );
   } else {
@@ -58,6 +60,7 @@ function newLayer(manager, x) {
         x.feature_visible,
         x.feature_hidden,
         x.feature_legend[0],
+        x.feature_description,
         x.feature_provenance[0],
         x.units
       );
@@ -71,6 +74,7 @@ function newLayer(manager, x) {
         x.feature_visible,
         x.feature_hidden,
         x.feature_legend,
+        x.feature_description,
         x.feature_provenance,
         x.units
       );

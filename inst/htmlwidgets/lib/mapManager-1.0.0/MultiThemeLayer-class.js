@@ -9,6 +9,7 @@ class MultiThemeLayer {
     feature_visible,
     feature_hidden,
     feature_legend,
+    feature_description,
     feature_provenance,
     units
   ) {
@@ -58,8 +59,8 @@ class MultiThemeLayer {
     this.single_legend_el = this.main_el.querySelectorAll(".legend");
     const single_view_el = this.main_el.querySelectorAll(".view-checkbox");
     const single_name_el = this.main_el.querySelectorAll(".name-label");
-    const single_prov_el =
-      this.main_el.querySelectorAll(".provenance-container");
+    const single_desc_el = this.main_el.querySelectorAll(".description-container");
+    const single_prov_el = this.main_el.querySelectorAll(".provenance-container");
     const mapManagerLayer = this.el.querySelector(".map-manager-layer");
 
     // attach id to elements
@@ -116,6 +117,8 @@ class MultiThemeLayer {
       single_view_el[i].checked = true;
       /// legend
       createLegend(this.single_legend_el[i], feature_legend[i], units);
+      /// description
+      createDescription(single_desc_el[i], feature_name[i], feature_description[i]);
       /// provenance
       createProvenance(single_prov_el[i], feature_provenance[i]);
       /// feature_hidden

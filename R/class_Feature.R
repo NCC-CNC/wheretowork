@@ -18,6 +18,9 @@ Feature <- R6::R6Class(
     #' @field variable [Variable] object.
     variable = NULL,
 
+    #' @field description string value.
+    description = NA_character_,
+
     #' @field visible `logical` value.
     visible = NA,
 
@@ -49,7 +52,8 @@ Feature <- R6::R6Class(
     #' Create a Feature object.
     #' @param id `character` value.
     #' @param name `character` value.
-    #' @param variable [Variable] .
+    #' @param variable [Variable].
+    #' @param description string value.
     #' @param visible `logical` value.
     #' @param hidden `logical` value.
     #' @param status `logical` value.
@@ -60,7 +64,7 @@ Feature <- R6::R6Class(
     #' @param step_goal `numeric` value.
     #' @param current `numeric` value.
     #' @return A new Feature object.
-    initialize = function(id, name, variable, visible, hidden, status, current,
+    initialize = function(id, name, variable, description, visible, hidden, status, current,
                           goal, limit_goal, min_goal, max_goal, step_goal) {
       ### assert that arguments are valid
       assertthat::assert_that(
@@ -109,6 +113,7 @@ Feature <- R6::R6Class(
       self$id <- enc2ascii(id)
       self$name <- enc2ascii(name)
       self$variable <- variable
+      self$description <- enc2ascii(description)
       self$visible <- visible && !hidden
       self$hidden <- hidden
       self$status <- status
@@ -189,6 +194,13 @@ Feature <- R6::R6Class(
     },
 
     #' @description
+    #' Get description.
+    #' @return string value.
+    get_description = function() {
+      self$description
+    },
+
+    #' @description
     #' Get the data.
     #' @return [sf::st_as_sf()] or [raster::raster()] object.
     get_data = function() {
@@ -256,6 +268,7 @@ Feature <- R6::R6Class(
       list(
         name = enc2ascii(self$name),
         variable = self$variable$export(),
+        description = enc2ascii(self$description),
         status = self$status,
         visible = self$visible,
         hidden = self$hidden,
@@ -273,6 +286,9 @@ Feature <- R6::R6Class(
 #' @param name `character` Name of the feature.
 #'
 #' @param variable [Variable] object.
+#'
+#' @param description `character` Description of the feature. Html input is
+#'   allowed for advanced formatting.
 #'
 #' @param visible `logical` The initial visible value.
 #'   This is used to determine if the feature is displayed (or not)
@@ -338,6 +354,7 @@ Feature <- R6::R6Class(
 #' @export
 new_feature <- function(name,
                         variable,
+                        description,
                         visible = TRUE,
                         hidden = FALSE,
                         status = TRUE,
@@ -350,6 +367,7 @@ new_feature <- function(name,
     id = id,
     name = name,
     variable = variable,
+    description = description,
     visible = visible,
     hidden = hidden,
     status = status,
