@@ -76,7 +76,7 @@ Include <- R6::R6Class(
       self$id <- enc2ascii(id)
       self$name <- enc2ascii(name)
       self$variable <- variable
-      self$description <- enc2ascii(description)
+      self$description <- description
       self$status <- status
       self$visible <- visible && !hidden
       self$hidden <- hidden
@@ -267,7 +267,7 @@ Include <- R6::R6Class(
       list(
         name = enc2ascii(self$name),
         variable = self$variable$export(),
-        description = enc2ascii(self$description),
+        description = self$description,
         mandatory = self$mandatory,
         status = self$status,
         visible = self$visible,

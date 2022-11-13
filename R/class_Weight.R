@@ -109,7 +109,7 @@ Weight <- R6::R6Class(
       self$id <- enc2ascii(id)
       self$variable <- enc2ascii(variable)
       self$name <- name
-      self$description <- enc2ascii(description)
+      self$description <- description
       self$status <- status
       self$current <- current
       self$visible <- visible && !hidden
@@ -360,7 +360,7 @@ Weight <- R6::R6Class(
       list(
         name = enc2ascii(self$name),
         variable = self$variable$export(),
-        description = enc2ascii(self$description),
+        description = self$description,
         status = self$status,
         visible = self$visible,
         hidden = self$hidden,

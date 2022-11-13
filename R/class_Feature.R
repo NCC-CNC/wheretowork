@@ -113,7 +113,7 @@ Feature <- R6::R6Class(
       self$id <- enc2ascii(id)
       self$name <- enc2ascii(name)
       self$variable <- variable
-      self$description <- enc2ascii(description)
+      self$description <- description
       self$visible <- visible && !hidden
       self$hidden <- hidden
       self$status <- status
@@ -268,7 +268,7 @@ Feature <- R6::R6Class(
       list(
         name = enc2ascii(self$name),
         variable = self$variable$export(),
-        description = enc2ascii(self$description),
+        description = self$description,
         status = self$status,
         visible = self$visible,
         hidden = self$hidden,
