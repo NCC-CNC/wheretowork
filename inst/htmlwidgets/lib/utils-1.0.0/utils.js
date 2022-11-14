@@ -41,6 +41,34 @@ const getUniqueBy = (arr, prop) => {
   return arr.filter(o => !set.has(o[prop]) && set.add(o[prop]));
 };
 
+// create description icon with the popover description window
+function createDescription(el, name, description) {
+    const icon_el = document.createElement("a");
+    icon_el.setAttribute("data-toggle", "popover");
+    icon_el.setAttribute("data-container", "body");
+    icon_el.setAttribute("data-trigger", "focus");
+    icon_el.setAttribute("html", "true");
+    icon_el.setAttribute("title", name + "<a href='javascript:void(0);' class='close'>&times;</a>");
+    icon_el.setAttribute("data-content", description);
+    icon_el.classList.add("fas");
+    icon_el.classList.add("fa-info-circle");
+    icon_el.style.color = "#118ab2";
+    $(icon_el).popover({
+        html: true, sanitize: false
+    });
+    // add click action to icon
+    icon_el.addEventListener("click", function() {
+        $(this).popover("toggle");
+    });
+    // hide popover on close button
+    $(icon_el).on("shown.bs.popover", function() {
+        $(".popover").on("click", ".close", function() {
+            $(icon_el).popover("hide");
+        });
+    });
+    el.appendChild(icon_el);
+}
+
 // create data provenance icon
 function createProvenance(el, provenance) {
   const icon_el = document.createElement("i");

@@ -446,6 +446,8 @@ Theme <- R6::R6Class(
         feature_provenance = lapply(
           self$feature, function(x) x$variable$provenance$get_widget_data()
         ),
+        feature_description =
+          vapply(self$feature, `[[`, character(1), "description"),
         units = self$feature[[1]]$variable$units,
         type = "theme"
       )

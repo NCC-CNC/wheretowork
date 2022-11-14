@@ -103,6 +103,9 @@ mm_header_component_scaffold <- function(id = uuid::UUIDgenerate(),
       NULL
     },
     htmltools::tags$div(
+      class = "description-container"
+    ),
+    htmltools::tags$div(
       class = "provenance-container"
     ),
     htmltools::tags$div(
@@ -160,6 +163,9 @@ mm_subheader_component_scaffold <- function(id = uuid::UUIDgenerate()) {
     ),
     htmltools::tags$label(
       class = "name-label",
+    ),
+    htmltools::tags$div(
+      class = "description-container"
     ),
     htmltools::tags$div(
       class = "provenance-container"

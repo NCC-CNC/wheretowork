@@ -20,6 +20,9 @@ Include <- R6::R6Class(
     #' @field variable [Variable] object.
     variable = NULL,
 
+    #' @field description string value.
+    description = NA_character_,
+
     #' @field mandatory `logical` value.
     mandatory = FALSE,
 
@@ -37,13 +40,14 @@ Include <- R6::R6Class(
     #' @param id `character` value.
     #' @param name `character` value.
     #' @param variable [Variable] object.
+    #' @param description string value.
     #' @param mandatory `logical` value.
     #' @param visible `logical` value.
     #' @param hidden `logical` value.
     #' @param status `logical` value.
     #' @return A new Include object.
     ## constructor
-    initialize = function(id, name, variable, mandatory, visible, hidden,
+    initialize = function(id, name, variable, description, mandatory, visible, hidden,
                           status) {
       ### assert that arguments are valid
       assertthat::assert_that(
@@ -72,6 +76,7 @@ Include <- R6::R6Class(
       self$id <- enc2ascii(id)
       self$name <- enc2ascii(name)
       self$variable <- variable
+      self$description <- description
       self$status <- status
       self$visible <- visible && !hidden
       self$hidden <- hidden
@@ -119,6 +124,13 @@ Include <- R6::R6Class(
     #' @return `character` vector.
     get_layer_index = function() {
       self$variable$index
+    },
+
+    #' @description
+    #' Get description.
+    #' @return string value.
+    get_description = function() {
+      self$description
     },
 
     #' @description
@@ -243,6 +255,7 @@ Include <- R6::R6Class(
         legend = self$variable$legend$get_widget_data(),
         units = self$variable$units,
         provenance = self$variable$provenance$get_widget_data(),
+        description = self$description,
         type = "include"
       )
     },
@@ -254,6 +267,7 @@ Include <- R6::R6Class(
       list(
         name = enc2ascii(self$name),
         variable = self$variable$export(),
+        description = self$description,
         mandatory = self$mandatory,
         status = self$status,
         visible = self$visible,
@@ -322,13 +336,14 @@ Include <- R6::R6Class(
 #' # print object
 #' print(w)
 #' @export
-new_include <- function(name, variable, mandatory = FALSE,
+new_include <- function(name, variable, description, mandatory = FALSE,
                         visible = TRUE, hidden = FALSE, status = TRUE,
                         id = uuid::UUIDgenerate()) {
   Include$new(
     id = id,
     name = name,
     variable = variable,
+    description = description,
     mandatory = mandatory,
     visible = visible,
     hidden = hidden,

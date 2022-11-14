@@ -20,6 +20,9 @@ Weight <- R6::R6Class(
     #' @field variable [Variable] object.
     variable = NULL,
 
+    #' @field description string value.
+    description = NA_character_,
+
     #' @field visible `logical` value.
     visible = NA,
 
@@ -49,6 +52,7 @@ Weight <- R6::R6Class(
     #' @param id `character` value.
     #' @param name `character` value.
     #' @param variable [Variable] object.
+    #' @param description string value.
     #' @param visible `logical` value.
     #' @param hidden `logical` value.
     #' @param status `logical` value.
@@ -59,7 +63,7 @@ Weight <- R6::R6Class(
     #' @param step_factor `numeric` step factor value.
     #' @return A new Weight object.
     ## constructor
-    initialize = function(id, name, variable, visible, hidden, status, current,
+    initialize = function(id, name, variable, description, visible, hidden, status, current,
                           factor, min_factor, max_factor, step_factor) {
       ### assert that arguments are valid
       assertthat::assert_that(
@@ -105,6 +109,7 @@ Weight <- R6::R6Class(
       self$id <- enc2ascii(id)
       self$variable <- enc2ascii(variable)
       self$name <- name
+      self$description <- description
       self$status <- status
       self$current <- current
       self$visible <- visible && !hidden
@@ -160,6 +165,13 @@ Weight <- R6::R6Class(
     #' @return `character` vector.
     get_layer_index = function() {
       self$variable$index
+    },
+
+    #' @description
+    #' Get description.
+    #' @return string value.
+    get_description = function() {
+      self$description
     },
 
     #' @description
@@ -336,6 +348,7 @@ Weight <- R6::R6Class(
         legend = self$variable$legend$get_widget_data(),
         units = self$variable$units,
         provenance = self$variable$provenance$get_widget_data(),
+        description = self$description,
         type = "weight"
       )
     },
@@ -347,6 +360,7 @@ Weight <- R6::R6Class(
       list(
         name = enc2ascii(self$name),
         variable = self$variable$export(),
+        description = self$description,
         status = self$status,
         visible = self$visible,
         hidden = self$hidden,
@@ -415,7 +429,7 @@ Weight <- R6::R6Class(
 #' # print object
 #' print(w)
 #' @export
-new_weight <- function(name, variable,
+new_weight <- function(name, variable, description,
                        visible = TRUE, hidden = FALSE, status = TRUE,
                        current = 0, factor = 0,
                        id = uuid::UUIDgenerate()) {
@@ -423,6 +437,7 @@ new_weight <- function(name, variable,
     id = id,
     name = name,
     variable = variable,
+    description = description,
     visible = visible,
     hidden = hidden,
     status = status,

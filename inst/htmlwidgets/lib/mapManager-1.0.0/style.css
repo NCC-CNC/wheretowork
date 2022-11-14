@@ -41,8 +41,32 @@
   margin-bottom: 5px;
   padding-top: 5px;
   padding-left: 5px;
+  padding-right: 3px;
   padding-bottom: 0px;
   margin-bottom: 0px;
+}
+
+/* layer description popover window */
+.popover {
+    z-index: 99999 !important;
+    /*min-width: 500px; enable this for long description and html formatting*/
+}
+
+.popover-title .close{
+    position: relative;
+    bottom: 3px;
+}
+
+.description-container a:hover {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.popover-content p img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 280px;
 }
 
 /* header container */
