@@ -15,9 +15,9 @@ app_server <- function(input, output, session) {
       shiny::invalidateLater(3000)
       cli::cli_rule()
       golem::print_dev("Total memory used: ")
-      golem::print_dev(pryr::mem_used())
+      golem::print_dev(mem_used())
       golem::print_dev("  app_data")
-      golem::print_dev(pryr::object_size(app_data))
+      golem::print_dev(object_size(app_data))
     })
   }
 
