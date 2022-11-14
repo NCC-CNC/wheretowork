@@ -46,9 +46,10 @@
   margin-bottom: 0px;
 }
 
+/* layer description popover window */
 .popover {
     z-index: 99999 !important;
-    min-width: 500px;
+    /*min-width: 500px; enable this for long description and html formatting*/
 }
 
 .popover-title .close{
