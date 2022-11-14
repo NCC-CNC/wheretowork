@@ -68,6 +68,7 @@ SolutionSettings <- R6::R6Class(
       self$include_ids <- vapply(includes, `[[`, character(1), "id")
       self$exclude_ids <- vapply(excludes, `[[`, character(1), "id")
       self$parameter_ids <- vapply(parameters, `[[`, character(1), "id")
+      self$set_overlap()
     },
     
     #' @description
@@ -476,13 +477,16 @@ SolutionSettings <- R6::R6Class(
       include_overlap <- sapply(unlist(lapply(self$includes, `[[`, "name")), function(x) NULL)
       
       # Check and document exclude and include overlap
+      exclude <- self$get_exclude_data()
+      include <- self$get_include_data()
+      
       if ((length(self$excludes) > 0) & (length(self$includes) > 0)) {
         for (i in seq_along(self$excludes)){
           for(j in seq_along(self$includes)) {
-            overlap <- self$get_exclude_data()[i,] * self$get_include_data()[j,]
+            overlap <- exclude[i,] * include[j,]
             if (sum(overlap) > 0) {
-              exclude_overlap[[self$excludes[[i]]$name]] <- append(exclude_overlap[[self$excludes[[i]]$name]], self$includes[[j]]$name)
-              include_overlap[[self$includes[[j]]$name]] <- append(include_overlap[[self$includes[[j]]$name]], self$excludes[[i]]$name)
+              exclude_overlap[[self$excludes[[i]]$name]] <- append(exclude_overlap[[i]], self$includes[[j]]$name)
+              include_overlap[[self$includes[[j]]$name]] <- append(include_overlap[[j]], self$excludes[[i]]$name)
             } 
           }
         }

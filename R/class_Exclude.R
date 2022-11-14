@@ -32,7 +32,7 @@ Exclude <- R6::R6Class(
     #' @field status `logical` value.
     status = NA,
     
-    #' @field overlap `character` value.
+    #' @field overlap `character` vector.
     overlap = NA_character_,    
 
     #' @description
@@ -44,7 +44,7 @@ Exclude <- R6::R6Class(
     #' @param visible `logical` value.
     #' @param hidden `logical` value.
     #' @param status `logical` value.
-    #' @param overlap `character` value.
+    #' @param overlap `character` vector.
     #' @return A new Exclude object.
     ## constructor
     initialize = function(id, name, variable, mandatory, visible, hidden,
@@ -234,7 +234,7 @@ Exclude <- R6::R6Class(
     },
 
     #' @description
-    #' Get data for displaying the theme in a [solutionSettings()] widget.
+    #' Get data for displaying the exclude in a [solutionSettings()] widget.
     #' @return `list` with widget data.
     get_solution_settings_widget_data = function() {
       list(
@@ -248,7 +248,7 @@ Exclude <- R6::R6Class(
     },
 
     #' @description
-    #' Get data for displaying the theme in a [mapManager()] widget.
+    #' Get data for displaying the exclude in a [mapManager()] widget.
     #' @return `list` with widget data.
     get_map_manager_widget_data = function() {
       list(
