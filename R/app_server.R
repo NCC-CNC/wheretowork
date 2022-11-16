@@ -17,7 +17,7 @@ app_server <- function(input, output, session) {
       golem::print_dev("Total memory used: ")
       golem::print_dev(mem_used())
       golem::print_dev("  app_data")
-      golem::print_dev(object_size(app_data))
+      golem::print_dev(object.size(app_data))
     })
   }
 
