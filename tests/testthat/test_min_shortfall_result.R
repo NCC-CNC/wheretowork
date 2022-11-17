@@ -44,7 +44,7 @@ test_that("no spatial clustering", {
     status = FALSE, id = "I1"
   )
   ## create an exclude using dataset
-  e <- new_exclude(
+  excl <- new_exclude(
     name = "Urban areas", variable = v6,
     status = FALSE, id = "E1"
   )  
@@ -70,7 +70,7 @@ test_that("no spatial clustering", {
   ## create result setting
   ss <- new_solution_settings(
     themes = list(t1, t2), weights = list(w), includes = list(incl),
-    excludes = list(e), parameters = list(p1, p2)
+    excludes = list(excl), parameters = list(p1, p2)
   )
   ## create cache
   cache <- cachem::cache_mem()
@@ -89,6 +89,7 @@ test_that("no spatial clustering", {
     include_settings = ss$get_include_settings(),
     exclude_settings = ss$get_exclude_settings(),
     parameters = ss$parameters,
+    overlap = FALSE,
     gap_1 = ss$get_parameter("P2")$value * ss$get_parameter("P2")$status,
     boundary_gap = ss$get_parameter("P1")$value * ss$get_parameter("P1")$status,
     cache = cache
@@ -108,6 +109,7 @@ test_that("no spatial clustering", {
     include_settings = ss$get_include_settings(),
     exclude_settings = ss$get_exclude_settings(),
     parameters = ss$parameters,
+    overlap = FALSE,
     gap_1 = ss$get_parameter("P2")$value * ss$get_parameter("P2")$status,
     boundary_gap = ss$get_parameter("P1")$value * ss$get_parameter("P1")$status,
     cache = cache
@@ -162,7 +164,7 @@ test_that("spatial clustering", {
     status = FALSE, id = "I1"
   )
   ## create an exclude using dataset
-  e <- new_exclude(
+  excl <- new_exclude(
     name = "Urban areas", variable = v6,
     status = FALSE, id = "E1"
   )  
@@ -188,7 +190,7 @@ test_that("spatial clustering", {
   ## create result setting
   ss <- new_solution_settings(
     themes = list(t1, t2), weights = list(w), includes = list(incl),
-    excludes = list(e), parameters = list(p1, p2)
+    excludes = list(excl), parameters = list(p1, p2)
   )
   ## create object
   x <- min_shortfall_result(
@@ -205,6 +207,7 @@ test_that("spatial clustering", {
     include_settings = ss$get_include_settings(),
     exclude_settings = ss$get_exclude_settings(),
     parameters = ss$parameters,
+    overlap = FALSE,
     gap_1 = ss$get_parameter("P2")$value * ss$get_parameter("P2")$status,
     boundary_gap =
       (ss$get_parameter("P1")$value * ss$get_parameter("P1")$status) / 100
@@ -252,7 +255,7 @@ test_that("no includes", {
     factor = -90, status = TRUE, id = "W1"
   )
   ## create an exclude using dataset
-  e <- new_exclude(
+  excl <- new_exclude(
     name = "Urban areas", variable = v6,
     status = FALSE, id = "E1"
   )    
@@ -278,7 +281,7 @@ test_that("no includes", {
   ## create result setting
   ss <- new_solution_settings(
     themes = list(t1, t2), weights = list(w), includes = list(),
-    excludes = list(e), parameters = list(p1, p2)
+    excludes = list(excl), parameters = list(p1, p2)
   )
   ## create object
   x <- min_shortfall_result(
@@ -295,6 +298,7 @@ test_that("no includes", {
     include_settings = ss$get_include_settings(),
     exclude_settings = ss$get_exclude_settings(),
     parameters = ss$parameters,
+    overlap = FALSE,
     gap_1 = ss$get_parameter("P2")$value * ss$get_parameter("P2")$status,
     boundary_gap = ss$get_parameter("P1")$value * ss$get_parameter("P1")$status
   )
@@ -430,7 +434,7 @@ test_that("no weights", {
     status = FALSE, id = "I1"
   )
   ## create an exclude using dataset
-  e <- new_exclude(
+  excl <- new_exclude(
     name = "Urban areas", variable = v6,
     status = FALSE, id = "E1"
   )  
@@ -456,7 +460,7 @@ test_that("no weights", {
   ## create result setting
   ss <- new_solution_settings(
     themes = list(t1, t2), weights = list(), includes = list(incl),
-    excludes = list(e), parameters = list(p1, p2)
+    excludes = list(excl), parameters = list(p1, p2)
   )
   ## create object
   x <- min_shortfall_result(
@@ -473,6 +477,7 @@ test_that("no weights", {
     include_settings = ss$get_include_settings(),
     exclude_settings = ss$get_exclude_settings(),
     parameters = ss$parameters,
+    overlap = FALSE,
     gap_1 = ss$get_parameter("P2")$value * ss$get_parameter("P2")$status,
     boundary_gap = ss$get_parameter("P1")$value * ss$get_parameter("P1")$status
   )
@@ -532,7 +537,7 @@ test_that("mixed weights", {
     status = FALSE, id = "I1"
   )
   ## create an exclude using dataset
-  e <- new_exclude(
+  excl <- new_exclude(
     name = "Urban areas", variable = v7,
     status = FALSE, id = "E1"
   )  
@@ -558,7 +563,7 @@ test_that("mixed weights", {
   ## create solution setting
   ss <- new_solution_settings(
     themes = list(t1, t2), weights = list(w1, w2), includes = list(incl),
-    excludes = list(e), parameters = list(p1, p2)
+    excludes = list(excl), parameters = list(p1, p2)
   )
   ## create object
   x <- min_shortfall_result(
@@ -575,9 +580,11 @@ test_that("mixed weights", {
     include_settings = ss$get_include_settings(),
     exclude_settings = ss$get_exclude_settings(),
     parameters = ss$parameters,
+    overlap = FALSE,
     gap_1 = ss$get_parameter("P2")$value * ss$get_parameter("P2")$status,
     boundary_gap = ss$get_parameter("P1")$value * ss$get_parameter("P1")$status
   )
   # run tests
   expect_is(x, "Result")
 })
+

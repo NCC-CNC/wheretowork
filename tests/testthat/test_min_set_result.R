@@ -44,7 +44,7 @@ test_that("no spatial clustering", {
     status = FALSE, id = "I1"
   )
   ## create an exclude using dataset
-  e <- new_exclude(
+  excl <- new_exclude(
     name = "Urban areas", variable = v6,
     status = FALSE, id = "E1"
   )  
@@ -70,7 +70,7 @@ test_that("no spatial clustering", {
   ## create solution setting
   ss <- new_solution_settings(
     themes = list(t1, t2), weights = list(w), includes = list(incl),
-    excludes = list(e), parameters = list(p1, p2)
+    excludes = list(excl), parameters = list(p1, p2)
   )
   ## create cache
   cache <- cachem::cache_mem()
@@ -122,7 +122,7 @@ test_that("spatial clustering", {
   # create object
   ## create dataset
   RandomFields::RFoptions(seed = 200)
-  rd <- simulate_binary_spatial_data(import_simple_raster_data(), 11)
+  rd <- simulate_binary_spatial_data(import_simple_raster_data(), 10)
   d <- new_dataset_from_auto(rd)
   ## create variables
   v1 <- new_variable(
@@ -156,13 +156,13 @@ test_that("spatial clustering", {
   )
   ## create an include using dataset
   incl <- new_include(
-    name = "Protected areas", variable = v5,
+    name = "Protected areas", variable = v1,
     status = FALSE, id = "I1"
   )
   ## create an exclude using dataset
-  e <- new_exclude(
+  encl <- new_exclude(
     name = "Urban areas", variable = v6,
-    status = FALSE, id = "E1"
+    status = TRUE, id = "E1"
   )  
   ## create features using dataset
   f1 <- new_feature(
@@ -186,7 +186,7 @@ test_that("spatial clustering", {
   ## create solution setting
   ss <- new_solution_settings(
     themes = list(t1, t2), weights = list(w), includes = list(incl),
-    excludes = list(e), parameters = list(p1, p2)
+    excludes = list(encl), parameters = list(p1, p2)
   )
   ## create object
   x <- min_set_result(
@@ -248,7 +248,7 @@ test_that("no weights", {
     status = FALSE, id = "I1"
   )
   ## create an exclude using dataset
-  e <- new_exclude(
+  encl <- new_exclude(
     name = "Urban areas", variable = v6,
     status = FALSE, id = "E1"
   )  
@@ -274,7 +274,7 @@ test_that("no weights", {
   ## create solution setting
   ss <- new_solution_settings(
     themes = list(t1, t2), weights = list(), includes = list(incl),
-    excludes = list(e), parameters = list(p1, p2)
+    excludes = list(encl), parameters = list(p1, p2)
   )
   ## create object
   x <- min_set_result(
@@ -336,7 +336,7 @@ test_that("no includes", {
     factor = -90, status = TRUE, id = "W1"
   )
   ## create an exclude using dataset
-  e <- new_exclude(
+  encl <- new_exclude(
     name = "Urban areas", variable = v6,
     status = FALSE, id = "E1"
   )   
@@ -362,7 +362,7 @@ test_that("no includes", {
   ## create solution setting
   ss <- new_solution_settings(
     themes = list(t1, t2), weights = list(w), includes = list(),
-    excludes = list(e), parameters = list(p1, p2)
+    excludes = list(encl), parameters = list(p1, p2)
   )
   ## create object
   x <- min_set_result(
@@ -526,7 +526,7 @@ test_that("mixed weights", {
     status = FALSE, id = "I1"
   )
   ## create an exclude using dataset
-  e <- new_exclude(
+  encl <- new_exclude(
     name = "Urban areas", variable = v7,
     status = FALSE, id = "E1"
   )  
@@ -552,7 +552,7 @@ test_that("mixed weights", {
   ## create solution setting
   ss <- new_solution_settings(
     themes = list(t1, t2), weights = list(w1, w2), includes = list(incl),
-    excludes = list(e), parameters = list(p1, p2)
+    excludes = list(encl), parameters = list(p1, p2)
   )
   ## create object
   x <- min_set_result(

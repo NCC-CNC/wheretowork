@@ -42,7 +42,7 @@ test_that("initialization", {
     status = FALSE, id = "I1"
   )
   ## create an exclude using dataset
-  e <- new_exclude(
+  excl <- new_exclude(
     name = "Urban areas", variable = v6,
     status = FALSE, id = "E1"
   )  
@@ -68,7 +68,7 @@ test_that("initialization", {
   ## create solution setting
   ss <- new_solution_settings(
     themes = list(t1, t2), weights = list(w), includes = list(incl),
-    excludes = list(e), parameters = list(p1, p2)
+    excludes = list(excl), parameters = list(p1, p2)
   )
   ## create values
   v <- sample(c(0, 1), 10, replace = TRUE)
@@ -81,9 +81,11 @@ test_that("initialization", {
     theme_coverage = c("F1" = 0.1, "F2" = 0.2, "F3" = 0.3),
     weight_coverage = c("W1" = 0.4),
     include_coverage = c("I1" = 0.5),
+    exclude_coverage = c("E1" = 0.2),
     theme_settings = ss$get_theme_settings(),
     weight_settings = ss$get_weight_settings(),
     include_settings = ss$get_include_settings(),
+    exclude_settings = ss$get_exclude_settings(),
     parameters = list(p1, p2)
   )
   # run tests
@@ -94,9 +96,11 @@ test_that("initialization", {
   expect_identical(r$theme_coverage, c("F1" = 0.1, "F2" = 0.2, "F3" = 0.3))
   expect_identical(r$weight_coverage, c("W1" = 0.4))
   expect_identical(r$include_coverage, c("I1" = 0.5))
+  expect_identical(r$exclude_coverage, c("E1" = 0.2))
   expect_identical(r$theme_settings, ss$get_theme_settings())
   expect_identical(r$weight_settings, ss$get_weight_settings())
   expect_identical(r$include_settings, ss$get_include_settings())
+  expect_identical(r$exclude_settings, ss$get_exclude_settings())
   expect_equal(r$parameters, list(p1, p2))
 })
 
@@ -142,7 +146,7 @@ test_that("NA_real_ perimeter", {
     status = FALSE, id = "I1"
   )
   ## create an exclude using dataset
-  e <- new_exclude(
+  excl <- new_exclude(
     name = "Urban areas", variable = v6,
     status = FALSE, id = "E1"
   )  
@@ -168,7 +172,7 @@ test_that("NA_real_ perimeter", {
   ## create solution setting
   ss <- new_solution_settings(
     themes = list(t1, t2), weights = list(w), includes = list(incl),
-    excludes = list(e), parameters = list(p1, p2)
+    excludes = list(excl), parameters = list(p1, p2)
   )
   ## create values
   v <- sample(c(0, 1), 10, replace = TRUE)
@@ -181,9 +185,11 @@ test_that("NA_real_ perimeter", {
     theme_coverage = c("F1" = 0.1, "F2" = 0.2, "F3" = 0.3),
     weight_coverage = c("W1" = 0.4),
     include_coverage = c("I1" = 0.5),
+    exclude_coverage = c("E1" = 0.2),
     theme_settings = ss$get_theme_settings(),
     weight_settings = ss$get_weight_settings(),
     include_settings = ss$get_include_settings(),
+    exclude_settings = ss$get_exclude_settings(),
     parameters = list(p1, p2)
   )
   # run tests
@@ -194,8 +200,10 @@ test_that("NA_real_ perimeter", {
   expect_identical(r$theme_coverage, c("F1" = 0.1, "F2" = 0.2, "F3" = 0.3))
   expect_identical(r$weight_coverage, c("W1" = 0.4))
   expect_identical(r$include_coverage, c("I1" = 0.5))
+  expect_identical(r$exclude_coverage, c("E1" = 0.2))
   expect_identical(r$theme_settings, ss$get_theme_settings())
   expect_identical(r$weight_settings, ss$get_weight_settings())
   expect_identical(r$include_settings, ss$get_include_settings())
+  expect_identical(r$exclude_settings, ss$get_exclude_settings())
   expect_equal(r$parameters, list(p1, p2))
 })

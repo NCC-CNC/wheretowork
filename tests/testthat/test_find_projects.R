@@ -13,7 +13,7 @@ test_that("singe user group", {
     x$name,
     c("Example GeoTIFF dataset",
       "Example Shapefile dataset",
-      "South Western Ontario Example"
+      "South Western Ontario"
     )
   )
   expect_equal(
@@ -43,7 +43,7 @@ test_that("multiple user groups", {
       "Example GeoTIFF dataset (themes)",
       "Example Shapefile dataset",
       "Example Shapefile dataset (themes)",
-      "South Western Ontario Example"
+      "South Western Ontario"
     )
   )
   expect_equal(
@@ -59,3 +59,4 @@ test_that("multiple user groups", {
   )
   expect_equal(x$status, rep(TRUE, nrow(x)))
 })
+
