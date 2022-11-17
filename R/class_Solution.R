@@ -932,9 +932,11 @@ new_solution <- function(name, variable, visible,
 #'   theme_coverage = calculate_coverage(values, ss$get_theme_data()),
 #'   weight_coverage = calculate_coverage(values, ss$get_weight_data()),
 #'   include_coverage = calculate_coverage(values, ss$get_include_data()),
+#'   exclude_coverage = calculate_coverage(values, ss$get_exclude_data()),
 #'   theme_settings = ss$get_theme_settings(),
 #'   weight_settings = ss$get_weight_settings(),
 #'   include_settings = ss$get_include_settings(),
+#'   exclude_settings = ss$get_exclude_settings(),
 #'   parameters = ss$parameters
 #' )
 #'

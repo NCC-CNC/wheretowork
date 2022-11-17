@@ -371,7 +371,8 @@ min_set_result <- function(area_data,
       themes = theme_settings,
       weights = weight_settings,
       includes = include_settings,
-      excludes = exclude_settings
+      excludes = exclude_settings,
+      overlap = overlap
     )
   )
 
@@ -549,9 +550,11 @@ min_set_result <- function(area_data,
     theme_coverage = calculate_coverage(main_solution, theme_data),
     weight_coverage = calculate_coverage(main_solution, weight_data),
     include_coverage = calculate_coverage(main_solution, include_data),
+    exclude_coverage = calculate_coverage(main_solution, exclude_data),
     theme_settings = theme_settings,
     weight_settings = weight_settings,
     include_settings = include_settings,
+    exclude_settings = exclude_settings,
     parameters = parameters
   )
 }

@@ -87,7 +87,7 @@ import_data <- function(x, mode) {
   
   overlap_parameter <-
     wheretowork::new_parameter(
-      name = "Exclude within includes",
+      name = "Overide includes",
       status = FALSE,
       hide = TRUE,
       disable = FALSE,
