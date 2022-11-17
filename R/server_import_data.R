@@ -83,6 +83,16 @@ import_data <- function(x, mode) {
       disable = FALSE,
       no_slider = TRUE,
       id = "solution_layer_parameter"
+    )
+  
+  overlap_parameter <-
+    wheretowork::new_parameter(
+      name = "Exclude within includes",
+      status = FALSE,
+      hide = TRUE,
+      disable = FALSE,
+      no_slider = TRUE,
+      id = "overlap_parameter"
     )  
 
   # store widgets
@@ -94,7 +104,8 @@ import_data <- function(x, mode) {
     weights = app_data$weights,
     includes = app_data$includes,
     excludes = app_data$excludes,
-    parameters = list(area_budget_parameter, boundary_gap_parameter, solution_layer_parameter)
+    parameters = list(area_budget_parameter, boundary_gap_parameter, 
+                      solution_layer_parameter, overlap_parameter)
   )
   
   # store  data

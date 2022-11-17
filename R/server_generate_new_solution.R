@@ -90,6 +90,7 @@ server_generate_new_solution <- quote({
       app_data$ss$get_parameter("spatial_parameter")$status
     ) / 100
     curr_parameters <- lapply(app_data$ss$parameters, function(x) x$clone())
+    curr_overlap <- app_data$ss$get_parameter("overlap_parameter")$status
 
     ## if failed to generate solution...
     if (!any(curr_theme_settings$status > 0.5)) {
@@ -145,6 +146,7 @@ server_generate_new_solution <- quote({
               include_settings = curr_include_settings,
               exclude_settings = curr_exclude_settings,
               parameters = curr_parameters,
+              overlap = curr_overlap,
               gap_1 = curr_gap_1,
               gap_2 = curr_gap_2,
               boundary_gap = curr_boundary_gap,
@@ -171,6 +173,7 @@ server_generate_new_solution <- quote({
               include_settings = curr_include_settings,
               exclude_settings = curr_exclude_settings,
               parameters = curr_parameters,
+              overlap = curr_overlap,
               gap_1 = curr_gap_1,
               gap_2 = curr_gap_2,
               boundary_gap = curr_boundary_gap,
