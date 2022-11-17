@@ -16,8 +16,6 @@ server_import_spatial_data <- quote({
   # set behavior for importing data using the spatial option
   shiny::observeEvent(input$importModal_spatial_settings, {
     
-    browser()
-    
     ## validation
     shiny::req(input$importModal_spatial_settings)
     if (!is.character(app_data$spatial_path)) {
