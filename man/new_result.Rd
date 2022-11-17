@@ -11,9 +11,11 @@ new_result(
   theme_coverage,
   weight_coverage,
   include_coverage,
+  exclude_coverage,
   theme_settings,
   weight_settings,
   include_settings,
+  exclude_settings,
   parameters,
   id = uuid::UUIDgenerate()
 )
@@ -35,11 +37,16 @@ weight that is covered by the result.}
 \item{include_coverage}{\code{numeric}  vector containing the proportion of each
 include that is covered by the result.}
 
+\item{exclude_coverage}{\code{numeric}  vector containing the proportion of each
+exclude that is covered by the result.}
+
 \item{theme_settings}{\code{data.frame} containing the theme settings.}
 
 \item{weight_settings}{\code{data.frame} containing the weight settings.}
 
 \item{include_settings}{\code{data.frame} containing the include settings.}
+
+\item{exclude_settings}{\code{data.frame} containing the exclude settings.}
 
 \item{parameters}{\code{list} of \link{Parameter} objects.}
 
@@ -106,13 +113,13 @@ t1 <- new_theme("Species", f1, id = "T1")
 t2 <- new_theme("Ecoregions", list(f2, f3), id = "T2")
 
 # create an include using a variable
-i <- new_include(
+incl <- new_include(
   name = "Protected areas", variable = v5,
   status = FALSE, id = "I1"
 )
 
 # create an exclude using a variable
-e <- new_exclude(
+encl <- new_exclude(
   name = "Urban areas", variable = v6,
   status = FALSE, id = "E1"
 )
@@ -123,8 +130,8 @@ p2 <- new_parameter(name = "Optimality gap")
 
 # create solution settings using the themes and weight
 ss <- new_solution_settings(
-  themes = list(t1, t2), weights = list(w), includes = list(i),
-  excludes = list(e), parameters = list(p1, p2)
+  themes = list(t1, t2), weights = list(w), includes = list(incl),
+  excludes = list(encl), parameters = list(p1, p2)
 )
 
 # create solution values
@@ -140,9 +147,11 @@ r <- new_result(
   theme_coverage = calculate_coverage(values, ss$get_theme_data()),
   weight_coverage = calculate_coverage(values, ss$get_weight_data()),
   include_coverage = calculate_coverage(values, ss$get_include_data()),
+  exclude_coverage = calculate_coverage(values, ss$get_exclude_data()),
   theme_settings = ss$get_theme_settings(),
   weight_settings = ss$get_weight_settings(),
   include_settings = ss$get_include_settings(),
+  exclude_settings = ss$get_exclude_settings(),
   parameters = ss$parameters
 )
 

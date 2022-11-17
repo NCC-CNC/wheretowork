@@ -11,6 +11,7 @@ new_include(
   visible = TRUE,
   hidden = FALSE,
   status = TRUE,
+  overlap = NA_character_,
   id = uuid::UUIDgenerate()
 )
 }
@@ -37,6 +38,10 @@ Defaults to \code{FALSE}.}
 This is used to display information on whether the feature is
 selected (or not) for subsequent analysis.
 Defaults to \code{TRUE}.}
+
+\item{overlap}{\code{character} vector that remains \code{NA_character_} until set in
+the \link{SolutionSettings} object. \code{overlap} defines the include and exclude
+overlap.}
 
 \item{id}{\code{character} unique identifier.
 Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}

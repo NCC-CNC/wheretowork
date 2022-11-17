@@ -72,7 +72,8 @@ Exclude <- R6::R6Class(
         assertthat::is.flag(status),
         assertthat::noNA(status),
         #### overlap
-        assertthat::is.string(name)        
+        assertthat::is.string(name),
+        !assertthat::noNA(overlap) # must be NA        
       )
       ### set fields
       self$id <- enc2ascii(id)
@@ -306,6 +307,10 @@ Exclude <- R6::R6Class(
 #'
 #' @param mandatory `logical` value indicating if object is mandatory
 #'  for generating solutions.
+#'
+#' @param overlap `character` vector that remains `NA_character_` until set in 
+#'  the [SolutionSettings] object. `overlap` defines the include and exclude 
+#'  overlap.
 #'
 #' @inheritParams new_theme
 #' @inheritParams new_feature

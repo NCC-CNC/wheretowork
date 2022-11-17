@@ -30,6 +30,8 @@ Definition for the Include class.
 \item{\code{hidden}}{\code{logical} value.}
 
 \item{\code{status}}{\code{logical} value.}
+
+\item{\code{overlap}}{\code{character} vector.}
 }
 \if{html}{\out{</div>}}
 }
@@ -44,6 +46,7 @@ Definition for the Include class.
 \item \href{#method-get_visible}{\code{Include$get_visible()}}
 \item \href{#method-get_hidden}{\code{Include$get_hidden()}}
 \item \href{#method-get_status}{\code{Include$get_status()}}
+\item \href{#method-get_overlap}{\code{Include$get_overlap()}}
 \item \href{#method-get_data}{\code{Include$get_data()}}
 \item \href{#method-get_setting}{\code{Include$get_setting()}}
 \item \href{#method-set_visible}{\code{Include$set_visible()}}
@@ -63,7 +66,7 @@ Definition for the Include class.
 \subsection{Method \code{new()}}{
 Create a new Include object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Include$new(id, name, variable, mandatory, visible, hidden, status)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Include$new(id, name, variable, mandatory, visible, hidden, status, overlap)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -82,6 +85,8 @@ Create a new Include object.
 \item{\code{hidden}}{\code{logical} value.}
 
 \item{\code{status}}{\code{logical} value.}
+
+\item{\code{overlap}}{\code{character} vector.}
 }
 \if{html}{\out{</div>}}
 }
@@ -193,6 +198,19 @@ Get status.
 
 \subsection{Returns}{
 \code{logical} value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_overlap"></a>}}
+\if{latex}{\out{\hypertarget{method-get_overlap}{}}}
+\subsection{Method \code{get_overlap()}}{
+Get overlap.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Include$get_overlap()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} value.
 }
 }
 \if{html}{\out{<hr>}}

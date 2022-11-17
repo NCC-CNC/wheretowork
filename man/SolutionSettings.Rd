@@ -81,6 +81,8 @@ parameters.}
 \item \href{#method-get_weight_data}{\code{SolutionSettings$get_weight_data()}}
 \item \href{#method-get_include_data}{\code{SolutionSettings$get_include_data()}}
 \item \href{#method-get_exclude_data}{\code{SolutionSettings$get_exclude_data()}}
+\item \href{#method-get_overlap}{\code{SolutionSettings$get_overlap()}}
+\item \href{#method-set_overlap}{\code{SolutionSettings$set_overlap()}}
 \item \href{#method-update_current_held}{\code{SolutionSettings$update_current_held()}}
 \item \href{#method-clone}{\code{SolutionSettings$clone()}}
 }
@@ -405,6 +407,32 @@ Get exclude matrix data.
 
 \subsection{Returns}{
 \code{\link[Matrix:sparseMatrix]{Matrix::sparseMatrix()}} with data.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_overlap"></a>}}
+\if{latex}{\out{\hypertarget{method-get_overlap}{}}}
+\subsection{Method \code{get_overlap()}}{
+Get list of include and exclude names that overlap.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$get_overlap()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{list} with exclude and include names.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_overlap"></a>}}
+\if{latex}{\out{\hypertarget{method-set_overlap}{}}}
+\subsection{Method \code{set_overlap()}}{
+Get list of include and exclude names that overlap.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$set_overlap()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{list} with exclude and include names.
 }
 }
 \if{html}{\out{<hr>}}

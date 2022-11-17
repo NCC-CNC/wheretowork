@@ -122,7 +122,7 @@ test_that("spatial clustering", {
   # create object
   ## create dataset
   RandomFields::RFoptions(seed = 200)
-  rd <- simulate_binary_spatial_data(import_simple_raster_data(), 10)
+  rd <- simulate_binary_spatial_data(import_simple_raster_data(), 5)
   d <- new_dataset_from_auto(rd)
   ## create variables
   v1 <- new_variable(
@@ -145,25 +145,16 @@ test_that("spatial clustering", {
     dataset = d, index = 5, total = 90, units = "ha",
     legend = simulate_include_legend()
   )
-  v6 <- new_variable(
-    dataset = d, index = 6, total = 90, units = "ha",
-    legend = simulate_exclude_legend()
-  )  
   ## create a weight using dataset
   w <- new_weight(
     name = "Human Footprint Index", variable = v1,
     factor = -90, status = TRUE, id = "W1"
   )
-  ## create an include using dataset
+  ## create a weight using dataset
   incl <- new_include(
     name = "Protected areas", variable = v1,
     status = FALSE, id = "I1"
   )
-  ## create an exclude using dataset
-  encl <- new_exclude(
-    name = "Urban areas", variable = v6,
-    status = TRUE, id = "E1"
-  )  
   ## create features using dataset
   f1 <- new_feature(
     name = "Possum", variable = v2,
@@ -186,7 +177,7 @@ test_that("spatial clustering", {
   ## create solution setting
   ss <- new_solution_settings(
     themes = list(t1, t2), weights = list(w), includes = list(incl),
-    excludes = list(encl), parameters = list(p1, p2)
+    excludes = list(), parameters = list(p1, p2)
   )
   ## create object
   x <- min_set_result(

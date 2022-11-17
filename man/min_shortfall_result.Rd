@@ -17,6 +17,7 @@ min_shortfall_result(
   include_settings,
   exclude_settings,
   parameters,
+  overlap = FALSE,
   gap_1 = 0,
   gap_2 = 0,
   boundary_gap = 0.1,
@@ -54,6 +55,8 @@ or or \code{NA}.}
 \item{exclude_settings}{\code{data.frame} containing the exclude settings.}
 
 \item{parameters}{\code{list} of \link{Parameter} objects.}
+
+\item{overlap}{\code{logical} if \code{TRUE}, excludes takes precedence over includes.}
 
 \item{gap_1}{\code{numeric} relative optimality gap value for initial
 optimization.

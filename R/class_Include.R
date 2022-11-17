@@ -32,7 +32,7 @@ Include <- R6::R6Class(
     #' @field status `logical` value.
     status = NA,
     
-    #' @field overlap `character` value.
+    #' @field overlap `character` vector.
     overlap = NA_character_,    
 
     #' @description
@@ -44,7 +44,7 @@ Include <- R6::R6Class(
     #' @param visible `logical` value.
     #' @param hidden `logical` value.
     #' @param status `logical` value.
-    #' @param overlap `character` value.
+    #' @param overlap `character` vector.
     #' @return A new Include object.
     ## constructor
     initialize = function(id, name, variable, mandatory, visible, hidden,
@@ -72,7 +72,8 @@ Include <- R6::R6Class(
         assertthat::is.flag(status),
         assertthat::noNA(status),
         #### overlap
-        assertthat::is.string(overlap)        
+        assertthat::is.string(overlap),
+        !assertthat::noNA(overlap) # must be NA
       )
       ### set fields
       self$id <- enc2ascii(id)
@@ -306,7 +307,11 @@ Include <- R6::R6Class(
 #'
 #' @param mandatory `logical` value indicating if object is mandatory
 #'  for generating solutions.
-#'
+#'  
+#' @param overlap `character` vector that remains `NA_character_` until set in 
+#'  the [SolutionSettings] object. `overlap` defines the include and exclude 
+#'  overlap. 
+#'  
 #' @inheritParams new_theme
 #' @inheritParams new_feature
 #'

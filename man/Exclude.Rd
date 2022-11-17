@@ -30,6 +30,8 @@ Definition for the Exclude class.
 \item{\code{hidden}}{\code{logical} value.}
 
 \item{\code{status}}{\code{logical} value.}
+
+\item{\code{overlap}}{\code{character} vector.}
 }
 \if{html}{\out{</div>}}
 }
@@ -44,6 +46,7 @@ Definition for the Exclude class.
 \item \href{#method-get_visible}{\code{Exclude$get_visible()}}
 \item \href{#method-get_hidden}{\code{Exclude$get_hidden()}}
 \item \href{#method-get_status}{\code{Exclude$get_status()}}
+\item \href{#method-get_overlap}{\code{Exclude$get_overlap()}}
 \item \href{#method-get_data}{\code{Exclude$get_data()}}
 \item \href{#method-get_setting}{\code{Exclude$get_setting()}}
 \item \href{#method-set_visible}{\code{Exclude$set_visible()}}
@@ -63,7 +66,7 @@ Definition for the Exclude class.
 \subsection{Method \code{new()}}{
 Create a new Exclude object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Exclude$new(id, name, variable, mandatory, visible, hidden, status)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Exclude$new(id, name, variable, mandatory, visible, hidden, status, overlap)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -82,6 +85,8 @@ Create a new Exclude object.
 \item{\code{hidden}}{\code{logical} value.}
 
 \item{\code{status}}{\code{logical} value.}
+
+\item{\code{overlap}}{\code{character} vector.}
 }
 \if{html}{\out{</div>}}
 }
@@ -196,6 +201,19 @@ Get status.
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_overlap"></a>}}
+\if{latex}{\out{\hypertarget{method-get_overlap}{}}}
+\subsection{Method \code{get_overlap()}}{
+Get overlap.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Exclude$get_overlap()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} vector.
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_data"></a>}}
 \if{latex}{\out{\hypertarget{method-get_data}{}}}
 \subsection{Method \code{get_data()}}{
@@ -287,7 +305,7 @@ Available options are \code{"status"} or `"visible"``.}
 \if{html}{\out{<a id="method-get_solution_settings_widget_data"></a>}}
 \if{latex}{\out{\hypertarget{method-get_solution_settings_widget_data}{}}}
 \subsection{Method \code{get_solution_settings_widget_data()}}{
-Get data for displaying the theme in a \code{\link[=solutionSettings]{solutionSettings()}} widget.
+Get data for displaying the exclude in a \code{\link[=solutionSettings]{solutionSettings()}} widget.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Exclude$get_solution_settings_widget_data()}\if{html}{\out{</div>}}
 }
@@ -300,7 +318,7 @@ Get data for displaying the theme in a \code{\link[=solutionSettings]{solutionSe
 \if{html}{\out{<a id="method-get_map_manager_widget_data"></a>}}
 \if{latex}{\out{\hypertarget{method-get_map_manager_widget_data}{}}}
 \subsection{Method \code{get_map_manager_widget_data()}}{
-Get data for displaying the theme in a \code{\link[=mapManager]{mapManager()}} widget.
+Get data for displaying the exclude in a \code{\link[=mapManager]{mapManager()}} widget.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Exclude$get_map_manager_widget_data()}\if{html}{\out{</div>}}
 }

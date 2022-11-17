@@ -16,6 +16,7 @@ min_set_result(
   include_settings,
   exclude_settings,
   parameters,
+  overlap = FALSE,
   gap_1 = 0,
   gap_2 = 0,
   boundary_gap = 0.1,
@@ -49,6 +50,8 @@ or or \code{NA}.}
 \item{exclude_settings}{\code{data.frame} containing the exclude settings.}
 
 \item{parameters}{\code{list} of \link{Parameter} objects.}
+
+\item{overlap}{\code{logical} if \code{TRUE}, excludes takes precedence over includes.}
 
 \item{gap_1}{\code{numeric} relative optimality gap value for initial
 optimization.
@@ -169,6 +172,7 @@ x <- min_set_result(
  include_settings = ss$get_include_settings(),
  exclude_settings = ss$get_exclude_settings(),
  parameters = ss$parameters,
+ overlap = TRUE,
  gap_1 = p2$value * p2$status,
  boundary_gap = p1$value * p1$status
 )
