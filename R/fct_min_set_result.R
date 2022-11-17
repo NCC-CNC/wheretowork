@@ -30,6 +30,8 @@ NULL
 #' @param exclude_settings  `data.frame` containing the exclude settings.
 #'
 #' @param parameters  `list` of [Parameter] objects.
+#' 
+#' @param overlap  `logical` if `TRUE`, excludes takes precedence over includes.
 #'
 #' @param gap_1 `numeric` relative optimality gap value for initial
 #'   optimization.
@@ -143,6 +145,7 @@ NULL
 #'  include_settings = ss$get_include_settings(),
 #'  exclude_settings = ss$get_exclude_settings(),
 #'  parameters = ss$parameters,
+#'  overlap = TRUE,
 #'  gap_1 = p2$value * p2$status,
 #'  boundary_gap = p1$value * p1$status
 #' )
@@ -161,6 +164,7 @@ min_set_result <- function(area_data,
                            include_settings,
                            exclude_settings,
                            parameters,
+                           overlap = FALSE,
                            gap_1 = 0,
                            gap_2 = 0,
                            boundary_gap = 0.1,
@@ -207,6 +211,9 @@ min_set_result <- function(area_data,
     ## parameters
     is.list(parameters),
     all_list_elements_inherit(parameters, "Parameter"),
+    ## overlap
+    assertthat::is.flag(overlap),
+    assertthat::noNA(overlap),    
     ## gap_1
     assertthat::is.number(gap_1),
     assertthat::noNA(gap_1),
@@ -289,6 +296,14 @@ min_set_result <- function(area_data,
     ## if no excludes present, then lock nothing out
     locked_out <- rep(FALSE, ncol(exclude_data))
   } 
+  
+  ### locked-out takes precedence if overlap is TRUE
+  idx <- which(locked_in & locked_out)
+  if (!overlap) {
+    locked_out[idx] <- FALSE
+  } else {
+    locked_in[idx] <- FALSE
+  }
   
   # verify that problem if feasible with locked out planning units
   if (!all(Matrix::rowSums(theme_data[,!locked_out]) >= targets$target)) {

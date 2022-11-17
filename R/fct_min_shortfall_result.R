@@ -119,6 +119,7 @@ min_shortfall_result <- function(area_budget_proportion,
                                  include_settings,
                                  exclude_settings,
                                  parameters,
+                                 overlap = FALSE,
                                  gap_1 = 0,
                                  gap_2 = 0,
                                  boundary_gap = 0.1,
@@ -178,6 +179,9 @@ min_shortfall_result <- function(area_budget_proportion,
     ## parameters
     is.list(parameters),
     all_list_elements_inherit(parameters, "Parameter"),
+    ## overlap
+    assertthat::noNA(overlap),
+    assertthat::is.flag(overlap),
     ## gap_1
     assertthat::is.number(gap_1),
     assertthat::noNA(gap_1),
@@ -260,8 +264,16 @@ min_shortfall_result <- function(area_budget_proportion,
   } else {
     ## if no excludes present, then lock nothing out
     locked_out <- rep(FALSE, ncol(exclude_data))
-  }  
-
+  }
+  
+  ### locked-out takes precedence if overlap is TRUE
+  idx <- which(locked_in & locked_out)
+  if (!overlap) {
+    locked_out[idx] <- FALSE
+  } else {
+    locked_in[idx] <- FALSE
+  }   
+  
   # calculate weight data
   ## process weights with positive factors
   wn_pos_idx <- which(weight_settings$status & (weight_settings$factor > 0))
