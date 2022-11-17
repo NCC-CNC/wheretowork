@@ -460,11 +460,11 @@ min_set_result <- function(area_data,
     rwr <- prioritizr::eval_rare_richness_importance(
       initial_problem, initial_solution
     )
-    if (any(rwr >= 1e-5)) {
+    if (any(rwr >= 1e-5)) { 
       rwr_threshold <- stats::median(rwr[rwr > 1e-5])
       locked_in <- locked_in | ((rwr >= rwr_threshold) & (rwr > 1e-5))
-      locked_out <- locked_out | ((rwr >= rwr_threshold) & (rwr > 1e-5))
     }
+    locked_in <- locked_in & !locked_out
     ### prepare boundary data as connectivity data based on "importance"
     #### calculate importance
     rwr_raw <- prioritizr_internal_eval_rare_richness_importance(
