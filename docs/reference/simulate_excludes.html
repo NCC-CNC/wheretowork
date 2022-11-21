@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>New weight — new_weight • wheretowork</title>
+<title>Simulate excludes — simulate_excludes • wheretowork</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="New weight — new_weight" />
-<meta property="og:description" content="Create a new Weight object." />
+<meta property="og:title" content="Simulate excludes — simulate_excludes" />
+<meta property="og:description" content="This function simulates Exclude objects." />
 
 
 
@@ -115,79 +115,36 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>New weight</h1>
-    <small class="dont-index">Source: <a href='https://github.com/NCC-CNC/wheretowork/blob/master/R/class_Weight.R'><code>R/class_Weight.R</code></a></small>
-    <div class="hidden name"><code>new_weight.Rd</code></div>
+    <h1>Simulate excludes</h1>
+    <small class="dont-index">Source: <a href='https://github.com/NCC-CNC/wheretowork/blob/master/R/fct_simulate_excludes.R'><code>R/fct_simulate_excludes.R</code></a></small>
+    <div class="hidden name"><code>simulate_excludes.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Create a new <a href='Weight.html'>Weight</a> object.</p>
+    <p>This function simulates <a href='Exclude.html'>Exclude</a> objects.</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>new_weight</span><span class='op'>(</span>
-  <span class='va'>name</span>,
-  <span class='va'>variable</span>,
-  visible <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  hidden <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  status <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  current <span class='op'>=</span> <span class='fl'>0</span>,
-  factor <span class='op'>=</span> <span class='fl'>0</span>,
-  id <span class='op'>=</span> <span class='fu'>uuid</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/uuid/man/UUIDgenerate.html'>UUIDgenerate</a></span><span class='op'>(</span><span class='op'>)</span>
-<span class='op'>)</span></code></pre></div>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>simulate_excludes</span><span class='op'>(</span><span class='va'>dataset</span>, <span class='va'>n</span><span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>name</th>
-      <td><p><code>character</code> Name to display.</p></td>
+      <th>dataset</th>
+      <td><p><a href='Dataset.html'>Dataset</a> object.</p></td>
     </tr>
     <tr>
-      <th>variable</th>
-      <td><p><a href='Variable.html'>Variable</a> object.</p></td>
-    </tr>
-    <tr>
-      <th>visible</th>
-      <td><p><code>logical</code> The initial visible value.
-This is used to determine if the feature is displayed (or not)
-or not the map.
-Defaults to <code>TRUE</code>.</p></td>
-    </tr>
-    <tr>
-      <th>hidden</th>
-      <td><p><code>logical</code> The hidden value.
-This is used to determine if the feature is can ever be displayed (or not)
-or not the map. Unlike <code>visible</code>, if this parameter is <code>FALSE</code> then a
-feature can never be viewed on the map.
-Defaults to <code>FALSE</code>.</p></td>
-    </tr>
-    <tr>
-      <th>status</th>
-      <td><p><code>logical</code> The initial status value.
-This is used to display information on whether the feature is
-selected (or not) for subsequent analysis.
-Defaults to <code>TRUE</code>.</p></td>
-    </tr>
-    <tr>
-      <th>current</th>
-      <td><p><code>numeric</code> current proportion of values held in existing
-conservation areas (e.g. 0.1 = 10%).</p></td>
-    </tr>
-    <tr>
-      <th>factor</th>
-      <td><p><code>numeric</code> initial factor value.
-Defaults to 0.</p></td>
-    </tr>
-    <tr>
-      <th>id</th>
-      <td><p><code>character</code> unique identifier.
-Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUIDgenerate.html'>uuid::UUIDgenerate()</a></code>).</p></td>
+      <th>n</th>
+      <td><p><code>integer</code> number of objects to simulate.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <a href='Weight.html'>Weight</a> object.</p>
+    <p>A <code>list</code> of simulated <a href='Exclude.html'>Exclude</a> objects.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><a href='new_exclude.html'>new_exclude</a>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='co'># find data file paths</span></span>
@@ -207,23 +164,35 @@ Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUI
 <span class='r-in'><span class='co'># create new dataset</span></span>
 <span class='r-in'><span class='va'>d</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_dataset.html'>new_dataset</a></span><span class='op'>(</span><span class='va'>f1</span>, <span class='va'>f2</span>, <span class='va'>f3</span><span class='op'>)</span></span>
 <span class='r-in'></span>
-<span class='r-in'><span class='co'># create new variable</span></span>
-<span class='r-in'><span class='va'>v</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_variable_from_auto.html'>new_variable_from_auto</a></span><span class='op'>(</span><span class='va'>d</span>, index <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span></span>
-<span class='r-in'></span>
-<span class='r-in'><span class='co'># create a new weight</span></span>
-<span class='r-in'><span class='va'>w</span> <span class='op'>&lt;-</span> <span class='fu'>new_weight</span><span class='op'>(</span>name <span class='op'>=</span> <span class='st'>"NDVI"</span>, variable <span class='op'>=</span> <span class='va'>v</span><span class='op'>)</span></span>
-<span class='r-in'></span>
-<span class='r-in'><span class='co'># print object</span></span>
-<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>w</span><span class='op'>)</span></span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> Weight</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       057afd43-6257-4ca4-b84c-28721f9b939c</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:     NDVI</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   variable: .../sim_raster_spatial.tif#Brown_necked_Parrot_Brown_necked_ [total: 1052 ]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   current:  0</span>
+<span class='r-in'><span class='co'># simulate data</span></span>
+<span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span><span class='op'>(</span><span class='st'>"RandomFields"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span class='r-in'> <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>simulate_excludes</span><span class='op'>(</span>dataset <span class='op'>=</span> <span class='va'>d</span>, n <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span></span>
+<span class='r-in'> <span class='co'># print results</span></span>
+<span class='r-in'> <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>}</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Loading required namespace: RandomFields</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ..</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[1]]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Exclude</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       868b8fbc-2aab-43bd-a147-e1636443d6df</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:     Crown land</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   variable: .../sim_raster_spatial.tif#Crown_land [total: 148 ]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   visible:  TRUE</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   hidden:  FALSE</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   status:   TRUE</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   factor:   0</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   status:   FALSE</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   overlap:   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[2]]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Exclude</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       824e12d5-5e42-4f0c-99b6-61162dc1f827</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:     Merchantable Timber</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   variable: .../sim_raster_spatial.tif#Merchantable_Timber [total: 154 ]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   visible:  TRUE</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   hidden:  FALSE</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   status:   FALSE</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   overlap:   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-in'></span>
 </code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

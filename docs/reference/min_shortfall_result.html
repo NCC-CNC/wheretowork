@@ -133,10 +133,13 @@ using the minimum shortfall formulation of the reserve selection problem.</p>
   <span class='va'>theme_data</span>,
   <span class='va'>weight_data</span>,
   <span class='va'>include_data</span>,
+  <span class='va'>exclude_data</span>,
   <span class='va'>theme_settings</span>,
   <span class='va'>weight_settings</span>,
   <span class='va'>include_settings</span>,
+  <span class='va'>exclude_settings</span>,
   <span class='va'>parameters</span>,
+  overlap <span class='op'>=</span> <span class='cn'>FALSE</span>,
   gap_1 <span class='op'>=</span> <span class='fl'>0</span>,
   gap_2 <span class='op'>=</span> <span class='fl'>0</span>,
   boundary_gap <span class='op'>=</span> <span class='fl'>0.1</span>,
@@ -178,6 +181,10 @@ or or <code>NA</code>.</p></td>
       <td><p><code><a href='https://rdrr.io/pkg/Matrix/man/sparseMatrix.html'>Matrix::sparseMatrix()</a></code> containing the include data.</p></td>
     </tr>
     <tr>
+      <th>exclude_data</th>
+      <td><p><code><a href='https://rdrr.io/pkg/Matrix/man/sparseMatrix.html'>Matrix::sparseMatrix()</a></code> containing the exclude data.</p></td>
+    </tr>
+    <tr>
       <th>theme_settings</th>
       <td><p><code>data.frame</code> containing the theme settings.</p></td>
     </tr>
@@ -190,8 +197,16 @@ or or <code>NA</code>.</p></td>
       <td><p><code>data.frame</code> containing the include settings.</p></td>
     </tr>
     <tr>
+      <th>exclude_settings</th>
+      <td><p><code>data.frame</code> containing the exclude settings.</p></td>
+    </tr>
+    <tr>
       <th>parameters</th>
       <td><p><code>list</code> of <a href='Parameter.html'>Parameter</a> objects.</p></td>
+    </tr>
+    <tr>
+      <th>overlap</th>
+      <td><p><code>logical</code> if <code>TRUE</code>, excludes takes precedence over includes.</p></td>
     </tr>
     <tr>
       <th>gap_1</th>
@@ -265,6 +280,7 @@ displayed when generating solutions. Defaults to <code>FALSE</code>.</p></td>
 <span class='r-in'><span class='va'>v3</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_variable_from_auto.html'>new_variable_from_auto</a></span><span class='op'>(</span>dataset <span class='op'>=</span> <span class='va'>d</span>, index <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span></span>
 <span class='r-in'><span class='va'>v4</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_variable_from_auto.html'>new_variable_from_auto</a></span><span class='op'>(</span>dataset <span class='op'>=</span> <span class='va'>d</span>, index <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span></span>
 <span class='r-in'><span class='va'>v5</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_variable_from_auto.html'>new_variable_from_auto</a></span><span class='op'>(</span>dataset <span class='op'>=</span> <span class='va'>d</span>, index <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>v6</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_variable_from_auto.html'>new_variable_from_auto</a></span><span class='op'>(</span>dataset <span class='op'>=</span> <span class='va'>d</span>, index <span class='op'>=</span> <span class='fl'>6</span><span class='op'>)</span></span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># create a weight using a variable</span></span>
 <span class='r-in'><span class='va'>w</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_weight.html'>new_weight</a></span><span class='op'>(</span></span>
@@ -296,6 +312,12 @@ displayed when generating solutions. Defaults to <code>FALSE</code>.</p></td>
 <span class='r-in'>  status <span class='op'>=</span> <span class='cn'>FALSE</span>, id <span class='op'>=</span> <span class='st'>"I1"</span></span>
 <span class='r-in'><span class='op'>)</span></span>
 <span class='r-in'></span>
+<span class='r-in'><span class='co'># create an excluded using a variable</span></span>
+<span class='r-in'><span class='va'>e</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_exclude.html'>new_exclude</a></span><span class='op'>(</span></span>
+<span class='r-in'>  name <span class='op'>=</span> <span class='st'>"Expensive areas"</span>, variable <span class='op'>=</span> <span class='va'>v6</span>,</span>
+<span class='r-in'>  status <span class='op'>=</span> <span class='cn'>FALSE</span>, id <span class='op'>=</span> <span class='st'>"E1"</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-in'></span>
 <span class='r-in'><span class='co'># create parameters</span></span>
 <span class='r-in'><span class='va'>p1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_parameter.html'>new_parameter</a></span><span class='op'>(</span>name <span class='op'>=</span> <span class='st'>"Spatial clustering"</span><span class='op'>)</span></span>
 <span class='r-in'><span class='va'>p2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_parameter.html'>new_parameter</a></span><span class='op'>(</span>name <span class='op'>=</span> <span class='st'>"Optimality gap"</span><span class='op'>)</span></span>
@@ -303,7 +325,7 @@ displayed when generating solutions. Defaults to <code>FALSE</code>.</p></td>
 <span class='r-in'><span class='co'># create solution settings using the themes and weight</span></span>
 <span class='r-in'><span class='va'>ss</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_solution_settings.html'>new_solution_settings</a></span><span class='op'>(</span></span>
 <span class='r-in'>  themes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>t1</span>, <span class='va'>t2</span><span class='op'>)</span>, weights <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>w</span><span class='op'>)</span>, includes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>i</span><span class='op'>)</span>,</span>
-<span class='r-in'>  parameters <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>p1</span>, <span class='va'>p2</span><span class='op'>)</span></span>
+<span class='r-in'>  excludes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>e</span><span class='op'>)</span>, parameters <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>p1</span>, <span class='va'>p2</span><span class='op'>)</span></span>
 <span class='r-in'><span class='op'>)</span></span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># create result</span></span>
@@ -315,9 +337,11 @@ displayed when generating solutions. Defaults to <code>FALSE</code>.</p></td>
 <span class='r-in'> theme_data <span class='op'>=</span> <span class='va'>ss</span><span class='op'>$</span><span class='fu'>get_theme_data</span><span class='op'>(</span><span class='op'>)</span>,</span>
 <span class='r-in'> weight_data <span class='op'>=</span> <span class='va'>ss</span><span class='op'>$</span><span class='fu'>get_weight_data</span><span class='op'>(</span><span class='op'>)</span>,</span>
 <span class='r-in'> include_data <span class='op'>=</span> <span class='va'>ss</span><span class='op'>$</span><span class='fu'>get_include_data</span><span class='op'>(</span><span class='op'>)</span>,</span>
+<span class='r-in'> exclude_data <span class='op'>=</span> <span class='va'>ss</span><span class='op'>$</span><span class='fu'>get_exclude_data</span><span class='op'>(</span><span class='op'>)</span>,</span>
 <span class='r-in'> theme_settings <span class='op'>=</span> <span class='va'>ss</span><span class='op'>$</span><span class='fu'>get_theme_settings</span><span class='op'>(</span><span class='op'>)</span>,</span>
 <span class='r-in'> weight_settings <span class='op'>=</span> <span class='va'>ss</span><span class='op'>$</span><span class='fu'>get_weight_settings</span><span class='op'>(</span><span class='op'>)</span>,</span>
 <span class='r-in'> include_settings <span class='op'>=</span> <span class='va'>ss</span><span class='op'>$</span><span class='fu'>get_include_settings</span><span class='op'>(</span><span class='op'>)</span>,</span>
+<span class='r-in'> exclude_settings <span class='op'>=</span> <span class='va'>ss</span><span class='op'>$</span><span class='fu'>get_exclude_settings</span><span class='op'>(</span><span class='op'>)</span>,</span>
 <span class='r-in'> parameters <span class='op'>=</span> <span class='va'>ss</span><span class='op'>$</span><span class='va'>parameters</span>,</span>
 <span class='r-in'> gap_1 <span class='op'>=</span> <span class='va'>p2</span><span class='op'>$</span><span class='va'>value</span> <span class='op'>*</span> <span class='va'>p2</span><span class='op'>$</span><span class='va'>status</span>,</span>
 <span class='r-in'> boundary_gap <span class='op'>=</span> <span class='va'>p1</span><span class='op'>$</span><span class='va'>value</span> <span class='op'>*</span> <span class='va'>p1</span><span class='op'>$</span><span class='va'>status</span></span>

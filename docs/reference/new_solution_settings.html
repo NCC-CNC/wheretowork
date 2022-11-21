@@ -124,14 +124,14 @@
     <p>Create a new <a href='SolutionSettings.html'>SolutionSettings</a> object.</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>new_solution_settings</span><span class='op'>(</span><span class='va'>themes</span>, <span class='va'>weights</span>, <span class='va'>includes</span>, <span class='va'>parameters</span><span class='op'>)</span></code></pre></div>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>new_solution_settings</span><span class='op'>(</span><span class='va'>themes</span>, <span class='va'>weights</span>, <span class='va'>includes</span>, <span class='va'>excludes</span>, <span class='va'>parameters</span><span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>themes</th>
-      <td><p><code>list</code> of <a href='Theme.html'>Theme</a> objects. D</p></td>
+      <td><p><code>list</code> of <a href='Theme.html'>Theme</a> objects.</p></td>
     </tr>
     <tr>
       <th>weights</th>
@@ -140,6 +140,10 @@
     <tr>
       <th>includes</th>
       <td><p><code>list</code> of <a href='Include.html'>Include</a> objects.</p></td>
+    </tr>
+    <tr>
+      <th>excludes</th>
+      <td><p><code>list</code> of <a href='Exclude.html'>Exclude</a> objects.</p></td>
     </tr>
     <tr>
       <th>parameters</th>
@@ -174,6 +178,7 @@
 <span class='r-in'><span class='va'>v3</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_variable_from_auto.html'>new_variable_from_auto</a></span><span class='op'>(</span>dataset <span class='op'>=</span> <span class='va'>d</span>, index <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span></span>
 <span class='r-in'><span class='va'>v4</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_variable_from_auto.html'>new_variable_from_auto</a></span><span class='op'>(</span>dataset <span class='op'>=</span> <span class='va'>d</span>, index <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span></span>
 <span class='r-in'><span class='va'>v5</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_variable_from_auto.html'>new_variable_from_auto</a></span><span class='op'>(</span>dataset <span class='op'>=</span> <span class='va'>d</span>, index <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>v6</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_variable_from_auto.html'>new_variable_from_auto</a></span><span class='op'>(</span>dataset <span class='op'>=</span> <span class='va'>d</span>, index <span class='op'>=</span> <span class='fl'>6</span><span class='op'>)</span></span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># create a weight using a variable</span></span>
 <span class='r-in'><span class='va'>w</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_weight.html'>new_weight</a></span><span class='op'>(</span></span>
@@ -200,9 +205,27 @@
 <span class='r-in'><span class='va'>t2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_theme.html'>new_theme</a></span><span class='op'>(</span><span class='st'>"Ecoregions"</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>f2</span>, <span class='va'>f3</span><span class='op'>)</span>, id <span class='op'>=</span> <span class='st'>"T2"</span><span class='op'>)</span></span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># create an included using a variable</span></span>
-<span class='r-in'><span class='va'>i</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_include.html'>new_include</a></span><span class='op'>(</span></span>
+<span class='r-in'><span class='va'>i1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_include.html'>new_include</a></span><span class='op'>(</span></span>
 <span class='r-in'>  name <span class='op'>=</span> <span class='st'>"Protected areas"</span>, variable <span class='op'>=</span> <span class='va'>v5</span>,</span>
 <span class='r-in'>  status <span class='op'>=</span> <span class='cn'>FALSE</span>, id <span class='op'>=</span> <span class='st'>"I1"</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># create an included using a variable</span></span>
+<span class='r-in'><span class='va'>i2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_include.html'>new_include</a></span><span class='op'>(</span></span>
+<span class='r-in'>  name <span class='op'>=</span> <span class='st'>"Bases"</span>, variable <span class='op'>=</span> <span class='va'>v5</span>,</span>
+<span class='r-in'>  status <span class='op'>=</span> <span class='cn'>FALSE</span>, id <span class='op'>=</span> <span class='st'>"I2"</span></span>
+<span class='r-in'><span class='op'>)</span> </span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># create an exclude using a variable</span></span>
+<span class='r-in'><span class='va'>e1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_exclude.html'>new_exclude</a></span><span class='op'>(</span></span>
+<span class='r-in'>  name <span class='op'>=</span> <span class='st'>"Urban areas"</span>, variable <span class='op'>=</span> <span class='va'>v6</span>,</span>
+<span class='r-in'>  status <span class='op'>=</span> <span class='cn'>FALSE</span>, id <span class='op'>=</span> <span class='st'>"E1"</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># create an exclude using a variable</span></span>
+<span class='r-in'><span class='va'>e2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_exclude.html'>new_exclude</a></span><span class='op'>(</span></span>
+<span class='r-in'>  name <span class='op'>=</span> <span class='st'>"Pot holes"</span>, variable <span class='op'>=</span> <span class='va'>v3</span>,</span>
+<span class='r-in'>  status <span class='op'>=</span> <span class='cn'>FALSE</span>, id <span class='op'>=</span> <span class='st'>"E2"</span></span>
 <span class='r-in'><span class='op'>)</span></span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># create parameters</span></span>
@@ -211,8 +234,8 @@
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># create solution settings using the themes and weight</span></span>
 <span class='r-in'><span class='va'>ss</span> <span class='op'>&lt;-</span> <span class='fu'>new_solution_settings</span><span class='op'>(</span></span>
-<span class='r-in'>  themes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>t1</span>, <span class='va'>t2</span><span class='op'>)</span>, weights <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>w</span><span class='op'>)</span>, includes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>i</span><span class='op'>)</span>,</span>
-<span class='r-in'>  parameters <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>p1</span>, <span class='va'>p2</span><span class='op'>)</span></span>
+<span class='r-in'>  themes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>t1</span>, <span class='va'>t2</span><span class='op'>)</span>, weights <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>w</span><span class='op'>)</span>, includes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>i1</span><span class='op'>)</span>,</span>
+<span class='r-in'>  excludes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>e1</span>, <span class='va'>e2</span><span class='op'>)</span>, parameters <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>p1</span>, <span class='va'>p2</span><span class='op'>)</span></span>
 <span class='r-in'><span class='op'>)</span></span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># print object</span></span>
@@ -233,6 +256,11 @@
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   includes: </span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>     Protected areas [status: FALSE]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#African_Firefinch [total: 7220.08 ]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   excludes: </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Urban areas [status: FALSE]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Black_and_white_Mannikin_Red_backed_ [total: 10138.58 ]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Pot holes [status: FALSE]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>       variable: .../sim_raster_spatial.tif#Manus_Boobook [total: 430 ]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   parameters: </span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>     Spatial clustering [status: TRUE, value: 0 ]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>     Optimality gap [status: TRUE, value: 0 ]</span>

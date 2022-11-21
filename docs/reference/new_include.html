@@ -131,6 +131,7 @@
   visible <span class='op'>=</span> <span class='cn'>TRUE</span>,
   hidden <span class='op'>=</span> <span class='cn'>FALSE</span>,
   status <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  overlap <span class='op'>=</span> <span class='cn'>NA_character_</span>,
   id <span class='op'>=</span> <span class='fu'>uuid</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/uuid/man/UUIDgenerate.html'>UUIDgenerate</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>)</span></code></pre></div>
 
@@ -173,6 +174,12 @@ selected (or not) for subsequent analysis.
 Defaults to <code>TRUE</code>.</p></td>
     </tr>
     <tr>
+      <th>overlap</th>
+      <td><p><code>character</code> vector that remains <code>NA_character_</code> until set in
+the <a href='SolutionSettings.html'>SolutionSettings</a> object. <code>overlap</code> defines the include and exclude
+overlap.</p></td>
+    </tr>
+    <tr>
       <th>id</th>
       <td><p><code>character</code> unique identifier.
 Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUIDgenerate.html'>uuid::UUIDgenerate()</a></code>).</p></td>
@@ -210,12 +217,13 @@ Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUI
 <span class='r-in'><span class='co'># print object</span></span>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>w</span><span class='op'>)</span></span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Include</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       9284007e-e390-4160-95f6-0ecf6518fc41</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       3838414f-c2e6-43dd-b64c-9a644b90802f</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:     Protected areas</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   variable: .../sim_raster_spatial.tif#Brown_necked_Parrot_Brown_necked_ [total: 1052 ]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   visible:  TRUE</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   hidden:  FALSE</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   status:   TRUE</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   overlap:   NA</span>
 </code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

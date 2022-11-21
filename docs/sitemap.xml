@@ -70,6 +70,9 @@
     <loc>/reference/error_message.html</loc>
   </url>
   <url>
+    <loc>/reference/Exclude.html</loc>
+  </url>
+  <url>
     <loc>/reference/exportSidebarPane.html</loc>
   </url>
   <url>
@@ -164,6 +167,9 @@
   </url>
   <url>
     <loc>/reference/new_dataset_from_auto.html</loc>
+  </url>
+  <url>
+    <loc>/reference/new_exclude.html</loc>
   </url>
   <url>
     <loc>/reference/new_feature.html</loc>
@@ -275,6 +281,12 @@
   </url>
   <url>
     <loc>/reference/simulate_continuous_legend.html</loc>
+  </url>
+  <url>
+    <loc>/reference/simulate_excludes.html</loc>
+  </url>
+  <url>
+    <loc>/reference/simulate_exclude_legend.html</loc>
   </url>
   <url>
     <loc>/reference/simulate_includes.html</loc>
