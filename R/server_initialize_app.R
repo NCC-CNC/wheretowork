@@ -33,6 +33,7 @@ server_initialize_app <- quote({
       themes = NULL,
       weights = NULL,
       includes = NULL,
+      excludes = NULL,
       solutions = list(),
       cache = cachem::cache_mem(),
       ## data
@@ -40,6 +41,7 @@ server_initialize_app <- quote({
       theme_data = NULL,
       weight_data = NULL,
       include_data = NULL,
+      exclude_data = NULL,
       area_data = NULL,
       boundary_data = NULL,
       solution_ids = character(0),

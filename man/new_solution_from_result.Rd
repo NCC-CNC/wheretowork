@@ -79,6 +79,7 @@ ss <- new_solution_settings(
   themes = list(t1),
   weights = list(),
   includes = list(),
+  excludes = list(),
   parameters = list(p1, p2)
 )
 
@@ -95,9 +96,11 @@ r <- new_result(
   theme_coverage = calculate_coverage(values, ss$get_theme_data()),
   weight_coverage = calculate_coverage(values, ss$get_weight_data()),
   include_coverage = calculate_coverage(values, ss$get_include_data()),
+  exclude_coverage = calculate_coverage(values, ss$get_exclude_data()),
   theme_settings = ss$get_theme_settings(),
   weight_settings = ss$get_weight_settings(),
   include_settings = ss$get_include_settings(),
+  exclude_settings = ss$get_exclude_settings(),
   parameters = ss$parameters
 )
 

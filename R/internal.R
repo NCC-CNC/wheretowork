@@ -79,6 +79,30 @@ example_include_names <- function() {
   out[!grepl(".", out$name, fixed = TRUE), , drop = TRUE]
 }
 
+#' Example exclude names
+#'
+#' Import example exclude names for simulating [Exclude] objects.
+#'
+#' @return A [tibble()] object.
+#'
+#' @noRd
+example_exclude_names <- function() {
+  # import data
+  out <- tibble::as_tibble(
+    utils::read.table(
+      system.file(
+        "extdata", "data", "example-excludes.csv",
+        package = "wheretowork"
+      ),
+      stringsAsFactors = FALSE,
+      sep = ",",
+      header = TRUE
+    )
+  )
+  # return only valid names
+  out[!grepl(".", out$name, fixed = TRUE), , drop = TRUE]
+}
+
 #' Example weight names
 #'
 #' Import example weight names for simulating [Weight] objects.

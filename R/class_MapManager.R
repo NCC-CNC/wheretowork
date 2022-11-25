@@ -9,7 +9,7 @@ MapManager <- R6::R6Class(
   "MapManager",
   public = list(
 
-    #' @field layers `list` of [Theme], [Weight], [Include], [Solution] objects.
+    #' @field layers `list` of [Theme], [Weight], [Include], [Exclude], [Solution] objects.
     layers = list(),
 
     #' @field ids `character` vector of identifiers for the layers.
@@ -22,7 +22,7 @@ MapManager <- R6::R6Class(
 
     #' @description
     #' Create a `MapManager` object.
-    #' @param layers `list` of [Theme], [Weight], [Include], [Solution]
+    #' @param layers `list` of [Theme], [Weight], [Include], [Exclude], [Solution]
     #'  objects.
     #' @param order `numeric` vector.
     #' @return A new `MapManager` object.
@@ -30,7 +30,7 @@ MapManager <- R6::R6Class(
       assertthat::assert_that(
         is.list(layers),
         all_list_elements_inherit(
-          layers, c("Include", "Weight", "Theme", "Solution")
+          layers, c("Include", "Exclude", "Weight", "Theme", "Solution")
         ),
         length(order) == length(layers),
         is.numeric(order),

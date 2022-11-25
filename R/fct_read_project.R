@@ -41,6 +41,7 @@ NULL
 #' \item{themes}{A `list` of [Theme] objects.}
 #' \item{weights}{A `list` of [Weight] objects.}
 #' \item{includes}{A `list` of [Include] objects.}
+#' \item{excludes}{A `list` of [Exclude] objects.}
 #' \item{mode}{A `character` value indicating the mode.}
 #' \item{force_hidden}{A `logical` value indicating all TWI will be hidden.}
 #' }
@@ -76,7 +77,6 @@ read_project <- function(path,
                          boundary_path = NULL,
                          mode = "project",
                          force_hidden = FALSE) {
-  
   # assert arguments are valid
   assertthat::assert_that(
     assertthat::is.string(path),
@@ -331,6 +331,7 @@ read_project <- function(path,
     ### return result
     out
   })
+  
   ## update error details if needed
   fail <- vapply(includes, inherits, logical(1), "try-error")
   if (any(fail)) {
@@ -354,10 +355,81 @@ read_project <- function(path,
     attr(error_msg, "log") <- error_log
     return(error_msg)
   }
+  
+  # import excludes
+  ## import data
+  excludes <- lapply(x$excludes, function(x) {
+    ### create legend
+    if (force_hidden || x$hidden) {
+      exclude_legend <- new_null_legend()
+    } else {
+      exclude_legend <- new_manual_legend(
+        values = c(0, 1),
+        colors = x$variable$legend$colors,
+        labels = x$variable$legend$labels
+      )
+    }
+    ### create object
+    out <- try(
+      new_exclude(
+        name = x$name,
+        variable = new_variable(
+          dataset = d,
+          index = x$variable$index,
+          units = x$variable$units,
+          total = sum(d$get_attribute_data()[[x$variable$index]]),
+          legend = exclude_legend,
+          provenance = new_provenance_from_source(
+            x$variable$provenance %||% "missing"
+          )
+        ),
+        visible = x$visible,
+        hidden =  shiny::isTruthy(c(x$hidden, force_hidden)),
+        status = FALSE, # force excludes to be off on init
+        mandatory = x$mandatory
+      ),
+      silent = FALSE
+    )
+    ### return error if needed
+    if (inherits(out, "try-error")) {
+      return(out)
+    }
+    ### override settings
+    if (adv_mode) {
+      out$mandatory <- FALSE
+    }
+    ### return result
+    out
+  })
+  
+  ## update error details if needed
+  fail <- vapply(excludes, inherits, logical(1), "try-error")
+  if (any(fail)) {
+    error_msg <- c(error_msg, paste0(
+      "Failed to import the following Excludes: ",
+      paste(
+        paste0(
+          "\"", vapply(x$excludes[fail], `[[`, character(1), "name"), "\""
+        ),
+        collapse = ", "
+      )
+    ))
+    error_log <- append(error_log, lapply(which(fail), function(i) {
+      list(name = x$excludes[[i]]$name, details = excludes[[i]])
+    }))
+  }
+  
+  # throw error message if needed
+  if (length(error_msg) > 0) {
+    error_msg <- simpleError(paste(error_msg, collapse = "\n"))
+    attr(error_msg, "log") <- error_log
+    return(error_msg)
+  }
+  
 
   # calculate current amount held for each feature within each theme + weight
   ss <- new_solution_settings(
-    themes = themes, weights = weights, includes = includes,
+    themes = themes, weights = weights, includes = includes, excludes = excludes,
     parameters = list()
   )
   ss$update_current_held()
@@ -371,6 +443,7 @@ read_project <- function(path,
     themes = themes,
     weights = weights,
     includes = includes,
+    excludes = excludes,
     mode = ifelse(identical(mode, "project"), x$mode, mode)
   )
 }

@@ -15,12 +15,13 @@ server_update_solution_settings <- quote({
 
   # update solution settings
   shiny::observeEvent(input$newSolutionPane_settings, {
+    
     ## specify dependencies
     shiny::req(input$newSolutionPane_settings)
 
     ## update solution settings object
     app_data$ss$set_setting(input$newSolutionPane_settings)
-
+    
     ## if updating include status,
     ## then update the current amount for each feature within each theme
     if (identical(input$newSolutionPane_settings$type, "include")) {

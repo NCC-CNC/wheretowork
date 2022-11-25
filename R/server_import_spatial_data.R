@@ -15,6 +15,7 @@ server_import_spatial_data <- quote({
 
   # set behavior for importing data using the spatial option
   shiny::observeEvent(input$importModal_spatial_settings, {
+    
     ## validation
     shiny::req(input$importModal_spatial_settings)
     if (!is.character(app_data$spatial_path)) {
@@ -142,6 +143,16 @@ server_import_spatial_data <- quote({
         )
       }
     )
+    
+    ### generate excludes
+    x$excludes <- lapply(
+      settings_data$name[settings_data$type == "exclude"], function(y) {
+        new_exclude(
+          name = y, variable = new_variable_from_auto(x$dataset, index = y),
+          hidden = shiny::isTruthy(app_data$shp_hidden)
+        )
+      }
+    )    
 
     ### generate weights
     x$weights <- lapply(
@@ -171,7 +182,7 @@ server_import_spatial_data <- quote({
     ### calculate current amount held for each theme and weight
     ss <- new_solution_settings(
       themes = x$themes, weights = x$weights, includes = x$includes,
-      parameters = list()
+      excludes = x$excludes, parameters = list()
     )
     ss$update_current_held()
 

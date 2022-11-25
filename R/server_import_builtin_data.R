@@ -70,7 +70,7 @@ server_import_builtin_data <- quote({
           dir.create(td, showWarnings = FALSE, recursive = FALSE)
           # save log file to temporary directory
           writeLines(error_log(x), file.path(td, "error-log.txt"))
-          # copy confgiuration file to temporary directory
+          # copy configuration file to temporary directory
           file.copy(input$importModal_name, td)
           # zip files
           withr::with_dir(td, utils::zip(con, files = dir(td)))

@@ -43,6 +43,7 @@ server_generate_new_solution <- quote({
 
   # generate new solution when start button pressed
   shiny::observeEvent(input$newSolutionPane_settings_start_button, {
+    
     ## specify dependencies
     shiny::req(input$newSolutionPane_settings_start_button)
     shiny::req(input$newSolutionPane_settings_name)
@@ -62,12 +63,14 @@ server_generate_new_solution <- quote({
     curr_theme_settings <- app_data$ss$get_theme_settings()
     curr_weight_settings <- app_data$ss$get_weight_settings()
     curr_include_settings <- app_data$ss$get_include_settings()
+    curr_exclude_settings <- app_data$ss$get_exclude_settings()
     ### data
     curr_area_data <- app_data$area_data
     curr_boundary_data <- app_data$boundary_data
     curr_theme_data <- app_data$theme_data
     curr_weight_data <- app_data$weight_data
     curr_include_data <- app_data$include_data
+    curr_exclude_data <- app_data$exclude_data
     ### arguments for generating result
     curr_time_limit_1 <- get_golem_config("solver_time_limit_1")
     curr_time_limit_2 <- get_golem_config("solver_time_limit_2")
@@ -87,6 +90,7 @@ server_generate_new_solution <- quote({
       app_data$ss$get_parameter("spatial_parameter")$status
     ) / 100
     curr_parameters <- lapply(app_data$ss$parameters, function(x) x$clone())
+    curr_overlap <- app_data$ss$get_parameter("overlap_parameter")$status
 
     ## if failed to generate solution...
     if (!any(curr_theme_settings$status > 0.5)) {
@@ -136,10 +140,13 @@ server_generate_new_solution <- quote({
               theme_data = curr_theme_data,
               weight_data = curr_weight_data,
               include_data = curr_include_data,
+              exclude_data = curr_exclude_data,
               theme_settings = curr_theme_settings,
               weight_settings = curr_weight_settings,
               include_settings = curr_include_settings,
+              exclude_settings = curr_exclude_settings,
               parameters = curr_parameters,
+              overlap = curr_overlap,
               gap_1 = curr_gap_1,
               gap_2 = curr_gap_2,
               boundary_gap = curr_boundary_gap,
@@ -160,10 +167,13 @@ server_generate_new_solution <- quote({
               theme_data = curr_theme_data,
               weight_data = curr_weight_data,
               include_data = curr_include_data,
+              exclude_data = curr_exclude_data,
               theme_settings = curr_theme_settings,
               weight_settings = curr_weight_settings,
               include_settings = curr_include_settings,
+              exclude_settings = curr_exclude_settings,
               parameters = curr_parameters,
+              overlap = curr_overlap,
               gap_1 = curr_gap_1,
               gap_2 = curr_gap_2,
               boundary_gap = curr_boundary_gap,
@@ -221,14 +231,14 @@ server_generate_new_solution <- quote({
     ## if failed to generate solution...
     if (inherits(r$result, "try-error")) {
       ### identify error message to show
-      msg <- switch(attr(r$result, "condition")$message,
-        "code_1" = paste(
-          "The \"Total area budget\" setting is too low given the selected",
-          "Includes. Try increasing the total area budget or deselecting ",
-          " some of the Includes."
-        ),
-        "Something went wrong, please try again."
-      )
+      msg <- attr(r$result, "condition")$message
+      print(msg)
+      if(startsWith(msg, "WtW:")) {
+        msg <- gsub("WtW: ", "", msg, fixed = TRUE)
+      } else {
+        msg <- "Something went wrong, please try again." 
+      }
+
       ### throw warning in development mode
       if (golem::app_dev()) {
         whereami::whereami()

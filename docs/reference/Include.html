@@ -151,6 +151,8 @@ Include class" />
 
 <dt><code>status</code></dt><dd><p><code>logical</code> value.</p></dd>
 
+<dt><code>overlap</code></dt><dd><p><code>character</code> vector.</p></dd>
+
 </dl><p></div></p>
     <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
 
@@ -166,6 +168,7 @@ Include class" />
 <li><p><a href='#method-get_visible'><code>Include$get_visible()</code></a></p></li>
 <li><p><a href='#method-get_hidden'><code>Include$get_hidden()</code></a></p></li>
 <li><p><a href='#method-get_status'><code>Include$get_status()</code></a></p></li>
+<li><p><a href='#method-get_overlap'><code>Include$get_overlap()</code></a></p></li>
 <li><p><a href='#method-get_data'><code>Include$get_data()</code></a></p></li>
 <li><p><a href='#method-get_setting'><code>Include$get_setting()</code></a></p></li>
 <li><p><a href='#method-set_visible'><code>Include$set_visible()</code></a></p></li>
@@ -181,7 +184,7 @@ Include class" />
 <p><hr>
 <a id="method-new"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>new()</code></h3>
 <p>Create a new Include object.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
-<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Include</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>id</span>, <span class='va'>name</span>, <span class='va'>variable</span>, <span class='va'>mandatory</span>, <span class='va'>visible</span>, <span class='va'>hidden</span>, <span class='va'>status</span><span class='op'>)</span></code></pre><p></div></p>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Include</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>id</span>, <span class='va'>name</span>, <span class='va'>variable</span>, <span class='va'>mandatory</span>, <span class='va'>visible</span>, <span class='va'>hidden</span>, <span class='va'>status</span>, <span class='va'>overlap</span><span class='op'>)</span></code></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
 <p><div class="arguments"></p><dl>
@@ -198,13 +201,15 @@ Include class" />
 <dt><code>hidden</code></dt><dd><p><code>logical</code> value.</p></dd>
 
 <dt><code>status</code></dt><dd><p><code>logical</code> value.</p></dd>
+
+<dt><code>overlap</code></dt><dd><p><code>character</code> vector.</p></dd>
 
 </dl><p></div></p>
 <h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
 <p>A new Include object.</p>
 <h3 class='hasAnchor' id='list-new-'><a class='anchor' aria-hidden='true' href='#list-new-'></a>Method <code>new()</code></h3>
 <p>Create a new Include object.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
-<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Include</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>id</span>, <span class='va'>name</span>, <span class='va'>variable</span>, <span class='va'>mandatory</span>, <span class='va'>visible</span>, <span class='va'>hidden</span>, <span class='va'>status</span><span class='op'>)</span></code></pre><p></div></p>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Include</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>id</span>, <span class='va'>name</span>, <span class='va'>variable</span>, <span class='va'>mandatory</span>, <span class='va'>visible</span>, <span class='va'>hidden</span>, <span class='va'>status</span>, <span class='va'>overlap</span><span class='op'>)</span></code></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
 <p><div class="arguments"></p><dl>
@@ -221,6 +226,8 @@ Include class" />
 <dt><code>hidden</code></dt><dd><p><code>logical</code> value.</p></dd>
 
 <dt><code>status</code></dt><dd><p><code>logical</code> value.</p></dd>
+
+<dt><code>overlap</code></dt><dd><p><code>character</code> vector.</p></dd>
 
 </dl><p></div></p>
 <h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
@@ -340,6 +347,19 @@ Defaults to <code>"]"</code>.</p></dd>
 
 <h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
 <p><code>logical</code> value.</p>
+<p><hr>
+<a id="method-get_overlap"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>get_overlap()</code></h3>
+<p>Get overlap.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Include</span><span class='op'>$</span><span class='fu'>get_overlap</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>character</code> value.</p>
+<h3 class='hasAnchor' id='list-get-overlap-'><a class='anchor' aria-hidden='true' href='#list-get-overlap-'></a>Method <code>get_overlap()</code></h3>
+<p>Get overlap.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Include</span><span class='op'>$</span><span class='fu'>get_overlap</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>character</code> value.</p>
 <p><hr>
 <a id="method-get_data"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>get_data()</code></h3>
 <p>Get the data.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>

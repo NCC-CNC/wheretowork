@@ -39,7 +39,7 @@ class Parameters {
       if (hides[index] && !statuses[index]) {
         /// add text to indicate that parameter was not specified
         l.innerText += "Not specified"
-      } else if (hides[index] && (ids[index] == "solution_layer_parameter")) {
+      } else if (hides[index] && (["solution_layer_parameter", "overlap_parameter"].includes(ids[index]))) {
         l.innerText += "On"
       } else {
         /// add number

@@ -5,6 +5,7 @@ class IncludeSetting {
     id,
     name,
     status,
+    overlap,
     mandatory,
     provenance
   ) {
@@ -36,6 +37,12 @@ class IncludeSetting {
     createProvenance(
       this.el.querySelector(".provenance-container"), provenance
     );
+    // create include overlap warning icon 
+    if (overlap) {
+      createWarning(
+        this.el.querySelector(".warning-container"), name, "excludes", overlap
+      );      
+    }    
 
     // disable switches if include is mandatory
     if (mandatory) {

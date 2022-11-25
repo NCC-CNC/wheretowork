@@ -7,15 +7,17 @@ test_that("raster (standard boundary format, continuous)", {
   sim_weights <- simulate_weights(d, 2, continuous = TRUE)
   sim_themes <- simulate_themes(d, 2, 2, 2, continuous = TRUE)
   sim_includes <- simulate_includes(d, 2)
+  sim_excludes <- simulate_excludes(d, 2)
   # manually insert periods into they don't cause issues
   sim_themes[[1]]$name <- "fake_fake_theme_"
   sim_themes[[2]]$feature[[1]]$name <- "fake_fake_feature_"
   sim_weights[[1]]$name <- "fake_fake_weight_"
   sim_includes[[2]]$name <- "fake_fake_include_"
+  sim_excludes[[2]]$name <- "fake_fake_exclude_"
   # compile layers
-  sim_layers <- append(sim_themes, append(sim_weights, sim_includes))
+  sim_layers <- append(append(sim_themes, append(sim_weights, sim_includes)), sim_excludes)
   # manually calculate current amount held
-  ss <- new_solution_settings(sim_themes, sim_weights, sim_includes, list())
+  ss <- new_solution_settings(sim_themes, sim_weights, sim_includes, sim_excludes, list())
   ss$update_current_held()
   # manually set weight factors
   sim_weights <- lapply(sim_weights, function(x) {
@@ -61,10 +63,15 @@ test_that("raster (standard boundary format, continuous)", {
   for (i in seq_along(x$includes)) {
     x$includes[[i]]$id <- sim_includes[[i]]$id
   }
+  ## excludes
+  for (i in seq_along(x$excludes)) {
+    x$excludes[[i]]$id <- sim_excludes[[i]]$id
+  }  
   # run tests
   expect_equal(x$themes, sim_themes)
   expect_equal(x$weights, sim_weights)
   expect_equal(x$includes, sim_includes)
+  expect_equal(x$excludes, sim_excludes)
   expect_equal(x$name, "test")
   expect_equal(x$mode, "beginner")
 })
@@ -76,15 +83,17 @@ test_that("raster (standard boundary format, categorical, manual legend)", {
   sim_weights <- simulate_weights(d, 2, continuous = FALSE)
   sim_themes <- simulate_themes(d, 2, 2, 2, continuous = FALSE)
   sim_includes <- simulate_includes(d, 2)
+  sim_excludes <- simulate_excludes(d, 2)
   # manually insert periods into they don't cause issues
   sim_themes[[1]]$name <- "fake_fake_theme_"
   sim_themes[[2]]$feature[[1]]$name <- "fake_fake_feature_"
   sim_weights[[1]]$name <- "fake_fake_weight_"
   sim_includes[[2]]$name <- "fake_fake_include_"
+  sim_excludes[[2]]$name <- "fake_fake_exclude_"
   # compile layers
-  sim_layers <- append(sim_themes, append(sim_weights, sim_includes))
+  sim_layers <- append(append(sim_themes, append(sim_weights, sim_includes)), sim_excludes)
   # manually calculate current amount held
-  ss <- new_solution_settings(sim_themes, sim_weights, sim_includes, list())
+  ss <- new_solution_settings(sim_themes, sim_weights, sim_includes, sim_excludes, list())
   ss$update_current_held()
   # manually set weight factors
   sim_weights <- lapply(sim_weights, function(x) {
@@ -130,10 +139,15 @@ test_that("raster (standard boundary format, categorical, manual legend)", {
   for (i in seq_along(x$includes)) {
     x$includes[[i]]$id <- sim_includes[[i]]$id
   }
+  ## excludes
+  for (i in seq_along(x$excludes)) {
+    x$excludes[[i]]$id <- sim_excludes[[i]]$id
+  }  
   # run tests
   expect_equal(x$themes, sim_themes)
   expect_equal(x$weights, sim_weights)
   expect_equal(x$includes, sim_includes)
+  expect_equal(x$excludes, sim_excludes)  
   expect_equal(x$name, "test")
   expect_equal(x$mode, "beginner")
 })
@@ -145,15 +159,17 @@ test_that("raster (standard boundary format, continous & categorical)", {
   sim_weights <- simulate_weights(d, 2, continuous = FALSE)
   sim_themes <- simulate_themes(d, 2, 2, 2, continuous = NA)
   sim_includes <- simulate_includes(d, 2)
+  sim_excludes <- simulate_excludes(d, 2)  
   # manually insert periods into they don't cause issues
   sim_themes[[1]]$name <- "fake_fake_theme_"
   sim_themes[[2]]$feature[[1]]$name <- "fake_fake_feature_"
   sim_weights[[1]]$name <- "fake_fake_weight_"
   sim_includes[[2]]$name <- "fake_fake_include_"
+  sim_excludes[[2]]$name <- "fake_fake_exclude_"  
   # compile layers
-  sim_layers <- append(sim_themes, append(sim_weights, sim_includes))
+  sim_layers <- append(append(sim_themes, append(sim_weights, sim_includes)), sim_excludes)
   # manually calculate current amount held
-  ss <- new_solution_settings(sim_themes, sim_weights, sim_includes, list())
+  ss <- new_solution_settings(sim_themes, sim_weights, sim_includes, sim_excludes, list())
   ss$update_current_held()
   # manually set weight factors
   sim_weights <- lapply(sim_weights, function(x) {
@@ -199,10 +215,15 @@ test_that("raster (standard boundary format, continous & categorical)", {
   for (i in seq_along(x$includes)) {
     x$includes[[i]]$id <- sim_includes[[i]]$id
   }
+  ## excludes
+  for (i in seq_along(x$excludes)) {
+    x$excludes[[i]]$id <- sim_excludes[[i]]$id
+  }  
   # run tests
   expect_equal(x$themes, sim_themes)
   expect_equal(x$weights, sim_weights)
   expect_equal(x$includes, sim_includes)
+  expect_equal(x$excludes, sim_excludes)  
   expect_equal(x$name, "test")
   expect_equal(x$mode, "beginner")
 })
@@ -214,14 +235,15 @@ test_that("sf (standard boundary format)", {
   sim_weights <- simulate_weights(d, 2)
   sim_themes <- simulate_themes(d, 2, 2, 2)
   sim_includes <- simulate_includes(d, 2)
-  sim_layers <- append(sim_themes, append(sim_weights, sim_includes))
+  sim_excludes <- simulate_excludes(d, 2)
+  sim_layers <- append(append(sim_themes, append(sim_weights, sim_includes)), sim_excludes)
   # generate file paths
   f1 <- tempfile(fileext = ".yaml")
   f2 <- tempfile(fileext = ".shp")
   f3 <- tempfile(fileext = ".csv.gz")
   f4 <- tempfile(fileext = ".dat.gz")
   # manually calculate current amount held
-  ss <- new_solution_settings(sim_themes, sim_weights, sim_includes, list())
+  ss <- new_solution_settings(sim_themes, sim_weights, sim_includes, sim_excludes, list())
   ss$update_current_held()
   # manually set weight factors
   sim_weights <- lapply(sim_weights, function(x) {
@@ -262,10 +284,15 @@ test_that("sf (standard boundary format)", {
   for (i in seq_along(x$includes)) {
     x$includes[[i]]$id <- sim_includes[[i]]$id
   }
+  ## excludes
+  for (i in seq_along(x$excludes)) {
+    x$excludes[[i]]$id <- sim_excludes[[i]]$id
+  }  
   # run tests
   expect_equal(x$themes, sim_themes)
   expect_equal(x$weights, sim_weights)
   expect_equal(x$includes, sim_includes)
+  expect_equal(x$excludes, sim_excludes)  
   expect_equal(x$name, "test")
   expect_equal(x$mode, "beginner")
 })
@@ -277,9 +304,10 @@ test_that("raster (Marxan boundary format)", {
   sim_weights <- simulate_weights(d, 2)
   sim_themes <- simulate_themes(d, 2, 2, 2)
   sim_includes <- simulate_includes(d, 2)
-  sim_layers <- append(sim_themes, append(sim_weights, sim_includes))
+  sim_excludes <- simulate_excludes(d, 2)  
+  sim_layers <- append(append(sim_themes, append(sim_weights, sim_includes)), sim_excludes)
   # manually calculate current amount held
-  ss <- new_solution_settings(sim_themes, sim_weights, sim_includes, list())
+  ss <- new_solution_settings(sim_themes, sim_weights, sim_includes, sim_excludes, list())
   ss$update_current_held()
   # manually set weight factors
   sim_weights <- lapply(sim_weights, function(x) {
@@ -325,10 +353,15 @@ test_that("raster (Marxan boundary format)", {
   for (i in seq_along(x$includes)) {
     x$includes[[i]]$id <- sim_includes[[i]]$id
   }
+  ## excludes
+  for (i in seq_along(x$excludes)) {
+    x$excludes[[i]]$id <- sim_excludes[[i]]$id
+  }  
   # run tests
   expect_equal(x$themes, sim_themes)
   expect_equal(x$weights, sim_weights)
   expect_equal(x$includes, sim_includes)
+  expect_equal(x$excludes, sim_excludes)
   expect_equal(x$name, "test")
   expect_equal(x$mode, "beginner")
 })
@@ -340,14 +373,15 @@ test_that("sf (Marxan boundary format)", {
   sim_weights <- simulate_weights(d, 2)
   sim_themes <- simulate_themes(d, 2, 2, 2)
   sim_includes <- simulate_includes(d, 2)
-  sim_layers <- append(sim_themes, append(sim_weights, sim_includes))
+  sim_excludes <- simulate_excludes(d, 2)
+  sim_layers <- append(append(sim_themes, append(sim_weights, sim_includes)), sim_excludes)
   # generate file paths
   f1 <- tempfile(fileext = ".yaml")
   f2 <- tempfile(fileext = ".shp")
   f3 <- tempfile(fileext = ".csv.gz")
   f4 <- tempfile(fileext = ".csv.gz")
   # manually calculate current amount held
-  ss <- new_solution_settings(sim_themes, sim_weights, sim_includes, list())
+  ss <- new_solution_settings(sim_themes, sim_weights, sim_includes, sim_excludes, list())
   ss$update_current_held()
   # manually set weight factors
   sim_weights <- lapply(sim_weights, function(x) {
@@ -388,10 +422,15 @@ test_that("sf (Marxan boundary format)", {
   for (i in seq_along(x$includes)) {
     x$includes[[i]]$id <- sim_includes[[i]]$id
   }
+  ## excludes
+  for (i in seq_along(x$excludes)) {
+    x$excludes[[i]]$id <- sim_excludes[[i]]$id
+  }  
   # run tests
   expect_equal(x$themes, sim_themes)
   expect_equal(x$weights, sim_weights)
   expect_equal(x$includes, sim_includes)
+  expect_equal(x$excludes, sim_excludes)
   expect_equal(x$name, "test")
   expect_equal(x$mode, "beginner")
 })
@@ -403,9 +442,10 @@ test_that("default spatial, boundary, attribute paths", {
   sim_weights <- simulate_weights(d, 2)
   sim_themes <- simulate_themes(d, 2, 2, 2)
   sim_includes <- simulate_includes(d, 2)
-  sim_layers <- append(sim_themes, append(sim_weights, sim_includes))
+  sim_excludes <- simulate_excludes(d, 2)  
+  sim_layers <- append(append(sim_themes, append(sim_weights, sim_includes)), sim_excludes)
   # manually calculate current amount held
-  ss <- new_solution_settings(sim_themes, sim_weights, sim_includes, list())
+  ss <- new_solution_settings(sim_themes, sim_weights, sim_includes, sim_excludes, list())
   ss$update_current_held()
   # manually set weight factors
   sim_weights <- lapply(sim_weights, function(x) {
@@ -451,10 +491,15 @@ test_that("default spatial, boundary, attribute paths", {
   for (i in seq_along(x$includes)) {
     x$includes[[i]]$id <- sim_includes[[i]]$id
   }
+  ## excludes
+  for (i in seq_along(x$excludes)) {
+    x$excludes[[i]]$id <- sim_excludes[[i]]$id
+  }  
   # run tests
   expect_equal(x$themes, sim_themes)
   expect_equal(x$weights, sim_weights)
   expect_equal(x$includes, sim_includes)
+  expect_equal(x$excludes, sim_excludes)  
   expect_equal(x$name, "test")
   expect_equal(x$mode, "beginner")
 })
@@ -466,9 +511,10 @@ test_that("contact details", {
   sim_weights <- simulate_weights(d, 2)
   sim_themes <- simulate_themes(d, 2, 2, 2)
   sim_includes <- simulate_includes(d, 2)
-  sim_layers <- append(sim_themes, append(sim_weights, sim_includes))
+  sim_excludes <- simulate_excludes(d, 2)  
+  sim_layers <- append(append(sim_themes, append(sim_weights, sim_includes)), sim_excludes)
   # manually calculate current amount held
-  ss <- new_solution_settings(sim_themes, sim_weights, sim_includes, list())
+  ss <- new_solution_settings(sim_themes, sim_weights, sim_includes, sim_excludes, list())
   ss$update_current_held()
   # manually set weight factors
   sim_weights <- lapply(sim_weights, function(x) {
@@ -504,9 +550,10 @@ test_that("provenance", {
   sim_weights <- simulate_weights(d, 2)
   sim_themes <- simulate_themes(d, 2, 2, 2)
   sim_includes <- simulate_includes(d, 2)
-  sim_layers <- append(sim_themes, append(sim_weights, sim_includes))
+  sim_excludes <- simulate_excludes(d, 2)  
+  sim_layers <- append(append(sim_themes, append(sim_weights, sim_includes)), sim_excludes)
   # manually calculate current amount held
-  ss <- new_solution_settings(sim_themes, sim_weights, sim_includes, list())
+  ss <- new_solution_settings(sim_themes, sim_weights, sim_includes, sim_excludes, list())
   ss$update_current_held()
   # manually set weight factors
   sim_weights <- lapply(sim_weights, function(x) {
@@ -535,16 +582,17 @@ test_that("provenance", {
   expect_equal(x$author_email, "greg.mcgregerson@supergreg.greg")
 })
 
-test_that("force hide theme, weight and include", {
+test_that("force hide theme, weight, include and exclude", {
   skip_if_not_installed("RandomFields")
   # simulate data
   d <- new_dataset_from_auto(import_simple_raster_data())
   sim_weights <- simulate_weights(d, 2)
   sim_themes <- simulate_themes(d, 2, 2, 2)
   sim_includes <- simulate_includes(d, 2)
-  sim_layers <- append(sim_themes, append(sim_weights, sim_includes))
+  sim_excludes <- simulate_excludes(d, 2)
+  sim_layers <- append(append(sim_themes, append(sim_weights, sim_includes)), sim_excludes)
   # manually calculate current amount held
-  ss <- new_solution_settings(sim_themes, sim_weights, sim_includes, list())
+  ss <- new_solution_settings(sim_themes, sim_weights, sim_includes, sim_excludes, list())
   ss$update_current_held()
   # manually set weight factors
   sim_weights <- lapply(sim_weights, function(x) {
@@ -584,5 +632,10 @@ test_that("force hide theme, weight and include", {
   for (include in x$includes) {
     expect_is(include$variable$legend, "NullLegend")
     expect_identical(include$hidden, TRUE)
-  }   
+  }
+  ## includes
+  for (exclude in x$excludes) {
+    expect_is(exclude$variable$legend, "NullLegend")
+    expect_identical(exclude$hidden, TRUE)
+  }  
 })

@@ -31,11 +31,15 @@ Definition for the Result class.
 
 \item{\code{include_coverage}}{\code{numeric} value.}
 
+\item{\code{exclude_coverage}}{\code{numeric} value.}
+
 \item{\code{theme_settings}}{\code{data.frame} object.}
 
 \item{\code{weight_settings}}{\code{data.frame} object.}
 
 \item{\code{include_settings}}{\code{data.frame} object.}
+
+\item{\code{exclude_settings}}{\code{data.frame} object.}
 
 \item{\code{parameters}}{\code{list} of \link{Parameter} objects.}
 }
@@ -64,9 +68,11 @@ Create a new Result object.
   theme_coverage,
   weight_coverage,
   include_coverage,
+  exclude_coverage,
   theme_settings,
   weight_settings,
   include_settings,
+  exclude_settings,
   parameters
 )}\if{html}{\out{</div>}}
 }
@@ -88,11 +94,15 @@ Create a new Result object.
 
 \item{\code{include_coverage}}{\code{numeric} vector.}
 
+\item{\code{exclude_coverage}}{\code{numeric} vector.}
+
 \item{\code{theme_settings}}{\code{logical} value.}
 
-\item{\code{weight_settings}}{\code{logical} value.}
+\item{\code{weight_settings}}{\code{tbl_df} data frame.}
 
-\item{\code{include_settings}}{\code{logical} value.}
+\item{\code{include_settings}}{\code{tbl_df} data frame.}
+
+\item{\code{exclude_settings}}{\code{tbl_df} data frame.}
 
 \item{\code{parameters}}{\code{list} of \link{Parameter} objects.}
 }

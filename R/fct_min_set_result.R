@@ -18,14 +18,20 @@ NULL
 #' @param weight_data [Matrix::sparseMatrix()] containing the weight data.
 #'
 #' @param include_data [Matrix::sparseMatrix()] containing the include data.
+#' 
+#' @param exclude_data [Matrix::sparseMatrix()] containing the exclude data.
 #'
 #' @param theme_settings `data.frame` containing the theme settings.
 #'
 #' @param weight_settings `data.frame` containing the weight settings.
 #'
 #' @param include_settings  `data.frame` containing the include settings.
+#' 
+#' @param exclude_settings  `data.frame` containing the exclude settings.
 #'
 #' @param parameters  `list` of [Parameter] objects.
+#' 
+#' @param overlap  `logical` if `TRUE`, excludes takes precedence over includes.
 #'
 #' @param gap_1 `numeric` relative optimality gap value for initial
 #'   optimization.
@@ -77,6 +83,7 @@ NULL
 #' v3 <- new_variable_from_auto(dataset = d, index = 3)
 #' v4 <- new_variable_from_auto(dataset = d, index = 4)
 #' v5 <- new_variable_from_auto(dataset = d, index = 5)
+#' v6 <- new_variable_from_auto(dataset = d, index = 6)
 #'
 #' # create a weight using a variable
 #' w <- new_weight(
@@ -107,6 +114,12 @@ NULL
 #'   name = "Protected areas", variable = v5,
 #'   status = FALSE, id = "I1"
 #' )
+#' 
+#' # create an excluded using a variable
+#' e <- new_exclude(
+#'   name = "Expensive areas", variable = v6,
+#'   status = FALSE, id = "E1"
+#' )
 #'
 #' # create parameters
 #' p1 <- new_parameter(name = "Spatial clustering")
@@ -115,7 +128,7 @@ NULL
 #' # create solution settings using the themes and weight
 #' ss <- new_solution_settings(
 #'   themes = list(t1, t2), weights = list(w), includes = list(i),
-#'   parameters = list(p1, p2)
+#'   excludes = list(e), parameters = list(p1, p2)
 #' )
 #'
 #' # create result
@@ -126,10 +139,13 @@ NULL
 #'  theme_data = ss$get_theme_data(),
 #'  weight_data = ss$get_weight_data(),
 #'  include_data = ss$get_include_data(),
+#'  exclude_data = ss$get_exclude_data(),
 #'  theme_settings = ss$get_theme_settings(),
 #'  weight_settings = ss$get_weight_settings(),
 #'  include_settings = ss$get_include_settings(),
+#'  exclude_settings = ss$get_exclude_settings(),
 #'  parameters = ss$parameters,
+#'  overlap = TRUE,
 #'  gap_1 = p2$value * p2$status,
 #'  boundary_gap = p1$value * p1$status
 #' )
@@ -142,10 +158,13 @@ min_set_result <- function(area_data,
                            theme_data,
                            weight_data,
                            include_data,
+                           exclude_data,
                            theme_settings,
                            weight_settings,
                            include_settings,
+                           exclude_settings,
                            parameters,
+                           overlap = FALSE,
                            gap_1 = 0,
                            gap_2 = 0,
                            boundary_gap = 0.1,
@@ -173,6 +192,9 @@ min_set_result <- function(area_data,
     ## include_data
     inherits(include_data, "dgCMatrix"),
     ncol(include_data) == length(area_data),
+    ## exclude_data
+    inherits(exclude_data, "dgCMatrix"),
+    ncol(exclude_data) == length(area_data),    
     ## theme_settings
     inherits(theme_settings, "data.frame"),
     nrow(theme_settings) == nrow(theme_data),
@@ -183,9 +205,15 @@ min_set_result <- function(area_data,
     ## include_settings
     inherits(include_settings, "data.frame"),
     nrow(include_settings) == nrow(include_data),
+    ## exclude_settings
+    inherits(exclude_settings, "data.frame"),
+    nrow(exclude_settings) == nrow(exclude_data),    
     ## parameters
     is.list(parameters),
     all_list_elements_inherit(parameters, "Parameter"),
+    ## overlap
+    assertthat::is.flag(overlap),
+    assertthat::noNA(overlap),    
     ## gap_1
     assertthat::is.number(gap_1),
     assertthat::noNA(gap_1),
@@ -220,6 +248,11 @@ min_set_result <- function(area_data,
       identical(include_settings$id, rownames(include_data))
     )
   }
+  if (nrow(exclude_settings) > 0) {
+    assertthat::assert_that(
+      identical(exclude_settings$id, rownames(exclude_data))
+    )
+  }  
 
   # calculate targets
   ## extract values
@@ -249,7 +282,41 @@ min_set_result <- function(area_data,
     ## if no includes present, then lock nothing in
     locked_in <- rep(FALSE, ncol(include_data))
   }
-
+  
+  # calculate locked out values
+  if (nrow(exclude_data) > 0) {
+    ## if exclude present, then use data and settings
+    locked_out <- matrix(
+      exclude_settings$status,
+      byrow = FALSE,
+      nrow = nrow(exclude_data), ncol = ncol(exclude_data)
+    )
+    locked_out <- as.logical(colSums(locked_out * exclude_data) > 0)
+  } else {
+    ## if no excludes present, then lock nothing out
+    locked_out <- rep(FALSE, ncol(exclude_data))
+  } 
+  
+  ### locked-out takes precedence if overlap is TRUE
+  idx <- which(locked_in & locked_out)
+  if (!overlap) {
+    locked_out[idx] <- FALSE
+  } else {
+    locked_in[idx] <- FALSE
+  }
+  
+  # verify that problem if feasible with locked out planning units
+  if (!all(Matrix::rowSums(theme_data[,!locked_out]) >= targets$target)) {
+    # get features that make solution impossible to meet
+    fidx <- which(Matrix::rowSums(theme_data[,!locked_out]) < targets$target)
+    theme_names <- theme_settings[fidx, ]$name
+    theme_names <- paste(paste0('"', theme_names, '"'), collapse = ", ")
+    
+    stop("WtW: Exclude error: the following features can not have their goal", 
+         " met: ", theme_names, ". Try reducing the goals on these features, ", 
+         " deselecting them or turn off exclude layers from the scenario.")
+  } 
+  
   # calculate cost values
   if (nrow(weight_data) > 0) {
     ## if weights present, then use data and settings
@@ -303,7 +370,9 @@ min_set_result <- function(area_data,
     list(
       themes = theme_settings,
       weights = weight_settings,
-      includes = include_settings
+      includes = include_settings,
+      excludes = exclude_settings,
+      overlap = overlap
     )
   )
 
@@ -333,7 +402,8 @@ min_set_result <- function(area_data,
     initial_pu_idx <- which(
       Matrix::colSums(theme_data) > 0 |
       Matrix::colSums(weight_data) > 0 |
-      Matrix::colSums(include_data) > 0
+      Matrix::colSums(include_data) > 0 |
+      Matrix::colSums(exclude_data) > 0  
     )
 
     ## generate initial prioritization problem with subset of planning units
@@ -357,6 +427,12 @@ min_set_result <- function(area_data,
         initial_problem %>%
         prioritizr::add_locked_in_constraints(locked_in[initial_pu_idx])
     }
+    ### add locked out constraints if needed
+    if (any(locked_out[initial_pu_idx])) {
+      initial_problem <-
+        initial_problem %>%
+        prioritizr::add_locked_out_constraints(locked_out[initial_pu_idx])
+    }    
     ### solve problem to generate solution if needed
     initial_solution <- rep(0, length(cost))
     initial_solution[initial_pu_idx] <- c(
@@ -384,10 +460,11 @@ min_set_result <- function(area_data,
     rwr <- prioritizr::eval_rare_richness_importance(
       initial_problem, initial_solution
     )
-    if (any(rwr >= 1e-5)) {
+    if (any(rwr >= 1e-5)) { 
       rwr_threshold <- stats::median(rwr[rwr > 1e-5])
       locked_in <- locked_in | ((rwr >= rwr_threshold) & (rwr > 1e-5))
     }
+    locked_in <- locked_in & !locked_out
     ### prepare boundary data as connectivity data based on "importance"
     #### calculate importance
     rwr_raw <- prioritizr_internal_eval_rare_richness_importance(
@@ -436,6 +513,12 @@ min_set_result <- function(area_data,
         main_problem %>%
         prioritizr::add_locked_in_constraints(locked_in)
     }
+    ### add locked out constraints if needed
+    if (any(locked_out)) {
+      main_problem <-
+        main_problem %>%
+        prioritizr::add_locked_out_constraints(locked_out)
+    }    
     ### generate solution
     main_solution <-
       c(prioritizr::solve(main_problem, run_checks = FALSE))
@@ -467,9 +550,11 @@ min_set_result <- function(area_data,
     theme_coverage = calculate_coverage(main_solution, theme_data),
     weight_coverage = calculate_coverage(main_solution, weight_data),
     include_coverage = calculate_coverage(main_solution, include_data),
+    exclude_coverage = calculate_coverage(main_solution, exclude_data),
     theme_settings = theme_settings,
     weight_settings = weight_settings,
     include_settings = include_settings,
+    exclude_settings = exclude_settings,
     parameters = parameters
   )
 }

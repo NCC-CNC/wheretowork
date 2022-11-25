@@ -45,6 +45,11 @@ mm_header_component_scaffold <- function(id = uuid::UUIDgenerate(),
     remove_tooltip_text <- "Delete Include"
     visible_tooltip_text <- "Show/hide Include on map"
     icon_tooltip_text <- "This is an Include"
+  } else if (identical(type, "exclude")) {
+    icon <- shiny::icon("ban")
+    remove_tooltip_text <- "Delete Exclude"
+    visible_tooltip_text <- "Show/hide Exclude on map"
+    icon_tooltip_text <- "This is an Exclude"    
   } else if (identical(type, "solution")) {
     icon <- shiny::icon("rocket")
     remove_tooltip_text <- "Delete solution"

@@ -4,7 +4,7 @@ test_that("initialization", {
   skip_if_not_installed("RandomFields")
   # create object
   ## create dataset
-  rd <- simulate_binary_spatial_data(import_simple_raster_data(), 5)
+  rd <- simulate_binary_spatial_data(import_simple_raster_data(), 6)
   d <- new_dataset_from_auto(rd)
   ## create variables
   v1 <- new_variable(
@@ -27,16 +27,25 @@ test_that("initialization", {
     dataset = d, index = 5, total = 90, units = "ha",
     legend = simulate_include_legend()
   )
+  v6 <- new_variable(
+    dataset = d, index = 6, total = 90, units = "ha",
+    legend = simulate_exclude_legend()
+  )  
   ## create a weight using dataset
   w <- new_weight(
     name = "Human Footprint Index", variable = v1,
     factor = -90, status = TRUE, id = "W1"
   )
-  ## create a weight using dataset
+  ## create an include using dataset
   incl <- new_include(
-    name = "Protected areas", variable = v1,
+    name = "Protected areas", variable = v5,
     status = FALSE, id = "I1"
   )
+  ## create an exclude using dataset
+  excl <- new_exclude(
+    name = "Urban areas", variable = v6,
+    status = FALSE, id = "E1"
+  )  
   ## create features using dataset
   f1 <- new_feature(
     name = "Possum", variable = v2,
@@ -59,7 +68,7 @@ test_that("initialization", {
   ## create solution setting
   ss <- new_solution_settings(
     themes = list(t1, t2), weights = list(w), includes = list(incl),
-    parameters = list(p1, p2)
+    excludes = list(excl), parameters = list(p1, p2)
   )
   ## create values
   v <- sample(c(0, 1), 10, replace = TRUE)
@@ -72,9 +81,11 @@ test_that("initialization", {
     theme_coverage = c("F1" = 0.1, "F2" = 0.2, "F3" = 0.3),
     weight_coverage = c("W1" = 0.4),
     include_coverage = c("I1" = 0.5),
+    exclude_coverage = c("E1" = 0.2),
     theme_settings = ss$get_theme_settings(),
     weight_settings = ss$get_weight_settings(),
     include_settings = ss$get_include_settings(),
+    exclude_settings = ss$get_exclude_settings(),
     parameters = list(p1, p2)
   )
   # run tests
@@ -85,9 +96,11 @@ test_that("initialization", {
   expect_identical(r$theme_coverage, c("F1" = 0.1, "F2" = 0.2, "F3" = 0.3))
   expect_identical(r$weight_coverage, c("W1" = 0.4))
   expect_identical(r$include_coverage, c("I1" = 0.5))
+  expect_identical(r$exclude_coverage, c("E1" = 0.2))
   expect_identical(r$theme_settings, ss$get_theme_settings())
   expect_identical(r$weight_settings, ss$get_weight_settings())
   expect_identical(r$include_settings, ss$get_include_settings())
+  expect_identical(r$exclude_settings, ss$get_exclude_settings())
   expect_equal(r$parameters, list(p1, p2))
 })
 
@@ -95,7 +108,7 @@ test_that("NA_real_ perimeter", {
   skip_if_not_installed("RandomFields")
   # create object
   ## create dataset
-  rd <- simulate_binary_spatial_data(import_simple_raster_data(), 5)
+  rd <- simulate_binary_spatial_data(import_simple_raster_data(), 6)
   d <- new_dataset_from_auto(rd)
   ## create variables
   v1 <- new_variable(
@@ -118,16 +131,25 @@ test_that("NA_real_ perimeter", {
     dataset = d, index = 5, total = 90, units = "ha",
     legend = simulate_include_legend()
   )
+  v6 <- new_variable(
+    dataset = d, index = 6, total = 90, units = "ha",
+    legend = simulate_exclude_legend()
+  )  
   ## create a weight using dataset
   w <- new_weight(
     name = "Human Footprint Index", variable = v1,
     factor = -90, status = TRUE, id = "W1"
   )
-  ## create a weight using dataset
+  ## create an include using dataset
   incl <- new_include(
-    name = "Protected areas", variable = v1,
+    name = "Protected areas", variable = v5,
     status = FALSE, id = "I1"
   )
+  ## create an exclude using dataset
+  excl <- new_exclude(
+    name = "Urban areas", variable = v6,
+    status = FALSE, id = "E1"
+  )  
   ## create features using dataset
   f1 <- new_feature(
     name = "Possum", variable = v2,
@@ -150,7 +172,7 @@ test_that("NA_real_ perimeter", {
   ## create solution setting
   ss <- new_solution_settings(
     themes = list(t1, t2), weights = list(w), includes = list(incl),
-    parameters = list(p1, p2)
+    excludes = list(excl), parameters = list(p1, p2)
   )
   ## create values
   v <- sample(c(0, 1), 10, replace = TRUE)
@@ -163,9 +185,11 @@ test_that("NA_real_ perimeter", {
     theme_coverage = c("F1" = 0.1, "F2" = 0.2, "F3" = 0.3),
     weight_coverage = c("W1" = 0.4),
     include_coverage = c("I1" = 0.5),
+    exclude_coverage = c("E1" = 0.2),
     theme_settings = ss$get_theme_settings(),
     weight_settings = ss$get_weight_settings(),
     include_settings = ss$get_include_settings(),
+    exclude_settings = ss$get_exclude_settings(),
     parameters = list(p1, p2)
   )
   # run tests
@@ -176,8 +200,10 @@ test_that("NA_real_ perimeter", {
   expect_identical(r$theme_coverage, c("F1" = 0.1, "F2" = 0.2, "F3" = 0.3))
   expect_identical(r$weight_coverage, c("W1" = 0.4))
   expect_identical(r$include_coverage, c("I1" = 0.5))
+  expect_identical(r$exclude_coverage, c("E1" = 0.2))
   expect_identical(r$theme_settings, ss$get_theme_settings())
   expect_identical(r$weight_settings, ss$get_weight_settings())
   expect_identical(r$include_settings, ss$get_include_settings())
+  expect_identical(r$exclude_settings, ss$get_exclude_settings())
   expect_equal(r$parameters, list(p1, p2))
 })

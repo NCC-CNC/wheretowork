@@ -290,7 +290,7 @@ Get weight results.
 \if{html}{\out{<a id="method-get_include_results_data"></a>}}
 \if{latex}{\out{\hypertarget{method-get_include_results_data}{}}}
 \subsection{Method \code{get_include_results_data()}}{
-Get weight results.
+Get include results.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Solution$get_include_results_data()}\if{html}{\out{</div>}}
 }

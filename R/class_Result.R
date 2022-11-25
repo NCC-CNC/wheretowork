@@ -31,6 +31,9 @@ Result <- R6::R6Class(
 
     #' @field include_coverage `numeric` value.
     include_coverage = NULL,
+    
+    #' @field exclude_coverage `numeric` value.
+    exclude_coverage = NULL,    
 
     #' @field theme_settings `data.frame` object.
     theme_settings = NULL,
@@ -40,6 +43,9 @@ Result <- R6::R6Class(
 
     #' @field include_settings `data.frame` object.
     include_settings = NULL,
+    
+    #' @field exclude_settings `data.frame` object.
+    exclude_settings = NULL,    
 
     #' @field parameters `list` of [Parameter] objects.
     parameters = NULL,
@@ -53,17 +59,19 @@ Result <- R6::R6Class(
     #' @param theme_coverage `numeric` vector.
     #' @param weight_coverage `numeric` vector.
     #' @param include_coverage `numeric` vector.
+    #' @param exclude_coverage `numeric` vector.
     #' @param theme_settings `logical` value.
-    #' @param weight_settings `logical` value.
-    #' @param include_settings `logical` value.
+    #' @param weight_settings `tbl_df` data frame.
+    #' @param include_settings `tbl_df` data frame.
+    #' @param exclude_settings `tbl_df` data frame.
     #' @param parameters `list` of [Parameter] objects.
     #' @return A new Result object.
     ## constructor
     initialize = function(id, values,
                           area, perimeter,
                           theme_coverage, weight_coverage, include_coverage,
-                          theme_settings, weight_settings, include_settings,
-                          parameters) {
+                          exclude_coverage, theme_settings, weight_settings, 
+                          include_settings, exclude_settings, parameters) {
       ### assert that arguments are valid
       assertthat::assert_that(
         ### id
@@ -86,6 +94,9 @@ Result <- R6::R6Class(
         ### include_coverage
         is.numeric(include_coverage),
         assertthat::noNA(include_coverage),
+        ### exclude_coverage
+        is.numeric(exclude_coverage),
+        assertthat::noNA(exclude_coverage),        
         #### theme_settings
         inherits(theme_settings, "data.frame"),
         nrow(theme_settings) == length(theme_coverage),
@@ -96,6 +107,9 @@ Result <- R6::R6Class(
         #### include_settings
         inherits(include_settings, "data.frame"),
         nrow(include_settings) == length(include_coverage),
+        #### exclude_settings
+        inherits(exclude_settings, "data.frame"),
+        nrow(exclude_settings) == length(exclude_coverage),        
         #### parameters
         is.list(parameters),
         all_list_elements_inherit(parameters, "Parameter")
@@ -116,6 +130,11 @@ Result <- R6::R6Class(
           identical(include_settings$id, names(include_coverage))
         )
       }
+      if (nrow(exclude_settings) > 0) {
+        assertthat::assert_that(
+          identical(exclude_settings$id, names(exclude_coverage))
+        )
+      }      
       ### set fields
       self$id <- id
       self$area <- area
@@ -124,9 +143,11 @@ Result <- R6::R6Class(
       self$theme_coverage <- theme_coverage
       self$weight_coverage <- weight_coverage
       self$include_coverage <- include_coverage
+      self$exclude_coverage <- exclude_coverage
       self$theme_settings <- theme_settings
       self$weight_settings <- weight_settings
       self$include_settings <- include_settings
+      self$exclude_settings <- exclude_settings
       self$parameters <- parameters
     },
 
@@ -172,12 +193,17 @@ Result <- R6::R6Class(
 #'
 #' @param include_coverage  `numeric`  vector containing the proportion of each
 #'  include that is covered by the result.
+#'  
+#' @param exclude_coverage  `numeric`  vector containing the proportion of each
+#'  exclude that is covered by the result.
 #'
 #' @param theme_settings `data.frame` containing the theme settings.
 #'
 #' @param weight_settings `data.frame` containing the weight settings.
 #'
 #' @param include_settings  `data.frame` containing the include settings.
+#' 
+#' @param exclude_settings  `data.frame` containing the exclude settings.
 #'
 ##' @param parameters  `list` of [Parameter] objects.
 #"
@@ -211,6 +237,7 @@ Result <- R6::R6Class(
 #' v3 <- new_variable_from_auto(dataset = d, index = 3)
 #' v4 <- new_variable_from_auto(dataset = d, index = 4)
 #' v5 <- new_variable_from_auto(dataset = d, index = 5)
+#' v6 <- new_variable_from_auto(dataset = d, index = 6)
 #'
 #' # create a weight using a variable
 #' w <- new_weight(
@@ -237,9 +264,15 @@ Result <- R6::R6Class(
 #' t2 <- new_theme("Ecoregions", list(f2, f3), id = "T2")
 #'
 #' # create an include using a variable
-#' i <- new_include(
+#' incl <- new_include(
 #'   name = "Protected areas", variable = v5,
 #'   status = FALSE, id = "I1"
+#' )
+#' 
+#' # create an exclude using a variable
+#' encl <- new_exclude(
+#'   name = "Urban areas", variable = v6,
+#'   status = FALSE, id = "E1"
 #' )
 #'
 #' # create parameters
@@ -248,8 +281,8 @@ Result <- R6::R6Class(
 #'
 #' # create solution settings using the themes and weight
 #' ss <- new_solution_settings(
-#'   themes = list(t1, t2), weights = list(w), includes = list(i),
-#'   parameters = list(p1, p2)
+#'   themes = list(t1, t2), weights = list(w), includes = list(incl),
+#'   excludes = list(encl), parameters = list(p1, p2)
 #' )
 #'
 #' # create solution values
@@ -265,9 +298,11 @@ Result <- R6::R6Class(
 #'   theme_coverage = calculate_coverage(values, ss$get_theme_data()),
 #'   weight_coverage = calculate_coverage(values, ss$get_weight_data()),
 #'   include_coverage = calculate_coverage(values, ss$get_include_data()),
+#'   exclude_coverage = calculate_coverage(values, ss$get_exclude_data()),
 #'   theme_settings = ss$get_theme_settings(),
 #'   weight_settings = ss$get_weight_settings(),
 #'   include_settings = ss$get_include_settings(),
+#'   exclude_settings = ss$get_exclude_settings(),
 #'   parameters = ss$parameters
 #' )
 #'
@@ -277,7 +312,8 @@ Result <- R6::R6Class(
 #' @export
 new_result <- function(values, area, perimeter,
                        theme_coverage, weight_coverage, include_coverage,
-                       theme_settings, weight_settings, include_settings,
+                       exclude_coverage, theme_settings, weight_settings, 
+                       include_settings, exclude_settings,
                        parameters,
                        id = uuid::UUIDgenerate()) {
   Result$new(
@@ -288,9 +324,11 @@ new_result <- function(values, area, perimeter,
     theme_coverage = theme_coverage,
     weight_coverage = weight_coverage,
     include_coverage = include_coverage,
+    exclude_coverage = exclude_coverage,
     theme_settings = theme_settings,
     weight_settings = weight_settings,
     include_settings = include_settings,
+    exclude_settings = exclude_settings,
     parameters = parameters
   )
 }

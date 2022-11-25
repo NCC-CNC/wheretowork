@@ -212,7 +212,7 @@ test_that("initialization (from Result object)", {
   # create object
   ## create dataset
   RandomFields::RFoptions(seed = 200)
-  rd <- simulate_binary_spatial_data(import_simple_raster_data(), 5)
+  rd <- simulate_binary_spatial_data(import_simple_raster_data(), 6)
   d <- new_dataset_from_auto(rd)
   ## create variables
   v1 <- new_variable(
@@ -235,16 +235,25 @@ test_that("initialization (from Result object)", {
     dataset = d, index = 5, total = 90, units = "ha",
     legend = simulate_include_legend()
   )
+  v6 <- new_variable(
+    dataset = d, index = 6, total = 90, units = "ha",
+    legend = simulate_exclude_legend()
+  )  
   ## create a weight using dataset
   w <- new_weight(
     name = "Human Footprint Index", variable = v1,
     factor = 90, status = TRUE, id = "W1"
   )
-  ## create a weight using dataset
+  ## create an include using dataset
   incl <- new_include(
-    name = "Protected areas", variable = v1,
+    name = "Protected areas", variable = v5,
     status = FALSE, id = "I1"
   )
+  ## create an exclude using dataset
+  e <- new_exclude(
+    name = "Urban areas", variable = v6,
+    status = FALSE, id = "E1"
+  )  
   ## create features using dataset
   f1 <- new_feature(
     name = "Possum", variable = v2,
@@ -267,7 +276,7 @@ test_that("initialization (from Result object)", {
   ## create solution setting
   ss <- new_solution_settings(
     themes = list(t1, t2), weights = list(w), includes = list(incl),
-    parameters = list(p1, p2)
+    excludes = list(e), parameters = list(p1, p2)
   )
   ## create result
   r <- min_set_result(
@@ -277,9 +286,11 @@ test_that("initialization (from Result object)", {
     theme_data = ss$get_theme_data(),
     weight_data = ss$get_weight_data(),
     include_data = ss$get_include_data(),
+    exclude_data = ss$get_exclude_data(),
     theme_settings = ss$get_theme_settings(),
     weight_settings = ss$get_weight_settings(),
     include_settings = ss$get_include_settings(),
+    exclude_settings = ss$get_exclude_settings(),
     parameters = ss$parameters,
     gap_1 = ss$get_parameter("P2")$value * ss$get_parameter("P2")$status,
     boundary_gap = ss$get_parameter("P1")$value * ss$get_parameter("P1")$status
@@ -315,6 +326,7 @@ test_that("initialization (from Result object), sf, no boundary", {
     V3 = runif(length(idx)),
     V4 = runif(length(idx)),
     V5 = runif(length(idx)),
+    V6 = runif(length(idx)),
     `_index` = idx
   )
   # merge attribute data with spatial data
@@ -350,16 +362,25 @@ test_that("initialization (from Result object), sf, no boundary", {
     dataset = d, index = 5, total = 90, units = "ha",
     legend = new_null_legend()
   )
+  v6 <- new_variable(
+    dataset = d, index = 6, total = 90, units = "ha",
+    legend = new_null_legend()
+  )  
   ## create a weight using dataset
   w <- new_weight(
     name = "Human Footprint Index", variable = v1,
     factor = 90, status = TRUE, id = "W1"
   )
-  ## create a weight using dataset
+  ## create an include using dataset
   incl <- new_include(
-    name = "Protected areas", variable = v1,
+    name = "Protected areas", variable = v5,
     status = FALSE, id = "I1"
   )
+  ## create an exclude using dataset
+  e <- new_exclude(
+    name = "Urban areas", variable = v6,
+    status = FALSE, id = "E1"
+  )  
   ## create features using dataset
   f1 <- new_feature(
     name = "Possum", variable = v2,
@@ -382,7 +403,7 @@ test_that("initialization (from Result object), sf, no boundary", {
   ## create solution setting
   ss <- new_solution_settings(
     themes = list(t1, t2), weights = list(w), includes = list(incl),
-    parameters = list(p1, p2)
+    excludes = list(e), parameters = list(p1, p2)
   )
   ## create result
   r <- min_set_result(
@@ -392,9 +413,11 @@ test_that("initialization (from Result object), sf, no boundary", {
     theme_data = ss$get_theme_data(),
     weight_data = ss$get_weight_data(),
     include_data = ss$get_include_data(),
+    exclude_data = ss$get_exclude_data(),    
     theme_settings = ss$get_theme_settings(),
     weight_settings = ss$get_weight_settings(),
     include_settings = ss$get_include_settings(),
+    exclude_settings = ss$get_exclude_settings(),    
     parameters = ss$parameters,
     gap_1 = ss$get_parameter("P2")$value * ss$get_parameter("P2")$status,
     boundary_gap = 0

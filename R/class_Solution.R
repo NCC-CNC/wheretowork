@@ -308,7 +308,7 @@ Solution <- R6::R6Class(
     },
 
     #' @description
-    #' Get weight results.
+    #' Get include results.
     #' @return [tibble::tibble()] object.
     get_include_results_data = function() {
       # compile results
@@ -915,6 +915,7 @@ new_solution <- function(name, variable, visible,
 #'   themes = list(t1),
 #'   weights = list(),
 #'   includes = list(),
+#'   excludes = list(),
 #'   parameters = list(p1, p2)
 #' )
 #'
@@ -931,9 +932,11 @@ new_solution <- function(name, variable, visible,
 #'   theme_coverage = calculate_coverage(values, ss$get_theme_data()),
 #'   weight_coverage = calculate_coverage(values, ss$get_weight_data()),
 #'   include_coverage = calculate_coverage(values, ss$get_include_data()),
+#'   exclude_coverage = calculate_coverage(values, ss$get_exclude_data()),
 #'   theme_settings = ss$get_theme_settings(),
 #'   weight_settings = ss$get_weight_settings(),
 #'   include_settings = ss$get_include_settings(),
+#'   exclude_settings = ss$get_exclude_settings(),
 #'   parameters = ss$parameters
 #' )
 #'

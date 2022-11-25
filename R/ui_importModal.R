@@ -93,7 +93,7 @@ importModal <- function(id) {
       shiny::hr(),
       shiny::checkboxInput(
         paste0(id, "_builtin_hide_layers"),
-        shiny::HTML("<b> Hide theme, weight and include layers </b> <br> 
+        shiny::HTML("<b> Hide layers on map </b> <br> 
                     recommended for large projects"),
         value = FALSE
       )      
@@ -131,7 +131,7 @@ importModal <- function(id) {
       shiny::hr(),
       shiny::checkboxInput(
         paste0(id, "_manual_hide_layers"),
-        shiny::HTML("<b> Hide theme, weight and include layers </b> <br> 
+        shiny::HTML("<b> Hide layers on map </b> <br> 
                     recommended for large projects"),
         value = FALSE
       )
@@ -157,7 +157,7 @@ importModal <- function(id) {
       shiny::hr(),
       shiny::checkboxInput(
         paste0(id, "_spatial_hide_layers"),
-        shiny::HTML("<b> Hide theme, weight and include layers </b> <br> 
+        shiny::HTML("<b> Hide layers on map </b> <br> 
                     recommended for large projects"),
         value = FALSE
       ),

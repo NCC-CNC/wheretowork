@@ -14,7 +14,8 @@ test_that("initialization", {
     visible = FALSE,
     hidden = TRUE,
     status = FALSE,
-    id = "FID1"
+    id = "FID1",
+    overlap = NA_character_
   )
   # run tests
   print(x)
@@ -26,6 +27,7 @@ test_that("initialization", {
   expect_identical(x$hidden, TRUE)
   expect_identical(x$status, FALSE)
   expect_identical(x$id, "FID1")
+  expect_identical(x$overlap, NA_character_)
 })
 
 test_that("get methods", {
@@ -42,12 +44,14 @@ test_that("get methods", {
     visible = TRUE,
     hidden = FALSE,
     status = FALSE,
-    id = "FID1"
+    id = "FID1",
+    overlap = NA_character_
   )
   # run tests
   expect_identical(x$get_status(), FALSE)
   expect_identical(x$get_visible(), TRUE)
   expect_identical(x$get_hidden(), FALSE)
+  expect_identical(x$get_overlap(), NA_character_)
 })
 
 test_that("set methods", {
@@ -63,7 +67,8 @@ test_that("set methods", {
     mandatory = TRUE,
     visible = FALSE,
     status = FALSE,
-    id = "FID1"
+    id = "FID1",
+    overlap = NA_character_
   )
   # run tests
   x$set_status(TRUE)
@@ -86,7 +91,8 @@ test_that("export method", {
     visible = FALSE,
     hidden = TRUE,
     status = FALSE,
-    id = "FID1"
+    id = "FID1",
+    overlap = NA_character_
   )
   # run tests
   expect_identical(
@@ -97,7 +103,8 @@ test_that("export method", {
       mandatory = TRUE,
       status = FALSE,
       visible = FALSE,
-      hidden = TRUE
+      hidden = TRUE,
+      overlap = NA_character_
     )
   )
 })
@@ -116,7 +123,8 @@ test_that("widget methods", {
     visible = FALSE,
     hidden = FALSE,
     status = FALSE,
-    id = "FID1"
+    id = "FID1",
+    overlap = NA_character_
   )
   # run tests
   ## solution settings
@@ -127,7 +135,8 @@ test_that("widget methods", {
       name = "National protected areas",
       status = FALSE,
       mandatory = TRUE,
-      provenance = v$provenance$get_widget_data()
+      provenance = v$provenance$get_widget_data(),
+      overlap = NA_character_
     )
   )
   ## map manager settings

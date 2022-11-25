@@ -245,7 +245,10 @@ ss_header_component_scaffold <- function(
     },
     htmltools::tags$div(
       class = "provenance-container"
-    )
+    ),
+    htmltools::tags$div(
+      class = "warning-container"
+    )    
   )
 }
 
@@ -274,6 +277,9 @@ ss_subheader_component_scaffold <- function(id = uuid::UUIDgenerate()) {
     ),
     htmltools::tags$div(
       class = "provenance-container"
-    )
+    ),
+    htmltools::tags$div(
+      class = "warning-container"
+    ),    
   )
 }

@@ -57,3 +57,18 @@ function createProvenance(el, provenance) {
   icon_el.style.color = provenance.color;
   el.appendChild(icon_el);
 }
+
+// create include/exclude overalp warning icon
+function createWarning(el, name, layer, overlap) {
+  const icon_el = document.createElement("i");
+  icon_el.setAttribute("data-toggle", "tooltip");
+  icon_el.setAttribute("data-placement", "top");
+  icon_el.setAttribute("data-container", "body");
+  const warning_msg = name + ' overlaps the following ' + layer +': ' + overlap + '.' 
+  icon_el.setAttribute("title", warning_msg);
+  icon_el.classList.add("fa");
+  icon_el.classList.add("fa-exclamation-triangle");
+  icon_el.style.color = "#eed202";
+  icon_el.style.marginRight = "10px";
+  el.appendChild(icon_el);
+}

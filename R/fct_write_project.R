@@ -5,7 +5,7 @@ NULL
 #'
 #' Save a project to disk.
 #'
-#' @param x `list` of [Theme], [Weight], and [Include] objects.
+#' @param x `list` of [Theme], [Weight], [Include], and [Exclude] objects.
 #'
 #' @param dataset [Dataset] object.
 #'
@@ -86,7 +86,7 @@ write_project <- function(x, dataset, path, name,
   # assert arguments are valid
   assertthat::assert_that(
     is.list(x),
-    all_list_elements_inherit(x, c("Theme", "Weight", "Include")),
+    all_list_elements_inherit(x, c("Theme", "Weight", "Include", "Exclude")),
     inherits(dataset, "Dataset"),
     assertthat::is.string(name),
     assertthat::noNA(name),
@@ -130,6 +130,10 @@ write_project <- function(x, dataset, path, name,
   # create setting list for includes
   includes_idx <- vapply(x, inherits, what = "Include", logical(1))
   includes_params <- lapply(x[includes_idx], function(x) x$export())
+  
+  # create setting list for excludes
+  excludes_idx <- vapply(x, inherits, what = "Exclude", logical(1))
+  excludes_params <- lapply(x[excludes_idx], function(x) x$export())  
 
   # create full settings list
   ## add project name
@@ -151,6 +155,7 @@ write_project <- function(x, dataset, path, name,
   params$themes <- themes_params
   params$weights <- weights_params
   params$includes <- includes_params
+  params$excludes <- excludes_params
 
   # coerce characters to ASCII
   params <- enc2ascii(params)
