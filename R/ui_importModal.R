@@ -25,148 +25,174 @@ importModal <- function(id) {
     assertthat::noNA(id)
   )
 
-  # create modal
-  shiny::modalDialog(
-    title = htmltools::tags$p(
-      "Welcome to Where To Work",
-      style = "text-align:center"
-    ),
-    easyClose = FALSE,
-    fade = TRUE,
-    footer = htmltools::tags$div(
-      # styling
-      style = "text-align: center",
-      # builtin button
-      shiny::conditionalPanel(
-        condition = paste0("input.", id, "_method == 'builtin'"),
-        shinyFeedback::loadingButton(
-          inputId = paste0(id, "_builtin_button"),
-          label = "Import",
-          loadingLabel = "Loading..."
-        )
+  # create import modal
+  htmltools::tags$div(class = "import-modal",
+    shiny::modalDialog(
+      title = htmltools::tags$p(
+        "Welcome to Where To Work",
+        style = "text-align:center"
       ),
-      # manual button
-      shiny::conditionalPanel(
-        condition = paste0("input.", id, "_method == 'manual'"),
-        shinyFeedback::loadingButton(
-          inputId = paste0(id, "_manual_button"),
-          label = "Import",
-          loadingLabel = "Loading..."
+      easyClose = FALSE,
+      fade = TRUE,
+      footer = htmltools::tags$div(
+        # styling
+        style = "text-align: center",
+        # builtin button
+        shiny::conditionalPanel(
+          condition = paste0("input.", id, "_method == 'builtin'"),
+          shinyFeedback::loadingButton(
+            inputId = paste0(id, "_builtin_button"),
+            label = "Import",
+            loadingLabel = "Loading..."
+          )
         ),
-
+        # manual button
+        shiny::conditionalPanel(
+          condition = paste0("input.", id, "_method == 'manual'"),
+          shinyFeedback::loadingButton(
+            inputId = paste0(id, "_manual_button"),
+            label = "Import",
+            loadingLabel = "Loading..."
+          ),
+  
+        ),
+        # spatial button
+        shiny::conditionalPanel(
+          condition = paste0("input.", id, "_method == 'spatial'"),
+          shinyFeedback::loadingButton(
+            inputId = paste0(id, "_spatial_button"),
+            label = "Import",
+            loadingLabel = "Loading..."
+          )
+        ),
+        
+       # logos
+       shiny::hr(),
+       htmltools::tags$p(class = "support-title", "Supported by:"), 
+       htmltools::tags$div(class = "sponser-logos",
+       htmltools::tags$div(class = "sponser-logo-row",                   
+         htmltools::tags$img(
+           class = "ncc-logo",
+           src ="www/logo_ncc.png"
+         ),
+         htmltools::tags$img(
+           src ="www/logo_carleton.png"
+         )),
+       htmltools::tags$div(class = "sponser-logo-row last-row",
+        htmltools::tags$img(
+           class = "eccc-logo",
+          src ="www/logo_eccc.png"
+          ),                           
+         htmltools::tags$img(
+           class = "rbc-logo",
+           src ="www/logo_rbc.png"
+         )
+        ),
+       ),
       ),
-      # spatial button
-      shiny::conditionalPanel(
-        condition = paste0("input.", id, "_method == 'spatial'"),
-        shinyFeedback::loadingButton(
-          inputId = paste0(id, "_spatial_button"),
-          label = "Import",
-          loadingLabel = "Loading..."
-        )
-      )
-    ),
-
-    ## import method
-    shiny::selectInput(
-      inputId = paste0(id, "_method"),
-      label = "Select import method",
-      choices = c(
-        "built-in project" = "builtin",
-        "upload project data" = "manual",
-        "upload shapefile" = "spatial"
-      ),
-      selected = "built-in project",
-      multiple = FALSE
-    ),
-
-    ## builtin method
-    shiny::conditionalPanel(
-      ### condition
-      condition = paste0("input.", id, "_method == 'builtin'"),
-      ### main
+      
+      ## import method
       shiny::selectInput(
-        inputId = paste0(id, "_name"),
-        label = "Select project",
-        choices = c("No built-in projects available" = "NA"),
+        inputId = paste0(id, "_method"),
+        label = "Select import method",
+        choices = c(
+          "built-in project" = "builtin",
+          "upload project data" = "manual",
+          "upload shapefile" = "spatial"
+        ),
+        selected = "built-in project",
         multiple = FALSE
       ),
-      shiny::hr(),
-      shiny::checkboxInput(
-        paste0(id, "_builtin_hide_layers"),
-        shiny::HTML("<b> Hide layers on map </b> <br> 
-                    recommended for large projects"),
-        value = FALSE
-      )      
-    ),
-
-    ## manual method
-    shiny::conditionalPanel(
-      ### condition
-      condition = paste0("input.", id, "_method == 'manual'"),
-      ### main
-      shiny::fileInput(
-        paste0(id, "_manual_configuration_file"),
-        "Select configuration file",
-        multiple = FALSE,
-        accept = ".yaml"
+  
+      ## builtin method
+      shiny::conditionalPanel(
+        ### condition
+        condition = paste0("input.", id, "_method == 'builtin'"),
+        ### main
+        shiny::selectInput(
+          inputId = paste0(id, "_name"),
+          label = "Select project",
+          choices = c("No built-in projects available" = "NA"),
+          multiple = FALSE
+        ),
+        shiny::hr(),
+        shiny::checkboxInput(
+          paste0(id, "_builtin_hide_layers"),
+          shiny::HTML("<b> Hide layers on map </b> <br> 
+                      recommended for large projects"),
+          value = FALSE
+        )      
       ),
-      shiny::fileInput(
-        paste0(id, "_manual_spatial_file"),
-        "Select spatial data",
-        multiple = TRUE,
-        accept = c(".shp", ".shx", ".prj", ".dbf", ".cpg", ".tif")
+  
+      ## manual method
+      shiny::conditionalPanel(
+        ### condition
+        condition = paste0("input.", id, "_method == 'manual'"),
+        ### main
+        shiny::fileInput(
+          paste0(id, "_manual_configuration_file"),
+          "Select configuration file",
+          multiple = FALSE,
+          accept = ".yaml"
+        ),
+        shiny::fileInput(
+          paste0(id, "_manual_spatial_file"),
+          "Select spatial data",
+          multiple = TRUE,
+          accept = c(".shp", ".shx", ".prj", ".dbf", ".cpg", ".tif")
+        ),
+        shiny::fileInput(
+          paste0(id, "_manual_attribute_file"),
+          "Select attribute data",
+          multiple = FALSE,
+          accept = c(".csv", ".csv.gz", ".gz")
+        ),
+        shiny::fileInput(
+          paste0(id, "_manual_boundary_file"),
+          "Select boundary data",
+          multiple = FALSE,
+          accept = c(".csv", ".csv.gz", ".dat", ".dat.gz", ".gz")
+        ),
+        shiny::hr(),
+        shiny::checkboxInput(
+          paste0(id, "_manual_hide_layers"),
+          shiny::HTML("<b> Hide layers on map </b> <br> 
+                      recommended for large projects"),
+          value = FALSE
+        )
       ),
-      shiny::fileInput(
-        paste0(id, "_manual_attribute_file"),
-        "Select attribute data",
-        multiple = FALSE,
-        accept = c(".csv", ".csv.gz", ".gz")
-      ),
-      shiny::fileInput(
-        paste0(id, "_manual_boundary_file"),
-        "Select boundary data",
-        multiple = FALSE,
-        accept = c(".csv", ".csv.gz", ".dat", ".dat.gz", ".gz")
-      ),
-      shiny::hr(),
-      shiny::checkboxInput(
-        paste0(id, "_manual_hide_layers"),
-        shiny::HTML("<b> Hide layers on map </b> <br> 
-                    recommended for large projects"),
-        value = FALSE
-      )
-    ),
-
-    ## spatial method
-    shiny::conditionalPanel(
-      ### condition
-      condition = paste0("input.", id, "_method == 'spatial'"),
-      ### main
-      shiny::fileInput(
-        paste0(id, "_spatial_spatial_file"),
-        "Select shapefile",
-        multiple = TRUE,
-        accept = c(".shp", ".shx", ".prj", ".dbf", ".cpg"),
-      ),
-      htmltools::tags$label(
-        id = paste0(id, "_spatial_text"),
-        class = "control-label",
-        "Select fields"
-      ),
-      importSettingsOutput(outputId = paste0(id, "_spatial_settings")),
-      shiny::hr(),
-      shiny::checkboxInput(
-        paste0(id, "_spatial_hide_layers"),
-        shiny::HTML("<b> Hide layers on map </b> <br> 
-                    recommended for large projects"),
-        value = FALSE
-      ),
-      shiny::hr(),
-      htmltools::tags$label(
-        id = paste0(id, "_spatial_note"),
-        class = "control-label",
-        "Note that non-numeric data are excluded."
+  
+      ## spatial method
+      shiny::conditionalPanel(
+        ### condition
+        condition = paste0("input.", id, "_method == 'spatial'"),
+        ### main
+        shiny::fileInput(
+          paste0(id, "_spatial_spatial_file"),
+          "Select shapefile",
+          multiple = TRUE,
+          accept = c(".shp", ".shx", ".prj", ".dbf", ".cpg"),
+        ),
+        htmltools::tags$label(
+          id = paste0(id, "_spatial_text"),
+          class = "control-label",
+          "Select fields"
+        ),
+        importSettingsOutput(outputId = paste0(id, "_spatial_settings")),
+        shiny::hr(),
+        shiny::checkboxInput(
+          paste0(id, "_spatial_hide_layers"),
+          shiny::HTML("<b> Hide layers on map </b> <br> 
+                      recommended for large projects"),
+          value = FALSE
+        ),
+        shiny::hr(),
+        htmltools::tags$label(
+          id = paste0(id, "_spatial_note"),
+          class = "control-label",
+          "Note that non-numeric data are excluded."
+        )
       )
     )
-  )
+  )  
 }
