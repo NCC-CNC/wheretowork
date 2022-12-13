@@ -1,0 +1,68 @@
+/* import modal */
+
+.import-modal .modal-content {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+}
+
+.import-modal .modal-body {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.import-modal .modal-title {
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.import-modal .modal-title p {
+  margin: 0;
+}
+
+/* logos */
+.import-modal .sponser-logos {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.import-modal .dev-title {
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: -20px;
+  position: relative;
+  z-index: 400;
+}
+
+.import-modal .support-title {
+  font-weight: 700;
+  font-size: 18px;
+  margin-top: -18px;
+  position: relative;
+  z-index: 400;  
+}
+
+.import-modal .sponser-logo-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.import-modal .last-row {
+  margin-top: -35px;
+}
+
+.ncc-logo {
+  width: 40%;
+}
+
+.eccc-logo {
+  padding-right: 60px;
+}
+
+.rbc-logo {
+  padding-right: 60px;
+}
