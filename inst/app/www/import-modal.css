@@ -28,12 +28,20 @@
   align-items: center;
 }
 
-.import-modal .support-title {
+.import-modal .dev-title {
   font-weight: 700;
   font-size: 18px;
   margin-bottom: -20px;
   position: relative;
   z-index: 400;
+}
+
+.import-modal .support-title {
+  font-weight: 700;
+  font-size: 18px;
+  margin-top: -18px;
+  position: relative;
+  z-index: 400;  
 }
 
 .import-modal .sponser-logo-row {
@@ -44,7 +52,7 @@
 }
 
 .import-modal .last-row {
-  margin-top: -45px;
+  margin-top: -35px;
 }
 
 .ncc-logo {

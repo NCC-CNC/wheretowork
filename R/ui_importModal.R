@@ -68,7 +68,7 @@ importModal <- function(id) {
         
        # logos
        shiny::hr(),
-       htmltools::tags$p(class = "support-title", "Supported by:"), 
+       htmltools::tags$p(class = "dev-title", "Developed by:"), 
        htmltools::tags$div(class = "sponser-logos",
        htmltools::tags$div(class = "sponser-logo-row",                   
          htmltools::tags$img(
@@ -77,7 +77,9 @@ importModal <- function(id) {
          ),
          htmltools::tags$img(
            src ="www/logo_carleton.png"
-         )),
+         )
+       ),
+       htmltools::tags$p(class = "support-title", "Supported by:"),
        htmltools::tags$div(class = "sponser-logo-row last-row",
         htmltools::tags$img(
            class = "eccc-logo",
