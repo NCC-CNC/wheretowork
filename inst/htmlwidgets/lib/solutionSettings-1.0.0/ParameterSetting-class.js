@@ -14,8 +14,10 @@ class ParameterSetting {
     no_slider,
     units,
     reference_value,
-    reference_units
+    reference_units,
+    tool_tip
   ) {
+    
     // class fields
     this.id = id;
     this.elementId = "setting-" + id;
@@ -35,13 +37,17 @@ class ParameterSetting {
     this.hide = hide;
     this.disable = disable;
     this.no_slider = no_slider;
-
+    this.tool_tip = tool_tip;
+    
+    console.log(id)    
+    console.log(tool_tip)
+  
     // local variables
     let that = this;
 
     // attach id to element
     this.el.querySelector(".solution-setting").id = this.elementId;
-
+    
     // set initial values
     /// name
     this.name_el.innerText = name;
@@ -231,7 +237,7 @@ class ParameterSetting {
       this.ref_el.innerText = this.ref_format.to(value);
     }
   }
-
+  
   /* render method */
   render() {
     return this.el;
