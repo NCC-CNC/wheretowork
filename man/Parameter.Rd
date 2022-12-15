@@ -42,6 +42,8 @@ Definition for the Parameter class.
 \item{\code{reference_value}}{\code{numeric} reference value.}
 
 \item{\code{reference_units}}{\code{character} units for reference value.}
+
+\item{\code{tool_tip}}{\code{character} description of parameter setting.}
 }
 \if{html}{\out{</div>}}
 }
@@ -82,7 +84,8 @@ Create a new Parameter object.
   no_slider,
   units,
   reference_value,
-  reference_units
+  reference_units,
+  tool_tip
 )}\if{html}{\out{</div>}}
 }
 
@@ -114,6 +117,8 @@ Create a new Parameter object.
 \item{\code{reference_value}}{\code{numeric} value.}
 
 \item{\code{reference_units}}{\code{character} value.}
+
+\item{\code{tool_tip}}{\code{character} value.}
 }
 \if{html}{\out{</div>}}
 }

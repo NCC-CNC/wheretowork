@@ -17,6 +17,7 @@ new_parameter(
   units = "",
   reference_value = NA_real_,
   reference_units = "",
+  tool_tip = "",
   id = uuid::UUIDgenerate()
 )
 }
@@ -61,6 +62,8 @@ should be reported.}
 
 \item{reference_units}{\code{character} units for the reference value.
 Defaults to "".}
+
+\item{tool_tip}{\code{character} description of parameter setting.}
 
 \item{id}{\code{character} unique identifier.
 Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}
