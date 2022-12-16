@@ -51,7 +51,8 @@ function newParameterSetting(manager, x) {
     x.no_slider,
     x.units,
     x.reference_value,
-    x.reference_units
+    x.reference_units,
+    x.tool_tip
   );
 }
 

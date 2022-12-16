@@ -58,6 +58,15 @@ HTMLWidgets.widget({
             placement: "top",
             container: "body"
           });
+          
+          // update parameter tooltips
+          opts.parameters.forEach(x => {
+          let elm = document.getElementById("setting-" + x.id)
+          $(elm).attr('data-original-title', x.tool_tip).tooltip()
+          
+          });
+
+          
         }
       },
 

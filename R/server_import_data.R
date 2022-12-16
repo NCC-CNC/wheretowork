@@ -52,6 +52,9 @@ import_data <- function(x, mode) {
       hide = TRUE,
       disable = FALSE,
       no_slider = FALSE,
+      tool_tip = 
+        "Specify a maximum percentage of the total area that should be selected 
+        in the solution.",
       id = "budget_parameter"
     )
 
@@ -67,6 +70,14 @@ import_data <- function(x, mode) {
       hide = TRUE,
       disable = shiny::isTruthy(app_data$shp_hidden),
       no_slider = FALSE,
+      tool_tip =
+        "Specify how much effort that should be spent on promoting spatial 
+        clustering in the solution. When no budget is specified, this controls 
+        the extra amount of land (above what is needed to meet the goals) 
+        that should be selected to maximize spatial clustering (as a percentage). 
+        When a budget is specified, this controls the percentage of the total 
+        area budget that should be dedicated towards promoting spatial 
+        clustering.",
       id = "spatial_parameter"
     )
   
@@ -82,16 +93,22 @@ import_data <- function(x, mode) {
       hide = TRUE,
       disable = FALSE,
       no_slider = TRUE,
+      tool_tip = 
+        "Hide the output solution layer from map to avoid app performance loss. 
+        Recommended for vector projects with over 10,000 planning units.",
       id = "solution_layer_parameter"
     )
   
   overlap_parameter <-
     wheretowork::new_parameter(
-      name = "Overide includes",
+      name = "Override includes",
       status = FALSE,
       hide = TRUE,
       disable = FALSE,
       no_slider = TRUE,
+      tool_tip =
+        "By default, includes have importance over excludes if there is overlap. 
+        Enabling Override includes switches overlap precedence to excludes.",
       id = "overlap_parameter"
     )  
 

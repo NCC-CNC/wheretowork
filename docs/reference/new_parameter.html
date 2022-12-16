@@ -137,6 +137,7 @@
   units <span class='op'>=</span> <span class='st'>""</span>,
   reference_value <span class='op'>=</span> <span class='cn'>NA_real_</span>,
   reference_units <span class='op'>=</span> <span class='st'>""</span>,
+  tool_tip <span class='op'>=</span> <span class='st'>""</span>,
   id <span class='op'>=</span> <span class='fu'>uuid</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/uuid/man/UUIDgenerate.html'>UUIDgenerate</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>)</span></code></pre></div>
 
@@ -209,6 +210,10 @@ should be reported.</p></td>
 Defaults to "".</p></td>
     </tr>
     <tr>
+      <th>tool_tip</th>
+      <td><p><code>character</code> description of parameter setting.</p></td>
+    </tr>
+    <tr>
       <th>id</th>
       <td><p><code>character</code> unique identifier.
 Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUIDgenerate.html'>uuid::UUIDgenerate()</a></code>).</p></td>
@@ -226,7 +231,7 @@ Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUI
 <span class='r-in'><span class='co'># print object</span></span>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>p</span><span class='op'>)</span></span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Parameter</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       11f73118-b614-47b4-9677-2f7161585e04</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       431bfb56-600a-4e7b-98eb-f57cc543c28a</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:     Spatial clustering</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   status:   TRUE</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   value:   0 </span>

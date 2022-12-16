@@ -214,7 +214,7 @@ ss_header_component_scaffold <- function(
       htmltools::tags$span(
         class = "el-switch-style",
         `data-toggle` = "tooltip",
-        `data-placement` = "top",
+        `data-placement` = "left",
         `data-container` = "body",
         `data-trigger` = "hover",
         title = paste(

@@ -108,7 +108,8 @@ test_that("export method", {
       no_slider = FALSE,
       units = "asdf",
       reference_value = 900,
-      reference_units = "ha"
+      reference_units = "ha",
+      tool_tip = ""
     )
   )
 })
@@ -128,6 +129,7 @@ test_that("widget methods", {
     no_slider = FALSE,
     reference_value = 600,
     reference_units = "fizzbuzz",
+    tool_tip = "fizzbuzz",
     id = "P1"
   )
   # run tests
@@ -147,7 +149,8 @@ test_that("widget methods", {
       no_slider = FALSE,
       units = "asdf",
       reference_value = 600,
-      reference_units = "fizzbuzz"
+      reference_units = "fizzbuzz",
+      tool_tip = "fizzbuzz"
     )
   )
 })
