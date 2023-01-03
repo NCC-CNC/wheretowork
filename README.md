@@ -4,8 +4,8 @@
 # Where to Work: Interactive systematic conservation planning application
 
 [![lifecycle](https://img.shields.io/badge/Lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
-[![R-CMD-check-Ubuntu](https://img.shields.io/github/workflow/status/NCC-CNC/wheretowork/Ubuntu/master.svg?label=Ubuntu)](https://github.com/NCC-CNC/wheretowork/actions)
-[![R-CMD-check-Windows](https://img.shields.io/github/workflow/status/NCC-CNC/wheretowork/Windows/master.svg?label=Windows)](https://github.com/NCC-CNC/wheretowork/actions)
+[![R-CMD-check-Ubuntu](https://img.shields.io/github/actions/workflow/status/ncc-cnc/wheretowork/R-CMD-check-ubuntu.yaml?branch=master&label=Ubuntu)](https://github.com/NCC-CNC/wheretowork/actions)
+[![R-CMD-check-Windows](https://img.shields.io/github/actions/workflow/status/ncc-cnc/wheretowork/R-CMD-check-windows.yaml?branch=master&label=Windows)](https://github.com/NCC-CNC/wheretowork/actions)
 [![Docker
 Status](https://img.shields.io/docker/cloud/build/naturecons/wheretowork?label=Docker%20build)](https://hub.docker.com/r/naturecons/wheretowork)
 [![Coverage
