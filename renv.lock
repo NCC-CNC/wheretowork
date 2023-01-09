@@ -962,8 +962,8 @@
       "RemoteUsername": "dirkschumacher",
       "RemoteRepo": "rcbc",
       "RemoteRef": "master",
-      "RemoteSha": "891907d2f34e0a02fee2ca27a4998dad235a69b4",
-      "Hash": "5ae75f06c98c99f165a4ef1db32de361"
+      "RemoteSha": "5b07318af004fe849d47613c16446412daf22e16",
+      "Hash": "3f56b2d4bf8f319c1d2a7bd9428e92ef"
     },
     "rcmdcheck": {
       "Package": "rcmdcheck",
