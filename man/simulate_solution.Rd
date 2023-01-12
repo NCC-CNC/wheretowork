@@ -4,7 +4,13 @@
 \alias{simulate_solution}
 \title{Simulate a new solution}
 \usage{
-simulate_solution(dataset, themes, weights, includes = list())
+simulate_solution(
+  dataset,
+  themes,
+  weights,
+  includes = list(),
+  excludes = list()
+)
 }
 \arguments{
 \item{dataset}{\link{Dataset} object.}
@@ -16,6 +22,10 @@ simulate_solution(dataset, themes, weights, includes = list())
 \item{includes}{\code{list} of \link{Include} objects.
 Defaults to an empty list such that the solution is not simulated
 based on any \link{Include} objects.}
+
+\item{excludes}{\code{list} of \link{Exclude} objects.
+Defaults to an empty list such that the solution is not simulated
+based on any \link{Exclude} objects.}
 }
 \value{
 A \link{Solution} object.
