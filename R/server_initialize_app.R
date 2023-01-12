@@ -24,6 +24,9 @@ server_initialize_app <- quote({
       boundary_path = NULL,
       attribute_path = NULL,
       ## settings
+      project_name = NULL,
+      author_name = NULL,
+      author_email = NULL,
       mode = NULL,
       builtin_hidden = NULL, # enable/disable all T, W and I layers
       manual_hidden = NULL, # enable/disable all T, W and I layers
