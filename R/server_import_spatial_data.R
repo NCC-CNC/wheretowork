@@ -130,6 +130,9 @@ server_import_spatial_data <- quote({
       "advanced",
       mode
     )
+    
+    ### set project name
+    x$name <- basename(app_data$spatial_path)
 
     ### generate dataset
     x$dataset <- new_dataset_from_auto(rd, skip_bm = app_data$shp_hidden)
