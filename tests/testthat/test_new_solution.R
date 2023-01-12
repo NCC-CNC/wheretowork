@@ -3,8 +3,8 @@ context("new_solution")
 test_that("initialization", {
   skip_if_not_installed("RandomFields")
   # create object
-  rd <- simulate_binary_spatial_data(import_simple_raster_data(), 3)
-  names(rd) <- c("a", "b", "solution_1")
+  rd <- simulate_binary_spatial_data(import_simple_raster_data(), 5)
+  names(rd) <- c("a", "b", "solution_1", "c", "d")
   d <- new_dataset_from_auto(rd)
   v1 <- new_variable(
     d,
@@ -34,6 +34,13 @@ test_that("initialization", {
       values = c(0, 1), colors = c("#FFFFFF", "#000000")
     )
   )
+  v5 <- new_variable(
+    d,
+    index = 4, total = 20, units = "ha",
+    legend = new_categorical_legend(
+      values = c(0, 1), colors = c("#FFFFFF", "#000000")
+    )
+  )  
   w <- new_weight(
     name = "Human Footprint Index",
     variable = v1,
@@ -84,6 +91,18 @@ test_that("initialization", {
     held = 0.78,
     id = "IID1"
   )
+  excl <- new_exclude(
+    name = "Highways",
+    variable = v5,
+    visible = FALSE,
+    status = FALSE,
+    id = "FID1"
+  )
+  exclr <- new_exclude_results(
+    exclude = excl,
+    held = 0.78,
+    id = "EID1"
+  )  
   s1 <- new_statistic("Area", 12, "ha")
   s2 <- new_statistic("Perimeter", 10, "km")
   p <- new_parameter("budget", value = 12)
@@ -96,6 +115,7 @@ test_that("initialization", {
     theme_results = list(thr),
     weight_results = list(wr),
     include_results = list(ir),
+    exclude_results = list(exclr),
     id = "solution1"
   )
   # run tests
@@ -109,6 +129,7 @@ test_that("initialization", {
   expect_identical(x$theme_results, list(thr))
   expect_identical(x$weight_results, list(wr))
   expect_identical(x$include_results, list(ir))
+  expect_identical(x$exclude_results, list(exclr))
   expect_identical(x$id, "solution1")
   expect_is(x$get_summary_results_data(), "data.frame")
   expect_is(x$get_theme_results_data(), "data.frame")
@@ -120,7 +141,7 @@ test_that("initialization", {
   expect_is(x$render_include_results(), "datatables")
 })
 
-test_that("initialization (no weights or includes)", {
+test_that("initialization (no weights, includes or excludes)", {
   skip_if_not_installed("RandomFields")
   # create object
   rd <- simulate_binary_spatial_data(import_simple_raster_data(), 3)
@@ -184,6 +205,7 @@ test_that("initialization (no weights or includes)", {
     theme_results = list(thr),
     weight_results = list(),
     include_results = list(),
+    exclude_results = list(),
     id = "solution1"
   )
   # run tests
@@ -250,7 +272,7 @@ test_that("initialization (from Result object)", {
     status = FALSE, id = "I1"
   )
   ## create an exclude using dataset
-  e <- new_exclude(
+  excl <- new_exclude(
     name = "Urban areas", variable = v6,
     status = FALSE, id = "E1"
   )  
@@ -276,7 +298,7 @@ test_that("initialization (from Result object)", {
   ## create solution setting
   ss <- new_solution_settings(
     themes = list(t1, t2), weights = list(w), includes = list(incl),
-    excludes = list(e), parameters = list(p1, p2)
+    excludes = list(excl), parameters = list(p1, p2)
   )
   ## create result
   r <- min_set_result(
@@ -377,7 +399,7 @@ test_that("initialization (from Result object), sf, no boundary", {
     status = FALSE, id = "I1"
   )
   ## create an exclude using dataset
-  e <- new_exclude(
+  excl <- new_exclude(
     name = "Urban areas", variable = v6,
     status = FALSE, id = "E1"
   )  
@@ -403,7 +425,7 @@ test_that("initialization (from Result object), sf, no boundary", {
   ## create solution setting
   ss <- new_solution_settings(
     themes = list(t1, t2), weights = list(w), includes = list(incl),
-    excludes = list(e), parameters = list(p1, p2)
+    excludes = list(excl), parameters = list(p1, p2)
   )
   ## create result
   r <- min_set_result(
@@ -503,6 +525,7 @@ test_that("get methods", {
     theme_results = list(thr),
     weight_results = list(),
     include_results = list(),
+    exclude_results = list(),
     id = "solution1"
   )
   # run tests
@@ -567,6 +590,7 @@ test_that("set methods", {
     theme_results = list(thr),
     weight_results = list(),
     include_results = list(),
+    exclude_results = list(),
     id = "solution1"
   )
   # run tests
@@ -578,8 +602,8 @@ test_that("set methods", {
 test_that("widget methods", {
   skip_if_not_installed("RandomFields")
   # create object
-  rd <- simulate_binary_spatial_data(import_simple_raster_data(), 3)
-  names(rd) <- c("a", "b", "solution_1")
+  rd <- simulate_binary_spatial_data(import_simple_raster_data(), 5)
+  names(rd) <- c("a", "b", "solution_1", "c", "d")
   d <- new_dataset_from_auto(rd)
   v1 <- new_variable(
     d,
@@ -609,7 +633,13 @@ test_that("widget methods", {
       values = c(0, 1), colors = c("#FFFFFF", "#000000")
     )
   )
-
+  v5 <- new_variable(
+    d,
+    index = 4, total = 20, units = "ha",
+    legend = new_categorical_legend(
+      values = c(0, 1), colors = c("#FFFFFF", "#000000")
+    )
+  )  
   w <- new_weight(
     name = "Human Footprint Index",
     variable = v1,
@@ -660,6 +690,18 @@ test_that("widget methods", {
     held = 0.78,
     id = "IID1"
   )
+  excl <- new_exclude(
+    name = "Highways",
+    variable = v5,
+    visible = FALSE,
+    status = FALSE,
+    id = "FID1"
+  )
+  exclr <- new_exclude_results(
+    exclude = excl,
+    held = 0.78,
+    id = "EID1"
+  )  
   p <- new_parameter("budget", value = 12)
   s1 <- new_statistic("Area", 12, "ha")
   s2 <- new_statistic("Perimeter", 10, "km")
@@ -672,6 +714,7 @@ test_that("widget methods", {
     theme_results = list(thr),
     weight_results = list(wr),
     include_results = list(ir),
+    exclude_results = list(exclr),
     id = "solution1",
     hidden = FALSE
   )
@@ -685,6 +728,7 @@ test_that("widget methods", {
     theme_results = list(thr),
     weight_results = list(wr),
     include_results = list(ir),
+    exclude_results = list(exclr),
     id = "solution1",
     hidden = TRUE
   )  
@@ -701,6 +745,7 @@ test_that("widget methods", {
       theme_results = list(thr$get_widget_data()),
       weight_results = list(wr$get_widget_data()),
       include_results = list(ir$get_widget_data()),
+      exclude_results = list(exclr$get_widget_data()),
       solution_color = scales::alpha(last(x_nohide$variable$legend$colors), 1)
     )
   )
@@ -731,5 +776,3 @@ test_that("widget methods", {
   )  
   
 })
-
-

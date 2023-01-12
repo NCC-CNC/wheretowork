@@ -14,16 +14,22 @@ NULL
 #' @param includes `list` of [Include] objects.
 #'   Defaults to an empty list such that the solution is not simulated
 #'   based on any [Include] objects.
+#'   
+#' @param excludes `list` of [Exclude] objects.
+#'   Defaults to an empty list such that the solution is not simulated
+#'   based on any [Exclude] objects.
 #'
 #' @return A [Solution] object.
 #'
 #' @export
-simulate_solution <- function(dataset, themes, weights, includes = list()) {
+simulate_solution <- function(dataset, themes, weights, includes = list(),
+                              excludes = list()) {
   # assert arguments are valid
   assertthat::assert_that(
     is.list(themes),
     is.list(weights),
     is.list(includes),
+    is.list(excludes),    
     length(themes) >= 1,
     length(weights) >= 1,
     all_list_elements_inherit(themes, "Theme"),
@@ -32,6 +38,9 @@ simulate_solution <- function(dataset, themes, weights, includes = list()) {
   if (length(includes) > 0) {
     all_list_elements_inherit(includes, "Include")
   }
+  if (length(excludes) > 0) {
+    all_list_elements_inherit(excludes, "Exclude")
+  }  
 
   # import data
   data <- dataset$get_spatial_data()
@@ -48,10 +57,15 @@ simulate_solution <- function(dataset, themes, weights, includes = list()) {
     new_weight_results(x, held = stats::runif(1, 0.05, 0.9))
   })
 
-  # simulate weight results
+  # simulate include results
   include_results <- lapply(includes, function(x) {
     new_include_results(x, held = 1)
   })
+  
+  # simulate exclude results
+  exclude_results <- lapply(excludes, function(x) {
+    new_exclude_results(x, held = 1)
+  })  
 
   # simulate theme results
   theme_results <- lapply(themes, function(x) {
@@ -110,6 +124,7 @@ simulate_solution <- function(dataset, themes, weights, includes = list()) {
     statistics = statistics,
     theme_results = theme_results,
     weight_results = weight_results,
-    include_results = include_results
+    include_results = include_results,
+    exclude_results = exclude_results
   )
 }
