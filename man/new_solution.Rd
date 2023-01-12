@@ -13,6 +13,7 @@ new_solution(
   theme_results,
   weight_results,
   include_results,
+  exclude_results,
   id = uuid::UUIDgenerate(),
   hidden = FALSE
 )
@@ -33,6 +34,8 @@ new_solution(
 \item{weight_results}{\code{list} of \link{WeightResults} objects.}
 
 \item{include_results}{\code{list} of \link{IncludeResults} objects.}
+
+\item{exclude_results}{\code{list} of \link{ExcludeResults} objects.}
 
 \item{id}{\code{character} unique identifier.
 Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}
@@ -93,6 +96,7 @@ s <- new_solution(
   theme_results = list(tr1),
   weight_results = list(),
   include_results = list(),
+  exclude_results = list(),
   id = "solution1",
   hidden = FALSE
 )

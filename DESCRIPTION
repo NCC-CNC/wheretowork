@@ -104,6 +104,7 @@ Collate:
     'class_Dataset.R'
     'class_Variable.R'
     'class_Exclude.R'
+    'class_ExcludeResults.R'
     'class_Feature.R'
     'class_FeatureResults.R'
     'class_Include.R'
