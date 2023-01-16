@@ -35,7 +35,7 @@ Definition for the Solution class.
 
 \item{\code{include_results}}{\code{list} of \link{IncludeResults} objects.}
 
-\item{\code{include_results}}{\code{list} of \link{ExcludeResults} objects.}
+\item{\code{exclude_results}}{\code{list} of \link{ExcludeResults} objects.}
 
 \item{\code{hidden}}{\code{logical} value.}
 }

@@ -37,7 +37,7 @@ Solution <- R6::R6Class(
     #' @field include_results `list` of [IncludeResults] objects.
     include_results = NULL,
     
-    #' @field include_results `list` of [ExcludeResults] objects.
+    #' @field exclude_results `list` of [ExcludeResults] objects.
     exclude_results = NULL,    
     
     #' @field hidden `logical` value.

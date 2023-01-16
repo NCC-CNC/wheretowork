@@ -149,7 +149,7 @@ ExcludeResults <- R6::R6Class(
 #' exclr <- new_exclude_results(excl, 80)
 #'
 #' # print object
-#' print(er)
+#' print(exclr)
 #' @export
 new_exclude_results <- function(exclude, held, id = uuid::UUIDgenerate()) {
   ExcludeResults$new(

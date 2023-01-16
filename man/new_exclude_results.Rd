@@ -49,5 +49,5 @@ excl <- new_exclude(name = "Highways", variable = v)
 exclr <- new_exclude_results(excl, 80)
 
 # print object
-print(er)
+print(exclr)
 }
