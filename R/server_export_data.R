@@ -71,46 +71,31 @@ server_export_data <- quote({
           row.names = FALSE
         )
         ### save input values and parameter settings
-       input_configs <- list(
-         name = app_data$project_name,
-         author_name = app_data$author_name,
-         author_email = app_data$author_email,
-         mode = app_data$mode,
-         themes = lapply(x$theme_results, function(x) {
-           list(
-             name = x$theme$name, 
-             feature = lapply(x$feature_results, function(x) {
-               list(
-                 name = x$feature$name, 
-                 status = x$feature$status,
-                 goal = x$feature$goal,
-                 limit_goal = x$feature$limit_goal,
-                 max_goal = x$feature$max_goal
-                )})
-             )}),
-         weights = lapply(x$weight_results, function(x) {
-           list(
-             name = x$weight$name,
-             status = x$weight$status,
-             factor = x$weight$factor
-           )}),
-         includes = lapply(x$include_results, function(x) {
-           list(
-             name = x$include$name,
-             status = x$include$status
-           )}),
-         excludes = lapply(x$exclude_results, function(x) {
-           list(
-             name = x$exclude$name,
-             status = x$exclude$status
-           )}),
-         parameters = lapply(x$parameters, function(x) {
-           list(
-             name = x$name,
-             status = x$status,
-             value = x$value
-            )})
-         )
+        input_configs <- list(
+          name = app_data$project_name,
+          author_name = app_data$author_name,
+          author_email = app_data$author_email,
+          mode = app_data$mode,
+          themes = lapply(x$theme_results, function(x) {
+            x$theme$export()
+           }),
+           weights = lapply(x$weight_results, function(x) {
+             x$weight$export()
+           }),
+           includes = lapply(x$include_results, function(x) {
+             x$include$export()
+           }),
+           excludes = lapply(x$exclude_results, function(x) {
+             x$exclude$export()
+           }),
+           parameters = lapply(x$parameters, function(x) {
+             list(
+               name = x$name,
+               status = x$status,
+               value = x$value
+             )
+           })
+          )
        yaml::write_yaml(input_configs, 
          file.path(td, paste0(x$get_layer_name(), "_configs.yaml")))
       })
