@@ -37,6 +37,9 @@ Solution <- R6::R6Class(
     #' @field include_results `list` of [IncludeResults] objects.
     include_results = NULL,
     
+    #' @field exclude_results `list` of [ExcludeResults] objects.
+    exclude_results = NULL,    
+    
     #' @field hidden `logical` value.
     hidden = NA,    
 
@@ -51,6 +54,7 @@ Solution <- R6::R6Class(
     #' @param theme_results `list` of [ThemeResults] objects.
     #' @param weight_results `list` of [WeightResults] objects.
     #' @param include_results `list` of [IncludeResults] objects.
+    #' @param exclude_results `list` of [ExcludeResults] objects.
     #' @param hidden `logical` value.
     #' @return A new Solution object.
     initialize = function(id, name, variable, visible,
@@ -59,6 +63,7 @@ Solution <- R6::R6Class(
                           theme_results,
                           weight_results,
                           include_results,
+                          exclude_results,
                           hidden) {
       # assert arguments are valid
       assertthat::assert_that(
@@ -79,6 +84,8 @@ Solution <- R6::R6Class(
         all_list_elements_inherit(weight_results, "WeightResults"),
         is.list(include_results),
         all_list_elements_inherit(include_results, "IncludeResults"),
+        is.list(exclude_results),
+        all_list_elements_inherit(exclude_results, "ExcludeResults"),        
         #### hidden
         assertthat::is.flag(hidden),
         assertthat::noNA(hidden)
@@ -93,6 +100,7 @@ Solution <- R6::R6Class(
       self$theme_results <- theme_results
       self$weight_results <- weight_results
       self$include_results <- include_results
+      self$exclude_results <- exclude_results
       self$hidden <- hidden
     },
 
@@ -335,6 +343,35 @@ Solution <- R6::R6Class(
       # return results
       out
     },
+    
+    #' @description
+    #' Get exclude results.
+    #' @return [tibble::tibble()] object.
+    get_exclude_results_data = function() {
+      # compile results
+      if (length(self$exclude_results) > 0) {
+        ## if excludes are present, then use result
+        ### extract results
+        x <- tibble::as_tibble(plyr::ldply(
+          self$exclude_results, function(x) x$get_results_data()
+        ))
+        ### format results
+        out <- tibble::tibble(
+          Exclude = x$name,
+          Status = dplyr::if_else(x$status, "Enabled", "Disabled"),
+          `Total (units)` = paste(round(x$total, 2), x$units),
+          `Solution (%)` = round(x$held * 100, 2),
+          `Solution (units)` = paste(round(x$held * x$total, 2), x$units)
+        )
+      } else {
+        ## if no weights are present, then use return
+        out <- tibble::tibble(
+          `Description` = "No excludes specified"
+        )
+      }
+      # return results
+      out
+    },    
 
     #' @description
     #' Render summary results.
@@ -713,6 +750,10 @@ Solution <- R6::R6Class(
           self$include_results,
           function(x) x$get_widget_data()
         ),
+        exclude_results = lapply(
+          self$exclude_results,
+          function(x) x$get_widget_data()
+        ),        
         solution_color = scales::alpha(last(self$variable$legend$colors), 1)
       )
     },
@@ -774,6 +815,8 @@ Solution <- R6::R6Class(
 #' @param weight_results `list` of [WeightResults] objects.
 #'
 #' @param include_results `list` of [IncludeResults] objects.
+#' 
+#' @param exclude_results `list` of [ExcludeResults] objects.
 #'
 #' @param hidden `logical` should the solution be hidden from map?
 #'
@@ -830,6 +873,7 @@ Solution <- R6::R6Class(
 #'   theme_results = list(tr1),
 #'   weight_results = list(),
 #'   include_results = list(),
+#'   exclude_results = list(),
 #'   id = "solution1",
 #'   hidden = FALSE
 #' )
@@ -841,6 +885,7 @@ new_solution <- function(name, variable, visible,
                          theme_results,
                          weight_results,
                          include_results,
+                         exclude_results,
                          id = uuid::UUIDgenerate(),
                          hidden = FALSE) {
   Solution$new(
@@ -852,6 +897,7 @@ new_solution <- function(name, variable, visible,
     theme_results = theme_results,
     weight_results = weight_results,
     include_results = include_results,
+    exclude_results = exclude_results,    
     id = id,
     hidden = hidden
   )
@@ -1048,6 +1094,21 @@ new_solution_from_result <- function(name, visible, dataset, settings, result,
       held = result$include_coverage[[incl$id]]
     )
   })
+  
+  # exclude results
+  exclude_results <- lapply(seq_along(settings$excludes), function(i) {
+    ## copy the exclude object
+    excl <- settings$excludes[[i]]$clone(deep = FALSE)
+    ## apply settings from exclude_settings
+    k <- which(result$exclude_settings$id == excl$id)
+    assertthat::assert_that(assertthat::is.count(k))
+    excl$set_status(result$exclude_settings$status[[k]])
+    ## return weight results
+    new_exclude_results(
+      exclude = excl,
+      held = result$exclude_coverage[[excl$id]]
+    )
+  })  
 
   # weight results
   weight_results <- lapply(seq_along(settings$weights), function(i) {
@@ -1116,6 +1177,7 @@ new_solution_from_result <- function(name, visible, dataset, settings, result,
     theme_results = theme_results,
     weight_results = weight_results,
     include_results = include_results,
+    exclude_results = exclude_results,
     id = id,
     hidden = hidden
   )

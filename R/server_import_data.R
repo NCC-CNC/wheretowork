@@ -13,6 +13,9 @@
 #' @export
 import_data <- function(x, mode) {
   # store variables
+  app_data$project_name <- x$name
+  app_data$author_name <- x$author_name
+  app_data$author_email <- x$author_email
   app_data$dataset <- x$dataset
   app_data$themes <- x$themes
   app_data$weights <- x$weights

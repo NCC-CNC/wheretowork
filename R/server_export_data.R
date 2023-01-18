@@ -70,6 +70,34 @@ server_export_data <- quote({
           ),
           row.names = FALSE
         )
+        ### save input values and parameter settings
+        input_configs <- list(
+          name = app_data$project_name,
+          author_name = app_data$author_name,
+          author_email = app_data$author_email,
+          mode = app_data$mode,
+          themes = lapply(x$theme_results, function(x) {
+            x$theme$export()
+           }),
+           weights = lapply(x$weight_results, function(x) {
+             x$weight$export()
+           }),
+           includes = lapply(x$include_results, function(x) {
+             x$include$export()
+           }),
+           excludes = lapply(x$exclude_results, function(x) {
+             x$exclude$export()
+           }),
+           parameters = lapply(x$parameters, function(x) {
+             list(
+               name = x$name,
+               status = x$status,
+               value = x$value
+             )
+           })
+          )
+       yaml::write_yaml(input_configs, 
+         file.path(td, paste0(x$get_layer_name(), "_configs.yaml")))
       })
       # prepare spatial data for export
       ## if we are saving a shapefile, then include an "_index" column

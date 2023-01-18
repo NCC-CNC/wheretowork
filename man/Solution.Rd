@@ -35,6 +35,8 @@ Definition for the Solution class.
 
 \item{\code{include_results}}{\code{list} of \link{IncludeResults} objects.}
 
+\item{\code{exclude_results}}{\code{list} of \link{ExcludeResults} objects.}
+
 \item{\code{hidden}}{\code{logical} value.}
 }
 \if{html}{\out{</div>}}
@@ -55,6 +57,7 @@ Definition for the Solution class.
 \item \href{#method-get_theme_results_data}{\code{Solution$get_theme_results_data()}}
 \item \href{#method-get_weight_results_data}{\code{Solution$get_weight_results_data()}}
 \item \href{#method-get_include_results_data}{\code{Solution$get_include_results_data()}}
+\item \href{#method-get_exclude_results_data}{\code{Solution$get_exclude_results_data()}}
 \item \href{#method-render_summary_results}{\code{Solution$render_summary_results()}}
 \item \href{#method-render_theme_results}{\code{Solution$render_theme_results()}}
 \item \href{#method-render_weight_results}{\code{Solution$render_weight_results()}}
@@ -83,6 +86,7 @@ Create a Solution object.
   theme_results,
   weight_results,
   include_results,
+  exclude_results,
   hidden
 )}\if{html}{\out{</div>}}
 }
@@ -107,6 +111,8 @@ Create a Solution object.
 \item{\code{weight_results}}{\code{list} of \link{WeightResults} objects.}
 
 \item{\code{include_results}}{\code{list} of \link{IncludeResults} objects.}
+
+\item{\code{exclude_results}}{\code{list} of \link{ExcludeResults} objects.}
 
 \item{\code{hidden}}{\code{logical} value.}
 }
@@ -293,6 +299,19 @@ Get weight results.
 Get include results.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Solution$get_include_results_data()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{\link[tibble:tibble]{tibble::tibble()}} object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_exclude_results_data"></a>}}
+\if{latex}{\out{\hypertarget{method-get_exclude_results_data}{}}}
+\subsection{Method \code{get_exclude_results_data()}}{
+Get exclude results.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Solution$get_exclude_results_data()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
