@@ -12,6 +12,8 @@ class ParameterSetting {
     hide,
     disable,
     no_slider,
+    show_fileinput,
+    fileinput,
     units,
     reference_value,
     reference_units,
@@ -33,15 +35,15 @@ class ParameterSetting {
     this.status_el = this.el.querySelector(".status-checkbox");
     this.value_el = this.el.querySelector(".noUiSlider-widget");
     this.value_container_el = this.el.querySelector(".parameter-slider");
+    this.file_container_el = this.el.querySelector(".parameter-fileinput");
     this.previous_value = value;
     this.hide = hide;
     this.disable = disable;
     this.no_slider = no_slider;
+    this.show_fileinput = show_fileinput;
+    this.fileinput = fileinput;
     this.tool_tip = tool_tip;
     
-    console.log(id)    
-    console.log(tool_tip)
-  
     // local variables
     let that = this;
 
@@ -94,6 +96,13 @@ class ParameterSetting {
         this.ref_el.style.display = "none";
       }
     }
+    
+    /// hide fileinput if needed
+    if (status && show_fileinput) {
+      this.file_container_el.style.display = "block";
+    } else {
+      this.file_container_el.style.display = "none";
+    }    
 
     // set listeners to update user interface
     /// enable/disable widget on click
@@ -129,6 +138,14 @@ class ParameterSetting {
               that.ref_el.style.display = "none";
             }
           }
+          
+          /// hide fileinput if needed
+          if (checked && show_fileinput) {
+            that.file_container_el.style.display = "block";
+          } else {
+            that.file_container_el.style.display = "none";
+          }             
+          
         }
         //// update HTML styles
         let els =
@@ -143,6 +160,24 @@ class ParameterSetting {
     }
 
     // set listeners to pass data to Shiny
+    // set listeners to accept file input configs .yaml
+    const inputConfig = this.el.querySelector(".input_config")
+    if (HTMLWidgets.shinyMode) {
+      inputConfig.onchange = function(evt) { 
+        let reader = new FileReader();
+        reader.onload = function(evt) {        
+          let filecontent = evt.target.result;
+        Shiny.setInputValue(manager, {
+          id: id,
+          setting: "fileinput",
+          value: filecontent,
+          type: "parameter"
+        });          
+       };
+       reader.readAsText(evt.target.files[0]);
+     };
+    };
+    
     if (HTMLWidgets.shinyMode) {
       /// value
       this.value_el.noUiSlider.on("update", function (values, handle) {
