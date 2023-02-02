@@ -38,6 +38,10 @@ SolutionSettings <- R6::R6Class(
 
     #' @field parameters `list` of [Parameter] objects.
     parameters = NULL,
+    
+    #' @field user_settings `list` of [Theme], [Weight], [Include], [Exclude] 
+    #' and [Parameter] objects.
+    user_settings = list(),    
 
     #' @description
     #' Create a `SolutionSettings` object.
@@ -46,9 +50,10 @@ SolutionSettings <- R6::R6Class(
     #' @param includes `list` of [Include] objects.
     #' @param excludes `list` of [Exclude] objects.
     #' @param parameters `list` of [Parameter] objects.
+    #' @param user_settings `list` of `list` of [Theme], [Weight], [Include], 
+    #' [Exclude] and [Parameter] objects.
     #' @return A new `SolutionSettings` object.
     initialize = function(themes, weights, includes, excludes, parameters) {
-      
       assertthat::assert_that(
         is.list(themes),
         is.list(weights),
@@ -68,6 +73,7 @@ SolutionSettings <- R6::R6Class(
       self$include_ids <- vapply(includes, `[[`, character(1), "id")
       self$exclude_ids <- vapply(excludes, `[[`, character(1), "id")
       self$parameter_ids <- vapply(parameters, `[[`, character(1), "id")
+      self$user_settings <- list()
       self$set_overlap()
     },
     
@@ -249,15 +255,15 @@ SolutionSettings <- R6::R6Class(
     },
 
     #' @description
-    #' Set a setting for a weight or theme.
+    #' Set a setting for theme, weight, include, exclude and parameters.
     #' @param value `list` with new setting information (see Details section)
     #' @details
     #' The argument to `value` should be a `list` with the following elements:
     #' \describe{
-    #' \item{id}{`character` identifier for theme, weight, or include.}
+    #' \item{id}{`character` identifier for theme, weight, include, exclude or parameter.}
     #' \item{setting}{`character` name of parameter.
-    #'   Available options are: `"status"`, `"factor"`, `"value"`, or `"goal"`.}
-    #' \item{value}{`numeric` or `logical` value for new setting.}
+    #'   Available options are: `"status"`, `"factor"`, `"value"`, `"goal"`, or `"fileinput"`}
+    #' \item{value}{`numeric`, `logical`, or `character` value for new setting.}
     #' \item{type}{`character` indicating the type of setting.
     #'   Available options are: `"theme"`, `"weight"`, `"include"`, `"exclude"`,
     #'   `"parameter"`.}
@@ -285,6 +291,35 @@ SolutionSettings <- R6::R6Class(
         self$get_parameter(value$id)$set_setting(value$setting, value$value)
       }
     },
+    
+    #' @description
+    #' update settings for theme, weight, include, exclude and parameters from 
+    #' user uploaded config file.
+    update_settings = function() {
+      # update weight settings
+      lapply(seq_along(self$user_settings$weights), function(x) {
+        self$weights[[x]]$set_setting("status", self$user_settings$weights[[x]]$status)
+        self$weights[[x]]$set_setting("factor", self$user_settings$weights[[x]]$factor)
+      })        
+      # update include settings
+      lapply(seq_along(self$user_settings$includes), function(x) {
+        self$includes[[x]]$set_setting("status", self$user_settings$includes[[x]]$status)
+      })
+      # update exclude settings
+      lapply(seq_along(self$user_settings$excludes), function(x) {
+        self$excludes[[x]]$set_setting("status", self$user_settings$excludes[[x]]$status)
+      })        
+    },
+      
+    #' @description
+    #' Get user configs.
+    #' @return `list` with user slider and parameter values.
+    set_user_settings = function() {
+      if (shiny::isTruthy(self$parameter_ids)) {
+        fi <- self$parameters[[which(self$parameter_ids == "fileinput_parameter")]]
+        self$user_settings <- yaml::yaml.load(fi$get_fileinput())
+      }
+    },  
 
     #' @description
     #' Get data for displaying the theme in a [solutionSettings()] widget.
@@ -385,7 +420,7 @@ SolutionSettings <- R6::R6Class(
         value = vapply(self$parameters, `[[`, numeric(1), "value")
       )
     },
-
+    
     #' @description
     #' Get theme matrix data.
     #' @return [Matrix::sparseMatrix()] with data.
