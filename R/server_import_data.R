@@ -113,7 +113,20 @@ import_data <- function(x, mode) {
         "By default, includes have importance over excludes if there is overlap. 
         Enabling Override includes switches overlap precedence to excludes.",
       id = "overlap_parameter"
-    )  
+    )
+  
+  fileinput_parameter <-
+    wheretowork::new_parameter(
+      name = "Input configurations",
+      status = FALSE,
+      hide = TRUE,
+      disable = FALSE,
+      no_slider = TRUE,
+      show_fileinput = TRUE,
+      tool_tip =
+        "testing 1 ,2 ,3",
+      id = "fileinput_parameter"
+    )    
 
   # store widgets
   app_data$mm <- new_map_manager(
@@ -125,7 +138,8 @@ import_data <- function(x, mode) {
     includes = app_data$includes,
     excludes = app_data$excludes,
     parameters = list(area_budget_parameter, boundary_gap_parameter, 
-                      solution_layer_parameter, overlap_parameter)
+                      solution_layer_parameter, overlap_parameter, 
+                      fileinput_parameter)
   )
   
   # store  data
