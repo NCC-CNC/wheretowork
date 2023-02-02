@@ -39,7 +39,13 @@ Parameter <- R6::R6Class(
     disable = NA,
     
     #' @field no_slider `logical` value.
-    no_slider = NA,     
+    no_slider = NA, 
+    
+    #' @field no_fileinput `logical` value.
+    show_fileinput = NA,
+
+    #' @field fileinput `character` value.
+    fileinput = NA_character_,
 
     #' @field units `character` value.
     units = NA_character_,
@@ -65,6 +71,8 @@ Parameter <- R6::R6Class(
     #' @param hide `logical` value.
     #' @param disable `logical` value.
     #' @param no_slider `logical` value.
+    #' @param show_fileinput `logical` value.
+    #' @param fileinput `character` value.
     #' @param units `character` value.
     #' @param reference_value `numeric` value.
     #' @param reference_units `character` value.
@@ -73,8 +81,8 @@ Parameter <- R6::R6Class(
     ## constructor
     initialize = function(id, name, status,
                           value, min_value, max_value, step_value, hide, 
-                          disable, no_slider, units, reference_value, 
-                          reference_units, tool_tip) {
+                          disable, no_slider, show_fileinput, fileinput, 
+                          units, reference_value, reference_units, tool_tip) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -137,6 +145,8 @@ Parameter <- R6::R6Class(
       self$hide <- hide
       self$disable <- disable
       self$no_slider <- no_slider
+      self$show_fileinput <- show_fileinput
+      self$fileinput <- fileinput
       self$units <- units
       self$tool_tip <- tool_tip
     },
@@ -184,22 +194,31 @@ Parameter <- R6::R6Class(
     get_value = function() {
       self$value
     },
+    
+    #' @description
+    #' Get fileinput.
+    #' @return `character` value.
+    get_fileinput = function() {
+      self$fileinput
+    },    
 
     #' @description
     #' Get setting.
     #' @param name `character` setting name.
-    #' Available options are `"status"`, or `"value"`.
+    #' Available options are `"status"`, `"value"`, or `"fileinput"`.
     #' @return Value.
     get_setting = function(name) {
       assertthat::assert_that(
         assertthat::is.string(name),
         assertthat::noNA(name),
-        name %in% c("status", "value")
+        name %in% c("status", "value", "fileinput")
       )
       if (identical(name, "status")) {
         out <- self$get_status()
       } else if (identical(name, "value")) {
         out <- self$get_value()
+      } else if (identical(name, "fileinput")) {
+        out <- self$get_fileinput()        
       } else {
         stop(paste0("\"", name, "\" is not a setting"))
       }
@@ -231,22 +250,35 @@ Parameter <- R6::R6Class(
       self$value <- value
       invisible(self)
     },
+    
+    #' @description
+    #' Set file input.
+    #' @param value `character` of input configs.
+    set_fileinput = function(value) {
+      assertthat::assert_that(
+        assertthat::is.string(value)
+      )
+      self$fileinput <- value
+      invisible(self)
+    },    
 
     #' @description
     #' Set setting.
     #' @param name `character` setting name.
-    #' Available options are `"status"`, or `"value"`.
+    #' Available options are `"status"`,`"value"`, or `"fileinput"`.
     #' @param value `ANY` new value.
     set_setting = function(name, value) {
       assertthat::assert_that(
         assertthat::is.string(name),
         assertthat::noNA(name),
-        name %in% c("status", "value")
+        name %in% c("status", "value", "fileinput")
       )
       if (identical(name, "status")) {
         self$set_status(value)
       } else if (identical(name, "value")) {
         self$set_value(value)
+      } else if (identical(name, "fileinput")) {
+        self$set_fileinput(value)        
       } else {
         stop(paste0("\"", name, "\" is not a setting"))
       }
@@ -267,6 +299,8 @@ Parameter <- R6::R6Class(
         hide = self$hide,
         disable = self$disable,
         no_slider = self$no_slider,
+        show_fileinput = self$show_fileinput,
+        fileinput = self$fileinput,         
         units = self$units,
         reference_value = self$reference_value,
         reference_units = self$reference_units,
@@ -288,6 +322,8 @@ Parameter <- R6::R6Class(
         hide = self$hide,
         disable = self$disable,
         no_slider = self$no_slider,
+        show_fileinput = self$show_fileinput,
+        fileinput = self$fileinput,        
         units = self$units,
         reference_value = self$reference_value,
         reference_units = self$reference_units,
@@ -349,6 +385,12 @@ Parameter <- R6::R6Class(
 #' @param no_slider `logical` indicating if the setting should not have a slider.
 #'   Defaults to `FALSE`. 
 #'   
+#' @param show_fileinput `logical` indicating if the setting should have file input.
+#'   Defaults to `FALSE`. 
+#'   
+#' @param fileinput `character` of input configs.
+#'   Defaults to "". 
+#'   
 #' @param tool_tip `character` description of parameter setting.
 #'
 #' @inheritParams new_theme
@@ -365,7 +407,8 @@ Parameter <- R6::R6Class(
 #' @export
 new_parameter <- function(name, status = TRUE, value = 0,
                           min_value = 0, max_value = 100, step_value = 1,
-                          hide = FALSE, disable = FALSE, no_slider = FALSE, 
+                          hide = FALSE, disable = FALSE, no_slider = FALSE,
+                          show_fileinput = FALSE, fileinput = "",
                           units = "", reference_value = NA_real_, 
                           reference_units = "", tool_tip = "",  
                           id = uuid::UUIDgenerate()) {
@@ -380,6 +423,8 @@ new_parameter <- function(name, status = TRUE, value = 0,
     hide = hide,
     disable = disable,
     no_slider = no_slider,
+    show_fileinput = show_fileinput,
+    fileinput = fileinput,
     reference_value = reference_value,
     reference_units = reference_units,
     units = units,
