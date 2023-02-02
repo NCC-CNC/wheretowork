@@ -330,11 +330,14 @@ solutionSettings_html <- function(id, style, class, ...) {
             `data-trigger` = "hover",
             title = "Set the parameter value",
             ss_slider_component_scaffold()
-          )
-        )
-      )
-    )
-
+          ),
+         htmltools::tags$div(
+          class = "parameter-fileinput",
+          ss_fileinput_component_scaffold()
+         )
+       )
+     )
+   )
   ## include
   x <-
     htmltools::tagAppendChild(
