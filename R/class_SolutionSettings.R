@@ -296,6 +296,15 @@ SolutionSettings <- R6::R6Class(
     #' update settings for theme, weight, include, exclude and parameters from 
     #' user uploaded config file.
     update_settings = function() {
+      # update theme / feature settings
+      lapply(seq_along(self$user_settings$themes), function(x) {
+        lapply(seq_along(self$user_settings$themes[[x]]$feature), function(y){
+          # set status
+          self$themes[[x]]$feature[[y]]$set_status(self$user_settings$themes[[x]]$feature[[y]]$status)
+          # set goal
+          self$themes[[x]]$feature[[y]]$set_goal(self$user_settings$themes[[x]]$feature[[y]]$goal)
+        })
+      })         
       # update weight settings
       lapply(seq_along(self$user_settings$weights), function(x) {
         self$weights[[x]]$set_setting("status", self$user_settings$weights[[x]]$status)
