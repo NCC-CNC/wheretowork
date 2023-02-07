@@ -99,12 +99,10 @@ class IncludeSetting {
 
   updateStatus(value) {
     this.status_el.checked = value;
-    let els = this.el.querySelectorAll(
-      ".disable-if-inactive, .disable-if-inactive.icon i");
     if (value) {
-      els.forEach((x) => x.removeAttribute("disabled"));
+      this.name_el.removeAttribute("disabled");
     } else {
-      els.forEach((x) => x.setAttribute("disabled", ""));
+      this.name_el.setAttribute("disabled", "");
     }
   }
 
