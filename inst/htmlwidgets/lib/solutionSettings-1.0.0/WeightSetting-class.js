@@ -128,7 +128,16 @@ class WeightSetting {
       /// update slider
       if (value) {
         this.factor_el.noUiSlider.set(this.previous_factor);
+        /// enable label styles
+        this.name_el.removeAttribute("disabled");
+        /// enable slider styles
+        this.factor_el.removeAttribute("disabled");
       } else {
+        /// disable label styles
+        this.name_el.setAttribute("disabled", "");
+        /// disable slider styles
+        this.factor_el.setAttribute("disabled", "");
+        /// set slider to 0
         this.previous_factor = this.factor_el.noUiSlider.get();
         this.factor_el.noUiSlider.set(0);
       }
