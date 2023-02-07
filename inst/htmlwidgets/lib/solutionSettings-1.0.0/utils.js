@@ -48,8 +48,6 @@ function newParameterSetting(manager, x) {
     x.step_value,
     x.hide,
     x.disable,
-    x.no_slider,
-    x.show_fileinput,
     x.fileinput,
     x.units,
     x.reference_value,

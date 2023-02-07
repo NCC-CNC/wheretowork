@@ -4,15 +4,13 @@ class ParameterSetting {
     manager,
     id,
     name,
-    status, // inital switch value
+    status, // switch value
     value,
     min_value,
     max_value,
     step_value,
     hide,
     disable,
-    no_slider,
-    show_fileinput,
     fileinput,
     units,
     reference_value,
@@ -39,8 +37,6 @@ class ParameterSetting {
     this.previous_value = value;
     this.hide = hide;
     this.disable = disable;
-    this.no_slider = no_slider;
-    this.show_fileinput = show_fileinput;
     this.fileinput = fileinput;
     this.tool_tip = tool_tip;
     

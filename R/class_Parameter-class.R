@@ -38,12 +38,6 @@ Parameter <- R6::R6Class(
     #' @field disable `logical` value.
     disable = NA,
     
-    #' @field no_slider `logical` value.
-    no_slider = NA, 
-    
-    #' @field no_fileinput `logical` value.
-    show_fileinput = NA,
-
     #' @field fileinput `character` value.
     fileinput = NA_character_,
 
@@ -70,8 +64,6 @@ Parameter <- R6::R6Class(
     #' @param step_value `numeric` step value.
     #' @param hide `logical` value.
     #' @param disable `logical` value.
-    #' @param no_slider `logical` value.
-    #' @param show_fileinput `logical` value.
     #' @param fileinput `character` value.
     #' @param units `character` value.
     #' @param reference_value `numeric` value.
@@ -81,8 +73,8 @@ Parameter <- R6::R6Class(
     ## constructor
     initialize = function(id, name, status,
                           value, min_value, max_value, step_value, hide, 
-                          disable, no_slider, show_fileinput, fileinput, 
-                          units, reference_value, reference_units, tool_tip) {
+                          disable, fileinput, units, reference_value, 
+                          reference_units, tool_tip) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -122,9 +114,9 @@ Parameter <- R6::R6Class(
         #### disable
         assertthat::is.flag(disable),
         assertthat::noNA(disable),
-        #### no_slider
-        assertthat::is.flag(no_slider),
-        assertthat::noNA(no_slider),          
+        #### fileinput
+        assertthat::is.string(fileinput),
+        assertthat::noNA(fileinput),        
         #### units
         assertthat::is.string(units),
         assertthat::noNA(units),
@@ -144,8 +136,6 @@ Parameter <- R6::R6Class(
       self$reference_units <- reference_units
       self$hide <- hide
       self$disable <- disable
-      self$no_slider <- no_slider
-      self$show_fileinput <- show_fileinput
       self$fileinput <- fileinput
       self$units <- units
       self$tool_tip <- tool_tip
@@ -256,7 +246,8 @@ Parameter <- R6::R6Class(
     #' @param value `character` of input configs.
     set_fileinput = function(value) {
       assertthat::assert_that(
-        assertthat::is.string(value)
+        assertthat::is.string(value),
+        assertthat::noNA(value)
       )
       self$fileinput <- value
       invisible(self)
@@ -298,8 +289,6 @@ Parameter <- R6::R6Class(
         step_value = self$step_value,
         hide = self$hide,
         disable = self$disable,
-        no_slider = self$no_slider,
-        show_fileinput = self$show_fileinput,
         fileinput = self$fileinput,         
         units = self$units,
         reference_value = self$reference_value,
@@ -321,8 +310,6 @@ Parameter <- R6::R6Class(
         step_value = self$step_value,
         hide = self$hide,
         disable = self$disable,
-        no_slider = self$no_slider,
-        show_fileinput = self$show_fileinput,
         fileinput = self$fileinput,        
         units = self$units,
         reference_value = self$reference_value,
@@ -382,12 +369,6 @@ Parameter <- R6::R6Class(
 #' @param disable `logical` indicating if the setting should be disabled.
 #'   Defaults to `FALSE`.  
 #'   
-#' @param no_slider `logical` indicating if the setting should not have a slider.
-#'   Defaults to `FALSE`. 
-#'   
-#' @param show_fileinput `logical` indicating if the setting should have file input.
-#'   Defaults to `FALSE`. 
-#'   
 #' @param fileinput `character` of input configs.
 #'   Defaults to "". 
 #'   
@@ -407,8 +388,7 @@ Parameter <- R6::R6Class(
 #' @export
 new_parameter <- function(name, status = TRUE, value = 0,
                           min_value = 0, max_value = 100, step_value = 1,
-                          hide = FALSE, disable = FALSE, no_slider = FALSE,
-                          show_fileinput = FALSE, fileinput = "",
+                          hide = FALSE, disable = FALSE, fileinput = "",
                           units = "", reference_value = NA_real_, 
                           reference_units = "", tool_tip = "",  
                           id = uuid::UUIDgenerate()) {
@@ -422,8 +402,6 @@ new_parameter <- function(name, status = TRUE, value = 0,
     step_value = step_value,
     hide = hide,
     disable = disable,
-    no_slider = no_slider,
-    show_fileinput = show_fileinput,
     fileinput = fileinput,
     reference_value = reference_value,
     reference_units = reference_units,

@@ -54,7 +54,6 @@ import_data <- function(x, mode) {
       reference_units = stringi::stri_unescape_unicode("km\\u00B2"),
       hide = TRUE,
       disable = FALSE,
-      no_slider = FALSE,
       tool_tip = 
         "Specify a maximum percentage of the total area that should be selected 
         in the solution.",
@@ -72,7 +71,6 @@ import_data <- function(x, mode) {
       units = "%",
       hide = TRUE,
       disable = shiny::isTruthy(app_data$shp_hidden),
-      no_slider = FALSE,
       tool_tip =
         "Specify how much effort that should be spent on promoting spatial 
         clustering in the solution. When no budget is specified, this controls 
@@ -95,7 +93,6 @@ import_data <- function(x, mode) {
       units = "%",
       hide = TRUE,
       disable = FALSE,
-      no_slider = TRUE,
       tool_tip = 
         "Hide the output solution layer from map to avoid app performance loss. 
         Recommended for vector projects with over 10,000 planning units.",
@@ -108,7 +105,6 @@ import_data <- function(x, mode) {
       status = FALSE,
       hide = TRUE,
       disable = FALSE,
-      no_slider = TRUE,
       tool_tip =
         "By default, includes have importance over excludes if there is overlap. 
         Enabling Override includes switches overlap precedence to excludes.",
@@ -121,8 +117,6 @@ import_data <- function(x, mode) {
       status = FALSE,
       hide = TRUE,
       disable = FALSE,
-      no_slider = TRUE,
-      show_fileinput = TRUE,
       tool_tip =
         "testing 1 ,2 ,3",
       id = "fileinput_parameter"
