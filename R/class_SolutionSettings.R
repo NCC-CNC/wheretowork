@@ -308,7 +308,12 @@ SolutionSettings <- R6::R6Class(
       # update exclude settings
       lapply(seq_along(self$user_settings$excludes), function(x) {
         self$excludes[[x]]$set_setting("status", self$user_settings$excludes[[x]]$status)
-      })        
+      })
+      # update parameter settings
+      lapply(seq_along(self$user_settings$parameters), function(x) {
+        self$parameters[[x]]$set_setting("status", self$user_settings$parameters[[x]]$status)
+        self$parameters[[x]]$set_setting("value", self$user_settings$parameters[[x]]$value)
+      })      
     },
       
     #' @description
