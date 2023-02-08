@@ -118,7 +118,8 @@ import_data <- function(x, mode) {
       hide = TRUE,
       disable = FALSE,
       tool_tip =
-        "testing 1 ,2 ,3",
+        "upload a *_config.yaml file downloaded from this project to update
+         toggle switches and slider values from a previous optimization run.",
       id = "fileinput_parameter"
     )    
 
