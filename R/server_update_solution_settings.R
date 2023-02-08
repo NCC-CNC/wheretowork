@@ -22,13 +22,41 @@ server_update_solution_settings <- quote({
     ## update solution settings object
     app_data$ss$set_setting(input$newSolutionPane_settings)
     
-   ## set user configs on file upload
+   ## listen for file input parameter setting
    if(input$newSolutionPane_settings$setting == "fileinput") {
+     # set user settings
      app_data$ss$set_user_settings()
-     app_data$ss$update_settings()
+     ### get user settings... 
+     ### return class "try-error" if user input config does not match project
+     x <- try(app_data$ss$get_user_settings(),
+              silent = TRUE
+            )
+     
+     if (identical(class(x), "try-error")) {
+       msg <- paste(
+        "Input configurations do not match current project.", 
+        "Be sure to upload a *_configs.yaml file previously downloaded from", 
+        "this project for toggle switches and slider values to match a previous",
+        "optimization run."
+       )
+       ### display error modal
+       shinyalert::shinyalert(
+         title = "Oops",
+         text = msg,
+         size = "s",
+         closeOnEsc = TRUE,
+         closeOnClickOutside = TRUE,
+         type = "error",
+         showConfirmButton = TRUE,
+         confirmButtonText = "OK",
+         timer = 0,
+         confirmButtonCol = "#0275d8",
+         animation = TRUE
+       )
+     }
     
     ## update settings with user uploaded config file
-    if (length(app_data$ss$user_settings) > 0) {
+    if ((length(app_data$ss$user_settings) > 0) & is.list(x)) {
       
       ### update theme/feature status
       vapply(app_data$themes, FUN.VALUE = logical(1), function(x) {
