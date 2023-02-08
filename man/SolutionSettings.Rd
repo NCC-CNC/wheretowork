@@ -11,6 +11,10 @@ Solution settings class
 \details{
 Definition for the \code{SolutionSettings} class.
 
+\code{user_settings} stores user uploaded .yaml file used to repopulate solution
+settings from a previous optimization run. The user uploaded .yaml file
+must completely match the current project.
+
 The argument to \code{value} should be a \code{list} with the following elements:
 \describe{
 \item{id}{\code{character} identifier for theme, weight, include, or exclude.}
@@ -23,10 +27,10 @@ Available options are: \code{"theme"}, \code{"weight"}, \code{"include"}, \code{
 
 The argument to \code{value} should be a \code{list} with the following elements:
 \describe{
-\item{id}{\code{character} identifier for theme, weight, or include.}
+\item{id}{\code{character} identifier for theme, weight, include, exclude or parameter.}
 \item{setting}{\code{character} name of parameter.
-Available options are: \code{"status"}, \code{"factor"}, \code{"value"}, or \code{"goal"}.}
-\item{value}{\code{numeric} or \code{logical} value for new setting.}
+Available options are: \code{"status"}, \code{"factor"}, \code{"value"}, \code{"goal"}, or \code{"fileinput"}}
+\item{value}{\code{numeric}, \code{logical}, or \code{character} value for new setting.}
 \item{type}{\code{character} indicating the type of setting.
 Available options are: \code{"theme"}, \code{"weight"}, \code{"include"}, \code{"exclude"},
 \code{"parameter"}.}
@@ -55,6 +59,9 @@ parameters.}
 \item{\code{excludes}}{\code{list} of \link{Exclude} objects.}
 
 \item{\code{parameters}}{\code{list} of \link{Parameter} objects.}
+
+\item{\code{user_settings}}{\code{list} of \link{Theme}, \link{Weight}, \link{Include}, \link{Exclude}
+and \link{Parameter} objects.}
 }
 \if{html}{\out{</div>}}
 }
@@ -71,6 +78,8 @@ parameters.}
 \item \href{#method-get_parameter}{\code{SolutionSettings$get_parameter()}}
 \item \href{#method-get_setting}{\code{SolutionSettings$get_setting()}}
 \item \href{#method-set_setting}{\code{SolutionSettings$set_setting()}}
+\item \href{#method-set_user_settings}{\code{SolutionSettings$set_user_settings()}}
+\item \href{#method-get_user_settings}{\code{SolutionSettings$get_user_settings()}}
 \item \href{#method-get_widget_data}{\code{SolutionSettings$get_widget_data()}}
 \item \href{#method-get_theme_settings}{\code{SolutionSettings$get_theme_settings()}}
 \item \href{#method-get_weight_settings}{\code{SolutionSettings$get_weight_settings()}}
@@ -108,6 +117,9 @@ Create a \code{SolutionSettings} object.
 \item{\code{excludes}}{\code{list} of \link{Exclude} objects.}
 
 \item{\code{parameters}}{\code{list} of \link{Parameter} objects.}
+
+\item{\code{user_settings}}{\code{list} of \code{list} of \link{Theme}, \link{Weight}, \link{Include},
+\link{Exclude} and \link{Parameter} objects (see Details section).}
 }
 \if{html}{\out{</div>}}
 }
@@ -266,7 +278,7 @@ Get a setting for a weight, theme, include, exclude, or parameter.
 \if{html}{\out{<a id="method-set_setting"></a>}}
 \if{latex}{\out{\hypertarget{method-set_setting}{}}}
 \subsection{Method \code{set_setting()}}{
-Set a setting for a weight or theme.
+Set a setting for theme, weight, include, exclude and parameters.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$set_setting(value)}\if{html}{\out{</div>}}
 }
@@ -278,6 +290,31 @@ Set a setting for a weight or theme.
 }
 \if{html}{\out{</div>}}
 }
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_user_settings"></a>}}
+\if{latex}{\out{\hypertarget{method-set_user_settings}{}}}
+\subsection{Method \code{set_user_settings()}}{
+set user uploaded configuration settings.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$set_user_settings()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{list} of \link{Theme}, \link{Weight}, \link{Include}, \link{Exclude}
+and \link{Parameter} objects.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_user_settings"></a>}}
+\if{latex}{\out{\hypertarget{method-get_user_settings}{}}}
+\subsection{Method \code{get_user_settings()}}{
+update settings for theme, weight, include, exclude and parameters from
+user uploaded configuration file.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$get_user_settings()}\if{html}{\out{</div>}}
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_widget_data"></a>}}
