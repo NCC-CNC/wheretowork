@@ -51,7 +51,11 @@ SolutionSettings <- R6::R6Class(
     #' @param excludes `list` of [Exclude] objects.
     #' @param parameters `list` of [Parameter] objects.
     #' @param user_settings `list` of `list` of [Theme], [Weight], [Include], 
-    #' [Exclude] and [Parameter] objects.
+    #' [Exclude] and [Parameter] objects (see Details section).
+    #' @details
+    #' `user_settings` stores user uploaded .yaml file used to repopulate solution
+    #' settings from a previous optimization run. The user uploaded .yaml file 
+    #' must completely match the current project.  
     #' @return A new `SolutionSettings` object.
     initialize = function(themes, weights, includes, excludes, parameters) {
       assertthat::assert_that(
@@ -293,9 +297,27 @@ SolutionSettings <- R6::R6Class(
     },
     
     #' @description
+    #' set user uploaded configuration settings.
+    #' @return `list` of [Theme], [Weight], [Include], [Exclude] 
+    #' and [Parameter] objects.
+    set_user_settings = function() {
+      if (shiny::isTruthy(self$parameter_ids)) {
+        fi <- self$parameters[[which(self$parameter_ids == "fileinput_parameter")]]
+        self$user_settings <- yaml::yaml.load(fi$get_fileinput())
+      }
+    },    
+    
+    #' @description
     #' update settings for theme, weight, include, exclude and parameters from 
-    #' user uploaded config file.
-    update_settings = function() {
+    #' user uploaded configuration file.
+    get_user_settings = function() {
+      assertthat::assert_that(
+        is.list(self$user_settings),
+        identical(length(self$user_settings$themes), length(self$themes)),
+        identical(length(self$user_settings$weights), length(self$weights)),
+        identical(length(self$user_settings$includes), length(self$includes)),
+        identical(length(self$user_settings$excludes), length(self$excludes))
+      )
       # update theme / feature settings
       lapply(seq_along(self$user_settings$themes), function(x) {
         lapply(seq_along(self$user_settings$themes[[x]]$feature), function(y){
@@ -325,16 +347,6 @@ SolutionSettings <- R6::R6Class(
       })      
     },
       
-    #' @description
-    #' Get user configs.
-    #' @return `list` with user slider and parameter values.
-    set_user_settings = function() {
-      if (shiny::isTruthy(self$parameter_ids)) {
-        fi <- self$parameters[[which(self$parameter_ids == "fileinput_parameter")]]
-        self$user_settings <- yaml::yaml.load(fi$get_fileinput())
-      }
-    },  
-
     #' @description
     #' Get data for displaying the theme in a [solutionSettings()] widget.
     #' @return `list` with widget data.
