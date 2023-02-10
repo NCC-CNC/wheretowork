@@ -650,3 +650,123 @@ test_that("widget methods", {
     )
   )
 })
+
+test_that("update solution settings", {
+  skip_if_not_installed("RandomFields")
+  # create object
+  ## create dataset
+  rd <- simulate_binary_spatial_data(import_simple_raster_data(), 6)
+  d <- new_dataset_from_auto(rd)
+  ## create variables
+  v1 <- new_variable(
+    dataset = d, index = 1, total = 12, units = "ha",
+    legend = simulate_continuous_legend()
+  )
+  v2 <- new_variable(
+    dataset = d, index = 2, total = 14, units = "ha",
+    legend = simulate_continuous_legend()
+  )
+  v3 <- new_variable(
+    dataset = d, index = 3, total = 78, units = "ha",
+    legend = simulate_continuous_legend()
+  )
+  v4 <- new_variable(
+    dataset = d, index = 4, total = 90, units = "ha",
+    legend = simulate_continuous_legend()
+  )
+  v5 <- new_variable(
+    dataset = d, index = 5, total = 90, units = "ha",
+    legend = simulate_include_legend()
+  )
+  v6 <- new_variable(
+    dataset = d, index = 6, total = 90, units = "ha",
+    legend = simulate_exclude_legend()
+  )  
+  ## create a weight using dataset
+  w <- new_weight(
+    name = "Human Footprint Index", variable = v1,
+    factor = -90, status = FALSE, id = "W1"
+  )
+  ## create an include using dataset
+  incl <- new_include(
+    name = "Protected areas", variable = v5,
+    status = TRUE, id = "I1"
+  )
+  ## create an exclude using dataset
+  e <- new_exclude(
+    name = "Urban areas", variable = v6,
+    status = TRUE, id = "E1"
+  )  
+  ## create features using dataset
+  f1 <- new_feature(
+    name = "Possum", variable = v2,
+    goal = 0.2, status = FALSE, current = 0.5, id = "F1"
+  )
+  f2 <- new_feature(
+    name = "Forests", variable = v3,
+    goal = 0.3, status = FALSE, current = 0.9, id = "F2"
+  )
+  f3 <- new_feature(
+    name = "Shrubs", variable = v4,
+    goal = 0.6, status = TRUE, current = 0.4, id = "F3"
+  )
+  ## create themes using the features
+  t1 <- new_theme("Species", f1, id = "T1")
+  t2 <- new_theme("Ecoregions", list(f2, f3), id = "T2")
+  ## create parameter
+  p1 <- new_parameter("Spatial clustering", value = 90, id = "P1")
+  ## create solution setting
+  x <- new_solution_settings(
+    themes = list(t1, t2), weights = list(w), includes = list(incl),
+    excludes = list(e), parameters = list(p1)
+  )
+  ## create a weight using dataset
+  w <- new_weight(
+    name = "Human Footprint Index", variable = v1,
+    factor = 90, status = FALSE, id = "W1"
+  )
+  ## create an include using dataset
+  incl <- new_include(
+    name = "Protected areas", variable = v5,
+    status = FALSE, id = "I1"
+  )
+  ## create an exclude using dataset
+  e <- new_exclude(
+    name = "Urban areas", variable = v6,
+    status = FALSE, id = "E1"
+  )  
+  ## create features using dataset
+  f1 <- new_feature(
+    name = "Possum", variable = v2,
+    goal = 0.8, status = FALSE, current = 0.5, id = "F1"
+  )
+  f2 <- new_feature(
+    name = "Forests", variable = v3,
+    goal = 0.3, status = TRUE, current = 0.9, id = "F2"
+  )
+  f3 <- new_feature(
+    name = "Shrubs", variable = v4,
+    goal = 0.8, status = TRUE, current = 0.4, id = "F3"
+  )
+  ## create themes using the features
+  t1 <- new_theme("Species", f1, id = "T1")
+  t2 <- new_theme("Ecoregions", list(f2, f3), id = "T2")
+  ## create parameter
+  p1 <- new_parameter("Spatial clustering", value = 45, id = "P1")  
+  
+  ## create setting list
+  setting_list <- list(themes = list(t1, t2), weights = list(w), 
+    includes = list(incl), excludes = list(e), parameters = list(p1))
+  ## update solution settings
+  x$update_ss(setting_list)
+  
+  # run tests
+  expect_identical(x$themes[[1]]$feature[[1]]$goal, 0.8)
+  expect_identical(x$themes[[1]]$feature[[1]]$status, FALSE)
+  expect_identical(x$themes[[2]]$feature[[1]]$goal, 0.3)
+  expect_identical(x$themes[[2]]$feature[[1]]$status, TRUE)
+  expect_identical(x$weights[[1]]$factor, 90)
+  expect_identical(x$includes[[1]]$status, FALSE)
+  expect_identical(x$excludes[[1]]$status, FALSE)
+  expect_identical(x$parameters[[1]]$value, 45)
+})
