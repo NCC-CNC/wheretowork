@@ -13,7 +13,6 @@ new_parameter(
   step_value = 1,
   hide = FALSE,
   disable = FALSE,
-  fileinput = "",
   units = "",
   reference_value = NA_real_,
   reference_units = "",
@@ -46,9 +45,6 @@ Defaults to \code{FALSE}.}
 
 \item{disable}{\code{logical} indicating if the setting should be disabled.
 Defaults to \code{FALSE}.}
-
-\item{fileinput}{\code{character} of input configs.
-Defaults to "".}
 
 \item{units}{\code{character} units.
 Defaults to an empty \code{character} object.}

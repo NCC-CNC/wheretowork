@@ -35,8 +35,6 @@ Definition for the Parameter class.
 
 \item{\code{disable}}{\code{logical} value.}
 
-\item{\code{fileinput}}{\code{character} value.}
-
 \item{\code{units}}{\code{character} value.}
 
 \item{\code{reference_value}}{\code{numeric} reference value.}
@@ -55,11 +53,9 @@ Definition for the Parameter class.
 \item \href{#method-repr}{\code{Parameter$repr()}}
 \item \href{#method-get_status}{\code{Parameter$get_status()}}
 \item \href{#method-get_value}{\code{Parameter$get_value()}}
-\item \href{#method-get_fileinput}{\code{Parameter$get_fileinput()}}
 \item \href{#method-get_setting}{\code{Parameter$get_setting()}}
 \item \href{#method-set_status}{\code{Parameter$set_status()}}
 \item \href{#method-set_value}{\code{Parameter$set_value()}}
-\item \href{#method-set_fileinput}{\code{Parameter$set_fileinput()}}
 \item \href{#method-set_setting}{\code{Parameter$set_setting()}}
 \item \href{#method-get_widget_data}{\code{Parameter$get_widget_data()}}
 \item \href{#method-export}{\code{Parameter$export()}}
@@ -83,7 +79,6 @@ Create a new Parameter object.
   step_value,
   hide,
   disable,
-  fileinput,
   units,
   reference_value,
   reference_units,
@@ -111,8 +106,6 @@ Create a new Parameter object.
 \item{\code{hide}}{\code{logical} value.}
 
 \item{\code{disable}}{\code{logical} value.}
-
-\item{\code{fileinput}}{\code{character} value.}
 
 \item{\code{units}}{\code{character} value.}
 
@@ -196,19 +189,6 @@ Get value.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_fileinput"></a>}}
-\if{latex}{\out{\hypertarget{method-get_fileinput}{}}}
-\subsection{Method \code{get_fileinput()}}{
-Get fileinput.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Parameter$get_fileinput()}\if{html}{\out{</div>}}
-}
-
-\subsection{Returns}{
-\code{character} value.
-}
-}
-\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_setting"></a>}}
 \if{latex}{\out{\hypertarget{method-get_setting}{}}}
 \subsection{Method \code{get_setting()}}{
@@ -221,7 +201,7 @@ Get setting.
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{name}}{\code{character} setting name.
-Available options are \code{"status"}, \code{"value"}, or \code{"fileinput"}.}
+Available options are \code{"status"}, or \code{"value"}.}
 }
 \if{html}{\out{</div>}}
 }
@@ -264,23 +244,6 @@ Set value.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_fileinput"></a>}}
-\if{latex}{\out{\hypertarget{method-set_fileinput}{}}}
-\subsection{Method \code{set_fileinput()}}{
-Set file input.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Parameter$set_fileinput(value)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{value}}{\code{character} of input configs.}
-}
-\if{html}{\out{</div>}}
-}
-}
-\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-set_setting"></a>}}
 \if{latex}{\out{\hypertarget{method-set_setting}{}}}
 \subsection{Method \code{set_setting()}}{
@@ -293,7 +256,7 @@ Set setting.
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{name}}{\code{character} setting name.
-Available options are \code{"status"},\code{"value"}, or \code{"fileinput"}.}
+Available options are \code{"status"}, or \code{"value"}.}
 
 \item{\code{value}}{\code{ANY} new value.}
 }

@@ -35,6 +35,9 @@ Available options are: \code{"status"}, \code{"factor"}, \code{"value"}, \code{"
 Available options are: \code{"theme"}, \code{"weight"}, \code{"include"}, \code{"exclude"},
 \code{"parameter"}.}
 }
+
+The argument to \code{value} should be a \code{list} of \link{Theme}, \link{Weight},
+\link{Include}, \link{Exclude} and \link{Parameter} objects.
 }
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
@@ -78,8 +81,8 @@ and \link{Parameter} objects.}
 \item \href{#method-get_parameter}{\code{SolutionSettings$get_parameter()}}
 \item \href{#method-get_setting}{\code{SolutionSettings$get_setting()}}
 \item \href{#method-set_setting}{\code{SolutionSettings$set_setting()}}
-\item \href{#method-set_user_settings}{\code{SolutionSettings$set_user_settings()}}
-\item \href{#method-get_user_settings}{\code{SolutionSettings$get_user_settings()}}
+\item \href{#method-get_feature_names}{\code{SolutionSettings$get_feature_names()}}
+\item \href{#method-update_ss}{\code{SolutionSettings$update_ss()}}
 \item \href{#method-get_widget_data}{\code{SolutionSettings$get_widget_data()}}
 \item \href{#method-get_theme_settings}{\code{SolutionSettings$get_theme_settings()}}
 \item \href{#method-get_weight_settings}{\code{SolutionSettings$get_weight_settings()}}
@@ -292,29 +295,39 @@ Set a setting for theme, weight, include, exclude and parameters.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_user_settings"></a>}}
-\if{latex}{\out{\hypertarget{method-set_user_settings}{}}}
-\subsection{Method \code{set_user_settings()}}{
-set user uploaded configuration settings.
+\if{html}{\out{<a id="method-get_feature_names"></a>}}
+\if{latex}{\out{\hypertarget{method-get_feature_names}{}}}
+\subsection{Method \code{get_feature_names()}}{
+update settings for theme, weight, include, exclude and parameters from.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$set_user_settings()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$get_feature_names(x)}\if{html}{\out{</div>}}
 }
 
-\subsection{Returns}{
-\code{list} of \link{Theme}, \link{Weight}, \link{Include}, \link{Exclude}
-and \link{Parameter} objects.
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{x}}{\code{list} of themes.}
+}
+\if{html}{\out{</div>}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_user_settings"></a>}}
-\if{latex}{\out{\hypertarget{method-get_user_settings}{}}}
-\subsection{Method \code{get_user_settings()}}{
+\if{html}{\out{<a id="method-update_ss"></a>}}
+\if{latex}{\out{\hypertarget{method-update_ss}{}}}
+\subsection{Method \code{update_ss()}}{
 update settings for theme, weight, include, exclude and parameters from
 user uploaded configuration file.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$get_user_settings()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$update_ss(value)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{value}}{\code{list} with new setting information (see Details section)}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_widget_data"></a>}}
