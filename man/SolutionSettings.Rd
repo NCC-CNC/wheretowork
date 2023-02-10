@@ -311,7 +311,7 @@ get character vector of all feature names from a list of themes.
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-\link{character vector} of feature names.
+\code{vector} of feature names.
 }
 }
 \if{html}{\out{<hr>}}

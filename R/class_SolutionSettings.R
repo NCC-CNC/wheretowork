@@ -298,7 +298,7 @@ SolutionSettings <- R6::R6Class(
     #' @description
     #' get character vector of all feature names from a list of themes. 
     #' @param x `list` of [Theme] objects.
-    #' @return [character vector] of feature names.
+    #' @return `vector` of feature names.
     get_feature_names = function(x) {
       unlist(
         lapply(seq_along(x), function(i) {
