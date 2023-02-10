@@ -24,15 +24,12 @@ server_update_solution_settings <- quote({
     
    ## listen for file input parameter setting
    if(input$newSolutionPane_settings$setting == "fileinput") {
-     # set user settings
-     app_data$ss$set_user_settings()
-     ### get user settings... 
-     ### return class "try-error" if user input config does not match project
-     x <- try(app_data$ss$get_user_settings(),
-              silent = TRUE
-            )
-     
-     if (identical(class(x), "try-error")) {
+     ### read-in user uploaded configuration settings as list
+     settings_lst <- yaml::yaml.load(input$newSolutionPane_settings$value)
+     ### update solution settings 
+     updated_ss <- try(app_data$ss$update_ss(settings_lst), silent = TRUE)
+     ### update solution settings widget
+     if (identical(class(updated_ss), "try-error")) {
        msg <- paste(
         "Input configurations do not match current project.", 
         "Be sure to upload a *_configs.yaml file previously downloaded from", 
@@ -53,11 +50,7 @@ server_update_solution_settings <- quote({
          confirmButtonCol = "#0275d8",
          animation = TRUE
        )
-     }
-    
-    ## update settings with user uploaded config file
-    if ((length(app_data$ss$user_settings) > 0) & is.list(x)) {
-      
+     } else {
       ### update theme/feature status
       vapply(app_data$themes, FUN.VALUE = logical(1), function(x) {
         if ((!all(x$get_feature_status())) &
@@ -137,13 +130,13 @@ server_update_solution_settings <- quote({
         TRUE
       })       
       ### update weights status
-      lapply(seq_along(app_data$weights), function(x) {
+      lapply(seq_along(app_data$weights), function(i) {
         updateSolutionSettings(
           inputId = "newSolutionPane_settings",
           value = list(
-            id = app_data$ss$weights[[x]]$id,
+            id = app_data$ss$weights[[i]]$id,
             setting = "status",
-            value = app_data$ss$weights[[x]]$status,
+            value = app_data$ss$weights[[i]]$status,
             type = "weight"
           )
         )
@@ -151,70 +144,68 @@ server_update_solution_settings <- quote({
         updateSolutionSettings(
           inputId = "newSolutionPane_settings",
           value = list(
-            id = app_data$ss$weights[[x]]$id,
+            id = app_data$ss$weights[[i]]$id,
             setting = "factor",
-            value = app_data$ss$weights[[x]]$factor,
+            value = app_data$ss$weights[[i]]$factor,
             type = "weight"
           )
         )
       })
       ### update includes status
-      lapply(seq_along(app_data$includes), function(x) {
+      lapply(seq_along(app_data$includes), function(i) {
         updateSolutionSettings(
           inputId = "newSolutionPane_settings",
           value = list(
-            id = app_data$ss$includes[[x]]$id,
+            id = app_data$ss$includes[[i]]$id,
             setting = "status",
-            value = app_data$ss$includes[[x]]$status,
+            value = app_data$ss$includes[[i]]$status,
             type = "include"
           )
          )
        })
       ### update excludes status
-      lapply(seq_along(app_data$excludes), function(x) {
+      lapply(seq_along(app_data$excludes), function(i) {
         updateSolutionSettings(
           inputId = "newSolutionPane_settings",
           value = list(
-            id = app_data$ss$excludes[[x]]$id,
+            id = app_data$ss$excludes[[i]]$id,
             setting = "status",
-            value = app_data$ss$excludes[[x]]$status,
+            value = app_data$ss$excludes[[i]]$status,
             type = "exclude"
           )
         )
       })
       ### update parameter status
-      lapply(seq_along(app_data$ss$parameters), function(x) {
+      lapply(seq_along(app_data$ss$parameters), function(i) {
         updateSolutionSettings(
           inputId = "newSolutionPane_settings",
           value = list(
-            id = app_data$ss$parameters[[x]]$id,
+            id = app_data$ss$parameters[[i]]$id,
             setting = "status",
-            value = app_data$ss$parameters[[x]]$status,
+            value = app_data$ss$parameters[[i]]$status,
             type = "parameter"
           )
         )
       })
       ### update parameter value
-      lapply(seq_along(app_data$ss$parameters), function(x) {
+      lapply(seq_along(app_data$ss$parameters), function(i) {
         updateSolutionSettings(
           inputId = "newSolutionPane_settings",
           value = list(
-            id = app_data$ss$parameters[[x]]$id,
+            id = app_data$ss$parameters[[i]]$id,
             setting = "value",
-            value = app_data$ss$parameters[[x]]$value,
+            value = app_data$ss$parameters[[i]]$value,
             type = "parameter"
           )
         )
       })       
-      
+     }
     }
-   }
     
     ## if updating include status,
     ## then update the current amount for each feature within each theme
     if ((identical(input$newSolutionPane_settings$type, "include")) |
-      (length(app_data$ss$user_settings) > 0))
-      {
+       (exists("updated_ss") && identical(class(updated_ss), "list"))) {
       ### update object
       app_data$ss$update_current_held(
         theme_data = app_data$theme_data,
