@@ -77,7 +77,6 @@ SolutionSettings <- R6::R6Class(
       self$include_ids <- vapply(includes, `[[`, character(1), "id")
       self$exclude_ids <- vapply(excludes, `[[`, character(1), "id")
       self$parameter_ids <- vapply(parameters, `[[`, character(1), "id")
-      self$user_settings <- list()
       self$set_overlap()
     },
     
@@ -297,53 +296,68 @@ SolutionSettings <- R6::R6Class(
     },
     
     #' @description
-    #' set user uploaded configuration settings.
-    #' @return `list` of [Theme], [Weight], [Include], [Exclude] 
-    #' and [Parameter] objects.
-    set_user_settings = function() {
-      if (shiny::isTruthy(self$parameter_ids)) {
-        fi <- self$parameters[[which(self$parameter_ids == "fileinput_parameter")]]
-        self$user_settings <- yaml::yaml.load(fi$get_fileinput())
-      }
-    },    
-    
+    #' get character vector of all feature names from a list of themes. 
+    #' @param x `list` of [Theme] objects.
+    #' @return [character vector] of feature names.
+    get_feature_names = function(x) {
+      unlist(
+        lapply(seq_along(x), function(i) {
+          vapply(x[[i]]$feature, `[[`, character(1), "name")
+        })
+      )
+     },
+        
     #' @description
     #' update settings for theme, weight, include, exclude and parameters from 
     #' user uploaded configuration file.
-    get_user_settings = function() {
+    #' @param value `list` with new setting information (see Details section)
+    #' @details
+    #' The argument to `value` should be a `list` of [Theme], [Weight], 
+    #' [Include], [Exclude] and [Parameter] objects.
+    update_ss = function(value) {
       assertthat::assert_that(
-        is.list(self$user_settings),
-        identical(length(self$user_settings$themes), length(self$themes)),
-        identical(length(self$user_settings$weights), length(self$weights)),
-        identical(length(self$user_settings$includes), length(self$includes)),
-        identical(length(self$user_settings$excludes), length(self$excludes))
+        is.list(value),
+        identical(vapply(value$themes, `[[`, character(1), "name"), 
+          vapply(self$themes, `[[`, character(1), "name")),
+        identical(self$get_feature_names(value$themes),
+          self$get_feature_names(self$themes)),        
+        identical(vapply(value$weights, `[[`, character(1), "name"), 
+          vapply(self$weights, `[[`, character(1), "name")),
+        identical(vapply(value$includes, `[[`, character(1), "name"), 
+          vapply(self$includes, `[[`, character(1), "name")),
+        identical(vapply(value$excludes, `[[`, character(1), "name"), 
+          vapply(self$excludes, `[[`, character(1), "name"))          
       )
       # update theme / feature settings
-      lapply(seq_along(self$user_settings$themes), function(x) {
-        lapply(seq_along(self$user_settings$themes[[x]]$feature), function(y){
+      lapply(seq_along(value$themes), function(i) {
+        lapply(seq_along(value$themes[[i]]$feature), function(j){
           # set status
-          self$themes[[x]]$feature[[y]]$set_status(self$user_settings$themes[[x]]$feature[[y]]$status)
+          self$themes[[i]]$feature[[j]]$set_status(
+            value$themes[[i]]$feature[[j]]$status
+          )
           # set goal
-          self$themes[[x]]$feature[[y]]$set_goal(self$user_settings$themes[[x]]$feature[[y]]$goal)
+          self$themes[[i]]$feature[[j]]$set_goal(
+            value$themes[[i]]$feature[[j]]$goal
+          )
         })
       })         
-      # update weight settings
-      lapply(seq_along(self$user_settings$weights), function(x) {
-        self$weights[[x]]$set_setting("status", self$user_settings$weights[[x]]$status)
-        self$weights[[x]]$set_setting("factor", self$user_settings$weights[[x]]$factor)
+      # update weight settings status and factor
+      lapply(seq_along(value$weights), function(i) {
+        self$weights[[i]]$set_setting("status", value$weights[[i]]$status)
+        self$weights[[i]]$set_setting("factor", value$weights[[i]]$factor)
       })        
-      # update include settings
-      lapply(seq_along(self$user_settings$includes), function(x) {
-        self$includes[[x]]$set_setting("status", self$user_settings$includes[[x]]$status)
+      # update include settings status
+      lapply(seq_along(value$includes), function(i) {
+        self$includes[[i]]$set_setting("status", value$includes[[i]]$status)
       })
-      # update exclude settings
-      lapply(seq_along(self$user_settings$excludes), function(x) {
-        self$excludes[[x]]$set_setting("status", self$user_settings$excludes[[x]]$status)
+      # update exclude settings status
+      lapply(seq_along(value$excludes), function(i) {
+        self$excludes[[i]]$set_setting("status", value$excludes[[i]]$status)
       })
-      # update parameter settings
-      lapply(seq_along(self$user_settings$parameters), function(x) {
-        self$parameters[[x]]$set_setting("status", self$user_settings$parameters[[x]]$status)
-        self$parameters[[x]]$set_setting("value", self$user_settings$parameters[[x]]$value)
+      # update parameter settings status and value
+      lapply(seq_along(value$parameters), function(i) {
+        self$parameters[[i]]$set_setting("status", value$parameters[[i]]$status)
+        self$parameters[[i]]$set_setting("value", value$parameters[[i]]$value)
       })      
     },
       
