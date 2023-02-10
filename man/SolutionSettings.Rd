@@ -298,7 +298,7 @@ Set a setting for theme, weight, include, exclude and parameters.
 \if{html}{\out{<a id="method-get_feature_names"></a>}}
 \if{latex}{\out{\hypertarget{method-get_feature_names}{}}}
 \subsection{Method \code{get_feature_names()}}{
-update settings for theme, weight, include, exclude and parameters from.
+get character vector of all feature names from a list of themes.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SolutionSettings$get_feature_names(x)}\if{html}{\out{</div>}}
 }
@@ -306,9 +306,12 @@ update settings for theme, weight, include, exclude and parameters from.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{x}}{\code{list} of themes.}
+\item{\code{x}}{\code{list} of \link{Theme} objects.}
 }
 \if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+\link{character vector} of feature names.
 }
 }
 \if{html}{\out{<hr>}}
