@@ -100,7 +100,7 @@ class ParameterSetting {
     
     /// show file input if fileinput_parameter
     let fileinputs = ["fileinput_parameter"]
-    if (status && fileinpurs.includes(this.id)) {
+    if (status && fileinputs.includes(this.id)) {
       //// show input
       this.file_container_el.style.display = "block";
     } else {
@@ -173,7 +173,8 @@ class ParameterSetting {
     // set listeners to accept file input configs .yaml
     const inputConfig = this.el.querySelector(".input_config")
     if (HTMLWidgets.shinyMode) {
-      inputConfig.onchange = function(evt) { 
+      inputConfig.onchange = function(evt) {
+        /// read file input as text and pass to R
         let reader = new FileReader();
         reader.onload = function(evt) {        
           let filecontent = evt.target.result;
