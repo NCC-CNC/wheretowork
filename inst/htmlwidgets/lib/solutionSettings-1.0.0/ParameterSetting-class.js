@@ -11,7 +11,6 @@ class ParameterSetting {
     step_value,
     hide,
     disable,
-    fileinput,
     units,
     reference_value,
     reference_units,
@@ -37,7 +36,6 @@ class ParameterSetting {
     this.previous_value = value;
     this.hide = hide;
     this.disable = disable;
-    this.fileinput = fileinput;
     this.tool_tip = tool_tip;
     
     // local variables
