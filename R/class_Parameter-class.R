@@ -38,9 +38,6 @@ Parameter <- R6::R6Class(
     #' @field disable `logical` value.
     disable = NA,
     
-    #' @field fileinput `character` value.
-    fileinput = NA_character_,
-
     #' @field units `character` value.
     units = NA_character_,
 
@@ -64,7 +61,6 @@ Parameter <- R6::R6Class(
     #' @param step_value `numeric` step value.
     #' @param hide `logical` value.
     #' @param disable `logical` value.
-    #' @param fileinput `character` value.
     #' @param units `character` value.
     #' @param reference_value `numeric` value.
     #' @param reference_units `character` value.
@@ -73,8 +69,8 @@ Parameter <- R6::R6Class(
     ## constructor
     initialize = function(id, name, status,
                           value, min_value, max_value, step_value, hide, 
-                          disable, fileinput, units, reference_value, 
-                          reference_units, tool_tip) {
+                          disable, units, reference_value, reference_units, 
+                          tool_tip) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -114,9 +110,6 @@ Parameter <- R6::R6Class(
         #### disable
         assertthat::is.flag(disable),
         assertthat::noNA(disable),
-        #### fileinput
-        assertthat::is.string(fileinput),
-        assertthat::noNA(fileinput),        
         #### units
         assertthat::is.string(units),
         assertthat::noNA(units),
@@ -136,7 +129,6 @@ Parameter <- R6::R6Class(
       self$reference_units <- reference_units
       self$hide <- hide
       self$disable <- disable
-      self$fileinput <- fileinput
       self$units <- units
       self$tool_tip <- tool_tip
     },
@@ -186,29 +178,20 @@ Parameter <- R6::R6Class(
     },
     
     #' @description
-    #' Get fileinput.
-    #' @return `character` value.
-    get_fileinput = function() {
-      self$fileinput
-    },    
-
-    #' @description
     #' Get setting.
     #' @param name `character` setting name.
-    #' Available options are `"status"`, `"value"`, or `"fileinput"`.
+    #' Available options are `"status"`, or `"value"`.
     #' @return Value.
     get_setting = function(name) {
       assertthat::assert_that(
         assertthat::is.string(name),
         assertthat::noNA(name),
-        name %in% c("status", "value", "fileinput")
+        name %in% c("status", "value")
       )
       if (identical(name, "status")) {
         out <- self$get_status()
       } else if (identical(name, "value")) {
         out <- self$get_value()
-      } else if (identical(name, "fileinput")) {
-        out <- self$get_fileinput()        
       } else {
         stop(paste0("\"", name, "\" is not a setting"))
       }
@@ -242,21 +225,9 @@ Parameter <- R6::R6Class(
     },
     
     #' @description
-    #' Set file input.
-    #' @param value `character` of input configs.
-    set_fileinput = function(value) {
-      assertthat::assert_that(
-        assertthat::is.string(value),
-        assertthat::noNA(value)
-      )
-      self$fileinput <- value
-      invisible(self)
-    },    
-
-    #' @description
     #' Set setting.
     #' @param name `character` setting name.
-    #' Available options are `"status"`,`"value"`, or `"fileinput"`.
+    #' Available options are `"status"`, or `"value"`.
     #' @param value `ANY` new value.
     set_setting = function(name, value) {
       assertthat::assert_that(
@@ -269,7 +240,7 @@ Parameter <- R6::R6Class(
       } else if (identical(name, "value")) {
         self$set_value(value)
       } else if (identical(name, "fileinput")) {
-        self$set_fileinput(value)        
+        ## do nothing, no need to store user fileinput        
       } else {
         stop(paste0("\"", name, "\" is not a setting"))
       }
@@ -289,7 +260,6 @@ Parameter <- R6::R6Class(
         step_value = self$step_value,
         hide = self$hide,
         disable = self$disable,
-        fileinput = self$fileinput,         
         units = self$units,
         reference_value = self$reference_value,
         reference_units = self$reference_units,
@@ -310,7 +280,6 @@ Parameter <- R6::R6Class(
         step_value = self$step_value,
         hide = self$hide,
         disable = self$disable,
-        fileinput = self$fileinput,        
         units = self$units,
         reference_value = self$reference_value,
         reference_units = self$reference_units,
@@ -369,9 +338,6 @@ Parameter <- R6::R6Class(
 #' @param disable `logical` indicating if the setting should be disabled.
 #'   Defaults to `FALSE`.  
 #'   
-#' @param fileinput `character` of input configs.
-#'   Defaults to "". 
-#'   
 #' @param tool_tip `character` description of parameter setting.
 #'
 #' @inheritParams new_theme
@@ -388,8 +354,8 @@ Parameter <- R6::R6Class(
 #' @export
 new_parameter <- function(name, status = TRUE, value = 0,
                           min_value = 0, max_value = 100, step_value = 1,
-                          hide = FALSE, disable = FALSE, fileinput = "",
-                          units = "", reference_value = NA_real_, 
+                          hide = FALSE, disable = FALSE, units = "", 
+                          reference_value = NA_real_, 
                           reference_units = "", tool_tip = "",  
                           id = uuid::UUIDgenerate()) {
   Parameter$new(
@@ -402,7 +368,6 @@ new_parameter <- function(name, status = TRUE, value = 0,
     step_value = step_value,
     hide = hide,
     disable = disable,
-    fileinput = fileinput,
     reference_value = reference_value,
     reference_units = reference_units,
     units = units,
