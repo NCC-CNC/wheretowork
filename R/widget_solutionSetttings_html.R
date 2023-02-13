@@ -171,6 +171,48 @@ ss_slider_component_scaffold <- function(bar = NULL) {
   out
 }
 
+#' Scaffold for the file input component of the solution settings widget
+#'
+#' Create a HTML scaffold for a file input component of the
+#' the [solutionSettings()] widget.
+#'
+#' @param fileinput `logical` to include a file input widget.
+#'  Defaults to `FALSE` such that no file input is included.
+#'
+#' @return `shiny.tag` object.
+#'
+#' @noRd
+ss_fileinput_component_scaffold <- function(fileinput = FALSE) {
+  # assert arguments are valid
+  if (fileinput) {
+    assertthat::assert_that(
+      is.logical(fileinput),
+      assertthat::noNA(fileinput)
+    )
+  }
+  
+  # initialize slider
+  out <- htmltools::tags$div(class = "fileinput")
+  
+  # add container for file input widget if needed
+  out <- htmltools::tagAppendChild(
+    out,
+    htmltools::tags$div(
+      class =
+        paste(
+          "widget",
+          ifelse((fileinput), "has-fileinput", "no-fileinput")
+        ),
+      htmltools::tags$div(class = "fileinput-widget disable-if-inactive",
+        htmltools::tags$input(type="file", class="input_config", id="inputconfig",
+          accept=".yaml")
+      )
+    )
+  )
+  # return result
+  out
+}
+
 #' Scaffold for the header component of the solution settings widget
 #'
 #' Create a HTML scaffold for a header component of

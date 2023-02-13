@@ -30,6 +30,8 @@ class SingleThemeSetting {
     this.name_el = this.el.querySelector(".name-label");
     this.status_el = this.el.querySelector(".status-checkbox");
     this.goal_el = this.el.querySelector(".noUiSlider-widget");
+    this.goal_label_el = this.el.querySelector(".slider-label");
+    this.goal_symbol_el = this.el.querySelector(".slider-symbol");
     this.reset_el = this.el.querySelector(".reset-button");
     this.current_label_el = this.el.querySelector(".current-label");
     this.current_bar_el = this.el.querySelector(".current-bar");
@@ -165,8 +167,18 @@ class SingleThemeSetting {
       this.status_el.checked = value;
       /// update slider
       if (value) {
+        this.name_el.removeAttribute("disabled");
+        this.goal_el.removeAttribute("disabled");
+        this.goal_label_el.removeAttribute("disabled");
+        this.goal_symbol_el.removeAttribute("disabled");
+        this.reset_el.removeAttribute("disabled");
         this.goal_el.noUiSlider.set(this.previous_goal);
       } else {
+        this.name_el.setAttribute("disabled");
+        this.goal_el.setAttribute("disabled");
+        this.goal_label_el.setAttribute("disabled");
+        this.goal_symbol_el.setAttribute("disabled");        
+        this.reset_el.setAttribute("disabled");
         this.previous_goal = this.goal_el.noUiSlider.get();
         this.goal_el.noUiSlider.set(this.limit);
       }

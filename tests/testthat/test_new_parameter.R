@@ -12,7 +12,6 @@ test_that("initialization", {
     units = "asdf",
     hide = TRUE,
     disable = FALSE,
-    no_slider = FALSE,
     reference_value = 900,
     reference_units = "ha",
     id = "P1"
@@ -29,7 +28,6 @@ test_that("initialization", {
   expect_equal(x$step_value, 0.03)
   expect_equal(x$hide, TRUE)
   expect_equal(x$disable, FALSE)
-  expect_equal(x$no_slider, FALSE)
   expect_equal(x$units, "asdf")
   expect_equal(x$reference_value, 900)
   expect_equal(x$reference_units, "ha")
@@ -87,7 +85,6 @@ test_that("export method", {
     step_value = 0.03,
     hide = TRUE,
     disable = FALSE,
-    no_slider = FALSE,
     units = "asdf",
     reference_value = 900,
     reference_units = "ha",
@@ -105,7 +102,6 @@ test_that("export method", {
       step_value = 0.03,
       hide = TRUE,
       disable = FALSE,
-      no_slider = FALSE,
       units = "asdf",
       reference_value = 900,
       reference_units = "ha",
@@ -126,7 +122,6 @@ test_that("widget methods", {
     units = "asdf",
     hide = TRUE,
     disable = FALSE,
-    no_slider = FALSE,
     reference_value = 600,
     reference_units = "fizzbuzz",
     tool_tip = "fizzbuzz",
@@ -146,7 +141,6 @@ test_that("widget methods", {
       step_value = 0.03,
       hide = TRUE,
       disable = FALSE,
-      no_slider = FALSE,
       units = "asdf",
       reference_value = 600,
       reference_units = "fizzbuzz",

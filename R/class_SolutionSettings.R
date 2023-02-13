@@ -38,6 +38,10 @@ SolutionSettings <- R6::R6Class(
 
     #' @field parameters `list` of [Parameter] objects.
     parameters = NULL,
+    
+    #' @field user_settings `list` of [Theme], [Weight], [Include], [Exclude] 
+    #' and [Parameter] objects.
+    user_settings = list(),    
 
     #' @description
     #' Create a `SolutionSettings` object.
@@ -46,9 +50,14 @@ SolutionSettings <- R6::R6Class(
     #' @param includes `list` of [Include] objects.
     #' @param excludes `list` of [Exclude] objects.
     #' @param parameters `list` of [Parameter] objects.
+    #' @param user_settings `list` of `list` of [Theme], [Weight], [Include], 
+    #' [Exclude] and [Parameter] objects (see Details section).
+    #' @details
+    #' `user_settings` stores user uploaded .yaml file used to repopulate solution
+    #' settings from a previous optimization run. The user uploaded .yaml file 
+    #' must completely match the current project.  
     #' @return A new `SolutionSettings` object.
     initialize = function(themes, weights, includes, excludes, parameters) {
-      
       assertthat::assert_that(
         is.list(themes),
         is.list(weights),
@@ -249,15 +258,15 @@ SolutionSettings <- R6::R6Class(
     },
 
     #' @description
-    #' Set a setting for a weight or theme.
+    #' Set a setting for theme, weight, include, exclude and parameters.
     #' @param value `list` with new setting information (see Details section)
     #' @details
     #' The argument to `value` should be a `list` with the following elements:
     #' \describe{
-    #' \item{id}{`character` identifier for theme, weight, or include.}
+    #' \item{id}{`character` identifier for theme, weight, include, exclude or parameter.}
     #' \item{setting}{`character` name of parameter.
-    #'   Available options are: `"status"`, `"factor"`, `"value"`, or `"goal"`.}
-    #' \item{value}{`numeric` or `logical` value for new setting.}
+    #'   Available options are: `"status"`, `"factor"`, `"value"`, `"goal"`, or `"fileinput"`}
+    #' \item{value}{`numeric`, `logical`, or `character` value for new setting.}
     #' \item{type}{`character` indicating the type of setting.
     #'   Available options are: `"theme"`, `"weight"`, `"include"`, `"exclude"`,
     #'   `"parameter"`.}
@@ -285,7 +294,73 @@ SolutionSettings <- R6::R6Class(
         self$get_parameter(value$id)$set_setting(value$setting, value$value)
       }
     },
-
+    
+    #' @description
+    #' get character vector of all feature names from a list of themes. 
+    #' @param x `list` of [Theme] objects.
+    #' @return `vector` of feature names.
+    get_feature_names = function(x) {
+      unlist(
+        lapply(seq_along(x), function(i) {
+          vapply(x[[i]]$feature, `[[`, character(1), "name")
+        })
+      )
+     },
+        
+    #' @description
+    #' update settings for theme, weight, include, exclude and parameters from 
+    #' user uploaded configuration file.
+    #' @param value `list` with new setting information (see Details section)
+    #' @details
+    #' The argument to `value` should be a `list` of [Theme], [Weight], 
+    #' [Include], [Exclude] and [Parameter] objects.
+    update_ss = function(value) {
+      assertthat::assert_that(
+        is.list(value),
+        identical(vapply(value$themes, `[[`, character(1), "name"), 
+          vapply(self$themes, `[[`, character(1), "name")),
+        identical(self$get_feature_names(value$themes),
+          self$get_feature_names(self$themes)),        
+        identical(vapply(value$weights, `[[`, character(1), "name"), 
+          vapply(self$weights, `[[`, character(1), "name")),
+        identical(vapply(value$includes, `[[`, character(1), "name"), 
+          vapply(self$includes, `[[`, character(1), "name")),
+        identical(vapply(value$excludes, `[[`, character(1), "name"), 
+          vapply(self$excludes, `[[`, character(1), "name"))          
+      )
+      # update theme / feature settings
+      lapply(seq_along(value$themes), function(i) {
+        lapply(seq_along(value$themes[[i]]$feature), function(j){
+          # set status
+          self$themes[[i]]$feature[[j]]$set_status(
+            value$themes[[i]]$feature[[j]]$status
+          )
+          # set goal
+          self$themes[[i]]$feature[[j]]$set_goal(
+            value$themes[[i]]$feature[[j]]$goal
+          )
+        })
+      })         
+      # update weight settings status and factor
+      lapply(seq_along(value$weights), function(i) {
+        self$weights[[i]]$set_setting("status", value$weights[[i]]$status)
+        self$weights[[i]]$set_setting("factor", value$weights[[i]]$factor)
+      })        
+      # update include settings status
+      lapply(seq_along(value$includes), function(i) {
+        self$includes[[i]]$set_setting("status", value$includes[[i]]$status)
+      })
+      # update exclude settings status
+      lapply(seq_along(value$excludes), function(i) {
+        self$excludes[[i]]$set_setting("status", value$excludes[[i]]$status)
+      })
+      # update parameter settings status and value
+      lapply(seq_along(value$parameters), function(i) {
+        self$parameters[[i]]$set_setting("status", value$parameters[[i]]$status)
+        self$parameters[[i]]$set_setting("value", value$parameters[[i]]$value)
+      })      
+    },
+      
     #' @description
     #' Get data for displaying the theme in a [solutionSettings()] widget.
     #' @return `list` with widget data.
@@ -385,7 +460,7 @@ SolutionSettings <- R6::R6Class(
         value = vapply(self$parameters, `[[`, numeric(1), "value")
       )
     },
-
+    
     #' @description
     #' Get theme matrix data.
     #' @return [Matrix::sparseMatrix()] with data.

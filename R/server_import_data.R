@@ -54,7 +54,6 @@ import_data <- function(x, mode) {
       reference_units = stringi::stri_unescape_unicode("km\\u00B2"),
       hide = TRUE,
       disable = FALSE,
-      no_slider = FALSE,
       tool_tip = 
         "Specify a maximum percentage of the total area that should be selected 
         in the solution.",
@@ -72,7 +71,6 @@ import_data <- function(x, mode) {
       units = "%",
       hide = TRUE,
       disable = shiny::isTruthy(app_data$shp_hidden),
-      no_slider = FALSE,
       tool_tip =
         "Specify how much effort that should be spent on promoting spatial 
         clustering in the solution. When no budget is specified, this controls 
@@ -95,7 +93,6 @@ import_data <- function(x, mode) {
       units = "%",
       hide = TRUE,
       disable = FALSE,
-      no_slider = TRUE,
       tool_tip = 
         "Hide the output solution layer from map to avoid app performance loss. 
         Recommended for vector projects with over 10,000 planning units.",
@@ -108,12 +105,23 @@ import_data <- function(x, mode) {
       status = FALSE,
       hide = TRUE,
       disable = FALSE,
-      no_slider = TRUE,
       tool_tip =
         "By default, includes have importance over excludes if there is overlap. 
         Enabling Override includes switches overlap precedence to excludes.",
       id = "overlap_parameter"
-    )  
+    )
+  
+  fileinput_parameter <-
+    wheretowork::new_parameter(
+      name = "Input configurations",
+      status = FALSE,
+      hide = TRUE,
+      disable = FALSE,
+      tool_tip =
+        "upload a *_config.yaml file downloaded from this project to update
+         toggle switches and slider values from a previous optimization run.",
+      id = "fileinput_parameter"
+    )    
 
   # store widgets
   app_data$mm <- new_map_manager(
@@ -125,7 +133,8 @@ import_data <- function(x, mode) {
     includes = app_data$includes,
     excludes = app_data$excludes,
     parameters = list(area_budget_parameter, boundary_gap_parameter, 
-                      solution_layer_parameter, overlap_parameter)
+                      solution_layer_parameter, overlap_parameter, 
+                      fileinput_parameter)
   )
   
   # store  data

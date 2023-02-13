@@ -48,7 +48,6 @@ function newParameterSetting(manager, x) {
     x.step_value,
     x.hide,
     x.disable,
-    x.no_slider,
     x.units,
     x.reference_value,
     x.reference_units,

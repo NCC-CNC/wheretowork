@@ -391,7 +391,8 @@
 }
 
 .solution-setting .weight-slider,
-.solution-setting .parameter-slider {
+.solution-setting .parameter-slider,
+.solution-setting .parameter-fileinput {
   margin-top: 32px;
   margin-bottom: 5px;
 }
@@ -474,4 +475,10 @@
 }
 .el-switch .el-switch-style {
   background: var(--inactive);
+}
+
+/* fileinput */
+input[type="file"].input_config {
+  margin-top: -25px;
+  margin-left: 5px;
 }
