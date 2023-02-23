@@ -235,7 +235,7 @@ server_generate_new_solution <- quote({
       print(msg)
       if(startsWith(msg, "WtW:")) {
         msg <- gsub("WtW: ", "", msg, fixed = TRUE)
-      } else if (startsWith(msg, "no solution found")){
+      } else if (startsWith(msg, "no solution found")) {
         msg <- paste0(
           "No solution found due to problem infeasibility. ", 
           "This is likely caused by a weight setting confilcting with the total",
