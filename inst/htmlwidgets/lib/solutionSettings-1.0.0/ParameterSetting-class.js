@@ -77,6 +77,11 @@ class ParameterSetting {
     } else {
       this.ref_el.style.display = "none";
     }
+    
+    // create file icon
+    if (id === "fileinput_parameter") {
+     createFile(this.el.querySelector(".file-container")); 
+    }
 
     /// show slider if budget or spatial parameter
     let sliders = ["budget_parameter", "spatial_parameter"] 
@@ -167,7 +172,6 @@ class ParameterSetting {
       });
     }
 
-    // set listeners to pass data to Shiny
     // set listeners to accept file input configs .yaml
     const inputConfig = this.el.querySelector(".input_config")
     if (HTMLWidgets.shinyMode) {
@@ -176,13 +180,24 @@ class ParameterSetting {
         let reader = new FileReader();
         reader.onload = function(evt) {        
           let filecontent = evt.target.result;
-        Shiny.setInputValue(manager, {
-          id: id,
-          setting: "fileinput",
-          value: filecontent,
-          type: "parameter"
-        });          
-       };
+          // pass data to Shiny  
+          Shiny.setInputValue(manager, {
+            id: id,
+            setting: "fileinput",
+            value: filecontent,
+            type: "parameter"
+          });
+          // update file icon to green and tool tip
+          let fileIcon_el = document.querySelector(".file-container i")
+          fileIcon_el.style.color = "#33862B";
+          $(fileIcon_el).attr('title', "Solution settings successfully updated.")
+          .tooltip('fixTitle');          
+        };
+      // update file icon to grey and tool tip
+      let fileIcon_el = document.querySelector(".file-container i")
+      fileIcon_el.style.color = "#B8B8B8";
+      $(fileIcon_el).attr('title', "No .yaml file submitted.")
+      .tooltip('fixTitle');        
        reader.readAsText(evt.target.files[0]);
      };
     };
@@ -241,8 +256,9 @@ class ParameterSetting {
         this.value_el.removeAttribute("disabled", "");
         this.value_el.noUiSlider.set(this.previous_value);
         if (this.has_ref) {
+          let slider_format = wNumb({decimals: 0, suffix: "km2"})
           this.ref_el.innerText =
-            this.ref_format.to(slider_format.from.from(this.previous_value));
+            this.ref_format.to(slider_format.from(this.previous_value));
         }
       } else {
         /// disable name styles

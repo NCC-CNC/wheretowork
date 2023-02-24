@@ -70,8 +70,8 @@ server_export_data <- quote({
           ),
           row.names = FALSE
         )
-        ### save input values and parameter settings
-        input_configs <- list(
+        ### save solution settings
+        ss_configs <- list(
           name = app_data$project_name,
           author_name = app_data$author_name,
           author_email = app_data$author_email,
@@ -91,12 +91,12 @@ server_export_data <- quote({
            parameters = lapply(x$parameters, function(x) {
              list(
                name = x$name,
-               status = x$status,
+               status = if (identical(x$id, "fileinput_parameter")) TRUE else x$status,
                value = x$value
              )
            })
           )
-       yaml::write_yaml(input_configs, 
+       yaml::write_yaml(ss_configs, 
          file.path(td, paste0(x$get_layer_name(), "_configs.yaml")))
       })
       # prepare spatial data for export

@@ -30,9 +30,12 @@ server_update_solution_settings <- quote({
      updated_ss <- try(app_data$ss$update_ss(settings_lst), silent = TRUE)
      ### update solution settings widget
      if (identical(class(updated_ss), "try-error")) {
+       # Update file icon 
+       change_file_icon_js(".file-container i")
+       
        msg <- paste(
-        "Input configurations do not match current project.", 
-        "Be sure to upload a *_configs.yaml file previously downloaded from", 
+        "Update solution settings .yaml file does not match current project.", 
+        "Be sure to upload a .yaml file previously downloaded from", 
         "this project for toggle switches and slider values to match a previous",
         "optimization run."
        )
