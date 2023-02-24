@@ -256,8 +256,9 @@ class ParameterSetting {
         this.value_el.removeAttribute("disabled", "");
         this.value_el.noUiSlider.set(this.previous_value);
         if (this.has_ref) {
+          let slider_format = wNumb({decimals: 0, suffix: "km2"})
           this.ref_el.innerText =
-            this.ref_format.to(slider_format.from.from(this.previous_value));
+            this.ref_format.to(slider_format.from(this.previous_value));
         }
       } else {
         /// disable name styles
