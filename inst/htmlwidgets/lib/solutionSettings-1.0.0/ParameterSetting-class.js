@@ -186,7 +186,7 @@ class ParameterSetting {
             setting: "fileinput",
             value: filecontent,
             type: "parameter"
-          });
+          }, {priority: "event"});
         };
       // update file icon to grey and tool tip
       let fileIcon_el = document.querySelector(".file-container i")
