@@ -113,12 +113,12 @@ import_data <- function(x, mode) {
   
   fileinput_parameter <-
     wheretowork::new_parameter(
-      name = "Input configurations",
+      name = "Update solution settings",
       status = FALSE,
       hide = TRUE,
       disable = FALSE,
       tool_tip =
-        "upload a *_config.yaml file downloaded from this project to update
+        "upload a .yaml file downloaded from this project to update
          toggle switches and slider values from a previous optimization run.",
       id = "fileinput_parameter"
     )    

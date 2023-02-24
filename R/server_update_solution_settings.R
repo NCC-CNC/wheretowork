@@ -34,8 +34,8 @@ server_update_solution_settings <- quote({
        change_file_icon_js(".file-container i")
        
        msg <- paste(
-        "Input configurations do not match current project.", 
-        "Be sure to upload a *_configs.yaml file previously downloaded from", 
+        "Update solution settings .yaml file does not match current project.", 
+        "Be sure to upload a .yaml file previously downloaded from", 
         "this project for toggle switches and slider values to match a previous",
         "optimization run."
        )
