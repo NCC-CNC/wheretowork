@@ -235,8 +235,14 @@ server_generate_new_solution <- quote({
       print(msg)
       if(startsWith(msg, "WtW:")) {
         msg <- gsub("WtW: ", "", msg, fixed = TRUE)
+      } else if (startsWith(msg, "no solution found")) {
+        msg <- paste0(
+          "No solution found due to problem infeasibility. ", 
+          "This is likely caused by a weight setting confilcting with the total",
+          " area budget. Try setting your weight(s) closer to 0."
+        ) 
       } else {
-        msg <- "Something went wrong, please try again." 
+        msg <- "Something went wrong, please try again."
       }
 
       ### throw warning in development mode
