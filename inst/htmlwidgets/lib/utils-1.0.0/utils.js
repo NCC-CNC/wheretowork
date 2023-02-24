@@ -72,3 +72,17 @@ function createWarning(el, name, layer, overlap) {
   icon_el.style.marginRight = "10px";
   el.appendChild(icon_el);
 }
+
+// create file icon
+function createFile(el) {
+  const icon_el = document.createElement("i");
+  icon_el.setAttribute("data-toggle", "tooltip");
+  icon_el.setAttribute("data-placement", "bottom");
+  icon_el.setAttribute("data-container", "body");
+  icon_el.setAttribute("title", "No .yaml file submitted.");
+  icon_el.classList.add("fa");
+  icon_el.classList.add("fa-file");
+  icon_el.style.color = "#b8b8b8";
+  icon_el.style.marginRight = "10px";
+  el.appendChild(icon_el);
+}
