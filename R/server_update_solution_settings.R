@@ -31,8 +31,8 @@ server_update_solution_settings <- quote({
      ### update solution settings widget
      if (identical(class(updated_ss), "try-error")) {
        # Update file icon 
-       change_file_icon_js(".file-container i")
-       
+       change_file_icon_js(".file-container i", "#f03b20", 
+                           "Solution settings did not update.")
        msg <- paste(
         "Update solution settings .yaml file does not match current project.", 
         "Be sure to upload a .yaml file previously downloaded from", 
@@ -201,10 +201,12 @@ server_update_solution_settings <- quote({
             type = "parameter"
           )
         )
-      })       
+      })
+      # Update file icon 
+      change_file_icon_js(".file-container i", "#33862B", 
+                          "Solution settings successfully updated.")        
      }
     }
-    
     ## if updating include status,
     ## then update the current amount for each feature within each theme
     if ((identical(input$newSolutionPane_settings$type, "include")) |

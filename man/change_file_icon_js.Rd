@@ -2,12 +2,16 @@
 % Please edit documentation in R/utils_shinyjs.R
 \name{change_file_icon_js}
 \alias{change_file_icon_js}
-\title{Change file icon to red, update tool tip; fileinput_parameter}
+\title{Change file icon and update tool tip}
 \usage{
-change_file_icon_js(x)
+change_file_icon_js(x, hex, tool_tip)
 }
 \arguments{
 \item{x}{\code{character} CSS selector.}
+
+\item{hex}{\code{character} hex color.}
+
+\item{tool_tip}{\code{character} description text.}
 }
 \value{
 Invisible \code{TRUE}.
@@ -15,5 +19,5 @@ Invisible \code{TRUE}.
 Invisible \code{TRUE}.
 }
 \description{
-Change file icon to red, update tool tip; fileinput_parameter
+Change file icon and update tool tip
 }
