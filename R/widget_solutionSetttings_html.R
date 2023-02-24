@@ -290,7 +290,10 @@ ss_header_component_scaffold <- function(
     ),
     htmltools::tags$div(
       class = "warning-container"
-    )    
+    ),
+    htmltools::tags$div(
+      class = "file-container"
+    )     
   )
 }
 
