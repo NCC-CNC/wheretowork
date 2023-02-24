@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils_shinyjs.R
 \name{change_file_icon_js}
 \alias{change_file_icon_js}
-\title{Display red X icon and update tool tip; fileinput_parameter}
+\title{Change file icon to red, update tool tip; fileinput_parameter}
 \usage{
 change_file_icon_js(x)
 }
@@ -15,5 +15,5 @@ Invisible \code{TRUE}.
 Invisible \code{TRUE}.
 }
 \description{
-Display red X icon and update tool tip; fileinput_parameter
+Change file icon to red, update tool tip; fileinput_parameter
 }
