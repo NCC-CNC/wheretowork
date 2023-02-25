@@ -186,12 +186,7 @@ class ParameterSetting {
             setting: "fileinput",
             value: filecontent,
             type: "parameter"
-          });
-          // update file icon to green and tool tip
-          let fileIcon_el = document.querySelector(".file-container i")
-          fileIcon_el.style.color = "#33862B";
-          $(fileIcon_el).attr('title', "Solution settings successfully updated.")
-          .tooltip('fixTitle');          
+          }, {priority: "event"});
         };
       // update file icon to grey and tool tip
       let fileIcon_el = document.querySelector(".file-container i")

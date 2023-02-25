@@ -79,21 +79,25 @@ disable_html_css_selector <- function(x) {
   invisible(TRUE)
 }
 
-#' Change file icon to red, update tool tip; fileinput_parameter
+#' Change file icon and update tool tip
 #'
 #' @param x `character` CSS selector.
 #'
+#' @param hex `character` hex color.
+#' 
+#' @param tool_tip `character` description text.
+#' 
 #' @return Invisible `TRUE`.
 #'
 #' @return Invisible `TRUE`.
 #'
 #' @export
-change_file_icon_js <- function(x) {
+change_file_icon_js <- function(x, hex, tool_tip) {
   shinyjs::runjs(
     paste0(
-      "document.querySelector('", x, "').style.color = '", "#f03b20", "';",
+      "document.querySelector('", x, "').style.color = '", hex, "';",
       "$(document.querySelector('", x, "'))
-        .attr('title', 'Solution settings did not update.')
+        .attr('title', '", tool_tip, "')
         .tooltip('fixTitle');"
     )
   )
