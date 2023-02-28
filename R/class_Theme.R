@@ -179,6 +179,13 @@ Theme <- R6::R6Class(
     get_feature_visible = function() {
       vapply(self$feature, `[[`, logical(1), "visible")
     },
+    
+    #' @description
+    #' Get feature loaded values.
+    #' @return `logical` vector with status value(s).
+    get_feature_loaded = function() {
+      vapply(self$feature, `[[`, logical(1), "loaded")
+    },    
 
     #' @description
     #' Get feature hidden values.
@@ -461,9 +468,10 @@ Theme <- R6::R6Class(
       fid <- self$get_feature_id()
       fo <- self$get_feature_order() + zindex
       fv <- self$get_feature_visible()
+      fl <- self$get_feature_loaded()
       # add feature data
       for (i in seq_along(self$feature)) {
-        if (!self$feature[[i]]$hidden) {
+        if (!self$feature[[i]]$hidden && fl[i]) {
           x <- self$feature[[i]]$variable$render(x, fid[i], fo[i], fv[i])
         }
       }
@@ -481,11 +489,27 @@ Theme <- R6::R6Class(
       fid <- self$get_feature_id()
       fo <- self$get_feature_order() + zindex
       fv <- self$get_feature_visible()
+      fl <- self$get_feature_loaded()
       # add feature data
       for (i in seq_along(self$feature)) {
-        if (!self$feature[[i]]$hidden) {
+        if (fl[i] && fv[i]) {
+          # is loaded + visible + 6 layers loaded layers = update map 
           x <- self$feature[[i]]$variable$update_render(x, fid[i], fo[i], fv[i])
-        }
+          
+        } else if (fl[i] && !fv[i]) {
+          # is loaded + not visible = update map 
+          x <- self$feature[[i]]$variable$update_render(x, fid[i], fo[i], fv[i])
+          if (sum(fl) >= 4) {
+            # loaded + not visible + 4 layers are already loaded = remove
+            leaflet::clearGroup(x, self$feature[[i]]$id)
+            self$feature[[i]]$set_loaded(FALSE) # set loader to FALSE
+          }
+          
+        } else if (!fl[i] && fv[i]) {
+          # not loaded + visible = render map
+          x <- self$feature[[i]]$variable$render(x, fid[i], fo[i], fv[i])
+          self$feature[[i]]$set_loaded(TRUE) # set loader to TRUE
+        } 
       }
       # return result
       x
