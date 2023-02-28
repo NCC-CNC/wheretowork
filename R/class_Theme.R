@@ -493,14 +493,14 @@ Theme <- R6::R6Class(
       # add feature data
       for (i in seq_along(self$feature)) {
         if (fl[i] && fv[i]) {
-          # is loaded + visible + 6 layers loaded layers = update map 
+          # is loaded + visible = update map 
           x <- self$feature[[i]]$variable$update_render(x, fid[i], fo[i], fv[i])
           
         } else if (fl[i] && !fv[i]) {
           # is loaded + not visible = update map 
           x <- self$feature[[i]]$variable$update_render(x, fid[i], fo[i], fv[i])
           if (sum(fl) >= 4) {
-            # loaded + not visible + 4 layers are already loaded = remove
+            # is loaded + not visible + 4 layers are already loaded = remove
             leaflet::clearGroup(x, self$feature[[i]]$id)
             self$feature[[i]]$set_loaded(FALSE) # set loader to FALSE
           }
