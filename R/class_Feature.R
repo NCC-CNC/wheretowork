@@ -20,6 +20,9 @@ Feature <- R6::R6Class(
 
     #' @field visible `logical` value.
     visible = NA,
+    
+    #' @field loaded `logical` value.
+    loaded = NA,    
 
     #' @field hidden `logical` value.
     hidden = NA,
@@ -51,6 +54,7 @@ Feature <- R6::R6Class(
     #' @param name `character` value.
     #' @param variable [Variable] .
     #' @param visible `logical` value.
+    #' @param loaded `logical` value.
     #' @param hidden `logical` value.
     #' @param status `logical` value.
     #' @param min_goal `numeric` value.
@@ -60,8 +64,9 @@ Feature <- R6::R6Class(
     #' @param step_goal `numeric` value.
     #' @param current `numeric` value.
     #' @return A new Feature object.
-    initialize = function(id, name, variable, visible, hidden, status, current,
-                          goal, limit_goal, min_goal, max_goal, step_goal) {
+    initialize = function(id, name, variable, visible, loaded, hidden, status, 
+                          current, goal, limit_goal, min_goal, max_goal, 
+                          step_goal) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -75,6 +80,9 @@ Feature <- R6::R6Class(
         #### visible
         assertthat::is.flag(visible),
         assertthat::noNA(visible),
+        #### loaded
+        assertthat::is.flag(loaded),
+        assertthat::noNA(loaded),        
         #### hidden
         assertthat::is.flag(hidden),
         assertthat::noNA(hidden),
@@ -110,6 +118,7 @@ Feature <- R6::R6Class(
       self$name <- enc2ascii(name)
       self$variable <- variable
       self$visible <- visible && !hidden
+      self$loaded <- visible && !hidden
       self$hidden <- hidden
       self$status <- status
       self$goal <- goal
@@ -129,6 +138,7 @@ Feature <- R6::R6Class(
       message("  name:     ", self$name)
       message("  variable: ", self$variable$repr())
       message("  visible:  ", self$visible)
+      message("  loaded:  ", self$loaded)
       message("  hidden:   ", self$hidden)
       message("  status:   ", self$status)
       message("  current:  ", round(self$current, 2))
@@ -166,6 +176,13 @@ Feature <- R6::R6Class(
     get_visible = function() {
       self$visible
     },
+    
+    #' @description
+    #' Get loaded.
+    #' @return `logical` value.
+    get_loaded = function() {
+      self$loaded
+    },    
 
     #' @description
     #' Get current (proportion) coverage.
@@ -209,6 +226,21 @@ Feature <- R6::R6Class(
       }
       invisible(self)
     },
+    
+    #' @description
+    #' Set loaded.
+    #' @param value `logical` new value.
+    set_loaded = function(value) {
+      assertthat::assert_that(
+        assertthat::is.flag(value),
+        assertthat::noNA(value)
+      )
+      self$loaded <- value
+      if (self$hidden) {
+        self$loaded <- FALSE
+      }
+      invisible(self)
+    },    
 
     #' @description
     #' Set status.
@@ -258,6 +290,7 @@ Feature <- R6::R6Class(
         variable = self$variable$export(),
         status = self$status,
         visible = self$visible,
+        loaded = self$loaded,
         hidden = self$hidden,
         goal = self$goal,
         limit_goal = self$limit_goal
@@ -278,6 +311,11 @@ Feature <- R6::R6Class(
 #'   This is used to determine if the feature is displayed (or not)
 #'   or not the map.
 #'   Defaults to `TRUE`.
+#'   
+#' @param loaded `logical` The initial loaded value.
+#'   This is used to determine if the feature is loaded (or not)
+#'   or not the map.
+#'   Defaults to `FALSE`.
 #'
 #' @param hidden `logical` The hidden value.
 #'   This is used to determine if the feature is can ever be displayed (or not)
@@ -339,10 +377,11 @@ Feature <- R6::R6Class(
 new_feature <- function(name,
                         variable,
                         visible = TRUE,
+                        loaded = TRUE,
                         hidden = FALSE,
                         status = TRUE,
                         current = 0,
-                        goal = 0.3,
+                        goal = 0.2,
                         limit_goal = 0,
                         id = uuid::UUIDgenerate()) {
   # return new feature
@@ -351,6 +390,7 @@ new_feature <- function(name,
     name = name,
     variable = variable,
     visible = visible,
+    loaded = loaded,
     hidden = hidden,
     status = status,
     current = current,
