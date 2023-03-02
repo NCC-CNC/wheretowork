@@ -25,6 +25,8 @@ Definition for the Feature class.
 
 \item{\code{visible}}{\code{logical} value.}
 
+\item{\code{loaded}}{\code{logical} value.}
+
 \item{\code{hidden}}{\code{logical} value.}
 
 \item{\code{status}}{\code{logical} value.}
@@ -51,11 +53,13 @@ Definition for the Feature class.
 \item \href{#method-repr}{\code{Feature$repr()}}
 \item \href{#method-get_hidden}{\code{Feature$get_hidden()}}
 \item \href{#method-get_visible}{\code{Feature$get_visible()}}
+\item \href{#method-get_loaded}{\code{Feature$get_loaded()}}
 \item \href{#method-get_current}{\code{Feature$get_current()}}
 \item \href{#method-get_status}{\code{Feature$get_status()}}
 \item \href{#method-get_goal}{\code{Feature$get_goal()}}
 \item \href{#method-get_data}{\code{Feature$get_data()}}
 \item \href{#method-set_visible}{\code{Feature$set_visible()}}
+\item \href{#method-set_loaded}{\code{Feature$set_loaded()}}
 \item \href{#method-set_status}{\code{Feature$set_status()}}
 \item \href{#method-set_goal}{\code{Feature$set_goal()}}
 \item \href{#method-set_current}{\code{Feature$set_current()}}
@@ -74,6 +78,7 @@ Create a Feature object.
   name,
   variable,
   visible,
+  loaded,
   hidden,
   status,
   current,
@@ -95,6 +100,8 @@ Create a Feature object.
 \item{\code{variable}}{\link{Variable} .}
 
 \item{\code{visible}}{\code{logical} value.}
+
+\item{\code{loaded}}{\code{logical} value.}
 
 \item{\code{hidden}}{\code{logical} value.}
 
@@ -186,6 +193,19 @@ Get visible.
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_loaded"></a>}}
+\if{latex}{\out{\hypertarget{method-get_loaded}{}}}
+\subsection{Method \code{get_loaded()}}{
+Get loaded.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Feature$get_loaded()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{logical} value.
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_current"></a>}}
 \if{latex}{\out{\hypertarget{method-get_current}{}}}
 \subsection{Method \code{get_current()}}{
@@ -244,6 +264,23 @@ Get the data.
 Set visible.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Feature$set_visible(value)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{value}}{\code{logical} new value.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_loaded"></a>}}
+\if{latex}{\out{\hypertarget{method-set_loaded}{}}}
+\subsection{Method \code{set_loaded()}}{
+Set loaded.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Feature$set_loaded(value)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{

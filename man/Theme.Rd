@@ -42,6 +42,7 @@ Definition for the Theme class.
 \item \href{#method-get_feature_total}{\code{Theme$get_feature_total()}}
 \item \href{#method-get_visible}{\code{Theme$get_visible()}}
 \item \href{#method-get_feature_visible}{\code{Theme$get_feature_visible()}}
+\item \href{#method-get_feature_loaded}{\code{Theme$get_feature_loaded()}}
 \item \href{#method-get_feature_hidden}{\code{Theme$get_feature_hidden()}}
 \item \href{#method-get_feature_status}{\code{Theme$get_feature_status()}}
 \item \href{#method-get_feature_goal}{\code{Theme$get_feature_goal()}}
@@ -236,6 +237,19 @@ Get visible value for all features.
 Get feature visible values.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Theme$get_feature_visible()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{logical} vector with status value(s).
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_feature_loaded"></a>}}
+\if{latex}{\out{\hypertarget{method-get_feature_loaded}{}}}
+\subsection{Method \code{get_feature_loaded()}}{
+Get feature loaded values.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$get_feature_loaded()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{

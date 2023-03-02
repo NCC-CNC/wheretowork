@@ -8,10 +8,11 @@ new_feature(
   name,
   variable,
   visible = TRUE,
+  loaded = TRUE,
   hidden = FALSE,
   status = TRUE,
   current = 0,
-  goal = 0.3,
+  goal = 0.2,
   limit_goal = 0,
   id = uuid::UUIDgenerate()
 )
@@ -25,6 +26,11 @@ new_feature(
 This is used to determine if the feature is displayed (or not)
 or not the map.
 Defaults to \code{TRUE}.}
+
+\item{loaded}{\code{logical} The initial loaded value.
+This is used to determine if the feature is loaded (or not)
+or not the map.
+Defaults to \code{FALSE}.}
 
 \item{hidden}{\code{logical} The hidden value.
 This is used to determine if the feature is can ever be displayed (or not)
