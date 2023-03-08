@@ -22,6 +22,12 @@ Weight <- R6::R6Class(
 
     #' @field visible `logical` value.
     visible = NA,
+    
+    #' @field invisible `numeric` date/time.
+    invisible = NA_real_,
+    
+    #' @field loaded `logical` value.
+    loaded = NA,    
 
     #' @field hidden `logical` value.
     hidden = NA,
@@ -50,6 +56,8 @@ Weight <- R6::R6Class(
     #' @param name `character` value.
     #' @param variable [Variable] object.
     #' @param visible `logical` value.
+    #' @param invisible `numeric` date/time value.
+    #' @param loaded `logical` value.
     #' @param hidden `logical` value.
     #' @param status `logical` value.
     #' @param current `logical` value.
@@ -59,8 +67,9 @@ Weight <- R6::R6Class(
     #' @param step_factor `numeric` step factor value.
     #' @return A new Weight object.
     ## constructor
-    initialize = function(id, name, variable, visible, hidden, status, current,
-                          factor, min_factor, max_factor, step_factor) {
+    initialize = function(id, name, variable, visible, invisible, loaded, hidden, 
+                          status, current, factor, min_factor, max_factor, 
+                          step_factor) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -74,6 +83,11 @@ Weight <- R6::R6Class(
         #### visible
         assertthat::is.flag(visible),
         assertthat::noNA(visible),
+        #### invisible
+        inherits(invisible, "numeric"),
+        #### loaded
+        assertthat::is.flag(loaded),
+        assertthat::noNA(loaded),        
         #### hidden
         assertthat::is.flag(hidden),
         assertthat::noNA(hidden),
@@ -108,6 +122,8 @@ Weight <- R6::R6Class(
       self$status <- status
       self$current <- current
       self$visible <- visible && !hidden
+      self$invisible <- invisible
+      self$loaded <- visible # if layer is visible on init, load it
       self$hidden <- hidden
       self$factor <- factor
       self$min_factor <- min_factor
@@ -125,6 +141,8 @@ Weight <- R6::R6Class(
       message("  variable: ", self$variable$repr())
       message("  current:  ", round(self$current, 2))
       message("  visible:  ", self$visible)
+      message("  invisible:  ", self$invisible)
+      message("  loaded:  ", self$loaded)
       message("  hidden:  ", self$hidden)
       message("  status:   ", self$status)
       message("  factor:   ", round(self$factor, 2))
@@ -154,6 +172,13 @@ Weight <- R6::R6Class(
     get_layer_name = function() {
       self$name
     },
+    
+    #' @description
+    #' Get layer id.
+    #' @return `character` vector.
+    get_layer_id = function() {
+      self$id
+    },    
 
     #' @description
     #' Get layer index values.
@@ -168,6 +193,20 @@ Weight <- R6::R6Class(
     get_visible = function() {
       self$visible
     },
+    
+    #' @description
+    #' Get invisible.
+    #' @return `numeric` date/time value.
+    get_invisible = function() {
+      self$invisible
+    }, 
+    
+    #' @description
+    #' Get loaded.
+    #' @return `logical` value.
+    get_loaded = function() {
+      self$loaded
+    },    
 
     #' @description
     #' Get hidden.
@@ -243,6 +282,35 @@ Weight <- R6::R6Class(
       }
       invisible(self)
     },
+    
+    #' @description
+    #' Set invisible.
+    #' @param value `numeric` date/time value.
+    set_invisible = function(value) {
+      assertthat::assert_that(
+        inherits(value, "numeric")
+      )
+      self$invisible <- value
+      if (self$hidden) {
+        self$invisible <- NA_real_
+      }
+      invisible(self)
+    },
+    
+    #' @description
+    #' Set loaded.
+    #' @param value `logical` new value.
+    set_loaded = function(value) {
+      assertthat::assert_that(
+        assertthat::is.flag(value),
+        assertthat::noNA(value)
+      )
+      self$loaded <- value
+      if (self$hidden) {
+        self$loaded <- FALSE
+      }
+      invisible(self)
+    },    
 
     #' @description
     #' Set status.
@@ -415,15 +483,23 @@ Weight <- R6::R6Class(
 #' # print object
 #' print(w)
 #' @export
-new_weight <- function(name, variable,
-                       visible = TRUE, hidden = FALSE, status = TRUE,
-                       current = 0, factor = 0,
+new_weight <- function(name, 
+                       variable, 
+                       visible = TRUE, 
+                       invisible = NA_real_, 
+                       loaded = TRUE, 
+                       hidden = FALSE, 
+                       status = TRUE,
+                       current = 0, 
+                       factor = 0,
                        id = uuid::UUIDgenerate()) {
   Weight$new(
     id = id,
     name = name,
     variable = variable,
     visible = visible,
+    invisible = invisible,
+    loaded = loaded,
     hidden = hidden,
     status = status,
     current = current,
