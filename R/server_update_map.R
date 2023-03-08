@@ -76,6 +76,8 @@ server_update_map <- quote({
 
     ## update map
     app_data$mm$update_map(map)
+    ## clear map
+    app_data$mm$clear_map(map)    
   })
 
   # update map based on hide button
