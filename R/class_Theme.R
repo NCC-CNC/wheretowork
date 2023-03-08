@@ -120,6 +120,13 @@ Theme <- R6::R6Class(
     get_layer_name = function() {
       vapply(self$feature, `[[`, character(1), "name")
     },
+    
+    #' @description
+    #' Get layer id.
+    #' @return `character` vector.
+    get_layer_id = function() {
+      vapply(self$feature, `[[`, character(1), "id")
+    },    
 
     #' @description
     #' Get layer index values.
@@ -130,6 +137,27 @@ Theme <- R6::R6Class(
         FUN.VALUE = character(1), function(x) x$variable$index
       )
     },
+    
+    #' @description
+    #' Get visible value for all features.
+    #' @return `logical` vector.
+    get_visible = function() {
+      vapply(self$feature, `[[`, logical(1), "visible")
+    },
+    
+    #' @description
+    #' Get invisible value for all features.
+    #' @return `numeric` vector of date/times.
+    get_invisible = function() {
+      vapply(self$feature, `[[`, numeric(1), "invisible")
+    },
+    
+    #' @description
+    #' Get loaded value for all features.
+    #' @return `logical` vector.
+    get_loaded = function() {
+      vapply(self$feature, `[[`, logical(1), "loaded")
+    },    
 
     #' @description
     #' Get feature identifiers.
@@ -167,26 +195,12 @@ Theme <- R6::R6Class(
     },
 
     #' @description
-    #' Get visible value for all features.
-    #' @return `logical` value.
-    get_visible = function() {
-      any(self$get_feature_visible())
-    },
-
-    #' @description
     #' Get feature visible values.
     #' @return `logical` vector with status value(s).
     get_feature_visible = function() {
       vapply(self$feature, `[[`, logical(1), "visible")
     },
     
-    #' @description
-    #' Get feature loaded values.
-    #' @return `logical` vector with status value(s).
-    get_feature_loaded = function() {
-      vapply(self$feature, `[[`, logical(1), "loaded")
-    },    
-
     #' @description
     #' Get feature hidden values.
     #' @return `logical` vector with status value(s).
@@ -230,6 +244,22 @@ Theme <- R6::R6Class(
       self$feature_order <- value
       invisible(self)
     },
+    
+    #' @description
+    #' Set loaded state.
+    #' @param value `logical` vector of loaded state.
+    set_loaded = function(value) {
+      if (is.list(value)) {
+        value <- unlist(value, recursive = TRUE, use.names = TRUE)
+      }
+      assertthat::assert_that(
+        is.logical(value),
+        assertthat::noNA(value),
+        length(value) == length(self$feature)
+      )
+      self$set_loaded(value)
+      invisible(self)
+    },    
 
     #' @description
     #' Get setting.
@@ -468,17 +498,17 @@ Theme <- R6::R6Class(
       fid <- self$get_feature_id()
       fo <- self$get_feature_order() + zindex
       fv <- self$get_feature_visible()
-      fl <- self$get_feature_loaded()
       # add feature data
       for (i in seq_along(self$feature)) {
-        if (!self$feature[[i]]$hidden && fl[i]) {
+        if (!self$feature[[i]]$hidden && self$feature[[i]]$visible) {
+          # Only render layers that are not hidden and visible on init
           x <- self$feature[[i]]$variable$render(x, fid[i], fo[i], fv[i])
         }
       }
       # return result
       x
     },
-
+    
     #' @description
     #' Render on map.
     #' @param x [leaflet::leafletProxy()] object.
@@ -489,27 +519,11 @@ Theme <- R6::R6Class(
       fid <- self$get_feature_id()
       fo <- self$get_feature_order() + zindex
       fv <- self$get_feature_visible()
-      fl <- self$get_feature_loaded()
       # add feature data
       for (i in seq_along(self$feature)) {
-        if (fl[i] && fv[i]) {
-          # is loaded + visible = update map 
+        if (!self$feature[[i]]$hidden) {
           x <- self$feature[[i]]$variable$update_render(x, fid[i], fo[i], fv[i])
-          
-        } else if (fl[i] && !fv[i]) {
-          # is loaded + not visible = update map 
-          x <- self$feature[[i]]$variable$update_render(x, fid[i], fo[i], fv[i])
-          if (sum(fl) >= 4) {
-            # is loaded + not visible + 4 layers are already loaded = remove
-            leaflet::clearGroup(x, self$feature[[i]]$id)
-            self$feature[[i]]$set_loaded(FALSE) # set loader to FALSE
-          }
-          
-        } else if (!fl[i] && fv[i]) {
-          # not loaded + visible = render map
-          x <- self$feature[[i]]$variable$render(x, fid[i], fo[i], fv[i])
-          self$feature[[i]]$set_loaded(TRUE) # set loader to TRUE
-        } 
+        }
       }
       # return result
       x
