@@ -21,6 +21,9 @@ Feature <- R6::R6Class(
     #' @field visible `logical` value.
     visible = NA,
     
+    #' @field invisible `numeric` date/time value.
+    invisible = NA_real_,    
+    
     #' @field loaded `logical` value.
     loaded = NA,    
 
@@ -54,6 +57,7 @@ Feature <- R6::R6Class(
     #' @param name `character` value.
     #' @param variable [Variable] .
     #' @param visible `logical` value.
+    #' @param invisible `numeric` date/time value.
     #' @param loaded `logical` value.
     #' @param hidden `logical` value.
     #' @param status `logical` value.
@@ -64,8 +68,8 @@ Feature <- R6::R6Class(
     #' @param step_goal `numeric` value.
     #' @param current `numeric` value.
     #' @return A new Feature object.
-    initialize = function(id, name, variable, visible, loaded, hidden, status, 
-                          current, goal, limit_goal, min_goal, max_goal, 
+    initialize = function(id, name, variable, visible, invisible, loaded, hidden, 
+                          status, current, goal, limit_goal, min_goal, max_goal, 
                           step_goal) {
       ### assert that arguments are valid
       assertthat::assert_that(
@@ -80,6 +84,8 @@ Feature <- R6::R6Class(
         #### visible
         assertthat::is.flag(visible),
         assertthat::noNA(visible),
+        #### invisible
+        inherits(invisible, "numeric"),
         #### loaded
         assertthat::is.flag(loaded),
         assertthat::noNA(loaded),        
@@ -118,7 +124,8 @@ Feature <- R6::R6Class(
       self$name <- enc2ascii(name)
       self$variable <- variable
       self$visible <- visible && !hidden
-      self$loaded <- visible && !hidden
+      self$invisible <- invisible
+      self$loaded <- visible # if layer is visible on init, load it
       self$hidden <- hidden
       self$status <- status
       self$goal <- goal
@@ -138,6 +145,7 @@ Feature <- R6::R6Class(
       message("  name:     ", self$name)
       message("  variable: ", self$variable$repr())
       message("  visible:  ", self$visible)
+      message("  invisible:  ", self$invisible)
       message("  loaded:  ", self$loaded)
       message("  hidden:   ", self$hidden)
       message("  status:   ", self$status)
@@ -176,6 +184,13 @@ Feature <- R6::R6Class(
     get_visible = function() {
       self$visible
     },
+    
+    #' @description
+    #' Get invisible.
+    #' @return `numeric` date/time value.
+    get_invisible = function() {
+      self$invisible
+    },    
     
     #' @description
     #' Get loaded.
@@ -226,6 +241,20 @@ Feature <- R6::R6Class(
       }
       invisible(self)
     },
+    
+    #' @description
+    #' Set invisible.
+    #' @param value `numeric` date/time value.
+    set_invisible = function(value) {
+      assertthat::assert_that(
+        inherits(value, "numeric")
+      )
+      self$invisible <- value
+      if (self$hidden) {
+        self$invisible <- NA_real_
+      }
+      invisible(self)
+    },    
     
     #' @description
     #' Set loaded.
@@ -290,7 +319,6 @@ Feature <- R6::R6Class(
         variable = self$variable$export(),
         status = self$status,
         visible = self$visible,
-        loaded = self$loaded,
         hidden = self$hidden,
         goal = self$goal,
         limit_goal = self$limit_goal
@@ -311,6 +339,12 @@ Feature <- R6::R6Class(
 #'   This is used to determine if the feature is displayed (or not)
 #'   or not the map.
 #'   Defaults to `TRUE`.
+#'   
+#' @param invisible `numeric` date/time. A time stamp date given to when a 
+#'   loaded layer is first turned invisible. This is used to keep track
+#'   of loaded invisible layers to offload once the cache threshold has been 
+#'   reached. 
+#'   Defaults to `NA_real_`.
 #'   
 #' @param loaded `logical` The initial loaded value.
 #'   This is used to determine if the feature is loaded (or not)
@@ -377,6 +411,7 @@ Feature <- R6::R6Class(
 new_feature <- function(name,
                         variable,
                         visible = TRUE,
+                        invisible = NA_real_,
                         loaded = TRUE,
                         hidden = FALSE,
                         status = TRUE,
@@ -390,6 +425,7 @@ new_feature <- function(name,
     name = name,
     variable = variable,
     visible = visible,
+    invisible = invisible,
     loaded = loaded,
     hidden = hidden,
     status = status,
