@@ -25,6 +25,12 @@ Exclude <- R6::R6Class(
 
     #' @field visible `logical` value.
     visible = NA,
+    
+    #' @field invisible `numeric` date/time value.
+    invisible = NA_real_, 
+    
+    #' @field loaded `logical` value.
+    loaded = NA,    
 
     #' @field hidden `logical` value.
     hidden = NA,
@@ -42,13 +48,15 @@ Exclude <- R6::R6Class(
     #' @param variable [Variable] object.
     #' @param mandatory `logical` value.
     #' @param visible `logical` value.
+    #' @param invisible `numeric` date/time value.
+    #' @param loaded `logical` value.
     #' @param hidden `logical` value.
     #' @param status `logical` value.
     #' @param overlap `character` vector.
     #' @return A new Exclude object.
     ## constructor
-    initialize = function(id, name, variable, mandatory, visible, hidden,
-                          status, overlap) {
+    initialize = function(id, name, variable, mandatory, visible, invisible, 
+                          loaded, hidden, status, overlap) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -65,6 +73,11 @@ Exclude <- R6::R6Class(
         #### visible
         assertthat::is.flag(visible),
         assertthat::noNA(visible),
+        #### invisible
+        inherits(invisible, "numeric"),
+        #### loaded
+        assertthat::is.flag(loaded),
+        assertthat::noNA(loaded),        
         #### hidden
         assertthat::is.flag(hidden),
         assertthat::noNA(hidden),
@@ -81,6 +94,8 @@ Exclude <- R6::R6Class(
       self$variable <- variable
       self$status <- status
       self$visible <- visible && !hidden
+      self$invisible <- invisible
+      self$loaded <- visible # if layer is visible on init, load it
       self$hidden <- hidden
       self$mandatory <- mandatory
       self$overlap <- overlap
@@ -95,6 +110,8 @@ Exclude <- R6::R6Class(
       message("  name:     ", self$name)
       message("  variable: ", self$variable$repr())
       message("  visible:  ", self$visible)
+      message("  invisible:  ", self$invisible)
+      message("  loaded:  ", self$loaded)
       message("  hidden:  ", self$hidden)
       message("  status:   ", self$status)
       message("  overlap:   ", self$overlap)
@@ -122,6 +139,13 @@ Exclude <- R6::R6Class(
     get_layer_name = function() {
       self$name
     },
+    
+    #' @description
+    #' Get layer id.
+    #' @return `character` vector.
+    get_layer_id = function() {
+      self$id
+    },     
 
     #' @description
     #' Get layer index values.
@@ -136,9 +160,23 @@ Exclude <- R6::R6Class(
     get_visible = function() {
       self$visible
     },
+    
+    #' @description
+    #' Get invisible.
+    #' @return `numeric` date/time value.
+    get_invisible = function() {
+      self$invisible
+    },
+    
+    #' @description
+    #' Get loaded.
+    #' @return `logical` value.
+    get_loaded = function() {
+      self$loaded
+    },    
 
     #' @description
-    #' Get visible.
+    #' Get hidden.
     #' @return `logical` value.
     get_hidden = function() {
       self$hidden
@@ -200,6 +238,35 @@ Exclude <- R6::R6Class(
       }
       invisible(self)
     },
+    
+    #' @description
+    #' Set invisible.
+    #' @param value `numeric` date/time value.
+    set_invisible = function(value) {
+      assertthat::assert_that(
+        inherits(value, "numeric")
+      )
+      self$invisible <- value
+      if (self$hidden) {
+        self$invisible <- NA_real_
+      }
+      invisible(self)
+    },
+    
+    #' @description
+    #' Set loaded.
+    #' @param value `logical` new value.
+    set_loaded = function(value) {
+      assertthat::assert_that(
+        assertthat::is.flag(value),
+        assertthat::noNA(value)
+      )
+      self$loaded <- value
+      if (self$hidden) {
+        self$loaded <- FALSE
+      }
+      invisible(self)
+    },    
 
     #' @description
     #' Set status.
@@ -344,15 +411,24 @@ Exclude <- R6::R6Class(
 #' # print object
 #' print(e)
 #' @export
-new_exclude <- function(name, variable, mandatory = FALSE,
-                        visible = TRUE, hidden = FALSE, status = FALSE,
-                        overlap = NA_character_, id = uuid::UUIDgenerate()) {
+new_exclude <- function(name, 
+                        variable, 
+                        mandatory = FALSE,
+                        visible = TRUE,
+                        invisible = NA_real_,
+                        loaded = TRUE,
+                        hidden = FALSE, 
+                        status = FALSE,
+                        overlap = NA_character_, 
+                        id = uuid::UUIDgenerate()) {
   Exclude$new(
     id = id,
     name = name,
     variable = variable,
     mandatory = mandatory,
     visible = visible,
+    invisible = invisible,
+    loaded = loaded,
     hidden = hidden,
     status = status,
     overlap = overlap
