@@ -202,6 +202,20 @@ Theme <- R6::R6Class(
     },
     
     #' @description
+    #' Get feature invisible values.
+    #' @return `numeric` vector with date/time value(s).
+    get_feature_invisible = function() {
+      vapply(self$feature, `[[`, numeric(1), "invisible")
+    },    
+    
+    #' @description
+    #' Get feature loaded values.
+    #' @return `logical` vector with loaded value(s).
+    get_feature_loaded = function() {
+      vapply(self$feature, `[[`, logical(1), "loaded")
+    },    
+    
+    #' @description
     #' Get feature hidden values.
     #' @return `logical` vector with status value(s).
     get_feature_hidden = function() {
@@ -500,8 +514,8 @@ Theme <- R6::R6Class(
       fv <- self$get_feature_visible()
       # add feature data
       for (i in seq_along(self$feature)) {
-        if (!self$feature[[i]]$hidden && self$feature[[i]]$visible) {
-          # Only render layers that are not hidden and visible on init
+        if (!self$feature[[i]]$hidden && fv[i]) {
+          # render layers that are not hidden and visible on init
           x <- self$feature[[i]]$variable$render(x, fid[i], fo[i], fv[i])
         }
       }
@@ -519,9 +533,21 @@ Theme <- R6::R6Class(
       fid <- self$get_feature_id()
       fo <- self$get_feature_order() + zindex
       fv <- self$get_feature_visible()
+      fl <- self$get_feature_loaded()
+      fiv <- self$get_feature_invisible()
+      fh <- self$get_feature_hidden()
       # add feature data
       for (i in seq_along(self$feature)) {
-        if (!self$feature[[i]]$hidden) {
+        if (!fh[i] && !fl[i] && fv[i]) {
+          ## visible + not loaded + not hidden: render
+          x <- self$feature[[i]]$variable$render(x, fid[i], fo[i], fv[i])
+          self$feature[[i]]$set_loaded(TRUE) # set loaded to TRUE
+        } else if (fl[i] && !fv[i] && identical(fiv[i], NA_real_)) {
+          ## loaded + first time not visible
+          x <- self$feature[[i]]$variable$update_render(x, fid[i], fo[i], fv[i])
+          self$feature[[i]]$set_invisible(as.numeric(Sys.time())) # time stamp
+        } else {
+          ## (loaded + visible) OR (loaded + not first time invisible)
           x <- self$feature[[i]]$variable$update_render(x, fid[i], fo[i], fv[i])
         }
       }
