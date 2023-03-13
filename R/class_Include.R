@@ -19,6 +19,9 @@ Include <- R6::R6Class(
 
     #' @field variable [Variable] object.
     variable = NULL,
+    
+    #' @field pane `character` name.
+    pane = NA_character_,    
 
     #' @field mandatory `logical` value.
     mandatory = FALSE,
@@ -46,6 +49,7 @@ Include <- R6::R6Class(
     #' @param id `character` value.
     #' @param name `character` value.
     #' @param variable [Variable] object.
+    #' @param pane `character` value.
     #' @param mandatory `logical` value.
     #' @param visible `logical` value.
     #' @param invisible `numeric` date/time value.
@@ -55,7 +59,7 @@ Include <- R6::R6Class(
     #' @param overlap `character` vector.
     #' @return A new Include object.
     ## constructor
-    initialize = function(id, name, variable, invisible, loaded, mandatory, 
+    initialize = function(id, name, variable, pane, invisible, loaded, mandatory, 
                           visible, hidden, status, overlap) {
       ### assert that arguments are valid
       assertthat::assert_that(
@@ -67,6 +71,9 @@ Include <- R6::R6Class(
         assertthat::noNA(name),
         ### variable
         inherits(variable, "Variable"),
+        #### pane
+        assertthat::is.string(pane),
+        assertthat::noNA(pane),
         #### mandatory
         assertthat::is.flag(mandatory),
         assertthat::noNA(mandatory),
@@ -92,6 +99,7 @@ Include <- R6::R6Class(
       self$id <- enc2ascii(id)
       self$name <- enc2ascii(name)
       self$variable <- variable
+      self$pane <- enc2ascii(pane)
       self$status <- status
       self$overlap <- overlap
       self$visible <- visible && !hidden
@@ -109,6 +117,7 @@ Include <- R6::R6Class(
       message("  id:       ", self$id)
       message("  name:     ", self$name)
       message("  variable: ", self$variable$repr())
+      message("  pane:  ", self$pane)
       message("  visible:  ", self$visible)
       message("  invisible:  ", self$invisible)
       message("  loaded:  ", self$loaded)
@@ -152,6 +161,13 @@ Include <- R6::R6Class(
     #' @return `character` vector.
     get_layer_index = function() {
       self$variable$index
+    },
+    
+    #' @description
+    #' Get layer pane class.
+    #' @return `character` vector.
+    get_layer_pane = function() {
+      self$pane
     },
 
     #' @description
@@ -202,6 +218,15 @@ Include <- R6::R6Class(
     get_data = function() {
       self$variable$get_data()
     },
+    
+    #' @description
+    #' Set new pane.
+    #' @param id `character` unique identifier.
+    #' @param index `character` variable index.
+    #' @return `character` value.
+    set_new_pane = function(id, index) {
+      self$pane <- enc2ascii(paste(id, index, sep = "-"))
+    }, 
 
     #' @description
     #' Get setting.
@@ -353,7 +378,7 @@ Include <- R6::R6Class(
     #' @return [leaflet::leaflet()] object.
     render_on_map = function(x, zindex) {
       if (self$hidden) return(x) # don't render on map if hidden
-      self$variable$render(x, self$id, zindex, self$visible)
+      self$variable$render(x, self$pane, zindex, self$visible)
     },
 
     #' @description
@@ -363,7 +388,7 @@ Include <- R6::R6Class(
     #' @return [leaflet::leafletProxy()] object.
     update_on_map = function(x, zindex) {
       if (self$hidden) return(x) # don't render on map if hidden
-      self$variable$update_render(x, self$id, zindex, self$visible)
+      self$variable$update_render(x, self$pane, zindex, self$visible)
     }
   )
 )
@@ -420,10 +445,16 @@ new_include <- function(name,
                         hidden = FALSE, 
                         status = TRUE,
                         overlap = NA_character_, 
-                        id = uuid::UUIDgenerate()) {
+                        id = uuid::UUIDgenerate(),
+                        pane = paste(
+                          uuid::UUIDgenerate(), 
+                          variable$index, sep = "-"
+                        )
+                      ) {
   Include$new(
     id = id,
     name = name,
+    pane = pane,
     variable = variable,
     mandatory = mandatory,
     visible = visible,

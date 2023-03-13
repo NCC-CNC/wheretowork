@@ -19,6 +19,9 @@ Weight <- R6::R6Class(
 
     #' @field variable [Variable] object.
     variable = NULL,
+    
+    #' @field pane `character` name.
+    pane = NA_character_,        
 
     #' @field visible `logical` value.
     visible = NA,
@@ -55,6 +58,7 @@ Weight <- R6::R6Class(
     #' @param id `character` value.
     #' @param name `character` value.
     #' @param variable [Variable] object.
+    #' @param pane `character` value.
     #' @param visible `logical` value.
     #' @param invisible `numeric` date/time value.
     #' @param loaded `logical` value.
@@ -67,7 +71,7 @@ Weight <- R6::R6Class(
     #' @param step_factor `numeric` step factor value.
     #' @return A new Weight object.
     ## constructor
-    initialize = function(id, name, variable, visible, invisible, loaded, hidden, 
+    initialize = function(id, name, variable, pane, visible, invisible, loaded, hidden, 
                           status, current, factor, min_factor, max_factor, 
                           step_factor) {
       ### assert that arguments are valid
@@ -80,6 +84,9 @@ Weight <- R6::R6Class(
         assertthat::noNA(name),
         ### variable
         inherits(variable, "Variable"),
+        #### pane
+        assertthat::is.string(pane),
+        assertthat::noNA(pane),
         #### visible
         assertthat::is.flag(visible),
         assertthat::noNA(visible),
@@ -118,6 +125,7 @@ Weight <- R6::R6Class(
       ### set fields
       self$id <- enc2ascii(id)
       self$variable <- enc2ascii(variable)
+      self$pane <- enc2ascii(pane)
       self$name <- name
       self$status <- status
       self$current <- current
@@ -139,6 +147,7 @@ Weight <- R6::R6Class(
       message("  id:       ", self$id)
       message("  name:     ", self$name)
       message("  variable: ", self$variable$repr())
+      message("  pane:  ", self$pane)
       message("  current:  ", round(self$current, 2))
       message("  visible:  ", self$visible)
       message("  invisible:  ", self$invisible)
@@ -185,6 +194,13 @@ Weight <- R6::R6Class(
     #' @return `character` vector.
     get_layer_index = function() {
       self$variable$index
+    },
+    
+    #' @description
+    #' Get layer pane class.
+    #' @return `character` vector.
+    get_layer_pane = function() {
+      self$pane
     },
 
     #' @description
@@ -242,6 +258,15 @@ Weight <- R6::R6Class(
     get_data = function() {
       self$variable$get_data()
     },
+    
+    #' @description
+    #' Set new pane.
+    #' @param id `character` unique identifier.
+    #' @param index `character` variable index.
+    #' @return `character` value.
+    set_new_pane = function(id, index) {
+      self$pane <- enc2ascii(paste(id, index, sep = "-"))
+    }, 
 
     #' @description
     #' Get setting.
@@ -429,7 +454,7 @@ Weight <- R6::R6Class(
     #' @return [leaflet::leaflet()] object.
     render_on_map = function(x, zindex) {
       if (self$hidden) return(x) # don't render on map if hidden
-      self$variable$render(x, self$id, zindex, self$visible)
+      self$variable$render(x, self$pane, zindex, self$visible)
     },
 
     #' @description
@@ -439,7 +464,7 @@ Weight <- R6::R6Class(
     #' @return [leaflet::leafletProxy()] object.
     update_on_map = function(x, zindex) {
       if (self$hidden) return(x) # don't render on map if hidden
-      self$variable$update_render(x, self$id, zindex, self$visible)
+      self$variable$update_render(x, self$pane, zindex, self$visible)
     }
   )
 )
@@ -492,10 +517,15 @@ new_weight <- function(name,
                        status = TRUE,
                        current = 0, 
                        factor = 0,
-                       id = uuid::UUIDgenerate()) {
+                       id = uuid::UUIDgenerate(),
+                       pane = paste(
+                         uuid::UUIDgenerate(), 
+                         variable$index, sep = "-"
+                       )) {
   Weight$new(
     id = id,
     name = name,
+    pane = pane,
     variable = variable,
     visible = visible,
     invisible = invisible,
