@@ -73,11 +73,11 @@ server_update_map <- quote({
         map = map
       )
     }
-
+    
     ## update map
     app_data$mm$update_map(map)
-    ## clear map
-    app_data$mm$clear_map(map)    
+    ## delete the oldest loaded and invisible map pane (if cache is > 3)
+    app_data$mm$delete_sinlge_map_pane(map)    
   })
 
   # update map based on hide button
@@ -102,8 +102,8 @@ server_update_map <- quote({
       TRUE
     })
 
-    ## update map
-    app_data$mm$update_map(leaflet::leafletProxy("map"))
+    ## delete all map panes
+    app_data$mm$delete_all_map_panes(leaflet::leafletProxy("map"))
   })
 
   # update map based on show button
