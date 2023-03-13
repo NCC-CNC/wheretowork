@@ -467,20 +467,20 @@ MapManager <- R6::R6Class(
     },
     
     #' @description
-    #' Clear map.
+    #' Delete single map pane
     #' @param map [leaflet::leafletProxy()] object.
-    clear_map = function(map) {
+    delete_sinlge_map_pane = function(map) {
       ## invisible layers with a numeric Sys.time && visible == false
       layer_cache <- self$get_lazyload() %>%
         dplyr::filter(visible == FALSE) %>%
         dplyr::filter(!is.na(invisible))
       ## set a 4 layer invisible threshold hold
-      if (nrow(layer_cache) > 4) {
+      if (nrow(layer_cache) > 3) {
         ### filter for oldest invisible layer to clear
         clear_layer <- layer_cache %>%
           dplyr::filter(invisible == min(layer_cache$invisible))
-        ### remove layer from map
-        leaflet::clearGroup(map, clear_layer$ids)
+        ### delete pane from map
+        removeMapPane(clear_layer$panes)
         ### if layer is a Feature ...
         if (identical(clear_layer$classes, "Feature")) {
           tid <- clear_layer$group_ids # extract theme id
