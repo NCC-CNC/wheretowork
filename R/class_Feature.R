@@ -17,6 +17,9 @@ Feature <- R6::R6Class(
 
     #' @field variable [Variable] object.
     variable = NULL,
+    
+    #' @field pane `character` name.
+    pane = NA_character_,    
 
     #' @field visible `logical` value.
     visible = NA,
@@ -55,7 +58,8 @@ Feature <- R6::R6Class(
     #' Create a Feature object.
     #' @param id `character` value.
     #' @param name `character` value.
-    #' @param variable [Variable] .
+    #' @param variable [Variable].
+    #' @param pane `character` value.
     #' @param visible `logical` value.
     #' @param invisible `numeric` date/time value.
     #' @param loaded `logical` value.
@@ -68,7 +72,7 @@ Feature <- R6::R6Class(
     #' @param step_goal `numeric` value.
     #' @param current `numeric` value.
     #' @return A new Feature object.
-    initialize = function(id, name, variable, visible, invisible, loaded, hidden, 
+    initialize = function(id, name, variable, pane, visible, invisible, loaded, hidden, 
                           status, current, goal, limit_goal, min_goal, max_goal, 
                           step_goal) {
       ### assert that arguments are valid
@@ -81,6 +85,9 @@ Feature <- R6::R6Class(
         assertthat::noNA(name),
         #### variable
         inherits(variable, "Variable"),
+        #### pane
+        assertthat::is.string(pane),
+        assertthat::noNA(pane),
         #### visible
         assertthat::is.flag(visible),
         assertthat::noNA(visible),
@@ -123,6 +130,7 @@ Feature <- R6::R6Class(
       self$id <- enc2ascii(id)
       self$name <- enc2ascii(name)
       self$variable <- variable
+      self$pane <- enc2ascii(pane)
       self$visible <- visible && !hidden
       self$invisible <- invisible
       self$loaded <- visible # if layer is visible on init, load it
@@ -144,6 +152,7 @@ Feature <- R6::R6Class(
       message("  id:       ", self$id)
       message("  name:     ", self$name)
       message("  variable: ", self$variable$repr())
+      message("  pane:  ", self$pane)
       message("  visible:  ", self$visible)
       message("  invisible:  ", self$invisible)
       message("  loaded:  ", self$loaded)
@@ -226,7 +235,16 @@ Feature <- R6::R6Class(
     get_data = function() {
       self$variable$get_data()
     },
-
+    
+    #' @description
+    #' Set new pane.
+    #' @param id `character` unique identifier.
+    #' @param index `character` variable index.
+    #' @return `character` value.
+    set_new_pane = function(id, index) {
+      self$pane <- enc2ascii(paste(id, index, sep = "-"))
+    },    
+    
     #' @description
     #' Set visible.
     #' @param value `logical` new value.
@@ -378,6 +396,10 @@ Feature <- R6::R6Class(
 #'
 #' @param id `character` unique identifier.
 #'   Defaults to a random identifier ([uuid::UUIDgenerate()]).
+#'   
+#' @param pane `character` unique identifier.
+#'   Defaults to a random identifier ([uuid::UUIDgenerate()]) concatenated with
+#'   layer index.
 #'
 #' @return A [Feature] object.
 #'
@@ -418,10 +440,16 @@ new_feature <- function(name,
                         current = 0,
                         goal = 0.2,
                         limit_goal = 0,
-                        id = uuid::UUIDgenerate()) {
+                        id = uuid::UUIDgenerate(),
+                        pane = paste(
+                          uuid::UUIDgenerate(), 
+                          variable$index, sep = "-"
+                        )
+                      ) {
   # return new feature
   Feature$new(
     id = id,
+    pane = pane,
     name = name,
     variable = variable,
     visible = visible,
