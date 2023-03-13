@@ -116,7 +116,17 @@ MapManager <- R6::R6Class(
         lapply(self$layers, function(x) x$get_layer_id()),
         recursive = TRUE, use.names = FALSE
       )
-    },    
+    },
+    
+    #' @description
+    #' Get panes.
+    #' @return `character` vector.
+    get_layer_panes = function() {
+      unlist(
+        lapply(self$layers, function(x) x$get_layer_pane()),
+        recursive = TRUE, use.names = FALSE
+      )
+    },     
     
     #' @description
     #' Get layer visible values.
@@ -388,6 +398,7 @@ MapManager <- R6::R6Class(
         classes = self$get_layer_classes(),
         group_ids = self$get_group_layer_ids(), 
         ids = self$get_layer_ids(),
+        panes = self$get_layer_panes(),
         names = self$get_layer_names(),
         indices = self$get_layer_indices(),
         visible = self$get_layer_visible(),
@@ -431,13 +442,15 @@ MapManager <- R6::R6Class(
           ## render vs. update logic is in Theme class
           self$layers[[i]]$update_on_map(map, zindex = zv[i])
         } else {
-          # Weight, Include and Excludes ...
+          # Weight, Include, Excludes and Solutions ...
+          lidx <- self$layers[[i]]$variable$index
           lv <- self$layers[[i]]$visible
           ll <- self$layers[[i]]$loaded
           liv <- self$layers[[i]]$invisible
           lh <- self$layers[[i]]$hidden
           if (!lh && lv && !ll) {
             # visible + not loaded + not hidden: render
+            self$layers[[i]]$set_new_pane(uuid::UUIDgenerate(), lidx) # new pane
             self$layers[[i]]$render_on_map(map, zindex = zv[i])
             self$layers[[i]]$set_loaded(TRUE) # set loaded to TRUE
           } else if (!lv && ll && identical(liv, NA_real_)) {
