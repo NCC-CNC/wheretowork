@@ -491,12 +491,40 @@ MapManager <- R6::R6Class(
           self$get_layer(tid)$feature[[idx]]$set_loaded(FALSE)
           self$get_layer(tid)$feature[[idx]]$set_invisible(NA_real_)
         } else {
-          #### Weight, Include and Exclude:
+          #### Weight, Include, Exclude and Solution:
           id <- clear_layer$ids # extract id
           ##### update loaded and visible status 
           self$get_layer(id)$set_loaded(FALSE)
           self$get_layer(id)$set_invisible(NA_real_)
         }
+      }
+      invisible(self)
+    },
+    
+    #' @description
+    #' Delete all map panes.
+    #' @param map [leaflet::leafletProxy()] object.
+    delete_all_map_panes = function(map) {
+      layer_tbl <- self$get_lazyload()
+      for (i in 1:nrow(layer_tbl)) {
+        ### remove pane from map
+        removeMapPane(layer_tbl[i,]$panes) 
+        ### if layer is a Feature ...
+        if (identical(layer_tbl[i,]$classes, "Feature")) {
+          tid <- layer_tbl[i,]$group_ids # extract theme id
+          fid <- layer_tbl[i,]$ids # extract feature id
+          #### within the theme, find Feature index
+          idx <- which(self$get_layer(tid)$get_layer_id() == fid)
+          #### update loaded and visible status 
+          self$get_layer(tid)$feature[[idx]]$set_loaded(FALSE)
+          self$get_layer(tid)$feature[[idx]]$set_invisible(NA_real_)
+        } else {
+          #### Weight, Include, Exclude and Solution:
+          id <- layer_tbl[i,]$ids # extract id
+          ##### update loaded and visible status 
+          self$get_layer(id)$set_loaded(FALSE)
+          self$get_layer(id)$set_invisible(NA_real_)
+        }        
       }
       invisible(self)
     }    
