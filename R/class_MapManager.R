@@ -439,27 +439,27 @@ MapManager <- R6::R6Class(
       for (i in seq_along(self$layers)) {
         # if layer is a Theme ...
         if (inherits(self$layers[[i]], "Theme")) {
-          ## render vs. update logic is in Theme class
+          ## render vs. update logic is in Theme class ...
           self$layers[[i]]$update_on_map(map, zindex = zv[i])
         } else {
           # Weight, Include, Excludes and Solutions ...
-          lidx <- self$layers[[i]]$variable$index
-          lv <- self$layers[[i]]$visible
-          ll <- self$layers[[i]]$loaded
-          liv <- self$layers[[i]]$invisible
-          lh <- self$layers[[i]]$hidden
-          if (!lh && lv && !ll) {
-            # visible + not loaded + not hidden: render
-            self$layers[[i]]$set_new_pane(uuid::UUIDgenerate(), lidx) # new pane
-            self$layers[[i]]$render_on_map(map, zindex = zv[i])
+          idx <- self$layers[[i]]$variable$index # layer index
+          v <- self$layers[[i]]$visible # visible
+          l <- self$layers[[i]]$loaded # loaded
+          iv <- self$layers[[i]]$invisible # invisible
+          h <- self$layers[[i]]$hidden # hidden
+          if (!h && v && !l) {
+            # visible + not loaded + not hidden:
+            self$layers[[i]]$set_new_pane(uuid::UUIDgenerate(), idx) # new pane
+            self$layers[[i]]$render_on_map(map, zindex = zv[i]) # render pane
             self$layers[[i]]$set_loaded(TRUE) # set loaded to TRUE
-          } else if (!lv && ll && identical(liv, NA_real_)) {
+          } else if (!v && l && identical(iv, NA_real_)) {
             # loaded + first time invisible
-            self$layers[[i]]$update_on_map(map, zindex = zv[i])
+            self$layers[[i]]$update_on_map(map, zindex = zv[i]) # update pane
             self$layers[[i]]$set_invisible(as.numeric(Sys.time())) # time stamp
-          } else {
-            ## (loaded + visible) OR (loaded + not first time invisible)
-            self$layers[[i]]$update_on_map(map, zindex = zv[i])
+          } else if (l) {
+            ## only update loaded layers (loaded + visible) or (loaded + invisible)
+            self$layers[[i]]$update_on_map(map, zindex = zv[i]) # update pane
           }
         }
       }
@@ -471,14 +471,16 @@ MapManager <- R6::R6Class(
     #' @param map [leaflet::leafletProxy()] object.
     delete_sinlge_map_pane = function(map) {
       ## invisible layers with a numeric Sys.time && visible == false
-      layer_cache <- self$get_lazyload() %>%
+      loaded_invisible <- self$get_lazyload() %>%
         dplyr::filter(visible == FALSE) %>%
         dplyr::filter(!is.na(invisible))
       ## set a 4 layer invisible threshold hold
-      if (nrow(layer_cache) > 3) {
+      if (nrow(loaded_invisible) > 3) {
         ### filter for oldest invisible layer to clear
-        clear_layer <- layer_cache %>%
-          dplyr::filter(invisible == min(layer_cache$invisible))
+        clear_layer <- loaded_invisible %>%
+          dplyr::filter(invisible == min(loaded_invisible$invisible))
+        ## clear group
+        leaflet::clearGroup(map, clear_layer$panes)
         ### delete pane from map
         removeMapPane(clear_layer$panes)
         ### if layer is a Feature ...
@@ -505,14 +507,17 @@ MapManager <- R6::R6Class(
     #' Delete all map panes.
     #' @param map [leaflet::leafletProxy()] object.
     delete_all_map_panes = function(map) {
-      layer_tbl <- self$get_lazyload()
-      for (i in 1:nrow(layer_tbl)) {
+      loaded <- self$get_lazyload() %>%
+        dplyr::filter(loaded == TRUE)
+      for (i in 1:nrow(loaded)) {
+        ## clear group
+        leaflet::clearGroup(map, loaded[i,]$panes)
         ### remove pane from map
-        removeMapPane(layer_tbl[i,]$panes) 
+        removeMapPane(loaded[i,]$panes) 
         ### if layer is a Feature ...
-        if (identical(layer_tbl[i,]$classes, "Feature")) {
-          tid <- layer_tbl[i,]$group_ids # extract theme id
-          fid <- layer_tbl[i,]$ids # extract feature id
+        if (identical(loaded[i,]$classes, "Feature")) {
+          tid <- loaded[i,]$group_ids # extract theme id
+          fid <- loaded[i,]$ids # extract feature id
           #### within the theme, find Feature index
           idx <- which(self$get_layer(tid)$get_layer_id() == fid)
           #### update loaded and visible status 
@@ -520,7 +525,7 @@ MapManager <- R6::R6Class(
           self$get_layer(tid)$feature[[idx]]$set_invisible(NA_real_)
         } else {
           #### Weight, Include, Exclude and Solution:
-          id <- layer_tbl[i,]$ids # extract id
+          id <- loaded[i,]$ids # extract id
           ##### update loaded and visible status 
           self$get_layer(id)$set_loaded(FALSE)
           self$get_layer(id)$set_invisible(NA_real_)

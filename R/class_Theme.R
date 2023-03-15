@@ -554,8 +554,8 @@ Theme <- R6::R6Class(
           ## loaded + first time not visible
           x <- self$feature[[i]]$variable$update_render(x, pane[i], fo[i], fv[i])
           self$feature[[i]]$set_invisible(as.numeric(Sys.time())) # time stamp
-        } else {
-          ## (loaded + visible) OR (loaded + not first time invisible)
+        } else if (fl[i]) {
+          ## only update loaded layers (loaded + visible) OR (loaded + invisible)
           x <- self$feature[[i]]$variable$update_render(x, pane[i], fo[i], fv[i])
         }
       }
