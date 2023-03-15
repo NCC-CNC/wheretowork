@@ -23,9 +23,15 @@ Definition for the Include class.
 
 \item{\code{variable}}{\link{Variable} object.}
 
+\item{\code{pane}}{\code{character} name.}
+
 \item{\code{mandatory}}{\code{logical} value.}
 
 \item{\code{visible}}{\code{logical} value.}
+
+\item{\code{invisible}}{\code{numeric} date/time.}
+
+\item{\code{loaded}}{\code{logical} value.}
 
 \item{\code{hidden}}{\code{logical} value.}
 
@@ -42,14 +48,21 @@ Definition for the Include class.
 \item \href{#method-print}{\code{Include$print()}}
 \item \href{#method-repr}{\code{Include$repr()}}
 \item \href{#method-get_layer_name}{\code{Include$get_layer_name()}}
+\item \href{#method-get_layer_id}{\code{Include$get_layer_id()}}
 \item \href{#method-get_layer_index}{\code{Include$get_layer_index()}}
+\item \href{#method-get_layer_pane}{\code{Include$get_layer_pane()}}
 \item \href{#method-get_visible}{\code{Include$get_visible()}}
+\item \href{#method-get_invisible}{\code{Include$get_invisible()}}
+\item \href{#method-get_loaded}{\code{Include$get_loaded()}}
 \item \href{#method-get_hidden}{\code{Include$get_hidden()}}
 \item \href{#method-get_status}{\code{Include$get_status()}}
 \item \href{#method-get_overlap}{\code{Include$get_overlap()}}
 \item \href{#method-get_data}{\code{Include$get_data()}}
+\item \href{#method-set_new_pane}{\code{Include$set_new_pane()}}
 \item \href{#method-get_setting}{\code{Include$get_setting()}}
 \item \href{#method-set_visible}{\code{Include$set_visible()}}
+\item \href{#method-set_invisible}{\code{Include$set_invisible()}}
+\item \href{#method-set_loaded}{\code{Include$set_loaded()}}
 \item \href{#method-set_status}{\code{Include$set_status()}}
 \item \href{#method-set_setting}{\code{Include$set_setting()}}
 \item \href{#method-get_solution_settings_widget_data}{\code{Include$get_solution_settings_widget_data()}}
@@ -66,7 +79,19 @@ Definition for the Include class.
 \subsection{Method \code{new()}}{
 Create a new Include object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Include$new(id, name, variable, mandatory, visible, hidden, status, overlap)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Include$new(
+  id,
+  name,
+  variable,
+  pane,
+  invisible,
+  loaded,
+  mandatory,
+  visible,
+  hidden,
+  status,
+  overlap
+)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -77,6 +102,12 @@ Create a new Include object.
 \item{\code{name}}{\code{character} value.}
 
 \item{\code{variable}}{\link{Variable} object.}
+
+\item{\code{pane}}{\code{character} value.}
+
+\item{\code{invisible}}{\code{numeric} date/time value.}
+
+\item{\code{loaded}}{\code{logical} value.}
 
 \item{\code{mandatory}}{\code{logical} value.}
 
@@ -149,12 +180,38 @@ Get layer names.
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_layer_id"></a>}}
+\if{latex}{\out{\hypertarget{method-get_layer_id}{}}}
+\subsection{Method \code{get_layer_id()}}{
+Get layer id.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Include$get_layer_id()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} vector.
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_layer_index"></a>}}
 \if{latex}{\out{\hypertarget{method-get_layer_index}{}}}
 \subsection{Method \code{get_layer_index()}}{
 Get layer index values.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Include$get_layer_index()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} vector.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_layer_pane"></a>}}
+\if{latex}{\out{\hypertarget{method-get_layer_pane}{}}}
+\subsection{Method \code{get_layer_pane()}}{
+Get layer pane class.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Include$get_layer_pane()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
@@ -175,10 +232,36 @@ Get visible.
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_invisible"></a>}}
+\if{latex}{\out{\hypertarget{method-get_invisible}{}}}
+\subsection{Method \code{get_invisible()}}{
+Get invisible.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Include$get_invisible()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{numeric} date/time value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_loaded"></a>}}
+\if{latex}{\out{\hypertarget{method-get_loaded}{}}}
+\subsection{Method \code{get_loaded()}}{
+Get loaded.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Include$get_loaded()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{logical} value.
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_hidden"></a>}}
 \if{latex}{\out{\hypertarget{method-get_hidden}{}}}
 \subsection{Method \code{get_hidden()}}{
-Get visible.
+Get hidden.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Include$get_hidden()}\if{html}{\out{</div>}}
 }
@@ -227,6 +310,28 @@ Get the data.
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_new_pane"></a>}}
+\if{latex}{\out{\hypertarget{method-set_new_pane}{}}}
+\subsection{Method \code{set_new_pane()}}{
+Set new pane.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Include$set_new_pane(id, index)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{id}}{\code{character} unique identifier.}
+
+\item{\code{index}}{\code{character} variable index.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+\code{character} value.
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_setting"></a>}}
 \if{latex}{\out{\hypertarget{method-get_setting}{}}}
 \subsection{Method \code{get_setting()}}{
@@ -254,6 +359,40 @@ Value.
 Set visible.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Include$set_visible(value)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{value}}{\code{logical} new value.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_invisible"></a>}}
+\if{latex}{\out{\hypertarget{method-set_invisible}{}}}
+\subsection{Method \code{set_invisible()}}{
+Set invisible.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Include$set_invisible(value)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{value}}{\code{date/time} value or \code{NA}.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_loaded"></a>}}
+\if{latex}{\out{\hypertarget{method-set_loaded}{}}}
+\subsection{Method \code{set_loaded()}}{
+Set loaded.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Include$set_loaded(value)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{

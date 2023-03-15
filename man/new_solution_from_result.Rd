@@ -7,18 +7,32 @@
 new_solution_from_result(
   name,
   visible,
+  invisible = NA_real_,
+  loaded = TRUE,
   dataset,
   settings,
   result,
   legend,
   id = uuid::UUIDgenerate(),
-  hidden = FALSE
+  hidden = FALSE,
+  pane = NA_character_
 )
 }
 \arguments{
 \item{name}{\code{character} name for new solution.}
 
 \item{visible}{\code{logical} should the solution be visible on a map?}
+
+\item{invisible}{\code{numeric} date/time. A time stamp date given to when a
+loaded layer is first turned invisible. This is used to keep track
+of loaded invisible layers to offload once the cache threshold has been
+reached.
+Defaults to \code{NA_real_}.}
+
+\item{loaded}{\code{logical} The initial loaded value.
+This is used to determine if the feature is loaded (or not)
+or not the map.
+Defaults to \code{FALSE}.}
 
 \item{dataset}{\link{Dataset} object.}
 

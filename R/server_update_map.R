@@ -15,6 +15,7 @@ server_update_map <- quote({
 
   # update map based on map manager widget
   shiny::observeEvent(input$mapManagerPane_settings, {
+  
     ## specify dependencies
     shiny::req(input$mapManagerPane_settings)
 
@@ -76,7 +77,7 @@ server_update_map <- quote({
     
     ## update map
     app_data$mm$update_map(map)
-    ## delete the oldest loaded and invisible map pane (if cache is > 3)
+    ## delete the oldest loaded and invisible map pane
     app_data$mm$delete_sinlge_map_pane(map)    
   })
 

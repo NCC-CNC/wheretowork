@@ -8,11 +8,14 @@ new_weight(
   name,
   variable,
   visible = TRUE,
+  invisible = NA_real_,
+  loaded = TRUE,
   hidden = FALSE,
   status = TRUE,
   current = 0,
   factor = 0,
-  id = uuid::UUIDgenerate()
+  id = uuid::UUIDgenerate(),
+  pane = paste(uuid::UUIDgenerate(), variable$index, sep = "-")
 )
 }
 \arguments{
@@ -24,6 +27,17 @@ new_weight(
 This is used to determine if the feature is displayed (or not)
 or not the map.
 Defaults to \code{TRUE}.}
+
+\item{invisible}{\code{numeric} date/time. A time stamp date given to when a
+loaded layer is first turned invisible. This is used to keep track
+of loaded invisible layers to offload once the cache threshold has been
+reached.
+Defaults to \code{NA_real_}.}
+
+\item{loaded}{\code{logical} The initial loaded value.
+This is used to determine if the feature is loaded (or not)
+or not the map.
+Defaults to \code{FALSE}.}
 
 \item{hidden}{\code{logical} The hidden value.
 This is used to determine if the feature is can ever be displayed (or not)
@@ -44,6 +58,10 @@ Defaults to 0.}
 
 \item{id}{\code{character} unique identifier.
 Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}
+
+\item{pane}{\code{character} unique identifier.
+Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}) concatenated with
+layer index.}
 }
 \value{
 A \link{Weight} object.

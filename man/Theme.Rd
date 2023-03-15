@@ -34,20 +34,26 @@ Definition for the Theme class.
 \item \href{#method-print}{\code{Theme$print()}}
 \item \href{#method-repr}{\code{Theme$repr()}}
 \item \href{#method-get_layer_name}{\code{Theme$get_layer_name()}}
+\item \href{#method-get_layer_id}{\code{Theme$get_layer_id()}}
+\item \href{#method-get_layer_pane}{\code{Theme$get_layer_pane()}}
 \item \href{#method-get_layer_index}{\code{Theme$get_layer_index()}}
+\item \href{#method-get_visible}{\code{Theme$get_visible()}}
+\item \href{#method-get_invisible}{\code{Theme$get_invisible()}}
+\item \href{#method-get_loaded}{\code{Theme$get_loaded()}}
 \item \href{#method-get_feature_id}{\code{Theme$get_feature_id()}}
 \item \href{#method-get_feature_name}{\code{Theme$get_feature_name()}}
 \item \href{#method-get_feature_current}{\code{Theme$get_feature_current()}}
 \item \href{#method-get_feature_limit}{\code{Theme$get_feature_limit()}}
 \item \href{#method-get_feature_total}{\code{Theme$get_feature_total()}}
-\item \href{#method-get_visible}{\code{Theme$get_visible()}}
 \item \href{#method-get_feature_visible}{\code{Theme$get_feature_visible()}}
+\item \href{#method-get_feature_invisible}{\code{Theme$get_feature_invisible()}}
 \item \href{#method-get_feature_loaded}{\code{Theme$get_feature_loaded()}}
 \item \href{#method-get_feature_hidden}{\code{Theme$get_feature_hidden()}}
 \item \href{#method-get_feature_status}{\code{Theme$get_feature_status()}}
 \item \href{#method-get_feature_goal}{\code{Theme$get_feature_goal()}}
 \item \href{#method-get_feature_order}{\code{Theme$get_feature_order()}}
 \item \href{#method-set_feature_order}{\code{Theme$set_feature_order()}}
+\item \href{#method-set_loaded}{\code{Theme$set_loaded()}}
 \item \href{#method-get_setting}{\code{Theme$get_setting()}}
 \item \href{#method-set_visible}{\code{Theme$set_visible()}}
 \item \href{#method-set_feature_visible}{\code{Theme$set_feature_visible()}}
@@ -140,6 +146,32 @@ Get layer names.
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_layer_id"></a>}}
+\if{latex}{\out{\hypertarget{method-get_layer_id}{}}}
+\subsection{Method \code{get_layer_id()}}{
+Get layer id.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$get_layer_id()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} vector.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_layer_pane"></a>}}
+\if{latex}{\out{\hypertarget{method-get_layer_pane}{}}}
+\subsection{Method \code{get_layer_pane()}}{
+Get layer map pane classes.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$get_layer_pane()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} vector.
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_layer_index"></a>}}
 \if{latex}{\out{\hypertarget{method-get_layer_index}{}}}
 \subsection{Method \code{get_layer_index()}}{
@@ -150,6 +182,45 @@ Get layer index values.
 
 \subsection{Returns}{
 \code{character} vector.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_visible"></a>}}
+\if{latex}{\out{\hypertarget{method-get_visible}{}}}
+\subsection{Method \code{get_visible()}}{
+Get visible value for all features.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$get_visible()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{logical} vector.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_invisible"></a>}}
+\if{latex}{\out{\hypertarget{method-get_invisible}{}}}
+\subsection{Method \code{get_invisible()}}{
+Get invisible value for all features.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$get_invisible()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{numeric} vector of date/times.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_loaded"></a>}}
+\if{latex}{\out{\hypertarget{method-get_loaded}{}}}
+\subsection{Method \code{get_loaded()}}{
+Get loaded value for all features.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$get_loaded()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{logical} vector.
 }
 }
 \if{html}{\out{<hr>}}
@@ -218,19 +289,6 @@ Get feature current.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_visible"></a>}}
-\if{latex}{\out{\hypertarget{method-get_visible}{}}}
-\subsection{Method \code{get_visible()}}{
-Get visible value for all features.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Theme$get_visible()}\if{html}{\out{</div>}}
-}
-
-\subsection{Returns}{
-\code{logical} value.
-}
-}
-\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_feature_visible"></a>}}
 \if{latex}{\out{\hypertarget{method-get_feature_visible}{}}}
 \subsection{Method \code{get_feature_visible()}}{
@@ -244,6 +302,19 @@ Get feature visible values.
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_feature_invisible"></a>}}
+\if{latex}{\out{\hypertarget{method-get_feature_invisible}{}}}
+\subsection{Method \code{get_feature_invisible()}}{
+Get feature invisible values.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$get_feature_invisible()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{numeric} vector with date/time value(s).
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_feature_loaded"></a>}}
 \if{latex}{\out{\hypertarget{method-get_feature_loaded}{}}}
 \subsection{Method \code{get_feature_loaded()}}{
@@ -253,7 +324,7 @@ Get feature loaded values.
 }
 
 \subsection{Returns}{
-\code{logical} vector with status value(s).
+\code{logical} vector with loaded value(s).
 }
 }
 \if{html}{\out{<hr>}}
@@ -318,6 +389,23 @@ Set relative order for displaying features on a map.
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{value}}{\code{numeric} vector of new orders.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_loaded"></a>}}
+\if{latex}{\out{\hypertarget{method-set_loaded}{}}}
+\subsection{Method \code{set_loaded()}}{
+Set loaded state.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$set_loaded(value)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{value}}{\code{logical} vector of loaded state.}
 }
 \if{html}{\out{</div>}}
 }
