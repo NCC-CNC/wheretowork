@@ -80,7 +80,7 @@ class SolutionLayer {
           id: id,
           setting: "visible",
           value: checked
-        });
+        }, {priority: "event"});
       });
       /// remove button
       this.remove_el.addEventListener("click", function () {
