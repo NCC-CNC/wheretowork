@@ -331,17 +331,22 @@ MapManager <- R6::R6Class(
           "` doesn't exist"
         )
       )
+      # get map pane
+      pane <- self$get_lazyload() %>% 
+        dplyr::filter(ids == value) %>% 
+        dplyr::pull(panes)
+      # remove layer
+      leaflet::clearGroup(map, pane)
+      # delete pane
+      removeMapPane(pane)
+      
       # drop layer from object
       idx <- which(self$ids != value)
       self$layers <- self$layers[idx]
       self$ids <- self$ids[idx]
       self$order <- self$order[idx]
       self$order <- rank(self$order)
-      # update map
-      ## since we can't actually delete panes,
-      ## we will move the pane below the map and remove its contents
-      leaflet::updateMapPane(map, paste0("pane-", value), -1, FALSE)
-      leaflet::clearGroup(map, value)
+
       # return invisible self
       invisible(self)
     },

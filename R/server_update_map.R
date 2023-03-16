@@ -33,6 +33,13 @@ server_update_map <- quote({
 
       ### remove solution if needed
       if (length(i) > 0) {
+        
+        ### remove from map
+        app_data$mm$drop_layer(
+          value = input$mapManagerPane_settings$id,
+          map = map
+        )        
+  
         ### remove from app data
         app_data$solutions <- app_data$solutions[-i]
         app_data$solution_ids <- app_data$solution_ids[-i]
@@ -66,12 +73,6 @@ server_update_map <- quote({
         session = session,
         inputId = "mapManagerPane_settings",
         value = input$mapManagerPane_settings$id
-      )
-
-      ### remove from map
-      app_data$mm$drop_layer(
-        value = input$mapManagerPane_settings$id,
-        map = map
       )
     }
     
