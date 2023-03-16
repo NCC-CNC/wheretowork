@@ -514,28 +514,30 @@ MapManager <- R6::R6Class(
     delete_all_map_panes = function(map) {
       loaded <- self$get_lazyload() %>%
         dplyr::filter(loaded == TRUE)
-      for (i in 1:nrow(loaded)) {
-        ## clear group
-        leaflet::clearGroup(map, loaded[i,]$panes)
-        ### remove pane from map
-        removeMapPane(loaded[i,]$panes) 
-        ### if layer is a Feature ...
-        if (identical(loaded[i,]$classes, "Feature")) {
-          tid <- loaded[i,]$group_ids # extract theme id
-          fid <- loaded[i,]$ids # extract feature id
-          #### within the theme, find Feature index
-          idx <- which(self$get_layer(tid)$get_layer_id() == fid)
-          #### update loaded and visible status 
-          self$get_layer(tid)$feature[[idx]]$set_loaded(FALSE)
-          self$get_layer(tid)$feature[[idx]]$set_invisible(NA_real_)
-        } else {
-          #### Weight, Include, Exclude and Solution:
-          id <- loaded[i,]$ids # extract id
-          ##### update loaded and visible status 
-          self$get_layer(id)$set_loaded(FALSE)
-          self$get_layer(id)$set_invisible(NA_real_)
-        }        
-      }
+      if (nrow(loaded) > 0) {
+        for (i in 1:nrow(loaded)) {
+          ## clear group
+          leaflet::clearGroup(map, loaded[i,]$panes)
+          ### remove pane from map
+          removeMapPane(loaded[i,]$panes) 
+          ### if layer is a Feature ...
+          if (identical(loaded[i,]$classes, "Feature")) {
+            tid <- loaded[i,]$group_ids # extract theme id
+            fid <- loaded[i,]$ids # extract feature id
+            #### within the theme, find Feature index
+            idx <- which(self$get_layer(tid)$get_layer_id() == fid)
+            #### update loaded and visible status 
+            self$get_layer(tid)$feature[[idx]]$set_loaded(FALSE)
+            self$get_layer(tid)$feature[[idx]]$set_invisible(NA_real_)
+          } else {
+            #### Weight, Include, Exclude and Solution:
+            id <- loaded[i,]$ids # extract id
+            ##### update loaded and visible status 
+            self$get_layer(id)$set_loaded(FALSE)
+            self$get_layer(id)$set_invisible(NA_real_)
+          }        
+        }
+      }  
       invisible(self)
     }    
   )
