@@ -18,7 +18,7 @@ metadata_path <- system.file(
 )
 
 ## Name of study area (planning unit) raster. Must be nested in `zip_path`
-study_area_file <- "R1km_AOI.tif"
+study_area_file <- "AOI.tif"
 
 ## Create a temp directory and unzip raster variables
 data_dir <- tempfile()
@@ -29,7 +29,8 @@ unzip(zip_path, exdir = data_dir)
 metadata <- tibble::as_tibble(
   utils::read.table(
     metadata_path, stringsAsFactors = FALSE, sep = ",", header = TRUE,
-    comment.char = ""
+    comment.char = "",
+    quote="\""
   )
 )
 
@@ -39,7 +40,7 @@ metadata <- dplyr::arrange(metadata, Order)
 ## Validate metadata
 assertthat::assert_that(
   all(metadata$Type %in% c("theme", "include", "weight", "exclude")),
-  all(file.exists(file.path(data_dir, metadata$File)))
+  all(file.exists(file.path(data_dir, metadata$File[metadata$File != "AOI.tif"])))
 )
 
 ## Import study area (planning units) raster
