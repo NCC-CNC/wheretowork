@@ -199,7 +199,7 @@ class MultiThemeLayer {
             id: id,
             setting: "feature_visible",
             value: that.single_visible_values
-          });
+          }, {priority: "event"});
         });
       }
     }

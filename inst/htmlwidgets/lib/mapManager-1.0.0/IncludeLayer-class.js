@@ -85,7 +85,7 @@ class IncludeLayer {
           id: id,
           setting: "visible",
           value: checked
-        });
+        }, {priority: "event"});
       });
     }
   }
