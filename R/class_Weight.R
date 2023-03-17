@@ -197,7 +197,7 @@ Weight <- R6::R6Class(
     },
     
     #' @description
-    #' Get layer id.
+    #' Get weight identifier.
     #' @return `character` vector.
     get_id = function() {
       self$id

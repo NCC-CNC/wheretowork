@@ -199,11 +199,11 @@ Solution <- R6::R6Class(
     },
     
     #' @description
-    #' Get layer id.
+    #' Get solution identifier.
     #' @return `character` vector.
-    get_layer_id = function() {
+    get_id = function() {
       self$id
-    },     
+    },  
 
     #' @description
     #' Get visible.
