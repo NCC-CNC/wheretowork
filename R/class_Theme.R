@@ -122,13 +122,6 @@ Theme <- R6::R6Class(
     },
     
     #' @description
-    #' Get layer id.
-    #' @return `character` vector.
-    get_layer_id = function() {
-      vapply(self$feature, `[[`, character(1), "id")
-    },
-    
-    #' @description
     #' Get layer map pane classes.
     #' @return `character` vector.
     get_layer_pane = function() {
@@ -145,27 +138,6 @@ Theme <- R6::R6Class(
       )
     },
     
-    #' @description
-    #' Get visible value for all features.
-    #' @return `logical` vector.
-    get_visible = function() {
-      vapply(self$feature, `[[`, logical(1), "visible")
-    },
-    
-    #' @description
-    #' Get invisible value for all features.
-    #' @return `numeric` vector of date/times.
-    get_invisible = function() {
-      vapply(self$feature, `[[`, numeric(1), "invisible")
-    },
-    
-    #' @description
-    #' Get loaded value for all features.
-    #' @return `logical` vector.
-    get_loaded = function() {
-      vapply(self$feature, `[[`, logical(1), "loaded")
-    },    
-
     #' @description
     #' Get feature identifiers.
     #' @return `character` vector with identifier(s).
@@ -200,6 +172,13 @@ Theme <- R6::R6Class(
     get_feature_total = function() {
       vapply(self$feature, FUN.VALUE = numeric(1), function(x) x$variable$total)
     },
+    
+    #' @description
+    #' Get visible value for all features.
+    #' @return `logical` vector.
+    get_visible = function() {
+      vapply(self$feature, `[[`, logical(1), "visible")
+    },    
 
     #' @description
     #' Get feature visible values.

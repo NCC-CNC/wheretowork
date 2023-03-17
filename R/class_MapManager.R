@@ -113,7 +113,13 @@ MapManager <- R6::R6Class(
     #' @return `character` vector.
     get_layer_ids = function() {
       unlist(
-        lapply(self$layers, function(x) x$get_layer_id()),
+        lapply(seq_along(self$layers), function(i) {
+          if (inherits(self$layers[[i]], "Theme")) {
+            self$layers[[i]]$get_feature_id()
+          } else {
+            self$layers[[i]]$get_id()
+          }
+        }),
         recursive = TRUE, use.names = FALSE
       )
     },
@@ -133,7 +139,13 @@ MapManager <- R6::R6Class(
     #' @return `character` vector.
     get_layer_visible = function() {
       unlist(
-        lapply(self$layers, function(x) x$get_visible()),
+        lapply(seq_along(self$layers), function(i) {
+          if (inherits(self$layers[[i]], "Theme")) {
+            self$layers[[i]]$get_feature_visible()
+          } else {
+            self$layers[[i]]$get_visible()
+          }
+        }),
         recursive = TRUE, use.names = FALSE
       )
     },
@@ -143,7 +155,13 @@ MapManager <- R6::R6Class(
     #' @return `date/time` vector.
     get_layer_invisible = function() {
       unlist(
-        lapply(self$layers, function(x) x$get_invisible()),
+        lapply(seq_along(self$layers), function(i) {
+          if (inherits(self$layers[[i]], "Theme")) {
+            self$layers[[i]]$get_feature_invisible()
+          } else {
+            self$layers[[i]]$get_invisible()
+          }
+        }),
         recursive = TRUE, use.names = FALSE
       )
     },
@@ -153,11 +171,17 @@ MapManager <- R6::R6Class(
     #' @return `logical` vector.
     get_layer_loaded = function() {
       unlist(
-        lapply(self$layers, function(x) x$get_loaded()),
+        lapply(seq_along(self$layers), function(i) {
+          if (inherits(self$layers[[i]], "Theme")) {
+            self$layers[[i]]$get_feature_loaded()
+          } else {
+            self$layers[[i]]$get_loaded()
+          }
+        }),
         recursive = TRUE, use.names = FALSE
       )
-    },     
-
+    },
+    
     #' @description
     #' Get a setting for the object.
     #' @param value `list` with setting information (see Details section)
@@ -492,8 +516,8 @@ MapManager <- R6::R6Class(
         if (identical(clear_layer$classes, "Feature")) {
           tid <- clear_layer$group_ids # extract theme id
           fid <- clear_layer$ids # extract feature id
-          #### within the theme, find Feature index
-          idx <- which(self$get_layer(tid)$get_layer_id() == fid)
+          #### within the theme, find Feature id index
+          idx <- which(self$get_layer(tid)$get_feature_id() == fid)
           #### update loaded and visible status 
           self$get_layer(tid)$feature[[idx]]$set_loaded(FALSE)
           self$get_layer(tid)$feature[[idx]]$set_invisible(NA_real_)
@@ -524,8 +548,8 @@ MapManager <- R6::R6Class(
           if (identical(loaded[i,]$classes, "Feature")) {
             tid <- loaded[i,]$group_ids # extract theme id
             fid <- loaded[i,]$ids # extract feature id
-            #### within the theme, find Feature index
-            idx <- which(self$get_layer(tid)$get_layer_id() == fid)
+            #### within the theme, find Feature id index
+            idx <- which(self$get_layer(tid)$get_feature_id() == fid)
             #### update loaded and visible status 
             self$get_layer(tid)$feature[[idx]]$set_loaded(FALSE)
             self$get_layer(tid)$feature[[idx]]$set_invisible(NA_real_)

@@ -150,13 +150,6 @@ Include <- R6::R6Class(
     },
     
     #' @description
-    #' Get layer id.
-    #' @return `character` vector.
-    get_layer_id = function() {
-      self$id
-    },     
-
-    #' @description
     #' Get layer index values.
     #' @return `character` vector.
     get_layer_index = function() {
@@ -169,6 +162,13 @@ Include <- R6::R6Class(
     get_layer_pane = function() {
       self$pane
     },
+    
+    #' @description
+    #' Get layer id.
+    #' @return `character` vector.
+    get_id = function() {
+      self$id
+    },   
 
     #' @description
     #' Get visible.
