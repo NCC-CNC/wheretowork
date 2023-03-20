@@ -175,9 +175,9 @@ Theme <- R6::R6Class(
     
     #' @description
     #' Get visible value for all features.
-    #' @return `logical` vector.
+    #' @return `logical` value.
     get_visible = function() {
-      vapply(self$feature, `[[`, logical(1), "visible")
+      any(self$get_feature_visible())
     },    
 
     #' @description
@@ -245,22 +245,6 @@ Theme <- R6::R6Class(
       invisible(self)
     },
     
-    #' @description
-    #' Set loaded state.
-    #' @param value `logical` vector of loaded state.
-    set_loaded = function(value) {
-      if (is.list(value)) {
-        value <- unlist(value, recursive = TRUE, use.names = TRUE)
-      }
-      assertthat::assert_that(
-        is.logical(value),
-        assertthat::noNA(value),
-        length(value) == length(self$feature)
-      )
-      self$set_loaded(value)
-      invisible(self)
-    },    
-
     #' @description
     #' Get setting.
     #' @param name `character` setting name.
@@ -518,7 +502,7 @@ Theme <- R6::R6Class(
       pane <- self$get_layer_pane() # pane class name
       fidx <- self$get_layer_index() # layer index
       fo <- self$get_feature_order() + zindex # order
-      fv <- self$get_feature_visible()
+      fv <- self$get_feature_visible() # visible
       fl <- self$get_feature_loaded() # loaded
       fiv <- self$get_feature_invisible() # invisible
       fh <- self$get_feature_hidden() # hidden
