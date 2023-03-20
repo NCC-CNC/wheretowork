@@ -369,9 +369,9 @@ Feature <- R6::R6Class(
 #'   Defaults to `FALSE`.
 #'
 #' @param hidden `logical` The hidden value.
-#'   This is used to determine if the feature is can ever be displayed (or not)
-#'   or not the map. Unlike `visible`, if this parameter is `FALSE` then a
-#'   feature can never be viewed on the map.
+#'   This is used to determine if the feature can ever be displayed.
+#'   Unlike `visible`, if this parameter is `FALSE` then a feature can never 
+#'   be viewed on the map.
 #'   Defaults to `FALSE`.
 #'
 #' @param status `logical` The initial status value.
