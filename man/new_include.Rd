@@ -38,14 +38,13 @@ reached.
 Defaults to \code{NA_real_}.}
 
 \item{loaded}{\code{logical} The initial loaded value.
-This is used to determine if the feature is loaded (or not)
-or not the map.
+This is used to determine if the feature has been loaded into the DOM.
 Defaults to \code{FALSE}.}
 
 \item{hidden}{\code{logical} The hidden value.
-This is used to determine if the feature is can ever be displayed (or not)
-or not the map. Unlike \code{visible}, if this parameter is \code{FALSE} then a
-feature can never be viewed on the map.
+This is used to determine if the feature can ever be displayed.
+Unlike \code{visible}, if this parameter is \code{FALSE} then a feature can never
+be viewed on the map.
 Defaults to \code{FALSE}.}
 
 \item{status}{\code{logical} The initial status value.
@@ -60,7 +59,7 @@ overlap.}
 \item{id}{\code{character} unique identifier.
 Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}
 
-\item{pane}{\code{character} unique identifier.
+\item{pane}{\code{character} unique map pane identifier.
 Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}) concatenated with
 layer index.}
 }

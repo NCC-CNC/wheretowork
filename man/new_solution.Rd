@@ -56,7 +56,7 @@ Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenera
 
 \item{hidden}{\code{logical} should the solution be hidden from map?}
 
-\item{pane}{\code{character} unique identifier.
+\item{pane}{\code{character} unique map pane identifier.
 Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}) concatenated with
 layer index.}
 }
