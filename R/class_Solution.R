@@ -934,7 +934,7 @@ Solution <- R6::R6Class(
 #'
 #' @param hidden `logical` should the solution be hidden from map?
 #' 
-#' @param pane `character` unique identifier.
+#' @param pane `character` unique map pane identifier.
 #'   Defaults to a random identifier ([uuid::UUIDgenerate()]) concatenated with
 #'   layer index.
 #'
@@ -1049,7 +1049,7 @@ new_solution <- function(name,
 #'
 #' @param hidden `logical` should the solution be hidden from map?
 #' 
-#' @param pane `character` unique identifier.
+#' @param pane `character` unique map pane identifier.
 #'   Defaults to a random identifier ([uuid::UUIDgenerate()]) concatenated with
 #'   layer index.
 #'

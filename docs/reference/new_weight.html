@@ -128,11 +128,14 @@
   <span class='va'>name</span>,
   <span class='va'>variable</span>,
   visible <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  invisible <span class='op'>=</span> <span class='cn'>NA_real_</span>,
+  loaded <span class='op'>=</span> <span class='cn'>TRUE</span>,
   hidden <span class='op'>=</span> <span class='cn'>FALSE</span>,
   status <span class='op'>=</span> <span class='cn'>TRUE</span>,
   current <span class='op'>=</span> <span class='fl'>0</span>,
   factor <span class='op'>=</span> <span class='fl'>0</span>,
-  id <span class='op'>=</span> <span class='fu'>uuid</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/uuid/man/UUIDgenerate.html'>UUIDgenerate</a></span><span class='op'>(</span><span class='op'>)</span>
+  id <span class='op'>=</span> <span class='fu'>uuid</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/uuid/man/UUIDgenerate.html'>UUIDgenerate</a></span><span class='op'>(</span><span class='op'>)</span>,
+  pane <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='fu'>uuid</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/uuid/man/UUIDgenerate.html'>UUIDgenerate</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='va'>variable</span><span class='op'>$</span><span class='va'>index</span>, sep <span class='op'>=</span> <span class='st'>"-"</span><span class='op'>)</span>
 <span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -152,6 +155,21 @@
 This is used to determine if the feature is displayed (or not)
 or not the map.
 Defaults to <code>TRUE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>invisible</th>
+      <td><p><code>numeric</code> date/time. A time stamp date given to when a
+loaded layer is first turned invisible. This is used to keep track
+of loaded invisible layers to offload once the cache threshold has been
+reached.
+Defaults to <code>NA_real_</code>.</p></td>
+    </tr>
+    <tr>
+      <th>loaded</th>
+      <td><p><code>logical</code> The initial loaded value.
+This is used to determine if the feature is loaded (or not)
+or not the map.
+Defaults to <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>hidden</th>
@@ -182,6 +200,12 @@ Defaults to 0.</p></td>
       <th>id</th>
       <td><p><code>character</code> unique identifier.
 Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUIDgenerate.html'>uuid::UUIDgenerate()</a></code>).</p></td>
+    </tr>
+    <tr>
+      <th>pane</th>
+      <td><p><code>character</code> unique identifier.
+Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUIDgenerate.html'>uuid::UUIDgenerate()</a></code>) concatenated with
+layer index.</p></td>
     </tr>
     </table>
 
@@ -216,11 +240,14 @@ Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUI
 <span class='r-in'><span class='co'># print object</span></span>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>w</span><span class='op'>)</span></span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Weight</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       8f02d7ab-46ce-40bc-99c0-2c0de4a84985</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       4fd44fc7-4442-4a1d-a240-23125f957069</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:     NDVI</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   variable: .../sim_raster_spatial.tif#Brown_necked_Parrot_Brown_necked_ [total: 1052 ]</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   pane:  9881f345-1908-49e3-a230-70acf000c92a-Brown_necked_Parrot_Brown_necked_</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   current:  0</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   visible:  TRUE</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   invisible:  NA</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   loaded:  TRUE</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   hidden:  FALSE</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   status:   TRUE</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   factor:   0</span>

@@ -143,7 +143,13 @@ Feature class" />
 
 <dt><code>variable</code></dt><dd><p><a href='Variable.html'>Variable</a> object.</p></dd>
 
+<dt><code>pane</code></dt><dd><p><code>character</code> name.</p></dd>
+
 <dt><code>visible</code></dt><dd><p><code>logical</code> value.</p></dd>
+
+<dt><code>invisible</code></dt><dd><p><code>numeric</code> date/time value.</p></dd>
+
+<dt><code>loaded</code></dt><dd><p><code>logical</code> value.</p></dd>
 
 <dt><code>hidden</code></dt><dd><p><code>logical</code> value.</p></dd>
 
@@ -173,11 +179,16 @@ Feature class" />
 <li><p><a href='#method-repr'><code>Feature$repr()</code></a></p></li>
 <li><p><a href='#method-get_hidden'><code>Feature$get_hidden()</code></a></p></li>
 <li><p><a href='#method-get_visible'><code>Feature$get_visible()</code></a></p></li>
+<li><p><a href='#method-get_invisible'><code>Feature$get_invisible()</code></a></p></li>
+<li><p><a href='#method-get_loaded'><code>Feature$get_loaded()</code></a></p></li>
 <li><p><a href='#method-get_current'><code>Feature$get_current()</code></a></p></li>
 <li><p><a href='#method-get_status'><code>Feature$get_status()</code></a></p></li>
 <li><p><a href='#method-get_goal'><code>Feature$get_goal()</code></a></p></li>
 <li><p><a href='#method-get_data'><code>Feature$get_data()</code></a></p></li>
+<li><p><a href='#method-set_new_pane'><code>Feature$set_new_pane()</code></a></p></li>
 <li><p><a href='#method-set_visible'><code>Feature$set_visible()</code></a></p></li>
+<li><p><a href='#method-set_invisible'><code>Feature$set_invisible()</code></a></p></li>
+<li><p><a href='#method-set_loaded'><code>Feature$set_loaded()</code></a></p></li>
 <li><p><a href='#method-set_status'><code>Feature$set_status()</code></a></p></li>
 <li><p><a href='#method-set_goal'><code>Feature$set_goal()</code></a></p></li>
 <li><p><a href='#method-set_current'><code>Feature$set_current()</code></a></p></li>
@@ -191,7 +202,10 @@ Feature class" />
   <span class='va'>id</span>,
   <span class='va'>name</span>,
   <span class='va'>variable</span>,
+  <span class='va'>pane</span>,
   <span class='va'>visible</span>,
+  <span class='va'>invisible</span>,
+  <span class='va'>loaded</span>,
   <span class='va'>hidden</span>,
   <span class='va'>status</span>,
   <span class='va'>current</span>,
@@ -208,9 +222,15 @@ Feature class" />
 
 <dt><code>name</code></dt><dd><p><code>character</code> value.</p></dd>
 
-<dt><code>variable</code></dt><dd><p><a href='Variable.html'>Variable</a> .</p></dd>
+<dt><code>variable</code></dt><dd><p><a href='Variable.html'>Variable</a>.</p></dd>
+
+<dt><code>pane</code></dt><dd><p><code>character</code> value.</p></dd>
 
 <dt><code>visible</code></dt><dd><p><code>logical</code> value.</p></dd>
+
+<dt><code>invisible</code></dt><dd><p><code>numeric</code> date/time value.</p></dd>
+
+<dt><code>loaded</code></dt><dd><p><code>logical</code> value.</p></dd>
 
 <dt><code>hidden</code></dt><dd><p><code>logical</code> value.</p></dd>
 
@@ -237,7 +257,10 @@ Feature class" />
   <span class='va'>id</span>,
   <span class='va'>name</span>,
   <span class='va'>variable</span>,
+  <span class='va'>pane</span>,
   <span class='va'>visible</span>,
+  <span class='va'>invisible</span>,
+  <span class='va'>loaded</span>,
   <span class='va'>hidden</span>,
   <span class='va'>status</span>,
   <span class='va'>current</span>,
@@ -254,9 +277,15 @@ Feature class" />
 
 <dt><code>name</code></dt><dd><p><code>character</code> value.</p></dd>
 
-<dt><code>variable</code></dt><dd><p><a href='Variable.html'>Variable</a> .</p></dd>
+<dt><code>variable</code></dt><dd><p><a href='Variable.html'>Variable</a>.</p></dd>
+
+<dt><code>pane</code></dt><dd><p><code>character</code> value.</p></dd>
 
 <dt><code>visible</code></dt><dd><p><code>logical</code> value.</p></dd>
+
+<dt><code>invisible</code></dt><dd><p><code>numeric</code> date/time value.</p></dd>
+
+<dt><code>loaded</code></dt><dd><p><code>logical</code> value.</p></dd>
 
 <dt><code>hidden</code></dt><dd><p><code>logical</code> value.</p></dd>
 
@@ -354,6 +383,32 @@ Defaults to <code>"]"</code>.</p></dd>
 <h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
 <p><code>logical</code> value.</p>
 <p><hr>
+<a id="method-get_invisible"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>get_invisible()</code></h3>
+<p>Get invisible.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Feature</span><span class='op'>$</span><span class='fu'>get_invisible</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>numeric</code> date/time value.</p>
+<h3 class='hasAnchor' id='list-get-invisible-'><a class='anchor' aria-hidden='true' href='#list-get-invisible-'></a>Method <code>get_invisible()</code></h3>
+<p>Get invisible.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Feature</span><span class='op'>$</span><span class='fu'>get_invisible</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>numeric</code> date/time value.</p>
+<p><hr>
+<a id="method-get_loaded"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>get_loaded()</code></h3>
+<p>Get loaded.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Feature</span><span class='op'>$</span><span class='fu'>get_loaded</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>logical</code> value.</p>
+<h3 class='hasAnchor' id='list-get-loaded-'><a class='anchor' aria-hidden='true' href='#list-get-loaded-'></a>Method <code>get_loaded()</code></h3>
+<p>Get loaded.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Feature</span><span class='op'>$</span><span class='fu'>get_loaded</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>logical</code> value.</p>
+<p><hr>
 <a id="method-get_current"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>get_current()</code></h3>
 <p>Get current (proportion) coverage.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
 <p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Feature</span><span class='op'>$</span><span class='fu'>get_current</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
@@ -406,6 +461,33 @@ Defaults to <code>"]"</code>.</p></dd>
 <h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
 <p><code><a href='https://r-spatial.github.io/sf/reference/st_as_sf.html'>sf::st_as_sf()</a></code> or <code><a href='https://rdrr.io/pkg/raster/man/raster.html'>raster::raster()</a></code> object.</p>
 <p><hr>
+<a id="method-set_new_pane"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>set_new_pane()</code></h3>
+<p>Set new pane.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Feature</span><span class='op'>$</span><span class='fu'>set_new_pane</span><span class='op'>(</span><span class='va'>id</span>, <span class='va'>index</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>id</code></dt><dd><p><code>character</code> unique identifier.</p></dd>
+
+<dt><code>index</code></dt><dd><p><code>character</code> variable index.</p></dd>
+
+</dl><p></div></p>
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>character</code> value.</p>
+<h3 class='hasAnchor' id='list-set-new-pane-'><a class='anchor' aria-hidden='true' href='#list-set-new-pane-'></a>Method <code>set_new_pane()</code></h3>
+<p>Set new pane.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Feature</span><span class='op'>$</span><span class='fu'>set_new_pane</span><span class='op'>(</span><span class='va'>id</span>, <span class='va'>index</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>id</code></dt><dd><p><code>character</code> unique identifier.</p></dd>
+
+<dt><code>index</code></dt><dd><p><code>character</code> variable index.</p></dd>
+
+</dl><p></div></p>
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>character</code> value.</p>
+<p><hr>
 <a id="method-set_visible"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>set_visible()</code></h3>
 <p>Set visible.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
 <p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Feature</span><span class='op'>$</span><span class='fu'>set_visible</span><span class='op'>(</span><span class='va'>value</span><span class='op'>)</span></code></pre><p></div></p>
@@ -418,6 +500,44 @@ Defaults to <code>"]"</code>.</p></dd>
 <h3 class='hasAnchor' id='list-set-visible-'><a class='anchor' aria-hidden='true' href='#list-set-visible-'></a>Method <code>set_visible()</code></h3>
 <p>Set visible.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
 <p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Feature</span><span class='op'>$</span><span class='fu'>set_visible</span><span class='op'>(</span><span class='va'>value</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>value</code></dt><dd><p><code>logical</code> new value.</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-set_invisible"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>set_invisible()</code></h3>
+<p>Set invisible.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Feature</span><span class='op'>$</span><span class='fu'>set_invisible</span><span class='op'>(</span><span class='va'>value</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>value</code></dt><dd><p><code>numeric</code> date/time value.</p></dd>
+
+</dl><p></div></p>
+<h3 class='hasAnchor' id='list-set-invisible-'><a class='anchor' aria-hidden='true' href='#list-set-invisible-'></a>Method <code>set_invisible()</code></h3>
+<p>Set invisible.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Feature</span><span class='op'>$</span><span class='fu'>set_invisible</span><span class='op'>(</span><span class='va'>value</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>value</code></dt><dd><p><code>numeric</code> date/time value.</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-set_loaded"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>set_loaded()</code></h3>
+<p>Set loaded.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Feature</span><span class='op'>$</span><span class='fu'>set_loaded</span><span class='op'>(</span><span class='va'>value</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>value</code></dt><dd><p><code>logical</code> new value.</p></dd>
+
+</dl><p></div></p>
+<h3 class='hasAnchor' id='list-set-loaded-'><a class='anchor' aria-hidden='true' href='#list-set-loaded-'></a>Method <code>set_loaded()</code></h3>
+<p>Set loaded.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Feature</span><span class='op'>$</span><span class='fu'>set_loaded</span><span class='op'>(</span><span class='va'>value</span><span class='op'>)</span></code></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
 <p><div class="arguments"></p><dl>

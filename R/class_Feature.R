@@ -365,8 +365,7 @@ Feature <- R6::R6Class(
 #'   Defaults to `NA_real_`.
 #'   
 #' @param loaded `logical` The initial loaded value.
-#'   This is used to determine if the feature is loaded (or not)
-#'   or not the map.
+#'   This is used to determine if the feature has been loaded into the DOM.
 #'   Defaults to `FALSE`.
 #'
 #' @param hidden `logical` The hidden value.
@@ -397,7 +396,7 @@ Feature <- R6::R6Class(
 #' @param id `character` unique identifier.
 #'   Defaults to a random identifier ([uuid::UUIDgenerate()]).
 #'   
-#' @param pane `character` unique identifier.
+#' @param pane `character` unique map pane identifier.
 #'   Defaults to a random identifier ([uuid::UUIDgenerate()]) concatenated with
 #'   layer index.
 #'

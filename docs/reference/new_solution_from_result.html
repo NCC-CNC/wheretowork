@@ -127,12 +127,15 @@
     <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>new_solution_from_result</span><span class='op'>(</span>
   <span class='va'>name</span>,
   <span class='va'>visible</span>,
+  invisible <span class='op'>=</span> <span class='cn'>NA_real_</span>,
+  loaded <span class='op'>=</span> <span class='cn'>TRUE</span>,
   <span class='va'>dataset</span>,
   <span class='va'>settings</span>,
   <span class='va'>result</span>,
   <span class='va'>legend</span>,
   id <span class='op'>=</span> <span class='fu'>uuid</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/uuid/man/UUIDgenerate.html'>UUIDgenerate</a></span><span class='op'>(</span><span class='op'>)</span>,
-  hidden <span class='op'>=</span> <span class='cn'>FALSE</span>
+  hidden <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  pane <span class='op'>=</span> <span class='cn'>NA_character_</span>
 <span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -145,6 +148,21 @@
     <tr>
       <th>visible</th>
       <td><p><code>logical</code> should the solution be visible on a map?</p></td>
+    </tr>
+    <tr>
+      <th>invisible</th>
+      <td><p><code>numeric</code> date/time. A time stamp date given to when a
+loaded layer is first turned invisible. This is used to keep track
+of loaded invisible layers to offload once the cache threshold has been
+reached.
+Defaults to <code>NA_real_</code>.</p></td>
+    </tr>
+    <tr>
+      <th>loaded</th>
+      <td><p><code>logical</code> The initial loaded value.
+This is used to determine if the feature is loaded (or not)
+or not the map.
+Defaults to <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>dataset</th>
@@ -170,6 +188,12 @@ Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUI
     <tr>
       <th>hidden</th>
       <td><p><code>logical</code> should the solution be hidden from map?</p></td>
+    </tr>
+    <tr>
+      <th>pane</th>
+      <td><p><code>character</code> unique identifier.
+Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUIDgenerate.html'>uuid::UUIDgenerate()</a></code>) concatenated with
+layer index.</p></td>
     </tr>
     </table>
 

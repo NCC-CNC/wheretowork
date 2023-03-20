@@ -173,15 +173,26 @@ appear beneath every other layer.</p></dd>
 <li><p><a href='#method-get_layer'><code>MapManager$get_layer()</code></a></p></li>
 <li><p><a href='#method-get_layer_names'><code>MapManager$get_layer_names()</code></a></p></li>
 <li><p><a href='#method-get_layer_indices'><code>MapManager$get_layer_indices()</code></a></p></li>
+<li><p><a href='#method-get_layer_ids'><code>MapManager$get_layer_ids()</code></a></p></li>
+<li><p><a href='#method-get_layer_panes'><code>MapManager$get_layer_panes()</code></a></p></li>
+<li><p><a href='#method-get_layer_visible'><code>MapManager$get_layer_visible()</code></a></p></li>
+<li><p><a href='#method-get_layer_invisible'><code>MapManager$get_layer_invisible()</code></a></p></li>
+<li><p><a href='#method-get_layer_loaded'><code>MapManager$get_layer_loaded()</code></a></p></li>
 <li><p><a href='#method-get_setting'><code>MapManager$get_setting()</code></a></p></li>
 <li><p><a href='#method-set_order'><code>MapManager$set_order()</code></a></p></li>
 <li><p><a href='#method-set_visible'><code>MapManager$set_visible()</code></a></p></li>
+<li><p><a href='#method-set_loaded'><code>MapManager$set_loaded()</code></a></p></li>
 <li><p><a href='#method-set_setting'><code>MapManager$set_setting()</code></a></p></li>
 <li><p><a href='#method-add_layer'><code>MapManager$add_layer()</code></a></p></li>
 <li><p><a href='#method-drop_layer'><code>MapManager$drop_layer()</code></a></p></li>
 <li><p><a href='#method-get_widget_data'><code>MapManager$get_widget_data()</code></a></p></li>
+<li><p><a href='#method-get_group_layer_ids'><code>MapManager$get_group_layer_ids()</code></a></p></li>
+<li><p><a href='#method-get_layer_classes'><code>MapManager$get_layer_classes()</code></a></p></li>
+<li><p><a href='#method-get_lazyload'><code>MapManager$get_lazyload()</code></a></p></li>
 <li><p><a href='#method-initialize_map'><code>MapManager$initialize_map()</code></a></p></li>
 <li><p><a href='#method-update_map'><code>MapManager$update_map()</code></a></p></li>
+<li><p><a href='#method-delete_sinlge_map_pane'><code>MapManager$delete_sinlge_map_pane()</code></a></p></li>
+<li><p><a href='#method-delete_all_map_panes'><code>MapManager$delete_all_map_panes()</code></a></p></li>
 <li><p><a href='#method-clone'><code>MapManager$clone()</code></a></p></li>
 </ul>
 <p><hr>
@@ -304,6 +315,71 @@ objects.</p></dd>
 <h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
 <p><code>character</code> vector.</p>
 <p><hr>
+<a id="method-get_layer_ids"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>get_layer_ids()</code></h3>
+<p>Get layer ids values.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>MapManager</span><span class='op'>$</span><span class='fu'>get_layer_ids</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>character</code> vector.</p>
+<h3 class='hasAnchor' id='list-get-layer-ids-'><a class='anchor' aria-hidden='true' href='#list-get-layer-ids-'></a>Method <code>get_layer_ids()</code></h3>
+<p>Get layer ids values.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>MapManager</span><span class='op'>$</span><span class='fu'>get_layer_ids</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>character</code> vector.</p>
+<p><hr>
+<a id="method-get_layer_panes"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>get_layer_panes()</code></h3>
+<p>Get panes.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>MapManager</span><span class='op'>$</span><span class='fu'>get_layer_panes</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>character</code> vector.</p>
+<h3 class='hasAnchor' id='list-get-layer-panes-'><a class='anchor' aria-hidden='true' href='#list-get-layer-panes-'></a>Method <code>get_layer_panes()</code></h3>
+<p>Get panes.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>MapManager</span><span class='op'>$</span><span class='fu'>get_layer_panes</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>character</code> vector.</p>
+<p><hr>
+<a id="method-get_layer_visible"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>get_layer_visible()</code></h3>
+<p>Get layer visible values.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>MapManager</span><span class='op'>$</span><span class='fu'>get_layer_visible</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>character</code> vector.</p>
+<h3 class='hasAnchor' id='list-get-layer-visible-'><a class='anchor' aria-hidden='true' href='#list-get-layer-visible-'></a>Method <code>get_layer_visible()</code></h3>
+<p>Get layer visible values.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>MapManager</span><span class='op'>$</span><span class='fu'>get_layer_visible</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>character</code> vector.</p>
+<p><hr>
+<a id="method-get_layer_invisible"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>get_layer_invisible()</code></h3>
+<p>Get layer invisible values.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>MapManager</span><span class='op'>$</span><span class='fu'>get_layer_invisible</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>date/time</code> vector.</p>
+<h3 class='hasAnchor' id='list-get-layer-invisible-'><a class='anchor' aria-hidden='true' href='#list-get-layer-invisible-'></a>Method <code>get_layer_invisible()</code></h3>
+<p>Get layer invisible values.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>MapManager</span><span class='op'>$</span><span class='fu'>get_layer_invisible</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>date/time</code> vector.</p>
+<p><hr>
+<a id="method-get_layer_loaded"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>get_layer_loaded()</code></h3>
+<p>Get layer loaded values.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>MapManager</span><span class='op'>$</span><span class='fu'>get_layer_loaded</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>logical</code> vector.</p>
+<h3 class='hasAnchor' id='list-get-layer-loaded-'><a class='anchor' aria-hidden='true' href='#list-get-layer-loaded-'></a>Method <code>get_layer_loaded()</code></h3>
+<p>Get layer loaded values.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>MapManager</span><span class='op'>$</span><span class='fu'>get_layer_loaded</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>logical</code> vector.</p>
+<p><hr>
 <a id="method-get_setting"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>get_setting()</code></h3>
 <p>Get a setting for the object.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
 <p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>MapManager</span><span class='op'>$</span><span class='fu'>get_setting</span><span class='op'>(</span><span class='va'>value</span><span class='op'>)</span></code></pre><p></div></p>
@@ -359,6 +435,27 @@ not.</p></dd>
 <h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
 <p><div class="arguments"></p><dl>
 <dt><code>value</code></dt><dd><p><code>logical</code> vector indicating if layers should be visible or
+not.</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-set_loaded"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>set_loaded()</code></h3>
+<p>Set loaded for all layers.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>MapManager</span><span class='op'>$</span><span class='fu'>set_loaded</span><span class='op'>(</span><span class='va'>value</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>value</code></dt><dd><p><code>logical</code> vector indicating if layers are loaded or
+not.</p></dd>
+
+</dl><p></div></p>
+<h3 class='hasAnchor' id='list-set-loaded-'><a class='anchor' aria-hidden='true' href='#list-set-loaded-'></a>Method <code>set_loaded()</code></h3>
+<p>Set loaded for all layers.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>MapManager</span><span class='op'>$</span><span class='fu'>set_loaded</span><span class='op'>(</span><span class='va'>value</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>value</code></dt><dd><p><code>logical</code> vector indicating if layers are loaded or
 not.</p></dd>
 
 </dl><p></div></p>
@@ -441,6 +538,45 @@ not.</p></dd>
 <h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
 <p><code>list</code> with widget data.</p>
 <p><hr>
+<a id="method-get_group_layer_ids"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>get_group_layer_ids()</code></h3>
+<p>Get group layer ids.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>MapManager</span><span class='op'>$</span><span class='fu'>get_group_layer_ids</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>character</code> vector.</p>
+<h3 class='hasAnchor' id='list-get-group-layer-ids-'><a class='anchor' aria-hidden='true' href='#list-get-group-layer-ids-'></a>Method <code>get_group_layer_ids()</code></h3>
+<p>Get group layer ids.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>MapManager</span><span class='op'>$</span><span class='fu'>get_group_layer_ids</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>character</code> vector.</p>
+<p><hr>
+<a id="method-get_layer_classes"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>get_layer_classes()</code></h3>
+<p>Get group layer ids.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>MapManager</span><span class='op'>$</span><span class='fu'>get_layer_classes</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>character</code> vector.</p>
+<h3 class='hasAnchor' id='list-get-layer-classes-'><a class='anchor' aria-hidden='true' href='#list-get-layer-classes-'></a>Method <code>get_layer_classes()</code></h3>
+<p>Get group layer ids.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>MapManager</span><span class='op'>$</span><span class='fu'>get_layer_classes</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>character</code> vector.</p>
+<p><hr>
+<a id="method-get_lazyload"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>get_lazyload()</code></h3>
+<p>Get data frame of map manager layers.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>MapManager</span><span class='op'>$</span><span class='fu'>get_lazyload</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>data.frame</code> object.</p>
+<h3 class='hasAnchor' id='list-get-lazyload-'><a class='anchor' aria-hidden='true' href='#list-get-lazyload-'></a>Method <code>get_lazyload()</code></h3>
+<p>Get data frame of map manager layers.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>MapManager</span><span class='op'>$</span><span class='fu'>get_lazyload</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>data.frame</code> object.</p>
+<p><hr>
 <a id="method-initialize_map"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>initialize_map()</code></h3>
 <p>Initial map by adding data to it.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
 <p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>MapManager</span><span class='op'>$</span><span class='fu'>initialize_map</span><span class='op'>(</span><span class='va'>map</span><span class='op'>)</span></code></pre><p></div></p>
@@ -472,6 +608,44 @@ not.</p></dd>
 <h3 class='hasAnchor' id='list-update-map-'><a class='anchor' aria-hidden='true' href='#list-update-map-'></a>Method <code>update_map()</code></h3>
 <p>Update map.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
 <p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>MapManager</span><span class='op'>$</span><span class='fu'>update_map</span><span class='op'>(</span><span class='va'>map</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>map</code></dt><dd><p><code><a href='https://rdrr.io/pkg/leaflet/man/leafletProxy.html'>leaflet::leafletProxy()</a></code> object.</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-delete_sinlge_map_pane"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>delete_sinlge_map_pane()</code></h3>
+<p>Delete single map pane</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>MapManager</span><span class='op'>$</span><span class='fu'>delete_sinlge_map_pane</span><span class='op'>(</span><span class='va'>map</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>map</code></dt><dd><p><code><a href='https://rdrr.io/pkg/leaflet/man/leafletProxy.html'>leaflet::leafletProxy()</a></code> object.</p></dd>
+
+</dl><p></div></p>
+<h3 class='hasAnchor' id='list-delete-sinlge-map-pane-'><a class='anchor' aria-hidden='true' href='#list-delete-sinlge-map-pane-'></a>Method <code>delete_sinlge_map_pane()</code></h3>
+<p>Delete single map pane</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>MapManager</span><span class='op'>$</span><span class='fu'>delete_sinlge_map_pane</span><span class='op'>(</span><span class='va'>map</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>map</code></dt><dd><p><code><a href='https://rdrr.io/pkg/leaflet/man/leafletProxy.html'>leaflet::leafletProxy()</a></code> object.</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-delete_all_map_panes"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>delete_all_map_panes()</code></h3>
+<p>Delete all map panes.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>MapManager</span><span class='op'>$</span><span class='fu'>delete_all_map_panes</span><span class='op'>(</span><span class='va'>map</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>map</code></dt><dd><p><code><a href='https://rdrr.io/pkg/leaflet/man/leafletProxy.html'>leaflet::leafletProxy()</a></code> object.</p></dd>
+
+</dl><p></div></p>
+<h3 class='hasAnchor' id='list-delete-all-map-panes-'><a class='anchor' aria-hidden='true' href='#list-delete-all-map-panes-'></a>Method <code>delete_all_map_panes()</code></h3>
+<p>Delete all map panes.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>MapManager</span><span class='op'>$</span><span class='fu'>delete_all_map_panes</span><span class='op'>(</span><span class='va'>map</span><span class='op'>)</span></code></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
 <p><div class="arguments"></p><dl>

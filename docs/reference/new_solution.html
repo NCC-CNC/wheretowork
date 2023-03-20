@@ -128,13 +128,17 @@
   <span class='va'>name</span>,
   <span class='va'>variable</span>,
   <span class='va'>visible</span>,
+  invisible <span class='op'>=</span> <span class='cn'>NA_real_</span>,
+  loaded <span class='op'>=</span> <span class='cn'>TRUE</span>,
   <span class='va'>parameters</span>,
   <span class='va'>statistics</span>,
   <span class='va'>theme_results</span>,
   <span class='va'>weight_results</span>,
   <span class='va'>include_results</span>,
+  <span class='va'>exclude_results</span>,
   id <span class='op'>=</span> <span class='fu'>uuid</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/uuid/man/UUIDgenerate.html'>UUIDgenerate</a></span><span class='op'>(</span><span class='op'>)</span>,
-  hidden <span class='op'>=</span> <span class='cn'>FALSE</span>
+  hidden <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  pane <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='fu'>uuid</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/uuid/man/UUIDgenerate.html'>UUIDgenerate</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='va'>variable</span><span class='op'>$</span><span class='va'>index</span>, sep <span class='op'>=</span> <span class='st'>"-"</span><span class='op'>)</span>
 <span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -151,6 +155,21 @@
     <tr>
       <th>visible</th>
       <td><p><code>logical</code> should the solution be visible on a map?</p></td>
+    </tr>
+    <tr>
+      <th>invisible</th>
+      <td><p><code>numeric</code> date/time. A time stamp date given to when a
+loaded layer is first turned invisible. This is used to keep track
+of loaded invisible layers to offload once the cache threshold has been
+reached.
+Defaults to <code>NA_real_</code>.</p></td>
+    </tr>
+    <tr>
+      <th>loaded</th>
+      <td><p><code>logical</code> The initial loaded value.
+This is used to determine if the feature is loaded (or not)
+or not the map.
+Defaults to <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>parameters</th>
@@ -173,6 +192,10 @@
       <td><p><code>list</code> of <a href='IncludeResults.html'>IncludeResults</a> objects.</p></td>
     </tr>
     <tr>
+      <th>exclude_results</th>
+      <td><p><code>list</code> of <a href='ExcludeResults.html'>ExcludeResults</a> objects.</p></td>
+    </tr>
+    <tr>
       <th>id</th>
       <td><p><code>character</code> unique identifier.
 Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUIDgenerate.html'>uuid::UUIDgenerate()</a></code>).</p></td>
@@ -180,6 +203,12 @@ Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUI
     <tr>
       <th>hidden</th>
       <td><p><code>logical</code> should the solution be hidden from map?</p></td>
+    </tr>
+    <tr>
+      <th>pane</th>
+      <td><p><code>character</code> unique identifier.
+Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUIDgenerate.html'>uuid::UUIDgenerate()</a></code>) concatenated with
+layer index.</p></td>
     </tr>
     </table>
 
@@ -235,6 +264,7 @@ Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUI
 <span class='r-in'>  theme_results <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>tr1</span><span class='op'>)</span>,</span>
 <span class='r-in'>  weight_results <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
 <span class='r-in'>  include_results <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
+<span class='r-in'>  exclude_results <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
 <span class='r-in'>  id <span class='op'>=</span> <span class='st'>"solution1"</span>,</span>
 <span class='r-in'>  hidden <span class='op'>=</span> <span class='cn'>FALSE</span></span>
 <span class='r-in'><span class='op'>)</span></span>

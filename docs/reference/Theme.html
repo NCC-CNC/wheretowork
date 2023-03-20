@@ -156,6 +156,7 @@ Theme class" />
 <li><p><a href='#method-print'><code>Theme$print()</code></a></p></li>
 <li><p><a href='#method-repr'><code>Theme$repr()</code></a></p></li>
 <li><p><a href='#method-get_layer_name'><code>Theme$get_layer_name()</code></a></p></li>
+<li><p><a href='#method-get_layer_pane'><code>Theme$get_layer_pane()</code></a></p></li>
 <li><p><a href='#method-get_layer_index'><code>Theme$get_layer_index()</code></a></p></li>
 <li><p><a href='#method-get_feature_id'><code>Theme$get_feature_id()</code></a></p></li>
 <li><p><a href='#method-get_feature_name'><code>Theme$get_feature_name()</code></a></p></li>
@@ -164,6 +165,8 @@ Theme class" />
 <li><p><a href='#method-get_feature_total'><code>Theme$get_feature_total()</code></a></p></li>
 <li><p><a href='#method-get_visible'><code>Theme$get_visible()</code></a></p></li>
 <li><p><a href='#method-get_feature_visible'><code>Theme$get_feature_visible()</code></a></p></li>
+<li><p><a href='#method-get_feature_invisible'><code>Theme$get_feature_invisible()</code></a></p></li>
+<li><p><a href='#method-get_feature_loaded'><code>Theme$get_feature_loaded()</code></a></p></li>
 <li><p><a href='#method-get_feature_hidden'><code>Theme$get_feature_hidden()</code></a></p></li>
 <li><p><a href='#method-get_feature_status'><code>Theme$get_feature_status()</code></a></p></li>
 <li><p><a href='#method-get_feature_goal'><code>Theme$get_feature_goal()</code></a></p></li>
@@ -274,6 +277,19 @@ Theme class" />
 <h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
 <p><code>character</code> vector.</p>
 <p><hr>
+<a id="method-get_layer_pane"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>get_layer_pane()</code></h3>
+<p>Get layer map pane classes.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Theme</span><span class='op'>$</span><span class='fu'>get_layer_pane</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>character</code> vector.</p>
+<h3 class='hasAnchor' id='list-get-layer-pane-'><a class='anchor' aria-hidden='true' href='#list-get-layer-pane-'></a>Method <code>get_layer_pane()</code></h3>
+<p>Get layer map pane classes.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Theme</span><span class='op'>$</span><span class='fu'>get_layer_pane</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>character</code> vector.</p>
+<p><hr>
 <a id="method-get_layer_index"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>get_layer_index()</code></h3>
 <p>Get layer index values.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
 <p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Theme</span><span class='op'>$</span><span class='fu'>get_layer_index</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
@@ -377,6 +393,32 @@ Theme class" />
 
 <h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
 <p><code>logical</code> vector with status value(s).</p>
+<p><hr>
+<a id="method-get_feature_invisible"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>get_feature_invisible()</code></h3>
+<p>Get feature invisible values.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Theme</span><span class='op'>$</span><span class='fu'>get_feature_invisible</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>numeric</code> vector with date/time value(s).</p>
+<h3 class='hasAnchor' id='list-get-feature-invisible-'><a class='anchor' aria-hidden='true' href='#list-get-feature-invisible-'></a>Method <code>get_feature_invisible()</code></h3>
+<p>Get feature invisible values.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Theme</span><span class='op'>$</span><span class='fu'>get_feature_invisible</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>numeric</code> vector with date/time value(s).</p>
+<p><hr>
+<a id="method-get_feature_loaded"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>get_feature_loaded()</code></h3>
+<p>Get feature loaded values.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Theme</span><span class='op'>$</span><span class='fu'>get_feature_loaded</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>logical</code> vector with loaded value(s).</p>
+<h3 class='hasAnchor' id='list-get-feature-loaded-'><a class='anchor' aria-hidden='true' href='#list-get-feature-loaded-'></a>Method <code>get_feature_loaded()</code></h3>
+<p>Get feature loaded values.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Theme</span><span class='op'>$</span><span class='fu'>get_feature_loaded</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>logical</code> vector with loaded value(s).</p>
 <p><hr>
 <a id="method-get_feature_hidden"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>get_feature_hidden()</code></h3>
 <p>Get feature hidden values.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
