@@ -24,6 +24,8 @@ test_that("initialization", {
   expect_identical(x$mandatory, TRUE)
   expect_identical(x$variable, v)
   expect_identical(x$visible, FALSE)
+  expect_identical(x$invisible, NA_real_)
+  expect_identical(x$loaded, FALSE)
   expect_identical(x$hidden, TRUE)
   expect_identical(x$status, FALSE)
   expect_identical(x$id, "FID1")
@@ -50,6 +52,8 @@ test_that("get methods", {
   # run tests
   expect_identical(x$get_status(), FALSE)
   expect_identical(x$get_visible(), TRUE)
+  expect_identical(x$get_invisible(), NA_real_)
+  expect_identical(x$get_loaded(), TRUE)
   expect_identical(x$get_hidden(), FALSE)
   expect_identical(x$get_overlap(), NA_character_)
 })
@@ -73,8 +77,12 @@ test_that("set methods", {
   # run tests
   x$set_status(TRUE)
   x$set_visible(FALSE)
+  x$set_invisible(100)
+  x$set_loaded(TRUE)
   expect_identical(x$get_status(), TRUE)
   expect_identical(x$get_visible(), FALSE)
+  expect_identical(x$get_invisible(), 100)
+  expect_identical(x$get_loaded(), TRUE)
 })
 
 test_that("export method", {
