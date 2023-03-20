@@ -48,9 +48,9 @@ Definition for the Include class.
 \item \href{#method-print}{\code{Include$print()}}
 \item \href{#method-repr}{\code{Include$repr()}}
 \item \href{#method-get_layer_name}{\code{Include$get_layer_name()}}
-\item \href{#method-get_layer_id}{\code{Include$get_layer_id()}}
 \item \href{#method-get_layer_index}{\code{Include$get_layer_index()}}
 \item \href{#method-get_layer_pane}{\code{Include$get_layer_pane()}}
+\item \href{#method-get_id}{\code{Include$get_id()}}
 \item \href{#method-get_visible}{\code{Include$get_visible()}}
 \item \href{#method-get_invisible}{\code{Include$get_invisible()}}
 \item \href{#method-get_loaded}{\code{Include$get_loaded()}}
@@ -180,19 +180,6 @@ Get layer names.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_layer_id"></a>}}
-\if{latex}{\out{\hypertarget{method-get_layer_id}{}}}
-\subsection{Method \code{get_layer_id()}}{
-Get layer id.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Include$get_layer_id()}\if{html}{\out{</div>}}
-}
-
-\subsection{Returns}{
-\code{character} vector.
-}
-}
-\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_layer_index"></a>}}
 \if{latex}{\out{\hypertarget{method-get_layer_index}{}}}
 \subsection{Method \code{get_layer_index()}}{
@@ -212,6 +199,19 @@ Get layer index values.
 Get layer pane class.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Include$get_layer_pane()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} vector.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_id"></a>}}
+\if{latex}{\out{\hypertarget{method-get_id}{}}}
+\subsection{Method \code{get_id()}}{
+Get include identifier.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Include$get_id()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{

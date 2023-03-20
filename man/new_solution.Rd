@@ -55,6 +55,10 @@ Defaults to \code{FALSE}.}
 Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}
 
 \item{hidden}{\code{logical} should the solution be hidden from map?}
+
+\item{pane}{\code{character} unique identifier.
+Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}) concatenated with
+layer index.}
 }
 \description{
 Create a new \link{Solution} object.

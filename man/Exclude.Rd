@@ -48,9 +48,9 @@ Definition for the Exclude class.
 \item \href{#method-print}{\code{Exclude$print()}}
 \item \href{#method-repr}{\code{Exclude$repr()}}
 \item \href{#method-get_layer_name}{\code{Exclude$get_layer_name()}}
-\item \href{#method-get_layer_id}{\code{Exclude$get_layer_id()}}
 \item \href{#method-get_layer_index}{\code{Exclude$get_layer_index()}}
 \item \href{#method-get_layer_pane}{\code{Exclude$get_layer_pane()}}
+\item \href{#method-get_id}{\code{Exclude$get_id()}}
 \item \href{#method-get_visible}{\code{Exclude$get_visible()}}
 \item \href{#method-get_invisible}{\code{Exclude$get_invisible()}}
 \item \href{#method-get_loaded}{\code{Exclude$get_loaded()}}
@@ -180,19 +180,6 @@ Get layer names.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_layer_id"></a>}}
-\if{latex}{\out{\hypertarget{method-get_layer_id}{}}}
-\subsection{Method \code{get_layer_id()}}{
-Get layer id.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Exclude$get_layer_id()}\if{html}{\out{</div>}}
-}
-
-\subsection{Returns}{
-\code{character} vector.
-}
-}
-\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_layer_index"></a>}}
 \if{latex}{\out{\hypertarget{method-get_layer_index}{}}}
 \subsection{Method \code{get_layer_index()}}{
@@ -212,6 +199,19 @@ Get layer index values.
 Get layer pane class.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Exclude$get_layer_pane()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} vector.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_id"></a>}}
+\if{latex}{\out{\hypertarget{method-get_id}{}}}
+\subsection{Method \code{get_id()}}{
+Get exclude identifier.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Exclude$get_id()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{

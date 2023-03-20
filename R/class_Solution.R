@@ -933,6 +933,10 @@ Solution <- R6::R6Class(
 #' @param exclude_results `list` of [ExcludeResults] objects.
 #'
 #' @param hidden `logical` should the solution be hidden from map?
+#' 
+#' @param pane `character` unique identifier.
+#'   Defaults to a random identifier ([uuid::UUIDgenerate()]) concatenated with
+#'   layer index.
 #'
 #' @inheritParams new_theme
 #'
@@ -1044,6 +1048,10 @@ new_solution <- function(name,
 #' @param legend [ManualLegend] object.
 #'
 #' @param hidden `logical` should the solution be hidden from map?
+#' 
+#' @param pane `character` unique identifier.
+#'   Defaults to a random identifier ([uuid::UUIDgenerate()]) concatenated with
+#'   layer index.
 #'
 #' @return A [Solution] object.
 #'
