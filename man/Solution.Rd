@@ -23,7 +23,13 @@ Definition for the Solution class.
 
 \item{\code{visible}}{\code{logical} value.}
 
+\item{\code{invisible}}{\code{numeric} date/time value.}
+
+\item{\code{loaded}}{\code{logical} value.}
+
 \item{\code{variable}}{\link{Variable} object.}
+
+\item{\code{pane}}{\code{character} name.}
 
 \item{\code{parameters}}{\code{list} of \link{Parameter} objects}
 
@@ -49,10 +55,17 @@ Definition for the Solution class.
 \item \href{#method-print}{\code{Solution$print()}}
 \item \href{#method-get_layer_name}{\code{Solution$get_layer_name()}}
 \item \href{#method-get_layer_index}{\code{Solution$get_layer_index()}}
+\item \href{#method-get_layer_pane}{\code{Solution$get_layer_pane()}}
+\item \href{#method-get_id}{\code{Solution$get_id()}}
 \item \href{#method-get_visible}{\code{Solution$get_visible()}}
+\item \href{#method-get_invisible}{\code{Solution$get_invisible()}}
+\item \href{#method-get_loaded}{\code{Solution$get_loaded()}}
 \item \href{#method-get_hidden}{\code{Solution$get_hidden()}}
 \item \href{#method-get_setting}{\code{Solution$get_setting()}}
+\item \href{#method-set_new_pane}{\code{Solution$set_new_pane()}}
 \item \href{#method-set_visible}{\code{Solution$set_visible()}}
+\item \href{#method-set_invisible}{\code{Solution$set_invisible()}}
+\item \href{#method-set_loaded}{\code{Solution$set_loaded()}}
 \item \href{#method-get_summary_results_data}{\code{Solution$get_summary_results_data()}}
 \item \href{#method-get_theme_results_data}{\code{Solution$get_theme_results_data()}}
 \item \href{#method-get_weight_results_data}{\code{Solution$get_weight_results_data()}}
@@ -80,7 +93,10 @@ Create a Solution object.
   id,
   name,
   variable,
+  pane,
   visible,
+  invisible,
+  loaded,
   statistics,
   parameters,
   theme_results,
@@ -100,7 +116,13 @@ Create a Solution object.
 
 \item{\code{variable}}{\link{Variable} object.}
 
+\item{\code{pane}}{\code{character} value.}
+
 \item{\code{visible}}{\code{logical} value.}
+
+\item{\code{invisible}}{\code{numeric} date/time value.}
+
+\item{\code{loaded}}{\code{logical} value.}
 
 \item{\code{statistics}}{\code{list} of \link{Statistic} objects.}
 
@@ -190,12 +212,64 @@ Get layer index values.
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_layer_pane"></a>}}
+\if{latex}{\out{\hypertarget{method-get_layer_pane}{}}}
+\subsection{Method \code{get_layer_pane()}}{
+Get layer pane class.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Solution$get_layer_pane()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} vector.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_id"></a>}}
+\if{latex}{\out{\hypertarget{method-get_id}{}}}
+\subsection{Method \code{get_id()}}{
+Get solution identifier.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Solution$get_id()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} vector.
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_visible"></a>}}
 \if{latex}{\out{\hypertarget{method-get_visible}{}}}
 \subsection{Method \code{get_visible()}}{
 Get visible.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Solution$get_visible()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{logical} value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_invisible"></a>}}
+\if{latex}{\out{\hypertarget{method-get_invisible}{}}}
+\subsection{Method \code{get_invisible()}}{
+Get invisible.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Solution$get_invisible()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{numeric} date/time value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_loaded"></a>}}
+\if{latex}{\out{\hypertarget{method-get_loaded}{}}}
+\subsection{Method \code{get_loaded()}}{
+Get loaded.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Solution$get_loaded()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
@@ -237,12 +311,68 @@ Value.
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_new_pane"></a>}}
+\if{latex}{\out{\hypertarget{method-set_new_pane}{}}}
+\subsection{Method \code{set_new_pane()}}{
+Set new pane.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Solution$set_new_pane(id, index)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{id}}{\code{character} unique identifier.}
+
+\item{\code{index}}{\code{character} variable index.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+\code{character} value.
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-set_visible"></a>}}
 \if{latex}{\out{\hypertarget{method-set_visible}{}}}
 \subsection{Method \code{set_visible()}}{
 Set visible.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Solution$set_visible(value)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{value}}{\code{logical} new value.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_invisible"></a>}}
+\if{latex}{\out{\hypertarget{method-set_invisible}{}}}
+\subsection{Method \code{set_invisible()}}{
+Set invisible.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Solution$set_invisible(value)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{value}}{\code{numeric} date/time value.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_loaded"></a>}}
+\if{latex}{\out{\hypertarget{method-set_loaded}{}}}
+\subsection{Method \code{set_loaded()}}{
+Set loaded.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Solution$set_loaded(value)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{

@@ -50,15 +50,26 @@ appear beneath every other layer.}
 \item \href{#method-get_layer}{\code{MapManager$get_layer()}}
 \item \href{#method-get_layer_names}{\code{MapManager$get_layer_names()}}
 \item \href{#method-get_layer_indices}{\code{MapManager$get_layer_indices()}}
+\item \href{#method-get_layer_ids}{\code{MapManager$get_layer_ids()}}
+\item \href{#method-get_layer_panes}{\code{MapManager$get_layer_panes()}}
+\item \href{#method-get_layer_visible}{\code{MapManager$get_layer_visible()}}
+\item \href{#method-get_layer_invisible}{\code{MapManager$get_layer_invisible()}}
+\item \href{#method-get_layer_loaded}{\code{MapManager$get_layer_loaded()}}
 \item \href{#method-get_setting}{\code{MapManager$get_setting()}}
 \item \href{#method-set_order}{\code{MapManager$set_order()}}
 \item \href{#method-set_visible}{\code{MapManager$set_visible()}}
+\item \href{#method-set_loaded}{\code{MapManager$set_loaded()}}
 \item \href{#method-set_setting}{\code{MapManager$set_setting()}}
 \item \href{#method-add_layer}{\code{MapManager$add_layer()}}
 \item \href{#method-drop_layer}{\code{MapManager$drop_layer()}}
 \item \href{#method-get_widget_data}{\code{MapManager$get_widget_data()}}
+\item \href{#method-get_group_layer_ids}{\code{MapManager$get_group_layer_ids()}}
+\item \href{#method-get_layer_classes}{\code{MapManager$get_layer_classes()}}
+\item \href{#method-get_lazyload}{\code{MapManager$get_lazyload()}}
 \item \href{#method-initialize_map}{\code{MapManager$initialize_map()}}
 \item \href{#method-update_map}{\code{MapManager$update_map()}}
+\item \href{#method-delete_sinlge_map_pane}{\code{MapManager$delete_sinlge_map_pane()}}
+\item \href{#method-delete_all_map_panes}{\code{MapManager$delete_all_map_panes()}}
 \item \href{#method-clone}{\code{MapManager$clone()}}
 }
 }
@@ -172,6 +183,71 @@ Get layer index values.
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_layer_ids"></a>}}
+\if{latex}{\out{\hypertarget{method-get_layer_ids}{}}}
+\subsection{Method \code{get_layer_ids()}}{
+Get layer ids values.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MapManager$get_layer_ids()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} vector.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_layer_panes"></a>}}
+\if{latex}{\out{\hypertarget{method-get_layer_panes}{}}}
+\subsection{Method \code{get_layer_panes()}}{
+Get panes.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MapManager$get_layer_panes()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} vector.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_layer_visible"></a>}}
+\if{latex}{\out{\hypertarget{method-get_layer_visible}{}}}
+\subsection{Method \code{get_layer_visible()}}{
+Get layer visible values.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MapManager$get_layer_visible()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} vector.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_layer_invisible"></a>}}
+\if{latex}{\out{\hypertarget{method-get_layer_invisible}{}}}
+\subsection{Method \code{get_layer_invisible()}}{
+Get layer invisible values.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MapManager$get_layer_invisible()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{date/time} vector.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_layer_loaded"></a>}}
+\if{latex}{\out{\hypertarget{method-get_layer_loaded}{}}}
+\subsection{Method \code{get_layer_loaded()}}{
+Get layer loaded values.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MapManager$get_layer_loaded()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{logical} vector.
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_setting"></a>}}
 \if{latex}{\out{\hypertarget{method-get_setting}{}}}
 \subsection{Method \code{get_setting()}}{
@@ -218,6 +294,24 @@ Set visibility for all layers.
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{value}}{\code{logical} vector indicating if layers should be visible or
+not.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_loaded"></a>}}
+\if{latex}{\out{\hypertarget{method-set_loaded}{}}}
+\subsection{Method \code{set_loaded()}}{
+Set loaded for all layers.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MapManager$set_loaded(value)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{value}}{\code{logical} vector indicating if layers are loaded or
 not.}
 }
 \if{html}{\out{</div>}}
@@ -292,6 +386,45 @@ Get data for displaying the theme in a \code{\link[=mapManager]{mapManager()}} w
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_group_layer_ids"></a>}}
+\if{latex}{\out{\hypertarget{method-get_group_layer_ids}{}}}
+\subsection{Method \code{get_group_layer_ids()}}{
+Get group layer ids.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MapManager$get_group_layer_ids()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} vector.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_layer_classes"></a>}}
+\if{latex}{\out{\hypertarget{method-get_layer_classes}{}}}
+\subsection{Method \code{get_layer_classes()}}{
+Get group layer ids.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MapManager$get_layer_classes()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} vector.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_lazyload"></a>}}
+\if{latex}{\out{\hypertarget{method-get_lazyload}{}}}
+\subsection{Method \code{get_lazyload()}}{
+Get data frame of map manager layers.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MapManager$get_lazyload()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{data.frame} object.
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-initialize_map"></a>}}
 \if{latex}{\out{\hypertarget{method-initialize_map}{}}}
 \subsection{Method \code{initialize_map()}}{
@@ -315,6 +448,40 @@ Initial map by adding data to it.
 Update map.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{MapManager$update_map(map)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{map}}{\code{\link[leaflet:leafletProxy]{leaflet::leafletProxy()}} object.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-delete_sinlge_map_pane"></a>}}
+\if{latex}{\out{\hypertarget{method-delete_sinlge_map_pane}{}}}
+\subsection{Method \code{delete_sinlge_map_pane()}}{
+Delete single map pane
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MapManager$delete_sinlge_map_pane(map)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{map}}{\code{\link[leaflet:leafletProxy]{leaflet::leafletProxy()}} object.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-delete_all_map_panes"></a>}}
+\if{latex}{\out{\hypertarget{method-delete_all_map_panes}{}}}
+\subsection{Method \code{delete_all_map_panes()}}{
+Delete all map panes.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MapManager$delete_all_map_panes(map)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{

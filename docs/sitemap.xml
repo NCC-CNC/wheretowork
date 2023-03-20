@@ -31,6 +31,9 @@
     <loc>/reference/CategoricalLegend.html</loc>
   </url>
   <url>
+    <loc>/reference/change_file_icon_js.html</loc>
+  </url>
+  <url>
     <loc>/reference/cleanImportSettings.html</loc>
   </url>
   <url>
@@ -71,6 +74,9 @@
   </url>
   <url>
     <loc>/reference/Exclude.html</loc>
+  </url>
+  <url>
+    <loc>/reference/ExcludeResults.html</loc>
   </url>
   <url>
     <loc>/reference/exportSidebarPane.html</loc>
@@ -172,6 +178,9 @@
     <loc>/reference/new_exclude.html</loc>
   </url>
   <url>
+    <loc>/reference/new_exclude_results.html</loc>
+  </url>
+  <url>
     <loc>/reference/new_feature.html</loc>
   </url>
   <url>
@@ -257,6 +266,9 @@
   </url>
   <url>
     <loc>/reference/read_spatial_data.html</loc>
+  </url>
+  <url>
+    <loc>/reference/removeMapPane.html</loc>
   </url>
   <url>
     <loc>/reference/repair_spatial_data.html</loc>

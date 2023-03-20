@@ -131,6 +131,9 @@ Solution settings class" />
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Definition for the <code>SolutionSettings</code> class.</p>
+<p><code>user_settings</code> stores user uploaded .yaml file used to repopulate solution
+settings from a previous optimization run. The user uploaded .yaml file
+must completely match the current project.</p>
 <p>The argument to <code>value</code> should be a <code>list</code> with the following elements:</p><dl>
 <dt>id</dt><dd><p><code>character</code> identifier for theme, weight, include, or exclude.</p></dd>
 <dt>setting</dt><dd><p><code>character</code> name of parameter.
@@ -142,16 +145,18 @@ Available options are: <code>"theme"</code>, <code>"weight"</code>, <code>"inclu
 </dl>
 
 <p>The argument to <code>value</code> should be a <code>list</code> with the following elements:</p><dl>
-<dt>id</dt><dd><p><code>character</code> identifier for theme, weight, or include.</p></dd>
+<dt>id</dt><dd><p><code>character</code> identifier for theme, weight, include, exclude or parameter.</p></dd>
 <dt>setting</dt><dd><p><code>character</code> name of parameter.
-Available options are: <code>"status"</code>, <code>"factor"</code>, <code>"value"</code>, or <code>"goal"</code>.</p></dd>
-<dt>value</dt><dd><p><code>numeric</code> or <code>logical</code> value for new setting.</p></dd>
+Available options are: <code>"status"</code>, <code>"factor"</code>, <code>"value"</code>, <code>"goal"</code>, or <code>"fileinput"</code></p></dd>
+<dt>value</dt><dd><p><code>numeric</code>, <code>logical</code>, or <code>character</code> value for new setting.</p></dd>
 <dt>type</dt><dd><p><code>character</code> indicating the type of setting.
 Available options are: <code>"theme"</code>, <code>"weight"</code>, <code>"include"</code>, <code>"exclude"</code>,
 <code>"parameter"</code>.</p></dd>
 
 </dl>
 
+<p>The argument to <code>value</code> should be a <code>list</code> of <a href='Theme.html'>Theme</a>, <a href='Weight.html'>Weight</a>,
+<a href='Include.html'>Include</a>, <a href='Exclude.html'>Exclude</a> and <a href='Parameter.html'>Parameter</a> objects.</p>
     <h2 class="hasAnchor" id="public-fields"><a class="anchor" href="#public-fields"></a>Public fields</h2>
 
     <p><div class="r6-fields"></p><dl>
@@ -176,6 +181,9 @@ parameters.</p></dd>
 
 <dt><code>parameters</code></dt><dd><p><code>list</code> of <a href='Parameter.html'>Parameter</a> objects.</p></dd>
 
+<dt><code>user_settings</code></dt><dd><p><code>list</code> of <a href='Theme.html'>Theme</a>, <a href='Weight.html'>Weight</a>, <a href='Include.html'>Include</a>, <a href='Exclude.html'>Exclude</a>
+and <a href='Parameter.html'>Parameter</a> objects.</p></dd>
+
 </dl><p></div></p>
     <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
 
@@ -193,6 +201,8 @@ parameters.</p></dd>
 <li><p><a href='#method-get_parameter'><code>SolutionSettings$get_parameter()</code></a></p></li>
 <li><p><a href='#method-get_setting'><code>SolutionSettings$get_setting()</code></a></p></li>
 <li><p><a href='#method-set_setting'><code>SolutionSettings$set_setting()</code></a></p></li>
+<li><p><a href='#method-get_feature_names'><code>SolutionSettings$get_feature_names()</code></a></p></li>
+<li><p><a href='#method-update_ss'><code>SolutionSettings$update_ss()</code></a></p></li>
 <li><p><a href='#method-get_widget_data'><code>SolutionSettings$get_widget_data()</code></a></p></li>
 <li><p><a href='#method-get_theme_settings'><code>SolutionSettings$get_theme_settings()</code></a></p></li>
 <li><p><a href='#method-get_weight_settings'><code>SolutionSettings$get_weight_settings()</code></a></p></li>
@@ -225,6 +235,9 @@ parameters.</p></dd>
 
 <dt><code>parameters</code></dt><dd><p><code>list</code> of <a href='Parameter.html'>Parameter</a> objects.</p></dd>
 
+<dt><code>user_settings</code></dt><dd><p><code>list</code> of <code>list</code> of <a href='Theme.html'>Theme</a>, <a href='Weight.html'>Weight</a>, <a href='Include.html'>Include</a>,
+<a href='Exclude.html'>Exclude</a> and <a href='Parameter.html'>Parameter</a> objects (see Details section).</p></dd>
+
 </dl><p></div></p>
 <h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
 <p>A new <code>SolutionSettings</code> object.</p>
@@ -243,6 +256,9 @@ parameters.</p></dd>
 <dt><code>excludes</code></dt><dd><p><code>list</code> of <a href='Exclude.html'>Exclude</a> objects.</p></dd>
 
 <dt><code>parameters</code></dt><dd><p><code>list</code> of <a href='Parameter.html'>Parameter</a> objects.</p></dd>
+
+<dt><code>user_settings</code></dt><dd><p><code>list</code> of <code>list</code> of <a href='Theme.html'>Theme</a>, <a href='Weight.html'>Weight</a>, <a href='Include.html'>Include</a>,
+<a href='Exclude.html'>Exclude</a> and <a href='Parameter.html'>Parameter</a> objects (see Details section).</p></dd>
 
 </dl><p></div></p>
 <h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
@@ -415,7 +431,7 @@ parameters.</p></dd>
 </dl><p></div></p>
 <p><hr>
 <a id="method-set_setting"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>set_setting()</code></h3>
-<p>Set a setting for a weight or theme.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p>Set a setting for theme, weight, include, exclude and parameters.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
 <p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>SolutionSettings</span><span class='op'>$</span><span class='fu'>set_setting</span><span class='op'>(</span><span class='va'>value</span><span class='op'>)</span></code></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
@@ -424,8 +440,52 @@ parameters.</p></dd>
 
 </dl><p></div></p>
 <h3 class='hasAnchor' id='list-set-setting-'><a class='anchor' aria-hidden='true' href='#list-set-setting-'></a>Method <code>set_setting()</code></h3>
-<p>Set a setting for a weight or theme.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p>Set a setting for theme, weight, include, exclude and parameters.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
 <p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>SolutionSettings</span><span class='op'>$</span><span class='fu'>set_setting</span><span class='op'>(</span><span class='va'>value</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>value</code></dt><dd><p><code>list</code> with new setting information (see Details section)</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-get_feature_names"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>get_feature_names()</code></h3>
+<p>get character vector of all feature names from a list of themes.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>SolutionSettings</span><span class='op'>$</span><span class='fu'>get_feature_names</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>x</code></dt><dd><p><code>list</code> of <a href='Theme.html'>Theme</a> objects.</p></dd>
+
+</dl><p></div></p>
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>vector</code> of feature names.</p>
+<h3 class='hasAnchor' id='list-get-feature-names-'><a class='anchor' aria-hidden='true' href='#list-get-feature-names-'></a>Method <code>get_feature_names()</code></h3>
+<p>get character vector of all feature names from a list of themes.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>SolutionSettings</span><span class='op'>$</span><span class='fu'>get_feature_names</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>x</code></dt><dd><p><code>list</code> of <a href='Theme.html'>Theme</a> objects.</p></dd>
+
+</dl><p></div></p>
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code>vector</code> of feature names.</p>
+<p><hr>
+<a id="method-update_ss"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>update_ss()</code></h3>
+<p>update settings for theme, weight, include, exclude and parameters from
+user uploaded configuration file.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>SolutionSettings</span><span class='op'>$</span><span class='fu'>update_ss</span><span class='op'>(</span><span class='va'>value</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>value</code></dt><dd><p><code>list</code> with new setting information (see Details section)</p></dd>
+
+</dl><p></div></p>
+<h3 class='hasAnchor' id='list-update-ss-'><a class='anchor' aria-hidden='true' href='#list-update-ss-'></a>Method <code>update_ss()</code></h3>
+<p>update settings for theme, weight, include, exclude and parameters from
+user uploaded configuration file.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>SolutionSettings</span><span class='op'>$</span><span class='fu'>update_ss</span><span class='op'>(</span><span class='va'>value</span><span class='op'>)</span></code></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' aria-hidden='true' href='#arguments'></a>Arguments</h4>
 <p><div class="arguments"></p><dl>

@@ -8,12 +8,15 @@ new_feature(
   name,
   variable,
   visible = TRUE,
+  invisible = NA_real_,
+  loaded = TRUE,
   hidden = FALSE,
   status = TRUE,
   current = 0,
-  goal = 0.3,
+  goal = 0.2,
   limit_goal = 0,
-  id = uuid::UUIDgenerate()
+  id = uuid::UUIDgenerate(),
+  pane = paste(uuid::UUIDgenerate(), variable$index, sep = "-")
 )
 }
 \arguments{
@@ -26,10 +29,20 @@ This is used to determine if the feature is displayed (or not)
 or not the map.
 Defaults to \code{TRUE}.}
 
+\item{invisible}{\code{numeric} date/time. A time stamp date given to when a
+loaded layer is first turned invisible. This is used to keep track
+of loaded invisible layers to offload once the cache threshold has been
+reached.
+Defaults to \code{NA_real_}.}
+
+\item{loaded}{\code{logical} The initial loaded value.
+This is used to determine if the feature has been loaded into the DOM.
+Defaults to \code{FALSE}.}
+
 \item{hidden}{\code{logical} The hidden value.
-This is used to determine if the feature is can ever be displayed (or not)
-or not the map. Unlike \code{visible}, if this parameter is \code{FALSE} then a
-feature can never be viewed on the map.
+This is used to determine if the feature can ever be displayed.
+Unlike \code{visible}, if this parameter is \code{FALSE} then a feature can never
+be viewed on the map.
 Defaults to \code{FALSE}.}
 
 \item{status}{\code{logical} The initial status value.
@@ -53,6 +66,10 @@ Defaults to 0 (i.e. 0\%).}
 
 \item{id}{\code{character} unique identifier.
 Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}
+
+\item{pane}{\code{character} unique map pane identifier.
+Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}) concatenated with
+layer index.}
 }
 \value{
 A \link{Feature} object.

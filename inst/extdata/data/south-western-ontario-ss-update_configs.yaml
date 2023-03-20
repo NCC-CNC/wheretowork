@@ -3,1101 +3,505 @@ author_name: Dan Wismer
 author_email: daniel.wismer@natureconservancy.ca
 mode: advanced
 themes:
-- name: Critical Habitat
+- name: Critical Habitat (ECCC)
   feature:
-  - name: Blandings Turtle
+  - name: Massasauga
     variable:
-      index: R1km_T_SARCH_BlandingsTurtle
+      index: T_ECCC_CH_COSEWICID_277
       units: km2
       legend:
         type: manual
         colors:
         - '#00000000'
-        - '#ffd92f'
+        - '#ffed6f'
         labels:
         - absence
         - presence
       provenance: national
-    status: yes
+    status: no
     visible: no
     hidden: no
-    goal: 0.52
+    goal: 0.36
     limit_goal: 0.0
-  - name: Butlers Garter Snake
+  - name: Western Chorus Frog (Great Lakes / St. Lawrence - Canadian Shield population)
     variable:
-      index: R1km_T_SARCH_ButlersGarterSnake
+      index: T_ECCC_CH_COSEWICID_1019
       units: km2
       legend:
         type: manual
         colors:
         - '#00000000'
-        - '#ffd92f'
+        - '#ffed6f'
         labels:
         - absence
         - presence
       provenance: national
-    status: yes
+    status: no
     visible: no
     hidden: no
-    goal: 0.52
+    goal: 0.36
     limit_goal: 0.0
-  - name: Common Musk Turtle
+  - name: Eastern Foxsnake (Great Lakes / St. Lawrence population)
     variable:
-      index: R1km_T_SARCH_CommonMuskTurtle
+      index: T_ECCC_CH_COSEWICID_1022
       units: km2
       legend:
         type: manual
         colors:
         - '#00000000'
-        - '#ffd92f'
+        - '#ffed6f'
         labels:
         - absence
         - presence
       provenance: national
-    status: yes
-    visible: yes
+    status: no
+    visible: no
     hidden: no
-    goal: 0.52
+    goal: 0.36
     limit_goal: 0.0
-  - name: Eastern Prairie Fringed Orchid
+  - name: Eastern Whip-poor-will
     variable:
-      index: R1km_T_SARCH_EasternPrairieFringedOrchid
+      index: T_ECCC_CH_COSEWICID_1047
       units: km2
       legend:
         type: manual
         colors:
         - '#00000000'
-        - '#ffd92f'
+        - '#ffed6f'
         labels:
         - absence
         - presence
       provenance: national
-    status: yes
+    status: no
     visible: no
     hidden: no
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Forked Three Awn
-    variable:
-      index: R1km_T_SARCH_ForkedThreeAwn
-      units: km2
-      legend:
-        type: manual
-        colors:
-        - '#00000000'
-        - '#ffd92f'
-        labels:
-        - absence
-        - presence
-      provenance: national
-    status: yes
-    visible: no
-    hidden: no
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Hooded Warbler
-    variable:
-      index: R1km_T_SARCH_HoodedWarbler
-      units: km2
-      legend:
-        type: manual
-        colors:
-        - '#00000000'
-        - '#ffd92f'
-        labels:
-        - absence
-        - presence
-      provenance: national
-    status: yes
-    visible: no
-    hidden: no
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Least Bittern
-    variable:
-      index: R1km_T_SARCH_LeastBittern
-      units: km2
-      legend:
-        type: manual
-        colors:
-        - '#00000000'
-        - '#ffd92f'
-        labels:
-        - absence
-        - presence
-      provenance: national
-    status: yes
-    visible: no
-    hidden: no
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Piping Plover
-    variable:
-      index: R1km_T_SARCH_PipingPlover
-      units: km2
-      legend:
-        type: manual
-        colors:
-        - '#00000000'
-        - '#ffd92f'
-        labels:
-        - absence
-        - presence
-      provenance: national
-    status: yes
-    visible: no
-    hidden: no
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Spotted Turtle
-    variable:
-      index: R1km_T_SARCH_SpottedTurtle
-      units: km2
-      legend:
-        type: manual
-        colors:
-        - '#00000000'
-        - '#ffd92f'
-        labels:
-        - absence
-        - presence
-      provenance: national
-    status: yes
-    visible: no
-    hidden: no
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Western Chorus Frog
-    variable:
-      index: R1km_T_SARCH_WesternChorusFrog
-      units: km2
-      legend:
-        type: manual
-        colors:
-        - '#00000000'
-        - '#ffd92f'
-        labels:
-        - absence
-        - presence
-      provenance: national
-    status: yes
-    visible: no
-    hidden: no
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Wood Turtle
-    variable:
-      index: R1km_T_SARCH_WoodTurtle
-      units: km2
-      legend:
-        type: manual
-        colors:
-        - '#00000000'
-        - '#ffd92f'
-        labels:
-        - absence
-        - presence
-      provenance: national
-    status: yes
-    visible: no
-    hidden: no
-    goal: 0.52
-    limit_goal: 0.0
-- name: Species at Risk
-  feature:
-  - name: American Badger jacksoni subspecies
-    variable:
-      index: R1km_T_SAR_AmericanBadgerjacksonisubspecies
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Aweme Borer
-    variable:
-      index: R1km_T_SAR_AwemeBorer
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Bank Swallow
-    variable:
-      index: R1km_T_SAR_BankSwallow
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Barn Swallow
-    variable:
-      index: R1km_T_SAR_BarnSwallow
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Blandings Turtle
-    variable:
-      index: R1km_T_SAR_BlandingsTurtle
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
+    goal: 0.36
     limit_goal: 0.0
   - name: Bobolink
     variable:
-      index: R1km_T_SAR_Bobolink
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Butlers Gartersnake
-    variable:
-      index: R1km_T_SAR_ButlersGartersnake
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Butternut
-    variable:
-      index: R1km_T_SAR_Butternut
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Canada Warbler
-    variable:
-      index: R1km_T_SAR_CanadaWarbler
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Cerulean Warbler
-    variable:
-      index: R1km_T_SAR_CeruleanWarbler
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Chimney Swift
-    variable:
-      index: R1km_T_SAR_ChimneySwift
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Common Nighthawk
-    variable:
-      index: R1km_T_SAR_CommonNighthawk
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Dwarf Lake Iris
-    variable:
-      index: R1km_T_SAR_DwarfLakeIris
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Eastern Foxsnake
-    variable:
-      index: R1km_T_SAR_EasternFoxsnake
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Eastern Hognosed Snake
-    variable:
-      index: R1km_T_SAR_EasternHognosedSnake
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Eastern Meadowlark
-    variable:
-      index: R1km_T_SAR_EasternMeadowlark
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Eastern Milksnake
-    variable:
-      index: R1km_T_SAR_EasternMilksnake
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Eastern Musk Turtle
-    variable:
-      index: R1km_T_SAR_EasternMuskTurtle
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Eastern Prairie Fringedorchid
-    variable:
-      index: R1km_T_SAR_EasternPrairieFringedorchid
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Eastern Ribbonsnake
-    variable:
-      index: R1km_T_SAR_EasternRibbonsnake
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Eastern Whippoorwill
-    variable:
-      index: R1km_T_SAR_EasternWhippoorwill
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Eastern Woodpewee
-    variable:
-      index: R1km_T_SAR_EasternWoodpewee
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Forked Threeawned Grass
-    variable:
-      index: R1km_T_SAR_ForkedThreeawnedGrass
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Gattingers Agalinis
-    variable:
-      index: R1km_T_SAR_GattingersAgalinis
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Goldenwinged Warbler
-    variable:
-      index: R1km_T_SAR_GoldenwingedWarbler
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Grasshopper Sparrow
-    variable:
-      index: R1km_T_SAR_GrasshopperSparrowpratensissubspecies
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Gypsy Cuckoo BumbleBee
-    variable:
-      index: R1km_T_SAR_GypsyCuckooBumbleBee
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Hartstongue Fern
-    variable:
-      index: R1km_T_SAR_HartstongueFern
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Henslows Sparrow
-    variable:
-      index: R1km_T_SAR_HenslowsSparrow
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Hills Pondweed
-    variable:
-      index: R1km_T_SAR_HillsPondweed
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Hills Thistle
-    variable:
-      index: R1km_T_SAR_HillsThistle
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Hines Emerald
-    variable:
-      index: R1km_T_SAR_HinesEmerald
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Hooded Warbler
-    variable:
-      index: R1km_T_SAR_HoodedWarbler
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Houghtons Goldenrod
-    variable:
-      index: R1km_T_SAR_HoughtonsGoldenrod
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Hungerfords Crawling Water Beetle
-    variable:
-      index: R1km_T_SAR_HungerfordsCrawlingWaterBeetle
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Jefferson Salamander
-    variable:
-      index: R1km_T_SAR_JeffersonSalamander
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: King Rail
-    variable:
-      index: R1km_T_SAR_KingRail
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Kirtlands Warbler
-    variable:
-      index: R1km_T_SAR_KirtlandsWarbler
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Lakeside Daisy
-    variable:
-      index: R1km_T_SAR_LakesideDaisy
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Least Bittern
-    variable:
-      index: R1km_T_SAR_LeastBittern
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Loggerhead Shrike Eastern Subspecies
-    variable:
-      index: R1km_T_SAR_LoggerheadShrikeEasternsubspecies
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Loggerhead Shrikemigrans Subspecies
-    variable:
-      index: R1km_T_SAR_LoggerheadShrikemigranssubspecies
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Louisiana Waterthrush
-    variable:
-      index: R1km_T_SAR_LouisianaWaterthrush
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Macropis CuckooBee
-    variable:
-      index: R1km_T_SAR_MacropisCuckooBee
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Massasauga
-    variable:
-      index: R1km_T_SAR_Massasauga
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Monarch
-    variable:
-      index: R1km_T_SAR_Monarch
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Mottled Duskywing
-    variable:
-      index: R1km_T_SAR_MottledDuskywing
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Northern Leopard Frog
-    variable:
-      index: R1km_T_SAR_NorthernLeopardFrog
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Northern Map Turtle
-    variable:
-      index: R1km_T_SAR_NorthernMapTurtle
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Olivesided Flycatcher
-    variable:
-      index: R1km_T_SAR_OlivesidedFlycatcher
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Pitchers Thistle
-    variable:
-      index: R1km_T_SAR_PitchersThistle
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Redheaded Woodpecker
-    variable:
-      index: R1km_T_SAR_RedheadedWoodpecker
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Rusty Blackbird
-    variable:
-      index: R1km_T_SAR_RustyBlackbird
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Rustypatched BumbleBee
-    variable:
-      index: R1km_T_SAR_RustypatchedBumbleBee
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Shorteared Owl
-    variable:
-      index: R1km_T_SAR_ShortearedOwl
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Snapping Turtle
-    variable:
-      index: R1km_T_SAR_SnappingTurtle
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Spotted Turtle
-    variable:
-      index: R1km_T_SAR_SpottedTurtle
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Spotted Wintergreen
-    variable:
-      index: R1km_T_SAR_SpottedWintergreen
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Tuberous Indianplantain
-    variable:
-      index: R1km_T_SAR_TuberousIndianplantain
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Western Chorus Frog
-    variable:
-      index: R1km_T_SAR_WesternChorusFrog
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Wood Thrush
-    variable:
-      index: R1km_T_SAR_WoodThrush
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Yellowbreasted Chatvirens Subspecies
-    variable:
-      index: R1km_T_SAR_YellowbreastedChatvirenssubspecies
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-  - name: Yellow Rail
-    variable:
-      index: R1km_T_SAR_YellowRail
-      units: km2
-      legend:
-        type: 'null'
-        colors: NA
-        labels: NA
-      provenance: national
-    status: yes
-    visible: no
-    hidden: yes
-    goal: 0.52
-    limit_goal: 0.0
-- name: Land Cover
-  feature:
-  - name: Forest
-    variable:
-      index: R1km_T_HABITAT_Forest_50
+      index: T_ECCC_CH_COSEWICID_1087
       units: km2
       legend:
         type: manual
         colors:
         - '#00000000'
-        - '#006d2c'
+        - '#ffed6f'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: no
+    visible: no
+    hidden: no
+    goal: 0.36
+    limit_goal: 0.0
+  - name: Eastern Meadowlark
+    variable:
+      index: T_ECCC_CH_COSEWICID_1144
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#ffed6f'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: no
+    visible: no
+    hidden: no
+    goal: 0.36
+    limit_goal: 0.0
+  - name: Hine's Emerald
+    variable:
+      index: T_ECCC_CH_COSEWICID_1145
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#ffed6f'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: no
+    visible: no
+    hidden: no
+    goal: 0.36
+    limit_goal: 0.0
+  - name: Hungerford's Crawling Water Beetle
+    variable:
+      index: T_ECCC_CH_COSEWICID_1146
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#ffed6f'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: no
+    visible: no
+    hidden: no
+    goal: 0.36
+    limit_goal: 0.0
+  - name: Little Brown Myotis
+    variable:
+      index: T_ECCC_CH_COSEWICID_1173
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#ffed6f'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: no
+    visible: no
+    hidden: no
+    goal: 0.36
+    limit_goal: 0.0
+  - name: Tri-coloured Bat
+    variable:
+      index: T_ECCC_CH_COSEWICID_1174
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#ffed6f'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: no
+    visible: no
+    hidden: no
+    goal: 0.36
+    limit_goal: 0.0
+  - name: Northern Myotis
+    variable:
+      index: T_ECCC_CH_COSEWICID_1175
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#ffed6f'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: no
+    visible: no
+    hidden: no
+    goal: 0.36
+    limit_goal: 0.0
+  - name: Bank Swallow
+    variable:
+      index: T_ECCC_CH_COSEWICID_1233
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#ffed6f'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: no
+    visible: no
+    hidden: no
+    goal: 0.36
+    limit_goal: 0.0
+  - name: American Ginseng
+    variable:
+      index: T_ECCC_CH_COSEWICID_217
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#ffed6f'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: no
+    visible: no
+    hidden: no
+    goal: 0.36
+    limit_goal: 0.0
+  - name: Goldenseal
+    variable:
+      index: T_ECCC_CH_COSEWICID_221
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#ffed6f'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: no
+    visible: no
+    hidden: no
+    goal: 0.36
+    limit_goal: 0.0
+  - name: Eastern Prairie Fringed-orchid
+    variable:
+      index: T_ECCC_CH_COSEWICID_248
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#ffed6f'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: no
+    visible: no
+    hidden: no
+    goal: 0.36
+    limit_goal: 0.0
+  - name: Spotted Turtle
+    variable:
+      index: T_ECCC_CH_COSEWICID_285
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#ffed6f'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: no
+    visible: no
+    hidden: no
+    goal: 0.36
+    limit_goal: 0.0
+  - name: Wood Turtle
+    variable:
+      index: T_ECCC_CH_COSEWICID_286
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#ffed6f'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: no
+    visible: no
+    hidden: no
+    goal: 0.36
+    limit_goal: 0.0
+  - name: Cerulean Warbler
+    variable:
+      index: T_ECCC_CH_COSEWICID_46
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#ffed6f'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: no
+    visible: no
+    hidden: no
+    goal: 0.36
+    limit_goal: 0.0
+  - name: Red-headed Woodpecker
+    variable:
+      index: T_ECCC_CH_COSEWICID_57
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#ffed6f'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: no
+    visible: no
+    hidden: no
+    goal: 0.36
+    limit_goal: 0.0
+  - name: Queensnake
+    variable:
+      index: T_ECCC_CH_COSEWICID_585
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#ffed6f'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: no
+    visible: no
+    hidden: no
+    goal: 0.36
+    limit_goal: 0.0
+  - name: Butler's Gartersnake
+    variable:
+      index: T_ECCC_CH_COSEWICID_588
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#ffed6f'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: no
+    visible: no
+    hidden: no
+    goal: 0.36
+    limit_goal: 0.0
+  - name: Jefferson Salamander
+    variable:
+      index: T_ECCC_CH_COSEWICID_642
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#ffed6f'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: no
+    visible: no
+    hidden: no
+    goal: 0.36
+    limit_goal: 0.0
+  - name: Piping Plover circumcinctus subspecies
+    variable:
+      index: T_ECCC_CH_COSEWICID_686
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#ffed6f'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: no
+    visible: no
+    hidden: no
+    goal: 0.36
+    limit_goal: 0.0
+  - name: Lakeside Daisy
+    variable:
+      index: T_ECCC_CH_COSEWICID_705
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#ffed6f'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: no
+    visible: no
+    hidden: no
+    goal: 0.36
+    limit_goal: 0.0
+  - name: Forked Three-awned Grass
+    variable:
+      index: T_ECCC_CH_COSEWICID_744
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#ffed6f'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: no
+    visible: no
+    hidden: no
+    goal: 0.36
+    limit_goal: 0.0
+  - name: Hill's Thistle
+    variable:
+      index: T_ECCC_CH_COSEWICID_807
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#ffed6f'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: no
+    visible: no
+    hidden: no
+    goal: 0.36
+    limit_goal: 0.0
+  - name: Blanding's Turtle (Great Lakes / St. Lawrence population)
+    variable:
+      index: T_ECCC_CH_COSEWICID_846
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#ffed6f'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: no
+    visible: no
+    hidden: no
+    goal: 0.36
+    limit_goal: 0.0
+- name: Species at Risk (ECCC)
+  feature:
+  - name: Western Chorus Frog (Great Lakes / St. Lawrence - Canadian Shield population)
+    variable:
+      index: T_ECCC_SAR_COSEWICID_1019
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
         labels:
         - absence
         - presence
@@ -1107,15 +511,1149 @@ themes:
     hidden: no
     goal: 0.2
     limit_goal: 0.0
-  - name: Wetland
+  - name: Canada Warbler
     variable:
-      index: R1km_T_HABITAT_Wetland_50
+      index: T_ECCC_SAR_COSEWICID_1008
       units: km2
       legend:
         type: manual
         colors:
         - '#00000000'
-        - '#c51b8a'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Eastern Foxsnake (Great Lakes / St. Lawrence population)
+    variable:
+      index: T_ECCC_SAR_COSEWICID_1022
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Snapping Turtle
+    variable:
+      index: T_ECCC_SAR_COSEWICID_1033
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Eastern Whippoorwill
+    variable:
+      index: T_ECCC_SAR_COSEWICID_1047
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Rustypatched Bumble Bee
+    variable:
+      index: T_ECCC_SAR_COSEWICID_1081
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Bobolink
+    variable:
+      index: T_ECCC_SAR_COSEWICID_1087
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Macropis Cuckoo Bee
+    variable:
+      index: T_ECCC_SAR_COSEWICID_1142
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Eastern Meadowlark
+    variable:
+      index: T_ECCC_SAR_COSEWICID_1144
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Hine's Emerald
+    variable:
+      index: T_ECCC_SAR_COSEWICID_1145
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Hungerford's Crawling Water Beetle
+    variable:
+      index: T_ECCC_SAR_COSEWICID_1146
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Barn Swallow
+    variable:
+      index: T_ECCC_SAR_COSEWICID_1147
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Wood Thrush
+    variable:
+      index: T_ECCC_SAR_COSEWICID_1197
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Eastern Woodpewee
+    variable:
+      index: T_ECCC_SAR_COSEWICID_1198
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Mottled Duskywing (Great Lakes Plains population)
+    variable:
+      index: T_ECCC_SAR_COSEWICID_1212
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Massasauga (Great Lakes population)
+    variable:
+      index: T_ECCC_SAR_COSEWICID_1220
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Gypsy Cuckoo Bumble Bee
+    variable:
+      index: T_ECCC_SAR_COSEWICID_1232
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Bank Swallow
+    variable:
+      index: T_ECCC_SAR_COSEWICID_1233
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Grasshopper Sparrow, pratensis subspecies
+    variable:
+      index: T_ECCC_SAR_COSEWICID_1241
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Loggerhead Shrike Eastern subspecies
+    variable:
+      index: T_ECCC_SAR_COSEWICID_1265
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Gattinger's Agalinis
+    variable:
+      index: T_ECCC_SAR_COSEWICID_180
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Spotted Wintergreen
+    variable:
+      index: T_ECCC_SAR_COSEWICID_196
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: American Ginseng
+    variable:
+      index: T_ECCC_SAR_COSEWICID_217
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Pitcher's Thistle
+    variable:
+      index: T_ECCC_SAR_COSEWICID_225
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Henslow's Sparrow
+    variable:
+      index: T_ECCC_SAR_COSEWICID_23
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: King Rail
+    variable:
+      index: T_ECCC_SAR_COSEWICID_24
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Eastern Prairie Fringedorchid
+    variable:
+      index: T_ECCC_SAR_COSEWICID_248
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Kirtland's Warbler
+    variable:
+      index: T_ECCC_SAR_COSEWICID_25
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Hill's Pondweed
+    variable:
+      index: T_ECCC_SAR_COSEWICID_254
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Tuberous Indianplantain
+    variable:
+      index: T_ECCC_SAR_COSEWICID_256
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Loggerhead Shrike migrans subspecies
+    variable:
+      index: T_ECCC_SAR_COSEWICID_26
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Massasauga
+    variable:
+      index: T_ECCC_SAR_COSEWICID_277
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Spotted Turtle
+    variable:
+      index: T_ECCC_SAR_COSEWICID_285
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Monarch
+    variable:
+      index: T_ECCC_SAR_COSEWICID_294
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Eastern Hognosed Snake
+    variable:
+      index: T_ECCC_SAR_COSEWICID_301
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Hooded Warbler
+    variable:
+      index: T_ECCC_SAR_COSEWICID_37
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Cerulean Warbler
+    variable:
+      index: T_ECCC_SAR_COSEWICID_46
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Least Bittern
+    variable:
+      index: T_ECCC_SAR_COSEWICID_51
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Louisiana Waterthrush
+    variable:
+      index: T_ECCC_SAR_COSEWICID_53
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Northern Leopard Frog (Western Boreal/Prairie populations)
+    variable:
+      index: T_ECCC_SAR_COSEWICID_552
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Redheaded Woodpecker
+    variable:
+      index: T_ECCC_SAR_COSEWICID_57
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Yellow Rail
+    variable:
+      index: T_ECCC_SAR_COSEWICID_574
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Butler's Gartersnake
+    variable:
+      index: T_ECCC_SAR_COSEWICID_588
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Shorteared Owl
+    variable:
+      index: T_ECCC_SAR_COSEWICID_60
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Yellow-breasted Chat virens subspecies
+    variable:
+      index: T_ECCC_SAR_COSEWICID_61
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: American Badger jacksoni subspecies
+    variable:
+      index: T_ECCC_SAR_COSEWICID_621
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Jefferson Salamander
+    variable:
+      index: T_ECCC_SAR_COSEWICID_642
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Hart'stongue Fern
+    variable:
+      index: T_ECCC_SAR_COSEWICID_647
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Lakeside Daisy
+    variable:
+      index: T_ECCC_SAR_COSEWICID_705
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Eastern Musk Turtle
+    variable:
+      index: T_ECCC_SAR_COSEWICID_706
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Eastern Ribbonsnake (Great Lakes population)
+    variable:
+      index: T_ECCC_SAR_COSEWICID_709
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Northern Map Turtle
+    variable:
+      index: T_ECCC_SAR_COSEWICID_712
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Eastern Milksnake
+    variable:
+      index: T_ECCC_SAR_COSEWICID_714
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Forked Threeawned Grass
+    variable:
+      index: T_ECCC_SAR_COSEWICID_744
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Butternut
+    variable:
+      index: T_ECCC_SAR_COSEWICID_793
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Hill's Thistle
+    variable:
+      index: T_ECCC_SAR_COSEWICID_807
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Dwarf Lake Iris
+    variable:
+      index: T_ECCC_SAR_COSEWICID_826
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Blanding's Turtle (Great Lakes / St. Lawrence population)
+    variable:
+      index: T_ECCC_SAR_COSEWICID_846
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Houghton's Goldenrod
+    variable:
+      index: T_ECCC_SAR_COSEWICID_868
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Rusty Blackbird
+    variable:
+      index: T_ECCC_SAR_COSEWICID_907
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Aweme Borer
+    variable:
+      index: T_ECCC_SAR_COSEWICID_919
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Goldenwinged Warbler
+    variable:
+      index: T_ECCC_SAR_COSEWICID_942
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Chimney Swift
+    variable:
+      index: T_ECCC_SAR_COSEWICID_951
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Common Nighthawk
+    variable:
+      index: T_ECCC_SAR_COSEWICID_986
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+  - name: Olivesided Flycatcher
+    variable:
+      index: T_ECCC_SAR_COSEWICID_999
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#fb9a99'
         labels:
         - absence
         - presence
@@ -1127,18 +1665,62 @@ themes:
     limit_goal: 0.0
 - name: Shoreline
   feature:
-  - name: Shoreline Length
+  - name: Shoreline length
     variable:
-      index: R1km_T_HABITAT_Shoreline_km
+      index: T_KM_Shoreline_length
       units: km
       legend:
         type: continuous
         colors:
-        - '#0B0405FF'
-        - '#3E356BFF'
-        - '#357BA2FF'
-        - '#49C1ADFF'
-        - '#DEF5E5FF'
+        - '#543005'
+        - '#8C510A'
+        - '#BF812D'
+        - '#DFC27D'
+        - '#F6E8C3'
+        - '#F5F5F5'
+        - '#C7EAE5'
+        - '#80CDC1'
+        - '#35978F'
+        - '#01665E'
+        - '#003C30'
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.2
+    limit_goal: 0.0
+- name: Land Cover
+  feature:
+  - name: Forest
+    variable:
+      index: T_LC_Forest_LC
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#440154FF'
+        - '#3B528BFF'
+        - '#21908CFF'
+        - '#5DC863FF'
+        - '#FDE725FF'
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    goal: 0.45
+    limit_goal: 0.0
+  - name: Wetlands
+    variable:
+      index: T_LC_Wetlands
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#440154FF'
+        - '#3B528BFF'
+        - '#21908CFF'
+        - '#5DC863FF'
+        - '#FDE725FF'
       provenance: national
     status: yes
     visible: no
@@ -1146,119 +1728,51 @@ themes:
     goal: 0.2
     limit_goal: 0.0
 weights:
-- name: Proximity to Existing Conservation
+- name: Carbon potential
   variable:
-    index: R1km_W_Proximity_PA_km
-    units: km
+    index: W_Carbon_potential
+    units: tonnes/yr
     legend:
       type: continuous
       colors:
-      - '#440154FF'
-      - '#3B528BFF'
-      - '#21908CFF'
-      - '#5DC863FF'
-      - '#FDE725FF'
+      - '#FFFFE5'
+      - '#FFF7BC'
+      - '#FEE391'
+      - '#FEC44F'
+      - '#FE9929'
+      - '#EC7014'
+      - '#CC4C02'
+      - '#993404'
+      - '#662506'
     provenance: national
   status: no
   visible: no
   hidden: no
   factor: 0.0
-- name: Niagara Escarpment Planning Area
+- name: Carbon storage
   variable:
-    index: R1km_W_NEP
-    units: km2
-    legend:
-      type: manual
-      colors:
-      - '#00000000'
-      - '#66c2a5'
-      labels:
-      - outside
-      - inside
-    provenance: regional
-  status: no
-  visible: yes
-  hidden: no
-  factor: 0.0
-- name: Key Biodiversity Areas
-  variable:
-    index: R1km_W_KBA
-    units: km2
-    legend:
-      type: manual
-      colors:
-      - '#00000000'
-      - '#1c9099'
-      labels:
-      - outside
-      - inside
-    provenance: national
-  status: no
-  visible: no
-  hidden: no
-  factor: 0.0
-- name: 'Stream Density '
-  variable:
-    index: R1km_W_LinearDensity_WaterCrs_km2
-    units: km/km2
+    index: W_Carbon_storage
+    units: tonnes
     legend:
       type: continuous
       colors:
-      - '#F7FCF0'
-      - '#E0F3DB'
-      - '#CCEBC5'
-      - '#A8DDB5'
-      - '#7BCCC4'
-      - '#4EB3D3'
-      - '#2B8CBE'
-      - '#0868AC'
-      - '#084081'
+      - '#FFFFE5'
+      - '#FFF7BC'
+      - '#FEE391'
+      - '#FEC44F'
+      - '#FE9929'
+      - '#EC7014'
+      - '#CC4C02'
+      - '#993404'
+      - '#662506'
     provenance: national
   status: no
   visible: no
   hidden: no
   factor: 0.0
-- name: 'Road Network '
+- name: Climate extremes
   variable:
-    index: R1km_W_Roads
-    units: ''
-    legend:
-      type: manual
-      colors:
-      - '#00000000'
-      - '#e7298a'
-      - '#7570b3'
-      - '#d95f02'
-      labels:
-      - no road
-      - tertiary
-      - secondary
-      - primary
-    provenance: national
-  status: no
-  visible: no
-  hidden: no
-  factor: 0.0
-- name: 'Canadian Human Footprint '
-  variable:
-    index: R1km_W_Human_Disturbance
-    units: index
-    legend:
-      type: continuous
-      colors:
-      - '#03051AFF'
-      - '#611F53FF'
-      - '#CB1B4FFF'
-      - '#F4875EFF'
-      - '#FAEBDDFF'
-    provenance: national
-  status: yes
-  visible: no
-  hidden: no
-  factor: -100.0
-- name: 'Climate Refugia '
-  variable:
-    index: R1km_W_Climate_Refugia
+    index: W_Climate_extremes
     units: index
     legend:
       type: continuous
@@ -1273,9 +1787,115 @@ weights:
   visible: no
   hidden: no
   factor: 0.0
-- name: 'Mean NDVI '
+- name: Climate forward velocity
   variable:
-    index: R1km_W_Mean_NDVI
+    index: W_Climate_forward_velocity
+    units: index
+    legend:
+      type: continuous
+      colors:
+      - '#000004FF'
+      - '#51127CFF'
+      - '#B63679FF'
+      - '#FB8861FF'
+      - '#FCFDBFFF'
+    provenance: national
+  status: no
+  visible: no
+  hidden: no
+  factor: 0.0
+- name: Climate refugia
+  variable:
+    index: W_Climate_refugia
+    units: index
+    legend:
+      type: continuous
+      colors:
+      - '#000004FF'
+      - '#51127CFF'
+      - '#B63679FF'
+      - '#FB8861FF'
+      - '#FCFDBFFF'
+    provenance: national
+  status: yes
+  visible: no
+  hidden: no
+  factor: 49.0
+- name: Connectivity
+  variable:
+    index: W_Connectivity
+    units: current/km2
+    legend:
+      type: continuous
+      colors:
+      - '#0B0405FF'
+      - '#3E356BFF'
+      - '#357BA2FF'
+      - '#49C1ADFF'
+      - '#DEF5E5FF'
+    provenance: national
+  status: no
+  visible: no
+  hidden: no
+  factor: 0.0
+- name: Human footprint
+  variable:
+    index: W_Human_footprint
+    units: index
+    legend:
+      type: continuous
+      colors:
+      - '#03051AFF'
+      - '#611F53FF'
+      - '#CB1B4FFF'
+      - '#F4875EFF'
+      - '#FAEBDDFF'
+    provenance: national
+  status: yes
+  visible: no
+  hidden: no
+  factor: -44.0
+- name: Key Biodiversity Areas
+  variable:
+    index: W_KBAs
+    units: km2
+    legend:
+      type: manual
+      colors:
+      - '#00000000'
+      - '#1c9099'
+      labels:
+      - outside
+      - inside
+    provenance: national
+  status: no
+  visible: no
+  hidden: no
+  factor: 0.0
+- name: Recreation
+  variable:
+    index: W_Recreation
+    units: ha
+    legend:
+      type: continuous
+      colors:
+      - '#F7FCF5'
+      - '#E5F5E0'
+      - '#C7E9C0'
+      - '#A1D99B'
+      - '#74C476'
+      - '#41AB5D'
+      - '#238B45'
+      - '#006D2C'
+      - '#00441B'
+    provenance: national
+  status: yes
+  visible: no
+  hidden: no
+  factor: 51.0
+- name: NDVI
+  variable:
+    index: W_REG_NDVI
     units: index
     legend:
       type: continuous
@@ -1296,47 +1916,141 @@ weights:
   visible: no
   hidden: no
   factor: 0.0
-includes:
-- name: Existing Conservation
+- name: Niagara Escarpment Planning Area
   variable:
-    index: R1km_I_Protected
+    index: W_REG_NEP
+    units: km2
+    legend:
+      type: manual
+      colors:
+      - '#00000000'
+      - '#66c2a5'
+      labels:
+      - outside
+      - inside
+    provenance: regional
+  status: no
+  visible: no
+  hidden: no
+  factor: 0.0
+- name: Proximity to Existing Conservation
+  variable:
+    index: W_REG_Proximity_PA_km
+    units: km
+    legend:
+      type: continuous
+      colors:
+      - '#440154FF'
+      - '#3B528BFF'
+      - '#21908CFF'
+      - '#5DC863FF'
+      - '#FDE725FF'
+    provenance: national
+  status: no
+  visible: no
+  hidden: no
+  factor: 0.0
+- name: 'Road Network '
+  variable:
+    index: W_REG_Roads
+    units: rank
+    legend:
+      type: manual
+      colors:
+      - '#00000000'
+      - '#e7298a'
+      - '#7570b3'
+      - '#d95f02'
+      labels:
+      - no road
+      - tertiary
+      - secondary
+      - primary
+    provenance: regional
+  status: no
+  visible: no
+  hidden: no
+  factor: 0.0
+- name: 'Stream Density '
+  variable:
+    index: W_REG_Streams_km2
+    units: km/km2
+    legend:
+      type: continuous
+      colors:
+      - '#F7FCF0'
+      - '#E0F3DB'
+      - '#CCEBC5'
+      - '#A8DDB5'
+      - '#7BCCC4'
+      - '#4EB3D3'
+      - '#2B8CBE'
+      - '#0868AC'
+      - '#084081'
+    provenance: regional
+  status: no
+  visible: no
+  hidden: no
+  factor: 0.0
+includes:
+- name: Existing Conservation (CPCAD)
+  variable:
+    index: I_Protected
     units: ' '
     legend:
       type: manual
       colors:
       - '#00000000'
-      - '#2ca25f'
+      - '#7fbc41'
       labels:
       - not included
       - ' included'
     provenance: national
   mandatory: no
   status: yes
-  visible: yes
+  visible: no
   hidden: no
-  overlap: Major Highways, Urabn Centers
-- name: Military Bases
+  overlap: Major Highways, Urban Areas
+- name: Military Bases (OECM)
   variable:
-    index: R1km_I_MilitaryBases
+    index: I_REG_MilitaryBases
     units: ' '
     legend:
       type: manual
       colors:
       - '#00000000'
-      - '#f7fcb9'
+      - '#7fbc41'
       labels:
       - not included
       - ' included'
+    provenance: national
+  mandatory: no
+  status: no
+  visible: no
+  hidden: no
+  overlap: Urban Areas
+excludes:
+- name: Major Highways
+  variable:
+    index: E_REG_PrimaryRoads
+    units: ' '
+    legend:
+      type: manual
+      colors:
+      - '#00000000'
+      - '#d95f0e'
+      labels:
+      - included
+      - ' excluded'
     provenance: regional
   mandatory: no
   status: yes
   visible: no
   hidden: no
-  overlap: Urabn Centers
-excludes:
-- name: Major Highways
+  overlap: Existing Conservation (CPCAD)
+- name: Urban Areas
   variable:
-    index: R1km_E_PrimaryRoads
+    index: E_REG_Urban
     units: ' '
     legend:
       type: manual
@@ -1348,32 +2062,14 @@ excludes:
       - ' excluded'
     provenance: regional
   mandatory: no
-  status: no
-  visible: yes
+  status: yes
+  visible: no
   hidden: no
-  overlap: Existing Conservation
-- name: Urabn Centers
-  variable:
-    index: R1km_E_Urban
-    units: ' '
-    legend:
-      type: manual
-      colors:
-      - '#00000000'
-      - '#d95f0e'
-      labels:
-      - included
-      - ' excluded'
-    provenance: regional
-  mandatory: no
-  status: no
-  visible: yes
-  hidden: no
-  overlap: Existing Conservation, Military Bases
+  overlap: Existing Conservation (CPCAD), Military Bases (OECM)
 parameters:
 - name: Total area budget
-  status: yes
-  value: 55
+  status: no
+  value: 25
 - name: Spatial clustering
   status: no
   value: 1.0
@@ -1381,8 +2077,8 @@ parameters:
   status: no
   value: 1.0
 - name: Override includes
-  status: no
+  status: yes
   value: 0.0
-- name: Input configurations
+- name: Update solution settings
   status: yes
   value: 0

@@ -1,90 +1,114 @@
 Type,Theme,File,Name,Legend,Values,Color,Labels,Unit,Provenance,Order,Visible,Hidden,Goal
-theme,Critical Habitat,R1km_T_SARCH_BlandingsTurtle.tif,Blandings Turtle,manual,"0, 1","#00000000, #ffd92f","absence, presence",km2,national,,FALSE,FALSE,0.2
-theme,Critical Habitat,R1km_T_SARCH_ButlersGarterSnake.tif,Butlers Garter Snake,manual,"0, 1","#00000000, #ffd92f","absence, presence",km2,national,,FALSE,FALSE,0.2
-theme,Critical Habitat,R1km_T_SARCH_CommonMuskTurtle.tif,Common Musk Turtle,manual,"0, 1","#00000000, #ffd92f","absence, presence",km2,national,,TRUE,FALSE,0.2
-theme,Critical Habitat,R1km_T_SARCH_EasternPrairieFringedOrchid.tif,Eastern Prairie Fringed Orchid,manual,"0, 1","#00000000, #ffd92f","absence, presence",km2,national,,FALSE,FALSE,0.2
-theme,Critical Habitat,R1km_T_SARCH_ForkedThreeAwn.tif,Forked Three Awn,manual,"0, 1","#00000000, #ffd92f","absence, presence",km2,national,,FALSE,FALSE,0.2
-theme,Critical Habitat,R1km_T_SARCH_HoodedWarbler.tif,Hooded Warbler,manual,"0, 1","#00000000, #ffd92f","absence, presence",km2,national,,FALSE,FALSE,0.2
-theme,Critical Habitat,R1km_T_SARCH_LeastBittern.tif,Least Bittern,manual,"0, 1","#00000000, #ffd92f","absence, presence",km2,national,,FALSE,FALSE,0.2
-theme,Critical Habitat,R1km_T_SARCH_PipingPlover.tif,Piping Plover,manual,"0, 1","#00000000, #ffd92f","absence, presence",km2,national,,FALSE,FALSE,0.2
-theme,Critical Habitat,R1km_T_SARCH_SpottedTurtle.tif,Spotted Turtle,manual,"0, 1","#00000000, #ffd92f","absence, presence",km2,national,,FALSE,FALSE,0.2
-theme,Critical Habitat,R1km_T_SARCH_WesternChorusFrog.tif,Western Chorus Frog,manual,"0, 1","#00000000, #ffd92f","absence, presence",km2,national,,FALSE,FALSE,0.2
-theme,Critical Habitat,R1km_T_SARCH_WoodTurtle.tif,Wood Turtle,manual,"0, 1","#00000000, #ffd92f","absence, presence",km2,national,,FALSE,FALSE,0.2
-theme,Species at Risk,R1km_T_SAR_AmericanBadgerjacksonisubspecies.tif,American Badger jacksoni subspecies,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_AwemeBorer.tif,Aweme Borer,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_BankSwallow.tif,Bank Swallow,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_BarnSwallow.tif,Barn Swallow,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_BlandingsTurtle.tif,Blandings Turtle,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_Bobolink.tif,Bobolink,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_ButlersGartersnake.tif,Butlers Gartersnake,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_Butternut.tif,Butternut,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_CanadaWarbler.tif,Canada Warbler,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_CeruleanWarbler.tif,Cerulean Warbler,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_ChimneySwift.tif,Chimney Swift,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_CommonNighthawk.tif,Common Nighthawk,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_DwarfLakeIris.tif,Dwarf Lake Iris,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_EasternFoxsnake.tif,Eastern Foxsnake,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_EasternHognosedSnake.tif,Eastern Hognosed Snake,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_EasternMeadowlark.tif,Eastern Meadowlark,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_EasternMilksnake.tif,Eastern Milksnake,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_EasternMuskTurtle.tif,Eastern Musk Turtle,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_EasternPrairieFringedorchid.tif,Eastern Prairie Fringedorchid,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_EasternRibbonsnake.tif,Eastern Ribbonsnake,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_EasternWhippoorwill.tif,Eastern Whippoorwill,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_EasternWoodpewee.tif,Eastern Woodpewee,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_ForkedThreeawnedGrass.tif,Forked Threeawned Grass,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_GattingersAgalinis.tif,Gattingers Agalinis,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_GoldenwingedWarbler.tif,Goldenwinged Warbler,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_GrasshopperSparrowpratensissubspecies.tif,Grasshopper Sparrow,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_GypsyCuckooBumbleBee.tif,Gypsy Cuckoo BumbleBee,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_HartstongueFern.tif,Hartstongue Fern,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_HenslowsSparrow.tif,Henslows Sparrow,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_HillsPondweed.tif,Hills Pondweed,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_HillsThistle.tif,Hills Thistle,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_HinesEmerald.tif,Hines Emerald,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_HoodedWarbler.tif,Hooded Warbler,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_HoughtonsGoldenrod.tif,Houghtons Goldenrod,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_HungerfordsCrawlingWaterBeetle.tif,Hungerfords Crawling Water Beetle,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_JeffersonSalamander.tif,Jefferson Salamander,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_KingRail.tif,King Rail,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_KirtlandsWarbler.tif,Kirtlands Warbler,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_LakesideDaisy.tif,Lakeside Daisy,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_LeastBittern.tif,Least Bittern,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_LoggerheadShrikeEasternsubspecies.tif,Loggerhead Shrike Eastern Subspecies,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_LoggerheadShrikemigranssubspecies.tif,Loggerhead Shrikemigrans Subspecies,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_LouisianaWaterthrush.tif,Louisiana Waterthrush,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_MacropisCuckooBee.tif,Macropis CuckooBee,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_Massasauga.tif,Massasauga,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_Monarch.tif,Monarch,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_MottledDuskywing.tif,Mottled Duskywing,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_NorthernLeopardFrog.tif,Northern Leopard Frog,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_NorthernMapTurtle.tif,Northern Map Turtle,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_OlivesidedFlycatcher.tif,Olivesided Flycatcher,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_PitchersThistle.tif,Pitchers Thistle,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_RedheadedWoodpecker.tif,Redheaded Woodpecker,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_RustyBlackbird.tif,Rusty Blackbird,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_RustypatchedBumbleBee.tif,Rustypatched BumbleBee,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_ShortearedOwl.tif,Shorteared Owl,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_SnappingTurtle.tif,Snapping Turtle,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_SpottedTurtle.tif,Spotted Turtle,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_SpottedWintergreen.tif,Spotted Wintergreen,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_TuberousIndianplantain.tif,Tuberous Indianplantain,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_WesternChorusFrog.tif,Western Chorus Frog,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_WoodThrush.tif,Wood Thrush,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_YellowbreastedChatvirenssubspecies.tif,Yellowbreasted Chatvirens Subspecies,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Species at Risk,R1km_T_SAR_YellowRail.tif,Yellow Rail,manual,"0, 1","#00000000, #fb8072","absence, presence",km2,national,,FALSE,TRUE,0.2
-theme,Land Cover,R1km_T_HABITAT_Forest_50.tif,Forest,manual,"0, 1","#00000000, #006d2c","absence, presence",km2,national,,FALSE,FALSE,0.2
-theme,Land Cover,R1km_T_HABITAT_Wetland_50.tif,Wetland,manual,"0, 1","#00000000, #c51b8a","absence, presence",km2,national,,FALSE,FALSE,0.2
-theme,Shoreline,R1km_T_HABITAT_Shoreline_km.tif,Shoreline Length,continuous,,mako,,km,national,,FALSE,FALSE,0.2
-weight,Protected and Policy Areas,R1km_W_Proximity_PA_km.tif,Proximity to Existing Conservation,continuous,,viridis,,km,national,,FALSE,FALSE,
-weight,Protected and Policy Areas,R1km_W_NEP.tif,Niagara Escarpment Planning Area,manual,"0, 1","#00000000, #66c2a5","outside, inside",km2,regional,,TRUE,FALSE,
-weight,Protected and Policy Areas,R1km_W_KBA.tif,Key Biodiversity Areas,manual,"0, 1","#00000000, #1c9099","outside, inside",km2,national,,FALSE,FALSE,
-weight,Water,R1km_W_LinearDensity_WaterCrs_km2.tif,Stream Density ,continuous,,GnBu,,km/km2,national,,FALSE,FALSE,
-weight,Human Pressure,R1km_W_Roads.tif,Road Network ,manual,"0, 1, 2, 3","#00000000, #e7298a, #7570b3, #d95f02","no road, tertiary, secondary, primary",,national,,FALSE,FALSE,
-weight,Human Pressure,R1km_W_Human_Disturbance.tif,Canadian Human Footprint ,continuous,,rocket,,index,national,,FALSE,FALSE,
-weight,Climate Change,R1km_W_Climate_Refugia.tif,Climate Refugia ,continuous,,magma,,index,national,,FALSE,FALSE,
-weight,Mean NDVI ,R1km_W_Mean_NDVI.tif,Mean NDVI ,continuous,,RdYlGn,,index,regional,,FALSE,FALSE,
-include,Protected and Policy Areas,R1km_I_Protected.tif,Existing Conservation,manual,"0, 1","#00000000, #2ca25f","not included, included",km2,national,,TRUE,FALSE,
-include,OECM,R1km_I_MilitaryBases.tif,Military Bases,manual,"0, 1","#00000000, #f7fcb9","not included, included",km2,regional,,FALSE,FALSE,
-exclude,Human Pressure,R1km_E_PrimaryRoads.tif,Major Highways,manual,"0, 1","#00000000, #d95f0e","included, excluded",km2,regional,,TRUE,FALSE,
-exclude,Human Pressure,R1km_E_Urban.tif,Urabn Centers,manual,"0, 1","#00000000, #d95f0e","included, excluded",km2,regional,,TRUE,FALSE,
+exclude,,E_REG_PrimaryRoads.tif,Major Highways,manual,"0, 1","#00000000, #d95f0e","included, excluded",km2,regional,,TRUE,FALSE,0.2
+exclude,,E_REG_Urban.tif,Urban Areas,manual,"0, 1","#00000000, #d95f0e","included, excluded",km2,regional,,FALSE,FALSE,0.2
+include,,I_Protected.tif,Existing Conservation (CPCAD),manual,"0, 1","#00000000, #7fbc41","not included, included",km2,national,,TRUE,FALSE,0.2
+include,,I_REG_MilitaryBases.tif,Military Bases (OECM),manual,"0, 1","#00000000, #7fbc41","not included, included",km2,national,,TRUE,FALSE,0.2
+theme,Critical Habitat (ECCC),T_ECCC_CH_COSEWICID_1019.tif,Western Chorus Frog (Great Lakes / St. Lawrence - Canadian Shield population),manual,"0, 1","#00000000, #ffed6f","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Critical Habitat (ECCC),T_ECCC_CH_COSEWICID_1022.tif,Eastern Foxsnake (Great Lakes / St. Lawrence population),manual,"0, 1","#00000000, #ffed6f","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Critical Habitat (ECCC),T_ECCC_CH_COSEWICID_1047.tif,Eastern Whip-poor-will,manual,"0, 1","#00000000, #ffed6f","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Critical Habitat (ECCC),T_ECCC_CH_COSEWICID_1087.tif,Bobolink,manual,"0, 1","#00000000, #ffed6f","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Critical Habitat (ECCC),T_ECCC_CH_COSEWICID_1144.tif,Eastern Meadowlark,manual,"0, 1","#00000000, #ffed6f","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Critical Habitat (ECCC),T_ECCC_CH_COSEWICID_1145.tif,Hine's Emerald,manual,"0, 1","#00000000, #ffed6f","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Critical Habitat (ECCC),T_ECCC_CH_COSEWICID_1146.tif,Hungerford's Crawling Water Beetle,manual,"0, 1","#00000000, #ffed6f","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Critical Habitat (ECCC),T_ECCC_CH_COSEWICID_1173.tif,Little Brown Myotis,manual,"0, 1","#00000000, #ffed6f","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Critical Habitat (ECCC),T_ECCC_CH_COSEWICID_1174.tif,Tri-coloured Bat,manual,"0, 1","#00000000, #ffed6f","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Critical Habitat (ECCC),T_ECCC_CH_COSEWICID_1175.tif,Northern Myotis,manual,"0, 1","#00000000, #ffed6f","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Critical Habitat (ECCC),T_ECCC_CH_COSEWICID_1233.tif,Bank Swallow,manual,"0, 1","#00000000, #ffed6f","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Critical Habitat (ECCC),T_ECCC_CH_COSEWICID_217.tif,American Ginseng,manual,"0, 1","#00000000, #ffed6f","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Critical Habitat (ECCC),T_ECCC_CH_COSEWICID_221.tif,Goldenseal,manual,"0, 1","#00000000, #ffed6f","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Critical Habitat (ECCC),T_ECCC_CH_COSEWICID_248.tif,Eastern Prairie Fringed-orchid,manual,"0, 1","#00000000, #ffed6f","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Critical Habitat (ECCC),T_ECCC_CH_COSEWICID_277.tif,Massasauga,manual,"0, 1","#00000000, #ffed6f","absence, presence",km2,national,1,TRUE,FALSE,0.2
+theme,Critical Habitat (ECCC),T_ECCC_CH_COSEWICID_285.tif,Spotted Turtle,manual,"0, 1","#00000000, #ffed6f","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Critical Habitat (ECCC),T_ECCC_CH_COSEWICID_286.tif,Wood Turtle,manual,"0, 1","#00000000, #ffed6f","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Critical Habitat (ECCC),T_ECCC_CH_COSEWICID_46.tif,Cerulean Warbler,manual,"0, 1","#00000000, #ffed6f","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Critical Habitat (ECCC),T_ECCC_CH_COSEWICID_57.tif,Red-headed Woodpecker,manual,"0, 1","#00000000, #ffed6f","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Critical Habitat (ECCC),T_ECCC_CH_COSEWICID_585.tif,Queensnake,manual,"0, 1","#00000000, #ffed6f","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Critical Habitat (ECCC),T_ECCC_CH_COSEWICID_588.tif,Butler's Gartersnake,manual,"0, 1","#00000000, #ffed6f","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Critical Habitat (ECCC),T_ECCC_CH_COSEWICID_642.tif,Jefferson Salamander,manual,"0, 1","#00000000, #ffed6f","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Critical Habitat (ECCC),T_ECCC_CH_COSEWICID_686.tif,Piping Plover circumcinctus subspecies,manual,"0, 1","#00000000, #ffed6f","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Critical Habitat (ECCC),T_ECCC_CH_COSEWICID_705.tif,Lakeside Daisy,manual,"0, 1","#00000000, #ffed6f","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Critical Habitat (ECCC),T_ECCC_CH_COSEWICID_744.tif,Forked Three-awned Grass,manual,"0, 1","#00000000, #ffed6f","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Critical Habitat (ECCC),T_ECCC_CH_COSEWICID_807.tif,Hill's Thistle,manual,"0, 1","#00000000, #ffed6f","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Critical Habitat (ECCC),T_ECCC_CH_COSEWICID_846.tif,Blanding's Turtle (Great Lakes / St. Lawrence population),manual,"0, 1","#00000000, #ffed6f","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_1008.tif,Canada Warbler,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_1019.tif,Western Chorus Frog (Great Lakes / St. Lawrence - Canadian Shield population),manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,1,TRUE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_1022.tif,Eastern Foxsnake (Great Lakes / St. Lawrence population),manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_1033.tif,Snapping Turtle,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_1047.tif,Eastern Whip–poor–will,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_1081.tif,Rusty–patched Bumble Bee,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_1087.tif,Bobolink,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_1142.tif,Macropis Cuckoo Bee,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_1144.tif,Eastern Meadowlark,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_1145.tif,Hine's Emerald,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_1146.tif,Hungerford's Crawling Water Beetle,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_1147.tif,Barn Swallow,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_1197.tif,Wood Thrush,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_1198.tif,Eastern Wood–pewee,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_1212.tif,Mottled Duskywing (Great Lakes Plains population),manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_1220.tif,Massasauga (Great Lakes population),manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_1232.tif,Gypsy Cuckoo Bumble Bee,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_1233.tif,Bank Swallow,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_1241.tif,"Grasshopper Sparrow, pratensis subspecies",manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_1265.tif,Loggerhead Shrike Eastern subspecies,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_180.tif,Gattinger's Agalinis,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_196.tif,Spotted Wintergreen,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_217.tif,American Ginseng,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_225.tif,Pitcher's Thistle,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_23.tif,Henslow's Sparrow,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_24.tif,King Rail,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_248.tif,Eastern Prairie Fringed–orchid,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_25.tif,Kirtland's Warbler,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_254.tif,Hill's Pondweed,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_256.tif,Tuberous Indian–plantain,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_26.tif,Loggerhead Shrike migrans subspecies,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_277.tif,Massasauga,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_285.tif,Spotted Turtle,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_294.tif,Monarch,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_301.tif,Eastern Hog–nosed Snake,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_37.tif,Hooded Warbler,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_46.tif,Cerulean Warbler,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_51.tif,Least Bittern,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_53.tif,Louisiana Waterthrush,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_552.tif,Northern Leopard Frog (Western Boreal/Prairie populations),manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_57.tif,Red–headed Woodpecker,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_574.tif,Yellow Rail,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_588.tif,Butler's Gartersnake,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_60.tif,Short–eared Owl,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_61.tif,Yellow-breasted Chat virens subspecies,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_621.tif,American Badger jacksoni subspecies,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_642.tif,Jefferson Salamander,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_647.tif,Hart's–tongue Fern,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_705.tif,Lakeside Daisy,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_706.tif,Eastern Musk Turtle,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_709.tif,Eastern Ribbonsnake (Great Lakes population),manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_712.tif,Northern Map Turtle,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_714.tif,Eastern Milksnake,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_744.tif,Forked Three–awned Grass,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_793.tif,Butternut,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_807.tif,Hill's Thistle,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_826.tif,Dwarf Lake Iris,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_846.tif,Blanding's Turtle (Great Lakes / St. Lawrence population),manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_868.tif,Houghton's Goldenrod,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_907.tif,Rusty Blackbird,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_919.tif,Aweme Borer,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_942.tif,Golden–winged Warbler,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_951.tif,Chimney Swift,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_986.tif,Common Nighthawk,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Species at Risk (ECCC),T_ECCC_SAR_COSEWICID_999.tif,Olive–sided Flycatcher,manual,"0, 1","#00000000, #fb9a99","absence, presence",km2,national,,FALSE,FALSE,0.2
+theme,Shoreline,T_KM_Shoreline_length.tif,Shoreline length,continuous,,BrBG,,km,national,,FALSE,FALSE,0.2
+theme,Land Cover,T_LC_Forest_LC.tif,Forest,continuous,,viridis,,ha,national,,FALSE,FALSE,0.2
+theme,Land Cover,T_LC_Wetlands.tif,Wetlands,continuous,,viridis,,ha,national,,FALSE,FALSE,0.2
+weight,,W_Carbon_potential.tif,Carbon potential,continuous,,YlOrBr,,tonnes/yr,national,,FALSE,FALSE,0.2
+weight,,W_Carbon_storage.tif,Carbon storage,continuous,,YlOrBr,,tonnes,national,,FALSE,FALSE,0.2
+weight,,W_Climate_extremes.tif,Climate extremes,continuous,,magma,,index,national,,FALSE,FALSE,0.2
+weight,,W_Climate_forward_velocity.tif,Climate forward velocity,continuous,,magma,,index,national,,FALSE,FALSE,0.2
+weight,,W_Climate_refugia.tif,Climate refugia,continuous,,magma,,index,national,,FALSE,FALSE,0.2
+weight,,W_Connectivity.tif,Connectivity,continuous,,mako,,current/km2,national,,FALSE,FALSE,0.2
+weight,,W_Human_footprint.tif,Human footprint,continuous,,rocket,,index,national,,FALSE,FALSE,0.2
+weight,,W_KBAs.tif,Key Biodiversity Areas,manual,"0, 1","#00000000, #1c9099","outside, inside",km2,national,,FALSE,FALSE,0.2
+weight,,W_Recreation.tif,Recreation,continuous,,Greens,,ha,national,,FALSE,FALSE,0.2
+weight,,W_REG_NDVI.tif,NDVI,continuous,,RdYlGn,,index,regional,,FALSE,FALSE,0.2
+weight,,W_REG_NEP.tif,Niagara Escarpment Planning Area,manual,"0, 1","#00000000, #66c2a5","outside, inside",km2,regional,,TRUE,FALSE,0.2
+weight,,W_REG_Proximity_PA_km.tif,Proximity to Existing Conservation,continuous,,viridis,,km,national,,FALSE,FALSE,0.2
+weight,,W_REG_Roads.tif,Road Network ,manual,"0, 1, 2, 3","#00000000, #e7298a, #7570b3, #d95f02","no road, tertiary, secondary, primary",rank,regional,,FALSE,FALSE,0.2
+weight,,W_REG_Streams_km2.tif,Stream Density ,continuous,,GnBu,,km/km2,regional,,FALSE,FALSE,0.2

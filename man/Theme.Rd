@@ -34,6 +34,7 @@ Definition for the Theme class.
 \item \href{#method-print}{\code{Theme$print()}}
 \item \href{#method-repr}{\code{Theme$repr()}}
 \item \href{#method-get_layer_name}{\code{Theme$get_layer_name()}}
+\item \href{#method-get_layer_pane}{\code{Theme$get_layer_pane()}}
 \item \href{#method-get_layer_index}{\code{Theme$get_layer_index()}}
 \item \href{#method-get_feature_id}{\code{Theme$get_feature_id()}}
 \item \href{#method-get_feature_name}{\code{Theme$get_feature_name()}}
@@ -42,6 +43,8 @@ Definition for the Theme class.
 \item \href{#method-get_feature_total}{\code{Theme$get_feature_total()}}
 \item \href{#method-get_visible}{\code{Theme$get_visible()}}
 \item \href{#method-get_feature_visible}{\code{Theme$get_feature_visible()}}
+\item \href{#method-get_feature_invisible}{\code{Theme$get_feature_invisible()}}
+\item \href{#method-get_feature_loaded}{\code{Theme$get_feature_loaded()}}
 \item \href{#method-get_feature_hidden}{\code{Theme$get_feature_hidden()}}
 \item \href{#method-get_feature_status}{\code{Theme$get_feature_status()}}
 \item \href{#method-get_feature_goal}{\code{Theme$get_feature_goal()}}
@@ -132,6 +135,19 @@ Generate a \code{character} summarizing the representation of the object.
 Get layer names.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Theme$get_layer_name()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} vector.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_layer_pane"></a>}}
+\if{latex}{\out{\hypertarget{method-get_layer_pane}{}}}
+\subsection{Method \code{get_layer_pane()}}{
+Get layer map pane classes.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$get_layer_pane()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
@@ -240,6 +256,32 @@ Get feature visible values.
 
 \subsection{Returns}{
 \code{logical} vector with status value(s).
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_feature_invisible"></a>}}
+\if{latex}{\out{\hypertarget{method-get_feature_invisible}{}}}
+\subsection{Method \code{get_feature_invisible()}}{
+Get feature invisible values.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$get_feature_invisible()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{numeric} vector with date/time value(s).
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_feature_loaded"></a>}}
+\if{latex}{\out{\hypertarget{method-get_feature_loaded}{}}}
+\subsection{Method \code{get_feature_loaded()}}{
+Get feature loaded values.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$get_feature_loaded()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{logical} vector with loaded value(s).
 }
 }
 \if{html}{\out{<hr>}}

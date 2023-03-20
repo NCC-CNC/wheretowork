@@ -23,9 +23,15 @@ Definition for the Exclude class.
 
 \item{\code{variable}}{\link{Variable} object.}
 
+\item{\code{pane}}{\code{character} name.}
+
 \item{\code{mandatory}}{\code{logical} value.}
 
 \item{\code{visible}}{\code{logical} value.}
+
+\item{\code{invisible}}{\code{numeric} date/time value.}
+
+\item{\code{loaded}}{\code{logical} value.}
 
 \item{\code{hidden}}{\code{logical} value.}
 
@@ -43,13 +49,20 @@ Definition for the Exclude class.
 \item \href{#method-repr}{\code{Exclude$repr()}}
 \item \href{#method-get_layer_name}{\code{Exclude$get_layer_name()}}
 \item \href{#method-get_layer_index}{\code{Exclude$get_layer_index()}}
+\item \href{#method-get_layer_pane}{\code{Exclude$get_layer_pane()}}
+\item \href{#method-get_id}{\code{Exclude$get_id()}}
 \item \href{#method-get_visible}{\code{Exclude$get_visible()}}
+\item \href{#method-get_invisible}{\code{Exclude$get_invisible()}}
+\item \href{#method-get_loaded}{\code{Exclude$get_loaded()}}
 \item \href{#method-get_hidden}{\code{Exclude$get_hidden()}}
 \item \href{#method-get_status}{\code{Exclude$get_status()}}
 \item \href{#method-get_overlap}{\code{Exclude$get_overlap()}}
 \item \href{#method-get_data}{\code{Exclude$get_data()}}
+\item \href{#method-set_new_pane}{\code{Exclude$set_new_pane()}}
 \item \href{#method-get_setting}{\code{Exclude$get_setting()}}
 \item \href{#method-set_visible}{\code{Exclude$set_visible()}}
+\item \href{#method-set_invisible}{\code{Exclude$set_invisible()}}
+\item \href{#method-set_loaded}{\code{Exclude$set_loaded()}}
 \item \href{#method-set_status}{\code{Exclude$set_status()}}
 \item \href{#method-set_setting}{\code{Exclude$set_setting()}}
 \item \href{#method-get_solution_settings_widget_data}{\code{Exclude$get_solution_settings_widget_data()}}
@@ -66,7 +79,19 @@ Definition for the Exclude class.
 \subsection{Method \code{new()}}{
 Create a new Exclude object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Exclude$new(id, name, variable, mandatory, visible, hidden, status, overlap)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Exclude$new(
+  id,
+  name,
+  variable,
+  pane,
+  mandatory,
+  visible,
+  invisible,
+  loaded,
+  hidden,
+  status,
+  overlap
+)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -78,9 +103,15 @@ Create a new Exclude object.
 
 \item{\code{variable}}{\link{Variable} object.}
 
+\item{\code{pane}}{\code{character} value.}
+
 \item{\code{mandatory}}{\code{logical} value.}
 
 \item{\code{visible}}{\code{logical} value.}
+
+\item{\code{invisible}}{\code{numeric} date/time value.}
+
+\item{\code{loaded}}{\code{logical} value.}
 
 \item{\code{hidden}}{\code{logical} value.}
 
@@ -162,6 +193,32 @@ Get layer index values.
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_layer_pane"></a>}}
+\if{latex}{\out{\hypertarget{method-get_layer_pane}{}}}
+\subsection{Method \code{get_layer_pane()}}{
+Get layer pane class.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Exclude$get_layer_pane()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} vector.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_id"></a>}}
+\if{latex}{\out{\hypertarget{method-get_id}{}}}
+\subsection{Method \code{get_id()}}{
+Get exclude identifier.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Exclude$get_id()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} vector.
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_visible"></a>}}
 \if{latex}{\out{\hypertarget{method-get_visible}{}}}
 \subsection{Method \code{get_visible()}}{
@@ -175,10 +232,36 @@ Get visible.
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_invisible"></a>}}
+\if{latex}{\out{\hypertarget{method-get_invisible}{}}}
+\subsection{Method \code{get_invisible()}}{
+Get invisible.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Exclude$get_invisible()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{numeric} date/time value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_loaded"></a>}}
+\if{latex}{\out{\hypertarget{method-get_loaded}{}}}
+\subsection{Method \code{get_loaded()}}{
+Get loaded.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Exclude$get_loaded()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{logical} value.
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_hidden"></a>}}
 \if{latex}{\out{\hypertarget{method-get_hidden}{}}}
 \subsection{Method \code{get_hidden()}}{
-Get visible.
+Get hidden.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Exclude$get_hidden()}\if{html}{\out{</div>}}
 }
@@ -227,6 +310,28 @@ Get the data.
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_new_pane"></a>}}
+\if{latex}{\out{\hypertarget{method-set_new_pane}{}}}
+\subsection{Method \code{set_new_pane()}}{
+Set new pane.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Exclude$set_new_pane(id, index)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{id}}{\code{character} unique identifier.}
+
+\item{\code{index}}{\code{character} variable index.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+\code{character} value.
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_setting"></a>}}
 \if{latex}{\out{\hypertarget{method-get_setting}{}}}
 \subsection{Method \code{get_setting()}}{
@@ -254,6 +359,40 @@ Value.
 Set visible.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Exclude$set_visible(value)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{value}}{\code{logical} new value.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_invisible"></a>}}
+\if{latex}{\out{\hypertarget{method-set_invisible}{}}}
+\subsection{Method \code{set_invisible()}}{
+Set invisible.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Exclude$set_invisible(value)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{value}}{\code{numeric} date/time value.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_loaded"></a>}}
+\if{latex}{\out{\hypertarget{method-set_loaded}{}}}
+\subsection{Method \code{set_loaded()}}{
+Set loaded.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Exclude$set_loaded(value)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{

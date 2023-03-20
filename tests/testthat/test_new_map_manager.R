@@ -116,6 +116,12 @@ test_that("get methods", {
   )
   # run tests
   ## get layer
+  expect_equal(x$get_layer_classes(), c("Feature", "Feature", "Feature", "Weight"))
+  expect_equal(x$get_group_layer_ids(), c("T1", "T2", "T2", "W1"))
+  expect_equal(x$get_layer_ids(), c("F1", "F2", "F3", "W1"))
+  expect_equal(x$get_layer_loaded(), c(TRUE, TRUE, TRUE, TRUE))
+  expect_equal(x$get_layer_visible(), c(TRUE, TRUE, TRUE, TRUE))
+  expect_equal(x$get_layer_invisible(), c(NA_real_, NA_real_, NA_real_, NA_real_))
   expect_equal(x$get_layer("T1"), t1)
   expect_equal(x$get_layer("T2"), t2)
   expect_equal(x$get_order(), x$order)
@@ -139,6 +145,8 @@ test_that("get methods", {
     x$get_setting(list(id = "T2", setting = "feature_order")),
     t2$get_feature_order()
   )
+  expect_equal(class(x$get_lazyload()), c("tbl_df", "tbl", "data.frame"))
+  expect_equal(nrow(x$get_lazyload()), length(x$get_layer_names()))
 })
 
 test_that("set methods", {

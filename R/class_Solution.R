@@ -18,9 +18,18 @@ Solution <- R6::R6Class(
 
     #' @field visible `logical` value.
     visible = NA,
+    
+    #' @field invisible `numeric` date/time value.
+    invisible = NA_real_, 
+    
+    #' @field loaded `logical` value.
+    loaded = NA,     
 
     #' @field variable [Variable] object.
     variable = NULL,
+    
+    #' @field pane `character` name.
+    pane = NA_character_,    
 
     #' @field parameters `list` of [Parameter] objects
     parameters = NULL,
@@ -48,7 +57,10 @@ Solution <- R6::R6Class(
     #' @param id `character` value.
     #' @param name `character` value.
     #' @param variable [Variable] object.
+    #' @param pane `character` value.
     #' @param visible `logical` value.
+    #' @param invisible `numeric` date/time value.
+    #' @param loaded `logical` value.
     #' @param parameters `list` of [Statistic] objects.
     #' @param statistics `list` of [Statistic] objects.
     #' @param theme_results `list` of [ThemeResults] objects.
@@ -57,7 +69,7 @@ Solution <- R6::R6Class(
     #' @param exclude_results `list` of [ExcludeResults] objects.
     #' @param hidden `logical` value.
     #' @return A new Solution object.
-    initialize = function(id, name, variable, visible,
+    initialize = function(id, name, variable, pane, visible, invisible, loaded,
                           statistics,
                           parameters,
                           theme_results,
@@ -67,23 +79,41 @@ Solution <- R6::R6Class(
                           hidden) {
       # assert arguments are valid
       assertthat::assert_that(
+        #### id
         assertthat::is.string(id),
         assertthat::noNA(id),
+        #### name
         assertthat::is.string(name),
         assertthat::noNA(name),
+        #### variable
         inherits(variable, "Variable"),
+        #### pane
+        assertthat::is.string(pane),
+        assertthat::noNA(pane),
+        #### visible
         assertthat::is.flag(visible),
         assertthat::noNA(visible),
+        #### invisible
+        inherits(invisible, "numeric"),
+        #### loaded
+        assertthat::is.flag(loaded),
+        assertthat::noNA(loaded),
+        #### parameters
         is.list(parameters),
         all_list_elements_inherit(parameters, "Parameter"),
+        #### statistics
         is.list(statistics),
         all_list_elements_inherit(statistics, "Statistic"),
+        #### theme results
         is.list(theme_results),
         all_list_elements_inherit(theme_results, "ThemeResults"),
+        #### weight results
         is.list(weight_results),
         all_list_elements_inherit(weight_results, "WeightResults"),
+        #### include results
         is.list(include_results),
         all_list_elements_inherit(include_results, "IncludeResults"),
+        #### exclude results
         is.list(exclude_results),
         all_list_elements_inherit(exclude_results, "ExcludeResults"),        
         #### hidden
@@ -94,7 +124,10 @@ Solution <- R6::R6Class(
       self$id <- id
       self$name <- name
       self$variable <- variable
+      self$pane <- enc2ascii(pane)
       self$visible <- visible
+      self$invisible <- invisible
+      self$loaded <- visible # if layer is visible on init, load it
       self$parameters <- parameters
       self$statistics <- statistics
       self$theme_results <- theme_results
@@ -137,6 +170,10 @@ Solution <- R6::R6Class(
       message("Solution")
       message("  id:      ", self$id)
       message("  name:    ", self$name)
+      message("  pane:  ", self$pane)
+      message("  visible:    ", self$visible)
+      message("  loaded:    ", self$loaded)
+      message("  invisible:    ", self$invisble)
       invisible(self)
     },
 
@@ -146,13 +183,27 @@ Solution <- R6::R6Class(
     get_layer_name = function() {
       self$name
     },
-
+    
     #' @description
     #' Get layer index values.
     #' @return `character` vector.
     get_layer_index = function() {
       self$variable$index
     },
+    
+    #' @description
+    #' Get layer pane class.
+    #' @return `character` vector.
+    get_layer_pane = function() {
+      self$pane
+    },
+    
+    #' @description
+    #' Get solution identifier.
+    #' @return `character` vector.
+    get_id = function() {
+      self$id
+    },  
 
     #' @description
     #' Get visible.
@@ -160,6 +211,20 @@ Solution <- R6::R6Class(
     get_visible = function() {
       self$visible
     },
+    
+    #' @description
+    #' Get invisible.
+    #' @return `numeric` date/time value.
+    get_invisible = function() {
+      self$invisible
+    },
+    
+    #' @description
+    #' Get loaded.
+    #' @return `logical` value.
+    get_loaded = function() {
+      self$loaded
+    },    
     
     #' @description
     #' Get hidden.
@@ -186,6 +251,15 @@ Solution <- R6::R6Class(
       }
       out
     },
+    
+    #' @description
+    #' Set new pane.
+    #' @param id `character` unique identifier.
+    #' @param index `character` variable index.
+    #' @return `character` value.
+    set_new_pane = function(id, index) {
+      self$pane <- enc2ascii(paste(id, index, sep = "-"))
+    },     
 
     #' @description
     #' Set visible.
@@ -201,6 +275,35 @@ Solution <- R6::R6Class(
       }
       invisible(self)
     },
+    
+    #' @description
+    #' Set invisible.
+    #' @param value `numeric` date/time value.
+    set_invisible = function(value) {
+      assertthat::assert_that(
+        inherits(value, "numeric")
+      )
+      self$invisible <- value
+      if (self$hidden) {
+        self$invisible <- NA_real_
+      }
+      invisible(self)
+    },
+    
+    #' @description
+    #' Set loaded.
+    #' @param value `logical` new value.
+    set_loaded = function(value) {
+      assertthat::assert_that(
+        assertthat::is.flag(value),
+        assertthat::noNA(value)
+      )
+      self$loaded <- value
+      if (self$hidden) {
+        self$loaded <- FALSE
+      }
+      invisible(self)
+    },        
 
     #' @description
     #' Get summary results.
@@ -780,7 +883,7 @@ Solution <- R6::R6Class(
     #' @return [leaflet::leaflet()] object.
     render_on_map = function(x, zindex) {
       if (self$hidden) return(x) # don't render on map if hidden
-      self$variable$render(x, self$id, zindex, self$visible)
+      self$variable$render(x, self$pane, zindex, self$visible)
     },
 
     #' @description
@@ -790,7 +893,7 @@ Solution <- R6::R6Class(
     #' @return [leaflet::leafletProxy()] object.
     update_on_map = function(x, zindex) {
       if (self$hidden) return(x) # don't render on map if hidden
-      self$variable$update_render(x, self$id, zindex, self$visible)
+      self$variable$update_render(x, self$pane, zindex, self$visible)
     }
 
   )
@@ -805,6 +908,17 @@ Solution <- R6::R6Class(
 #' @param variable [Variable] object with the solution.
 #'
 #' @param visible `logical` should the solution be visible on a map?
+#' 
+#' @param invisible `numeric` date/time. A time stamp date given to when a 
+#'   loaded layer is first turned invisible. This is used to keep track
+#'   of loaded invisible layers to offload once the cache threshold has been 
+#'   reached. 
+#'   Defaults to `NA_real_`.
+#'   
+#' @param loaded `logical` The initial loaded value.
+#'   This is used to determine if the feature is loaded (or not)
+#'   or not the map.
+#'   Defaults to `FALSE`.
 #'
 #' @param parameters `list` of [Parameter] objects.
 #'
@@ -819,6 +933,10 @@ Solution <- R6::R6Class(
 #' @param exclude_results `list` of [ExcludeResults] objects.
 #'
 #' @param hidden `logical` should the solution be hidden from map?
+#' 
+#' @param pane `character` unique map pane identifier.
+#'   Defaults to a random identifier ([uuid::UUIDgenerate()]) concatenated with
+#'   layer index.
 #'
 #' @inheritParams new_theme
 #'
@@ -879,7 +997,11 @@ Solution <- R6::R6Class(
 #' )
 #'
 #' @export
-new_solution <- function(name, variable, visible,
+new_solution <- function(name, 
+                         variable, 
+                         visible, 
+                         invisible = NA_real_,
+                         loaded = TRUE,
                          parameters,
                          statistics,
                          theme_results,
@@ -887,11 +1009,19 @@ new_solution <- function(name, variable, visible,
                          include_results,
                          exclude_results,
                          id = uuid::UUIDgenerate(),
-                         hidden = FALSE) {
+                         hidden = FALSE,
+                         pane = paste(
+                           uuid::UUIDgenerate(), 
+                           variable$index, sep = "-"
+                         )
+                        ) {
   Solution$new(
     name = name,
+    pane = pane,
     variable = variable,
     visible = visible,
+    invisible = invisible,
+    loaded = loaded,
     parameters = parameters,
     statistics = statistics,
     theme_results = theme_results,
@@ -918,6 +1048,10 @@ new_solution <- function(name, variable, visible,
 #' @param legend [ManualLegend] object.
 #'
 #' @param hidden `logical` should the solution be hidden from map?
+#' 
+#' @param pane `character` unique map pane identifier.
+#'   Defaults to a random identifier ([uuid::UUIDgenerate()]) concatenated with
+#'   layer index.
 #'
 #' @return A [Solution] object.
 #'
@@ -1002,9 +1136,18 @@ new_solution <- function(name, variable, visible,
 #' )
 #'
 #' @export
-new_solution_from_result <- function(name, visible, dataset, settings, result,
-                                     legend, id = uuid::UUIDgenerate(), 
-                                     hidden = FALSE) {
+new_solution_from_result <- function(name, 
+                                     visible, 
+                                     invisible = NA_real_, 
+                                     loaded = TRUE, 
+                                     dataset, 
+                                     settings, 
+                                     result, 
+                                     legend, 
+                                     id = uuid::UUIDgenerate(), 
+                                     hidden = FALSE,
+                                     pane = NA_character_
+                                  ) {
   # assert arguments are valid
   assertthat::assert_that(
     ## name
@@ -1170,8 +1313,11 @@ new_solution_from_result <- function(name, visible, dataset, settings, result,
   # return solution object
   new_solution(
     name = name,
+    pane = paste(uuid::UUIDgenerate(), v$index, sep = "-"),
     variable = v,
     visible = visible,
+    invisible = invisible,
+    loaded = loaded,
     parameters = result$parameters,
     statistics = statistics_results,
     theme_results = theme_results,

@@ -85,7 +85,7 @@ class WeightLayer {
           id: id,
           setting: "visible",
           value: checked
-        });
+        }, {priority: "event"});
       });
     }
   }

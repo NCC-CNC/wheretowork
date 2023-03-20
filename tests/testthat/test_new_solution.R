@@ -124,6 +124,8 @@ test_that("initialization", {
   expect_identical(x$name, "solution001")
   expect_identical(x$variable, v3)
   expect_identical(x$visible, FALSE)
+  expect_identical(x$invisible, NA_real_)
+  expect_identical(x$loaded, FALSE)
   expect_equal(x$parameters, list(p))
   expect_identical(x$statistics, list(s1, s2))
   expect_identical(x$theme_results, list(thr))
@@ -214,6 +216,8 @@ test_that("initialization (no weights, includes or excludes)", {
   expect_identical(x$name, "solution001")
   expect_identical(x$variable, v3)
   expect_identical(x$visible, FALSE)
+  expect_identical(x$invisible, NA_real_)
+  expect_identical(x$loaded, FALSE)
   expect_equal(x$parameters, list(p))
   expect_identical(x$statistics, list(s1, s2))
   expect_identical(x$theme_results, list(thr))
@@ -519,7 +523,7 @@ test_that("get methods", {
   x <- new_solution(
     name = "solution001",
     variable = v2,
-    visible = FALSE,
+    visible = TRUE,
     parameters = list(p),
     statistics = list(s1, s2),
     theme_results = list(thr),
@@ -529,7 +533,9 @@ test_that("get methods", {
     id = "solution1"
   )
   # run tests
-  expect_equal(x$get_visible(), FALSE)
+  expect_equal(x$get_visible(), TRUE)
+  expect_equal(x$get_invisible(), NA_real_)
+  expect_equal(x$get_loaded(), TRUE)
 })
 
 test_that("set methods", {

@@ -275,12 +275,14 @@ test_that("render (project on the fly)", {
   )
   # create object
   d <- new_dataset(f1, f2, f3)
-  v <- new_variable_from_auto(dataset = d, index = "R1km_T_SAR_AwemeBorer", 
-                              type = "manual", units = "km2", 
-                              colors = c("#00000000", "#ff0000"),
-                              provenance = "national",
-                              labels = c("absence", "presence"),
-                              hidden = FALSE)
+  v <- new_variable_from_auto(
+    dataset = d, 
+    index = "T_LC_Wetlands", 
+    type = "continuous", 
+    units = "index", 
+    colors = "viridis",
+    hidden = FALSE
+  )
   # render on map
   l <- leaflet::leaflet() %>% leaflet::addTiles()
   m <- v$render(x = l, id = "id", zindex = 1000, visible = TRUE)
@@ -304,15 +306,15 @@ test_that("do not render (variable = hidden)", {
   )
   # create object
   d <- new_dataset(f1, f2, f3)
-  v <- new_variable_from_auto(dataset = d, index = "R1km_T_SAR_AwemeBorer", 
-                              type = "manual", units = "km2", 
-                              colors = c("#00000000", "#ff0000"),
-                              provenance = "national",
-                              labels = c("absence", "presence"),
-                              hidden = TRUE)
+  v <- new_variable_from_auto(
+    dataset = d, 
+    index = "T_LC_Wetlands", 
+    type = "continuous", 
+    units = "ha", 
+    colors = "viridis",
+    hidden = TRUE)
   # render on map
   l <- leaflet::leaflet() %>% leaflet::addTiles()
-
   m <- try(
     v$render(x = l, id = "id", zindex = 1000, visible = TRUE), 
     silent = TRUE

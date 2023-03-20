@@ -103,3 +103,19 @@ change_file_icon_js <- function(x, hex, tool_tip) {
   )
   invisible(TRUE)
 }
+
+#' Change file icon and update tool tip
+#'
+#' @param id `character` CSS selector.
+#'
+#' @return Invisible `TRUE`.
+#'
+#' @export
+removeMapPane <- function(id) {
+  shinyjs::runjs(
+    paste0(
+      "document.querySelector('.leaflet-pane-", id, "-pane').remove();"
+    )
+  )
+  invisible(TRUE)
+}

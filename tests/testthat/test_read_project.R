@@ -53,19 +53,23 @@ test_that("raster (standard boundary format, continuous)", {
     x$themes[[i]]$id <- sim_themes[[i]]$id
     for (j in seq_along(x$themes[[i]]$feature)) {
       x$themes[[i]]$feature[[j]]$id <- sim_themes[[i]]$feature[[j]]$id
+      x$themes[[i]]$feature[[j]]$pane <- sim_themes[[i]]$feature[[j]]$pane
     }
   }
   ## weights
   for (i in seq_along(x$weights)) {
     x$weights[[i]]$id <- sim_weights[[i]]$id
+    x$weights[[i]]$pane <- sim_weights[[i]]$pane
   }
   ## includes
   for (i in seq_along(x$includes)) {
     x$includes[[i]]$id <- sim_includes[[i]]$id
+    x$includes[[i]]$pane <- sim_includes[[i]]$pane
   }
   ## excludes
   for (i in seq_along(x$excludes)) {
     x$excludes[[i]]$id <- sim_excludes[[i]]$id
+    x$excludes[[i]]$pane <- sim_excludes[[i]]$pane
   }  
   # run tests
   expect_equal(x$themes, sim_themes)
@@ -129,19 +133,23 @@ test_that("raster (standard boundary format, categorical, manual legend)", {
     x$themes[[i]]$id <- sim_themes[[i]]$id
     for (j in seq_along(x$themes[[i]]$feature)) {
       x$themes[[i]]$feature[[j]]$id <- sim_themes[[i]]$feature[[j]]$id
+      x$themes[[i]]$feature[[j]]$pane <- sim_themes[[i]]$feature[[j]]$pane
     }
   }
   ## weights
   for (i in seq_along(x$weights)) {
     x$weights[[i]]$id <- sim_weights[[i]]$id
+    x$weights[[i]]$pane <- sim_weights[[i]]$pane
   }
   ## includes
   for (i in seq_along(x$includes)) {
     x$includes[[i]]$id <- sim_includes[[i]]$id
+    x$includes[[i]]$pane <- sim_includes[[i]]$pane
   }
   ## excludes
   for (i in seq_along(x$excludes)) {
     x$excludes[[i]]$id <- sim_excludes[[i]]$id
+    x$excludes[[i]]$pane <- sim_excludes[[i]]$pane
   }  
   # run tests
   expect_equal(x$themes, sim_themes)
@@ -205,19 +213,23 @@ test_that("raster (standard boundary format, continous & categorical)", {
     x$themes[[i]]$id <- sim_themes[[i]]$id
     for (j in seq_along(x$themes[[i]]$feature)) {
       x$themes[[i]]$feature[[j]]$id <- sim_themes[[i]]$feature[[j]]$id
+      x$themes[[i]]$feature[[j]]$pane <- sim_themes[[i]]$feature[[j]]$pane
     }
   }
   ## weights
   for (i in seq_along(x$weights)) {
     x$weights[[i]]$id <- sim_weights[[i]]$id
+    x$weights[[i]]$pane <- sim_weights[[i]]$pane
   }
   ## includes
   for (i in seq_along(x$includes)) {
     x$includes[[i]]$id <- sim_includes[[i]]$id
+    x$includes[[i]]$pane <- sim_includes[[i]]$pane
   }
   ## excludes
   for (i in seq_along(x$excludes)) {
     x$excludes[[i]]$id <- sim_excludes[[i]]$id
+    x$excludes[[i]]$pane <- sim_excludes[[i]]$pane
   }  
   # run tests
   expect_equal(x$themes, sim_themes)
@@ -274,19 +286,23 @@ test_that("sf (standard boundary format)", {
     x$themes[[i]]$id <- sim_themes[[i]]$id
     for (j in seq_along(x$themes[[i]]$feature)) {
       x$themes[[i]]$feature[[j]]$id <- sim_themes[[i]]$feature[[j]]$id
+      x$themes[[i]]$feature[[j]]$pane <- sim_themes[[i]]$feature[[j]]$pane
     }
   }
   ## weights
   for (i in seq_along(x$weights)) {
     x$weights[[i]]$id <- sim_weights[[i]]$id
+    x$weights[[i]]$pane <- sim_weights[[i]]$pane
   }
   ## includes
   for (i in seq_along(x$includes)) {
     x$includes[[i]]$id <- sim_includes[[i]]$id
+    x$includes[[i]]$pane <- sim_includes[[i]]$pane
   }
   ## excludes
   for (i in seq_along(x$excludes)) {
     x$excludes[[i]]$id <- sim_excludes[[i]]$id
+    x$excludes[[i]]$pane <- sim_excludes[[i]]$pane
   }  
   # run tests
   expect_equal(x$themes, sim_themes)
@@ -343,19 +359,23 @@ test_that("raster (Marxan boundary format)", {
     x$themes[[i]]$id <- sim_themes[[i]]$id
     for (j in seq_along(x$themes[[i]]$feature)) {
       x$themes[[i]]$feature[[j]]$id <- sim_themes[[i]]$feature[[j]]$id
+      x$themes[[i]]$feature[[j]]$pane <- sim_themes[[i]]$feature[[j]]$pane
     }
   }
   ## weights
   for (i in seq_along(x$weights)) {
     x$weights[[i]]$id <- sim_weights[[i]]$id
+    x$weights[[i]]$pane <- sim_weights[[i]]$pane
   }
   ## includes
   for (i in seq_along(x$includes)) {
     x$includes[[i]]$id <- sim_includes[[i]]$id
+    x$includes[[i]]$pane <- sim_includes[[i]]$pane
   }
   ## excludes
   for (i in seq_along(x$excludes)) {
     x$excludes[[i]]$id <- sim_excludes[[i]]$id
+    x$excludes[[i]]$pane <- sim_excludes[[i]]$pane
   }  
   # run tests
   expect_equal(x$themes, sim_themes)
@@ -412,19 +432,23 @@ test_that("sf (Marxan boundary format)", {
     x$themes[[i]]$id <- sim_themes[[i]]$id
     for (j in seq_along(x$themes[[i]]$feature)) {
       x$themes[[i]]$feature[[j]]$id <- sim_themes[[i]]$feature[[j]]$id
+      x$themes[[i]]$feature[[j]]$pane <- sim_themes[[i]]$feature[[j]]$pane
     }
   }
   ## weights
   for (i in seq_along(x$weights)) {
     x$weights[[i]]$id <- sim_weights[[i]]$id
+    x$weights[[i]]$pane <- sim_weights[[i]]$pane
   }
   ## includes
   for (i in seq_along(x$includes)) {
     x$includes[[i]]$id <- sim_includes[[i]]$id
+    x$includes[[i]]$pane <- sim_includes[[i]]$pane
   }
   ## excludes
   for (i in seq_along(x$excludes)) {
     x$excludes[[i]]$id <- sim_excludes[[i]]$id
+    x$excludes[[i]]$pane <- sim_excludes[[i]]$pane
   }  
   # run tests
   expect_equal(x$themes, sim_themes)
@@ -481,19 +505,23 @@ test_that("default spatial, boundary, attribute paths", {
     x$themes[[i]]$id <- sim_themes[[i]]$id
     for (j in seq_along(x$themes[[i]]$feature)) {
       x$themes[[i]]$feature[[j]]$id <- sim_themes[[i]]$feature[[j]]$id
+      x$themes[[i]]$feature[[j]]$pane <- sim_themes[[i]]$feature[[j]]$pane
     }
   }
   ## weights
   for (i in seq_along(x$weights)) {
     x$weights[[i]]$id <- sim_weights[[i]]$id
+    x$weights[[i]]$pane <- sim_weights[[i]]$pane
   }
   ## includes
   for (i in seq_along(x$includes)) {
     x$includes[[i]]$id <- sim_includes[[i]]$id
+    x$includes[[i]]$pane <- sim_includes[[i]]$pane
   }
   ## excludes
   for (i in seq_along(x$excludes)) {
     x$excludes[[i]]$id <- sim_excludes[[i]]$id
+    x$excludes[[i]]$pane <- sim_excludes[[i]]$pane
   }  
   # run tests
   expect_equal(x$themes, sim_themes)
@@ -633,7 +661,7 @@ test_that("force hide theme, weight, include and exclude", {
     expect_is(include$variable$legend, "NullLegend")
     expect_identical(include$hidden, TRUE)
   }
-  ## includes
+  ## excludes
   for (exclude in x$excludes) {
     expect_is(exclude$variable$legend, "NullLegend")
     expect_identical(exclude$hidden, TRUE)

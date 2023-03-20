@@ -124,7 +124,13 @@
     <p>This function simulates a <a href='Solution.html'>Solution</a> object.</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>simulate_solution</span><span class='op'>(</span><span class='va'>dataset</span>, <span class='va'>themes</span>, <span class='va'>weights</span>, includes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></code></pre></div>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>simulate_solution</span><span class='op'>(</span>
+  <span class='va'>dataset</span>,
+  <span class='va'>themes</span>,
+  <span class='va'>weights</span>,
+  includes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  excludes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -146,6 +152,12 @@
       <td><p><code>list</code> of <a href='Include.html'>Include</a> objects.
 Defaults to an empty list such that the solution is not simulated
 based on any <a href='Include.html'>Include</a> objects.</p></td>
+    </tr>
+    <tr>
+      <th>excludes</th>
+      <td><p><code>list</code> of <a href='Exclude.html'>Exclude</a> objects.
+Defaults to an empty list such that the solution is not simulated
+based on any <a href='Exclude.html'>Exclude</a> objects.</p></td>
     </tr>
     </table>
 

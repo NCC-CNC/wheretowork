@@ -85,7 +85,7 @@ class ExcludeLayer {
           id: id,
           setting: "visible",
           value: checked
-        });
+        }, {priority: "event"});
       });
     }
   }

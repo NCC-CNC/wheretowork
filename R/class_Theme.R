@@ -120,6 +120,13 @@ Theme <- R6::R6Class(
     get_layer_name = function() {
       vapply(self$feature, `[[`, character(1), "name")
     },
+    
+    #' @description
+    #' Get layer map pane classes.
+    #' @return `character` vector.
+    get_layer_pane = function() {
+      vapply(self$feature, `[[`, character(1), "pane")
+    },     
 
     #' @description
     #' Get layer index values.
@@ -130,7 +137,7 @@ Theme <- R6::R6Class(
         FUN.VALUE = character(1), function(x) x$variable$index
       )
     },
-
+    
     #' @description
     #' Get feature identifiers.
     #' @return `character` vector with identifier(s).
@@ -165,13 +172,13 @@ Theme <- R6::R6Class(
     get_feature_total = function() {
       vapply(self$feature, FUN.VALUE = numeric(1), function(x) x$variable$total)
     },
-
+    
     #' @description
     #' Get visible value for all features.
     #' @return `logical` value.
     get_visible = function() {
       any(self$get_feature_visible())
-    },
+    },    
 
     #' @description
     #' Get feature visible values.
@@ -179,7 +186,21 @@ Theme <- R6::R6Class(
     get_feature_visible = function() {
       vapply(self$feature, `[[`, logical(1), "visible")
     },
-
+    
+    #' @description
+    #' Get feature invisible values.
+    #' @return `numeric` vector with date/time value(s).
+    get_feature_invisible = function() {
+      vapply(self$feature, `[[`, numeric(1), "invisible")
+    },    
+    
+    #' @description
+    #' Get feature loaded values.
+    #' @return `logical` vector with loaded value(s).
+    get_feature_loaded = function() {
+      vapply(self$feature, `[[`, logical(1), "loaded")
+    },    
+    
     #' @description
     #' Get feature hidden values.
     #' @return `logical` vector with status value(s).
@@ -223,7 +244,7 @@ Theme <- R6::R6Class(
       self$feature_order <- value
       invisible(self)
     },
-
+    
     #' @description
     #' Get setting.
     #' @param name `character` setting name.
@@ -422,7 +443,6 @@ Theme <- R6::R6Class(
           self$feature, function(x) x$variable$provenance$get_widget_data()
         ),
         units = self$feature[[1]]$variable$units
-
       )
     },
 
@@ -458,19 +478,20 @@ Theme <- R6::R6Class(
     #' @return [leaflet::leaflet()] object.
     render_on_map = function(x, zindex) {
       # extract feature data
-      fid <- self$get_feature_id()
+      pane <- self$get_layer_pane()
       fo <- self$get_feature_order() + zindex
       fv <- self$get_feature_visible()
       # add feature data
       for (i in seq_along(self$feature)) {
-        if (!self$feature[[i]]$hidden) {
-          x <- self$feature[[i]]$variable$render(x, fid[i], fo[i], fv[i])
+        if (!self$feature[[i]]$hidden && fv[i]) {
+          # render layers that are not hidden and visible on init
+          x <- self$feature[[i]]$variable$render(x, pane[i], fo[i], fv[i])
         }
       }
       # return result
       x
     },
-
+    
     #' @description
     #' Render on map.
     #' @param x [leaflet::leafletProxy()] object.
@@ -478,13 +499,27 @@ Theme <- R6::R6Class(
     #' @return [leaflet::leafletProxy()] object.
     update_on_map = function(x, zindex) {
       # extract feature data
-      fid <- self$get_feature_id()
-      fo <- self$get_feature_order() + zindex
-      fv <- self$get_feature_visible()
+      pane <- self$get_layer_pane() # pane class name
+      fidx <- self$get_layer_index() # layer index
+      fo <- self$get_feature_order() + zindex # order
+      fv <- self$get_feature_visible() # visible
+      fl <- self$get_feature_loaded() # loaded
+      fiv <- self$get_feature_invisible() # invisible
+      fh <- self$get_feature_hidden() # hidden
       # add feature data
       for (i in seq_along(self$feature)) {
-        if (!self$feature[[i]]$hidden) {
-          x <- self$feature[[i]]$variable$update_render(x, fid[i], fo[i], fv[i])
+        if (!fh[i] && !fl[i] && fv[i]) {
+          ## visible + not loaded + not hidden: render
+          self$feature[[i]]$set_new_pane(uuid::UUIDgenerate(), fidx[i]) # new pane
+          x <- self$feature[[i]]$variable$render(x, self$feature[[i]]$pane, fo[i], fv[i])
+          self$feature[[i]]$set_loaded(TRUE) # set loaded to TRUE
+        } else if (fl[i] && !fv[i] && identical(fiv[i], NA_real_)) {
+          ## loaded + first time not visible
+          x <- self$feature[[i]]$variable$update_render(x, pane[i], fo[i], fv[i])
+          self$feature[[i]]$set_invisible(as.numeric(Sys.time())) # time stamp
+        } else if (fl[i]) {
+          ## only update loaded layers (loaded + visible) OR (loaded + invisible)
+          x <- self$feature[[i]]$variable$update_render(x, pane[i], fo[i], fv[i])
         }
       }
       # return result

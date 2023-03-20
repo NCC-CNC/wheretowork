@@ -23,7 +23,13 @@ Definition for the Feature class.
 
 \item{\code{variable}}{\link{Variable} object.}
 
+\item{\code{pane}}{\code{character} name.}
+
 \item{\code{visible}}{\code{logical} value.}
+
+\item{\code{invisible}}{\code{numeric} date/time value.}
+
+\item{\code{loaded}}{\code{logical} value.}
 
 \item{\code{hidden}}{\code{logical} value.}
 
@@ -51,11 +57,16 @@ Definition for the Feature class.
 \item \href{#method-repr}{\code{Feature$repr()}}
 \item \href{#method-get_hidden}{\code{Feature$get_hidden()}}
 \item \href{#method-get_visible}{\code{Feature$get_visible()}}
+\item \href{#method-get_invisible}{\code{Feature$get_invisible()}}
+\item \href{#method-get_loaded}{\code{Feature$get_loaded()}}
 \item \href{#method-get_current}{\code{Feature$get_current()}}
 \item \href{#method-get_status}{\code{Feature$get_status()}}
 \item \href{#method-get_goal}{\code{Feature$get_goal()}}
 \item \href{#method-get_data}{\code{Feature$get_data()}}
+\item \href{#method-set_new_pane}{\code{Feature$set_new_pane()}}
 \item \href{#method-set_visible}{\code{Feature$set_visible()}}
+\item \href{#method-set_invisible}{\code{Feature$set_invisible()}}
+\item \href{#method-set_loaded}{\code{Feature$set_loaded()}}
 \item \href{#method-set_status}{\code{Feature$set_status()}}
 \item \href{#method-set_goal}{\code{Feature$set_goal()}}
 \item \href{#method-set_current}{\code{Feature$set_current()}}
@@ -73,7 +84,10 @@ Create a Feature object.
   id,
   name,
   variable,
+  pane,
   visible,
+  invisible,
+  loaded,
   hidden,
   status,
   current,
@@ -92,9 +106,15 @@ Create a Feature object.
 
 \item{\code{name}}{\code{character} value.}
 
-\item{\code{variable}}{\link{Variable} .}
+\item{\code{variable}}{\link{Variable}.}
+
+\item{\code{pane}}{\code{character} value.}
 
 \item{\code{visible}}{\code{logical} value.}
+
+\item{\code{invisible}}{\code{numeric} date/time value.}
+
+\item{\code{loaded}}{\code{logical} value.}
 
 \item{\code{hidden}}{\code{logical} value.}
 
@@ -186,6 +206,32 @@ Get visible.
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_invisible"></a>}}
+\if{latex}{\out{\hypertarget{method-get_invisible}{}}}
+\subsection{Method \code{get_invisible()}}{
+Get invisible.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Feature$get_invisible()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{numeric} date/time value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_loaded"></a>}}
+\if{latex}{\out{\hypertarget{method-get_loaded}{}}}
+\subsection{Method \code{get_loaded()}}{
+Get loaded.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Feature$get_loaded()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{logical} value.
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_current"></a>}}
 \if{latex}{\out{\hypertarget{method-get_current}{}}}
 \subsection{Method \code{get_current()}}{
@@ -238,12 +284,68 @@ Get the data.
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_new_pane"></a>}}
+\if{latex}{\out{\hypertarget{method-set_new_pane}{}}}
+\subsection{Method \code{set_new_pane()}}{
+Set new pane.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Feature$set_new_pane(id, index)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{id}}{\code{character} unique identifier.}
+
+\item{\code{index}}{\code{character} variable index.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+\code{character} value.
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-set_visible"></a>}}
 \if{latex}{\out{\hypertarget{method-set_visible}{}}}
 \subsection{Method \code{set_visible()}}{
 Set visible.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Feature$set_visible(value)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{value}}{\code{logical} new value.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_invisible"></a>}}
+\if{latex}{\out{\hypertarget{method-set_invisible}{}}}
+\subsection{Method \code{set_invisible()}}{
+Set invisible.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Feature$set_invisible(value)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{value}}{\code{numeric} date/time value.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_loaded"></a>}}
+\if{latex}{\out{\hypertarget{method-set_loaded}{}}}
+\subsection{Method \code{set_loaded()}}{
+Set loaded.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Feature$set_loaded(value)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
