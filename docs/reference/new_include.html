@@ -172,16 +172,15 @@ Defaults to <code>NA_real_</code>.</p></td>
     <tr>
       <th>loaded</th>
       <td><p><code>logical</code> The initial loaded value.
-This is used to determine if the feature is loaded (or not)
-or not the map.
+This is used to determine if the feature has been loaded into the DOM.
 Defaults to <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>hidden</th>
       <td><p><code>logical</code> The hidden value.
-This is used to determine if the feature is can ever be displayed (or not)
-or not the map. Unlike <code>visible</code>, if this parameter is <code>FALSE</code> then a
-feature can never be viewed on the map.
+This is used to determine if the feature can ever be displayed.
+Unlike <code>visible</code>, if this parameter is <code>FALSE</code> then a feature can never
+be viewed on the map.
 Defaults to <code>FALSE</code>.</p></td>
     </tr>
     <tr>
@@ -204,7 +203,7 @@ Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUI
     </tr>
     <tr>
       <th>pane</th>
-      <td><p><code>character</code> unique identifier.
+      <td><p><code>character</code> unique map pane identifier.
 Defaults to a random identifier (<code><a href='https://rdrr.io/pkg/uuid/man/UUIDgenerate.html'>uuid::UUIDgenerate()</a></code>) concatenated with
 layer index.</p></td>
     </tr>
@@ -241,10 +240,10 @@ layer index.</p></td>
 <span class='r-in'><span class='co'># print object</span></span>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>w</span><span class='op'>)</span></span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Include</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       97cb4229-a468-4908-a543-67d4b8addec6</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       f5a3db22-3b4f-408d-9655-4ab5ea730c5f</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:     Protected areas</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   variable: .../sim_raster_spatial.tif#Brown_necked_Parrot_Brown_necked_ [total: 1052 ]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   pane:  37cf0d3d-5104-4468-b2a5-8aca2f31868d-Brown_necked_Parrot_Brown_necked_</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   pane:  5c1027e9-c65c-4a2d-be75-b058a997040e-Brown_necked_Parrot_Brown_necked_</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   visible:  TRUE</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   invisible:  NA</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   loaded:  TRUE</span>
