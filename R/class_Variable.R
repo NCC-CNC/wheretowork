@@ -171,7 +171,7 @@ Variable <- R6::R6Class(
             x = d,
             opacity = 0.8,
             project = project_on_fly,
-            maxBytes = 1 * 1024 * 1024, # 1MB max size
+            maxBytes = 5 * 1024 * 1024, # 5MB max size
             method = self$legend$get_resample_method(),
             colors = self$legend$get_color_map(),
             group = id,
