@@ -125,6 +125,14 @@ server_import_builtin_data <- quote({
 
     ## remove data modal
     shiny::removeModal(session)
+    
+    # add side-bar spinner
+    shinyjs::runjs(
+      "const sidebarSpinner = document.createElement('div');
+       sidebarSpinner.classList.add('sidebar-spinner');
+       const mapManagerPane_settings = document.querySelector('#mapManagerPane_settings');
+       mapManagerPane_settings.appendChild(sidebarSpinner);"
+    )    
 
     ## show help modal if beginner
     if (identical(app_data$mode, "beginner")) {

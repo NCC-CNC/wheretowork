@@ -59,3 +59,28 @@
 .sidebar-left .sidebar-pane.active {
   padding-left: 0px !important;
 }
+
+/* sidebar spinner */
+.sidebar-spinner {
+  position: absolute;
+  z-index: 9999;
+  display: block;
+  margin: auto;
+  height: 10em;
+  top: 30%; right: 40%;
+  transform: translate(50%,-50%);
+  width: 10em;
+  border: 6px solid rgba(0, 116, 217, 0.2);
+  border-top-color: rgba(0, 116, 217, 0.8);
+  border-radius: 50%;
+  animation: rotation 0.8s infinite linear;
+}
+/* map spinner: rotation */
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}

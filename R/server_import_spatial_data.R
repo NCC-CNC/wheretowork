@@ -195,6 +195,14 @@ server_import_spatial_data <- quote({
 
     ## remove modal
     shiny::removeModal(session)
+    
+    # add side-bar spinner
+    shinyjs::runjs(
+      "const sidebarSpinner = document.createElement('div');
+       sidebarSpinner.classList.add('sidebar-spinner');
+       const mapManagerPane_settings = document.querySelector('#mapManagerPane_settings');
+       mapManagerPane_settings.appendChild(sidebarSpinner);"
+    )    
 
     ## show help modal
     if (identical(app_data$mode, "beginner")) {
