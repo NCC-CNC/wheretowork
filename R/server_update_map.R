@@ -21,6 +21,13 @@ server_update_map <- quote({
 
     ## generate leaflet proxy
     map <- leaflet::leafletProxy("map")
+    
+    ## add map spinner
+    shinyjs::runjs(
+      "const mapSpinner = document.createElement('div');
+      mapSpinner.classList.add('map-spinner');
+      document.body.appendChild(mapSpinner);"
+    )
 
     ## update map manager
     if (!identical(input$mapManagerPane_settings$setting, "remove")) {
@@ -79,7 +86,12 @@ server_update_map <- quote({
     ## update map
     app_data$mm$update_map(map)
     ## delete the oldest loaded and invisible map pane
-    app_data$mm$delete_sinlge_map_pane(map)    
+    app_data$mm$delete_sinlge_map_pane(map) 
+    ## remove map spinner
+    shinyjs::runjs(
+      "const mapSpinner = document.querySelector('.map-spinner');
+       mapSpinner.remove();"
+    )    
   })
 
   # update map based on hide button

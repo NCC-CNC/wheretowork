@@ -86,5 +86,8 @@ class MapManager {
     });
     // initialize tooltips in widget
     $(this.container).find('[data-toggle="tooltip"]').tooltip();
+    // remove sidebar-spinner
+    const sidebarSpinner = document.querySelector('.sidebar-spinner');
+    sidebarSpinner.remove();
   }
 }
