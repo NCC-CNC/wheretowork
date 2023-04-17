@@ -806,6 +806,83 @@ Solution <- R6::R6Class(
         )
       )
     },
+    
+    #' @description
+    #' Render exclude results.
+    #' @return [DT::datatable()] object.
+    render_exclude_results = function() {
+      # generate table
+      x <- self$get_exclude_results_data()
+      # wrap text columns
+      x[[1]] <- wrap_text(x[[1]])
+      # define JS for button
+      action_js <- htmlwidgets::JS(
+        "function ( e, dt, node, config ) {",
+        "  $('#exclude_results_button')[0].click();",
+        "}"
+      )
+      # define container
+      if (ncol(x) > 1) {
+        container <- htmltools::tags$table(
+          class = "display",
+          htmltools::tags$thead(
+            htmltools::tags$tr(
+              htmltools::tags$th(rowspan = 2, "Exclude"),
+              htmltools::tags$th(rowspan = 2, "Status"),
+              htmltools::tags$th(rowspan = 2, "Total (units)"),
+              htmltools::tags$th(
+                class = "dt-center", colspan = 2, "Solution"
+              )
+            ),
+            htmltools::tags$tr(
+              lapply(c("(%)", "(units)"), htmltools::tags$th)
+            )
+          )
+        )
+      } else {
+        container <- rlang::missing_arg()
+      }
+      # define columns
+      if (ncol(x) > 1) {
+        column_defs <- list(
+          list(className = "dt-left", targets = 0),
+          list(className = "dt-center", targets = 1:4)
+        )
+      } else {
+        column_defs <- list(
+          list(className = "dt-left", targets = 0)
+        )
+      }
+      # render table
+      DT::datatable(
+        x,
+        rownames = FALSE,
+        escape = FALSE,
+        editable = FALSE,
+        selection = "none",
+        fillContainer = TRUE,
+        extensions = "Buttons",
+        container = container,
+        options = list(
+          ## align columns
+          columnDefs = column_defs,
+          ## disable paging
+          paging = FALSE,
+          scrollY = "clamp(300px, calc(100vh - 295px), 10000px)",
+          scrollCollapse = TRUE,
+          ## download button
+          dom = "Bfrtip",
+          buttons = list(
+            list(
+              extend = "collection",
+              text = as.character(shiny::icon("file-download")),
+              title = "Download spreadsheet",
+              action = action_js
+            )
+          )
+        )
+      )
+    },    
 
     #' @description
     #' Set setting.
