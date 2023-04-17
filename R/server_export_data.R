@@ -46,7 +46,8 @@ server_export_data <- quote({
             Summary = x$get_summary_results_data(),
             Themes = x$get_theme_results_data(),
             Weights = x$get_weight_results_data(),
-            Includes = x$get_include_results_data()
+            Includes = x$get_include_results_data(),
+            Excludes = x$get_exclude_results_data()
           ),
           file.path(td, paste0(x$get_layer_name(), ".xlsx"))
         )
@@ -57,14 +58,15 @@ server_export_data <- quote({
             x$get_summary_results_data(),
             x$get_theme_results_data(),
             x$get_weight_results_data(),
-            x$get_include_results_data()
+            x$get_include_results_data(),
+            x$get_exclude_results_data()
           ),
           file = file.path(
             td,
             paste0(
               x$get_layer_name(),
               "_",
-              c("summary", "themes", "weights", "includes"),
+              c("summary", "themes", "weights", "includes", "excludes"),
               ".csv"
             )
           ),

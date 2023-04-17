@@ -61,5 +61,10 @@ server_update_solution_results <- quote({
       DT::renderDT({
         app_data$solutions[[i]]$render_include_results()
       })
+    ## render exclude results
+    output$solutionResultsPane_results_modal_excludes_table <-
+      DT::renderDT({
+        app_data$solutions[[i]]$render_exclude_results()
+      })    
   })
 })

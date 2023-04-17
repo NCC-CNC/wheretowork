@@ -75,6 +75,7 @@ Definition for the Solution class.
 \item \href{#method-render_theme_results}{\code{Solution$render_theme_results()}}
 \item \href{#method-render_weight_results}{\code{Solution$render_weight_results()}}
 \item \href{#method-render_include_results}{\code{Solution$render_include_results()}}
+\item \href{#method-render_exclude_results}{\code{Solution$render_exclude_results()}}
 \item \href{#method-set_setting}{\code{Solution$set_setting()}}
 \item \href{#method-get_solution_results_widget_data}{\code{Solution$get_solution_results_widget_data()}}
 \item \href{#method-get_map_manager_widget_data}{\code{Solution$get_map_manager_widget_data()}}
@@ -494,6 +495,19 @@ Render weight results.
 Render include results.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Solution$render_include_results()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{\link[DT:datatable]{DT::datatable()}} object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-render_exclude_results"></a>}}
+\if{latex}{\out{\hypertarget{method-render_exclude_results}{}}}
+\subsection{Method \code{render_exclude_results()}}{
+Render exclude results.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Solution$render_exclude_results()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{

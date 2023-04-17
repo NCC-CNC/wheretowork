@@ -75,7 +75,8 @@ solutionResultsModal <- function(id, trigger) {
                     `<i class='fa fa-chart-line'></i>Summary` = "summary",
                     `<i class='fa fa-star'></i>Themes` = "themes",
                     `<i class='fa fa-weight-hanging'></i>Weights` = "weights",
-                    `<i class='fa fa-lock'></i>Includes` = "includes"
+                    `<i class='fa fa-lock'></i>Includes` = "includes",
+                    `<i class='fa fa-ban'></i>Excludes` = "excludes"
                   ),
                   justified = FALSE,
                   size = "normal"
@@ -101,7 +102,12 @@ solutionResultsModal <- function(id, trigger) {
                 outputId = "include_results_button",
                 label = "Download include results",
                 class = "btn-sm"
-              )
+              ),
+              shiny::downloadButton(
+                outputId = "exclude_results_button",
+                label = "Download exclude results",
+                class = "btn-sm"
+              )              
             )
           ),
           ## body
@@ -122,7 +128,11 @@ solutionResultsModal <- function(id, trigger) {
             shiny::conditionalPanel(
               condition = paste0("input.", id, "_radio == 'includes'"),
               DT::DTOutput(outputId = paste0(id, "_includes_table"))
-            )
+            ),
+            shiny::conditionalPanel(
+              condition = paste0("input.", id, "_radio == 'excludes'"),
+              DT::DTOutput(outputId = paste0(id, "_excludes_table"))
+            )            
           )
         )
       )
