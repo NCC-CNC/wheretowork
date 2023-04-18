@@ -30,3 +30,15 @@
 .sbs-modal-backdrop {
   z-index: 999998;
 }
+
+/* -- help modal */
+.help-modal-header {
+  background-color: #0074d9;
+}
+
+.help-modal-title {
+  text-align: center;
+  color: #fff;
+  font-size: 30px;
+  margin: 0;
+}
