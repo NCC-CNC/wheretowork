@@ -36,7 +36,7 @@ helpModal <- function(id, trigger) {
           class = "modal-content",
           ## header
           htmltools::tags$div(
-            class = "modal-header",
+            class = "modal-header help-modal-header",
             ### close button
             htmltools::tags$button(
               type = "button",
@@ -46,7 +46,7 @@ helpModal <- function(id, trigger) {
             ),
             htmltools::tags$div(
               class = "modal-header-content",
-              htmltools::h4("Help")
+              htmltools::h4("Where To Work Help", class = "help-modal-title")
             )
           ),
           ## body
