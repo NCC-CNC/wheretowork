@@ -86,11 +86,6 @@ import_data <- function(x, mode) {
     wheretowork::new_parameter(
       name = "Hide solution layer from map",
       status = shiny::isTruthy(app_data$shp_hidden),
-      value = 1,
-      min_value = 1,
-      max_value = 100,
-      step_value = 1,
-      units = "%",
       hide = TRUE,
       disable = FALSE,
       tool_tip = 
