@@ -105,12 +105,14 @@ test_that("initialization", {
   )  
   s1 <- new_statistic("Area", 12, "ha")
   s2 <- new_statistic("Perimeter", 10, "km")
-  p <- new_parameter("budget", value = 12)
+  p1 <- new_parameter("Budget", value = 12, status = FALSE, units = "%")
+  p2 <- new_parameter("Cluster", value = 50, units = "%")
+  p3 <- new_parameter("Hide")
   x <- new_solution(
     name = "solution001",
     variable = v3,
     visible = FALSE,
-    parameters = list(p),
+    parameters = list(p1, p2, p3),
     statistics = list(s1, s2),
     theme_results = list(thr),
     weight_results = list(wr),
@@ -126,7 +128,7 @@ test_that("initialization", {
   expect_identical(x$visible, FALSE)
   expect_identical(x$invisible, NA_real_)
   expect_identical(x$loaded, FALSE)
-  expect_equal(x$parameters, list(p))
+  expect_equal(x$parameters, list(p1, p2, p3))
   expect_identical(x$statistics, list(s1, s2))
   expect_identical(x$theme_results, list(thr))
   expect_identical(x$weight_results, list(wr))
@@ -141,6 +143,19 @@ test_that("initialization", {
   expect_is(x$render_theme_results(), "datatables")
   expect_is(x$render_weight_results(), "datatables")
   expect_is(x$render_include_results(), "datatables")
+  ## summary results tibble (parameter name/values)
+  expect_identical(
+    unlist(x$get_summary_results_data()[1,], use.names = FALSE), 
+    c("Budget", "Not specified")
+  )
+  expect_identical(
+    unlist(x$get_summary_results_data()[2,], use.names = FALSE), 
+    c("Cluster", "50%")
+  )
+  expect_identical(
+    unlist(x$get_summary_results_data()[3,], use.names = FALSE), 
+    c("Hide", "On")
+  ) 
 })
 
 test_that("initialization (no weights, includes or excludes)", {

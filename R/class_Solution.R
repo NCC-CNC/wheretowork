@@ -314,33 +314,30 @@ Solution <- R6::R6Class(
          self$statistics, function(x) x$get_results_data()))
       pd <- tibble::as_tibble(plyr::ldply(
          self$parameters, function(x) x$get_results_data()))
+      pd$status <- unlist(lapply(self$parameters, function(x) x$get_status()))
       # prepare statistics data
-      rd$type <- "statistic"
-      rd$hide <- FALSE
+      rd$value_text <- rd$value
+      rd$value_text <- dplyr::if_else(
+        !is.na(rd$units) & nchar(rd$units) > 0, 
+        paste(round(rd$value_text,2), rd$units, sep = " "), 
+        paste(round(rd$value_text, 2))) # add units if present
+      rd$value_text <- dplyr::if_else(
+        !is.na(rd$proportion),
+        paste0(rd$value_text, " (", round(rd$proportion*100), "%)"), 
+        rd$value_text
+      ) # add % if present
       # prepare parameters data
-      pd$type <- "setting"
-      pd$proportion <- NA_real_
-      pd$proportion[pd$units == "%"] <- pd$value[pd$units == "%"]
-      pd$value[pd$units == "%"] <- NA_real_
+      pd$value_text <- dplyr::case_when(
+        pd$status == FALSE ~ "Not specified",
+        pd$status == TRUE & nchar(pd$units) > 0 ~ paste0(pd$value, pd$units),
+        TRUE ~ "On"
+      )
       # combine data
       x <- dplyr::bind_rows(pd, rd)
-      x$value_text <- dplyr::if_else(
-        is.na(x$value), rep("", nrow(x)), paste(round(x$value, 2), x$units)
-      )
-      x$value_text <- dplyr::if_else(x$hide, "None specified", x$value_text)
-      x$proportion_text <- round(x$proportion * 100, 2)
-      x$proportion_text <- dplyr::if_else(
-        is.na(x$proportion_text), "", as.character(x$proportion_text)
-      )
-      x$proportion_text <- dplyr::if_else(
-        x$hide, "None specified", x$proportion_text
-      )
       # return formatted table
       tibble::tibble(
         `Name` = x$name,
-        `Type` = x$type,
-        `Value (%)` = x$proportion_text,
-        `Value (units)` = x$value_text
+        `Value` = x$value_text
       )
     },
 
@@ -500,8 +497,7 @@ Solution <- R6::R6Class(
         options = list(
           ### align columns
           columnDefs = list(
-            list(className = "dt-left", targets = 0:1),
-            list(className = "dt-center", targets = c(2:3))
+            list(className = "dt-left", targets = 0:1)
           ),
           ### disable paging
           paging = FALSE,
@@ -522,15 +518,9 @@ Solution <- R6::R6Class(
           class = "display",
           htmltools::tags$thead(
             htmltools::tags$tr(
-              htmltools::tags$th(rowspan = 2, "Name"),
-              htmltools::tags$th(rowspan = 2, "Type"),
-              htmltools::tags$th(
-                class = "dt-center", colspan = 2, "Value"
-              )
+              htmltools::tags$th("Name"),
+              htmltools::tags$th("Value"),
             ),
-            htmltools::tags$tr(
-              lapply(c("(%)", "(units)"), htmltools::tags$th)
-            )
           )
         )
       )
