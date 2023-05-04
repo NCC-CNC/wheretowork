@@ -318,7 +318,7 @@ Solution <- R6::R6Class(
       # prepare statistics data
       rd$value_text <- rd$value
       rd$value_text <- dplyr::if_else(
-        !is.na(rd$units) & nchar(rd$units)>0, 
+        !is.na(rd$units) & nchar(rd$units) > 0, 
         paste(round(rd$value_text,2), rd$units, sep = " "), 
         paste(round(rd$value_text, 2))) # add units if present
       rd$value_text <- dplyr::if_else(
