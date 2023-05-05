@@ -66,6 +66,8 @@ Imports:
     leaflet.extras2 (>= 1.1.0),
     colourpicker (>= 1.1.0),
     DT (>= 0.18),
+    fields (>= 0.14.1),
+    terra (>= 1.7.29),
 Suggests:
     testthat (>= 2.0.1),
     knitr (>= 1.2.0),
@@ -78,13 +80,12 @@ Suggests:
     devtools (>= 2.4.2),
     whereami (>= 0.1.9),
     pkgdown (>= 1.6.1.9001),
-    RandomFields (>= 3.3.8),
 Depends:
     R (>= 4.0.0),
     shinyBS (>= 0.6.1),
     promises (>= 1.2.0.1),
     R6 (>= 2.5.0),
-    raster (>= 3.4.10),
+    raster (>= 3.6.20),
     sf (>= 0.9.8),
 License: GPL-3
 Encoding: UTF-8
