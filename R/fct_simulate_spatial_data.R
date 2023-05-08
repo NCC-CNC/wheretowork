@@ -184,6 +184,7 @@ simulate_data.sf <- function(x, n = 1, scale = 0.5, intensity = 0,
     mtx <- mtx[1:terra::nrow(x)]
     field_name = paste0("V", i)
     x <- dplyr::mutate(x, !!field_name := mtx)
+    x <- dplyr::relocate(x, field_name, .before = i)
   }
   # return results
   x
@@ -237,9 +238,3 @@ simulate_data.SpatRaster <- function(x, n = 1, scale = 0.5, intensity = 0,
   # return result
   r
 }
-
-
-
-
-
-
