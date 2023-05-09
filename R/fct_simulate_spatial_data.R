@@ -136,15 +136,18 @@ simulate_data <- function(x, n, scale, intensity, sd, transform) {
 #' @export
 simulate_data.Raster <- function(x, n = 1, scale = 0.5, intensity = 0,
                                  sd = 1, transform = identity) {
-  raster::stack(
-    simulate_data.SpatRaster(
-      x = terra::rast(x),
-      n = n, scale = scale,
-      intensity = intensity,
-      sd = sd,
-      transform = transform
+  ## Suppressing CRS warning
+  suppressWarnings(
+    raster::stack(
+      simulate_data.SpatRaster(
+        x = terra::rast(x),
+        n = n, scale = scale,
+        intensity = intensity,
+        sd = sd,
+        transform = transform
+      )
     )
-  )
+ )
 }
 
 #' @rdname simulate_data
@@ -228,13 +231,14 @@ simulate_data.SpatRaster <- function(x, n = 1, scale = 0.5, intensity = 0,
     r <- terra::setValues(x[[1]], v[seq_len(terra::ncell(x))])
     ## apply mask for consistency
     r <- terra::mask(r, x[[1]])
+    ## assign CRS
+    ### this has a CRS warning
+    terra::crs(r) <- "EPSG:3857"
     ## return result
     r
   }))
   ## assign column names
   names(r) <- paste0("V", seq_len(n))
-  ## assign CRS
-  terra::crs(r) <- "EPSG:4326"
   # return result
   r
 }
