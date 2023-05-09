@@ -7,7 +7,7 @@
 write_spatial_data(x, dir, name)
 }
 \arguments{
-\item{x}{\code{\link[sf:sf]{sf::st_sf()}} or \code{\link[raster:stack]{raster::stack()}} object.}
+\item{x}{\code{\link[sf:sf]{sf::st_sf()}} or \code{\link[terra:rast]{terra::rast()}} object.}
 
 \item{dir}{\code{character} directory to save data.}
 

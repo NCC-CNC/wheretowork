@@ -51,7 +51,7 @@ read_spatial_data <- function(x) {
 #'
 #' Write spatial data to disk.
 #'
-#' @param x [sf::st_sf()] or [raster::stack()] object.
+#' @param x [sf::st_sf()] or [terra::rast()] object.
 #'
 #' @param dir `character` directory to save data.
 #'
@@ -73,7 +73,7 @@ read_spatial_data <- function(x) {
 #' @export
 write_spatial_data <- function(x, dir, name) {
   assertthat::assert_that(
-    inherits(x, c("sf", "Raster")),
+    inherits(x, c("sf", "SpatRaster")),
     assertthat::is.string(dir),
     assertthat::noNA(dir),
     assertthat::is.string(name),
