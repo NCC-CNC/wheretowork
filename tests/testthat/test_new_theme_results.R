@@ -132,7 +132,6 @@ test_that("widget methods (single feature)", {
 })
 
 test_that("initialization (multiple features)", {
-  skip_if_not_installed("RandomFields")
   # create object
   rd <- simulate_proportion_spatial_data(import_simple_raster_data(), 2)
   d <- new_dataset_from_auto(rd)
@@ -189,7 +188,6 @@ test_that("initialization (multiple features)", {
 })
 
 test_that("results methods (multiple features)", {
-  skip_if_not_installed("RandomFields")
   # create object
   rd <- simulate_proportion_spatial_data(import_simple_raster_data(), 2)
   d <- new_dataset_from_auto(rd)
@@ -260,7 +258,6 @@ test_that("results methods (multiple features)", {
 })
 
 test_that("widget methods (multiple features)", {
-  skip_if_not_installed("RandomFields")
   # create object
   rd <- simulate_proportion_spatial_data(import_simple_raster_data(), 2)
   d <- new_dataset_from_auto(rd)

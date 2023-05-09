@@ -2,10 +2,8 @@ context("min_shortfall_result")
 
 test_that("no spatial clustering", {
   skip_on_ci()
-  skip_if_not_installed("RandomFields")  
   # create object
   ## create dataset
-  RandomFields::RFoptions(seed = 200)
   rd <- simulate_binary_spatial_data(import_simple_raster_data(), 6)
   d <- new_dataset_from_auto(rd)
   ## create variables
@@ -122,10 +120,8 @@ test_that("no spatial clustering", {
 
 test_that("spatial clustering", {
   skip_on_ci()
-  skip_if_not_installed("RandomFields")  
   # create object
   ## create dataset
-  RandomFields::RFoptions(seed = 200)
   rd <- simulate_binary_spatial_data(import_simple_raster_data(), 6)
   d <- new_dataset_from_auto(rd)
   ## create variables
@@ -218,10 +214,8 @@ test_that("spatial clustering", {
 
 test_that("no includes", {
   skip_on_ci()
-  skip_if_not_installed("RandomFields")  
   # create object
   ## create dataset
-  RandomFields::RFoptions(seed = 200)
   rd <- simulate_binary_spatial_data(import_simple_raster_data(), 6)
   d <- new_dataset_from_auto(rd)
   ## create variables
@@ -308,10 +302,8 @@ test_that("no includes", {
 
 test_that("no excludes", {
   skip_on_ci()
-  skip_if_not_installed("RandomFields")  
   # create object
   ## create dataset
-  RandomFields::RFoptions(seed = 200)
   rd <- simulate_binary_spatial_data(import_simple_raster_data(), 6)
   d <- new_dataset_from_auto(rd)
   ## create variables
@@ -397,10 +389,8 @@ test_that("no excludes", {
 
 test_that("no weights", {
   skip_on_ci()
-  skip_if_not_installed("RandomFields")
   # create object
   ## create dataset
-  RandomFields::RFoptions(seed = 200)
   rd <- simulate_binary_spatial_data(import_simple_raster_data(), 6)
   d <- new_dataset_from_auto(rd)
   ## create variables
@@ -487,10 +477,8 @@ test_that("no weights", {
 
 test_that("mixed weights", {
   skip_on_ci()
-  skip_if_not_installed("RandomFields")
   # create object
   ## create dataset
-  RandomFields::RFoptions(seed = 200)
   rd <- simulate_binary_spatial_data(import_simple_raster_data(), 7)
   d <- new_dataset_from_auto(rd)
   ## create variables

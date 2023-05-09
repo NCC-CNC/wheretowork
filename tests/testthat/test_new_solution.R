@@ -1,7 +1,6 @@
 context("new_solution")
 
 test_that("initialization", {
-  skip_if_not_installed("RandomFields")
   # create object
   rd <- simulate_binary_spatial_data(import_simple_raster_data(), 5)
   names(rd) <- c("a", "b", "solution_1", "c", "d")
@@ -159,7 +158,6 @@ test_that("initialization", {
 })
 
 test_that("initialization (no weights, includes or excludes)", {
-  skip_if_not_installed("RandomFields")
   # create object
   rd <- simulate_binary_spatial_data(import_simple_raster_data(), 3)
   names(rd) <- c("a", "b", "solution_1")
@@ -249,10 +247,8 @@ test_that("initialization (no weights, includes or excludes)", {
 
 test_that("initialization (from Result object)", {
   skip_on_ci()
-  skip_if_not_installed("RandomFields")  
   # create object
   ## create dataset
-  RandomFields::RFoptions(seed = 200)
   rd <- simulate_binary_spatial_data(import_simple_raster_data(), 6)
   d <- new_dataset_from_auto(rd)
   ## create variables
@@ -356,7 +352,6 @@ test_that("initialization (from Result object)", {
 
 test_that("initialization (from Result object), sf, no boundary", {
   skip_on_ci()
-  skip_if_not_installed("RandomFields")  
   # create object
   ## create dataset
   spatial_data <- import_simple_vector_data()
@@ -479,16 +474,14 @@ test_that("initialization (from Result object), sf, no boundary", {
   )
   # run tests
   expect_equal(is.na(r$perimeter), TRUE)
-  # reserve_sizes statistics should all be ""
+  # reserve_sizes statistics should all be NA
   expect_equal(
-    any(
-      !stringi::stri_isempty(x$get_summary_results_data()[5:9,3][[1]])), FALSE
+    length(grep("NA", x$get_summary_results_data()$Value[5:9])), 5
     )
   expect_is(x, "Solution")
 })
 
 test_that("get methods", {
-  skip_if_not_installed("RandomFields")
   # create object
   rd <- simulate_binary_spatial_data(import_simple_raster_data(), 3)
   names(rd) <- c("a", "b", "solution_1")
@@ -554,7 +547,6 @@ test_that("get methods", {
 })
 
 test_that("set methods", {
-  skip_if_not_installed("RandomFields")
   # create object
   # create object
   rd <- simulate_binary_spatial_data(import_simple_raster_data(), 3)
@@ -621,7 +613,6 @@ test_that("set methods", {
 })
 
 test_that("widget methods", {
-  skip_if_not_installed("RandomFields")
   # create object
   rd <- simulate_binary_spatial_data(import_simple_raster_data(), 5)
   names(rd) <- c("a", "b", "solution_1", "c", "d")

@@ -1,7 +1,6 @@
 context("simulate_weights")
 
 test_that("simple dataset (single, continuous)", {
-  skip_if_not_installed("RandomFields")
   # create object
   d <- new_dataset_from_auto(import_simple_raster_data())
   # weights are continuous 
@@ -13,7 +12,6 @@ test_that("simple dataset (single, continuous)", {
 })
 
 test_that("simple dataset (multiple, continuous)", {
-  skip_if_not_installed("RandomFields")
   # create object
   d <- new_dataset_from_auto(import_simple_raster_data())
   # weights are continuous
@@ -25,7 +23,6 @@ test_that("simple dataset (multiple, continuous)", {
 })
 
 test_that("simple dataset (single, catagorical)", {
-  skip_if_not_installed("RandomFields")
   # create object
   d <- new_dataset_from_auto(import_simple_raster_data())
   # weights are categorical 
@@ -37,7 +34,6 @@ test_that("simple dataset (single, catagorical)", {
 })
 
 test_that("simple dataset (multiple, catagorical)", {
-  skip_if_not_installed("RandomFields")
   # create object
   d <- new_dataset_from_auto(import_simple_raster_data())
   # weights are categorical 
@@ -50,7 +46,6 @@ test_that("simple dataset (multiple, catagorical)", {
 
 
 test_that("large dataset", {
-  skip_if_not_installed("RandomFields")
   # create object
   d <- new_dataset_from_auto(import_realistic_raster_data())
   # weights are continuous

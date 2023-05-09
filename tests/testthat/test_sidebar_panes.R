@@ -1,7 +1,6 @@
 context("sidebar panes")
 
 test_that("newSolutionSidebarPane", {
-  skip_if_not_installed("RandomFields")
   # create object
   x <-
     newSolutionSidebarPane(
