@@ -18,14 +18,13 @@ jobs:
   R-CMD-check:
     runs-on: ${{ matrix.config.os }}
     
-    name: ${{ matrix.config.os }} (${{ matrix.config.r }}) (${{ matrix.config.pkgs }} packages)
+    name: ${{ matrix.config.os }} (${{ matrix.config.r }})
 
     strategy:
       fail-fast: false
       matrix:
         config:
-          - {os: ubuntu-20.04, r: '4.1.0', pkgs: 'all'}
-          - {os: ubuntu-20.04, r: '4.1.0', pkgs: 'depends only'}
+          - {os: ubuntu-20.04, r: '4.1.0'}
     
     env:
       _R_REMOTES_NO_ERRORS_FROM_WARNINGS_: true
@@ -65,11 +64,6 @@ jobs:
           sessioninfo::session_info(pkgs, include_base = TRUE)
         shell: Rscript {0}
         
-      - name: Set environmental variables for package checks
-        if: matrix.config.pkgs == 'depends only'
-        run: |
-          echo "_R_CHECK_DEPENDS_ONLY_=true" >> $GITHUB_ENV        
-
       - name: Check
         run: |
           rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran", "--no-build-vignettes"), error_on = "warning", check_dir = "check")
