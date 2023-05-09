@@ -55,11 +55,9 @@ f3 <- system.file(
 d <- new_dataset(f1, f2, f3)
 
 # simulate data
-if (requireNamespace("RandomFields")) {
- x <- simulate_themes(data = d, n_single_themes = 3, n_multi_themes = 2)
- # print results
- print(x)
-}
+x <- simulate_themes(data = d, n_single_themes = 3, n_multi_themes = 2)
+# print results
+print(x)
 
 }
 \seealso{

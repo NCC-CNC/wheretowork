@@ -32,11 +32,9 @@ NULL
 #' d <- new_dataset(f1, f2, f3)
 #'
 #' # simulate data
-#' if (requireNamespace("RandomFields")) {
-#'  x <- simulate_includes(dataset = d, n = 2)
-#'  # print results
-#'  print(x)
-#' }
+#' x <- simulate_includes(dataset = d, n = 2)
+#' # print results
+#' print(x)
 #'
 #' @export
 simulate_includes <- function(dataset, n) {

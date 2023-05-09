@@ -42,7 +42,6 @@ NULL
 #' @return Invisible `TRUE` indicating success.
 #'
 #' @examples
-#' if (requireNamespace("RandomFields")) {
 #'  # find data file paths
 #'  f1 <- system.file(
 #'    "extdata", "projects", "sim_raster", "sim_raster_spatial.tif",
@@ -77,7 +76,6 @@ NULL
 #'    attribute_path = tempfile(fileext = ".csv.gz"),
 #'    boundary_path = tempfile(fileext = ".csv.gz")
 #'  )
-#'}  
 #' @export
 write_project <- function(x, dataset, path, name,
                           spatial_path, attribute_path, boundary_path,
