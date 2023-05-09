@@ -164,6 +164,7 @@ Collate:
     'ui_newSolutionSidebarPane.R'
     'ui_solutionResultsModal.R'
     'ui_solutionResultsSidebarPane.R'
+    'utils-tidy-eval.R'
     'utils_acknowledge_packages.R'
     'utils_color_palette.R'
     'utils_error_misc.R'
