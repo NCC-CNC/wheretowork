@@ -38,12 +38,11 @@ f3 <- system.file(
 # create new dataset
 d <- new_dataset(f1, f2, f3)
 
-#' # simulate data
-if (requireNamespace("RandomFields")) {
- x <- simulate_weights(dataset = d, n = 2)
- # print results
- print(x)
-}
+# simulate data
+x <- simulate_weights(dataset = d, n = 2)
+# print results
+print(x)
+
 
 }
 \seealso{

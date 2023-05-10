@@ -51,7 +51,7 @@ read_spatial_data <- function(x) {
 #'
 #' Write spatial data to disk.
 #'
-#' @param x [sf::st_sf()] or [raster::stack()] object.
+#' @param x [sf::st_sf()] or [terra::rast()] object.
 #'
 #' @param dir `character` directory to save data.
 #'
@@ -63,17 +63,17 @@ read_spatial_data <- function(x) {
 #' # read and write raster data
 #' f1 <- system.file("external/rlogo.grd", package = "raster")
 #' d1 <- read_spatial_data(f1)
-#' write_spatial_data(d1, tempdir(), "rlogo")
+#' write_spatial_data(terra::rast(d1), tempdir(), "rlogo")
 #'
 #' # read and write vector data
 #' f2 <- system.file("shape/nc.shp", package = "sf")
-#' read_spatial_data(f2)
-#' write_spatial_data(d1, tempdir(), "nc")
+#' d2 <- read_spatial_data(f2)
+#' write_spatial_data(d2, tempdir(), "nc")
 #'
 #' @export
 write_spatial_data <- function(x, dir, name) {
   assertthat::assert_that(
-    inherits(x, c("sf", "Raster")),
+    inherits(x, c("sf", "SpatRaster")),
     assertthat::is.string(dir),
     assertthat::noNA(dir),
     assertthat::is.string(name),

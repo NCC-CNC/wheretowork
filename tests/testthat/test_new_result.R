@@ -1,7 +1,6 @@
 context("new_result")
 
 test_that("initialization", {
-  skip_if_not_installed("RandomFields")
   # create object
   ## create dataset
   rd <- simulate_binary_spatial_data(import_simple_raster_data(), 6)
@@ -105,7 +104,6 @@ test_that("initialization", {
 })
 
 test_that("NA_real_ perimeter", {
-  skip_if_not_installed("RandomFields")
   # create object
   ## create dataset
   rd <- simulate_binary_spatial_data(import_simple_raster_data(), 6)

@@ -1,7 +1,6 @@
 context("simulate_includes")
 
 test_that("simple dataset (single)", {
-  skip_if_not_installed("RandomFields")
   # create object
   d <- new_dataset_from_auto(import_simple_raster_data())
   x <- simulate_includes(d, 1)
@@ -12,7 +11,6 @@ test_that("simple dataset (single)", {
 })
 
 test_that("simple dataset (multiple)", {
-  skip_if_not_installed("RandomFields")
   # create object
   d <- new_dataset_from_auto(import_simple_raster_data())
   x <- simulate_includes(d, 3)
@@ -23,7 +21,6 @@ test_that("simple dataset (multiple)", {
 })
 
 test_that("large dataset", {
-  skip_if_not_installed("RandomFields")
   # create object
   d <- new_dataset_from_auto(import_realistic_raster_data())
   x <- simulate_includes(d, 3)

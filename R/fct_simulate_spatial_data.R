@@ -14,16 +14,9 @@ NULL
 #'
 #' @noRd
 simulate_proportion_spatial_data <- function(x, n = 1) {
-  # assert RandomFields exists
-  assertthat::assert_that(
-    requireNamespace("RandomFields"), 
-    msg = "please install the \"RandomFields\" package"
-  )
-  
-  simulate_spatial_data(
+  simulate_data(
     x = x,
     n = n,
-    model = RandomFields::RMgauss(),
     transform = stats::plogis
   )
 }
@@ -38,16 +31,9 @@ simulate_proportion_spatial_data <- function(x, n = 1) {
 #'
 #' @noRd
 simulate_continuous_spatial_data <- function(x, n = 1) {
-  # assert RandomFields exists
-  assertthat::assert_that(
-    requireNamespace("RandomFields"), 
-    msg = "please install the \"RandomFields\" package"
-  )  
-  
-  simulate_spatial_data(
+  simulate_data(
     x = x,
     n = n,
-    model = RandomFields::RMexp(),
     transform =
       function(x) {
         x <- abs(x)
@@ -67,16 +53,9 @@ simulate_continuous_spatial_data <- function(x, n = 1) {
 #'
 #' @noRd
 simulate_categorical_spatial_data <- function(x, n = 1) {
-  # assert RandomFields exists
-  assertthat::assert_that(
-    requireNamespace("RandomFields"), 
-    msg = "please install the \"RandomFields\" package"
-  )
-  
-  simulate_spatial_data(
+  simulate_data(
     x = x,
     n = n,
-    model = RandomFields::RMgauss(),
     transform = function(x) {
       n <- sample.int(9, 1) + 1
       as.integer(cut(x, n))
@@ -94,109 +73,172 @@ simulate_categorical_spatial_data <- function(x, n = 1) {
 #'
 #' @noRd
 simulate_binary_spatial_data <- function(x, n = 1) {
-  # assert RandomFields exists
-  assertthat::assert_that(
-    requireNamespace("RandomFields"), 
-    msg = "please install the \"RandomFields\" package"
-  )  
-  
-  simulate_spatial_data(
+  simulate_data(
     x = x,
     n = n,
-    model = RandomFields::RMgauss(),
     transform = function(x) {
       round(x > 0)
     }
   )
 }
 
-#' Simulate spatial data
+#' Simulate data
 #'
-#' Simulate spatial data.
+#' Simulate spatially auto-correlated data using Gaussian random fields.
 #'
-#' @param x [sf::st_sf()] or [raster::raster()] object.
+#' @param x [terra::rast()] or [raster::raster()] or [sf::st_sf()] 
+#' object to use as a template.
 #'
-#' @inheritParams simulate_random_field
+#' @param n `integer` number of layers to simulate.
+#'   Defaults to 1.
 #'
-#' @noRd
-simulate_spatial_data <- function(x, n, model, transform) {
-  # assert RandomFields exists
+#' @param scale `numeric` parameter to control level of spatial
+#'   auto-correlation in the simulated data.
+#'   Defaults to 0.5.
+#'
+#' @param intensity `numeric` average value of simulated data.
+#'   Defaults to 0.
+#'
+#' @param sd `numeric` standard deviation of simulated data.
+#'   Defaults to 1.
+#'
+#' @param transform `function` transform values output from the simulation.
+#'   Defaults to the [identity()] function such that values remain the same
+#'   following transformation.
+#'
+#' @family simulations
+#'
+#' @return A [terra::rast()] or [raster::raster()] or [sf::st_sf()] object.
+#'
+#' @examples
+#' \dontrun{
+#' # create raster
+#' r <- terra::rast(
+#'   ncols = 10, nrows = 10, xmin = 0, xmax = 1, ymin = 0, ymax = 1, vals = 1
+#' )
+#'
+#' # simulate data using a Gaussian field
+#' x <- simulate_data(r, n = 1, scale = 0.2)
+#'
+#' # plot simulated data
+#' plot(x, main = "simulated data", axes = FALSE)
+#' }
+#' @export
+simulate_data <- function(x, n, scale, intensity, sd, transform) {
   assertthat::assert_that(
-    requireNamespace("RandomFields"), 
-    msg = "please install the \"RandomFields\" package"
-  )   
-  
-  # assert argument is valid
-  assertthat::assert_that(
-    inherits(x, c("sf", "Raster")),
-    assertthat::is.count(n),
-    assertthat::noNA(n)
-  )
-  # extract centroids
-  if (inherits(x, "Raster")) {
-    coords <- methods::as(x, "SpatialPoints")@coords
-  } else {
-    coords <- suppressWarnings(sf::as_Spatial(sf::st_centroid(x))@coords)
-  }
-  # simulate values
-  mtx <- simulate_random_field(model = model, n = n, coords = coords, transform)
-  # convert to spatial format
-  if (inherits(x, "Raster")) {
-    out <- raster::stack(lapply(seq_len(ncol(mtx)), function(i) {
-      r <- x[[1]]
-      r[raster::Which(!is.na(r))] <- mtx[, i]
-      r
-    }))
-    names(out) <- colnames(mtx)
-  } else {
-    out <- cbind(x, as.data.frame(mtx))
-    out <- out[, colnames(mtx)]
-  }
-  out
+    inherits(x, c("SpatRaster", "Raster", "sf"))
+  )  
+  UseMethod("simulate_data")
 }
 
-#' Simulate random field
-#'
-#' Simulate a random field.
-#'
-#' @param model [RandomFields::RMmodel] object.
-#'
-#' @param coords `matrix` with spatial coordinates.
-#'
-#' @param n `integer` number of dimensions to simulate.
-#'
-#' @param transform `function` post-processing function.
-#'
-#' @return A `matrix` object.
-#'
-#' @noRd
-simulate_random_field <- function(model, n, coords, transform) {
-  # assert RandomFields exists
+#' @rdname simulate_data
+#' @method simulate_data Raster
+#' @export
+simulate_data.Raster <- function(x, n = 1, scale = 0.5, intensity = 0,
+                                 sd = 1, transform = identity) {
+  ## Suppressing CRS warning
+  suppressWarnings(
+    raster::stack(
+      simulate_data.SpatRaster(
+        x = terra::rast(x),
+        n = n, scale = scale,
+        intensity = intensity,
+        sd = sd,
+        transform = transform
+      )
+    )
+ )
+}
+
+#' @rdname simulate_data
+#' @method simulate_data sf
+#' @export
+simulate_data.sf <- function(x, n = 1, scale = 0.5, intensity = 0,
+                                 sd = 1, transform = identity) {
+  
+  # assert valid arguments
   assertthat::assert_that(
-    requireNamespace("RandomFields"), 
-    msg = "please install the \"RandomFields\" package"
+    inherits(x, "sf"),
+    assertthat::is.count(n),
+    assertthat::is.number(scale),
+    assertthat::noNA(scale),
+    assertthat::is.number(intensity),
+    assertthat::noNA(intensity),
+    assertthat::is.number(sd),
+    assertthat::noNA(sd),
+    is.function(transform)
   )  
   
-  # assert arguments are valid
+  # create object for simulation
+  obj <- fields::circulantEmbeddingSetup(
+    grid = list(
+      x = seq(0, 5, length.out = terra::nrow(x)),
+      y = seq(0, 5, length.out = terra::ncol(x))
+    ),
+    Covariance = "Exponential",
+    aRange = scale
+  )
+  
+  # populate sf with generated values 
+  for (i in seq_len(n)) {
+    v <- c(t(fields::circulantEmbedding(obj)))
+    v <- transform(v + stats::rnorm(length(v), mean = intensity, sd = sd))
+    mtx <- matrix(v, ncol = 1)
+    mtx <- mtx[1:terra::nrow(x)]
+    field_name = paste0("V", i)
+    x <- dplyr::mutate(x, !!field_name := mtx)
+    x <- dplyr::relocate(x, field_name, .before = i)
+  }
+  # return results
+  x
+}
+
+#' @rdname simulate_data
+#' @method simulate_data SpatRaster
+#' @export
+simulate_data.SpatRaster <- function(x, n = 1, scale = 0.5, intensity = 0,
+                                     sd = 1, transform = identity) {
+  
+  # assert valid arguments
   assertthat::assert_that(
-    inherits(model, "RMmodel"),
-    is.matrix(coords),
-    ncol(coords) == 2,
+    inherits(x, "SpatRaster"),
     assertthat::is.count(n),
-    assertthat::noNA(n),
+    terra::global(x, "notNA")[[1]][[1]] > 0,
+    assertthat::is.number(scale),
+    assertthat::noNA(scale),
+    assertthat::is.number(intensity),
+    assertthat::noNA(intensity),
+    assertthat::is.number(sd),
+    assertthat::noNA(sd),
     is.function(transform)
   )
-  # simulate values
-  mtx <- RandomFields::RFsimulate(
-    model = model,
-    x = coords[, 1], y = coords[, 2], n = n, spConform = FALSE
+  
+  # create object for simulation
+  obj <- fields::circulantEmbeddingSetup(
+    grid = list(
+      x = seq(0, 5, length.out = terra::nrow(x)),
+      y = seq(0, 5, length.out = terra::ncol(x))
+    ),
+    Covariance = "Exponential",
+    aRange = scale
   )
-  if (!inherits(mtx, "matrix")) {
-    mtx <- matrix(mtx, ncol = 1)
-  }
-  mtx <- apply(mtx, 2, transform)
-  # assign column names
-  colnames(mtx) <- paste0("V", seq_len(n))
+  
+  # generate populate rasters with values
+  r <- terra::rast(lapply(seq_len(n), function(i) {
+    ## populate with simulated values
+    v <- c(t(fields::circulantEmbedding(obj)))
+    v <- transform(v + stats::rnorm(length(v), mean = intensity, sd = sd))
+    r <- terra::setValues(x[[1]], v[seq_len(terra::ncell(x))])
+    ## apply mask for consistency
+    r <- terra::mask(r, x[[1]])
+    ## assign CRS
+    ### this has a CRS warning
+    terra::crs(r) <- "EPSG:3857"
+    ## return result
+    r
+  }))
+  ## assign column names
+  names(r) <- paste0("V", seq_len(n))
   # return result
-  mtx
+  r
 }

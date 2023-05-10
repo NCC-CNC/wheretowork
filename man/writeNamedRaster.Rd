@@ -7,7 +7,7 @@
 writeNamedRaster(x, filename, ...)
 }
 \arguments{
-\item{x}{\code{\link[raster:raster]{raster::raster()}} object.}
+\item{x}{\code{\link[terra:rast]{terra::rast()}} object.}
 
 \item{filename}{\code{character} file path.}
 
@@ -17,7 +17,7 @@ writeNamedRaster(x, filename, ...)
 None.
 }
 \description{
-Save a \code{\link[raster:raster]{raster::raster()}} object to disk, along with a text file containing
+Save a \code{\link[terra:rast]{terra::rast()}} object to disk, along with a text file containing
 the names of each layer in the object.
 }
 \details{

@@ -1,7 +1,6 @@
 context("new_solution_settings")
 
 test_that("initialization", {
-  skip_if_not_installed("RandomFields")
   # create object
   ## create dataset
   rd <- simulate_binary_spatial_data(import_simple_raster_data(), 6)
@@ -83,7 +82,6 @@ test_that("initialization", {
 })
 
 test_that("initialization (no weights, includes or excludes)", {
-  skip_if_not_installed("RandomFields")
   # create object
   ## create dataset
   rd <- simulate_binary_spatial_data(import_simple_raster_data(), 6)
@@ -142,7 +140,6 @@ test_that("initialization (no weights, includes or excludes)", {
 })
 
 test_that("get methods", {
-  skip_if_not_installed("RandomFields")
   # create object
   ## create dataset
   rd <- simulate_binary_spatial_data(import_simple_raster_data(), 6)
@@ -298,7 +295,6 @@ test_that("get methods", {
 })
 
 test_that("get (no weights, includes, or excludes)", {
-  skip_if_not_installed("RandomFields")
   # create object
   ## create dataset
   rd <- simulate_binary_spatial_data(import_simple_raster_data(), 5)
@@ -361,7 +357,6 @@ test_that("get (no weights, includes, or excludes)", {
 })
 
 test_that("set methods", {
-  skip_if_not_installed("RandomFields")
   # create object
   ## create dataset
   rd <- simulate_binary_spatial_data(import_simple_raster_data(), 6)
@@ -559,7 +554,6 @@ test_that("set methods", {
 })
 
 test_that("widget methods", {
-  skip_if_not_installed("RandomFields")
   # create object
   ## create dataset
   rd <- simulate_binary_spatial_data(import_simple_raster_data(), 6)
@@ -652,7 +646,6 @@ test_that("widget methods", {
 })
 
 test_that("update solution settings", {
-  skip_if_not_installed("RandomFields")
   # create object
   ## create dataset
   rd <- simulate_binary_spatial_data(import_simple_raster_data(), 6)

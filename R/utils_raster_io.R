@@ -1,9 +1,9 @@
 #' Write a Raster object to disk
 #'
-#' Save a [raster::raster()] object to disk, along with a text file containing
+#' Save a [terra::rast()] object to disk, along with a text file containing
 #' the names of each layer in the object.
 #'
-#' @param x [raster::raster()] object.
+#' @param x [terra::rast()] object.
 #'
 #' @param filename `character` file path.
 #'
@@ -21,7 +21,7 @@ writeNamedRaster <- function(x, filename, ...) {
     isTRUE(args$overwrite)) {
     writeLines(names(x), raster::extension(filename, "txt"))
   }
-  raster::writeRaster(x, filename, ...)
+  terra::writeRaster(x, filename, ...)
 }
 
 #' Read a Raster object from disk

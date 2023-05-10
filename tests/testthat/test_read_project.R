@@ -1,7 +1,6 @@
 context("read_project")
 
 test_that("raster (standard boundary format, continuous)", {
-  skip_if_not_installed("RandomFields")
   # simulate data
   d <- new_dataset_from_auto(import_simple_raster_data())
   sim_weights <- simulate_weights(d, 2, continuous = TRUE)
@@ -81,7 +80,6 @@ test_that("raster (standard boundary format, continuous)", {
 })
 
 test_that("raster (standard boundary format, categorical, manual legend)", {
-  skip_if_not_installed("RandomFields")
   # simulate data
   d <- new_dataset_from_auto(import_simple_raster_data())
   sim_weights <- simulate_weights(d, 2, continuous = FALSE)
@@ -161,7 +159,6 @@ test_that("raster (standard boundary format, categorical, manual legend)", {
 })
 
 test_that("raster (standard boundary format, continous & categorical)", {
-  skip_if_not_installed("RandomFields")
   # simulate data
   d <- new_dataset_from_auto(import_simple_raster_data())
   sim_weights <- simulate_weights(d, 2, continuous = FALSE)
@@ -241,7 +238,6 @@ test_that("raster (standard boundary format, continous & categorical)", {
 })
 
 test_that("sf (standard boundary format)", {
-  skip_if_not_installed("RandomFields")
   # simulate data
   d <- new_dataset_from_auto(import_simple_vector_data())
   sim_weights <- simulate_weights(d, 2)
@@ -314,7 +310,6 @@ test_that("sf (standard boundary format)", {
 })
 
 test_that("raster (Marxan boundary format)", {
-  skip_if_not_installed("RandomFields")
   # simulate data
   d <- new_dataset_from_auto(import_simple_raster_data())
   sim_weights <- simulate_weights(d, 2)
@@ -387,7 +382,6 @@ test_that("raster (Marxan boundary format)", {
 })
 
 test_that("sf (Marxan boundary format)", {
-  skip_if_not_installed("RandomFields")
   # simulate data
   d <- new_dataset_from_auto(import_simple_vector_data())
   sim_weights <- simulate_weights(d, 2)
@@ -460,7 +454,6 @@ test_that("sf (Marxan boundary format)", {
 })
 
 test_that("default spatial, boundary, attribute paths", {
-  skip_if_not_installed("RandomFields")
   # simulate data
   d <- new_dataset_from_auto(import_simple_raster_data())
   sim_weights <- simulate_weights(d, 2)
@@ -533,7 +526,6 @@ test_that("default spatial, boundary, attribute paths", {
 })
 
 test_that("contact details", {
-  skip_if_not_installed("RandomFields")
   # simulate data
   d <- new_dataset_from_auto(import_simple_raster_data())
   sim_weights <- simulate_weights(d, 2)
@@ -572,7 +564,6 @@ test_that("contact details", {
 })
 
 test_that("provenance", {
-  skip_if_not_installed("RandomFields")
   # simulate data
   d <- new_dataset_from_auto(import_simple_raster_data())
   sim_weights <- simulate_weights(d, 2)
@@ -611,7 +602,6 @@ test_that("provenance", {
 })
 
 test_that("force hide theme, weight, include and exclude", {
-  skip_if_not_installed("RandomFields")
   # simulate data
   d <- new_dataset_from_auto(import_simple_raster_data())
   sim_weights <- simulate_weights(d, 2)

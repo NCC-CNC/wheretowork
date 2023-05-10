@@ -1,7 +1,6 @@
 context("simulate_solution")
 
 test_that("raster dataset (no includes)", {
-  skip_if_not_installed("RandomFields")
   # create object
   d <- new_dataset_from_auto(import_simple_raster_data())
   sim_weights <- simulate_weights(d, 2)
@@ -12,7 +11,6 @@ test_that("raster dataset (no includes)", {
 })
 
 test_that("vector dataset (no includes)", {
-  skip_if_not_installed("RandomFields")
   # create object
   d <- new_dataset_from_auto(import_simple_vector_data())
   sim_weights <- simulate_weights(d, 2)
@@ -23,7 +21,6 @@ test_that("vector dataset (no includes)", {
 })
 
 test_that("raster dataset (includes)", {
-  skip_if_not_installed("RandomFields")
   # create object
   d <- new_dataset_from_auto(import_simple_raster_data())
   sim_weights <- simulate_weights(d, 2)
@@ -35,7 +32,6 @@ test_that("raster dataset (includes)", {
 })
 
 test_that("vector dataset (includes)", {
-  skip_if_not_installed("RandomFields")
   # create object
   d <- new_dataset_from_auto(import_simple_vector_data())
   sim_weights <- simulate_weights(d, 2)
