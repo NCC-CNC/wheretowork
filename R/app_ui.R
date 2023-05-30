@@ -17,6 +17,9 @@ app_ui <- function(request) {
 
       ## manually insert code dependencies so they import correctly
       htmltools::tags$head(
+        ### unblock mixed content
+        htmltools::tags$meta(
+          "http-equiv"="Content-Security-Policy", "content"="upgrade-insecure-requests"),
         ### shinyBS just doesn't work inside Docker containers
         htmltools::tags$script(src = "www/shinyBS-copy.js"),
         ### shinyWidgets has invalid SourceMap configuration
