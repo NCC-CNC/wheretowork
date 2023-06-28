@@ -87,7 +87,7 @@ write_spatial_data <- function(x, dir, name) {
     ## save raster data in GeoTIFF format
     suppressWarnings({
       writeNamedRaster(
-        x = x, filename = file.path(dir, paste0(name, ".tif")),
+        x = terra::rast(x), filename = file.path(dir, paste0(name, ".tif")),
         overwrite = TRUE, NAflag = -9999
       )
     })

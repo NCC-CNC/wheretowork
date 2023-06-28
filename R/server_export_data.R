@@ -110,7 +110,7 @@ server_export_data <- quote({
       }
       # save spatial data
       write_spatial_data(
-        x = terra::rast(d),
+        x = d,
         dir = td,
         name = "data"
       )
