@@ -23,7 +23,7 @@ Write spatial data to disk.
 # read and write raster data
 f1 <- system.file("external/rlogo.grd", package = "raster")
 d1 <- read_spatial_data(f1)
-write_spatial_data(terra::rast(d1), tempdir(), "rlogo")
+write_spatial_data(d1, tempdir(), "rlogo")
 
 # read and write vector data
 f2 <- system.file("shape/nc.shp", package = "sf")
