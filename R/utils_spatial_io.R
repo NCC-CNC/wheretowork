@@ -63,7 +63,7 @@ read_spatial_data <- function(x) {
 #' # read and write raster data
 #' f1 <- system.file("external/rlogo.grd", package = "raster")
 #' d1 <- read_spatial_data(f1)
-#' write_spatial_data(terra::rast(d1), tempdir(), "rlogo")
+#' write_spatial_data(d1, tempdir(), "rlogo")
 #'
 #' # read and write vector data
 #' f2 <- system.file("shape/nc.shp", package = "sf")
@@ -73,7 +73,7 @@ read_spatial_data <- function(x) {
 #' @export
 write_spatial_data <- function(x, dir, name) {
   assertthat::assert_that(
-    inherits(x, c("sf", "SpatRaster")),
+    inherits(x, c("sf", "Raster")),
     assertthat::is.string(dir),
     assertthat::noNA(dir),
     assertthat::is.string(name),
@@ -87,7 +87,7 @@ write_spatial_data <- function(x, dir, name) {
     ## save raster data in GeoTIFF format
     suppressWarnings({
       writeNamedRaster(
-        x = x, filename = file.path(dir, paste0(name, ".tif")),
+        x = terra::rast(x), filename = file.path(dir, paste0(name, ".tif")),
         overwrite = TRUE, NAflag = -9999
       )
     })
