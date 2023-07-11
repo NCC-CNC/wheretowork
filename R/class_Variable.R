@@ -152,6 +152,8 @@ Variable <- R6::R6Class(
       )
       # extract data
       d <- self$get_data()
+      # set 0 value pixels to NA for display
+      d[d==0] <- NA
       # add map pane for variable
       pane_id <- paste0("pane-", id)
       x <- leaflet::addMapPane(x, pane_id, zindex, visible)
