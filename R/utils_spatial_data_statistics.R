@@ -137,7 +137,7 @@ spatial_data_statistics.data.frame <- function(x, type, index = 1) {
     ## continuous data
     out <- list(
       total = sum(x[[index]]),
-      min_value = sort(unique(x[[index]]))[2], # get 2nd smallest number
+      min_value = min(x[[index]]),
       max_value = max(x[[index]])
     )
   } else {

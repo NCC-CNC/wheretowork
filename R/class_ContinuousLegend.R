@@ -54,8 +54,6 @@ ContinuousLegend <- R6::R6Class(
       # calculate breaks
       br <- scales::breaks_extended(n = self$n)(
         c(self$min_value, self$max_value))
-      # set smallest break to min_value, round or ceiling
-      br[[1]] <-  if(self$max_value < 1) round(self$min_value, 2) else ceiling(self$min_value)
       list(
         min_value = min(self$min_value, min(br)),
         max_value = max(self$max_value, max(br)),
