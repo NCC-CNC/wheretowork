@@ -4,6 +4,18 @@
     <loc>/404.html</loc>
   </url>
   <url>
+    <loc>/articles/articles/wtw_data.html</loc>
+  </url>
+  <url>
+    <loc>/articles/articles/wtw_manual.html</loc>
+  </url>
+  <url>
+    <loc>/articles/articles/wtw_theory.html</loc>
+  </url>
+  <url>
+    <loc>/articles/index.html</loc>
+  </url>
+  <url>
     <loc>/authors.html</loc>
   </url>
   <url>
@@ -295,6 +307,9 @@
     <loc>/reference/simulate_continuous_legend.html</loc>
   </url>
   <url>
+    <loc>/reference/simulate_data.html</loc>
+  </url>
+  <url>
     <loc>/reference/simulate_excludes.html</loc>
   </url>
   <url>
@@ -356,6 +371,9 @@
   </url>
   <url>
     <loc>/reference/ThemeResults.html</loc>
+  </url>
+  <url>
+    <loc>/reference/tidyeval.html</loc>
   </url>
   <url>
     <loc>/reference/updateImportSettings.html</loc>

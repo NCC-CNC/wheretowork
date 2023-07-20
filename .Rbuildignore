@@ -40,3 +40,4 @@ docker-compose.yml
 .env
 restart.txt
 logs
+^vignettes/articles$

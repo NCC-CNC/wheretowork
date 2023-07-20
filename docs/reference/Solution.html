@@ -12,8 +12,8 @@
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
@@ -91,6 +91,24 @@ Solution class" />
       <ul class="nav navbar-nav">
         <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/articles/wtw_data.html">Data</a>
+    </li>
+    <li>
+      <a href="../articles/articles/wtw_manual.html">User manual</a>
+    </li>
+    <li>
+      <a href="../articles/articles/wtw_theory.html">Theory</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -197,6 +215,7 @@ Solution class" />
 <li><p><a href='#method-render_theme_results'><code>Solution$render_theme_results()</code></a></p></li>
 <li><p><a href='#method-render_weight_results'><code>Solution$render_weight_results()</code></a></p></li>
 <li><p><a href='#method-render_include_results'><code>Solution$render_include_results()</code></a></p></li>
+<li><p><a href='#method-render_exclude_results'><code>Solution$render_exclude_results()</code></a></p></li>
 <li><p><a href='#method-set_setting'><code>Solution$set_setting()</code></a></p></li>
 <li><p><a href='#method-get_solution_results_widget_data'><code>Solution$get_solution_results_widget_data()</code></a></p></li>
 <li><p><a href='#method-get_map_manager_widget_data'><code>Solution$get_map_manager_widget_data()</code></a></p></li>
@@ -690,6 +709,19 @@ Available options are <code>"visible"</code>.</p></dd>
 <h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
 <p><code><a href='https://rdrr.io/pkg/DT/man/datatable.html'>DT::datatable()</a></code> object.</p>
 <p><hr>
+<a id="method-render_exclude_results"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>render_exclude_results()</code></h3>
+<p>Render exclude results.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Solution</span><span class='op'>$</span><span class='fu'>render_exclude_results</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code><a href='https://rdrr.io/pkg/DT/man/datatable.html'>DT::datatable()</a></code> object.</p>
+<h3 class='hasAnchor' id='list-render-exclude-results-'><a class='anchor' aria-hidden='true' href='#list-render-exclude-results-'></a>Method <code>render_exclude_results()</code></h3>
+<p>Render exclude results.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
+<p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Solution</span><span class='op'>$</span><span class='fu'>render_exclude_results</span><span class='op'>(</span><span class='op'>)</span></code></pre><p></div></p>
+
+<h4 class='hasAnchor' id='returns'><a class='anchor' aria-hidden='true' href='#returns'></a>Returns</h4>
+<p><code><a href='https://rdrr.io/pkg/DT/man/datatable.html'>DT::datatable()</a></code> object.</p>
+<p><hr>
 <a id="method-set_setting"></a></p><h3 class='hasAnchor' id='method-'><a class='anchor' aria-hidden='true' href='#method-'></a>Method <code>set_setting()</code></h3>
 <p>Set setting.</p><h4 class='hasAnchor' id='usage'><a class='anchor' aria-hidden='true' href='#usage'></a>Usage</h4>
 <p><div class="r"></p><pre class='sourceCode r'><code><span class='va'>Solution</span><span class='op'>$</span><span class='fu'>set_setting</span><span class='op'>(</span><span class='va'>name</span>, <span class='va'>value</span><span class='op'>)</span></code></pre><p></div></p>
@@ -827,7 +859,7 @@ Available options are `"visible"``.</p></dd>
 
       <footer>
       <div class="copyright">
-  <p><p>Developed by <a href="https://jeffrey-hanson.com" class="external-link">Jeffrey OHanson</a>, <a href="http://www.richard-schuster.com" class="external-link">RichardSchuster</a>.</p></p>
+  <p><p>Developed by Jeffrey O Hanson, Richard Schuster, Joseph Bennett,Jaimie Vincent, Dan Wismer, Marc Edwards.</p></p>
 </div>
 
 <div class="pkgdown">
