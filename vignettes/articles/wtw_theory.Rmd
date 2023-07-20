@@ -11,7 +11,7 @@ output:
 # Introduction
 
 This article is intended for users already familiar with the basic functionality
-of the Where to Work tool. It is recommended to first read the [official manual](manual.html)
+of the Where to Work tool. It is recommended to first read the [official manual](https://ncc-cnc.github.io/wheretowork/articles/articles/wtw_manual.html)
 before proceeding.
 
 The goal of this article is to explore some of the underlying algorithms and
@@ -60,7 +60,7 @@ Planning units for Where to Work can either be square cells of equal size (i.e.
 a raster layer), or a combination of polygons of any shape and size (i.e. a shapefile). 
 The data preparation for Where to Work involves summarizing all of the Themes,
 Weights, Includes and Excludes in each planning unit. More information on this can
-be found in the [data article](data.html) and in the 
+be found in the [data article](https://ncc-cnc.github.io/wheretowork/articles/articles/wtw_data.html) and in the 
 [wtw-data-prep](https://github.com/NCC-CNC/wtw-data-prep) github repo.
 
 # Theme Goals
@@ -83,7 +83,7 @@ sense to have categorical or ordinal data in Where to Work for example because t
 cannot be summed for Goal-setting. A land cover map representing forested and grassland
 areas for example would need to be separated out into two individual Themes where
 the planning unit values represent the area of each land cover type within the planning
-unit. See the [data article](https://ncc-cnc.github.io/wheretowork/data.html) 
+unit. See the [data article](https://ncc-cnc.github.io/wheretowork/articles/articles/wtw_data.html) 
 for more examples of this.
 
 # Includes/Excludes
@@ -91,7 +91,7 @@ for more examples of this.
 Includes and Excludes are simple to understand, they force-in or block-out planning
 units from the final solution. They can be a powerful way of customizing
 your `conservation problem`. See the [Advanced workflow](#advancedworkflows)
-section for examples and the [data article](https://ncc-cnc.github.io/wheretowork/data.html) 
+section for examples and the [data article](https://ncc-cnc.github.io/wheretowork/articles/articles/wtw_data.html) 
 for data prep tips.
 
 # Area-budget

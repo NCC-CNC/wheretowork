@@ -10,13 +10,17 @@ output:
 
 # Introduction
 
+This article is intended for users already familiar with the basic functionality
+of the Where to Work tool. It is recommended to first read the [official manual](https://ncc-cnc.github.io/wheretowork/articles/articles/wtw_manual.html)
+before proceeding.
+
 Input data for Where to Work needs to be summarized by planning unit during the 
 data-prep stage. We strongly recommend using the 4-file input format described in
 [wtw-data-prep](https://github.com/NCC-CNC/wtw-data-prep) with raster planning units,
 or shapefile planning units if planning units of different shapes and sizes are 
 required.
 
-As described in the Goals section of the [wtw-theory](theory.html#goals) article, Where to Work
+As described in the Goals section of the [wtw-theory](https://ncc-cnc.github.io/wheretowork/articles/articles/wtw_theory.html#goals) article, Where to Work
 operates on the values assigned to each planning unit. Planning unit
 values for Themes, Weights, Includes and Excludes therefore need to be carefully
 prepared before feeding the planning units into Where to Work. 
