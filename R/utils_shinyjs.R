@@ -104,7 +104,7 @@ change_file_icon_js <- function(x, hex, tool_tip) {
   invisible(TRUE)
 }
 
-#' Change file icon and update tool tip
+#' Remove map pane using CSS selector
 #'
 #' @param id `character` CSS selector.
 #'
