@@ -8,10 +8,20 @@
 application for <br /> solving complex conservation scenarios using
 concepts <br /> of systematic conservation planning.
 </p>
+
+<br />
+
 <p style="font-family:century; font-size: 25px">
 Where to Work provides a user friendly interface <br /> for developing
 conservation scenarios. <br /> It utilizes the
 <a href="https://prioritizr.net/index.html">prioritizr</a> R package to
 quickly <br /> find the best conservation solutions.
 </p>
+
+<br />
+
+<br />
+
+<img src="man/figures/acknowledgements.png"/>
+
 </center>
