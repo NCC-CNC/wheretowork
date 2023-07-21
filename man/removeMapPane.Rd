@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils_shinyjs.R
 \name{removeMapPane}
 \alias{removeMapPane}
-\title{Change file icon and update tool tip}
+\title{Remove map pane using CSS selector}
 \usage{
 removeMapPane(id)
 }
@@ -13,5 +13,5 @@ removeMapPane(id)
 Invisible \code{TRUE}.
 }
 \description{
-Change file icon and update tool tip
+Remove map pane using CSS selector
 }
