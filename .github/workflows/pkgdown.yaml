@@ -42,11 +42,9 @@ jobs:
       - name: Install dependencies
         run: |
           options(install.packages.compile.from.source = "never")
-          install.packages(c("renv", "pkgdown"))
+          install.packages(c("renv"))
           renv::restore()
-#          remotes::install_cran("rcmdcheck")
-#          remotes::install_cran("covr")
-#          remotes::install_bioc("lpsymphony")
+          install.packages(c("pkgdown"))
         shell: Rscript {0}
 
 #      - uses: r-lib/actions/setup-r-dependencies@v2
