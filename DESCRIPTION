@@ -19,9 +19,9 @@ Authors@R: c(
   person(c('Joseph'), 'Bennett', role = c('aut')),
   person(c('Jaimie'), 'Vincent', role = c('aut')),
   person(c('Dan'), 'Wismer',
-    email='dan.wismer@natureconservancy.ca', role = c('cre')),
+    email='dan.wismer@natureconservancy.ca', role = c('ctb')),
   person(c('Marc'), 'Edwards',
-    email='marc.edwards@natureconservancy.ca', role = c('cre'))
+    email='marc.edwards@natureconservancy.ca', role = c('ctb'))
     )
 Imports:
     utils,
