@@ -219,7 +219,16 @@ min_shortfall_result <- function(area_budget_proportion,
 
   # generate rij data
   rij_data <- theme_data
-
+  
+  # Which PUs have active themes with data?
+  # Logical vector of PUs for Themes with status==TRUE and positive values
+  pu_active_themes <- 
+    Matrix::colSums(
+      theme_data[row.names(theme_data) %in% theme_settings$id[theme_settings$status],
+                 , drop = FALSE]) > 0 # logical vector used in initial_pu_idx
+  pu_active_themes_idx <- which(pu_active_themes) # index used for weight targets
+  
+  
   # calculate targets
   ## extract values
   targets <-
@@ -300,9 +309,11 @@ min_shortfall_result <- function(area_budget_proportion,
         feature = weight_settings$id[wn_pos_idx],
         type = "absolute",
         sense = ">=",
+        # Calc Weights Goal using oly PUs that have active Themes. Matches
+        # initial_pu_idx
         target = c(
-          Matrix::rowSums(wn_pos_data) *
-          (weight_settings$factor[wn_pos_idx] / 100)
+          Matrix::rowSums(wn_pos_data[, pu_active_themes_idx, drop = FALSE]) *
+            (weight_settings$factor[wn_pos_idx] / 100) 
         )
       )
     )
@@ -316,7 +327,7 @@ min_shortfall_result <- function(area_budget_proportion,
       wn_neg_data[i, ] <- scales::rescale(wn_neg_data[i, ], to = c(0.01, 100))
     }
     wn_neg_thresholds <- c(
-      Matrix::rowSums(wn_neg_data) *
+      Matrix::rowSums(wn_neg_data[, pu_active_themes_idx, drop = FALSE]) *
       (1 - abs(weight_settings$factor[wn_neg_idx] / 100))
     )
   }
@@ -353,12 +364,11 @@ min_shortfall_result <- function(area_budget_proportion,
 
   # generate solution
   if (!isTRUE(cache$exists(key))) {
-    ## extract indices for planning unit with at least some data
+    ## extract indices for planning unit with includes, excludes and active themes data
     initial_pu_idx <- which(
-      Matrix::colSums(theme_data) > 0 |
-      Matrix::colSums(weight_data) > 0 |
-      Matrix::colSums(include_data) > 0 |
-      Matrix::colSums(exclude_data) > 0  
+      pu_active_themes | 
+        locked_in |
+        locked_out
     )
     ## generate initial prioritization problem with subset of planning units
     ## this is needed to prevent CBC from crashing, #158
