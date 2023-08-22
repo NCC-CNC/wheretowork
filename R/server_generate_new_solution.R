@@ -249,7 +249,7 @@ server_generate_new_solution <- quote({
         msg <- paste0(
           "Another Gurobi process is running. ",
           "Only one license can be used at a time. ",
-          "Try again, or untoggle the Gurobi swith to use the defaut open source solver."
+          "Try again, or untoggle the Gurobi switch to use the default open source solver."
           )
       } else {
         msg <- "Something went wrong, please try again."
