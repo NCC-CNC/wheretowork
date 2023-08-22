@@ -53,6 +53,7 @@ server_generate_new_solution <- quote({
     disable_html_element("newSolutionPane_settings_start_button")
     disable_html_element("newSolutionPane_settings_name")
     disable_html_element("newSolutionPane_settings_color")
+    disable_html_element("newSolutionPane_settings_gurobi")
 
     ## generate id and store it in app_data
     curr_id <- uuid::UUIDgenerate()
@@ -379,6 +380,7 @@ server_generate_new_solution <- quote({
     shinyFeedback::resetLoadingButton("newSolutionPane_settings_start_button")
     enable_html_element("newSolutionPane_settings_name")
     enable_html_element("newSolutionPane_settings_color")
+    enable_html_element("newSolutionPane_settings_gurobi")
     disable_html_element("newSolutionPane_settings_start_button")
   })
 
