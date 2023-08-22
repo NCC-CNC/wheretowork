@@ -425,9 +425,17 @@ min_set_result <- function(area_data,
       prioritizr::add_min_set_objective() %>%
       prioritizr::add_manual_targets(targets_inc_fake) %>%
       prioritizr::add_binary_decisions() %>%
-      prioritizr::add_cbc_solver(
-        verbose = verbose, gap = gap_1, time_limit = time_limit_1
-      )
+      #### set solver
+      {if (try_gurobi) 
+        prioritizr::add_gurobi_solver(
+          ., verbose = verbose, gap = gap_1, time_limit = time_limit_1
+        ) 
+       else
+         prioritizr::add_cbc_solver(
+           ., verbose = verbose, gap = gap_1, time_limit = time_limit_1
+        )
+      }
+    
     ### add locked in constraints if needed
     if (any(locked_in[initial_pu_idx])) {
       initial_problem <-
@@ -510,10 +518,19 @@ min_set_result <- function(area_data,
         )
       ) %>%
       prioritizr::add_binary_decisions() %>%
-      prioritizr::add_cbc_solver(
-        verbose = verbose, gap = gap_2, time_limit = time_limit_2,
-        start_solution = pmax(initial_solution, locked_in)
-      )
+      #### set solver
+      {if (try_gurobi) 
+        prioritizr::add_gurobi_solver(
+          ., verbose = verbose, gap = gap_1, time_limit = time_limit_1,
+          start_solution = pmax(initial_solution, locked_in)
+        ) 
+       else
+         prioritizr::add_cbc_solver(
+           ., verbose = verbose, gap = gap_1, time_limit = time_limit_1,
+           start_solution = pmax(initial_solution, locked_in)
+        )
+      }
+    
     ### add locked in constraints if needed
     if (any(locked_in)) {
       main_problem <-
