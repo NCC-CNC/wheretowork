@@ -91,6 +91,8 @@ server_generate_new_solution <- quote({
     ) / 100
     curr_parameters <- lapply(app_data$ss$parameters, function(x) x$clone())
     curr_overlap <- app_data$ss$get_parameter("overlap_parameter")$status
+    #### gurobi web license server check-in
+    try_gurobi <- input$newSolutionPane_settings_gurobi
 
     ## if failed to generate solution...
     if (!any(curr_theme_settings$status > 0.5)) {
@@ -180,7 +182,8 @@ server_generate_new_solution <- quote({
               cache = curr_cache,
               time_limit_1 = curr_time_limit_1,
               time_limit_2 = curr_time_limit_2,
-              verbose = curr_verbose
+              verbose = curr_verbose,
+              try_gurobi = try_gurobi
             ),
             silent = TRUE
           )
