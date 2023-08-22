@@ -87,6 +87,7 @@ Suggests:
     devtools (>= 2.4.2),
     whereami (>= 0.1.9),
     pkgdown (>= 1.6.1.9001),
+    gurobi (>= 10.0-2),
 Depends:
     R (>= 4.0.0),
     shinyBS (>= 0.6.1),
