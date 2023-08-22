@@ -143,6 +143,16 @@ import_data <- function(x, mode) {
 
   # set app mode
   shinyjs::runjs(paste0("document.body.classList.add('", app_data$mode, "');"))
+  
+  # set gurobi toggle switch
+  if (identical(mode, "advanced") || identical(app_data$mode, "advanced")) {
+    ## do nothing
+  } else {
+    ## completely remove gurobi toggle switch
+    shinyjs::runjs(
+        "document.querySelector('.solution-footer-gurobi').remove();"
+      )
+  }
 
   # update map manager sidebar
   output$mapManagerPane_settings <-
