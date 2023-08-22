@@ -57,6 +57,9 @@ NULL
 #'
 #' @param verbose `logical` value indicating if information should be
 #'  displayed when generating solutions. Defaults to `FALSE`.
+#'  
+#' @param try_gurobi `logical` value indicating if the Gurobi solver should be
+#'  used when generating solutions. Defaults to `FALSE`.
 #'
 #' @return A [Solution] object containing the solution.
 #'
@@ -172,7 +175,9 @@ min_set_result <- function(area_data,
                            time_limit_1 = .Machine$integer.max,
                            time_limit_2 = .Machine$integer.max,
                            verbose = FALSE,
-                           id = uuid::UUIDgenerate()) {
+                           id = uuid::UUIDgenerate(),
+                           try_gurobi = FALSE) {
+  
   # validate arguments
   assertthat::assert_that(
     ## id
@@ -230,7 +235,9 @@ min_set_result <- function(area_data,
     assertthat::is.number(boundary_gap),
     assertthat::noNA(boundary_gap),
     ## cache
-    inherits(cache, "cachem")
+    inherits(cache, "cachem"),
+    ## try_gurobi
+    assertthat::is.flag(try_gurobi)
   )
   
   if (inherits(boundary_data, c("dsCMatrix", "dgCMatrix"))) {
