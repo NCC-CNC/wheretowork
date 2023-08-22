@@ -279,6 +279,7 @@ server_generate_new_solution <- quote({
       shinyFeedback::resetLoadingButton("newSolutionPane_settings_start_button")
       enable_html_element("newSolutionPane_settings_color")
       enable_html_element("newSolutionPane_settings_name")
+      enable_html_element("newSolutionPane_settings_gurobi")
       ## exit
       return()
     }
