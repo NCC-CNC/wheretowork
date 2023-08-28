@@ -525,14 +525,6 @@
       "Repository": "CRAN",
       "Hash": "ac5c6baf7822ce8732b343f14c072c4d"
     },
-    "gurobi": {
-      "Package": "gurobi",
-      "Version": "10.0-2",
-      "Source": "Local",
-      "RemoteType": "local",
-      "RemoteUrl": "C:/gurobi1002/win64/R/gurobi_10.0-2.zip",
-      "Hash": "5d83e753de6e17f37a5ed82e32776eb6"
-    },
     "here": {
       "Package": "here",
       "Version": "1.0.1",
