@@ -1,5 +1,5 @@
 external.libraries:
-ignored.packages:
+ignored.packages: gurobi
 package.dependency.fields: Imports, Depends, LinkingTo
 r.version:
 snapshot.type: explicit
