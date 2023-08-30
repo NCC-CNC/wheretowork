@@ -63,6 +63,7 @@ advanced:
   strategy: "auto"
   verbose: false
   monitor: false
+  GRB_LICENSE_FILE: "/opt/license/gurobi.lic"
 
 project:
   mode: "project"

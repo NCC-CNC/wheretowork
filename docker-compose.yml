@@ -9,9 +9,12 @@ services:
     ports:
       - "3838:3838"
     environment:
-      # environmental variables defined in ./.env
+      # environmental variables defined in ./.env that get sent to container
       - FORCE_DEFAULT_PROJECTS
       - PROJECT_DIRECTORY
       - R_CONFIG_ACTIVE
+      - GRB_LICENSE_FILE
     volumes:
       - "${PROJECT_DIRECTORY}:/projects"
+      - "${GRB_LICENSE_FILE}:/opt/license"
+      
