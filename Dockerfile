@@ -27,12 +27,25 @@ RUN add-apt-repository ppa:ubuntugis/ubuntugis-unstable && \
       libfontconfig1-dev \
     && rm -rf /var/lib/apt/lists/*
 
+## install gurobi
+ENV GRB_VERSION 10.0.2
+ENV GRB_SHORT_VERSION 10.0
+ENV GUROBI_HOME /opt/gurobi/linux64
+ENV LD_LIBRARY_PATH ${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib
+RUN wget -v https://packages.gurobi.com/${GRB_SHORT_VERSION}/gurobi${GRB_VERSION}_linux64.tar.gz \
+    && tar -xvf gurobi${GRB_VERSION}_linux64.tar.gz  \
+    && rm -f gurobi${GRB_VERSION}_linux64.tar.gz \
+    && mv -f gurobi* /opt/gurobi \
+    && rm -rf gurobi/linux64/docs
+RUN export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib"
+
 ## install R packages
 RUN mkdir /renv
 COPY renv.lock /renv/renv.lock
 RUN cd /renv && \
     Rscript -e 'install.packages(c("renv", "remotes"))' && \
-    Rscript -e 'renv::restore()'
+    Rscript -e 'renv::restore()' && \
+    Rscript -e 'renv::install(dir(paste0(Sys.getenv("GUROBI_HOME"), "/R"), "^.*\\.zip",full.names = TRUE))'
 
 ## install app
 RUN mkdir /app
