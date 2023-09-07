@@ -16,5 +16,5 @@ services:
       - GRB_LICENSE_FILE
     volumes:
       - "${PROJECT_DIRECTORY}:/projects"
-      - "C:/gurobi/gurobi.lic:/opt/gurobi/gurobi.lic:ro"
+      - "${PATH_TO_GUROBI_LICENSE}:/opt/gurobi/gurobi.lic:ro"
       
