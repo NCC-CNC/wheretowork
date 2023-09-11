@@ -521,12 +521,12 @@ min_set_result <- function(area_data,
       #### set solver
       {if (try_gurobi) 
         prioritizr::add_gurobi_solver(
-          ., verbose = verbose, gap = gap_1, time_limit = time_limit_1,
+          ., verbose = verbose, gap = gap_2, time_limit = time_limit_2,
           start_solution = pmax(initial_solution, locked_in)
         ) 
        else
          prioritizr::add_cbc_solver(
-           ., verbose = verbose, gap = gap_1, time_limit = time_limit_1,
+           ., verbose = verbose, gap = gap_2, time_limit = time_limit_2,
            start_solution = pmax(initial_solution, locked_in)
         )
       }
