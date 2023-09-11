@@ -47,7 +47,6 @@ default:
 # development configuration
 dev:
   golem_wd: !expr here::here()
-  GRB_LICENSE_FILE: "C:/gurobi/gurobi.lic"
 
 # production configurations
 beginner:
@@ -63,7 +62,6 @@ advanced:
   strategy: "auto"
   verbose: false
   monitor: false
-  GRB_LICENSE_FILE: "/opt/license/gurobi.lic"
 
 project:
   mode: "project"
