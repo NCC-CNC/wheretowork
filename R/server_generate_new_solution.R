@@ -37,6 +37,7 @@ server_generate_new_solution <- quote({
       enable_html_element("newSolutionPane_settings_start_button")
       enable_html_element("newSolutionPane_settings_name")
       enable_html_element("newSolutionPane_settings_color")
+      enable_html_element("newSolutionPane_settings_gurobi")
       shinyjs::disable("newSolutionPane_settings_stop_button")
     }
   })
@@ -119,12 +120,13 @@ server_generate_new_solution <- quote({
       )
       ### reset buttons
       shinyFeedback::resetLoadingButton("newSolutionPane_settings_start_button")
-      disable_html_element("newSolutionPane_settings_name")
-      disable_html_element("newSolutionPane_settings_color")
+      enable_html_element("newSolutionPane_settings_start_button")
+      enable_html_element("newSolutionPane_settings_name")
+      enable_html_element("newSolutionPane_settings_color")
+      enable_html_element("newSolutionPane_settings_gurobi")
       ## exit
       return()
     }
-
 
       ## enable stop button
       shinyjs::enable("newSolutionPane_settings_stop_button")
