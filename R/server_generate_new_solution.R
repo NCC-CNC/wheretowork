@@ -245,12 +245,14 @@ server_generate_new_solution <- quote({
           "This is likely caused by a weight setting confilcting with the total",
           " area budget. Try setting your weight(s) closer to 0."
         ) 
-      } else if (startsWith(msg, "Error 10009:")) {
+      } else if (startsWith(msg, "Error 10009:") || startsWith(msg, "Error 10030:")) {
         msg <- paste0(
           "Another Gurobi process is running. ",
           "Only one license can be used at a time. ",
-          "Try again, or untoggle the Gurobi switch to use the default open source solver."
-          )
+          "Try again, or untoggle the Gurobi switch to use the default open source solver. ",
+          "Details, ",
+          msg
+        )
       } else {
         msg <- "Something went wrong, please try again."
       }
