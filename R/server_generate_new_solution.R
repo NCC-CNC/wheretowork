@@ -158,7 +158,8 @@ server_generate_new_solution <- quote({
               cache = curr_cache,
               time_limit_1 = curr_time_limit_1,
               time_limit_2 = curr_time_limit_2,
-              verbose = curr_verbose
+              verbose = curr_verbose,
+              try_gurobi = try_gurobi
             ),
             silent = TRUE
           )
