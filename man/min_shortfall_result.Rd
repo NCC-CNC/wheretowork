@@ -25,7 +25,8 @@ min_shortfall_result(
   time_limit_1 = .Machine$integer.max,
   time_limit_2 = .Machine$integer.max,
   verbose = FALSE,
-  id = uuid::UUIDgenerate()
+  id = uuid::UUIDgenerate(),
+  try_gurobi = FALSE
 )
 }
 \arguments{
@@ -84,6 +85,9 @@ Defaults to the maximum integer.}
 displayed when generating solutions. Defaults to \code{FALSE}.}
 
 \item{id}{\code{character} identifier for new result.}
+
+\item{try_gurobi}{\code{logical} value indicating if the Gurobi solver should be
+used when generating solutions. Defaults to \code{FALSE}.}
 }
 \value{
 A \link{Solution} object containing the solution.

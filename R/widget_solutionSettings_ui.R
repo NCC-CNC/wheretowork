@@ -278,6 +278,26 @@ solutionSettings_html <- function(id, style, class, ...) {
           )
         ),
         htmltools::tags$div(
+          class = "solution-footer-gurobi",
+          htmltools::tags$label(
+            class = "el-switch el-switch-sm",
+            htmltools::tags$input(
+              type = "checkbox",
+              class = "status-checkbox status",
+              id = paste0(id, "_gurobi")
+            ),
+            htmltools::tags$span(
+              class = "el-switch-style",
+              `data-toggle` = "tooltip",
+              `data-placement` = "top",
+              `data-container` = "body",
+              `data-trigger` = "hover",
+              title = "Enable/disable Gurobi solver",
+              `for` = paste0(id, "_gurobi")
+            )
+           )
+          ),
+        htmltools::tags$div(
           class = "solution-footer-start-button",
           `data-toggle` = "tooltip",
           `data-placement` = "top",

@@ -57,6 +57,9 @@ NULL
 #'
 #' @param verbose `logical` value indicating if information should be
 #'  displayed when generating solutions. Defaults to `FALSE`.
+#'  
+#' @param try_gurobi `logical` value indicating if the Gurobi solver should be
+#'  used when generating solutions. Defaults to `FALSE`.
 #'
 #' @return A [Solution] object containing the solution.
 #'
@@ -172,7 +175,9 @@ min_set_result <- function(area_data,
                            time_limit_1 = .Machine$integer.max,
                            time_limit_2 = .Machine$integer.max,
                            verbose = FALSE,
-                           id = uuid::UUIDgenerate()) {
+                           id = uuid::UUIDgenerate(),
+                           try_gurobi = FALSE) {
+  
   # validate arguments
   assertthat::assert_that(
     ## id
@@ -230,7 +235,9 @@ min_set_result <- function(area_data,
     assertthat::is.number(boundary_gap),
     assertthat::noNA(boundary_gap),
     ## cache
-    inherits(cache, "cachem")
+    inherits(cache, "cachem"),
+    ## try_gurobi
+    assertthat::is.flag(try_gurobi)
   )
   
   if (inherits(boundary_data, c("dsCMatrix", "dgCMatrix"))) {
@@ -418,9 +425,17 @@ min_set_result <- function(area_data,
       prioritizr::add_min_set_objective() %>%
       prioritizr::add_manual_targets(targets_inc_fake) %>%
       prioritizr::add_binary_decisions() %>%
-      prioritizr::add_cbc_solver(
-        verbose = verbose, gap = gap_1, time_limit = time_limit_1
-      )
+      #### set solver
+      {if (try_gurobi) 
+        prioritizr::add_gurobi_solver(
+          ., verbose = verbose, gap = gap_1, time_limit = time_limit_1
+        ) 
+       else
+         prioritizr::add_cbc_solver(
+           ., verbose = verbose, gap = gap_1, time_limit = time_limit_1
+        )
+      }
+    
     ### add locked in constraints if needed
     if (any(locked_in[initial_pu_idx])) {
       initial_problem <-
@@ -503,10 +518,19 @@ min_set_result <- function(area_data,
         )
       ) %>%
       prioritizr::add_binary_decisions() %>%
-      prioritizr::add_cbc_solver(
-        verbose = verbose, gap = gap_2, time_limit = time_limit_2,
-        start_solution = pmax(initial_solution, locked_in)
-      )
+      #### set solver
+      {if (try_gurobi) 
+        prioritizr::add_gurobi_solver(
+          ., verbose = verbose, gap = gap_2, time_limit = time_limit_2,
+          start_solution = pmax(initial_solution, locked_in)
+        ) 
+       else
+         prioritizr::add_cbc_solver(
+           ., verbose = verbose, gap = gap_2, time_limit = time_limit_2,
+           start_solution = pmax(initial_solution, locked_in)
+        )
+      }
+    
     ### add locked in constraints if needed
     if (any(locked_in)) {
       main_problem <-

@@ -37,6 +37,7 @@ server_generate_new_solution <- quote({
       enable_html_element("newSolutionPane_settings_start_button")
       enable_html_element("newSolutionPane_settings_name")
       enable_html_element("newSolutionPane_settings_color")
+      enable_html_element("newSolutionPane_settings_gurobi")
       shinyjs::disable("newSolutionPane_settings_stop_button")
     }
   })
@@ -53,6 +54,7 @@ server_generate_new_solution <- quote({
     disable_html_element("newSolutionPane_settings_start_button")
     disable_html_element("newSolutionPane_settings_name")
     disable_html_element("newSolutionPane_settings_color")
+    disable_html_element("newSolutionPane_settings_gurobi")
 
     ## generate id and store it in app_data
     curr_id <- uuid::UUIDgenerate()
@@ -91,6 +93,8 @@ server_generate_new_solution <- quote({
     ) / 100
     curr_parameters <- lapply(app_data$ss$parameters, function(x) x$clone())
     curr_overlap <- app_data$ss$get_parameter("overlap_parameter")$status
+    #### gurobi web license server check-in
+    try_gurobi <- input$newSolutionPane_settings_gurobi
 
     ## if failed to generate solution...
     if (!any(curr_theme_settings$status > 0.5)) {
@@ -116,12 +120,13 @@ server_generate_new_solution <- quote({
       )
       ### reset buttons
       shinyFeedback::resetLoadingButton("newSolutionPane_settings_start_button")
-      disable_html_element("newSolutionPane_settings_name")
-      disable_html_element("newSolutionPane_settings_color")
+      enable_html_element("newSolutionPane_settings_start_button")
+      enable_html_element("newSolutionPane_settings_name")
+      enable_html_element("newSolutionPane_settings_color")
+      enable_html_element("newSolutionPane_settings_gurobi")
       ## exit
       return()
     }
-
 
       ## enable stop button
       shinyjs::enable("newSolutionPane_settings_stop_button")
@@ -153,7 +158,8 @@ server_generate_new_solution <- quote({
               cache = curr_cache,
               time_limit_1 = curr_time_limit_1,
               time_limit_2 = curr_time_limit_2,
-              verbose = curr_verbose
+              verbose = curr_verbose,
+              try_gurobi = try_gurobi
             ),
             silent = TRUE
           )
@@ -180,7 +186,8 @@ server_generate_new_solution <- quote({
               cache = curr_cache,
               time_limit_1 = curr_time_limit_1,
               time_limit_2 = curr_time_limit_2,
-              verbose = curr_verbose
+              verbose = curr_verbose,
+              try_gurobi = try_gurobi
             ),
             silent = TRUE
           )
@@ -241,6 +248,14 @@ server_generate_new_solution <- quote({
           "This is likely caused by a weight setting confilcting with the total",
           " area budget. Try setting your weight(s) closer to 0."
         ) 
+      } else if (startsWith(msg, "Error 10009:") || startsWith(msg, "Error 10030:")) {
+        msg <- paste0(
+          "Another Gurobi process is running. ",
+          "Only one license can be used at a time. ",
+          "Try again, or untoggle the Gurobi switch to use the default open source solver. ",
+          "Details, ",
+          msg
+        )
       } else {
         msg <- "Something went wrong, please try again."
       }
@@ -269,6 +284,7 @@ server_generate_new_solution <- quote({
       shinyFeedback::resetLoadingButton("newSolutionPane_settings_start_button")
       enable_html_element("newSolutionPane_settings_color")
       enable_html_element("newSolutionPane_settings_name")
+      enable_html_element("newSolutionPane_settings_gurobi")
       ## exit
       return()
     }
@@ -370,6 +386,7 @@ server_generate_new_solution <- quote({
     shinyFeedback::resetLoadingButton("newSolutionPane_settings_start_button")
     enable_html_element("newSolutionPane_settings_name")
     enable_html_element("newSolutionPane_settings_color")
+    enable_html_element("newSolutionPane_settings_gurobi")
     disable_html_element("newSolutionPane_settings_start_button")
   })
 

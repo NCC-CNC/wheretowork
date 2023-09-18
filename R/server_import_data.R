@@ -143,6 +143,16 @@ import_data <- function(x, mode) {
 
   # set app mode
   shinyjs::runjs(paste0("document.body.classList.add('", app_data$mode, "');"))
+  
+  # gurobi toggle switch for staff-advanced and admin user groups ONLY
+  if (any(user_groups %in% c("staff-advanced", "admin"))) {
+    # do nothing
+  } else {
+    ## completely remove gurobi toggle switch
+    shinyjs::runjs(
+      "document.querySelector('.solution-footer-gurobi').remove();"
+    )
+  }  
 
   # update map manager sidebar
   output$mapManagerPane_settings <-
