@@ -29,7 +29,7 @@ class MultiThemeSetting {
     this.single_limit_values = feature_limit_goal;
     this.units = units;
     this.group_limit_goal = Math.max.apply(Math, feature_limit_goal);
-    this.previous_group_goal = Math.max.apply(Math, feature_goal);
+    this.previous_group_goal = 0.2 // set group goal at 20% when app inits
     this.previous_single_goals = [...feature_goal];
 
     /// HTML container
@@ -162,7 +162,7 @@ class MultiThemeSetting {
       Math.max.apply(Math, feature_current_held));
     /// slider
     noUiSlider.create(this.group_goal_el, {
-      start: Math.max.apply(Math, feature_goal),
+      start: 0.2, // set group goal at 20% when app inits
       step: Math.min.apply(Math, feature_step_goal),
       connect: "lower",
       range: {
@@ -270,7 +270,7 @@ class MultiThemeSetting {
         //// reset status
         that.updateFeatureStatus(feature_status);
         /// reset goals
-        that.updateGroupGoal(Math.max.apply(Math, feature_goal));
+        that.updateGroupGoal(0.2); // reset group goal to 20%
         that.updateFeatureGoal(feature_goal);
         /// pass status data to Shiny
         Shiny.setInputValue(manager, {
