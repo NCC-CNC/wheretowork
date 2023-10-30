@@ -443,6 +443,13 @@ solutionSettings_html <- function(id, style, class, ...) {
             shiny::tabsetPanel(
               type = "tabs",
               id = "view",
+              ## single view
+              shiny::tabPanel(
+                "single",
+                htmltools::tags$div(
+                  class = "single-view"
+                )
+              ),
               ## group view panel
               shiny::tabPanel(
                 "group",
@@ -450,14 +457,7 @@ solutionSettings_html <- function(id, style, class, ...) {
                   class = "group-view",
                   ss_group_goal_component_scaffold()
                 )
-              ),
-              ## single view
-              shiny::tabPanel(
-                "single",
-                htmltools::tags$div(
-                  class = "single-view"
-                )
-              )
+              )              
             )
           )
         )

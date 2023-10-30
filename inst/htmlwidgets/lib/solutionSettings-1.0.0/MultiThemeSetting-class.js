@@ -134,15 +134,15 @@ class MultiThemeSetting {
     this.el
       .querySelector(".tabbable .tab-content")
       .setAttribute("data-tabsetid", `tabs-${this.elementId}`);
-    /// group tab
-    this.group_tab_el.setAttribute("href", `#tabs-${this.elementId}-1`);
-    this.el
-      .querySelector(".tabbable .tab-content [data-value='group']")
-      .setAttribute("id", `tabs-${this.elementId}-1`);
     /// single tab
-    this.single_tab_el.setAttribute("href", `#tabs-${this.elementId}-2`);
+    this.single_tab_el.setAttribute("href", `#tabs-${this.elementId}-1`);
     this.el
       .querySelector(".tabbable .tab-content [data-value='single']")
+      .setAttribute("id", `tabs-${this.elementId}-1`);      
+    /// group tab
+    this.group_tab_el.setAttribute("href", `#tabs-${this.elementId}-2`);
+    this.el
+      .querySelector(".tabbable .tab-content [data-value='group']")
       .setAttribute("id", `tabs-${this.elementId}-2`);
 
     // set initial theme values
