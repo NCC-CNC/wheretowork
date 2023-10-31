@@ -443,21 +443,23 @@ solutionSettings_html <- function(id, style, class, ...) {
             shiny::tabsetPanel(
               type = "tabs",
               id = "view",
+              ## single view
+              shiny::tabPanel(
+                title = "optimize single goals",
+                value = "single",
+                htmltools::tags$div(
+                  class = "single-view"
+                )
+              ),
               ## group view panel
               shiny::tabPanel(
-                "group",
+                title = "optimize group goal",
+                value = "group",
                 htmltools::tags$div(
                   class = "group-view",
                   ss_group_goal_component_scaffold()
                 )
-              ),
-              ## single view
-              shiny::tabPanel(
-                "single",
-                htmltools::tags$div(
-                  class = "single-view"
-                )
-              )
+              )              
             )
           )
         )
