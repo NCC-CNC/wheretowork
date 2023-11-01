@@ -11,6 +11,8 @@ app_global <- quote({
 
   # initialize file upload limits
   options(shiny.maxRequestSize = 1000*1024^2) # 1GB
+  # set global variables limit for future package
+  options(future.globals.maxSize= 1000*1024^2) # 1GB
 
   # initialize asynchronous processing
   ## identify strategy
