@@ -18,9 +18,6 @@ server_import_builtin_data <- quote({
     ## specify dependencies
     shiny::req(input$importModal_builtin_button)
     shiny::req(input$importModal_name)
-    
-    # built-in force hide layers
-    app_data$builtin_hidden <- input$importModal_builtin_hide_layers    
 
     ## update import button
     disable_html_element("importModal_builtin_button")
@@ -30,7 +27,6 @@ server_import_builtin_data <- quote({
       read_project(
         path = input$importModal_name,
         mode = get_golem_config("mode"),
-        force_hidden = app_data$builtin_hidden
       ),
       silent = TRUE
     )
