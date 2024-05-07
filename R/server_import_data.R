@@ -70,7 +70,7 @@ import_data <- function(x, mode) {
       step_value = 1,
       units = "%",
       hide = TRUE,
-      disable = shiny::isTruthy(app_data$shp_hidden),
+      disable = FALSE,
       tool_tip =
         "Specify how much effort that should be spent on promoting spatial 
         clustering in the solution. When no budget is specified, this controls 
@@ -85,7 +85,7 @@ import_data <- function(x, mode) {
   solution_layer_parameter <-
     wheretowork::new_parameter(
       name = "Hide solution layer from map",
-      status = shiny::isTruthy(app_data$shp_hidden),
+      status = FALSE,
       hide = TRUE,
       disable = FALSE,
       tool_tip = 
