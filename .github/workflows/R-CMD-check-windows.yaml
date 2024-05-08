@@ -3,14 +3,15 @@
 on:
   schedule:
     - cron: 0 0 * * 1 # schedule to run at midnight on Monday each week
-  push:
+  push: # trigger on push
     branches:
       - main
       - master
-  pull_request:
+  pull_request: # trigger on PR
     branches:
       - main
       - master
+      - dev
 
 name: Windows
 
