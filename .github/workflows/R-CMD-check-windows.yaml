@@ -24,7 +24,7 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: windows-latest, r: '4.1.0'}
+          - {os: windows-latest, r: '4.1.2'}
           
     env:
       _R_REMOTES_NO_ERRORS_FROM_WARNINGS_: true
