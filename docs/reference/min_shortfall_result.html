@@ -165,7 +165,8 @@ using the minimum shortfall formulation of the reserve selection problem.</p>
   time_limit_1 <span class='op'>=</span> <span class='va'>.Machine</span><span class='op'>$</span><span class='va'>integer.max</span>,
   time_limit_2 <span class='op'>=</span> <span class='va'>.Machine</span><span class='op'>$</span><span class='va'>integer.max</span>,
   verbose <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  id <span class='op'>=</span> <span class='fu'>uuid</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/uuid/man/UUIDgenerate.html'>UUIDgenerate</a></span><span class='op'>(</span><span class='op'>)</span>
+  id <span class='op'>=</span> <span class='fu'>uuid</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/uuid/man/UUIDgenerate.html'>UUIDgenerate</a></span><span class='op'>(</span><span class='op'>)</span>,
+  try_gurobi <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -268,6 +269,11 @@ displayed when generating solutions. Defaults to <code>FALSE</code>.</p></td>
     <tr>
       <th>id</th>
       <td><p><code>character</code> identifier for new result.</p></td>
+    </tr>
+    <tr>
+      <th>try_gurobi</th>
+      <td><p><code>logical</code> value indicating if the Gurobi solver should be
+used when generating solutions. Defaults to <code>FALSE</code>.</p></td>
     </tr>
     </table>
 
