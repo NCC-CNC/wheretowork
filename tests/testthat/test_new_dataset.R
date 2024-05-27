@@ -388,11 +388,9 @@ test_that("sf, new_dataset_from_auto", {
   
   # create object 
   d <- new_dataset_from_auto(
-    x = sf_project,
-    skip_bm = TRUE
+    x = sf_project
   )
   # run tests
-  expect_equal(is.na(d$get_boundary_data()), TRUE)
+  expect_equal(anyNA(d$get_boundary_data()), FALSE)
   expect_equal(length(d$get_attribute_data()), length(attribute_data))
 })
-

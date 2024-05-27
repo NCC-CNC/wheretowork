@@ -164,7 +164,8 @@ using the minimum set formulation of the reserve selection problem.</p>
   time_limit_1 <span class='op'>=</span> <span class='va'>.Machine</span><span class='op'>$</span><span class='va'>integer.max</span>,
   time_limit_2 <span class='op'>=</span> <span class='va'>.Machine</span><span class='op'>$</span><span class='va'>integer.max</span>,
   verbose <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  id <span class='op'>=</span> <span class='fu'>uuid</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/uuid/man/UUIDgenerate.html'>UUIDgenerate</a></span><span class='op'>(</span><span class='op'>)</span>
+  id <span class='op'>=</span> <span class='fu'>uuid</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/uuid/man/UUIDgenerate.html'>UUIDgenerate</a></span><span class='op'>(</span><span class='op'>)</span>,
+  try_gurobi <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -262,6 +263,11 @@ displayed when generating solutions. Defaults to <code>FALSE</code>.</p></td>
       <th>id</th>
       <td><p><code>character</code> identifier for new result.</p></td>
     </tr>
+    <tr>
+      <th>try_gurobi</th>
+      <td><p><code>logical</code> value indicating if the Gurobi solver should be
+used when generating solutions. Defaults to <code>FALSE</code>.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -357,6 +363,7 @@ displayed when generating solutions. Defaults to <code>FALSE</code>.</p></td>
 <span class='r-in'> gap_1 <span class='op'>=</span> <span class='va'>p2</span><span class='op'>$</span><span class='va'>value</span> <span class='op'>*</span> <span class='va'>p2</span><span class='op'>$</span><span class='va'>status</span>,</span>
 <span class='r-in'> boundary_gap <span class='op'>=</span> <span class='va'>p1</span><span class='op'>$</span><span class='va'>value</span> <span class='op'>*</span> <span class='va'>p1</span><span class='op'>$</span><span class='va'>status</span></span>
 <span class='r-in'><span class='op'>)</span></span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>multiple methods tables found for 'ncell'</span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># print object</span></span>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></span>

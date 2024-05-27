@@ -607,17 +607,10 @@ new_dataset <- function(spatial_path, attribute_path, boundary_path,
 #' Create a new [Dataset] object.
 #'
 #' @param x [sf::st_sf()] or [raster::stack()] object.
-#' 
-#' @param skip_bm [`logical`] skip generating boundary data? 
-#'   (See details for more information) 
 #'
 #' @inheritParams new_dataset
 #'
 #' @inherit new_dataset return
-#' 
-#' @details For spatial uploads (shapefile) with many planning units, building
-#'   boundary data can result in a std::bad_alloc error. To avoid this, the 
-#'   user can skip generating a boundary matrix by setting `skip_bm = TRUE`.
 #'
 #' @examples
 #' # find example data
@@ -636,7 +629,7 @@ new_dataset <- function(spatial_path, attribute_path, boundary_path,
 #' # print object
 #' print(d)
 #' @export
-new_dataset_from_auto <- function(x, skip_bm = FALSE, id = uuid::UUIDgenerate()) {
+new_dataset_from_auto <- function(x, id = uuid::UUIDgenerate()) {
   
   # assert arguments are valid
   assertthat::assert_that(
@@ -669,9 +662,7 @@ new_dataset_from_auto <- function(x, skip_bm = FALSE, id = uuid::UUIDgenerate())
   }
   
   # build boundary data
-  if (skip_bm) {
-    bm <- NA
-  } else {
+  bm <- try({
     # re-project sf if CRS is not projected. only used for generating boundary
     if (inherits(spatial_data, "sf") && (sf::st_is_longlat(spatial_data))) {
       bm_spatial_data  <- sf::st_transform(spatial_data, 3857)
@@ -683,7 +674,13 @@ new_dataset_from_auto <- function(x, skip_bm = FALSE, id = uuid::UUIDgenerate())
     bm <- prioritizr::boundary_matrix(bm_spatial_data, str_tree = str_tree)
     if (inherits(x, "Raster")) {
       bm <- bm[attribute_data[["_index"]], attribute_data[["_index"]]]
-    }    
+    }
+    bm # return bm
+  }, silent = TRUE)
+  
+  # catch std::bad_alloc error (shapefile import)
+  if (inherits(bm, "try-error")) {
+    bm <- NA 
   }
   
   # create new dataset

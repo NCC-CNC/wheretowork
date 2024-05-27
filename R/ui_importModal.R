@@ -116,14 +116,7 @@ importModal <- function(id) {
           label = "Select project",
           choices = c("No built-in projects available" = "NA"),
           multiple = FALSE
-        ),
-        shiny::hr(),
-        shiny::checkboxInput(
-          paste0(id, "_builtin_hide_layers"),
-          shiny::HTML("<b> Hide layers on map </b> <br> 
-                      recommended for large projects"),
-          value = FALSE
-        )      
+        )
       ),
   
       ## manual method
@@ -154,13 +147,6 @@ importModal <- function(id) {
           "Select boundary data",
           multiple = FALSE,
           accept = c(".csv", ".csv.gz", ".dat", ".dat.gz", ".gz")
-        ),
-        shiny::hr(),
-        shiny::checkboxInput(
-          paste0(id, "_manual_hide_layers"),
-          shiny::HTML("<b> Hide layers on map </b> <br> 
-                      recommended for large projects"),
-          value = FALSE
         )
       ),
   
@@ -181,13 +167,6 @@ importModal <- function(id) {
           "Select fields"
         ),
         importSettingsOutput(outputId = paste0(id, "_spatial_settings")),
-        shiny::hr(),
-        shiny::checkboxInput(
-          paste0(id, "_spatial_hide_layers"),
-          shiny::HTML("<b> Hide layers on map </b> <br> 
-                      recommended for large projects"),
-          value = FALSE
-        ),
         shiny::hr(),
         htmltools::tags$label(
           id = paste0(id, "_spatial_note"),
