@@ -28,9 +28,6 @@ server_initialize_app <- quote({
       author_name = NULL,
       author_email = NULL,
       mode = NULL,
-      builtin_hidden = NULL, # enable/disable all T, W and I layers
-      manual_hidden = NULL, # enable/disable all T, W and I layers
-      shp_hidden = NULL, # enable/disable all T, W and I layers
       ## objects
       dataset = NULL,
       themes = NULL,

@@ -350,7 +350,7 @@ test_that("initialization (from Result object)", {
   expect_is(x, "Solution")
 })
 
-test_that("initialization (from Result object), sf, no boundary", {
+test_that("initialization (from Result object), sf", {
   skip_on_ci()
   # create object
   ## create dataset
@@ -374,8 +374,7 @@ test_that("initialization (from Result object), sf, no boundary", {
   
   # create object 
   d <- new_dataset_from_auto(
-    x = sf_project,
-    skip_bm = TRUE
+    x = sf_project
   )
   ## create variables
   v1 <- new_variable(
@@ -473,11 +472,8 @@ test_that("initialization (from Result object), sf, no boundary", {
     )
   )
   # run tests
-  expect_equal(is.na(r$perimeter), TRUE)
-  # reserve_sizes statistics should all be NA
-  expect_equal(
-    length(grep("NA", x$get_summary_results_data()$Value[5:9])), 5
-    )
+  expect_equal(is.na(r$perimeter), FALSE)
+  expect_equal(anyNA(x$get_summary_results_data()), FALSE)
   expect_is(x, "Solution")
 })
 

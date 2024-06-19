@@ -147,8 +147,7 @@
   spatial_path <span class='op'>=</span> <span class='cn'>NULL</span>,
   attribute_path <span class='op'>=</span> <span class='cn'>NULL</span>,
   boundary_path <span class='op'>=</span> <span class='cn'>NULL</span>,
-  mode <span class='op'>=</span> <span class='st'>"project"</span>,
-  force_hidden <span class='op'>=</span> <span class='cn'>FALSE</span>
+  mode <span class='op'>=</span> <span class='st'>"project"</span>
 <span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -183,12 +182,6 @@ Defaults to <code>"project"</code> such that the mode is determined based on
 the contents of <code>path</code>. If the <code>mode</code> is <code>"advanced"</code>, then
 goal limits and mandatory include settings are disabled.</p></td>
     </tr>
-    <tr>
-      <th>force_hidden</th>
-      <td><p><code>logical</code> value for hiding TWI layers at import.
-Defaults to <code>"False"</code> such that hidden TWI layers are determined based on
-the contents of <code>path</code>.</p></td>
-    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -201,7 +194,6 @@ the contents of <code>path</code>.</p></td>
 <dt>includes</dt><dd><p>A <code>list</code> of <a href='Include.html'>Include</a> objects.</p></dd>
 <dt>excludes</dt><dd><p>A <code>list</code> of <a href='Exclude.html'>Exclude</a> objects.</p></dd>
 <dt>mode</dt><dd><p>A <code>character</code> value indicating the mode.</p></dd>
-<dt>force_hidden</dt><dd><p>A <code>logical</code> value indicating all TWI will be hidden.</p></dd>
 
 </dl>
 
@@ -248,14 +240,14 @@ combination of settings.</p>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $dataset</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Dataset</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   paths:</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     spatial: C:/Users/marc.edwards/AppData/Local/Temp/RtmpUHgCYd/temp_libpath5524317a7145/wheretowork/extdata/projects/sim_raster/sim_raster_spatial.tif</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     attribute: C:/Users/marc.edwards/AppData/Local/Temp/RtmpUHgCYd/temp_libpath5524317a7145/wheretowork/extdata/projects/sim_raster/sim_raster_attribute.csv.gz</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>     boundary: C:/Users/marc.edwards/AppData/Local/Temp/RtmpUHgCYd/temp_libpath5524317a7145/wheretowork/extdata/projects/sim_raster/sim_raster_boundary.csv.gz</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     spatial: C:/Github/wheretowork/renv/library/R-4.1/x86_64-w64-mingw32/wheretowork/extdata/projects/sim_raster/sim_raster_spatial.tif</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     attribute: C:/Github/wheretowork/renv/library/R-4.1/x86_64-w64-mingw32/wheretowork/extdata/projects/sim_raster/sim_raster_attribute.csv.gz</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     boundary: C:/Github/wheretowork/renv/library/R-4.1/x86_64-w64-mingw32/wheretowork/extdata/projects/sim_raster/sim_raster_boundary.csv.gz</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $themes</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $themes[[1]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Theme</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        95f010cb-2b3c-4ccd-ae6c-10f274079126</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        8d3489ff-b27b-4203-b674-61be60434521</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Brown-necked Parrot (Brown-necked)</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   feature: </span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>     Brown-necked Parrot (Brown-necked) habitat [status: TRUE, current: 0.78, goal: 0.83]</span>
@@ -263,7 +255,7 @@ combination of settings.</p>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $themes[[2]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Theme</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        46412dac-7a31-4508-928e-3d9bbb718b9f</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        befab222-75a7-447f-978b-66b1e80f8895</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Gough Island Finch</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   feature: </span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>     Gough Island Finch habitat [status: TRUE, current: 0.78, goal: 0.7]</span>
@@ -271,7 +263,7 @@ combination of settings.</p>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $themes[[3]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Theme</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        f7e3776a-28b9-4ba6-bcb3-5a76673096b3</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        90644852-08c4-4369-862f-1065fb5af833</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Manus Boobook</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   feature: </span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>     Manus Boobook habitat [status: TRUE, current: 0.78, goal: 0.7]</span>
@@ -279,7 +271,7 @@ combination of settings.</p>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $themes[[4]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Theme</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        d01047ae-2a03-426d-90ae-34956ac9d209</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        bb543092-c91a-47e8-9de3-a664e8d88b49</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Waxbills and Allies</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   feature: </span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>     Red-faced Crimsonwing [status: TRUE, current: 0.75, goal: 0.69]</span>
@@ -303,7 +295,7 @@ combination of settings.</p>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $themes[[5]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Theme</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        7fa1a5a3-8f18-41d2-980a-7b6dcec48f21</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:        0e3f0a17-f133-4b86-916d-7d5408abaa30</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:      Penduline-Tits</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   feature: </span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>     Eurasian Penduline-Tit [status: TRUE, current: 0.77, goal: 0.8]</span>
@@ -321,10 +313,10 @@ combination of settings.</p>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $weights</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $weights[[1]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Weight</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       7a1e915f-03dc-44f5-9fca-7eafbe727239</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       2a4ab693-4e3c-4c25-a163-0aaa4a42e0f4</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:     Landscape naturalness</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   variable: .../sim_raster_spatial.tif#Landscape_naturalness [total: 146.73 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   pane:  1d4873d4-f52d-4af1-9848-e0999bf80d1f-Landscape_naturalness</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   pane:  2c3d23db-62d9-4b3c-9eaa-19ba47e12933-Landscape_naturalness</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   current:  0.78</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   visible:  TRUE</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   invisible:  NA</span>
@@ -335,10 +327,10 @@ combination of settings.</p>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $weights[[2]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Weight</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       2d1a3a60-a07f-419b-8b79-109faaec69a8</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       e3facffc-5727-4284-a035-8d0d86198a7e</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:     Archaeological site</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   variable: .../sim_raster_spatial.tif#Archaeological_site [total: 153.11 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   pane:  65d6a740-ebfb-4901-b95a-934fa6ae4dc7-Archaeological_site</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   pane:  fb67ceae-b6b1-4971-9e35-d8697dd7e51e-Archaeological_site</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   current:  0.75</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   visible:  TRUE</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   invisible:  NA</span>
@@ -349,10 +341,10 @@ combination of settings.</p>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $weights[[3]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Weight</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       c98e3eb8-b9b3-4391-bf1f-dacf56a917cb</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       b6ea26c9-71e0-4adb-88d3-745585a6cd44</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:     Engagement potential</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   variable: .../sim_raster_spatial.tif#Engagement_potential [total: 145.9 ha]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   pane:  e816ef14-4ab3-4af9-89b4-0023ebc59ae6-Engagement_potential</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   pane:  562a6753-2e0b-4fe2-8aee-406330271185-Engagement_potential</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   current:  0.78</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   visible:  TRUE</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   invisible:  NA</span>
@@ -365,10 +357,10 @@ combination of settings.</p>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $includes</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $includes[[1]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Include</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       531e14ef-b9eb-452f-8d57-6ea7b9a43990</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       c5ea8ec3-56f7-4e28-a907-cc48b371c19d</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:     National protected areas</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   variable: .../sim_raster_spatial.tif#National_protected_areas [total: 159 ]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   pane:  51b7cc24-4a12-402e-bb86-fc093aa5edc6-National_protected_areas</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   pane:  f401cdc1-e6c0-4298-95c1-876fa61150fb-National_protected_areas</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   visible:  TRUE</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   invisible:  NA</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   loaded:  TRUE</span>
@@ -378,10 +370,10 @@ combination of settings.</p>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $includes[[2]]</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Include</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       55d15ad6-287f-4376-97b8-7e28cf2ea718</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   id:       cd5cfcf8-94c7-4ba8-9060-e253c8e3f200</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   name:     Key Biodiversity Areas</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   variable: .../sim_raster_spatial.tif#Key_Biodiversity_Areas [total: 147 ]</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span>   pane:  32cd9b41-7e03-4cbd-8799-f8d906387fd6-Key_Biodiversity_Areas</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>   pane:  1330bbc8-73b5-4ff7-8c57-7d9ce90afafb-Key_Biodiversity_Areas</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   visible:  TRUE</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   invisible:  NA</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>   loaded:  TRUE</span>
