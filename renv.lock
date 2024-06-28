@@ -955,10 +955,10 @@
     },
     "raster": {
       "Package": "raster",
-      "Version": "3.6-20",
+      "Version": "3.6-26",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "ebebd9f0f203a129eb2da96470191b82"
+      "Hash": "7d6eda494f34a644420ac1bfd2a8023a"
     },
     "rcbc": {
       "Package": "rcbc",
@@ -1013,13 +1013,6 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "079cb1f03ff972b30401ed05623cbe92"
-    },
-    "rgdal": {
-      "Package": "rgdal",
-      "Version": "1.5-23",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "bb6f643247d35c947e9f113567e2bf7a"
     },
     "rgeos": {
       "Package": "rgeos",
