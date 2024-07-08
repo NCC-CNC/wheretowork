@@ -955,7 +955,7 @@
     },
     "raster": {
       "Package": "raster",
-      "Version": "3.6-26",
+      "Version": "3.6-27",
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "7d6eda494f34a644420ac1bfd2a8023a"
