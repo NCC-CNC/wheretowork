@@ -43,6 +43,5 @@ utils::globalVariables(
 )
 
 # define functions for internally used packages to pass checks
-tmp1 <- rgdal::readOGR
 tmp1 <- R.utils::gzip
 tmp1 <- rcbc::cbc_solve
