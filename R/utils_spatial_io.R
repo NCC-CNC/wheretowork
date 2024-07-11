@@ -9,10 +9,10 @@ NULL
 #'
 #' @details
 #' This function imports data in vector format as a [sf::st_sf()] object.
-#' It also imports data in raster format as a [raster::raster()] object.
+#' It also imports data in raster format as a [terra::rast()] object.
 #' Note that is will only import the first band in a multi-band raster dataset.
 #'
-#' @return A [sf::st_sf()] or [raster::raster()] object.
+#' @return A [sf::st_sf()] or [terra::rast()] object.
 #'
 #' @examples
 #' # read raster data
@@ -32,7 +32,7 @@ read_spatial_data <- function(x) {
   # deduce format automatically
   rast_ext <- c("grd", "asc", "sdat", "rst", "nc", "tif", "envi", "bil", "img")
   if (tools::file_ext(x) %in% rast_ext) {
-    out <- raster::raster(x)
+    out <- terra::rast(x)
   } else {
     suppressMessages({
       out <- sf::read_sf(x)
@@ -73,7 +73,7 @@ read_spatial_data <- function(x) {
 #' @export
 write_spatial_data <- function(x, dir, name) {
   assertthat::assert_that(
-    inherits(x, c("sf", "Raster")),
+    inherits(x, c("sf", "SpatRaster")),
     assertthat::is.string(dir),
     assertthat::noNA(dir),
     assertthat::is.string(name),
@@ -87,7 +87,7 @@ write_spatial_data <- function(x, dir, name) {
     ## save raster data in GeoTIFF format
     suppressWarnings({
       writeNamedRaster(
-        x = terra::rast(x), filename = file.path(dir, paste0(name, ".tif")),
+        x = x, filename = file.path(dir, paste0(name, ".tif")),
         overwrite = TRUE, NAflag = -9999
       )
     })
