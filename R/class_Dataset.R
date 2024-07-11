@@ -620,8 +620,9 @@ new_dataset <- function(spatial_path, attribute_path, boundary_path,
 #' )
 #'
 #' # import data
-#' r <- suppressWarnings(raster::raster(f))
-#' r <- raster::stack(r, r * 2, r * 3, r * 4)
+#' r <- suppressWarnings(terra::rast(f))
+#' r <- c(r, r * 2, r * 3, r * 4)
+#' names(r) <- c("r1", "r2", "r3", "r4")
 #'
 #' # create new dataset
 #' d <- new_dataset_from_auto(r)
@@ -633,7 +634,12 @@ new_dataset_from_auto <- function(x, id = uuid::UUIDgenerate()) {
   
   # assert arguments are valid
   assertthat::assert_that(
-    inherits(x, c("sf", "Raster"))
+    inherits(x, c("sf", "SpatRaster"))
+  )
+  
+  # assert that the combine SpatRasters names are unique
+  assertthat::assert_that(
+    length(unique(x)) == terra::nlyr(x), msg = "SpatRaster names must be unique"
   )
 
   # prepare geometry data
