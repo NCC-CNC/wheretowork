@@ -1,0 +1,35 @@
+---
+title: "Optimization"
+output:
+  html_document:
+    toc: true
+    fig_caption: true
+    toc_float: true
+    number_sections: true
+bibliography: references.bib
+csl: methods-in-ecology-and-evolution.csl
+---
+
+# Introduction
+
+This article is intended for users already familiar with the basic functionality
+of the Where to Work tool. It is recommended to first read the [official manual](https://ncc-cnc.github.io/wheretowork/articles/articles/wtw_manual.html)
+before proceeding.
+
+The goal of this article is to provide an understanding of the optimization procedures that the Where to Work tool uses to generate prioritizations. Specifically, the Where to Work tool uses exact algorithm solvers (i.e., [Gurobi](https://www.gurobi.com/) and [CBC](https://github.com/coin-or/Cbc)) to generate prioritizations. Briefly, this article will (i) provide an overview of exact algorithms, (ii) discuss the advantages and disadvantageous of exact algorithms, (iii) describe the general rationale behind how exact algorithms work, and (iv) provide an illustrative example of applying a type of example algorithm (i.e., branch and bound) to a sample optimization problem. Although it is beyond the scope of this article to provide a detail understanding of the inner workings of all types of exact algorithms, this article intends to provide enough information so that users of the Where to Work tool can feel comfortable applying these algorithms.
+
+# Overview of exact algorithms
+
+TODO.
+
+# Advantages and disadvantages of exact algorithms
+
+TODO.
+
+# Explanation of how exact algorithms work
+
+TODO.
+
+# Illustrative example of exact algorithms
+
+TODO.
