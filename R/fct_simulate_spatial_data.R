@@ -5,12 +5,12 @@ NULL
 #'
 #' Simulate spatially auto-correlated proportion values for a spatial dataset.
 #'
-#' @param x [sf::st_sf()] or [raster::raster()] object.
+#' @param x [sf::st_sf()] or [terra::rast()] object.
 #'
 #' @param n `integer` number of layers/fields to simulate.
 #'   Defaults to 1.
 #'
-#' @return [sf::st_sf()] or [raster::raster()] object with values.
+#' @return [sf::st_sf()] or [terra::rast()] object with values.
 #'
 #' @noRd
 simulate_proportion_spatial_data <- function(x, n = 1) {
@@ -86,7 +86,7 @@ simulate_binary_spatial_data <- function(x, n = 1) {
 #'
 #' Simulate spatially auto-correlated data using Gaussian random fields.
 #'
-#' @param x [terra::rast()] or [raster::raster()] or [sf::st_sf()] 
+#' @param x [terra::rast()] or [sf::st_sf()] 
 #' object to use as a template.
 #'
 #' @param n `integer` number of layers to simulate.
@@ -108,7 +108,7 @@ simulate_binary_spatial_data <- function(x, n = 1) {
 #'
 #' @family simulations
 #'
-#' @return A [terra::rast()] or [raster::raster()] or [sf::st_sf()] object.
+#' @return A [terra::rast()] or [sf::st_sf()] object.
 #'
 #' @examples
 #' \dontrun{
@@ -126,35 +126,21 @@ simulate_binary_spatial_data <- function(x, n = 1) {
 #' @export
 simulate_data <- function(x, n, scale, intensity, sd, transform) {
   assertthat::assert_that(
-    inherits(x, c("SpatRaster", "Raster", "sf"))
+    inherits(x, c("SpatRaster", "sf"))
   )  
   UseMethod("simulate_data")
 }
 
 #' @rdname simulate_data
-#' @method simulate_data Raster
-#' @export
-simulate_data.Raster <- function(x, n = 1, scale = 0.5, intensity = 0,
-                                 sd = 1, transform = identity) {
-  ## Suppressing CRS warning
-  suppressWarnings(
-    raster::stack(
-      simulate_data.SpatRaster(
-        x = terra::rast(x),
-        n = n, scale = scale,
-        intensity = intensity,
-        sd = sd,
-        transform = transform
-      )
-    )
- )
-}
-
-#' @rdname simulate_data
 #' @method simulate_data sf
 #' @export
-simulate_data.sf <- function(x, n = 1, scale = 0.5, intensity = 0,
-                                 sd = 1, transform = identity) {
+simulate_data.sf <- function(
+    x, n = 1, 
+    scale = 0.5, 
+    intensity = 0,
+    sd = 1, 
+    transform = identity
+ ) {
   
   # assert valid arguments
   assertthat::assert_that(
@@ -196,8 +182,14 @@ simulate_data.sf <- function(x, n = 1, scale = 0.5, intensity = 0,
 #' @rdname simulate_data
 #' @method simulate_data SpatRaster
 #' @export
-simulate_data.SpatRaster <- function(x, n = 1, scale = 0.5, intensity = 0,
-                                     sd = 1, transform = identity) {
+simulate_data.SpatRaster <- function(
+    x, 
+    n = 1, 
+    scale = 0.5, 
+    intensity = 0,
+    sd = 1, 
+    transform = identity
+  ) {
   
   # assert valid arguments
   assertthat::assert_that(
