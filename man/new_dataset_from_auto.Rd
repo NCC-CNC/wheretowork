@@ -7,7 +7,7 @@
 new_dataset_from_auto(x, id = uuid::UUIDgenerate())
 }
 \arguments{
-\item{x}{\code{\link[sf:sf]{sf::st_sf()}} or \code{\link[raster:stack]{raster::stack()}} object.}
+\item{x}{\code{\link[sf:sf]{sf::st_sf()}} or a combined \code{\link[terra:rast]{terra::rast()}} object.}
 
 \item{id}{\code{character} unique identifier.
 Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}
@@ -33,8 +33,9 @@ f <- system.file(
 )
 
 # import data
-r <- suppressWarnings(raster::raster(f))
-r <- raster::stack(r, r * 2, r * 3, r * 4)
+r <- suppressWarnings(terra::rast(f))
+r <- c(r, r * 2, r * 3, r * 4)
+names(r) <- c("r1", "r2", "r3", "r4")
 
 # create new dataset
 d <- new_dataset_from_auto(r)

@@ -28,7 +28,7 @@ file path on disk.
 
 \item{\code{boundary_path}}{\code{character} file path.}
 
-\item{\code{spatial_data}}{\code{NULL}, \code{\link[sf:sf]{sf::st_sf()}}, or \code{\link[raster:raster]{raster::raster()}} object.}
+\item{\code{spatial_data}}{\code{NULL}, \code{\link[sf:sf]{sf::st_sf()}}, or \code{\link[terra:rast]{terra::rast()}} object.}
 
 \item{\code{attribute_data}}{\code{NULL}, or \code{\link[tibble:tibble]{tibble::tibble()}} object.}
 
@@ -88,7 +88,7 @@ Create a Dataset object.
 
 \item{\code{boundary_path}}{\code{character} file path.}
 
-\item{\code{spatial_data}}{\code{\link[sf:sf]{sf::st_sf()}}, or \code{\link[raster:raster]{raster::raster()}} object.}
+\item{\code{spatial_data}}{\code{\link[sf:sf]{sf::st_sf()}}, or \code{\link[terra:rast]{terra::rast()}} object.}
 
 \item{\code{attribute_data}}{\code{\link[tibble:tibble]{tibble::tibble()}} object.}
 
@@ -181,7 +181,7 @@ Get the spatial data.
 }
 
 \subsection{Returns}{
-\code{\link[sf:st_as_sf]{sf::st_as_sf()}} or \code{\link[raster:raster]{raster::raster()}} object.
+\code{\link[sf:st_as_sf]{sf::st_as_sf()}} or \code{\link[terra:rast]{terra::rast()}} object.
 }
 }
 \if{html}{\out{<hr>}}
@@ -305,7 +305,7 @@ the data.}
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-\code{\link[sf:st_as_sf]{sf::st_as_sf()}} or \code{\link[raster:raster]{raster::raster()}} object.
+\code{\link[sf:st_as_sf]{sf::st_as_sf()}} or \code{\link[terra:rast]{terra::rast()}} object.
 }
 }
 \if{html}{\out{<hr>}}

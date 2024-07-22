@@ -337,7 +337,7 @@ Get the data.
 }
 
 \subsection{Returns}{
-\code{\link[sf:st_as_sf]{sf::st_as_sf()}} or \code{\link[raster:raster]{raster::raster()}} object.
+\code{\link[sf:st_as_sf]{sf::st_as_sf()}} or \code{\link[terra:rast]{terra::rast()}} object.
 }
 }
 \if{html}{\out{<hr>}}
