@@ -111,6 +111,5 @@ golem_add_external_resources <- function() {
     ## dependencies
     shinyFeedback::useShinyFeedback(),
     shinyjs::useShinyjs(),
-    shinyalert::useShinyalert()
   )
 }
