@@ -119,10 +119,10 @@ leaflet_map <- function(sidebar_ids) {
       options = leaflet::layersControlOptions(collapsed = TRUE),
       position = "topleft"
     ) %>%
-    ## add history buttons
-    leaflet.extras2::addHistory(
-      options = leaflet.extras2::historyOptions(position = "topleft")
-    ) %>%
+    # ## add history buttons
+    # leaflet.extras2::addHistory(
+    #   options = leaflet.extras2::historyOptions(position = "topleft")
+    # ) %>%
     ## add scale bar
     leaflet::addScaleBar(
       position = "bottomleft"
