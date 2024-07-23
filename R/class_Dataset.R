@@ -355,13 +355,11 @@ Dataset <- R6::R6Class(
         ext <- terra::ext(self$get_spatial_data())
       } else {
         # if not native, then reproject data and extract extent
-        ext <- methods::as(terra::ext(
-          self$get_spatial_data()
-        ), "SpatialPolygons")
-        ## prepare bounding box
-        ext <- sf::st_set_crs(sf::st_as_sf(ext), self$get_crs())
+        ext <- terra::ext(self$get_spatial_data())
         ## convert to WGS1984
-        ext <- terra::ext(sf::st_transform(ext, 4326))
+        ext <- terra::project(
+          x = ext, from = terra::crs(self$get_spatial_data()), to = "EPSG:4326"
+        ) 
       }
       # expand bounding box if needed
       if (expand) {
