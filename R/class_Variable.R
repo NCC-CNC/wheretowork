@@ -168,7 +168,7 @@ Variable <- R6::R6Class(
         suppressWarnings({
           x <- leaflet::addRasterImage(
             map = x,
-            x = d,
+            x = raster::raster(d),
             opacity = 0.8,
             project = project_on_fly,
             maxBytes = 5 * 1024 * 1024, # 5MB max size
