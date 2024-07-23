@@ -413,7 +413,7 @@ min_shortfall_result <- function(area_budget_proportion,
     ## solve problem to generate solution if needed
     initial_solution <- rep(0, length(cost))
     initial_solution[initial_pu_idx] <- c(
-      prioritizr::solve(initial_problem, run_checks = FALSE)
+      prioritizr::solve.ConservationProblem(initial_problem, run_checks = FALSE)
     )
     ## store solution in cache
     cache$set(key, initial_solution)
@@ -515,7 +515,7 @@ min_shortfall_result <- function(area_budget_proportion,
     }
     ### generate solution
     main_solution <-
-      c(prioritizr::solve(main_problem, run_checks = FALSE))
+      c(prioritizr::solve.ConservationProblem(main_problem, run_checks = FALSE))
   } else {
     ### if the boundary_gap setting is very low,
     ### then we will just use the initial solution because the
