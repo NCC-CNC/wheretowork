@@ -43,39 +43,39 @@ appear beneath every other layer.}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{MapManager$new()}}
-\item \href{#method-print}{\code{MapManager$print()}}
-\item \href{#method-repr}{\code{MapManager$repr()}}
-\item \href{#method-get_order}{\code{MapManager$get_order()}}
-\item \href{#method-get_layer}{\code{MapManager$get_layer()}}
-\item \href{#method-get_layer_names}{\code{MapManager$get_layer_names()}}
-\item \href{#method-get_layer_indices}{\code{MapManager$get_layer_indices()}}
-\item \href{#method-get_layer_ids}{\code{MapManager$get_layer_ids()}}
-\item \href{#method-get_layer_panes}{\code{MapManager$get_layer_panes()}}
-\item \href{#method-get_layer_visible}{\code{MapManager$get_layer_visible()}}
-\item \href{#method-get_layer_invisible}{\code{MapManager$get_layer_invisible()}}
-\item \href{#method-get_layer_loaded}{\code{MapManager$get_layer_loaded()}}
-\item \href{#method-get_setting}{\code{MapManager$get_setting()}}
-\item \href{#method-set_order}{\code{MapManager$set_order()}}
-\item \href{#method-set_visible}{\code{MapManager$set_visible()}}
-\item \href{#method-set_loaded}{\code{MapManager$set_loaded()}}
-\item \href{#method-set_setting}{\code{MapManager$set_setting()}}
-\item \href{#method-add_layer}{\code{MapManager$add_layer()}}
-\item \href{#method-drop_layer}{\code{MapManager$drop_layer()}}
-\item \href{#method-get_widget_data}{\code{MapManager$get_widget_data()}}
-\item \href{#method-get_group_layer_ids}{\code{MapManager$get_group_layer_ids()}}
-\item \href{#method-get_layer_classes}{\code{MapManager$get_layer_classes()}}
-\item \href{#method-get_lazyload}{\code{MapManager$get_lazyload()}}
-\item \href{#method-initialize_map}{\code{MapManager$initialize_map()}}
-\item \href{#method-update_map}{\code{MapManager$update_map()}}
-\item \href{#method-delete_sinlge_map_pane}{\code{MapManager$delete_sinlge_map_pane()}}
-\item \href{#method-delete_all_map_panes}{\code{MapManager$delete_all_map_panes()}}
-\item \href{#method-clone}{\code{MapManager$clone()}}
+\item \href{#method-MapManager-new}{\code{MapManager$new()}}
+\item \href{#method-MapManager-print}{\code{MapManager$print()}}
+\item \href{#method-MapManager-repr}{\code{MapManager$repr()}}
+\item \href{#method-MapManager-get_order}{\code{MapManager$get_order()}}
+\item \href{#method-MapManager-get_layer}{\code{MapManager$get_layer()}}
+\item \href{#method-MapManager-get_layer_names}{\code{MapManager$get_layer_names()}}
+\item \href{#method-MapManager-get_layer_indices}{\code{MapManager$get_layer_indices()}}
+\item \href{#method-MapManager-get_layer_ids}{\code{MapManager$get_layer_ids()}}
+\item \href{#method-MapManager-get_layer_panes}{\code{MapManager$get_layer_panes()}}
+\item \href{#method-MapManager-get_layer_visible}{\code{MapManager$get_layer_visible()}}
+\item \href{#method-MapManager-get_layer_invisible}{\code{MapManager$get_layer_invisible()}}
+\item \href{#method-MapManager-get_layer_loaded}{\code{MapManager$get_layer_loaded()}}
+\item \href{#method-MapManager-get_setting}{\code{MapManager$get_setting()}}
+\item \href{#method-MapManager-set_order}{\code{MapManager$set_order()}}
+\item \href{#method-MapManager-set_visible}{\code{MapManager$set_visible()}}
+\item \href{#method-MapManager-set_loaded}{\code{MapManager$set_loaded()}}
+\item \href{#method-MapManager-set_setting}{\code{MapManager$set_setting()}}
+\item \href{#method-MapManager-add_layer}{\code{MapManager$add_layer()}}
+\item \href{#method-MapManager-drop_layer}{\code{MapManager$drop_layer()}}
+\item \href{#method-MapManager-get_widget_data}{\code{MapManager$get_widget_data()}}
+\item \href{#method-MapManager-get_group_layer_ids}{\code{MapManager$get_group_layer_ids()}}
+\item \href{#method-MapManager-get_layer_classes}{\code{MapManager$get_layer_classes()}}
+\item \href{#method-MapManager-get_lazyload}{\code{MapManager$get_lazyload()}}
+\item \href{#method-MapManager-initialize_map}{\code{MapManager$initialize_map()}}
+\item \href{#method-MapManager-update_map}{\code{MapManager$update_map()}}
+\item \href{#method-MapManager-delete_sinlge_map_pane}{\code{MapManager$delete_sinlge_map_pane()}}
+\item \href{#method-MapManager-delete_all_map_panes}{\code{MapManager$delete_all_map_panes()}}
+\item \href{#method-MapManager-clone}{\code{MapManager$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-MapManager-new"></a>}}
+\if{latex}{\out{\hypertarget{method-MapManager-new}{}}}
 \subsection{Method \code{new()}}{
 Create a \code{MapManager} object.
 \subsection{Usage}{
@@ -97,8 +97,8 @@ A new \code{MapManager} object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-print"></a>}}
-\if{latex}{\out{\hypertarget{method-print}{}}}
+\if{html}{\out{<a id="method-MapManager-print"></a>}}
+\if{latex}{\out{\hypertarget{method-MapManager-print}{}}}
 \subsection{Method \code{print()}}{
 Print the object.
 \subsection{Usage}{
@@ -114,8 +114,8 @@ Print the object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-repr"></a>}}
-\if{latex}{\out{\hypertarget{method-repr}{}}}
+\if{html}{\out{<a id="method-MapManager-repr"></a>}}
+\if{latex}{\out{\hypertarget{method-MapManager-repr}{}}}
 \subsection{Method \code{repr()}}{
 Generate a \code{character} summarizing the representation of the object.
 \subsection{Usage}{
@@ -127,8 +127,8 @@ Generate a \code{character} summarizing the representation of the object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_order"></a>}}
-\if{latex}{\out{\hypertarget{method-get_order}{}}}
+\if{html}{\out{<a id="method-MapManager-get_order"></a>}}
+\if{latex}{\out{\hypertarget{method-MapManager-get_order}{}}}
 \subsection{Method \code{get_order()}}{
 Get information on the plot order of each layer.
 \subsection{Usage}{
@@ -137,8 +137,8 @@ Get information on the plot order of each layer.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_layer"></a>}}
-\if{latex}{\out{\hypertarget{method-get_layer}{}}}
+\if{html}{\out{<a id="method-MapManager-get_layer"></a>}}
+\if{latex}{\out{\hypertarget{method-MapManager-get_layer}{}}}
 \subsection{Method \code{get_layer()}}{
 Get a layer.
 \subsection{Usage}{
@@ -157,8 +157,8 @@ Get a layer.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_layer_names"></a>}}
-\if{latex}{\out{\hypertarget{method-get_layer_names}{}}}
+\if{html}{\out{<a id="method-MapManager-get_layer_names"></a>}}
+\if{latex}{\out{\hypertarget{method-MapManager-get_layer_names}{}}}
 \subsection{Method \code{get_layer_names()}}{
 Get layer names.
 \subsection{Usage}{
@@ -170,8 +170,8 @@ Get layer names.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_layer_indices"></a>}}
-\if{latex}{\out{\hypertarget{method-get_layer_indices}{}}}
+\if{html}{\out{<a id="method-MapManager-get_layer_indices"></a>}}
+\if{latex}{\out{\hypertarget{method-MapManager-get_layer_indices}{}}}
 \subsection{Method \code{get_layer_indices()}}{
 Get layer index values.
 \subsection{Usage}{
@@ -183,8 +183,8 @@ Get layer index values.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_layer_ids"></a>}}
-\if{latex}{\out{\hypertarget{method-get_layer_ids}{}}}
+\if{html}{\out{<a id="method-MapManager-get_layer_ids"></a>}}
+\if{latex}{\out{\hypertarget{method-MapManager-get_layer_ids}{}}}
 \subsection{Method \code{get_layer_ids()}}{
 Get layer ids values.
 \subsection{Usage}{
@@ -196,8 +196,8 @@ Get layer ids values.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_layer_panes"></a>}}
-\if{latex}{\out{\hypertarget{method-get_layer_panes}{}}}
+\if{html}{\out{<a id="method-MapManager-get_layer_panes"></a>}}
+\if{latex}{\out{\hypertarget{method-MapManager-get_layer_panes}{}}}
 \subsection{Method \code{get_layer_panes()}}{
 Get panes.
 \subsection{Usage}{
@@ -209,8 +209,8 @@ Get panes.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_layer_visible"></a>}}
-\if{latex}{\out{\hypertarget{method-get_layer_visible}{}}}
+\if{html}{\out{<a id="method-MapManager-get_layer_visible"></a>}}
+\if{latex}{\out{\hypertarget{method-MapManager-get_layer_visible}{}}}
 \subsection{Method \code{get_layer_visible()}}{
 Get layer visible values.
 \subsection{Usage}{
@@ -222,8 +222,8 @@ Get layer visible values.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_layer_invisible"></a>}}
-\if{latex}{\out{\hypertarget{method-get_layer_invisible}{}}}
+\if{html}{\out{<a id="method-MapManager-get_layer_invisible"></a>}}
+\if{latex}{\out{\hypertarget{method-MapManager-get_layer_invisible}{}}}
 \subsection{Method \code{get_layer_invisible()}}{
 Get layer invisible values.
 \subsection{Usage}{
@@ -235,8 +235,8 @@ Get layer invisible values.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_layer_loaded"></a>}}
-\if{latex}{\out{\hypertarget{method-get_layer_loaded}{}}}
+\if{html}{\out{<a id="method-MapManager-get_layer_loaded"></a>}}
+\if{latex}{\out{\hypertarget{method-MapManager-get_layer_loaded}{}}}
 \subsection{Method \code{get_layer_loaded()}}{
 Get layer loaded values.
 \subsection{Usage}{
@@ -248,8 +248,8 @@ Get layer loaded values.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_setting"></a>}}
-\if{latex}{\out{\hypertarget{method-get_setting}{}}}
+\if{html}{\out{<a id="method-MapManager-get_setting"></a>}}
+\if{latex}{\out{\hypertarget{method-MapManager-get_setting}{}}}
 \subsection{Method \code{get_setting()}}{
 Get a setting for the object.
 \subsection{Usage}{
@@ -265,8 +265,8 @@ Get a setting for the object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_order"></a>}}
-\if{latex}{\out{\hypertarget{method-set_order}{}}}
+\if{html}{\out{<a id="method-MapManager-set_order"></a>}}
+\if{latex}{\out{\hypertarget{method-MapManager-set_order}{}}}
 \subsection{Method \code{set_order()}}{
 Set information on the plot order of each layer.
 \subsection{Usage}{
@@ -282,8 +282,8 @@ Set information on the plot order of each layer.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_visible"></a>}}
-\if{latex}{\out{\hypertarget{method-set_visible}{}}}
+\if{html}{\out{<a id="method-MapManager-set_visible"></a>}}
+\if{latex}{\out{\hypertarget{method-MapManager-set_visible}{}}}
 \subsection{Method \code{set_visible()}}{
 Set visibility for all layers.
 \subsection{Usage}{
@@ -300,8 +300,8 @@ not.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_loaded"></a>}}
-\if{latex}{\out{\hypertarget{method-set_loaded}{}}}
+\if{html}{\out{<a id="method-MapManager-set_loaded"></a>}}
+\if{latex}{\out{\hypertarget{method-MapManager-set_loaded}{}}}
 \subsection{Method \code{set_loaded()}}{
 Set loaded for all layers.
 \subsection{Usage}{
@@ -318,8 +318,8 @@ not.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_setting"></a>}}
-\if{latex}{\out{\hypertarget{method-set_setting}{}}}
+\if{html}{\out{<a id="method-MapManager-set_setting"></a>}}
+\if{latex}{\out{\hypertarget{method-MapManager-set_setting}{}}}
 \subsection{Method \code{set_setting()}}{
 Set a setting for the object.
 \subsection{Usage}{
@@ -335,8 +335,8 @@ Set a setting for the object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-add_layer"></a>}}
-\if{latex}{\out{\hypertarget{method-add_layer}{}}}
+\if{html}{\out{<a id="method-MapManager-add_layer"></a>}}
+\if{latex}{\out{\hypertarget{method-MapManager-add_layer}{}}}
 \subsection{Method \code{add_layer()}}{
 Add a new layer.
 \subsection{Usage}{
@@ -354,8 +354,8 @@ Add a new layer.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-drop_layer"></a>}}
-\if{latex}{\out{\hypertarget{method-drop_layer}{}}}
+\if{html}{\out{<a id="method-MapManager-drop_layer"></a>}}
+\if{latex}{\out{\hypertarget{method-MapManager-drop_layer}{}}}
 \subsection{Method \code{drop_layer()}}{
 Remove a layer.
 \subsection{Usage}{
@@ -373,8 +373,8 @@ Remove a layer.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_widget_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_widget_data}{}}}
+\if{html}{\out{<a id="method-MapManager-get_widget_data"></a>}}
+\if{latex}{\out{\hypertarget{method-MapManager-get_widget_data}{}}}
 \subsection{Method \code{get_widget_data()}}{
 Get data for displaying the theme in a \code{\link[=mapManager]{mapManager()}} widget.
 \subsection{Usage}{
@@ -386,8 +386,8 @@ Get data for displaying the theme in a \code{\link[=mapManager]{mapManager()}} w
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_group_layer_ids"></a>}}
-\if{latex}{\out{\hypertarget{method-get_group_layer_ids}{}}}
+\if{html}{\out{<a id="method-MapManager-get_group_layer_ids"></a>}}
+\if{latex}{\out{\hypertarget{method-MapManager-get_group_layer_ids}{}}}
 \subsection{Method \code{get_group_layer_ids()}}{
 Get group layer ids.
 \subsection{Usage}{
@@ -399,8 +399,8 @@ Get group layer ids.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_layer_classes"></a>}}
-\if{latex}{\out{\hypertarget{method-get_layer_classes}{}}}
+\if{html}{\out{<a id="method-MapManager-get_layer_classes"></a>}}
+\if{latex}{\out{\hypertarget{method-MapManager-get_layer_classes}{}}}
 \subsection{Method \code{get_layer_classes()}}{
 Get group layer ids.
 \subsection{Usage}{
@@ -412,8 +412,8 @@ Get group layer ids.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_lazyload"></a>}}
-\if{latex}{\out{\hypertarget{method-get_lazyload}{}}}
+\if{html}{\out{<a id="method-MapManager-get_lazyload"></a>}}
+\if{latex}{\out{\hypertarget{method-MapManager-get_lazyload}{}}}
 \subsection{Method \code{get_lazyload()}}{
 Get data frame of map manager layers.
 \subsection{Usage}{
@@ -425,8 +425,8 @@ Get data frame of map manager layers.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-initialize_map"></a>}}
-\if{latex}{\out{\hypertarget{method-initialize_map}{}}}
+\if{html}{\out{<a id="method-MapManager-initialize_map"></a>}}
+\if{latex}{\out{\hypertarget{method-MapManager-initialize_map}{}}}
 \subsection{Method \code{initialize_map()}}{
 Initial map by adding data to it.
 \subsection{Usage}{
@@ -442,8 +442,8 @@ Initial map by adding data to it.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-update_map"></a>}}
-\if{latex}{\out{\hypertarget{method-update_map}{}}}
+\if{html}{\out{<a id="method-MapManager-update_map"></a>}}
+\if{latex}{\out{\hypertarget{method-MapManager-update_map}{}}}
 \subsection{Method \code{update_map()}}{
 Update map.
 \subsection{Usage}{
@@ -459,8 +459,8 @@ Update map.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-delete_sinlge_map_pane"></a>}}
-\if{latex}{\out{\hypertarget{method-delete_sinlge_map_pane}{}}}
+\if{html}{\out{<a id="method-MapManager-delete_sinlge_map_pane"></a>}}
+\if{latex}{\out{\hypertarget{method-MapManager-delete_sinlge_map_pane}{}}}
 \subsection{Method \code{delete_sinlge_map_pane()}}{
 Delete single map pane
 \subsection{Usage}{
@@ -476,8 +476,8 @@ Delete single map pane
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-delete_all_map_panes"></a>}}
-\if{latex}{\out{\hypertarget{method-delete_all_map_panes}{}}}
+\if{html}{\out{<a id="method-MapManager-delete_all_map_panes"></a>}}
+\if{latex}{\out{\hypertarget{method-MapManager-delete_all_map_panes}{}}}
 \subsection{Method \code{delete_all_map_panes()}}{
 Delete all map panes.
 \subsection{Usage}{
@@ -493,8 +493,8 @@ Delete all map panes.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-MapManager-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-MapManager-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

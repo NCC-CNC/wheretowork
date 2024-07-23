@@ -30,17 +30,17 @@ Definition for the Provenance class.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{Provenance$new()}}
-\item \href{#method-print}{\code{Provenance$print()}}
-\item \href{#method-repr}{\code{Provenance$repr()}}
-\item \href{#method-get_widget_data}{\code{Provenance$get_widget_data()}}
-\item \href{#method-export}{\code{Provenance$export()}}
-\item \href{#method-clone}{\code{Provenance$clone()}}
+\item \href{#method-Provenance-new}{\code{Provenance$new()}}
+\item \href{#method-Provenance-print}{\code{Provenance$print()}}
+\item \href{#method-Provenance-repr}{\code{Provenance$repr()}}
+\item \href{#method-Provenance-get_widget_data}{\code{Provenance$get_widget_data()}}
+\item \href{#method-Provenance-export}{\code{Provenance$export()}}
+\item \href{#method-Provenance-clone}{\code{Provenance$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-Provenance-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Provenance-new}{}}}
 \subsection{Method \code{new()}}{
 Create a Provenance object.
 \subsection{Usage}{
@@ -65,8 +65,8 @@ A Provenance object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-print"></a>}}
-\if{latex}{\out{\hypertarget{method-print}{}}}
+\if{html}{\out{<a id="method-Provenance-print"></a>}}
+\if{latex}{\out{\hypertarget{method-Provenance-print}{}}}
 \subsection{Method \code{print()}}{
 Print the object.
 \subsection{Usage}{
@@ -82,8 +82,8 @@ Print the object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-repr"></a>}}
-\if{latex}{\out{\hypertarget{method-repr}{}}}
+\if{html}{\out{<a id="method-Provenance-repr"></a>}}
+\if{latex}{\out{\hypertarget{method-Provenance-repr}{}}}
 \subsection{Method \code{repr()}}{
 Generate a \code{character} summarizing the representation of the object.
 \subsection{Usage}{
@@ -102,8 +102,8 @@ Generate a \code{character} summarizing the representation of the object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_widget_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_widget_data}{}}}
+\if{html}{\out{<a id="method-Provenance-get_widget_data"></a>}}
+\if{latex}{\out{\hypertarget{method-Provenance-get_widget_data}{}}}
 \subsection{Method \code{get_widget_data()}}{
 Get widget data.
 \subsection{Usage}{
@@ -115,8 +115,8 @@ Get widget data.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-export"></a>}}
-\if{latex}{\out{\hypertarget{method-export}{}}}
+\if{html}{\out{<a id="method-Provenance-export"></a>}}
+\if{latex}{\out{\hypertarget{method-Provenance-export}{}}}
 \subsection{Method \code{export()}}{
 Get widget data.
 \subsection{Usage}{
@@ -128,8 +128,8 @@ Get widget data.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-Provenance-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-Provenance-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

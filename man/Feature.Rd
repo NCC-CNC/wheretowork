@@ -52,31 +52,31 @@ Definition for the Feature class.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{Feature$new()}}
-\item \href{#method-print}{\code{Feature$print()}}
-\item \href{#method-repr}{\code{Feature$repr()}}
-\item \href{#method-get_hidden}{\code{Feature$get_hidden()}}
-\item \href{#method-get_visible}{\code{Feature$get_visible()}}
-\item \href{#method-get_invisible}{\code{Feature$get_invisible()}}
-\item \href{#method-get_loaded}{\code{Feature$get_loaded()}}
-\item \href{#method-get_current}{\code{Feature$get_current()}}
-\item \href{#method-get_status}{\code{Feature$get_status()}}
-\item \href{#method-get_goal}{\code{Feature$get_goal()}}
-\item \href{#method-get_data}{\code{Feature$get_data()}}
-\item \href{#method-set_new_pane}{\code{Feature$set_new_pane()}}
-\item \href{#method-set_visible}{\code{Feature$set_visible()}}
-\item \href{#method-set_invisible}{\code{Feature$set_invisible()}}
-\item \href{#method-set_loaded}{\code{Feature$set_loaded()}}
-\item \href{#method-set_status}{\code{Feature$set_status()}}
-\item \href{#method-set_goal}{\code{Feature$set_goal()}}
-\item \href{#method-set_current}{\code{Feature$set_current()}}
-\item \href{#method-export}{\code{Feature$export()}}
-\item \href{#method-clone}{\code{Feature$clone()}}
+\item \href{#method-Feature-new}{\code{Feature$new()}}
+\item \href{#method-Feature-print}{\code{Feature$print()}}
+\item \href{#method-Feature-repr}{\code{Feature$repr()}}
+\item \href{#method-Feature-get_hidden}{\code{Feature$get_hidden()}}
+\item \href{#method-Feature-get_visible}{\code{Feature$get_visible()}}
+\item \href{#method-Feature-get_invisible}{\code{Feature$get_invisible()}}
+\item \href{#method-Feature-get_loaded}{\code{Feature$get_loaded()}}
+\item \href{#method-Feature-get_current}{\code{Feature$get_current()}}
+\item \href{#method-Feature-get_status}{\code{Feature$get_status()}}
+\item \href{#method-Feature-get_goal}{\code{Feature$get_goal()}}
+\item \href{#method-Feature-get_data}{\code{Feature$get_data()}}
+\item \href{#method-Feature-set_new_pane}{\code{Feature$set_new_pane()}}
+\item \href{#method-Feature-set_visible}{\code{Feature$set_visible()}}
+\item \href{#method-Feature-set_invisible}{\code{Feature$set_invisible()}}
+\item \href{#method-Feature-set_loaded}{\code{Feature$set_loaded()}}
+\item \href{#method-Feature-set_status}{\code{Feature$set_status()}}
+\item \href{#method-Feature-set_goal}{\code{Feature$set_goal()}}
+\item \href{#method-Feature-set_current}{\code{Feature$set_current()}}
+\item \href{#method-Feature-export}{\code{Feature$export()}}
+\item \href{#method-Feature-clone}{\code{Feature$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-Feature-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Feature-new}{}}}
 \subsection{Method \code{new()}}{
 Create a Feature object.
 \subsection{Usage}{
@@ -139,8 +139,8 @@ A new Feature object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-print"></a>}}
-\if{latex}{\out{\hypertarget{method-print}{}}}
+\if{html}{\out{<a id="method-Feature-print"></a>}}
+\if{latex}{\out{\hypertarget{method-Feature-print}{}}}
 \subsection{Method \code{print()}}{
 Print the object.
 \subsection{Usage}{
@@ -156,8 +156,8 @@ Print the object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-repr"></a>}}
-\if{latex}{\out{\hypertarget{method-repr}{}}}
+\if{html}{\out{<a id="method-Feature-repr"></a>}}
+\if{latex}{\out{\hypertarget{method-Feature-repr}{}}}
 \subsection{Method \code{repr()}}{
 Generate a \code{character} summarizing the representation of the object.
 \subsection{Usage}{
@@ -180,8 +180,8 @@ Defaults to \code{"]"}.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_hidden"></a>}}
-\if{latex}{\out{\hypertarget{method-get_hidden}{}}}
+\if{html}{\out{<a id="method-Feature-get_hidden"></a>}}
+\if{latex}{\out{\hypertarget{method-Feature-get_hidden}{}}}
 \subsection{Method \code{get_hidden()}}{
 Get hidden.
 \subsection{Usage}{
@@ -193,8 +193,8 @@ Get hidden.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_visible"></a>}}
-\if{latex}{\out{\hypertarget{method-get_visible}{}}}
+\if{html}{\out{<a id="method-Feature-get_visible"></a>}}
+\if{latex}{\out{\hypertarget{method-Feature-get_visible}{}}}
 \subsection{Method \code{get_visible()}}{
 Get visible.
 \subsection{Usage}{
@@ -206,8 +206,8 @@ Get visible.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_invisible"></a>}}
-\if{latex}{\out{\hypertarget{method-get_invisible}{}}}
+\if{html}{\out{<a id="method-Feature-get_invisible"></a>}}
+\if{latex}{\out{\hypertarget{method-Feature-get_invisible}{}}}
 \subsection{Method \code{get_invisible()}}{
 Get invisible.
 \subsection{Usage}{
@@ -219,8 +219,8 @@ Get invisible.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_loaded"></a>}}
-\if{latex}{\out{\hypertarget{method-get_loaded}{}}}
+\if{html}{\out{<a id="method-Feature-get_loaded"></a>}}
+\if{latex}{\out{\hypertarget{method-Feature-get_loaded}{}}}
 \subsection{Method \code{get_loaded()}}{
 Get loaded.
 \subsection{Usage}{
@@ -232,8 +232,8 @@ Get loaded.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_current"></a>}}
-\if{latex}{\out{\hypertarget{method-get_current}{}}}
+\if{html}{\out{<a id="method-Feature-get_current"></a>}}
+\if{latex}{\out{\hypertarget{method-Feature-get_current}{}}}
 \subsection{Method \code{get_current()}}{
 Get current (proportion) coverage.
 \subsection{Usage}{
@@ -245,8 +245,8 @@ Get current (proportion) coverage.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_status"></a>}}
-\if{latex}{\out{\hypertarget{method-get_status}{}}}
+\if{html}{\out{<a id="method-Feature-get_status"></a>}}
+\if{latex}{\out{\hypertarget{method-Feature-get_status}{}}}
 \subsection{Method \code{get_status()}}{
 Get status.
 \subsection{Usage}{
@@ -258,8 +258,8 @@ Get status.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_goal"></a>}}
-\if{latex}{\out{\hypertarget{method-get_goal}{}}}
+\if{html}{\out{<a id="method-Feature-get_goal"></a>}}
+\if{latex}{\out{\hypertarget{method-Feature-get_goal}{}}}
 \subsection{Method \code{get_goal()}}{
 Get goal (proportion) coverage.
 \subsection{Usage}{
@@ -271,8 +271,8 @@ Get goal (proportion) coverage.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_data}{}}}
+\if{html}{\out{<a id="method-Feature-get_data"></a>}}
+\if{latex}{\out{\hypertarget{method-Feature-get_data}{}}}
 \subsection{Method \code{get_data()}}{
 Get the data.
 \subsection{Usage}{
@@ -284,8 +284,8 @@ Get the data.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_new_pane"></a>}}
-\if{latex}{\out{\hypertarget{method-set_new_pane}{}}}
+\if{html}{\out{<a id="method-Feature-set_new_pane"></a>}}
+\if{latex}{\out{\hypertarget{method-Feature-set_new_pane}{}}}
 \subsection{Method \code{set_new_pane()}}{
 Set new pane.
 \subsection{Usage}{
@@ -306,8 +306,8 @@ Set new pane.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_visible"></a>}}
-\if{latex}{\out{\hypertarget{method-set_visible}{}}}
+\if{html}{\out{<a id="method-Feature-set_visible"></a>}}
+\if{latex}{\out{\hypertarget{method-Feature-set_visible}{}}}
 \subsection{Method \code{set_visible()}}{
 Set visible.
 \subsection{Usage}{
@@ -323,8 +323,8 @@ Set visible.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_invisible"></a>}}
-\if{latex}{\out{\hypertarget{method-set_invisible}{}}}
+\if{html}{\out{<a id="method-Feature-set_invisible"></a>}}
+\if{latex}{\out{\hypertarget{method-Feature-set_invisible}{}}}
 \subsection{Method \code{set_invisible()}}{
 Set invisible.
 \subsection{Usage}{
@@ -340,8 +340,8 @@ Set invisible.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_loaded"></a>}}
-\if{latex}{\out{\hypertarget{method-set_loaded}{}}}
+\if{html}{\out{<a id="method-Feature-set_loaded"></a>}}
+\if{latex}{\out{\hypertarget{method-Feature-set_loaded}{}}}
 \subsection{Method \code{set_loaded()}}{
 Set loaded.
 \subsection{Usage}{
@@ -357,8 +357,8 @@ Set loaded.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_status"></a>}}
-\if{latex}{\out{\hypertarget{method-set_status}{}}}
+\if{html}{\out{<a id="method-Feature-set_status"></a>}}
+\if{latex}{\out{\hypertarget{method-Feature-set_status}{}}}
 \subsection{Method \code{set_status()}}{
 Set status.
 \subsection{Usage}{
@@ -374,8 +374,8 @@ Set status.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_goal"></a>}}
-\if{latex}{\out{\hypertarget{method-set_goal}{}}}
+\if{html}{\out{<a id="method-Feature-set_goal"></a>}}
+\if{latex}{\out{\hypertarget{method-Feature-set_goal}{}}}
 \subsection{Method \code{set_goal()}}{
 Set goal.
 \subsection{Usage}{
@@ -391,8 +391,8 @@ Set goal.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_current"></a>}}
-\if{latex}{\out{\hypertarget{method-set_current}{}}}
+\if{html}{\out{<a id="method-Feature-set_current"></a>}}
+\if{latex}{\out{\hypertarget{method-Feature-set_current}{}}}
 \subsection{Method \code{set_current()}}{
 Set current.
 \subsection{Usage}{
@@ -408,8 +408,8 @@ Set current.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-export"></a>}}
-\if{latex}{\out{\hypertarget{method-export}{}}}
+\if{html}{\out{<a id="method-Feature-export"></a>}}
+\if{latex}{\out{\hypertarget{method-Feature-export}{}}}
 \subsection{Method \code{export()}}{
 Export settings
 \subsection{Usage}{
@@ -421,8 +421,8 @@ Export settings
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-Feature-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-Feature-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

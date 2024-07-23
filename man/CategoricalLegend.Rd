@@ -23,17 +23,17 @@ Definition for the \code{CategoricalLegend} class.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{CategoricalLegend$new()}}
-\item \href{#method-get_widget_data}{\code{CategoricalLegend$get_widget_data()}}
-\item \href{#method-get_resample_method}{\code{CategoricalLegend$get_resample_method()}}
-\item \href{#method-get_color_map}{\code{CategoricalLegend$get_color_map()}}
-\item \href{#method-export}{\code{CategoricalLegend$export()}}
-\item \href{#method-clone}{\code{CategoricalLegend$clone()}}
+\item \href{#method-CategoricalLegend-new}{\code{CategoricalLegend$new()}}
+\item \href{#method-CategoricalLegend-get_widget_data}{\code{CategoricalLegend$get_widget_data()}}
+\item \href{#method-CategoricalLegend-get_resample_method}{\code{CategoricalLegend$get_resample_method()}}
+\item \href{#method-CategoricalLegend-get_color_map}{\code{CategoricalLegend$get_color_map()}}
+\item \href{#method-CategoricalLegend-export}{\code{CategoricalLegend$export()}}
+\item \href{#method-CategoricalLegend-clone}{\code{CategoricalLegend$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-CategoricalLegend-new"></a>}}
+\if{latex}{\out{\hypertarget{method-CategoricalLegend-new}{}}}
 \subsection{Method \code{new()}}{
 Create a \code{CategoricalLegend} object.
 \subsection{Usage}{
@@ -54,8 +54,8 @@ A new \code{CategoricalLegend} object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_widget_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_widget_data}{}}}
+\if{html}{\out{<a id="method-CategoricalLegend-get_widget_data"></a>}}
+\if{latex}{\out{\hypertarget{method-CategoricalLegend-get_widget_data}{}}}
 \subsection{Method \code{get_widget_data()}}{
 Get data for creating a widget.
 \subsection{Usage}{
@@ -67,8 +67,8 @@ A new \code{CategoricalLegend} object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_resample_method"></a>}}
-\if{latex}{\out{\hypertarget{method-get_resample_method}{}}}
+\if{html}{\out{<a id="method-CategoricalLegend-get_resample_method"></a>}}
+\if{latex}{\out{\hypertarget{method-CategoricalLegend-get_resample_method}{}}}
 \subsection{Method \code{get_resample_method()}}{
 Get resample method.
 \subsection{Usage}{
@@ -80,8 +80,8 @@ Get resample method.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_color_map"></a>}}
-\if{latex}{\out{\hypertarget{method-get_color_map}{}}}
+\if{html}{\out{<a id="method-CategoricalLegend-get_color_map"></a>}}
+\if{latex}{\out{\hypertarget{method-CategoricalLegend-get_color_map}{}}}
 \subsection{Method \code{get_color_map()}}{
 Get a function for mapping values to colors.
 \subsection{Usage}{
@@ -93,8 +93,8 @@ A \code{function} object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-export"></a>}}
-\if{latex}{\out{\hypertarget{method-export}{}}}
+\if{html}{\out{<a id="method-CategoricalLegend-export"></a>}}
+\if{latex}{\out{\hypertarget{method-CategoricalLegend-export}{}}}
 \subsection{Method \code{export()}}{
 Export settings
 \subsection{Usage}{
@@ -106,8 +106,8 @@ Export settings
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-CategoricalLegend-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-CategoricalLegend-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

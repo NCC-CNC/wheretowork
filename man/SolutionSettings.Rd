@@ -71,37 +71,37 @@ and \link{Parameter} objects.}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{SolutionSettings$new()}}
-\item \href{#method-print}{\code{SolutionSettings$print()}}
-\item \href{#method-repr}{\code{SolutionSettings$repr()}}
-\item \href{#method-get_theme}{\code{SolutionSettings$get_theme()}}
-\item \href{#method-get_weight}{\code{SolutionSettings$get_weight()}}
-\item \href{#method-get_include}{\code{SolutionSettings$get_include()}}
-\item \href{#method-get_exclude}{\code{SolutionSettings$get_exclude()}}
-\item \href{#method-get_parameter}{\code{SolutionSettings$get_parameter()}}
-\item \href{#method-get_setting}{\code{SolutionSettings$get_setting()}}
-\item \href{#method-set_setting}{\code{SolutionSettings$set_setting()}}
-\item \href{#method-get_feature_names}{\code{SolutionSettings$get_feature_names()}}
-\item \href{#method-update_ss}{\code{SolutionSettings$update_ss()}}
-\item \href{#method-get_widget_data}{\code{SolutionSettings$get_widget_data()}}
-\item \href{#method-get_theme_settings}{\code{SolutionSettings$get_theme_settings()}}
-\item \href{#method-get_weight_settings}{\code{SolutionSettings$get_weight_settings()}}
-\item \href{#method-get_include_settings}{\code{SolutionSettings$get_include_settings()}}
-\item \href{#method-get_exclude_settings}{\code{SolutionSettings$get_exclude_settings()}}
-\item \href{#method-get_parameter_settings}{\code{SolutionSettings$get_parameter_settings()}}
-\item \href{#method-get_theme_data}{\code{SolutionSettings$get_theme_data()}}
-\item \href{#method-get_weight_data}{\code{SolutionSettings$get_weight_data()}}
-\item \href{#method-get_include_data}{\code{SolutionSettings$get_include_data()}}
-\item \href{#method-get_exclude_data}{\code{SolutionSettings$get_exclude_data()}}
-\item \href{#method-get_overlap}{\code{SolutionSettings$get_overlap()}}
-\item \href{#method-set_overlap}{\code{SolutionSettings$set_overlap()}}
-\item \href{#method-update_current_held}{\code{SolutionSettings$update_current_held()}}
-\item \href{#method-clone}{\code{SolutionSettings$clone()}}
+\item \href{#method-SolutionSettings-new}{\code{SolutionSettings$new()}}
+\item \href{#method-SolutionSettings-print}{\code{SolutionSettings$print()}}
+\item \href{#method-SolutionSettings-repr}{\code{SolutionSettings$repr()}}
+\item \href{#method-SolutionSettings-get_theme}{\code{SolutionSettings$get_theme()}}
+\item \href{#method-SolutionSettings-get_weight}{\code{SolutionSettings$get_weight()}}
+\item \href{#method-SolutionSettings-get_include}{\code{SolutionSettings$get_include()}}
+\item \href{#method-SolutionSettings-get_exclude}{\code{SolutionSettings$get_exclude()}}
+\item \href{#method-SolutionSettings-get_parameter}{\code{SolutionSettings$get_parameter()}}
+\item \href{#method-SolutionSettings-get_setting}{\code{SolutionSettings$get_setting()}}
+\item \href{#method-SolutionSettings-set_setting}{\code{SolutionSettings$set_setting()}}
+\item \href{#method-SolutionSettings-get_feature_names}{\code{SolutionSettings$get_feature_names()}}
+\item \href{#method-SolutionSettings-update_ss}{\code{SolutionSettings$update_ss()}}
+\item \href{#method-SolutionSettings-get_widget_data}{\code{SolutionSettings$get_widget_data()}}
+\item \href{#method-SolutionSettings-get_theme_settings}{\code{SolutionSettings$get_theme_settings()}}
+\item \href{#method-SolutionSettings-get_weight_settings}{\code{SolutionSettings$get_weight_settings()}}
+\item \href{#method-SolutionSettings-get_include_settings}{\code{SolutionSettings$get_include_settings()}}
+\item \href{#method-SolutionSettings-get_exclude_settings}{\code{SolutionSettings$get_exclude_settings()}}
+\item \href{#method-SolutionSettings-get_parameter_settings}{\code{SolutionSettings$get_parameter_settings()}}
+\item \href{#method-SolutionSettings-get_theme_data}{\code{SolutionSettings$get_theme_data()}}
+\item \href{#method-SolutionSettings-get_weight_data}{\code{SolutionSettings$get_weight_data()}}
+\item \href{#method-SolutionSettings-get_include_data}{\code{SolutionSettings$get_include_data()}}
+\item \href{#method-SolutionSettings-get_exclude_data}{\code{SolutionSettings$get_exclude_data()}}
+\item \href{#method-SolutionSettings-get_overlap}{\code{SolutionSettings$get_overlap()}}
+\item \href{#method-SolutionSettings-set_overlap}{\code{SolutionSettings$set_overlap()}}
+\item \href{#method-SolutionSettings-update_current_held}{\code{SolutionSettings$update_current_held()}}
+\item \href{#method-SolutionSettings-clone}{\code{SolutionSettings$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-SolutionSettings-new"></a>}}
+\if{latex}{\out{\hypertarget{method-SolutionSettings-new}{}}}
 \subsection{Method \code{new()}}{
 Create a \code{SolutionSettings} object.
 \subsection{Usage}{
@@ -131,8 +131,8 @@ A new \code{SolutionSettings} object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-print"></a>}}
-\if{latex}{\out{\hypertarget{method-print}{}}}
+\if{html}{\out{<a id="method-SolutionSettings-print"></a>}}
+\if{latex}{\out{\hypertarget{method-SolutionSettings-print}{}}}
 \subsection{Method \code{print()}}{
 Print the object.
 \subsection{Usage}{
@@ -148,8 +148,8 @@ Print the object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-repr"></a>}}
-\if{latex}{\out{\hypertarget{method-repr}{}}}
+\if{html}{\out{<a id="method-SolutionSettings-repr"></a>}}
+\if{latex}{\out{\hypertarget{method-SolutionSettings-repr}{}}}
 \subsection{Method \code{repr()}}{
 Generate a \code{character} summarizing the representation of the object.
 \subsection{Usage}{
@@ -161,8 +161,8 @@ Generate a \code{character} summarizing the representation of the object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_theme"></a>}}
-\if{latex}{\out{\hypertarget{method-get_theme}{}}}
+\if{html}{\out{<a id="method-SolutionSettings-get_theme"></a>}}
+\if{latex}{\out{\hypertarget{method-SolutionSettings-get_theme}{}}}
 \subsection{Method \code{get_theme()}}{
 Get a theme.
 \subsection{Usage}{
@@ -181,8 +181,8 @@ Get a theme.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_weight"></a>}}
-\if{latex}{\out{\hypertarget{method-get_weight}{}}}
+\if{html}{\out{<a id="method-SolutionSettings-get_weight"></a>}}
+\if{latex}{\out{\hypertarget{method-SolutionSettings-get_weight}{}}}
 \subsection{Method \code{get_weight()}}{
 Get a weight.
 \subsection{Usage}{
@@ -201,8 +201,8 @@ Get a weight.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_include"></a>}}
-\if{latex}{\out{\hypertarget{method-get_include}{}}}
+\if{html}{\out{<a id="method-SolutionSettings-get_include"></a>}}
+\if{latex}{\out{\hypertarget{method-SolutionSettings-get_include}{}}}
 \subsection{Method \code{get_include()}}{
 Get an include.
 \subsection{Usage}{
@@ -221,8 +221,8 @@ Get an include.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_exclude"></a>}}
-\if{latex}{\out{\hypertarget{method-get_exclude}{}}}
+\if{html}{\out{<a id="method-SolutionSettings-get_exclude"></a>}}
+\if{latex}{\out{\hypertarget{method-SolutionSettings-get_exclude}{}}}
 \subsection{Method \code{get_exclude()}}{
 Get an exclude.
 \subsection{Usage}{
@@ -241,8 +241,8 @@ Get an exclude.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_parameter"></a>}}
-\if{latex}{\out{\hypertarget{method-get_parameter}{}}}
+\if{html}{\out{<a id="method-SolutionSettings-get_parameter"></a>}}
+\if{latex}{\out{\hypertarget{method-SolutionSettings-get_parameter}{}}}
 \subsection{Method \code{get_parameter()}}{
 Get an parameter.
 \subsection{Usage}{
@@ -261,8 +261,8 @@ Get an parameter.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_setting"></a>}}
-\if{latex}{\out{\hypertarget{method-get_setting}{}}}
+\if{html}{\out{<a id="method-SolutionSettings-get_setting"></a>}}
+\if{latex}{\out{\hypertarget{method-SolutionSettings-get_setting}{}}}
 \subsection{Method \code{get_setting()}}{
 Get a setting for a weight, theme, include, exclude, or parameter.
 \subsection{Usage}{
@@ -278,8 +278,8 @@ Get a setting for a weight, theme, include, exclude, or parameter.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_setting"></a>}}
-\if{latex}{\out{\hypertarget{method-set_setting}{}}}
+\if{html}{\out{<a id="method-SolutionSettings-set_setting"></a>}}
+\if{latex}{\out{\hypertarget{method-SolutionSettings-set_setting}{}}}
 \subsection{Method \code{set_setting()}}{
 Set a setting for theme, weight, include, exclude and parameters.
 \subsection{Usage}{
@@ -295,8 +295,8 @@ Set a setting for theme, weight, include, exclude and parameters.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_feature_names"></a>}}
-\if{latex}{\out{\hypertarget{method-get_feature_names}{}}}
+\if{html}{\out{<a id="method-SolutionSettings-get_feature_names"></a>}}
+\if{latex}{\out{\hypertarget{method-SolutionSettings-get_feature_names}{}}}
 \subsection{Method \code{get_feature_names()}}{
 get character vector of all feature names from a list of themes.
 \subsection{Usage}{
@@ -315,8 +315,8 @@ get character vector of all feature names from a list of themes.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-update_ss"></a>}}
-\if{latex}{\out{\hypertarget{method-update_ss}{}}}
+\if{html}{\out{<a id="method-SolutionSettings-update_ss"></a>}}
+\if{latex}{\out{\hypertarget{method-SolutionSettings-update_ss}{}}}
 \subsection{Method \code{update_ss()}}{
 update settings for theme, weight, include, exclude and parameters from
 user uploaded configuration file.
@@ -333,8 +333,8 @@ user uploaded configuration file.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_widget_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_widget_data}{}}}
+\if{html}{\out{<a id="method-SolutionSettings-get_widget_data"></a>}}
+\if{latex}{\out{\hypertarget{method-SolutionSettings-get_widget_data}{}}}
 \subsection{Method \code{get_widget_data()}}{
 Get data for displaying the theme in a \code{\link[=solutionSettings]{solutionSettings()}} widget.
 \subsection{Usage}{
@@ -346,8 +346,8 @@ Get data for displaying the theme in a \code{\link[=solutionSettings]{solutionSe
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_theme_settings"></a>}}
-\if{latex}{\out{\hypertarget{method-get_theme_settings}{}}}
+\if{html}{\out{<a id="method-SolutionSettings-get_theme_settings"></a>}}
+\if{latex}{\out{\hypertarget{method-SolutionSettings-get_theme_settings}{}}}
 \subsection{Method \code{get_theme_settings()}}{
 Get theme settings for generating a prioritization.
 \subsection{Usage}{
@@ -359,8 +359,8 @@ Get theme settings for generating a prioritization.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_weight_settings"></a>}}
-\if{latex}{\out{\hypertarget{method-get_weight_settings}{}}}
+\if{html}{\out{<a id="method-SolutionSettings-get_weight_settings"></a>}}
+\if{latex}{\out{\hypertarget{method-SolutionSettings-get_weight_settings}{}}}
 \subsection{Method \code{get_weight_settings()}}{
 Get weight settings for generating a prioritization.
 \subsection{Usage}{
@@ -372,8 +372,8 @@ Get weight settings for generating a prioritization.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_include_settings"></a>}}
-\if{latex}{\out{\hypertarget{method-get_include_settings}{}}}
+\if{html}{\out{<a id="method-SolutionSettings-get_include_settings"></a>}}
+\if{latex}{\out{\hypertarget{method-SolutionSettings-get_include_settings}{}}}
 \subsection{Method \code{get_include_settings()}}{
 Get include settings for generating a prioritization.
 \subsection{Usage}{
@@ -385,8 +385,8 @@ Get include settings for generating a prioritization.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_exclude_settings"></a>}}
-\if{latex}{\out{\hypertarget{method-get_exclude_settings}{}}}
+\if{html}{\out{<a id="method-SolutionSettings-get_exclude_settings"></a>}}
+\if{latex}{\out{\hypertarget{method-SolutionSettings-get_exclude_settings}{}}}
 \subsection{Method \code{get_exclude_settings()}}{
 Get exclude settings for generating a prioritization.
 \subsection{Usage}{
@@ -398,8 +398,8 @@ Get exclude settings for generating a prioritization.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_parameter_settings"></a>}}
-\if{latex}{\out{\hypertarget{method-get_parameter_settings}{}}}
+\if{html}{\out{<a id="method-SolutionSettings-get_parameter_settings"></a>}}
+\if{latex}{\out{\hypertarget{method-SolutionSettings-get_parameter_settings}{}}}
 \subsection{Method \code{get_parameter_settings()}}{
 Get parameter settings for generating a prioritization.
 \subsection{Usage}{
@@ -411,8 +411,8 @@ Get parameter settings for generating a prioritization.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_theme_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_theme_data}{}}}
+\if{html}{\out{<a id="method-SolutionSettings-get_theme_data"></a>}}
+\if{latex}{\out{\hypertarget{method-SolutionSettings-get_theme_data}{}}}
 \subsection{Method \code{get_theme_data()}}{
 Get theme matrix data.
 \subsection{Usage}{
@@ -424,8 +424,8 @@ Get theme matrix data.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_weight_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_weight_data}{}}}
+\if{html}{\out{<a id="method-SolutionSettings-get_weight_data"></a>}}
+\if{latex}{\out{\hypertarget{method-SolutionSettings-get_weight_data}{}}}
 \subsection{Method \code{get_weight_data()}}{
 Get weight matrix data.
 \subsection{Usage}{
@@ -437,8 +437,8 @@ Get weight matrix data.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_include_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_include_data}{}}}
+\if{html}{\out{<a id="method-SolutionSettings-get_include_data"></a>}}
+\if{latex}{\out{\hypertarget{method-SolutionSettings-get_include_data}{}}}
 \subsection{Method \code{get_include_data()}}{
 Get includes matrix data.
 \subsection{Usage}{
@@ -450,8 +450,8 @@ Get includes matrix data.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_exclude_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_exclude_data}{}}}
+\if{html}{\out{<a id="method-SolutionSettings-get_exclude_data"></a>}}
+\if{latex}{\out{\hypertarget{method-SolutionSettings-get_exclude_data}{}}}
 \subsection{Method \code{get_exclude_data()}}{
 Get exclude matrix data.
 \subsection{Usage}{
@@ -463,8 +463,8 @@ Get exclude matrix data.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_overlap"></a>}}
-\if{latex}{\out{\hypertarget{method-get_overlap}{}}}
+\if{html}{\out{<a id="method-SolutionSettings-get_overlap"></a>}}
+\if{latex}{\out{\hypertarget{method-SolutionSettings-get_overlap}{}}}
 \subsection{Method \code{get_overlap()}}{
 Get list of include and exclude names that overlap.
 \subsection{Usage}{
@@ -476,8 +476,8 @@ Get list of include and exclude names that overlap.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_overlap"></a>}}
-\if{latex}{\out{\hypertarget{method-set_overlap}{}}}
+\if{html}{\out{<a id="method-SolutionSettings-set_overlap"></a>}}
+\if{latex}{\out{\hypertarget{method-SolutionSettings-set_overlap}{}}}
 \subsection{Method \code{set_overlap()}}{
 Get list of include and exclude names that overlap.
 \subsection{Usage}{
@@ -489,8 +489,8 @@ Get list of include and exclude names that overlap.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-update_current_held"></a>}}
-\if{latex}{\out{\hypertarget{method-update_current_held}{}}}
+\if{html}{\out{<a id="method-SolutionSettings-update_current_held"></a>}}
+\if{latex}{\out{\hypertarget{method-SolutionSettings-update_current_held}{}}}
 \subsection{Method \code{update_current_held()}}{
 Update the current amount held for each themes and weights automatically
 based on the include and exclude statuses.
@@ -518,8 +518,8 @@ based on the include and exclude statuses.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-SolutionSettings-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-SolutionSettings-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

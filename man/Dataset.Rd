@@ -39,30 +39,30 @@ file path on disk.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{Dataset$new()}}
-\item \href{#method-print}{\code{Dataset$print()}}
-\item \href{#method-repr}{\code{Dataset$repr()}}
-\item \href{#method-import}{\code{Dataset$import()}}
-\item \href{#method-write}{\code{Dataset$write()}}
-\item \href{#method-clean}{\code{Dataset$clean()}}
-\item \href{#method-get_spatial_data}{\code{Dataset$get_spatial_data()}}
-\item \href{#method-get_attribute_data}{\code{Dataset$get_attribute_data()}}
-\item \href{#method-get_boundary_data}{\code{Dataset$get_boundary_data()}}
-\item \href{#method-get_crs}{\code{Dataset$get_crs()}}
-\item \href{#method-get_bbox}{\code{Dataset$get_bbox()}}
-\item \href{#method-get_planning_unit_indices}{\code{Dataset$get_planning_unit_indices()}}
-\item \href{#method-get_names}{\code{Dataset$get_names()}}
-\item \href{#method-get_planning_unit_areas}{\code{Dataset$get_planning_unit_areas()}}
-\item \href{#method-get_index}{\code{Dataset$get_index()}}
-\item \href{#method-has_index}{\code{Dataset$has_index()}}
-\item \href{#method-max_index}{\code{Dataset$max_index()}}
-\item \href{#method-add_index}{\code{Dataset$add_index()}}
-\item \href{#method-clone}{\code{Dataset$clone()}}
+\item \href{#method-Dataset-new}{\code{Dataset$new()}}
+\item \href{#method-Dataset-print}{\code{Dataset$print()}}
+\item \href{#method-Dataset-repr}{\code{Dataset$repr()}}
+\item \href{#method-Dataset-import}{\code{Dataset$import()}}
+\item \href{#method-Dataset-write}{\code{Dataset$write()}}
+\item \href{#method-Dataset-clean}{\code{Dataset$clean()}}
+\item \href{#method-Dataset-get_spatial_data}{\code{Dataset$get_spatial_data()}}
+\item \href{#method-Dataset-get_attribute_data}{\code{Dataset$get_attribute_data()}}
+\item \href{#method-Dataset-get_boundary_data}{\code{Dataset$get_boundary_data()}}
+\item \href{#method-Dataset-get_crs}{\code{Dataset$get_crs()}}
+\item \href{#method-Dataset-get_bbox}{\code{Dataset$get_bbox()}}
+\item \href{#method-Dataset-get_planning_unit_indices}{\code{Dataset$get_planning_unit_indices()}}
+\item \href{#method-Dataset-get_names}{\code{Dataset$get_names()}}
+\item \href{#method-Dataset-get_planning_unit_areas}{\code{Dataset$get_planning_unit_areas()}}
+\item \href{#method-Dataset-get_index}{\code{Dataset$get_index()}}
+\item \href{#method-Dataset-has_index}{\code{Dataset$has_index()}}
+\item \href{#method-Dataset-max_index}{\code{Dataset$max_index()}}
+\item \href{#method-Dataset-add_index}{\code{Dataset$add_index()}}
+\item \href{#method-Dataset-clone}{\code{Dataset$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-Dataset-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Dataset-new}{}}}
 \subsection{Method \code{new()}}{
 Create a Dataset object.
 \subsection{Usage}{
@@ -101,8 +101,8 @@ A new Dataset object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-print"></a>}}
-\if{latex}{\out{\hypertarget{method-print}{}}}
+\if{html}{\out{<a id="method-Dataset-print"></a>}}
+\if{latex}{\out{\hypertarget{method-Dataset-print}{}}}
 \subsection{Method \code{print()}}{
 Print the object.
 \subsection{Usage}{
@@ -118,8 +118,8 @@ Print the object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-repr"></a>}}
-\if{latex}{\out{\hypertarget{method-repr}{}}}
+\if{html}{\out{<a id="method-Dataset-repr"></a>}}
+\if{latex}{\out{\hypertarget{method-Dataset-repr}{}}}
 \subsection{Method \code{repr()}}{
 Generate a \code{character} summarizing the representation of the object.
 \subsection{Usage}{
@@ -131,8 +131,8 @@ Generate a \code{character} summarizing the representation of the object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-import"></a>}}
-\if{latex}{\out{\hypertarget{method-import}{}}}
+\if{html}{\out{<a id="method-Dataset-import"></a>}}
+\if{latex}{\out{\hypertarget{method-Dataset-import}{}}}
 \subsection{Method \code{import()}}{
 Import the data into memory.
 \subsection{Usage}{
@@ -141,8 +141,8 @@ Import the data into memory.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-write"></a>}}
-\if{latex}{\out{\hypertarget{method-write}{}}}
+\if{html}{\out{<a id="method-Dataset-write"></a>}}
+\if{latex}{\out{\hypertarget{method-Dataset-write}{}}}
 \subsection{Method \code{write()}}{
 Write the data to disk.
 \subsection{Usage}{
@@ -162,8 +162,8 @@ Write the data to disk.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clean"></a>}}
-\if{latex}{\out{\hypertarget{method-clean}{}}}
+\if{html}{\out{<a id="method-Dataset-clean"></a>}}
+\if{latex}{\out{\hypertarget{method-Dataset-clean}{}}}
 \subsection{Method \code{clean()}}{
 Clean the dataset from memory.
 \subsection{Usage}{
@@ -172,8 +172,8 @@ Clean the dataset from memory.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_spatial_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_spatial_data}{}}}
+\if{html}{\out{<a id="method-Dataset-get_spatial_data"></a>}}
+\if{latex}{\out{\hypertarget{method-Dataset-get_spatial_data}{}}}
 \subsection{Method \code{get_spatial_data()}}{
 Get the spatial data.
 \subsection{Usage}{
@@ -185,8 +185,8 @@ Get the spatial data.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_attribute_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_attribute_data}{}}}
+\if{html}{\out{<a id="method-Dataset-get_attribute_data"></a>}}
+\if{latex}{\out{\hypertarget{method-Dataset-get_attribute_data}{}}}
 \subsection{Method \code{get_attribute_data()}}{
 Get the attribute data.
 \subsection{Usage}{
@@ -198,8 +198,8 @@ Get the attribute data.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_boundary_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_boundary_data}{}}}
+\if{html}{\out{<a id="method-Dataset-get_boundary_data"></a>}}
+\if{latex}{\out{\hypertarget{method-Dataset-get_boundary_data}{}}}
 \subsection{Method \code{get_boundary_data()}}{
 Get the spatial data.
 \subsection{Usage}{
@@ -211,8 +211,8 @@ Get the spatial data.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_crs"></a>}}
-\if{latex}{\out{\hypertarget{method-get_crs}{}}}
+\if{html}{\out{<a id="method-Dataset-get_crs"></a>}}
+\if{latex}{\out{\hypertarget{method-Dataset-get_crs}{}}}
 \subsection{Method \code{get_crs()}}{
 Get the coordinate reference system.
 \subsection{Usage}{
@@ -224,8 +224,8 @@ Get the coordinate reference system.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_bbox"></a>}}
-\if{latex}{\out{\hypertarget{method-get_bbox}{}}}
+\if{html}{\out{<a id="method-Dataset-get_bbox"></a>}}
+\if{latex}{\out{\hypertarget{method-Dataset-get_bbox}{}}}
 \subsection{Method \code{get_bbox()}}{
 Get the bounding box.
 \subsection{Usage}{
@@ -249,8 +249,8 @@ elements.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_planning_unit_indices"></a>}}
-\if{latex}{\out{\hypertarget{method-get_planning_unit_indices}{}}}
+\if{html}{\out{<a id="method-Dataset-get_planning_unit_indices"></a>}}
+\if{latex}{\out{\hypertarget{method-Dataset-get_planning_unit_indices}{}}}
 \subsection{Method \code{get_planning_unit_indices()}}{
 Get planning unit indices.
 \subsection{Usage}{
@@ -262,8 +262,8 @@ Get planning unit indices.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_names"></a>}}
-\if{latex}{\out{\hypertarget{method-get_names}{}}}
+\if{html}{\out{<a id="method-Dataset-get_names"></a>}}
+\if{latex}{\out{\hypertarget{method-Dataset-get_names}{}}}
 \subsection{Method \code{get_names()}}{
 Get attribute names.
 \subsection{Usage}{
@@ -275,8 +275,8 @@ Get attribute names.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_planning_unit_areas"></a>}}
-\if{latex}{\out{\hypertarget{method-get_planning_unit_areas}{}}}
+\if{html}{\out{<a id="method-Dataset-get_planning_unit_areas"></a>}}
+\if{latex}{\out{\hypertarget{method-Dataset-get_planning_unit_areas}{}}}
 \subsection{Method \code{get_planning_unit_areas()}}{
 Get area values.
 \subsection{Usage}{
@@ -288,8 +288,8 @@ Get area values.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_index"></a>}}
-\if{latex}{\out{\hypertarget{method-get_index}{}}}
+\if{html}{\out{<a id="method-Dataset-get_index"></a>}}
+\if{latex}{\out{\hypertarget{method-Dataset-get_index}{}}}
 \subsection{Method \code{get_index()}}{
 Get a data from the dataset at an index.
 \subsection{Usage}{
@@ -309,8 +309,8 @@ the data.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-has_index"></a>}}
-\if{latex}{\out{\hypertarget{method-has_index}{}}}
+\if{html}{\out{<a id="method-Dataset-has_index"></a>}}
+\if{latex}{\out{\hypertarget{method-Dataset-has_index}{}}}
 \subsection{Method \code{has_index()}}{
 Check if the dataset has an index.
 \subsection{Usage}{
@@ -330,8 +330,8 @@ the data.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-max_index"></a>}}
-\if{latex}{\out{\hypertarget{method-max_index}{}}}
+\if{html}{\out{<a id="method-Dataset-max_index"></a>}}
+\if{latex}{\out{\hypertarget{method-Dataset-max_index}{}}}
 \subsection{Method \code{max_index()}}{
 Maximum index.
 \subsection{Usage}{
@@ -343,8 +343,8 @@ Maximum index.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-add_index"></a>}}
-\if{latex}{\out{\hypertarget{method-add_index}{}}}
+\if{html}{\out{<a id="method-Dataset-add_index"></a>}}
+\if{latex}{\out{\hypertarget{method-Dataset-add_index}{}}}
 \subsection{Method \code{add_index()}}{
 Add data at an index.
 \subsection{Usage}{
@@ -363,8 +363,8 @@ the data.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-Dataset-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-Dataset-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

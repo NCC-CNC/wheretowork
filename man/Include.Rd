@@ -44,38 +44,38 @@ Definition for the Include class.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{Include$new()}}
-\item \href{#method-print}{\code{Include$print()}}
-\item \href{#method-repr}{\code{Include$repr()}}
-\item \href{#method-get_layer_name}{\code{Include$get_layer_name()}}
-\item \href{#method-get_layer_index}{\code{Include$get_layer_index()}}
-\item \href{#method-get_layer_pane}{\code{Include$get_layer_pane()}}
-\item \href{#method-get_id}{\code{Include$get_id()}}
-\item \href{#method-get_visible}{\code{Include$get_visible()}}
-\item \href{#method-get_invisible}{\code{Include$get_invisible()}}
-\item \href{#method-get_loaded}{\code{Include$get_loaded()}}
-\item \href{#method-get_hidden}{\code{Include$get_hidden()}}
-\item \href{#method-get_status}{\code{Include$get_status()}}
-\item \href{#method-get_overlap}{\code{Include$get_overlap()}}
-\item \href{#method-get_data}{\code{Include$get_data()}}
-\item \href{#method-set_new_pane}{\code{Include$set_new_pane()}}
-\item \href{#method-get_setting}{\code{Include$get_setting()}}
-\item \href{#method-set_visible}{\code{Include$set_visible()}}
-\item \href{#method-set_invisible}{\code{Include$set_invisible()}}
-\item \href{#method-set_loaded}{\code{Include$set_loaded()}}
-\item \href{#method-set_status}{\code{Include$set_status()}}
-\item \href{#method-set_setting}{\code{Include$set_setting()}}
-\item \href{#method-get_solution_settings_widget_data}{\code{Include$get_solution_settings_widget_data()}}
-\item \href{#method-get_map_manager_widget_data}{\code{Include$get_map_manager_widget_data()}}
-\item \href{#method-export}{\code{Include$export()}}
-\item \href{#method-render_on_map}{\code{Include$render_on_map()}}
-\item \href{#method-update_on_map}{\code{Include$update_on_map()}}
-\item \href{#method-clone}{\code{Include$clone()}}
+\item \href{#method-Include-new}{\code{Include$new()}}
+\item \href{#method-Include-print}{\code{Include$print()}}
+\item \href{#method-Include-repr}{\code{Include$repr()}}
+\item \href{#method-Include-get_layer_name}{\code{Include$get_layer_name()}}
+\item \href{#method-Include-get_layer_index}{\code{Include$get_layer_index()}}
+\item \href{#method-Include-get_layer_pane}{\code{Include$get_layer_pane()}}
+\item \href{#method-Include-get_id}{\code{Include$get_id()}}
+\item \href{#method-Include-get_visible}{\code{Include$get_visible()}}
+\item \href{#method-Include-get_invisible}{\code{Include$get_invisible()}}
+\item \href{#method-Include-get_loaded}{\code{Include$get_loaded()}}
+\item \href{#method-Include-get_hidden}{\code{Include$get_hidden()}}
+\item \href{#method-Include-get_status}{\code{Include$get_status()}}
+\item \href{#method-Include-get_overlap}{\code{Include$get_overlap()}}
+\item \href{#method-Include-get_data}{\code{Include$get_data()}}
+\item \href{#method-Include-set_new_pane}{\code{Include$set_new_pane()}}
+\item \href{#method-Include-get_setting}{\code{Include$get_setting()}}
+\item \href{#method-Include-set_visible}{\code{Include$set_visible()}}
+\item \href{#method-Include-set_invisible}{\code{Include$set_invisible()}}
+\item \href{#method-Include-set_loaded}{\code{Include$set_loaded()}}
+\item \href{#method-Include-set_status}{\code{Include$set_status()}}
+\item \href{#method-Include-set_setting}{\code{Include$set_setting()}}
+\item \href{#method-Include-get_solution_settings_widget_data}{\code{Include$get_solution_settings_widget_data()}}
+\item \href{#method-Include-get_map_manager_widget_data}{\code{Include$get_map_manager_widget_data()}}
+\item \href{#method-Include-export}{\code{Include$export()}}
+\item \href{#method-Include-render_on_map}{\code{Include$render_on_map()}}
+\item \href{#method-Include-update_on_map}{\code{Include$update_on_map()}}
+\item \href{#method-Include-clone}{\code{Include$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-Include-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Include-new}{}}}
 \subsection{Method \code{new()}}{
 Create a new Include object.
 \subsection{Usage}{
@@ -126,8 +126,8 @@ A new Include object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-print"></a>}}
-\if{latex}{\out{\hypertarget{method-print}{}}}
+\if{html}{\out{<a id="method-Include-print"></a>}}
+\if{latex}{\out{\hypertarget{method-Include-print}{}}}
 \subsection{Method \code{print()}}{
 Print the object.
 \subsection{Usage}{
@@ -143,8 +143,8 @@ Print the object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-repr"></a>}}
-\if{latex}{\out{\hypertarget{method-repr}{}}}
+\if{html}{\out{<a id="method-Include-repr"></a>}}
+\if{latex}{\out{\hypertarget{method-Include-repr}{}}}
 \subsection{Method \code{repr()}}{
 Generate a \code{character} summarizing the representation of the object.
 \subsection{Usage}{
@@ -167,8 +167,8 @@ Defaults to \code{"]"}.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_layer_name"></a>}}
-\if{latex}{\out{\hypertarget{method-get_layer_name}{}}}
+\if{html}{\out{<a id="method-Include-get_layer_name"></a>}}
+\if{latex}{\out{\hypertarget{method-Include-get_layer_name}{}}}
 \subsection{Method \code{get_layer_name()}}{
 Get layer names.
 \subsection{Usage}{
@@ -180,8 +180,8 @@ Get layer names.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_layer_index"></a>}}
-\if{latex}{\out{\hypertarget{method-get_layer_index}{}}}
+\if{html}{\out{<a id="method-Include-get_layer_index"></a>}}
+\if{latex}{\out{\hypertarget{method-Include-get_layer_index}{}}}
 \subsection{Method \code{get_layer_index()}}{
 Get layer index values.
 \subsection{Usage}{
@@ -193,8 +193,8 @@ Get layer index values.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_layer_pane"></a>}}
-\if{latex}{\out{\hypertarget{method-get_layer_pane}{}}}
+\if{html}{\out{<a id="method-Include-get_layer_pane"></a>}}
+\if{latex}{\out{\hypertarget{method-Include-get_layer_pane}{}}}
 \subsection{Method \code{get_layer_pane()}}{
 Get layer pane class.
 \subsection{Usage}{
@@ -206,8 +206,8 @@ Get layer pane class.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_id"></a>}}
-\if{latex}{\out{\hypertarget{method-get_id}{}}}
+\if{html}{\out{<a id="method-Include-get_id"></a>}}
+\if{latex}{\out{\hypertarget{method-Include-get_id}{}}}
 \subsection{Method \code{get_id()}}{
 Get include identifier.
 \subsection{Usage}{
@@ -219,8 +219,8 @@ Get include identifier.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_visible"></a>}}
-\if{latex}{\out{\hypertarget{method-get_visible}{}}}
+\if{html}{\out{<a id="method-Include-get_visible"></a>}}
+\if{latex}{\out{\hypertarget{method-Include-get_visible}{}}}
 \subsection{Method \code{get_visible()}}{
 Get visible.
 \subsection{Usage}{
@@ -232,8 +232,8 @@ Get visible.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_invisible"></a>}}
-\if{latex}{\out{\hypertarget{method-get_invisible}{}}}
+\if{html}{\out{<a id="method-Include-get_invisible"></a>}}
+\if{latex}{\out{\hypertarget{method-Include-get_invisible}{}}}
 \subsection{Method \code{get_invisible()}}{
 Get invisible.
 \subsection{Usage}{
@@ -245,8 +245,8 @@ Get invisible.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_loaded"></a>}}
-\if{latex}{\out{\hypertarget{method-get_loaded}{}}}
+\if{html}{\out{<a id="method-Include-get_loaded"></a>}}
+\if{latex}{\out{\hypertarget{method-Include-get_loaded}{}}}
 \subsection{Method \code{get_loaded()}}{
 Get loaded.
 \subsection{Usage}{
@@ -258,8 +258,8 @@ Get loaded.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_hidden"></a>}}
-\if{latex}{\out{\hypertarget{method-get_hidden}{}}}
+\if{html}{\out{<a id="method-Include-get_hidden"></a>}}
+\if{latex}{\out{\hypertarget{method-Include-get_hidden}{}}}
 \subsection{Method \code{get_hidden()}}{
 Get hidden.
 \subsection{Usage}{
@@ -271,8 +271,8 @@ Get hidden.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_status"></a>}}
-\if{latex}{\out{\hypertarget{method-get_status}{}}}
+\if{html}{\out{<a id="method-Include-get_status"></a>}}
+\if{latex}{\out{\hypertarget{method-Include-get_status}{}}}
 \subsection{Method \code{get_status()}}{
 Get status.
 \subsection{Usage}{
@@ -284,8 +284,8 @@ Get status.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_overlap"></a>}}
-\if{latex}{\out{\hypertarget{method-get_overlap}{}}}
+\if{html}{\out{<a id="method-Include-get_overlap"></a>}}
+\if{latex}{\out{\hypertarget{method-Include-get_overlap}{}}}
 \subsection{Method \code{get_overlap()}}{
 Get overlap.
 \subsection{Usage}{
@@ -297,8 +297,8 @@ Get overlap.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_data}{}}}
+\if{html}{\out{<a id="method-Include-get_data"></a>}}
+\if{latex}{\out{\hypertarget{method-Include-get_data}{}}}
 \subsection{Method \code{get_data()}}{
 Get the data.
 \subsection{Usage}{
@@ -306,12 +306,12 @@ Get the data.
 }
 
 \subsection{Returns}{
-\code{\link[sf:st_as_sf]{sf::st_as_sf()}} or \code{\link[rast:rast]{rast::rast()}} object.
+\code{\link[sf:st_as_sf]{sf::st_as_sf()}} or \code{\link[terra:rast]{terra::rast()}} object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_new_pane"></a>}}
-\if{latex}{\out{\hypertarget{method-set_new_pane}{}}}
+\if{html}{\out{<a id="method-Include-set_new_pane"></a>}}
+\if{latex}{\out{\hypertarget{method-Include-set_new_pane}{}}}
 \subsection{Method \code{set_new_pane()}}{
 Set new pane.
 \subsection{Usage}{
@@ -332,8 +332,8 @@ Set new pane.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_setting"></a>}}
-\if{latex}{\out{\hypertarget{method-get_setting}{}}}
+\if{html}{\out{<a id="method-Include-get_setting"></a>}}
+\if{latex}{\out{\hypertarget{method-Include-get_setting}{}}}
 \subsection{Method \code{get_setting()}}{
 Get setting.
 \subsection{Usage}{
@@ -353,8 +353,8 @@ Value.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_visible"></a>}}
-\if{latex}{\out{\hypertarget{method-set_visible}{}}}
+\if{html}{\out{<a id="method-Include-set_visible"></a>}}
+\if{latex}{\out{\hypertarget{method-Include-set_visible}{}}}
 \subsection{Method \code{set_visible()}}{
 Set visible.
 \subsection{Usage}{
@@ -370,8 +370,8 @@ Set visible.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_invisible"></a>}}
-\if{latex}{\out{\hypertarget{method-set_invisible}{}}}
+\if{html}{\out{<a id="method-Include-set_invisible"></a>}}
+\if{latex}{\out{\hypertarget{method-Include-set_invisible}{}}}
 \subsection{Method \code{set_invisible()}}{
 Set invisible.
 \subsection{Usage}{
@@ -387,8 +387,8 @@ Set invisible.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_loaded"></a>}}
-\if{latex}{\out{\hypertarget{method-set_loaded}{}}}
+\if{html}{\out{<a id="method-Include-set_loaded"></a>}}
+\if{latex}{\out{\hypertarget{method-Include-set_loaded}{}}}
 \subsection{Method \code{set_loaded()}}{
 Set loaded.
 \subsection{Usage}{
@@ -404,8 +404,8 @@ Set loaded.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_status"></a>}}
-\if{latex}{\out{\hypertarget{method-set_status}{}}}
+\if{html}{\out{<a id="method-Include-set_status"></a>}}
+\if{latex}{\out{\hypertarget{method-Include-set_status}{}}}
 \subsection{Method \code{set_status()}}{
 Set status.
 \subsection{Usage}{
@@ -421,8 +421,8 @@ Set status.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_setting"></a>}}
-\if{latex}{\out{\hypertarget{method-set_setting}{}}}
+\if{html}{\out{<a id="method-Include-set_setting"></a>}}
+\if{latex}{\out{\hypertarget{method-Include-set_setting}{}}}
 \subsection{Method \code{set_setting()}}{
 Set setting.
 \subsection{Usage}{
@@ -441,8 +441,8 @@ Available options are \code{"status"} or `"visible"``.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_solution_settings_widget_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_solution_settings_widget_data}{}}}
+\if{html}{\out{<a id="method-Include-get_solution_settings_widget_data"></a>}}
+\if{latex}{\out{\hypertarget{method-Include-get_solution_settings_widget_data}{}}}
 \subsection{Method \code{get_solution_settings_widget_data()}}{
 Get data for displaying the theme in a \code{\link[=solutionSettings]{solutionSettings()}} widget.
 \subsection{Usage}{
@@ -454,8 +454,8 @@ Get data for displaying the theme in a \code{\link[=solutionSettings]{solutionSe
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_map_manager_widget_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_map_manager_widget_data}{}}}
+\if{html}{\out{<a id="method-Include-get_map_manager_widget_data"></a>}}
+\if{latex}{\out{\hypertarget{method-Include-get_map_manager_widget_data}{}}}
 \subsection{Method \code{get_map_manager_widget_data()}}{
 Get data for displaying the theme in a \code{\link[=mapManager]{mapManager()}} widget.
 \subsection{Usage}{
@@ -467,8 +467,8 @@ Get data for displaying the theme in a \code{\link[=mapManager]{mapManager()}} w
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-export"></a>}}
-\if{latex}{\out{\hypertarget{method-export}{}}}
+\if{html}{\out{<a id="method-Include-export"></a>}}
+\if{latex}{\out{\hypertarget{method-Include-export}{}}}
 \subsection{Method \code{export()}}{
 Export settings.
 \subsection{Usage}{
@@ -480,8 +480,8 @@ Export settings.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-render_on_map"></a>}}
-\if{latex}{\out{\hypertarget{method-render_on_map}{}}}
+\if{html}{\out{<a id="method-Include-render_on_map"></a>}}
+\if{latex}{\out{\hypertarget{method-Include-render_on_map}{}}}
 \subsection{Method \code{render_on_map()}}{
 Render on map.
 \subsection{Usage}{
@@ -502,8 +502,8 @@ Render on map.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-update_on_map"></a>}}
-\if{latex}{\out{\hypertarget{method-update_on_map}{}}}
+\if{html}{\out{<a id="method-Include-update_on_map"></a>}}
+\if{latex}{\out{\hypertarget{method-Include-update_on_map}{}}}
 \subsection{Method \code{update_on_map()}}{
 Render on map.
 \subsection{Usage}{
@@ -524,8 +524,8 @@ Render on map.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-Include-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-Include-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{
