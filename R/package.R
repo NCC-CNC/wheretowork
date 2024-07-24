@@ -17,7 +17,7 @@ NULL
 #'
 #' @name wheretowork
 #'
-#' @docType package
+#' @docType _PACKAGE
 #'
 #' @examples
 #' \donttest{
