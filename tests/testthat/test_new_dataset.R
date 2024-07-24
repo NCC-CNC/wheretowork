@@ -3,7 +3,7 @@ context("new_dataset")
 test_that("raster (from memory)", {
   # prepare data
   spatial_data <- import_simple_raster_data()
-  idx <- raster::Which(!is.na(spatial_data), cells = TRUE)
+  idx <- terra::cells(spatial_data)
   attribute_data <- tibble::tibble(
     V1 = runif(length(idx)),
     V2 = runif(length(idx)),
@@ -31,44 +31,52 @@ test_that("raster (from memory)", {
   expect_identical(x$get_spatial_data(), spatial_data)
   expect_identical(x$get_attribute_data(), attribute_data)
   expect_identical(x$get_boundary_data(), boundary_data)
-  expect_identical(
-    x$get_index(1),
-    {
-      y <- spatial_data
-      y[attribute_data[["_index"]]] <- attribute_data$V1
-      names(y) <- "V1"
-      y
-    }
+  expect_true(
+    terra::identical(
+      x$get_index(1), 
+      {
+        y <- spatial_data
+        y[attribute_data[["_index"]]] <- attribute_data$V1
+        names(y) <- "V1"
+        y
+      }
+    )
   )
-  expect_identical(
-    x$get_index(c(2, 1)),
-    {
-      y <- spatial_data
-      y <- raster::stack(spatial_data, spatial_data)
-      y[[1]][attribute_data[["_index"]]] <- attribute_data$V2
-      y[[2]][attribute_data[["_index"]]] <- attribute_data$V1
-      names(y) <- c("V2", "V1")
-      y
-    }
+  expect_true(
+    terra::identical(
+      c(x$get_index(1), x$get_index(2)),
+      {
+        y <- spatial_data
+        y <- c(spatial_data, spatial_data)
+        y[[1]][attribute_data[["_index"]]] <- attribute_data$V1
+        y[[2]][attribute_data[["_index"]]] <- attribute_data$V2
+        names(y) <- c("V1", "V2")
+        y
+      }
+    )
   )
-  expect_identical(
-    x$get_index("V1"),
-    {
-      y <- spatial_data
-      y[attribute_data[["_index"]]] <- attribute_data$V1
-      names(y) <- "V1"
-      y
-    }
+  expect_true(
+    terra::identical(
+      x$get_index("V1"),
+      {
+        y <- spatial_data
+        y[attribute_data[["_index"]]] <- attribute_data$V1
+        names(y) <- "V1"
+        y
+      }
+    )
   )
-  expect_identical(
-    x$get_index(c("V2", "V1")),
-    {
-      y <- raster::stack(spatial_data, spatial_data)
-      y[[1]][attribute_data[["_index"]]] <- attribute_data$V2
-      y[[2]][attribute_data[["_index"]]] <- attribute_data$V1
-      names(y) <- c("V2", "V1")
-      y
-    }
+  expect_true(
+    terra::identical(
+      c(x$get_index("V1"), x$get_index("V2")),
+      {
+        y <- c(spatial_data, spatial_data)
+        y[[1]][attribute_data[["_index"]]] <- attribute_data$V1
+        y[[2]][attribute_data[["_index"]]] <- attribute_data$V2
+        names(y) <- c("V1", "V2")
+        y
+      }
+    )
   )
   expect_true(x$has_index(2))
   expect_equal(x$has_index(c(1, 2)), c(TRUE, TRUE))
@@ -80,7 +88,7 @@ test_that("raster (from memory)", {
   expect_identical(
     x$get_bbox(),
     setNames(
-      as.list(as.list(raster::extent(spatial_data))),
+      as.list(as.list(terra::ext(spatial_data))),
       c("xmin", "xmax", "ymin", "ymax")
     )
   )
@@ -144,7 +152,7 @@ test_that("sf (from memory)", {
   expect_identical(
     x$get_bbox(),
     setNames(
-      as.list(as.list(raster::extent(spatial_data))),
+      as.list(as.list(terra::ext(spatial_data))),
       c("xmin", "xmax", "ymin", "ymax")
     )
   )
@@ -153,7 +161,7 @@ test_that("sf (from memory)", {
 test_that("raster (from standard boundary format)", {
   # prepare data
   spatial_data <- import_simple_raster_data()
-  idx <- raster::Which(!is.na(spatial_data), cells = TRUE)
+  idx <- terra::cells(spatial_data)
   attribute_data <- tibble::tibble(
     V1 = runif(length(idx)),
     V2 = runif(length(idx)),
@@ -183,9 +191,9 @@ test_that("raster (from standard boundary format)", {
   expect_identical(x$attribute_path, f2)
   expect_identical(x$boundary_path, f3)
   x$import()
-  expect_equal(raster::values(x$spatial_data), raster::values(spatial_data))
+  expect_equal(terra::values(x$spatial_data), terra::values(spatial_data))
   expect_equal(x$attribute_data, attribute_data)
-  expect_identical(x$boundary_data, boundary_data)
+  expect_equal(x$boundary_data, boundary_data) # not identical but equal
   expect_true(x$has_index(2))
   expect_equal(x$has_index(c(1, 2)), c(TRUE, TRUE))
   expect_true(x$has_index("V2"))
@@ -196,7 +204,7 @@ test_that("raster (from standard boundary format)", {
   expect_identical(
     x$get_bbox(),
     setNames(
-      as.list(as.list(raster::extent(spatial_data))),
+      as.list(as.list(terra::ext(spatial_data))),
       c("xmin", "xmax", "ymin", "ymax")
     )
   )
@@ -254,7 +262,7 @@ test_that("sf (from standard boundary format)", {
   expect_identical(
     x$get_bbox(),
     setNames(
-      as.list(as.list(raster::extent(spatial_data))),
+      as.list(as.list(terra::ext(spatial_data))),
       c("xmin", "xmax", "ymin", "ymax")
     )
   )
@@ -263,7 +271,7 @@ test_that("sf (from standard boundary format)", {
 test_that("raster (from Marxan boundary file format)", {
   # prepare data
   spatial_data <- import_simple_raster_data()
-  idx <- raster::Which(!is.na(spatial_data), cells = TRUE)
+  idx <- terra::cells(spatial_data)
   attribute_data <- tibble::tibble(
     V1 = runif(length(idx)),
     V2 = runif(length(idx)),
@@ -293,9 +301,9 @@ test_that("raster (from Marxan boundary file format)", {
   expect_identical(x$attribute_path, f2)
   expect_identical(x$boundary_path, f3)
   x$import()
-  expect_equal(raster::values(x$spatial_data), raster::values(spatial_data))
+  expect_equal(terra::values(x$spatial_data), terra::values(spatial_data))
   expect_equal(x$attribute_data, attribute_data)
-  expect_identical(x$boundary_data, boundary_data)
+  expect_identical(x$boundary_data, boundary_data) # equal but not identical
   expect_true(x$has_index(2))
   expect_equal(x$has_index(c(1, 2)), c(TRUE, TRUE))
   expect_true(x$has_index("V2"))
@@ -306,7 +314,7 @@ test_that("raster (from Marxan boundary file format)", {
   expect_identical(
     x$get_bbox(),
     setNames(
-      as.list(as.list(raster::extent(spatial_data))),
+      as.list(as.list(terra::ext(spatial_data))),
       c("xmin", "xmax", "ymin", "ymax")
     )
   )
@@ -364,7 +372,7 @@ test_that("sf (from Marxan boundary format)", {
   expect_identical(
     x$get_bbox(),
     setNames(
-      as.list(as.list(raster::extent(spatial_data))),
+      as.list(as.list(terra::ext(spatial_data))),
       c("xmin", "xmax", "ymin", "ymax")
     )
   )

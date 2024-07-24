@@ -4,7 +4,7 @@ test_that("raster (continuous)", {
   # prepare data
   data(sim_features, package = "prioritizr")
   rd <- sim_features[[2]]
-  non_na <- raster::Which(!is.na(rd), cells = TRUE)
+  non_na <- terra::cells(rd)
   rd[non_na] <- runif(length(non_na))
   # run function
   x <- spatial_data_type(rd)
@@ -16,7 +16,7 @@ test_that("raster (categorical)", {
   # prepare data
   data(sim_features, package = "prioritizr")
   rd <- sim_features[[2]]
-  non_na <- raster::Which(!is.na(rd), cells = TRUE)
+  non_na <- terra::cells(rd)
   rd[non_na] <- sample(seq_len(5), length(non_na), replace = TRUE)
   # run function
   x <- spatial_data_type(rd)
