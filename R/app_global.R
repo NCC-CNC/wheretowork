@@ -6,7 +6,7 @@ app_global <- quote({
   if (isTRUE(wheretowork::get_golem_config("monitor"))) {
       cli::cli_rule()
       golem::print_dev("Initial memory used: ")
-      golem::print_dev(pryr::mem_used())
+      golem::print_dev(lobstr::mem_used())
   }
 
   # initialize file upload limits

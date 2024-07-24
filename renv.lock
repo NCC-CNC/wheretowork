@@ -1180,7 +1180,7 @@
     },
     "openxlsx": {
       "Package": "openxlsx",
-      "Version": "4.2.6",
+      "Version": "4.2.6.1",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -1193,7 +1193,7 @@
         "utils",
         "zip"
       ],
-      "Hash": "c03b4c18d42da881fb8e15a085c2b9d6"
+      "Hash": "bd8fbd2904be3ce8fdf529a4f74a0c29"
     },
     "parallelly": {
       "Package": "parallelly",
@@ -1387,21 +1387,6 @@
         "utils"
       ],
       "Hash": "e0ef355c12942cf7a6b91a6cfaea8b3e"
-    },
-    "pryr": {
-      "Package": "pryr",
-      "Version": "0.1.6",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "Rcpp",
-        "codetools",
-        "lobstr",
-        "methods",
-        "stringr"
-      ],
-      "Hash": "cfcbe960eca81ceca61df5fa622693de"
     },
     "ps": {
       "Package": "ps",
@@ -1779,23 +1764,6 @@
         "utils"
       ],
       "Hash": "39e1144fd75428983dc3f63aa53dfa91"
-    },
-    "stringr": {
-      "Package": "stringr",
-      "Version": "1.5.1",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "cli",
-        "glue",
-        "lifecycle",
-        "magrittr",
-        "rlang",
-        "stringi",
-        "vctrs"
-      ],
-      "Hash": "960e2ae9e09656611e0b8214ad543207"
     },
     "terra": {
       "Package": "terra",
