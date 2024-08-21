@@ -67,7 +67,7 @@ Imports:
     shinyWidgets (>= 0.6.0),
     shinybusy (>= 0.2.2),
     shinyalert (>= 2.0.0),
-    leaflet (>= 2.0.3.9000),
+    leaflet (>= 2.2.2.9001),
     leaflet.extras2 (>= 1.1.0),
     colourpicker (>= 1.1.0),
     DT (>= 0.18),
@@ -196,5 +196,5 @@ Collate:
 Remotes:
     r-lib/pkgdown,
     NCC-CNC/leaflet.extras2,
-    NCC-CNC/leaflet@pane-extra,
+    NCC-CNC/leaflet-ncc@pane-extra,
     dirkschumacher/rcbc
