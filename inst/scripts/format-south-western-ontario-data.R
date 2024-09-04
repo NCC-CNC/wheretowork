@@ -2,7 +2,7 @@
 
 ## load packages
 devtools::load_all()
-library(raster)
+library(terra)
 library(dplyr)
 
 # Get input data file paths ----
@@ -44,23 +44,25 @@ assertthat::assert_that(
 )
 
 ## Import study area (planning units) raster
-study_area_data <- raster::raster(file.path(data_dir, study_area_file))
+study_area_data <- terra::rast(file.path(data_dir, study_area_file))
 
 # 3.0 Import rasters -----------------------------------------------------------
 
-## Import themes, includes and weights rasters as a raster stack. If raster 
-## variable does not stack to study area, re-project raster variable so it aligns 
-## to the study area
+## Import themes, includes and weights rasters. If raster  variable do not 
+## compare to study area, re-project raster variable so it aligns 
 raster_data <- lapply(file.path(data_dir, metadata$File), function(x) {
-  raster_x <- raster::raster(x)
-  if (raster::compareRaster(study_area_data, raster_x, stopiffalse=FALSE)) {
+  raster_x <- terra::rast(x)
+  names(raster_x) <- tools::file_path_sans_ext(basename(x)) # file name  
+  if (terra::compareGeom(study_area_data, raster_x, stopOnError=FALSE)) {
     raster_x
   } else {
     print(paste0(names(raster_x), ": can not stack"))
     print(paste0("... aligning to ", names(study_area_data)))
-    raster::projectRaster(raster_x, to = study_area_data, method = "ngb")
+    terra::project(x = raster_x, y = study_area_data, method = "ngb")
   }
-}) %>% raster::stack()
+})
+# convert raster list to a combined SpatRaster
+raster_data <- do.call(c, raster_data)
 
 
 # 4.0 Pre-processing -----------------------------------------------------------
@@ -82,7 +84,7 @@ theme_goals <- metadata$Goal[metadata$Type == "theme"]
 
 ## Prepare weight inputs ----
 weight_data <- raster_data[[which(metadata$Type == "weight")]]
-weight_data <- raster::clamp(weight_data, lower = 0)
+weight_data <- terra::clamp(weight_data, lower = 0)
 weight_names <- metadata$Name[metadata$Type == "weight"]
 weight_colors <- metadata$Color[metadata$Type == "weight"]
 weight_units <- metadata$Unit[metadata$Type == "weight"]
@@ -121,7 +123,7 @@ exclude_hidden <- metadata$Hidden[metadata$Type == "exclude"]
 
 ## Create data set ----
 dataset <- new_dataset_from_auto(
-  raster::stack(theme_data, weight_data, include_data, exclude_data)
+  c(theme_data, weight_data, include_data, exclude_data)
 )
 
 ## Create themes ----
@@ -152,7 +154,7 @@ themes <- lapply(seq_along(unique(theme_groups)), function(i) {
         dataset = dataset,
         index = curr_theme_data_names[j],
         units = curr_theme_units[j],
-        total = raster::cellStats(curr_theme_data[[j]], "sum"),
+        total = terra::global(curr_theme_data[[j]], fun ="sum", na.rm = TRUE)$sum,
         legend = new_manual_legend(
           values = c(as.numeric(trimws(unlist(strsplit(curr_theme_values[j], ","))))),
           colors = c(trimws(unlist(strsplit(curr_theme_colors[j], ",")))),
@@ -180,7 +182,7 @@ themes <- lapply(seq_along(unique(theme_groups)), function(i) {
         dataset = dataset,
         index = curr_theme_data_names[j],
         units = " ",
-        total = raster::cellStats(curr_theme_data[[j]], "sum"),
+        total = terra::global(curr_theme_data[[j]], fun = "sum", na.rm = TRUE)$sum,
         legend = new_null_legend(),
         provenance = new_provenance_from_source("missing")
       )
@@ -207,7 +209,7 @@ themes <- lapply(seq_along(unique(theme_groups)), function(i) {
 
 ## Create weights ---- 
 ### loop over each raster in weight_data
-weights <- lapply(seq_len(raster::nlayers(weight_data)), function(i) {
+weights <- lapply(seq_len(terra::nlyr(weight_data)), function(i) {
   
   #### prepare variable (if manual legend)
   if (identical(weight_legend[i], "manual")) {
@@ -227,7 +229,7 @@ weights <- lapply(seq_len(raster::nlayers(weight_data)), function(i) {
       dataset = dataset,
       index = names(weight_data)[i],
       units = " ",
-      total = raster::cellStats(weight_data[[i]], "sum"),
+      total = terra::global(weight_data[[i]], fun = "sum", na.rm=TRUE)$sum,
       legend = new_null_legend(),
       provenance = new_provenance_from_source("missing")
     )
@@ -253,7 +255,7 @@ weights <- lapply(seq_len(raster::nlayers(weight_data)), function(i) {
 
 ## Create includes ----
 ### loop over each raster in include_data
-includes <- lapply(seq_len(raster::nlayers(include_data)), function(i) {
+includes <- lapply(seq_len(terra::nlyr(include_data)), function(i) {
   
   ### build legend
   if (identical(include_legend[i], "null")) {
@@ -275,7 +277,7 @@ includes <- lapply(seq_len(raster::nlayers(include_data)), function(i) {
       dataset = dataset,
       index = names(include_data)[i],
       units = " ",
-      total = raster::cellStats(include_data[[i]], "sum"),
+      total = terra::global(include_data[[i]], fun = "sum", na.rm = TRUE)$sum,
       legend = legend,
       provenance = new_provenance_from_source(include_provenance[i])
     )
@@ -284,7 +286,7 @@ includes <- lapply(seq_len(raster::nlayers(include_data)), function(i) {
 
 ## Create excludes ----
 ### loop over each raster in exclude_data
-excludes <- lapply(seq_len(raster::nlayers(exclude_data)), function(i) {
+excludes <- lapply(seq_len(terra::nlyr(exclude_data)), function(i) {
   
   ### build legend
   if (identical(exclude_legend[i], "null")) {
@@ -306,7 +308,7 @@ excludes <- lapply(seq_len(raster::nlayers(exclude_data)), function(i) {
       dataset = dataset,
       index = names(exclude_data)[i],
       units = " ",
-      total = raster::cellStats(exclude_data[[i]], "sum"),
+      total = terra::global(exclude_data[[i]], fun = "sum", na.rm = TRUE)$sum,
       legend = legend,
       provenance = new_provenance_from_source(exclude_provenance[i])
     )

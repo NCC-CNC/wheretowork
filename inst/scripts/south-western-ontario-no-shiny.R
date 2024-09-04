@@ -180,5 +180,3 @@ s$render_summary_results()
 s$render_theme_results()
 s$render_weight_results()
 s$render_include_results()
-
-
