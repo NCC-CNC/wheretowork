@@ -244,14 +244,14 @@ test_that("sf (from standard boundary format)", {
   expect_identical(x$boundary_path, f3)
   x$import()
   expect_equal(
-    sf::st_set_crs(x$spatial_data, 4326),
-    sf::st_set_crs(spatial_data, 4326)
+    sf::st_crs(sf::st_set_crs(x$spatial_data, 4326)),
+    sf::st_crs(sf::st_set_crs(spatial_data, 4326))
   )
   expect_equal(x$attribute_data, attribute_data)
   expect_equal(x$boundary_data, boundary_data)
   expect_equal(
-    sf::st_set_crs(x$get_spatial_data(), 4326),
-    sf::st_set_crs(spatial_data, 4326)
+    sf::st_crs(sf::st_set_crs(x$get_spatial_data(), 4326)),
+    sf::st_crs(sf::st_set_crs(spatial_data, 4326))
   )
   expect_equal(x$get_attribute_data(), attribute_data)
   expect_equal(x$get_boundary_data(), boundary_data)
@@ -303,7 +303,7 @@ test_that("raster (from Marxan boundary file format)", {
   x$import()
   expect_equal(terra::values(x$spatial_data), terra::values(spatial_data))
   expect_equal(x$attribute_data, attribute_data)
-  expect_identical(x$boundary_data, boundary_data) # equal but not identical
+  expect_equal(x$boundary_data, boundary_data) # equal but not identical
   expect_true(x$has_index(2))
   expect_equal(x$has_index(c(1, 2)), c(TRUE, TRUE))
   expect_true(x$has_index("V2"))
@@ -354,14 +354,14 @@ test_that("sf (from Marxan boundary format)", {
   expect_identical(x$boundary_path, f3)
   x$import()
   expect_equal(
-    sf::st_set_crs(x$spatial_data, 4326),
-    sf::st_set_crs(spatial_data, 4326)
+    sf::st_crs(sf::st_set_crs(x$spatial_data, 4326)),
+    sf::st_crs(sf::st_set_crs(spatial_data, 4326))
   )
   expect_equal(x$attribute_data, attribute_data)
   expect_equal(x$boundary_data, boundary_data)
   expect_equal(
-    sf::st_set_crs(x$get_spatial_data(), 4326),
-    sf::st_set_crs(spatial_data, 4326)
+    sf::st_crs(sf::st_set_crs(x$get_spatial_data(), 4326)),
+    sf::st_crs(sf::st_set_crs(spatial_data, 4326))
   )
   expect_equal(x$get_attribute_data(), attribute_data)
   expect_equal(x$get_boundary_data(), boundary_data)

@@ -74,7 +74,7 @@ test_that("new_variable_from_auto (continuous)", {
   expect_is(x$repr(), "character")
   expect_identical(x$dataset, d)
   expect_identical(x$index, names(rd)[[2]])
-  expect_identical(x$total, terra::global(rd[[2]], fun="sum", na.rm=TRUE)[[1]])
+  expect_equal(x$total, terra::global(rd[[2]], fun="sum", na.rm=TRUE)[[1]]) # equal but not identical
   expect_identical(x$units, "ha")
   expect_equal(
     x$legend,
@@ -98,7 +98,7 @@ test_that("new_variable_from_auto (categorical)", {
   expect_is(x, "Variable")
   expect_is(x$repr(), "character")
   expect_identical(x$dataset, d)
-  expect_identical(x$total, terra::global(rd[[1]], fun="sum", na.rm=TRUE)[[1]])
+  expect_equal(x$total, terra::global(rd[[1]], fun="sum", na.rm=TRUE)[[1]]) # equal but not identical
   expect_identical(x$units, "ha")
   expect_equal(
     x$legend,
@@ -128,7 +128,7 @@ test_that("new_variable_from_auto (categorical, manual legend)", {
   expect_is(x, "Variable")
   expect_is(x$repr(), "character")
   expect_identical(x$dataset, d)
-  expect_identical(x$total, terra::global(rd[[1]], fun="sum", na.rm=TRUE)[[1]])
+  expect_equal(x$total, terra::global(rd[[1]], fun="sum", na.rm=TRUE)[[1]]) # equal but not identical
   expect_identical(x$units, "ha")
   expect_equal(
     length(x$legend$labels),
@@ -159,7 +159,7 @@ test_that("new_variable_from_auto (hidden == TRUE)", {
   expect_is(x, "Variable")
   expect_is(x$repr(), "character")
   expect_identical(x$dataset, d)
-  expect_identical(x$total, terra::global(rd[[1]], fun="sum", na.rm=TRUE)[[1]])
+  expect_equal(x$total, terra::global(rd[[1]], fun="sum", na.rm=TRUE)[[1]]) # equal but not identical
   expect_identical(x$units, "ha")
   expect_equal(
     length(x$legend$labels),
