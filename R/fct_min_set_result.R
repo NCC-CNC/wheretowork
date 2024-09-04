@@ -487,11 +487,11 @@ min_set_result <- function(area_data,
     )
     #### create matrix
     con_data <- boundary_data
-    Matrix::diag(con_data) <- 0
-    con_data <- Matrix::drop0(con_data)
-    con_data <- methods::as(con_data, "dgTMatrix")
-    con_data@x <- rwr_raw[con_data@i + 1] + cost[con_data@j + 1]
-    con_data@x <- scales::rescale(con_data@x, to = c(1, 0.01))
+    Matrix::diag(con_data) <- 0 # make diagonal all 0's, we want to know the relationship between planning units
+    con_data <- Matrix::drop0(con_data) # drop 0's
+    con_data <- methods::as(con_data, "dgTMatrix") # convert to dgTMatrix
+    con_data@x <- rwr_raw[con_data@i + 1] + rwr_raw[con_data@j + 1] # spatially cluster where there are a lot of rare things
+    con_data <- prioritizr::rescale_matrix(con_data, max = 100)
     con_data <- Matrix::drop0(con_data)
     ### generate prioritization
     main_problem <-
