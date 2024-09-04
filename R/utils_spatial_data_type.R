@@ -72,7 +72,7 @@ spatial_data_type.SpatRaster <- function(x, index = 1, max_sample = 10000, ...) 
   x <- x[[index]]
 
   # identify cells with no missing values
-  cells <- which(!is.na(terra::values(r)))
+  cells <- which(!is.na(terra::values(x)))
   if (length(cells) > max_sample) {
     cells <- sample(cells, max_sample)
   }
@@ -80,7 +80,7 @@ spatial_data_type.SpatRaster <- function(x, index = 1, max_sample = 10000, ...) 
   # determine if data are continuous or categorical
   ## if there are more than 20 unique values, then we assume it's continuous
   out <-
-    ifelse(n_distinct(x[cells]) > 20, "continuous", "categorical")
+    ifelse(n_distinct(unlist(x[cells], use.names = FALSE)) > 20, "continuous", "categorical")
 
   # return result
   out

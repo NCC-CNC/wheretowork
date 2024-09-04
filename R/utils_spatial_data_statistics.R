@@ -93,15 +93,15 @@ spatial_data_statistics.SpatRaster <- function(x, type, index = 1) {
   if (identical(type, "continuous")) {
     ## continuous data
     out <- list(
-      total = terra::global(x[[index]], fun="sum"),
-      min_value = terra::global(x[[index]], fun="min"),
-      max_value = terra::global(x[[index]], fun="max")
+      total = terra::global(x[[index]], fun="sum")$sum,
+      min_value = terra::global(x[[index]], fun="min")$min,
+      max_value = terra::global(x[[index]], fun="max")$max
     )
   } else {
     ## categorical data
     out <- list(
-      total = terra::global(x[[index]], fun="sum"),
-      values = terra::unique(x[[index]], na.last = NA)
+      total = terra::global(x[[index]], fun="sum")$sum,
+      values = sort(terra::unique(x[[index]])[[1]])
     )
   }
 
