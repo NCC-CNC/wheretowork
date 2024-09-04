@@ -572,20 +572,6 @@
       "Repository": "CRAN",
       "Hash": "680887028577f3fa2a81e410ed0d6e42"
     },
-    "fasterize": {
-      "Package": "fasterize",
-      "Version": "1.0.5",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "Rcpp",
-        "RcppArmadillo",
-        "raster",
-        "wk"
-      ],
-      "Hash": "240d43256081fc51549b719caf587e32"
-    },
     "fastmap": {
       "Package": "fastmap",
       "Version": "1.2.0",
@@ -715,7 +701,7 @@
     },
     "golem": {
       "Package": "golem",
-      "Version": "0.5.0",
+      "Version": "0.5.1",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -729,7 +715,7 @@
         "utils",
         "yaml"
       ],
-      "Hash": "b4a1b89aff817fa4acb14e98428af2b5"
+      "Hash": "11be24963e2f220c403eafd01e2259d5"
     },
     "gtable": {
       "Package": "gtable",
@@ -1384,6 +1370,21 @@
         "utils"
       ],
       "Hash": "878b467580097e9c383acbb16adab57a"
+    },
+    "purrr": {
+      "Package": "purrr",
+      "Version": "1.0.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "cli",
+        "lifecycle",
+        "magrittr",
+        "rlang",
+        "vctrs"
+      ],
+      "Hash": "1cba04a4e9414bdefc9dcaa99649a8dc"
     },
     "rappdirs": {
       "Package": "rappdirs",

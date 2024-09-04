@@ -36,10 +36,9 @@ Imports:
     data.table (>= 1.15.4),
     digest (>= 0.6.37),
     dplyr (>= 1.1.4),
-    fasterize (>= 1.0.5),
     fields (>= 16.2),
     future (>= 1.34.0),
-    golem (>= 0.5.0),
+    golem (>= 0.5.1),
     htmltools (>= 0.5.8.1),
     htmlwidgets (>= 1.6.4),
     igraph (>= 2.0.3),
@@ -53,6 +52,7 @@ Imports:
     pkgload (>= 1.4.0),
     plyr (>= 1.8.9),
     prioritizr (>= 8.0.4),
+    purrr (>= 1.0.2),
     R.utils (>= 2.12.3),
     rcbc (>= 0.1.0.9001),
     readxl (>= 1.4.3),
@@ -76,19 +76,19 @@ Imports:
     yaml (>= 2.3.10)
 Suggests:
     testthat (>= 2.0.1),
-    knitr (>= 1.2.0),
+    knitr (>= 1.48),
     roxygen2 (>= 6.1.1),
-    rmarkdown (>= 1.10),
+    rmarkdown (>= 2.28),
     rvest (>= 1.0.0),
     xml2 (>= 1.3.2),
-    processx (>= 3.5.2),
+    processx (>= 3.8.4),
     rsconnect (>= 0.8.18),
     devtools (>= 2.4.2),
     whereami (>= 0.1.9),
     pkgdown (>= 1.6.1.9001),
     gurobi (>= 10.0-2),
 Depends:
-    R (>= 4.4.1),
+    R (>= 4.4.0),
     promises (>= 1.3.0),
     R6 (>= 2.5.1),
     sf (>= 1.0-16),
@@ -172,6 +172,7 @@ Collate:
     'ui_solutionResultsSidebarPane.R'
     'utils-tidy-eval.R'
     'utils_acknowledge_packages.R'
+    'utils_blank_raster.R'
     'utils_color_palette.R'
     'utils_error_misc.R'
     'utils_extract_data_matrix.R'
