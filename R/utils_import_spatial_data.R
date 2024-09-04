@@ -41,7 +41,7 @@ import_realistic_vector_data <- function() {
 #' @noRd
 import_simple_vector_data <- function() {
   x <-
-    sf::st_as_sf(terra::as.polygons(import_simple_raster_data()))
+    sf::st_as_sf(terra::as.polygons(import_simple_raster_data(), aggregate = FALSE))
   x <- sf::st_sf(
     tibble::tibble(id = seq_len(nrow(x)), geometry = sf::st_geometry(x))
   )
