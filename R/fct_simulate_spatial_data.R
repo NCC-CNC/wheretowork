@@ -141,7 +141,6 @@ simulate_data.sf <- function(
     sd = 1, 
     transform = identity
  ) {
-  
   # assert valid arguments
   assertthat::assert_that(
     inherits(x, "sf"),
@@ -154,28 +153,22 @@ simulate_data.sf <- function(
     assertthat::noNA(sd),
     is.function(transform)
   )  
-  
-  # create object for simulation
-  obj <- fields::circulantEmbeddingSetup(
-    grid = list(
-      x = seq(0, 5, length.out = terra::nrow(x)),
-      y = seq(0, 5, length.out = terra::ncol(x))
-    ),
-    Covariance = "Exponential",
-    aRange = scale
+
+  # rasterize data
+  r <- blank_raster_from_dim(x, nrow = 10, ncol = 10)
+  r <- simulate_data.SpatRaster(
+    r, n = n, 
+    scale = scale, 
+    intensity = intensity,
+    sd = sd, 
+    transform = transform
   )
-  
-  # populate sf with generated values 
-  for (i in seq_len(n)) {
-    v <- c(t(fields::circulantEmbedding(obj)))
-    v <- transform(v + stats::rnorm(length(v), mean = intensity, sd = sd))
-    mtx <- matrix(v, ncol = 1)
-    mtx <- mtx[1:terra::nrow(x)]
-    field_name = paste0("V", i)
-    x <- dplyr::mutate(x, !!field_name := mtx)
-    x <- dplyr::relocate(x, field_name, .before = i)
-  }
-  # return results
+  # extract raster to sf polygons
+  ex_sf <- terra::extract(r, terra::vect(x), fun = "mean", na.rm = TRUE, ID = FALSE)
+  x <- dplyr::bind_cols(x, ex_sf)
+  x <- x[, names(ex_sf), drop = FALSE] # drop _index field
+
+  # return sf with extracted values
   x
 }
 
@@ -223,9 +216,6 @@ simulate_data.SpatRaster <- function(
     r <- terra::setValues(x[[1]], v[seq_len(terra::ncell(x))])
     ## apply mask for consistency
     r <- terra::mask(r, x[[1]])
-    ## assign CRS
-    ### this has a CRS warning
-    terra::crs(r) <- "EPSG:3857"
     ## return result
     r
   }))
