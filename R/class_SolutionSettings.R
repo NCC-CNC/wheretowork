@@ -622,7 +622,7 @@ SolutionSettings <- R6::R6Class(
         for (i in seq_len(nrow(curr_status))) {
           curr_status[i, ] <- curr_status[i, ] * self$includes[[i]]$status
         }
-        curr_status <- as.numeric(colSums(curr_status > 0.5) > 0.5)
+        curr_status <- as.numeric(Matrix::colSums(curr_status > 0.5) > 0.5)
       } else {
         ## if no includes are present, then set place holder of zeros
         curr_status <- rep(0, ncol(theme_data))
