@@ -85,7 +85,7 @@ simulate_weights <- function(dataset, n, continuous = TRUE) {
   } else {
     idx <- dataset$attribute_data[["_index"]]
     for (i in seq_along(wn_index)) {
-      dataset$add_index(wn_index[[i]], wd[[wn_index[[i]]]][idx])
+      dataset$add_index(wn_index[[i]], unlist(wd[[wn_index[[i]]]][idx])) # unlist data.frame
     }
   }
 
@@ -97,7 +97,7 @@ simulate_weights <- function(dataset, n, continuous = TRUE) {
       )
     } else {
       d <- dataset$get_attribute_data()[[wn_index[[i]]]]
-      u <-  sort(c(na.omit(unique(d))))
+      u <-  sort(c(stats::na.omit(unique(d))))
       cp <- color_palette(x = "random", n = length(u))
       v <- new_variable(dataset = dataset, index = wn_index[[i]], 
         units = "ha", legend = new_manual_legend(u, cp, paste("value:", u)), 
