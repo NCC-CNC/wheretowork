@@ -247,7 +247,7 @@ Dataset <- R6::R6Class(
         sep = ",", row.names = FALSE
       )
       # boundary data
-      bd <- methods::as(self$boundary_data, "dsTMatrix")
+      bd <- methods::as(self$boundary_data, "TsparseMatrix")
       ### if data in .csv or .csv.fz format
       if (
         endsWith(boundary_path, ".csv") ||
@@ -635,9 +635,9 @@ new_dataset_from_auto <- function(x, id = uuid::UUIDgenerate()) {
     inherits(x, c("sf", "SpatRaster"))
   )
   
-  # assert that the combine SpatRasters names are unique
+  # assert that the combine SpatRasters names or sf attribute names are unique
   assertthat::assert_that(
-    length(unique(x)) == terra::nlyr(x), msg = "SpatRaster names must be unique"
+    anyDuplicated(names(x)) == 0, msg = "names must be unique"
   )
 
   # prepare geometry data
@@ -675,7 +675,7 @@ new_dataset_from_auto <- function(x, id = uuid::UUIDgenerate()) {
     }
     # prepare boundary data
     str_tree <- inherits(x, "sf") && !identical(Sys.info()[["sysname"]], "Darwin")
-    bm <- prioritizr::boundary_matrix(bm_spatial_data, str_tree = str_tree)
+    bm <- prioritizr::boundary_matrix(bm_spatial_data)
     if (inherits(x, "SpatRaster")) {
       bm <- bm[attribute_data[["_index"]], attribute_data[["_index"]]]
     }
