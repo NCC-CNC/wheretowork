@@ -47,5 +47,10 @@ utils::globalVariables(
 # ensure package checks pass
 #' @importFrom R.utils gzip
 #' @importFrom rcbc cbc_solve
+#' @importFrom future future
+#' @importFrom ipc stopMulticoreFuture
+#' @importFrom plyr rbind.fill
+#' @importFrom shinyalert shinyalert
+#' @importFrom withr with_dir
 #' @export
 NULL
