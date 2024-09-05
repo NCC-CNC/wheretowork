@@ -489,7 +489,7 @@ min_set_result <- function(area_data,
     con_data <- boundary_data
     Matrix::diag(con_data) <- 0 # make diagonal all 0's, we want to know the relationship between planning units
     con_data <- Matrix::drop0(con_data) # drop 0's
-    con_data <- methods::as(con_data, "dgTMatrix") # convert to dgTMatrix
+    con_data <- methods::as(methods::as(con_data, "generalMatrix"), "TsparseMatrix") # convert to TsparseMatrix
     con_data@x <- rwr_raw[con_data@i + 1] + rwr_raw[con_data@j + 1] # spatially cluster where there are a lot of rare things
     con_data <- prioritizr::rescale_matrix(con_data, max = 100)
     con_data <- Matrix::drop0(con_data)
