@@ -57,6 +57,7 @@ file path on disk.
 \item \href{#method-Dataset-has_index}{\code{Dataset$has_index()}}
 \item \href{#method-Dataset-max_index}{\code{Dataset$max_index()}}
 \item \href{#method-Dataset-add_index}{\code{Dataset$add_index()}}
+\item \href{#method-Dataset-update_bm}{\code{Dataset$update_bm()}}
 \item \href{#method-Dataset-clone}{\code{Dataset$clone()}}
 }
 }
@@ -360,6 +361,19 @@ the data.}
 \item{\code{values}}{\code{numeric} vector.}
 }
 \if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Dataset-update_bm"></a>}}
+\if{latex}{\out{\hypertarget{method-Dataset-update_bm}{}}}
+\subsection{Method \code{update_bm()}}{
+Updates old boundary matrix to new format.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Dataset$update_bm()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{Matrix::sparseMatrix()} object.
 }
 }
 \if{html}{\out{<hr>}}

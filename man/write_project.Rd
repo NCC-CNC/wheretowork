@@ -15,7 +15,9 @@ write_project(
   mode = "advanced",
   user_groups = "public",
   author_name = NULL,
-  author_email = NULL
+  author_email = NULL,
+  wheretowork_version = utils::packageVersion("wheretowork"),
+  prioritizr_version = utils::packageVersion("prioritizr")
 )
 }
 \arguments{
@@ -49,6 +51,12 @@ will report default contact details.}
 Defaults to \code{NULL} such that no email address is encoded in the
 project configuration file. This means that the application
 will report default contact details.}
+
+\item{wheretowork_version}{\code{package_version} of wheretowork
+Defaults to \verb{"utils::packageVersion("wheretowork")"}.}
+
+\item{prioritizr_version}{\code{package_version} of prioritizr
+Defaults to \verb{"utils::packageVersion("prioritizr")"}.}
 }
 \value{
 Invisible \code{TRUE} indicating success.
