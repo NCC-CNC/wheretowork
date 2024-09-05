@@ -38,12 +38,6 @@ NULL
 #' @param user_groups `character` vector of user groups than can
 #'   access the dataset.
 #'   Defaults to `"public"`.
-#'   
-#' @param wheretowork_version `package_version` of wheretowork
-#'   Defaults to `"utils::packageVersion("wheretowork")"`.
-#'   
-#' @param prioritizr_version `package_version` of prioritizr
-#'   Defaults to `"utils::packageVersion("prioritizr")"`.
 #'
 #' @return Invisible `TRUE` indicating success.
 #'
@@ -86,9 +80,7 @@ NULL
 write_project <- function(x, dataset, path, name,
                           spatial_path, attribute_path, boundary_path,
                           mode = "advanced", user_groups = "public",
-                          author_name = NULL, author_email = NULL,
-                          wheretowork_version = utils::packageVersion("wheretowork"), 
-                          prioritizr_version = utils::packageVersion("prioritizr")) {
+                          author_name = NULL, author_email = NULL) {
   # assert arguments are valid
   assertthat::assert_that(
     is.list(x),
@@ -107,9 +99,7 @@ write_project <- function(x, dataset, path, name,
     assertthat::is.string(mode),
     assertthat::noNA(mode),
     is.character(user_groups),
-    assertthat::noNA(user_groups),
-    assert_that(inherits(wheretowork_version, "package_version")),
-    assert_that(inherits(prioritizr_version, "package_version"))
+    assertthat::noNA(user_groups)
   )
   if (!is.null(author_name)) {
     assertthat::assert_that(
@@ -153,10 +143,10 @@ write_project <- function(x, dataset, path, name,
     params$author_name <- author_name
     params$author_email <- author_email
   }
-  ## add wheretowork version
-  params$wheretowork_version <- as.character(wheretowork_version)
+  ## add wheretowork version 
+  params$wheretowork_version <- as.character(utils::packageVersion("wheretowork"))
   ## add prioritizr version
-  params$prioritizr_version <- as.character(prioritizr_version)  
+  params$prioritizr_version <- as.character(utils::packageVersion("prioritizr"))  
   ## specify application mode
   params$mode <- mode
   ## add user groups
