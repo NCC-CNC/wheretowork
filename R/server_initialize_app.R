@@ -28,6 +28,8 @@ server_initialize_app <- quote({
       author_name = NULL,
       author_email = NULL,
       mode = NULL,
+      wheretowork_version = NULL,
+      prioritizr_version = NULL,
       ## objects
       dataset = NULL,
       themes = NULL,

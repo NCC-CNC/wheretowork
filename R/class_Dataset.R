@@ -515,7 +515,18 @@ Dataset <- R6::R6Class(
         ]
       # return self
       invisible(self)
-    }
+    },
+    
+    #' @description
+    #' Updates old boundary matrix to new format.
+    #' @return `Matrix::sparseMatrix()` object.
+    update_bm = function() {
+      self$import()
+      bm_colsums  <- Matrix::colSums(self$boundary_data)
+      Matrix::diag(self$boundary_data) <- bm_colsums
+      # return self
+      invisible(self)
+    }    
   )
 )
 
