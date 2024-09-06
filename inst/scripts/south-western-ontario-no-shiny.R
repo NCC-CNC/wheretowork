@@ -2,7 +2,7 @@
 
 ## load packages
 devtools::load_all()
-library(raster)
+library(terra)
 library(dplyr)
 
 # Get input data file paths ----
