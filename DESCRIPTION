@@ -1,6 +1,6 @@
 Package: wheretowork
 Title: Interactive Systematic Conservation Planning Application
-Version: 0.0.0.9000
+Version: 1.0.0
 Description:
     Launch an interactive web application for systematic conservation planning.
     Data can be accessed using projects available on disk, uploaded using
