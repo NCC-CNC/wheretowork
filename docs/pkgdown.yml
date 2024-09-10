@@ -1,9 +1,8 @@
 pandoc: 3.1.11
-pkgdown: 1.6.1.9001
-pkgdown_sha: ce9781a15c7ea07df9fb17a11295ba4abec0b54b
+pkgdown: 2.1.0
+pkgdown_sha: ~
 articles:
-  wtw_data: articles/wtw_data.html
-  wtw_manual: articles/wtw_manual.html
-  wtw_theory: articles/wtw_theory.html
-last_built: 2024-05-22T16:06Z
-
+  articles/wtw_data: wtw_data.html
+  articles/wtw_manual: wtw_manual.html
+  articles/wtw_theory: wtw_theory.html
+last_built: 2024-09-10T17:37Z

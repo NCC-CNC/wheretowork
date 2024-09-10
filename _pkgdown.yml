@@ -1,3 +1,5 @@
+template:
+  bootstrap: 5
 reference:
   - title: Application
     desc: >
@@ -147,7 +149,6 @@ reference:
     contents:
       - spatial_data_type
       - spatial_data_statistics
-      - readNamedRaster
       - writeNamedRaster
       - read_spatial_data
       - write_spatial_data
