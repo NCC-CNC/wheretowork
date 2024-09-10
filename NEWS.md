@@ -24,7 +24,7 @@ Shiny >= 1.7.0 when they removed the bundled copy of fontawesome to the
 {fontawesome} package.
 - updated licence agreement.
 
-### Minor changes and bug fixed
+### Minor changes and bug fixes
 - The write_project function now includes the wheretowork and prioritizr package 
 version number to the attribute.yaml.
 - The read_project function checks if the prioritizr version number does 
