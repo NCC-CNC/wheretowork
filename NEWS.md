@@ -11,7 +11,7 @@ prioritizr::rescale_matrix() function to rescale boundary length data.
 
 Where To Work can still load older boundary data generated from previous 
 projects, however it is recommended that new projects prep data with 
-prioritizr >= 8.0.4 and Where To Work 1.0.0.
+prioritizr >= 8.0.4 and wheretowork 1.0.0.
 
 ### Major changes
 - requires R version 4.4.
