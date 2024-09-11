@@ -57,7 +57,7 @@ jobs:
           options(pkgType = "source")
           Sys.setenv(LIB_XML = "$(MINGW_PREFIX)")
           Sys.setenv(GLPK_HOME = "$(MINGW_PREFIX)")
-          install.packages(c("renv", "remotes"))
+          install.packages(c("renv", "remotes", "testthat"))
           renv::restore()
           remotes::install_cran("rcmdcheck")
           remotes::install_cran("covr")
