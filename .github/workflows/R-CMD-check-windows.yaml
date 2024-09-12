@@ -44,19 +44,10 @@ jobs:
 
       - uses: r-lib/actions/setup-pandoc@v2
 
-      - name: Install system dependencies
-        run: |
-          pacman -Sy mingw-w64-x86_64-gmp --noconfirm
-          pacman -Sy mingw-w64-x86_64-glpk --noconfirm
-          pacman -Sy mingw-w64-x86_64-libxml2 --noconfirm
-        shell: bash
-
       - name: Install dependencies
         run: |
           options(install.packages.compile.from.source = "always")
           options(pkgType = "source")
-          Sys.setenv(LIB_XML = "$(MINGW_PREFIX)")
-          Sys.setenv(GLPK_HOME = "$(MINGW_PREFIX)")
           install.packages(c("renv", "remotes", "testthat", "rvest"))
           renv::restore()
           remotes::install_cran("rcmdcheck")
