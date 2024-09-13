@@ -31,7 +31,7 @@ mm_header_component_scaffold <- function(id = uuid::UUIDgenerate(),
                                          remove_button = FALSE) {
   # create tooltip text for type
   if (identical(type, "theme")) {
-    icon <- shiny::icon("star")
+    icon <- shiny::icon("star", class = "fa-solid")
     remove_tooltip_text <- "Delete Theme"
     visible_tooltip_text <- "Show/hide Theme on map"
     icon_tooltip_text <- "This is a Theme"
