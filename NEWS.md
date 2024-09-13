@@ -6,12 +6,22 @@ Official Where To Work version 1.
 Boundary data required for spatial clustering has changed to the prioritizr
 8.0.4 format. This includes a better approach for rescaling data to avoid 
 numerical issues during optimization. Earlier versions of the package 
-recommended the use of the scales::rescale() to rescale such data. Now we use 
-prioritizr::rescale_matrix() function to rescale boundary length data. 
+recommended the use of the `scales::rescale()` to rescale such data. Now we use 
+`prioritizr::rescale_matrix()` function to rescale boundary length data. 
 
 Where To Work can still load older boundary data generated from previous 
 projects, however it is recommended that new projects prep data with 
 prioritizr >= 8.0.4 and wheretowork 1.0.0.
+
+The `renv.lock` file only includes application dependencies from Imports, Depends 
+and LinksTo found within the DESCRIPTION file. It does not include the Suggests 
+packages needed for development. This reduces the bloat on deployment and 
+installing wheretowork for data prep. The steps to contribute to package 
+development include cloning wheretowork, running `renv::restore()`, and then
+manually `renv::install` the Suggests packages referencing the correct version.
+Example `renv::install(testthat@3.3.2.1.1)`. Gurobi is not a CRAN package. Follow 
+the gurobi installation guide found on the prioritizr.net article:
+https://prioritizr.net/articles/gurobi_installation_guide.html.
 
 ### Major changes
 - requires R version 4.4.
@@ -23,6 +33,8 @@ prioritizr >= 8.0.4 and wheretowork 1.0.0.
 Shiny >= 1.7.0 when they removed the bundled copy of fontawesome to the 
 {fontawesome} package.
 - updated licence agreement.
+- renv.lock file only records application dependencies from Imports, Depends and
+LinksTo
 
 ### Minor changes and bug fixes
 - The write_project function now includes the wheretowork and prioritizr package 
