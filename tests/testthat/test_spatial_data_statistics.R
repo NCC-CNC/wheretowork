@@ -1,10 +1,9 @@
 context("spatial_data_statistics")
 
-test_that("raster (continuous)", {
+test_that("spatRaster (continuous)", {
   # prepare data
-  data(sim_features, package = "prioritizr")
-  rd <- sim_features[[2]]
-  non_na <- raster::Which(!is.na(rd), cells = TRUE)
+  rd <- prioritizr::get_sim_features()[[1]]
+  non_na <- terra::cells(rd)
   rd[non_na] <- runif(length(non_na))
   # run function
   x <- spatial_data_statistics(rd, "continuous")
@@ -12,18 +11,17 @@ test_that("raster (continuous)", {
   expect_identical(
     x,
     list(
-      total = raster::cellStats(rd, "sum"),
-      min_value = raster::cellStats(rd, "min"),
-      max_value = raster::cellStats(rd, "max")
+      total = terra::global(rd, fun="sum", na.rm=TRUE)$sum,
+      min_value = terra::global(rd, fun="min", na.rm=TRUE)$min,
+      max_value = terra::global(rd, fun="max", na.rm=TRUE)$max
     )
   )
 })
 
-test_that("raster (categorical)", {
+test_that("spatRaster (categorical)", {
   # prepare data
-  data(sim_features, package = "prioritizr")
-  rd <- sim_features[[2]]
-  non_na <- raster::Which(!is.na(rd), cells = TRUE)
+  rd <- prioritizr::get_sim_features()[[2]]
+  non_na <- terra::cells(rd)
   rd[non_na] <- as.double(sample(seq_len(5), length(non_na), replace = TRUE))
   # run function
   x <- spatial_data_statistics(rd, "categorical")
@@ -31,7 +29,7 @@ test_that("raster (categorical)", {
   expect_identical(
     x,
     list(
-      total = raster::cellStats(rd, "sum"),
+      total = terra::global(rd, fun="sum", na.rm=TRUE)$sum,
       values = as.double(seq_len(5))
     )
   )
@@ -39,8 +37,7 @@ test_that("raster (categorical)", {
 
 test_that("vector (continuous)", {
   # prepare data
-  data(sim_pu_sf, package = "prioritizr")
-  rd <- sim_pu_sf
+  rd <- prioritizr::get_sim_pu_polygons()
   rd$var <- runif(nrow(rd))
   rd <- rd[, "var"]
   # run function
@@ -58,8 +55,7 @@ test_that("vector (continuous)", {
 
 test_that("vector (categorical)", {
   # prepare data
-  data(sim_pu_sf, package = "prioritizr")
-  rd <- sim_pu_sf
+  rd <- prioritizr::get_sim_pu_polygons()
   rd$var <- as.double(sample(seq_len(5), nrow(rd), replace = TRUE))
   rd <- rd[, "var"]
   # run function

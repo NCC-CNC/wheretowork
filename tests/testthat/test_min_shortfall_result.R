@@ -575,4 +575,3 @@ test_that("mixed weights", {
   # run tests
   expect_is(x, "Result")
 })
-

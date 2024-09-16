@@ -28,17 +28,17 @@ Definition for the \code{ThemeResults} class.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{ThemeResults$new()}}
-\item \href{#method-print}{\code{ThemeResults$print()}}
-\item \href{#method-repr}{\code{ThemeResults$repr()}}
-\item \href{#method-get_results_data}{\code{ThemeResults$get_results_data()}}
-\item \href{#method-get_widget_data}{\code{ThemeResults$get_widget_data()}}
-\item \href{#method-clone}{\code{ThemeResults$clone()}}
+\item \href{#method-ThemeResults-new}{\code{ThemeResults$new()}}
+\item \href{#method-ThemeResults-print}{\code{ThemeResults$print()}}
+\item \href{#method-ThemeResults-repr}{\code{ThemeResults$repr()}}
+\item \href{#method-ThemeResults-get_results_data}{\code{ThemeResults$get_results_data()}}
+\item \href{#method-ThemeResults-get_widget_data}{\code{ThemeResults$get_widget_data()}}
+\item \href{#method-ThemeResults-clone}{\code{ThemeResults$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-ThemeResults-new"></a>}}
+\if{latex}{\out{\hypertarget{method-ThemeResults-new}{}}}
 \subsection{Method \code{new()}}{
 Create a new \code{ThemeResults} object.
 \subsection{Usage}{
@@ -61,8 +61,8 @@ A new \code{ThemeResults} object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-print"></a>}}
-\if{latex}{\out{\hypertarget{method-print}{}}}
+\if{html}{\out{<a id="method-ThemeResults-print"></a>}}
+\if{latex}{\out{\hypertarget{method-ThemeResults-print}{}}}
 \subsection{Method \code{print()}}{
 Print the object.
 \subsection{Usage}{
@@ -78,8 +78,8 @@ Print the object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-repr"></a>}}
-\if{latex}{\out{\hypertarget{method-repr}{}}}
+\if{html}{\out{<a id="method-ThemeResults-repr"></a>}}
+\if{latex}{\out{\hypertarget{method-ThemeResults-repr}{}}}
 \subsection{Method \code{repr()}}{
 Generate a \code{character} summarizing the representation of the object.
 \subsection{Usage}{
@@ -102,8 +102,8 @@ Defaults to \code{"]"}.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_results_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_results_data}{}}}
+\if{html}{\out{<a id="method-ThemeResults-get_results_data"></a>}}
+\if{latex}{\out{\hypertarget{method-ThemeResults-get_results_data}{}}}
 \subsection{Method \code{get_results_data()}}{
 Get results.
 \subsection{Usage}{
@@ -115,8 +115,8 @@ Get results.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_widget_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_widget_data}{}}}
+\if{html}{\out{<a id="method-ThemeResults-get_widget_data"></a>}}
+\if{latex}{\out{\hypertarget{method-ThemeResults-get_widget_data}{}}}
 \subsection{Method \code{get_widget_data()}}{
 Get data for displaying the object in a \code{\link[=solutionResults]{solutionResults()}} widget.
 \subsection{Usage}{
@@ -128,8 +128,8 @@ Get data for displaying the object in a \code{\link[=solutionResults]{solutionRe
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-ThemeResults-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-ThemeResults-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

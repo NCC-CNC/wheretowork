@@ -11,16 +11,14 @@ writeNamedRaster(x, filename, ...)
 
 \item{filename}{\code{character} file path.}
 
-\item{...}{arguments passed to \code{\link[raster:writeRaster]{raster::writeRaster()}}.}
+\item{...}{arguments passed to \code{\link[terra:writeRaster]{terra::writeRaster()}}.}
 }
 \value{
 None.
 }
 \description{
-Save a \code{\link[terra:rast]{terra::rast()}} object to disk, along with a text file containing
-the names of each layer in the object.
+Save a \code{\link[terra:rast]{terra::rast()}} object to disk
 }
 \details{
-This file saves a raster object to disk along with
-a text file containing the layer names of the raster.
+This file saves a SpatRaster object to disk along.
 }

@@ -284,7 +284,7 @@ min_set_result <- function(area_data,
       byrow = FALSE,
       nrow = nrow(include_data), ncol = ncol(include_data)
     )
-    locked_in <- as.logical(colSums(locked_in * include_data) > 0)
+    locked_in <- as.logical(Matrix::colSums(locked_in * include_data) > 0)
   } else {
     ## if no includes present, then lock nothing in
     locked_in <- rep(FALSE, ncol(include_data))
@@ -298,7 +298,7 @@ min_set_result <- function(area_data,
       byrow = FALSE,
       nrow = nrow(exclude_data), ncol = ncol(exclude_data)
     )
-    locked_out <- as.logical(colSums(locked_out * exclude_data) > 0)
+    locked_out <- as.logical(Matrix::colSums(locked_out * exclude_data) > 0)
   } else {
     ## if no excludes present, then lock nothing out
     locked_out <- rep(FALSE, ncol(exclude_data))
@@ -358,7 +358,7 @@ min_set_result <- function(area_data,
       ncol = ncol(wn)
     )
     ### calculate total cost by summing together all weight values
-    cost <- colSums(cost * wn)
+    cost <- Matrix::colSums(cost * wn)
     ### re-scale cost values to avoid numerical issues
     cost <- scales::rescale(cost, to = c(0.01, 1000))
   } else {
@@ -451,7 +451,7 @@ min_set_result <- function(area_data,
     ### solve problem to generate solution if needed
     initial_solution <- rep(0, length(cost))
     initial_solution[initial_pu_idx] <- c(
-      prioritizr::solve(initial_problem, run_checks = FALSE)
+      prioritizr::solve.ConservationProblem(initial_problem, run_checks = FALSE)
     )
     ### store solution in cache
     cache$set(key, initial_solution)
@@ -487,11 +487,11 @@ min_set_result <- function(area_data,
     )
     #### create matrix
     con_data <- boundary_data
-    Matrix::diag(con_data) <- 0
-    con_data <- Matrix::drop0(con_data)
-    con_data <- methods::as(con_data, "dgTMatrix")
-    con_data@x <- rwr_raw[con_data@i + 1] + cost[con_data@j + 1]
-    con_data@x <- scales::rescale(con_data@x, to = c(1, 0.01))
+    Matrix::diag(con_data) <- 0 # make diagonal all 0's, we want to know the relationship between planning units
+    con_data <- Matrix::drop0(con_data) # drop 0's
+    con_data <- methods::as(methods::as(con_data, "generalMatrix"), "TsparseMatrix") # convert to TsparseMatrix
+    con_data@x <- rwr_raw[con_data@i + 1] + rwr_raw[con_data@j + 1] # spatially cluster where there are a lot of rare things
+    con_data <- prioritizr::rescale_matrix(con_data, max = 100)
     con_data <- Matrix::drop0(con_data)
     ### generate prioritization
     main_problem <-
@@ -545,7 +545,7 @@ min_set_result <- function(area_data,
     }    
     ### generate solution
     main_solution <-
-      c(prioritizr::solve(main_problem, run_checks = FALSE))
+      c(prioritizr::solve.ConservationProblem(main_problem, run_checks = FALSE))
   } else {
     ### if the boundary_gap setting is very low,
     ### then we will just use the initial solution because the

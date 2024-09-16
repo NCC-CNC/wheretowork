@@ -44,38 +44,38 @@ Definition for the Exclude class.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{Exclude$new()}}
-\item \href{#method-print}{\code{Exclude$print()}}
-\item \href{#method-repr}{\code{Exclude$repr()}}
-\item \href{#method-get_layer_name}{\code{Exclude$get_layer_name()}}
-\item \href{#method-get_layer_index}{\code{Exclude$get_layer_index()}}
-\item \href{#method-get_layer_pane}{\code{Exclude$get_layer_pane()}}
-\item \href{#method-get_id}{\code{Exclude$get_id()}}
-\item \href{#method-get_visible}{\code{Exclude$get_visible()}}
-\item \href{#method-get_invisible}{\code{Exclude$get_invisible()}}
-\item \href{#method-get_loaded}{\code{Exclude$get_loaded()}}
-\item \href{#method-get_hidden}{\code{Exclude$get_hidden()}}
-\item \href{#method-get_status}{\code{Exclude$get_status()}}
-\item \href{#method-get_overlap}{\code{Exclude$get_overlap()}}
-\item \href{#method-get_data}{\code{Exclude$get_data()}}
-\item \href{#method-set_new_pane}{\code{Exclude$set_new_pane()}}
-\item \href{#method-get_setting}{\code{Exclude$get_setting()}}
-\item \href{#method-set_visible}{\code{Exclude$set_visible()}}
-\item \href{#method-set_invisible}{\code{Exclude$set_invisible()}}
-\item \href{#method-set_loaded}{\code{Exclude$set_loaded()}}
-\item \href{#method-set_status}{\code{Exclude$set_status()}}
-\item \href{#method-set_setting}{\code{Exclude$set_setting()}}
-\item \href{#method-get_solution_settings_widget_data}{\code{Exclude$get_solution_settings_widget_data()}}
-\item \href{#method-get_map_manager_widget_data}{\code{Exclude$get_map_manager_widget_data()}}
-\item \href{#method-export}{\code{Exclude$export()}}
-\item \href{#method-render_on_map}{\code{Exclude$render_on_map()}}
-\item \href{#method-update_on_map}{\code{Exclude$update_on_map()}}
-\item \href{#method-clone}{\code{Exclude$clone()}}
+\item \href{#method-Exclude-new}{\code{Exclude$new()}}
+\item \href{#method-Exclude-print}{\code{Exclude$print()}}
+\item \href{#method-Exclude-repr}{\code{Exclude$repr()}}
+\item \href{#method-Exclude-get_layer_name}{\code{Exclude$get_layer_name()}}
+\item \href{#method-Exclude-get_layer_index}{\code{Exclude$get_layer_index()}}
+\item \href{#method-Exclude-get_layer_pane}{\code{Exclude$get_layer_pane()}}
+\item \href{#method-Exclude-get_id}{\code{Exclude$get_id()}}
+\item \href{#method-Exclude-get_visible}{\code{Exclude$get_visible()}}
+\item \href{#method-Exclude-get_invisible}{\code{Exclude$get_invisible()}}
+\item \href{#method-Exclude-get_loaded}{\code{Exclude$get_loaded()}}
+\item \href{#method-Exclude-get_hidden}{\code{Exclude$get_hidden()}}
+\item \href{#method-Exclude-get_status}{\code{Exclude$get_status()}}
+\item \href{#method-Exclude-get_overlap}{\code{Exclude$get_overlap()}}
+\item \href{#method-Exclude-get_data}{\code{Exclude$get_data()}}
+\item \href{#method-Exclude-set_new_pane}{\code{Exclude$set_new_pane()}}
+\item \href{#method-Exclude-get_setting}{\code{Exclude$get_setting()}}
+\item \href{#method-Exclude-set_visible}{\code{Exclude$set_visible()}}
+\item \href{#method-Exclude-set_invisible}{\code{Exclude$set_invisible()}}
+\item \href{#method-Exclude-set_loaded}{\code{Exclude$set_loaded()}}
+\item \href{#method-Exclude-set_status}{\code{Exclude$set_status()}}
+\item \href{#method-Exclude-set_setting}{\code{Exclude$set_setting()}}
+\item \href{#method-Exclude-get_solution_settings_widget_data}{\code{Exclude$get_solution_settings_widget_data()}}
+\item \href{#method-Exclude-get_map_manager_widget_data}{\code{Exclude$get_map_manager_widget_data()}}
+\item \href{#method-Exclude-export}{\code{Exclude$export()}}
+\item \href{#method-Exclude-render_on_map}{\code{Exclude$render_on_map()}}
+\item \href{#method-Exclude-update_on_map}{\code{Exclude$update_on_map()}}
+\item \href{#method-Exclude-clone}{\code{Exclude$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-Exclude-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Exclude-new}{}}}
 \subsection{Method \code{new()}}{
 Create a new Exclude object.
 \subsection{Usage}{
@@ -126,8 +126,8 @@ A new Exclude object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-print"></a>}}
-\if{latex}{\out{\hypertarget{method-print}{}}}
+\if{html}{\out{<a id="method-Exclude-print"></a>}}
+\if{latex}{\out{\hypertarget{method-Exclude-print}{}}}
 \subsection{Method \code{print()}}{
 Print the object.
 \subsection{Usage}{
@@ -143,8 +143,8 @@ Print the object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-repr"></a>}}
-\if{latex}{\out{\hypertarget{method-repr}{}}}
+\if{html}{\out{<a id="method-Exclude-repr"></a>}}
+\if{latex}{\out{\hypertarget{method-Exclude-repr}{}}}
 \subsection{Method \code{repr()}}{
 Generate a \code{character} summarizing the representation of the object.
 \subsection{Usage}{
@@ -167,8 +167,8 @@ Defaults to \code{"]"}.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_layer_name"></a>}}
-\if{latex}{\out{\hypertarget{method-get_layer_name}{}}}
+\if{html}{\out{<a id="method-Exclude-get_layer_name"></a>}}
+\if{latex}{\out{\hypertarget{method-Exclude-get_layer_name}{}}}
 \subsection{Method \code{get_layer_name()}}{
 Get layer names.
 \subsection{Usage}{
@@ -180,8 +180,8 @@ Get layer names.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_layer_index"></a>}}
-\if{latex}{\out{\hypertarget{method-get_layer_index}{}}}
+\if{html}{\out{<a id="method-Exclude-get_layer_index"></a>}}
+\if{latex}{\out{\hypertarget{method-Exclude-get_layer_index}{}}}
 \subsection{Method \code{get_layer_index()}}{
 Get layer index values.
 \subsection{Usage}{
@@ -193,8 +193,8 @@ Get layer index values.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_layer_pane"></a>}}
-\if{latex}{\out{\hypertarget{method-get_layer_pane}{}}}
+\if{html}{\out{<a id="method-Exclude-get_layer_pane"></a>}}
+\if{latex}{\out{\hypertarget{method-Exclude-get_layer_pane}{}}}
 \subsection{Method \code{get_layer_pane()}}{
 Get layer pane class.
 \subsection{Usage}{
@@ -206,8 +206,8 @@ Get layer pane class.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_id"></a>}}
-\if{latex}{\out{\hypertarget{method-get_id}{}}}
+\if{html}{\out{<a id="method-Exclude-get_id"></a>}}
+\if{latex}{\out{\hypertarget{method-Exclude-get_id}{}}}
 \subsection{Method \code{get_id()}}{
 Get exclude identifier.
 \subsection{Usage}{
@@ -219,8 +219,8 @@ Get exclude identifier.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_visible"></a>}}
-\if{latex}{\out{\hypertarget{method-get_visible}{}}}
+\if{html}{\out{<a id="method-Exclude-get_visible"></a>}}
+\if{latex}{\out{\hypertarget{method-Exclude-get_visible}{}}}
 \subsection{Method \code{get_visible()}}{
 Get visible.
 \subsection{Usage}{
@@ -232,8 +232,8 @@ Get visible.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_invisible"></a>}}
-\if{latex}{\out{\hypertarget{method-get_invisible}{}}}
+\if{html}{\out{<a id="method-Exclude-get_invisible"></a>}}
+\if{latex}{\out{\hypertarget{method-Exclude-get_invisible}{}}}
 \subsection{Method \code{get_invisible()}}{
 Get invisible.
 \subsection{Usage}{
@@ -245,8 +245,8 @@ Get invisible.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_loaded"></a>}}
-\if{latex}{\out{\hypertarget{method-get_loaded}{}}}
+\if{html}{\out{<a id="method-Exclude-get_loaded"></a>}}
+\if{latex}{\out{\hypertarget{method-Exclude-get_loaded}{}}}
 \subsection{Method \code{get_loaded()}}{
 Get loaded.
 \subsection{Usage}{
@@ -258,8 +258,8 @@ Get loaded.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_hidden"></a>}}
-\if{latex}{\out{\hypertarget{method-get_hidden}{}}}
+\if{html}{\out{<a id="method-Exclude-get_hidden"></a>}}
+\if{latex}{\out{\hypertarget{method-Exclude-get_hidden}{}}}
 \subsection{Method \code{get_hidden()}}{
 Get hidden.
 \subsection{Usage}{
@@ -271,8 +271,8 @@ Get hidden.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_status"></a>}}
-\if{latex}{\out{\hypertarget{method-get_status}{}}}
+\if{html}{\out{<a id="method-Exclude-get_status"></a>}}
+\if{latex}{\out{\hypertarget{method-Exclude-get_status}{}}}
 \subsection{Method \code{get_status()}}{
 Get status.
 \subsection{Usage}{
@@ -284,8 +284,8 @@ Get status.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_overlap"></a>}}
-\if{latex}{\out{\hypertarget{method-get_overlap}{}}}
+\if{html}{\out{<a id="method-Exclude-get_overlap"></a>}}
+\if{latex}{\out{\hypertarget{method-Exclude-get_overlap}{}}}
 \subsection{Method \code{get_overlap()}}{
 Get overlap.
 \subsection{Usage}{
@@ -297,8 +297,8 @@ Get overlap.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_data}{}}}
+\if{html}{\out{<a id="method-Exclude-get_data"></a>}}
+\if{latex}{\out{\hypertarget{method-Exclude-get_data}{}}}
 \subsection{Method \code{get_data()}}{
 Get the data.
 \subsection{Usage}{
@@ -306,12 +306,12 @@ Get the data.
 }
 
 \subsection{Returns}{
-\code{\link[sf:st_as_sf]{sf::st_as_sf()}} or \code{\link[raster:raster]{raster::raster()}} object.
+\code{\link[sf:st_as_sf]{sf::st_as_sf()}} or \code{\link[terra:rast]{terra::rast()}} object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_new_pane"></a>}}
-\if{latex}{\out{\hypertarget{method-set_new_pane}{}}}
+\if{html}{\out{<a id="method-Exclude-set_new_pane"></a>}}
+\if{latex}{\out{\hypertarget{method-Exclude-set_new_pane}{}}}
 \subsection{Method \code{set_new_pane()}}{
 Set new pane.
 \subsection{Usage}{
@@ -332,8 +332,8 @@ Set new pane.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_setting"></a>}}
-\if{latex}{\out{\hypertarget{method-get_setting}{}}}
+\if{html}{\out{<a id="method-Exclude-get_setting"></a>}}
+\if{latex}{\out{\hypertarget{method-Exclude-get_setting}{}}}
 \subsection{Method \code{get_setting()}}{
 Get setting.
 \subsection{Usage}{
@@ -353,8 +353,8 @@ Value.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_visible"></a>}}
-\if{latex}{\out{\hypertarget{method-set_visible}{}}}
+\if{html}{\out{<a id="method-Exclude-set_visible"></a>}}
+\if{latex}{\out{\hypertarget{method-Exclude-set_visible}{}}}
 \subsection{Method \code{set_visible()}}{
 Set visible.
 \subsection{Usage}{
@@ -370,8 +370,8 @@ Set visible.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_invisible"></a>}}
-\if{latex}{\out{\hypertarget{method-set_invisible}{}}}
+\if{html}{\out{<a id="method-Exclude-set_invisible"></a>}}
+\if{latex}{\out{\hypertarget{method-Exclude-set_invisible}{}}}
 \subsection{Method \code{set_invisible()}}{
 Set invisible.
 \subsection{Usage}{
@@ -387,8 +387,8 @@ Set invisible.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_loaded"></a>}}
-\if{latex}{\out{\hypertarget{method-set_loaded}{}}}
+\if{html}{\out{<a id="method-Exclude-set_loaded"></a>}}
+\if{latex}{\out{\hypertarget{method-Exclude-set_loaded}{}}}
 \subsection{Method \code{set_loaded()}}{
 Set loaded.
 \subsection{Usage}{
@@ -404,8 +404,8 @@ Set loaded.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_status"></a>}}
-\if{latex}{\out{\hypertarget{method-set_status}{}}}
+\if{html}{\out{<a id="method-Exclude-set_status"></a>}}
+\if{latex}{\out{\hypertarget{method-Exclude-set_status}{}}}
 \subsection{Method \code{set_status()}}{
 Set status.
 \subsection{Usage}{
@@ -421,8 +421,8 @@ Set status.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_setting"></a>}}
-\if{latex}{\out{\hypertarget{method-set_setting}{}}}
+\if{html}{\out{<a id="method-Exclude-set_setting"></a>}}
+\if{latex}{\out{\hypertarget{method-Exclude-set_setting}{}}}
 \subsection{Method \code{set_setting()}}{
 Set setting.
 \subsection{Usage}{
@@ -441,8 +441,8 @@ Available options are \code{"status"} or `"visible"``.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_solution_settings_widget_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_solution_settings_widget_data}{}}}
+\if{html}{\out{<a id="method-Exclude-get_solution_settings_widget_data"></a>}}
+\if{latex}{\out{\hypertarget{method-Exclude-get_solution_settings_widget_data}{}}}
 \subsection{Method \code{get_solution_settings_widget_data()}}{
 Get data for displaying the exclude in a \code{\link[=solutionSettings]{solutionSettings()}} widget.
 \subsection{Usage}{
@@ -454,8 +454,8 @@ Get data for displaying the exclude in a \code{\link[=solutionSettings]{solution
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_map_manager_widget_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_map_manager_widget_data}{}}}
+\if{html}{\out{<a id="method-Exclude-get_map_manager_widget_data"></a>}}
+\if{latex}{\out{\hypertarget{method-Exclude-get_map_manager_widget_data}{}}}
 \subsection{Method \code{get_map_manager_widget_data()}}{
 Get data for displaying the exclude in a \code{\link[=mapManager]{mapManager()}} widget.
 \subsection{Usage}{
@@ -467,8 +467,8 @@ Get data for displaying the exclude in a \code{\link[=mapManager]{mapManager()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-export"></a>}}
-\if{latex}{\out{\hypertarget{method-export}{}}}
+\if{html}{\out{<a id="method-Exclude-export"></a>}}
+\if{latex}{\out{\hypertarget{method-Exclude-export}{}}}
 \subsection{Method \code{export()}}{
 Export settings.
 \subsection{Usage}{
@@ -480,8 +480,8 @@ Export settings.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-render_on_map"></a>}}
-\if{latex}{\out{\hypertarget{method-render_on_map}{}}}
+\if{html}{\out{<a id="method-Exclude-render_on_map"></a>}}
+\if{latex}{\out{\hypertarget{method-Exclude-render_on_map}{}}}
 \subsection{Method \code{render_on_map()}}{
 Render on map.
 \subsection{Usage}{
@@ -502,8 +502,8 @@ Render on map.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-update_on_map"></a>}}
-\if{latex}{\out{\hypertarget{method-update_on_map}{}}}
+\if{html}{\out{<a id="method-Exclude-update_on_map"></a>}}
+\if{latex}{\out{\hypertarget{method-Exclude-update_on_map}{}}}
 \subsection{Method \code{update_on_map()}}{
 Render on map.
 \subsection{Usage}{
@@ -524,8 +524,8 @@ Render on map.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-Exclude-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-Exclude-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

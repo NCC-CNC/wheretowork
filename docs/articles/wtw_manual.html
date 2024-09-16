@@ -4,111 +4,84 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>User manual • wheretowork</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../../bootstrap-toc.css">
-<script src="../../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../../pkgdown.css" rel="stylesheet">
-<script src="../../pkgdown.js"></script><link href="../../extra.css" rel="stylesheet">
+<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="User manual">
-<meta property="og:description" content="wheretowork">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
 </head>
-<body data-spy="scroll" data-target="#toc">
-    
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
-    <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../../index.html">wheretowork</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
-      </span>
-    </div>
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="../../reference/index.html">Reference</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../../articles/articles/wtw_data.html">Data</a>
-    </li>
-    <li>
-      <a href="../../articles/articles/wtw_manual.html">User manual</a>
-    </li>
-    <li>
-      <a href="../../articles/articles/wtw_theory.html">Theory</a>
-    </li>
+    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+
+    <a class="navbar-brand me-2" href="../index.html">wheretowork</a>
+
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+<li class="active nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="../articles/wtw_data.html">Data</a></li>
+    <li><a class="dropdown-item" href="../articles/wtw_manual.html">User manual</a></li>
+    <li><a class="dropdown-item" href="../articles/wtw_theory.html">Theory</a></li>
   </ul>
 </li>
-<li>
-  <a href="../../news/index.html">Changelog</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://github.com/NCC-CNC/wheretowork/" class="external-link">
-    <span class="fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
+<ul class="navbar-nav">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
+</form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/NCC-CNC/wheretowork/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
-<!--/.nav-collapse -->
+
+
   </div>
-<!--/.container -->
-</div>
-<!--/.navbar -->
+</nav><div class="container template-article">
 
-      
 
-      </header><script src="wtw_manual_files/header-attrs-2.19/header-attrs.js"></script><div class="row">
-  <div class="col-md-9 contents">
-    <div class="page-header toc-ignore">
-      <h1 data-toc-skip>User manual</h1>
+
+
+<div class="row">
+  <main id="main" class="col-md-9"><div class="page-header">
+
+      <h1>User manual</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/NCC-CNC/wheretowork/blob/master/vignettes/articles/wtw_manual.Rmd" class="external-link"><code>vignettes/articles/wtw_manual.Rmd</code></a></small>
-      <div class="hidden name"><code>wtw_manual.Rmd</code></div>
-
+      <small class="dont-index">Source: <a href="https://github.com/NCC-CNC/wheretowork/blob/HEAD/vignettes/articles/wtw_manual.Rmd" class="external-link"><code>vignettes/articles/wtw_manual.Rmd</code></a></small>
+      <div class="d-none name"><code>wtw_manual.Rmd</code></div>
     </div>
 
     
     
-<div id="about" class="section level1">
-<h1 class="hasAnchor">
-<a href="#about" class="anchor" aria-hidden="true"></a>About</h1>
-<div id="intended-audience" class="section level2">
-<h2 class="hasAnchor">
-<a href="#intended-audience" class="anchor" aria-hidden="true"></a>Intended audience</h2>
+<div class="section level2">
+<h2 id="about">About<a class="anchor" aria-label="anchor" href="#about"></a>
+</h2>
+<div class="section level3">
+<h3 id="intended-audience">Intended audience<a class="anchor" aria-label="anchor" href="#intended-audience"></a>
+</h3>
 <p>This manual was written for NCC-CNC GIS staff to provide explanations
 for the basic functionalities of the <em>Where to Work</em> tool
 (advanced version), to allow testing and recommendations for improvement
 during the development phase. As such, it is subject to change.</p>
 </div>
-<div id="purpose-of-tool" class="section level2">
-<h2 class="hasAnchor">
-<a href="#purpose-of-tool" class="anchor" aria-hidden="true"></a>Purpose of tool</h2>
+<div class="section level3">
+<h3 id="purpose-of-tool">Purpose of tool<a class="anchor" aria-label="anchor" href="#purpose-of-tool"></a>
+</h3>
 <p>NCC is adopting a systematic and standardized approach to land
 prioritization via the introduction of a spatial prioritization tool
 <em>Where to Work</em> to NCC’s conservation planning framework. Doing
@@ -129,18 +102,18 @@ mathematically may not be optimal from a practicality standpoint, and
 the results are dependent on the input data. Thus, the tool is intended
 for decision support, but is not meant to dictate final decisions.</p>
 </div>
-<div id="software-dependencies" class="section level2">
-<h2 class="hasAnchor">
-<a href="#software-dependencies" class="anchor" aria-hidden="true"></a>Software dependencies</h2>
+<div class="section level3">
+<h3 id="software-dependencies">Software dependencies<a class="anchor" aria-label="anchor" href="#software-dependencies"></a>
+</h3>
 <p>The tool is available as an online web application. For the best
 experience, it is recommended to use the latest version of the Google
 Chrome web browser (<a href="https://www.google.com/chrome/" class="external-link uri">https://www.google.com/chrome/</a>). Efforts have been made
 to support other web browsers, such as Mozzillla Firefox, Microsoft
 Edge, and Apple Safari.</p>
 </div>
-<div id="code-availability" class="section level2">
-<h2 class="hasAnchor">
-<a href="#code-availability" class="anchor" aria-hidden="true"></a>Code availability</h2>
+<div class="section level3">
+<h3 id="code-availability">Code availability<a class="anchor" aria-label="anchor" href="#code-availability"></a>
+</h3>
 <p>All code for the <em>Where to Work</em> tool is publicly available on
 GitHub here: <a href="https://github.com/NCC-CNC/wheretowork" class="external-link uri">https://github.com/NCC-CNC/wheretowork</a></p>
 <p>If you find problems with the <em>Where to Work</em> tool you can
@@ -148,26 +121,26 @@ submit a ticket, or Issue as GitHub calls it here: <a href="https://github.com/N
 <p>If you are not a GitHub user, you can get in touch via email.</p>
 </div>
 </div>
-<div id="terminology-and-concepts" class="section level1">
-<h1 class="hasAnchor">
-<a href="#terminology-and-concepts" class="anchor" aria-hidden="true"></a>Terminology and concepts</h1>
-<div id="systematic-conservation-planning" class="section level2">
-<h2 class="hasAnchor">
-<a href="#systematic-conservation-planning" class="anchor" aria-hidden="true"></a>Systematic conservation planning</h2>
+<div class="section level2">
+<h2 id="terminology-and-concepts">Terminology and concepts<a class="anchor" aria-label="anchor" href="#terminology-and-concepts"></a>
+</h2>
+<div class="section level3">
+<h3 id="systematic-conservation-planning">Systematic conservation planning<a class="anchor" aria-label="anchor" href="#systematic-conservation-planning"></a>
+</h3>
 <p>A commonly used decision-support framework that seeks to optimize
 where to act and what to do in a systematic and repeatable way – two key
 outputs of a conservation planning process.</p>
 </div>
-<div id="spatial-prioritization-tool" class="section level2">
-<h2 class="hasAnchor">
-<a href="#spatial-prioritization-tool" class="anchor" aria-hidden="true"></a>Spatial prioritization tool</h2>
+<div class="section level3">
+<h3 id="spatial-prioritization-tool">Spatial prioritization tool<a class="anchor" aria-label="anchor" href="#spatial-prioritization-tool"></a>
+</h3>
 <p>A problem-solving tool that uses an algorithm to inform the spatial
 allocation of conservation actions (e.g., prioritzr, Marxan,
 Zonation).</p>
 </div>
-<div id="theme" class="section level2">
-<h2 class="hasAnchor">
-<a href="#theme" class="anchor" aria-hidden="true"></a>Theme</h2>
+<div class="section level3">
+<h3 id="theme">Theme<a class="anchor" aria-label="anchor" href="#theme"></a>
+</h3>
 <p>Themes describe facets of biodiversity that are important for
 conservation (e.g., species, habitats, ecosystems). To help safeguard
 Themes, you can set Goals to ensure a minimum level of coverage by
@@ -178,9 +151,9 @@ Theme pertaining to Threatened Species may contain Features, wherein
 each Feature corresponds to a different species.</p>
 <p>Note that “Goals” are similar to Marxan’s “targets”</p>
 </div>
-<div id="weight" class="section level2">
-<h2 class="hasAnchor">
-<a href="#weight" class="anchor" aria-hidden="true"></a>Weight</h2>
+<div class="section level3">
+<h3 id="weight">Weight<a class="anchor" aria-label="anchor" href="#weight"></a>
+</h3>
 <p>A Weight describes properties of places that can impede or improve
 conservation efforts. Set the Weight factor between -100 and 100 to
 indicate how important it is to avoid or cover (respectively) a given
@@ -194,9 +167,9 @@ are selected). Setting a value of zero (deselecting the Weight using the
 toggle) means that it is not considered at all in the
 prioritization.</p>
 </div>
-<div id="includes" class="section level2">
-<h2 class="hasAnchor">
-<a href="#includes" class="anchor" aria-hidden="true"></a>Includes</h2>
+<div class="section level3">
+<h3 id="includes">Includes<a class="anchor" aria-label="anchor" href="#includes"></a>
+</h3>
 <p>This term refers to areas that are already managed for conservation;
 to build on the current reserve network, these areas should be
 automatically included. However, solutions can be constructed that do
@@ -205,30 +178,30 @@ explore counterfactuals and management plans generated using other
 processes (e.g., what if we built a new system from scratch?).</p>
 <p>Note that “Includes” are similar to Marxan’s “locked-in” areas.</p>
 </div>
-<div id="excludes" class="section level2">
-<h2 class="hasAnchor">
-<a href="#excludes" class="anchor" aria-hidden="true"></a>Excludes</h2>
+<div class="section level3">
+<h3 id="excludes">Excludes<a class="anchor" aria-label="anchor" href="#excludes"></a>
+</h3>
 <p>This is the opposite of an Include. Areas defined as Excludes are
 removed from the analysis and cannot be selected to contribute to Goals
 (i.e. they are locked-out).</p>
 </div>
-<div id="planning-unit" class="section level2">
-<h2 class="hasAnchor">
-<a href="#planning-unit" class="anchor" aria-hidden="true"></a>Planning unit</h2>
+<div class="section level3">
+<h3 id="planning-unit">Planning unit<a class="anchor" aria-label="anchor" href="#planning-unit"></a>
+</h3>
 <p>A spatial locality (or area) that can be managed independently from
 other localities. In many cases, planning units are defined using
 property boundaries. In other cases, especially in large-scale planning
 exercises, landscapes are often divided into equal-area (e.g., 1 km2)
 grid cells that are used to serve as different planning units.</p>
 </div>
-<div id="reserve" class="section level2">
-<h2 class="hasAnchor">
-<a href="#reserve" class="anchor" aria-hidden="true"></a>Reserve</h2>
+<div class="section level3">
+<h3 id="reserve">Reserve<a class="anchor" aria-label="anchor" href="#reserve"></a>
+</h3>
 <p>A contiguous set of planning unit selected for prioritization.</p>
 </div>
-<div id="algorithm" class="section level2">
-<h2 class="hasAnchor">
-<a href="#algorithm" class="anchor" aria-hidden="true"></a>Algorithm</h2>
+<div class="section level3">
+<h3 id="algorithm">Algorithm<a class="anchor" aria-label="anchor" href="#algorithm"></a>
+</h3>
 <p>An optimization technique that aims maximize performance according to
 certain criteria. Specifically, the <em>Where to Work</em> tool uses
 exact algorithms implemented with the <a href="(https://github.com/coin-or/Cbc)" class="external-link">CBC</a> (Coin-or branch and cut)
@@ -236,19 +209,18 @@ or <a href="https://www.gurobi.com/" class="external-link">Gurobi</a> mixed inte
 programming solver.</p>
 </div>
 </div>
-<div id="launching-where-to-work" class="section level1">
-<h1 class="hasAnchor">
-<a href="#launching-where-to-work" class="anchor" aria-hidden="true"></a>Launching <em>Where to Work</em>
-</h1>
-<div id="accessing-the-where-to-work-tool" class="section level2">
-<h2 class="hasAnchor">
-<a href="#accessing-the-where-to-work-tool" class="anchor" aria-hidden="true"></a>Accessing the <em>Where to Work</em> tool</h2>
+<div class="section level2">
+<h2 id="launching-where-to-work">Launching <em>Where to Work</em><a class="anchor" aria-label="anchor" href="#launching-where-to-work"></a>
+</h2>
+<div class="section level3">
+<h3 id="accessing-the-where-to-work-tool">Accessing the <em>Where to Work</em> tool<a class="anchor" aria-label="anchor" href="#accessing-the-where-to-work-tool"></a>
+</h3>
 <p>The tool can be accessed with the following link: <a href="https://ncc.carleton.ca/" class="external-link"><em>Where to Work</em></a>.</p>
 <p>This User Manual is written for the “advanced” user.</p>
 </div>
-<div id="select-import-method" class="section level2">
-<h2 class="hasAnchor">
-<a href="#select-import-method" class="anchor" aria-hidden="true"></a>Select import method</h2>
+<div class="section level3">
+<h3 id="select-import-method">Select import method<a class="anchor" aria-label="anchor" href="#select-import-method"></a>
+</h3>
 <p>To begin, select the method for importing data into the application.
 To use a previously prepared publicly available project, select
 “built-in project.”</p>
@@ -258,17 +230,17 @@ approach and is explained in detail in <a href="https://github.com/NCC-CNC/wtw-d
 <p>To upload a spatial dataset that has not been prepared specifically
 for the tool, select “spatial dataset.” We don’t recommend this method
 for reasons explained in <a href="https://github.com/NCC-CNC/wtw-data-prep/tree/main/shapefile_example" class="external-link">wtw-data-prep</a>.</p>
-<div id="built-in-project" class="section level3">
-<h3 class="hasAnchor">
-<a href="#built-in-project" class="anchor" aria-hidden="true"></a>Built-in project</h3>
+<div class="section level4">
+<h4 id="built-in-project">Built-in project<a class="anchor" aria-label="anchor" href="#built-in-project"></a>
+</h4>
 <p>Sample projects are pre-loaded into the app. Select the project you
 wish to view, then click “Import.” Several of these projects are sample
 projects (e.g., those with the name “simulated”) and others have been
 prepared by GIS technicians.</p>
 </div>
-<div id="upload-project-data" class="section level3">
-<h3 class="hasAnchor">
-<a href="#upload-project-data" class="anchor" aria-hidden="true"></a>Upload project data</h3>
+<div class="section level4">
+<h4 id="upload-project-data">Upload project data<a class="anchor" aria-label="anchor" href="#upload-project-data"></a>
+</h4>
 <p>A project dataset comprises four files. These files include
 configuration file, spatial data, attribute data, and boundary data
 files. These files are created using custom R scripts or the ArcGIS
@@ -278,17 +250,17 @@ that all four files need to be uploaded to the application.</p>
 <p>Instructions and example scripts for creating these files can be
 found in the <a href="https://github.com/NCC-CNC/wtw-data-prep" class="external-link">wtw-data-prep</a> github
 repo.</p>
-<div id="select-configuration-file" class="section level4">
-<h4 class="hasAnchor">
-<a href="#select-configuration-file" class="anchor" aria-hidden="true"></a>Select configuration file</h4>
+<div class="section level5">
+<h5 id="select-configuration-file">Select configuration file<a class="anchor" aria-label="anchor" href="#select-configuration-file"></a>
+</h5>
 <p>A configuration file contains the specification for the project. It
 specifies the Themes, Includes, Excludes and Weights that are part of
 the project, along with default settings and colors for visualization.
 This file is encoded using YAML (e.g, project.yml) file format (<a href="https://yaml.org/" class="external-link uri">https://yaml.org/</a>).</p>
 </div>
-<div id="select-spatial-data" class="section level4">
-<h4 class="hasAnchor">
-<a href="#select-spatial-data" class="anchor" aria-hidden="true"></a>Select spatial data</h4>
+<div class="section level5">
+<h5 id="select-spatial-data">Select spatial data<a class="anchor" aria-label="anchor" href="#select-spatial-data"></a>
+</h5>
 <p>A spatial data file contains the geographic information used to
 display the data on a map. Spatial data files can either be in the
 GeoTIFF format (e.g., spatial_data.tif) or the ESRI Shapefile format.
@@ -298,9 +270,9 @@ when uploading the “spatial_data” ESRI Shapefile, one must upload all
 four of the following files: spatial_data.shp, spatial_data.prj,
 spatial_data.shx, and spatial_data.dbf.</p>
 </div>
-<div id="select-attribute-data" class="section level4">
-<h4 class="hasAnchor">
-<a href="#select-attribute-data" class="anchor" aria-hidden="true"></a>Select attribute data</h4>
+<div class="section level5">
+<h5 id="select-attribute-data">Select attribute data<a class="anchor" aria-label="anchor" href="#select-attribute-data"></a>
+</h5>
 <p>An attribute data file details the expected amount of each Theme,
 Weight, or Include within each planning unit. The attribute data files
 can be supplied in the Comma Separated Values format (e.g.,
@@ -312,9 +284,9 @@ different planning unit. The last column in this file should be called
 unit (e.g., the index of the grid cell or geometry each planning unit is
 associated with in the spatial data file).</p>
 </div>
-<div id="select-boundary-data" class="section level4">
-<h4 class="hasAnchor">
-<a href="#select-boundary-data" class="anchor" aria-hidden="true"></a>Select boundary data</h4>
+<div class="section level5">
+<h5 id="select-boundary-data">Select boundary data<a class="anchor" aria-label="anchor" href="#select-boundary-data"></a>
+</h5>
 <p>A boundary data file contains information on the spatial boundaries
 of the planning unit. The boundary data file can be supplied in the
 Comma Separated Values format (e.g., “boundary_data.csv”), or a
@@ -330,9 +302,9 @@ index value. This data is used when the spatial clustering options are
 enabled (see below).</p>
 </div>
 </div>
-<div id="spatial-dataset" class="section level3">
-<h3 class="hasAnchor">
-<a href="#spatial-dataset" class="anchor" aria-hidden="true"></a>Spatial dataset</h3>
+<div class="section level4">
+<h4 id="spatial-dataset">Spatial dataset<a class="anchor" aria-label="anchor" href="#spatial-dataset"></a>
+</h4>
 <p>An ESRI Shapefile can be uploaded to the application to automatically
 create a new project. Please note that this approach is not generally
 recommended for beginner users, because users need to ensure that the
@@ -349,13 +321,13 @@ spatial_data.shx, and spatial_data.dbf.</p>
 </div>
 </div>
 </div>
-<div id="sidebars" class="section level1">
-<h1 class="hasAnchor">
-<a href="#sidebars" class="anchor" aria-hidden="true"></a>Sidebars</h1>
+<div class="section level2">
+<h2 id="sidebars">Sidebars<a class="anchor" aria-label="anchor" href="#sidebars"></a>
+</h2>
 <p><img src="figures/sidebar1.png" width="2042"></p>
-<div id="table-of-contents" class="section level2">
-<h2 class="hasAnchor">
-<a href="#table-of-contents" class="anchor" aria-hidden="true"></a>Table of contents</h2>
+<div class="section level3">
+<h3 id="table-of-contents">Table of contents<a class="anchor" aria-label="anchor" href="#table-of-contents"></a>
+</h3>
 <p>Open and close the Table of contents by clicking the layers icon.
 Themes are identified with the star icon. Weights are identified with
 the Weight icon. Categorical data will automatically be assigned a
@@ -366,9 +338,9 @@ Visibility of a Feature or Weight does not impact prioritization
 solutions.</p>
 <p><img src="figures/sidebar2.png" width="2041"></p>
 </div>
-<div id="new-solution" class="section level2">
-<h2 class="hasAnchor">
-<a href="#new-solution" class="anchor" aria-hidden="true"></a>New solution</h2>
+<div class="section level3">
+<h3 id="new-solution">New solution<a class="anchor" aria-label="anchor" href="#new-solution"></a>
+</h3>
 <p>Open and close the New solution sidebar by clicking the rocket icon.
 To generate a new solution, select the Themes, Features, Weights, and
 attributes for inclusion to include in the solution with the toggle
@@ -378,9 +350,9 @@ the colour picker. Click the “Optimize!” button to generate the new
 solution. Once a new solution is generated, it will appear in the Table
 of contents sidebar.</p>
 <p><img src="figures/sidebar3.png" width="2046"></p>
-<div id="themes" class="section level3">
-<h3 class="hasAnchor">
-<a href="#themes" class="anchor" aria-hidden="true"></a>Themes</h3>
+<div class="section level4">
+<h4 id="themes">Themes<a class="anchor" aria-label="anchor" href="#themes"></a>
+</h4>
 <p>Themes can be selected (enabled) so that they are used to generate
 solutions (i.e., by clicking the toggle button next to each Theme). If a
 Theme is enabled, then the slider can be used to specify a Goal for the
@@ -398,9 +370,9 @@ example, setting a Goal of 30% for a Theme, means that each solution
 will aim to cover 30% of the overall amount of the Theme.</p>
 <p><img src="figures/sidebar4.png" width="2044"></p>
 </div>
-<div id="weights" class="section level3">
-<h3 class="hasAnchor">
-<a href="#weights" class="anchor" aria-hidden="true"></a>Weights</h3>
+<div class="section level4">
+<h4 id="weights">Weights<a class="anchor" aria-label="anchor" href="#weights"></a>
+</h4>
 <p>Weights can be selected (enabled) so that they are used to generate
 solutions (i.e., by clicking the toggle button next to each Weight). If
 a Weight is enabled, then the slider can be used to specify a factor for
@@ -420,27 +392,27 @@ because -80 is much further away from zero than 20, we are saying that
 it is more important for solutions to decrease coverage of the second
 Weight than it is to increase coverage of the first Weight.</p>
 </div>
-<div id="includes-1" class="section level3">
-<h3 class="hasAnchor">
-<a href="#includes-1" class="anchor" aria-hidden="true"></a>Includes</h3>
+<div class="section level4">
+<h4 id="includes-1">Includes<a class="anchor" aria-label="anchor" href="#includes-1"></a>
+</h4>
 <p>Select the Includes to ensure that certain planning units are
 selected in the solution.</p>
 </div>
-<div id="excludes-1" class="section level3">
-<h3 class="hasAnchor">
-<a href="#excludes-1" class="anchor" aria-hidden="true"></a>Excludes</h3>
+<div class="section level4">
+<h4 id="excludes-1">Excludes<a class="anchor" aria-label="anchor" href="#excludes-1"></a>
+</h4>
 <p>Select the Excludes to ensure that certain planning units are
 locked-out of the solution.</p>
 </div>
-<div id="settings" class="section level3">
-<h3 class="hasAnchor">
-<a href="#settings" class="anchor" aria-hidden="true"></a>Settings</h3>
+<div class="section level4">
+<h4 id="settings">Settings<a class="anchor" aria-label="anchor" href="#settings"></a>
+</h4>
 <p>The settings are used to customize the prioritization process. Unlike
 the Themes, Weights, and Includes/Excludes, the settings are not
 associated with any spatial data.</p>
-<div id="total-area-budget" class="section level4">
-<h4 class="hasAnchor">
-<a href="#total-area-budget" class="anchor" aria-hidden="true"></a>Total area budget</h4>
+<div class="section level5">
+<h5 id="total-area-budget">Total area budget<a class="anchor" aria-label="anchor" href="#total-area-budget"></a>
+</h5>
 <p>The area budget specifies the maximum spatial extent for the solution
 (as a percentage of the study area). This is the largest area that the
 solution can prioritize. Critically, specifying a total area budget
@@ -449,9 +421,9 @@ Goals for all Themes. If the area budget setting is turned off, the
 solution will always meet the Goals (or it will return an error pop-up
 if this is not possible).</p>
 </div>
-<div id="spatial-clustering" class="section level4">
-<h4 class="hasAnchor">
-<a href="#spatial-clustering" class="anchor" aria-hidden="true"></a>Spatial clustering</h4>
+<div class="section level5">
+<h5 id="spatial-clustering">Spatial clustering<a class="anchor" aria-label="anchor" href="#spatial-clustering"></a>
+</h5>
 <p>The spatial clustering parameter controls how important it is for
 solutions to select planning units that are sited next to each other.
 This parameter is similar to the Boundary Length Modifier parameter in
@@ -462,21 +434,21 @@ that the solution can be to reduce spatial fragmentation.</p>
 </div>
 </div>
 </div>
-<div id="solutions-results-toolbar" class="section level2">
-<h2 class="hasAnchor">
-<a href="#solutions-results-toolbar" class="anchor" aria-hidden="true"></a>Solutions results toolbar</h2>
-<div id="summary" class="section level3">
-<h3 class="hasAnchor">
-<a href="#summary" class="anchor" aria-hidden="true"></a>Summary</h3>
+<div class="section level3">
+<h3 id="solutions-results-toolbar">Solutions results toolbar<a class="anchor" aria-label="anchor" href="#solutions-results-toolbar"></a>
+</h3>
+<div class="section level4">
+<h4 id="summary">Summary<a class="anchor" aria-label="anchor" href="#summary"></a>
+</h4>
 <p>Open and close the Summary sidebar by clicking the speedometer icon.
 Use the drop-down menu to select which solution to view in the sidebar.
 Alternatively, click the table icon to view the summaries in table
 format.</p>
 <p><img src="figures/sidebar5.png" width="2046"></p>
 </div>
-<div id="themes-weights-includes" class="section level3">
-<h3 class="hasAnchor">
-<a href="#themes-weights-includes" class="anchor" aria-hidden="true"></a>Themes, Weights, Includes</h3>
+<div class="section level4">
+<h4 id="themes-weights-includes">Themes, Weights, Includes<a class="anchor" aria-label="anchor" href="#themes-weights-includes"></a>
+</h4>
 <p>Radial bar charts indicate the ratio of units included in the
 solution, the Goal (set by the user), and the units already located in
 protected areas. Mousing over each bar will reveal the statistics for
@@ -484,67 +456,67 @@ each parameter. These statistics are also available in the table
 format.</p>
 </div>
 </div>
-<div id="download-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#download-data" class="anchor" aria-hidden="true"></a>Download data</h2>
+<div class="section level3">
+<h3 id="download-data">Download data<a class="anchor" aria-label="anchor" href="#download-data"></a>
+</h3>
 <p>Open and close the Download data sidebar by clicking the download
 icon. Select a data layer or a solution to download.</p>
 </div>
-<div id="contact-toolbar" class="section level2">
-<h2 class="hasAnchor">
-<a href="#contact-toolbar" class="anchor" aria-hidden="true"></a>Contact toolbar</h2>
+<div class="section level3">
+<h3 id="contact-toolbar">Contact toolbar<a class="anchor" aria-label="anchor" href="#contact-toolbar"></a>
+</h3>
 <p>Open and close the Contact sidebar by clicking the envelope icon.
 Developer contact information is located here.</p>
 </div>
-<div id="acknowledgements-toolbar" class="section level2">
-<h2 class="hasAnchor">
-<a href="#acknowledgements-toolbar" class="anchor" aria-hidden="true"></a>Acknowledgements toolbar</h2>
+<div class="section level3">
+<h3 id="acknowledgements-toolbar">Acknowledgements toolbar<a class="anchor" aria-label="anchor" href="#acknowledgements-toolbar"></a>
+</h3>
 <p>Open and close the Acknowledgements sidebar by clicking the envelope
 icon.</p>
 </div>
-<div id="map-navigation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#map-navigation" class="anchor" aria-hidden="true"></a>Map navigation</h2>
-<div id="zoom-inout" class="section level3">
-<h3 class="hasAnchor">
-<a href="#zoom-inout" class="anchor" aria-hidden="true"></a>Zoom in/out</h3>
+<div class="section level3">
+<h3 id="map-navigation">Map navigation<a class="anchor" aria-label="anchor" href="#map-navigation"></a>
+</h3>
+<div class="section level4">
+<h4 id="zoom-inout">Zoom in/out<a class="anchor" aria-label="anchor" href="#zoom-inout"></a>
+</h4>
 <p>Use the [+/-] icon to navigate the map.</p>
 </div>
-<div id="zoom-to-home" class="section level3">
-<h3 class="hasAnchor">
-<a href="#zoom-to-home" class="anchor" aria-hidden="true"></a>Zoom to home</h3>
+<div class="section level4">
+<h4 id="zoom-to-home">Zoom to home<a class="anchor" aria-label="anchor" href="#zoom-to-home"></a>
+</h4>
 <p>Use the house icon to return to the original extent.</p>
 </div>
-<div id="hide-all-layers" class="section level3">
-<h3 class="hasAnchor">
-<a href="#hide-all-layers" class="anchor" aria-hidden="true"></a>Hide all layers</h3>
+<div class="section level4">
+<h4 id="hide-all-layers">Hide all layers<a class="anchor" aria-label="anchor" href="#hide-all-layers"></a>
+</h4>
 <p>Use the eye icon to remove all layers.</p>
 </div>
-<div id="help" class="section level3">
-<h3 class="hasAnchor">
-<a href="#help" class="anchor" aria-hidden="true"></a>Help</h3>
+<div class="section level4">
+<h4 id="help">Help<a class="anchor" aria-label="anchor" href="#help"></a>
+</h4>
 <p>Open a popup with a brief overview of the tool.</p>
 </div>
-<div id="screenshot" class="section level3">
-<h3 class="hasAnchor">
-<a href="#screenshot" class="anchor" aria-hidden="true"></a>Screenshot</h3>
+<div class="section level4">
+<h4 id="screenshot">Screenshot<a class="anchor" aria-label="anchor" href="#screenshot"></a>
+</h4>
 <p>Take a screenshot of the map by clicking on the printer icon.</p>
 </div>
-<div id="background-layer" class="section level3">
-<h3 class="hasAnchor">
-<a href="#background-layer" class="anchor" aria-hidden="true"></a>Background layer</h3>
+<div class="section level4">
+<h4 id="background-layer">Background layer<a class="anchor" aria-label="anchor" href="#background-layer"></a>
+</h4>
 <p>Select which background layer to visualize.</p>
 </div>
-<div id="go-to-previousnext-extent" class="section level3">
-<h3 class="hasAnchor">
-<a href="#go-to-previousnext-extent" class="anchor" aria-hidden="true"></a>Go to previous/next extent</h3>
+<div class="section level4">
+<h4 id="go-to-previousnext-extent">Go to previous/next extent<a class="anchor" aria-label="anchor" href="#go-to-previousnext-extent"></a>
+</h4>
 <p>Toggle between different views.</p>
 </div>
 </div>
 </div>
-<div id="references" class="section level1 unnumbered">
-<h1 class="hasAnchor">
-<a href="#references" class="anchor" aria-hidden="true"></a>References</h1>
+<div class="section level2">
+<h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0" line-spacing="2">
 <div id="ref-r1" class="csl-entry">
 Ball, I. R., Possingham, H., &amp; Watts, M. E. (2009). <span class="nocase">Marxan and relatives: Software for spatial conservation
@@ -565,35 +537,26 @@ E., Arcese, P., Bennett, J., &amp; Possingham, H. P. (2023).
 </div>
 </div>
 </div>
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
-    </nav>
-</div>
-
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
 
-      <footer><div class="copyright">
-  <p></p>
-<p>Developed by Jeffrey O Hanson, Richard Schuster, Joseph Bennett,Jaimie Vincent.</p>
+    <footer><div class="pkgdown-footer-left">
+  <p>Developed by Jeffrey O Hanson, Richard Schuster, Joseph Bennett, Jaimie Vincent.</p>
 </div>
 
-<div class="pkgdown">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a>1.6.1.9001.</p>
+<div class="pkgdown-footer-right">
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
 
-  
 
 
-  
+
 
   </body>
 </html>

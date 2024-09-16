@@ -5,7 +5,7 @@ NULL
 #'
 #' Identify if a spatial dataset has continuous or categorical data.
 #'
-#' @param x [sf::st_sf()] or [raster::stack()] or [data.frame] dataset object.
+#' @param x [sf::st_sf()] or combined [terra::rast()] or [data.frame] dataset object.
 #'
 #' @param index `integer` or `character` value indicating the
 #'   field or layer for which to calculate statistics.
@@ -52,10 +52,10 @@ spatial_data_type.sf <- function(x, index = 1, ...) {
 
 #' @rdname spatial_data_type
 #' @export
-spatial_data_type.Raster <- function(x, index = 1, max_sample = 10000, ...) {
+spatial_data_type.SpatRaster <- function(x, index = 1, max_sample = 10000, ...) {
   # assert valid arguments
   assertthat::assert_that(
-    inherits(x, "Raster"),
+    inherits(x, "SpatRaster"),
     assertthat::is.count(max_sample),
     assertthat::noNA(max_sample),
     assertthat::is.string(index) || assertthat::is.count(index),
@@ -72,7 +72,7 @@ spatial_data_type.Raster <- function(x, index = 1, max_sample = 10000, ...) {
   x <- x[[index]]
 
   # identify cells with no missing values
-  cells <- raster::Which(!is.na(x), cells = TRUE)
+  cells <- which(!is.na(terra::values(x)))
   if (length(cells) > max_sample) {
     cells <- sample(cells, max_sample)
   }
@@ -80,7 +80,7 @@ spatial_data_type.Raster <- function(x, index = 1, max_sample = 10000, ...) {
   # determine if data are continuous or categorical
   ## if there are more than 20 unique values, then we assume it's continuous
   out <-
-    ifelse(n_distinct(x[cells]) > 20, "continuous", "categorical")
+    ifelse(n_distinct(unlist(x[cells], use.names = FALSE)) > 20, "continuous", "categorical")
 
   # return result
   out

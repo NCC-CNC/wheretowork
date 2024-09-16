@@ -3,6 +3,7 @@
 \docType{package}
 \name{wheretowork}
 \alias{wheretowork}
+\alias{wheretowork-package}
 \title{wheretowork: Systematic conservation planning application.}
 \description{
 The application is a decision support tool to help prioritize conservation
@@ -16,4 +17,29 @@ if (interactive()) {
 run_app()
 }
 }
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://NCC-CNC.github.io/wheretowork/}
+  \item Report bugs at \url{https://github.com/NCC-CNC/wheretowork/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Jeffrey O Hanson \email{jeffrey.hanson@uqconnect.edu.au} (\href{https://orcid.org/0000-0002-4716-6134}{ORCID})
+
+Authors:
+\itemize{
+  \item Richard Schuster \email{richard.schuster@glel.carleton.ca} (\href{https://orcid.org/0000-0003-3191-7869}{ORCID})
+  \item Joseph Bennett
+  \item Jaimie Vincent
+}
+
+Other contributors:
+\itemize{
+  \item Dan Wismer \email{dan.wismer@natureconservancy.ca} [contributor]
+  \item Marc Edwards \email{marc.edwards@natureconservancy.ca} [contributor]
+}
+
 }

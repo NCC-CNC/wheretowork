@@ -25,17 +25,17 @@ Definition for the \code{ManualLegend} class.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{ManualLegend$new()}}
-\item \href{#method-get_resample_method}{\code{ManualLegend$get_resample_method()}}
-\item \href{#method-get_color_map}{\code{ManualLegend$get_color_map()}}
-\item \href{#method-get_widget_data}{\code{ManualLegend$get_widget_data()}}
-\item \href{#method-export}{\code{ManualLegend$export()}}
-\item \href{#method-clone}{\code{ManualLegend$clone()}}
+\item \href{#method-ManualLegend-new}{\code{ManualLegend$new()}}
+\item \href{#method-ManualLegend-get_resample_method}{\code{ManualLegend$get_resample_method()}}
+\item \href{#method-ManualLegend-get_color_map}{\code{ManualLegend$get_color_map()}}
+\item \href{#method-ManualLegend-get_widget_data}{\code{ManualLegend$get_widget_data()}}
+\item \href{#method-ManualLegend-export}{\code{ManualLegend$export()}}
+\item \href{#method-ManualLegend-clone}{\code{ManualLegend$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-ManualLegend-new"></a>}}
+\if{latex}{\out{\hypertarget{method-ManualLegend-new}{}}}
 \subsection{Method \code{new()}}{
 Create a \code{ManualLegend} object.
 \subsection{Usage}{
@@ -58,8 +58,8 @@ A new \code{ManualLegend} object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_resample_method"></a>}}
-\if{latex}{\out{\hypertarget{method-get_resample_method}{}}}
+\if{html}{\out{<a id="method-ManualLegend-get_resample_method"></a>}}
+\if{latex}{\out{\hypertarget{method-ManualLegend-get_resample_method}{}}}
 \subsection{Method \code{get_resample_method()}}{
 Get resample method.
 \subsection{Usage}{
@@ -71,8 +71,8 @@ Get resample method.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_color_map"></a>}}
-\if{latex}{\out{\hypertarget{method-get_color_map}{}}}
+\if{html}{\out{<a id="method-ManualLegend-get_color_map"></a>}}
+\if{latex}{\out{\hypertarget{method-ManualLegend-get_color_map}{}}}
 \subsection{Method \code{get_color_map()}}{
 Get a function for mapping values to colors.
 \subsection{Usage}{
@@ -84,8 +84,8 @@ A \code{function} object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_widget_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_widget_data}{}}}
+\if{html}{\out{<a id="method-ManualLegend-get_widget_data"></a>}}
+\if{latex}{\out{\hypertarget{method-ManualLegend-get_widget_data}{}}}
 \subsection{Method \code{get_widget_data()}}{
 Get data for creating a widget.
 \subsection{Usage}{
@@ -97,8 +97,8 @@ A \code{list} object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-export"></a>}}
-\if{latex}{\out{\hypertarget{method-export}{}}}
+\if{html}{\out{<a id="method-ManualLegend-export"></a>}}
+\if{latex}{\out{\hypertarget{method-ManualLegend-export}{}}}
 \subsection{Method \code{export()}}{
 Export settings
 \subsection{Usage}{
@@ -110,8 +110,8 @@ Export settings
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-ManualLegend-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-ManualLegend-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

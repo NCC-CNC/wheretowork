@@ -4,7 +4,6 @@ NULL
 #' @import shinyBS
 #' @import promises
 #' @import R6
-#' @import raster
 #' @import sf
 NULL
 
@@ -18,6 +17,7 @@ NULL
 #' @name wheretowork
 #'
 #' @docType package
+#' @aliases wheretowork-package
 #'
 #' @examples
 #' \donttest{
@@ -26,7 +26,7 @@ NULL
 #' run_app()
 #' }
 #' }
-NULL
+"_PACKAGE"
 
 # define global variables to pass package checks
 ## these variables are used in lazy evaluation or the shiny application
@@ -38,10 +38,19 @@ utils::globalVariables(
     "session",
     "app_data",
     "project_data",
-    "import_data"
+    "import_data",
+    "user_groups",
+    "."
   )
 )
 
-# define functions for internally used packages to pass checks
-tmp1 <- R.utils::gzip
-tmp1 <- rcbc::cbc_solve
+# ensure package checks pass
+#' @importFrom R.utils gzip
+#' @importFrom rcbc cbc_solve
+#' @importFrom future future
+#' @importFrom ipc stopMulticoreFuture
+#' @importFrom plyr rbind.fill
+#' @importFrom shinyalert shinyalert
+#' @importFrom withr with_dir
+#' @export
+NULL

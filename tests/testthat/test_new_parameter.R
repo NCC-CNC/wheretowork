@@ -148,4 +148,3 @@ test_that("widget methods", {
     )
   )
 })
-

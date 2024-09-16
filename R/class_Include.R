@@ -214,7 +214,7 @@ Include <- R6::R6Class(
 
     #' @description
     #' Get the data.
-    #' @return [sf::st_as_sf()] or [raster::raster()] object.
+    #' @return [sf::st_as_sf()] or [terra::rast()] object.
     get_data = function() {
       self$variable$get_data()
     },
@@ -436,21 +436,22 @@ Include <- R6::R6Class(
 #' # print object
 #' print(w)
 #' @export
-new_include <- function(name, 
-                        variable, 
-                        mandatory = FALSE,
-                        visible = TRUE,
-                        invisible = NA_real_,
-                        loaded = TRUE,
-                        hidden = FALSE, 
-                        status = TRUE,
-                        overlap = NA_character_, 
-                        id = uuid::UUIDgenerate(),
-                        pane = paste(
-                          uuid::UUIDgenerate(), 
-                          variable$index, sep = "-"
-                        )
-                      ) {
+new_include <- function(
+    name, 
+    variable, 
+    mandatory = FALSE,
+    visible = TRUE,
+    invisible = NA_real_,
+    loaded = TRUE,
+    hidden = FALSE, 
+    status = TRUE,
+    overlap = NA_character_, 
+    id = uuid::UUIDgenerate(),
+    pane = paste(
+      uuid::UUIDgenerate(), 
+      variable$index, sep = "-"
+    )
+  ) {
   Include$new(
     id = id,
     name = name,

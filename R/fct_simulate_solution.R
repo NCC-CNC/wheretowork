@@ -91,7 +91,7 @@ simulate_solution <- function(dataset, themes, weights, includes = list(),
   }
 
   # add new index to data with solution
-  dataset$add_index(vidx, v)
+  dataset$add_index(vidx, unlist(v)) # unlist data.frame
 
   # create variable for solution
   v <- new_variable(

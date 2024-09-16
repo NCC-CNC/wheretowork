@@ -231,7 +231,7 @@ Feature <- R6::R6Class(
 
     #' @description
     #' Get the data.
-    #' @return [sf::st_as_sf()] or [raster::raster()] object.
+    #' @return [sf::st_as_sf()] or [terra::rast()] object.
     get_data = function() {
       self$variable$get_data()
     },
@@ -429,22 +429,23 @@ Feature <- R6::R6Class(
 #' # print object
 #' print(f)
 #' @export
-new_feature <- function(name,
-                        variable,
-                        visible = TRUE,
-                        invisible = NA_real_,
-                        loaded = TRUE,
-                        hidden = FALSE,
-                        status = TRUE,
-                        current = 0,
-                        goal = 0.2,
-                        limit_goal = 0,
-                        id = uuid::UUIDgenerate(),
-                        pane = paste(
-                          uuid::UUIDgenerate(), 
-                          variable$index, sep = "-"
-                        )
-                      ) {
+new_feature <- function(
+    name,
+    variable,
+    visible = TRUE,
+    invisible = NA_real_,
+    loaded = TRUE,
+    hidden = FALSE,
+    status = TRUE,
+    current = 0,
+    goal = 0.2,
+    limit_goal = 0,
+    id = uuid::UUIDgenerate(),
+    pane = paste(
+      uuid::UUIDgenerate(), 
+      variable$index, sep = "-"
+    )
+ ) {
   # return new feature
   Feature$new(
     id = id,

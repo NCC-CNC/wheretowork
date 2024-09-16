@@ -1,6 +1,8 @@
 name: South Western Ontario
 author_name: Dan Wismer
 author_email: daniel.wismer@natureconservancy.ca
+wheretowork_version: 1.0.0
+prioritizr_version: 8.0.4
 mode: advanced
 user_groups: public
 spatial_path: south_western_ontario_spatial.tif

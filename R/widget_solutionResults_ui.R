@@ -182,7 +182,7 @@ solutionResults_html <- function(id, style, class, ...) {
                 title = htmltools::tags$span(
                   shinyBS::tipify(
                     el = htmltools::tags$span(
-                      shiny::icon("star"),
+                      shiny::icon("star", class = "fa-solid"),
                       "Themes"
                     ),
                     title = paste(

@@ -160,6 +160,11 @@ read_project <- function(path,
     attribute_path = attribute_path,
     boundary_path = boundary_path
   )
+  
+  # update boundary matrix on older wheretowork projects (backwards compatibility)
+  if (is.null(x$prioritizr_version) || x$prioritizr_version < "8.0.4") {
+    d$update_bm()
+  }
 
   # initialize error variables
   error_msg <- c()

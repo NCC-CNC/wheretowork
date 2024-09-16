@@ -24,7 +24,7 @@ test_that("raster data", {
   expect_true(
     all(
       file.exists(
-        file.path(tempdir(), paste0("data2", c(".tif", ".txt")))
+        file.path(tempdir(), paste0("data2", c(".tif")))
       )
     )
   )

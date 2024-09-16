@@ -5,17 +5,16 @@ test_that("proportion (raster)", {
   d <- import_simple_raster_data()
   x <- simulate_proportion_spatial_data(d, 2)
   # run tests
-  expect_is(x, "Raster")
-  expect_equal(raster::nlayers(x), 2)
+  expect_is(x, "SpatRaster")
+  expect_equal(terra::nlyr(x), 2)
   expect_equal(names(x), c("V1", "V2"))
   expect_true(
-    raster::compareRaster(
-      x, d,
-      res = TRUE, tolerance = 1e-5, stopiffalse = FALSE
+    terra::compareGeom(
+      x, d
     )
   )
-  expect_gte(min(raster::cellStats(x, "min")), 0)
-  expect_lte(max(raster::cellStats(x, "max")), 1)
+  expect_gte(min(terra::global(x, fun="min", na.rm=TRUE)[[1]]), 0)
+  expect_lte(max(terra::global(x, fun="max", na.rm=TRUE)[[1]]), 1)
 })
 
 test_that("proportion (sf)", {
@@ -25,10 +24,10 @@ test_that("proportion (sf)", {
   # run tests
   expect_is(x, "sf")
   expect_identical(sf::st_geometry(x), sf::st_geometry(d))
-  expect_equal(names(x), c("V1", "V2", "id", "geometry"))
+  expect_equal(names(x), c("V1", "V2", "geometry"))
   expect_gte(min(as.matrix(sf::st_drop_geometry(x))), 0)
-  expect_lte(max(dplyr::select(sf::st_drop_geometry(x), -c("id"))$V1), 1)
-  expect_lte(max(dplyr::select(sf::st_drop_geometry(x), -c("id"))$V2), 1)
+  expect_lte(max(dplyr::select(sf::st_drop_geometry(x), V1)), 1)
+  expect_lte(max(dplyr::select(sf::st_drop_geometry(x), V2)), 1)
 })
 
 test_that("continuous (raster)", {
@@ -36,16 +35,15 @@ test_that("continuous (raster)", {
   d <- import_simple_raster_data()
   x <- simulate_continuous_spatial_data(d, 2)
   # run tests
-  expect_is(x, "Raster")
-  expect_equal(raster::nlayers(x), 2)
+  expect_is(x, "SpatRaster")
+  expect_equal(terra::nlyr(x), 2)
   expect_equal(names(x), c("V1", "V2"))
   expect_true(
-    raster::compareRaster(
-      x, d,
-      res = TRUE, tolerance = 1e-5, stopiffalse = FALSE
+    terra::compareGeom(
+      x, d
     )
   )
-  expect_gte(min(raster::cellStats(x, "min")), 0)
+  expect_gte(min(terra::global(x, fun="min", na.rm=TRUE)[[1]]), 0)
 })
 
 test_that("continuous (sf)", {
@@ -55,7 +53,7 @@ test_that("continuous (sf)", {
   # run tests
   expect_is(x, "sf")
   expect_identical(sf::st_geometry(x), sf::st_geometry(d))
-  expect_equal(names(x), c("V1", "V2", "id", "geometry"))
+  expect_equal(names(x), c("V1", "V2", "geometry"))
   expect_gte(min(as.matrix(sf::st_drop_geometry(x))), 0)
 })
 
@@ -64,18 +62,17 @@ test_that("categorical (raster)", {
   d <- import_simple_raster_data()
   x <- simulate_categorical_spatial_data(d, 2)
   # run tests
-  expect_is(x, "Raster")
-  expect_equal(raster::nlayers(x), 2)
+  expect_is(x, "SpatRaster")
+  expect_equal(terra::nlyr(x), 2)
   expect_equal(names(x), c("V1", "V2"))
   expect_true(
-    raster::compareRaster(
-      x, d,
-      res = TRUE, tolerance = 1e-5, stopiffalse = FALSE
+    terra::compareGeom(
+      x, d
     )
   )
-  expect_gte(min(raster::cellStats(x, "min")), 0)
-  expect_lte(max(raster::cellStats(x, "max")), 11)
-  expect_lte(n_distinct(c(raster::values(x))), 11)
+  expect_gte(min(terra::global(x, fun="min", na.rm=TRUE)[[1]]), 0)
+  expect_lte(max(terra::global(x, fun="max", na.rm=TRUE)[[1]]), 11)
+  expect_lte(n_distinct(c(terra::values(x))), 11)
 })
 
 test_that("categorical (sf)", {
@@ -85,10 +82,10 @@ test_that("categorical (sf)", {
   # run tests
   expect_is(x, "sf")
   expect_identical(sf::st_geometry(x), sf::st_geometry(d))
-  expect_equal(names(x), c("V1", "V2", "id", "geometry"))
+  expect_equal(names(x), c("V1", "V2", "geometry"))
   expect_gte(min(as.matrix(sf::st_drop_geometry(x))), 0)
-  expect_lte(max(dplyr::select(sf::st_drop_geometry(x), -c("id"))$V1), 11)
-  expect_lte(max(dplyr::select(sf::st_drop_geometry(x), -c("id"))$V2), 11)
-  expect_lte(n_distinct(dplyr::select(sf::st_drop_geometry(x), -c("id"))$V1), 11)
-  expect_lte(n_distinct(dplyr::select(sf::st_drop_geometry(x), -c("id"))$V2), 11)
+  expect_lte(max(dplyr::select(sf::st_drop_geometry(x), V1)), 11)
+  expect_lte(max(dplyr::select(sf::st_drop_geometry(x), V2)), 11)
+  expect_lte(n_distinct(dplyr::select(sf::st_drop_geometry(x), V1)), 11)
+  expect_lte(n_distinct(dplyr::select(sf::st_drop_geometry(x), V2)), 11)
 })

@@ -108,14 +108,14 @@ simulate_themes <- function(dataset, n_single_themes, n_multi_themes,
     if (inherits(data, "sf")) {
       dataset$add_index(st_index[i], std[[1]])
     } else {
-      dataset$add_index(st_index[i], std[[1]][idx])
+      dataset$add_index(st_index[i], unlist(std[[1]][idx])) # unlist data.frame
     }
     
     ### Check if data is categorical (all categorical data has manual legend)
     if (sum(dataset$attribute_data[st_index[i]]) %% 1 == 0) {
       ### build variable with new manual legend
       d <- dataset$get_attribute_data()[[st_index[[i]]]]
-      u <- sort(c(na.omit(unique(d))))
+      u <- sort(c(stats::na.omit(unique(d))))
       cp <- color_palette(x = "random", n = length(u))
       v <- new_variable(dataset = dataset, index = st_index[[i]], 
         units = "ha", legend = new_manual_legend(u, cp, paste("value:", u)), 
@@ -212,7 +212,7 @@ simulate_themes <- function(dataset, n_single_themes, n_multi_themes,
     } else {
       for (j in seq_along(curr_tn_index)) {
         dataset$add_index(
-          curr_tn_index[[j]], curr_mtd[[curr_tn_index[[j]]]][idx]
+          curr_tn_index[[j]], unlist(curr_mtd[[curr_tn_index[[j]]]][idx]) #unlist data.frame
         )
       }
     }
@@ -220,7 +220,7 @@ simulate_themes <- function(dataset, n_single_themes, n_multi_themes,
     if (sum(dataset$attribute_data[curr_tn_index[j]]) %% 1 == 0) {
       ### build variable with new manual legend
       d <- dataset$get_attribute_data()[[curr_tn_index[[j]]]]
-      u <- sort(c(na.omit(unique(d))))
+      u <- sort(c(stats::na.omit(unique(d))))
       cp <- color_palette(x = "random", n = length(u))
       v <- new_variable(dataset = dataset, index = curr_tn_index[[j]], 
                         units = "ha", 

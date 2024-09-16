@@ -249,7 +249,7 @@ min_shortfall_result <- function(area_budget_proportion,
       byrow = FALSE,
       nrow = nrow(include_data), ncol = ncol(include_data)
     )
-    locked_in <- as.logical(colSums(locked_in * include_data) > 0)
+    locked_in <- as.logical(Matrix::colSums(locked_in * include_data) > 0)
   } else {
     ## if no includes present, then lock nothing in
     locked_in <- rep(FALSE, ncol(include_data))
@@ -263,7 +263,7 @@ min_shortfall_result <- function(area_budget_proportion,
       byrow = FALSE,
       nrow = nrow(exclude_data), ncol = ncol(exclude_data)
     )
-    locked_out <- as.logical(colSums(locked_out * exclude_data) > 0)
+    locked_out <- as.logical(Matrix::colSums(locked_out * exclude_data) > 0)
   } else {
     ## if no excludes present, then lock nothing out
     locked_out <- rep(FALSE, ncol(exclude_data))
@@ -413,7 +413,7 @@ min_shortfall_result <- function(area_budget_proportion,
     ## solve problem to generate solution if needed
     initial_solution <- rep(0, length(cost))
     initial_solution[initial_pu_idx] <- c(
-      prioritizr::solve(initial_problem, run_checks = FALSE)
+      prioritizr::solve.ConservationProblem(initial_problem, run_checks = FALSE)
     )
     ## store solution in cache
     cache$set(key, initial_solution)
@@ -433,7 +433,7 @@ min_shortfall_result <- function(area_budget_proportion,
   if (boundary_gap >= 1e-5) {
     ### calculate targets based on feature representation in initial solution
     main_targets <- targets
-    main_targets$target <- rowSums(
+    main_targets$target <- Matrix::rowSums(
       matrix(
         initial_solution,
         byrow = TRUE,
@@ -515,7 +515,7 @@ min_shortfall_result <- function(area_budget_proportion,
     }
     ### generate solution
     main_solution <-
-      c(prioritizr::solve(main_problem, run_checks = FALSE))
+      c(prioritizr::solve.ConservationProblem(main_problem, run_checks = FALSE))
   } else {
     ### if the boundary_gap setting is very low,
     ### then we will just use the initial solution because the

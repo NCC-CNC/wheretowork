@@ -1,6 +1,6 @@
 context("read_project")
 
-test_that("raster (standard boundary format, continuous)", {
+test_that("SpatRaster (standard boundary format, continuous)", {
   # simulate data
   d <- new_dataset_from_auto(import_simple_raster_data())
   sim_weights <- simulate_weights(d, 2, continuous = TRUE)
@@ -79,7 +79,7 @@ test_that("raster (standard boundary format, continuous)", {
   expect_equal(x$mode, "beginner")
 })
 
-test_that("raster (standard boundary format, categorical, manual legend)", {
+test_that("SpatRaster (standard boundary format, categorical, manual legend)", {
   # simulate data
   d <- new_dataset_from_auto(import_simple_raster_data())
   sim_weights <- simulate_weights(d, 2, continuous = FALSE)
@@ -158,7 +158,7 @@ test_that("raster (standard boundary format, categorical, manual legend)", {
   expect_equal(x$mode, "beginner")
 })
 
-test_that("raster (standard boundary format, continous & categorical)", {
+test_that("SpatRaster (standard boundary format, continous & categorical)", {
   # simulate data
   d <- new_dataset_from_auto(import_simple_raster_data())
   sim_weights <- simulate_weights(d, 2, continuous = FALSE)
@@ -309,7 +309,7 @@ test_that("sf (standard boundary format)", {
   expect_equal(x$mode, "beginner")
 })
 
-test_that("raster (Marxan boundary format)", {
+test_that("SpatRaster (Marxan boundary format)", {
   # simulate data
   d <- new_dataset_from_auto(import_simple_raster_data())
   sim_weights <- simulate_weights(d, 2)
@@ -553,13 +553,13 @@ test_that("contact details", {
     name = "test",
     f1, f2, f3, f4,
     mode = "beginner",
-    author_name = "Greg McGregerson",
+    author_name = "Greg_McGregerson",
     author_email = "greg.mcgregerson@supergreg.greg"
   )
   # import data
   x <- read_project(f1, f2, f3, f4)
   # tests
-  expect_equal(x$author_name, "Greg McGregerson")
+  expect_equal(x$author_name, "Greg_McGregerson")
   expect_equal(x$author_email, "greg.mcgregerson@supergreg.greg")
 })
 
@@ -591,12 +591,50 @@ test_that("provenance", {
     name = "test",
     f1, f2, f3, f4,
     mode = "beginner",
-    author_name = "Greg McGregerson",
+    author_name = "Greg_McGregerson",
     author_email = "greg.mcgregerson@supergreg.greg"
   )
   # import data
   x <- read_project(f1, f2, f3, f4)
+  # get simulated themes provenance list
+  sim_themes_prov <- lapply(sim_themes, function(x) {
+    lapply(x$feature, function(y) {
+      y$variable$provenance
+    })
+  })
+  # get read project themes provenance list
+  read_themes_prov <- lapply(x$themes, function(x) {
+    lapply(x$feature, function(y) {
+      y$variable$provenance
+    })
+  })
+  # get simulated weights provenance list
+  sim_weights_prov <- lapply(sim_weights, function(x) {
+    x$variable$provenance
+  })
+  # get read project weights provenance list
+  read_weights_prov <- lapply(x$weights, function(x) {
+    x$variable$provenance
+  })
+  # get simulated includes provenance list
+  sim_includes_prov <- lapply(sim_includes, function(x) {
+    x$variable$provenance
+  })
+  # get read project includes provenance list
+  read_includes_prov <- lapply(x$includes, function(x) {
+    x$variable$provenance
+  })  
+  # get simulated excludes provenance list
+  sim_excludes_prov <- lapply(sim_excludes, function(x) {
+    x$variable$provenance
+  })
+  # get read project excludes provenance list
+  read_excludes_prov <- lapply(x$excludes, function(x) {
+    x$variable$provenance
+  })    
   # tests
-  expect_equal(x$author_name, "Greg McGregerson")
-  expect_equal(x$author_email, "greg.mcgregerson@supergreg.greg")
+  expect_equal(sim_themes_prov, read_themes_prov)
+  expect_equal(sim_weights_prov, read_weights_prov)
+  expect_equal(sim_includes_prov, read_includes_prov)
+  expect_equal(sim_excludes_prov, read_excludes_prov)
 })

@@ -2,21 +2,11 @@
 % Please edit documentation in R/fct_simulate_spatial_data.R
 \name{simulate_data}
 \alias{simulate_data}
-\alias{simulate_data.Raster}
 \alias{simulate_data.sf}
 \alias{simulate_data.SpatRaster}
 \title{Simulate data}
 \usage{
 simulate_data(x, n, scale, intensity, sd, transform)
-
-\method{simulate_data}{Raster}(
-  x,
-  n = 1,
-  scale = 0.5,
-  intensity = 0,
-  sd = 1,
-  transform = identity
-)
 
 \method{simulate_data}{sf}(
   x,
@@ -37,7 +27,7 @@ simulate_data(x, n, scale, intensity, sd, transform)
 )
 }
 \arguments{
-\item{x}{\code{\link[terra:rast]{terra::rast()}} or \code{\link[raster:raster]{raster::raster()}} or \code{\link[sf:sf]{sf::st_sf()}}
+\item{x}{\code{\link[terra:rast]{terra::rast()}} or \code{\link[sf:sf]{sf::st_sf()}}
 object to use as a template.}
 
 \item{n}{\code{integer} number of layers to simulate.
@@ -58,7 +48,7 @@ Defaults to the \code{\link[=identity]{identity()}} function such that values re
 following transformation.}
 }
 \value{
-A \code{\link[terra:rast]{terra::rast()}} or \code{\link[raster:raster]{raster::raster()}} or \code{\link[sf:sf]{sf::st_sf()}} object.
+A \code{\link[terra:rast]{terra::rast()}} or \code{\link[sf:sf]{sf::st_sf()}} object.
 }
 \description{
 Simulate spatially auto-correlated data using Gaussian random fields.

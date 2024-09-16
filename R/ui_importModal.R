@@ -29,7 +29,8 @@ importModal <- function(id) {
   htmltools::tags$div(class = "import-modal",
     shiny::modalDialog(
       title = htmltools::tags$p(
-        "Welcome to Where To Work",
+        "Where To Work", 
+        htmltools::tags$span("v1.0.0", style = "font-size:12px"),
         style = "text-align:center"
       ),
       easyClose = FALSE,

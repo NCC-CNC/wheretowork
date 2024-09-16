@@ -34,17 +34,17 @@ Definition for the \code{WeightResults} class.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{WeightResults$new()}}
-\item \href{#method-print}{\code{WeightResults$print()}}
-\item \href{#method-repr}{\code{WeightResults$repr()}}
-\item \href{#method-get_results_data}{\code{WeightResults$get_results_data()}}
-\item \href{#method-get_widget_data}{\code{WeightResults$get_widget_data()}}
-\item \href{#method-clone}{\code{WeightResults$clone()}}
+\item \href{#method-WeightResults-new}{\code{WeightResults$new()}}
+\item \href{#method-WeightResults-print}{\code{WeightResults$print()}}
+\item \href{#method-WeightResults-repr}{\code{WeightResults$repr()}}
+\item \href{#method-WeightResults-get_results_data}{\code{WeightResults$get_results_data()}}
+\item \href{#method-WeightResults-get_widget_data}{\code{WeightResults$get_widget_data()}}
+\item \href{#method-WeightResults-clone}{\code{WeightResults$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-WeightResults-new"></a>}}
+\if{latex}{\out{\hypertarget{method-WeightResults-new}{}}}
 \subsection{Method \code{new()}}{
 Create a new \code{WeightResults} object.
 \subsection{Usage}{
@@ -67,8 +67,8 @@ A new \code{WeightResults} object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-print"></a>}}
-\if{latex}{\out{\hypertarget{method-print}{}}}
+\if{html}{\out{<a id="method-WeightResults-print"></a>}}
+\if{latex}{\out{\hypertarget{method-WeightResults-print}{}}}
 \subsection{Method \code{print()}}{
 Print the object.
 \subsection{Usage}{
@@ -84,8 +84,8 @@ Print the object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-repr"></a>}}
-\if{latex}{\out{\hypertarget{method-repr}{}}}
+\if{html}{\out{<a id="method-WeightResults-repr"></a>}}
+\if{latex}{\out{\hypertarget{method-WeightResults-repr}{}}}
 \subsection{Method \code{repr()}}{
 Generate a \code{character} summarizing the representation of the object.
 \subsection{Usage}{
@@ -108,8 +108,8 @@ Defaults to \code{"]"}.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_results_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_results_data}{}}}
+\if{html}{\out{<a id="method-WeightResults-get_results_data"></a>}}
+\if{latex}{\out{\hypertarget{method-WeightResults-get_results_data}{}}}
 \subsection{Method \code{get_results_data()}}{
 Get results.
 \subsection{Usage}{
@@ -121,8 +121,8 @@ Get results.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_widget_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_widget_data}{}}}
+\if{html}{\out{<a id="method-WeightResults-get_widget_data"></a>}}
+\if{latex}{\out{\hypertarget{method-WeightResults-get_widget_data}{}}}
 \subsection{Method \code{get_widget_data()}}{
 Get data for displaying the object in a \code{\link[=solutionResults]{solutionResults()}} widget.
 \subsection{Usage}{
@@ -134,8 +134,8 @@ Get data for displaying the object in a \code{\link[=solutionResults]{solutionRe
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-WeightResults-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-WeightResults-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{
