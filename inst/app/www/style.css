@@ -26,3 +26,17 @@
 .bs-container.dropdown {
   z-index: 99999999;
 }
+
+/*
+  RE shinyfeedback::loadingButton
+  The .fa-spin animation was disabled by a media query that respects user system 
+  settings for reduced motion (via @media (prefers-reduced-motion: reduce)), 
+  effectively stopping the spinner. Need to override this  
+  https://stackoverflow.com/questions/74295134/fontawesome-6-2-animations-are-not-working-at-all
+*/
+.fa-spin {
+  -webkit-animation-duration: 2s !important;
+  animation-duration: 2s !important;
+  -webkit-animation-iteration-count: infinite !important;
+  animation-iteration-count: infinite !important;
+}
