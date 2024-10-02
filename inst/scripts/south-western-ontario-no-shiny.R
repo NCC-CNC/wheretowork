@@ -2,7 +2,7 @@
 
 ## load packages
 devtools::load_all()
-library(raster)
+library(terra)
 library(dplyr)
 
 # Get input data file paths ----
@@ -180,5 +180,3 @@ s$render_summary_results()
 s$render_theme_results()
 s$render_weight_results()
 s$render_include_results()
-
-

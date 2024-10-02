@@ -221,5 +221,4 @@ write_project(
 {vector_data$spatial_data} %>%
 select(-`_index`) %>%
 {bind_cols(., select(vector_data$attribute_data, -`_index`))} %>%
-as_Spatial() %>%
-raster::shapefile("inst/extdata/shapefile/sim_shapefile.shp", overwrite = TRUE)
+st_write("inst/extdata/shapefile/sim_shapefile.shp", delete_dsn = TRUE)

@@ -3,7 +3,7 @@ context("extract_data_matrix")
 test_that("single variable", {
   # prepare data
   spatial_data <- import_simple_raster_data()
-  idx <- raster::Which(!is.na(spatial_data), cells = TRUE)
+  idx <- which(!is.na(terra::values(spatial_data)))
   attribute_data <- tibble::tibble(
     V1 = runif(length(idx)),
     V2 = runif(length(idx)),
@@ -34,7 +34,7 @@ test_that("single variable", {
 test_that("multiple variables", {
   # prepare data
   spatial_data <- import_simple_raster_data()
-  idx <- raster::Which(!is.na(spatial_data), cells = TRUE)
+  idx <- terra::cells(spatial_data)
   attribute_data <- tibble::tibble(
     V1 = runif(length(idx)),
     V2 = runif(length(idx)),

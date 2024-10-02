@@ -59,4 +59,3 @@ test_that("multiple user groups", {
   )
   expect_equal(x$status, rep(TRUE, nrow(x)))
 })
-

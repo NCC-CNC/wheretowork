@@ -254,7 +254,7 @@ Weight <- R6::R6Class(
 
     #' @description
     #' Get the data.
-    #' @return [sf::st_as_sf()] or [raster::raster()] object.
+    #' @return [sf::st_as_sf()] or [terra::rast()] object.
     get_data = function() {
       self$variable$get_data()
     },
@@ -508,20 +508,22 @@ Weight <- R6::R6Class(
 #' # print object
 #' print(w)
 #' @export
-new_weight <- function(name, 
-                       variable, 
-                       visible = TRUE, 
-                       invisible = NA_real_, 
-                       loaded = TRUE, 
-                       hidden = FALSE, 
-                       status = TRUE,
-                       current = 0, 
-                       factor = 0,
-                       id = uuid::UUIDgenerate(),
-                       pane = paste(
-                         uuid::UUIDgenerate(), 
-                         variable$index, sep = "-"
-                       )) {
+new_weight <- function(
+    name, 
+    variable, 
+    visible = TRUE, 
+    invisible = NA_real_, 
+    loaded = TRUE, 
+    hidden = FALSE, 
+    status = TRUE,
+    current = 0, 
+    factor = 0,
+    id = uuid::UUIDgenerate(),
+    pane = paste(
+      uuid::UUIDgenerate(), 
+      variable$index, sep = "-"
+      )
+  ) {
   Weight$new(
     id = id,
     name = name,

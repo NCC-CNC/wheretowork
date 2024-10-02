@@ -34,15 +34,15 @@ Definition for the \code{FeatureResults} class.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{FeatureResults$new()}}
-\item \href{#method-print}{\code{FeatureResults$print()}}
-\item \href{#method-repr}{\code{FeatureResults$repr()}}
-\item \href{#method-clone}{\code{FeatureResults$clone()}}
+\item \href{#method-FeatureResults-new}{\code{FeatureResults$new()}}
+\item \href{#method-FeatureResults-print}{\code{FeatureResults$print()}}
+\item \href{#method-FeatureResults-repr}{\code{FeatureResults$repr()}}
+\item \href{#method-FeatureResults-clone}{\code{FeatureResults$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-FeatureResults-new"></a>}}
+\if{latex}{\out{\hypertarget{method-FeatureResults-new}{}}}
 \subsection{Method \code{new()}}{
 Create a new \code{FeatureResults} object.
 \subsection{Usage}{
@@ -65,8 +65,8 @@ A new \code{FeatureResults} object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-print"></a>}}
-\if{latex}{\out{\hypertarget{method-print}{}}}
+\if{html}{\out{<a id="method-FeatureResults-print"></a>}}
+\if{latex}{\out{\hypertarget{method-FeatureResults-print}{}}}
 \subsection{Method \code{print()}}{
 Print the object.
 \subsection{Usage}{
@@ -82,8 +82,8 @@ Print the object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-repr"></a>}}
-\if{latex}{\out{\hypertarget{method-repr}{}}}
+\if{html}{\out{<a id="method-FeatureResults-repr"></a>}}
+\if{latex}{\out{\hypertarget{method-FeatureResults-repr}{}}}
 \subsection{Method \code{repr()}}{
 Generate a \code{character} summarizing the representation of the object.
 \subsection{Usage}{
@@ -106,8 +106,8 @@ Defaults to \code{"]"}.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-FeatureResults-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-FeatureResults-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

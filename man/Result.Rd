@@ -48,15 +48,15 @@ Definition for the Result class.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{Result$new()}}
-\item \href{#method-print}{\code{Result$print()}}
-\item \href{#method-repr}{\code{Result$repr()}}
-\item \href{#method-clone}{\code{Result$clone()}}
+\item \href{#method-Result-new}{\code{Result$new()}}
+\item \href{#method-Result-print}{\code{Result$print()}}
+\item \href{#method-Result-repr}{\code{Result$repr()}}
+\item \href{#method-Result-clone}{\code{Result$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-Result-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Result-new}{}}}
 \subsection{Method \code{new()}}{
 Create a new Result object.
 \subsection{Usage}{
@@ -113,8 +113,8 @@ A new Result object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-print"></a>}}
-\if{latex}{\out{\hypertarget{method-print}{}}}
+\if{html}{\out{<a id="method-Result-print"></a>}}
+\if{latex}{\out{\hypertarget{method-Result-print}{}}}
 \subsection{Method \code{print()}}{
 Print the object.
 \subsection{Usage}{
@@ -130,8 +130,8 @@ Print the object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-repr"></a>}}
-\if{latex}{\out{\hypertarget{method-repr}{}}}
+\if{html}{\out{<a id="method-Result-repr"></a>}}
+\if{latex}{\out{\hypertarget{method-Result-repr}{}}}
 \subsection{Method \code{repr()}}{
 Generate a \code{character} summarizing the representation of the object.
 \subsection{Usage}{
@@ -154,8 +154,8 @@ Defaults to \code{"]"}.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-Result-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-Result-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

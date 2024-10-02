@@ -41,7 +41,7 @@ import_realistic_vector_data <- function() {
 #' @noRd
 import_simple_vector_data <- function() {
   x <-
-    sf::st_as_sf(raster::rasterToPolygons(import_simple_raster_data()))
+    sf::st_as_sf(terra::as.polygons(import_simple_raster_data(), aggregate = FALSE))
   x <- sf::st_sf(
     tibble::tibble(id = seq_len(nrow(x)), geometry = sf::st_geometry(x))
   )
@@ -53,15 +53,15 @@ import_simple_vector_data <- function() {
 #'
 #' Import a realistic spatial raster dataset.
 #'
-#' @return A [raster::raster()] object.
+#' @return A [terra::rast()] object.
 #'
 #' @noRd
 import_realistic_raster_data <- function() {
   x <- sf::st_transform(import_realistic_vector_data(), 3857)
   suppressWarnings({
-    fasterize::fasterize(
-      sf = x,
-      raster = raster::raster(x, res = 50000)
+    terra::rasterize(
+      x = x,
+      y = terra::rast(x, res = 50000)
     )
   })
 }
@@ -70,15 +70,15 @@ import_realistic_raster_data <- function() {
 #'
 #' Import a simple spatial raster dataset.
 #'
-#' @return A [raster::raster()] object.
+#' @return A [terra::rast()] object.
 #'
 #' @noRd
 import_simple_raster_data <- function() {
   suppressWarnings({
     x <- sf::st_transform(import_realistic_vector_data(), 3857)
-    fasterize::fasterize(
-      sf = x,
-      raster = raster::raster(x, res = 500000)
+    terra::rasterize(
+      x = x,
+      y = terra::rast(x, res = 500000)
     )
   })
 }

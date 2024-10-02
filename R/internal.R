@@ -232,8 +232,7 @@ wrap_text <- function(x) {
 }
 
 # copied from prioritizr::internal_eval_rare_richness_importance
-prioritizr_internal_eval_rare_richness_importance <- function(x, indices,
-                                                              rescale) {
+prioritizr_internal_eval_rare_richness_importance <- function(x, indices, rescale) {
   assertthat::assert_that(
     inherits(x, "ConservationProblem"),
     prioritizr::number_of_zones(x) == 1,
@@ -250,7 +249,7 @@ prioritizr_internal_eval_rare_richness_importance <- function(x, indices,
   ## account for divide by zero issues result in NaNs
   out <- out / rs[, rep.int(1, ncol(out)), drop = FALSE]
   out[!is.finite(out)] <- 0
-  out <- colSums(out)
+  out <- Matrix::colSums(out)
   # rescale values if specified
   if (rescale) {
     rescale_ind <- is.finite(out) & (abs(out) > 1e-10)

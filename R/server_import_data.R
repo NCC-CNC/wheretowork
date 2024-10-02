@@ -16,6 +16,8 @@ import_data <- function(x, mode) {
   app_data$project_name <- x$name
   app_data$author_name <- x$author_name
   app_data$author_email <- x$author_email
+  app_data$wheretowork_version <- x$wheretowork_version
+  app_data$prioritizr_version <- x$prioritizr_version
   app_data$dataset <- x$dataset
   app_data$themes <- x$themes
   app_data$weights <- x$weights

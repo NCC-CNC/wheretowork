@@ -1,96 +1,58 @@
 name: Example GeoTIFF dataset (legend manual)
 author_name: Dan Wismer
 author_email: daniel.wismer@natureconservancy.ca
+wheretowork_version: 1.0.0
+prioritizr_version: 8.0.4
 mode: advanced
 user_groups: admin
 spatial_path: sim_raster4_spatial.tif
 attribute_path: sim_raster4_attribute.csv.gz
 boundary_path: sim_raster4_boundary.csv.gz
 themes:
-- name: Brown-necked Parrot (Brown-necked)
+- name: Dinelli's Doradito
   feature:
-  - name: Brown-necked Parrot (Brown-necked) habitat
+  - name: Dinelli's Doradito habitat
     variable:
-      index: Brown_necked_Parrot_Brown_necked_
+      index: Dinelli_s_Doradito
       units: ha
       legend:
         type: manual
         colors:
-        - '#E5F5F9'
+        - '#FEF0D9'
+        - '#FDD49E'
+        - '#FDBB84'
+        - '#FC8D59'
+        - '#E34A33'
+        - '#B30000'
+        labels:
+        - 'value: 1'
+        - 'value: 2'
+        - 'value: 3'
+        - 'value: 4'
+        - 'value: 5'
+        - 'value: 6'
+      provenance: national
+    status: yes
+    visible: yes
+    hidden: no
+    goal: 0.71
+    limit_goal: 0.2
+- name: Solomons Cuckooshrike (Solomon)
+  feature:
+  - name: Solomons Cuckooshrike (Solomon) habitat
+    variable:
+      index: Solomons_Cuckooshrike_Solomon_
+      units: ha
+      legend:
+        type: manual
+        colors:
+        - '#EDF8FB'
+        - '#CCECE6'
         - '#99D8C9'
-        - '#2CA25F'
-        labels:
-        - 'value: 1'
-        - 'value: 2'
-        - 'value: 3'
-      provenance: national
-    status: yes
-    visible: yes
-    hidden: no
-    goal: 0.51
-    limit_goal: 0.2
-- name: Gough Island Finch
-  feature:
-  - name: Gough Island Finch habitat
-    variable:
-      index: Gough_Island_Finch
-      units: ha
-      legend:
-        type: manual
-        colors:
-        - '#E5F5F9'
-        - '#99D8C9'
-        - '#2CA25F'
-        labels:
-        - 'value: 1'
-        - 'value: 2'
-        - 'value: 3'
-      provenance: national
-    status: yes
-    visible: yes
-    hidden: no
-    goal: 0.51
-    limit_goal: 0.2
-- name: Manus Boobook
-  feature:
-  - name: Manus Boobook habitat
-    variable:
-      index: Manus_Boobook
-      units: ha
-      legend:
-        type: manual
-        colors:
-        - '#E5F5F9'
-        - '#99D8C9'
-        - '#2CA25F'
-        labels:
-        - 'value: 1'
-        - 'value: 2'
-        - 'value: 3'
-      provenance: national
-    status: yes
-    visible: yes
-    hidden: no
-    goal: 0.51
-    limit_goal: 0.2
-- name: Guineafowl
-  feature:
-  - name: Crested Guineafowl
-    variable:
-      index: White_breasted_Guineafowl
-      units: ha
-      legend:
-        type: manual
-        colors:
-        - '#B35806'
-        - '#E08214'
-        - '#FDB863'
-        - '#FEE0B6'
-        - '#F7F7F7'
-        - '#D8DAEB'
-        - '#B2ABD2'
-        - '#8073AC'
-        - '#542788'
+        - '#66C2A4'
+        - '#41AE76'
+        - '#238B45'
+        - '#005824'
         labels:
         - 'value: 1'
         - 'value: 2'
@@ -99,30 +61,52 @@ themes:
         - 'value: 5'
         - 'value: 6'
         - 'value: 7'
-        - 'value: 8'
-        - 'value: 9'
       provenance: national
     status: yes
     visible: yes
     hidden: no
-    goal: 0.51
-    limit_goal: 0.2
-  - name: Helmeted Guineafowl (Moroccan)
+    goal: 0.81
+    limit_goal: 0.22
+- name: Eastern Violet-backed Sunbird
+  feature:
+  - name: Eastern Violet-backed Sunbird habitat
     variable:
-      index: White_breasted_Guineafowl
+      index: Eastern_Violet_backed_Sunbird
       units: ha
       legend:
         type: manual
         colors:
-        - '#B35806'
-        - '#E08214'
-        - '#FDB863'
-        - '#FEE0B6'
-        - '#F7F7F7'
-        - '#D8DAEB'
-        - '#B2ABD2'
-        - '#8073AC'
-        - '#542788'
+        - '#F6EFF7'
+        - '#BDC9E1'
+        - '#67A9CF'
+        - '#02818A'
+        labels:
+        - 'value: 1'
+        - 'value: 2'
+        - 'value: 3'
+        - 'value: 4'
+      provenance: national
+    status: yes
+    visible: yes
+    hidden: no
+    goal: 0.74
+    limit_goal: 0.14
+- name: Stilts and Avocets
+  feature:
+  - name: Black-necked Stilt
+    variable:
+      index: Pied_Stilt
+      units: ha
+      legend:
+        type: manual
+        colors:
+        - '#FFFFCC'
+        - '#D9F0A3'
+        - '#ADDD8E'
+        - '#78C679'
+        - '#41AB5D'
+        - '#238443'
+        - '#005A32'
         labels:
         - 'value: 1'
         - 'value: 2'
@@ -131,30 +115,26 @@ themes:
         - 'value: 5'
         - 'value: 6'
         - 'value: 7'
-        - 'value: 8'
-        - 'value: 9'
       provenance: national
     status: yes
     visible: yes
     hidden: no
-    goal: 0.64
+    goal: 0.53
     limit_goal: 0.1
-  - name: Helmeted Guineafowl (Tufted)
+  - name: Black Stilt
     variable:
-      index: White_breasted_Guineafowl
+      index: Pied_Stilt
       units: ha
       legend:
         type: manual
         colors:
-        - '#B35806'
-        - '#E08214'
-        - '#FDB863'
-        - '#FEE0B6'
-        - '#F7F7F7'
-        - '#D8DAEB'
-        - '#B2ABD2'
-        - '#8073AC'
-        - '#542788'
+        - '#FFFFCC'
+        - '#D9F0A3'
+        - '#ADDD8E'
+        - '#78C679'
+        - '#41AB5D'
+        - '#238443'
+        - '#005A32'
         labels:
         - 'value: 1'
         - 'value: 2'
@@ -163,30 +143,26 @@ themes:
         - 'value: 5'
         - 'value: 6'
         - 'value: 7'
-        - 'value: 8'
-        - 'value: 9'
       provenance: national
     status: yes
     visible: yes
     hidden: no
-    goal: 0.64
-    limit_goal: 0.01
-  - name: White-breasted Guineafowl
+    goal: 0.6
+    limit_goal: 0.17
+  - name: Red-necked Avocet
     variable:
-      index: White_breasted_Guineafowl
+      index: Pied_Stilt
       units: ha
       legend:
         type: manual
         colors:
-        - '#B35806'
-        - '#E08214'
-        - '#FDB863'
-        - '#FEE0B6'
-        - '#F7F7F7'
-        - '#D8DAEB'
-        - '#B2ABD2'
-        - '#8073AC'
-        - '#542788'
+        - '#FFFFCC'
+        - '#D9F0A3'
+        - '#ADDD8E'
+        - '#78C679'
+        - '#41AB5D'
+        - '#238443'
+        - '#005A32'
         labels:
         - 'value: 1'
         - 'value: 2'
@@ -195,31 +171,111 @@ themes:
         - 'value: 5'
         - 'value: 6'
         - 'value: 7'
-        - 'value: 8'
-        - 'value: 9'
       provenance: national
     status: yes
     visible: yes
     hidden: no
-    goal: 0.65
-    limit_goal: 0.1
-- name: Painted-Snipes
+    goal: 0.74
+    limit_goal: 0.06
+  - name: Andean Avocet
+    variable:
+      index: Pied_Stilt
+      units: ha
+      legend:
+        type: manual
+        colors:
+        - '#FFFFCC'
+        - '#D9F0A3'
+        - '#ADDD8E'
+        - '#78C679'
+        - '#41AB5D'
+        - '#238443'
+        - '#005A32'
+        labels:
+        - 'value: 1'
+        - 'value: 2'
+        - 'value: 3'
+        - 'value: 4'
+        - 'value: 5'
+        - 'value: 6'
+        - 'value: 7'
+      provenance: national
+    status: yes
+    visible: yes
+    hidden: no
+    goal: 0.74
+    limit_goal: 0.09
+  - name: Black-necked Stilt (White-backed)
+    variable:
+      index: Pied_Stilt
+      units: ha
+      legend:
+        type: manual
+        colors:
+        - '#FFFFCC'
+        - '#D9F0A3'
+        - '#ADDD8E'
+        - '#78C679'
+        - '#41AB5D'
+        - '#238443'
+        - '#005A32'
+        labels:
+        - 'value: 1'
+        - 'value: 2'
+        - 'value: 3'
+        - 'value: 4'
+        - 'value: 5'
+        - 'value: 6'
+        - 'value: 7'
+      provenance: national
+    status: yes
+    visible: yes
+    hidden: no
+    goal: 0.88
+    limit_goal: 0.27
+  - name: Pied Stilt
+    variable:
+      index: Pied_Stilt
+      units: ha
+      legend:
+        type: manual
+        colors:
+        - '#FFFFCC'
+        - '#D9F0A3'
+        - '#ADDD8E'
+        - '#78C679'
+        - '#41AB5D'
+        - '#238443'
+        - '#005A32'
+        labels:
+        - 'value: 1'
+        - 'value: 2'
+        - 'value: 3'
+        - 'value: 4'
+        - 'value: 5'
+        - 'value: 6'
+        - 'value: 7'
+      provenance: national
+    status: yes
+    visible: yes
+    hidden: no
+    goal: 0.66
+    limit_goal: 0.22
+- name: Chat-Tanagers
   feature:
-  - name: South American Painted-Snipe
+  - name: Eastern Chat-Tanager
     variable:
-      index: Greater_Painted_Snipe
+      index: Western_Chat_Tanager
       units: ha
       legend:
         type: manual
         colors:
-        - '#B35806'
-        - '#E08214'
-        - '#FDB863'
-        - '#FEE0B6'
-        - '#D8DAEB'
-        - '#B2ABD2'
-        - '#8073AC'
-        - '#542788'
+        - '#FFFFCC'
+        - '#D9F0A3'
+        - '#ADDD8E'
+        - '#78C679'
+        - '#31A354'
+        - '#006837'
         labels:
         - 'value: 1'
         - 'value: 2'
@@ -227,29 +283,25 @@ themes:
         - 'value: 4'
         - 'value: 5'
         - 'value: 6'
-        - 'value: 7'
-        - 'value: 8'
       provenance: national
     status: yes
     visible: yes
     hidden: no
-    goal: 0.51
-    limit_goal: 0.2
-  - name: Australian Painted-Snipe
+    goal: 0.54
+    limit_goal: 0.21
+  - name: Western Chat-Tanager
     variable:
-      index: Greater_Painted_Snipe
+      index: Western_Chat_Tanager
       units: ha
       legend:
         type: manual
         colors:
-        - '#B35806'
-        - '#E08214'
-        - '#FDB863'
-        - '#FEE0B6'
-        - '#D8DAEB'
-        - '#B2ABD2'
-        - '#8073AC'
-        - '#542788'
+        - '#FFFFCC'
+        - '#D9F0A3'
+        - '#ADDD8E'
+        - '#78C679'
+        - '#31A354'
+        - '#006837'
         labels:
         - 'value: 1'
         - 'value: 2'
@@ -257,75 +309,24 @@ themes:
         - 'value: 4'
         - 'value: 5'
         - 'value: 6'
-        - 'value: 7'
-        - 'value: 8'
       provenance: national
     status: yes
     visible: yes
     hidden: no
-    goal: 0.64
+    goal: 0.85
     limit_goal: 0.1
-  - name: Greater Painted-Snipe
-    variable:
-      index: Greater_Painted_Snipe
-      units: ha
-      legend:
-        type: manual
-        colors:
-        - '#B35806'
-        - '#E08214'
-        - '#FDB863'
-        - '#FEE0B6'
-        - '#D8DAEB'
-        - '#B2ABD2'
-        - '#8073AC'
-        - '#542788'
-        labels:
-        - 'value: 1'
-        - 'value: 2'
-        - 'value: 3'
-        - 'value: 4'
-        - 'value: 5'
-        - 'value: 6'
-        - 'value: 7'
-        - 'value: 8'
-      provenance: national
-    status: yes
-    visible: yes
-    hidden: no
-    goal: 0.64
-    limit_goal: 0.01
 weights:
-- name: Engagement potential
+- name: Roads
   variable:
-    index: Engagement_potential
+    index: Roads
     units: ha
     legend:
       type: manual
       colors:
-      - '#F1A340'
-      - '#F7F7F7'
-      - '#998EC3'
-      labels:
-      - 'value: 1'
-      - 'value: 2'
-      - 'value: 3'
-    provenance: national
-  status: yes
-  visible: yes
-  hidden: no
-  factor: 0.0
-- name: Archaeological site
-  variable:
-    index: Archaeological_site
-    units: ha
-    legend:
-      type: manual
-      colors:
-      - '#F6EFF7'
-      - '#BDC9E1'
-      - '#67A9CF'
-      - '#02818A'
+      - '#CA0020'
+      - '#F4A582'
+      - '#BABABA'
+      - '#404040'
       labels:
       - 'value: 1'
       - 'value: 2'
@@ -336,21 +337,19 @@ weights:
   visible: yes
   hidden: no
   factor: 0.0
-- name: Population density
+- name: Percent cover of native habitat
   variable:
-    index: Population_density
+    index: Percent_cover_of_native_habitat
     units: ha
     legend:
       type: manual
       colors:
-      - '#F7FCF0'
-      - '#E0F3DB'
-      - '#CCEBC5'
-      - '#A8DDB5'
-      - '#7BCCC4'
-      - '#4EB3D3'
-      - '#2B8CBE'
-      - '#08589E'
+      - '#EDF8FB'
+      - '#CCECE6'
+      - '#99D8C9'
+      - '#66C2A4'
+      - '#2CA25F'
+      - '#006D2C'
       labels:
       - 'value: 1'
       - 'value: 2'
@@ -358,11 +357,35 @@ weights:
       - 'value: 4'
       - 'value: 5'
       - 'value: 6'
-      - 'value: 7'
-      - 'value: 8'
+    provenance: national
+  status: yes
+  visible: yes
+  hidden: no
+  factor: 0.0
+- name: Tourism and recreation
+  variable:
+    index: Tourism_and_recreation
+    units: ha
+    legend:
+      type: manual
+      colors:
+      - '#E41A1C'
+      - '#377EB8'
+      - '#4DAF4A'
+      - '#984EA3'
+      - '#FF7F00'
+      - '#FFFF33'
+      labels:
+      - 'value: 1'
+      - 'value: 2'
+      - 'value: 3'
+      - 'value: 4'
+      - 'value: 5'
+      - 'value: 6'
     provenance: national
   status: yes
   visible: yes
   hidden: no
   factor: 0.0
 includes: []
+excludes: []

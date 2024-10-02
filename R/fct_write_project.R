@@ -136,12 +136,17 @@ write_project <- function(x, dataset, path, name,
   # create full settings list
   ## add project name
   params <- list()
+  ## add project name
   params$name <- name
   ## add contact details
   if (!is.null(author_name)) {
     params$author_name <- author_name
     params$author_email <- author_email
   }
+  ## add wheretowork version 
+  params$wheretowork_version <- as.character(utils::packageVersion("wheretowork"))
+  ## add prioritizr version
+  params$prioritizr_version <- as.character(utils::packageVersion("prioritizr"))  
   ## specify application mode
   params$mode <- mode
   ## add user groups

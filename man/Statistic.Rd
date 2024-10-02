@@ -30,17 +30,17 @@ Definition for the Statistic class.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{Statistic$new()}}
-\item \href{#method-print}{\code{Statistic$print()}}
-\item \href{#method-repr}{\code{Statistic$repr()}}
-\item \href{#method-get_widget_data}{\code{Statistic$get_widget_data()}}
-\item \href{#method-get_results_data}{\code{Statistic$get_results_data()}}
-\item \href{#method-clone}{\code{Statistic$clone()}}
+\item \href{#method-Statistic-new}{\code{Statistic$new()}}
+\item \href{#method-Statistic-print}{\code{Statistic$print()}}
+\item \href{#method-Statistic-repr}{\code{Statistic$repr()}}
+\item \href{#method-Statistic-get_widget_data}{\code{Statistic$get_widget_data()}}
+\item \href{#method-Statistic-get_results_data}{\code{Statistic$get_results_data()}}
+\item \href{#method-Statistic-clone}{\code{Statistic$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-Statistic-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Statistic-new}{}}}
 \subsection{Method \code{new()}}{
 Create a Statistic object.
 \subsection{Usage}{
@@ -65,8 +65,8 @@ A Statistic object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-print"></a>}}
-\if{latex}{\out{\hypertarget{method-print}{}}}
+\if{html}{\out{<a id="method-Statistic-print"></a>}}
+\if{latex}{\out{\hypertarget{method-Statistic-print}{}}}
 \subsection{Method \code{print()}}{
 Print the object.
 \subsection{Usage}{
@@ -82,8 +82,8 @@ Print the object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-repr"></a>}}
-\if{latex}{\out{\hypertarget{method-repr}{}}}
+\if{html}{\out{<a id="method-Statistic-repr"></a>}}
+\if{latex}{\out{\hypertarget{method-Statistic-repr}{}}}
 \subsection{Method \code{repr()}}{
 Generate a \code{character} summarizing the representation of the object.
 \subsection{Usage}{
@@ -102,8 +102,8 @@ Generate a \code{character} summarizing the representation of the object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_widget_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_widget_data}{}}}
+\if{html}{\out{<a id="method-Statistic-get_widget_data"></a>}}
+\if{latex}{\out{\hypertarget{method-Statistic-get_widget_data}{}}}
 \subsection{Method \code{get_widget_data()}}{
 Get widget data.
 \subsection{Usage}{
@@ -115,8 +115,8 @@ Get widget data.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_results_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_results_data}{}}}
+\if{html}{\out{<a id="method-Statistic-get_results_data"></a>}}
+\if{latex}{\out{\hypertarget{method-Statistic-get_results_data}{}}}
 \subsection{Method \code{get_results_data()}}{
 Get results data.
 \subsection{Usage}{
@@ -128,8 +128,8 @@ Get results data.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-Statistic-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-Statistic-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

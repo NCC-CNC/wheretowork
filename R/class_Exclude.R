@@ -214,7 +214,7 @@ Exclude <- R6::R6Class(
 
     #' @description
     #' Get the data.
-    #' @return [sf::st_as_sf()] or [raster::raster()] object.
+    #' @return [sf::st_as_sf()] or [terra::rast()] object.
     get_data = function() {
       self$variable$get_data()
     },
@@ -436,21 +436,22 @@ Exclude <- R6::R6Class(
 #' # print object
 #' print(e)
 #' @export
-new_exclude <- function(name, 
-                        variable, 
-                        mandatory = FALSE,
-                        visible = TRUE,
-                        invisible = NA_real_,
-                        loaded = TRUE,
-                        hidden = FALSE, 
-                        status = FALSE,
-                        overlap = NA_character_, 
-                        id = uuid::UUIDgenerate(),
-                        pane = paste(
-                          uuid::UUIDgenerate(), 
-                          variable$index, sep = "-"
-                        )
-                      ) {
+new_exclude <- function(
+    name, 
+    variable, 
+    mandatory = FALSE,
+    visible = TRUE,
+    invisible = NA_real_,
+    loaded = TRUE,
+    hidden = FALSE, 
+    status = FALSE,
+    overlap = NA_character_, 
+    id = uuid::UUIDgenerate(),
+    pane = paste(
+      uuid::UUIDgenerate(), 
+      variable$index, sep = "-"
+    )
+  ) {
   Exclude$new(
     id = id,
     name = name,

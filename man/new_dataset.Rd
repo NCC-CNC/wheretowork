@@ -21,7 +21,7 @@ new_dataset(
 
 \item{boundary_path}{\code{character} file path for boundary data.}
 
-\item{spatial_data}{\code{NULL}, \code{\link[sf:sf]{sf::st_sf()}}, or \code{\link[raster:raster]{raster::raster()}} object.
+\item{spatial_data}{\code{NULL}, \code{\link[sf:sf]{sf::st_sf()}}, or \code{\link[terra:rast]{terra::rast()}} object.
 Defaults to \code{NULL} such that data are automatically imported
 using the argument to \code{spatial_path}.}
 

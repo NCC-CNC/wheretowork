@@ -74,13 +74,13 @@ test_that("new_variable_from_auto (continuous)", {
   expect_is(x$repr(), "character")
   expect_identical(x$dataset, d)
   expect_identical(x$index, names(rd)[[2]])
-  expect_identical(x$total, raster::cellStats(rd[[2]], "sum"))
+  expect_equal(x$total, terra::global(rd[[2]], fun="sum", na.rm=TRUE)[[1]]) # equal but not identical
   expect_identical(x$units, "ha")
   expect_equal(
     x$legend,
     new_continuous_legend(
-      raster::cellStats(rd[[2]], "min"),
-      raster::cellStats(rd[[2]], "max"),
+      terra::global(rd[[2]], fun="min", na.rm=TRUE)[[1]],
+      terra::global(rd[[2]], fun="max", na.rm=TRUE)[[1]],
       color_palette("viridis", 5)
     )
   )
@@ -98,13 +98,13 @@ test_that("new_variable_from_auto (categorical)", {
   expect_is(x, "Variable")
   expect_is(x$repr(), "character")
   expect_identical(x$dataset, d)
-  expect_identical(x$total, raster::cellStats(rd[[1]], "sum"))
+  expect_equal(x$total, terra::global(rd[[1]], fun="sum", na.rm=TRUE)[[1]]) # equal but not identical
   expect_identical(x$units, "ha")
   expect_equal(
     x$legend,
     new_categorical_legend(
-      seq_len(raster::cellStats(rd[[1]], "max")),
-      color_palette("viridis", raster::cellStats(rd[[1]], "max"))
+      seq_len(terra::global(rd[[1]], fun="max", na.rm=TRUE)[[1]]),
+      color_palette("viridis", terra::global(rd[[1]], fun="max", na.rm=TRUE)[[1]])
     )
   )
 })
@@ -128,7 +128,7 @@ test_that("new_variable_from_auto (categorical, manual legend)", {
   expect_is(x, "Variable")
   expect_is(x$repr(), "character")
   expect_identical(x$dataset, d)
-  expect_identical(x$total, raster::cellStats(rd[[1]], "sum"))
+  expect_equal(x$total, terra::global(rd[[1]], fun="sum", na.rm=TRUE)[[1]]) # equal but not identical
   expect_identical(x$units, "ha")
   expect_equal(
     length(x$legend$labels),
@@ -159,7 +159,7 @@ test_that("new_variable_from_auto (hidden == TRUE)", {
   expect_is(x, "Variable")
   expect_is(x$repr(), "character")
   expect_identical(x$dataset, d)
-  expect_identical(x$total, raster::cellStats(rd[[1]], "sum"))
+  expect_equal(x$total, terra::global(rd[[1]], fun="sum", na.rm=TRUE)[[1]]) # equal but not identical
   expect_identical(x$units, "ha")
   expect_equal(
     length(x$legend$labels),
