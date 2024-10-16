@@ -30,13 +30,14 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
+<li class="nav-item"><a class="nav-link" href="../articles/wheretowork.html">Get started</a></li>
 <li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="active nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-advanced-topics" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Advanced topics</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-advanced-topics">
 <li><a class="dropdown-item" href="../articles/wtw_data.html">Data</a></li>
-    <li><a class="dropdown-item" href="../articles/wtw_manual.html">User manual</a></li>
     <li><a class="dropdown-item" href="../articles/wtw_theory.html">Theory</a></li>
+    <li><a class="dropdown-item" href="../articles/wtw_optimization.html">Optimization</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -62,7 +63,7 @@
       <h1>Theory</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/NCC-CNC/wheretowork/blob/HEAD/vignettes/articles/wtw_theory.Rmd" class="external-link"><code>vignettes/articles/wtw_theory.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/NCC-CNC/wheretowork/blob/HEAD/vignettes/wtw_theory.Rmd" class="external-link"><code>vignettes/wtw_theory.Rmd</code></a></small>
       <div class="d-none name"><code>wtw_theory.Rmd</code></div>
     </div>
 
@@ -72,22 +73,22 @@
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
 <p>This article is intended for users already familiar with the basic
-functionality of the Where to Work tool. It is recommended to first read
-the <a href="https://ncc-cnc.github.io/wheretowork/articles/articles/wtw_manual.html" class="external-link">official
+functionality of the <em>Where to Work</em> tool. It is recommended to
+first read the <a href="https://ncc-cnc.github.io/wheretowork/articles/wtw_manual.html">official
 manual</a> before proceeding.</p>
 <p>The goal of this article is to explore some of the underlying
-algorithms and behavior of Where to Work, so that users can better
-understand and interpret their results. This will also allow users to
-develop more advanced workflows to fully utilize the power of the tool
-for systematic conservation planning.</p>
+algorithms and behavior of <em>Where to Work</em>, so that users can
+better understand and interpret their results. This will also allow
+users to develop more advanced workflows to fully utilize the power of
+the tool for systematic conservation planning.</p>
 <p>For the purpose of this article, we will briefly review the main
-components of Where to Work:</p>
+components of <em>Where to Work</em>:</p>
 <ul>
 <li>
-<strong>Planning units</strong>: the building blocks for Where to
-Work, each planning unit has a value for all the conservation Features
-(e.g. species) and Weights (e.g.  human footprint) loaded into the
-app.</li>
+<strong>Planning units</strong>: the building blocks for <em>Where
+to Work</em>, each planning unit has a value for all the conservation
+Features (e.g. species) and Weights (e.g. human footprint) loaded into
+the app.</li>
 <li>
 <strong>Goals</strong>: the amount of each conservation Theme or
 Feature that needs to be captured in the solution (e.g. 20% of a species
@@ -107,87 +108,92 @@ solutions meet the same Goals, the solution satisfying the Weights
 should be preferred.</li>
 </ul>
 <p>We can think of the combination of planning units, Goals, Weights,
-Includes, Excludes and area budget as defining a specific Where to Work
-scenario which we will refer to as a <code>conservation problem</code>.
-The goal of Where to Work is to solve the
-<code>conservation problem</code> by finding the optimal combination of
-planning units that meet all the Goals while accounting for any Weights,
-Includes and Excludes. If an area budget is defined, then Where to Work
-attempts to find the best solution to the
+Includes, Excludes and area budget as defining a specific <em>Where to
+Work</em> scenario which we will refer to as a
+<code>conservation problem</code>. The goal of <em>Where to Work</em> is
+to solve the <code>conservation problem</code> by finding the optimal
+combination of planning units that meet all the Goals while accounting
+for any Weights, Includes and Excludes. If an area budget is defined,
+then <em>Where to Work</em> attempts to find the best solution to the
 <code>conservation problem</code> using the number of planning units it
 has available based on the area budget.</p>
-<p>The underlying software running the Where to Work algorithms is an R
-package named <a href="https://prioritizr.net/index.html" class="external-link"><strong>prioritizr</strong></a>.
+<p>The underlying software running the <em>Where to Work</em> algorithms
+is an R package named <a href="https://prioritizr.net/index.html" class="external-link"><strong>prioritizr</strong></a>.
 prioritizr is a powerful coding tool for finding the optimal solution
-for complex <code>conservation problems</code>. Where to Work can be
-thought of as one implementation of prioritizr, it provides some of the
-most common prioritizr functionality in a user accessible online
+for complex <code>conservation problems</code>. <em>Where to Work</em>
+can be thought of as one implementation of prioritizr, it provides some
+of the most common prioritizr functionality in a user accessible online
 application, but there are many more advanced features in prioritizr
-that are not available in Where to Work.</p>
+that are not available in <em>Where to Work</em>.</p>
 <p>We will provide links to the <a href="https://prioritizr.net/" class="external-link">prioritizr documentation</a> at various
 points in this article for readers interested in learning more.</p>
 </div>
 <div class="section level2">
 <h2 id="planning-units">Planning Units<a class="anchor" aria-label="anchor" href="#planning-units"></a>
 </h2>
-<p>Planning units for Where to Work can either be square cells of equal
-size (i.e. a raster layer), or a combination of polygons of any shape
-and size (i.e. a shapefile). The data preparation for Where to Work
-involves summarizing all of the Themes, Weights, Includes and Excludes
-in each planning unit. More information on this can be found in the <a href="https://ncc-cnc.github.io/wheretowork/articles/articles/wtw_data.html" class="external-link">data
-article</a> and in the <a href="https://github.com/NCC-CNC/wtw-data-prep" class="external-link">wtw-data-prep</a> github
-repo.</p>
+<p>Planning units for <em>Where to Work</em> can either be square cells
+of equal size (i.e. a raster layer), or a combination of polygons of any
+shape and size (i.e. a shapefile). The data preparation for <em>Where to
+Work</em> involves summarizing all of the Themes, Weights, Includes and
+Excludes in each planning unit. More information on this can be found in
+the <a href="https://ncc-cnc.github.io/wheretowork/articles/wtw_data.html">Data
+article</a> and in the <a href="https://github.com/NCC-CNC/wtw-data-prep" class="external-link"><em>Where To Work</em>
+data preparation repository</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="theme-goals">Theme Goals<a class="anchor" aria-label="anchor" href="#theme-goals"></a>
 </h2>
-<p>Setting Theme Goals is the first step in a Where to Work project.
-Goals are set as % values that get translated into a numeric Goal within
-Where to Work. Where to Work will try and meet the Goal by ensuring that
-the planning unit values in the solution exceed the numeric Goal. The
-numeric Goal for a Feature is the calculated as:</p>
-<p><code>numeric Goal = sum of all values in all planning units * (1 / Goal %)</code></p>
+<p>Setting Theme Goals is the first step in a <em>Where to Work</em>
+project. Goals are set as percentage (%) values that get translated into
+a numeric Goal within <em>Where to Work</em>. <em>Where to Work</em>
+will try and meet the Goal by ensuring that the planning unit values in
+the solution exceed the numeric Goal. The numeric Goal for a Feature is
+the calculated as:</p>
+<p><code>Goal [numeric] = sum of all values in all planning units * (Goal [%] / 100)</code></p>
 <p>Typically, Themes represent the spatial extent of a conservation
-feature (e.g. a species), so the numeric Goal will be an area. Where to
-Work doesn’t actually care what the units are though, it simply
+feature (e.g. a species), so the numeric Goal will be an area. <em>Where
+to Work</em> doesn’t actually care what the units are though, it simply
 calculates the numeric Goal based on the values in the planning
 units.</p>
 <p>This is important to know when preparing data and setting Goals. The
 planning unit values need to be numeric so that they can be summed
 together across planning units. It doesn’t make sense to have
-categorical or ordinal data in Where to Work for example because the
-values cannot be summed for Goal-setting. A land cover map representing
-forested and grassland areas for example would need to be separated out
-into two individual Themes where the planning unit values represent the
-area of each land cover type within the planning unit. See the <a href="https://ncc-cnc.github.io/wheretowork/articles/articles/wtw_data.html" class="external-link">data
-article</a> for more examples of this.</p>
+categorical or ordinal data in <em>Where to Work</em> for example
+because the values cannot be summed for Goal-setting. A land cover map
+representing forested and grassland areas for example would need to be
+separated out into two individual Themes where the planning unit values
+represent the area of each land cover type within the planning unit. See
+the <a href="https://ncc-cnc.github.io/wheretowork/articles/wtw_data.html">Data
+article</a> for more detail.</p>
 </div>
 <div class="section level2">
 <h2 id="includesexcludes">Includes/Excludes<a class="anchor" aria-label="anchor" href="#includesexcludes"></a>
 </h2>
 <p>Includes and Excludes are simple to understand, they force-in or
 block-out planning units from the final solution. They can be a powerful
-way of customizing your <code>conservation problem</code>. See the <a href="#advancedworkflows">Advanced workflow</a> section for examples and
-the <a href="https://ncc-cnc.github.io/wheretowork/articles/articles/wtw_data.html" class="external-link">data
-article</a> for data prep tips.</p>
+way of customizing your <code>conservation problem</code>. See the <a href="#advancedworkflows">Advanced workflow</a> section of this article
+and the <a href="https://ncc-cnc.github.io/wheretowork/articles/wtw_data.html">Data
+article</a> for more information.</p>
 </div>
 <div class="section level2">
 <h2 id="area-budget">Area-budget<a class="anchor" aria-label="anchor" href="#area-budget"></a>
 </h2>
-<p>An area budget can be applied in Where to Work which will restrict
-the number of planning units available in a solution. This is common in
-target based conservation planning where we often want find the optimal
-area to protect if we can only conserve say 30% of the landscape. We
-recommend always solving the <code>conservation problem</code> first
-using no area budget. This will give a baseline solution which can then
-be restricted by applying an area budget (see the <a href="#workflow">Recommended workflow</a> below).</p>
+<p>An area budget can be applied in <em>Where to Work</em> which will
+restrict the number of planning units available in a solution. This is
+common in target based conservation planning where we often want find
+the optimal area to protect if we can only conserve say 30% of the
+landscape. We recommend always solving the
+<code>conservation problem</code> first using no area budget. This will
+give a baseline solution which can then be restricted by applying an
+area budget (see the <a href="#workflow">Recommended workflow</a>
+below).</p>
 <p>An important point is that <code>conservation problems</code> with
 and without an area-budget use different underlying algorithms to
 generate a solution. <strong>If no are budget is used, the solution will
 meet all Goals using the smallest</strong> <strong>area of planning
 units possible.</strong> Once an area budget is applied that is less
-than that required to meet all targets, Where to Work needs to decide
-how best to meet the Goals it can using the planning units it has
+than that required to meet all targets, <em>Where to Work</em> needs to
+decide how best to meet the Goals it can using the planning units it has
 available, recognizing that some Goals will not be met. These different
 objectives are discussed more below.</p>
 <p>For the purpose of demonstrating these concepts, we will set up a
@@ -199,11 +205,11 @@ planning unit.</p>
 <div class="section level4">
 <h4 id="no-area-budget">No area-budget<a class="anchor" aria-label="anchor" href="#no-area-budget"></a>
 </h4>
-<p>If no area budget is set, then Where to Work runs an algorithm that
-aims to meet all of the Goals using as little planning unit area as
-possible. In our example, since our planning units all have the same
-area, it will simply meet the Goals using the fewest number of planning
-units.</p>
+<p>If no area budget is set, then <em>Where to Work</em> runs an
+algorithm that aims to meet all of the Goals using as little planning
+unit area as possible. In our example, since our planning units all have
+the same area, it will simply meet the Goals using the fewest number of
+planning units.</p>
 <p>In the prioritizr world, this algorithm is known as the <a href="https://prioritizr.net/reference/add_min_set_objective.html" class="external-link">min
 set objective</a>. It uses a mathematical algorithm to identify the
 ‘minimum set’ of planning units that meet all the Goals.</p>
@@ -220,12 +226,14 @@ automatically need to cover at least 50% of the planning units.</p>
 <div class="section level4">
 <h4 id="with-area-budget">With area-budget<a class="anchor" aria-label="anchor" href="#with-area-budget"></a>
 </h4>
-<p>If an area budget is set in Where to Work, it limits the number of
-planning units available in the solution. Since Where to Work will not
-be able to meet all of the Goals, it has to decide how to allocate the
-planning units to get the ‘best’ solution. There are <a href="https://prioritizr.net/reference/objectives.html" class="external-link">different ways
-to do this</a>, Where to Work uses a method that minimises the total
-Goal shortfall (the prioritizr algorithm for this is called the <a href="https://prioritizr.net/reference/add_min_shortfall_objective.html" class="external-link">min
+<p>If an area budget is set in <em>Where to Work</em>, it limits the
+number of planning units available in the solution. Since <em>Where to
+Work</em> will not be able to meet all of the Goals, it has to decide
+how to allocate the planning units to get the ‘best’ solution. There are
+<a href="https://prioritizr.net/reference/objectives.html" class="external-link">different
+ways to do this</a>, <em>Where to Work</em> uses a method that minimises
+the total Goal shortfall (the prioritizr algorithm for this is called
+the <a href="https://prioritizr.net/reference/add_min_shortfall_objective.html" class="external-link">min
 shortfall objective</a>).</p>
 <p>Shortfall is the proportion of each Goal that has not been met. Note
 that using the proportion rather that the actual area standardizes
@@ -240,20 +248,20 @@ passing Goals while maintaining a balanced amount of the missing Goals.
 In general, the missed Goals tend to be fairly evenly distributed
 throughout the planning units of the final solution (i.e. the shortfalls
 of missed Goals follow a normal distribution).</p>
-<p>In our example, if we assign Where to Work a budget of two planning
-units, the best solution that minimises overall shortfall is to select
-two planning units from the top row. The best we can do with two
+<p>In our example, if we assign <em>Where to Work</em> a budget of two
+planning units, the best solution that minimises overall shortfall is to
+select two planning units from the top row. The best we can do with two
 planning units is to fully meet three Goals, and fully miss two
 goals.</p>
 <p><img src="figures/theory3.png" width="1152"></p>
 <p>The calculation of total shortfall for this solution is as
 follows:</p>
-<pre><code>total shortfall = 
-            species 1 shortfall + 
-            species 2 shortfall + 
-            species 3 shortfall + 
-            species 4 shortfall + 
-            species 5 shortfall + 
+<pre><code>total shortfall =
+            species 1 shortfall +
+            species 2 shortfall +
+            species 3 shortfall +
+            species 4 shortfall +
+            species 5 shortfall +
             species 6 shortfall</code></pre>
 <p>where the shortfall for a give species is calculated as:</p>
 <pre><code>target missing / target</code></pre>
@@ -270,18 +278,18 @@ is that the if the algorithm meets all the targets but still has some
 area budget left, it doesn’t know what to do with it. It will start to
 sequentially gather additional planning units to use up the area budget,
 leading to strange patterns in the solutions. This is described in more
-detail <a href="https://github.com/prioritizr/prioritizr/issues/205" class="external-link">here</a>.</p>
+detail <a href="https://github.com/prioritizr/prioritizr/issues/205" class="external-link">in
+this issue</a>.</p>
 <p><strong>For this reason, it is important that the area budget never
-exceeds the amount</strong> <strong>needed to meet all
-Goals.</strong></p>
+exceeds the amount needed to meet all Goals.</strong></p>
 <p>We therefore recommend the following workflow when using area
 budgets:</p>
 <ol style="list-style-type: decimal">
-<li>Develop the <code>conservation problem</code> by setting Goals and
-deciding on any Weights, Includes and Excludes.</li>
+<li>Develop the conservation problem by setting Goals and deciding on
+any Weights, Includes and Excludes.</li>
 <li>Run the minimum set (no area budget) solution to find out how many
-planning units are needed to meet all Goals. Where to Work will report
-the total number and % of planning units in the solution.</li>
+planning units are needed to meet all Goals. <em>Where to Work</em> will
+report the total number and % of planning units in the solution.</li>
 <li>Run the area budget solution(s), but do not exceed the values
 reported in the minimum set solution. For example, if the minimum set
 solution uses 50% of the planning units, do not exceed 50% as an
@@ -291,8 +299,8 @@ the min set % is good practice.</li>
 budget you are interested in, increase your Goals. For example, if you
 want to test a 30% area budget for 30x30 planning, but your min set
 solution only requires 25% of the planning units to meet all targets,
-then you need to make you <code>conservation problem</code> more
-difficult by increasing the Goals.</li>
+then you need to make your conservation problem more ambitious by
+increasing the Goals.</li>
 </ol>
 </div>
 <div class="section level4">
@@ -309,14 +317,13 @@ best, most important planning units on the landscape, and so we’d expect
 those to also be included in the higher area budget solutions.</p>
 <p>This is not always the case, for the important reason that the
 prioritizr algorithm does not rank planning units based on how important
-they are, rather for a given <code>conservation problem</code> it
-returns the optimal solution based on that problems parameters. When the
-area budget changes, so does the <code>conservation problem</code>, and
-since the objective is to find the most efficient solution that
-satisfies the <code>conservation problem</code>, there is no guarantee
-that solutions will be nested.</p>
+they are, rather for a given conservation problem it returns the optimal
+solution based on that problems parameters. When the area budget
+changes, so does the conservation problem, and since the objective is to
+find the most efficient solution that satisfies the conservation
+problem, there is no guarantee that solutions will be nested.</p>
 <p>This is actually an intended feature of prioritizr and it means that
-Where to Work allows us to solve much more complex and tailored
+<em>Where to Work</em> allows us to solve much more complex and tailored
 scenarios. Instead of ranking all planning units based on a simple
 metric such as species richness, and then selecting the top 10%, 20%,
 30% etc. (which would be nested), we are able to set individual Goals
@@ -345,18 +352,19 @@ here is most apparent at low area budgets (e.g. 10% when the min set
 requires 50%). As area budgets increase, the solutions should become
 more nested and will converge towards the minimum set solution.</p>
 <p>It’s also worth noting that some <code>conservation problems</code>
-do produce nested solutions in Where to Work.It really depends on the
-distributions of the Features and the Goals of a given problem.</p>
+do produce nested solutions in <em>Where to Work</em>.It really depends
+on the distributions of the Features and the Goals of a given
+problem.</p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="weights">Weights<a class="anchor" aria-label="anchor" href="#weights"></a>
 </h2>
-<p><strong>Update this section after completing <a href="https://github.com/NCC-CNC/wheretowork/issues/329" class="external-link">#329</a></strong></p>
-<p>Using Weights in Where to Work can be difficult because there is no
-way to know exactly how a Weight will impact your solution. All we know
-is that given multiple competing solutions, the one that best satisfies
-the Weight requirements will tend to be selected.</p>
+<!-- **Update this section after completing [#329](https://github.com/NCC-CNC/wheretowork/issues/329)** -->
+<p>Using Weights in <em>Where to Work</em> can be difficult because
+there is no way to know exactly how a Weight will impact your solution.
+All we know is that given multiple competing solutions, the one that
+best satisfies the Weight requirements will tend to be selected.</p>
 <p>It’s possible however that a selected Weight is incompatible with the
 primary objective of meeting Goals. This can be confusing when you
 select the Weight but it has no impact on the solution. To return to our
@@ -369,77 +377,78 @@ can only influence the solution if it overlaps with some planning units
 that satisfy the Goals.</p>
 <p><img src="figures/theory5.png" width="1152"></p>
 <p>Given the different algorithms used for area-budget vs. no
-area-budget problems in Where to Work, Weights have to be applied
-differently in the underlying code. The outcome is the same: solutions
-satisfying the Weights will be preferred. To fully understand what Where
-to Work is doing we will review the two approaches below (this gets more
-technical so feel free to skip this section!).</p>
+area-budget problems in <em>Where to Work</em>, Weights have to be
+applied differently in the underlying code. The outcome is the same:
+solutions satisfying the Weights will be preferred. To fully understand
+what <em>Where to Work</em> is doing we will review the two approaches
+below (this gets more technical so feel free to skip this section).</p>
 <div class="section level4">
 <h4 id="weight-with-no-area-budget">Weight with no area budget<a class="anchor" aria-label="anchor" href="#weight-with-no-area-budget"></a>
 </h4>
-<p>In Where to Work, the ‘budget’ being used when gathering planning
-units into a solution is the planning unit area (<strong>under min set
-it currently defaults to 1 but we should change to area</strong>). For
-the minimum set problem we are trying to meet the Goals while minimizing
-area. In the prioritizr world, this is referred to as the ‘cost’ of the
-planning unit. And in prioritizr, cost does not have to be area, it can
-be the literal cost to acquire a planning unit, or any other value
-assigned to planning units that governs how costly they are to add to a
-solution.</p>
-<p>When applying Weights under the minimum set problem in Where to Work,
-we take advantage of this to change the cost of planning units based on
-the selected Weights. If no Weights are selected, the planning unit cost
-is simply the area of the planning unit (<strong>currently defaults to
-1</strong>). If Weights are selected, the Weight layers are multiplied
-by the selected Weight factor (ranges from -100 to 100), rescaled, and
-summed together (when using multiple Weights). (<strong>see #329, need
-to explain that Weights should acount for PU area in data prep</strong>)
-The result is that planning units with higher values of positive Weights
-are assigned lower costs and will be preferred in solutions, and
-planning units with higher values for negative Weights are assigned
-higher costs and will be avoided.</p>
+<p>In <em>Where to Work</em>, the ‘budget’ being used when gathering
+planning units into a solution is the planning unit area (<strong>under
+min set it currently defaults to 1 but we should change to
+area</strong>). For the minimum set problem we are trying to meet the
+Goals while minimizing area. In the prioritizr world, this is referred
+to as the ‘cost’ of the planning unit. And in prioritizr, cost does not
+have to be area, it can be the literal cost to acquire a planning unit,
+or any other value assigned to planning units that governs how costly
+they are to add to a solution.</p>
+<p>When applying Weights under the minimum set problem in <em>Where to
+Work</em>, we take advantage of this to change the cost of planning
+units based on the selected Weights. If no Weights are selected, the
+planning unit cost is simply the area of the planning unit
+(<strong>currently defaults to 1</strong>). If Weights are selected, the
+Weight layers are multiplied by the selected Weight factor (ranges from
+-100 to 100), rescaled, and summed together (when using multiple
+Weights). (<strong>see #329, need to explain that Weights should account
+for PU area in data prep</strong>). The result is that planning units
+with higher values of positive Weights are assigned lower costs and will
+be preferred in solutions, and planning units with higher values for
+negative Weights are assigned higher costs and will be avoided.</p>
 </div>
 <div class="section level4">
 <h4 id="weight-with-area-budget">Weight with area-budget<a class="anchor" aria-label="anchor" href="#weight-with-area-budget"></a>
 </h4>
 <p>When using an area budget, the planning unit ‘cost’ has to be the
-actual area of each planning unit. That way Where to Work knows how much
-area budget it is using based on the planning units selected. This means
-we cannot incorporate the Weights into the planning unit costs as we did
-for the minimum set problem.</p>
+actual area of each planning unit. That way <em>Where to Work</em> knows
+how much area budget it is using based on the planning units selected.
+This means we cannot incorporate the Weights into the planning unit
+costs as we did for the minimum set problem.</p>
 <p>Instead, the Weights are added as additional Goals to the
-<code>conservation problem.</code> The Goal is calculated as the Weight
-factor (converted to a proportion) multiplied by the sum of the Weights
-values across all planning units. When finding a solution, Where to Work
-will try and meet the Weight Goals just like any other Goal, so the
-final solution should prefer planning units that contain a larger amount
-of the Weight (<strong>note that weights are not currently clipped to
-Themes, see #323</strong>).</p>
-<p>Note that under both area-budget and non-area-budget scenarios, Where
-to Work will report the area of each Weight in the results summary.</p>
+conservation problem. The Goal is calculated as the Weight factor
+(converted to a proportion) multiplied by the sum of the Weights values
+across all planning units. When finding a solution, <em>Where to
+Work</em> will try and meet the Weight Goals just like any other Goal,
+so the final solution should prefer planning units that contain a larger
+amount of the Weight (<strong>note that weights are not currently
+clipped to Themes, see #323</strong>).</p>
+<p>Note that under both area-budget and non-area-budget scenarios,
+<em>Where to Work</em> will report the area of each Weight in the
+results summary.</p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="optimality-gap">Optimality gap<a class="anchor" aria-label="anchor" href="#optimality-gap"></a>
 </h2>
-<p>When solving <code>conservation problems</code>, prioritizr has a
-parameter called the <strong>optimality gap</strong> which determines
-how close the returned solution needs to be to the optimal solution. If
-the optimality gap is set to 0%, the single best optimal solution will
-be returned. This comes with a time penalty since solving to optimality
-takes a certain amount of time depending on the complexity of the
-problem.</p>
+<p>When solving conservation problems, prioritizr has a parameter called
+the <strong>optimality gap</strong> which determines how close the
+returned solution needs to be to the optimal solution. If the optimality
+gap is set to 0%, the single best optimal solution will be returned.
+This comes with a time penalty since solving to optimality takes a
+certain amount of time depending on the complexity of the problem.</p>
 <p>Where to Work sets the optimality gap to 10% for the minimum set
 problem and 50% when using an area budget. This allows for much faster
 processing and means that the returned solutions will be within 10% or
-50% deviance of the optimal solution. The downside is that two Where to
-Work runs using the same inputs could return different solutions.</p>
-<p>If a user runs the exact same <code>conservation problem</code> twice
-in the same Where to Work session, it will cache the solution and simply
+50% deviance of the optimal solution. The downside is that two <em>Where
+to Work</em> runs using the same inputs could return different
+solutions.</p>
+<p>If a user runs the exact same conservation problem twice in the same
+<em>Where to Work</em> session, it will cache the solution and simply
 return the same solution to save time on the second run. If a user runs
 the exact same <code>conservation problem</code> twice in different
-Where to Work sessions (i.e. by closing the app in between), it’s
-possible that slightly different solutions will be returned due to
+<em>Where to Work</em> sessions (i.e. by closing the app in between),
+it’s possible that slightly different solutions will be returned due to
 optimality gap. The deviance between solutions is usually quite small,
 and is mostly noticeable when the problem is relatively simple and has
 many equally good solutions that meet the Goals (maybe because there are
@@ -472,8 +481,8 @@ not merely Goals.</p>
 <h4 id="forcing-nestedness">Forcing nestedness<a class="anchor" aria-label="anchor" href="#forcing-nestedness"></a>
 </h4>
 <p>Users can take Includes a step further by linking multiple solutions
-together, i.e. taking the output of one <em>conservation problem</em>
-and using it as an Include for the next. <a href="https://doi.org/10.1038/s41559-021-01528-7" class="external-link">This paper</a>
+together. In particular, by taking the output of one conservation
+problem and using it as an Include for the next. <a href="https://doi.org/10.1038/s41559-021-01528-7" class="external-link">This paper</a>
 provides an example of this to force solutions at different area budgets
 to be nested within each other. The approach involves running an
 area-budget solution at say 10%, then providing that solution as an
@@ -483,19 +492,19 @@ lower area-budget solutions are nested within higher area-budget
 solutions.</p>
 <p>We do not necessarily recommend this for a typical prioritization
 (due to the reasons highlighted in the <a href="#nestedness">nestedness</a> section above), but we include it here
-as an example of how Where to Work is flexible to user needs and
-creativity.</p>
+as an example of how <em>Where to Work</em> is flexible to user needs
+and creativity.</p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="further-reading">Further reading<a class="anchor" aria-label="anchor" href="#further-reading"></a>
 </h2>
-<p>More information on the mechanics of Where to Work can be found in
-the following resources:</p>
+<p>More information on the mechanics of <em>Where to Work</em> can be
+found in the following resources:</p>
 <ul>
 <li>A good place to practice and get familiar with some of these
 advanced concepts is by using some of the simple built-in projects in
-Where to Work.</li>
+<em>Where to Work</em>.</li>
 <li>
 <a href="https://prioritizr.net/index.html" class="external-link">prioritizr website</a> -
 this has much more detail on the underlying math behind the algorithms.
@@ -504,7 +513,7 @@ record</a> also has many examples of these concepts being applied in
 conservation scenarios.</li>
 <li>
 <a href="https://github.com/NCC-CNC/wheretowork" class="external-link">source code</a> -
-the Where to Work source is publicly available on github.</li>
+the <em>Where to Work</em> source is publicly available on github.</li>
 </ul>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

@@ -15,12 +15,13 @@
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+      <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../articles/wheretowork.html">Get started</a></li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/wtw_data.html">Data</a></li>
-    <li><a class="dropdown-item" href="../articles/wtw_manual.html">User manual</a></li>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-advanced-topics" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Advanced topics</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-advanced-topics"><li><a class="dropdown-item" href="../articles/wtw_data.html">Data</a></li>
     <li><a class="dropdown-item" href="../articles/wtw_theory.html">Theory</a></li>
+    <li><a class="dropdown-item" href="../articles/wtw_optimization.html">Optimization</a></li>
   </ul></li>
 <li class="active nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -43,8 +44,9 @@
 <div class="section level4">
 <h4 id="notice-1-0-0">Notice<a class="anchor" aria-label="anchor" href="#notice-1-0-0"></a></h4>
 <p>Official Where To Work version 1.</p>
-<p>Boundary data required for spatial clustering has changed to the prioritizr 8.0.4 format. This includes a better approach for rescaling data to avoid numerical issues during optimization. Earlier versions of the package recommended the use of the scales::rescale() to rescale such data. Now we use prioritizr::rescale_matrix() function to rescale boundary length data.</p>
-<p>Where To Work can still load older boundary data generated from previous projects, however it is recommended that new projects prep data with prioritizr &gt;= 8.0.4 and Where To Work 1.0.0.</p>
+<p>Boundary data required for spatial clustering has changed to the prioritizr 8.0.4 format. This includes a better approach for rescaling data to avoid numerical issues during optimization. Earlier versions of the package recommended the use of the <code><a href="https://scales.r-lib.org/reference/rescale.html" class="external-link">scales::rescale()</a></code> to rescale such data. Now we use <code><a href="https://prioritizr.net/reference/rescale_matrix.html" class="external-link">prioritizr::rescale_matrix()</a></code> function to rescale boundary length data.</p>
+<p>Where To Work can still load older boundary data generated from previous projects, however it is recommended that new projects prep data with prioritizr &gt;= 8.0.4 and wheretowork 1.0.0.</p>
+<p>The <code>renv.lock</code> file only includes application dependencies from Imports, Depends and LinksTo found within the DESCRIPTION file. It does not include the Suggests packages needed for development. This reduces the bloat on deployment and installing wheretowork for data prep. The steps to contribute to package development include cloning wheretowork, running <code><a href="https://rstudio.github.io/renv/reference/restore.html" class="external-link">renv::restore()</a></code>, and then manually <code><a href="https://rstudio.github.io/renv/reference/install.html" class="external-link">renv::install</a></code> the Suggests packages referencing the correct version. Example <code>renv::install(testthat@3.3.2.1.1)</code>. Gurobi is not a CRAN package. Follow the gurobi installation guide found on the prioritizr.net article: <a href="https://prioritizr.net/articles/gurobi_installation_guide.html" class="external-link uri">https://prioritizr.net/articles/gurobi_installation_guide.html</a>.</p>
 </div>
 <div class="section level4">
 <h4 id="major-changes-1-0-0">Major changes<a class="anchor" aria-label="anchor" href="#major-changes-1-0-0"></a></h4>
@@ -55,14 +57,15 @@
 <li>added backwards compatibility for boundary data.</li>
 <li>removed leaflet.extras2::addHistory button. This feature is not compatible with Shiny &gt;= 1.7.0 when they removed the bundled copy of fontawesome to the {fontawesome} package.</li>
 <li>updated licence agreement.</li>
+<li>renv.lock file only records application dependencies from Imports, Depends and LinksTo</li>
 </ul></div>
 <div class="section level4">
-<h4 id="minor-changes-and-bug-fixed-1-0-0">Minor changes and bug fixed<a class="anchor" aria-label="anchor" href="#minor-changes-and-bug-fixed-1-0-0"></a></h4>
+<h4 id="minor-changes-and-bug-fixes-1-0-0">Minor changes and bug fixes<a class="anchor" aria-label="anchor" href="#minor-changes-and-bug-fixes-1-0-0"></a></h4>
 <ul><li>The write_project function now includes the wheretowork and prioritizr package version number to the attribute.yaml.</li>
-<li>The read_project function checks if the prioritizr version number does not exist or is &lt;= to version 8.0.4. If true, then update_bm method is called on the Dataset class to update the boundary data to the new format.</li>
+<li>The read_project function checks if the prioritizr version number does not exist or is &lt; version 8.0.4. If true, then update_bm method is called on the Dataset class to update the boundary data to the new format.</li>
 <li>replaced pryr with lobstr for tracking memory usage.</li>
 <li>removed readNamedRaster, this function was never called.</li>
-<li>removed write raster layer names as a .txt in writeNamedRaster function. The terra::writeRaster function keeps layer names.</li>
+<li>removed raster layer names as a .txt in writeNamedRaster function. The terra::writeRaster function by default keeps layer names.</li>
 </ul></div>
 <div class="section level4">
 <h4 id="infrastrucure-changes-1-0-0">Infrastrucure changes<a class="anchor" aria-label="anchor" href="#infrastrucure-changes-1-0-0"></a></h4>
