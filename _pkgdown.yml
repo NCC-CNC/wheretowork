@@ -1,5 +1,27 @@
+url: https://ncc-cnc.github.io/wheretowork
+
 template:
   bootstrap: 5
+
+navbar:
+  components:
+    articles:
+      text: Advanced topics
+      menu:
+      - text: Data
+        href: articles/wtw_data.html
+      - text: Theory
+        href: articles/wtw_theory.html
+      - text: Optimization
+        href: articles/wtw_optimization.html
+
+redirects:
+  - ["articles/wtw_manual.html", "articles/wheretowork.html"]
+  - ["articles/articles/wtw_manual.html", "articles/wheretowork.html"]
+  - ["articles/articles/wtw_data.html", "articles/wtw_data.html"]
+  - ["articles/articles/wtw_optimization.html", "articles/wtw_optimization.html"]
+  - ["articles/articles/wtw_theory.html", "articles/wtw_theory.html"]
+
 reference:
   - title: Application
     desc: >

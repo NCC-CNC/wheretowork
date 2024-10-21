@@ -5,7 +5,7 @@ R:
 
 ## command to remove automatically generated files
 clean:
-	rm -rf man/*
+	rm -rf man/*.rd
 	rm -rf docs/*
 	rm -rf inst/doc/*
 
@@ -16,6 +16,9 @@ all: man readme test check spellcheck
 ## build docs
 man:
 	R --slave -e "devtools::document()"
+
+vigns:
+	R --slave -e "devtools::build_vignettes()"
 
 ## simulate data
 data:
@@ -115,4 +118,4 @@ reset:
 snapshot:
 	R -e "renv::snapshot()"
 
-.PHONY: clean data readme test check install man spellcheck examples site quicksite snapshot deploy demo demo-kill image debug snapshot
+.PHONY: clean data readme test check install man spellcheck examples site quicksite snapshot deploy demo demo-kill image debug snapshot vigns
