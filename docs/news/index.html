@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">wheretowork</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,36 +40,46 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="1.0.1" id="wheretowork-101">wheretowork 1.0.1<a class="anchor" aria-label="anchor" href="#wheretowork-101"></a></h2>
+<div class="section level4">
+<h4 id="minor-changes-and-bug-fixes-1-0-1">Minor changes and bug fixes<a class="anchor" aria-label="anchor" href="#minor-changes-and-bug-fixes-1-0-1"></a></h4>
+<ul><li>Updated wheretowork pkgdown site</li>
+</ul></div>
+</div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.0.0" id="wheretowork-100">wheretowork 1.0.0<a class="anchor" aria-label="anchor" href="#wheretowork-100"></a></h2>
 <div class="section level4">
 <h4 id="notice-1-0-0">Notice<a class="anchor" aria-label="anchor" href="#notice-1-0-0"></a></h4>
-<p>Official Where To Work version 1.</p>
-<p>Boundary data required for spatial clustering has changed to the prioritizr 8.0.4 format. This includes a better approach for rescaling data to avoid numerical issues during optimization. Earlier versions of the package recommended the use of the <code><a href="https://scales.r-lib.org/reference/rescale.html" class="external-link">scales::rescale()</a></code> to rescale such data. Now we use <code><a href="https://prioritizr.net/reference/rescale_matrix.html" class="external-link">prioritizr::rescale_matrix()</a></code> function to rescale boundary length data.</p>
-<p>Where To Work can still load older boundary data generated from previous projects, however it is recommended that new projects prep data with prioritizr &gt;= 8.0.4 and wheretowork 1.0.0.</p>
-<p>The <code>renv.lock</code> file only includes application dependencies from Imports, Depends and LinksTo found within the DESCRIPTION file. It does not include the Suggests packages needed for development. This reduces the bloat on deployment and installing wheretowork for data prep. The steps to contribute to package development include cloning wheretowork, running <code><a href="https://rstudio.github.io/renv/reference/restore.html" class="external-link">renv::restore()</a></code>, and then manually <code><a href="https://rstudio.github.io/renv/reference/install.html" class="external-link">renv::install</a></code> the Suggests packages referencing the correct version. Example <code>renv::install(testthat@3.3.2.1.1)</code>. Gurobi is not a CRAN package. Follow the gurobi installation guide found on the prioritizr.net article: <a href="https://prioritizr.net/articles/gurobi_installation_guide.html" class="external-link uri">https://prioritizr.net/articles/gurobi_installation_guide.html</a>.</p>
-</div>
-<div class="section level4">
-<h4 id="major-changes-1-0-0">Major changes<a class="anchor" aria-label="anchor" href="#major-changes-1-0-0"></a></h4>
-<ul><li>requires R version 4.4.</li>
-<li>migrated from raster package to terra package.</li>
-<li>updated all CRAN package dependencies to latest version as of August, 2024.</li>
-<li>updated REMOTE leaflet package dependency to latest version as of August, 2024.</li>
-<li>added backwards compatibility for boundary data.</li>
-<li>removed leaflet.extras2::addHistory button. This feature is not compatible with Shiny &gt;= 1.7.0 when they removed the bundled copy of fontawesome to the {fontawesome} package.</li>
-<li>updated licence agreement.</li>
-<li>renv.lock file only records application dependencies from Imports, Depends and LinksTo</li>
+<ul><li>Official Where To Work version 1.</li>
 </ul></div>
 <div class="section level4">
 <h4 id="minor-changes-and-bug-fixes-1-0-0">Minor changes and bug fixes<a class="anchor" aria-label="anchor" href="#minor-changes-and-bug-fixes-1-0-0"></a></h4>
-<ul><li>The write_project function now includes the wheretowork and prioritizr package version number to the attribute.yaml.</li>
-<li>The read_project function checks if the prioritizr version number does not exist or is &lt; version 8.0.4. If true, then update_bm method is called on the Dataset class to update the boundary data to the new format.</li>
-<li>replaced pryr with lobstr for tracking memory usage.</li>
-<li>removed readNamedRaster, this function was never called.</li>
-<li>removed raster layer names as a .txt in writeNamedRaster function. The terra::writeRaster function by default keeps layer names.</li>
+<ul><li>Boundary data required for spatial clustering has changed to the prioritizr 8.0.4 format. This includes a better approach for rescaling data to avoid numerical issues during optimization. Earlier versions of the package recommended the use of the <code><a href="https://scales.r-lib.org/reference/rescale.html" class="external-link">scales::rescale()</a></code> to rescale such data. Now we use <code><a href="https://prioritizr.net/reference/rescale_matrix.html" class="external-link">prioritizr::rescale_matrix()</a></code> function to rescale boundary length data.</li>
+<li>Where To Work can still load older boundary data generated from previous projects, however it is recommended that new projects prep data with prioritizr &gt;= 8.0.4 and wheretowork 1.0.0.</li>
+<li>The <code>renv.lock</code> file only includes application dependencies from Imports, Depends and LinksTo found within the DESCRIPTION file. It does not include the Suggests packages needed for development. This reduces the bloat on deployment and installing wheretowork for data prep. The steps to contribute to package development include cloning wheretowork, running <code><a href="https://rstudio.github.io/renv/reference/restore.html" class="external-link">renv::restore()</a></code>, and then manually <code><a href="https://rstudio.github.io/renv/reference/install.html" class="external-link">renv::install</a></code> the Suggests packages referencing the correct version. Example <code>renv::install(testthat@3.3.2.1.1)</code>. Gurobi is not a CRAN package. Follow the gurobi installation guide found on the prioritizr.net article: <a href="https://prioritizr.net/articles/gurobi_installation_guide.html" class="external-link uri">https://prioritizr.net/articles/gurobi_installation_guide.html</a>.</li>
+</ul></div>
+<div class="section level4">
+<h4 id="major-changes-1-0-0">Major changes<a class="anchor" aria-label="anchor" href="#major-changes-1-0-0"></a></h4>
+<ul><li>Requires R version 4.4.</li>
+<li>Migrated from raster package to terra package.</li>
+<li>Updated all CRAN package dependencies to latest version as of August, 2024.</li>
+<li>Updated REMOTE leaflet package dependency to latest version as of August, 2024.</li>
+<li>Added backwards compatibility for boundary data.</li>
+<li>Removed <code><a href="https://trafficonese.github.io/leaflet.extras2/reference/addHistory.html" class="external-link">leaflet.extras2::addHistory</a></code> button. This feature is not compatible with Shiny &gt;= 1.7.0 when they removed the bundled copy of fontawesome to the fontawesome package.</li>
+<li>Updated license agreement.</li>
+<li>Updated <code>renv.lock</code> file only records application dependencies from Imports, Depends and LinksTo.</li>
+</ul></div>
+<div class="section level4">
+<h4 id="minor-changes-and-bug-fixes-1-0-0-1">Minor changes and bug fixes<a class="anchor" aria-label="anchor" href="#minor-changes-and-bug-fixes-1-0-0-1"></a></h4>
+<ul><li>The <code>write_project</code> function now includes the wheretowork and prioritizr package version number to the <code>attribute.yaml</code>.</li>
+<li>The <code>read_project</code> function checks if the prioritizr version number does not exist or is &lt; version 8.0.4. If true, then <code>update_bm</code> method is called on the Dataset class to update the boundary data to the new format.</li>
+<li>Replaced pryr with lobstr for tracking memory usage.</li>
+<li>Removed <code>readNamedRaster</code>, this function was never called.</li>
+<li>Removed raster layer names as a .txt in <code>writeNamedRaster</code> function. The <code><a href="https://rspatial.github.io/terra/reference/writeRaster.html" class="external-link">terra::writeRaster</a></code> function by default keeps layer names.</li>
 </ul></div>
 <div class="section level4">
 <h4 id="infrastrucure-changes-1-0-0">Infrastrucure changes<a class="anchor" aria-label="anchor" href="#infrastrucure-changes-1-0-0"></a></h4>
-<ul><li>updated to rocker/shiny:4.4.0 AS base in Dockerfile.</li>
+<ul><li>Updated to rocker/shiny:4.4.0 AS base in Dockerfile.</li>
 </ul></div>
 </div>
     <div class="section level2">
