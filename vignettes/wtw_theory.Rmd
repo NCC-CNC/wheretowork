@@ -14,7 +14,7 @@ vignette: >
 
 # Introduction
 
-This article is intended for users already familiar with the basic functionality of the *Where to Work* tool. It is recommended to first read the [official manual](https://ncc-cnc.github.io/wheretowork/articles/wtw_manual.html) before proceeding.
+This article is intended for users already familiar with the basic functionality of the *Where to Work* tool. It is recommended to first read the [official manual](wheretowork.html) before proceeding.
 
 The goal of this article is to explore some of the underlying algorithms and behavior of *Where to Work*, so that users can better understand and interpret their results. This will also allow users to develop more advanced workflows to fully utilize the power of the tool for systematic conservation planning.
 
@@ -35,7 +35,7 @@ We will provide links to the [prioritizr documentation](https://prioritizr.net/)
 
 # Planning Units
 
-Planning units for *Where to Work* can either be square cells of equal size (i.e. a raster layer), or a combination of polygons of any shape and size (i.e. a shapefile). The data preparation for *Where to Work* involves summarizing all of the Themes, Weights, Includes and Excludes in each planning unit. More information on this can be found in the [Data article](https://ncc-cnc.github.io/wheretowork/articles/wtw_data.html) and in the [*Where To Work* data preparation repository](https://github.com/NCC-CNC/wtw-data-prep).
+Planning units for *Where to Work* can either be square cells of equal size (i.e. a raster layer), or a combination of polygons of any shape and size (i.e. a shapefile). The data preparation for *Where to Work* involves summarizing all of the Themes, Weights, Includes and Excludes in each planning unit. More information on this can be found in the [Data](wtw_data.html) article and in the [*Where To Work* data preparation repository](https://github.com/NCC-CNC/wtw-data-prep).
 
 # Theme Goals
 
@@ -45,7 +45,7 @@ Setting Theme Goals is the first step in a *Where to Work* project. Goals are se
 
 Typically, Themes represent the spatial extent of a conservation feature (e.g. a species), so the numeric Goal will be an area. *Where to Work* doesn't actually care what the units are though, it simply calculates the numeric Goal based on the values in the planning units.
 
-This is important to know when preparing data and setting Goals. The planning unit values need to be numeric so that they can be summed together across planning units. It doesn't make sense to have categorical or ordinal data in *Where to Work* for example because the values cannot be summed for Goal-setting. A land cover map representing forested and grassland areas for example would need to be separated out into two individual Themes where the planning unit values represent the area of each land cover type within the planning unit. See the [Data article](https://ncc-cnc.github.io/wheretowork/articles/wtw_data.html) for more detail.
+This is important to know when preparing data and setting Goals. The planning unit values need to be numeric so that they can be summed together across planning units. It doesn't make sense to have categorical or ordinal data in *Where to Work* for example because the values cannot be summed for Goal-setting. A land cover map representing forested and grassland areas for example would need to be separated out into two individual Themes where the planning unit values represent the area of each land cover type within the planning unit. See the [Data](wtw_data.html) article for more detail.
 
 # Includes/Excludes
 

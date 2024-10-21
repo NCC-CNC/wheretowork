@@ -15,7 +15,7 @@ vignette: >
 # Introduction
 
 This article is intended for users already familiar with the basic functionality
-of the *Where to Work* tool. It is recommended to first read the [official manual](https://ncc-cnc.github.io/wheretowork/articles/wtw_manual.html)
+of the *Where to Work* tool. It is recommended to first read the [official manual](wheretowork.html)
 before proceeding.
 
 The goal of this article is to provide an understanding of the optimization procedures that the *Where to Work* tool uses to generate prioritizations. Specifically, the *Where to Work* tool uses the [prioritizr R package](https://prioritizr.net/) to generate prioritizations with exact algorithm solvers (i.e., [Gurobi](https://www.gurobi.com/) and [CBC](https://github.com/coin-or/Cbc). Briefly, this article will (i) provide an overview of exact algorithms, (ii) discuss the advantages and disadvantageous of exact algorithms, (iii) provide an explanation for how one exact algorithm works (i.e., the branch and bound algorithm), and (iv) provide resources for learning more about these exact algorithms. Although it is beyond the scope of this article to provide a detailed understanding of the inner workings of all exact algorithms, this article intends to provide enough information so that users of the *Where to Work* tool can feel comfortable using these algorithms.
