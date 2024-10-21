@@ -1,3 +1,8 @@
+# wheretowork 1.0.1
+
+### Minor changes and bug fixes
+- updated wheretowork pkgdown site
+
 # wheretowork 1.0.0
 
 ### Notice
