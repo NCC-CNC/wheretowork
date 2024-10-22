@@ -21,7 +21,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">wheretowork</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,13 +30,14 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
+<li class="nav-item"><a class="nav-link" href="../articles/wheretowork.html">Get started</a></li>
 <li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="active nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-advanced-topics" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Advanced topics</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-advanced-topics">
 <li><a class="dropdown-item" href="../articles/wtw_data.html">Data</a></li>
-    <li><a class="dropdown-item" href="../articles/wtw_manual.html">User manual</a></li>
     <li><a class="dropdown-item" href="../articles/wtw_theory.html">Theory</a></li>
+    <li><a class="dropdown-item" href="../articles/wtw_optimization.html">Optimization</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -62,7 +63,7 @@
       <h1>Data</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/NCC-CNC/wheretowork/blob/HEAD/vignettes/articles/wtw_data.Rmd" class="external-link"><code>vignettes/articles/wtw_data.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/NCC-CNC/wheretowork/blob/HEAD/vignettes/wtw_data.Rmd" class="external-link"><code>vignettes/wtw_data.Rmd</code></a></small>
       <div class="d-none name"><code>wtw_data.Rmd</code></div>
     </div>
 
@@ -72,50 +73,49 @@
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
 <p>This article is intended for users already familiar with the basic
-functionality of the Where to Work tool. It is recommended to first read
-the <a href="https://ncc-cnc.github.io/wheretowork/articles/articles/wtw_manual.html" class="external-link">official
-manual</a> before proceeding.</p>
-<p>Input data for Where to Work needs to be summarized by planning unit
-during the data-prep stage. We strongly recommend using the 4-file input
-format described in <a href="https://github.com/NCC-CNC/wtw-data-prep" class="external-link">wtw-data-prep</a> with
-raster planning units, or shapefile planning units if planning units of
-different shapes and sizes are required.</p>
-<p>As described in the Goals section of the <a href="https://ncc-cnc.github.io/wheretowork/articles/articles/wtw_theory.html#goals" class="external-link">wtw-theory</a>
-article, Where to Work operates on the values assigned to each planning
-unit. Planning unit values for Themes, Weights, Includes and Excludes
+functionality of <em>Where to Work</em>. It is recommended to first read
+the <a href="wheretowork.html">official manual</a> before
+proceeding.</p>
+<p>Input data for <em>Where to Work</em> needs to be summarized by
+planning unit during the data-prep stage. We strongly recommend using
+the 4-file input format described in <a href="https://github.com/NCC-CNC/wtw-data-prep" class="external-link"><em>Where To Work</em>
+data preparation repository</a>.</p>
+<p>As described in the Goals section of the <a href="wtw_theory.html#theme-goals">Theory</a> article, <em>Where to
+Work</em> operates on the values assigned to each planning unit.
+Planning unit values for Themes, Weights, Includes and Excludes
 therefore need to be carefully prepared before feeding the planning
-units into Where to Work.</p>
-<p>The correct way to summarize the input data depends on the planning
-unit type (i.e. equal area vs different areas), the units of the input
-data (i.e. area/distance/count, other units, unitless), and the type of
-layer being summarized (i.e. Theme, Weight or Include/Exclude).</p>
-<p>Planning unit values can generally be of two types: binary, where all
-the values are either zero or one; or continuous, where any value is
-possible. Generally we recommend that all Includes and Excludes use
-binary values, and all Themes and Weights use continuous values. This is
-explained further below.</p>
+units into <em>Where to Work</em>. The correct way to summarize the
+input data depends on the planning unit type (i.e. equal area vs
+different areas), the units of the input data (i.e. area/distance/count,
+other units, unitless), and the type of layer being summarized
+(i.e. Theme, Weight or Include/Exclude). Planning unit values can
+generally be of two types: binary, where all the values are either zero
+or one; or continuous, where any value is possible. Generally we
+recommend that all Includes and Excludes use binary values, and all
+Themes and Weights use continuous values. This is explained further
+below.</p>
 </div>
 <div class="section level2">
 <h2 id="themes">Themes<a class="anchor" aria-label="anchor" href="#themes"></a>
 </h2>
 <p>The important thing to remember for Themes is that each Theme will be
-assigned a Goal, and Where to Work will attempt to meet the Goal by
-summing the Themes values across all planning units in a solution.
-Values therefore need to be numeric, have specific units (e.g. km, km2,
-tonnes of carbon ect.), and ideally we would like to retain as much
-detail from the source data as possible when we summarize the data into
-the planning units.</p>
+assigned a Goal, and <em>Where to Work</em> will attempt to meet the
+Goal by summing the Themes values across all planning units in a
+solution. As such, values need to be numeric and have meaningful units
+(e.g., km, km<sup>2</sup>, tonnes of carbon). Additionally, we would
+ideally retain as much detail from the source data as possible when we
+summarize the data for the planning units.</p>
 <div class="section level5">
-<h5 id="areadistancecount">Area/distance/count<a class="anchor" aria-label="anchor" href="#areadistancecount"></a>
+<h5 id="areadistancecount-data">Area/distance/count data<a class="anchor" aria-label="anchor" href="#areadistancecount-data"></a>
 </h5>
 <p>Most Themes will be layers representing area, distance or count data.
 Examples are species ranges (area), lengths of rivers (distance), and
 points representing important sites (count). We recommend simply summing
 the area/distance/count of these data in each planning unit.</p>
 <div class="figure">
-<img src="figures/species_range.png" alt="*Fig 1. Species ranges representing areas of presence/absence are converted into plannnig unit values representing the area of each planning unit covered by the species range.*" width="2068"><p class="caption">
+<img src="figures/species_range.png" alt="*Fig 1. Species ranges representing areas of presence/absence are converted into planning unit values representing the area of each planning unit covered by the species range.*" width="2068"><p class="caption">
 <em>Fig 1. Species ranges representing areas of presence/absence are
-converted into plannnig unit values representing the area of each
+converted into planning unit values representing the area of each
 planning unit covered by the species range.</em>
 </p>
 </div>
@@ -124,19 +124,69 @@ planning unit covered by the species range.</em>
 the overlap with the planning unit and the threshold (i.e. every
 planning unit would have a value of either zero, or the full planning
 unit area). This approach creates clean maps that look nicer in the
-Where to Work display. However, summing the area retains more
+<em>Where to Work</em> display. However, summing the area retains more
 information, especially in cases where some range polygons are smaller
 than the planning units.</p>
 </div>
 <div class="section level5">
-<h5 id="other-units">Other units<a class="anchor" aria-label="anchor" href="#other-units"></a>
+<h5 id="categorical-data">Categorical data<a class="anchor" aria-label="anchor" href="#categorical-data"></a>
 </h5>
-Other layers could have non-area/distance/count units that will need to
-be considered on a layer-by-layer basis. A dataset detailing tonnes of
-Carbon per pixel for example could be summed to calculate the tonnes of
-Carbon per planning unit. Remember that Where to Work will run using any
-input layer values, so the responsibility is on the user to make sure
-the values provided are suitable.
+<p>Categorical data need pre-processing for the <em>Where to Work</em>
+tool. These data includes rasters or vector data that contain integer
+values that correspond to different classes. For example, land cover
+data are often expressed as categorical data, where each land cover
+class (e.g., forest, shrubland, grassland) is stored as a different
+integer value. To use such data with the <em>Where to Work</em> tool, we
+recommend extracting each categorical class as a separate Theme that
+contains binary values (i.e., zeros and ones) indicating if the class is
+present within each planning unit. This process is also known as <a href="https://www.geeksforgeeks.org/ml-one-hot-encoding/" class="external-link">one hot
+coding</a>. For example, you might have a categorical land cover dataset
+that contains forest, shrubland, and grassland classes. In this dataset,
+a value of 1 might denote forest areas, a value of 2 might denote
+shrubland areas, and a value of 3 might denote grassland areas. To
+prepare such data, we recommend converting this dataset into a three
+separate Themes (one Theme for each class) that each contain binary
+values (i.e., zeros and one) indicating where a given land cover class
+is present. Thus the first Theme would contain binary values indicating
+the presence or absence of forest areas, the second Theme would contain
+binary values indicating the presence or absence of shrubland areas, and
+the third Theme would contain binary values indicating the presence or
+absence of grassland areas.</p>
+</div>
+<div class="section level4">
+<h4 id="probability-data">Probability data<a class="anchor" aria-label="anchor" href="#probability-data"></a>
+</h4>
+<p>Probability data benefits from pre-processing to ensure that the
+<em>Where to Work</em> tool provides meaningful solutions. For example,
+probability data may include predictions by species distribution models.
+Although it is possible to use such probability data with the <em>Where
+to Work</em> tool, this can produce undesirable results. In particular,
+when using such data as Themes, it is possible to generate solutions
+that meet the Goal for the Theme by selecting lots of planning units
+with low probability values. This can be undesirable because you may
+wish to, instead, obtain a solution that selects fewer planning units
+with higher probability values. In such cases, we recommend selecting a
+threshold to convert the probability values into binary values and using
+the binary data as a Theme for the <em>Where to Work</em> tool. Thus the
+only way for a solution to meet the Goal would be to select planning
+units that have a probability value above the selected threshold. If you
+wish to retain some continuous information, another strategy is to clamp
+the probability values such that (i) values below a selected threshold
+are set to zero and (ii) values above the threshold remain the same. As
+such, a solution cannot meet the Goal by selecting planning units with
+low probability values, and information on the relative occurrence can
+be used to inform the optimization process.</p>
+<div class="section level5">
+<h5 id="other-data">Other data<a class="anchor" aria-label="anchor" href="#other-data"></a>
+</h5>
+<p>Other data types will need to be considered on a case by case basis.
+For example, a dataset describing carbon sequestration might describe
+the amount of carbon (in tonnes) that could be potentially be
+sequestered per pixel. In this case, the total amount of carbon per
+planning unit could be calculated by summing together the pixel values
+that occur within the planning unit. Remember that <em>Where to
+Work</em> will run using any input layer values, so the responsibility
+is on the user to make sure the values provided are suitable.</p>
 <div class="figure">
 <img src="figures/carbon.png" alt="*Fig 2. A raster layer representing tonnes of Carbon can be summed into the planning units and can retain the same units.*" width="2088"><p class="caption">
 <em>Fig 2. A raster layer representing tonnes of Carbon can be summed
@@ -144,28 +194,6 @@ into the planning units and can retain the same units.</em>
 </p>
 </div>
 </div>
-<div class="section level5">
-<h5 id="unitlessnon-numeric-values">Unitless/non-numeric values<a class="anchor" aria-label="anchor" href="#unitlessnon-numeric-values"></a>
-</h5>
-<p>If users want to inlcude Themes from input data that do not have
-units, or are categorical, it is usually best to convert the source data
-into polygons and use the area approach described above. Here are some
-common examples:</p>
-<ol style="list-style-type: decimal">
-<li><p><strong>Categorical land cover data</strong> - extract each land
-cover type as a separate Theme and calculate it’s area in each planning
-unit.</p></li>
-<li><p><strong>Species probability maps</strong> - these are not
-recommended because they are unitless. Additionally, while Where to Work
-would run using probability values, it can result in solutions that meet
-the Goal by collecting lots of planning units with low probability
-values which is this case represents low quality habitat. This is not
-really what we want, it would be better to meet the target with higher
-quality habitat only. The best approach is to choose a threshold and
-convert the habitat probability into a binary map of high quality
-habitat. This can then be treated as an area layer and the planning unit
-values will represent the area of high quality habitat.</p></li>
-</ol>
 </div>
 </div>
 <div class="section level2">
@@ -178,11 +206,11 @@ example, as long as the values are numeric.</p>
 <p>If planning units are all the same size, it may be appropriate to
 calculate the mean Weight value per planning unit. However, where
 possible we still recommend summing values, especially if planning units
-are of different sizes. This is because Where to Work does not account
-for planning unit area when processing Weights. If a larger planning
-unit should have a relatively higher Weight than a smaller one, this
-should be accounted for during data prep (e.g. by summing rather than
-averaging).</p>
+are of different sizes. This is because <em>Where to Work</em> does not
+account for planning unit area when processing Weights. If a larger
+planning unit should have a relatively higher Weight than a smaller one,
+this should be accounted for during data prep (e.g. by summing rather
+than averaging).</p>
 <div class="figure">
 <img src="figures/connectivity.png" alt="*Fig 3. Connectivity is a unitless Weight. Here we calculate the average connectivity value per planning unit, but if planning units were of different sizes we might consider summing.*" width="2074"><p class="caption">
 <em>Fig 3. Connectivity is a unitless Weight. Here we calculate the
@@ -206,19 +234,19 @@ approximately the same area as the input data. In some cases users might
 want to use a different approach. For example an Include could be set to
 one if any of the planning unit intersects with the source layer.</p>
 <div class="figure">
-<img src="figures/includes.png" alt="*For n includes of existing protected areas, we use an area threshold of 50% so any planning unit with &gt;= 50% coverage is assigned a 1, otherwise it's assigned a 0.*" width="2053"><p class="caption">
-<em>For n includes of existing protected areas, we use an area threshold
-of 50% so any planning unit with &gt;= 50% coverage is assigned a 1,
-otherwise it’s assigned a 0.</em>
+<img src="figures/includes.png" alt="*Fig 4. For includes of existing protected areas, we use an area threshold of 50% so any planning unit with &gt;= 50% coverage is assigned a value of 1, otherwise it's assigned a value of 0.*" width="2053"><p class="caption">
+<em>Fig 4. For includes of existing protected areas, we use an area
+threshold of 50% so any planning unit with &gt;= 50% coverage is
+assigned a value of 1, otherwise it’s assigned a value of 0.</em>
 </p>
 </div>
 </div>
 <div class="section level2">
-<h2 id="data-prep">Data prep<a class="anchor" aria-label="anchor" href="#data-prep"></a>
+<h2 id="data-preparation">Data preparation<a class="anchor" aria-label="anchor" href="#data-preparation"></a>
 </h2>
 <p>More information on data prep as well as scripts for preparing input
-data of various formats can be found in <a href="https://github.com/NCC-CNC/wtw-data-prep" class="external-link">the wtw-data-prep</a>
-github repo.</p>
+data of various formats can be found in the <a href="https://github.com/NCC-CNC/wtw-data-prep" class="external-link"><em>Where To Work</em>
+data preparation repository</a>.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

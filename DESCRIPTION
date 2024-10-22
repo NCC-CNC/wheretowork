@@ -1,6 +1,6 @@
 Package: wheretowork
 Title: Interactive Systematic Conservation Planning Application
-Version: 1.0.0
+Version: 1.0.1
 Description:
     Launch an interactive web application for systematic conservation planning.
     Data can be accessed using projects available on disk, uploaded using
@@ -97,6 +97,7 @@ Encoding: UTF-8
 Language: en-US
 URL: https://NCC-CNC.github.io/wheretowork/
 BugReports: https://github.com/NCC-CNC/wheretowork/issues
+VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Collate:

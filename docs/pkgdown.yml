@@ -1,8 +1,12 @@
-pandoc: 3.1.11
+pandoc: '3.3'
 pkgdown: 2.1.0
 pkgdown_sha: ~
 articles:
-  articles/wtw_data: wtw_data.html
-  articles/wtw_manual: wtw_manual.html
-  articles/wtw_theory: wtw_theory.html
-last_built: 2024-09-10T17:37Z
+  wheretowork: wheretowork.html
+  wtw_data: wtw_data.html
+  wtw_optimization: wtw_optimization.html
+  wtw_theory: wtw_theory.html
+last_built: 2024-10-21T20:16Z
+urls:
+  reference: https://ncc-cnc.github.io/wheretowork/reference
+  article: https://ncc-cnc.github.io/wheretowork/articles
