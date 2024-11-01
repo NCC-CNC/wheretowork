@@ -108,6 +108,10 @@ server_export_data <- quote({
       if (inherits(d, "sf")) {
         d[["index"]] <- app_data$dataset$get_planning_unit_indices()
       }
+      # convert list of SpatRasters into a single SpatRaster
+      if (inherits(d, "list")) {
+        d <- terra::rast(d)
+      }
       # save spatial data
       write_spatial_data(
         x = d,
