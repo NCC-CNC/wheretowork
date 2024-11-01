@@ -1,3 +1,9 @@
+# wheretowork 1.0.2
+
+### Minor changes and bug fixes
+
+- Multiple layer download bug fix, issue #391.
+
 # wheretowork 1.0.1
 
 ### Minor changes and bug fixes
