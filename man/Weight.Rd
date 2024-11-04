@@ -33,6 +33,8 @@ Definition for the Weight class.
 
 \item{\code{hidden}}{\code{logical} value.}
 
+\item{\code{download}}{\code{logical} value.}
+
 \item{\code{status}}{\code{logical} value.}
 
 \item{\code{current}}{\code{numeric} value.}
@@ -61,6 +63,7 @@ Definition for the Weight class.
 \item \href{#method-Weight-get_invisible}{\code{Weight$get_invisible()}}
 \item \href{#method-Weight-get_loaded}{\code{Weight$get_loaded()}}
 \item \href{#method-Weight-get_hidden}{\code{Weight$get_hidden()}}
+\item \href{#method-Weight-get_download}{\code{Weight$get_download()}}
 \item \href{#method-Weight-get_status}{\code{Weight$get_status()}}
 \item \href{#method-Weight-get_current}{\code{Weight$get_current()}}
 \item \href{#method-Weight-get_factor}{\code{Weight$get_factor()}}
@@ -97,6 +100,7 @@ Create a new Weight object.
   invisible,
   loaded,
   hidden,
+  download,
   status,
   current,
   factor,
@@ -124,6 +128,8 @@ Create a new Weight object.
 \item{\code{loaded}}{\code{logical} value.}
 
 \item{\code{hidden}}{\code{logical} value.}
+
+\item{\code{download}}{\code{logical} value.}
 
 \item{\code{status}}{\code{logical} value.}
 
@@ -282,6 +288,19 @@ Get loaded.
 Get hidden.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Weight$get_hidden()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{logical} value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Weight-get_download"></a>}}
+\if{latex}{\out{\hypertarget{method-Weight-get_download}{}}}
+\subsection{Method \code{get_download()}}{
+Get download.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Weight$get_download()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
