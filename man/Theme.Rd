@@ -46,7 +46,7 @@ Definition for the Theme class.
 \item \href{#method-Theme-get_feature_invisible}{\code{Theme$get_feature_invisible()}}
 \item \href{#method-Theme-get_feature_loaded}{\code{Theme$get_feature_loaded()}}
 \item \href{#method-Theme-get_feature_hidden}{\code{Theme$get_feature_hidden()}}
-\item \href{#method-Theme-get_feature_download}{\code{Theme$get_feature_download()}}
+\item \href{#method-Theme-get_feature_downloadable}{\code{Theme$get_feature_downloadable()}}
 \item \href{#method-Theme-get_feature_status}{\code{Theme$get_feature_status()}}
 \item \href{#method-Theme-get_feature_goal}{\code{Theme$get_feature_goal()}}
 \item \href{#method-Theme-get_feature_order}{\code{Theme$get_feature_order()}}
@@ -299,12 +299,12 @@ Get feature hidden values.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Theme-get_feature_download"></a>}}
-\if{latex}{\out{\hypertarget{method-Theme-get_feature_download}{}}}
-\subsection{Method \code{get_feature_download()}}{
-Get feature download values.
+\if{html}{\out{<a id="method-Theme-get_feature_downloadable"></a>}}
+\if{latex}{\out{\hypertarget{method-Theme-get_feature_downloadable}{}}}
+\subsection{Method \code{get_feature_downloadable()}}{
+Get feature downloadable values.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Theme$get_feature_download()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Theme$get_feature_downloadable()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{

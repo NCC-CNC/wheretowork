@@ -44,6 +44,8 @@ Definition for the Solution class.
 \item{\code{exclude_results}}{\code{list} of \link{ExcludeResults} objects.}
 
 \item{\code{hidden}}{\code{logical} value.}
+
+\item{\code{downloadable}}{\code{logical} value.}
 }
 \if{html}{\out{</div>}}
 }
@@ -61,6 +63,7 @@ Definition for the Solution class.
 \item \href{#method-Solution-get_invisible}{\code{Solution$get_invisible()}}
 \item \href{#method-Solution-get_loaded}{\code{Solution$get_loaded()}}
 \item \href{#method-Solution-get_hidden}{\code{Solution$get_hidden()}}
+\item \href{#method-Solution-get_downloadable}{\code{Solution$get_downloadable()}}
 \item \href{#method-Solution-get_setting}{\code{Solution$get_setting()}}
 \item \href{#method-Solution-set_new_pane}{\code{Solution$set_new_pane()}}
 \item \href{#method-Solution-set_visible}{\code{Solution$set_visible()}}
@@ -104,7 +107,8 @@ Create a Solution object.
   weight_results,
   include_results,
   exclude_results,
-  hidden
+  hidden,
+  downloadable
 )}\if{html}{\out{</div>}}
 }
 
@@ -138,6 +142,8 @@ Create a Solution object.
 \item{\code{exclude_results}}{\code{list} of \link{ExcludeResults} objects.}
 
 \item{\code{hidden}}{\code{logical} value.}
+
+\item{\code{downloadable}}{\code{logical} value.}
 }
 \if{html}{\out{</div>}}
 }
@@ -284,6 +290,19 @@ Get loaded.
 Get hidden.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Solution$get_hidden()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{logical} value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Solution-get_downloadable"></a>}}
+\if{latex}{\out{\hypertarget{method-Solution-get_downloadable}{}}}
+\subsection{Method \code{get_downloadable()}}{
+Get downloadable.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Solution$get_downloadable()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{

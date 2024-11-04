@@ -12,7 +12,7 @@ new_exclude(
   invisible = NA_real_,
   loaded = TRUE,
   hidden = FALSE,
-  download = TRUE,
+  downloadable = TRUE,
   status = FALSE,
   overlap = NA_character_,
   id = uuid::UUIDgenerate(),
@@ -48,9 +48,9 @@ Unlike \code{visible}, if this parameter is \code{FALSE} then a feature can neve
 be viewed on the map.
 Defaults to \code{FALSE}.}
 
-\item{download}{\code{logical} The download value.
-This is used to determine if the feature can be download. Set download
-to \code{FALSE} for sensitive layers that should not be downloaded.
+\item{downloadable}{\code{logical} The downloadable value.
+This is used to determine if the feature can be download. Set downloadable
+to \code{FALSE} for sensitive layers that should not be avaiable for download.
 Defaults to \code{TRUE}.}
 
 \item{status}{\code{logical} The initial status value.

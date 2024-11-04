@@ -35,7 +35,7 @@ Definition for the Exclude class.
 
 \item{\code{hidden}}{\code{logical} value.}
 
-\item{\code{download}}{\code{logical} value.}
+\item{\code{downloadable}}{\code{logical} value.}
 
 \item{\code{status}}{\code{logical} value.}
 
@@ -57,7 +57,7 @@ Definition for the Exclude class.
 \item \href{#method-Exclude-get_invisible}{\code{Exclude$get_invisible()}}
 \item \href{#method-Exclude-get_loaded}{\code{Exclude$get_loaded()}}
 \item \href{#method-Exclude-get_hidden}{\code{Exclude$get_hidden()}}
-\item \href{#method-Exclude-get_download}{\code{Exclude$get_download()}}
+\item \href{#method-Exclude-get_downloadable}{\code{Exclude$get_downloadable()}}
 \item \href{#method-Exclude-get_status}{\code{Exclude$get_status()}}
 \item \href{#method-Exclude-get_overlap}{\code{Exclude$get_overlap()}}
 \item \href{#method-Exclude-get_data}{\code{Exclude$get_data()}}
@@ -92,7 +92,7 @@ Create a new Exclude object.
   invisible,
   loaded,
   hidden,
-  download,
+  downloadable,
   status,
   overlap
 )}\if{html}{\out{</div>}}
@@ -119,7 +119,7 @@ Create a new Exclude object.
 
 \item{\code{hidden}}{\code{logical} value.}
 
-\item{\code{download}}{\code{logical} value.}
+\item{\code{downloadable}}{\code{logical} value.}
 
 \item{\code{status}}{\code{logical} value.}
 
@@ -277,12 +277,12 @@ Get hidden.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Exclude-get_download"></a>}}
-\if{latex}{\out{\hypertarget{method-Exclude-get_download}{}}}
-\subsection{Method \code{get_download()}}{
-Get download.
+\if{html}{\out{<a id="method-Exclude-get_downloadable"></a>}}
+\if{latex}{\out{\hypertarget{method-Exclude-get_downloadable}{}}}
+\subsection{Method \code{get_downloadable()}}{
+Get downloadable.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Exclude$get_download()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Exclude$get_downloadable()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
