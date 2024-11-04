@@ -35,6 +35,8 @@ Definition for the Include class.
 
 \item{\code{hidden}}{\code{logical} value.}
 
+\item{\code{download}}{\code{logical} value.}
+
 \item{\code{status}}{\code{logical} value.}
 
 \item{\code{overlap}}{\code{character} vector.}
@@ -55,6 +57,7 @@ Definition for the Include class.
 \item \href{#method-Include-get_invisible}{\code{Include$get_invisible()}}
 \item \href{#method-Include-get_loaded}{\code{Include$get_loaded()}}
 \item \href{#method-Include-get_hidden}{\code{Include$get_hidden()}}
+\item \href{#method-Include-get_download}{\code{Include$get_download()}}
 \item \href{#method-Include-get_status}{\code{Include$get_status()}}
 \item \href{#method-Include-get_overlap}{\code{Include$get_overlap()}}
 \item \href{#method-Include-get_data}{\code{Include$get_data()}}
@@ -89,6 +92,7 @@ Create a new Include object.
   mandatory,
   visible,
   hidden,
+  download,
   status,
   overlap
 )}\if{html}{\out{</div>}}
@@ -114,6 +118,8 @@ Create a new Include object.
 \item{\code{visible}}{\code{logical} value.}
 
 \item{\code{hidden}}{\code{logical} value.}
+
+\item{\code{download}}{\code{logical} value.}
 
 \item{\code{status}}{\code{logical} value.}
 
@@ -264,6 +270,19 @@ Get loaded.
 Get hidden.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Include$get_hidden()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{logical} value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Include-get_download"></a>}}
+\if{latex}{\out{\hypertarget{method-Include-get_download}{}}}
+\subsection{Method \code{get_download()}}{
+Get download.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Include$get_download()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
