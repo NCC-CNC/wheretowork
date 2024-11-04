@@ -209,10 +209,10 @@ Theme <- R6::R6Class(
     },
     
     #' @description
-    #' Get feature download values.
+    #' Get feature downloadable values.
     #' @return `logical` vector with status value(s).
-    get_feature_download = function() {
-      vapply(self$feature, `[[`, logical(1), "download")
+    get_feature_downloadable = function() {
+      vapply(self$feature, `[[`, logical(1), "downloadable")
     },
 
     #' @description

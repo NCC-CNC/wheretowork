@@ -33,8 +33,8 @@ Feature <- R6::R6Class(
     #' @field hidden `logical` value.
     hidden = NA,
     
-    #' @field download `logical` value.
-    download = NA,
+    #' @field downloadable `logical` value.
+    downloadable = NA,
 
     #' @field status `logical` value.
     status = NA,
@@ -67,7 +67,7 @@ Feature <- R6::R6Class(
     #' @param invisible `numeric` date/time value.
     #' @param loaded `logical` value.
     #' @param hidden `logical` value.
-    #' @param download `logical` value.
+    #' @param downloadable `logical` value.
     #' @param status `logical` value.
     #' @param min_goal `numeric` value.
     #' @param max_goal `numeric` value.
@@ -77,7 +77,7 @@ Feature <- R6::R6Class(
     #' @param current `numeric` value.
     #' @return A new Feature object.
     initialize = function(id, name, variable, pane, visible, invisible, loaded, hidden, 
-                          download, status, current, goal, limit_goal, min_goal, max_goal, 
+                          downloadable, status, current, goal, limit_goal, min_goal, max_goal, 
                           step_goal) {
       ### assert that arguments are valid
       assertthat::assert_that(
@@ -103,9 +103,9 @@ Feature <- R6::R6Class(
         #### hidden
         assertthat::is.flag(hidden),
         assertthat::noNA(hidden),
-        #### download
-        assertthat::is.flag(download),
-        assertthat::noNA(download),
+        #### downloadable
+        assertthat::is.flag(downloadable),
+        assertthat::noNA(downloadable),
         #### status
         assertthat::is.flag(status),
         assertthat::noNA(status),
@@ -142,7 +142,7 @@ Feature <- R6::R6Class(
       self$invisible <- invisible
       self$loaded <- visible # if layer is visible on init, load it
       self$hidden <- hidden
-      self$download <- download
+      self$downloadable <- downloadable
       self$status <- status
       self$goal <- goal
       self$min_goal <- min_goal
@@ -165,7 +165,7 @@ Feature <- R6::R6Class(
       message("  invisible:  ", self$invisible)
       message("  loaded:  ", self$loaded)
       message("  hidden:   ", self$hidden)
-      message("  download:   ", self$download)
+      message("  downloadable:   ", self$downloadable)
       message("  status:   ", self$status)
       message("  current:  ", round(self$current, 2))
       message("  goal:     ", round(self$goal, 2))
@@ -211,10 +211,10 @@ Feature <- R6::R6Class(
     },
     
     #' @description
-    #' Get download.
+    #' Get downloadable.
     #' @return `logical` value.
-    get_download = function() {
-      self$download
+    get_downloadable = function() {
+      self$downloadable
     },
 
     #' @description
@@ -368,7 +368,7 @@ Feature <- R6::R6Class(
         status = self$status,
         visible = self$visible,
         hidden = self$hidden,
-        download = self$download,
+        downloadable = self$downloadable,
         goal = self$goal,
         limit_goal = self$limit_goal
       )
@@ -405,9 +405,9 @@ Feature <- R6::R6Class(
 #'   be viewed on the map.
 #'   Defaults to `FALSE`.
 #'   
-#' @param download `logical` The download value.
-#'   This is used to determine if the feature can be download. Set download
-#'   to `FALSE` for sensitive layers that should not be downloaded.
+#' @param downloadable `logical` The downloadable value.
+#'   This is used to determine if the feature can be download. Set downloadable
+#'   to `FALSE` for sensitive layers that should not be avaiable for download.
 #'   Defaults to `TRUE`.
 #'
 #' @param status `logical` The initial status value.
@@ -472,7 +472,7 @@ new_feature <- function(
     invisible = NA_real_,
     loaded = TRUE,
     hidden = FALSE,
-    download = TRUE,
+    downloadable = TRUE,
     status = TRUE,
     current = 0,
     goal = 0.2,
@@ -493,7 +493,7 @@ new_feature <- function(
     invisible = invisible,
     loaded = loaded,
     hidden = hidden,
-    download = download,
+    downloadable = downloadable,
     status = status,
     current = current,
     goal = goal,

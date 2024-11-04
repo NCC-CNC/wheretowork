@@ -90,7 +90,7 @@ MapManager <- R6::R6Class(
 
     #' @description
     #' Get layer names.
-    #' @param download_only get layer names that are flagged for download.
+    #' @param download_only get only layer names that are flagged as downloadable.
     #' Available options are `TRUE` or `FALSE`. 
     #' @return `character` vector.
     get_layer_names = function(download_only) {
@@ -99,14 +99,14 @@ MapManager <- R6::R6Class(
           lapply(self$layers, function(x) {
             if (inherits(x, "Theme")) {
               lapply(x$feature, function(y) {
-                # check download flag, needed for export
-                if (y$get_download()) {
+                # get layer name if downloadable is TRUE; needed for export list
+                if (y$get_downloadable()) {
                   y$get_layer_name()
                 } 
               })
             } else {
-              # check download flag, needed for export
-              if (x$get_download()) {
+              # get layer name if downloadable is TRUE; needed for export list
+              if (x$get_downloadable()) {
                 x$get_layer_name()
               } 
             }
@@ -114,7 +114,7 @@ MapManager <- R6::R6Class(
           recursive = TRUE, use.names = FALSE
         )
       } else {
-        # get all available layers, needed for mapping
+        # get all layer names; needed for mapping
         unlist(
           lapply(self$layers, function(x) x$get_layer_name()),
           recursive = TRUE, use.names = FALSE
@@ -124,7 +124,7 @@ MapManager <- R6::R6Class(
     
     #' @description
     #' Get layer index values.
-    #' @param download_only get layer indices that are flagged for download.
+    #' @param download_only get only layer indices that are flagged as downloadable.
     #' Available options are `TRUE` or `FALSE`.  
     #' @return `character` vector.
     get_layer_indices = function(download_only) {
@@ -133,14 +133,14 @@ MapManager <- R6::R6Class(
           lapply(self$layers, function(x) {
             if (inherits(x, "Theme")) {
               lapply(x$feature, function(y) {
-                # check download flag, needed for export
-                if (y$get_download()) {
+                # get layer index if downloadable is TRUE; needed for export list
+                if (y$get_downloadable()) {
                   y$get_layer_index()
                 } 
               })
             } else {
-              # check download flag, needed for export
-              if (x$get_download()) {
+              # get layer index if downloadable is TRUE; needed for export list
+              if (x$get_downloadable()) {
                 x$get_layer_index()
               } 
             }
@@ -148,7 +148,7 @@ MapManager <- R6::R6Class(
           recursive = TRUE, use.names = FALSE
         )
       } else {
-        # get all available layers, needed for mapping
+        # get all layer indices; needed for mapping
         unlist(
           lapply(self$layers, function(x) x$get_layer_index()),
           recursive = TRUE, use.names = FALSE
