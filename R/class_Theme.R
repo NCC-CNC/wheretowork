@@ -207,6 +207,13 @@ Theme <- R6::R6Class(
     get_feature_hidden = function() {
       vapply(self$feature, `[[`, logical(1), "hidden")
     },
+    
+    #' @description
+    #' Get feature download values.
+    #' @return `logical` vector with status value(s).
+    get_feature_download = function() {
+      vapply(self$feature, `[[`, logical(1), "download")
+    },
 
     #' @description
     #' Get feature status values.
