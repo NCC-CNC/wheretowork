@@ -46,6 +46,7 @@ Definition for the Theme class.
 \item \href{#method-Theme-get_feature_invisible}{\code{Theme$get_feature_invisible()}}
 \item \href{#method-Theme-get_feature_loaded}{\code{Theme$get_feature_loaded()}}
 \item \href{#method-Theme-get_feature_hidden}{\code{Theme$get_feature_hidden()}}
+\item \href{#method-Theme-get_feature_download}{\code{Theme$get_feature_download()}}
 \item \href{#method-Theme-get_feature_status}{\code{Theme$get_feature_status()}}
 \item \href{#method-Theme-get_feature_goal}{\code{Theme$get_feature_goal()}}
 \item \href{#method-Theme-get_feature_order}{\code{Theme$get_feature_order()}}
@@ -291,6 +292,19 @@ Get feature loaded values.
 Get feature hidden values.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Theme$get_feature_hidden()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{logical} vector with status value(s).
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Theme-get_feature_download"></a>}}
+\if{latex}{\out{\hypertarget{method-Theme-get_feature_download}{}}}
+\subsection{Method \code{get_feature_download()}}{
+Get feature download values.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$get_feature_download()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{

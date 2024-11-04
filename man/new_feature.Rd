@@ -11,6 +11,7 @@ new_feature(
   invisible = NA_real_,
   loaded = TRUE,
   hidden = FALSE,
+  download = TRUE,
   status = TRUE,
   current = 0,
   goal = 0.2,
@@ -44,6 +45,11 @@ This is used to determine if the feature can ever be displayed.
 Unlike \code{visible}, if this parameter is \code{FALSE} then a feature can never
 be viewed on the map.
 Defaults to \code{FALSE}.}
+
+\item{download}{\code{logical} The download value.
+This is used to determine if the feature can be download. Set download
+to \code{FALSE} for sensitive layers that should not be downloaded.
+Defaults to \code{TRUE}.}
 
 \item{status}{\code{logical} The initial status value.
 This is used to display information on whether the feature is
