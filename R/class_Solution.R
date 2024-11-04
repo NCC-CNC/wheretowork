@@ -1261,7 +1261,10 @@ new_solution_from_result <- function(name,
     assertthat::noNA(id),
     #### hidden
     assertthat::is.flag(hidden),
-    assertthat::noNA(hidden)
+    assertthat::noNA(hidden),
+    #### downloadable
+    assertthat::is.flag(downloadable),
+    assertthat::noNA(downloadable)
   )
 
   # calculate statistics
@@ -1418,6 +1421,6 @@ new_solution_from_result <- function(name,
     exclude_results = exclude_results,
     id = id,
     hidden = hidden,
-    downloadable = downloadable,
+    downloadable = downloadable
   )
 }
