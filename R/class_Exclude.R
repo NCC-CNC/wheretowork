@@ -37,6 +37,9 @@ Exclude <- R6::R6Class(
 
     #' @field hidden `logical` value.
     hidden = NA,
+    
+    #' @field download `logical` value.
+    download = NA,
 
     #' @field status `logical` value.
     status = NA,
@@ -55,12 +58,13 @@ Exclude <- R6::R6Class(
     #' @param invisible `numeric` date/time value.
     #' @param loaded `logical` value.
     #' @param hidden `logical` value.
+    #' @param download `logical` value.
     #' @param status `logical` value.
     #' @param overlap `character` vector.
     #' @return A new Exclude object.
     ## constructor
     initialize = function(id, name, variable, pane, mandatory, visible, invisible, 
-                          loaded, hidden, status, overlap) {
+                          loaded, hidden, download, status, overlap) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -88,6 +92,9 @@ Exclude <- R6::R6Class(
         #### hidden
         assertthat::is.flag(hidden),
         assertthat::noNA(hidden),
+        #### download
+        assertthat::is.flag(download),
+        assertthat::noNA(download),
         #### status
         assertthat::is.flag(status),
         assertthat::noNA(status),
@@ -105,6 +112,7 @@ Exclude <- R6::R6Class(
       self$invisible <- invisible
       self$loaded <- visible # if layer is visible on init, load it
       self$hidden <- hidden
+      self$download <- download
       self$mandatory <- mandatory
       self$overlap <- overlap
     },
@@ -122,6 +130,7 @@ Exclude <- R6::R6Class(
       message("  invisible:  ", self$invisible)
       message("  loaded:  ", self$loaded)
       message("  hidden:  ", self$hidden)
+      message("  download:  ", self$download)
       message("  status:   ", self$status)
       message("  overlap:   ", self$overlap)
       invisible(self)
@@ -197,6 +206,13 @@ Exclude <- R6::R6Class(
     get_hidden = function() {
       self$hidden
     },
+    
+    #' @description
+    #' Get download.
+    #' @return `logical` value.
+    get_download = function() {
+      self$download
+    },    
 
     #' @description
     #' Get status.
@@ -367,6 +383,7 @@ Exclude <- R6::R6Class(
         status = self$status,
         visible = self$visible,
         hidden = self$hidden,
+        download = self$download,
         overlap = self$overlap
       )
     },
@@ -443,7 +460,8 @@ new_exclude <- function(
     visible = TRUE,
     invisible = NA_real_,
     loaded = TRUE,
-    hidden = FALSE, 
+    hidden = FALSE,
+    download = TRUE,
     status = FALSE,
     overlap = NA_character_, 
     id = uuid::UUIDgenerate(),
@@ -462,6 +480,7 @@ new_exclude <- function(
     invisible = invisible,
     loaded = loaded,
     hidden = hidden,
+    download = download,
     status = status,
     overlap = overlap
   )
