@@ -12,7 +12,7 @@ new_exclude(
   invisible = NA_real_,
   loaded = TRUE,
   hidden = FALSE,
-  download = FALSE,
+  download = TRUE,
   status = FALSE,
   overlap = NA_character_,
   id = uuid::UUIDgenerate(),
