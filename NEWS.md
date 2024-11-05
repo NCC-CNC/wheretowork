@@ -1,3 +1,12 @@
+# wheretowork 1.1.2
+
+### Minor changes and bug fixes
+
+- New `downloadable` field for `Features`, `Weights`, `Includes`, `Excludes` 
+and `Solutions`. When downloadable is set to `FALSE`, the spatial layer will not 
+be available for export. Sensitive layers can be explicitly set in Where To Work 
+data prep workflow.
+
 # wheretowork 1.0.2
 
 ### Minor changes and bug fixes
