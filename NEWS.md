@@ -4,8 +4,8 @@
 
 - New `downloadable` field for `Features`, `Weights`, `Includes`, `Excludes` 
 and `Solutions`. When downloadable is set to `FALSE`, the spatial layer will not 
-be available for export. Sensitive layers can be explicitly set in Where To Work 
-data prep workflow.
+be available for export. Sensitive layers can be explicitly set in the Where To 
+Work data prep workflow.
 
 # wheretowork 1.0.2
 
