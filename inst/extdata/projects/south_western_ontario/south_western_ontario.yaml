@@ -1,7 +1,7 @@
 name: South Western Ontario
 author_name: Dan Wismer
 author_email: daniel.wismer@natureconservancy.ca
-wheretowork_version: 1.0.0
+wheretowork_version: 1.1.2
 prioritizr_version: 8.0.4
 mode: advanced
 user_groups: public
@@ -27,6 +27,7 @@ themes:
     status: yes
     visible: yes
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Western Chorus Frog (Great Lakes / St. Lawrence - Canadian Shield population)
@@ -45,6 +46,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: no
     goal: 0.2
     limit_goal: 0.0
   - name: Eastern Foxsnake (Great Lakes / St. Lawrence population)
@@ -63,6 +65,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Eastern Whip-poor-will
@@ -81,6 +84,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Bobolink
@@ -99,6 +103,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Eastern Meadowlark
@@ -117,6 +122,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Hine's Emerald
@@ -135,6 +141,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Hungerford's Crawling Water Beetle
@@ -153,6 +160,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Little Brown Myotis
@@ -171,6 +179,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Tri-coloured Bat
@@ -189,6 +198,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Northern Myotis
@@ -207,6 +217,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Bank Swallow
@@ -225,6 +236,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: American Ginseng
@@ -243,6 +255,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Goldenseal
@@ -261,6 +274,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Eastern Prairie Fringed-orchid
@@ -279,6 +293,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Spotted Turtle
@@ -297,6 +312,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Wood Turtle
@@ -315,6 +331,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Cerulean Warbler
@@ -333,6 +350,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Red-headed Woodpecker
@@ -351,6 +369,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Queensnake
@@ -369,6 +388,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Butler's Gartersnake
@@ -387,6 +407,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Jefferson Salamander
@@ -405,6 +426,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Piping Plover circumcinctus subspecies
@@ -423,6 +445,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Lakeside Daisy
@@ -441,6 +464,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Forked Three-awned Grass
@@ -459,6 +483,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Hill's Thistle
@@ -477,6 +502,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Blanding's Turtle (Great Lakes / St. Lawrence population)
@@ -495,6 +521,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
 - name: Species at Risk (ECCC)
@@ -515,6 +542,7 @@ themes:
     status: yes
     visible: yes
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Canada Warbler
@@ -533,6 +561,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Eastern Foxsnake (Great Lakes / St. Lawrence population)
@@ -551,6 +580,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Snapping Turtle
@@ -569,6 +599,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Eastern Whippoorwill
@@ -587,6 +618,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Rustypatched Bumble Bee
@@ -605,6 +637,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Bobolink
@@ -623,6 +656,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Macropis Cuckoo Bee
@@ -641,6 +675,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Eastern Meadowlark
@@ -659,6 +694,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Hine's Emerald
@@ -677,6 +713,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Hungerford's Crawling Water Beetle
@@ -695,6 +732,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Barn Swallow
@@ -713,6 +751,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Wood Thrush
@@ -731,6 +770,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Eastern Woodpewee
@@ -749,6 +789,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Mottled Duskywing (Great Lakes Plains population)
@@ -767,6 +808,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Massasauga (Great Lakes population)
@@ -785,6 +827,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Gypsy Cuckoo Bumble Bee
@@ -803,6 +846,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Bank Swallow
@@ -821,6 +865,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Grasshopper Sparrow, pratensis subspecies
@@ -839,6 +884,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Loggerhead Shrike Eastern subspecies
@@ -857,6 +903,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Gattinger's Agalinis
@@ -875,6 +922,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Spotted Wintergreen
@@ -893,6 +941,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: American Ginseng
@@ -911,6 +960,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Pitcher's Thistle
@@ -929,6 +979,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Henslow's Sparrow
@@ -947,6 +998,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: King Rail
@@ -965,6 +1017,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Eastern Prairie Fringedorchid
@@ -983,6 +1036,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Kirtland's Warbler
@@ -1001,6 +1055,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Hill's Pondweed
@@ -1019,6 +1074,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Tuberous Indianplantain
@@ -1037,6 +1093,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Loggerhead Shrike migrans subspecies
@@ -1055,6 +1112,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Massasauga
@@ -1073,6 +1131,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Spotted Turtle
@@ -1091,6 +1150,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Monarch
@@ -1109,6 +1169,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Eastern Hognosed Snake
@@ -1127,6 +1188,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Hooded Warbler
@@ -1145,6 +1207,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Cerulean Warbler
@@ -1163,6 +1226,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Least Bittern
@@ -1181,6 +1245,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Louisiana Waterthrush
@@ -1199,6 +1264,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Northern Leopard Frog (Western Boreal/Prairie populations)
@@ -1217,6 +1283,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Redheaded Woodpecker
@@ -1235,6 +1302,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Yellow Rail
@@ -1253,6 +1321,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Butler's Gartersnake
@@ -1271,6 +1340,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Shorteared Owl
@@ -1289,6 +1359,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Yellow-breasted Chat virens subspecies
@@ -1307,6 +1378,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: American Badger jacksoni subspecies
@@ -1325,6 +1397,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Jefferson Salamander
@@ -1343,6 +1416,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Hart'stongue Fern
@@ -1361,6 +1435,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Lakeside Daisy
@@ -1379,6 +1454,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Eastern Musk Turtle
@@ -1397,6 +1473,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Eastern Ribbonsnake (Great Lakes population)
@@ -1415,6 +1492,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Northern Map Turtle
@@ -1433,6 +1511,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Eastern Milksnake
@@ -1451,6 +1530,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Forked Threeawned Grass
@@ -1469,6 +1549,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Butternut
@@ -1487,6 +1568,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Hill's Thistle
@@ -1505,6 +1587,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Dwarf Lake Iris
@@ -1523,6 +1606,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Blanding's Turtle (Great Lakes / St. Lawrence population)
@@ -1541,6 +1625,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Houghton's Goldenrod
@@ -1559,6 +1644,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Rusty Blackbird
@@ -1577,6 +1663,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Aweme Borer
@@ -1595,6 +1682,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Goldenwinged Warbler
@@ -1613,6 +1701,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Chimney Swift
@@ -1631,6 +1720,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Common Nighthawk
@@ -1649,6 +1739,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Olivesided Flycatcher
@@ -1667,6 +1758,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
 - name: Shoreline
@@ -1693,6 +1785,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
 - name: Land Cover
@@ -1713,6 +1806,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
   - name: Wetlands
@@ -1731,6 +1825,7 @@ themes:
     status: yes
     visible: no
     hidden: no
+    downloadable: yes
     goal: 0.2
     limit_goal: 0.0
 weights:
@@ -1754,6 +1849,7 @@ weights:
   status: yes
   visible: no
   hidden: no
+  downloadable: yes
   factor: 0.0
 - name: Carbon storage
   variable:
@@ -1775,6 +1871,7 @@ weights:
   status: yes
   visible: no
   hidden: no
+  downloadable: yes
   factor: 0.0
 - name: Climate extremes
   variable:
@@ -1792,6 +1889,7 @@ weights:
   status: yes
   visible: no
   hidden: no
+  downloadable: yes
   factor: 0.0
 - name: Climate forward velocity
   variable:
@@ -1809,6 +1907,7 @@ weights:
   status: yes
   visible: no
   hidden: no
+  downloadable: yes
   factor: 0.0
 - name: Climate refugia
   variable:
@@ -1826,6 +1925,7 @@ weights:
   status: yes
   visible: no
   hidden: no
+  downloadable: yes
   factor: 0.0
 - name: Connectivity
   variable:
@@ -1843,6 +1943,7 @@ weights:
   status: yes
   visible: no
   hidden: no
+  downloadable: yes
   factor: 0.0
 - name: Human footprint
   variable:
@@ -1860,6 +1961,7 @@ weights:
   status: yes
   visible: no
   hidden: no
+  downloadable: yes
   factor: 0.0
 - name: Key Biodiversity Areas
   variable:
@@ -1877,6 +1979,7 @@ weights:
   status: yes
   visible: no
   hidden: no
+  downloadable: yes
   factor: 0.0
 - name: Recreation
   variable:
@@ -1898,6 +2001,7 @@ weights:
   status: yes
   visible: no
   hidden: no
+  downloadable: yes
   factor: 0.0
 - name: NDVI
   variable:
@@ -1921,6 +2025,7 @@ weights:
   status: yes
   visible: no
   hidden: no
+  downloadable: yes
   factor: 0.0
 - name: Niagara Escarpment Planning Area
   variable:
@@ -1938,6 +2043,7 @@ weights:
   status: yes
   visible: yes
   hidden: no
+  downloadable: yes
   factor: 0.0
 - name: Proximity to Existing Conservation
   variable:
@@ -1955,6 +2061,7 @@ weights:
   status: yes
   visible: no
   hidden: no
+  downloadable: yes
   factor: 0.0
 - name: 'Road Network '
   variable:
@@ -1976,6 +2083,7 @@ weights:
   status: yes
   visible: no
   hidden: no
+  downloadable: yes
   factor: 0.0
 - name: 'Stream Density '
   variable:
@@ -1997,6 +2105,7 @@ weights:
   status: yes
   visible: no
   hidden: no
+  downloadable: yes
   factor: 0.0
 includes:
 - name: Existing Conservation (CPCAD)
@@ -2016,6 +2125,7 @@ includes:
   status: yes
   visible: yes
   hidden: no
+  downloadable: yes
   overlap: .na.character
 - name: Military Bases (OECM)
   variable:
@@ -2034,6 +2144,7 @@ includes:
   status: yes
   visible: yes
   hidden: no
+  downloadable: no
   overlap: .na.character
 excludes:
 - name: Major Highways
@@ -2053,6 +2164,7 @@ excludes:
   status: no
   visible: yes
   hidden: no
+  downloadable: yes
   overlap: .na.character
 - name: Urban Areas
   variable:
@@ -2071,4 +2183,5 @@ excludes:
   status: no
   visible: no
   hidden: no
+  downloadable: yes
   overlap: .na.character
