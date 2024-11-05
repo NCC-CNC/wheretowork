@@ -9,7 +9,7 @@ Solution class"></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">wheretowork</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -114,6 +114,10 @@ Solution class"></head><body>
 <dd><p><code>logical</code> value.</p></dd>
 
 
+<dt><code>downloadable</code></dt>
+<dd><p><code>logical</code> value.</p></dd>
+
+
 </dl><p></p></div>
     </div>
     <div class="section level2">
@@ -133,6 +137,7 @@ Solution class"></head><body>
 <li><p><a href="#method-Solution-get_invisible"><code>Solution$get_invisible()</code></a></p></li>
 <li><p><a href="#method-Solution-get_loaded"><code>Solution$get_loaded()</code></a></p></li>
 <li><p><a href="#method-Solution-get_hidden"><code>Solution$get_hidden()</code></a></p></li>
+<li><p><a href="#method-Solution-get_downloadable"><code>Solution$get_downloadable()</code></a></p></li>
 <li><p><a href="#method-Solution-get_setting"><code>Solution$get_setting()</code></a></p></li>
 <li><p><a href="#method-Solution-set_new_pane"><code>Solution$set_new_pane()</code></a></p></li>
 <li><p><a href="#method-Solution-set_visible"><code>Solution$set_visible()</code></a></p></li>
@@ -172,7 +177,8 @@ Solution class"></head><body>
 <span>  <span class="va">weight_results</span>,</span>
 <span>  <span class="va">include_results</span>,</span>
 <span>  <span class="va">exclude_results</span>,</span>
-<span>  <span class="va">hidden</span></span>
+<span>  <span class="va">hidden</span>,</span>
+<span>  <span class="va">downloadable</span></span>
 <span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -231,6 +237,10 @@ Solution class"></head><body>
 
 
 <dt><code>hidden</code></dt>
+<dd><p><code>logical</code> value.</p></dd>
+
+
+<dt><code>downloadable</code></dt>
 <dd><p><code>logical</code> value.</p></dd>
 
 
@@ -379,10 +389,22 @@ Defaults to <code>"]"</code>.</p></dd>
 <p><code>logical</code> value.</p>
 </div>
 
+</div><p></p><hr><a id="method-Solution-get_downloadable"></a><div class="section">
+<h3 id="method-get-downloadable-">Method <code>get_downloadable()</code><a class="anchor" aria-label="anchor" href="#method-get-downloadable-"></a></h3>
+<p>Get downloadable.</p><div class="section">
+<h4 id="usage-11">Usage<a class="anchor" aria-label="anchor" href="#usage-11"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Solution</span><span class="op">$</span><span class="fu">get_downloadable</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+</div>
+
+<div class="section">
+<h4 id="returns-10">Returns<a class="anchor" aria-label="anchor" href="#returns-10"></a></h4>
+<p><code>logical</code> value.</p>
+</div>
+
 </div><p></p><hr><a id="method-Solution-get_setting"></a><div class="section">
 <h3 id="method-get-setting-">Method <code>get_setting()</code><a class="anchor" aria-label="anchor" href="#method-get-setting-"></a></h3>
 <p>Get setting.</p><div class="section">
-<h4 id="usage-11">Usage<a class="anchor" aria-label="anchor" href="#usage-11"></a></h4>
+<h4 id="usage-12">Usage<a class="anchor" aria-label="anchor" href="#usage-12"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Solution</span><span class="op">$</span><span class="fu">get_setting</span><span class="op">(</span><span class="va">name</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -396,14 +418,14 @@ Available options are <code>"visible"</code>.</p></dd>
 </dl><p></p></div>
 </div>
 <div class="section">
-<h4 id="returns-10">Returns<a class="anchor" aria-label="anchor" href="#returns-10"></a></h4>
+<h4 id="returns-11">Returns<a class="anchor" aria-label="anchor" href="#returns-11"></a></h4>
 <p>Value.</p>
 </div>
 
 </div><p></p><hr><a id="method-Solution-set_new_pane"></a><div class="section">
 <h3 id="method-set-new-pane-">Method <code>set_new_pane()</code><a class="anchor" aria-label="anchor" href="#method-set-new-pane-"></a></h3>
 <p>Set new pane.</p><div class="section">
-<h4 id="usage-12">Usage<a class="anchor" aria-label="anchor" href="#usage-12"></a></h4>
+<h4 id="usage-13">Usage<a class="anchor" aria-label="anchor" href="#usage-13"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Solution</span><span class="op">$</span><span class="fu">set_new_pane</span><span class="op">(</span><span class="va">id</span>, <span class="va">index</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -420,14 +442,14 @@ Available options are <code>"visible"</code>.</p></dd>
 </dl><p></p></div>
 </div>
 <div class="section">
-<h4 id="returns-11">Returns<a class="anchor" aria-label="anchor" href="#returns-11"></a></h4>
+<h4 id="returns-12">Returns<a class="anchor" aria-label="anchor" href="#returns-12"></a></h4>
 <p><code>character</code> value.</p>
 </div>
 
 </div><p></p><hr><a id="method-Solution-set_visible"></a><div class="section">
 <h3 id="method-set-visible-">Method <code>set_visible()</code><a class="anchor" aria-label="anchor" href="#method-set-visible-"></a></h3>
 <p>Set visible.</p><div class="section">
-<h4 id="usage-13">Usage<a class="anchor" aria-label="anchor" href="#usage-13"></a></h4>
+<h4 id="usage-14">Usage<a class="anchor" aria-label="anchor" href="#usage-14"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Solution</span><span class="op">$</span><span class="fu">set_visible</span><span class="op">(</span><span class="va">value</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -443,7 +465,7 @@ Available options are <code>"visible"</code>.</p></dd>
 </div><p></p><hr><a id="method-Solution-set_invisible"></a><div class="section">
 <h3 id="method-set-invisible-">Method <code>set_invisible()</code><a class="anchor" aria-label="anchor" href="#method-set-invisible-"></a></h3>
 <p>Set invisible.</p><div class="section">
-<h4 id="usage-14">Usage<a class="anchor" aria-label="anchor" href="#usage-14"></a></h4>
+<h4 id="usage-15">Usage<a class="anchor" aria-label="anchor" href="#usage-15"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Solution</span><span class="op">$</span><span class="fu">set_invisible</span><span class="op">(</span><span class="va">value</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -459,7 +481,7 @@ Available options are <code>"visible"</code>.</p></dd>
 </div><p></p><hr><a id="method-Solution-set_loaded"></a><div class="section">
 <h3 id="method-set-loaded-">Method <code>set_loaded()</code><a class="anchor" aria-label="anchor" href="#method-set-loaded-"></a></h3>
 <p>Set loaded.</p><div class="section">
-<h4 id="usage-15">Usage<a class="anchor" aria-label="anchor" href="#usage-15"></a></h4>
+<h4 id="usage-16">Usage<a class="anchor" aria-label="anchor" href="#usage-16"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Solution</span><span class="op">$</span><span class="fu">set_loaded</span><span class="op">(</span><span class="va">value</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -475,20 +497,8 @@ Available options are <code>"visible"</code>.</p></dd>
 </div><p></p><hr><a id="method-Solution-get_summary_results_data"></a><div class="section">
 <h3 id="method-get-summary-results-data-">Method <code>get_summary_results_data()</code><a class="anchor" aria-label="anchor" href="#method-get-summary-results-data-"></a></h3>
 <p>Get summary results.</p><div class="section">
-<h4 id="usage-16">Usage<a class="anchor" aria-label="anchor" href="#usage-16"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Solution</span><span class="op">$</span><span class="fu">get_summary_results_data</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
-</div>
-
-<div class="section">
-<h4 id="returns-12">Returns<a class="anchor" aria-label="anchor" href="#returns-12"></a></h4>
-<p><code><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble::tibble()</a></code> object.</p>
-</div>
-
-</div><p></p><hr><a id="method-Solution-get_theme_results_data"></a><div class="section">
-<h3 id="method-get-theme-results-data-">Method <code>get_theme_results_data()</code><a class="anchor" aria-label="anchor" href="#method-get-theme-results-data-"></a></h3>
-<p>Get theme results.</p><div class="section">
 <h4 id="usage-17">Usage<a class="anchor" aria-label="anchor" href="#usage-17"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Solution</span><span class="op">$</span><span class="fu">get_theme_results_data</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Solution</span><span class="op">$</span><span class="fu">get_summary_results_data</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -496,11 +506,11 @@ Available options are <code>"visible"</code>.</p></dd>
 <p><code><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble::tibble()</a></code> object.</p>
 </div>
 
-</div><p></p><hr><a id="method-Solution-get_weight_results_data"></a><div class="section">
-<h3 id="method-get-weight-results-data-">Method <code>get_weight_results_data()</code><a class="anchor" aria-label="anchor" href="#method-get-weight-results-data-"></a></h3>
-<p>Get weight results.</p><div class="section">
+</div><p></p><hr><a id="method-Solution-get_theme_results_data"></a><div class="section">
+<h3 id="method-get-theme-results-data-">Method <code>get_theme_results_data()</code><a class="anchor" aria-label="anchor" href="#method-get-theme-results-data-"></a></h3>
+<p>Get theme results.</p><div class="section">
 <h4 id="usage-18">Usage<a class="anchor" aria-label="anchor" href="#usage-18"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Solution</span><span class="op">$</span><span class="fu">get_weight_results_data</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Solution</span><span class="op">$</span><span class="fu">get_theme_results_data</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -508,11 +518,11 @@ Available options are <code>"visible"</code>.</p></dd>
 <p><code><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble::tibble()</a></code> object.</p>
 </div>
 
-</div><p></p><hr><a id="method-Solution-get_include_results_data"></a><div class="section">
-<h3 id="method-get-include-results-data-">Method <code>get_include_results_data()</code><a class="anchor" aria-label="anchor" href="#method-get-include-results-data-"></a></h3>
-<p>Get include results.</p><div class="section">
+</div><p></p><hr><a id="method-Solution-get_weight_results_data"></a><div class="section">
+<h3 id="method-get-weight-results-data-">Method <code>get_weight_results_data()</code><a class="anchor" aria-label="anchor" href="#method-get-weight-results-data-"></a></h3>
+<p>Get weight results.</p><div class="section">
 <h4 id="usage-19">Usage<a class="anchor" aria-label="anchor" href="#usage-19"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Solution</span><span class="op">$</span><span class="fu">get_include_results_data</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Solution</span><span class="op">$</span><span class="fu">get_weight_results_data</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -520,11 +530,11 @@ Available options are <code>"visible"</code>.</p></dd>
 <p><code><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble::tibble()</a></code> object.</p>
 </div>
 
-</div><p></p><hr><a id="method-Solution-get_exclude_results_data"></a><div class="section">
-<h3 id="method-get-exclude-results-data-">Method <code>get_exclude_results_data()</code><a class="anchor" aria-label="anchor" href="#method-get-exclude-results-data-"></a></h3>
-<p>Get exclude results.</p><div class="section">
+</div><p></p><hr><a id="method-Solution-get_include_results_data"></a><div class="section">
+<h3 id="method-get-include-results-data-">Method <code>get_include_results_data()</code><a class="anchor" aria-label="anchor" href="#method-get-include-results-data-"></a></h3>
+<p>Get include results.</p><div class="section">
 <h4 id="usage-20">Usage<a class="anchor" aria-label="anchor" href="#usage-20"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Solution</span><span class="op">$</span><span class="fu">get_exclude_results_data</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Solution</span><span class="op">$</span><span class="fu">get_include_results_data</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -532,23 +542,23 @@ Available options are <code>"visible"</code>.</p></dd>
 <p><code><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble::tibble()</a></code> object.</p>
 </div>
 
-</div><p></p><hr><a id="method-Solution-render_summary_results"></a><div class="section">
-<h3 id="method-render-summary-results-">Method <code>render_summary_results()</code><a class="anchor" aria-label="anchor" href="#method-render-summary-results-"></a></h3>
-<p>Render summary results.</p><div class="section">
+</div><p></p><hr><a id="method-Solution-get_exclude_results_data"></a><div class="section">
+<h3 id="method-get-exclude-results-data-">Method <code>get_exclude_results_data()</code><a class="anchor" aria-label="anchor" href="#method-get-exclude-results-data-"></a></h3>
+<p>Get exclude results.</p><div class="section">
 <h4 id="usage-21">Usage<a class="anchor" aria-label="anchor" href="#usage-21"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Solution</span><span class="op">$</span><span class="fu">render_summary_results</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Solution</span><span class="op">$</span><span class="fu">get_exclude_results_data</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
 <h4 id="returns-17">Returns<a class="anchor" aria-label="anchor" href="#returns-17"></a></h4>
-<p><code><a href="https://rdrr.io/pkg/DT/man/datatable.html" class="external-link">DT::datatable()</a></code> object.</p>
+<p><code><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble::tibble()</a></code> object.</p>
 </div>
 
-</div><p></p><hr><a id="method-Solution-render_theme_results"></a><div class="section">
-<h3 id="method-render-theme-results-">Method <code>render_theme_results()</code><a class="anchor" aria-label="anchor" href="#method-render-theme-results-"></a></h3>
-<p>Render theme results.</p><div class="section">
+</div><p></p><hr><a id="method-Solution-render_summary_results"></a><div class="section">
+<h3 id="method-render-summary-results-">Method <code>render_summary_results()</code><a class="anchor" aria-label="anchor" href="#method-render-summary-results-"></a></h3>
+<p>Render summary results.</p><div class="section">
 <h4 id="usage-22">Usage<a class="anchor" aria-label="anchor" href="#usage-22"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Solution</span><span class="op">$</span><span class="fu">render_theme_results</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Solution</span><span class="op">$</span><span class="fu">render_summary_results</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -556,11 +566,11 @@ Available options are <code>"visible"</code>.</p></dd>
 <p><code><a href="https://rdrr.io/pkg/DT/man/datatable.html" class="external-link">DT::datatable()</a></code> object.</p>
 </div>
 
-</div><p></p><hr><a id="method-Solution-render_weight_results"></a><div class="section">
-<h3 id="method-render-weight-results-">Method <code>render_weight_results()</code><a class="anchor" aria-label="anchor" href="#method-render-weight-results-"></a></h3>
-<p>Render weight results.</p><div class="section">
+</div><p></p><hr><a id="method-Solution-render_theme_results"></a><div class="section">
+<h3 id="method-render-theme-results-">Method <code>render_theme_results()</code><a class="anchor" aria-label="anchor" href="#method-render-theme-results-"></a></h3>
+<p>Render theme results.</p><div class="section">
 <h4 id="usage-23">Usage<a class="anchor" aria-label="anchor" href="#usage-23"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Solution</span><span class="op">$</span><span class="fu">render_weight_results</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Solution</span><span class="op">$</span><span class="fu">render_theme_results</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -568,11 +578,11 @@ Available options are <code>"visible"</code>.</p></dd>
 <p><code><a href="https://rdrr.io/pkg/DT/man/datatable.html" class="external-link">DT::datatable()</a></code> object.</p>
 </div>
 
-</div><p></p><hr><a id="method-Solution-render_include_results"></a><div class="section">
-<h3 id="method-render-include-results-">Method <code>render_include_results()</code><a class="anchor" aria-label="anchor" href="#method-render-include-results-"></a></h3>
-<p>Render include results.</p><div class="section">
+</div><p></p><hr><a id="method-Solution-render_weight_results"></a><div class="section">
+<h3 id="method-render-weight-results-">Method <code>render_weight_results()</code><a class="anchor" aria-label="anchor" href="#method-render-weight-results-"></a></h3>
+<p>Render weight results.</p><div class="section">
 <h4 id="usage-24">Usage<a class="anchor" aria-label="anchor" href="#usage-24"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Solution</span><span class="op">$</span><span class="fu">render_include_results</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Solution</span><span class="op">$</span><span class="fu">render_weight_results</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -580,11 +590,11 @@ Available options are <code>"visible"</code>.</p></dd>
 <p><code><a href="https://rdrr.io/pkg/DT/man/datatable.html" class="external-link">DT::datatable()</a></code> object.</p>
 </div>
 
-</div><p></p><hr><a id="method-Solution-render_exclude_results"></a><div class="section">
-<h3 id="method-render-exclude-results-">Method <code>render_exclude_results()</code><a class="anchor" aria-label="anchor" href="#method-render-exclude-results-"></a></h3>
-<p>Render exclude results.</p><div class="section">
+</div><p></p><hr><a id="method-Solution-render_include_results"></a><div class="section">
+<h3 id="method-render-include-results-">Method <code>render_include_results()</code><a class="anchor" aria-label="anchor" href="#method-render-include-results-"></a></h3>
+<p>Render include results.</p><div class="section">
 <h4 id="usage-25">Usage<a class="anchor" aria-label="anchor" href="#usage-25"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Solution</span><span class="op">$</span><span class="fu">render_exclude_results</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Solution</span><span class="op">$</span><span class="fu">render_include_results</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -592,10 +602,22 @@ Available options are <code>"visible"</code>.</p></dd>
 <p><code><a href="https://rdrr.io/pkg/DT/man/datatable.html" class="external-link">DT::datatable()</a></code> object.</p>
 </div>
 
+</div><p></p><hr><a id="method-Solution-render_exclude_results"></a><div class="section">
+<h3 id="method-render-exclude-results-">Method <code>render_exclude_results()</code><a class="anchor" aria-label="anchor" href="#method-render-exclude-results-"></a></h3>
+<p>Render exclude results.</p><div class="section">
+<h4 id="usage-26">Usage<a class="anchor" aria-label="anchor" href="#usage-26"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Solution</span><span class="op">$</span><span class="fu">render_exclude_results</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+</div>
+
+<div class="section">
+<h4 id="returns-22">Returns<a class="anchor" aria-label="anchor" href="#returns-22"></a></h4>
+<p><code><a href="https://rdrr.io/pkg/DT/man/datatable.html" class="external-link">DT::datatable()</a></code> object.</p>
+</div>
+
 </div><p></p><hr><a id="method-Solution-set_setting"></a><div class="section">
 <h3 id="method-set-setting-">Method <code>set_setting()</code><a class="anchor" aria-label="anchor" href="#method-set-setting-"></a></h3>
 <p>Set setting.</p><div class="section">
-<h4 id="usage-26">Usage<a class="anchor" aria-label="anchor" href="#usage-26"></a></h4>
+<h4 id="usage-27">Usage<a class="anchor" aria-label="anchor" href="#usage-27"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Solution</span><span class="op">$</span><span class="fu">set_setting</span><span class="op">(</span><span class="va">name</span>, <span class="va">value</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -616,20 +638,8 @@ Available options are `"visible"“.</p></dd>
 </div><p></p><hr><a id="method-Solution-get_solution_results_widget_data"></a><div class="section">
 <h3 id="method-get-solution-results-widget-data-">Method <code>get_solution_results_widget_data()</code><a class="anchor" aria-label="anchor" href="#method-get-solution-results-widget-data-"></a></h3>
 <p>Get data for displaying the theme in a <code><a href="solutionResults-widget.html">solutionResults()</a></code> widget.</p><div class="section">
-<h4 id="usage-27">Usage<a class="anchor" aria-label="anchor" href="#usage-27"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Solution</span><span class="op">$</span><span class="fu">get_solution_results_widget_data</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
-</div>
-
-<div class="section">
-<h4 id="returns-22">Returns<a class="anchor" aria-label="anchor" href="#returns-22"></a></h4>
-<p><code>list</code> with widget data.</p>
-</div>
-
-</div><p></p><hr><a id="method-Solution-get_map_manager_widget_data"></a><div class="section">
-<h3 id="method-get-map-manager-widget-data-">Method <code>get_map_manager_widget_data()</code><a class="anchor" aria-label="anchor" href="#method-get-map-manager-widget-data-"></a></h3>
-<p>Get data for displaying the theme in a <code><a href="mapManager-widget.html">mapManager()</a></code> widget.</p><div class="section">
 <h4 id="usage-28">Usage<a class="anchor" aria-label="anchor" href="#usage-28"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Solution</span><span class="op">$</span><span class="fu">get_map_manager_widget_data</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Solution</span><span class="op">$</span><span class="fu">get_solution_results_widget_data</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -637,10 +647,22 @@ Available options are `"visible"“.</p></dd>
 <p><code>list</code> with widget data.</p>
 </div>
 
+</div><p></p><hr><a id="method-Solution-get_map_manager_widget_data"></a><div class="section">
+<h3 id="method-get-map-manager-widget-data-">Method <code>get_map_manager_widget_data()</code><a class="anchor" aria-label="anchor" href="#method-get-map-manager-widget-data-"></a></h3>
+<p>Get data for displaying the theme in a <code><a href="mapManager-widget.html">mapManager()</a></code> widget.</p><div class="section">
+<h4 id="usage-29">Usage<a class="anchor" aria-label="anchor" href="#usage-29"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Solution</span><span class="op">$</span><span class="fu">get_map_manager_widget_data</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+</div>
+
+<div class="section">
+<h4 id="returns-24">Returns<a class="anchor" aria-label="anchor" href="#returns-24"></a></h4>
+<p><code>list</code> with widget data.</p>
+</div>
+
 </div><p></p><hr><a id="method-Solution-render_on_map"></a><div class="section">
 <h3 id="method-render-on-map-">Method <code>render_on_map()</code><a class="anchor" aria-label="anchor" href="#method-render-on-map-"></a></h3>
 <p>Render on map.</p><div class="section">
-<h4 id="usage-29">Usage<a class="anchor" aria-label="anchor" href="#usage-29"></a></h4>
+<h4 id="usage-30">Usage<a class="anchor" aria-label="anchor" href="#usage-30"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Solution</span><span class="op">$</span><span class="fu">render_on_map</span><span class="op">(</span><span class="va">x</span>, <span class="va">zindex</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -657,14 +679,14 @@ Available options are `"visible"“.</p></dd>
 </dl><p></p></div>
 </div>
 <div class="section">
-<h4 id="returns-24">Returns<a class="anchor" aria-label="anchor" href="#returns-24"></a></h4>
+<h4 id="returns-25">Returns<a class="anchor" aria-label="anchor" href="#returns-25"></a></h4>
 <p><code><a href="https://rstudio.github.io/leaflet/reference/leaflet.html" class="external-link">leaflet::leaflet()</a></code> object.</p>
 </div>
 
 </div><p></p><hr><a id="method-Solution-update_on_map"></a><div class="section">
 <h3 id="method-update-on-map-">Method <code>update_on_map()</code><a class="anchor" aria-label="anchor" href="#method-update-on-map-"></a></h3>
 <p>Render on map.</p><div class="section">
-<h4 id="usage-30">Usage<a class="anchor" aria-label="anchor" href="#usage-30"></a></h4>
+<h4 id="usage-31">Usage<a class="anchor" aria-label="anchor" href="#usage-31"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Solution</span><span class="op">$</span><span class="fu">update_on_map</span><span class="op">(</span><span class="va">x</span>, <span class="va">zindex</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -681,14 +703,14 @@ Available options are `"visible"“.</p></dd>
 </dl><p></p></div>
 </div>
 <div class="section">
-<h4 id="returns-25">Returns<a class="anchor" aria-label="anchor" href="#returns-25"></a></h4>
+<h4 id="returns-26">Returns<a class="anchor" aria-label="anchor" href="#returns-26"></a></h4>
 <p><code><a href="https://rstudio.github.io/leaflet/reference/leafletProxy.html" class="external-link">leaflet::leafletProxy()</a></code> object.</p>
 </div>
 
 </div><p></p><hr><a id="method-Solution-clone"></a><div class="section">
 <h3 id="method-clone-">Method <code>clone()</code><a class="anchor" aria-label="anchor" href="#method-clone-"></a></h3>
 <p>The objects of this class are cloneable with this method.</p><div class="section">
-<h4 id="usage-31">Usage<a class="anchor" aria-label="anchor" href="#usage-31"></a></h4>
+<h4 id="usage-32">Usage<a class="anchor" aria-label="anchor" href="#usage-32"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Solution</span><span class="op">$</span><span class="fu">clone</span><span class="op">(</span>deep <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 

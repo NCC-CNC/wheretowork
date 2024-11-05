@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">wheretowork</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,6 +57,7 @@
 <span>  <span class="va">legend</span>,</span>
 <span>  id <span class="op">=</span> <span class="fu">uuid</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/uuid/man/UUIDgenerate.html" class="external-link">UUIDgenerate</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  hidden <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  downloadable <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  pane <span class="op">=</span> <span class="cn">NA_character_</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -111,6 +112,10 @@ Defaults to a random identifier (<code><a href="https://rdrr.io/pkg/uuid/man/UUI
 
 <dt id="arg-hidden">hidden<a class="anchor" aria-label="anchor" href="#arg-hidden"></a></dt>
 <dd><p><code>logical</code> should the solution be hidden from map?</p></dd>
+
+
+<dt id="arg-downloadable">downloadable<a class="anchor" aria-label="anchor" href="#arg-downloadable"></a></dt>
+<dd><p><code>logical</code> can the solution be downloaded?</p></dd>
 
 
 <dt id="arg-pane">pane<a class="anchor" aria-label="anchor" href="#arg-pane"></a></dt>
@@ -202,7 +207,8 @@ layer index.</p></dd>
 <span class="r-in"><span>    colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#00FFFF00"</span>, <span class="st">"#112233FF"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"not selected"</span>, <span class="st">"selected"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span>,</span></span>
-<span class="r-in"><span>  hidden <span class="op">=</span> <span class="cn">FALSE</span></span></span>
+<span class="r-in"><span>  hidden <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>  downloadable <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
