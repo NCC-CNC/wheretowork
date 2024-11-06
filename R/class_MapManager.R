@@ -90,7 +90,7 @@ MapManager <- R6::R6Class(
 
     #' @description
     #' Get layer names.
-    #' @param download_only get only layer names that are flagged as downloadable.
+    #' @param download_only Get only layer names that are flagged as downloadable.
     #' Available options are `TRUE` or `FALSE`. 
     #' @return `character` vector.
     get_layer_names = function(download_only) {
@@ -124,7 +124,7 @@ MapManager <- R6::R6Class(
     
     #' @description
     #' Get layer index values.
-    #' @param download_only get only layer indices that are flagged as downloadable.
+    #' @param download_only Get only layer indices that are flagged as downloadable.
     #' Available options are `TRUE` or `FALSE`.  
     #' @return `character` vector.
     get_layer_indices = function(download_only) {
