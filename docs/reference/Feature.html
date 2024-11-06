@@ -9,7 +9,7 @@ Feature class"></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">wheretowork</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -90,6 +90,10 @@ Feature class"></head><body>
 <dd><p><code>logical</code> value.</p></dd>
 
 
+<dt><code>downloadable</code></dt>
+<dd><p><code>logical</code> value.</p></dd>
+
+
 <dt><code>status</code></dt>
 <dd><p><code>logical</code> value.</p></dd>
 
@@ -129,7 +133,10 @@ Feature class"></head><body>
 <ul><li><p><a href="#method-Feature-new"><code>Feature$new()</code></a></p></li>
 <li><p><a href="#method-Feature-print"><code>Feature$print()</code></a></p></li>
 <li><p><a href="#method-Feature-repr"><code>Feature$repr()</code></a></p></li>
+<li><p><a href="#method-Feature-get_layer_name"><code>Feature$get_layer_name()</code></a></p></li>
+<li><p><a href="#method-Feature-get_layer_index"><code>Feature$get_layer_index()</code></a></p></li>
 <li><p><a href="#method-Feature-get_hidden"><code>Feature$get_hidden()</code></a></p></li>
+<li><p><a href="#method-Feature-get_downloadable"><code>Feature$get_downloadable()</code></a></p></li>
 <li><p><a href="#method-Feature-get_visible"><code>Feature$get_visible()</code></a></p></li>
 <li><p><a href="#method-Feature-get_invisible"><code>Feature$get_invisible()</code></a></p></li>
 <li><p><a href="#method-Feature-get_loaded"><code>Feature$get_loaded()</code></a></p></li>
@@ -159,6 +166,7 @@ Feature class"></head><body>
 <span>  <span class="va">invisible</span>,</span>
 <span>  <span class="va">loaded</span>,</span>
 <span>  <span class="va">hidden</span>,</span>
+<span>  <span class="va">downloadable</span>,</span>
 <span>  <span class="va">status</span>,</span>
 <span>  <span class="va">current</span>,</span>
 <span>  <span class="va">goal</span>,</span>
@@ -200,6 +208,10 @@ Feature class"></head><body>
 
 
 <dt><code>hidden</code></dt>
+<dd><p><code>logical</code> value.</p></dd>
+
+
+<dt><code>downloadable</code></dt>
 <dd><p><code>logical</code> value.</p></dd>
 
 
@@ -280,47 +292,47 @@ Defaults to <code>"]"</code>.</p></dd>
 <p><code>character</code> value.</p>
 </div>
 
-</div><p></p><hr><a id="method-Feature-get_hidden"></a><div class="section">
-<h3 id="method-get-hidden-">Method <code>get_hidden()</code><a class="anchor" aria-label="anchor" href="#method-get-hidden-"></a></h3>
-<p>Get hidden.</p><div class="section">
+</div><p></p><hr><a id="method-Feature-get_layer_name"></a><div class="section">
+<h3 id="method-get-layer-name-">Method <code>get_layer_name()</code><a class="anchor" aria-label="anchor" href="#method-get-layer-name-"></a></h3>
+<p>Get layer names.</p><div class="section">
 <h4 id="usage-3">Usage<a class="anchor" aria-label="anchor" href="#usage-3"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Feature</span><span class="op">$</span><span class="fu">get_hidden</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Feature</span><span class="op">$</span><span class="fu">get_layer_name</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
 <h4 id="returns-2">Returns<a class="anchor" aria-label="anchor" href="#returns-2"></a></h4>
-<p><code>logical</code> value.</p>
+<p><code>character</code> vector.</p>
 </div>
 
-</div><p></p><hr><a id="method-Feature-get_visible"></a><div class="section">
-<h3 id="method-get-visible-">Method <code>get_visible()</code><a class="anchor" aria-label="anchor" href="#method-get-visible-"></a></h3>
-<p>Get visible.</p><div class="section">
+</div><p></p><hr><a id="method-Feature-get_layer_index"></a><div class="section">
+<h3 id="method-get-layer-index-">Method <code>get_layer_index()</code><a class="anchor" aria-label="anchor" href="#method-get-layer-index-"></a></h3>
+<p>Get layer index values.</p><div class="section">
 <h4 id="usage-4">Usage<a class="anchor" aria-label="anchor" href="#usage-4"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Feature</span><span class="op">$</span><span class="fu">get_visible</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Feature</span><span class="op">$</span><span class="fu">get_layer_index</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
 <h4 id="returns-3">Returns<a class="anchor" aria-label="anchor" href="#returns-3"></a></h4>
-<p><code>logical</code> value.</p>
+<p><code>character</code> vector.</p>
 </div>
 
-</div><p></p><hr><a id="method-Feature-get_invisible"></a><div class="section">
-<h3 id="method-get-invisible-">Method <code>get_invisible()</code><a class="anchor" aria-label="anchor" href="#method-get-invisible-"></a></h3>
-<p>Get invisible.</p><div class="section">
+</div><p></p><hr><a id="method-Feature-get_hidden"></a><div class="section">
+<h3 id="method-get-hidden-">Method <code>get_hidden()</code><a class="anchor" aria-label="anchor" href="#method-get-hidden-"></a></h3>
+<p>Get hidden.</p><div class="section">
 <h4 id="usage-5">Usage<a class="anchor" aria-label="anchor" href="#usage-5"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Feature</span><span class="op">$</span><span class="fu">get_invisible</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Feature</span><span class="op">$</span><span class="fu">get_hidden</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
 <h4 id="returns-4">Returns<a class="anchor" aria-label="anchor" href="#returns-4"></a></h4>
-<p><code>numeric</code> date/time value.</p>
+<p><code>logical</code> value.</p>
 </div>
 
-</div><p></p><hr><a id="method-Feature-get_loaded"></a><div class="section">
-<h3 id="method-get-loaded-">Method <code>get_loaded()</code><a class="anchor" aria-label="anchor" href="#method-get-loaded-"></a></h3>
-<p>Get loaded.</p><div class="section">
+</div><p></p><hr><a id="method-Feature-get_downloadable"></a><div class="section">
+<h3 id="method-get-downloadable-">Method <code>get_downloadable()</code><a class="anchor" aria-label="anchor" href="#method-get-downloadable-"></a></h3>
+<p>Get downloadable.</p><div class="section">
 <h4 id="usage-6">Usage<a class="anchor" aria-label="anchor" href="#usage-6"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Feature</span><span class="op">$</span><span class="fu">get_loaded</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Feature</span><span class="op">$</span><span class="fu">get_downloadable</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -328,58 +340,94 @@ Defaults to <code>"]"</code>.</p></dd>
 <p><code>logical</code> value.</p>
 </div>
 
-</div><p></p><hr><a id="method-Feature-get_current"></a><div class="section">
-<h3 id="method-get-current-">Method <code>get_current()</code><a class="anchor" aria-label="anchor" href="#method-get-current-"></a></h3>
-<p>Get current (proportion) coverage.</p><div class="section">
+</div><p></p><hr><a id="method-Feature-get_visible"></a><div class="section">
+<h3 id="method-get-visible-">Method <code>get_visible()</code><a class="anchor" aria-label="anchor" href="#method-get-visible-"></a></h3>
+<p>Get visible.</p><div class="section">
 <h4 id="usage-7">Usage<a class="anchor" aria-label="anchor" href="#usage-7"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Feature</span><span class="op">$</span><span class="fu">get_current</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Feature</span><span class="op">$</span><span class="fu">get_visible</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
 <h4 id="returns-6">Returns<a class="anchor" aria-label="anchor" href="#returns-6"></a></h4>
+<p><code>logical</code> value.</p>
+</div>
+
+</div><p></p><hr><a id="method-Feature-get_invisible"></a><div class="section">
+<h3 id="method-get-invisible-">Method <code>get_invisible()</code><a class="anchor" aria-label="anchor" href="#method-get-invisible-"></a></h3>
+<p>Get invisible.</p><div class="section">
+<h4 id="usage-8">Usage<a class="anchor" aria-label="anchor" href="#usage-8"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Feature</span><span class="op">$</span><span class="fu">get_invisible</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+</div>
+
+<div class="section">
+<h4 id="returns-7">Returns<a class="anchor" aria-label="anchor" href="#returns-7"></a></h4>
+<p><code>numeric</code> date/time value.</p>
+</div>
+
+</div><p></p><hr><a id="method-Feature-get_loaded"></a><div class="section">
+<h3 id="method-get-loaded-">Method <code>get_loaded()</code><a class="anchor" aria-label="anchor" href="#method-get-loaded-"></a></h3>
+<p>Get loaded.</p><div class="section">
+<h4 id="usage-9">Usage<a class="anchor" aria-label="anchor" href="#usage-9"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Feature</span><span class="op">$</span><span class="fu">get_loaded</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+</div>
+
+<div class="section">
+<h4 id="returns-8">Returns<a class="anchor" aria-label="anchor" href="#returns-8"></a></h4>
+<p><code>logical</code> value.</p>
+</div>
+
+</div><p></p><hr><a id="method-Feature-get_current"></a><div class="section">
+<h3 id="method-get-current-">Method <code>get_current()</code><a class="anchor" aria-label="anchor" href="#method-get-current-"></a></h3>
+<p>Get current (proportion) coverage.</p><div class="section">
+<h4 id="usage-10">Usage<a class="anchor" aria-label="anchor" href="#usage-10"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Feature</span><span class="op">$</span><span class="fu">get_current</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+</div>
+
+<div class="section">
+<h4 id="returns-9">Returns<a class="anchor" aria-label="anchor" href="#returns-9"></a></h4>
 <p><code>numeric</code> value.</p>
 </div>
 
 </div><p></p><hr><a id="method-Feature-get_status"></a><div class="section">
 <h3 id="method-get-status-">Method <code>get_status()</code><a class="anchor" aria-label="anchor" href="#method-get-status-"></a></h3>
 <p>Get status.</p><div class="section">
-<h4 id="usage-8">Usage<a class="anchor" aria-label="anchor" href="#usage-8"></a></h4>
+<h4 id="usage-11">Usage<a class="anchor" aria-label="anchor" href="#usage-11"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Feature</span><span class="op">$</span><span class="fu">get_status</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
-<h4 id="returns-7">Returns<a class="anchor" aria-label="anchor" href="#returns-7"></a></h4>
+<h4 id="returns-10">Returns<a class="anchor" aria-label="anchor" href="#returns-10"></a></h4>
 <p><code>logical</code> value.</p>
 </div>
 
 </div><p></p><hr><a id="method-Feature-get_goal"></a><div class="section">
 <h3 id="method-get-goal-">Method <code>get_goal()</code><a class="anchor" aria-label="anchor" href="#method-get-goal-"></a></h3>
 <p>Get goal (proportion) coverage.</p><div class="section">
-<h4 id="usage-9">Usage<a class="anchor" aria-label="anchor" href="#usage-9"></a></h4>
+<h4 id="usage-12">Usage<a class="anchor" aria-label="anchor" href="#usage-12"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Feature</span><span class="op">$</span><span class="fu">get_goal</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
-<h4 id="returns-8">Returns<a class="anchor" aria-label="anchor" href="#returns-8"></a></h4>
+<h4 id="returns-11">Returns<a class="anchor" aria-label="anchor" href="#returns-11"></a></h4>
 <p><code>numeric</code> value.</p>
 </div>
 
 </div><p></p><hr><a id="method-Feature-get_data"></a><div class="section">
 <h3 id="method-get-data-">Method <code>get_data()</code><a class="anchor" aria-label="anchor" href="#method-get-data-"></a></h3>
 <p>Get the data.</p><div class="section">
-<h4 id="usage-10">Usage<a class="anchor" aria-label="anchor" href="#usage-10"></a></h4>
+<h4 id="usage-13">Usage<a class="anchor" aria-label="anchor" href="#usage-13"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Feature</span><span class="op">$</span><span class="fu">get_data</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
-<h4 id="returns-9">Returns<a class="anchor" aria-label="anchor" href="#returns-9"></a></h4>
+<h4 id="returns-12">Returns<a class="anchor" aria-label="anchor" href="#returns-12"></a></h4>
 <p><code><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">sf::st_as_sf()</a></code> or <code><a href="https://rspatial.github.io/terra/reference/rast.html" class="external-link">terra::rast()</a></code> object.</p>
 </div>
 
 </div><p></p><hr><a id="method-Feature-set_new_pane"></a><div class="section">
 <h3 id="method-set-new-pane-">Method <code>set_new_pane()</code><a class="anchor" aria-label="anchor" href="#method-set-new-pane-"></a></h3>
 <p>Set new pane.</p><div class="section">
-<h4 id="usage-11">Usage<a class="anchor" aria-label="anchor" href="#usage-11"></a></h4>
+<h4 id="usage-14">Usage<a class="anchor" aria-label="anchor" href="#usage-14"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Feature</span><span class="op">$</span><span class="fu">set_new_pane</span><span class="op">(</span><span class="va">id</span>, <span class="va">index</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -396,14 +444,14 @@ Defaults to <code>"]"</code>.</p></dd>
 </dl><p></p></div>
 </div>
 <div class="section">
-<h4 id="returns-10">Returns<a class="anchor" aria-label="anchor" href="#returns-10"></a></h4>
+<h4 id="returns-13">Returns<a class="anchor" aria-label="anchor" href="#returns-13"></a></h4>
 <p><code>character</code> value.</p>
 </div>
 
 </div><p></p><hr><a id="method-Feature-set_visible"></a><div class="section">
 <h3 id="method-set-visible-">Method <code>set_visible()</code><a class="anchor" aria-label="anchor" href="#method-set-visible-"></a></h3>
 <p>Set visible.</p><div class="section">
-<h4 id="usage-12">Usage<a class="anchor" aria-label="anchor" href="#usage-12"></a></h4>
+<h4 id="usage-15">Usage<a class="anchor" aria-label="anchor" href="#usage-15"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Feature</span><span class="op">$</span><span class="fu">set_visible</span><span class="op">(</span><span class="va">value</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -419,7 +467,7 @@ Defaults to <code>"]"</code>.</p></dd>
 </div><p></p><hr><a id="method-Feature-set_invisible"></a><div class="section">
 <h3 id="method-set-invisible-">Method <code>set_invisible()</code><a class="anchor" aria-label="anchor" href="#method-set-invisible-"></a></h3>
 <p>Set invisible.</p><div class="section">
-<h4 id="usage-13">Usage<a class="anchor" aria-label="anchor" href="#usage-13"></a></h4>
+<h4 id="usage-16">Usage<a class="anchor" aria-label="anchor" href="#usage-16"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Feature</span><span class="op">$</span><span class="fu">set_invisible</span><span class="op">(</span><span class="va">value</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -435,7 +483,7 @@ Defaults to <code>"]"</code>.</p></dd>
 </div><p></p><hr><a id="method-Feature-set_loaded"></a><div class="section">
 <h3 id="method-set-loaded-">Method <code>set_loaded()</code><a class="anchor" aria-label="anchor" href="#method-set-loaded-"></a></h3>
 <p>Set loaded.</p><div class="section">
-<h4 id="usage-14">Usage<a class="anchor" aria-label="anchor" href="#usage-14"></a></h4>
+<h4 id="usage-17">Usage<a class="anchor" aria-label="anchor" href="#usage-17"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Feature</span><span class="op">$</span><span class="fu">set_loaded</span><span class="op">(</span><span class="va">value</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -451,7 +499,7 @@ Defaults to <code>"]"</code>.</p></dd>
 </div><p></p><hr><a id="method-Feature-set_status"></a><div class="section">
 <h3 id="method-set-status-">Method <code>set_status()</code><a class="anchor" aria-label="anchor" href="#method-set-status-"></a></h3>
 <p>Set status.</p><div class="section">
-<h4 id="usage-15">Usage<a class="anchor" aria-label="anchor" href="#usage-15"></a></h4>
+<h4 id="usage-18">Usage<a class="anchor" aria-label="anchor" href="#usage-18"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Feature</span><span class="op">$</span><span class="fu">set_status</span><span class="op">(</span><span class="va">value</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -467,7 +515,7 @@ Defaults to <code>"]"</code>.</p></dd>
 </div><p></p><hr><a id="method-Feature-set_goal"></a><div class="section">
 <h3 id="method-set-goal-">Method <code>set_goal()</code><a class="anchor" aria-label="anchor" href="#method-set-goal-"></a></h3>
 <p>Set goal.</p><div class="section">
-<h4 id="usage-16">Usage<a class="anchor" aria-label="anchor" href="#usage-16"></a></h4>
+<h4 id="usage-19">Usage<a class="anchor" aria-label="anchor" href="#usage-19"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Feature</span><span class="op">$</span><span class="fu">set_goal</span><span class="op">(</span><span class="va">value</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -483,7 +531,7 @@ Defaults to <code>"]"</code>.</p></dd>
 </div><p></p><hr><a id="method-Feature-set_current"></a><div class="section">
 <h3 id="method-set-current-">Method <code>set_current()</code><a class="anchor" aria-label="anchor" href="#method-set-current-"></a></h3>
 <p>Set current.</p><div class="section">
-<h4 id="usage-17">Usage<a class="anchor" aria-label="anchor" href="#usage-17"></a></h4>
+<h4 id="usage-20">Usage<a class="anchor" aria-label="anchor" href="#usage-20"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Feature</span><span class="op">$</span><span class="fu">set_current</span><span class="op">(</span><span class="va">value</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -499,19 +547,19 @@ Defaults to <code>"]"</code>.</p></dd>
 </div><p></p><hr><a id="method-Feature-export"></a><div class="section">
 <h3 id="method-export-">Method <code>export()</code><a class="anchor" aria-label="anchor" href="#method-export-"></a></h3>
 <p>Export settings</p><div class="section">
-<h4 id="usage-18">Usage<a class="anchor" aria-label="anchor" href="#usage-18"></a></h4>
+<h4 id="usage-21">Usage<a class="anchor" aria-label="anchor" href="#usage-21"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Feature</span><span class="op">$</span><span class="fu">export</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
-<h4 id="returns-11">Returns<a class="anchor" aria-label="anchor" href="#returns-11"></a></h4>
+<h4 id="returns-14">Returns<a class="anchor" aria-label="anchor" href="#returns-14"></a></h4>
 <p><code>list</code> object.</p>
 </div>
 
 </div><p></p><hr><a id="method-Feature-clone"></a><div class="section">
 <h3 id="method-clone-">Method <code>clone()</code><a class="anchor" aria-label="anchor" href="#method-clone-"></a></h3>
 <p>The objects of this class are cloneable with this method.</p><div class="section">
-<h4 id="usage-19">Usage<a class="anchor" aria-label="anchor" href="#usage-19"></a></h4>
+<h4 id="usage-22">Usage<a class="anchor" aria-label="anchor" href="#usage-22"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Feature</span><span class="op">$</span><span class="fu">clone</span><span class="op">(</span>deep <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 

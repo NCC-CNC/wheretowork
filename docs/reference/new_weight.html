@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">wheretowork</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,6 +53,7 @@
 <span>  invisible <span class="op">=</span> <span class="cn">NA_real_</span>,</span>
 <span>  loaded <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  hidden <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  downloadable <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  status <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  current <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  factor <span class="op">=</span> <span class="fl">0</span>,</span>
@@ -100,6 +101,13 @@ This is used to determine if the feature can ever be displayed.
 Unlike <code>visible</code>, if this parameter is <code>FALSE</code> then a feature can never
 be viewed on the map.
 Defaults to <code>FALSE</code>.</p></dd>
+
+
+<dt id="arg-downloadable">downloadable<a class="anchor" aria-label="anchor" href="#arg-downloadable"></a></dt>
+<dd><p><code>logical</code> The downloadable value.
+This is used to determine if the feature can be download. Set downloadable
+to <code>FALSE</code> for sensitive layers that should not be avaiable for download.
+Defaults to <code>TRUE</code>.</p></dd>
 
 
 <dt id="arg-status">status<a class="anchor" aria-label="anchor" href="#arg-status"></a></dt>
@@ -163,15 +171,16 @@ layer index.</p></dd>
 <span class="r-in"><span><span class="co"># print object</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">w</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Weight</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   id:       e88334a5-dde2-4150-822f-feebe4c86af5</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   id:       e04965ad-1655-47b4-8cda-7db9f40a1431</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>   name:     NDVI</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>   variable: .../sim_raster_spatial.tif#Brown_necked_Parrot_Brown_necked_ [total: 483 ]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   pane:  9f5cd468-f84b-42cc-9a47-1ee9d4059d79-Brown_necked_Parrot_Brown_necked_</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   pane:  ab59d9f5-bd30-4846-98af-ae309fefbac4-Brown_necked_Parrot_Brown_necked_</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>   current:  0</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>   visible:  TRUE</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>   invisible:  NA</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>   loaded:  TRUE</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>   hidden:  FALSE</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   downloadable:  TRUE</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>   status:   TRUE</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>   factor:   0</span>
 </code></pre></div>

@@ -9,7 +9,7 @@ Map manager class"></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">wheretowork</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -208,9 +208,18 @@ objects.</p></dd>
 <h3 id="method-get-layer-names-">Method <code>get_layer_names()</code><a class="anchor" aria-label="anchor" href="#method-get-layer-names-"></a></h3>
 <p>Get layer names.</p><div class="section">
 <h4 id="usage-5">Usage<a class="anchor" aria-label="anchor" href="#usage-5"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">MapManager</span><span class="op">$</span><span class="fu">get_layer_names</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">MapManager</span><span class="op">$</span><span class="fu">get_layer_names</span><span class="op">(</span><span class="va">download_only</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
+<div class="section">
+<h4 id="arguments-3">Arguments<a class="anchor" aria-label="anchor" href="#arguments-3"></a></h4>
+<p></p><div class="arguments"><dl><dt><code>download_only</code></dt>
+<dd><p>get only layer names that are flagged as downloadable.
+Available options are <code>TRUE</code> or <code>FALSE</code>.</p></dd>
+
+
+</dl><p></p></div>
+</div>
 <div class="section">
 <h4 id="returns-3">Returns<a class="anchor" aria-label="anchor" href="#returns-3"></a></h4>
 <p><code>character</code> vector.</p>
@@ -220,9 +229,18 @@ objects.</p></dd>
 <h3 id="method-get-layer-indices-">Method <code>get_layer_indices()</code><a class="anchor" aria-label="anchor" href="#method-get-layer-indices-"></a></h3>
 <p>Get layer index values.</p><div class="section">
 <h4 id="usage-6">Usage<a class="anchor" aria-label="anchor" href="#usage-6"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">MapManager</span><span class="op">$</span><span class="fu">get_layer_indices</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">MapManager</span><span class="op">$</span><span class="fu">get_layer_indices</span><span class="op">(</span><span class="va">download_only</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
+<div class="section">
+<h4 id="arguments-4">Arguments<a class="anchor" aria-label="anchor" href="#arguments-4"></a></h4>
+<p></p><div class="arguments"><dl><dt><code>download_only</code></dt>
+<dd><p>get only layer indices that are flagged as downloadable.
+Available options are <code>TRUE</code> or <code>FALSE</code>.</p></dd>
+
+
+</dl><p></p></div>
+</div>
 <div class="section">
 <h4 id="returns-4">Returns<a class="anchor" aria-label="anchor" href="#returns-4"></a></h4>
 <p><code>character</code> vector.</p>
@@ -296,7 +314,7 @@ objects.</p></dd>
 </div>
 
 <div class="section">
-<h4 id="arguments-3">Arguments<a class="anchor" aria-label="anchor" href="#arguments-3"></a></h4>
+<h4 id="arguments-5">Arguments<a class="anchor" aria-label="anchor" href="#arguments-5"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>value</code></dt>
 <dd><p><code>list</code> with setting information (see Details section)</p></dd>
 
@@ -312,7 +330,7 @@ objects.</p></dd>
 </div>
 
 <div class="section">
-<h4 id="arguments-4">Arguments<a class="anchor" aria-label="anchor" href="#arguments-4"></a></h4>
+<h4 id="arguments-6">Arguments<a class="anchor" aria-label="anchor" href="#arguments-6"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>value</code></dt>
 <dd><p><code>logical</code> vector indicating if each layer is visible or not.</p></dd>
 
@@ -328,7 +346,7 @@ objects.</p></dd>
 </div>
 
 <div class="section">
-<h4 id="arguments-5">Arguments<a class="anchor" aria-label="anchor" href="#arguments-5"></a></h4>
+<h4 id="arguments-7">Arguments<a class="anchor" aria-label="anchor" href="#arguments-7"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>value</code></dt>
 <dd><p><code>logical</code> vector indicating if layers should be visible or
 not.</p></dd>
@@ -345,7 +363,7 @@ not.</p></dd>
 </div>
 
 <div class="section">
-<h4 id="arguments-6">Arguments<a class="anchor" aria-label="anchor" href="#arguments-6"></a></h4>
+<h4 id="arguments-8">Arguments<a class="anchor" aria-label="anchor" href="#arguments-8"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>value</code></dt>
 <dd><p><code>logical</code> vector indicating if layers are loaded or
 not.</p></dd>
@@ -362,7 +380,7 @@ not.</p></dd>
 </div>
 
 <div class="section">
-<h4 id="arguments-7">Arguments<a class="anchor" aria-label="anchor" href="#arguments-7"></a></h4>
+<h4 id="arguments-9">Arguments<a class="anchor" aria-label="anchor" href="#arguments-9"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>value</code></dt>
 <dd><p><code>list</code> with new setting information (see Details section)</p></dd>
 
@@ -378,7 +396,7 @@ not.</p></dd>
 </div>
 
 <div class="section">
-<h4 id="arguments-8">Arguments<a class="anchor" aria-label="anchor" href="#arguments-8"></a></h4>
+<h4 id="arguments-10">Arguments<a class="anchor" aria-label="anchor" href="#arguments-10"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>value</code></dt>
 <dd><p><code>Layer</code> object.</p></dd>
 
@@ -398,7 +416,7 @@ not.</p></dd>
 </div>
 
 <div class="section">
-<h4 id="arguments-9">Arguments<a class="anchor" aria-label="anchor" href="#arguments-9"></a></h4>
+<h4 id="arguments-11">Arguments<a class="anchor" aria-label="anchor" href="#arguments-11"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>value</code></dt>
 <dd><p><code>character</code> layer identifier.</p></dd>
 
@@ -466,7 +484,7 @@ not.</p></dd>
 </div>
 
 <div class="section">
-<h4 id="arguments-10">Arguments<a class="anchor" aria-label="anchor" href="#arguments-10"></a></h4>
+<h4 id="arguments-12">Arguments<a class="anchor" aria-label="anchor" href="#arguments-12"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>map</code></dt>
 <dd><p><a href="https://rstudio.github.io/leaflet/reference/leafletProxy.html" class="external-link">leaflet::leafletProxy</a> object.</p></dd>
 
@@ -482,7 +500,7 @@ not.</p></dd>
 </div>
 
 <div class="section">
-<h4 id="arguments-11">Arguments<a class="anchor" aria-label="anchor" href="#arguments-11"></a></h4>
+<h4 id="arguments-13">Arguments<a class="anchor" aria-label="anchor" href="#arguments-13"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>map</code></dt>
 <dd><p><code><a href="https://rstudio.github.io/leaflet/reference/leafletProxy.html" class="external-link">leaflet::leafletProxy()</a></code> object.</p></dd>
 
@@ -498,7 +516,7 @@ not.</p></dd>
 </div>
 
 <div class="section">
-<h4 id="arguments-12">Arguments<a class="anchor" aria-label="anchor" href="#arguments-12"></a></h4>
+<h4 id="arguments-14">Arguments<a class="anchor" aria-label="anchor" href="#arguments-14"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>map</code></dt>
 <dd><p><code><a href="https://rstudio.github.io/leaflet/reference/leafletProxy.html" class="external-link">leaflet::leafletProxy()</a></code> object.</p></dd>
 
@@ -514,7 +532,7 @@ not.</p></dd>
 </div>
 
 <div class="section">
-<h4 id="arguments-13">Arguments<a class="anchor" aria-label="anchor" href="#arguments-13"></a></h4>
+<h4 id="arguments-15">Arguments<a class="anchor" aria-label="anchor" href="#arguments-15"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>map</code></dt>
 <dd><p><code><a href="https://rstudio.github.io/leaflet/reference/leafletProxy.html" class="external-link">leaflet::leafletProxy()</a></code> object.</p></dd>
 
@@ -530,7 +548,7 @@ not.</p></dd>
 </div>
 
 <div class="section">
-<h4 id="arguments-14">Arguments<a class="anchor" aria-label="anchor" href="#arguments-14"></a></h4>
+<h4 id="arguments-16">Arguments<a class="anchor" aria-label="anchor" href="#arguments-16"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>deep</code></dt>
 <dd><p>Whether to make a deep clone.</p></dd>
 

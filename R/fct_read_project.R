@@ -182,6 +182,7 @@ read_project <- function(path,
             name = f$name,
             visible = f$visible,
             hidden = f$hidden,
+            downloadable = ifelse(!is.null(f$downloadable), f$downloadable, TRUE), # backwards compatible
             status = f$status,
             goal = f$goal,
             limit_goal = f$limit_goal,
@@ -241,6 +242,7 @@ read_project <- function(path,
         name = x$name,
         visible = x$visible,
         hidden = x$hidden,
+        downloadable = ifelse(!is.null(x$downloadable), x$downloadable, TRUE), # backwards compatible
         status = x$status,
         factor = x$factor,
         current = 0, # place-holder value, this is calculated later
@@ -314,6 +316,7 @@ read_project <- function(path,
         ),
         visible = x$visible,
         hidden =  x$hidden,
+        downloadable = ifelse(!is.null(x$downloadable), x$downloadable, TRUE), # backwards compatible
         status = x$status,
         mandatory = x$mandatory
       ),
@@ -384,6 +387,7 @@ read_project <- function(path,
         ),
         visible = x$visible,
         hidden =  x$hidden,
+        downloadable = ifelse(!is.null(x$downloadable), x$downloadable, TRUE), # backwards compatible
         status = FALSE, 
         mandatory = x$mandatory
       ),

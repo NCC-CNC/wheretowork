@@ -15,7 +15,8 @@ test_that("initialization", {
     hidden = TRUE,
     status = FALSE,
     id = "FID1",
-    overlap = NA_character_
+    overlap = NA_character_,
+    downloadable = TRUE
   )
   # run tests
   print(x)
@@ -30,6 +31,7 @@ test_that("initialization", {
   expect_identical(x$status, FALSE)
   expect_identical(x$id, "FID1")
   expect_identical(x$overlap, NA_character_)
+  expect_identical(x$downloadable, TRUE)
 })
 
 test_that("get methods", {
@@ -47,7 +49,8 @@ test_that("get methods", {
     hidden = FALSE,
     status = FALSE,
     id = "FID1",
-    overlap = NA_character_
+    overlap = NA_character_,
+    downloadable = TRUE
   )
   # run tests
   expect_identical(x$get_status(), FALSE)
@@ -56,6 +59,7 @@ test_that("get methods", {
   expect_identical(x$get_loaded(), TRUE)
   expect_identical(x$get_hidden(), FALSE)
   expect_identical(x$get_overlap(), NA_character_)
+  expect_identical(x$get_downloadable(), TRUE)
 })
 
 test_that("set methods", {
@@ -98,6 +102,7 @@ test_that("export method", {
     mandatory = TRUE,
     visible = FALSE,
     hidden = TRUE,
+    downloadable = TRUE,
     status = FALSE,
     id = "FID1",
     overlap = NA_character_
@@ -112,6 +117,7 @@ test_that("export method", {
       status = FALSE,
       visible = FALSE,
       hidden = TRUE,
+      downloadable = TRUE,
       overlap = NA_character_
     )
   )

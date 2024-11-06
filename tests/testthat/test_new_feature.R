@@ -16,7 +16,8 @@ test_that("initialization", {
     goal = 0.2,
     limit_goal = 0.2,
     current = 0.56,
-    id = "FID1"
+    id = "FID1",
+    downloadable = TRUE
   )
   # run tests
   print(x)
@@ -32,6 +33,7 @@ test_that("initialization", {
   expect_identical(x$limit_goal, 0.2)
   expect_identical(x$current, 0.56)
   expect_identical(x$id, "FID1")
+  expect_identical(x$downloadable, TRUE)
 })
 
 test_that("get methods", {
@@ -50,7 +52,8 @@ test_that("get methods", {
     goal = 0.2,
     limit_goal = 0.2,
     current = 0.56,
-    id = "FID1"
+    id = "FID1",
+    downloadable = TRUE
   )
   # run tests
   expect_identical(x$get_goal(), 0.2)
@@ -60,6 +63,7 @@ test_that("get methods", {
   expect_identical(x$get_invisible(), NA_real_)
   expect_identical(x$get_hidden(), FALSE)
   expect_identical(x$get_current(), 0.56)
+  expect_identical(x$get_downloadable(), TRUE)
 })
 
 test_that("set methods", {
@@ -106,6 +110,7 @@ test_that("export method", {
     variable = v,
     visible = FALSE,
     hidden = TRUE,
+    downloadable = TRUE,
     status = FALSE,
     goal = 0.2,
     limit_goal = 0.2,
@@ -120,6 +125,7 @@ test_that("export method", {
       status = FALSE,
       visible = FALSE,
       hidden = TRUE,
+      downloadable = TRUE,
       goal = 0.2,
       limit_goal = 0.2
     )

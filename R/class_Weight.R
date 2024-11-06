@@ -34,6 +34,9 @@ Weight <- R6::R6Class(
 
     #' @field hidden `logical` value.
     hidden = NA,
+    
+    #' @field downloadable `logical` value.
+    downloadable = NA,
 
     #' @field status `logical` value.
     status = NA,
@@ -63,6 +66,7 @@ Weight <- R6::R6Class(
     #' @param invisible `numeric` date/time value.
     #' @param loaded `logical` value.
     #' @param hidden `logical` value.
+    #' @param downloadable `logical` value.
     #' @param status `logical` value.
     #' @param current `logical` value.
     #' @param factor `numeric` initial factor value.
@@ -72,7 +76,7 @@ Weight <- R6::R6Class(
     #' @return A new Weight object.
     ## constructor
     initialize = function(id, name, variable, pane, visible, invisible, loaded, hidden, 
-                          status, current, factor, min_factor, max_factor, 
+                          downloadable, status, current, factor, min_factor, max_factor, 
                           step_factor) {
       ### assert that arguments are valid
       assertthat::assert_that(
@@ -98,6 +102,9 @@ Weight <- R6::R6Class(
         #### hidden
         assertthat::is.flag(hidden),
         assertthat::noNA(hidden),
+        #### downloadable
+        assertthat::is.flag(downloadable),
+        assertthat::noNA(downloadable),
         #### status
         assertthat::is.flag(status),
         assertthat::noNA(status),
@@ -133,6 +140,7 @@ Weight <- R6::R6Class(
       self$invisible <- invisible
       self$loaded <- visible # if layer is visible on init, load it
       self$hidden <- hidden
+      self$downloadable <- downloadable
       self$factor <- factor
       self$min_factor <- min_factor
       self$max_factor <- max_factor
@@ -153,6 +161,7 @@ Weight <- R6::R6Class(
       message("  invisible:  ", self$invisible)
       message("  loaded:  ", self$loaded)
       message("  hidden:  ", self$hidden)
+      message("  downloadable:  ", self$downloadable)
       message("  status:   ", self$status)
       message("  factor:   ", round(self$factor, 2))
       invisible(self)
@@ -229,6 +238,13 @@ Weight <- R6::R6Class(
     #' @return `logical` value.
     get_hidden = function() {
       self$hidden
+    },
+    
+    #' @description
+    #' Get downloadable.
+    #' @return `logical` value.
+    get_downloadable = function() {
+      self$downloadable
     },
 
     #' @description
@@ -443,6 +459,7 @@ Weight <- R6::R6Class(
         status = self$status,
         visible = self$visible,
         hidden = self$hidden,
+        downloadable = self$downloadable,
         factor = self$factor
       )
     },
@@ -514,7 +531,8 @@ new_weight <- function(
     visible = TRUE, 
     invisible = NA_real_, 
     loaded = TRUE, 
-    hidden = FALSE, 
+    hidden = FALSE,
+    downloadable = TRUE,
     status = TRUE,
     current = 0, 
     factor = 0,
@@ -533,6 +551,7 @@ new_weight <- function(
     invisible = invisible,
     loaded = loaded,
     hidden = hidden,
+    downloadable = downloadable,
     status = status,
     current = current,
     factor = factor,

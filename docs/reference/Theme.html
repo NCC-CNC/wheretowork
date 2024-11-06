@@ -9,7 +9,7 @@ Theme class"></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">wheretowork</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -98,6 +98,7 @@ Theme class"></head><body>
 <li><p><a href="#method-Theme-get_feature_invisible"><code>Theme$get_feature_invisible()</code></a></p></li>
 <li><p><a href="#method-Theme-get_feature_loaded"><code>Theme$get_feature_loaded()</code></a></p></li>
 <li><p><a href="#method-Theme-get_feature_hidden"><code>Theme$get_feature_hidden()</code></a></p></li>
+<li><p><a href="#method-Theme-get_feature_downloadable"><code>Theme$get_feature_downloadable()</code></a></p></li>
 <li><p><a href="#method-Theme-get_feature_status"><code>Theme$get_feature_status()</code></a></p></li>
 <li><p><a href="#method-Theme-get_feature_goal"><code>Theme$get_feature_goal()</code></a></p></li>
 <li><p><a href="#method-Theme-get_feature_order"><code>Theme$get_feature_order()</code></a></p></li>
@@ -339,11 +340,11 @@ Theme class"></head><body>
 <p><code>logical</code> vector with status value(s).</p>
 </div>
 
-</div><p></p><hr><a id="method-Theme-get_feature_status"></a><div class="section">
-<h3 id="method-get-feature-status-">Method <code>get_feature_status()</code><a class="anchor" aria-label="anchor" href="#method-get-feature-status-"></a></h3>
-<p>Get feature status values.</p><div class="section">
+</div><p></p><hr><a id="method-Theme-get_feature_downloadable"></a><div class="section">
+<h3 id="method-get-feature-downloadable-">Method <code>get_feature_downloadable()</code><a class="anchor" aria-label="anchor" href="#method-get-feature-downloadable-"></a></h3>
+<p>Get feature downloadable values.</p><div class="section">
 <h4 id="usage-16">Usage<a class="anchor" aria-label="anchor" href="#usage-16"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Theme</span><span class="op">$</span><span class="fu">get_feature_status</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Theme</span><span class="op">$</span><span class="fu">get_feature_downloadable</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -351,22 +352,34 @@ Theme class"></head><body>
 <p><code>logical</code> vector with status value(s).</p>
 </div>
 
-</div><p></p><hr><a id="method-Theme-get_feature_goal"></a><div class="section">
-<h3 id="method-get-feature-goal-">Method <code>get_feature_goal()</code><a class="anchor" aria-label="anchor" href="#method-get-feature-goal-"></a></h3>
-<p>Get feature goal values.</p><div class="section">
+</div><p></p><hr><a id="method-Theme-get_feature_status"></a><div class="section">
+<h3 id="method-get-feature-status-">Method <code>get_feature_status()</code><a class="anchor" aria-label="anchor" href="#method-get-feature-status-"></a></h3>
+<p>Get feature status values.</p><div class="section">
 <h4 id="usage-17">Usage<a class="anchor" aria-label="anchor" href="#usage-17"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Theme</span><span class="op">$</span><span class="fu">get_feature_goal</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Theme</span><span class="op">$</span><span class="fu">get_feature_status</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
 <h4 id="returns-16">Returns<a class="anchor" aria-label="anchor" href="#returns-16"></a></h4>
+<p><code>logical</code> vector with status value(s).</p>
+</div>
+
+</div><p></p><hr><a id="method-Theme-get_feature_goal"></a><div class="section">
+<h3 id="method-get-feature-goal-">Method <code>get_feature_goal()</code><a class="anchor" aria-label="anchor" href="#method-get-feature-goal-"></a></h3>
+<p>Get feature goal values.</p><div class="section">
+<h4 id="usage-18">Usage<a class="anchor" aria-label="anchor" href="#usage-18"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Theme</span><span class="op">$</span><span class="fu">get_feature_goal</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+</div>
+
+<div class="section">
+<h4 id="returns-17">Returns<a class="anchor" aria-label="anchor" href="#returns-17"></a></h4>
 <p><code>numeric</code> vector with goal value(s).</p>
 </div>
 
 </div><p></p><hr><a id="method-Theme-get_feature_order"></a><div class="section">
 <h3 id="method-get-feature-order-">Method <code>get_feature_order()</code><a class="anchor" aria-label="anchor" href="#method-get-feature-order-"></a></h3>
 <p>Set relative order for displaying features on a map.</p><div class="section">
-<h4 id="usage-18">Usage<a class="anchor" aria-label="anchor" href="#usage-18"></a></h4>
+<h4 id="usage-19">Usage<a class="anchor" aria-label="anchor" href="#usage-19"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Theme</span><span class="op">$</span><span class="fu">get_feature_order</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -374,7 +387,7 @@ Theme class"></head><body>
 </div><p></p><hr><a id="method-Theme-set_feature_order"></a><div class="section">
 <h3 id="method-set-feature-order-">Method <code>set_feature_order()</code><a class="anchor" aria-label="anchor" href="#method-set-feature-order-"></a></h3>
 <p>Set relative order for displaying features on a map.</p><div class="section">
-<h4 id="usage-19">Usage<a class="anchor" aria-label="anchor" href="#usage-19"></a></h4>
+<h4 id="usage-20">Usage<a class="anchor" aria-label="anchor" href="#usage-20"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Theme</span><span class="op">$</span><span class="fu">set_feature_order</span><span class="op">(</span><span class="va">value</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -390,7 +403,7 @@ Theme class"></head><body>
 </div><p></p><hr><a id="method-Theme-get_setting"></a><div class="section">
 <h3 id="method-get-setting-">Method <code>get_setting()</code><a class="anchor" aria-label="anchor" href="#method-get-setting-"></a></h3>
 <p>Get setting.</p><div class="section">
-<h4 id="usage-20">Usage<a class="anchor" aria-label="anchor" href="#usage-20"></a></h4>
+<h4 id="usage-21">Usage<a class="anchor" aria-label="anchor" href="#usage-21"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Theme</span><span class="op">$</span><span class="fu">get_setting</span><span class="op">(</span><span class="va">name</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -405,14 +418,14 @@ Available options are <code>"feature_status"</code>, <code>"feature_goal"</code>
 </dl><p></p></div>
 </div>
 <div class="section">
-<h4 id="returns-17">Returns<a class="anchor" aria-label="anchor" href="#returns-17"></a></h4>
+<h4 id="returns-18">Returns<a class="anchor" aria-label="anchor" href="#returns-18"></a></h4>
 <p>Value.</p>
 </div>
 
 </div><p></p><hr><a id="method-Theme-set_visible"></a><div class="section">
 <h3 id="method-set-visible-">Method <code>set_visible()</code><a class="anchor" aria-label="anchor" href="#method-set-visible-"></a></h3>
 <p>Set visible value for all features.</p><div class="section">
-<h4 id="usage-21">Usage<a class="anchor" aria-label="anchor" href="#usage-21"></a></h4>
+<h4 id="usage-22">Usage<a class="anchor" aria-label="anchor" href="#usage-22"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Theme</span><span class="op">$</span><span class="fu">set_visible</span><span class="op">(</span><span class="va">value</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -428,7 +441,7 @@ Available options are <code>"feature_status"</code>, <code>"feature_goal"</code>
 </div><p></p><hr><a id="method-Theme-set_feature_visible"></a><div class="section">
 <h3 id="method-set-feature-visible-">Method <code>set_feature_visible()</code><a class="anchor" aria-label="anchor" href="#method-set-feature-visible-"></a></h3>
 <p>Set feature visible values.</p><div class="section">
-<h4 id="usage-22">Usage<a class="anchor" aria-label="anchor" href="#usage-22"></a></h4>
+<h4 id="usage-23">Usage<a class="anchor" aria-label="anchor" href="#usage-23"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Theme</span><span class="op">$</span><span class="fu">set_feature_visible</span><span class="op">(</span><span class="va">value</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -445,7 +458,7 @@ A <code>list</code> of <code>logical</code> values can also be supplied.</p></dd
 </div><p></p><hr><a id="method-Theme-set_feature_status"></a><div class="section">
 <h3 id="method-set-feature-status-">Method <code>set_feature_status()</code><a class="anchor" aria-label="anchor" href="#method-set-feature-status-"></a></h3>
 <p>Set feature status values.</p><div class="section">
-<h4 id="usage-23">Usage<a class="anchor" aria-label="anchor" href="#usage-23"></a></h4>
+<h4 id="usage-24">Usage<a class="anchor" aria-label="anchor" href="#usage-24"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Theme</span><span class="op">$</span><span class="fu">set_feature_status</span><span class="op">(</span><span class="va">value</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -462,7 +475,7 @@ A <code>list</code> of <code>logical</code> values can also be supplied.</p></dd
 </div><p></p><hr><a id="method-Theme-set_feature_goal"></a><div class="section">
 <h3 id="method-set-feature-goal-">Method <code>set_feature_goal()</code><a class="anchor" aria-label="anchor" href="#method-set-feature-goal-"></a></h3>
 <p>Set feature goal values.</p><div class="section">
-<h4 id="usage-24">Usage<a class="anchor" aria-label="anchor" href="#usage-24"></a></h4>
+<h4 id="usage-25">Usage<a class="anchor" aria-label="anchor" href="#usage-25"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Theme</span><span class="op">$</span><span class="fu">set_feature_goal</span><span class="op">(</span><span class="va">value</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -479,7 +492,7 @@ A <code>list</code> of <code>numeric</code> values can also be supplied.</p></dd
 </div><p></p><hr><a id="method-Theme-set_feature_current"></a><div class="section">
 <h3 id="method-set-feature-current-">Method <code>set_feature_current()</code><a class="anchor" aria-label="anchor" href="#method-set-feature-current-"></a></h3>
 <p>Set feature current values.</p><div class="section">
-<h4 id="usage-25">Usage<a class="anchor" aria-label="anchor" href="#usage-25"></a></h4>
+<h4 id="usage-26">Usage<a class="anchor" aria-label="anchor" href="#usage-26"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Theme</span><span class="op">$</span><span class="fu">set_feature_current</span><span class="op">(</span><span class="va">value</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -496,7 +509,7 @@ A <code>list</code> of <code>numeric</code> values can also be supplied.</p></dd
 </div><p></p><hr><a id="method-Theme-set_setting"></a><div class="section">
 <h3 id="method-set-setting-">Method <code>set_setting()</code><a class="anchor" aria-label="anchor" href="#method-set-setting-"></a></h3>
 <p>Set setting.</p><div class="section">
-<h4 id="usage-26">Usage<a class="anchor" aria-label="anchor" href="#usage-26"></a></h4>
+<h4 id="usage-27">Usage<a class="anchor" aria-label="anchor" href="#usage-27"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Theme</span><span class="op">$</span><span class="fu">set_setting</span><span class="op">(</span><span class="va">name</span>, <span class="va">value</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -519,20 +532,8 @@ or <code>"feature_current"</code>.</p></dd>
 </div><p></p><hr><a id="method-Theme-get_solution_settings_widget_data"></a><div class="section">
 <h3 id="method-get-solution-settings-widget-data-">Method <code>get_solution_settings_widget_data()</code><a class="anchor" aria-label="anchor" href="#method-get-solution-settings-widget-data-"></a></h3>
 <p>Get data for displaying the theme in a <code><a href="solutionSettings-widget.html">solutionSettings()</a></code> widget.</p><div class="section">
-<h4 id="usage-27">Usage<a class="anchor" aria-label="anchor" href="#usage-27"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Theme</span><span class="op">$</span><span class="fu">get_solution_settings_widget_data</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
-</div>
-
-<div class="section">
-<h4 id="returns-18">Returns<a class="anchor" aria-label="anchor" href="#returns-18"></a></h4>
-<p><code>list</code> with widget data.</p>
-</div>
-
-</div><p></p><hr><a id="method-Theme-get_map_manager_widget_data"></a><div class="section">
-<h3 id="method-get-map-manager-widget-data-">Method <code>get_map_manager_widget_data()</code><a class="anchor" aria-label="anchor" href="#method-get-map-manager-widget-data-"></a></h3>
-<p>Get data for displaying the theme in a <code><a href="mapManager-widget.html">mapManager()</a></code> widget.</p><div class="section">
 <h4 id="usage-28">Usage<a class="anchor" aria-label="anchor" href="#usage-28"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Theme</span><span class="op">$</span><span class="fu">get_map_manager_widget_data</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Theme</span><span class="op">$</span><span class="fu">get_solution_settings_widget_data</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -540,10 +541,22 @@ or <code>"feature_current"</code>.</p></dd>
 <p><code>list</code> with widget data.</p>
 </div>
 
+</div><p></p><hr><a id="method-Theme-get_map_manager_widget_data"></a><div class="section">
+<h3 id="method-get-map-manager-widget-data-">Method <code>get_map_manager_widget_data()</code><a class="anchor" aria-label="anchor" href="#method-get-map-manager-widget-data-"></a></h3>
+<p>Get data for displaying the theme in a <code><a href="mapManager-widget.html">mapManager()</a></code> widget.</p><div class="section">
+<h4 id="usage-29">Usage<a class="anchor" aria-label="anchor" href="#usage-29"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Theme</span><span class="op">$</span><span class="fu">get_map_manager_widget_data</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+</div>
+
+<div class="section">
+<h4 id="returns-20">Returns<a class="anchor" aria-label="anchor" href="#returns-20"></a></h4>
+<p><code>list</code> with widget data.</p>
+</div>
+
 </div><p></p><hr><a id="method-Theme-render_on_map"></a><div class="section">
 <h3 id="method-render-on-map-">Method <code>render_on_map()</code><a class="anchor" aria-label="anchor" href="#method-render-on-map-"></a></h3>
 <p>Render on map.</p><div class="section">
-<h4 id="usage-29">Usage<a class="anchor" aria-label="anchor" href="#usage-29"></a></h4>
+<h4 id="usage-30">Usage<a class="anchor" aria-label="anchor" href="#usage-30"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Theme</span><span class="op">$</span><span class="fu">render_on_map</span><span class="op">(</span><span class="va">x</span>, <span class="va">zindex</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -560,14 +573,14 @@ or <code>"feature_current"</code>.</p></dd>
 </dl><p></p></div>
 </div>
 <div class="section">
-<h4 id="returns-20">Returns<a class="anchor" aria-label="anchor" href="#returns-20"></a></h4>
+<h4 id="returns-21">Returns<a class="anchor" aria-label="anchor" href="#returns-21"></a></h4>
 <p><code><a href="https://rstudio.github.io/leaflet/reference/leaflet.html" class="external-link">leaflet::leaflet()</a></code> object.</p>
 </div>
 
 </div><p></p><hr><a id="method-Theme-update_on_map"></a><div class="section">
 <h3 id="method-update-on-map-">Method <code>update_on_map()</code><a class="anchor" aria-label="anchor" href="#method-update-on-map-"></a></h3>
 <p>Render on map.</p><div class="section">
-<h4 id="usage-30">Usage<a class="anchor" aria-label="anchor" href="#usage-30"></a></h4>
+<h4 id="usage-31">Usage<a class="anchor" aria-label="anchor" href="#usage-31"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Theme</span><span class="op">$</span><span class="fu">update_on_map</span><span class="op">(</span><span class="va">x</span>, <span class="va">zindex</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -584,26 +597,26 @@ or <code>"feature_current"</code>.</p></dd>
 </dl><p></p></div>
 </div>
 <div class="section">
-<h4 id="returns-21">Returns<a class="anchor" aria-label="anchor" href="#returns-21"></a></h4>
+<h4 id="returns-22">Returns<a class="anchor" aria-label="anchor" href="#returns-22"></a></h4>
 <p><code><a href="https://rstudio.github.io/leaflet/reference/leafletProxy.html" class="external-link">leaflet::leafletProxy()</a></code> object.</p>
 </div>
 
 </div><p></p><hr><a id="method-Theme-export"></a><div class="section">
 <h3 id="method-export-">Method <code>export()</code><a class="anchor" aria-label="anchor" href="#method-export-"></a></h3>
 <p>Export settings</p><div class="section">
-<h4 id="usage-31">Usage<a class="anchor" aria-label="anchor" href="#usage-31"></a></h4>
+<h4 id="usage-32">Usage<a class="anchor" aria-label="anchor" href="#usage-32"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Theme</span><span class="op">$</span><span class="fu">export</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
-<h4 id="returns-22">Returns<a class="anchor" aria-label="anchor" href="#returns-22"></a></h4>
+<h4 id="returns-23">Returns<a class="anchor" aria-label="anchor" href="#returns-23"></a></h4>
 <p><code>list</code> object.</p>
 </div>
 
 </div><p></p><hr><a id="method-Theme-clone"></a><div class="section">
 <h3 id="method-clone-">Method <code>clone()</code><a class="anchor" aria-label="anchor" href="#method-clone-"></a></h3>
 <p>The objects of this class are cloneable with this method.</p><div class="section">
-<h4 id="usage-32">Usage<a class="anchor" aria-label="anchor" href="#usage-32"></a></h4>
+<h4 id="usage-33">Usage<a class="anchor" aria-label="anchor" href="#usage-33"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Theme</span><span class="op">$</span><span class="fu">clone</span><span class="op">(</span>deep <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 

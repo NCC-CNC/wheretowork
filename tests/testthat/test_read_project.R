@@ -13,6 +13,8 @@ test_that("SpatRaster (standard boundary format, continuous)", {
   sim_weights[[1]]$name <- "fake_fake_weight_"
   sim_includes[[2]]$name <- "fake_fake_include_"
   sim_excludes[[2]]$name <- "fake_fake_exclude_"
+  sim_excludes[[1]]$downloadable <- FALSE
+  sim_excludes[[2]]$downloadable <- FALSE
   # compile layers
   sim_layers <- append(append(sim_themes, append(sim_weights, sim_includes)), sim_excludes)
   # manually calculate current amount held
@@ -69,6 +71,7 @@ test_that("SpatRaster (standard boundary format, continuous)", {
   for (i in seq_along(x$excludes)) {
     x$excludes[[i]]$id <- sim_excludes[[i]]$id
     x$excludes[[i]]$pane <- sim_excludes[[i]]$pane
+    x$excludes[[i]]$downloadable <- FALSE 
   }  
   # run tests
   expect_equal(x$themes, sim_themes)
@@ -77,6 +80,40 @@ test_that("SpatRaster (standard boundary format, continuous)", {
   expect_equal(x$excludes, sim_excludes)
   expect_equal(x$name, "test")
   expect_equal(x$mode, "beginner")
+  ## attributes: excludes
+  for (i in seq_along(x$excludes)) {
+    expect_equal(x$excludes[[i]]$downloadable, FALSE)
+    expect_equal(x$excludes[[i]]$hidden, FALSE)
+    expect_equal(x$excludes[[i]]$loaded, TRUE)
+    expect_equal(x$excludes[[i]]$visible, TRUE)
+    expect_equal(x$excludes[[i]]$status, FALSE)
+  }
+  ## attributes: includes
+  for (i in seq_along(x$includes)) {
+    expect_equal(x$includes[[i]]$downloadable, TRUE)
+    expect_equal(x$includes[[i]]$hidden, FALSE)
+    expect_equal(x$includes[[i]]$loaded, TRUE)
+    expect_equal(x$includes[[i]]$visible, TRUE)
+    expect_equal(x$includes[[i]]$status, TRUE)
+  }
+  ## attributes: weights
+  for (i in seq_along(x$weights)) {
+    expect_equal(x$weights[[i]]$downloadable, TRUE)
+    expect_equal(x$weights[[i]]$hidden, FALSE)
+    expect_equal(x$weights[[i]]$loaded, TRUE)
+    expect_equal(x$weights[[i]]$visible, TRUE)
+    expect_equal(x$weights[[i]]$status, TRUE)
+  }
+  ## attributes: themes
+  for (i in seq_along(x$themes)) {
+    for (j in seq_along(x$themes[[i]]$feature)) {
+      expect_equal(x$themes[[i]]$feature[[j]]$downloadable, TRUE)
+      expect_equal(x$themes[[i]]$feature[[j]]$hidden, FALSE)
+      expect_equal(x$themes[[i]]$feature[[j]]$loaded, TRUE)
+      expect_equal(x$themes[[i]]$feature[[j]]$visible, TRUE)
+      expect_equal(x$themes[[i]]$feature[[j]]$status, TRUE)
+    }
+  }  
 })
 
 test_that("SpatRaster (standard boundary format, categorical, manual legend)", {
@@ -554,13 +591,13 @@ test_that("contact details", {
     f1, f2, f3, f4,
     mode = "beginner",
     author_name = "Greg_McGregerson",
-    author_email = "greg.mcgregerson@supergreg.greg"
+    author_email = "greg_mcgregerson@supergreg_greg"
   )
   # import data
   x <- read_project(f1, f2, f3, f4)
   # tests
   expect_equal(x$author_name, "Greg_McGregerson")
-  expect_equal(x$author_email, "greg.mcgregerson@supergreg.greg")
+  expect_equal(x$author_email, "greg_mcgregerson@supergreg_greg")
 })
 
 test_that("provenance", {
@@ -592,7 +629,7 @@ test_that("provenance", {
     f1, f2, f3, f4,
     mode = "beginner",
     author_name = "Greg_McGregerson",
-    author_email = "greg.mcgregerson@supergreg.greg"
+    author_email = "greg_mcgregerson@supergreg_greg"
   )
   # import data
   x <- read_project(f1, f2, f3, f4)

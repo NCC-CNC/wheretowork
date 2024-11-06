@@ -338,8 +338,8 @@ server_generate_new_solution <- quote({
       session = session,
       inputId = "exportPane_fields",
       choices = stats::setNames(
-        app_data$mm$get_layer_indices(),
-        app_data$mm$get_layer_names()
+        app_data$mm$get_layer_indices(download_only = TRUE),
+        app_data$mm$get_layer_names(download_only = TRUE)
       )
     )
 

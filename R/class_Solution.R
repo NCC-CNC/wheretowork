@@ -50,7 +50,10 @@ Solution <- R6::R6Class(
     exclude_results = NULL,    
     
     #' @field hidden `logical` value.
-    hidden = NA,    
+    hidden = NA,   
+    
+    #' @field downloadable `logical` value.
+    downloadable = NA,  
 
     #' @description
     #' Create a Solution object.
@@ -68,6 +71,7 @@ Solution <- R6::R6Class(
     #' @param include_results `list` of [IncludeResults] objects.
     #' @param exclude_results `list` of [ExcludeResults] objects.
     #' @param hidden `logical` value.
+    #' @param downloadable `logical` value.
     #' @return A new Solution object.
     initialize = function(id, name, variable, pane, visible, invisible, loaded,
                           statistics,
@@ -76,7 +80,8 @@ Solution <- R6::R6Class(
                           weight_results,
                           include_results,
                           exclude_results,
-                          hidden) {
+                          hidden,
+                          downloadable) {
       # assert arguments are valid
       assertthat::assert_that(
         #### id
@@ -118,7 +123,10 @@ Solution <- R6::R6Class(
         all_list_elements_inherit(exclude_results, "ExcludeResults"),        
         #### hidden
         assertthat::is.flag(hidden),
-        assertthat::noNA(hidden)
+        assertthat::noNA(hidden),
+        #### downloadable
+        assertthat::is.flag(downloadable),
+        assertthat::noNA(downloadable)
       )
       # assign fields
       self$id <- id
@@ -135,6 +143,7 @@ Solution <- R6::R6Class(
       self$include_results <- include_results
       self$exclude_results <- exclude_results
       self$hidden <- hidden
+      self$downloadable <- downloadable
     },
 
     #' @description
@@ -231,7 +240,14 @@ Solution <- R6::R6Class(
     #' @return `logical` value.
     get_hidden = function() {
       self$hidden
-    },    
+    }, 
+    
+    #' @description
+    #' Get downloadable.
+    #' @return `logical` value.
+    get_downloadable = function() {
+      self$downloadable
+    },   
 
     #' @description
     #' Get setting.
@@ -1001,6 +1017,8 @@ Solution <- R6::R6Class(
 #'
 #' @param hidden `logical` should the solution be hidden from map?
 #' 
+#' @param downloadable `logical` can the solution be downloaded?
+#' 
 #' @param pane `character` unique map pane identifier.
 #'   Defaults to a random identifier ([uuid::UUIDgenerate()]) concatenated with
 #'   layer index.
@@ -1060,7 +1078,8 @@ Solution <- R6::R6Class(
 #'   include_results = list(),
 #'   exclude_results = list(),
 #'   id = "solution1",
-#'   hidden = FALSE
+#'   hidden = FALSE,
+#'   downloadable = TRUE
 #' )
 #'
 #' @export
@@ -1077,6 +1096,7 @@ new_solution <- function(name,
                          exclude_results,
                          id = uuid::UUIDgenerate(),
                          hidden = FALSE,
+                         downloadable = TRUE,
                          pane = paste(
                            uuid::UUIDgenerate(), 
                            variable$index, sep = "-"
@@ -1096,7 +1116,8 @@ new_solution <- function(name,
     include_results = include_results,
     exclude_results = exclude_results,    
     id = id,
-    hidden = hidden
+    hidden = hidden,
+    downloadable = downloadable
   )
 }
 
@@ -1115,6 +1136,8 @@ new_solution <- function(name,
 #' @param legend [ManualLegend] object.
 #'
 #' @param hidden `logical` should the solution be hidden from map?
+#' 
+#' @param downloadable `logical` can the solution be downloaded?
 #' 
 #' @param pane `character` unique map pane identifier.
 #'   Defaults to a random identifier ([uuid::UUIDgenerate()]) concatenated with
@@ -1199,7 +1222,8 @@ new_solution <- function(name,
 #'     colors = c("#00FFFF00", "#112233FF"),
 #'     labels = c("not selected", "selected")
 #'   ),
-#'   hidden = FALSE
+#'   hidden = FALSE,
+#'   downloadable = TRUE
 #' )
 #'
 #' @export
@@ -1213,6 +1237,7 @@ new_solution_from_result <- function(name,
                                      legend, 
                                      id = uuid::UUIDgenerate(), 
                                      hidden = FALSE,
+                                     downloadable = TRUE,
                                      pane = NA_character_
                                   ) {
   # assert arguments are valid
@@ -1236,7 +1261,10 @@ new_solution_from_result <- function(name,
     assertthat::noNA(id),
     #### hidden
     assertthat::is.flag(hidden),
-    assertthat::noNA(hidden)
+    assertthat::noNA(hidden),
+    #### downloadable
+    assertthat::is.flag(downloadable),
+    assertthat::noNA(downloadable)
   )
 
   # calculate statistics
@@ -1392,7 +1420,7 @@ new_solution_from_result <- function(name,
     include_results = include_results,
     exclude_results = exclude_results,
     id = id,
-    hidden = hidden
+    hidden = hidden,
+    downloadable = downloadable
   )
-
 }

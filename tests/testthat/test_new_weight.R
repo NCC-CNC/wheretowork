@@ -12,7 +12,8 @@ test_that("initialization", {
     status = FALSE,
     factor = -0.2,
     current = 0.89,
-    id = "FID1"
+    id = "FID1",
+    downloadable = TRUE
   )
   # run tests
   print(x)
@@ -27,6 +28,7 @@ test_that("initialization", {
   expect_equal(x$status, FALSE)
   expect_equal(x$current, 0.89)
   expect_equal(x$factor, -0.2)
+  expect_equal(x$downloadable, TRUE)
 })
 
 test_that("get methods", {
@@ -41,7 +43,8 @@ test_that("get methods", {
     status = FALSE,
     current = 0.89,
     factor = -0.2,
-    id = "FID1"
+    id = "FID1",
+    downloadable = TRUE
   )
   # run tests
   expect_identical(x$get_factor(), -0.2)
@@ -54,6 +57,7 @@ test_that("get methods", {
   expect_identical(x$get_setting("factor"), x$get_factor())
   expect_identical(x$get_setting("status"), x$get_status())
   expect_identical(x$get_setting("current"), x$get_current())
+  expect_identical(x$get_downloadable(), TRUE)
 })
 
 test_that("set methods", {
@@ -101,6 +105,7 @@ test_that("export method", {
     variable = v,
     visible = TRUE,
     hidden = FALSE,
+    downloadable = TRUE,
     status = FALSE,
     current = 0.89,
     factor = -0.2,
@@ -115,6 +120,7 @@ test_that("export method", {
       status = FALSE,
       visible = TRUE,
       hidden = FALSE,
+      downloadable = TRUE,
       factor = -0.2
     )
   )

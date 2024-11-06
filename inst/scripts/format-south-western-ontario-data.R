@@ -81,6 +81,7 @@ theme_legend <- metadata$Legend[metadata$Type == "theme"]
 theme_labels <- metadata$Labels[metadata$Type == "theme"]
 theme_values <- metadata$Values[metadata$Type == "theme"]
 theme_goals <- metadata$Goal[metadata$Type == "theme"]
+theme_downloadble <- metadata$Downloadable[metadata$Type == "theme"]
 
 ## Prepare weight inputs ----
 weight_data <- raster_data[[which(metadata$Type == "weight")]]
@@ -94,6 +95,7 @@ weight_provenance <- metadata$Provenance[metadata$Type == "weight"]
 weight_legend <- metadata$Legend[metadata$Type == "weight"]
 weight_labels <- metadata$Labels[metadata$Type == "weight"]
 weight_values <- metadata$Values[metadata$Type == "weight"]
+weight_downloadble <- metadata$Downloadable[metadata$Type == "weight"]
 
 ## Prepare include inputs ----
 include_data <- raster_data[[which(metadata$Type == "include")]]
@@ -106,6 +108,7 @@ include_provenance <- metadata$Provenance[metadata$Type == "include"]
 include_legend <- metadata$Legend[metadata$Type == "include"]
 include_labels <- metadata$Labels[metadata$Type == "include"]
 include_hidden <- metadata$Hidden[metadata$Type == "include"]
+include_downloadble <- metadata$Downloadable[metadata$Type == "include"]
 
 ## Prepare exclude inputs ----
 exclude_data <- raster_data[[which(metadata$Type == "exclude")]]
@@ -118,6 +121,7 @@ exclude_provenance <- metadata$Provenance[metadata$Type == "exclude"]
 exclude_legend <- metadata$Legend[metadata$Type == "exclude"]
 exclude_labels <- metadata$Labels[metadata$Type == "exclude"]
 exclude_hidden <- metadata$Hidden[metadata$Type == "exclude"]
+exclude_downloadble <- metadata$Downloadable[metadata$Type == "exclude"]
 
 # 5.0 Build wheretowork objects ------------------------------------------------
 
@@ -129,7 +133,7 @@ dataset <- new_dataset_from_auto(
 ## Create themes ----
 ### loop over unique theme groups (ex. Endemic Species, Species at Risk, etc.)
 themes <- lapply(seq_along(unique(theme_groups)), function(i) {
-  
+
   #### store temp variables associated with group (i)
   curr_theme_groups <- unique(theme_groups)[i]
   curr_theme_data <- theme_data[[which(theme_groups == curr_theme_groups)]]
@@ -144,6 +148,7 @@ themes <- lapply(seq_along(unique(theme_groups)), function(i) {
   curr_theme_legend <- theme_legend[theme_groups == curr_theme_groups]
   curr_theme_values <- theme_values[theme_groups == curr_theme_groups]
   curr_theme_goals <- theme_goals[theme_groups == curr_theme_groups]
+  curr_theme_downloadable <- theme_downloadble[theme_groups == curr_theme_groups]
   
   #### create list of features (j) associated with group
   curr_features <- lapply(seq_along(curr_theme_names), function(j) {
@@ -196,7 +201,8 @@ themes <- lapply(seq_along(unique(theme_groups)), function(i) {
       limit_goal = 0,
       visible = curr_theme_visible[j],
       hidden = curr_theme_hidden[j],
-      variable = v
+      variable = v,
+      downloadable = curr_theme_downloadable[j]
     )    
   })
   
@@ -250,7 +256,7 @@ weights <- lapply(seq_len(terra::nlyr(weight_data)), function(i) {
   
   #### create weight
   new_weight(name = weight_names[i], variable = v, visible = weight_visible[i],
-             hidden = weight_hidden[i])
+             hidden = weight_hidden[i], downloadable = weight_downloadble[i])
 })
 
 ## Create includes ----
@@ -273,6 +279,7 @@ includes <- lapply(seq_len(terra::nlyr(include_data)), function(i) {
     name = include_names[i],
     visible = include_visible[i],
     hidden = include_hidden[i],
+    downloadable = include_downloadble[i],
     variable = new_variable(
       dataset = dataset,
       index = names(include_data)[i],
@@ -304,6 +311,7 @@ excludes <- lapply(seq_len(terra::nlyr(exclude_data)), function(i) {
     name = exclude_names[i],
     visible = exclude_visible[i],
     hidden = exclude_hidden[i],
+    downloadable = exclude_downloadble[i],
     variable = new_variable(
       dataset = dataset,
       index = names(exclude_data)[i],

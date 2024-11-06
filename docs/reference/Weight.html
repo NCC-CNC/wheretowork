@@ -9,7 +9,7 @@ Weight class"></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">wheretowork</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -90,6 +90,10 @@ Weight class"></head><body>
 <dd><p><code>logical</code> value.</p></dd>
 
 
+<dt><code>downloadable</code></dt>
+<dd><p><code>logical</code> value.</p></dd>
+
+
 <dt><code>status</code></dt>
 <dd><p><code>logical</code> value.</p></dd>
 
@@ -133,6 +137,7 @@ Weight class"></head><body>
 <li><p><a href="#method-Weight-get_invisible"><code>Weight$get_invisible()</code></a></p></li>
 <li><p><a href="#method-Weight-get_loaded"><code>Weight$get_loaded()</code></a></p></li>
 <li><p><a href="#method-Weight-get_hidden"><code>Weight$get_hidden()</code></a></p></li>
+<li><p><a href="#method-Weight-get_downloadable"><code>Weight$get_downloadable()</code></a></p></li>
 <li><p><a href="#method-Weight-get_status"><code>Weight$get_status()</code></a></p></li>
 <li><p><a href="#method-Weight-get_current"><code>Weight$get_current()</code></a></p></li>
 <li><p><a href="#method-Weight-get_factor"><code>Weight$get_factor()</code></a></p></li>
@@ -165,6 +170,7 @@ Weight class"></head><body>
 <span>  <span class="va">invisible</span>,</span>
 <span>  <span class="va">loaded</span>,</span>
 <span>  <span class="va">hidden</span>,</span>
+<span>  <span class="va">downloadable</span>,</span>
 <span>  <span class="va">status</span>,</span>
 <span>  <span class="va">current</span>,</span>
 <span>  <span class="va">factor</span>,</span>
@@ -205,6 +211,10 @@ Weight class"></head><body>
 
 
 <dt><code>hidden</code></dt>
+<dd><p><code>logical</code> value.</p></dd>
+
+
+<dt><code>downloadable</code></dt>
 <dd><p><code>logical</code> value.</p></dd>
 
 
@@ -377,11 +387,11 @@ Defaults to <code>"]"</code>.</p></dd>
 <p><code>logical</code> value.</p>
 </div>
 
-</div><p></p><hr><a id="method-Weight-get_status"></a><div class="section">
-<h3 id="method-get-status-">Method <code>get_status()</code><a class="anchor" aria-label="anchor" href="#method-get-status-"></a></h3>
-<p>Get status.</p><div class="section">
+</div><p></p><hr><a id="method-Weight-get_downloadable"></a><div class="section">
+<h3 id="method-get-downloadable-">Method <code>get_downloadable()</code><a class="anchor" aria-label="anchor" href="#method-get-downloadable-"></a></h3>
+<p>Get downloadable.</p><div class="section">
 <h4 id="usage-11">Usage<a class="anchor" aria-label="anchor" href="#usage-11"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Weight</span><span class="op">$</span><span class="fu">get_status</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Weight</span><span class="op">$</span><span class="fu">get_downloadable</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -389,11 +399,11 @@ Defaults to <code>"]"</code>.</p></dd>
 <p><code>logical</code> value.</p>
 </div>
 
-</div><p></p><hr><a id="method-Weight-get_current"></a><div class="section">
-<h3 id="method-get-current-">Method <code>get_current()</code><a class="anchor" aria-label="anchor" href="#method-get-current-"></a></h3>
-<p>Get current.</p><div class="section">
+</div><p></p><hr><a id="method-Weight-get_status"></a><div class="section">
+<h3 id="method-get-status-">Method <code>get_status()</code><a class="anchor" aria-label="anchor" href="#method-get-status-"></a></h3>
+<p>Get status.</p><div class="section">
 <h4 id="usage-12">Usage<a class="anchor" aria-label="anchor" href="#usage-12"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Weight</span><span class="op">$</span><span class="fu">get_current</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Weight</span><span class="op">$</span><span class="fu">get_status</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -401,34 +411,46 @@ Defaults to <code>"]"</code>.</p></dd>
 <p><code>logical</code> value.</p>
 </div>
 
-</div><p></p><hr><a id="method-Weight-get_factor"></a><div class="section">
-<h3 id="method-get-factor-">Method <code>get_factor()</code><a class="anchor" aria-label="anchor" href="#method-get-factor-"></a></h3>
-<p>Get factor.</p><div class="section">
+</div><p></p><hr><a id="method-Weight-get_current"></a><div class="section">
+<h3 id="method-get-current-">Method <code>get_current()</code><a class="anchor" aria-label="anchor" href="#method-get-current-"></a></h3>
+<p>Get current.</p><div class="section">
 <h4 id="usage-13">Usage<a class="anchor" aria-label="anchor" href="#usage-13"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Weight</span><span class="op">$</span><span class="fu">get_factor</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Weight</span><span class="op">$</span><span class="fu">get_current</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
 <h4 id="returns-12">Returns<a class="anchor" aria-label="anchor" href="#returns-12"></a></h4>
+<p><code>logical</code> value.</p>
+</div>
+
+</div><p></p><hr><a id="method-Weight-get_factor"></a><div class="section">
+<h3 id="method-get-factor-">Method <code>get_factor()</code><a class="anchor" aria-label="anchor" href="#method-get-factor-"></a></h3>
+<p>Get factor.</p><div class="section">
+<h4 id="usage-14">Usage<a class="anchor" aria-label="anchor" href="#usage-14"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Weight</span><span class="op">$</span><span class="fu">get_factor</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+</div>
+
+<div class="section">
+<h4 id="returns-13">Returns<a class="anchor" aria-label="anchor" href="#returns-13"></a></h4>
 <p><code>numeric</code> value.</p>
 </div>
 
 </div><p></p><hr><a id="method-Weight-get_data"></a><div class="section">
 <h3 id="method-get-data-">Method <code>get_data()</code><a class="anchor" aria-label="anchor" href="#method-get-data-"></a></h3>
 <p>Get the data.</p><div class="section">
-<h4 id="usage-14">Usage<a class="anchor" aria-label="anchor" href="#usage-14"></a></h4>
+<h4 id="usage-15">Usage<a class="anchor" aria-label="anchor" href="#usage-15"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Weight</span><span class="op">$</span><span class="fu">get_data</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
-<h4 id="returns-13">Returns<a class="anchor" aria-label="anchor" href="#returns-13"></a></h4>
+<h4 id="returns-14">Returns<a class="anchor" aria-label="anchor" href="#returns-14"></a></h4>
 <p><code><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">sf::st_as_sf()</a></code> or <code><a href="https://rspatial.github.io/terra/reference/rast.html" class="external-link">terra::rast()</a></code> object.</p>
 </div>
 
 </div><p></p><hr><a id="method-Weight-set_new_pane"></a><div class="section">
 <h3 id="method-set-new-pane-">Method <code>set_new_pane()</code><a class="anchor" aria-label="anchor" href="#method-set-new-pane-"></a></h3>
 <p>Set new pane.</p><div class="section">
-<h4 id="usage-15">Usage<a class="anchor" aria-label="anchor" href="#usage-15"></a></h4>
+<h4 id="usage-16">Usage<a class="anchor" aria-label="anchor" href="#usage-16"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Weight</span><span class="op">$</span><span class="fu">set_new_pane</span><span class="op">(</span><span class="va">id</span>, <span class="va">index</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -445,14 +467,14 @@ Defaults to <code>"]"</code>.</p></dd>
 </dl><p></p></div>
 </div>
 <div class="section">
-<h4 id="returns-14">Returns<a class="anchor" aria-label="anchor" href="#returns-14"></a></h4>
+<h4 id="returns-15">Returns<a class="anchor" aria-label="anchor" href="#returns-15"></a></h4>
 <p><code>character</code> value.</p>
 </div>
 
 </div><p></p><hr><a id="method-Weight-get_setting"></a><div class="section">
 <h3 id="method-get-setting-">Method <code>get_setting()</code><a class="anchor" aria-label="anchor" href="#method-get-setting-"></a></h3>
 <p>Get setting.</p><div class="section">
-<h4 id="usage-16">Usage<a class="anchor" aria-label="anchor" href="#usage-16"></a></h4>
+<h4 id="usage-17">Usage<a class="anchor" aria-label="anchor" href="#usage-17"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Weight</span><span class="op">$</span><span class="fu">get_setting</span><span class="op">(</span><span class="va">name</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -466,14 +488,14 @@ Available options are <code>"status"</code> <code>"factor"</code>, <code>"curren
 </dl><p></p></div>
 </div>
 <div class="section">
-<h4 id="returns-15">Returns<a class="anchor" aria-label="anchor" href="#returns-15"></a></h4>
+<h4 id="returns-16">Returns<a class="anchor" aria-label="anchor" href="#returns-16"></a></h4>
 <p>Value.</p>
 </div>
 
 </div><p></p><hr><a id="method-Weight-set_visible"></a><div class="section">
 <h3 id="method-set-visible-">Method <code>set_visible()</code><a class="anchor" aria-label="anchor" href="#method-set-visible-"></a></h3>
 <p>Set visible.</p><div class="section">
-<h4 id="usage-17">Usage<a class="anchor" aria-label="anchor" href="#usage-17"></a></h4>
+<h4 id="usage-18">Usage<a class="anchor" aria-label="anchor" href="#usage-18"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Weight</span><span class="op">$</span><span class="fu">set_visible</span><span class="op">(</span><span class="va">value</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -489,7 +511,7 @@ Available options are <code>"status"</code> <code>"factor"</code>, <code>"curren
 </div><p></p><hr><a id="method-Weight-set_invisible"></a><div class="section">
 <h3 id="method-set-invisible-">Method <code>set_invisible()</code><a class="anchor" aria-label="anchor" href="#method-set-invisible-"></a></h3>
 <p>Set invisible.</p><div class="section">
-<h4 id="usage-18">Usage<a class="anchor" aria-label="anchor" href="#usage-18"></a></h4>
+<h4 id="usage-19">Usage<a class="anchor" aria-label="anchor" href="#usage-19"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Weight</span><span class="op">$</span><span class="fu">set_invisible</span><span class="op">(</span><span class="va">value</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -505,7 +527,7 @@ Available options are <code>"status"</code> <code>"factor"</code>, <code>"curren
 </div><p></p><hr><a id="method-Weight-set_loaded"></a><div class="section">
 <h3 id="method-set-loaded-">Method <code>set_loaded()</code><a class="anchor" aria-label="anchor" href="#method-set-loaded-"></a></h3>
 <p>Set loaded.</p><div class="section">
-<h4 id="usage-19">Usage<a class="anchor" aria-label="anchor" href="#usage-19"></a></h4>
+<h4 id="usage-20">Usage<a class="anchor" aria-label="anchor" href="#usage-20"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Weight</span><span class="op">$</span><span class="fu">set_loaded</span><span class="op">(</span><span class="va">value</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -521,7 +543,7 @@ Available options are <code>"status"</code> <code>"factor"</code>, <code>"curren
 </div><p></p><hr><a id="method-Weight-set_status"></a><div class="section">
 <h3 id="method-set-status-">Method <code>set_status()</code><a class="anchor" aria-label="anchor" href="#method-set-status-"></a></h3>
 <p>Set status.</p><div class="section">
-<h4 id="usage-20">Usage<a class="anchor" aria-label="anchor" href="#usage-20"></a></h4>
+<h4 id="usage-21">Usage<a class="anchor" aria-label="anchor" href="#usage-21"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Weight</span><span class="op">$</span><span class="fu">set_status</span><span class="op">(</span><span class="va">value</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -537,7 +559,7 @@ Available options are <code>"status"</code> <code>"factor"</code>, <code>"curren
 </div><p></p><hr><a id="method-Weight-set_factor"></a><div class="section">
 <h3 id="method-set-factor-">Method <code>set_factor()</code><a class="anchor" aria-label="anchor" href="#method-set-factor-"></a></h3>
 <p>Set factor.</p><div class="section">
-<h4 id="usage-21">Usage<a class="anchor" aria-label="anchor" href="#usage-21"></a></h4>
+<h4 id="usage-22">Usage<a class="anchor" aria-label="anchor" href="#usage-22"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Weight</span><span class="op">$</span><span class="fu">set_factor</span><span class="op">(</span><span class="va">value</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -553,7 +575,7 @@ Available options are <code>"status"</code> <code>"factor"</code>, <code>"curren
 </div><p></p><hr><a id="method-Weight-set_current"></a><div class="section">
 <h3 id="method-set-current-">Method <code>set_current()</code><a class="anchor" aria-label="anchor" href="#method-set-current-"></a></h3>
 <p>Set current.</p><div class="section">
-<h4 id="usage-22">Usage<a class="anchor" aria-label="anchor" href="#usage-22"></a></h4>
+<h4 id="usage-23">Usage<a class="anchor" aria-label="anchor" href="#usage-23"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Weight</span><span class="op">$</span><span class="fu">set_current</span><span class="op">(</span><span class="va">value</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -569,7 +591,7 @@ Available options are <code>"status"</code> <code>"factor"</code>, <code>"curren
 </div><p></p><hr><a id="method-Weight-set_setting"></a><div class="section">
 <h3 id="method-set-setting-">Method <code>set_setting()</code><a class="anchor" aria-label="anchor" href="#method-set-setting-"></a></h3>
 <p>Set setting.</p><div class="section">
-<h4 id="usage-23">Usage<a class="anchor" aria-label="anchor" href="#usage-23"></a></h4>
+<h4 id="usage-24">Usage<a class="anchor" aria-label="anchor" href="#usage-24"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Weight</span><span class="op">$</span><span class="fu">set_setting</span><span class="op">(</span><span class="va">name</span>, <span class="va">value</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -591,20 +613,8 @@ or `"visible"“.</p></dd>
 </div><p></p><hr><a id="method-Weight-get_solution_settings_widget_data"></a><div class="section">
 <h3 id="method-get-solution-settings-widget-data-">Method <code>get_solution_settings_widget_data()</code><a class="anchor" aria-label="anchor" href="#method-get-solution-settings-widget-data-"></a></h3>
 <p>Get data for displaying the theme in a <code><a href="solutionSettings-widget.html">solutionSettings()</a></code> widget.</p><div class="section">
-<h4 id="usage-24">Usage<a class="anchor" aria-label="anchor" href="#usage-24"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Weight</span><span class="op">$</span><span class="fu">get_solution_settings_widget_data</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
-</div>
-
-<div class="section">
-<h4 id="returns-16">Returns<a class="anchor" aria-label="anchor" href="#returns-16"></a></h4>
-<p><code>list</code> with widget data.</p>
-</div>
-
-</div><p></p><hr><a id="method-Weight-get_map_manager_widget_data"></a><div class="section">
-<h3 id="method-get-map-manager-widget-data-">Method <code>get_map_manager_widget_data()</code><a class="anchor" aria-label="anchor" href="#method-get-map-manager-widget-data-"></a></h3>
-<p>Get data for displaying the theme in a <code><a href="mapManager-widget.html">mapManager()</a></code> widget.</p><div class="section">
 <h4 id="usage-25">Usage<a class="anchor" aria-label="anchor" href="#usage-25"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Weight</span><span class="op">$</span><span class="fu">get_map_manager_widget_data</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Weight</span><span class="op">$</span><span class="fu">get_solution_settings_widget_data</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -612,22 +622,34 @@ or `"visible"“.</p></dd>
 <p><code>list</code> with widget data.</p>
 </div>
 
-</div><p></p><hr><a id="method-Weight-export"></a><div class="section">
-<h3 id="method-export-">Method <code>export()</code><a class="anchor" aria-label="anchor" href="#method-export-"></a></h3>
-<p>Export settings.</p><div class="section">
+</div><p></p><hr><a id="method-Weight-get_map_manager_widget_data"></a><div class="section">
+<h3 id="method-get-map-manager-widget-data-">Method <code>get_map_manager_widget_data()</code><a class="anchor" aria-label="anchor" href="#method-get-map-manager-widget-data-"></a></h3>
+<p>Get data for displaying the theme in a <code><a href="mapManager-widget.html">mapManager()</a></code> widget.</p><div class="section">
 <h4 id="usage-26">Usage<a class="anchor" aria-label="anchor" href="#usage-26"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Weight</span><span class="op">$</span><span class="fu">export</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Weight</span><span class="op">$</span><span class="fu">get_map_manager_widget_data</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
 <h4 id="returns-18">Returns<a class="anchor" aria-label="anchor" href="#returns-18"></a></h4>
+<p><code>list</code> with widget data.</p>
+</div>
+
+</div><p></p><hr><a id="method-Weight-export"></a><div class="section">
+<h3 id="method-export-">Method <code>export()</code><a class="anchor" aria-label="anchor" href="#method-export-"></a></h3>
+<p>Export settings.</p><div class="section">
+<h4 id="usage-27">Usage<a class="anchor" aria-label="anchor" href="#usage-27"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Weight</span><span class="op">$</span><span class="fu">export</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+</div>
+
+<div class="section">
+<h4 id="returns-19">Returns<a class="anchor" aria-label="anchor" href="#returns-19"></a></h4>
 <p><code>list</code> object.</p>
 </div>
 
 </div><p></p><hr><a id="method-Weight-render_on_map"></a><div class="section">
 <h3 id="method-render-on-map-">Method <code>render_on_map()</code><a class="anchor" aria-label="anchor" href="#method-render-on-map-"></a></h3>
 <p>Render on map.</p><div class="section">
-<h4 id="usage-27">Usage<a class="anchor" aria-label="anchor" href="#usage-27"></a></h4>
+<h4 id="usage-28">Usage<a class="anchor" aria-label="anchor" href="#usage-28"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Weight</span><span class="op">$</span><span class="fu">render_on_map</span><span class="op">(</span><span class="va">x</span>, <span class="va">zindex</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -644,14 +666,14 @@ or `"visible"“.</p></dd>
 </dl><p></p></div>
 </div>
 <div class="section">
-<h4 id="returns-19">Returns<a class="anchor" aria-label="anchor" href="#returns-19"></a></h4>
+<h4 id="returns-20">Returns<a class="anchor" aria-label="anchor" href="#returns-20"></a></h4>
 <p><code><a href="https://rstudio.github.io/leaflet/reference/leaflet.html" class="external-link">leaflet::leaflet()</a></code> object.</p>
 </div>
 
 </div><p></p><hr><a id="method-Weight-update_on_map"></a><div class="section">
 <h3 id="method-update-on-map-">Method <code>update_on_map()</code><a class="anchor" aria-label="anchor" href="#method-update-on-map-"></a></h3>
 <p>Render on map.</p><div class="section">
-<h4 id="usage-28">Usage<a class="anchor" aria-label="anchor" href="#usage-28"></a></h4>
+<h4 id="usage-29">Usage<a class="anchor" aria-label="anchor" href="#usage-29"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Weight</span><span class="op">$</span><span class="fu">update_on_map</span><span class="op">(</span><span class="va">x</span>, <span class="va">zindex</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -668,14 +690,14 @@ or `"visible"“.</p></dd>
 </dl><p></p></div>
 </div>
 <div class="section">
-<h4 id="returns-20">Returns<a class="anchor" aria-label="anchor" href="#returns-20"></a></h4>
+<h4 id="returns-21">Returns<a class="anchor" aria-label="anchor" href="#returns-21"></a></h4>
 <p><code><a href="https://rstudio.github.io/leaflet/reference/leafletProxy.html" class="external-link">leaflet::leafletProxy()</a></code> object.</p>
 </div>
 
 </div><p></p><hr><a id="method-Weight-clone"></a><div class="section">
 <h3 id="method-clone-">Method <code>clone()</code><a class="anchor" aria-label="anchor" href="#method-clone-"></a></h3>
 <p>The objects of this class are cloneable with this method.</p><div class="section">
-<h4 id="usage-29">Usage<a class="anchor" aria-label="anchor" href="#usage-29"></a></h4>
+<h4 id="usage-30">Usage<a class="anchor" aria-label="anchor" href="#usage-30"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Weight</span><span class="op">$</span><span class="fu">clone</span><span class="op">(</span>deep <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
