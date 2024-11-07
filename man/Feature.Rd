@@ -33,6 +33,8 @@ Definition for the Feature class.
 
 \item{\code{hidden}}{\code{logical} value.}
 
+\item{\code{downloadable}}{\code{logical} value.}
+
 \item{\code{status}}{\code{logical} value.}
 
 \item{\code{current}}{\code{numeric} value.}
@@ -55,7 +57,10 @@ Definition for the Feature class.
 \item \href{#method-Feature-new}{\code{Feature$new()}}
 \item \href{#method-Feature-print}{\code{Feature$print()}}
 \item \href{#method-Feature-repr}{\code{Feature$repr()}}
+\item \href{#method-Feature-get_layer_name}{\code{Feature$get_layer_name()}}
+\item \href{#method-Feature-get_layer_index}{\code{Feature$get_layer_index()}}
 \item \href{#method-Feature-get_hidden}{\code{Feature$get_hidden()}}
+\item \href{#method-Feature-get_downloadable}{\code{Feature$get_downloadable()}}
 \item \href{#method-Feature-get_visible}{\code{Feature$get_visible()}}
 \item \href{#method-Feature-get_invisible}{\code{Feature$get_invisible()}}
 \item \href{#method-Feature-get_loaded}{\code{Feature$get_loaded()}}
@@ -89,6 +94,7 @@ Create a Feature object.
   invisible,
   loaded,
   hidden,
+  downloadable,
   status,
   current,
   goal,
@@ -117,6 +123,8 @@ Create a Feature object.
 \item{\code{loaded}}{\code{logical} value.}
 
 \item{\code{hidden}}{\code{logical} value.}
+
+\item{\code{downloadable}}{\code{logical} value.}
 
 \item{\code{status}}{\code{logical} value.}
 
@@ -180,12 +188,51 @@ Defaults to \code{"]"}.}
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Feature-get_layer_name"></a>}}
+\if{latex}{\out{\hypertarget{method-Feature-get_layer_name}{}}}
+\subsection{Method \code{get_layer_name()}}{
+Get layer names.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Feature$get_layer_name()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} vector.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Feature-get_layer_index"></a>}}
+\if{latex}{\out{\hypertarget{method-Feature-get_layer_index}{}}}
+\subsection{Method \code{get_layer_index()}}{
+Get layer index values.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Feature$get_layer_index()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} vector.
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Feature-get_hidden"></a>}}
 \if{latex}{\out{\hypertarget{method-Feature-get_hidden}{}}}
 \subsection{Method \code{get_hidden()}}{
 Get hidden.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Feature$get_hidden()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{logical} value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Feature-get_downloadable"></a>}}
+\if{latex}{\out{\hypertarget{method-Feature-get_downloadable}{}}}
+\subsection{Method \code{get_downloadable()}}{
+Get downloadable.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Feature$get_downloadable()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{

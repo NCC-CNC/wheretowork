@@ -15,6 +15,7 @@ new_solution_from_result(
   legend,
   id = uuid::UUIDgenerate(),
   hidden = FALSE,
+  downloadable = TRUE,
   pane = NA_character_
 )
 }
@@ -46,6 +47,8 @@ Defaults to \code{FALSE}.}
 Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}
 
 \item{hidden}{\code{logical} should the solution be hidden from map?}
+
+\item{downloadable}{\code{logical} can the solution be downloaded?}
 
 \item{pane}{\code{character} unique map pane identifier.
 Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}) concatenated with
@@ -134,7 +137,8 @@ s <- new_solution_from_result(
     colors = c("#00FFFF00", "#112233FF"),
     labels = c("not selected", "selected")
   ),
-  hidden = FALSE
+  hidden = FALSE,
+  downloadable = TRUE
 )
 
 }

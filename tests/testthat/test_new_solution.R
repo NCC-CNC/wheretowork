@@ -117,7 +117,8 @@ test_that("initialization", {
     weight_results = list(wr),
     include_results = list(ir),
     exclude_results = list(exclr),
-    id = "solution1"
+    id = "solution1",
+    downloadable = TRUE
   )
   # run tests
   expect_is(x, "Solution")
@@ -142,6 +143,8 @@ test_that("initialization", {
   expect_is(x$render_theme_results(), "datatables")
   expect_is(x$render_weight_results(), "datatables")
   expect_is(x$render_include_results(), "datatables")
+  expect_identical(x$downloadable, TRUE)
+  
   ## summary results tibble (parameter name/values)
   expect_identical(
     unlist(x$get_summary_results_data()[1,], use.names = FALSE), 
@@ -221,7 +224,8 @@ test_that("initialization (no weights, includes or excludes)", {
     weight_results = list(),
     include_results = list(),
     exclude_results = list(),
-    id = "solution1"
+    id = "solution1",
+    downloadable = TRUE
   )
   # run tests
   expect_is(x, "Solution")
@@ -243,6 +247,7 @@ test_that("initialization (no weights, includes or excludes)", {
   expect_is(x$render_theme_results(), "datatables")
   expect_is(x$render_weight_results(), "datatables")
   expect_is(x$render_include_results(), "datatables")
+  expect_identical(x$downloadable, TRUE)
 })
 
 test_that("initialization (from Result object)", {
@@ -338,6 +343,7 @@ test_that("initialization (from Result object)", {
     result = r,
     name = "sol",
     visible = TRUE,
+    downloadable = TRUE,
     dataset = d,
     settings = ss,
     legend = new_manual_legend(
@@ -463,6 +469,7 @@ test_that("initialization (from Result object), sf", {
     result = r,
     name = "sol",
     visible = TRUE,
+    downloadable = TRUE,
     dataset = d,
     settings = ss,
     legend = new_manual_legend(

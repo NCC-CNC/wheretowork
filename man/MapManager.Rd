@@ -162,9 +162,17 @@ Get a layer.
 \subsection{Method \code{get_layer_names()}}{
 Get layer names.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{MapManager$get_layer_names()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{MapManager$get_layer_names(download_only)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{download_only}}{get only layer names that are flagged as downloadable.
+Available options are \code{TRUE} or \code{FALSE}.}
+}
+\if{html}{\out{</div>}}
+}
 \subsection{Returns}{
 \code{character} vector.
 }
@@ -175,9 +183,17 @@ Get layer names.
 \subsection{Method \code{get_layer_indices()}}{
 Get layer index values.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{MapManager$get_layer_indices()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{MapManager$get_layer_indices(download_only)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{download_only}}{get only layer indices that are flagged as downloadable.
+Available options are \code{TRUE} or \code{FALSE}.}
+}
+\if{html}{\out{</div>}}
+}
 \subsection{Returns}{
 \code{character} vector.
 }

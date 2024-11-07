@@ -175,14 +175,14 @@ import_data <- function(x, mode) {
     app_data$bbox$xmax, app_data$bbox$ymax
   )
   app_data$mm$initialize_map(map)
-
+  
   # update export field names
   shiny::updateSelectizeInput(
     session = session,
     inputId = "exportPane_fields",
     choices = stats::setNames(
-      app_data$mm$get_layer_indices(),
-      app_data$mm$get_layer_names()
+      app_data$mm$get_layer_indices(download_only = TRUE),
+      app_data$mm$get_layer_names(download_only = TRUE)
     )
   )
 

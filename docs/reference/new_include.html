@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">wheretowork</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,6 +54,7 @@
 <span>  invisible <span class="op">=</span> <span class="cn">NA_real_</span>,</span>
 <span>  loaded <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  hidden <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  downloadable <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  status <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  overlap <span class="op">=</span> <span class="cn">NA_character_</span>,</span>
 <span>  id <span class="op">=</span> <span class="fu">uuid</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/uuid/man/UUIDgenerate.html" class="external-link">UUIDgenerate</a></span><span class="op">(</span><span class="op">)</span>,</span>
@@ -105,6 +106,13 @@ This is used to determine if the feature can ever be displayed.
 Unlike <code>visible</code>, if this parameter is <code>FALSE</code> then a feature can never
 be viewed on the map.
 Defaults to <code>FALSE</code>.</p></dd>
+
+
+<dt id="arg-downloadable">downloadable<a class="anchor" aria-label="anchor" href="#arg-downloadable"></a></dt>
+<dd><p><code>logical</code> The downloadable value.
+This is used to determine if the feature can be download. Set downloadable
+to <code>FALSE</code> for sensitive layers that should not be avaiable for download.
+Defaults to <code>TRUE</code>.</p></dd>
 
 
 <dt id="arg-status">status<a class="anchor" aria-label="anchor" href="#arg-status"></a></dt>
@@ -164,14 +172,15 @@ layer index.</p></dd>
 <span class="r-in"><span><span class="co"># print object</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">w</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Include</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   id:       e326f287-011c-4a2f-87f4-eb23d71b9dc7</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   id:       7ac78972-3a37-4d53-ae3a-a594b95c8c14</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>   name:     Protected areas</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>   variable: .../sim_raster_spatial.tif#Brown_necked_Parrot_Brown_necked_ [total: 483 ]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   pane:  30029909-efdc-49dc-9a60-948557f67572-Brown_necked_Parrot_Brown_necked_</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   pane:  ec59b21d-fd0a-4ee8-bd87-7bea990cbec1-Brown_necked_Parrot_Brown_necked_</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>   visible:  TRUE</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>   invisible:  NA</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>   loaded:  TRUE</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>   hidden:  FALSE</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   downloadable:  TRUE</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>   status:   TRUE</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>   overlap:   NA</span>
 </code></pre></div>
