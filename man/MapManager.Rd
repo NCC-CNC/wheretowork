@@ -168,7 +168,7 @@ Get layer names.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{download_only}}{get only layer names that are flagged as downloadable.
+\item{\code{download_only}}{Get only layer names that are flagged as downloadable.
 Available options are \code{TRUE} or \code{FALSE}.}
 }
 \if{html}{\out{</div>}}
@@ -189,7 +189,7 @@ Get layer index values.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{download_only}}{get only layer indices that are flagged as downloadable.
+\item{\code{download_only}}{Get only layer indices that are flagged as downloadable.
 Available options are \code{TRUE} or \code{FALSE}.}
 }
 \if{html}{\out{</div>}}

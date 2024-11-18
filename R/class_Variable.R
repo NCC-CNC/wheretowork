@@ -180,13 +180,9 @@ Variable <- R6::R6Class(
         })
       } else if (inherits(d, "sf")) {
         ## re-project sf to 4326 for display (if necessary)
-        if (
-          !terra::same.crs(
-          methods::as(sf::st_crs(d), "CRS"),
-          methods::as(sf::st_crs(4326), "CRS"))
-          ) {
-           d <- sf::st_transform(d, 4326)
-          }
+        if (sf::st_crs(d) != sf::st_crs(4326)) {
+          d <- sf::st_transform(d, 4326)
+        }
         ## prepare data
         d <- sf::as_Spatial(d)        
         

@@ -1,3 +1,8 @@
+# wheretowork 1.1.3
+
+### Minor changes and bug fixes
+- fixed shapefile uploads, bug #396
+
 # wheretowork 1.1.2
 
 ### Minor changes and bug fixes
