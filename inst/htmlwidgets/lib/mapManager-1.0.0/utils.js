@@ -36,6 +36,17 @@ function newLayer(manager, x) {
       x.units,
       x.provenance
     );
+  } else if (x.type == "exclude") {
+    return new ExcludeLayer(
+      manager,
+      x.id,
+      x.name,
+      x.visible,
+      x.hidden,
+      x.legend,
+      x.units,
+      x.provenance
+    );    
   } else if (x.type == "weight") {
     return new WeightLayer(
       manager,

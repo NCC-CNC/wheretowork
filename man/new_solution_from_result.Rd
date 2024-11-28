@@ -7,18 +7,33 @@
 new_solution_from_result(
   name,
   visible,
+  invisible = NA_real_,
+  loaded = TRUE,
   dataset,
   settings,
   result,
   legend,
   id = uuid::UUIDgenerate(),
-  hidden = FALSE
+  hidden = FALSE,
+  downloadable = TRUE,
+  pane = NA_character_
 )
 }
 \arguments{
 \item{name}{\code{character} name for new solution.}
 
 \item{visible}{\code{logical} should the solution be visible on a map?}
+
+\item{invisible}{\code{numeric} date/time. A time stamp date given to when a
+loaded layer is first turned invisible. This is used to keep track
+of loaded invisible layers to offload once the cache threshold has been
+reached.
+Defaults to \code{NA_real_}.}
+
+\item{loaded}{\code{logical} The initial loaded value.
+This is used to determine if the feature is loaded (or not)
+or not the map.
+Defaults to \code{FALSE}.}
 
 \item{dataset}{\link{Dataset} object.}
 
@@ -32,6 +47,12 @@ new_solution_from_result(
 Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}
 
 \item{hidden}{\code{logical} should the solution be hidden from map?}
+
+\item{downloadable}{\code{logical} can the solution be downloaded?}
+
+\item{pane}{\code{character} unique map pane identifier.
+Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}) concatenated with
+layer index.}
 }
 \value{
 A \link{Solution} object.
@@ -79,6 +100,7 @@ ss <- new_solution_settings(
   themes = list(t1),
   weights = list(),
   includes = list(),
+  excludes = list(),
   parameters = list(p1, p2)
 )
 
@@ -95,9 +117,11 @@ r <- new_result(
   theme_coverage = calculate_coverage(values, ss$get_theme_data()),
   weight_coverage = calculate_coverage(values, ss$get_weight_data()),
   include_coverage = calculate_coverage(values, ss$get_include_data()),
+  exclude_coverage = calculate_coverage(values, ss$get_exclude_data()),
   theme_settings = ss$get_theme_settings(),
   weight_settings = ss$get_weight_settings(),
   include_settings = ss$get_include_settings(),
+  exclude_settings = ss$get_exclude_settings(),
   parameters = ss$parameters
 )
 
@@ -113,7 +137,8 @@ s <- new_solution_from_result(
     colors = c("#00FFFF00", "#112233FF"),
     labels = c("not selected", "selected")
   ),
-  hidden = FALSE
+  hidden = FALSE,
+  downloadable = TRUE
 )
 
 }

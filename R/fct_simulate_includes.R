@@ -32,11 +32,9 @@ NULL
 #' d <- new_dataset(f1, f2, f3)
 #'
 #' # simulate data
-#' if (requireNamespace("RandomFields")) {
-#'  x <- simulate_includes(dataset = d, n = 2)
-#'  # print results
-#'  print(x)
-#' }
+#' x <- simulate_includes(dataset = d, n = 2)
+#' # print results
+#' print(x)
 #'
 #' @export
 simulate_includes <- function(dataset, n) {
@@ -70,7 +68,7 @@ simulate_includes <- function(dataset, n) {
   # simulate underlying data values
   ld <- simulate_binary_spatial_data(data, n)
   for (i in seq_along(ln_index)) {
-    dataset$add_index(ln_index[[i]], ld[[i]][idx])
+    dataset$add_index(ln_index[[i]], unlist(ld[[i]][idx])) # unlist data.frame
   }
 
   # generate weights

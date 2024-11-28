@@ -9,7 +9,7 @@ MapManager <- R6::R6Class(
   "MapManager",
   public = list(
 
-    #' @field layers `list` of [Theme], [Weight], [Include], [Solution] objects.
+    #' @field layers `list` of [Theme], [Weight], [Include], [Exclude], [Solution] objects.
     layers = list(),
 
     #' @field ids `character` vector of identifiers for the layers.
@@ -22,7 +22,7 @@ MapManager <- R6::R6Class(
 
     #' @description
     #' Create a `MapManager` object.
-    #' @param layers `list` of [Theme], [Weight], [Include], [Solution]
+    #' @param layers `list` of [Theme], [Weight], [Include], [Exclude], [Solution]
     #'  objects.
     #' @param order `numeric` vector.
     #' @return A new `MapManager` object.
@@ -30,7 +30,7 @@ MapManager <- R6::R6Class(
       assertthat::assert_that(
         is.list(layers),
         all_list_elements_inherit(
-          layers, c("Include", "Weight", "Theme", "Solution")
+          layers, c("Include", "Exclude", "Weight", "Theme", "Solution")
         ),
         length(order) == length(layers),
         is.numeric(order),
@@ -90,24 +90,146 @@ MapManager <- R6::R6Class(
 
     #' @description
     #' Get layer names.
+    #' @param download_only Get only layer names that are flagged as downloadable.
+    #' Available options are `TRUE` or `FALSE`. 
     #' @return `character` vector.
-    get_layer_names = function() {
-      unlist(
-        lapply(self$layers, function(x) x$get_layer_name()),
-        recursive = TRUE, use.names = FALSE
-      )
+    get_layer_names = function(download_only) {
+      if (download_only) {
+        unlist(
+          lapply(self$layers, function(x) {
+            if (inherits(x, "Theme")) {
+              lapply(x$feature, function(y) {
+                # get layer name if downloadable is TRUE; needed for export list
+                if (y$get_downloadable()) {
+                  y$get_layer_name()
+                } 
+              })
+            } else {
+              # get layer name if downloadable is TRUE; needed for export list
+              if (x$get_downloadable()) {
+                x$get_layer_name()
+              } 
+            }
+          }),
+          recursive = TRUE, use.names = FALSE
+        )
+      } else {
+        # get all layer names; needed for mapping
+        unlist(
+          lapply(self$layers, function(x) x$get_layer_name()),
+          recursive = TRUE, use.names = FALSE
+        )
+      }
     },
-
+    
     #' @description
     #' Get layer index values.
+    #' @param download_only Get only layer indices that are flagged as downloadable.
+    #' Available options are `TRUE` or `FALSE`.  
     #' @return `character` vector.
-    get_layer_indices = function() {
+    get_layer_indices = function(download_only) {
+      if (download_only) {
+        unlist(
+          lapply(self$layers, function(x) {
+            if (inherits(x, "Theme")) {
+              lapply(x$feature, function(y) {
+                # get layer index if downloadable is TRUE; needed for export list
+                if (y$get_downloadable()) {
+                  y$get_layer_index()
+                } 
+              })
+            } else {
+              # get layer index if downloadable is TRUE; needed for export list
+              if (x$get_downloadable()) {
+                x$get_layer_index()
+              } 
+            }
+          }),
+          recursive = TRUE, use.names = FALSE
+        )
+      } else {
+        # get all layer indices; needed for mapping
+        unlist(
+          lapply(self$layers, function(x) x$get_layer_index()),
+          recursive = TRUE, use.names = FALSE
+        )
+      }
+    },
+    
+    #' @description
+    #' Get layer ids values.
+    #' @return `character` vector.
+    get_layer_ids = function() {
       unlist(
-        lapply(self$layers, function(x) x$get_layer_index()),
+        lapply(seq_along(self$layers), function(i) {
+          if (inherits(self$layers[[i]], "Theme")) {
+            self$layers[[i]]$get_feature_id()
+          } else {
+            self$layers[[i]]$get_id()
+          }
+        }),
         recursive = TRUE, use.names = FALSE
       )
     },
-
+    
+    #' @description
+    #' Get panes.
+    #' @return `character` vector.
+    get_layer_panes = function() {
+      unlist(
+        lapply(self$layers, function(x) x$get_layer_pane()),
+        recursive = TRUE, use.names = FALSE
+      )
+    },     
+    
+    #' @description
+    #' Get layer visible values.
+    #' @return `character` vector.
+    get_layer_visible = function() {
+      unlist(
+        lapply(seq_along(self$layers), function(i) {
+          if (inherits(self$layers[[i]], "Theme")) {
+            self$layers[[i]]$get_feature_visible()
+          } else {
+            self$layers[[i]]$get_visible()
+          }
+        }),
+        recursive = TRUE, use.names = FALSE
+      )
+    },
+    
+    #' @description
+    #' Get layer invisible values.
+    #' @return `date/time` vector.
+    get_layer_invisible = function() {
+      unlist(
+        lapply(seq_along(self$layers), function(i) {
+          if (inherits(self$layers[[i]], "Theme")) {
+            self$layers[[i]]$get_feature_invisible()
+          } else {
+            self$layers[[i]]$get_invisible()
+          }
+        }),
+        recursive = TRUE, use.names = FALSE
+      )
+    },
+    
+    #' @description
+    #' Get layer loaded values.
+    #' @return `logical` vector.
+    get_layer_loaded = function() {
+      unlist(
+        lapply(seq_along(self$layers), function(i) {
+          if (inherits(self$layers[[i]], "Theme")) {
+            self$layers[[i]]$get_feature_loaded()
+          } else {
+            self$layers[[i]]$get_loaded()
+          }
+        }),
+        recursive = TRUE, use.names = FALSE
+      )
+    },
+    
     #' @description
     #' Get a setting for the object.
     #' @param value `list` with setting information (see Details section)
@@ -143,7 +265,7 @@ MapManager <- R6::R6Class(
         return(self$get_layer(value$id)$get_setting(value$setting))
       }
     },
-
+    
     #' @description
     #' Set information on the plot order of each layer.
     #' @param value `logical` vector indicating if each layer is visible or not.
@@ -175,7 +297,22 @@ MapManager <- R6::R6Class(
       })
       invisible(self)
     },
-
+    
+    #' @description
+    #' Set loaded for all layers.
+    #' @param value `logical` vector indicating if layers are loaded or
+    #' not.
+    set_loaded = function(value) {
+      assertthat::assert_that(
+        assertthat::is.flag(value),
+        assertthat::noNA(value)
+      )
+      vapply(self$layers, FUN.VALUE = logical(1), function(x) {
+        x$set_loaded(value)
+      })
+      invisible(self)
+    },    
+    
     #' @description
     #' Set a setting for the object.
     #' @param value `list` with new setting information (see Details section)
@@ -266,17 +403,22 @@ MapManager <- R6::R6Class(
           "` doesn't exist"
         )
       )
+      # get map pane
+      pane <- self$get_lazyload() %>% 
+        dplyr::filter(ids == value) %>% 
+        dplyr::pull(panes)
+      # remove layer
+      leaflet::clearGroup(map, pane)
+      # delete pane
+      removeMapPane(pane)
+      
       # drop layer from object
       idx <- which(self$ids != value)
       self$layers <- self$layers[idx]
       self$ids <- self$ids[idx]
       self$order <- self$order[idx]
       self$order <- rank(self$order)
-      # update map
-      ## since we can't actually delete panes,
-      ## we will move the pane below the map and remove its contents
-      leaflet::updateMapPane(map, paste0("pane-", value), -1, FALSE)
-      leaflet::clearGroup(map, value)
+
       # return invisible self
       invisible(self)
     },
@@ -292,6 +434,55 @@ MapManager <- R6::R6Class(
           lapply(self$layers, function(x) x$get_map_manager_widget_data())
       )
     },
+    
+    #' @description
+    #' Get group layer ids.
+    #' @return `character` vector.
+    get_group_layer_ids = function() {
+      unlist(
+        lapply(seq_along(self$layers), function(i) {
+          if (inherits(self$layers[[i]], "Theme")) {
+            rep(self$layers[[i]]$id, length(self$layers[[i]]$feature))
+          } else {
+            self$layers[[i]]$id
+          }
+        }),
+        recursive = TRUE, use.names = FALSE
+      )
+    },
+    
+    #' @description
+    #' Get group layer ids.
+    #' @return `character` vector.
+    get_layer_classes = function() {
+      unlist(
+        lapply(seq_along(self$layers), function(i) {
+          if (inherits(self$layers[[i]], "Theme")) {
+            rep("Feature", length(self$layers[[i]]$feature))
+          } else {
+            class(self$layers[[i]])[1]
+          }
+        }),
+        recursive = TRUE, use.names = FALSE
+      )
+    },     
+    
+    #' @description
+    #' Get data frame of map manager layers.
+    #' @return `data.frame` object.
+    get_lazyload = function() {
+      tibble::tibble(
+        classes = self$get_layer_classes(),
+        group_ids = self$get_group_layer_ids(), 
+        ids = self$get_layer_ids(),
+        panes = self$get_layer_panes(),
+        names = self$get_layer_names(download_only = FALSE),
+        indices = self$get_layer_indices(download_only = FALSE),
+        visible = self$get_layer_visible(),
+        invisible = self$get_layer_invisible(),
+        loaded = self$get_layer_loaded()
+      )
+    },    
 
     #' @description
     #' Initial map by adding data to it.
@@ -301,7 +492,15 @@ MapManager <- R6::R6Class(
       zv <- 100 + (self$order * 100)
       # add layers
       for (i in seq_along(self$layers)) {
-        map <- self$layers[[i]]$render_on_map(map, zindex = zv[i])
+        if (inherits(self$layers[[i]], "Theme")) {
+          ## render logic is in Theme class
+          map <- self$layers[[i]]$render_on_map(map, zindex = zv[i])
+        } else {
+          ## only render layers that are visible on init
+          if (self$layers[[i]]$visible) {
+            map <- self$layers[[i]]$render_on_map(map, zindex = zv[i])
+          } 
+        }
       }
       # return result
       invisible(map)
@@ -315,10 +514,104 @@ MapManager <- R6::R6Class(
       zv <- 100 + (self$order * 100)
       # update layers
       for (i in seq_along(self$layers)) {
-        self$layers[[i]]$update_on_map(map, zindex = zv[i])
+        # if layer is a Theme ...
+        if (inherits(self$layers[[i]], "Theme")) {
+          ## render vs. update logic is in Theme class ...
+          self$layers[[i]]$update_on_map(map, zindex = zv[i])
+        } else {
+          # Weight, Include, Excludes and Solutions ...
+          idx <- self$layers[[i]]$variable$index # layer index
+          v <- self$layers[[i]]$visible # visible
+          l <- self$layers[[i]]$loaded # loaded
+          iv <- self$layers[[i]]$invisible # invisible
+          h <- self$layers[[i]]$hidden # hidden
+          if (!h && v && !l) {
+            # visible + not loaded + not hidden:
+            self$layers[[i]]$set_new_pane(uuid::UUIDgenerate(), idx) # new pane
+            self$layers[[i]]$render_on_map(map, zindex = zv[i]) # render pane
+            self$layers[[i]]$set_loaded(TRUE) # set loaded to TRUE
+          } else if (!v && l && identical(iv, NA_real_)) {
+            # loaded + first time invisible
+            self$layers[[i]]$update_on_map(map, zindex = zv[i]) # update pane
+            self$layers[[i]]$set_invisible(as.numeric(Sys.time())) # time stamp
+          } else if (l) {
+            ## only update loaded layers (loaded + visible) or (loaded + invisible)
+            self$layers[[i]]$update_on_map(map, zindex = zv[i]) # update pane
+          }
+        }
       }
       invisible(self)
-    }
+    },
+    
+    #' @description
+    #' Delete single map pane
+    #' @param map [leaflet::leafletProxy()] object.
+    delete_sinlge_map_pane = function(map) {
+      ## invisible layers with a numeric Sys.time && visible == false
+      loaded_invisible <- self$get_lazyload() %>%
+        dplyr::filter(visible == FALSE) %>%
+        dplyr::filter(!is.na(invisible))
+      ## set a 4 layer invisible threshold hold
+      if (nrow(loaded_invisible) > 3) {
+        ### filter for oldest invisible layer to clear
+        clear_layer <- loaded_invisible %>%
+          dplyr::filter(invisible == min(loaded_invisible$invisible))
+        ## clear group
+        leaflet::clearGroup(map, clear_layer$panes)
+        ### delete pane from map
+        removeMapPane(clear_layer$panes)
+        ### if layer is a Feature ...
+        if (identical(clear_layer$classes, "Feature")) {
+          tid <- clear_layer$group_ids # extract theme id
+          fid <- clear_layer$ids # extract feature id
+          #### within the theme, find Feature id index
+          idx <- which(self$get_layer(tid)$get_feature_id() == fid)
+          #### update loaded and visible status 
+          self$get_layer(tid)$feature[[idx]]$set_loaded(FALSE)
+          self$get_layer(tid)$feature[[idx]]$set_invisible(NA_real_)
+        } else {
+          #### Weight, Include, Exclude and Solution:
+          id <- clear_layer$ids # extract id
+          ##### update loaded and visible status 
+          self$get_layer(id)$set_loaded(FALSE)
+          self$get_layer(id)$set_invisible(NA_real_)
+        }
+      }
+      invisible(self)
+    },
+    
+    #' @description
+    #' Delete all map panes.
+    #' @param map [leaflet::leafletProxy()] object.
+    delete_all_map_panes = function(map) {
+      loaded <- self$get_lazyload() %>%
+        dplyr::filter(loaded == TRUE)
+      if (nrow(loaded) > 0) {
+        for (i in 1:nrow(loaded)) {
+          ## clear group
+          leaflet::clearGroup(map, loaded[i,]$panes)
+          ### remove pane from map
+          removeMapPane(loaded[i,]$panes) 
+          ### if layer is a Feature ...
+          if (identical(loaded[i,]$classes, "Feature")) {
+            tid <- loaded[i,]$group_ids # extract theme id
+            fid <- loaded[i,]$ids # extract feature id
+            #### within the theme, find Feature id index
+            idx <- which(self$get_layer(tid)$get_feature_id() == fid)
+            #### update loaded and visible status 
+            self$get_layer(tid)$feature[[idx]]$set_loaded(FALSE)
+            self$get_layer(tid)$feature[[idx]]$set_invisible(NA_real_)
+          } else {
+            #### Weight, Include, Exclude and Solution:
+            id <- loaded[i,]$ids # extract id
+            ##### update loaded and visible status 
+            self$get_layer(id)$set_loaded(FALSE)
+            self$get_layer(id)$set_invisible(NA_real_)
+          }        
+        }
+      }  
+      invisible(self)
+    }    
   )
 )
 

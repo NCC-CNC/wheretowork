@@ -118,7 +118,7 @@ Variable <- R6::R6Class(
 
     #' @description
     #' Get the data.
-    #' @return [sf::st_as_sf()] or [raster::raster()] object.
+    #' @return [sf::st_as_sf()] or [terra::rast()] object.
     get_data = function() {
       self$dataset$get_index(self$index)
     },
@@ -156,7 +156,7 @@ Variable <- R6::R6Class(
       pane_id <- paste0("pane-", id)
       x <- leaflet::addMapPane(x, pane_id, zindex, visible)
       # add data to leaflet map
-      if (inherits(d, "Raster")) {
+      if (inherits(d, "SpatRaster")) {
         # Set project on the fly flag
         if (self$dataset$get_crs() == st_crs(3857)) {
           project_on_fly <- FALSE
@@ -171,7 +171,7 @@ Variable <- R6::R6Class(
             x = d,
             opacity = 0.8,
             project = project_on_fly,
-            maxBytes = 1 * 1024 * 1024, # 1MB max size
+            maxBytes = 5 * 1024 * 1024, # 5MB max size
             method = self$legend$get_resample_method(),
             colors = self$legend$get_color_map(),
             group = id,
@@ -180,13 +180,9 @@ Variable <- R6::R6Class(
         })
       } else if (inherits(d, "sf")) {
         ## re-project sf to 4326 for display (if necessary)
-        if (
-          !raster::compareCRS(
-          methods::as(sf::st_crs(d), "CRS"),
-          methods::as(sf::st_crs(4326), "CRS"))
-          ) {
-           d <- sf::st_transform(d, 4326)
-          }
+        if (sf::st_crs(d) != sf::st_crs(4326)) {
+          d <- sf::st_transform(d, 4326)
+        }
         ## prepare data
         d <- sf::as_Spatial(d)        
         

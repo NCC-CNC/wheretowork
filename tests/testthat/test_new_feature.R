@@ -16,7 +16,8 @@ test_that("initialization", {
     goal = 0.2,
     limit_goal = 0.2,
     current = 0.56,
-    id = "FID1"
+    id = "FID1",
+    downloadable = TRUE
   )
   # run tests
   print(x)
@@ -24,12 +25,15 @@ test_that("initialization", {
   expect_identical(x$name, "Intact Alvar")
   expect_identical(x$variable, v)
   expect_identical(x$visible, FALSE)
+  expect_identical(x$loaded, FALSE)
+  expect_identical(x$invisible, NA_real_)
   expect_identical(x$hidden, TRUE)
   expect_identical(x$status, FALSE)
   expect_identical(x$goal, 0.2)
   expect_identical(x$limit_goal, 0.2)
   expect_identical(x$current, 0.56)
   expect_identical(x$id, "FID1")
+  expect_identical(x$downloadable, TRUE)
 })
 
 test_that("get methods", {
@@ -48,14 +52,18 @@ test_that("get methods", {
     goal = 0.2,
     limit_goal = 0.2,
     current = 0.56,
-    id = "FID1"
+    id = "FID1",
+    downloadable = TRUE
   )
   # run tests
   expect_identical(x$get_goal(), 0.2)
   expect_identical(x$get_status(), FALSE)
   expect_identical(x$get_visible(), TRUE)
+  expect_identical(x$get_loaded(), TRUE)
+  expect_identical(x$get_invisible(), NA_real_)
   expect_identical(x$get_hidden(), FALSE)
   expect_identical(x$get_current(), 0.56)
+  expect_identical(x$get_downloadable(), TRUE)
 })
 
 test_that("set methods", {
@@ -79,10 +87,14 @@ test_that("set methods", {
   x$set_goal(0.8)
   x$set_status(TRUE)
   x$set_visible(FALSE)
+  x$set_loaded(TRUE)
+  x$set_invisible(100)
   x$set_current(0.77)
   expect_identical(x$get_goal(), 0.8)
   expect_identical(x$get_status(), TRUE)
   expect_identical(x$get_visible(), FALSE)
+  expect_identical(x$get_invisible(), 100)
+  expect_identical(x$get_loaded(), TRUE)
   expect_identical(x$get_current(), 0.77)
 })
 
@@ -98,6 +110,7 @@ test_that("export method", {
     variable = v,
     visible = FALSE,
     hidden = TRUE,
+    downloadable = TRUE,
     status = FALSE,
     goal = 0.2,
     limit_goal = 0.2,
@@ -112,6 +125,7 @@ test_that("export method", {
       status = FALSE,
       visible = FALSE,
       hidden = TRUE,
+      downloadable = TRUE,
       goal = 0.2,
       limit_goal = 0.2
     )

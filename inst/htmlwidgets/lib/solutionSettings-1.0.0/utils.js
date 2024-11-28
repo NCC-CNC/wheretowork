@@ -18,6 +18,19 @@ function newIncludeSetting(manager, x) {
     x.id,
     x.name,
     x.status,
+    x.overlap,
+    x.mandatory,
+    x.provenance
+  );
+}
+
+function newExcludeSetting(manager, x) {
+  return new ExcludeSetting(
+    manager,
+    x.id,
+    x.name,
+    x.status,
+    x.overlap,
     x.mandatory,
     x.provenance
   );
@@ -35,10 +48,10 @@ function newParameterSetting(manager, x) {
     x.step_value,
     x.hide,
     x.disable,
-    x.no_slider,
     x.units,
     x.reference_value,
-    x.reference_units
+    x.reference_units,
+    x.tool_tip
   );
 }
 

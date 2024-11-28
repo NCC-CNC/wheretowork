@@ -31,7 +31,7 @@ mm_header_component_scaffold <- function(id = uuid::UUIDgenerate(),
                                          remove_button = FALSE) {
   # create tooltip text for type
   if (identical(type, "theme")) {
-    icon <- shiny::icon("star")
+    icon <- shiny::icon("star", class = "fa-solid")
     remove_tooltip_text <- "Delete Theme"
     visible_tooltip_text <- "Show/hide Theme on map"
     icon_tooltip_text <- "This is a Theme"
@@ -45,6 +45,11 @@ mm_header_component_scaffold <- function(id = uuid::UUIDgenerate(),
     remove_tooltip_text <- "Delete Include"
     visible_tooltip_text <- "Show/hide Include on map"
     icon_tooltip_text <- "This is an Include"
+  } else if (identical(type, "exclude")) {
+    icon <- shiny::icon("ban")
+    remove_tooltip_text <- "Delete Exclude"
+    visible_tooltip_text <- "Show/hide Exclude on map"
+    icon_tooltip_text <- "This is an Exclude"    
   } else if (identical(type, "solution")) {
     icon <- shiny::icon("rocket")
     remove_tooltip_text <- "Delete solution"

@@ -3,14 +3,15 @@
 on:
   schedule:
     - cron: 0 0 * * 1 # schedule to run at midnight on Monday each week
-  push:
+  push: # trigger on push
     branches:
       - main
       - master
-  pull_request:
+  pull_request: # trigger on PR
     branches:
       - main
       - master
+      - dev
 
 name: Windows
 
@@ -18,14 +19,13 @@ jobs:
   R-CMD-check:
     runs-on: ${{ matrix.config.os }}
 
-    name: ${{ matrix.config.os }} (${{ matrix.config.r }}) (${{ matrix.config.pkgs }} packages)
-    
+    name: ${{ matrix.config.os }} (${{ matrix.config.r }})
+
     strategy:
       fail-fast: false
       matrix:
         config:
-          - {os: windows-latest, r: '4.1.0', pkgs: 'all'}
-          - {os: windows-latest, r: '4.1.0', pkgs: 'depends only'}    
+          - {os: windows-latest, r: '4.4.1'}
           
     env:
       _R_REMOTES_NO_ERRORS_FROM_WARNINGS_: true
@@ -36,28 +36,19 @@ jobs:
       CI: true
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - uses: r-lib/actions/setup-r@v1
+      - uses: r-lib/actions/setup-r@v2
         with:
           r-version: ${{ matrix.config.r }}
 
-      - uses: r-lib/actions/setup-pandoc@v1
-
-      - name: Install system dependencies
-        run: |
-          pacman -Sy mingw-w64-x86_64-gmp --noconfirm
-          pacman -Sy mingw-w64-x86_64-glpk --noconfirm
-          pacman -Sy mingw-w64-x86_64-libxml2 --noconfirm
-        shell: bash
+      - uses: r-lib/actions/setup-pandoc@v2
 
       - name: Install dependencies
         run: |
           options(install.packages.compile.from.source = "always")
           options(pkgType = "source")
-          Sys.setenv(LIB_XML = "$(MINGW_PREFIX)")
-          Sys.setenv(GLPK_HOME = "$(MINGW_PREFIX)")
-          install.packages(c("renv", "remotes"))
+          install.packages(c("renv", "remotes", "testthat", "rvest"))
           renv::restore()
           remotes::install_cran("rcmdcheck")
           remotes::install_cran("covr")
@@ -70,11 +61,6 @@ jobs:
           sessioninfo::session_info(pkgs, include_base = TRUE)
         shell: Rscript {0}
         
-      - name: Set environmental variables for package checks
-        if: matrix.config.pkgs == 'depends only'
-        run: |
-          echo "_R_CHECK_DEPENDS_ONLY_=true" >> $GITHUB_ENV        
-
       - name: Check
         run: |
           rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran", "--no-build-vignettes", "--no-multiarch"), error_on = "warning", check_dir = "check")

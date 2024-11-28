@@ -34,20 +34,20 @@ Definition for the Variable class.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{Variable$new()}}
-\item \href{#method-print}{\code{Variable$print()}}
-\item \href{#method-repr}{\code{Variable$repr()}}
-\item \href{#method-verify}{\code{Variable$verify()}}
-\item \href{#method-get_data}{\code{Variable$get_data()}}
-\item \href{#method-export}{\code{Variable$export()}}
-\item \href{#method-render}{\code{Variable$render()}}
-\item \href{#method-update_render}{\code{Variable$update_render()}}
-\item \href{#method-clone}{\code{Variable$clone()}}
+\item \href{#method-Variable-new}{\code{Variable$new()}}
+\item \href{#method-Variable-print}{\code{Variable$print()}}
+\item \href{#method-Variable-repr}{\code{Variable$repr()}}
+\item \href{#method-Variable-verify}{\code{Variable$verify()}}
+\item \href{#method-Variable-get_data}{\code{Variable$get_data()}}
+\item \href{#method-Variable-export}{\code{Variable$export()}}
+\item \href{#method-Variable-render}{\code{Variable$render()}}
+\item \href{#method-Variable-update_render}{\code{Variable$update_render()}}
+\item \href{#method-Variable-clone}{\code{Variable$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-Variable-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Variable-new}{}}}
 \subsection{Method \code{new()}}{
 Create a Variable object.
 \subsection{Usage}{
@@ -76,8 +76,8 @@ A new Variable object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-print"></a>}}
-\if{latex}{\out{\hypertarget{method-print}{}}}
+\if{html}{\out{<a id="method-Variable-print"></a>}}
+\if{latex}{\out{\hypertarget{method-Variable-print}{}}}
 \subsection{Method \code{print()}}{
 Print the object.
 \subsection{Usage}{
@@ -93,8 +93,8 @@ Print the object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-repr"></a>}}
-\if{latex}{\out{\hypertarget{method-repr}{}}}
+\if{html}{\out{<a id="method-Variable-repr"></a>}}
+\if{latex}{\out{\hypertarget{method-Variable-repr}{}}}
 \subsection{Method \code{repr()}}{
 Generate a \code{character} summarizing the representation of the object.
 \subsection{Usage}{
@@ -117,8 +117,8 @@ Defaults to \code{"]"}.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-verify"></a>}}
-\if{latex}{\out{\hypertarget{method-verify}{}}}
+\if{html}{\out{<a id="method-Variable-verify"></a>}}
+\if{latex}{\out{\hypertarget{method-Variable-verify}{}}}
 \subsection{Method \code{verify()}}{
 Verify that the data can be extracted from the dataset.
 \subsection{Usage}{
@@ -130,8 +130,8 @@ invisible \code{TRUE} indicating success.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_data}{}}}
+\if{html}{\out{<a id="method-Variable-get_data"></a>}}
+\if{latex}{\out{\hypertarget{method-Variable-get_data}{}}}
 \subsection{Method \code{get_data()}}{
 Get the data.
 \subsection{Usage}{
@@ -139,12 +139,12 @@ Get the data.
 }
 
 \subsection{Returns}{
-\code{\link[sf:st_as_sf]{sf::st_as_sf()}} or \code{\link[raster:raster]{raster::raster()}} object.
+\code{\link[sf:st_as_sf]{sf::st_as_sf()}} or \code{\link[terra:rast]{terra::rast()}} object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-export"></a>}}
-\if{latex}{\out{\hypertarget{method-export}{}}}
+\if{html}{\out{<a id="method-Variable-export"></a>}}
+\if{latex}{\out{\hypertarget{method-Variable-export}{}}}
 \subsection{Method \code{export()}}{
 Export settings
 \subsection{Usage}{
@@ -156,8 +156,8 @@ Export settings
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-render"></a>}}
-\if{latex}{\out{\hypertarget{method-render}{}}}
+\if{html}{\out{<a id="method-Variable-render"></a>}}
+\if{latex}{\out{\hypertarget{method-Variable-render}{}}}
 \subsection{Method \code{render()}}{
 Render variable on map.
 \subsection{Usage}{
@@ -182,8 +182,8 @@ Render variable on map.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-update_render"></a>}}
-\if{latex}{\out{\hypertarget{method-update_render}{}}}
+\if{html}{\out{<a id="method-Variable-update_render"></a>}}
+\if{latex}{\out{\hypertarget{method-Variable-update_render}{}}}
 \subsection{Method \code{update_render()}}{
 Update rendering of variable on map.
 \subsection{Usage}{
@@ -208,8 +208,8 @@ Update rendering of variable on map.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-Variable-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-Variable-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

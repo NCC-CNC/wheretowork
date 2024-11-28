@@ -139,7 +139,7 @@ solutionSettings_html <- function(id, style, class, ...) {
             title = htmltools::tags$span(
               shinyBS::tipify(
                 el = htmltools::tags$span(
-                  shiny::icon("star"),
+                  shiny::icon("star", class = "fa-solid"),
                   "Themes"
                 ),
                 title = paste(
@@ -208,6 +208,29 @@ solutionSettings_html <- function(id, style, class, ...) {
             title = htmltools::tags$span(
               shinyBS::tipify(
                 el = htmltools::tags$span(
+                  shiny::icon("ban"),
+                  "Excludes"
+                ),
+                title = paste(
+                  "Excludes describe places that are no-go for",
+                  "conservation",
+                  "(e.g. urban centers, industrial areas).",
+                  "You can toggle excludes on so that they",
+                  "are not selected within solutions."
+                ),
+                options = list(container = "body")
+              )
+            ),
+            value = paste0(id, "_collapseExcludePanel"),
+            htmltools::tags$div(
+              class = "panel-content-inner",
+              htmltools::tags$div(class = "excludes")
+            )
+          ),          
+          shinyBS::bsCollapsePanel(
+            title = htmltools::tags$span(
+              shinyBS::tipify(
+                el = htmltools::tags$span(
                   shiny::icon("cog"),
                   "Settings"
                 ),
@@ -254,6 +277,26 @@ solutionSettings_html <- function(id, style, class, ...) {
             palette = "limited"
           )
         ),
+        htmltools::tags$div(
+          class = "solution-footer-gurobi",
+          htmltools::tags$label(
+            class = "el-switch el-switch-sm",
+            htmltools::tags$input(
+              type = "checkbox",
+              class = "status-checkbox status",
+              id = paste0(id, "_gurobi")
+            ),
+            htmltools::tags$span(
+              class = "el-switch-style",
+              `data-toggle` = "tooltip",
+              `data-placement` = "top",
+              `data-container` = "body",
+              `data-trigger` = "hover",
+              title = "Enable/disable Gurobi solver",
+              `for` = paste0(id, "_gurobi")
+            )
+           )
+          ),
         htmltools::tags$div(
           class = "solution-footer-start-button",
           `data-toggle` = "tooltip",
@@ -307,11 +350,14 @@ solutionSettings_html <- function(id, style, class, ...) {
             `data-trigger` = "hover",
             title = "Set the parameter value",
             ss_slider_component_scaffold()
-          )
-        )
-      )
-    )
-
+          ),
+         htmltools::tags$div(
+          class = "parameter-fileinput",
+          ss_fileinput_component_scaffold()
+         )
+       )
+     )
+   )
   ## include
   x <-
     htmltools::tagAppendChild(
@@ -324,6 +370,19 @@ solutionSettings_html <- function(id, style, class, ...) {
         )
       )
     )
+  
+  ## exclude
+  x <-
+    htmltools::tagAppendChild(
+      x,
+      htmltools::tags$template(
+        class = "exclude-setting-template",
+        htmltools::tags$div(
+          class = paste("exclude-setting solution-setting"),
+          ss_header_component_scaffold("exclude"),
+        )
+      )
+    )  
 
   ## weight
   x <-
@@ -384,21 +443,23 @@ solutionSettings_html <- function(id, style, class, ...) {
             shiny::tabsetPanel(
               type = "tabs",
               id = "view",
+              ## single view
+              shiny::tabPanel(
+                title = "optimize single goals",
+                value = "single",
+                htmltools::tags$div(
+                  class = "single-view"
+                )
+              ),
               ## group view panel
               shiny::tabPanel(
-                "group",
+                title = "optimize group goal",
+                value = "group",
                 htmltools::tags$div(
                   class = "group-view",
                   ss_group_goal_component_scaffold()
                 )
-              ),
-              ## single view
-              shiny::tabPanel(
-                "single",
-                htmltools::tags$div(
-                  class = "single-view"
-                )
-              )
+              )              
             )
           )
         )
@@ -449,6 +510,21 @@ solutionSettings_html <- function(id, style, class, ...) {
         )
       )
     )
+  
+  ## no excludes scaffold
+  x <-
+    htmltools::tagAppendChild(
+      x,
+      htmltools::tags$template(
+        class = "no-excludes-template",
+        htmltools::tags$div(
+          class = paste("empty-setting solution-setting"),
+          htmltools::tags$label(
+            "No excludes specified."
+          )
+        )
+      )
+    )  
 
   # return HTML
   x

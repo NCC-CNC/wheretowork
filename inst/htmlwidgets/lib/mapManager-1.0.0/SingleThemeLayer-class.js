@@ -88,7 +88,7 @@ class SingleThemeLayer {
           id: id,
           setting: "feature_visible",
           value: checked
-        });
+        }, {priority: "event"});
       });
     }
   }

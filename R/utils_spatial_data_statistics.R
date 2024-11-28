@@ -5,7 +5,7 @@ NULL
 #'
 #' Calculate statistics for a spatial dataset.
 #'
-#' @param x [sf::st_sf()] or [raster::stack()] or [data.frame] dataset object.
+#' @param x [sf::st_sf()] or a combined [terra::rast] or [data.frame] dataset object.
 #'
 #' @param type `character` indicating whether the dataset contains
 #'   continuous (i.e. `"continuous"`) or categorical (i.e. `"categorical"`)
@@ -68,10 +68,10 @@ spatial_data_statistics.sf <- function(x, type, index = 1) {
 
 #' @rdname spatial_data_statistics
 #' @export
-spatial_data_statistics.Raster <- function(x, type, index = 1) {
+spatial_data_statistics.SpatRaster <- function(x, type, index = 1) {
   # assert valid arguments
   assertthat::assert_that(
-    inherits(x, "Raster"),
+    inherits(x, "SpatRaster"),
     assertthat::is.string(type),
     assertthat::noNA(type),
     #type %in% c("continuous", "categorical", "manual"),
@@ -93,15 +93,15 @@ spatial_data_statistics.Raster <- function(x, type, index = 1) {
   if (identical(type, "continuous")) {
     ## continuous data
     out <- list(
-      total = raster::cellStats(x[[index]], "sum"),
-      min_value = raster::cellStats(x[[index]], "min"),
-      max_value = raster::cellStats(x[[index]], "max")
+      total = terra::global(x[[index]], fun="sum")$sum,
+      min_value = terra::global(x[[index]], fun="min")$min,
+      max_value = terra::global(x[[index]], fun="max")$max
     )
   } else {
     ## categorical data
     out <- list(
-      total = raster::cellStats(x[[index]], "sum"),
-      values = raster::unique(x[[index]], na.last = NA)
+      total = terra::global(x[[index]], fun="sum")$sum,
+      values = sort(terra::unique(x[[index]])[[1]])
     )
   }
 

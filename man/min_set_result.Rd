@@ -10,10 +10,13 @@ min_set_result(
   theme_data,
   weight_data,
   include_data,
+  exclude_data,
   theme_settings,
   weight_settings,
   include_settings,
+  exclude_settings,
   parameters,
+  overlap = FALSE,
   gap_1 = 0,
   gap_2 = 0,
   boundary_gap = 0.1,
@@ -21,7 +24,8 @@ min_set_result(
   time_limit_1 = .Machine$integer.max,
   time_limit_2 = .Machine$integer.max,
   verbose = FALSE,
-  id = uuid::UUIDgenerate()
+  id = uuid::UUIDgenerate(),
+  try_gurobi = FALSE
 )
 }
 \arguments{
@@ -36,13 +40,19 @@ or or \code{NA}.}
 
 \item{include_data}{\code{\link[Matrix:sparseMatrix]{Matrix::sparseMatrix()}} containing the include data.}
 
+\item{exclude_data}{\code{\link[Matrix:sparseMatrix]{Matrix::sparseMatrix()}} containing the exclude data.}
+
 \item{theme_settings}{\code{data.frame} containing the theme settings.}
 
 \item{weight_settings}{\code{data.frame} containing the weight settings.}
 
 \item{include_settings}{\code{data.frame} containing the include settings.}
 
+\item{exclude_settings}{\code{data.frame} containing the exclude settings.}
+
 \item{parameters}{\code{list} of \link{Parameter} objects.}
+
+\item{overlap}{\code{logical} if \code{TRUE}, excludes takes precedence over includes.}
 
 \item{gap_1}{\code{numeric} relative optimality gap value for initial
 optimization.
@@ -70,6 +80,9 @@ Defaults to the maximum integer.}
 displayed when generating solutions. Defaults to \code{FALSE}.}
 
 \item{id}{\code{character} identifier for new result.}
+
+\item{try_gurobi}{\code{logical} value indicating if the Gurobi solver should be
+used when generating solutions. Defaults to \code{FALSE}.}
 }
 \value{
 A \link{Solution} object containing the solution.
@@ -101,6 +114,7 @@ v2 <- new_variable_from_auto(dataset = d, index = 2)
 v3 <- new_variable_from_auto(dataset = d, index = 3)
 v4 <- new_variable_from_auto(dataset = d, index = 4)
 v5 <- new_variable_from_auto(dataset = d, index = 5)
+v6 <- new_variable_from_auto(dataset = d, index = 6)
 
 # create a weight using a variable
 w <- new_weight(
@@ -132,6 +146,12 @@ i <- new_include(
   status = FALSE, id = "I1"
 )
 
+# create an excluded using a variable
+e <- new_exclude(
+  name = "Expensive areas", variable = v6,
+  status = FALSE, id = "E1"
+)
+
 # create parameters
 p1 <- new_parameter(name = "Spatial clustering")
 p2 <- new_parameter(name = "Optimality gap")
@@ -139,7 +159,7 @@ p2 <- new_parameter(name = "Optimality gap")
 # create solution settings using the themes and weight
 ss <- new_solution_settings(
   themes = list(t1, t2), weights = list(w), includes = list(i),
-  parameters = list(p1, p2)
+  excludes = list(e), parameters = list(p1, p2)
 )
 
 # create result
@@ -150,10 +170,13 @@ x <- min_set_result(
  theme_data = ss$get_theme_data(),
  weight_data = ss$get_weight_data(),
  include_data = ss$get_include_data(),
+ exclude_data = ss$get_exclude_data(),
  theme_settings = ss$get_theme_settings(),
  weight_settings = ss$get_weight_settings(),
  include_settings = ss$get_include_settings(),
+ exclude_settings = ss$get_exclude_settings(),
  parameters = ss$parameters,
+ overlap = TRUE,
  gap_1 = p2$value * p2$status,
  boundary_gap = p1$value * p1$status
 )

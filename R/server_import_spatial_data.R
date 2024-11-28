@@ -15,6 +15,7 @@ server_import_spatial_data <- quote({
 
   # set behavior for importing data using the spatial option
   shiny::observeEvent(input$importModal_spatial_settings, {
+    
     ## validation
     shiny::req(input$importModal_spatial_settings)
     if (!is.character(app_data$spatial_path)) {
@@ -129,19 +130,32 @@ server_import_spatial_data <- quote({
       "advanced",
       mode
     )
+    
+    ### set project name
+    x$name <- basename(app_data$spatial_path)
 
     ### generate dataset
-    x$dataset <- new_dataset_from_auto(rd, skip_bm = app_data$shp_hidden)
+    x$dataset <- new_dataset_from_auto(rd) 
 
     ### generate includes
     x$includes <- lapply(
       settings_data$name[settings_data$type == "include"], function(y) {
         new_include(
           name = y, variable = new_variable_from_auto(x$dataset, index = y),
-          hidden = shiny::isTruthy(app_data$shp_hidden)
+          visible = FALSE
         )
       }
     )
+    
+    ### generate excludes
+    x$excludes <- lapply(
+      settings_data$name[settings_data$type == "exclude"], function(y) {
+        new_exclude(
+          name = y, variable = new_variable_from_auto(x$dataset, index = y),
+          visible = FALSE
+        )
+      }
+    )    
 
     ### generate weights
     x$weights <- lapply(
@@ -149,7 +163,7 @@ server_import_spatial_data <- quote({
         new_weight(
           name = y, variable = new_variable_from_auto(x$dataset, index = y),
           status = FALSE,
-          hidden = shiny::isTruthy(app_data$shp_hidden)
+          visible = FALSE
         )
       }
     )
@@ -162,7 +176,7 @@ server_import_spatial_data <- quote({
           feature = new_feature(
             name = y,
             variable = new_variable_from_auto(x$dataset, index = y),
-            hidden = shiny::isTruthy(app_data$shp_hidden)
+            visible = FALSE
           )
         )
       }
@@ -171,7 +185,7 @@ server_import_spatial_data <- quote({
     ### calculate current amount held for each theme and weight
     ss <- new_solution_settings(
       themes = x$themes, weights = x$weights, includes = x$includes,
-      parameters = list()
+      excludes = x$excludes, parameters = list()
     )
     ss$update_current_held()
 
@@ -181,6 +195,14 @@ server_import_spatial_data <- quote({
 
     ## remove modal
     shiny::removeModal(session)
+    
+    # add side-bar spinner
+    shinyjs::runjs(
+      "const sidebarSpinner = document.createElement('div');
+       sidebarSpinner.classList.add('sidebar-spinner');
+       const mapManagerPane_settings = document.querySelector('#mapManagerPane_settings');
+       mapManagerPane_settings.appendChild(sidebarSpinner);"
+    )    
 
     ## show help modal
     if (identical(app_data$mode, "beginner")) {

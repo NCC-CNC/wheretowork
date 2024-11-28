@@ -24,15 +24,18 @@ server_initialize_app <- quote({
       boundary_path = NULL,
       attribute_path = NULL,
       ## settings
+      project_name = NULL,
+      author_name = NULL,
+      author_email = NULL,
       mode = NULL,
-      builtin_hidden = NULL, # enable/disable all T, W and I layers
-      manual_hidden = NULL, # enable/disable all T, W and I layers
-      shp_hidden = NULL, # enable/disable all T, W and I layers
+      wheretowork_version = NULL,
+      prioritizr_version = NULL,
       ## objects
       dataset = NULL,
       themes = NULL,
       weights = NULL,
       includes = NULL,
+      excludes = NULL,
       solutions = list(),
       cache = cachem::cache_mem(),
       ## data
@@ -40,6 +43,7 @@ server_initialize_app <- quote({
       theme_data = NULL,
       weight_data = NULL,
       include_data = NULL,
+      exclude_data = NULL,
       area_data = NULL,
       boundary_data = NULL,
       solution_ids = character(0),
@@ -114,7 +118,7 @@ server_initialize_app <- quote({
   shinyjs::hideElement("importModal_spatial_text")
 
   # add help modal button trigger
-  observeEvent(input$help_button, {
+  shiny::observeEvent(input$help_button, {
     shinyBS::toggleModal(
       session = session, modalId = "helpModal", toggle = "open"
     )

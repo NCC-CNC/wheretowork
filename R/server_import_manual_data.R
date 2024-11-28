@@ -34,8 +34,7 @@ server_import_manual_data <- quote({
         spatial_path = app_data$spatial_path,
         attribute_path = app_data$attribute_path,
         boundary_path = app_data$boundary_path,
-        mode = get_golem_config("mode"),
-        force_hidden = app_data$manual_hidden
+        mode = get_golem_config("mode")
       ),
       silent = TRUE
     )
@@ -130,11 +129,19 @@ server_import_manual_data <- quote({
 
     ## remove modal
     shiny::removeModal(session)
+    
+    # add side-bar spinner
+    shinyjs::runjs(
+      "const sidebarSpinner = document.createElement('div');
+       sidebarSpinner.classList.add('sidebar-spinner');
+       const mapManagerPane_settings = document.querySelector('#mapManagerPane_settings');
+       mapManagerPane_settings.appendChild(sidebarSpinner);"
+    )
 
     ## show help modal
     if (identical(app_data$mode, "beginner")) {
       shinyBS::toggleModal(session, modalId = "helpModal", toggle = "open")
     }
-
+    
   })
 })

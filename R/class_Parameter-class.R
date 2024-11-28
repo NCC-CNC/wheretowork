@@ -38,9 +38,6 @@ Parameter <- R6::R6Class(
     #' @field disable `logical` value.
     disable = NA,
     
-    #' @field no_slider `logical` value.
-    no_slider = NA,     
-
     #' @field units `character` value.
     units = NA_character_,
 
@@ -49,6 +46,9 @@ Parameter <- R6::R6Class(
 
     #' @field reference_units `character` units for reference value.
     reference_units = NA_character_,
+    
+    #' @field tool_tip `character` description of parameter setting.
+    tool_tip = NA_character_,    
 
     #' @description
     #' Create a new Parameter object.
@@ -61,16 +61,16 @@ Parameter <- R6::R6Class(
     #' @param step_value `numeric` step value.
     #' @param hide `logical` value.
     #' @param disable `logical` value.
-    #' @param no_slider `logical` value.
     #' @param units `character` value.
     #' @param reference_value `numeric` value.
     #' @param reference_units `character` value.
+    #' @param tool_tip `character` value.
     #' @return A new Parameter object.
     ## constructor
     initialize = function(id, name, status,
                           value, min_value, max_value, step_value, hide, 
-                          disable, no_slider, units, reference_value, 
-                          reference_units) {
+                          disable, units, reference_value, reference_units, 
+                          tool_tip) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -110,12 +110,12 @@ Parameter <- R6::R6Class(
         #### disable
         assertthat::is.flag(disable),
         assertthat::noNA(disable),
-        #### no_slider
-        assertthat::is.flag(no_slider),
-        assertthat::noNA(no_slider),          
         #### units
         assertthat::is.string(units),
-        assertthat::noNA(units)
+        assertthat::noNA(units),
+        #### tool_tip
+        assertthat::is.string(tool_tip),
+        assertthat::noNA(tool_tip)
       )
       ### set fields
       self$id <- id
@@ -129,8 +129,8 @@ Parameter <- R6::R6Class(
       self$reference_units <- reference_units
       self$hide <- hide
       self$disable <- disable
-      self$no_slider <- no_slider
       self$units <- units
+      self$tool_tip <- tool_tip
     },
 
     #' @description
@@ -176,7 +176,7 @@ Parameter <- R6::R6Class(
     get_value = function() {
       self$value
     },
-
+    
     #' @description
     #' Get setting.
     #' @param name `character` setting name.
@@ -223,7 +223,7 @@ Parameter <- R6::R6Class(
       self$value <- value
       invisible(self)
     },
-
+    
     #' @description
     #' Set setting.
     #' @param name `character` setting name.
@@ -233,12 +233,14 @@ Parameter <- R6::R6Class(
       assertthat::assert_that(
         assertthat::is.string(name),
         assertthat::noNA(name),
-        name %in% c("status", "value")
+        name %in% c("status", "value", "fileinput")
       )
       if (identical(name, "status")) {
         self$set_status(value)
       } else if (identical(name, "value")) {
         self$set_value(value)
+      } else if (identical(name, "fileinput")) {
+        ## do nothing, no need to store user fileinput        
       } else {
         stop(paste0("\"", name, "\" is not a setting"))
       }
@@ -258,10 +260,10 @@ Parameter <- R6::R6Class(
         step_value = self$step_value,
         hide = self$hide,
         disable = self$disable,
-        no_slider = self$no_slider,
         units = self$units,
         reference_value = self$reference_value,
-        reference_units = self$reference_units
+        reference_units = self$reference_units,
+        tool_tip = self$tool_tip
       )
     },
 
@@ -278,10 +280,10 @@ Parameter <- R6::R6Class(
         step_value = self$step_value,
         hide = self$hide,
         disable = self$disable,
-        no_slider = self$no_slider,
         units = self$units,
         reference_value = self$reference_value,
-        reference_units = self$reference_units
+        reference_units = self$reference_units,
+        tool_tip = self$tool_tip
       )
     },
 
@@ -336,8 +338,7 @@ Parameter <- R6::R6Class(
 #' @param disable `logical` indicating if the setting should be disabled.
 #'   Defaults to `FALSE`.  
 #'   
-#' @param no_slider `logical` indicating if the setting should not have a slider.
-#'   Defaults to `FALSE`.      
+#' @param tool_tip `character` description of parameter setting.
 #'
 #' @inheritParams new_theme
 #' @inheritParams new_feature
@@ -353,9 +354,10 @@ Parameter <- R6::R6Class(
 #' @export
 new_parameter <- function(name, status = TRUE, value = 0,
                           min_value = 0, max_value = 100, step_value = 1,
-                          hide = FALSE, disable = FALSE, no_slider = FALSE, 
-                          units = "",reference_value = NA_real_, 
-                          reference_units = "", id = uuid::UUIDgenerate()) {
+                          hide = FALSE, disable = FALSE, units = "", 
+                          reference_value = NA_real_, 
+                          reference_units = "", tool_tip = "",  
+                          id = uuid::UUIDgenerate()) {
   Parameter$new(
     id = id,
     name = name,
@@ -366,9 +368,9 @@ new_parameter <- function(name, status = TRUE, value = 0,
     step_value = step_value,
     hide = hide,
     disable = disable,
-    no_slider = no_slider,
     reference_value = reference_value,
     reference_units = reference_units,
-    units = units
+    units = units,
+    tool_tip = tool_tip
   )
 }

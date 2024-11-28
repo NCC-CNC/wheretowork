@@ -1,248 +1,96 @@
 name: Example Shapefile dataset (themes)
 author_name: Richard Schuster
 author_email: richard.schuster@natureconservancy.ca
+wheretowork_version: 1.0.0
+prioritizr_version: 8.0.4
 mode: beginner
 user_groups: admin
 spatial_path: sim_vector2_spatial.shp
 attribute_path: sim_vector2_attribute.csv.gz
 boundary_path: sim_vector2_boundary.dat.gz
 themes:
-- name: House Wren (Grenada)
+- name: Duchess Lorikeet
   feature:
-  - name: House Wren (Grenada) habitat
+  - name: Duchess Lorikeet habitat
     variable:
-      index: House_Wren_Grenada_
+      index: Duchess_Lorikeet
       units: ha
       legend:
         type: continuous
         colors:
-        - '#8E0152'
-        - '#C51B7D'
-        - '#DE77AE'
-        - '#F1B6DA'
-        - '#FDE0EF'
+        - '#FFF7F3'
+        - '#FDE0DD'
+        - '#FCC5C0'
+        - '#FA9FB5'
+        - '#F768A1'
+        - '#DD3497'
+        - '#AE017E'
+        - '#7A0177'
+        - '#49006A'
+      provenance: national
+    status: yes
+    visible: yes
+    hidden: no
+    goal: 0.51
+    limit_goal: 0.17
+- name: Talamanca Hummingbird
+  feature:
+  - name: Talamanca Hummingbird habitat
+    variable:
+      index: Talamanca_Hummingbird
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#67001F'
+        - '#B2182B'
+        - '#D6604D'
+        - '#F4A582'
+        - '#FDDBC7'
         - '#F7F7F7'
-        - '#E6F5D0'
-        - '#B8E186'
-        - '#7FBC41'
-        - '#4D9221'
-        - '#276419'
+        - '#D1E5F0'
+        - '#92C5DE'
+        - '#4393C3'
+        - '#2166AC'
+        - '#053061'
       provenance: regional
     status: yes
     visible: yes
     hidden: no
-    goal: 0.9
-    limit_goal: 0.33
-- name: White-headed Woodhoopoe (Oku)
-  feature:
-  - name: White-headed Woodhoopoe (Oku) habitat
-    variable:
-      index: White_headed_Woodhoopoe_Oku_
-      units: ha
-      legend:
-        type: categorical
-        colors:
-        - '#7FC97F'
-        - '#BEAED4'
-        - '#FDC086'
-        - '#FFFF99'
-        - '#386CB0'
-        - '#F0027F'
-        - '#BF5B17'
-      provenance: regional
-    status: yes
-    visible: yes
-    hidden: no
-    goal: 0.57
-    limit_goal: 0.35
-- name: Elliot's Storm-Petrel
-  feature:
-  - name: Elliot's Storm-Petrel habitat
-    variable:
-      index: Elliot_s_Storm_Petrel
-      units: ha
-      legend:
-        type: continuous
-        colors:
-        - '#FFFFFF'
-        - '#F0F0F0'
-        - '#D9D9D9'
-        - '#BDBDBD'
-        - '#969696'
-        - '#737373'
-        - '#525252'
-        - '#252525'
-        - '#000000'
-      provenance: national
-    status: yes
-    visible: yes
-    hidden: no
-    goal: 0.56
-    limit_goal: 0.35
-- name: Cuckooshrikes
-  feature:
-  - name: Boyer's Cuckooshrike
-    variable:
-      index: Boyer_s_Cuckooshrike
-      units: ha
-      legend:
-        type: continuous
-        colors:
-        - '#F7FCF0'
-        - '#E0F3DB'
-        - '#CCEBC5'
-        - '#A8DDB5'
-        - '#7BCCC4'
-        - '#4EB3D3'
-        - '#2B8CBE'
-        - '#0868AC'
-        - '#084081'
-      provenance: regional
-    status: yes
-    visible: yes
-    hidden: no
-    goal: 0.8
-    limit_goal: 0.37
-  - name: Gray-chinned Minivet (Gray-chinned)
-    variable:
-      index: Gray_chinned_Minivet_Gray_chinned_
-      units: ha
-      legend:
-        type: continuous
-        colors:
-        - '#FCFBFD'
-        - '#EFEDF5'
-        - '#DADAEB'
-        - '#BCBDDC'
-        - '#9E9AC8'
-        - '#807DBA'
-        - '#6A51A3'
-        - '#54278F'
-        - '#3F007D'
-      provenance: national
-    status: yes
-    visible: yes
-    hidden: no
-    goal: 0.8
-    limit_goal: 0.01
-  - name: Scarlet Minivet
-    variable:
-      index: Scarlet_Minivet
-      units: ha
-      legend:
-        type: continuous
-        colors:
-        - '#F7FCFD'
-        - '#E0ECF4'
-        - '#BFD3E6'
-        - '#9EBCDA'
-        - '#8C96C6'
-        - '#8C6BB1'
-        - '#88419D'
-        - '#810F7C'
-        - '#4D004B'
-      provenance: national
-    status: yes
-    visible: yes
-    hidden: no
-    goal: 0.88
+    goal: 0.77
     limit_goal: 0.09
-  - name: Ground Cuckooshrike
+- name: Hodgen's Waterhen
+  feature:
+  - name: Hodgen's Waterhen habitat
     variable:
-      index: Ground_Cuckooshrike
+      index: Hodgen_s_Waterhen
       units: ha
       legend:
         type: continuous
         colors:
-        - '#FCFBFD'
-        - '#EFEDF5'
-        - '#DADAEB'
-        - '#BCBDDC'
-        - '#9E9AC8'
-        - '#807DBA'
-        - '#6A51A3'
-        - '#54278F'
-        - '#3F007D'
-      provenance: national
+        - '#FFFFE5'
+        - '#F7FCB9'
+        - '#D9F0A3'
+        - '#ADDD8E'
+        - '#78C679'
+        - '#41AB5D'
+        - '#238443'
+        - '#006837'
+        - '#004529'
+      provenance: regional
     status: yes
     visible: yes
     hidden: no
-    goal: 0.8
-    limit_goal: 0.32
-  - name: Oriole Cuckooshrike
+    goal: 0.67
+    limit_goal: 0.11
+- name: Sylviid Warblers, Parrotbills, and Allies
+  feature:
+  - name: Western Orphean Warbler
     variable:
-      index: Oriole_Cuckooshrike
+      index: Arabian_Warbler
       units: ha
       legend:
-        type: continuous
-        colors:
-        - '#7FC97F'
-        - '#BEAED4'
-        - '#FDC086'
-        - '#FFFF99'
-        - '#386CB0'
-        - '#F0027F'
-        - '#BF5B17'
-        - '#666666'
-      provenance: national
-    status: yes
-    visible: yes
-    hidden: no
-    goal: 0.89
-    limit_goal: 0.25
-  - name: Reunion Cuckooshrike
-    variable:
-      index: Reunion_Cuckooshrike
-      units: ha
-      legend:
-        type: continuous
-        colors:
-        - '#8DD3C7'
-        - '#FFFFB3'
-        - '#BEBADA'
-        - '#FB8072'
-        - '#80B1D3'
-        - '#FDB462'
-        - '#B3DE69'
-        - '#FCCDE5'
-        - '#D9D9D9'
-        - '#BC80BD'
-        - '#CCEBC5'
-        - '#FFED6F'
-      provenance: national
-    status: yes
-    visible: yes
-    hidden: no
-    goal: 0.58
-    limit_goal: 0.38
-  - name: Gray-chinned Minivet (Gray-throated)
-    variable:
-      index: Gray_chinned_Minivet_Gray_throated_
-      units: ha
-      legend:
-        type: continuous
-        colors:
-        - '#FBB4AE'
-        - '#B3CDE3'
-        - '#CCEBC5'
-        - '#DECBE4'
-        - '#FED9A6'
-        - '#FFFFCC'
-        - '#E5D8BD'
-        - '#FDDAEC'
-        - '#F2F2F2'
-      provenance: national
-    status: yes
-    visible: yes
-    hidden: no
-    goal: 0.87
-    limit_goal: 0.38
-  - name: Pied Triller
-    variable:
-      index: Pied_Triller
-      units: ha
-      legend:
-        type: continuous
+        type: manual
         colors:
         - '#F7FBFF'
         - '#DEEBF7'
@@ -253,175 +101,476 @@ themes:
         - '#2171B5'
         - '#08519C'
         - '#08306B'
-      provenance: regional
-    status: yes
-    visible: yes
-    hidden: no
-    goal: 0.78
-    limit_goal: 0.21
-  - name: Common Cicadabird (Rossel)
-    variable:
-      index: Common_Cicadabird_Rossel_
-      units: ha
-      legend:
-        type: continuous
-        colors:
-        - '#F7FCF5'
-        - '#E5F5E0'
-        - '#C7E9C0'
-        - '#A1D99B'
-        - '#74C476'
-        - '#41AB5D'
-        - '#238B45'
-        - '#006D2C'
-        - '#00441B'
-      provenance: regional
-    status: yes
-    visible: yes
-    hidden: no
-    goal: 0.61
-    limit_goal: 0.4
-  - name: Varied Triller
-    variable:
-      index: Varied_Triller
-      units: ha
-      legend:
-        type: continuous
-        colors:
-        - '#FFFFD9'
-        - '#EDF8B1'
-        - '#C7E9B4'
-        - '#7FCDBB'
-        - '#41B6C4'
-        - '#1D91C0'
-        - '#225EA8'
-        - '#253494'
-        - '#081D58'
-      provenance: regional
-    status: yes
-    visible: yes
-    hidden: no
-    goal: 0.85
-    limit_goal: 0.11
-- name: Old World Buntings
-  feature:
-  - name: Rufous-backed Bunting
-    variable:
-      index: Rufous_backed_Bunting
-      units: ha
-      legend:
-        type: categorical
-        colors:
-        - '#E41A1C'
-        - '#377EB8'
-        - '#4DAF4A'
-        - '#984EA3'
-        - '#FF7F00'
-        - '#FFFF33'
-        - '#A65628'
-        - '#F781BF'
+        - '#66C2A5'
+        - '#FC8D62'
+        - '#8DA0CB'
+        - '#E78AC3'
+        - '#A6D854'
+        - '#FFD92F'
+        - '#E5C494'
+        - '#B3B3B3'
+        labels:
+        - 'value: 1'
+        - 'value: 1.5'
+        - 'value: 1.75'
+        - 'value: 2'
+        - 'value: 2.25'
+        - 'value: 2.5'
+        - 'value: 2.75'
+        - 'value: 3'
+        - 'value: 3.25'
+        - 'value: 3.5'
+        - 'value: 3.75'
+        - 'value: 4'
+        - 'value: 4.25'
+        - 'value: 4.5'
+        - 'value: 4.75'
+        - 'value: 5'
+        - 'value: 6'
       provenance: national
     status: yes
     visible: yes
     hidden: no
-    goal: 0.78
-    limit_goal: 0.26
-  - name: Cabanis's Bunting
+    goal: 0.71
+    limit_goal: 0.24
+  - name: Gray-hooded Parrotbill
     variable:
-      index: Cabanis_s_Bunting
+      index: Arabian_Warbler
       units: ha
       legend:
-        type: categorical
+        type: manual
         colors:
-        - '#FEEBE2'
-        - '#FCC5C0'
-        - '#FA9FB5'
-        - '#F768A1'
-        - '#C51B8A'
-        - '#7A0177'
+        - '#F7FBFF'
+        - '#DEEBF7'
+        - '#C6DBEF'
+        - '#9ECAE1'
+        - '#6BAED6'
+        - '#4292C6'
+        - '#2171B5'
+        - '#08519C'
+        - '#08306B'
+        - '#66C2A5'
+        - '#FC8D62'
+        - '#8DA0CB'
+        - '#E78AC3'
+        - '#A6D854'
+        - '#FFD92F'
+        - '#E5C494'
+        - '#B3B3B3'
+        labels:
+        - 'value: 1'
+        - 'value: 1.5'
+        - 'value: 1.75'
+        - 'value: 2'
+        - 'value: 2.25'
+        - 'value: 2.5'
+        - 'value: 2.75'
+        - 'value: 3'
+        - 'value: 3.25'
+        - 'value: 3.5'
+        - 'value: 3.75'
+        - 'value: 4'
+        - 'value: 4.25'
+        - 'value: 4.5'
+        - 'value: 4.75'
+        - 'value: 5'
+        - 'value: 6'
+      provenance: national
+    status: yes
+    visible: yes
+    hidden: no
+    goal: 0.63
+    limit_goal: 0.25
+  - name: Black-throated Parrotbill (Gray-breasted)
+    variable:
+      index: Arabian_Warbler
+      units: ha
+      legend:
+        type: manual
+        colors:
+        - '#F7FBFF'
+        - '#DEEBF7'
+        - '#C6DBEF'
+        - '#9ECAE1'
+        - '#6BAED6'
+        - '#4292C6'
+        - '#2171B5'
+        - '#08519C'
+        - '#08306B'
+        - '#66C2A5'
+        - '#FC8D62'
+        - '#8DA0CB'
+        - '#E78AC3'
+        - '#A6D854'
+        - '#FFD92F'
+        - '#E5C494'
+        - '#B3B3B3'
+        labels:
+        - 'value: 1'
+        - 'value: 1.5'
+        - 'value: 1.75'
+        - 'value: 2'
+        - 'value: 2.25'
+        - 'value: 2.5'
+        - 'value: 2.75'
+        - 'value: 3'
+        - 'value: 3.25'
+        - 'value: 3.5'
+        - 'value: 3.75'
+        - 'value: 4'
+        - 'value: 4.25'
+        - 'value: 4.5'
+        - 'value: 4.75'
+        - 'value: 5'
+        - 'value: 6'
+      provenance: national
+    status: yes
+    visible: yes
+    hidden: no
+    goal: 0.85
+    limit_goal: 0.19
+  - name: Brown Parisoma (Gray-vented)
+    variable:
+      index: Arabian_Warbler
+      units: ha
+      legend:
+        type: manual
+        colors:
+        - '#F7FBFF'
+        - '#DEEBF7'
+        - '#C6DBEF'
+        - '#9ECAE1'
+        - '#6BAED6'
+        - '#4292C6'
+        - '#2171B5'
+        - '#08519C'
+        - '#08306B'
+        - '#66C2A5'
+        - '#FC8D62'
+        - '#8DA0CB'
+        - '#E78AC3'
+        - '#A6D854'
+        - '#FFD92F'
+        - '#E5C494'
+        - '#B3B3B3'
+        labels:
+        - 'value: 1'
+        - 'value: 1.5'
+        - 'value: 1.75'
+        - 'value: 2'
+        - 'value: 2.25'
+        - 'value: 2.5'
+        - 'value: 2.75'
+        - 'value: 3'
+        - 'value: 3.25'
+        - 'value: 3.5'
+        - 'value: 3.75'
+        - 'value: 4'
+        - 'value: 4.25'
+        - 'value: 4.5'
+        - 'value: 4.75'
+        - 'value: 5'
+        - 'value: 6'
+      provenance: national
+    status: yes
+    visible: yes
+    hidden: no
+    goal: 0.85
+    limit_goal: 0.16
+  - name: Lesser Whitethroat (halimodendri)
+    variable:
+      index: Arabian_Warbler
+      units: ha
+      legend:
+        type: manual
+        colors:
+        - '#F7FBFF'
+        - '#DEEBF7'
+        - '#C6DBEF'
+        - '#9ECAE1'
+        - '#6BAED6'
+        - '#4292C6'
+        - '#2171B5'
+        - '#08519C'
+        - '#08306B'
+        - '#66C2A5'
+        - '#FC8D62'
+        - '#8DA0CB'
+        - '#E78AC3'
+        - '#A6D854'
+        - '#FFD92F'
+        - '#E5C494'
+        - '#B3B3B3'
+        labels:
+        - 'value: 1'
+        - 'value: 1.5'
+        - 'value: 1.75'
+        - 'value: 2'
+        - 'value: 2.25'
+        - 'value: 2.5'
+        - 'value: 2.75'
+        - 'value: 3'
+        - 'value: 3.25'
+        - 'value: 3.5'
+        - 'value: 3.75'
+        - 'value: 4'
+        - 'value: 4.25'
+        - 'value: 4.5'
+        - 'value: 4.75'
+        - 'value: 5'
+        - 'value: 6'
+      provenance: national
+    status: yes
+    visible: yes
+    hidden: no
+    goal: 0.8
+    limit_goal: 0.21
+  - name: Chinese Fulvetta
+    variable:
+      index: Arabian_Warbler
+      units: ha
+      legend:
+        type: manual
+        colors:
+        - '#F7FBFF'
+        - '#DEEBF7'
+        - '#C6DBEF'
+        - '#9ECAE1'
+        - '#6BAED6'
+        - '#4292C6'
+        - '#2171B5'
+        - '#08519C'
+        - '#08306B'
+        - '#66C2A5'
+        - '#FC8D62'
+        - '#8DA0CB'
+        - '#E78AC3'
+        - '#A6D854'
+        - '#FFD92F'
+        - '#E5C494'
+        - '#B3B3B3'
+        labels:
+        - 'value: 1'
+        - 'value: 1.5'
+        - 'value: 1.75'
+        - 'value: 2'
+        - 'value: 2.25'
+        - 'value: 2.5'
+        - 'value: 2.75'
+        - 'value: 3'
+        - 'value: 3.25'
+        - 'value: 3.5'
+        - 'value: 3.75'
+        - 'value: 4'
+        - 'value: 4.25'
+        - 'value: 4.5'
+        - 'value: 4.75'
+        - 'value: 5'
+        - 'value: 6'
+      provenance: national
+    status: yes
+    visible: yes
+    hidden: no
+    goal: 0.59
+    limit_goal: 0.17
+  - name: Sardinian Warbler
+    variable:
+      index: Arabian_Warbler
+      units: ha
+      legend:
+        type: manual
+        colors:
+        - '#F7FBFF'
+        - '#DEEBF7'
+        - '#C6DBEF'
+        - '#9ECAE1'
+        - '#6BAED6'
+        - '#4292C6'
+        - '#2171B5'
+        - '#08519C'
+        - '#08306B'
+        - '#66C2A5'
+        - '#FC8D62'
+        - '#8DA0CB'
+        - '#E78AC3'
+        - '#A6D854'
+        - '#FFD92F'
+        - '#E5C494'
+        - '#B3B3B3'
+        labels:
+        - 'value: 1'
+        - 'value: 1.5'
+        - 'value: 1.75'
+        - 'value: 2'
+        - 'value: 2.25'
+        - 'value: 2.5'
+        - 'value: 2.75'
+        - 'value: 3'
+        - 'value: 3.25'
+        - 'value: 3.5'
+        - 'value: 3.75'
+        - 'value: 4'
+        - 'value: 4.25'
+        - 'value: 4.5'
+        - 'value: 4.75'
+        - 'value: 5'
+        - 'value: 6'
+      provenance: national
+    status: yes
+    visible: yes
+    hidden: no
+    goal: 0.59
+    limit_goal: 0.06
+  - name: Arabian Warbler
+    variable:
+      index: Arabian_Warbler
+      units: ha
+      legend:
+        type: manual
+        colors:
+        - '#F7FBFF'
+        - '#DEEBF7'
+        - '#C6DBEF'
+        - '#9ECAE1'
+        - '#6BAED6'
+        - '#4292C6'
+        - '#2171B5'
+        - '#08519C'
+        - '#08306B'
+        - '#66C2A5'
+        - '#FC8D62'
+        - '#8DA0CB'
+        - '#E78AC3'
+        - '#A6D854'
+        - '#FFD92F'
+        - '#E5C494'
+        - '#B3B3B3'
+        labels:
+        - 'value: 1'
+        - 'value: 1.5'
+        - 'value: 1.75'
+        - 'value: 2'
+        - 'value: 2.25'
+        - 'value: 2.5'
+        - 'value: 2.75'
+        - 'value: 3'
+        - 'value: 3.25'
+        - 'value: 3.5'
+        - 'value: 3.75'
+        - 'value: 4'
+        - 'value: 4.25'
+        - 'value: 4.5'
+        - 'value: 4.75'
+        - 'value: 5'
+        - 'value: 6'
+      provenance: national
+    status: yes
+    visible: yes
+    hidden: no
+    goal: 0.77
+    limit_goal: 0.01
+- name: Tapaculos
+  feature:
+  - name: Tatama Tapaculo
+    variable:
+      index: Ochre_flanked_Tapaculo
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#A6CEE3'
+        - '#1F78B4'
+        - '#B2DF8A'
+        - '#33A02C'
+        - '#FB9A99'
+        - '#E31A1C'
+        - '#FDBF6F'
+        - '#FF7F00'
+        - '#CAB2D6'
+        - '#6A3D9A'
+        - '#FFFF99'
+        - '#B15928'
+      provenance: national
+    status: yes
+    visible: yes
+    hidden: no
+    goal: 0.87
+    limit_goal: 0.23
+  - name: Rufous-vented Tapaculo
+    variable:
+      index: Ochre_flanked_Tapaculo
+      units: ha
+      legend:
+        type: continuous
+        colors:
+        - '#A6CEE3'
+        - '#1F78B4'
+        - '#B2DF8A'
+        - '#33A02C'
+        - '#FB9A99'
+        - '#E31A1C'
+        - '#FDBF6F'
+        - '#FF7F00'
+        - '#CAB2D6'
+        - '#6A3D9A'
+        - '#FFFF99'
+        - '#B15928'
       provenance: national
     status: yes
     visible: yes
     hidden: no
     goal: 0.69
-    limit_goal: 0.09
-  - name: Yellowhammer
+    limit_goal: 0.08
+  - name: Brasilia Tapaculo
     variable:
-      index: Yellowhammer
+      index: Ochre_flanked_Tapaculo
       units: ha
       legend:
-        type: categorical
+        type: continuous
         colors:
-        - '#D8B365'
-        - '#F5F5F5'
-      provenance: regional
+        - '#A6CEE3'
+        - '#1F78B4'
+        - '#B2DF8A'
+        - '#33A02C'
+        - '#FB9A99'
+        - '#E31A1C'
+        - '#FDBF6F'
+        - '#FF7F00'
+        - '#CAB2D6'
+        - '#6A3D9A'
+        - '#FFFF99'
+        - '#B15928'
+      provenance: national
     status: yes
     visible: yes
     hidden: no
-    goal: 0.86
-    limit_goal: 0.1
-  - name: Brown-rumped Bunting
-    variable:
-      index: Brown_rumped_Bunting
-      units: ha
-      legend:
-        type: categorical
-        colors:
-        - '#F7F4F9'
-        - '#E7E1EF'
-        - '#D4B9DA'
-        - '#C994C7'
-        - '#DF65B0'
-        - '#E7298A'
-        - '#CE1256'
-        - '#980043'
-        - '#67001F'
-        - '#EDF8B1'
-      provenance: regional
-    status: yes
-    visible: yes
-    hidden: no
-    goal: 0.77
+    goal: 0.63
     limit_goal: 0.13
-  - name: Gray-necked Bunting
+  - name: Ochre-flanked Tapaculo
     variable:
-      index: Gray_necked_Bunting
+      index: Ochre_flanked_Tapaculo
       units: ha
       legend:
-        type: categorical
+        type: continuous
         colors:
-        - '#CA0020'
-        - '#F4A582'
-        - '#BABABA'
-        - '#404040'
-      provenance: regional
+        - '#A6CEE3'
+        - '#1F78B4'
+        - '#B2DF8A'
+        - '#33A02C'
+        - '#FB9A99'
+        - '#E31A1C'
+        - '#FDBF6F'
+        - '#FF7F00'
+        - '#CAB2D6'
+        - '#6A3D9A'
+        - '#FFFF99'
+        - '#B15928'
+      provenance: national
     status: yes
     visible: yes
     hidden: no
-    goal: 0.65
-    limit_goal: 0.38
-  - name: White-capped Bunting
-    variable:
-      index: White_capped_Bunting
-      units: ha
-      legend:
-        type: categorical
-        colors:
-        - '#8DD3C7'
-        - '#FFFFB3'
-        - '#BEBADA'
-        - '#FB8072'
-        - '#80B1D3'
-        - '#FDB462'
-        - '#B3DE69'
-        - '#FCCDE5'
-        - '#D9D9D9'
-        - '#BC80BD'
-      provenance: regional
-    status: yes
-    visible: yes
-    hidden: no
-    goal: 0.56
-    limit_goal: 0.05
+    goal: 0.84
+    limit_goal: 0.07
 weights: []
 includes: []
+excludes: []

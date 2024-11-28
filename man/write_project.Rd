@@ -19,7 +19,7 @@ write_project(
 )
 }
 \arguments{
-\item{x}{\code{list} of \link{Theme}, \link{Weight}, and \link{Include} objects.}
+\item{x}{\code{list} of \link{Theme}, \link{Weight}, \link{Include}, and \link{Exclude} objects.}
 
 \item{dataset}{\link{Dataset} object.}
 
@@ -57,7 +57,6 @@ Invisible \code{TRUE} indicating success.
 Save a project to disk.
 }
 \examples{
-if (requireNamespace("RandomFields")) {
  # find data file paths
  f1 <- system.file(
    "extdata", "projects", "sim_raster", "sim_raster_spatial.tif",
@@ -92,5 +91,4 @@ if (requireNamespace("RandomFields")) {
    attribute_path = tempfile(fileext = ".csv.gz"),
    boundary_path = tempfile(fileext = ".csv.gz")
  )
-}  
 }

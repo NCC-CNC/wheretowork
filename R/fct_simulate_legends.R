@@ -106,3 +106,30 @@ simulate_include_legend <- function() {
     labels = c("not included", "included")
   )
 }
+
+#' Simulate exclude legend
+#'
+#' This function simulates a legend for a [Exclude] object.
+#' It is primarily used for testing the package.
+#'
+#' @return A [ManualLegend] object.
+#'
+#' @examples
+#' print(simulate_exclude_legend())
+#' @export
+simulate_exclude_legend <- function() {
+  # randomly pick number of values for legend
+  n <- sample.int(8, 1)
+  # randomly pick color for legend
+  d <- RColorBrewer::brewer.pal.info
+  d <- d[d$category == "qual", , drop = FALSE]
+  col <- suppressWarnings({
+    RColorBrewer::brewer.pal(n = n, name = sample(rownames(d), 1))
+  })
+  # return legend
+  new_manual_legend(
+    values = c(0, 1),
+    colors = c("#00FFFF00", col[1]),
+    labels = c("included", "excluded")
+  )
+}

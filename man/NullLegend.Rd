@@ -14,15 +14,15 @@ Definition for the \code{NullLegend} class.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{NullLegend$new()}}
-\item \href{#method-get_widget_data}{\code{NullLegend$get_widget_data()}}
-\item \href{#method-export}{\code{NullLegend$export()}}
-\item \href{#method-clone}{\code{NullLegend$clone()}}
+\item \href{#method-NullLegend-new}{\code{NullLegend$new()}}
+\item \href{#method-NullLegend-get_widget_data}{\code{NullLegend$get_widget_data()}}
+\item \href{#method-NullLegend-export}{\code{NullLegend$export()}}
+\item \href{#method-NullLegend-clone}{\code{NullLegend$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-NullLegend-new"></a>}}
+\if{latex}{\out{\hypertarget{method-NullLegend-new}{}}}
 \subsection{Method \code{new()}}{
 Create a \code{NullLegend} object.
 \subsection{Usage}{
@@ -34,8 +34,8 @@ A new \code{NullLegend} object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_widget_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_widget_data}{}}}
+\if{html}{\out{<a id="method-NullLegend-get_widget_data"></a>}}
+\if{latex}{\out{\hypertarget{method-NullLegend-get_widget_data}{}}}
 \subsection{Method \code{get_widget_data()}}{
 Get data for creating a widget.
 \subsection{Usage}{
@@ -47,8 +47,8 @@ A new \code{NullLegend} object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-export"></a>}}
-\if{latex}{\out{\hypertarget{method-export}{}}}
+\if{html}{\out{<a id="method-NullLegend-export"></a>}}
+\if{latex}{\out{\hypertarget{method-NullLegend-export}{}}}
 \subsection{Method \code{export()}}{
 Export settings
 \subsection{Usage}{
@@ -60,8 +60,8 @@ Export settings
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-NullLegend-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-NullLegend-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

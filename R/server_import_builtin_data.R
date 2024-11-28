@@ -18,9 +18,6 @@ server_import_builtin_data <- quote({
     ## specify dependencies
     shiny::req(input$importModal_builtin_button)
     shiny::req(input$importModal_name)
-    
-    # built-in force hide layers
-    app_data$builtin_hidden <- input$importModal_builtin_hide_layers    
 
     ## update import button
     disable_html_element("importModal_builtin_button")
@@ -30,7 +27,6 @@ server_import_builtin_data <- quote({
       read_project(
         path = input$importModal_name,
         mode = get_golem_config("mode"),
-        force_hidden = app_data$builtin_hidden
       ),
       silent = TRUE
     )
@@ -70,7 +66,7 @@ server_import_builtin_data <- quote({
           dir.create(td, showWarnings = FALSE, recursive = FALSE)
           # save log file to temporary directory
           writeLines(error_log(x), file.path(td, "error-log.txt"))
-          # copy confgiuration file to temporary directory
+          # copy configuration file to temporary directory
           file.copy(input$importModal_name, td)
           # zip files
           withr::with_dir(td, utils::zip(con, files = dir(td)))
@@ -125,6 +121,14 @@ server_import_builtin_data <- quote({
 
     ## remove data modal
     shiny::removeModal(session)
+    
+    # add side-bar spinner
+    shinyjs::runjs(
+      "const sidebarSpinner = document.createElement('div');
+       sidebarSpinner.classList.add('sidebar-spinner');
+       const mapManagerPane_settings = document.querySelector('#mapManagerPane_settings');
+       mapManagerPane_settings.appendChild(sidebarSpinner);"
+    )    
 
     ## show help modal if beginner
     if (identical(app_data$mode, "beginner")) {

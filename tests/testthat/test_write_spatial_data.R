@@ -1,7 +1,6 @@
 context("write_spatial_data")
 
 test_that("vector data", {
-  skip_if_not_installed("RandomFields")
   # create dataset
   d <- simulate_proportion_spatial_data(import_simple_vector_data(), 3)
   # save data
@@ -17,7 +16,6 @@ test_that("vector data", {
 })
 
 test_that("raster data", {
-  skip_if_not_installed("RandomFields")
   # create dataset
   d <- simulate_proportion_spatial_data(import_simple_raster_data(), 3)
   # save data
@@ -26,7 +24,7 @@ test_that("raster data", {
   expect_true(
     all(
       file.exists(
-        file.path(tempdir(), paste0("data2", c(".tif", ".txt")))
+        file.path(tempdir(), paste0("data2", c(".tif")))
       )
     )
   )

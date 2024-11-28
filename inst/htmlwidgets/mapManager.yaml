@@ -21,6 +21,7 @@ dependencies:
       - categoricalLegend.js
       - manualLegend.js
       - IncludeLayer-class.js
+      - ExcludeLayer-class.js
       - SolutionLayer-class.js
       - WeightLayer-class.js
       - SingleThemeLayer-class.js

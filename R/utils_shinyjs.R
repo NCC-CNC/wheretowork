@@ -78,3 +78,44 @@ disable_html_css_selector <- function(x) {
   )
   invisible(TRUE)
 }
+
+#' Change file icon and update tool tip
+#'
+#' @param x `character` CSS selector.
+#'
+#' @param hex `character` hex color.
+#' 
+#' @param tool_tip `character` description text.
+#' 
+#' @return Invisible `TRUE`.
+#'
+#' @return Invisible `TRUE`.
+#'
+#' @export
+change_file_icon_js <- function(x, hex, tool_tip) {
+  shinyjs::runjs(
+    paste0(
+      "document.querySelector('", x, "').style.color = '", hex, "';",
+      "$(document.querySelector('", x, "'))
+        .attr('title', '", tool_tip, "')
+        .tooltip('fixTitle');"
+    )
+  )
+  invisible(TRUE)
+}
+
+#' Remove map pane using CSS selector
+#'
+#' @param id `character` CSS selector.
+#'
+#' @return Invisible `TRUE`.
+#'
+#' @export
+removeMapPane <- function(id) {
+  shinyjs::runjs(
+    paste0(
+      "document.querySelector('.leaflet-pane-", id, "-pane').remove();"
+    )
+  )
+  invisible(TRUE)
+}

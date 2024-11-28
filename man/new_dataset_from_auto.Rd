@@ -4,13 +4,10 @@
 \alias{new_dataset_from_auto}
 \title{New dataset from automatic calculations}
 \usage{
-new_dataset_from_auto(x, skip_bm = FALSE, id = uuid::UUIDgenerate())
+new_dataset_from_auto(x, id = uuid::UUIDgenerate())
 }
 \arguments{
-\item{x}{\code{\link[sf:sf]{sf::st_sf()}} or \code{\link[raster:stack]{raster::stack()}} object.}
-
-\item{skip_bm}{\code{\link{logical}} skip generating boundary data?
-(See details for more information)}
+\item{x}{\code{\link[sf:sf]{sf::st_sf()}} or a combined \code{\link[terra:rast]{terra::rast()}} object.}
 
 \item{id}{\code{character} unique identifier.
 Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}
@@ -27,10 +24,6 @@ functions because it requires performing geospatial operations.
 }
 \details{
 Create a new \link{Dataset} object.
-
-For spatial uploads (shapefile) with many planning units, building
-boundary data can result in a std::bad_alloc error. To avoid this, the
-user can skip generating a boundary matrix by setting \code{skip_bm = TRUE}.
 }
 \examples{
 # find example data
@@ -40,8 +33,9 @@ f <- system.file(
 )
 
 # import data
-r <- suppressWarnings(raster::raster(f))
-r <- raster::stack(r, r * 2, r * 3, r * 4)
+r <- suppressWarnings(terra::rast(f))
+r <- c(r, r * 2, r * 3, r * 4)
+names(r) <- c("r1", "r2", "r3", "r4")
 
 # create new dataset
 d <- new_dataset_from_auto(r)

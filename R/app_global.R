@@ -6,11 +6,13 @@ app_global <- quote({
   if (isTRUE(wheretowork::get_golem_config("monitor"))) {
       cli::cli_rule()
       golem::print_dev("Initial memory used: ")
-      golem::print_dev(pryr::mem_used())
+      golem::print_dev(lobstr::mem_used())
   }
 
   # initialize file upload limits
   options(shiny.maxRequestSize = 1000*1024^2) # 1GB
+  # set global variables limit for future package
+  options(future.globals.maxSize= 1000*1024^2) # 1GB
 
   # initialize asynchronous processing
   ## identify strategy
@@ -55,7 +57,12 @@ app_global <- quote({
   user_groups <- tolower(gsub(" ", "", user_groups, fixed = TRUE))
   if (nchar(user_groups) == 0) {
     user_groups <- "public"
+    # set user group to staff-advanced if running app locally for development
+    if (identical(golem::app_dev(), TRUE)) {
+      user_groups <- "staff-advanced"
+    }
   }
+
   user_groups <- strsplit(user_groups, ",", fixed = TRUE)[[1]]
 
   # ensure that public projects are always available

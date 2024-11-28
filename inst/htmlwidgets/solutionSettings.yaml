@@ -28,6 +28,7 @@ dependencies:
     script:
       - ParameterSetting-class.js
       - IncludeSetting-class.js
+      - ExcludeSetting-class.js
       - MultiThemeSetting-class.js
       - SingleThemeSetting-class.js
       - WeightSetting-class.js

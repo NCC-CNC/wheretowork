@@ -8,13 +8,18 @@ new_solution(
   name,
   variable,
   visible,
+  invisible = NA_real_,
+  loaded = TRUE,
   parameters,
   statistics,
   theme_results,
   weight_results,
   include_results,
+  exclude_results,
   id = uuid::UUIDgenerate(),
-  hidden = FALSE
+  hidden = FALSE,
+  downloadable = TRUE,
+  pane = paste(uuid::UUIDgenerate(), variable$index, sep = "-")
 )
 }
 \arguments{
@@ -23,6 +28,17 @@ new_solution(
 \item{variable}{\link{Variable} object with the solution.}
 
 \item{visible}{\code{logical} should the solution be visible on a map?}
+
+\item{invisible}{\code{numeric} date/time. A time stamp date given to when a
+loaded layer is first turned invisible. This is used to keep track
+of loaded invisible layers to offload once the cache threshold has been
+reached.
+Defaults to \code{NA_real_}.}
+
+\item{loaded}{\code{logical} The initial loaded value.
+This is used to determine if the feature is loaded (or not)
+or not the map.
+Defaults to \code{FALSE}.}
 
 \item{parameters}{\code{list} of \link{Parameter} objects.}
 
@@ -34,10 +50,18 @@ new_solution(
 
 \item{include_results}{\code{list} of \link{IncludeResults} objects.}
 
+\item{exclude_results}{\code{list} of \link{ExcludeResults} objects.}
+
 \item{id}{\code{character} unique identifier.
 Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}
 
 \item{hidden}{\code{logical} should the solution be hidden from map?}
+
+\item{downloadable}{\code{logical} can the solution be downloaded?}
+
+\item{pane}{\code{character} unique map pane identifier.
+Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}) concatenated with
+layer index.}
 }
 \description{
 Create a new \link{Solution} object.
@@ -93,8 +117,10 @@ s <- new_solution(
   theme_results = list(tr1),
   weight_results = list(),
   include_results = list(),
+  exclude_results = list(),
   id = "solution1",
-  hidden = FALSE
+  hidden = FALSE,
+  downloadable = TRUE
 )
 
 }

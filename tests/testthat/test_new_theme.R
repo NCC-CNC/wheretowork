@@ -80,9 +80,12 @@ test_that("get methods (single feature)", {
   expect_identical(x$get_feature_goal(), 0.2)
   expect_identical(x$get_feature_visible(), TRUE)
   expect_identical(x$get_feature_hidden(), FALSE)
-  expect_identical(x$get_visible(), TRUE)
+  expect_identical(x$get_feature_visible(), TRUE)
+  expect_identical(x$get_feature_invisible(), NA_real_)
   expect_identical(x$get_feature_status(), FALSE)
   expect_identical(x$get_feature_current(), 0.2567)
+  expect_identical(x$get_feature_loaded(), TRUE)
+  expect_identical(x$get_feature_id(), "FID1")
   expect_identical(x$get_setting("feature_goal"), x$get_feature_goal())
   expect_identical(x$get_setting("feature_status"), x$get_feature_status())
   expect_identical(x$get_setting("feature_visible"), x$get_feature_visible())
@@ -190,7 +193,6 @@ test_that("widget methods (single feature)", {
 })
 
 test_that("initialization (multiple features)", {
-  skip_if_not_installed("RandomFields")
   # create object
   rd <- simulate_proportion_spatial_data(import_simple_raster_data(), 2)
   d <- new_dataset_from_auto(rd)
@@ -226,11 +228,11 @@ test_that("initialization (multiple features)", {
   expect_is(x$repr(), "character")
   expect_identical(x$id, "MF1")
   expect_identical(x$name, "MF")
+  expect_identical(x$get_feature_loaded(), c(TRUE, FALSE))
   expect_identical(x$feature, list(f1, f2))
 })
 
 test_that("get methods (multiple features)", {
-  skip_if_not_installed("RandomFields")
   # create object
   rd <- simulate_proportion_spatial_data(import_simple_raster_data(), 2)
   d <- new_dataset_from_auto(rd)
@@ -264,6 +266,8 @@ test_that("get methods (multiple features)", {
   # run tests
   expect_identical(x$get_feature_goal(), c(0.2, 0.21))
   expect_identical(x$get_feature_visible(), c(TRUE, FALSE))
+  expect_identical(x$get_feature_invisible(), c(NA_real_, NA_real_))
+  expect_identical(x$get_feature_loaded(), c(TRUE, FALSE))
   expect_identical(x$get_feature_hidden(), c(FALSE, TRUE))
   expect_identical(x$get_visible(), TRUE)
   expect_identical(x$get_feature_status(), c(FALSE, TRUE))
@@ -276,7 +280,6 @@ test_that("get methods (multiple features)", {
 })
 
 test_that("set methods (multiple features)", {
-  skip_if_not_installed("RandomFields")
   # create object
   rd <- simulate_proportion_spatial_data(import_simple_raster_data(), 2)
   d <- new_dataset_from_auto(rd)
@@ -327,7 +330,6 @@ test_that("set methods (multiple features)", {
 })
 
 test_that("export method (multiple features)", {
-  skip_if_not_installed("RandomFields")
   # create object
   rd <- simulate_proportion_spatial_data(import_simple_raster_data(), 2)
   d <- new_dataset_from_auto(rd)
@@ -369,7 +371,6 @@ test_that("export method (multiple features)", {
 })
 
 test_that("widget methods (multiple features)", {
-  skip_if_not_installed("RandomFields")
   # create object
   rd <- simulate_proportion_spatial_data(import_simple_raster_data(), 2)
   d <- new_dataset_from_auto(rd)
@@ -463,9 +464,14 @@ test_that("render on map (project on the fly)", {
   
   # create object
   d <- new_dataset(f1, f2, f3)
-  v <- new_variable_from_auto(dataset = d, index = "R1km_W_Roads", units = "km2")
+  v <- new_variable_from_auto(
+    dataset = d, 
+    index = "T_LC_Wetlands", 
+    units = "index", 
+    type = "continuous", 
+    colors = "viridis")
   f <- new_feature(
-    name = "Road Network",
+    name = "Wetlands",
     variable = v,
     visible = TRUE,
     status = FALSE,
@@ -475,7 +481,7 @@ test_that("render on map (project on the fly)", {
     id = "FID1"
   )
   t <- new_theme(
-    name = "Disturbance",
+    name = "Land Cover",
     feature = f,
     id = "TID1"
   )

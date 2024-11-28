@@ -3,7 +3,7 @@
 \name{spatial_data_statistics}
 \alias{spatial_data_statistics}
 \alias{spatial_data_statistics.sf}
-\alias{spatial_data_statistics.Raster}
+\alias{spatial_data_statistics.SpatRaster}
 \alias{spatial_data_statistics.data.frame}
 \title{Spatial data statistics}
 \usage{
@@ -11,12 +11,12 @@ spatial_data_statistics(x, type, index = 1)
 
 \method{spatial_data_statistics}{sf}(x, type, index = 1)
 
-\method{spatial_data_statistics}{Raster}(x, type, index = 1)
+\method{spatial_data_statistics}{SpatRaster}(x, type, index = 1)
 
 \method{spatial_data_statistics}{data.frame}(x, type, index = 1)
 }
 \arguments{
-\item{x}{\code{\link[sf:sf]{sf::st_sf()}} or \code{\link[raster:stack]{raster::stack()}} or \link{data.frame} dataset object.}
+\item{x}{\code{\link[sf:sf]{sf::st_sf()}} or a combined \link[terra:rast]{terra::rast} or \link{data.frame} dataset object.}
 
 \item{type}{\code{character} indicating whether the dataset contains
 continuous (i.e. \code{"continuous"}) or categorical (i.e. \code{"categorical"})

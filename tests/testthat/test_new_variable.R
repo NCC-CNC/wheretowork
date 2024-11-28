@@ -1,7 +1,6 @@
 context("new_variable")
 
 test_that("initialization", {
-  skip_if_not_installed("RandomFields")
   # prepare data
   rd <- simulate_proportion_spatial_data(import_simple_raster_data(), 2)
   d <- new_dataset_from_auto(rd)
@@ -23,7 +22,6 @@ test_that("initialization", {
 })
 
 test_that("methods", {
-  skip_if_not_installed("RandomFields")
   # prepare data
   rd <- simulate_proportion_spatial_data(import_simple_raster_data(), 2)
   d <- new_dataset_from_auto(rd)
@@ -41,7 +39,6 @@ test_that("methods", {
 })
 
 test_that("export method", {
-  skip_if_not_installed("RandomFields")
   # prepare data
   rd <- simulate_proportion_spatial_data(import_simple_raster_data(), 2)
   d <- new_dataset_from_auto(rd)
@@ -65,7 +62,6 @@ test_that("export method", {
 })
 
 test_that("new_variable_from_auto (continuous)", {
-  skip_if_not_installed("RandomFields")
   # prepare data
   rd <- simulate_continuous_spatial_data(import_simple_raster_data(), 2)
   d <- new_dataset_from_auto(rd)
@@ -78,20 +74,19 @@ test_that("new_variable_from_auto (continuous)", {
   expect_is(x$repr(), "character")
   expect_identical(x$dataset, d)
   expect_identical(x$index, names(rd)[[2]])
-  expect_identical(x$total, raster::cellStats(rd[[2]], "sum"))
+  expect_equal(x$total, terra::global(rd[[2]], fun="sum", na.rm=TRUE)[[1]]) # equal but not identical
   expect_identical(x$units, "ha")
   expect_equal(
     x$legend,
     new_continuous_legend(
-      raster::cellStats(rd[[2]], "min"),
-      raster::cellStats(rd[[2]], "max"),
+      terra::global(rd[[2]], fun="min", na.rm=TRUE)[[1]],
+      terra::global(rd[[2]], fun="max", na.rm=TRUE)[[1]],
       color_palette("viridis", 5)
     )
   )
 })
 
 test_that("new_variable_from_auto (categorical)", {
-  skip_if_not_installed("RandomFields")
   # prepare data
   rd <- simulate_categorical_spatial_data(import_simple_raster_data(), 2)
   d <- new_dataset_from_auto(rd)
@@ -103,19 +98,18 @@ test_that("new_variable_from_auto (categorical)", {
   expect_is(x, "Variable")
   expect_is(x$repr(), "character")
   expect_identical(x$dataset, d)
-  expect_identical(x$total, raster::cellStats(rd[[1]], "sum"))
+  expect_equal(x$total, terra::global(rd[[1]], fun="sum", na.rm=TRUE)[[1]]) # equal but not identical
   expect_identical(x$units, "ha")
   expect_equal(
     x$legend,
     new_categorical_legend(
-      seq_len(raster::cellStats(rd[[1]], "max")),
-      color_palette("viridis", raster::cellStats(rd[[1]], "max"))
+      seq_len(terra::global(rd[[1]], fun="max", na.rm=TRUE)[[1]]),
+      color_palette("viridis", terra::global(rd[[1]], fun="max", na.rm=TRUE)[[1]])
     )
   )
 })
 
 test_that("new_variable_from_auto (categorical, manual legend)", {
-  skip_if_not_installed("RandomFields")
   # prepare data
   rd <- simulate_categorical_spatial_data(import_simple_raster_data(), 2)
   d <- new_dataset_from_auto(rd)
@@ -134,7 +128,7 @@ test_that("new_variable_from_auto (categorical, manual legend)", {
   expect_is(x, "Variable")
   expect_is(x$repr(), "character")
   expect_identical(x$dataset, d)
-  expect_identical(x$total, raster::cellStats(rd[[1]], "sum"))
+  expect_equal(x$total, terra::global(rd[[1]], fun="sum", na.rm=TRUE)[[1]]) # equal but not identical
   expect_identical(x$units, "ha")
   expect_equal(
     length(x$legend$labels),
@@ -147,7 +141,6 @@ test_that("new_variable_from_auto (categorical, manual legend)", {
 })
 
 test_that("new_variable_from_auto (hidden == TRUE)", {
-  skip_if_not_installed("RandomFields")
   # prepare data
   rd <- simulate_categorical_spatial_data(import_simple_raster_data(), 2)
   d <- new_dataset_from_auto(rd)
@@ -166,7 +159,7 @@ test_that("new_variable_from_auto (hidden == TRUE)", {
   expect_is(x, "Variable")
   expect_is(x$repr(), "character")
   expect_identical(x$dataset, d)
-  expect_identical(x$total, raster::cellStats(rd[[1]], "sum"))
+  expect_equal(x$total, terra::global(rd[[1]], fun="sum", na.rm=TRUE)[[1]]) # equal but not identical
   expect_identical(x$units, "ha")
   expect_equal(
     length(x$legend$labels),
@@ -275,12 +268,14 @@ test_that("render (project on the fly)", {
   )
   # create object
   d <- new_dataset(f1, f2, f3)
-  v <- new_variable_from_auto(dataset = d, index = "R1km_T_SAR_AwemeBorer", 
-                              type = "manual", units = "km2", 
-                              colors = c("#00000000", "#ff0000"),
-                              provenance = "national",
-                              labels = c("absence", "presence"),
-                              hidden = FALSE)
+  v <- new_variable_from_auto(
+    dataset = d, 
+    index = "T_LC_Wetlands", 
+    type = "continuous", 
+    units = "index", 
+    colors = "viridis",
+    hidden = FALSE
+  )
   # render on map
   l <- leaflet::leaflet() %>% leaflet::addTiles()
   m <- v$render(x = l, id = "id", zindex = 1000, visible = TRUE)
@@ -304,15 +299,15 @@ test_that("do not render (variable = hidden)", {
   )
   # create object
   d <- new_dataset(f1, f2, f3)
-  v <- new_variable_from_auto(dataset = d, index = "R1km_T_SAR_AwemeBorer", 
-                              type = "manual", units = "km2", 
-                              colors = c("#00000000", "#ff0000"),
-                              provenance = "national",
-                              labels = c("absence", "presence"),
-                              hidden = TRUE)
+  v <- new_variable_from_auto(
+    dataset = d, 
+    index = "T_LC_Wetlands", 
+    type = "continuous", 
+    units = "ha", 
+    colors = "viridis",
+    hidden = TRUE)
   # render on map
   l <- leaflet::leaflet() %>% leaflet::addTiles()
-
   m <- try(
     v$render(x = l, id = "id", zindex = 1000, visible = TRUE), 
     silent = TRUE

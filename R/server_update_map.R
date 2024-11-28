@@ -15,11 +15,19 @@ server_update_map <- quote({
 
   # update map based on map manager widget
   shiny::observeEvent(input$mapManagerPane_settings, {
+  
     ## specify dependencies
     shiny::req(input$mapManagerPane_settings)
 
     ## generate leaflet proxy
     map <- leaflet::leafletProxy("map")
+    
+    ## add map spinner
+    shinyjs::runjs(
+      "const mapSpinner = document.createElement('div');
+      mapSpinner.classList.add('map-spinner');
+      document.body.appendChild(mapSpinner);"
+    )
 
     ## update map manager
     if (!identical(input$mapManagerPane_settings$setting, "remove")) {
@@ -32,6 +40,13 @@ server_update_map <- quote({
 
       ### remove solution if needed
       if (length(i) > 0) {
+        
+        ### remove from map
+        app_data$mm$drop_layer(
+          value = input$mapManagerPane_settings$id,
+          map = map
+        )        
+  
         ### remove from app data
         app_data$solutions <- app_data$solutions[-i]
         app_data$solution_ids <- app_data$solution_ids[-i]
@@ -66,16 +81,17 @@ server_update_map <- quote({
         inputId = "mapManagerPane_settings",
         value = input$mapManagerPane_settings$id
       )
-
-      ### remove from map
-      app_data$mm$drop_layer(
-        value = input$mapManagerPane_settings$id,
-        map = map
-      )
     }
-
+    
     ## update map
     app_data$mm$update_map(map)
+    ## delete the oldest loaded and invisible map pane
+    app_data$mm$delete_sinlge_map_pane(map) 
+    ## remove map spinner
+    shinyjs::runjs(
+      "const mapSpinner = document.querySelector('.map-spinner');
+       mapSpinner.remove();"
+    )    
   })
 
   # update map based on hide button
@@ -100,34 +116,8 @@ server_update_map <- quote({
       TRUE
     })
 
-    ## update map
-    app_data$mm$update_map(leaflet::leafletProxy("map"))
-  })
-
-  # update map based on show button
-  shiny::observeEvent(input$show_button, {
-    ## specify dependencies
-    shiny::req(input$show_button)
-
-    ## update map manager object
-    app_data$mm$set_visible(TRUE)
-
-    ## update map manager widget
-    vapply(app_data$mm$layers, FUN.VALUE = logical(1), function(x) {
-      updateMapManagerLayer(
-        session = session,
-        inputId = "mapManagerPane_settings",
-        value = list(
-          id = x$id,
-          setting = "visible",
-          value = TRUE
-        )
-      )
-      TRUE
-    })
-
-    ## update map
-    app_data$mm$update_map(leaflet::leafletProxy("map"))
+    ## delete all map panes
+    app_data$mm$delete_all_map_panes(leaflet::leafletProxy("map"))
   })
 
   # update map based on home button

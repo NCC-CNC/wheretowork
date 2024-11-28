@@ -23,7 +23,13 @@ Definition for the Solution class.
 
 \item{\code{visible}}{\code{logical} value.}
 
+\item{\code{invisible}}{\code{numeric} date/time value.}
+
+\item{\code{loaded}}{\code{logical} value.}
+
 \item{\code{variable}}{\link{Variable} object.}
+
+\item{\code{pane}}{\code{character} name.}
 
 \item{\code{parameters}}{\code{list} of \link{Parameter} objects}
 
@@ -35,41 +41,55 @@ Definition for the Solution class.
 
 \item{\code{include_results}}{\code{list} of \link{IncludeResults} objects.}
 
+\item{\code{exclude_results}}{\code{list} of \link{ExcludeResults} objects.}
+
 \item{\code{hidden}}{\code{logical} value.}
+
+\item{\code{downloadable}}{\code{logical} value.}
 }
 \if{html}{\out{</div>}}
 }
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{Solution$new()}}
-\item \href{#method-repr}{\code{Solution$repr()}}
-\item \href{#method-print}{\code{Solution$print()}}
-\item \href{#method-get_layer_name}{\code{Solution$get_layer_name()}}
-\item \href{#method-get_layer_index}{\code{Solution$get_layer_index()}}
-\item \href{#method-get_visible}{\code{Solution$get_visible()}}
-\item \href{#method-get_hidden}{\code{Solution$get_hidden()}}
-\item \href{#method-get_setting}{\code{Solution$get_setting()}}
-\item \href{#method-set_visible}{\code{Solution$set_visible()}}
-\item \href{#method-get_summary_results_data}{\code{Solution$get_summary_results_data()}}
-\item \href{#method-get_theme_results_data}{\code{Solution$get_theme_results_data()}}
-\item \href{#method-get_weight_results_data}{\code{Solution$get_weight_results_data()}}
-\item \href{#method-get_include_results_data}{\code{Solution$get_include_results_data()}}
-\item \href{#method-render_summary_results}{\code{Solution$render_summary_results()}}
-\item \href{#method-render_theme_results}{\code{Solution$render_theme_results()}}
-\item \href{#method-render_weight_results}{\code{Solution$render_weight_results()}}
-\item \href{#method-render_include_results}{\code{Solution$render_include_results()}}
-\item \href{#method-set_setting}{\code{Solution$set_setting()}}
-\item \href{#method-get_solution_results_widget_data}{\code{Solution$get_solution_results_widget_data()}}
-\item \href{#method-get_map_manager_widget_data}{\code{Solution$get_map_manager_widget_data()}}
-\item \href{#method-render_on_map}{\code{Solution$render_on_map()}}
-\item \href{#method-update_on_map}{\code{Solution$update_on_map()}}
-\item \href{#method-clone}{\code{Solution$clone()}}
+\item \href{#method-Solution-new}{\code{Solution$new()}}
+\item \href{#method-Solution-repr}{\code{Solution$repr()}}
+\item \href{#method-Solution-print}{\code{Solution$print()}}
+\item \href{#method-Solution-get_layer_name}{\code{Solution$get_layer_name()}}
+\item \href{#method-Solution-get_layer_index}{\code{Solution$get_layer_index()}}
+\item \href{#method-Solution-get_layer_pane}{\code{Solution$get_layer_pane()}}
+\item \href{#method-Solution-get_id}{\code{Solution$get_id()}}
+\item \href{#method-Solution-get_visible}{\code{Solution$get_visible()}}
+\item \href{#method-Solution-get_invisible}{\code{Solution$get_invisible()}}
+\item \href{#method-Solution-get_loaded}{\code{Solution$get_loaded()}}
+\item \href{#method-Solution-get_hidden}{\code{Solution$get_hidden()}}
+\item \href{#method-Solution-get_downloadable}{\code{Solution$get_downloadable()}}
+\item \href{#method-Solution-get_setting}{\code{Solution$get_setting()}}
+\item \href{#method-Solution-set_new_pane}{\code{Solution$set_new_pane()}}
+\item \href{#method-Solution-set_visible}{\code{Solution$set_visible()}}
+\item \href{#method-Solution-set_invisible}{\code{Solution$set_invisible()}}
+\item \href{#method-Solution-set_loaded}{\code{Solution$set_loaded()}}
+\item \href{#method-Solution-get_summary_results_data}{\code{Solution$get_summary_results_data()}}
+\item \href{#method-Solution-get_theme_results_data}{\code{Solution$get_theme_results_data()}}
+\item \href{#method-Solution-get_weight_results_data}{\code{Solution$get_weight_results_data()}}
+\item \href{#method-Solution-get_include_results_data}{\code{Solution$get_include_results_data()}}
+\item \href{#method-Solution-get_exclude_results_data}{\code{Solution$get_exclude_results_data()}}
+\item \href{#method-Solution-render_summary_results}{\code{Solution$render_summary_results()}}
+\item \href{#method-Solution-render_theme_results}{\code{Solution$render_theme_results()}}
+\item \href{#method-Solution-render_weight_results}{\code{Solution$render_weight_results()}}
+\item \href{#method-Solution-render_include_results}{\code{Solution$render_include_results()}}
+\item \href{#method-Solution-render_exclude_results}{\code{Solution$render_exclude_results()}}
+\item \href{#method-Solution-set_setting}{\code{Solution$set_setting()}}
+\item \href{#method-Solution-get_solution_results_widget_data}{\code{Solution$get_solution_results_widget_data()}}
+\item \href{#method-Solution-get_map_manager_widget_data}{\code{Solution$get_map_manager_widget_data()}}
+\item \href{#method-Solution-render_on_map}{\code{Solution$render_on_map()}}
+\item \href{#method-Solution-update_on_map}{\code{Solution$update_on_map()}}
+\item \href{#method-Solution-clone}{\code{Solution$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-Solution-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Solution-new}{}}}
 \subsection{Method \code{new()}}{
 Create a Solution object.
 \subsection{Usage}{
@@ -77,13 +97,18 @@ Create a Solution object.
   id,
   name,
   variable,
+  pane,
   visible,
+  invisible,
+  loaded,
   statistics,
   parameters,
   theme_results,
   weight_results,
   include_results,
-  hidden
+  exclude_results,
+  hidden,
+  downloadable
 )}\if{html}{\out{</div>}}
 }
 
@@ -96,7 +121,13 @@ Create a Solution object.
 
 \item{\code{variable}}{\link{Variable} object.}
 
+\item{\code{pane}}{\code{character} value.}
+
 \item{\code{visible}}{\code{logical} value.}
+
+\item{\code{invisible}}{\code{numeric} date/time value.}
+
+\item{\code{loaded}}{\code{logical} value.}
 
 \item{\code{statistics}}{\code{list} of \link{Statistic} objects.}
 
@@ -108,7 +139,11 @@ Create a Solution object.
 
 \item{\code{include_results}}{\code{list} of \link{IncludeResults} objects.}
 
+\item{\code{exclude_results}}{\code{list} of \link{ExcludeResults} objects.}
+
 \item{\code{hidden}}{\code{logical} value.}
+
+\item{\code{downloadable}}{\code{logical} value.}
 }
 \if{html}{\out{</div>}}
 }
@@ -117,8 +152,8 @@ A new Solution object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-repr"></a>}}
-\if{latex}{\out{\hypertarget{method-repr}{}}}
+\if{html}{\out{<a id="method-Solution-repr"></a>}}
+\if{latex}{\out{\hypertarget{method-Solution-repr}{}}}
 \subsection{Method \code{repr()}}{
 Generate a \code{character} summarizing the representation of the object.
 \subsection{Usage}{
@@ -141,8 +176,8 @@ Defaults to \code{"]"}.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-print"></a>}}
-\if{latex}{\out{\hypertarget{method-print}{}}}
+\if{html}{\out{<a id="method-Solution-print"></a>}}
+\if{latex}{\out{\hypertarget{method-Solution-print}{}}}
 \subsection{Method \code{print()}}{
 Print the object.
 \subsection{Usage}{
@@ -158,8 +193,8 @@ Print the object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_layer_name"></a>}}
-\if{latex}{\out{\hypertarget{method-get_layer_name}{}}}
+\if{html}{\out{<a id="method-Solution-get_layer_name"></a>}}
+\if{latex}{\out{\hypertarget{method-Solution-get_layer_name}{}}}
 \subsection{Method \code{get_layer_name()}}{
 Get layer names.
 \subsection{Usage}{
@@ -171,8 +206,8 @@ Get layer names.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_layer_index"></a>}}
-\if{latex}{\out{\hypertarget{method-get_layer_index}{}}}
+\if{html}{\out{<a id="method-Solution-get_layer_index"></a>}}
+\if{latex}{\out{\hypertarget{method-Solution-get_layer_index}{}}}
 \subsection{Method \code{get_layer_index()}}{
 Get layer index values.
 \subsection{Usage}{
@@ -184,8 +219,34 @@ Get layer index values.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_visible"></a>}}
-\if{latex}{\out{\hypertarget{method-get_visible}{}}}
+\if{html}{\out{<a id="method-Solution-get_layer_pane"></a>}}
+\if{latex}{\out{\hypertarget{method-Solution-get_layer_pane}{}}}
+\subsection{Method \code{get_layer_pane()}}{
+Get layer pane class.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Solution$get_layer_pane()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} vector.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Solution-get_id"></a>}}
+\if{latex}{\out{\hypertarget{method-Solution-get_id}{}}}
+\subsection{Method \code{get_id()}}{
+Get solution identifier.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Solution$get_id()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} vector.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Solution-get_visible"></a>}}
+\if{latex}{\out{\hypertarget{method-Solution-get_visible}{}}}
 \subsection{Method \code{get_visible()}}{
 Get visible.
 \subsection{Usage}{
@@ -197,8 +258,34 @@ Get visible.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_hidden"></a>}}
-\if{latex}{\out{\hypertarget{method-get_hidden}{}}}
+\if{html}{\out{<a id="method-Solution-get_invisible"></a>}}
+\if{latex}{\out{\hypertarget{method-Solution-get_invisible}{}}}
+\subsection{Method \code{get_invisible()}}{
+Get invisible.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Solution$get_invisible()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{numeric} date/time value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Solution-get_loaded"></a>}}
+\if{latex}{\out{\hypertarget{method-Solution-get_loaded}{}}}
+\subsection{Method \code{get_loaded()}}{
+Get loaded.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Solution$get_loaded()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{logical} value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Solution-get_hidden"></a>}}
+\if{latex}{\out{\hypertarget{method-Solution-get_hidden}{}}}
 \subsection{Method \code{get_hidden()}}{
 Get hidden.
 \subsection{Usage}{
@@ -210,8 +297,21 @@ Get hidden.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_setting"></a>}}
-\if{latex}{\out{\hypertarget{method-get_setting}{}}}
+\if{html}{\out{<a id="method-Solution-get_downloadable"></a>}}
+\if{latex}{\out{\hypertarget{method-Solution-get_downloadable}{}}}
+\subsection{Method \code{get_downloadable()}}{
+Get downloadable.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Solution$get_downloadable()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{logical} value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Solution-get_setting"></a>}}
+\if{latex}{\out{\hypertarget{method-Solution-get_setting}{}}}
 \subsection{Method \code{get_setting()}}{
 Get setting.
 \subsection{Usage}{
@@ -231,8 +331,30 @@ Value.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_visible"></a>}}
-\if{latex}{\out{\hypertarget{method-set_visible}{}}}
+\if{html}{\out{<a id="method-Solution-set_new_pane"></a>}}
+\if{latex}{\out{\hypertarget{method-Solution-set_new_pane}{}}}
+\subsection{Method \code{set_new_pane()}}{
+Set new pane.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Solution$set_new_pane(id, index)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{id}}{\code{character} unique identifier.}
+
+\item{\code{index}}{\code{character} variable index.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+\code{character} value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Solution-set_visible"></a>}}
+\if{latex}{\out{\hypertarget{method-Solution-set_visible}{}}}
 \subsection{Method \code{set_visible()}}{
 Set visible.
 \subsection{Usage}{
@@ -248,8 +370,42 @@ Set visible.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_summary_results_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_summary_results_data}{}}}
+\if{html}{\out{<a id="method-Solution-set_invisible"></a>}}
+\if{latex}{\out{\hypertarget{method-Solution-set_invisible}{}}}
+\subsection{Method \code{set_invisible()}}{
+Set invisible.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Solution$set_invisible(value)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{value}}{\code{numeric} date/time value.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Solution-set_loaded"></a>}}
+\if{latex}{\out{\hypertarget{method-Solution-set_loaded}{}}}
+\subsection{Method \code{set_loaded()}}{
+Set loaded.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Solution$set_loaded(value)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{value}}{\code{logical} new value.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Solution-get_summary_results_data"></a>}}
+\if{latex}{\out{\hypertarget{method-Solution-get_summary_results_data}{}}}
 \subsection{Method \code{get_summary_results_data()}}{
 Get summary results.
 \subsection{Usage}{
@@ -261,8 +417,8 @@ Get summary results.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_theme_results_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_theme_results_data}{}}}
+\if{html}{\out{<a id="method-Solution-get_theme_results_data"></a>}}
+\if{latex}{\out{\hypertarget{method-Solution-get_theme_results_data}{}}}
 \subsection{Method \code{get_theme_results_data()}}{
 Get theme results.
 \subsection{Usage}{
@@ -274,8 +430,8 @@ Get theme results.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_weight_results_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_weight_results_data}{}}}
+\if{html}{\out{<a id="method-Solution-get_weight_results_data"></a>}}
+\if{latex}{\out{\hypertarget{method-Solution-get_weight_results_data}{}}}
 \subsection{Method \code{get_weight_results_data()}}{
 Get weight results.
 \subsection{Usage}{
@@ -287,10 +443,10 @@ Get weight results.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_include_results_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_include_results_data}{}}}
+\if{html}{\out{<a id="method-Solution-get_include_results_data"></a>}}
+\if{latex}{\out{\hypertarget{method-Solution-get_include_results_data}{}}}
 \subsection{Method \code{get_include_results_data()}}{
-Get weight results.
+Get include results.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Solution$get_include_results_data()}\if{html}{\out{</div>}}
 }
@@ -300,8 +456,21 @@ Get weight results.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-render_summary_results"></a>}}
-\if{latex}{\out{\hypertarget{method-render_summary_results}{}}}
+\if{html}{\out{<a id="method-Solution-get_exclude_results_data"></a>}}
+\if{latex}{\out{\hypertarget{method-Solution-get_exclude_results_data}{}}}
+\subsection{Method \code{get_exclude_results_data()}}{
+Get exclude results.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Solution$get_exclude_results_data()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{\link[tibble:tibble]{tibble::tibble()}} object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Solution-render_summary_results"></a>}}
+\if{latex}{\out{\hypertarget{method-Solution-render_summary_results}{}}}
 \subsection{Method \code{render_summary_results()}}{
 Render summary results.
 \subsection{Usage}{
@@ -313,8 +482,8 @@ Render summary results.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-render_theme_results"></a>}}
-\if{latex}{\out{\hypertarget{method-render_theme_results}{}}}
+\if{html}{\out{<a id="method-Solution-render_theme_results"></a>}}
+\if{latex}{\out{\hypertarget{method-Solution-render_theme_results}{}}}
 \subsection{Method \code{render_theme_results()}}{
 Render theme results.
 \subsection{Usage}{
@@ -326,8 +495,8 @@ Render theme results.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-render_weight_results"></a>}}
-\if{latex}{\out{\hypertarget{method-render_weight_results}{}}}
+\if{html}{\out{<a id="method-Solution-render_weight_results"></a>}}
+\if{latex}{\out{\hypertarget{method-Solution-render_weight_results}{}}}
 \subsection{Method \code{render_weight_results()}}{
 Render weight results.
 \subsection{Usage}{
@@ -339,8 +508,8 @@ Render weight results.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-render_include_results"></a>}}
-\if{latex}{\out{\hypertarget{method-render_include_results}{}}}
+\if{html}{\out{<a id="method-Solution-render_include_results"></a>}}
+\if{latex}{\out{\hypertarget{method-Solution-render_include_results}{}}}
 \subsection{Method \code{render_include_results()}}{
 Render include results.
 \subsection{Usage}{
@@ -352,8 +521,21 @@ Render include results.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_setting"></a>}}
-\if{latex}{\out{\hypertarget{method-set_setting}{}}}
+\if{html}{\out{<a id="method-Solution-render_exclude_results"></a>}}
+\if{latex}{\out{\hypertarget{method-Solution-render_exclude_results}{}}}
+\subsection{Method \code{render_exclude_results()}}{
+Render exclude results.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Solution$render_exclude_results()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{\link[DT:datatable]{DT::datatable()}} object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Solution-set_setting"></a>}}
+\if{latex}{\out{\hypertarget{method-Solution-set_setting}{}}}
 \subsection{Method \code{set_setting()}}{
 Set setting.
 \subsection{Usage}{
@@ -372,8 +554,8 @@ Available options are `"visible"``.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_solution_results_widget_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_solution_results_widget_data}{}}}
+\if{html}{\out{<a id="method-Solution-get_solution_results_widget_data"></a>}}
+\if{latex}{\out{\hypertarget{method-Solution-get_solution_results_widget_data}{}}}
 \subsection{Method \code{get_solution_results_widget_data()}}{
 Get data for displaying the theme in a \code{\link[=solutionResults]{solutionResults()}} widget.
 \subsection{Usage}{
@@ -385,8 +567,8 @@ Get data for displaying the theme in a \code{\link[=solutionResults]{solutionRes
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_map_manager_widget_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_map_manager_widget_data}{}}}
+\if{html}{\out{<a id="method-Solution-get_map_manager_widget_data"></a>}}
+\if{latex}{\out{\hypertarget{method-Solution-get_map_manager_widget_data}{}}}
 \subsection{Method \code{get_map_manager_widget_data()}}{
 Get data for displaying the theme in a \code{\link[=mapManager]{mapManager()}} widget.
 \subsection{Usage}{
@@ -398,8 +580,8 @@ Get data for displaying the theme in a \code{\link[=mapManager]{mapManager()}} w
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-render_on_map"></a>}}
-\if{latex}{\out{\hypertarget{method-render_on_map}{}}}
+\if{html}{\out{<a id="method-Solution-render_on_map"></a>}}
+\if{latex}{\out{\hypertarget{method-Solution-render_on_map}{}}}
 \subsection{Method \code{render_on_map()}}{
 Render on map.
 \subsection{Usage}{
@@ -420,8 +602,8 @@ Render on map.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-update_on_map"></a>}}
-\if{latex}{\out{\hypertarget{method-update_on_map}{}}}
+\if{html}{\out{<a id="method-Solution-update_on_map"></a>}}
+\if{latex}{\out{\hypertarget{method-Solution-update_on_map}{}}}
 \subsection{Method \code{update_on_map()}}{
 Render on map.
 \subsection{Usage}{
@@ -442,8 +624,8 @@ Render on map.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-Solution-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-Solution-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

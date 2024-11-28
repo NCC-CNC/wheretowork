@@ -100,7 +100,7 @@ is_valid_spatial_file <- function(x) {
     p <- x[endsWith(x, ".tif")]
 
     ## verify that valid tiff file
-    f <- suppressWarnings(try(raster::raster(p), silent = FALSE))
+    f <- suppressWarnings(try(terra::rast(p), silent = FALSE))
     if (inherits(f, "try-error")) {
       return("Error: not valid GeoTIFF file format")
     }
@@ -108,7 +108,7 @@ is_valid_spatial_file <- function(x) {
     ## verify projection (raster)
     if (is.na(methods::as(sf::st_crs(f), "CRS"))) {
       return("Error: coordinate reference system must be defined")
-    } else if (raster::isLonLat(f)) {
+    } else if (terra::is.lonlat(f)) {
       return("Error: projected coordinate system required")
     }
   } else {

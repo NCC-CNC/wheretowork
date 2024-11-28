@@ -37,12 +37,14 @@ server_generate_new_solution <- quote({
       enable_html_element("newSolutionPane_settings_start_button")
       enable_html_element("newSolutionPane_settings_name")
       enable_html_element("newSolutionPane_settings_color")
+      enable_html_element("newSolutionPane_settings_gurobi")
       shinyjs::disable("newSolutionPane_settings_stop_button")
     }
   })
 
   # generate new solution when start button pressed
   shiny::observeEvent(input$newSolutionPane_settings_start_button, {
+    
     ## specify dependencies
     shiny::req(input$newSolutionPane_settings_start_button)
     shiny::req(input$newSolutionPane_settings_name)
@@ -52,6 +54,7 @@ server_generate_new_solution <- quote({
     disable_html_element("newSolutionPane_settings_start_button")
     disable_html_element("newSolutionPane_settings_name")
     disable_html_element("newSolutionPane_settings_color")
+    disable_html_element("newSolutionPane_settings_gurobi")
 
     ## generate id and store it in app_data
     curr_id <- uuid::UUIDgenerate()
@@ -62,12 +65,14 @@ server_generate_new_solution <- quote({
     curr_theme_settings <- app_data$ss$get_theme_settings()
     curr_weight_settings <- app_data$ss$get_weight_settings()
     curr_include_settings <- app_data$ss$get_include_settings()
+    curr_exclude_settings <- app_data$ss$get_exclude_settings()
     ### data
     curr_area_data <- app_data$area_data
     curr_boundary_data <- app_data$boundary_data
     curr_theme_data <- app_data$theme_data
     curr_weight_data <- app_data$weight_data
     curr_include_data <- app_data$include_data
+    curr_exclude_data <- app_data$exclude_data
     ### arguments for generating result
     curr_time_limit_1 <- get_golem_config("solver_time_limit_1")
     curr_time_limit_2 <- get_golem_config("solver_time_limit_2")
@@ -87,6 +92,9 @@ server_generate_new_solution <- quote({
       app_data$ss$get_parameter("spatial_parameter")$status
     ) / 100
     curr_parameters <- lapply(app_data$ss$parameters, function(x) x$clone())
+    curr_overlap <- app_data$ss$get_parameter("overlap_parameter")$status
+    #### gurobi web license server check-in
+    try_gurobi <- input$newSolutionPane_settings_gurobi
 
     ## if failed to generate solution...
     if (!any(curr_theme_settings$status > 0.5)) {
@@ -112,12 +120,13 @@ server_generate_new_solution <- quote({
       )
       ### reset buttons
       shinyFeedback::resetLoadingButton("newSolutionPane_settings_start_button")
-      disable_html_element("newSolutionPane_settings_name")
-      disable_html_element("newSolutionPane_settings_color")
+      enable_html_element("newSolutionPane_settings_start_button")
+      enable_html_element("newSolutionPane_settings_name")
+      enable_html_element("newSolutionPane_settings_color")
+      enable_html_element("newSolutionPane_settings_gurobi")
       ## exit
       return()
     }
-
 
       ## enable stop button
       shinyjs::enable("newSolutionPane_settings_stop_button")
@@ -136,17 +145,21 @@ server_generate_new_solution <- quote({
               theme_data = curr_theme_data,
               weight_data = curr_weight_data,
               include_data = curr_include_data,
+              exclude_data = curr_exclude_data,
               theme_settings = curr_theme_settings,
               weight_settings = curr_weight_settings,
               include_settings = curr_include_settings,
+              exclude_settings = curr_exclude_settings,
               parameters = curr_parameters,
+              overlap = curr_overlap,
               gap_1 = curr_gap_1,
               gap_2 = curr_gap_2,
               boundary_gap = curr_boundary_gap,
               cache = curr_cache,
               time_limit_1 = curr_time_limit_1,
               time_limit_2 = curr_time_limit_2,
-              verbose = curr_verbose
+              verbose = curr_verbose,
+              try_gurobi = try_gurobi
             ),
             silent = TRUE
           )
@@ -160,17 +173,21 @@ server_generate_new_solution <- quote({
               theme_data = curr_theme_data,
               weight_data = curr_weight_data,
               include_data = curr_include_data,
+              exclude_data = curr_exclude_data,
               theme_settings = curr_theme_settings,
               weight_settings = curr_weight_settings,
               include_settings = curr_include_settings,
+              exclude_settings = curr_exclude_settings,
               parameters = curr_parameters,
+              overlap = curr_overlap,
               gap_1 = curr_gap_1,
               gap_2 = curr_gap_2,
               boundary_gap = curr_boundary_gap,
               cache = curr_cache,
               time_limit_1 = curr_time_limit_1,
               time_limit_2 = curr_time_limit_2,
-              verbose = curr_verbose
+              verbose = curr_verbose,
+              try_gurobi = try_gurobi
             ),
             silent = TRUE
           )
@@ -221,14 +238,28 @@ server_generate_new_solution <- quote({
     ## if failed to generate solution...
     if (inherits(r$result, "try-error")) {
       ### identify error message to show
-      msg <- switch(attr(r$result, "condition")$message,
-        "code_1" = paste(
-          "The \"Total area budget\" setting is too low given the selected",
-          "Includes. Try increasing the total area budget or deselecting ",
-          " some of the Includes."
-        ),
-        "Something went wrong, please try again."
-      )
+      msg <- attr(r$result, "condition")$message
+      print(msg)
+      if(startsWith(msg, "WtW:")) {
+        msg <- gsub("WtW: ", "", msg, fixed = TRUE)
+      } else if (startsWith(msg, "no solution found")) {
+        msg <- paste0(
+          "No solution found due to problem infeasibility. ", 
+          "This is likely caused by a weight setting confilcting with the total",
+          " area budget. Try setting your weight(s) closer to 0."
+        ) 
+      } else if (startsWith(msg, "Error 10009:") || startsWith(msg, "Error 10030:")) {
+        msg <- paste0(
+          "Another Gurobi process is running. ",
+          "Only one license can be used at a time. ",
+          "Try again, or untoggle the Gurobi switch to use the default open source solver. ",
+          "Details, ",
+          msg
+        )
+      } else {
+        msg <- "Something went wrong, please try again."
+      }
+
       ### throw warning in development mode
       if (golem::app_dev()) {
         whereami::whereami()
@@ -253,6 +284,7 @@ server_generate_new_solution <- quote({
       shinyFeedback::resetLoadingButton("newSolutionPane_settings_start_button")
       enable_html_element("newSolutionPane_settings_color")
       enable_html_element("newSolutionPane_settings_name")
+      enable_html_element("newSolutionPane_settings_gurobi")
       ## exit
       return()
     }
@@ -306,8 +338,8 @@ server_generate_new_solution <- quote({
       session = session,
       inputId = "exportPane_fields",
       choices = stats::setNames(
-        app_data$mm$get_layer_indices(),
-        app_data$mm$get_layer_names()
+        app_data$mm$get_layer_indices(download_only = TRUE),
+        app_data$mm$get_layer_names(download_only = TRUE)
       )
     )
 
@@ -354,6 +386,7 @@ server_generate_new_solution <- quote({
     shinyFeedback::resetLoadingButton("newSolutionPane_settings_start_button")
     enable_html_element("newSolutionPane_settings_name")
     enable_html_element("newSolutionPane_settings_color")
+    enable_html_element("newSolutionPane_settings_gurobi")
     disable_html_element("newSolutionPane_settings_start_button")
   })
 

@@ -1,7 +1,6 @@
 context("simulate_themes")
 
 test_that("simple dataset (single feature)", {
-  skip_if_not_installed("RandomFields")
   # create object
   d <- new_dataset_from_auto(import_simple_raster_data())
   # themes are a mix of categorical and continuous defined by a conditional 
@@ -22,7 +21,6 @@ test_that("simple dataset (single feature)", {
 
 
 test_that("simple dataset (single feature, all categorical, manual legend)", {
-  skip_if_not_installed("RandomFields")
   # create object
   d <- new_dataset_from_auto(import_simple_raster_data())
   # themes are all categorical
@@ -42,7 +40,6 @@ test_that("simple dataset (single feature, all categorical, manual legend)", {
 })
 
 test_that("simple dataset (multiple features)", {
-  skip_if_not_installed("RandomFields")
   # create object
   d <- new_dataset_from_auto(import_simple_raster_data())
   # themes are a mix of categorical and continuous defined by a conditional 
@@ -62,7 +59,6 @@ test_that("simple dataset (multiple features)", {
 })
 
 test_that("simple dataset (multiple features, all categorical, manual legend)", {
-  skip_if_not_installed("RandomFields")
   # create object
   d <- new_dataset_from_auto(import_simple_raster_data())
   # themes are all categorical
@@ -82,7 +78,6 @@ test_that("simple dataset (multiple features, all categorical, manual legend)", 
 })
 
 test_that("large dataset", {
-  skip_if_not_installed("RandomFields")
   # create object
   d <- new_dataset_from_auto(import_realistic_raster_data())
   # themes are a mix of categorical and continuous defined by a conditional 

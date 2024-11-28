@@ -13,10 +13,10 @@ new_parameter(
   step_value = 1,
   hide = FALSE,
   disable = FALSE,
-  no_slider = FALSE,
   units = "",
   reference_value = NA_real_,
   reference_units = "",
+  tool_tip = "",
   id = uuid::UUIDgenerate()
 )
 }
@@ -46,9 +46,6 @@ Defaults to \code{FALSE}.}
 \item{disable}{\code{logical} indicating if the setting should be disabled.
 Defaults to \code{FALSE}.}
 
-\item{no_slider}{\code{logical} indicating if the setting should not have a slider.
-Defaults to \code{FALSE}.}
-
 \item{units}{\code{character} units.
 Defaults to an empty \code{character} object.}
 
@@ -61,6 +58,8 @@ should be reported.}
 
 \item{reference_units}{\code{character} units for the reference value.
 Defaults to "".}
+
+\item{tool_tip}{\code{character} description of parameter setting.}
 
 \item{id}{\code{character} unique identifier.
 Defaults to a random identifier (\code{\link[uuid:UUIDgenerate]{uuid::UUIDgenerate()}}).}

@@ -4,18 +4,19 @@ class ParameterSetting {
     manager,
     id,
     name,
-    status, // inital switch value
+    status, // switch value
     value,
     min_value,
     max_value,
     step_value,
     hide,
     disable,
-    no_slider,
     units,
     reference_value,
-    reference_units
+    reference_units,
+    tool_tip
   ) {
+    
     // class fields
     this.id = id;
     this.elementId = "setting-" + id;
@@ -31,17 +32,18 @@ class ParameterSetting {
     this.status_el = this.el.querySelector(".status-checkbox");
     this.value_el = this.el.querySelector(".noUiSlider-widget");
     this.value_container_el = this.el.querySelector(".parameter-slider");
+    this.file_container_el = this.el.querySelector(".parameter-fileinput");
     this.previous_value = value;
     this.hide = hide;
     this.disable = disable;
-    this.no_slider = no_slider;
-
+    this.tool_tip = tool_tip;
+    
     // local variables
     let that = this;
 
     // attach id to element
     this.el.querySelector(".solution-setting").id = this.elementId;
-
+    
     // set initial values
     /// name
     this.name_el.innerText = name;
@@ -59,7 +61,7 @@ class ParameterSetting {
       }
     });
     /// status
-    this.updateStatus(status, no_slider);
+    this.updateStatus(status);
     /// ref label
     this.has_ref = typeof(reference_value) === "number";
     if (this.has_ref) {
@@ -75,19 +77,39 @@ class ParameterSetting {
     } else {
       this.ref_el.style.display = "none";
     }
+    
+    // create file icon
+    if (id === "fileinput_parameter") {
+     createFile(this.el.querySelector(".file-container")); 
+    }
 
-    /// hide slider if needed
-    if (status && !no_slider) {
+    /// show slider if budget or spatial parameter
+    let sliders = ["budget_parameter", "spatial_parameter"] 
+    if (status && sliders.includes(this.id)) { 
+      //// show slider
       this.value_container_el.style.display = "block";
       if (this.has_ref) {
+        //// show reference label
         this.ref_el.style.display = "inline";
       }
     } else {
+      //// hide slider
       this.value_container_el.style.display = "none";
       if (this.has_ref) {
+        //// hide reference label
         this.ref_el.style.display = "none";
       }
     }
+    
+    /// show file input if fileinput_parameter
+    let fileinputs = ["fileinput_parameter"]
+    if (status && fileinputs.includes(this.id)) {
+      //// show input
+      this.file_container_el.style.display = "block";
+    } else {
+      //// hide input
+      this.file_container_el.style.display = "none";
+    }    
 
     // set listeners to update user interface
     /// enable/disable widget on click
@@ -111,19 +133,33 @@ class ParameterSetting {
         }
         /// hide slider if needed
         if (that.hide) {
-          /// hide slider 
-          if (checked && !no_slider) {
+          /// show slider if budget or spatial parameter
+          if (checked && sliders.includes(id)) {
+            //// show slider
             that.value_container_el.style.display = "block";
             if (that.has_ref) {
+              //// show reference label
               that.ref_el.style.display = "inline";
             }
           } else {
+            //// hide slider
             that.value_container_el.style.display = "none";
             if (that.has_ref) {
+              //// hide reference label
               that.ref_el.style.display = "none";
             }
           }
+          
+          /// show file input if fileinput_parameter
+          if (checked && fileinputs.includes(id)) {
+            //// show input
+            that.file_container_el.style.display = "block";
+          } else {
+            //// hide input
+            that.file_container_el.style.display = "none";
+          }             
         }
+        
         //// update HTML styles
         let els =
           document.getElementById(that.elementId).querySelectorAll(
@@ -136,7 +172,31 @@ class ParameterSetting {
       });
     }
 
-    // set listeners to pass data to Shiny
+    // set listeners to accept file input configs .yaml
+    const inputConfig = this.el.querySelector(".input_config")
+    if (HTMLWidgets.shinyMode) {
+      inputConfig.onchange = function(evt) {
+        /// read file input as text and pass to R
+        let reader = new FileReader();
+        reader.onload = function(evt) {        
+          let filecontent = evt.target.result;
+          // pass data to Shiny  
+          Shiny.setInputValue(manager, {
+            id: id,
+            setting: "fileinput",
+            value: filecontent,
+            type: "parameter"
+          }, {priority: "event"});
+        };
+      // update file icon to grey and tool tip
+      let fileIcon_el = document.querySelector(".file-container i")
+      fileIcon_el.style.color = "#B8B8B8";
+      $(fileIcon_el).attr('title', "No .yaml file submitted.")
+      .tooltip('fixTitle');        
+       reader.readAsText(evt.target.files[0]);
+     };
+    };
+    
     if (HTMLWidgets.shinyMode) {
       /// value
       this.value_el.noUiSlider.on("update", function (values, handle) {
@@ -179,39 +239,54 @@ class ParameterSetting {
     this.name_el.innerText = value;
   }
 
-  updateStatus(value, no_slider) {
+  updateStatus(value) {
     // update HTML elements if needed
     if (this.status_el.checked !== value) {
       /// update switch
       this.status_el.checked = value;
-      /// update slider
       if (value) {
+        /// enable label styles
+        this.name_el.removeAttribute("disabled");
+        // enable slider styles
+        this.value_el.removeAttribute("disabled", "");
         this.value_el.noUiSlider.set(this.previous_value);
         if (this.has_ref) {
+          let slider_format = wNumb({decimals: 0, suffix: "km2"})
           this.ref_el.innerText =
-            this.ref_format.to(slider_format.from.from(this.previous_value));
+            this.ref_format.to(slider_format.from(this.previous_value));
         }
       } else {
+        /// disable name styles
+        this.name_el.setAttribute("disabled", "");
+        /// disable slider styles
+        this.value_el.setAttribute("disabled", "");        
         this.previous_value = this.value_el.noUiSlider.get();
-        this.value_el.noUiSlider.set(min_value);
+        this.value_el.noUiSlider.set(1); // set min value 
         if (this.has_ref) {
-          this.ref_el.innerText = this.ref_format.to(min_value);
+          this.ref_el.style.display = "none";
+          this.ref_el.innerText = this.ref_format.to(1); // set min value
         }
       }
-      /// hide slider if needed
+      
       if (this.hide) {
-        if (this.status_el.checked && !no_slider) {
+        /// show slider if budget or spatial parameter
+        const sliders = ["budget_parameter", "spatial_parameter"] 
+        if (this.status_el.checked && sliders.includes(this.id)) {
+          /// show slider
           this.value_container_el.style.display = "block";
           if (this.has_ref) {
+            //// show reference label
             this.ref_el.style.display = "inline";
           }
         } else {
+          /// hide slider
           this.value_container_el.style.display = "none";
           if (this.has_ref) {
+            //// hide reference label
             this.ref_el.style.display = "none";
           }
         }
-      }
+      } 
     }
     
     // update HTML element styles
@@ -231,7 +306,7 @@ class ParameterSetting {
       this.ref_el.innerText = this.ref_format.to(value);
     }
   }
-
+  
   /* render method */
   render() {
     return this.el;

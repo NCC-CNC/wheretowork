@@ -1,7 +1,6 @@
 context("new_map_manager")
 
 test_that("initialization", {
-  skip_if_not_installed("RandomFields")
   # create object
   ## create dataset
   rd <- simulate_binary_spatial_data(import_simple_raster_data(), 4)
@@ -56,17 +55,16 @@ test_that("initialization", {
   expect_identical(x$ids, c("T1", "T2", "W1"))
   expect_identical(x$order, c(2, 1, 3))
   expect_equal(
-    x$get_layer_names(),
+    x$get_layer_names(download_only = FALSE),
     c("Possum", "Forests", "Shrubs", "Human Footprint Index")
   )
   expect_equal(
-    x$get_layer_indices(),
+    x$get_layer_indices(download_only = FALSE),
     names(rd)[c(2, 3, 4, 1)]
   )
 })
 
 test_that("get methods", {
-  skip_if_not_installed("RandomFields")
   # create object
   ## create dataset
   rd <- simulate_binary_spatial_data(import_simple_raster_data(), 4)
@@ -91,20 +89,20 @@ test_that("get methods", {
   ## create a weight using a dataset
   w <- new_weight(
     name = "Human Footprint Index", variable = v1,
-    factor = -90, status = FALSE, id = "W1"
+    factor = -90, status = FALSE, id = "W1", downloadable = FALSE
   )
   ## create features using datasets
   f1 <- new_feature(
     name = "Possum", variable = v2,
-    goal = 0.2, status = FALSE, current = 0.5, id = "F1"
+    goal = 0.2, status = FALSE, current = 0.5, id = "F1", downloadable = FALSE
   )
   f2 <- new_feature(
     name = "Forests", variable = v3,
-    goal = 0.3, status = FALSE, current = 0.9, id = "F2"
+    goal = 0.3, status = FALSE, current = 0.9, id = "F2", downloadable = TRUE
   )
   f3 <- new_feature(
     name = "Shrubs", variable = v4,
-    goal = 0.6, status = TRUE, current = 0.4, id = "F3"
+    goal = 0.6, status = TRUE, current = 0.4, id = "F3", downloadable = TRUE
   )
   ## create themes using the features
   t1 <- new_theme("Species", f1, id = "T1")
@@ -116,6 +114,12 @@ test_that("get methods", {
   )
   # run tests
   ## get layer
+  expect_equal(x$get_layer_classes(), c("Feature", "Feature", "Feature", "Weight"))
+  expect_equal(x$get_group_layer_ids(), c("T1", "T2", "T2", "W1"))
+  expect_equal(x$get_layer_ids(), c("F1", "F2", "F3", "W1"))
+  expect_equal(x$get_layer_loaded(), c(TRUE, TRUE, TRUE, TRUE))
+  expect_equal(x$get_layer_visible(), c(TRUE, TRUE, TRUE, TRUE))
+  expect_equal(x$get_layer_invisible(), c(NA_real_, NA_real_, NA_real_, NA_real_))
   expect_equal(x$get_layer("T1"), t1)
   expect_equal(x$get_layer("T2"), t2)
   expect_equal(x$get_order(), x$order)
@@ -139,10 +143,14 @@ test_that("get methods", {
     x$get_setting(list(id = "T2", setting = "feature_order")),
     t2$get_feature_order()
   )
+  expect_equal(class(x$get_lazyload()), c("tbl_df", "tbl", "data.frame"))
+  expect_equal(nrow(x$get_lazyload()), length(x$get_layer_names(download_only = FALSE)))
+  expect_equal(length(x$get_layer_names(download_only = TRUE)), 2)
+  expect_equal(nrow(x$get_lazyload()), length(x$get_layer_indices(download_only = FALSE)))
+  expect_equal(length(x$get_layer_indices(download_only = TRUE)), 2) 
 })
 
 test_that("set methods", {
-  skip_if_not_installed("RandomFields")
   # create object
   ## create dataset
   rd <- simulate_binary_spatial_data(import_simple_raster_data(), 4)
@@ -238,7 +246,6 @@ test_that("set methods", {
 })
 
 test_that("widget methods", {
-  skip_if_not_installed("RandomFields")
   # create object
   ## create dataset
   rd <- simulate_binary_spatial_data(import_simple_raster_data(), 4)

@@ -1,6 +1,12 @@
-pandoc: 2.17.1.1
-pkgdown: 1.6.1.9001
-pkgdown_sha: ce9781a15c7ea07df9fb17a11295ba4abec0b54b
-articles: {}
-last_built: 2022-09-29T15:29Z
-
+pandoc: 3.1.11
+pkgdown: 2.1.0
+pkgdown_sha: ~
+articles:
+  wheretowork: wheretowork.html
+  wtw_data: wtw_data.html
+  wtw_optimization: wtw_optimization.html
+  wtw_theory: wtw_theory.html
+last_built: 2024-11-07T20:30Z
+urls:
+  reference: https://ncc-cnc.github.io/wheretowork/reference
+  article: https://ncc-cnc.github.io/wheretowork/articles

@@ -12,7 +12,8 @@ test_that("initialization", {
     status = FALSE,
     factor = -0.2,
     current = 0.89,
-    id = "FID1"
+    id = "FID1",
+    downloadable = TRUE
   )
   # run tests
   print(x)
@@ -21,10 +22,13 @@ test_that("initialization", {
   expect_equal(x$name, "Human Footprint Index")
   expect_equal(x$variable, v)
   expect_equal(x$visible, FALSE)
+  expect_equal(x$invisible, NA_real_)
+  expect_equal(x$loaded, FALSE)
   expect_equal(x$hidden, TRUE)
   expect_equal(x$status, FALSE)
   expect_equal(x$current, 0.89)
   expect_equal(x$factor, -0.2)
+  expect_equal(x$downloadable, TRUE)
 })
 
 test_that("get methods", {
@@ -39,17 +43,21 @@ test_that("get methods", {
     status = FALSE,
     current = 0.89,
     factor = -0.2,
-    id = "FID1"
+    id = "FID1",
+    downloadable = TRUE
   )
   # run tests
   expect_identical(x$get_factor(), -0.2)
   expect_identical(x$get_visible(), TRUE)
+  expect_identical(x$get_invisible(), NA_real_)
+  expect_identical(x$get_loaded(), TRUE)
   expect_identical(x$get_hidden(), FALSE)
   expect_identical(x$get_status(), FALSE)
   expect_identical(x$get_current(), 0.89)
   expect_identical(x$get_setting("factor"), x$get_factor())
   expect_identical(x$get_setting("status"), x$get_status())
   expect_identical(x$get_setting("current"), x$get_current())
+  expect_identical(x$get_downloadable(), TRUE)
 })
 
 test_that("set methods", {
@@ -69,10 +77,14 @@ test_that("set methods", {
   x$set_factor(0.8)
   x$set_status(TRUE)
   x$set_visible(FALSE)
+  x$set_invisible(100)
+  x$set_loaded(TRUE)
   x$set_current(0.66)
   expect_identical(x$get_factor(), 0.8)
   expect_identical(x$get_status(), TRUE)
   expect_identical(x$get_visible(), FALSE)
+  expect_identical(x$get_invisible(), 100)
+  expect_identical(x$get_loaded(), TRUE)
   expect_identical(x$get_current(), 0.66)
   x$set_setting("factor", 0.3)
   x$set_setting("status", FALSE)
@@ -93,6 +105,7 @@ test_that("export method", {
     variable = v,
     visible = TRUE,
     hidden = FALSE,
+    downloadable = TRUE,
     status = FALSE,
     current = 0.89,
     factor = -0.2,
@@ -107,6 +120,7 @@ test_that("export method", {
       status = FALSE,
       visible = TRUE,
       hidden = FALSE,
+      downloadable = TRUE,
       factor = -0.2
     )
   )

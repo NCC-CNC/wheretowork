@@ -146,7 +146,8 @@ importSettings_html <- function(id, style, class, ...) {
             class = "form-control",
             htmltools::tags$option("Theme"),
             htmltools::tags$option("Weight"),
-            htmltools::tags$option("Include")
+            htmltools::tags$option("Include"),
+            htmltools::tags$option("Exclude"),
           )
         )
       )

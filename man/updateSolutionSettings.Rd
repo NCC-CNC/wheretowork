@@ -202,6 +202,33 @@ Note that the \code{value} element must be a \code{logical} (\code{TRUE} or \cod
 \item{type}{\code{"include"}}
 }
 }
+
+\subsection{Excludes}{
+
+Here we detail all possible settings that can be updated for
+excludes.
+
+\strong{Update the name.}
+This controls the bold text shown in the header of the exclude.
+
+\describe{
+\item{id}{\code{"EXCLUDEID"}}
+\item{setting}{\code{"name"}}
+\item{value}{\code{"XX"}}
+\item{type}{\code{"exclude"}}
+}
+
+\strong{Update the status.}
+This controls the large switch shown in the header of exclude.
+Note that the \code{value} element must be a \code{logical} (\code{TRUE} or \code{FALSE}) value.
+
+\describe{
+\item{id}{\code{"EXCLUDEID"}}
+\item{setting}{\code{"status"}}
+\item{value}{\code{TRUE}}
+\item{type}{\code{"exclude"}}
+}
+}
 }
 \seealso{
 \code{\link[=solutionSettings]{solutionSettings()}}.

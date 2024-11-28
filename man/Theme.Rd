@@ -30,41 +30,45 @@ Definition for the Theme class.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{Theme$new()}}
-\item \href{#method-print}{\code{Theme$print()}}
-\item \href{#method-repr}{\code{Theme$repr()}}
-\item \href{#method-get_layer_name}{\code{Theme$get_layer_name()}}
-\item \href{#method-get_layer_index}{\code{Theme$get_layer_index()}}
-\item \href{#method-get_feature_id}{\code{Theme$get_feature_id()}}
-\item \href{#method-get_feature_name}{\code{Theme$get_feature_name()}}
-\item \href{#method-get_feature_current}{\code{Theme$get_feature_current()}}
-\item \href{#method-get_feature_limit}{\code{Theme$get_feature_limit()}}
-\item \href{#method-get_feature_total}{\code{Theme$get_feature_total()}}
-\item \href{#method-get_visible}{\code{Theme$get_visible()}}
-\item \href{#method-get_feature_visible}{\code{Theme$get_feature_visible()}}
-\item \href{#method-get_feature_hidden}{\code{Theme$get_feature_hidden()}}
-\item \href{#method-get_feature_status}{\code{Theme$get_feature_status()}}
-\item \href{#method-get_feature_goal}{\code{Theme$get_feature_goal()}}
-\item \href{#method-get_feature_order}{\code{Theme$get_feature_order()}}
-\item \href{#method-set_feature_order}{\code{Theme$set_feature_order()}}
-\item \href{#method-get_setting}{\code{Theme$get_setting()}}
-\item \href{#method-set_visible}{\code{Theme$set_visible()}}
-\item \href{#method-set_feature_visible}{\code{Theme$set_feature_visible()}}
-\item \href{#method-set_feature_status}{\code{Theme$set_feature_status()}}
-\item \href{#method-set_feature_goal}{\code{Theme$set_feature_goal()}}
-\item \href{#method-set_feature_current}{\code{Theme$set_feature_current()}}
-\item \href{#method-set_setting}{\code{Theme$set_setting()}}
-\item \href{#method-get_solution_settings_widget_data}{\code{Theme$get_solution_settings_widget_data()}}
-\item \href{#method-get_map_manager_widget_data}{\code{Theme$get_map_manager_widget_data()}}
-\item \href{#method-render_on_map}{\code{Theme$render_on_map()}}
-\item \href{#method-update_on_map}{\code{Theme$update_on_map()}}
-\item \href{#method-export}{\code{Theme$export()}}
-\item \href{#method-clone}{\code{Theme$clone()}}
+\item \href{#method-Theme-new}{\code{Theme$new()}}
+\item \href{#method-Theme-print}{\code{Theme$print()}}
+\item \href{#method-Theme-repr}{\code{Theme$repr()}}
+\item \href{#method-Theme-get_layer_name}{\code{Theme$get_layer_name()}}
+\item \href{#method-Theme-get_layer_pane}{\code{Theme$get_layer_pane()}}
+\item \href{#method-Theme-get_layer_index}{\code{Theme$get_layer_index()}}
+\item \href{#method-Theme-get_feature_id}{\code{Theme$get_feature_id()}}
+\item \href{#method-Theme-get_feature_name}{\code{Theme$get_feature_name()}}
+\item \href{#method-Theme-get_feature_current}{\code{Theme$get_feature_current()}}
+\item \href{#method-Theme-get_feature_limit}{\code{Theme$get_feature_limit()}}
+\item \href{#method-Theme-get_feature_total}{\code{Theme$get_feature_total()}}
+\item \href{#method-Theme-get_visible}{\code{Theme$get_visible()}}
+\item \href{#method-Theme-get_feature_visible}{\code{Theme$get_feature_visible()}}
+\item \href{#method-Theme-get_feature_invisible}{\code{Theme$get_feature_invisible()}}
+\item \href{#method-Theme-get_feature_loaded}{\code{Theme$get_feature_loaded()}}
+\item \href{#method-Theme-get_feature_hidden}{\code{Theme$get_feature_hidden()}}
+\item \href{#method-Theme-get_feature_downloadable}{\code{Theme$get_feature_downloadable()}}
+\item \href{#method-Theme-get_feature_status}{\code{Theme$get_feature_status()}}
+\item \href{#method-Theme-get_feature_goal}{\code{Theme$get_feature_goal()}}
+\item \href{#method-Theme-get_feature_order}{\code{Theme$get_feature_order()}}
+\item \href{#method-Theme-set_feature_order}{\code{Theme$set_feature_order()}}
+\item \href{#method-Theme-get_setting}{\code{Theme$get_setting()}}
+\item \href{#method-Theme-set_visible}{\code{Theme$set_visible()}}
+\item \href{#method-Theme-set_feature_visible}{\code{Theme$set_feature_visible()}}
+\item \href{#method-Theme-set_feature_status}{\code{Theme$set_feature_status()}}
+\item \href{#method-Theme-set_feature_goal}{\code{Theme$set_feature_goal()}}
+\item \href{#method-Theme-set_feature_current}{\code{Theme$set_feature_current()}}
+\item \href{#method-Theme-set_setting}{\code{Theme$set_setting()}}
+\item \href{#method-Theme-get_solution_settings_widget_data}{\code{Theme$get_solution_settings_widget_data()}}
+\item \href{#method-Theme-get_map_manager_widget_data}{\code{Theme$get_map_manager_widget_data()}}
+\item \href{#method-Theme-render_on_map}{\code{Theme$render_on_map()}}
+\item \href{#method-Theme-update_on_map}{\code{Theme$update_on_map()}}
+\item \href{#method-Theme-export}{\code{Theme$export()}}
+\item \href{#method-Theme-clone}{\code{Theme$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-Theme-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Theme-new}{}}}
 \subsection{Method \code{new()}}{
 Create a Theme object.
 \subsection{Usage}{
@@ -89,8 +93,8 @@ A new Theme object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-print"></a>}}
-\if{latex}{\out{\hypertarget{method-print}{}}}
+\if{html}{\out{<a id="method-Theme-print"></a>}}
+\if{latex}{\out{\hypertarget{method-Theme-print}{}}}
 \subsection{Method \code{print()}}{
 Print the object.
 \subsection{Usage}{
@@ -106,8 +110,8 @@ Print the object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-repr"></a>}}
-\if{latex}{\out{\hypertarget{method-repr}{}}}
+\if{html}{\out{<a id="method-Theme-repr"></a>}}
+\if{latex}{\out{\hypertarget{method-Theme-repr}{}}}
 \subsection{Method \code{repr()}}{
 Generate a \code{character} summarizing the representation of the object.
 \subsection{Usage}{
@@ -126,8 +130,8 @@ Generate a \code{character} summarizing the representation of the object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_layer_name"></a>}}
-\if{latex}{\out{\hypertarget{method-get_layer_name}{}}}
+\if{html}{\out{<a id="method-Theme-get_layer_name"></a>}}
+\if{latex}{\out{\hypertarget{method-Theme-get_layer_name}{}}}
 \subsection{Method \code{get_layer_name()}}{
 Get layer names.
 \subsection{Usage}{
@@ -139,8 +143,21 @@ Get layer names.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_layer_index"></a>}}
-\if{latex}{\out{\hypertarget{method-get_layer_index}{}}}
+\if{html}{\out{<a id="method-Theme-get_layer_pane"></a>}}
+\if{latex}{\out{\hypertarget{method-Theme-get_layer_pane}{}}}
+\subsection{Method \code{get_layer_pane()}}{
+Get layer map pane classes.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$get_layer_pane()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} vector.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Theme-get_layer_index"></a>}}
+\if{latex}{\out{\hypertarget{method-Theme-get_layer_index}{}}}
 \subsection{Method \code{get_layer_index()}}{
 Get layer index values.
 \subsection{Usage}{
@@ -152,8 +169,8 @@ Get layer index values.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_feature_id"></a>}}
-\if{latex}{\out{\hypertarget{method-get_feature_id}{}}}
+\if{html}{\out{<a id="method-Theme-get_feature_id"></a>}}
+\if{latex}{\out{\hypertarget{method-Theme-get_feature_id}{}}}
 \subsection{Method \code{get_feature_id()}}{
 Get feature identifiers.
 \subsection{Usage}{
@@ -165,8 +182,8 @@ Get feature identifiers.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_feature_name"></a>}}
-\if{latex}{\out{\hypertarget{method-get_feature_name}{}}}
+\if{html}{\out{<a id="method-Theme-get_feature_name"></a>}}
+\if{latex}{\out{\hypertarget{method-Theme-get_feature_name}{}}}
 \subsection{Method \code{get_feature_name()}}{
 Get feature names.
 \subsection{Usage}{
@@ -178,8 +195,8 @@ Get feature names.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_feature_current"></a>}}
-\if{latex}{\out{\hypertarget{method-get_feature_current}{}}}
+\if{html}{\out{<a id="method-Theme-get_feature_current"></a>}}
+\if{latex}{\out{\hypertarget{method-Theme-get_feature_current}{}}}
 \subsection{Method \code{get_feature_current()}}{
 Get feature current.
 \subsection{Usage}{
@@ -191,8 +208,8 @@ Get feature current.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_feature_limit"></a>}}
-\if{latex}{\out{\hypertarget{method-get_feature_limit}{}}}
+\if{html}{\out{<a id="method-Theme-get_feature_limit"></a>}}
+\if{latex}{\out{\hypertarget{method-Theme-get_feature_limit}{}}}
 \subsection{Method \code{get_feature_limit()}}{
 Get feature limit.
 \subsection{Usage}{
@@ -204,8 +221,8 @@ Get feature limit.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_feature_total"></a>}}
-\if{latex}{\out{\hypertarget{method-get_feature_total}{}}}
+\if{html}{\out{<a id="method-Theme-get_feature_total"></a>}}
+\if{latex}{\out{\hypertarget{method-Theme-get_feature_total}{}}}
 \subsection{Method \code{get_feature_total()}}{
 Get feature current.
 \subsection{Usage}{
@@ -217,8 +234,8 @@ Get feature current.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_visible"></a>}}
-\if{latex}{\out{\hypertarget{method-get_visible}{}}}
+\if{html}{\out{<a id="method-Theme-get_visible"></a>}}
+\if{latex}{\out{\hypertarget{method-Theme-get_visible}{}}}
 \subsection{Method \code{get_visible()}}{
 Get visible value for all features.
 \subsection{Usage}{
@@ -230,8 +247,8 @@ Get visible value for all features.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_feature_visible"></a>}}
-\if{latex}{\out{\hypertarget{method-get_feature_visible}{}}}
+\if{html}{\out{<a id="method-Theme-get_feature_visible"></a>}}
+\if{latex}{\out{\hypertarget{method-Theme-get_feature_visible}{}}}
 \subsection{Method \code{get_feature_visible()}}{
 Get feature visible values.
 \subsection{Usage}{
@@ -243,8 +260,34 @@ Get feature visible values.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_feature_hidden"></a>}}
-\if{latex}{\out{\hypertarget{method-get_feature_hidden}{}}}
+\if{html}{\out{<a id="method-Theme-get_feature_invisible"></a>}}
+\if{latex}{\out{\hypertarget{method-Theme-get_feature_invisible}{}}}
+\subsection{Method \code{get_feature_invisible()}}{
+Get feature invisible values.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$get_feature_invisible()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{numeric} vector with date/time value(s).
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Theme-get_feature_loaded"></a>}}
+\if{latex}{\out{\hypertarget{method-Theme-get_feature_loaded}{}}}
+\subsection{Method \code{get_feature_loaded()}}{
+Get feature loaded values.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$get_feature_loaded()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{logical} vector with loaded value(s).
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Theme-get_feature_hidden"></a>}}
+\if{latex}{\out{\hypertarget{method-Theme-get_feature_hidden}{}}}
 \subsection{Method \code{get_feature_hidden()}}{
 Get feature hidden values.
 \subsection{Usage}{
@@ -256,8 +299,21 @@ Get feature hidden values.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_feature_status"></a>}}
-\if{latex}{\out{\hypertarget{method-get_feature_status}{}}}
+\if{html}{\out{<a id="method-Theme-get_feature_downloadable"></a>}}
+\if{latex}{\out{\hypertarget{method-Theme-get_feature_downloadable}{}}}
+\subsection{Method \code{get_feature_downloadable()}}{
+Get feature downloadable values.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Theme$get_feature_downloadable()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{logical} vector with status value(s).
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Theme-get_feature_status"></a>}}
+\if{latex}{\out{\hypertarget{method-Theme-get_feature_status}{}}}
 \subsection{Method \code{get_feature_status()}}{
 Get feature status values.
 \subsection{Usage}{
@@ -269,8 +325,8 @@ Get feature status values.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_feature_goal"></a>}}
-\if{latex}{\out{\hypertarget{method-get_feature_goal}{}}}
+\if{html}{\out{<a id="method-Theme-get_feature_goal"></a>}}
+\if{latex}{\out{\hypertarget{method-Theme-get_feature_goal}{}}}
 \subsection{Method \code{get_feature_goal()}}{
 Get feature goal values.
 \subsection{Usage}{
@@ -282,8 +338,8 @@ Get feature goal values.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_feature_order"></a>}}
-\if{latex}{\out{\hypertarget{method-get_feature_order}{}}}
+\if{html}{\out{<a id="method-Theme-get_feature_order"></a>}}
+\if{latex}{\out{\hypertarget{method-Theme-get_feature_order}{}}}
 \subsection{Method \code{get_feature_order()}}{
 Set relative order for displaying features on a map.
 \subsection{Usage}{
@@ -292,8 +348,8 @@ Set relative order for displaying features on a map.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_feature_order"></a>}}
-\if{latex}{\out{\hypertarget{method-set_feature_order}{}}}
+\if{html}{\out{<a id="method-Theme-set_feature_order"></a>}}
+\if{latex}{\out{\hypertarget{method-Theme-set_feature_order}{}}}
 \subsection{Method \code{set_feature_order()}}{
 Set relative order for displaying features on a map.
 \subsection{Usage}{
@@ -309,8 +365,8 @@ Set relative order for displaying features on a map.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_setting"></a>}}
-\if{latex}{\out{\hypertarget{method-get_setting}{}}}
+\if{html}{\out{<a id="method-Theme-get_setting"></a>}}
+\if{latex}{\out{\hypertarget{method-Theme-get_setting}{}}}
 \subsection{Method \code{get_setting()}}{
 Get setting.
 \subsection{Usage}{
@@ -331,8 +387,8 @@ Value.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_visible"></a>}}
-\if{latex}{\out{\hypertarget{method-set_visible}{}}}
+\if{html}{\out{<a id="method-Theme-set_visible"></a>}}
+\if{latex}{\out{\hypertarget{method-Theme-set_visible}{}}}
 \subsection{Method \code{set_visible()}}{
 Set visible value for all features.
 \subsection{Usage}{
@@ -348,8 +404,8 @@ Set visible value for all features.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_feature_visible"></a>}}
-\if{latex}{\out{\hypertarget{method-set_feature_visible}{}}}
+\if{html}{\out{<a id="method-Theme-set_feature_visible"></a>}}
+\if{latex}{\out{\hypertarget{method-Theme-set_feature_visible}{}}}
 \subsection{Method \code{set_feature_visible()}}{
 Set feature visible values.
 \subsection{Usage}{
@@ -366,8 +422,8 @@ A \code{list} of \code{logical} values can also be supplied.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_feature_status"></a>}}
-\if{latex}{\out{\hypertarget{method-set_feature_status}{}}}
+\if{html}{\out{<a id="method-Theme-set_feature_status"></a>}}
+\if{latex}{\out{\hypertarget{method-Theme-set_feature_status}{}}}
 \subsection{Method \code{set_feature_status()}}{
 Set feature status values.
 \subsection{Usage}{
@@ -384,8 +440,8 @@ A \code{list} of \code{logical} values can also be supplied.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_feature_goal"></a>}}
-\if{latex}{\out{\hypertarget{method-set_feature_goal}{}}}
+\if{html}{\out{<a id="method-Theme-set_feature_goal"></a>}}
+\if{latex}{\out{\hypertarget{method-Theme-set_feature_goal}{}}}
 \subsection{Method \code{set_feature_goal()}}{
 Set feature goal values.
 \subsection{Usage}{
@@ -402,8 +458,8 @@ A \code{list} of \code{numeric} values can also be supplied.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_feature_current"></a>}}
-\if{latex}{\out{\hypertarget{method-set_feature_current}{}}}
+\if{html}{\out{<a id="method-Theme-set_feature_current"></a>}}
+\if{latex}{\out{\hypertarget{method-Theme-set_feature_current}{}}}
 \subsection{Method \code{set_feature_current()}}{
 Set feature current values.
 \subsection{Usage}{
@@ -420,8 +476,8 @@ A \code{list} of \code{numeric} values can also be supplied.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_setting"></a>}}
-\if{latex}{\out{\hypertarget{method-set_setting}{}}}
+\if{html}{\out{<a id="method-Theme-set_setting"></a>}}
+\if{latex}{\out{\hypertarget{method-Theme-set_setting}{}}}
 \subsection{Method \code{set_setting()}}{
 Set setting.
 \subsection{Usage}{
@@ -442,8 +498,8 @@ or \code{"feature_current"}.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_solution_settings_widget_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_solution_settings_widget_data}{}}}
+\if{html}{\out{<a id="method-Theme-get_solution_settings_widget_data"></a>}}
+\if{latex}{\out{\hypertarget{method-Theme-get_solution_settings_widget_data}{}}}
 \subsection{Method \code{get_solution_settings_widget_data()}}{
 Get data for displaying the theme in a \code{\link[=solutionSettings]{solutionSettings()}} widget.
 \subsection{Usage}{
@@ -455,8 +511,8 @@ Get data for displaying the theme in a \code{\link[=solutionSettings]{solutionSe
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_map_manager_widget_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_map_manager_widget_data}{}}}
+\if{html}{\out{<a id="method-Theme-get_map_manager_widget_data"></a>}}
+\if{latex}{\out{\hypertarget{method-Theme-get_map_manager_widget_data}{}}}
 \subsection{Method \code{get_map_manager_widget_data()}}{
 Get data for displaying the theme in a \code{\link[=mapManager]{mapManager()}} widget.
 \subsection{Usage}{
@@ -468,8 +524,8 @@ Get data for displaying the theme in a \code{\link[=mapManager]{mapManager()}} w
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-render_on_map"></a>}}
-\if{latex}{\out{\hypertarget{method-render_on_map}{}}}
+\if{html}{\out{<a id="method-Theme-render_on_map"></a>}}
+\if{latex}{\out{\hypertarget{method-Theme-render_on_map}{}}}
 \subsection{Method \code{render_on_map()}}{
 Render on map.
 \subsection{Usage}{
@@ -490,8 +546,8 @@ Render on map.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-update_on_map"></a>}}
-\if{latex}{\out{\hypertarget{method-update_on_map}{}}}
+\if{html}{\out{<a id="method-Theme-update_on_map"></a>}}
+\if{latex}{\out{\hypertarget{method-Theme-update_on_map}{}}}
 \subsection{Method \code{update_on_map()}}{
 Render on map.
 \subsection{Usage}{
@@ -512,8 +568,8 @@ Render on map.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-export"></a>}}
-\if{latex}{\out{\hypertarget{method-export}{}}}
+\if{html}{\out{<a id="method-Theme-export"></a>}}
+\if{latex}{\out{\hypertarget{method-Theme-export}{}}}
 \subsection{Method \code{export()}}{
 Export settings
 \subsection{Usage}{
@@ -525,8 +581,8 @@ Export settings
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-Theme-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-Theme-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

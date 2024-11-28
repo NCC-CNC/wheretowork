@@ -1,12 +1,26 @@
-authors:
-  Jeffrey O Hanson:
-    href: https://jeffrey-hanson.com
-  Richard Schuster:
-    href: http://www.richard-schuster.com
+url: https://ncc-cnc.github.io/wheretowork
 
 template:
-  params:
-    bootswatch: flatly
+  bootstrap: 5
+
+navbar:
+  components:
+    articles:
+      text: Advanced topics
+      menu:
+      - text: Data
+        href: articles/wtw_data.html
+      - text: Theory
+        href: articles/wtw_theory.html
+      - text: Optimization
+        href: articles/wtw_optimization.html
+
+redirects:
+  - ["articles/wtw_manual.html", "articles/wheretowork.html"]
+  - ["articles/articles/wtw_manual.html", "articles/wheretowork.html"]
+  - ["articles/articles/wtw_data.html", "articles/wtw_data.html"]
+  - ["articles/articles/wtw_optimization.html", "articles/wtw_optimization.html"]
+  - ["articles/articles/wtw_theory.html", "articles/wtw_theory.html"]
 
 reference:
   - title: Application
@@ -96,6 +110,7 @@ reference:
       - ContinuousLegend
       - CategoricalLegend
       - ManualLegend
+      - NullLegend
       - Parameter
       - Statistic
       - Dataset
@@ -104,6 +119,7 @@ reference:
       - Feature
       - Weight
       - Include
+      - Exclude
       - Theme
       - Solution
       - SolutionSettings
@@ -111,6 +127,7 @@ reference:
       - FeatureResults
       - WeightResults
       - IncludeResults
+      - ExcludeResults
       - ThemeResults
 
   - title: Result functions
@@ -145,6 +162,8 @@ reference:
       - disable_html_element
       - disable_html_css_selector
       - enable_html_css_selector
+      - change_file_icon_js
+      - removeMapPane
 
   - title: Spatial functions
     desc: >
@@ -152,7 +171,6 @@ reference:
     contents:
       - spatial_data_type
       - spatial_data_statistics
-      - readNamedRaster
       - writeNamedRaster
       - read_spatial_data
       - write_spatial_data

@@ -23,10 +23,6 @@ NULL
 #'  Defaults to `"project"` such that the mode is determined based on
 #'  the contents of `path`. If the `mode` is `"advanced"`, then
 #'  goal limits and mandatory include settings are disabled.
-
-#' @param force_hidden `logical` value for hiding TWI layers at import.
-#'  Defaults to `"False"` such that hidden TWI layers are determined based on
-#'  the contents of `path`.
 #'
 #' @details
 #' Note that the status field for themes and weights will automatically
@@ -41,8 +37,8 @@ NULL
 #' \item{themes}{A `list` of [Theme] objects.}
 #' \item{weights}{A `list` of [Weight] objects.}
 #' \item{includes}{A `list` of [Include] objects.}
+#' \item{excludes}{A `list` of [Exclude] objects.}
 #' \item{mode}{A `character` value indicating the mode.}
-#' \item{force_hidden}{A `logical` value indicating all TWI will be hidden.}
 #' }
 #'
 #' @examples
@@ -74,9 +70,7 @@ read_project <- function(path,
                          spatial_path = NULL,
                          attribute_path = NULL,
                          boundary_path = NULL,
-                         mode = "project",
-                         force_hidden = FALSE) {
-  
+                         mode = "project") {
   # assert arguments are valid
   assertthat::assert_that(
     assertthat::is.string(path),
@@ -166,6 +160,11 @@ read_project <- function(path,
     attribute_path = attribute_path,
     boundary_path = boundary_path
   )
+  
+  # update boundary matrix on older wheretowork projects (backwards compatibility)
+  if (is.null(x$prioritizr_version) || x$prioritizr_version < "8.0.4") {
+    d$update_bm()
+  }
 
   # initialize error variables
   error_msg <- c()
@@ -182,7 +181,8 @@ read_project <- function(path,
           new_feature(
             name = f$name,
             visible = f$visible,
-            hidden = shiny::isTruthy(c(f$hidden, force_hidden)),
+            hidden = f$hidden,
+            downloadable = ifelse(!is.null(f$downloadable), f$downloadable, TRUE), # backwards compatible
             status = f$status,
             goal = f$goal,
             limit_goal = f$limit_goal,
@@ -195,7 +195,7 @@ read_project <- function(path,
               colors = f$variable$legend$colors,
               provenance = f$variable$provenance %||% "missing",
               labels = f$variable$legend$labels %||% "missing",
-              hidden = shiny::isTruthy(c(f$hidden, force_hidden))
+              hidden = f$hidden
             )
           )
         })
@@ -241,7 +241,8 @@ read_project <- function(path,
       new_weight(
         name = x$name,
         visible = x$visible,
-        hidden = shiny::isTruthy(c(x$hidden, force_hidden)),
+        hidden = x$hidden,
+        downloadable = ifelse(!is.null(x$downloadable), x$downloadable, TRUE), # backwards compatible
         status = x$status,
         factor = x$factor,
         current = 0, # place-holder value, this is calculated later
@@ -253,7 +254,7 @@ read_project <- function(path,
           colors = x$variable$legend$colors,
           provenance = x$variable$provenance %||% "missing",
           labels = x$variable$legend$labels %||% "missing",
-          hidden = shiny::isTruthy(c(x$hidden, force_hidden))
+          hidden = x$hidden
         )
       ),
       silent = TRUE
@@ -290,7 +291,7 @@ read_project <- function(path,
   ## import data
   includes <- lapply(x$includes, function(x) {
     ### create legend
-    if (force_hidden || x$hidden) {
+    if (x$hidden) {
       include_legend <- new_null_legend()
     } else {
       include_legend <- new_manual_legend(
@@ -314,7 +315,8 @@ read_project <- function(path,
           )
         ),
         visible = x$visible,
-        hidden =  shiny::isTruthy(c(x$hidden, force_hidden)),
+        hidden =  x$hidden,
+        downloadable = ifelse(!is.null(x$downloadable), x$downloadable, TRUE), # backwards compatible
         status = x$status,
         mandatory = x$mandatory
       ),
@@ -331,6 +333,7 @@ read_project <- function(path,
     ### return result
     out
   })
+  
   ## update error details if needed
   fail <- vapply(includes, inherits, logical(1), "try-error")
   if (any(fail)) {
@@ -354,10 +357,82 @@ read_project <- function(path,
     attr(error_msg, "log") <- error_log
     return(error_msg)
   }
+  
+  # import excludes
+  ## import data
+  excludes <- lapply(x$excludes, function(x) {
+    ### create legend
+    if (x$hidden) {
+      exclude_legend <- new_null_legend()
+    } else {
+      exclude_legend <- new_manual_legend(
+        values = c(0, 1),
+        colors = x$variable$legend$colors,
+        labels = x$variable$legend$labels
+      )
+    }
+    ### create object
+    out <- try(
+      new_exclude(
+        name = x$name,
+        variable = new_variable(
+          dataset = d,
+          index = x$variable$index,
+          units = x$variable$units,
+          total = sum(d$get_attribute_data()[[x$variable$index]]),
+          legend = exclude_legend,
+          provenance = new_provenance_from_source(
+            x$variable$provenance %||% "missing"
+          )
+        ),
+        visible = x$visible,
+        hidden =  x$hidden,
+        downloadable = ifelse(!is.null(x$downloadable), x$downloadable, TRUE), # backwards compatible
+        status = FALSE, 
+        mandatory = x$mandatory
+      ),
+      silent = FALSE
+    )
+    ### return error if needed
+    if (inherits(out, "try-error")) {
+      return(out)
+    }
+    ### override settings
+    if (adv_mode) {
+      out$mandatory <- FALSE
+    }
+    ### return result
+    out
+  })
+  
+  ## update error details if needed
+  fail <- vapply(excludes, inherits, logical(1), "try-error")
+  if (any(fail)) {
+    error_msg <- c(error_msg, paste0(
+      "Failed to import the following Excludes: ",
+      paste(
+        paste0(
+          "\"", vapply(x$excludes[fail], `[[`, character(1), "name"), "\""
+        ),
+        collapse = ", "
+      )
+    ))
+    error_log <- append(error_log, lapply(which(fail), function(i) {
+      list(name = x$excludes[[i]]$name, details = excludes[[i]])
+    }))
+  }
+  
+  # throw error message if needed
+  if (length(error_msg) > 0) {
+    error_msg <- simpleError(paste(error_msg, collapse = "\n"))
+    attr(error_msg, "log") <- error_log
+    return(error_msg)
+  }
+  
 
   # calculate current amount held for each feature within each theme + weight
   ss <- new_solution_settings(
-    themes = themes, weights = weights, includes = includes,
+    themes = themes, weights = weights, includes = includes, excludes = excludes,
     parameters = list()
   )
   ss$update_current_held()
@@ -371,6 +446,7 @@ read_project <- function(path,
     themes = themes,
     weights = weights,
     includes = includes,
+    excludes = excludes,
     mode = ifelse(identical(mode, "project"), x$mode, mode)
   )
 }

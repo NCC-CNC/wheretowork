@@ -23,9 +23,17 @@ Definition for the Weight class.
 
 \item{\code{variable}}{\link{Variable} object.}
 
+\item{\code{pane}}{\code{character} name.}
+
 \item{\code{visible}}{\code{logical} value.}
 
+\item{\code{invisible}}{\code{numeric} date/time.}
+
+\item{\code{loaded}}{\code{logical} value.}
+
 \item{\code{hidden}}{\code{logical} value.}
+
+\item{\code{downloadable}}{\code{logical} value.}
 
 \item{\code{status}}{\code{logical} value.}
 
@@ -44,34 +52,42 @@ Definition for the Weight class.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{Weight$new()}}
-\item \href{#method-print}{\code{Weight$print()}}
-\item \href{#method-repr}{\code{Weight$repr()}}
-\item \href{#method-get_layer_name}{\code{Weight$get_layer_name()}}
-\item \href{#method-get_layer_index}{\code{Weight$get_layer_index()}}
-\item \href{#method-get_visible}{\code{Weight$get_visible()}}
-\item \href{#method-get_hidden}{\code{Weight$get_hidden()}}
-\item \href{#method-get_status}{\code{Weight$get_status()}}
-\item \href{#method-get_current}{\code{Weight$get_current()}}
-\item \href{#method-get_factor}{\code{Weight$get_factor()}}
-\item \href{#method-get_data}{\code{Weight$get_data()}}
-\item \href{#method-get_setting}{\code{Weight$get_setting()}}
-\item \href{#method-set_visible}{\code{Weight$set_visible()}}
-\item \href{#method-set_status}{\code{Weight$set_status()}}
-\item \href{#method-set_factor}{\code{Weight$set_factor()}}
-\item \href{#method-set_current}{\code{Weight$set_current()}}
-\item \href{#method-set_setting}{\code{Weight$set_setting()}}
-\item \href{#method-get_solution_settings_widget_data}{\code{Weight$get_solution_settings_widget_data()}}
-\item \href{#method-get_map_manager_widget_data}{\code{Weight$get_map_manager_widget_data()}}
-\item \href{#method-export}{\code{Weight$export()}}
-\item \href{#method-render_on_map}{\code{Weight$render_on_map()}}
-\item \href{#method-update_on_map}{\code{Weight$update_on_map()}}
-\item \href{#method-clone}{\code{Weight$clone()}}
+\item \href{#method-Weight-new}{\code{Weight$new()}}
+\item \href{#method-Weight-print}{\code{Weight$print()}}
+\item \href{#method-Weight-repr}{\code{Weight$repr()}}
+\item \href{#method-Weight-get_layer_name}{\code{Weight$get_layer_name()}}
+\item \href{#method-Weight-get_layer_index}{\code{Weight$get_layer_index()}}
+\item \href{#method-Weight-get_layer_pane}{\code{Weight$get_layer_pane()}}
+\item \href{#method-Weight-get_id}{\code{Weight$get_id()}}
+\item \href{#method-Weight-get_visible}{\code{Weight$get_visible()}}
+\item \href{#method-Weight-get_invisible}{\code{Weight$get_invisible()}}
+\item \href{#method-Weight-get_loaded}{\code{Weight$get_loaded()}}
+\item \href{#method-Weight-get_hidden}{\code{Weight$get_hidden()}}
+\item \href{#method-Weight-get_downloadable}{\code{Weight$get_downloadable()}}
+\item \href{#method-Weight-get_status}{\code{Weight$get_status()}}
+\item \href{#method-Weight-get_current}{\code{Weight$get_current()}}
+\item \href{#method-Weight-get_factor}{\code{Weight$get_factor()}}
+\item \href{#method-Weight-get_data}{\code{Weight$get_data()}}
+\item \href{#method-Weight-set_new_pane}{\code{Weight$set_new_pane()}}
+\item \href{#method-Weight-get_setting}{\code{Weight$get_setting()}}
+\item \href{#method-Weight-set_visible}{\code{Weight$set_visible()}}
+\item \href{#method-Weight-set_invisible}{\code{Weight$set_invisible()}}
+\item \href{#method-Weight-set_loaded}{\code{Weight$set_loaded()}}
+\item \href{#method-Weight-set_status}{\code{Weight$set_status()}}
+\item \href{#method-Weight-set_factor}{\code{Weight$set_factor()}}
+\item \href{#method-Weight-set_current}{\code{Weight$set_current()}}
+\item \href{#method-Weight-set_setting}{\code{Weight$set_setting()}}
+\item \href{#method-Weight-get_solution_settings_widget_data}{\code{Weight$get_solution_settings_widget_data()}}
+\item \href{#method-Weight-get_map_manager_widget_data}{\code{Weight$get_map_manager_widget_data()}}
+\item \href{#method-Weight-export}{\code{Weight$export()}}
+\item \href{#method-Weight-render_on_map}{\code{Weight$render_on_map()}}
+\item \href{#method-Weight-update_on_map}{\code{Weight$update_on_map()}}
+\item \href{#method-Weight-clone}{\code{Weight$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-Weight-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Weight-new}{}}}
 \subsection{Method \code{new()}}{
 Create a new Weight object.
 \subsection{Usage}{
@@ -79,8 +95,12 @@ Create a new Weight object.
   id,
   name,
   variable,
+  pane,
   visible,
+  invisible,
+  loaded,
   hidden,
+  downloadable,
   status,
   current,
   factor,
@@ -99,9 +119,17 @@ Create a new Weight object.
 
 \item{\code{variable}}{\link{Variable} object.}
 
+\item{\code{pane}}{\code{character} value.}
+
 \item{\code{visible}}{\code{logical} value.}
 
+\item{\code{invisible}}{\code{numeric} date/time value.}
+
+\item{\code{loaded}}{\code{logical} value.}
+
 \item{\code{hidden}}{\code{logical} value.}
+
+\item{\code{downloadable}}{\code{logical} value.}
 
 \item{\code{status}}{\code{logical} value.}
 
@@ -122,8 +150,8 @@ A new Weight object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-print"></a>}}
-\if{latex}{\out{\hypertarget{method-print}{}}}
+\if{html}{\out{<a id="method-Weight-print"></a>}}
+\if{latex}{\out{\hypertarget{method-Weight-print}{}}}
 \subsection{Method \code{print()}}{
 Print the object.
 \subsection{Usage}{
@@ -139,8 +167,8 @@ Print the object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-repr"></a>}}
-\if{latex}{\out{\hypertarget{method-repr}{}}}
+\if{html}{\out{<a id="method-Weight-repr"></a>}}
+\if{latex}{\out{\hypertarget{method-Weight-repr}{}}}
 \subsection{Method \code{repr()}}{
 Generate a \code{character} summarizing the representation of the object.
 \subsection{Usage}{
@@ -163,8 +191,8 @@ Defaults to \code{"]"}.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_layer_name"></a>}}
-\if{latex}{\out{\hypertarget{method-get_layer_name}{}}}
+\if{html}{\out{<a id="method-Weight-get_layer_name"></a>}}
+\if{latex}{\out{\hypertarget{method-Weight-get_layer_name}{}}}
 \subsection{Method \code{get_layer_name()}}{
 Get layer names.
 \subsection{Usage}{
@@ -176,8 +204,8 @@ Get layer names.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_layer_index"></a>}}
-\if{latex}{\out{\hypertarget{method-get_layer_index}{}}}
+\if{html}{\out{<a id="method-Weight-get_layer_index"></a>}}
+\if{latex}{\out{\hypertarget{method-Weight-get_layer_index}{}}}
 \subsection{Method \code{get_layer_index()}}{
 Get layer index values.
 \subsection{Usage}{
@@ -189,8 +217,34 @@ Get layer index values.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_visible"></a>}}
-\if{latex}{\out{\hypertarget{method-get_visible}{}}}
+\if{html}{\out{<a id="method-Weight-get_layer_pane"></a>}}
+\if{latex}{\out{\hypertarget{method-Weight-get_layer_pane}{}}}
+\subsection{Method \code{get_layer_pane()}}{
+Get layer pane class.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Weight$get_layer_pane()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} vector.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Weight-get_id"></a>}}
+\if{latex}{\out{\hypertarget{method-Weight-get_id}{}}}
+\subsection{Method \code{get_id()}}{
+Get weight identifier.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Weight$get_id()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{character} vector.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Weight-get_visible"></a>}}
+\if{latex}{\out{\hypertarget{method-Weight-get_visible}{}}}
 \subsection{Method \code{get_visible()}}{
 Get visible.
 \subsection{Usage}{
@@ -202,8 +256,34 @@ Get visible.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_hidden"></a>}}
-\if{latex}{\out{\hypertarget{method-get_hidden}{}}}
+\if{html}{\out{<a id="method-Weight-get_invisible"></a>}}
+\if{latex}{\out{\hypertarget{method-Weight-get_invisible}{}}}
+\subsection{Method \code{get_invisible()}}{
+Get invisible.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Weight$get_invisible()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{numeric} date/time value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Weight-get_loaded"></a>}}
+\if{latex}{\out{\hypertarget{method-Weight-get_loaded}{}}}
+\subsection{Method \code{get_loaded()}}{
+Get loaded.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Weight$get_loaded()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{logical} value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Weight-get_hidden"></a>}}
+\if{latex}{\out{\hypertarget{method-Weight-get_hidden}{}}}
 \subsection{Method \code{get_hidden()}}{
 Get hidden.
 \subsection{Usage}{
@@ -215,8 +295,21 @@ Get hidden.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_status"></a>}}
-\if{latex}{\out{\hypertarget{method-get_status}{}}}
+\if{html}{\out{<a id="method-Weight-get_downloadable"></a>}}
+\if{latex}{\out{\hypertarget{method-Weight-get_downloadable}{}}}
+\subsection{Method \code{get_downloadable()}}{
+Get downloadable.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Weight$get_downloadable()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+\code{logical} value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Weight-get_status"></a>}}
+\if{latex}{\out{\hypertarget{method-Weight-get_status}{}}}
 \subsection{Method \code{get_status()}}{
 Get status.
 \subsection{Usage}{
@@ -228,8 +321,8 @@ Get status.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_current"></a>}}
-\if{latex}{\out{\hypertarget{method-get_current}{}}}
+\if{html}{\out{<a id="method-Weight-get_current"></a>}}
+\if{latex}{\out{\hypertarget{method-Weight-get_current}{}}}
 \subsection{Method \code{get_current()}}{
 Get current.
 \subsection{Usage}{
@@ -241,8 +334,8 @@ Get current.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_factor"></a>}}
-\if{latex}{\out{\hypertarget{method-get_factor}{}}}
+\if{html}{\out{<a id="method-Weight-get_factor"></a>}}
+\if{latex}{\out{\hypertarget{method-Weight-get_factor}{}}}
 \subsection{Method \code{get_factor()}}{
 Get factor.
 \subsection{Usage}{
@@ -254,8 +347,8 @@ Get factor.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_data}{}}}
+\if{html}{\out{<a id="method-Weight-get_data"></a>}}
+\if{latex}{\out{\hypertarget{method-Weight-get_data}{}}}
 \subsection{Method \code{get_data()}}{
 Get the data.
 \subsection{Usage}{
@@ -263,12 +356,34 @@ Get the data.
 }
 
 \subsection{Returns}{
-\code{\link[sf:st_as_sf]{sf::st_as_sf()}} or \code{\link[raster:raster]{raster::raster()}} object.
+\code{\link[sf:st_as_sf]{sf::st_as_sf()}} or \code{\link[terra:rast]{terra::rast()}} object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_setting"></a>}}
-\if{latex}{\out{\hypertarget{method-get_setting}{}}}
+\if{html}{\out{<a id="method-Weight-set_new_pane"></a>}}
+\if{latex}{\out{\hypertarget{method-Weight-set_new_pane}{}}}
+\subsection{Method \code{set_new_pane()}}{
+Set new pane.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Weight$set_new_pane(id, index)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{id}}{\code{character} unique identifier.}
+
+\item{\code{index}}{\code{character} variable index.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+\code{character} value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Weight-get_setting"></a>}}
+\if{latex}{\out{\hypertarget{method-Weight-get_setting}{}}}
 \subsection{Method \code{get_setting()}}{
 Get setting.
 \subsection{Usage}{
@@ -288,8 +403,8 @@ Value.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_visible"></a>}}
-\if{latex}{\out{\hypertarget{method-set_visible}{}}}
+\if{html}{\out{<a id="method-Weight-set_visible"></a>}}
+\if{latex}{\out{\hypertarget{method-Weight-set_visible}{}}}
 \subsection{Method \code{set_visible()}}{
 Set visible.
 \subsection{Usage}{
@@ -305,8 +420,42 @@ Set visible.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_status"></a>}}
-\if{latex}{\out{\hypertarget{method-set_status}{}}}
+\if{html}{\out{<a id="method-Weight-set_invisible"></a>}}
+\if{latex}{\out{\hypertarget{method-Weight-set_invisible}{}}}
+\subsection{Method \code{set_invisible()}}{
+Set invisible.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Weight$set_invisible(value)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{value}}{\code{numeric} date/time value.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Weight-set_loaded"></a>}}
+\if{latex}{\out{\hypertarget{method-Weight-set_loaded}{}}}
+\subsection{Method \code{set_loaded()}}{
+Set loaded.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Weight$set_loaded(value)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{value}}{\code{logical} new value.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Weight-set_status"></a>}}
+\if{latex}{\out{\hypertarget{method-Weight-set_status}{}}}
 \subsection{Method \code{set_status()}}{
 Set status.
 \subsection{Usage}{
@@ -322,8 +471,8 @@ Set status.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_factor"></a>}}
-\if{latex}{\out{\hypertarget{method-set_factor}{}}}
+\if{html}{\out{<a id="method-Weight-set_factor"></a>}}
+\if{latex}{\out{\hypertarget{method-Weight-set_factor}{}}}
 \subsection{Method \code{set_factor()}}{
 Set factor.
 \subsection{Usage}{
@@ -339,8 +488,8 @@ Set factor.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_current"></a>}}
-\if{latex}{\out{\hypertarget{method-set_current}{}}}
+\if{html}{\out{<a id="method-Weight-set_current"></a>}}
+\if{latex}{\out{\hypertarget{method-Weight-set_current}{}}}
 \subsection{Method \code{set_current()}}{
 Set current.
 \subsection{Usage}{
@@ -356,8 +505,8 @@ Set current.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_setting"></a>}}
-\if{latex}{\out{\hypertarget{method-set_setting}{}}}
+\if{html}{\out{<a id="method-Weight-set_setting"></a>}}
+\if{latex}{\out{\hypertarget{method-Weight-set_setting}{}}}
 \subsection{Method \code{set_setting()}}{
 Set setting.
 \subsection{Usage}{
@@ -377,8 +526,8 @@ or `"visible"``.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_solution_settings_widget_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_solution_settings_widget_data}{}}}
+\if{html}{\out{<a id="method-Weight-get_solution_settings_widget_data"></a>}}
+\if{latex}{\out{\hypertarget{method-Weight-get_solution_settings_widget_data}{}}}
 \subsection{Method \code{get_solution_settings_widget_data()}}{
 Get data for displaying the theme in a \code{\link[=solutionSettings]{solutionSettings()}} widget.
 \subsection{Usage}{
@@ -390,8 +539,8 @@ Get data for displaying the theme in a \code{\link[=solutionSettings]{solutionSe
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_map_manager_widget_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_map_manager_widget_data}{}}}
+\if{html}{\out{<a id="method-Weight-get_map_manager_widget_data"></a>}}
+\if{latex}{\out{\hypertarget{method-Weight-get_map_manager_widget_data}{}}}
 \subsection{Method \code{get_map_manager_widget_data()}}{
 Get data for displaying the theme in a \code{\link[=mapManager]{mapManager()}} widget.
 \subsection{Usage}{
@@ -403,8 +552,8 @@ Get data for displaying the theme in a \code{\link[=mapManager]{mapManager()}} w
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-export"></a>}}
-\if{latex}{\out{\hypertarget{method-export}{}}}
+\if{html}{\out{<a id="method-Weight-export"></a>}}
+\if{latex}{\out{\hypertarget{method-Weight-export}{}}}
 \subsection{Method \code{export()}}{
 Export settings.
 \subsection{Usage}{
@@ -416,8 +565,8 @@ Export settings.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-render_on_map"></a>}}
-\if{latex}{\out{\hypertarget{method-render_on_map}{}}}
+\if{html}{\out{<a id="method-Weight-render_on_map"></a>}}
+\if{latex}{\out{\hypertarget{method-Weight-render_on_map}{}}}
 \subsection{Method \code{render_on_map()}}{
 Render on map.
 \subsection{Usage}{
@@ -438,8 +587,8 @@ Render on map.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-update_on_map"></a>}}
-\if{latex}{\out{\hypertarget{method-update_on_map}{}}}
+\if{html}{\out{<a id="method-Weight-update_on_map"></a>}}
+\if{latex}{\out{\hypertarget{method-Weight-update_on_map}{}}}
 \subsection{Method \code{update_on_map()}}{
 Render on map.
 \subsection{Usage}{
@@ -460,8 +609,8 @@ Render on map.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-Weight-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-Weight-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

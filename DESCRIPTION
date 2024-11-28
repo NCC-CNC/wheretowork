@@ -1,6 +1,6 @@
 Package: wheretowork
 Title: Interactive Systematic Conservation Planning Application
-Version: 0.0.0.9000
+Version: 1.1.3
 Description:
     Launch an interactive web application for systematic conservation planning.
     Data can be accessed using projects available on disk, uploaded using
@@ -15,84 +15,91 @@ Authors@R: c(
     comment = c(ORCID = '0000-0002-4716-6134')),
   person(c('Richard'), 'Schuster',
     email='richard.schuster@glel.carleton.ca', role = c('aut'),
-    comment = c(ORCID = '0000-0003-3191-7869')))
+    comment = c(ORCID = '0000-0003-3191-7869')),
+  person(c('Joseph'), 'Bennett', role = c('aut')),
+  person(c('Jaimie'), 'Vincent', role = c('aut')),
+  person(c('Dan'), 'Wismer',
+    email='dan.wismer@natureconservancy.ca', role = c('ctb')),
+  person(c('Marc'), 'Edwards',
+    email='marc.edwards@natureconservancy.ca', role = c('ctb'))
+    )
 Imports:
-    utils,
-    stats,
     methods,
-    assertthat (>= 0.2.0),
-    rlang (>= 0.4.11),
-    cachem (>= 1.0.5),
-    cli (>= 3.0.0),
-    markdown (>= 1.1),
-    digest (>= 0.6.27),
-    stringi (>= 1.7.3),
-    tools (>= 4.0.5),
-    Matrix (>= 1.3-3),
-    pryr (>= 0.1.4),
-    uuid (>= 0.1.4),
-    scales (>= 1.1.1),
-    units (>= 0.7.2),
-    R.utils (>= 2.10.1),
-    yaml (>= 2.2.1),
-    config (>= 0.3.1),
-    openxlsx (>= 4.2.3),
-    future (>= 1.21.0),
-    igraph (>= 1.2.6),
-    RColorBrewer (>= 1.1.2),
-    viridisLite (>= 0.4.0),
-    tibble (>= 3.1.1),
-    withr (>= 2.4.2),
-    readxl (>= 1.3.1),
-    data.table (>= 1.14.0),
-    plyr (>= 1.8.6),
-    dplyr (>= 1.0.6),
-    prioritizr (>= 7.1.1),
-    fasterize (>= 1.0.3),
-    rgdal (>= 1.5.23),
+    stats,
+    utils,
+    assertthat (>= 0.2.1),
+    cachem (>= 1.1.0),
+    cli (>= 3.6.3),
+    colourpicker (>= 1.3.0),
+    config (>= 0.3.2),
+    DT (>= 0.33),
+    data.table (>= 1.15.4),
+    digest (>= 0.6.37),
+    dplyr (>= 1.1.4),
+    fields (>= 16.2),
+    future (>= 1.34.0),
+    golem (>= 0.5.1),
+    htmltools (>= 0.5.8.1),
+    htmlwidgets (>= 1.6.4),
+    igraph (>= 2.0.3),
+    ipc (>= 0.1.4),
+    leaflet (>= 2.2.2.9001),
+    leaflet.extras2 (>= 1.1.0.9000),
+    lobstr (>= 1.1.2),
+    markdown (>= 1.13),
+    Matrix (>= 1.7-0),
+    openxlsx (>= 4.2.6.1),
+    pkgload (>= 1.4.0),
+    plyr (>= 1.8.9),
+    prioritizr (>= 8.0.4),
+    purrr (>= 1.0.2),
+    R.utils (>= 2.12.3),
     rcbc (>= 0.1.0.9001),
-    shiny (>= 1.6.0),
-    ipc (>= 0.1.3),
-    golem (>= 0.3.1),
-    pkgload (>= 1.2.1),
-    htmlwidgets (>= 1.5.3),
-    htmltools (>= 0.5.1.1),
-    shinyjs (>= 2.0.0),
-    shinyFeedback (>= 0.3.0),
-    shinyWidgets (>= 0.6.0),
-    shinybusy (>= 0.2.2),
-    shinyalert (>= 2.0.0),
-    leaflet (>= 2.0.3.9000),
-    leaflet.extras2 (>= 1.1.0),
-    colourpicker (>= 1.1.0),
-    DT (>= 0.18),
+    readxl (>= 1.4.3),
+    rlang (>= 1.1.4),
+    RColorBrewer (>= 1.1-3),
+    scales (>= 1.3.0),
+    shiny (>= 1.9.1),
+    shinyalert (>= 3.1.0),
+    shinybusy (>= 0.3.3),
+    shinyFeedback (>= 0.4.0),
+    shinyjs (>= 2.1.0),
+    shinyWidgets (>= 0.8.6),
+    stringi (>= 1.8.4),
+    terra (>= 1.7-78),
+    tibble (>= 3.2.1),
+    tools (>= 4.0.5),
+    units (>= 0.8-5),
+    uuid (>= 1.2-1),
+    viridisLite (>= 0.4.2),
+    withr (>= 3.0.1),
+    yaml (>= 2.3.10)
 Suggests:
-    testthat (>= 2.0.1),
-    knitr (>= 1.2.0),
-    roxygen2 (>= 6.1.1),
-    rmarkdown (>= 1.10),
-    rvest (>= 1.0.0),
-    xml2 (>= 1.3.2),
-    processx (>= 3.5.2),
-    rsconnect (>= 0.8.18),
-    devtools (>= 2.4.2),
-    whereami (>= 0.1.9),
-    pkgdown (>= 1.6.1.9001),
-    RandomFields (>= 3.3.8),
+    testthat (>= 3.2.1.1),
+    knitr (>= 1.48),
+    roxygen2 (>= 7.3.2),
+    rmarkdown (>= 2.28),
+    rvest (>= 1.0.4),
+    xml2 (>= 1.3.6),
+    processx (>= 3.8.4),
+    devtools (>= 2.4.5),
+    whereami (>= 0.2.0),
+    pkgdown (>= 2.1.0),
+    gurobi (>= 10.0-2),
 Depends:
-    R (>= 4.0.0),
-    shinyBS (>= 0.6.1),
-    promises (>= 1.2.0.1),
-    R6 (>= 2.5.0),
-    raster (>= 3.4.10),
-    sf (>= 0.9.8),
+    R (>= 4.4.0),
+    promises (>= 1.3.0),
+    R6 (>= 2.5.1),
+    sf (>= 1.0-16),
+    shinyBS (>= 0.61.1),
 License: GPL-3
 Encoding: UTF-8
 Language: en-US
 URL: https://NCC-CNC.github.io/wheretowork/
 BugReports: https://github.com/NCC-CNC/wheretowork/issues
+VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.3.2
 Collate:
     'app_config.R'
     'app_global.R'
@@ -103,6 +110,8 @@ Collate:
     'class_ContinuousLegend.R'
     'class_Dataset.R'
     'class_Variable.R'
+    'class_Exclude.R'
+    'class_ExcludeResults.R'
     'class_Feature.R'
     'class_FeatureResults.R'
     'class_Include.R'
@@ -124,6 +133,7 @@ Collate:
     'fct_min_set_result.R'
     'fct_min_shortfall_result.R'
     'fct_read_project.R'
+    'fct_simulate_excludes.R'
     'fct_simulate_includes.R'
     'fct_simulate_legends.R'
     'fct_simulate_solution.R'
@@ -160,7 +170,9 @@ Collate:
     'ui_newSolutionSidebarPane.R'
     'ui_solutionResultsModal.R'
     'ui_solutionResultsSidebarPane.R'
+    'utils-tidy-eval.R'
     'utils_acknowledge_packages.R'
+    'utils_blank_raster.R'
     'utils_color_palette.R'
     'utils_error_misc.R'
     'utils_extract_data_matrix.R'
@@ -184,5 +196,5 @@ Collate:
 Remotes:
     r-lib/pkgdown,
     NCC-CNC/leaflet.extras2,
-    NCC-CNC/leaflet@pane-extra,
+    NCC-CNC/leaflet-ncc@pane-extra,
     dirkschumacher/rcbc

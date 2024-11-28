@@ -22,7 +22,7 @@ Dataset <- R6::R6Class(
     #' @field boundary_path `character` file path.
     boundary_path = NA_character_,
 
-    #' @field spatial_data `NULL`, [sf::st_sf()], or [raster::raster()] object.
+    #' @field spatial_data `NULL`, [sf::st_sf()], or [terra::rast()] object.
     spatial_data = NULL,
 
     #' @field attribute_data `NULL`, or [tibble::tibble()] object.
@@ -37,7 +37,7 @@ Dataset <- R6::R6Class(
     #' @param spatial_path `character` file path.
     #' @param attribute_path `character` file path.
     #' @param boundary_path `character` file path.
-    #' @param spatial_data [sf::st_sf()], or [raster::raster()] object.
+    #' @param spatial_data [sf::st_sf()], or [terra::rast()] object.
     #' @param attribute_data [tibble::tibble()] object.
     #' @param boundary_data [Matrix::sparseMatrix()] object or [NA].
     #' @return A new Dataset object.
@@ -59,7 +59,7 @@ Dataset <- R6::R6Class(
         assertthat::noNA(boundary_path),
         assertthat::is.string(boundary_path),
         ## spatial_data
-        inherits(spatial_data, c("NULL", "sf", "Raster")),
+        inherits(spatial_data, c("NULL", "sf", "SpatRaster")),
         ## attribute_data
         inherits(attribute_data, c("NULL", "data.frame")),
         ## boundary_data
@@ -92,7 +92,7 @@ Dataset <- R6::R6Class(
           ),
           msg = "vector data must have a defined CRS"
         )
-      } else if (inherits(self$spatial_data, "Raster")) {
+      } else if (inherits(self$spatial_data, "SpatRaster")) {
         #### CRS
         assertthat::assert_that(
           !is.na(methods::as(sf::st_crs(self$spatial_data), "CRS")
@@ -152,7 +152,7 @@ Dataset <- R6::R6Class(
             ),
             msg = "vector data must have a defined CRS"
           )
-        } else if (inherits(self$spatial_data, "Raster")) {
+        } else if (inherits(self$spatial_data, "SpatRaster")) {
           #### CRS
            assertthat::assert_that(
             !is.na(methods::as(sf::st_crs(self$spatial_data), "CRS")
@@ -235,7 +235,7 @@ Dataset <- R6::R6Class(
         })
       } else {
         suppressWarnings({
-          raster::writeRaster(
+          terra::writeRaster(
             self$spatial_data, spatial_path,
             overwrite = TRUE, NAflag = -9999
           )
@@ -247,7 +247,7 @@ Dataset <- R6::R6Class(
         sep = ",", row.names = FALSE
       )
       # boundary data
-      bd <- methods::as(self$boundary_data, "dsTMatrix")
+      bd <- methods::as(self$boundary_data, "TsparseMatrix")
       ### if data in .csv or .csv.fz format
       if (
         endsWith(boundary_path, ".csv") ||
@@ -301,7 +301,7 @@ Dataset <- R6::R6Class(
 
     #' @description
     #' Get the spatial data.
-    #' @return [sf::st_as_sf()] or [raster::raster()] object.
+    #' @return [sf::st_as_sf()] or [terra::rast()] object.
     get_spatial_data = function() {
       self$import()
       self$spatial_data
@@ -352,30 +352,28 @@ Dataset <- R6::R6Class(
       # generate extent object
       if (native) {
         # if native then extract extent
-        ext <- raster::extent(self$get_spatial_data())
+        ext <- terra::ext(self$get_spatial_data())
       } else {
         # if not native, then reproject data and extract extent
-        ext <- methods::as(raster::extent(
-          self$get_spatial_data()
-        ), "SpatialPolygons")
-        ## prepare bounding box
-        ext <- sf::st_set_crs(sf::st_as_sf(ext), self$get_crs())
+        ext <- terra::ext(self$get_spatial_data())
         ## convert to WGS1984
-        ext <- raster::extent(sf::st_transform(ext, 4326))
+        ext <- terra::project(
+          x = ext, from = terra::crs(self$get_spatial_data()), to = "EPSG:4326"
+        ) 
       }
       # expand bounding box if needed
       if (expand) {
         out <- list()
-        out$xmin <- unname(ext@xmin - (0.1 * (ext@xmax - ext@xmin)))
-        out$xmax <- unname(ext@xmax + (0.1 * (ext@xmax - ext@xmin)))
-        out$ymin <- unname(ext@ymin - (0.1 * (ext@ymax - ext@ymin)))
-        out$ymax <- unname(ext@ymax + (0.1 * (ext@ymax - ext@ymin)))
+        out$xmin <- unname(ext[1] - (0.1 * (ext[2] - ext[1])))
+        out$xmax <- unname(ext[2] + (0.1 * (ext[2] - ext[1])))
+        out$ymin <- unname(ext[3] - (0.1 * (ext[4] - ext[3])))
+        out$ymax <- unname(ext[4] + (0.1 * (ext[4] - ext[3])))
       } else {
         out <- list(
-          xmin = unname(ext@xmin),
-          xmax = unname(ext@xmax),
-          ymin = unname(ext@ymin),
-          ymax = unname(ext@ymax)
+          xmin = unname(ext[1]),
+          xmax = unname(ext[2]),
+          ymin = unname(ext[3]),
+          ymax = unname(ext[4])
         )
       }
       # if using lon/lat CRS, then ensure valid extent
@@ -411,9 +409,9 @@ Dataset <- R6::R6Class(
     get_planning_unit_areas = function() {
       self$import()
       idx <- self$attribute_data[["_index"]]
-      if (inherits(self$spatial_data, "Raster")) {
+      if (inherits(self$spatial_data, "SpatRaster")) {
         out <-
-          rep(prod(raster::res(self$spatial_data)), length(idx))
+          rep(prod(terra::res(self$spatial_data)), length(idx))
       } else {
         out <- as.numeric(sf::st_area(self$spatial_data[idx, ]))
       }
@@ -424,7 +422,7 @@ Dataset <- R6::R6Class(
     #' Get a data from the dataset at an index.
     #' @param index `character` or `integer` indicating the field/layer with
     #'   the data.
-    #' @return [sf::st_as_sf()] or [raster::raster()] object.
+    #' @return [sf::st_as_sf()] or [terra::rast()] object.
     get_index = function(index) {
       assertthat::assert_that(
         is.character(index) || is.numeric(index),
@@ -433,8 +431,8 @@ Dataset <- R6::R6Class(
       )
       self$import()
       idx <- self$attribute_data[["_index"]]
-      if (inherits(self$spatial_data, "Raster")) {
-        blank <- raster::setValues(self$spatial_data, NA_real_)
+      if (inherits(self$spatial_data, "SpatRaster")) {
+        blank <- terra::setValues(self$spatial_data, NA_real_)
         out <- lapply(index, function(x) {
           r <- blank
           r[idx] <- self$attribute_data[[x]]
@@ -443,7 +441,7 @@ Dataset <- R6::R6Class(
         if (length(index) == 1) {
           out <- out[[1]]
         } else {
-          out <- raster::stack(out)
+          out <- c(out)
         }
       } else {
         out <- tibble::as_tibble(self$attribute_data[, index, drop = FALSE])
@@ -517,7 +515,18 @@ Dataset <- R6::R6Class(
         ]
       # return self
       invisible(self)
-    }
+    },
+    
+    #' @description
+    #' Updates old boundary matrix to new format.
+    #' @return `Matrix::sparseMatrix()` object.
+    update_bm = function() {
+      self$import()
+      bm_colsums  <- Matrix::colSums(self$boundary_data)
+      Matrix::diag(self$boundary_data) <- bm_colsums
+      # return self
+      invisible(self)
+    }    
   )
 )
 
@@ -531,7 +540,7 @@ Dataset <- R6::R6Class(
 #'
 #' @param boundary_path `character` file path for boundary data.
 #'
-#' @param spatial_data `NULL`, [sf::st_sf()], or [raster::raster()] object.
+#' @param spatial_data `NULL`, [sf::st_sf()], or [terra::rast()] object.
 #'   Defaults to `NULL` such that data are automatically imported
 #'   using the argument to `spatial_path`.
 #'
@@ -606,18 +615,11 @@ new_dataset <- function(spatial_path, attribute_path, boundary_path,
 #'
 #' Create a new [Dataset] object.
 #'
-#' @param x [sf::st_sf()] or [raster::stack()] object.
-#' 
-#' @param skip_bm [`logical`] skip generating boundary data? 
-#'   (See details for more information) 
+#' @param x [sf::st_sf()] or a combined [terra::rast()] object.
 #'
 #' @inheritParams new_dataset
 #'
 #' @inherit new_dataset return
-#' 
-#' @details For spatial uploads (shapefile) with many planning units, building
-#'   boundary data can result in a std::bad_alloc error. To avoid this, the 
-#'   user can skip generating a boundary matrix by setting `skip_bm = TRUE`.
 #'
 #' @examples
 #' # find example data
@@ -627,8 +629,9 @@ new_dataset <- function(spatial_path, attribute_path, boundary_path,
 #' )
 #'
 #' # import data
-#' r <- suppressWarnings(raster::raster(f))
-#' r <- raster::stack(r, r * 2, r * 3, r * 4)
+#' r <- suppressWarnings(terra::rast(f))
+#' r <- c(r, r * 2, r * 3, r * 4)
+#' names(r) <- c("r1", "r2", "r3", "r4")
 #'
 #' # create new dataset
 #' d <- new_dataset_from_auto(r)
@@ -636,11 +639,16 @@ new_dataset <- function(spatial_path, attribute_path, boundary_path,
 #' # print object
 #' print(d)
 #' @export
-new_dataset_from_auto <- function(x, skip_bm = FALSE, id = uuid::UUIDgenerate()) {
+new_dataset_from_auto <- function(x, id = uuid::UUIDgenerate()) {
   
   # assert arguments are valid
   assertthat::assert_that(
-    inherits(x, c("sf", "Raster"))
+    inherits(x, c("sf", "SpatRaster"))
+  )
+  
+  # assert that the combine SpatRasters names or sf attribute names are unique
+  assertthat::assert_that(
+    anyDuplicated(names(x)) == 0, msg = "names must be unique"
   )
 
   # prepare geometry data
@@ -655,7 +663,7 @@ new_dataset_from_auto <- function(x, skip_bm = FALSE, id = uuid::UUIDgenerate())
   if (inherits(x, "sf")) {
     attribute_data <- sf::st_drop_geometry(x)
   } else {
-    attribute_data <- raster::as.data.frame(x, na.rm = FALSE)
+    attribute_data <- terra::as.data.frame(x, na.rm = FALSE)
     pu_idx <- rowSums(is.na(as.matrix(attribute_data)))
     attribute_data <- tibble::as_tibble(attribute_data)
     attribute_data <- dplyr::select_if(attribute_data, is.numeric)
@@ -669,9 +677,7 @@ new_dataset_from_auto <- function(x, skip_bm = FALSE, id = uuid::UUIDgenerate())
   }
   
   # build boundary data
-  if (skip_bm) {
-    bm <- NA
-  } else {
+  bm <- try({
     # re-project sf if CRS is not projected. only used for generating boundary
     if (inherits(spatial_data, "sf") && (sf::st_is_longlat(spatial_data))) {
       bm_spatial_data  <- sf::st_transform(spatial_data, 3857)
@@ -680,10 +686,16 @@ new_dataset_from_auto <- function(x, skip_bm = FALSE, id = uuid::UUIDgenerate())
     }
     # prepare boundary data
     str_tree <- inherits(x, "sf") && !identical(Sys.info()[["sysname"]], "Darwin")
-    bm <- prioritizr::boundary_matrix(bm_spatial_data, str_tree = str_tree)
-    if (inherits(x, "Raster")) {
+    bm <- prioritizr::boundary_matrix(bm_spatial_data)
+    if (inherits(x, "SpatRaster")) {
       bm <- bm[attribute_data[["_index"]], attribute_data[["_index"]]]
-    }    
+    }
+    bm # return bm
+  }, silent = TRUE)
+  
+  # catch std::bad_alloc error (shapefile import)
+  if (inherits(bm, "try-error")) {
+    bm <- NA 
   }
   
   # create new dataset

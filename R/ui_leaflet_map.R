@@ -30,11 +30,6 @@ leaflet_map <- function(sidebar_ids) {
     "Shiny.setInputValue(\"hide_button\", Math.random());",
     "}"
   )
-  show_js <- paste0(
-    "function(btn, map) {",
-    "Shiny.setInputValue(\"show_button\", Math.random());",
-    "}"
-  )
   print_js <- paste0(
     "function(btn, map) {",
     "Shiny.setInputValue(\"print_button\", Math.random());",
@@ -84,21 +79,14 @@ leaflet_map <- function(sidebar_ids) {
         onClick = htmlwidgets::JS(home_js)
       )
     ) %>%
-    ## show/hide layers buttons
-    leaflet::addEasyButtonBar(
+    ## hide layers buttons
+    leaflet::addEasyButton(
       leaflet::easyButton(
         id = "hideAllLayers",
         title = "Hide all layers",
         icon = shiny::icon("eye-slash"),
         position = "topleft",
         onClick = htmlwidgets::JS(hide_js)
-      ),
-      leaflet::easyButton(
-        id = "showAllLayers",
-        title = "Show all layers",
-        icon = shiny::icon("eye"),
-        position = "topleft",
-        onClick = htmlwidgets::JS(show_js)
       )
     ) %>%
     ## add help button
@@ -131,10 +119,10 @@ leaflet_map <- function(sidebar_ids) {
       options = leaflet::layersControlOptions(collapsed = TRUE),
       position = "topleft"
     ) %>%
-    ## add history buttons
-    leaflet.extras2::addHistory(
-      options = leaflet.extras2::historyOptions(position = "topleft")
-    ) %>%
+    # ## add history buttons
+    # leaflet.extras2::addHistory(
+    #   options = leaflet.extras2::historyOptions(position = "topleft")
+    # ) %>%
     ## add scale bar
     leaflet::addScaleBar(
       position = "bottomleft"

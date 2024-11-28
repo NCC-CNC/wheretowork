@@ -7,7 +7,7 @@
 write_spatial_data(x, dir, name)
 }
 \arguments{
-\item{x}{\code{\link[sf:sf]{sf::st_sf()}} or \code{\link[raster:stack]{raster::stack()}} object.}
+\item{x}{\code{\link[sf:sf]{sf::st_sf()}} or \code{\link[terra:rast]{terra::rast()}} object.}
 
 \item{dir}{\code{character} directory to save data.}
 
@@ -27,7 +27,7 @@ write_spatial_data(d1, tempdir(), "rlogo")
 
 # read and write vector data
 f2 <- system.file("shape/nc.shp", package = "sf")
-read_spatial_data(f2)
-write_spatial_data(d1, tempdir(), "nc")
+d2 <- read_spatial_data(f2)
+write_spatial_data(d2, tempdir(), "nc")
 
 }

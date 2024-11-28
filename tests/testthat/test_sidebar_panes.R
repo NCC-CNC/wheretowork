@@ -1,7 +1,6 @@
 context("sidebar panes")
 
 test_that("newSolutionSidebarPane", {
-  skip_if_not_installed("RandomFields")
   # create object
   x <-
     newSolutionSidebarPane(
@@ -21,6 +20,6 @@ test_that("newSolutionSidebarPane", {
       attr = "class",
       x = rvest::html_elements(h, "#ssId")
     ),
-    "solutionSettings html-widget html-widget-output"
+    "solutionSettings html-widget html-widget-output shiny-report-size html-fill-item"
   )
 })

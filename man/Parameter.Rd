@@ -35,37 +35,37 @@ Definition for the Parameter class.
 
 \item{\code{disable}}{\code{logical} value.}
 
-\item{\code{no_slider}}{\code{logical} value.}
-
 \item{\code{units}}{\code{character} value.}
 
 \item{\code{reference_value}}{\code{numeric} reference value.}
 
 \item{\code{reference_units}}{\code{character} units for reference value.}
+
+\item{\code{tool_tip}}{\code{character} description of parameter setting.}
 }
 \if{html}{\out{</div>}}
 }
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{Parameter$new()}}
-\item \href{#method-print}{\code{Parameter$print()}}
-\item \href{#method-repr}{\code{Parameter$repr()}}
-\item \href{#method-get_status}{\code{Parameter$get_status()}}
-\item \href{#method-get_value}{\code{Parameter$get_value()}}
-\item \href{#method-get_setting}{\code{Parameter$get_setting()}}
-\item \href{#method-set_status}{\code{Parameter$set_status()}}
-\item \href{#method-set_value}{\code{Parameter$set_value()}}
-\item \href{#method-set_setting}{\code{Parameter$set_setting()}}
-\item \href{#method-get_widget_data}{\code{Parameter$get_widget_data()}}
-\item \href{#method-export}{\code{Parameter$export()}}
-\item \href{#method-get_results_data}{\code{Parameter$get_results_data()}}
-\item \href{#method-clone}{\code{Parameter$clone()}}
+\item \href{#method-Parameter-new}{\code{Parameter$new()}}
+\item \href{#method-Parameter-print}{\code{Parameter$print()}}
+\item \href{#method-Parameter-repr}{\code{Parameter$repr()}}
+\item \href{#method-Parameter-get_status}{\code{Parameter$get_status()}}
+\item \href{#method-Parameter-get_value}{\code{Parameter$get_value()}}
+\item \href{#method-Parameter-get_setting}{\code{Parameter$get_setting()}}
+\item \href{#method-Parameter-set_status}{\code{Parameter$set_status()}}
+\item \href{#method-Parameter-set_value}{\code{Parameter$set_value()}}
+\item \href{#method-Parameter-set_setting}{\code{Parameter$set_setting()}}
+\item \href{#method-Parameter-get_widget_data}{\code{Parameter$get_widget_data()}}
+\item \href{#method-Parameter-export}{\code{Parameter$export()}}
+\item \href{#method-Parameter-get_results_data}{\code{Parameter$get_results_data()}}
+\item \href{#method-Parameter-clone}{\code{Parameter$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-Parameter-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Parameter-new}{}}}
 \subsection{Method \code{new()}}{
 Create a new Parameter object.
 \subsection{Usage}{
@@ -79,10 +79,10 @@ Create a new Parameter object.
   step_value,
   hide,
   disable,
-  no_slider,
   units,
   reference_value,
-  reference_units
+  reference_units,
+  tool_tip
 )}\if{html}{\out{</div>}}
 }
 
@@ -107,13 +107,13 @@ Create a new Parameter object.
 
 \item{\code{disable}}{\code{logical} value.}
 
-\item{\code{no_slider}}{\code{logical} value.}
-
 \item{\code{units}}{\code{character} value.}
 
 \item{\code{reference_value}}{\code{numeric} value.}
 
 \item{\code{reference_units}}{\code{character} value.}
+
+\item{\code{tool_tip}}{\code{character} value.}
 }
 \if{html}{\out{</div>}}
 }
@@ -122,8 +122,8 @@ A new Parameter object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-print"></a>}}
-\if{latex}{\out{\hypertarget{method-print}{}}}
+\if{html}{\out{<a id="method-Parameter-print"></a>}}
+\if{latex}{\out{\hypertarget{method-Parameter-print}{}}}
 \subsection{Method \code{print()}}{
 Print the object.
 \subsection{Usage}{
@@ -139,8 +139,8 @@ Print the object.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-repr"></a>}}
-\if{latex}{\out{\hypertarget{method-repr}{}}}
+\if{html}{\out{<a id="method-Parameter-repr"></a>}}
+\if{latex}{\out{\hypertarget{method-Parameter-repr}{}}}
 \subsection{Method \code{repr()}}{
 Generate a \code{character} summarizing the representation of the object.
 \subsection{Usage}{
@@ -163,8 +163,8 @@ Defaults to \code{"]"}.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_status"></a>}}
-\if{latex}{\out{\hypertarget{method-get_status}{}}}
+\if{html}{\out{<a id="method-Parameter-get_status"></a>}}
+\if{latex}{\out{\hypertarget{method-Parameter-get_status}{}}}
 \subsection{Method \code{get_status()}}{
 Get status.
 \subsection{Usage}{
@@ -176,8 +176,8 @@ Get status.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_value"></a>}}
-\if{latex}{\out{\hypertarget{method-get_value}{}}}
+\if{html}{\out{<a id="method-Parameter-get_value"></a>}}
+\if{latex}{\out{\hypertarget{method-Parameter-get_value}{}}}
 \subsection{Method \code{get_value()}}{
 Get value.
 \subsection{Usage}{
@@ -189,8 +189,8 @@ Get value.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_setting"></a>}}
-\if{latex}{\out{\hypertarget{method-get_setting}{}}}
+\if{html}{\out{<a id="method-Parameter-get_setting"></a>}}
+\if{latex}{\out{\hypertarget{method-Parameter-get_setting}{}}}
 \subsection{Method \code{get_setting()}}{
 Get setting.
 \subsection{Usage}{
@@ -210,8 +210,8 @@ Value.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_status"></a>}}
-\if{latex}{\out{\hypertarget{method-set_status}{}}}
+\if{html}{\out{<a id="method-Parameter-set_status"></a>}}
+\if{latex}{\out{\hypertarget{method-Parameter-set_status}{}}}
 \subsection{Method \code{set_status()}}{
 Set status.
 \subsection{Usage}{
@@ -227,8 +227,8 @@ Set status.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_value"></a>}}
-\if{latex}{\out{\hypertarget{method-set_value}{}}}
+\if{html}{\out{<a id="method-Parameter-set_value"></a>}}
+\if{latex}{\out{\hypertarget{method-Parameter-set_value}{}}}
 \subsection{Method \code{set_value()}}{
 Set value.
 \subsection{Usage}{
@@ -244,8 +244,8 @@ Set value.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_setting"></a>}}
-\if{latex}{\out{\hypertarget{method-set_setting}{}}}
+\if{html}{\out{<a id="method-Parameter-set_setting"></a>}}
+\if{latex}{\out{\hypertarget{method-Parameter-set_setting}{}}}
 \subsection{Method \code{set_setting()}}{
 Set setting.
 \subsection{Usage}{
@@ -264,8 +264,8 @@ Available options are \code{"status"}, or \code{"value"}.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_widget_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_widget_data}{}}}
+\if{html}{\out{<a id="method-Parameter-get_widget_data"></a>}}
+\if{latex}{\out{\hypertarget{method-Parameter-get_widget_data}{}}}
 \subsection{Method \code{get_widget_data()}}{
 Get data for displaying the parameter in a widget.
 \subsection{Usage}{
@@ -274,8 +274,8 @@ Get data for displaying the parameter in a widget.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-export"></a>}}
-\if{latex}{\out{\hypertarget{method-export}{}}}
+\if{html}{\out{<a id="method-Parameter-export"></a>}}
+\if{latex}{\out{\hypertarget{method-Parameter-export}{}}}
 \subsection{Method \code{export()}}{
 Export settings.
 \subsection{Usage}{
@@ -287,8 +287,8 @@ Export settings.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_results_data"></a>}}
-\if{latex}{\out{\hypertarget{method-get_results_data}{}}}
+\if{html}{\out{<a id="method-Parameter-get_results_data"></a>}}
+\if{latex}{\out{\hypertarget{method-Parameter-get_results_data}{}}}
 \subsection{Method \code{get_results_data()}}{
 Get results data.
 \subsection{Usage}{
@@ -300,8 +300,8 @@ Get results data.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-Parameter-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-Parameter-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

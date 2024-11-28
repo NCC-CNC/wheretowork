@@ -5,6 +5,7 @@ class IncludeSetting {
     id,
     name,
     status,
+    overlap,
     mandatory,
     provenance
   ) {
@@ -36,6 +37,12 @@ class IncludeSetting {
     createProvenance(
       this.el.querySelector(".provenance-container"), provenance
     );
+    // create include overlap warning icon 
+    if (overlap) {
+      createWarning(
+        this.el.querySelector(".warning-container"), name, "excludes", overlap
+      );      
+    }    
 
     // disable switches if include is mandatory
     if (mandatory) {
@@ -92,12 +99,10 @@ class IncludeSetting {
 
   updateStatus(value) {
     this.status_el.checked = value;
-    let els = this.el.querySelectorAll(
-      ".disable-if-inactive, .disable-if-inactive.icon i");
     if (value) {
-      els.forEach((x) => x.removeAttribute("disabled"));
+      this.name_el.removeAttribute("disabled");
     } else {
-      els.forEach((x) => x.setAttribute("disabled", ""));
+      this.name_el.setAttribute("disabled", "");
     }
   }
 
