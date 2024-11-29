@@ -86,6 +86,12 @@ class IncludeSolutionChart {
           .style("top", `${e.clientY + 5}px`)
           .style("left", `${e.clientX + 5}px`);
         self.showStats(d, tooltip, type)
+        // adjust the tooltip position if the tooltip width goes out of the max X window width
+        const tooltipWidth = tooltip.node().getBoundingClientRect().width;
+        const windowWidth = window.innerWidth;
+        if (e.clientX + 5 + tooltipWidth > windowWidth) {
+          tooltip.style("left", `${windowWidth - tooltipWidth}px`);
+        }
       })
       .on("mouseout", function() {
         d3
