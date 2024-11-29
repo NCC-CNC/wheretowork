@@ -178,7 +178,7 @@ class ThemeSolutionChart {
           const tooltipWidth = tooltip.node().getBoundingClientRect().width;
           const windowWidth = window.innerWidth;
           if (e.clientX + 5 + tooltipWidth > windowWidth) {
-            tooltip.style("left", `${windowWidth - tooltipWidth - 5}px`);
+            tooltip.style("left", `${windowWidth - tooltipWidth}px`);
           }
         })
         .on("mouseout", function() {
