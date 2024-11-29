@@ -174,6 +174,12 @@ class ThemeSolutionChart {
             d.find((x) => x[0] === "feature_solution_held"),
             tooltip,
             type);
+          // adjust the tooltip position if the tooltip width goes out of the max X window width
+          const tooltipWidth = tooltip.node().getBoundingClientRect().width;
+          const windowWidth = window.innerWidth;
+          if (e.clientX + 5 + tooltipWidth > windowWidth) {
+            tooltip.style("left", `${windowWidth - tooltipWidth - 5}px`);
+          }
         })
         .on("mouseout", function() {
           d3
