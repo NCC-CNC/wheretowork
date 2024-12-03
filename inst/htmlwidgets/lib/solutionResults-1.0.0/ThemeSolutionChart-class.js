@@ -79,15 +79,15 @@ class ThemeSolutionChart {
     /// current stats
     const current_stats =
       `Included: ${Math.round(d_current[1][0] * 100)}% ` +
-      `(${Math.round(d_current[1][0] * d_current[4])} ${d_current[6]})`;
+      `(${Math.round(d_current[1][0] * d_current[4]).toLocaleString()} ${d_current[6]})`;
     /// goal stats
     let goal_stats =
       `Goal: ${Math.round(d_goal[1][0] * 100)}% ` +
-      `(${Math.round(d_goal[1][0] * d_goal[4])} ${d_goal[6]})`;
+      `(${Math.round(d_goal[1][0] * d_goal[4]).toLocaleString()} ${d_goal[6]})`;
     /// solution stats
     const solution_stats =
       `Solution: ${Math.round(d_solution[1][0] * 100)}% ` +
-      `(${Math.round(d_solution[1][0] * d_solution[4])} ${d_solution[6]})`;
+      `(${Math.round(d_solution[1][0] * d_solution[4]).toLocaleString()} ${d_solution[6]})`;
     // add tooltips
     /// current held
     tooltip
