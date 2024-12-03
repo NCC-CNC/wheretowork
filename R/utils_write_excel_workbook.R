@@ -50,8 +50,10 @@ write_excel_workbook <- function(x, path) {
   wb <- openxlsx::createWorkbook("data")
 
   # set style for numbers
-  number_style <- openxlsx::createStyle(numFmt = "NUMBER")
-  text_style <- openxlsx::createStyle(numFmt = "TEXT")
+  number_style <- openxlsx::createStyle(
+    numFmt = openxlsx::openxlsx_getOp("numFmt", "NUMBER"))
+  text_style <- openxlsx::createStyle(
+    numFmt = openxlsx::openxlsx_getOp("numFmt", "TEXT"))
 
   # save data to sheets
   for (i in seq_along(x)) {
