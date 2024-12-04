@@ -335,8 +335,12 @@ Solution <- R6::R6Class(
       rd$value_text <- rd$value
       rd$value_text <- dplyr::if_else(
         !is.na(rd$units) & nchar(rd$units) > 0, 
-        paste(round(rd$value_text,2), rd$units, sep = " "), 
-        paste(round(rd$value_text, 2))) # add units if present
+        paste(
+          prettyNum(round(rd$value_text, 2),  big.mark = ","), 
+          rd$units, sep = " " # add units if present
+        ), 
+        prettyNum(round(rd$value_text, 2), big.mark = ",")
+      )
       rd$value_text <- dplyr::if_else(
         !is.na(rd$proportion),
         paste0(rd$value_text, " (", round(rd$proportion*100), "%)"), 
@@ -371,23 +375,22 @@ Solution <- R6::R6Class(
         Feature = x$feature_name,
         Status = dplyr::if_else(x$feature_status, "Enabled", "Disabled"),
         `Total (units)` = paste(
-          round(x$feature_total_amount, 2), x$units
+          prettyNum(round(x$feature_total_amount, 2), big.mark = ","), 
+          x$units
         ),
         `Current (%)` = round(x$feature_current_held * 100, 2),
         `Current (units)` = paste(
-          round(x$feature_current_held * x$feature_total_amount, 2),
+          prettyNum(round(x$feature_current_held * x$feature_total_amount, 2), big.mark = ","),
           x$units
         ),
         `Goal (%)` = round(x$feature_status * x$feature_goal * 100, 2),
         `Goal (units)` = paste(
-          round(
-            x$feature_status * x$feature_goal * x$feature_total_amount, 2
-          ),
+          prettyNum(round(x$feature_status * x$feature_goal * x$feature_total_amount, 2), big.mark = ","),
           x$units
         ),
         `Solution (%)` = round(x$feature_solution_held * 100, 2),
         `Solution (units)` = paste(
-          round(x$feature_solution_held * x$feature_total_amount, 2),
+          prettyNum(round(x$feature_solution_held * x$feature_total_amount, 2), big.mark = ","),
           x$units
         ),
         `Met` = dplyr::case_when(
@@ -415,11 +418,20 @@ Solution <- R6::R6Class(
           Weight = x$name,
           Status = dplyr::if_else(x$status, "Enabled", "Disabled"),
           Factor = round(x$factor, 2),
-          `Total (units)` = paste(round(x$total, 2), x$units),
+          `Total (units)` = paste(
+            prettyNum(round(x$total, 2), big.mark = ","), 
+            x$units
+          ),
           `Current (%)` = round(x$current * 100, 2),
-          `Current (units)` = paste(round(x$current * x$total, 2), x$units),
+          `Current (units)` = paste(
+            prettyNum(round(x$current * x$total, 2), big.mark = ","), 
+            x$units
+            ),
           `Solution (%)` = round(x$held * 100, 2),
-          `Solution (units)` = paste(round(x$held * x$total, 2), x$units),
+          `Solution (units)` = paste(
+            prettyNum(round(x$held * x$total, 2), big.mark = ","), 
+            x$units
+          ),
         )
       } else {
         ## if no weights are present, then use return
@@ -446,9 +458,15 @@ Solution <- R6::R6Class(
         out <- tibble::tibble(
           Include = x$name,
           Status = dplyr::if_else(x$status, "Enabled", "Disabled"),
-          `Total (units)` = paste(round(x$total, 2), x$units),
+          `Total (units)` = paste(
+            prettyNum(round(x$total, 2), big.mark = ","),
+            x$units
+          ),
           `Solution (%)` = round(x$held * 100, 2),
-          `Solution (units)` = paste(round(x$held * x$total, 2), x$units)
+          `Solution (units)` = paste(
+            prettyNum(round(x$held * x$total, 2), big.mark = ","),
+            x$units
+          )
         )
       } else {
         ## if no weights are present, then use return
@@ -475,9 +493,15 @@ Solution <- R6::R6Class(
         out <- tibble::tibble(
           Exclude = x$name,
           Status = dplyr::if_else(x$status, "Enabled", "Disabled"),
-          `Total (units)` = paste(round(x$total, 2), x$units),
+          `Total (units)` = paste(
+            prettyNum(round(x$total, 2), big.mark = ","),
+            x$units
+          ),
           `Solution (%)` = round(x$held * 100, 2),
-          `Solution (units)` = paste(round(x$held * x$total, 2), x$units)
+          `Solution (units)` = paste(
+            prettyNum(round(x$held * x$total, 2), big.mark = ","),
+            x$units
+          )
         )
       } else {
         ## if no weights are present, then use return

@@ -283,7 +283,7 @@ includes <- lapply(seq_len(terra::nlyr(include_data)), function(i) {
     variable = new_variable(
       dataset = dataset,
       index = names(include_data)[i],
-      units = " ",
+      units = include_units[i],
       total = terra::global(include_data[[i]], fun = "sum", na.rm = TRUE)$sum,
       legend = legend,
       provenance = new_provenance_from_source(include_provenance[i])
@@ -315,7 +315,7 @@ excludes <- lapply(seq_len(terra::nlyr(exclude_data)), function(i) {
     variable = new_variable(
       dataset = dataset,
       index = names(exclude_data)[i],
-      units = " ",
+      units = exclude_units[i],
       total = terra::global(exclude_data[[i]], fun = "sum", na.rm = TRUE)$sum,
       legend = legend,
       provenance = new_provenance_from_source(exclude_provenance[i])
