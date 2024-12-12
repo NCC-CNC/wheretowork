@@ -1,3 +1,12 @@
+# wheretowork 1.2.3
+
+### Minor changes and bug fixes
+- Solution setting tab names back to "single goals" and "group goal".
+- Fixed update solution bug (multi-theme and single-theme status logic).
+- Thousand comma separated values in charts and tables.
+- Activated the pointer cursor for the colour picker. Thanks @XavierCLL.
+- Adjusted tooltip position of solution charts. Thanks @XavierCLL.
+
 # wheretowork 1.1.3
 
 ### Minor changes and bug fixes
