@@ -143,6 +143,8 @@ write_project <- function(x, dataset, path, name,
     params$author_name <- author_name
     params$author_email <- author_email
   }
+  ## add data prep date
+  params$data_prep_date <- as.character(Sys.Date())
   ## add wheretowork version 
   params$wheretowork_version <- as.character(utils::packageVersion("wheretowork"))
   ## add prioritizr version

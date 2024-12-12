@@ -32,6 +32,7 @@ test_that("wheretowork and prioritizr package versions", {
   x <- yaml::yaml.load(enc2utf8(paste(readLines(f1), collapse = "\n")))
   
   # tests
+  expect_equal(x$data_prep_date, as.character(Sys.Date()))
   expect_equal(x$wheretowork_version, as.character(packageVersion("wheretowork")))
   expect_equal(x$prioritizr_version, as.character(packageVersion("prioritizr")))
 })
