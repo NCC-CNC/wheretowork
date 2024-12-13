@@ -30,7 +30,7 @@ importModal <- function(id) {
     shiny::modalDialog(
       title = htmltools::tags$p(
         "Where To Work", 
-        htmltools::tags$span("v1.1.3", style = "font-size:12px"),
+        htmltools::tags$span("v1.2.3", style = "font-size:12px"),
         style = "text-align:center"
       ),
       easyClose = FALSE,

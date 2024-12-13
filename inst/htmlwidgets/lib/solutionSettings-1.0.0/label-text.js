@@ -1,14 +1,14 @@
 // display text indicating the current amount of a single feature held
 function single_current_label_text(prop, total, prefix, units) {
   let v1 = Math.round(prop * 100.0);
-  let v2 = auto_round(prop * total);
+  let v2 = auto_round(prop * total).toLocaleString(); // format with commas;
   return `${prefix}: ${v1}% (${v2} ${units})`;
 }
 
-// display text indicating the gobal for a single feature held
+// display text indicating the goal for a single feature held
 function single_goal_label_text(prop, total, prefix, units) {
   let v1 = Math.round(prop * 100.0);
-  let v2 = auto_round(prop * total);
+  let v2 = auto_round(prop * total).toLocaleString(); // format with commas;
   return `${prefix}: ${v1}% (${v2} ${units})`;
 }
 
@@ -23,7 +23,7 @@ function group_current_label_text(prop, total, prefix, units) {
   let v2 = Math.min.apply(Math, v2_totals);
   // round numbers
   v1 = Math.round(v1);
-  v2 = auto_round(v2);
+  v2 = auto_round(v2).toLocaleString(); // format with commas;;
   // return result
   return `${prefix}: ≥${v1}% (≥${v2} ${units})`;
 }
@@ -39,7 +39,7 @@ function group_goal_label_text(prop, total, prefix, units) {
   let v2 = Math.min.apply(Math, v2_totals);
   // round numbers
   v1 = Math.round(v1);
-  v2 = auto_round(v2);
+  v2 = auto_round(v2).toLocaleString(); // format with commas;
   // return result
   return `${prefix}: ≥${v1}% (≥${v2} ${units})`;
 }

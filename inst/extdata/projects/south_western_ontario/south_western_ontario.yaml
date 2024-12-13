@@ -1,7 +1,8 @@
 name: South Western Ontario
 author_name: Dan Wismer
 author_email: daniel.wismer@natureconservancy.ca
-wheretowork_version: 1.1.2
+data_prep_date: '2024-12-12'
+wheretowork_version: 1.2.3
 prioritizr_version: 8.0.4
 mode: advanced
 user_groups: public
@@ -2111,7 +2112,7 @@ includes:
 - name: Existing Conservation (CPCAD)
   variable:
     index: I_Protected
-    units: ' '
+    units: km2
     legend:
       type: manual
       colors:
@@ -2130,7 +2131,7 @@ includes:
 - name: Military Bases (OECM)
   variable:
     index: I_REG_MilitaryBases
-    units: ' '
+    units: km2
     legend:
       type: manual
       colors:
@@ -2150,7 +2151,7 @@ excludes:
 - name: Major Highways
   variable:
     index: E_REG_PrimaryRoads
-    units: ' '
+    units: km2
     legend:
       type: manual
       colors:
@@ -2169,7 +2170,7 @@ excludes:
 - name: Urban Areas
   variable:
     index: E_REG_Urban
-    units: ' '
+    units: km2
     legend:
       type: manual
       colors:

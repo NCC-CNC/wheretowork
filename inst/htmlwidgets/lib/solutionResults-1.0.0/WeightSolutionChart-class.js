@@ -61,7 +61,7 @@ class WeightSolutionChart {
       .append("div")
       .text(() =>
         `Included: ${Math.round(d.current_held * 100)}% ` +
-        `(${Math.round(d.current_held * d.total_amount)} ${d.units})`)
+        `(${Math.round(d.current_held * d.total_amount).toLocaleString()} ${d.units})`)
       .style("font-weight", type === "current_held" ? "bold" : "normal")
       .style("color", this.colors.current_held);
     // solution held
@@ -69,7 +69,7 @@ class WeightSolutionChart {
       .append("div")
       .text(() =>
         `Solution: ${Math.round(d.solution_held * 100)}% ` +
-        `(${Math.round(d.solution_held * d.total_amount)} ` +
+        `(${Math.round(d.solution_held * d.total_amount).toLocaleString()} ` +
         `${d.units || "units"})`)
       .style("font-weight", type === "solution_held" ? "bold" : "normal")
       .style("color", this.colors.solution_held);
@@ -101,6 +101,12 @@ class WeightSolutionChart {
           .style("top", `${e.clientY + 5}px`)
           .style("left", `${e.clientX + 5}px`);
         self.showStats(d, tooltip, type)
+        // adjust the tooltip position if the tooltip width goes out of the max X window width
+        const tooltipWidth = tooltip.node().getBoundingClientRect().width;
+        const windowWidth = window.innerWidth;
+        if (e.clientX + 5 + tooltipWidth > windowWidth) {
+          tooltip.style("left", `${windowWidth - tooltipWidth}px`);
+        }
       })
       .on("mouseout", function() {
         d3
