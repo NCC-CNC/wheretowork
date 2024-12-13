@@ -54,11 +54,22 @@ server_update_solution_settings <- quote({
          animation = TRUE
        )
      } else {
-      ### update theme/feature status
+      ### update multi and single theme status
       vapply(app_data$themes, FUN.VALUE = logical(1), function(x) {
-        if ((!all(x$get_feature_status())) &
-            (length(x$get_feature_status()) > 1)) {
-          ### update group status
+        #### multi-theme status: TRUE
+        if (any(x$get_feature_status()) & (length(x$get_feature_status()) > 1)) {
+          updateSolutionSettings(
+            inputId = "newSolutionPane_settings",
+            value = list(
+              id = x$id,
+              setting = "status",
+              value = TRUE,
+              type = "theme"
+            )
+          )
+        } 
+        #### multi-theme status: FALSE
+        if (all(!x$get_feature_status()) & (length(x$get_feature_status()) > 1)) {
           updateSolutionSettings(
             inputId = "newSolutionPane_settings",
             value = list(
@@ -68,8 +79,9 @@ server_update_solution_settings <- quote({
               type = "theme"
             )
           )
-        } else {
-          ### update feature status
+        }
+        #### single-theme status set via get method
+        if (length(x$get_feature_status()) == 1) {
           updateSolutionSettings(
             inputId = "newSolutionPane_settings",
               value = list(
@@ -83,11 +95,11 @@ server_update_solution_settings <- quote({
        #### return success
        TRUE
       })
-      ### update theme/feature goal
+      ### update theme/feature goal and view
       vapply(app_data$themes, FUN.VALUE = logical(1), function(x) {
+        #### update group goal when all features have the same goal
         if ((length(unique(x$get_feature_goal())) == 1) &
             (length(x$get_feature_goal()) > 1)) {
-          #### update group goal
           updateSolutionSettings(
             inputId = "newSolutionPane_settings",
             value = list(
@@ -97,7 +109,7 @@ server_update_solution_settings <- quote({
               type = "theme"
             )
           )
-          ### update view to group tab
+          ### update group view when all features have the same goal
           updateSolutionSettings(
             inputId = "newSolutionPane_settings",
             value = list(
