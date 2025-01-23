@@ -13,7 +13,6 @@ services:
       - FORCE_DEFAULT_PROJECTS
       - PROJECT_DIRECTORY
       - R_CONFIG_ACTIVE
-      - GRB_LICENSE_FILE
     volumes:
       - "${PROJECT_DIRECTORY}:/projects"
       - "${PATH_TO_GUROBI_LICENSE}:/opt/gurobi/gurobi.lic:ro"
