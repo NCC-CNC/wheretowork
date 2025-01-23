@@ -1,3 +1,9 @@
+# wheretowork 1.2.4
+
+### Minor changes and bug fixes
+- Updated Gurobi to version 12.0.0
+- Replaced gurobi.loc file to the new Gurobi Gives Back free version
+
 # wheretowork 1.2.3
 
 ### Minor changes and bug fixes
