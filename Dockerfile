@@ -28,8 +28,8 @@ RUN add-apt-repository ppa:ubuntugis/ubuntugis-unstable && \
     && rm -rf /var/lib/apt/lists/*
 
 ## install gurobi
-ENV GRB_VERSION 10.0.2
-ENV GRB_SHORT_VERSION 10.0
+ENV GRB_VERSION 12.0.0
+ENV GRB_SHORT_VERSION 12.0
 ENV GUROBI_HOME /opt/gurobi/linux64
 #ENV LD_LIBRARY_PATH ${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib
 RUN wget -v https://packages.gurobi.com/${GRB_SHORT_VERSION}/gurobi${GRB_VERSION}_linux64.tar.gz \
@@ -46,7 +46,7 @@ COPY renv.lock /renv/renv.lock
 RUN cd /renv && \
     Rscript -e 'install.packages(c("renv", "remotes"))' && \
     Rscript -e 'renv::restore()' && \
-    Rscript -e 'install.packages("/opt/gurobi/linux64/R/gurobi_10.0-2_R_4.2.0.tar.gz",repos = NULL)'
+    Rscript -e 'install.packages("/opt/gurobi/linux64/R/gurobi_12.0-0_R_4.4.0.tar.gz",repos = NULL)'
 
 
 
