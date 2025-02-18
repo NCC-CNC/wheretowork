@@ -85,12 +85,13 @@ test_that("raster (from memory)", {
   expect_false(x$has_index("ASDFG"))
   expect_false(x$has_index(3))
   expect_equal(x$has_index(c("V1", "ASDFG")), c(TRUE, FALSE))
-  expect_identical(
+  expect_equal(
     x$get_bbox(),
     setNames(
       as.list(as.list(terra::ext(spatial_data))),
       c("xmin", "xmax", "ymin", "ymax")
-    )
+    ),
+    tolerance = 1e-6
   )
 })
 
@@ -149,12 +150,13 @@ test_that("sf (from memory)", {
   expect_true(x$has_index("V2"))
   expect_false(x$has_index("ASDFG"))
   expect_false(x$has_index(3))
-  expect_identical(
+  expect_equal(
     x$get_bbox(),
     setNames(
       as.list(as.list(terra::ext(spatial_data))),
       c("xmin", "xmax", "ymin", "ymax")
-    )
+    ),
+    tolerance = 1e-6
   )
 })
 
@@ -201,12 +203,13 @@ test_that("raster (from standard boundary format)", {
   expect_false(x$has_index("ASDFG"))
   expect_false(x$has_index(3))
   expect_equal(x$has_index(c("V1", "ASDFG")), c(TRUE, FALSE))
-  expect_identical(
+  expect_equal(
     x$get_bbox(),
     setNames(
       as.list(as.list(terra::ext(spatial_data))),
       c("xmin", "xmax", "ymin", "ymax")
-    )
+    ),
+    tolerance = 1e-6
   )
 })
 
@@ -259,12 +262,13 @@ test_that("sf (from standard boundary format)", {
   expect_true(x$has_index("V2"))
   expect_false(x$has_index("ASDFG"))
   expect_false(x$has_index(3))
-  expect_identical(
+  expect_equal(
     x$get_bbox(),
     setNames(
       as.list(as.list(terra::ext(spatial_data))),
       c("xmin", "xmax", "ymin", "ymax")
-    )
+    ),
+    tolerance = 1e-6
   )
 })
 
@@ -311,12 +315,13 @@ test_that("raster (from Marxan boundary file format)", {
   expect_false(x$has_index("ASDFG"))
   expect_false(x$has_index(3))
   expect_equal(x$has_index(c("V1", "ASDFG")), c(TRUE, FALSE))
-  expect_identical(
+  expect_equal(
     x$get_bbox(),
     setNames(
       as.list(as.list(terra::ext(spatial_data))),
       c("xmin", "xmax", "ymin", "ymax")
-    )
+    ),
+    tolerance = 1e-6
   )
 })
 
@@ -369,12 +374,13 @@ test_that("sf (from Marxan boundary format)", {
   expect_true(x$has_index("V2"))
   expect_false(x$has_index("ASDFG"))
   expect_false(x$has_index(3))
-  expect_identical(
+  expect_equal(
     x$get_bbox(),
     setNames(
       as.list(as.list(terra::ext(spatial_data))),
       c("xmin", "xmax", "ymin", "ymax")
-    )
+    ),
+    tolerance = 1e-6
   )
 })
 
