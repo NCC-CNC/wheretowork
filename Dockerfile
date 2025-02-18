@@ -1,5 +1,5 @@
 # base image
-FROM rocker/shiny:4.4.0 AS base
+FROM rocker/shiny:4.4.1 AS base
 
 ## remove example apps
 RUN rm -rf /srv/shiny-server/*
