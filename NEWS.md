@@ -1,3 +1,10 @@
+# wheretowork 1.2.5
+
+### Infrastrucure changes
+
+- Updated to rocker/shiny:4.4.1 AS base in Dockerfile. This uses Ubuntu LTS 22.04
+which aligns with our GitHub Actions ubuntu-runner. 
+
 # wheretowork 1.2.4
 
 ### Minor changes and bug fixes
@@ -54,7 +61,7 @@ set in the [Where To Work data prep workflow](https://github.com/NCC-CNC/wtw-dat
 
 ### Major changes
 
-- Requires R version 4.4.
+- Requires R version 4.4.1
 - Migrated from raster package to terra package.
 - Updated all CRAN package dependencies to latest version as of August, 2024.
 - Updated REMOTE leaflet package dependency to latest version as of August, 2024.
