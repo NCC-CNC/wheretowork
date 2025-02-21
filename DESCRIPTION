@@ -92,7 +92,7 @@ Depends:
     R6 (>= 2.5.1),
     sf (>= 1.0-16),
     shinyBS (>= 0.61.1),
-License: GPL-3
+License: file LICENSE + LICENSE.note
 Encoding: UTF-8
 Language: en-US
 URL: https://NCC-CNC.github.io/wheretowork/
