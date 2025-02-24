@@ -25,13 +25,14 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: ubuntu-20.04, r: '4.4.1'}
+          - {os: ubuntu-22.04, r: '4.4.1'}
     
     env:
       _R_REMOTES_NO_ERRORS_FROM_WARNINGS_: true
       _R_CHECK_FORCE_SUGGESTS_: false
       _R_CHECK_TIMINGS_: 10
       _R_CHECK_CRAN_INCOMING_REMOTE_: false
+      _R_CHECK_LICENSE_: "maybe"
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       CI: true
 
