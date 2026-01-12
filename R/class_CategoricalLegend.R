@@ -47,7 +47,7 @@ CategoricalLegend <- R6::R6Class(
     #' Get resample method.
     #' @return `character` object.
     get_resample_method = function() {
-      "ngb"
+      "near"
     },
 
     #' @description
