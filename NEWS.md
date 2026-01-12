@@ -1,3 +1,9 @@
+# wheretowork 1.2.6
+
+### Minor changes and bug fixes
+- Raster layers are now pre-reprojected to EPSG:3857 directly before being added 
+to Leaflet maps to avoid display issues.
+
 # wheretowork 1.2.5
 
 ### Infrastrucure changes
