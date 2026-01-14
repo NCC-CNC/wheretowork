@@ -67,8 +67,7 @@ ContinuousLegend <- R6::R6Class(
     #' Get resample method.
     #' @return `character` object.
     get_resample_method = function() {
-      # bilinear causes holes with small n
-      if (self$n < 10) "ngb" else "bilinear"
+      "bilinear"
     },
 
     #' @description

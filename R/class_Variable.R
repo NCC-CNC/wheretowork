@@ -157,22 +157,17 @@ Variable <- R6::R6Class(
       x <- leaflet::addMapPane(x, pane_id, zindex, visible)
       # add data to leaflet map
       if (inherits(d, "SpatRaster")) {
-        # Set project on the fly flag
-        if (self$dataset$get_crs() == st_crs(3857)) {
-          project_on_fly <- FALSE
-        } else {
-          project_on_fly <- TRUE
-        }
-        
+        if (self$dataset$get_crs() != st_crs(3857)) {
+          ## re-project raster to web mercator for leaflet display
+          d <- terra::project(d, "EPSG:3857", method = self$legend$get_resample_method())
+        } 
         ## add raster data
         suppressWarnings({
           x <- leaflet::addRasterImage(
             map = x,
             x = d,
             opacity = 0.8,
-            project = project_on_fly,
             maxBytes = 5 * 1024 * 1024, # 5MB max size
-            method = self$legend$get_resample_method(),
             colors = self$legend$get_color_map(),
             group = id,
             pane = pane_id
