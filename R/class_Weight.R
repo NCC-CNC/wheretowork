@@ -19,22 +19,22 @@ Weight <- R6::R6Class(
 
     #' @field variable [Variable] object.
     variable = NULL,
-    
+
     #' @field pane `character` name.
-    pane = NA_character_,        
+    pane = NA_character_,
 
     #' @field visible `logical` value.
     visible = NA,
-    
+
     #' @field invisible `numeric` date/time.
     invisible = NA_real_,
-    
+
     #' @field loaded `logical` value.
-    loaded = NA,    
+    loaded = NA,
 
     #' @field hidden `logical` value.
     hidden = NA,
-    
+
     #' @field downloadable `logical` value.
     downloadable = NA,
 
@@ -75,9 +75,23 @@ Weight <- R6::R6Class(
     #' @param step_factor `numeric` step factor value.
     #' @return A new Weight object.
     ## constructor
-    initialize = function(id, name, variable, pane, visible, invisible, loaded, hidden, 
-                          downloadable, status, current, factor, min_factor, max_factor, 
-                          step_factor) {
+    initialize = function(
+      id,
+      name,
+      variable,
+      pane,
+      visible,
+      invisible,
+      loaded,
+      hidden,
+      downloadable,
+      status,
+      current,
+      factor,
+      min_factor,
+      max_factor,
+      step_factor
+    ) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -98,7 +112,7 @@ Weight <- R6::R6Class(
         inherits(invisible, "numeric"),
         #### loaded
         assertthat::is.flag(loaded),
-        assertthat::noNA(loaded),        
+        assertthat::noNA(loaded),
         #### hidden
         assertthat::is.flag(hidden),
         assertthat::noNA(hidden),
@@ -177,10 +191,18 @@ Weight <- R6::R6Class(
     repr = function(start = "[", end = "]") {
       paste0(
         self$name,
-        " ", start, "status: ", self$status,
-        ", current: ", round(self$current, 2),
-        ", factor: ", round(self$factor, 2), end, nl(),
-        "  variable: ", self$variable$repr()
+        " ",
+        start,
+        "status: ",
+        self$status,
+        ", current: ",
+        round(self$current, 2),
+        ", factor: ",
+        round(self$factor, 2),
+        end,
+        nl(),
+        "  variable: ",
+        self$variable$repr()
       )
     },
 
@@ -190,27 +212,27 @@ Weight <- R6::R6Class(
     get_layer_name = function() {
       self$name
     },
-    
+
     #' @description
     #' Get layer index values.
     #' @return `character` vector.
     get_layer_index = function() {
       self$variable$index
     },
-    
+
     #' @description
     #' Get layer pane class.
     #' @return `character` vector.
     get_layer_pane = function() {
       self$pane
     },
-    
+
     #' @description
     #' Get weight identifier.
     #' @return `character` vector.
     get_id = function() {
       self$id
-    },      
+    },
 
     #' @description
     #' Get visible.
@@ -218,20 +240,20 @@ Weight <- R6::R6Class(
     get_visible = function() {
       self$visible
     },
-    
+
     #' @description
     #' Get invisible.
     #' @return `numeric` date/time value.
     get_invisible = function() {
       self$invisible
-    }, 
-    
+    },
+
     #' @description
     #' Get loaded.
     #' @return `logical` value.
     get_loaded = function() {
       self$loaded
-    },    
+    },
 
     #' @description
     #' Get hidden.
@@ -239,7 +261,7 @@ Weight <- R6::R6Class(
     get_hidden = function() {
       self$hidden
     },
-    
+
     #' @description
     #' Get downloadable.
     #' @return `logical` value.
@@ -274,7 +296,7 @@ Weight <- R6::R6Class(
     get_data = function() {
       self$variable$get_data()
     },
-    
+
     #' @description
     #' Set new pane.
     #' @param id `character` unique identifier.
@@ -282,7 +304,7 @@ Weight <- R6::R6Class(
     #' @return `character` value.
     set_new_pane = function(id, index) {
       self$pane <- enc2ascii(paste(id, index, sep = "-"))
-    }, 
+    },
 
     #' @description
     #' Get setting.
@@ -323,7 +345,7 @@ Weight <- R6::R6Class(
       }
       invisible(self)
     },
-    
+
     #' @description
     #' Set invisible.
     #' @param value `numeric` date/time value.
@@ -337,7 +359,7 @@ Weight <- R6::R6Class(
       }
       invisible(self)
     },
-    
+
     #' @description
     #' Set loaded.
     #' @param value `logical` new value.
@@ -351,7 +373,7 @@ Weight <- R6::R6Class(
         self$loaded <- FALSE
       }
       invisible(self)
-    },    
+    },
 
     #' @description
     #' Set status.
@@ -454,7 +476,7 @@ Weight <- R6::R6Class(
     #' @return `list` object.
     export = function() {
       list(
-        name = enc2ascii(self$name),
+        name = self$name,
         variable = self$variable$export(),
         status = self$status,
         visible = self$visible,
@@ -470,7 +492,9 @@ Weight <- R6::R6Class(
     #' @param zindex `numeric` z-index for ordering.
     #' @return [leaflet::leaflet()] object.
     render_on_map = function(x, zindex) {
-      if (self$hidden) return(x) # don't render on map if hidden
+      if (self$hidden) {
+        return(x)
+      } # don't render on map if hidden
       self$variable$render(x, self$pane, zindex, self$visible)
     },
 
@@ -480,7 +504,9 @@ Weight <- R6::R6Class(
     #' @param zindex `numeric` z-index for ordering.
     #' @return [leaflet::leafletProxy()] object.
     update_on_map = function(x, zindex) {
-      if (self$hidden) return(x) # don't render on map if hidden
+      if (self$hidden) {
+        return(x)
+      } # don't render on map if hidden
       self$variable$update_render(x, self$pane, zindex, self$visible)
     }
   )
@@ -526,22 +552,23 @@ Weight <- R6::R6Class(
 #' print(w)
 #' @export
 new_weight <- function(
-    name, 
-    variable, 
-    visible = TRUE, 
-    invisible = NA_real_, 
-    loaded = TRUE, 
-    hidden = FALSE,
-    downloadable = TRUE,
-    status = TRUE,
-    current = 0, 
-    factor = 0,
-    id = uuid::UUIDgenerate(),
-    pane = paste(
-      uuid::UUIDgenerate(), 
-      variable$index, sep = "-"
-      )
-  ) {
+  name,
+  variable,
+  visible = TRUE,
+  invisible = NA_real_,
+  loaded = TRUE,
+  hidden = FALSE,
+  downloadable = TRUE,
+  status = TRUE,
+  current = 0,
+  factor = 0,
+  id = uuid::UUIDgenerate(),
+  pane = paste(
+    uuid::UUIDgenerate(),
+    variable$index,
+    sep = "-"
+  )
+) {
   Weight$new(
     id = id,
     name = name,
