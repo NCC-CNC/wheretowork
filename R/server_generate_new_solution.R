@@ -76,7 +76,7 @@ server_generate_new_solution <- quote({
     ### arguments for generating result
     curr_time_limit_1 <- get_golem_config("solver_time_limit_1")
     curr_time_limit_2 <- get_golem_config("solver_time_limit_2")
-    curr_name <- input$newSolutionPane_settings_name
+    curr_name <- trimws(input$newSolutionPane_settings_name)
     curr_gap_1 <- get_golem_config("solver_gap_1")
     curr_gap_2 <- get_golem_config("solver_gap_2")
     curr_verbose <- get_golem_config("verbose")
