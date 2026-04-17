@@ -67,7 +67,9 @@ example_include_names <- function() {
   out <- tibble::as_tibble(
     utils::read.table(
       system.file(
-        "extdata", "data", "example-includes.csv",
+        "extdata",
+        "data",
+        "example-includes.csv",
         package = "wheretowork"
       ),
       stringsAsFactors = FALSE,
@@ -91,7 +93,9 @@ example_exclude_names <- function() {
   out <- tibble::as_tibble(
     utils::read.table(
       system.file(
-        "extdata", "data", "example-excludes.csv",
+        "extdata",
+        "data",
+        "example-excludes.csv",
         package = "wheretowork"
       ),
       stringsAsFactors = FALSE,
@@ -115,7 +119,9 @@ example_weight_names <- function() {
   out <- tibble::as_tibble(
     utils::read.table(
       system.file(
-        "extdata", "data", "example-weights.csv",
+        "extdata",
+        "data",
+        "example-weights.csv",
         package = "wheretowork"
       ),
       stringsAsFactors = FALSE,
@@ -140,7 +146,9 @@ example_theme_names <- function() {
     d <-
       readxl::read_excel(
         system.file(
-          "extdata", "data", "Clements-Checklist-v2019-August-2019.xlsx",
+          "extdata",
+          "data",
+          "Clements-Checklist-v2019-August-2019.xlsx",
           package = "wheretowork"
         ),
         sheet = 1
@@ -156,7 +164,7 @@ example_theme_names <- function() {
   # remove invalid names
   valid <- c(
     !grepl(".", d$english_name, fixed = TRUE) &
-    !grepl(".", d$family, fixed = TRUE)
+      !grepl(".", d$family, fixed = TRUE)
   )
   d <- d[valid, , drop = FALSE]
   # remove duplicates
@@ -164,7 +172,8 @@ example_theme_names <- function() {
   # extract English family names
   d$family <-
     gsub(
-      "[\\(\\)]", "",
+      "[\\(\\)]",
+      "",
       regmatches(d$family, gregexpr("\\(.*?\\)", d$family))
     )
   # rename columns for output
@@ -232,16 +241,26 @@ wrap_text <- function(x) {
 }
 
 # copied from prioritizr::internal_eval_rare_richness_importance
-prioritizr_internal_eval_rare_richness_importance <- function(x, indices, rescale) {
+prioritizr_internal_eval_rare_richness_importance <- function(
+  x,
+  indices,
+  rescale
+) {
   assertthat::assert_that(
     inherits(x, "ConservationProblem"),
     prioritizr::number_of_zones(x) == 1,
-    is.integer(indices), length(indices) > 0,
-    assertthat::is.flag(rescale))
+    is.integer(indices),
+    length(indices) > 0,
+    assertthat::is.flag(rescale)
+  )
   # calculate rarity weighted richness for each selected planning unit
   rs <- x$feature_abundances_in_total_units()
-  m <- matrix(apply(x$data$rij_matrix[[1]], 1, max, na.rm = TRUE),
-              nrow = nrow(rs), ncol = length(indices), byrow = FALSE)
+  m <- matrix(
+    apply(x$data$rij_matrix[[1]], 1, max, na.rm = TRUE),
+    nrow = nrow(rs),
+    ncol = length(indices),
+    byrow = FALSE
+  )
   out <- x$data$rij_matrix[[1]][, indices, drop = FALSE]
   ## account for divide by zero issues result in NaNs
   out <- (out / m)

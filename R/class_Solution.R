@@ -9,7 +9,6 @@ NULL
 Solution <- R6::R6Class(
   "Solution",
   public = list(
-
     #' @field id `character` identifier.
     id = NA_character_,
 
@@ -18,18 +17,18 @@ Solution <- R6::R6Class(
 
     #' @field visible `logical` value.
     visible = NA,
-    
+
     #' @field invisible `numeric` date/time value.
-    invisible = NA_real_, 
-    
+    invisible = NA_real_,
+
     #' @field loaded `logical` value.
-    loaded = NA,     
+    loaded = NA,
 
     #' @field variable [Variable] object.
     variable = NULL,
-    
+
     #' @field pane `character` name.
-    pane = NA_character_,    
+    pane = NA_character_,
 
     #' @field parameters `list` of [Parameter] objects
     parameters = NULL,
@@ -45,15 +44,15 @@ Solution <- R6::R6Class(
 
     #' @field include_results `list` of [IncludeResults] objects.
     include_results = NULL,
-    
+
     #' @field exclude_results `list` of [ExcludeResults] objects.
-    exclude_results = NULL,    
-    
+    exclude_results = NULL,
+
     #' @field hidden `logical` value.
-    hidden = NA,   
-    
+    hidden = NA,
+
     #' @field downloadable `logical` value.
-    downloadable = NA,  
+    downloadable = NA,
 
     #' @description
     #' Create a Solution object.
@@ -73,15 +72,23 @@ Solution <- R6::R6Class(
     #' @param hidden `logical` value.
     #' @param downloadable `logical` value.
     #' @return A new Solution object.
-    initialize = function(id, name, variable, pane, visible, invisible, loaded,
-                          statistics,
-                          parameters,
-                          theme_results,
-                          weight_results,
-                          include_results,
-                          exclude_results,
-                          hidden,
-                          downloadable) {
+    initialize = function(
+      id,
+      name,
+      variable,
+      pane,
+      visible,
+      invisible,
+      loaded,
+      statistics,
+      parameters,
+      theme_results,
+      weight_results,
+      include_results,
+      exclude_results,
+      hidden,
+      downloadable
+    ) {
       # assert arguments are valid
       assertthat::assert_that(
         #### id
@@ -120,7 +127,7 @@ Solution <- R6::R6Class(
         all_list_elements_inherit(include_results, "IncludeResults"),
         #### exclude results
         is.list(exclude_results),
-        all_list_elements_inherit(exclude_results, "ExcludeResults"),        
+        all_list_elements_inherit(exclude_results, "ExcludeResults"),
         #### hidden
         assertthat::is.flag(hidden),
         assertthat::noNA(hidden),
@@ -168,7 +175,8 @@ Solution <- R6::R6Class(
         ),
         end,
         nl(),
-        "  variable: ", self$variable$repr()
+        "  variable: ",
+        self$variable$repr()
       )
     },
 
@@ -192,27 +200,27 @@ Solution <- R6::R6Class(
     get_layer_name = function() {
       self$name
     },
-    
+
     #' @description
     #' Get layer index values.
     #' @return `character` vector.
     get_layer_index = function() {
       self$variable$index
     },
-    
+
     #' @description
     #' Get layer pane class.
     #' @return `character` vector.
     get_layer_pane = function() {
       self$pane
     },
-    
+
     #' @description
     #' Get solution identifier.
     #' @return `character` vector.
     get_id = function() {
       self$id
-    },  
+    },
 
     #' @description
     #' Get visible.
@@ -220,34 +228,34 @@ Solution <- R6::R6Class(
     get_visible = function() {
       self$visible
     },
-    
+
     #' @description
     #' Get invisible.
     #' @return `numeric` date/time value.
     get_invisible = function() {
       self$invisible
     },
-    
+
     #' @description
     #' Get loaded.
     #' @return `logical` value.
     get_loaded = function() {
       self$loaded
-    },    
-    
+    },
+
     #' @description
     #' Get hidden.
     #' @return `logical` value.
     get_hidden = function() {
       self$hidden
-    }, 
-    
+    },
+
     #' @description
     #' Get downloadable.
     #' @return `logical` value.
     get_downloadable = function() {
       self$downloadable
-    },   
+    },
 
     #' @description
     #' Get setting.
@@ -267,7 +275,7 @@ Solution <- R6::R6Class(
       }
       out
     },
-    
+
     #' @description
     #' Set new pane.
     #' @param id `character` unique identifier.
@@ -275,7 +283,7 @@ Solution <- R6::R6Class(
     #' @return `character` value.
     set_new_pane = function(id, index) {
       self$pane <- enc2ascii(paste(id, index, sep = "-"))
-    },     
+    },
 
     #' @description
     #' Set visible.
@@ -291,7 +299,7 @@ Solution <- R6::R6Class(
       }
       invisible(self)
     },
-    
+
     #' @description
     #' Set invisible.
     #' @param value `numeric` date/time value.
@@ -305,7 +313,7 @@ Solution <- R6::R6Class(
       }
       invisible(self)
     },
-    
+
     #' @description
     #' Set loaded.
     #' @param value `logical` new value.
@@ -319,7 +327,7 @@ Solution <- R6::R6Class(
         self$loaded <- FALSE
       }
       invisible(self)
-    },        
+    },
 
     #' @description
     #' Get summary results.
@@ -327,23 +335,28 @@ Solution <- R6::R6Class(
     get_summary_results_data = function() {
       # compile data
       rd <- tibble::as_tibble(plyr::ldply(
-         self$statistics, function(x) x$get_results_data()))
+        self$statistics,
+        function(x) x$get_results_data()
+      ))
       pd <- tibble::as_tibble(plyr::ldply(
-         self$parameters, function(x) x$get_results_data()))
+        self$parameters,
+        function(x) x$get_results_data()
+      ))
       pd$status <- unlist(lapply(self$parameters, function(x) x$get_status()))
       # prepare statistics data
       rd$value_text <- rd$value
       rd$value_text <- dplyr::if_else(
-        !is.na(rd$units) & nchar(rd$units) > 0, 
+        !is.na(rd$units) & nchar(rd$units) > 0,
         paste(
-          prettyNum(round(rd$value_text, 2),  big.mark = ","), 
-          rd$units, sep = " " # add units if present
-        ), 
+          prettyNum(round(rd$value_text, 2), big.mark = ","),
+          rd$units,
+          sep = " " # add units if present
+        ),
         prettyNum(round(rd$value_text, 2), big.mark = ",")
       )
       rd$value_text <- dplyr::if_else(
         !is.na(rd$proportion),
-        paste0(rd$value_text, " (", round(rd$proportion*100), "%)"), 
+        paste0(rd$value_text, " (", round(rd$proportion * 100), "%)"),
         rd$value_text
       ) # add % if present
       # prepare parameters data
@@ -367,7 +380,8 @@ Solution <- R6::R6Class(
     get_theme_results_data = function() {
       # compile data
       x <- tibble::as_tibble(plyr::ldply(
-        self$theme_results, function(x) x$get_results_data()
+        self$theme_results,
+        function(x) x$get_results_data()
       ))
       # return formatted table
       tibble::tibble(
@@ -375,22 +389,34 @@ Solution <- R6::R6Class(
         Feature = x$feature_name,
         Status = dplyr::if_else(x$feature_status, "Enabled", "Disabled"),
         `Total (units)` = paste(
-          prettyNum(round(x$feature_total_amount, 2), big.mark = ","), 
+          prettyNum(round(x$feature_total_amount, 2), big.mark = ","),
           x$units
         ),
         `Current (%)` = round(x$feature_current_held * 100, 2),
         `Current (units)` = paste(
-          prettyNum(round(x$feature_current_held * x$feature_total_amount, 2), big.mark = ","),
+          prettyNum(
+            round(x$feature_current_held * x$feature_total_amount, 2),
+            big.mark = ","
+          ),
           x$units
         ),
         `Goal (%)` = round(x$feature_status * x$feature_goal * 100, 2),
         `Goal (units)` = paste(
-          prettyNum(round(x$feature_status * x$feature_goal * x$feature_total_amount, 2), big.mark = ","),
+          prettyNum(
+            round(
+              x$feature_status * x$feature_goal * x$feature_total_amount,
+              2
+            ),
+            big.mark = ","
+          ),
           x$units
         ),
         `Solution (%)` = round(x$feature_solution_held * 100, 2),
         `Solution (units)` = paste(
-          prettyNum(round(x$feature_solution_held * x$feature_total_amount, 2), big.mark = ","),
+          prettyNum(
+            round(x$feature_solution_held * x$feature_total_amount, 2),
+            big.mark = ","
+          ),
           x$units
         ),
         `Met` = dplyr::case_when(
@@ -411,7 +437,8 @@ Solution <- R6::R6Class(
         ## if weights are present, then use result
         ### extract results
         x <- tibble::as_tibble(plyr::ldply(
-          self$weight_results, function(x) x$get_results_data()
+          self$weight_results,
+          function(x) x$get_results_data()
         ))
         ### format results
         out <- tibble::tibble(
@@ -419,17 +446,17 @@ Solution <- R6::R6Class(
           Status = dplyr::if_else(x$status, "Enabled", "Disabled"),
           Factor = round(x$factor, 2),
           `Total (units)` = paste(
-            prettyNum(round(x$total, 2), big.mark = ","), 
+            prettyNum(round(x$total, 2), big.mark = ","),
             x$units
           ),
           `Current (%)` = round(x$current * 100, 2),
           `Current (units)` = paste(
-            prettyNum(round(x$current * x$total, 2), big.mark = ","), 
+            prettyNum(round(x$current * x$total, 2), big.mark = ","),
             x$units
-            ),
+          ),
           `Solution (%)` = round(x$held * 100, 2),
           `Solution (units)` = paste(
-            prettyNum(round(x$held * x$total, 2), big.mark = ","), 
+            prettyNum(round(x$held * x$total, 2), big.mark = ","),
             x$units
           ),
         )
@@ -452,7 +479,8 @@ Solution <- R6::R6Class(
         ## if weights are present, then use result
         ### extract results
         x <- tibble::as_tibble(plyr::ldply(
-          self$include_results, function(x) x$get_results_data()
+          self$include_results,
+          function(x) x$get_results_data()
         ))
         ### format results
         out <- tibble::tibble(
@@ -477,7 +505,7 @@ Solution <- R6::R6Class(
       # return results
       out
     },
-    
+
     #' @description
     #' Get exclude results.
     #' @return [tibble::tibble()] object.
@@ -487,7 +515,8 @@ Solution <- R6::R6Class(
         ## if excludes are present, then use result
         ### extract results
         x <- tibble::as_tibble(plyr::ldply(
-          self$exclude_results, function(x) x$get_results_data()
+          self$exclude_results,
+          function(x) x$get_results_data()
         ))
         ### format results
         out <- tibble::tibble(
@@ -511,7 +540,7 @@ Solution <- R6::R6Class(
       }
       # return results
       out
-    },    
+    },
 
     #' @description
     #' Render summary results.
@@ -620,7 +649,9 @@ Solution <- R6::R6Class(
             list(className = "dt-left", targets = 0:1),
             list(className = "dt-center", targets = 2:12),
             list(
-              className = "spacer", "sortable" = FALSE,  targets = c(6, 9)
+              className = "spacer",
+              "sortable" = FALSE,
+              targets = c(6, 9)
             )
           ),
           ### disable paging
@@ -647,15 +678,21 @@ Solution <- R6::R6Class(
               htmltools::tags$th(rowspan = 2, "Status"),
               htmltools::tags$th(rowspan = 2, "Total (units)"),
               htmltools::tags$th(
-                class = "dt-center", colspan = 2, "Current"
+                class = "dt-center",
+                colspan = 2,
+                "Current"
               ),
               htmltools::tags$th(rowspan = 2),
               htmltools::tags$th(
-                class = "dt-center", colspan = 2, "Goal"
+                class = "dt-center",
+                colspan = 2,
+                "Goal"
               ),
               htmltools::tags$th(rowspan = 2),
               htmltools::tags$th(
-                class = "dt-center", colspan = 2, "Solution"
+                class = "dt-center",
+                colspan = 2,
+                "Solution"
               ),
               htmltools::tags$th(rowspan = 2, "Met"),
             ),
@@ -693,7 +730,7 @@ Solution <- R6::R6Class(
       )
       # define container
       if (ncol(x) > 1) {
-         container <- htmltools::tags$table(
+        container <- htmltools::tags$table(
           class = "display",
           htmltools::tags$thead(
             htmltools::tags$tr(
@@ -702,11 +739,15 @@ Solution <- R6::R6Class(
               htmltools::tags$th(rowspan = 2, "Factor"),
               htmltools::tags$th(rowspan = 2, "Total (units)"),
               htmltools::tags$th(
-                class = "dt-center", colspan = 2, "Current"
+                class = "dt-center",
+                colspan = 2,
+                "Current"
               ),
               htmltools::tags$th(rowspan = 2),
               htmltools::tags$th(
-                class = "dt-center", colspan = 2, "Solution"
+                class = "dt-center",
+                colspan = 2,
+                "Solution"
               )
             ),
             htmltools::tags$tr(
@@ -776,7 +817,7 @@ Solution <- R6::R6Class(
       )
       # define container
       if (ncol(x) > 1) {
-         container <- htmltools::tags$table(
+        container <- htmltools::tags$table(
           class = "display",
           htmltools::tags$thead(
             htmltools::tags$tr(
@@ -784,7 +825,9 @@ Solution <- R6::R6Class(
               htmltools::tags$th(rowspan = 2, "Status"),
               htmltools::tags$th(rowspan = 2, "Total (units)"),
               htmltools::tags$th(
-                class = "dt-center", colspan = 2, "Solution"
+                class = "dt-center",
+                colspan = 2,
+                "Solution"
               )
             ),
             htmltools::tags$tr(
@@ -836,7 +879,7 @@ Solution <- R6::R6Class(
         )
       )
     },
-    
+
     #' @description
     #' Render exclude results.
     #' @return [DT::datatable()] object.
@@ -861,7 +904,9 @@ Solution <- R6::R6Class(
               htmltools::tags$th(rowspan = 2, "Status"),
               htmltools::tags$th(rowspan = 2, "Total (units)"),
               htmltools::tags$th(
-                class = "dt-center", colspan = 2, "Solution"
+                class = "dt-center",
+                colspan = 2,
+                "Solution"
               )
             ),
             htmltools::tags$tr(
@@ -912,7 +957,7 @@ Solution <- R6::R6Class(
           )
         )
       )
-    },    
+    },
 
     #' @description
     #' Set setting.
@@ -963,7 +1008,7 @@ Solution <- R6::R6Class(
         exclude_results = lapply(
           self$exclude_results,
           function(x) x$get_widget_data()
-        ),        
+        ),
         solution_color = scales::alpha(last(self$variable$legend$colors), 1)
       )
     },
@@ -989,7 +1034,9 @@ Solution <- R6::R6Class(
     #' @param zindex `numeric` z-index for ordering.
     #' @return [leaflet::leaflet()] object.
     render_on_map = function(x, zindex) {
-      if (self$hidden) return(x) # don't render on map if hidden
+      if (self$hidden) {
+        return(x)
+      } # don't render on map if hidden
       self$variable$render(x, self$pane, zindex, self$visible)
     },
 
@@ -999,10 +1046,11 @@ Solution <- R6::R6Class(
     #' @param zindex `numeric` z-index for ordering.
     #' @return [leaflet::leafletProxy()] object.
     update_on_map = function(x, zindex) {
-      if (self$hidden) return(x) # don't render on map if hidden
+      if (self$hidden) {
+        return(x)
+      } # don't render on map if hidden
       self$variable$update_render(x, self$pane, zindex, self$visible)
     }
-
   )
 )
 
@@ -1015,13 +1063,13 @@ Solution <- R6::R6Class(
 #' @param variable [Variable] object with the solution.
 #'
 #' @param visible `logical` should the solution be visible on a map?
-#' 
-#' @param invisible `numeric` date/time. A time stamp date given to when a 
+#'
+#' @param invisible `numeric` date/time. A time stamp date given to when a
 #'   loaded layer is first turned invisible. This is used to keep track
-#'   of loaded invisible layers to offload once the cache threshold has been 
-#'   reached. 
+#'   of loaded invisible layers to offload once the cache threshold has been
+#'   reached.
 #'   Defaults to `NA_real_`.
-#'   
+#'
 #' @param loaded `logical` The initial loaded value.
 #'   This is used to determine if the feature is loaded (or not)
 #'   or not the map.
@@ -1036,13 +1084,13 @@ Solution <- R6::R6Class(
 #' @param weight_results `list` of [WeightResults] objects.
 #'
 #' @param include_results `list` of [IncludeResults] objects.
-#' 
+#'
 #' @param exclude_results `list` of [ExcludeResults] objects.
 #'
 #' @param hidden `logical` should the solution be hidden from map?
-#' 
+#'
 #' @param downloadable `logical` can the solution be downloaded?
-#' 
+#'
 #' @param pane `character` unique map pane identifier.
 #'   Defaults to a random identifier ([uuid::UUIDgenerate()]) concatenated with
 #'   layer index.
@@ -1107,25 +1155,27 @@ Solution <- R6::R6Class(
 #' )
 #'
 #' @export
-new_solution <- function(name, 
-                         variable, 
-                         visible, 
-                         invisible = NA_real_,
-                         loaded = TRUE,
-                         parameters,
-                         statistics,
-                         theme_results,
-                         weight_results,
-                         include_results,
-                         exclude_results,
-                         id = uuid::UUIDgenerate(),
-                         hidden = FALSE,
-                         downloadable = TRUE,
-                         pane = paste(
-                           uuid::UUIDgenerate(), 
-                           variable$index, sep = "-"
-                         )
-                        ) {
+new_solution <- function(
+  name,
+  variable,
+  visible,
+  invisible = NA_real_,
+  loaded = TRUE,
+  parameters,
+  statistics,
+  theme_results,
+  weight_results,
+  include_results,
+  exclude_results,
+  id = uuid::UUIDgenerate(),
+  hidden = FALSE,
+  downloadable = TRUE,
+  pane = paste(
+    uuid::UUIDgenerate(),
+    variable$index,
+    sep = "-"
+  )
+) {
   Solution$new(
     name = name,
     pane = pane,
@@ -1138,7 +1188,7 @@ new_solution <- function(name,
     theme_results = theme_results,
     weight_results = weight_results,
     include_results = include_results,
-    exclude_results = exclude_results,    
+    exclude_results = exclude_results,
     id = id,
     hidden = hidden,
     downloadable = downloadable
@@ -1160,9 +1210,9 @@ new_solution <- function(name,
 #' @param legend [ManualLegend] object.
 #'
 #' @param hidden `logical` should the solution be hidden from map?
-#' 
+#'
 #' @param downloadable `logical` can the solution be downloaded?
-#' 
+#'
 #' @param pane `character` unique map pane identifier.
 #'   Defaults to a random identifier ([uuid::UUIDgenerate()]) concatenated with
 #'   layer index.
@@ -1251,19 +1301,20 @@ new_solution <- function(name,
 #' )
 #'
 #' @export
-new_solution_from_result <- function(name, 
-                                     visible, 
-                                     invisible = NA_real_, 
-                                     loaded = TRUE, 
-                                     dataset, 
-                                     settings, 
-                                     result, 
-                                     legend, 
-                                     id = uuid::UUIDgenerate(), 
-                                     hidden = FALSE,
-                                     downloadable = TRUE,
-                                     pane = NA_character_
-                                  ) {
+new_solution_from_result <- function(
+  name,
+  visible,
+  invisible = NA_real_,
+  loaded = TRUE,
+  dataset,
+  settings,
+  result,
+  legend,
+  id = uuid::UUIDgenerate(),
+  hidden = FALSE,
+  downloadable = TRUE,
+  pane = NA_character_
+) {
   # assert arguments are valid
   assertthat::assert_that(
     ## name
@@ -1317,12 +1368,20 @@ new_solution_from_result <- function(name,
       ),
       new_statistic(
         name = "Total perimeter",
-        value = if(is.na(result$perimeter)) NA_real_ else result$perimeter * 1e-3,
+        value = if (is.na(result$perimeter)) {
+          NA_real_
+        } else {
+          result$perimeter * 1e-3
+        },
         units = "km"
       ),
       new_statistic(
         name = "Total number of reserves",
-        value = if(any(is.na(reserve_sizes_m))) NA_real_ else length(reserve_sizes_m),
+        value = if (any(is.na(reserve_sizes_m))) {
+          NA_real_
+        } else {
+          length(reserve_sizes_m)
+        },
         units = ""
       ),
       new_statistic(
@@ -1356,7 +1415,7 @@ new_solution_from_result <- function(name,
       held = result$include_coverage[[incl$id]]
     )
   })
-  
+
   # exclude results
   exclude_results <- lapply(seq_along(settings$excludes), function(i) {
     ## copy the exclude object
@@ -1370,7 +1429,7 @@ new_solution_from_result <- function(name,
       exclude = excl,
       held = result$exclude_coverage[[excl$id]]
     )
-  })  
+  })
 
   # weight results
   weight_results <- lapply(seq_along(settings$weights), function(i) {
