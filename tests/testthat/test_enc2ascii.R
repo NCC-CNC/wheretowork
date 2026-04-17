@@ -3,20 +3,27 @@ context("enc2ascii")
 test_that("character vector input", {
   expect_equal(enc2ascii(c("asdf", "dfg")), c("asdf", "dfg"))
   expect_equal(enc2ascii(c("a.sdf", "dfg")), c("a.sdf", "dfg"))
-  expect_equal(enc2ascii(c("a.sdf", "pèlerin")), c("a.sdf", "plerin"))
+  expect_equal(enc2ascii(c("a.sdf", "pèlerin")), c("a.sdf", "pelerin"))
 })
 
 test_that("list input", {
   expect_equal(
     enc2ascii(list(c("asdf", "dfg"), 5, c("a.sdf", "pèlerin"))),
-    list(c("asdf", "dfg"), 5, c("a.sdf", "plerin"))
+    list(c("asdf", "dfg"), 5, c("a.sdf", "pelerin"))
   )
 })
 
 test_that("nested input", {
   expect_equal(
     enc2ascii(list(c("asdf", "dfg"), list(4, c("a.sdf", "pèlerin")))),
-    list(c("asdf", "dfg"), list(4, c("a.sdf", "plerin")))
+    list(c("asdf", "dfg"), list(4, c("a.sdf", "pelerin")))
+  )
+})
+
+test_that("French diacritics are transliterated", {
+  expect_equal(
+    enc2ascii("àâçéèêëîïôùûüÿæœÀÂÇÉÈÊËÎÏÔÙÛÜŸÆŒ"),
+    "aaceeeeiiouuuyaeoeAACEEEEIIOUUUYAEOE"
   )
 })
 
