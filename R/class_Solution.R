@@ -129,7 +129,7 @@ Solution <- R6::R6Class(
         assertthat::noNA(downloadable)
       )
       # assign fields
-      self$id <- id
+      self$id <- enc2ascii(id)
       self$name <- name
       self$variable <- variable
       self$pane <- enc2ascii(pane)
@@ -1418,6 +1418,7 @@ new_solution_from_result <- function(name,
   # generate index for storing data
   idx <- last(make.names(c(dataset$get_names(), name), unique = TRUE))
   idx <- gsub(".", "_", idx, fixed = TRUE)
+  idx <- enc2ascii(idx)
 
   # create variable to store solution
   dataset$add_index(index = idx, values = result$values)
