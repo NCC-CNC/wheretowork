@@ -261,16 +261,20 @@ prioritizr_internal_eval_rare_richness_importance <- function(x, indices, rescal
 
 #' Convert object to ASCII characters
 #'
-#' Convert any characters in an object to only contain ASCII characters.
+#' Convert characters in an object to ASCII. Latin diacritics (e.g. accented
+#' French characters such as \code{é}, \code{è}, \code{ç}) are transliterated
+#' to their closest ASCII equivalents using ICU rules. Any remaining non-ASCII
+#' characters are stripped.
 #'
 #' @param x Object (e.g. `list` or `character` vector).
 #'
-#' @return Object.
+#' @return Object with character values converted to ASCII.
 #'
 #' @noRd
 enc2ascii <- function(x) {
   if (inherits(x, "character")) {
-    iconv(enc2utf8(x), from = "utf-8", to = "ascii", sub = "")
+    x <- stringi::stri_trans_general(x, "Latin-ASCII")
+    iconv(x, from = "UTF-8", to = "ascii", sub = "")
   } else if (inherits(x, "list")) {
     lapply(x, enc2ascii)
   } else {
