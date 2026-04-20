@@ -19,33 +19,33 @@ Include <- R6::R6Class(
 
     #' @field variable [Variable] object.
     variable = NULL,
-    
+
     #' @field pane `character` name.
-    pane = NA_character_,    
+    pane = NA_character_,
 
     #' @field mandatory `logical` value.
     mandatory = FALSE,
 
     #' @field visible `logical` value.
     visible = NA,
-    
+
     #' @field invisible `numeric` date/time.
-    invisible = NA_real_, 
-    
+    invisible = NA_real_,
+
     #' @field loaded `logical` value.
-    loaded = NA,    
+    loaded = NA,
 
     #' @field hidden `logical` value.
     hidden = NA,
-    
+
     #' @field downloadable `logical` value.
     downloadable = NA,
 
     #' @field status `logical` value.
     status = NA,
-    
+
     #' @field overlap `character` vector.
-    overlap = NA_character_,    
+    overlap = NA_character_,
 
     #' @description
     #' Create a new Include object.
@@ -63,8 +63,20 @@ Include <- R6::R6Class(
     #' @param overlap `character` vector.
     #' @return A new Include object.
     ## constructor
-    initialize = function(id, name, variable, pane, invisible, loaded, mandatory, 
-                          visible, hidden, downloadable, status, overlap) {
+    initialize = function(
+      id,
+      name,
+      variable,
+      pane,
+      invisible,
+      loaded,
+      mandatory,
+      visible,
+      hidden,
+      downloadable,
+      status,
+      overlap
+    ) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -88,7 +100,7 @@ Include <- R6::R6Class(
         inherits(invisible, "numeric"),
         #### loaded
         assertthat::is.flag(loaded),
-        assertthat::noNA(loaded),        
+        assertthat::noNA(loaded),
         #### hidden
         assertthat::is.flag(hidden),
         assertthat::noNA(hidden),
@@ -104,7 +116,7 @@ Include <- R6::R6Class(
       )
       ### set fields
       self$id <- enc2ascii(id)
-      self$name <- enc2ascii(name)
+      self$name <- name
       self$variable <- variable
       self$pane <- enc2ascii(pane)
       self$status <- status
@@ -146,8 +158,14 @@ Include <- R6::R6Class(
     repr = function(start = "[", end = "]") {
       paste0(
         self$name,
-        " ", start, "status: ", self$status, end, nl(),
-        "  variable: ", self$variable$repr()
+        " ",
+        start,
+        "status: ",
+        self$status,
+        end,
+        nl(),
+        "  variable: ",
+        self$variable$repr()
       )
     },
 
@@ -157,27 +175,27 @@ Include <- R6::R6Class(
     get_layer_name = function() {
       self$name
     },
-    
+
     #' @description
     #' Get layer index values.
     #' @return `character` vector.
     get_layer_index = function() {
       self$variable$index
     },
-    
+
     #' @description
     #' Get layer pane class.
     #' @return `character` vector.
     get_layer_pane = function() {
       self$pane
     },
-    
+
     #' @description
     #' Get include identifier.
     #' @return `character` vector.
     get_id = function() {
       self$id
-    },   
+    },
 
     #' @description
     #' Get visible.
@@ -185,20 +203,20 @@ Include <- R6::R6Class(
     get_visible = function() {
       self$visible
     },
-    
+
     #' @description
     #' Get invisible.
     #' @return `numeric` date/time value.
     get_invisible = function() {
       self$invisible
     },
-    
+
     #' @description
     #' Get loaded.
     #' @return `logical` value.
     get_loaded = function() {
       self$loaded
-    },    
+    },
 
     #' @description
     #' Get hidden.
@@ -206,7 +224,7 @@ Include <- R6::R6Class(
     get_hidden = function() {
       self$hidden
     },
-    
+
     #' @description
     #' Get downloadable.
     #' @return `logical` value.
@@ -220,13 +238,13 @@ Include <- R6::R6Class(
     get_status = function() {
       self$status
     },
-    
+
     #' @description
     #' Get overlap.
     #' @return `character` value.
     get_overlap = function() {
       self$overlap
-    },    
+    },
 
     #' @description
     #' Get the data.
@@ -234,7 +252,7 @@ Include <- R6::R6Class(
     get_data = function() {
       self$variable$get_data()
     },
-    
+
     #' @description
     #' Set new pane.
     #' @param id `character` unique identifier.
@@ -242,7 +260,7 @@ Include <- R6::R6Class(
     #' @return `character` value.
     set_new_pane = function(id, index) {
       self$pane <- enc2ascii(paste(id, index, sep = "-"))
-    }, 
+    },
 
     #' @description
     #' Get setting.
@@ -279,7 +297,7 @@ Include <- R6::R6Class(
       }
       invisible(self)
     },
-    
+
     #' @description
     #' Set invisible.
     #' @param value `date/time` value or `NA`.
@@ -293,7 +311,7 @@ Include <- R6::R6Class(
       }
       invisible(self)
     },
-    
+
     #' @description
     #' Set loaded.
     #' @param value `logical` new value.
@@ -307,7 +325,7 @@ Include <- R6::R6Class(
         self$loaded <- FALSE
       }
       invisible(self)
-    },    
+    },
 
     #' @description
     #' Set status.
@@ -377,7 +395,7 @@ Include <- R6::R6Class(
     #' @return `list` object.
     export = function() {
       list(
-        name = enc2ascii(self$name),
+        name = self$name,
         variable = self$variable$export(),
         mandatory = self$mandatory,
         status = self$status,
@@ -394,7 +412,9 @@ Include <- R6::R6Class(
     #' @param zindex `numeric` z-index for ordering.
     #' @return [leaflet::leaflet()] object.
     render_on_map = function(x, zindex) {
-      if (self$hidden) return(x) # don't render on map if hidden
+      if (self$hidden) {
+        return(x)
+      } # don't render on map if hidden
       self$variable$render(x, self$pane, zindex, self$visible)
     },
 
@@ -404,7 +424,9 @@ Include <- R6::R6Class(
     #' @param zindex `numeric` z-index for ordering.
     #' @return [leaflet::leafletProxy()] object.
     update_on_map = function(x, zindex) {
-      if (self$hidden) return(x) # don't render on map if hidden
+      if (self$hidden) {
+        return(x)
+      } # don't render on map if hidden
       self$variable$update_render(x, self$pane, zindex, self$visible)
     }
   )
@@ -416,11 +438,11 @@ Include <- R6::R6Class(
 #'
 #' @param mandatory `logical` value indicating if object is mandatory
 #'  for generating solutions.
-#'  
-#' @param overlap `character` vector that remains `NA_character_` until set in 
-#'  the [SolutionSettings] object. `overlap` defines the include and exclude 
-#'  overlap. 
-#'  
+#'
+#' @param overlap `character` vector that remains `NA_character_` until set in
+#'  the [SolutionSettings] object. `overlap` defines the include and exclude
+#'  overlap.
+#'
 #' @inheritParams new_theme
 #' @inheritParams new_feature
 #'
@@ -454,22 +476,23 @@ Include <- R6::R6Class(
 #' print(w)
 #' @export
 new_include <- function(
-    name, 
-    variable, 
-    mandatory = FALSE,
-    visible = TRUE,
-    invisible = NA_real_,
-    loaded = TRUE,
-    hidden = FALSE,
-    downloadable = TRUE,
-    status = TRUE,
-    overlap = NA_character_, 
-    id = uuid::UUIDgenerate(),
-    pane = paste(
-      uuid::UUIDgenerate(), 
-      variable$index, sep = "-"
-    )
-  ) {
+  name,
+  variable,
+  mandatory = FALSE,
+  visible = TRUE,
+  invisible = NA_real_,
+  loaded = TRUE,
+  hidden = FALSE,
+  downloadable = TRUE,
+  status = TRUE,
+  overlap = NA_character_,
+  id = uuid::UUIDgenerate(),
+  pane = paste(
+    uuid::UUIDgenerate(),
+    variable$index,
+    sep = "-"
+  )
+) {
   Include$new(
     id = id,
     name = name,

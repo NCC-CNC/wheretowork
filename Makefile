@@ -76,8 +76,11 @@ site:
 	R --slave -e "pkgdown::clean_site()"
 	R --slave -e "pkgdown::build_site(run_dont_run = TRUE, lazy = FALSE)"
 
-## rebuild update files for site
+## rebuild site for changed files only (lazy build)
+## triggers: R/, vignettes/, README.md, NEWS.md, DESCRIPTION, LICENSE.md, _pkgdown.yml
 quicksite:
+	# clear httr2 cache to avoid corrupted .rds files breaking pkgdown
+	R --slave -e "unlink(tools::R_user_dir('httr2', 'cache'), recursive = TRUE)"
 	R --slave -e "pkgdown::build_site(run_dont_run = TRUE, lazy = TRUE)"
 
 # commands to launch app
