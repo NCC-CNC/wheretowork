@@ -20,11 +20,16 @@ test_that("nested input", {
   )
 })
 
-test_that("French diacritics are transliterated", {
+test_that("special characters are transliterated", {
   expect_equal(
     enc2ascii("àâçéèêëîïôùûüÿæœÀÂÇÉÈÊËÎÏÔÙÛÜŸÆŒ"),
     "aaceeeeiiouuuyaeoeAACEEEEIIOUUUYAEOE"
   )
+})
+
+test_that("Indigenous language characters are transliterated", {
+  expect_equal(enc2ascii("Nêhiyawêwin"), "Nehiyawewin")
+  expect_equal(enc2ascii("whùts'ì"), "whuts'i")
 })
 
 test_that("non-character input", {

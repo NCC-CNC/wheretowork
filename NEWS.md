@@ -1,7 +1,7 @@
 # wheretowork 1.2.7
 
 ### Minor changes and bug fixes
-- French characters (e.g., é, è, ê, à, ç, ô, î, ù, ë, ï, œ, æ) are now supported
+- Special characters (e.g., é, è, ê, à, ç, ô, î, ù, ë, ï, œ, æ) are now supported
 in the layer display name (table of contents, new solution, solution results).
 
 # wheretowork 1.2.6

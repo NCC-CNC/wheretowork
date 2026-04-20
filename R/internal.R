@@ -280,10 +280,10 @@ prioritizr_internal_eval_rare_richness_importance <- function(
 
 #' Convert object to ASCII characters
 #'
-#' Convert characters in an object to ASCII. Latin diacritics (e.g. accented
-#' French characters such as \code{é}, \code{è}, \code{ç}) are transliterated
-#' to their closest ASCII equivalents using ICU rules. Any remaining non-ASCII
-#' characters are stripped.
+#' Convert characters in an object to ASCII. Special characters (e.g. accented
+#' characters such as \code{é}, \code{è}, \code{ç}, \code{ê}, \code{ù},
+#' \code{ì}) are transliterated to their closest ASCII equivalents using ICU
+#' rules. Any remaining non-ASCII characters are stripped.
 #'
 #' @param x Object (e.g. `list` or `character` vector).
 #'
