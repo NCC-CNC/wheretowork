@@ -17,22 +17,22 @@ Feature <- R6::R6Class(
 
     #' @field variable [Variable] object.
     variable = NULL,
-    
+
     #' @field pane `character` name.
-    pane = NA_character_,    
+    pane = NA_character_,
 
     #' @field visible `logical` value.
     visible = NA,
-    
+
     #' @field invisible `numeric` date/time value.
-    invisible = NA_real_,    
-    
+    invisible = NA_real_,
+
     #' @field loaded `logical` value.
-    loaded = NA,    
+    loaded = NA,
 
     #' @field hidden `logical` value.
     hidden = NA,
-    
+
     #' @field downloadable `logical` value.
     downloadable = NA,
 
@@ -76,9 +76,24 @@ Feature <- R6::R6Class(
     #' @param step_goal `numeric` value.
     #' @param current `numeric` value.
     #' @return A new Feature object.
-    initialize = function(id, name, variable, pane, visible, invisible, loaded, hidden, 
-                          downloadable, status, current, goal, limit_goal, min_goal, max_goal, 
-                          step_goal) {
+    initialize = function(
+      id,
+      name,
+      variable,
+      pane,
+      visible,
+      invisible,
+      loaded,
+      hidden,
+      downloadable,
+      status,
+      current,
+      goal,
+      limit_goal,
+      min_goal,
+      max_goal,
+      step_goal
+    ) {
       ### assert that arguments are valid
       assertthat::assert_that(
         #### id
@@ -99,7 +114,7 @@ Feature <- R6::R6Class(
         inherits(invisible, "numeric"),
         #### loaded
         assertthat::is.flag(loaded),
-        assertthat::noNA(loaded),        
+        assertthat::noNA(loaded),
         #### hidden
         assertthat::is.flag(hidden),
         assertthat::noNA(hidden),
@@ -135,7 +150,7 @@ Feature <- R6::R6Class(
       )
       ### set fields
       self$id <- enc2ascii(id)
-      self$name <- enc2ascii(name)
+      self$name <- name
       self$variable <- variable
       self$pane <- enc2ascii(pane)
       self$visible <- visible && !hidden
@@ -182,10 +197,18 @@ Feature <- R6::R6Class(
     repr = function(start = "[", end = "]") {
       paste0(
         self$name,
-        " ", start, "status: ", self$status,
-        ", current: ", round(self$current, 2),
-        ", goal: ", round(self$goal, 2), end, nl(),
-        "  variable: ", self$variable$repr()
+        " ",
+        start,
+        "status: ",
+        self$status,
+        ", current: ",
+        round(self$current, 2),
+        ", goal: ",
+        round(self$goal, 2),
+        end,
+        nl(),
+        "  variable: ",
+        self$variable$repr()
       )
     },
 
@@ -195,21 +218,21 @@ Feature <- R6::R6Class(
     get_layer_name = function() {
       self$name
     },
-    
+
     #' @description
     #' Get layer index values.
     #' @return `character` vector.
     get_layer_index = function() {
       self$variable$index
-    },    
-    
+    },
+
     #' @description
     #' Get hidden.
     #' @return `logical` value.
     get_hidden = function() {
       self$hidden
     },
-    
+
     #' @description
     #' Get downloadable.
     #' @return `logical` value.
@@ -223,20 +246,20 @@ Feature <- R6::R6Class(
     get_visible = function() {
       self$visible
     },
-    
+
     #' @description
     #' Get invisible.
     #' @return `numeric` date/time value.
     get_invisible = function() {
       self$invisible
-    },    
-    
+    },
+
     #' @description
     #' Get loaded.
     #' @return `logical` value.
     get_loaded = function() {
       self$loaded
-    },    
+    },
 
     #' @description
     #' Get current (proportion) coverage.
@@ -265,7 +288,7 @@ Feature <- R6::R6Class(
     get_data = function() {
       self$variable$get_data()
     },
-    
+
     #' @description
     #' Set new pane.
     #' @param id `character` unique identifier.
@@ -273,8 +296,8 @@ Feature <- R6::R6Class(
     #' @return `character` value.
     set_new_pane = function(id, index) {
       self$pane <- enc2ascii(paste(id, index, sep = "-"))
-    },    
-    
+    },
+
     #' @description
     #' Set visible.
     #' @param value `logical` new value.
@@ -289,7 +312,7 @@ Feature <- R6::R6Class(
       }
       invisible(self)
     },
-    
+
     #' @description
     #' Set invisible.
     #' @param value `numeric` date/time value.
@@ -302,8 +325,8 @@ Feature <- R6::R6Class(
         self$invisible <- NA_real_
       }
       invisible(self)
-    },    
-    
+    },
+
     #' @description
     #' Set loaded.
     #' @param value `logical` new value.
@@ -317,7 +340,7 @@ Feature <- R6::R6Class(
         self$loaded <- FALSE
       }
       invisible(self)
-    },    
+    },
 
     #' @description
     #' Set status.
@@ -363,7 +386,7 @@ Feature <- R6::R6Class(
     #' @return `list` object.
     export = function() {
       list(
-        name = enc2ascii(self$name),
+        name = self$name,
         variable = self$variable$export(),
         status = self$status,
         visible = self$visible,
@@ -388,23 +411,23 @@ Feature <- R6::R6Class(
 #'   This is used to determine if the feature is displayed (or not)
 #'   or not the map.
 #'   Defaults to `TRUE`.
-#'   
-#' @param invisible `numeric` date/time. A time stamp date given to when a 
+#'
+#' @param invisible `numeric` date/time. A time stamp date given to when a
 #'   loaded layer is first turned invisible. This is used to keep track
-#'   of loaded invisible layers to offload once the cache threshold has been 
-#'   reached. 
+#'   of loaded invisible layers to offload once the cache threshold has been
+#'   reached.
 #'   Defaults to `NA_real_`.
-#'   
+#'
 #' @param loaded `logical` The initial loaded value.
 #'   This is used to determine if the feature has been loaded into the DOM.
 #'   Defaults to `FALSE`.
 #'
 #' @param hidden `logical` The hidden value.
 #'   This is used to determine if the feature can ever be displayed.
-#'   Unlike `visible`, if this parameter is `FALSE` then a feature can never 
+#'   Unlike `visible`, if this parameter is `FALSE` then a feature can never
 #'   be viewed on the map.
 #'   Defaults to `FALSE`.
-#'   
+#'
 #' @param downloadable `logical` The downloadable value.
 #'   This is used to determine if the feature can be download. Set downloadable
 #'   to `FALSE` for sensitive layers that should not be avaiable for download.
@@ -431,7 +454,7 @@ Feature <- R6::R6Class(
 #'
 #' @param id `character` unique identifier.
 #'   Defaults to a random identifier ([uuid::UUIDgenerate()]).
-#'   
+#'
 #' @param pane `character` unique map pane identifier.
 #'   Defaults to a random identifier ([uuid::UUIDgenerate()]) concatenated with
 #'   layer index.
@@ -466,23 +489,24 @@ Feature <- R6::R6Class(
 #' print(f)
 #' @export
 new_feature <- function(
-    name,
-    variable,
-    visible = TRUE,
-    invisible = NA_real_,
-    loaded = TRUE,
-    hidden = FALSE,
-    downloadable = TRUE,
-    status = TRUE,
-    current = 0,
-    goal = 0.2,
-    limit_goal = 0,
-    id = uuid::UUIDgenerate(),
-    pane = paste(
-      uuid::UUIDgenerate(), 
-      variable$index, sep = "-"
-    )
- ) {
+  name,
+  variable,
+  visible = TRUE,
+  invisible = NA_real_,
+  loaded = TRUE,
+  hidden = FALSE,
+  downloadable = TRUE,
+  status = TRUE,
+  current = 0,
+  goal = 0.2,
+  limit_goal = 0,
+  id = uuid::UUIDgenerate(),
+  pane = paste(
+    uuid::UUIDgenerate(),
+    variable$index,
+    sep = "-"
+  )
+) {
   # return new feature
   Feature$new(
     id = id,

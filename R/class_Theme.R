@@ -21,7 +21,6 @@ Theme <- R6::R6Class(
     }
   ),
   public = list(
-
     #' @field id `character` value.
     id = NA_character_,
 
@@ -67,12 +66,13 @@ Theme <- R6::R6Class(
             FUN.VALUE = character(1),
             function(x) x$variable$units
           )
-        ) == 1,
+        ) ==
+          1,
         msg = "argument to `feature` contains elements with different units"
       )
       ## set fields
       self$id <- enc2ascii(id)
-      self$name <- enc2ascii(name)
+      self$name <- name
       self$feature <- feature
       self$feature_order <- feature_order
     },
@@ -100,12 +100,14 @@ Theme <- R6::R6Class(
       po <- order(self$get_feature_order(), decreasing = TRUE)
       paste0(
         self$name,
-        ":", nl(),
+        ":",
+        nl(),
         paste(
           paste0(
             "  ",
             gsub(
-              nl(), paste0(nl(), "  "),
+              nl(),
+              paste0(nl(), "  "),
               vapply(self$feature[po], function(x) x$repr(), character(1))
             ),
             collapse = nl()
@@ -120,13 +122,13 @@ Theme <- R6::R6Class(
     get_layer_name = function() {
       vapply(self$feature, `[[`, character(1), "name")
     },
-    
+
     #' @description
     #' Get layer map pane classes.
     #' @return `character` vector.
     get_layer_pane = function() {
       vapply(self$feature, `[[`, character(1), "pane")
-    },     
+    },
 
     #' @description
     #' Get layer index values.
@@ -134,10 +136,11 @@ Theme <- R6::R6Class(
     get_layer_index = function() {
       vapply(
         self$feature,
-        FUN.VALUE = character(1), function(x) x$variable$index
+        FUN.VALUE = character(1),
+        function(x) x$variable$index
       )
     },
-    
+
     #' @description
     #' Get feature identifiers.
     #' @return `character` vector with identifier(s).
@@ -172,13 +175,13 @@ Theme <- R6::R6Class(
     get_feature_total = function() {
       vapply(self$feature, FUN.VALUE = numeric(1), function(x) x$variable$total)
     },
-    
+
     #' @description
     #' Get visible value for all features.
     #' @return `logical` value.
     get_visible = function() {
       any(self$get_feature_visible())
-    },    
+    },
 
     #' @description
     #' Get feature visible values.
@@ -186,28 +189,28 @@ Theme <- R6::R6Class(
     get_feature_visible = function() {
       vapply(self$feature, `[[`, logical(1), "visible")
     },
-    
+
     #' @description
     #' Get feature invisible values.
     #' @return `numeric` vector with date/time value(s).
     get_feature_invisible = function() {
       vapply(self$feature, `[[`, numeric(1), "invisible")
-    },    
-    
+    },
+
     #' @description
     #' Get feature loaded values.
     #' @return `logical` vector with loaded value(s).
     get_feature_loaded = function() {
       vapply(self$feature, `[[`, logical(1), "loaded")
-    },    
-    
+    },
+
     #' @description
     #' Get feature hidden values.
     #' @return `logical` vector with status value(s).
     get_feature_hidden = function() {
       vapply(self$feature, `[[`, logical(1), "hidden")
     },
-    
+
     #' @description
     #' Get feature downloadable values.
     #' @return `logical` vector with status value(s).
@@ -251,7 +254,7 @@ Theme <- R6::R6Class(
       self$feature_order <- value
       invisible(self)
     },
-    
+
     #' @description
     #' Get setting.
     #' @param name `character` setting name.
@@ -262,10 +265,15 @@ Theme <- R6::R6Class(
       assertthat::assert_that(
         assertthat::is.string(name),
         assertthat::noNA(name),
-        name %in% c(
-          "feature_status", "feature_goal", "feature_visible",
-          "feature_order", "feature_current", "visible"
-        )
+        name %in%
+          c(
+            "feature_status",
+            "feature_goal",
+            "feature_visible",
+            "feature_order",
+            "feature_current",
+            "visible"
+          )
       )
       if (identical(name, "feature_status")) {
         out <- self$get_feature_status()
@@ -386,8 +394,12 @@ Theme <- R6::R6Class(
         assertthat::noNA(name),
         name %in%
           c(
-            "feature_status", "feature_goal", "feature_visible",
-            "feature_order", "feature_current", "visible"
+            "feature_status",
+            "feature_goal",
+            "feature_visible",
+            "feature_order",
+            "feature_current",
+            "visible"
           )
       )
       if (identical(name, "feature_status")) {
@@ -408,7 +420,6 @@ Theme <- R6::R6Class(
       invisible(self)
     },
 
-
     #' @description
     #' Get data for displaying the theme in a [solutionSettings()] widget.
     #' @return `list` with widget data.
@@ -417,37 +428,67 @@ Theme <- R6::R6Class(
         id = self$id,
         name = self$name,
         feature_name = vapply(
-          self$feature, `[[`, character(1), "name"
+          self$feature,
+          `[[`,
+          character(1),
+          "name"
         ),
         feature_id = vapply(
-          self$feature, `[[`, character(1), "id"
+          self$feature,
+          `[[`,
+          character(1),
+          "id"
         ),
         feature_status = vapply(
-            self$feature, `[[`, logical(1), "status"
-          ),
+          self$feature,
+          `[[`,
+          logical(1),
+          "status"
+        ),
         feature_total_amount = vapply(
-          self$feature, function(x) x$variable$total, numeric(1)
+          self$feature,
+          function(x) x$variable$total,
+          numeric(1)
         ),
         feature_current_held = vapply(
-            self$feature, `[[`, numeric(1), "current"
-          ),
+          self$feature,
+          `[[`,
+          numeric(1),
+          "current"
+        ),
         feature_min_goal = vapply(
-          self$feature, `[[`, numeric(1), "min_goal"
+          self$feature,
+          `[[`,
+          numeric(1),
+          "min_goal"
         ),
         feature_max_goal = vapply(
-          self$feature, `[[`, numeric(1), "max_goal"
+          self$feature,
+          `[[`,
+          numeric(1),
+          "max_goal"
         ),
         feature_goal = vapply(
-          self$feature, `[[`, numeric(1), "goal"
+          self$feature,
+          `[[`,
+          numeric(1),
+          "goal"
         ),
         feature_limit_goal = vapply(
-          self$feature, `[[`, numeric(1), "limit_goal"
+          self$feature,
+          `[[`,
+          numeric(1),
+          "limit_goal"
         ),
         feature_step_goal = vapply(
-          self$feature, `[[`, numeric(1), "step_goal"
+          self$feature,
+          `[[`,
+          numeric(1),
+          "step_goal"
         ),
         feature_provenance = lapply(
-          self$feature, function(x) x$variable$provenance$get_widget_data()
+          self$feature,
+          function(x) x$variable$provenance$get_widget_data()
         ),
         units = self$feature[[1]]$variable$units
       )
@@ -460,18 +501,16 @@ Theme <- R6::R6Class(
       list(
         id = self$id,
         name = self$name,
-        feature_name =
-          vapply(self$feature, `[[`, character(1), "name"),
-        feature_id =
-          vapply(self$feature, `[[`, character(1), "id"),
-        feature_visible =
-          vapply(self$feature, `[[`, logical(1), "visible"),
-        feature_hidden =
-          vapply(self$feature, `[[`, logical(1), "hidden"),
-        feature_legend =
-          lapply(self$feature, function(x) x$variable$legend$get_widget_data()),
+        feature_name = vapply(self$feature, `[[`, character(1), "name"),
+        feature_id = vapply(self$feature, `[[`, character(1), "id"),
+        feature_visible = vapply(self$feature, `[[`, logical(1), "visible"),
+        feature_hidden = vapply(self$feature, `[[`, logical(1), "hidden"),
+        feature_legend = lapply(self$feature, function(x) {
+          x$variable$legend$get_widget_data()
+        }),
         feature_provenance = lapply(
-          self$feature, function(x) x$variable$provenance$get_widget_data()
+          self$feature,
+          function(x) x$variable$provenance$get_widget_data()
         ),
         units = self$feature[[1]]$variable$units,
         type = "theme"
@@ -498,7 +537,7 @@ Theme <- R6::R6Class(
       # return result
       x
     },
-    
+
     #' @description
     #' Render on map.
     #' @param x [leaflet::leafletProxy()] object.
@@ -518,15 +557,30 @@ Theme <- R6::R6Class(
         if (!fh[i] && !fl[i] && fv[i]) {
           ## visible + not loaded + not hidden: render
           self$feature[[i]]$set_new_pane(uuid::UUIDgenerate(), fidx[i]) # new pane
-          x <- self$feature[[i]]$variable$render(x, self$feature[[i]]$pane, fo[i], fv[i])
+          x <- self$feature[[i]]$variable$render(
+            x,
+            self$feature[[i]]$pane,
+            fo[i],
+            fv[i]
+          )
           self$feature[[i]]$set_loaded(TRUE) # set loaded to TRUE
         } else if (fl[i] && !fv[i] && identical(fiv[i], NA_real_)) {
           ## loaded + first time not visible
-          x <- self$feature[[i]]$variable$update_render(x, pane[i], fo[i], fv[i])
+          x <- self$feature[[i]]$variable$update_render(
+            x,
+            pane[i],
+            fo[i],
+            fv[i]
+          )
           self$feature[[i]]$set_invisible(as.numeric(Sys.time())) # time stamp
         } else if (fl[i]) {
           ## only update loaded layers (loaded + visible) OR (loaded + invisible)
-          x <- self$feature[[i]]$variable$update_render(x, pane[i], fo[i], fv[i])
+          x <- self$feature[[i]]$variable$update_render(
+            x,
+            pane[i],
+            fo[i],
+            fv[i]
+          )
         }
       }
       # return result
@@ -538,11 +592,10 @@ Theme <- R6::R6Class(
     #' @return `list` object.
     export = function() {
       list(
-        name = enc2ascii(self$name),
+        name = self$name,
         feature = lapply(self$feature, function(x) x$export())
       )
     }
-
   )
 )
 
@@ -593,10 +646,12 @@ Theme <- R6::R6Class(
 #' # print object
 #' print(x)
 #' @export
-new_theme <- function(name,
-                     feature,
-                     feature_order = as.double(rev(seq_along(feature))),
-                     id = uuid::UUIDgenerate()) {
+new_theme <- function(
+  name,
+  feature,
+  feature_order = as.double(rev(seq_along(feature))),
+  id = uuid::UUIDgenerate()
+) {
   # put feature in a list if needed
   if (inherits(feature, "Feature")) {
     feature <- list(feature)
