@@ -65,8 +65,13 @@ app_global <- quote({
 
   user_groups <- strsplit(user_groups, ",", fixed = TRUE)[[1]]
 
-  # ensure that public projects are always available
-  user_groups <- unique(c("public", user_groups))
+  # ensure that public projects are always available,
+  # except for partner groups that should only see their own projects
+  # (admin membership still grants access to everything via find_projects())
+  exclusive_groups <- c("iamgold")
+  if (!any(exclusive_groups %in% user_groups)) {
+    user_groups <- unique(c("public", user_groups))
+  }
 
   # set project data directory
   if (identical(Sys.getenv("FORCE_DEFAULT_PROJECTS"), "true")) {
