@@ -4,15 +4,15 @@ app_global <- quote({
 
   # print initial memory usage
   if (isTRUE(wheretowork::get_golem_config("monitor"))) {
-      cli::cli_rule()
-      golem::print_dev("Initial memory used: ")
-      golem::print_dev(lobstr::mem_used())
+    cli::cli_rule()
+    golem::print_dev("Initial memory used: ")
+    golem::print_dev(lobstr::mem_used())
   }
 
   # initialize file upload limits
-  options(shiny.maxRequestSize = 1000*1024^2) # 1GB
+  options(shiny.maxRequestSize = 4000 * 1024^2) # 4GB
   # set global variables limit for future package
-  options(future.globals.maxSize= 1000*1024^2) # 1GB
+  options(future.globals.maxSize = 4000 * 1024^2) # 4GB
 
   # initialize asynchronous processing
   ## identify strategy
@@ -84,5 +84,4 @@ app_global <- quote({
 
   # import projects
   project_data <- wheretowork::find_projects(project_dir, user_groups)
-
 })
