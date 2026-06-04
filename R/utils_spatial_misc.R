@@ -78,12 +78,12 @@ repair_spatial_data <- function(x) {
 #'   available (see Details for more information)
 #'
 #' @return A `numeric` vector containing the total area of each reserve.
-#' 
+#'
 #' @details For spatial uploads (shapefile) with many planning units, building
-#'   boundary data can result in a std::bad_alloc error. To avoid this, the 
-#'   user can skip generating a boundary matrix on the `new_dataset_from_auto` 
-#'   method. For these scenarios, reserve sizes can not be calculated when the 
-#'   `boundary_matrix` is set to `NA`.  
+#'   boundary data can result in a std::bad_alloc error. To avoid this, the
+#'   user can skip generating a boundary matrix on the `new_dataset_from_auto`
+#'   method. For these scenarios, reserve sizes can not be calculated when the
+#'   `boundary_matrix` is set to `NA`.
 #'
 #' @export
 reserve_sizes <- function(x, areas, boundary_matrix) {
@@ -99,7 +99,7 @@ reserve_sizes <- function(x, areas, boundary_matrix) {
     ## boundary matrix
     inherits(boundary_matrix, c("dsCMatrix", "dgCMatrix", "logical")))
   if (inherits(boundary_matrix, c("dsCMatrix", "dgCMatrix"))) {
-    assertthat::assert_that(    
+    assertthat::assert_that(
       nrow(boundary_matrix) == ncol(boundary_matrix),
       nrow(boundary_matrix) == length(x)
     )
@@ -109,7 +109,7 @@ reserve_sizes <- function(x, areas, boundary_matrix) {
   if (!inherits(boundary_matrix, c("dsCMatrix", "dgCMatrix"))) {
     return(NA_real_)
   }
-  
+
   # return NA if no planning units selected, then return NA
   if (sum(x) < 0.5) {
     return(NA_real_)
@@ -170,6 +170,7 @@ calculate_coverage <- function(x, data) {
     )
     out <- as.numeric(data %*% out) / Matrix::rowSums(data)
     names(out) <- rownames(data)
+    out[!is.finite(out)] <- 0
   } else {
     out <- numeric(0)
   }
