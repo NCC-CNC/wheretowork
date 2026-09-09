@@ -406,7 +406,7 @@ min_shortfall_result <- function(area_budget_proportion,
           initial_problem,
           threshold = wn_neg_thresholds[i],
           sense = "<=",
-          data = wn_neg_data[i, initial_pu_idx]
+          data = wn_neg_data[i, initial_pu_idx, drop = FALSE]
         )
       }
     }
@@ -441,6 +441,7 @@ min_shortfall_result <- function(area_budget_proportion,
       ) *
       rij_data
     )
+    main_targets$target <- pmax(main_targets$target, 1e-5)
     ### prepare adjacency matrix for connectivity penalties
     ### note we use connectivity penalties because we want the solution
     ### to be as near as possible to the budget, even if the result has
@@ -509,7 +510,7 @@ min_shortfall_result <- function(area_budget_proportion,
           main_problem,
           threshold = wn_neg_thresholds[i],
           sense = "<=",
-          data = wn_neg_data[i, ]
+          data = wn_neg_data[i, , drop = FALSE]
         )
       }
     }
