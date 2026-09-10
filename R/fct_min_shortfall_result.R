@@ -324,8 +324,8 @@ min_shortfall_result <- function(area_budget_proportion,
     )
   }
 
-  # calculate cost values
-  cost <- scales::rescale(area_data, to = c(0.01, 1))
+  # calculate cost values, clamped to a min of 0.01 to avoid solver errors
+  cost <- pmax(area_data / max(area_data), 0.01)
 
   # calculate budgets for multi-objective optimization
   total_budget <- sum(cost) * area_budget_proportion
