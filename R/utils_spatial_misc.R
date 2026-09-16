@@ -169,6 +169,7 @@ calculate_coverage <- function(x, data) {
       x, byrow = TRUE, ncol = 1, nrow = length(x), sparse = TRUE
     )
     out <- as.numeric(data %*% out) / Matrix::rowSums(data)
+    out[!is.finite(out)] <- 0
     names(out) <- rownames(data)
   } else {
     out <- numeric(0)
