@@ -44,7 +44,7 @@ HTMLWidgets.widget({
             });
           }
           /// if initialized with values, then use them to populate widget
-          if (opts.values !== null) {
+          if (opts.value !== null) {
             this.update(opts);
           }
         }
