@@ -16,3 +16,9 @@ the left and right sidebars.}
 \description{
 Create a leaflet map with customized default settings.
 }
+\details{
+The "Gray scale" and "Monochrome" basemaps use a CARTO API key,
+supplied via the \code{CARTO_API_KEY} environmental variable (see \code{./.env}).
+If it is unset, these basemaps will still load, but will display an
+"API key required" watermark.
+}

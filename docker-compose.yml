@@ -12,6 +12,7 @@ services:
       - FORCE_DEFAULT_PROJECTS
       - PROJECT_DIRECTORY
       - R_CONFIG_ACTIVE
+      - CARTO_API_KEY
     volumes:
       - "${PROJECT_DIRECTORY}:/projects"
       - "${PATH_TO_GUROBI_LICENSE}:/opt/gurobi/gurobi.lic:ro"
