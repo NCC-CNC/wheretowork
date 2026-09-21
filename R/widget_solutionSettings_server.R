@@ -64,9 +64,7 @@ NULL
 #' }
 #'
 #' **Update the view.**
-#' This controls whether the "group" or "single" tab is active for themes with
-#' multiple features.
-#' It does not have any effect for themes with a single feature.
+#' This controls whether the "group" or "single" tab is active for a theme.
 #' Note that the `value` element must be a `character` value equal to
 #' `"group"` or `"single"`.
 #'
@@ -79,7 +77,6 @@ NULL
 #'
 #' **Update the group goal.**
 #' This controls the slider present under the "group" tab.
-#' It does not have any effect for themes with a single features.
 #'
 #' \describe{
 #' \item{id}{`"THEMEID"`}
@@ -90,9 +87,6 @@ NULL
 #'
 #' **Update the feature status.**
 #' This controls the switches present under the "single" tab.
-#' To ensure compatibility between themes with a single feature
-#' and themes with multiple features, this will update the status
-#' for a theme with a single feature.
 #' Note that the `value` element must have a value for each feature
 #' within the theme (the example below assumes the theme has three features).
 #'
@@ -118,9 +112,6 @@ NULL
 #'
 #' **Update the feature goals.**
 #' This controls the sliders present under the "single" tab.
-#' To ensure compatibility between themes with a single feature
-#' and themes with multiple features, this will update the status
-#' for a theme with a single feature.
 #' Note that the `value` element must have a value for each feature
 #' within the theme (the example below assumes the theme has three features).
 #'

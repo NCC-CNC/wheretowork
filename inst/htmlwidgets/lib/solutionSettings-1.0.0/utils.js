@@ -56,42 +56,21 @@ function newParameterSetting(manager, x) {
 }
 
 function newThemeSetting(manager, x) {
-  if (typeof(x.feature_name) === "string") {
-    var y = new SingleThemeSetting(
-      manager,
-      x.id,
-      x.name,
-      x.feature_name,
-      x.feature_id,
-      x.feature_status,
-      x.feature_total_amount,
-      x.feature_current_held,
-      x.feature_min_goal,
-      x.feature_max_goal,
-      x.feature_goal,
-      x.feature_limit_goal,
-      x.feature_step_goal,
-      x.feature_provenance[0],
-      x.units || "units"
-    );
-  } else {
-    var y = new MultiThemeSetting(
-      manager,
-      x.id,
-      x.name,
-      x.feature_name,
-      x.feature_id,
-      x.feature_status,
-      x.feature_total_amount,
-      x.feature_current_held,
-      x.feature_min_goal,
-      x.feature_max_goal,
-      x.feature_goal,
-      x.feature_limit_goal,
-      x.feature_step_goal,
-      x.feature_provenance,
-      x.units || "units"
-    );
-  }
-  return y;
+  return new MultiThemeSetting(
+    manager,
+    x.id,
+    x.name,
+    x.feature_name,
+    x.feature_id,
+    x.feature_status,
+    x.feature_total_amount,
+    x.feature_current_held,
+    x.feature_min_goal,
+    x.feature_max_goal,
+    x.feature_goal,
+    x.feature_limit_goal,
+    x.feature_step_goal,
+    x.feature_provenance,
+    x.units || "units"
+  );
 }

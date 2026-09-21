@@ -192,26 +192,6 @@ mapManager_html <- function(id, style, class, ...) {
       )
     )
 
-  ## singleTheme
-  x <-
-    htmltools::tagAppendChild(
-      x,
-      htmltools::tags$template(
-        class = "single-theme-layer-template",
-        htmltools::tags$div(
-          class = "map-manager-layer",
-          htmltools::tags$div(
-            class = "theme-layer",
-            mm_header_component_scaffold(type = "theme"),
-            htmltools::tags$div(
-              class = "layer-legend-container",
-              mm_legend_component_scaffold()
-            )
-          )
-        )
-      )
-    )
-
   ## multiTheme
   ### main container
   x <-
