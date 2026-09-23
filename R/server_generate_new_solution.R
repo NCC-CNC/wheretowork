@@ -128,6 +128,64 @@ server_generate_new_solution <- quote({
       return()
     }
 
+    ## if a total area budget is specified, but it is too low given the
+    ## selected Includes, then fail early instead of waiting for the
+    ## asynchronous task to run and hit the same error
+    if (curr_type) {
+      curr_budget_info <- calculate_area_budget_data(
+        area_data = curr_area_data,
+        include_data = curr_include_data,
+        include_settings = curr_include_settings,
+        exclude_data = curr_exclude_data,
+        exclude_settings = curr_exclude_settings,
+        overlap = curr_overlap,
+        area_budget_proportion = curr_area_budget,
+        boundary_gap = curr_boundary_gap
+      )
+      if (curr_budget_info$exceeded) {
+        ### calculate real areas (in km2) for the budget and selected
+        ### includes, so the user can see the numbers behind the error
+        curr_km2_units <- stringi::stri_unescape_unicode("km\\u00B2")
+        curr_to_km2 <- function(x) {
+          as.numeric(units::set_units(units::set_units(x, "m^2"), "km^2"))
+        }
+        curr_budget_area <- curr_to_km2(sum(curr_area_data) * curr_area_budget)
+        curr_locked_in_area <- curr_to_km2(
+          sum(curr_area_data[curr_budget_info$locked_in])
+        )
+        ### identify error message to show
+        msg <- paste0(
+          "Total area budget setting (", round(curr_budget_area, 2), " ",
+          curr_km2_units, ") is too low given the selected Includes (",
+          round(curr_locked_in_area, 2), " ", curr_km2_units,
+          "). Try increasing the total area budget or deselecting some ",
+          "of the Includes."
+        )
+        ### display modal
+        shinyalert::shinyalert(
+          title = "Oops",
+          text = msg,
+          size = "s",
+          closeOnEsc = TRUE,
+          closeOnClickOutside = TRUE,
+          type = "error",
+          showConfirmButton = TRUE,
+          confirmButtonText = "OK",
+          timer = 0,
+          confirmButtonCol = "#0275d8",
+          animation = TRUE
+        )
+        ### reset buttons
+        shinyFeedback::resetLoadingButton("newSolutionPane_settings_start_button")
+        enable_html_element("newSolutionPane_settings_start_button")
+        enable_html_element("newSolutionPane_settings_name")
+        enable_html_element("newSolutionPane_settings_color")
+        enable_html_element("newSolutionPane_settings_gurobi")
+        ## exit
+        return()
+      }
+    }
+
     ## enable stop button
     shinyjs::enable("newSolutionPane_settings_stop_button")
 
