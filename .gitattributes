@@ -1,0 +1,28 @@
+# Auto-detect text files and normalize their line endings to LF in the
+# repository; Git still checks them out using the platform's native line
+# endings (e.g. CRLF on Windows, if core.autocrlf is enabled).
+* text=auto
+
+# Explicitly mark known binary/compressed formats so Git never attempts
+# line-ending conversion on them, regardless of auto-detection.
+*.tif binary
+*.tiff binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.gz binary
+*.zip binary
+*.rda binary
+*.rds binary
+*.xlsx binary
+*.xls binary
+*.pdf binary
+*.shp binary
+*.shx binary
+*.dbf binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary

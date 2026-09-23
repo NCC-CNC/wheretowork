@@ -150,7 +150,9 @@ test_that("widget methods", {
       status = FALSE,
       mandatory = TRUE,
       provenance = v$provenance$get_widget_data(),
-      overlap = NA_character_
+      overlap = NA_character_,
+      total_amount = 200,
+      units = ""
     )
   )
   ## map manager settings

@@ -1,4 +1,4 @@
-#' @include internal.R
+#' @include internal.R utils_calculate_area_budget_data.R
 NULL
 
 #' Generate result using minimum shortfall formulation
@@ -241,42 +241,20 @@ min_shortfall_result <- function(area_budget_proportion,
   ## adjust values to prevent solver from throwing error and crashing R session
   targets$target <- pmax(targets$target, 1e-5)
 
-  # calculate locked in values
-  if (nrow(include_data) > 0) {
-    ## if includes present, then use data and settings
-    locked_in <- matrix(
-      include_settings$status,
-      byrow = FALSE,
-      nrow = nrow(include_data), ncol = ncol(include_data)
-    )
-    locked_in <- as.logical(Matrix::colSums(locked_in * include_data) > 0)
-  } else {
-    ## if no includes present, then lock nothing in
-    locked_in <- rep(FALSE, ncol(include_data))
-  }
-  
-  # calculate locked out values
-  if (nrow(exclude_data) > 0) {
-    ## if excludes present, then use data and settings
-    locked_out <- matrix(
-      exclude_settings$status,
-      byrow = FALSE,
-      nrow = nrow(exclude_data), ncol = ncol(exclude_data)
-    )
-    locked_out <- as.logical(Matrix::colSums(locked_out * exclude_data) > 0)
-  } else {
-    ## if no excludes present, then lock nothing out
-    locked_out <- rep(FALSE, ncol(exclude_data))
-  }
-  
-  ### locked-out takes precedence if overlap is TRUE
-  idx <- which(locked_in & locked_out)
-  if (!overlap) {
-    locked_out[idx] <- FALSE
-  } else {
-    locked_in[idx] <- FALSE
-  }   
-  
+  # calculate locked in/out planning units and area budget feasibility
+  budget_info <- calculate_area_budget_data(
+    area_data = area_data,
+    include_data = include_data,
+    include_settings = include_settings,
+    exclude_data = exclude_data,
+    exclude_settings = exclude_settings,
+    overlap = overlap,
+    area_budget_proportion = area_budget_proportion,
+    boundary_gap = boundary_gap
+  )
+  locked_in <- budget_info$locked_in
+  locked_out <- budget_info$locked_out
+
   # calculate weight data
   ## process weights with positive factors
   wn_pos_idx <- which(weight_settings$status & (weight_settings$factor > 0))
@@ -324,19 +302,13 @@ min_shortfall_result <- function(area_budget_proportion,
     )
   }
 
-  # calculate cost values
-  cost <- scales::rescale(area_data, to = c(0.01, 1))
-
-  # calculate budgets for multi-objective optimization
-  total_budget <- sum(cost) * area_budget_proportion
-  if (boundary_gap >= 1e-5) {
-    initial_budget <- (1 - boundary_gap) * total_budget
-  } else {
-    initial_budget <- total_budget
-  }
+  # extract cost and budget values calculated above
+  cost <- budget_info$cost
+  total_budget <- budget_info$total_budget
+  initial_budget <- budget_info$initial_budget
 
   # verify that problem if feasible with locked in planning units
-  if (sum(cost[locked_in]) > min(initial_budget, total_budget)) {
+  if (budget_info$exceeded) {
     stop("WtW: Total area budget setting is too low given the selected",
          "Includes. Try increasing the total area budget or deselecting ",
          " some of the Includes.")
