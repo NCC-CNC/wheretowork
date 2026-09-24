@@ -356,6 +356,108 @@ test_that("initialization (from Result object)", {
   expect_is(x, "Solution")
 })
 
+test_that("initialization (from Result object), goals met with budget", {
+  skip_on_ci()
+  # create object
+  ## create dataset
+  rd <- simulate_binary_spatial_data(import_simple_raster_data(), 4)
+  d <- new_dataset_from_auto(rd)
+  ## create variables
+  v1 <- new_variable(
+    dataset = d, index = 1, total = 12, units = "ha",
+    legend = simulate_continuous_legend()
+  )
+  v2 <- new_variable(
+    dataset = d, index = 2, total = 14, units = "ha",
+    legend = simulate_continuous_legend()
+  )
+  v3 <- new_variable(
+    dataset = d, index = 3, total = 78, units = "ha",
+    legend = simulate_include_legend()
+  )
+  v4 <- new_variable(
+    dataset = d, index = 4, total = 90, units = "ha",
+    legend = simulate_exclude_legend()
+  )
+  ## create a weight, include and exclude using dataset
+  w <- new_weight(
+    name = "Human Footprint Index", variable = v1,
+    factor = 0, status = FALSE, id = "W1"
+  )
+  incl <- new_include(
+    name = "Protected areas", variable = v3,
+    status = FALSE, id = "I1"
+  )
+  excl <- new_exclude(
+    name = "Urban areas", variable = v4,
+    status = FALSE, id = "E1"
+  )
+  ## create features using dataset
+  f1 <- new_feature(
+    name = "Possum", variable = v1,
+    goal = 0.9, status = TRUE, current = 0, id = "F1"
+  )
+  f2 <- new_feature(
+    name = "Forests", variable = v2,
+    goal = 0.2, status = TRUE, current = 0, id = "F2"
+  )
+  ## create themes using the features
+  t1 <- new_theme("Species", list(f1, f2), id = "T1")
+  ## create parameters
+  p1 <- new_parameter(
+    "Total area budget", status = TRUE, value = 10, id = "budget_parameter"
+  )
+  p2 <- new_parameter("Spatial clustering", status = FALSE, id = "P2")
+  ## create solution setting
+  ss <- new_solution_settings(
+    themes = list(t1), weights = list(w), includes = list(incl),
+    excludes = list(excl), parameters = list(p1, p2)
+  )
+  ## create result
+  r <- min_shortfall_result(
+    id = "R1",
+    area_budget_proportion = p1$value / 100,
+    area_data = d$get_planning_unit_areas(),
+    boundary_data = d$get_boundary_data(),
+    theme_data = ss$get_theme_data(),
+    weight_data = ss$get_weight_data(),
+    include_data = ss$get_include_data(),
+    exclude_data = ss$get_exclude_data(),
+    theme_settings = ss$get_theme_settings(),
+    weight_settings = ss$get_weight_settings(),
+    include_settings = ss$get_include_settings(),
+    exclude_settings = ss$get_exclude_settings(),
+    parameters = ss$parameters,
+    boundary_gap = 0
+  )
+  ## create object
+  x <- new_solution_from_result(
+    id = "S1",
+    result = r,
+    name = "sol",
+    visible = TRUE,
+    downloadable = TRUE,
+    dataset = d,
+    settings = ss,
+    legend = new_manual_legend(
+      values = c(0, 1),
+      colors = c("#00FFFF00", "#112233FF"),
+      labels = c("not selected", "selected")
+    )
+  )
+  # calculate expected number of goals met
+  held <- unlist(r$theme_coverage[c("F1", "F2")])
+  n_met <- sum(held >= c(f1$goal, f2$goal))
+  # run tests
+  expect_is(x, "Solution")
+  s <- x$statistics[[length(x$statistics)]]
+  expect_equal(s$name, "Goals met")
+  expect_equal(s$value, n_met)
+  expect_equal(s$units, "out of 2")
+  expect_equal(s$proportion, n_met / 2)
+  expect_true("Goals met" %in% x$get_summary_results_data()$Name)
+})
+
 test_that("initialization (from Result object), sf", {
   skip_on_ci()
   # create object
