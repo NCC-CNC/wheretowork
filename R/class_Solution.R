@@ -1474,6 +1474,36 @@ new_solution_from_result <- function(
     )
   })
 
+  # goals met statistic
+  ## only reported when an area budget is specified, because otherwise
+  ## the min set formulation ensures that all goals are met
+  budget_parameter <- Filter(
+    function(p) identical(p$id, "budget_parameter"),
+    result$parameters
+  )
+  if (length(budget_parameter) > 0 && isTRUE(budget_parameter[[1]]$status)) {
+    fr <- unlist(
+      lapply(theme_results, function(x) x$feature_results),
+      recursive = FALSE
+    )
+    fr <- Filter(function(x) isTRUE(x$status), fr)
+    n_goals <- length(fr)
+    n_met <- sum(vapply(fr, function(x) x$held >= x$goal, logical(1)))
+    if (n_goals > 0) {
+      statistics_results <- append(
+        statistics_results,
+        list(
+          new_statistic(
+            name = "Goals met",
+            value = n_met,
+            units = paste("out of", n_goals),
+            proportion = n_met / n_goals
+          )
+        )
+      )
+    }
+  }
+
   # generate index for storing data
   idx <- last(make.names(c(dataset$get_names(), name), unique = TRUE))
   idx <- gsub(".", "_", idx, fixed = TRUE)
