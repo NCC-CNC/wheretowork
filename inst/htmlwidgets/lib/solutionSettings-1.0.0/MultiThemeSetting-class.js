@@ -17,6 +17,21 @@ class MultiThemeSetting {
     feature_provenance,
     units
   ) {
+    // normalize per-feature arguments so a theme with a single feature
+    // (whose values arrive from R as unboxed scalars) works identically
+    // to a theme with multiple features
+    feature_name = toArray(feature_name);
+    feature_id = toArray(feature_id);
+    feature_status = toArray(feature_status);
+    feature_total_amount = toArray(feature_total_amount);
+    feature_current_held = toArray(feature_current_held);
+    feature_min_goal = toArray(feature_min_goal);
+    feature_max_goal = toArray(feature_max_goal);
+    feature_goal = toArray(feature_goal);
+    feature_limit_goal = toArray(feature_limit_goal);
+    feature_step_goal = toArray(feature_step_goal);
+    feature_provenance = toArray(feature_provenance);
+
     // class fields
     /// internal variables
     this.id = id;
@@ -430,6 +445,11 @@ class MultiThemeSetting {
   /* update HTML elements */
   /* update methods */
   updateSetting(setting, value) {
+    // per-feature settings can arrive as a scalar for a single-feature
+    // theme, so normalize to an array before dispatching
+    if (["feature_status", "feature_goal", "feature_current"].includes(setting)) {
+      value = toArray(value);
+    }
     if (setting === "name") {
       this.updateName(value);
     } else if (setting === "status") {

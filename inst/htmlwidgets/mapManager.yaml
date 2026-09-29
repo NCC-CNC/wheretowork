@@ -24,7 +24,6 @@ dependencies:
       - ExcludeLayer-class.js
       - SolutionLayer-class.js
       - WeightLayer-class.js
-      - SingleThemeLayer-class.js
       - MultiThemeLayer-class.js
       - mapManager-class.js
     stylesheet:
