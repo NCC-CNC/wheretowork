@@ -173,6 +173,7 @@ Collate:
     'utils-tidy-eval.R'
     'utils_acknowledge_packages.R'
     'utils_blank_raster.R'
+    'utils_calculate_area_budget_data.R'
     'utils_color_palette.R'
     'utils_error_misc.R'
     'utils_extract_data_matrix.R'

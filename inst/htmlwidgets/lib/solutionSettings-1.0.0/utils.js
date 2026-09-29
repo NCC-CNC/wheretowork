@@ -20,7 +20,9 @@ function newIncludeSetting(manager, x) {
     x.status,
     x.overlap,
     x.mandatory,
-    x.provenance
+    x.provenance,
+    x.total_amount,
+    x.units
   );
 }
 
@@ -32,7 +34,9 @@ function newExcludeSetting(manager, x) {
     x.status,
     x.overlap,
     x.mandatory,
-    x.provenance
+    x.provenance,
+    x.total_amount,
+    x.units
   );
 }
 
