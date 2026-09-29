@@ -8,6 +8,12 @@ NULL
 #' @param sidebar_ids `character` vector containing HTML identifiers for
 #' the left and right sidebars.
 #'
+#' @details
+#' The "Gray scale" and "Monochrome" basemaps use a CARTO API key,
+#' supplied via the `CARTO_API_KEY` environmental variable (see `./.env`).
+#' If it is unset, these basemaps will still load, but will display an
+#' "API key required" watermark.
+#'
 #' @return [leaflet::leaflet()] object.
 #'
 #' @export
@@ -41,6 +47,17 @@ leaflet_map <- function(sidebar_ids) {
     "}"
   )
 
+  # prepare CARTO basemap settings
+  # environmental variable "CARTO_API_KEY" is used by the
+  # "Gray scale" and "Monochrome" basemaps (see ./.env); if unset,
+  # these basemaps still load but display an "API key required" watermark
+  carto_api_key <- Sys.getenv("CARTO_API_KEY")
+  carto_attribution <- paste0(
+    "&copy; <a href=\"https://www.openstreetmap.org/copyright\">",
+    "OpenStreetMap</a>, &copy; ",
+    "<a href=\"https://carto.com/attributions\">CARTO</a>"
+  )
+
   # create map
   map <-
     ## initialize leaflet map
@@ -51,16 +68,47 @@ leaflet_map <- function(sidebar_ids) {
       group = "Satellite"
     ) %>%
     leaflet::addProviderTiles(
+      leaflet::providers$Esri.WorldImagery,
+      group = "Satellite with labels"
+    ) %>%
+    leaflet::addTiles(
+      urlTemplate = paste0(
+        "https://server.arcgisonline.com/ArcGIS/rest/services/",
+        "Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}"
+      ),
+      group = "Satellite with labels"
+    ) %>%
+    leaflet::addProviderTiles(
       leaflet::providers$Esri.WorldStreetMap,
       group = "Street view"
     ) %>%
     leaflet::addProviderTiles(
-      leaflet::providers$CartoDB.DarkMatter,
-      group = "Monochrome"
+      leaflet::providers$Esri.WorldTopoMap,
+      group = "Topographic"
     ) %>%
-    leaflet::addProviderTiles(
-      leaflet::providers$CartoDB.Positron,
-      group = "Gray scale"
+    leaflet::addTiles(
+      urlTemplate = paste0(
+        "https://{s}.basemaps.cartocdn.com/rastertiles/dark_all/",
+        "{z}/{x}/{y}.png?key=", carto_api_key
+      ),
+      group = "Monochrome",
+      attribution = carto_attribution,
+      options = leaflet::tileOptions(
+        subdomains = "abcd",
+        maxZoom = 20
+      )
+    ) %>%
+    leaflet::addTiles(
+      urlTemplate = paste0(
+        "https://{s}.basemaps.cartocdn.com/rastertiles/light_all/",
+        "{z}/{x}/{y}.png?key=", carto_api_key
+      ),
+      group = "Gray scale",
+      attribution = carto_attribution,
+      options = leaflet::tileOptions(
+        subdomains = "abcd",
+        maxZoom = 20
+      )
     ) %>%
     ## specify default view window
     leaflet::flyToBounds(
@@ -115,7 +163,10 @@ leaflet_map <- function(sidebar_ids) {
     ) %>%
     ## add basemap controls
     leaflet::addLayersControl(
-      baseGroups = c("Satellite", "Street view", "Monochrome", "Gray scale"),
+      baseGroups = c(
+        "Satellite", "Satellite with labels", "Street view", "Topographic",
+        "Monochrome", "Gray scale"
+      ),
       options = leaflet::layersControlOptions(collapsed = TRUE),
       position = "topleft"
     ) %>%
