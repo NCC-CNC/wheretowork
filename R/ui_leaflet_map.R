@@ -10,7 +10,7 @@ NULL
 #'
 #' @details
 #' The "Gray scale" and "Monochrome" basemaps use a CARTO API key,
-#' supplied via the `CARTO_API_KEY` environmental variable (see `./.env`).
+#' supplied via the `CARTO_API_KEY` environmental variable (see `./.env.example`).
 #' If it is unset, these basemaps will still load, but will display an
 #' "API key required" watermark.
 #'
@@ -49,7 +49,7 @@ leaflet_map <- function(sidebar_ids) {
 
   # prepare CARTO basemap settings
   # environmental variable "CARTO_API_KEY" is used by the
-  # "Gray scale" and "Monochrome" basemaps (see ./.env); if unset,
+  # "Gray scale" and "Monochrome" basemaps (see ./.env.example); if unset,
   # these basemaps still load but display an "API key required" watermark
   carto_api_key <- Sys.getenv("CARTO_API_KEY")
   carto_attribution <- paste0(

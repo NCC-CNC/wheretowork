@@ -39,3 +39,6 @@ rsconnect
 # R profile files
 *.Rhistory
 .Rproj.user/
+
+# environment variables (see .env.example)
+.env
