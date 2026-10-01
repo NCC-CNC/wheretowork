@@ -1,3 +1,32 @@
+# wheretowork 1.3.0
+
+### New features
+- Added "Satellite with labels" and "Topography" basemaps. The "Gray scale"
+and "Monochrome" basemaps now accept a CARTO API key via the `CARTO_API_KEY`
+environmental variable (#433).
+- Selecting an area budget below the area of enabled includes now shows a
+prompt on "Optimize" to adjust the settings, and the total area of includes
+and excludes is shown in the new solution sidebar (#346).
+- Added the number of goals met to the solution summary for area budget
+solutions (#322).
+
+### Minor changes and bug fixes
+- Themes containing a single feature are now displayed as multi-feature
+themes, so the feature name is shown within the theme (#343).
+- Fixed solutions exceeding the area budget for irregularly sized planning
+unit polygons (#444).
+- Fixed project import failing for layers with all zero values (#443).
+- Fixed a JavaScript console error when selecting "upload shapefile" as the
+import method (#241).
+- Increased the file upload and `future` package size limits to 4GB to
+support large projects (#440).
+
+### Infrastructure changes
+- Partner groups now only see their own built-in projects (#437).
+- Cleaned up the Dockerfile to resolve build warnings (#447).
+- Replaced the tracked `.env` file with a `.env.example` template; copy it to
+`.env` to configure Docker Compose (#456).
+
 # wheretowork 1.2.7
 
 ### Minor changes and bug fixes

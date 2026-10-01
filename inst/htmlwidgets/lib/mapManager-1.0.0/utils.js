@@ -59,33 +59,18 @@ function newLayer(manager, x) {
       x.provenance
     );
   } else {
-    if (typeof(x.feature_name) === "string") {
-      return new SingleThemeLayer(
-        manager,
-        x.id,
-        x.name,
-        x.feature_id,
-        x.feature_name,
-        x.feature_visible,
-        x.feature_hidden,
-        x.feature_legend[0],
-        x.feature_provenance[0],
-        x.units
-      );
-    } else {
-      return new MultiThemeLayer(
-        manager,
-        x.id,
-        x.name,
-        x.feature_id,
-        x.feature_name,
-        x.feature_visible,
-        x.feature_hidden,
-        x.feature_legend,
-        x.feature_provenance,
-        x.units
-      );
-    }
+    return new MultiThemeLayer(
+      manager,
+      x.id,
+      x.name,
+      x.feature_id,
+      x.feature_name,
+      x.feature_visible,
+      x.feature_hidden,
+      x.feature_legend,
+      x.feature_provenance,
+      x.units
+    );
   }
 }
 

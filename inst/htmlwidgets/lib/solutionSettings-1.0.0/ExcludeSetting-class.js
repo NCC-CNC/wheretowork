@@ -7,7 +7,9 @@ class ExcludeSetting {
     status,
     overlap,
     mandatory,
-    provenance
+    provenance,
+    total_amount,
+    units
   ) {
     // class fields
     this.id = id;
@@ -21,6 +23,7 @@ class ExcludeSetting {
       true);
     this.name_el = this.el.querySelector(".name-label");
     this.status_el = this.el.querySelector(".status-checkbox");
+    this.area_el = this.el.querySelector(".area-label");
 
     // local variables
     let that = this;
@@ -33,6 +36,15 @@ class ExcludeSetting {
     this.name_el.innerText = name;
     /// status
     this.updateStatus(status);
+    /// area
+    if (typeof(total_amount) === "number") {
+      let area_units = (typeof(units) === "string" && units.length > 0) ?
+        " " + units : "";
+      this.area_el.innerText =
+        "(" + auto_round(total_amount).toLocaleString() + area_units + ")";
+    } else {
+      this.area_el.style.display = "none";
+    }
     /// provenance
     createProvenance(
       this.el.querySelector(".provenance-container"), provenance
