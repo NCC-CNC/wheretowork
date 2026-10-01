@@ -8,7 +8,7 @@ services:
     ports:
       - "3838:3838"
     environment:
-      # environmental variables defined in ./.env that get sent to container
+      # environmental variables defined in ./.env (see ./.env.example) that get sent to container
       - FORCE_DEFAULT_PROJECTS
       - PROJECT_DIRECTORY
       - R_CONFIG_ACTIVE

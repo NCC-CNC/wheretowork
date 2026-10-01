@@ -119,10 +119,10 @@ docker-compose down
 ## Configuration
 
 The application can be customized using environmental variables. The
-[`.env`](.env) file in this repository lists all available variables
-together with a short description of what each one does, and is used
-automatically when running the application with Docker Compose. The most
-notable variables are:
+[`.env.example`](.env.example) file in this repository lists all
+available variables together with a short description of what each one
+does, and serves as a template for the `.env` file used when running
+the application with Docker Compose. The most notable variables are:
 
 - `CARTO_API_KEY`: API key for the “Gray scale” and “Monochrome”
   basemaps (obtained from [CARTO](https://carto.com/)). These basemaps
@@ -147,8 +147,12 @@ application:
 - **Using Docker**: pass variables with the `-e` flag
   (e.g. `docker run -e CARTO_API_KEY=<key> ...`), or supply a file with
   `--env-file <path>`.
-- **Using Docker Compose**: edit the values in the [`.env`](.env) file
-  in the repository, which `docker-compose.yml` reads automatically.
+- **Using Docker Compose**: copy [`.env.example`](.env.example) to
+  `.env` (e.g. `cp .env.example .env`) and edit the values there;
+  `docker-compose.yml` reads `.env` automatically. The `.env` file is
+  ignored by git, so API keys and local paths stay out of the
+  repository. `make demo` creates `.env` from the example automatically
+  if it doesn’t already exist.
 
 ## Contributing
 
