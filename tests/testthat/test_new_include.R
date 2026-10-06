@@ -140,6 +140,10 @@ test_that("widget methods", {
     id = "FID1",
     overlap = NA_character_
   )
+  # calculate expected area
+  expected_area <- sum(
+    d$get_planning_unit_areas()[which(d$get_attribute_data()[[1]] > 0)]
+  ) * 1e-6
   # run tests
   ## solution settings
   expect_identical(
@@ -151,8 +155,8 @@ test_that("widget methods", {
       mandatory = TRUE,
       provenance = v$provenance$get_widget_data(),
       overlap = NA_character_,
-      total_amount = 200,
-      units = ""
+      total_amount = expected_area,
+      units = stringi::stri_unescape_unicode("km\\u00B2")
     )
   )
   ## map manager settings

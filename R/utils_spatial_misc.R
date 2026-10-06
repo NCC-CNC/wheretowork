@@ -176,3 +176,55 @@ calculate_coverage <- function(x, data) {
   }
   out
 }
+
+#' Calculate area coverage
+#'
+#' Calculate the proportion of the area covered by data (i.e. planning
+#' units with a value greater than zero) that is selected in a solution.
+#' This is used to display the actual area selected for Includes and Excludes
+#' (see [calculate_variable_area_km2()]).
+#'
+#' @inheritParams calculate_coverage
+#'
+#' @param areas `numeric` vector of planning unit areas.
+#'
+#' @return `numeric` vector.
+#'
+#' @noRd
+calculate_area_coverage <- function(x, data, areas) {
+  assertthat::assert_that(
+    is.numeric(x),
+    inherits(data, "dgCMatrix"),
+    is.numeric(areas),
+    length(x) == ncol(data),
+    length(areas) == ncol(data)
+  )
+  if (nrow(data) > 0) {
+    data <- Matrix::drop0(data)
+    data@x <- as.numeric(data@x > 0)
+    out <- as.numeric(data %*% (x * areas)) / as.numeric(data %*% areas)
+    out[!is.finite(out)] <- 0
+    names(out) <- rownames(data)
+  } else {
+    out <- numeric(0)
+  }
+  out
+}
+
+#' Calculate variable area
+#'
+#' Calculate the total area of the planning units covered by a variable
+#' (i.e. those with a value greater than zero). This is calculated in the
+#' same manner as the area budget (see [calculate_area_budget_data()]).
+#'
+#' @param x [Variable] object.
+#'
+#' @return `numeric` value (km^2).
+#'
+#' @noRd
+calculate_variable_area_km2 <- function(x) {
+  assertthat::assert_that(inherits(x, "Variable"))
+  values <- x$dataset$get_attribute_data()[[x$index]]
+  areas <- x$dataset$get_planning_unit_areas()
+  sum(areas[which(values > 0)]) * 1e-6
+}
