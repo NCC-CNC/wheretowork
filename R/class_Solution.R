@@ -1484,33 +1484,31 @@ new_solution_from_result <- function(
   })
 
   # goals met statistic
-  ## only reported when an area budget is specified, because otherwise
-  ## the min set formulation ensures that all goals are met
-  budget_parameter <- Filter(
-    function(p) identical(p$id, "budget_parameter"),
-    result$parameters
+  fr <- unlist(
+    lapply(theme_results, function(x) x$feature_results),
+    recursive = FALSE
   )
-  if (length(budget_parameter) > 0 && isTRUE(budget_parameter[[1]]$status)) {
-    fr <- unlist(
-      lapply(theme_results, function(x) x$feature_results),
-      recursive = FALSE
-    )
-    fr <- Filter(function(x) isTRUE(x$status), fr)
-    n_goals <- length(fr)
-    n_met <- sum(vapply(fr, function(x) x$held >= x$goal, logical(1)))
-    if (n_goals > 0) {
-      statistics_results <- append(
-        statistics_results,
-        list(
-          new_statistic(
-            name = "Goals met",
-            value = n_met,
-            units = paste("out of", n_goals),
-            proportion = n_met / n_goals
-          )
+  fr <- Filter(function(x) isTRUE(x$status), fr)
+  n_goals <- length(fr)
+  ## compare amounts held against targets rounded down in the same way as
+  ## the optimization problems, so that goals met by the solver are counted
+  n_met <- sum(vapply(fr, FUN.VALUE = logical(1), function(x) {
+    total <- x$feature$variable$total
+    target <- floor(x$goal * total * 1e+3) / 1e+3
+    (x$held * total) >= (target - 1e-10)
+  }))
+  if (n_goals > 0) {
+    statistics_results <- append(
+      statistics_results,
+      list(
+        new_statistic(
+          name = "Goals met",
+          value = n_met,
+          units = paste("out of", n_goals),
+          proportion = n_met / n_goals
         )
       )
-    }
+    )
   }
 
   # generate index for storing data

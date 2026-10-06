@@ -10,8 +10,7 @@ prompt on "Optimize" to adjust the settings (#346).
 sidebar, calculated from the planning unit areas, and the solution results
 show the actual area selected, accounting for overlapping includes and
 excludes (#346, #461).
-- Added the number of goals met to the solution summary for area budget
-solutions (#322).
+- Added the number of goals met to the solution summary (#322, #463).
 
 ### Minor changes and bug fixes
 - Themes containing a single feature are now displayed as multi-feature
