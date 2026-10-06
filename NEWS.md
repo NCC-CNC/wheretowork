@@ -5,8 +5,11 @@
 and "Monochrome" basemaps now accept a CARTO API key via the `CARTO_API_KEY`
 environmental variable (#433).
 - Selecting an area budget below the area of enabled includes now shows a
-prompt on "Optimize" to adjust the settings, and the total area of includes
-and excludes is shown in the new solution sidebar (#346).
+prompt on "Optimize" to adjust the settings (#346).
+- Includes and excludes now show their total area in km² in the new solution
+sidebar, calculated from the planning unit areas, and the solution results
+show the actual area selected, accounting for overlapping includes and
+excludes (#346, #461).
 - Added the number of goals met to the solution summary for area budget
 solutions (#322).
 

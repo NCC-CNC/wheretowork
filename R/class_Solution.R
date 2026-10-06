@@ -1401,6 +1401,15 @@ new_solution_from_result <- function(
       )
     )
 
+  # calculate proportion of include and exclude areas selected, so that
+  # results show the actual area selected (km^2)
+  include_held <- calculate_area_coverage(
+    result$values, settings$get_include_data(), area_data
+  )
+  exclude_held <- calculate_area_coverage(
+    result$values, settings$get_exclude_data(), area_data
+  )
+
   # include results
   include_results <- lapply(seq_along(settings$includes), function(i) {
     ## copy the include object
@@ -1412,7 +1421,7 @@ new_solution_from_result <- function(
     ## return weight results
     new_include_results(
       include = incl,
-      held = result$include_coverage[[incl$id]]
+      held = include_held[[incl$id]]
     )
   })
 
@@ -1427,7 +1436,7 @@ new_solution_from_result <- function(
     ## return weight results
     new_exclude_results(
       exclude = excl,
-      held = result$exclude_coverage[[excl$id]]
+      held = exclude_held[[excl$id]]
     )
   })
 
