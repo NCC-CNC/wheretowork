@@ -212,6 +212,13 @@
   margin-bottom: 0;
 }
 
+.solution-setting .header .area-label {
+  font-size: 12px;
+  font-weight: 400;
+  margin: 0px;
+  margin-right: 3px;
+}
+
 /* sub-header container */
 .solution-setting .sub-header .name-label {
   font-size: 12px;
