@@ -414,20 +414,6 @@ solutionSettings_html <- function(id, style, class, ...) {
       )
     )
 
-  ## singleTheme
-  x <-
-    htmltools::tagAppendChild(
-      x,
-      htmltools::tags$template(
-        class = "single-theme-setting-template",
-        htmltools::tags$div(
-          class = "single-theme-setting solution-setting",
-          ss_header_component_scaffold("theme", reset_button = TRUE),
-          ss_goal_component_scaffold()
-        )
-      )
-    )
-
   ## multiTheme
   ### main container
   x <-

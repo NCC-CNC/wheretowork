@@ -1,6 +1,6 @@
 Package: wheretowork
 Title: Interactive Systematic Conservation Planning Application
-Version: 1.2.7
+Version: 1.3.0
 Description:
     Launch an interactive web application for systematic conservation planning.
     Data can be accessed using projects available on disk, uploaded using
@@ -173,6 +173,7 @@ Collate:
     'utils-tidy-eval.R'
     'utils_acknowledge_packages.R'
     'utils_blank_raster.R'
+    'utils_calculate_area_budget_data.R'
     'utils_color_palette.R'
     'utils_error_misc.R'
     'utils_extract_data_matrix.R'

@@ -54,10 +54,10 @@ server_update_solution_settings <- quote({
          animation = TRUE
        )
      } else {
-      ### update multi and single theme status
+      ### update theme status
       vapply(app_data$themes, FUN.VALUE = logical(1), function(x) {
-        #### multi-theme status: TRUE
-        if (any(x$get_feature_status()) & (length(x$get_feature_status()) > 1)) {
+        #### theme status: TRUE
+        if (any(x$get_feature_status())) {
           updateSolutionSettings(
             inputId = "newSolutionPane_settings",
             value = list(
@@ -67,27 +67,15 @@ server_update_solution_settings <- quote({
               type = "theme"
             )
           )
-        } 
-        #### multi-theme status: FALSE
-        if (all(!x$get_feature_status()) & (length(x$get_feature_status()) > 1)) {
+        }
+        #### theme status: FALSE
+        if (all(!x$get_feature_status())) {
           updateSolutionSettings(
             inputId = "newSolutionPane_settings",
             value = list(
               id = x$id,
               setting = "status",
               value = FALSE,
-              type = "theme"
-            )
-          )
-        }
-        #### single-theme status set via get method
-        if (length(x$get_feature_status()) == 1) {
-          updateSolutionSettings(
-            inputId = "newSolutionPane_settings",
-              value = list(
-              id = x$id,
-              setting = "feature_status",
-              value = x$get_feature_status(),
               type = "theme"
             )
           )

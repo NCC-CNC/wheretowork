@@ -1401,6 +1401,15 @@ new_solution_from_result <- function(
       )
     )
 
+  # calculate proportion of include and exclude areas selected, so that
+  # results show the actual area selected (km^2)
+  include_held <- calculate_area_coverage(
+    result$values, settings$get_include_data(), area_data
+  )
+  exclude_held <- calculate_area_coverage(
+    result$values, settings$get_exclude_data(), area_data
+  )
+
   # include results
   include_results <- lapply(seq_along(settings$includes), function(i) {
     ## copy the include object
@@ -1412,7 +1421,7 @@ new_solution_from_result <- function(
     ## return weight results
     new_include_results(
       include = incl,
-      held = result$include_coverage[[incl$id]]
+      held = include_held[[incl$id]]
     )
   })
 
@@ -1427,7 +1436,7 @@ new_solution_from_result <- function(
     ## return weight results
     new_exclude_results(
       exclude = excl,
-      held = result$exclude_coverage[[excl$id]]
+      held = exclude_held[[excl$id]]
     )
   })
 
@@ -1473,6 +1482,34 @@ new_solution_from_result <- function(
       })
     )
   })
+
+  # goals met statistic
+  fr <- unlist(
+    lapply(theme_results, function(x) x$feature_results),
+    recursive = FALSE
+  )
+  fr <- Filter(function(x) isTRUE(x$status), fr)
+  n_goals <- length(fr)
+  ## compare amounts held against targets rounded down in the same way as
+  ## the optimization problems, so that goals met by the solver are counted
+  n_met <- sum(vapply(fr, FUN.VALUE = logical(1), function(x) {
+    total <- x$feature$variable$total
+    target <- floor(x$goal * total * 1e+3) / 1e+3
+    (x$held * total) >= (target - 1e-10)
+  }))
+  if (n_goals > 0) {
+    statistics_results <- append(
+      statistics_results,
+      list(
+        new_statistic(
+          name = "Goals met",
+          value = n_met,
+          units = paste("out of", n_goals),
+          proportion = n_met / n_goals
+        )
+      )
+    )
+  }
 
   # generate index for storing data
   idx <- last(make.names(c(dataset$get_names(), name), unique = TRUE))

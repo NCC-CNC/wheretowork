@@ -71,9 +71,7 @@ Note that the \code{value} element must be a \code{logical} (\code{TRUE} or \cod
 }
 
 \strong{Update the view.}
-This controls whether the "group" or "single" tab is active for themes with
-multiple features.
-It does not have any effect for themes with a single feature.
+This controls whether the "group" or "single" tab is active for a theme.
 Note that the \code{value} element must be a \code{character} value equal to
 \code{"group"} or \code{"single"}.
 
@@ -86,7 +84,6 @@ Note that the \code{value} element must be a \code{character} value equal to
 
 \strong{Update the group goal.}
 This controls the slider present under the "group" tab.
-It does not have any effect for themes with a single features.
 
 \describe{
 \item{id}{\code{"THEMEID"}}
@@ -97,9 +94,6 @@ It does not have any effect for themes with a single features.
 
 \strong{Update the feature status.}
 This controls the switches present under the "single" tab.
-To ensure compatibility between themes with a single feature
-and themes with multiple features, this will update the status
-for a theme with a single feature.
 Note that the \code{value} element must have a value for each feature
 within the theme (the example below assumes the theme has three features).
 
@@ -125,9 +119,6 @@ within the theme (the example below assumes the theme has three features).
 
 \strong{Update the feature goals.}
 This controls the sliders present under the "single" tab.
-To ensure compatibility between themes with a single feature
-and themes with multiple features, this will update the status
-for a theme with a single feature.
 Note that the \code{value} element must have a value for each feature
 within the theme (the example below assumes the theme has three features).
 

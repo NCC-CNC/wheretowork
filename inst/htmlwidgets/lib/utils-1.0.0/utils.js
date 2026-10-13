@@ -34,6 +34,14 @@ function removeAllChildNodes(parent) {
     }
 }
 
+// coerce a value to an array
+// (R unboxes length-1 vectors to a JSON scalar, e.g. for a Theme
+// with a single Feature, so per-feature data can arrive as either
+// a scalar or an array depending on how many features there are)
+function toArray(v) {
+  return Array.isArray(v) ? v : [v];
+}
+
 // obtained form
 // https://stackoverflow.com/a/63418989/3483791
 const getUniqueBy = (arr, prop) => {

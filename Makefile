@@ -93,6 +93,7 @@ quick-debug:
 
 ## launch local version inside Docker container
 demo:
+	[ -f .env ] || cp .env.example .env
 	docker-compose up --build -d
 
 demo-kill:

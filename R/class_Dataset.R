@@ -31,6 +31,10 @@ Dataset <- R6::R6Class(
     #' @field boundary_data `NULL`, or [Matrix::sparseMatrix()] or `NA` object.
     boundary_data = NULL,
 
+    #' @field planning_unit_areas `NULL`, or `numeric` vector of cached
+    #'   planning unit areas, see `get_planning_unit_areas()`.
+    planning_unit_areas = NULL,
+
     #' @description
     #' Create a Dataset object.
     #' @param id `character` value.
@@ -405,17 +409,21 @@ Dataset <- R6::R6Class(
 
     #' @description
     #' Get area values.
+    #' These are calculated once and then cached.
     #' @return `numeric` vector of values.
     get_planning_unit_areas = function() {
-      self$import()
-      idx <- self$attribute_data[["_index"]]
-      if (inherits(self$spatial_data, "SpatRaster")) {
-        out <-
-          rep(prod(terra::res(self$spatial_data)), length(idx))
-      } else {
-        out <- as.numeric(sf::st_area(self$spatial_data[idx, ]))
+      if (is.null(self$planning_unit_areas)) {
+        self$import()
+        idx <- self$attribute_data[["_index"]]
+        if (inherits(self$spatial_data, "SpatRaster")) {
+          self$planning_unit_areas <-
+            rep(prod(terra::res(self$spatial_data)), length(idx))
+        } else {
+          self$planning_unit_areas <-
+            as.numeric(sf::st_area(self$spatial_data[idx, ]))
+        }
       }
-      out
+      self$planning_unit_areas
     },
 
     #' @description

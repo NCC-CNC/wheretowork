@@ -40,15 +40,19 @@ test_that("results methods", {
     held = 0.9,
     id = "RID1"
   )
+  # calculate expected area
+  expected_area <- sum(
+    d$get_planning_unit_areas()[which(d$get_attribute_data()[[1]] > 0)]
+  ) * 1e-6
   # run tests
   expect_identical(
     x$get_results_data(),
     tibble::tibble(
       name = "Protected Areas",
       status = FALSE,
-      total = v$total,
+      total = expected_area,
       held = 0.9,
-      units = v$units,
+      units = stringi::stri_unescape_unicode("km\\u00B2"),
     )
   )
 })
@@ -69,6 +73,10 @@ test_that("widget methods", {
     held = 0.9,
     id = "RID1"
   )
+  # calculate expected area
+  expected_area <- sum(
+    d$get_planning_unit_areas()[which(d$get_attribute_data()[[1]] > 0)]
+  ) * 1e-6
   # run tests
   expect_identical(
     x$get_widget_data(),
@@ -76,9 +84,9 @@ test_that("widget methods", {
       id = "RID1",
       name = "Protected Areas",
       status = TRUE,
-      total_amount = v$total,
+      total_amount = expected_area,
       solution_held = 0.9,
-      units = v$units,
+      units = stringi::stri_unescape_unicode("km\\u00B2"),
       provenance = v$provenance$get_widget_data(),
       type = "include_results"
     )

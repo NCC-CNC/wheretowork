@@ -116,6 +116,44 @@ it will continue running in the background.**
 docker-compose down
 ```
 
+## Configuration
+
+The application can be customized using environmental variables. The
+[`.env.example`](.env.example) file in this repository lists all
+available variables together with a short description of what each one
+does, and serves as a template for the `.env` file used when running
+the application with Docker Compose. The most notable variables are:
+
+- `CARTO_API_KEY`: API key for the “Gray scale” and “Monochrome”
+  basemaps (obtained from [CARTO](https://carto.com/)). These basemaps
+  will still load without this variable set, but will display an “API
+  key required” watermark.
+- `PROJECT_DIRECTORY`: folder containing project data (only used with
+  Docker Compose).
+- `PATH_TO_GUROBI_LICENSE`: file path for a
+  [Gurobi](https://www.gurobi.com/) license (only used with Docker
+  Compose).
+- `FORCE_DEFAULT_PROJECTS`: if `"true"`, use the projects distributed
+  with the application instead of the ones in `PROJECT_DIRECTORY`.
+- `R_CONFIG_ACTIVE`: sets the application mode (e.g. `"default"`,
+  `"beginner"`, `"advanced"`, `"project"`).
+
+How you set these variables depends on how you’re running the
+application:
+
+- **Using R**: create an `.Renviron` file (e.g. in the working
+  directory, or your home directory) containing one `VARIABLE=value`
+  pair per line. R automatically loads this file on startup.
+- **Using Docker**: pass variables with the `-e` flag
+  (e.g. `docker run -e CARTO_API_KEY=<key> ...`), or supply a file with
+  `--env-file <path>`.
+- **Using Docker Compose**: copy [`.env.example`](.env.example) to
+  `.env` (e.g. `cp .env.example .env`) and edit the values there;
+  `docker-compose.yml` reads `.env` automatically. The `.env` file is
+  ignored by git, so API keys and local paths stay out of the
+  repository. `make demo` creates `.env` from the example automatically
+  if it doesn’t already exist.
+
 ## Contributing
 
 The application is a [Shiny web

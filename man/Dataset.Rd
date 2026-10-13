@@ -33,6 +33,9 @@ file path on disk.
 \item{\code{attribute_data}}{\code{NULL}, or \code{\link[tibble:tibble]{tibble::tibble()}} object.}
 
 \item{\code{boundary_data}}{\code{NULL}, or \code{\link[Matrix:sparseMatrix]{Matrix::sparseMatrix()}} or \code{NA} object.}
+
+\item{\code{planning_unit_areas}}{\code{NULL}, or \code{numeric} vector of cached
+planning unit areas, see \code{get_planning_unit_areas()}.}
 }
 \if{html}{\out{</div>}}
 }
@@ -280,6 +283,7 @@ Get attribute names.
 \if{latex}{\out{\hypertarget{method-Dataset-get_planning_unit_areas}{}}}
 \subsection{Method \code{get_planning_unit_areas()}}{
 Get area values.
+These are calculated once and then cached.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Dataset$get_planning_unit_areas()}\if{html}{\out{</div>}}
 }

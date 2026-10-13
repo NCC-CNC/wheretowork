@@ -285,6 +285,9 @@ ss_header_component_scaffold <- function(
     if (type == "parameter") {
       htmltools::tags$label(class = "reference-label")
     },
+    if (type %in% c("include", "exclude")) {
+      htmltools::tags$label(class = "area-label")
+    },
     htmltools::tags$div(
       class = "provenance-container"
     ),

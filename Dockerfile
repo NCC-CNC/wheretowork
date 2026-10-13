@@ -1,3 +1,4 @@
+# check=skip=UndefinedVar
 # base image
 FROM rocker/shiny:4.4.1 AS base
 
@@ -14,7 +15,6 @@ RUN add-apt-repository ppa:ubuntugis/ubuntugis-unstable && \
       libcurl4-gnutls-dev \
       libssl-dev \
       libudunits2-dev \
-      libudunits2-dev \
       libgdal-dev \
       libgeos-dev \
       libproj-dev \
@@ -28,17 +28,18 @@ RUN add-apt-repository ppa:ubuntugis/ubuntugis-unstable && \
     && rm -rf /var/lib/apt/lists/*
 
 ## install gurobi
-ENV GRB_VERSION 12.0.0
-ENV GRB_SHORT_VERSION 12.0
-ENV GUROBI_HOME /opt/gurobi/linux64
-#ENV LD_LIBRARY_PATH ${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib
+ENV GRB_VERSION=12.0.0
+ENV GRB_SHORT_VERSION=12.0
+ENV GRB_R_VERSION=12.0-0
+ENV GRB_R_RVERSION=4.4.0
+ENV GUROBI_HOME=/opt/gurobi/linux64
 RUN wget -v https://packages.gurobi.com/${GRB_SHORT_VERSION}/gurobi${GRB_VERSION}_linux64.tar.gz \
     && tar -xvf gurobi${GRB_VERSION}_linux64.tar.gz  \
     && rm -f gurobi${GRB_VERSION}_linux64.tar.gz \
     && mv -f gurobi* /opt/gurobi \
     && rm -rf gurobi/linux64/docs
 
-ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib"
+ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH:-}:${GUROBI_HOME}/lib"
 
 ## install R packages
 RUN mkdir /renv
@@ -46,7 +47,7 @@ COPY renv.lock /renv/renv.lock
 RUN cd /renv && \
     Rscript -e 'install.packages(c("renv", "remotes"))' && \
     Rscript -e 'renv::restore()' && \
-    Rscript -e 'install.packages("/opt/gurobi/linux64/R/gurobi_12.0-0_R_4.4.0.tar.gz",repos = NULL)'
+    Rscript -e 'install.packages("/opt/gurobi/linux64/R/gurobi_'"${GRB_R_VERSION}"'_R_'"${GRB_R_RVERSION}"'.tar.gz",repos = NULL)'
 
 
 

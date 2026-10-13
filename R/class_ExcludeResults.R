@@ -84,9 +84,9 @@ ExcludeResults <- R6::R6Class(
       tibble::tibble(
         name = self$exclude$name,
         status = self$status,
-        total = self$exclude$variable$total,
+        total = calculate_variable_area_km2(self$exclude$variable),
         held = self$held,
-        units = self$exclude$variable$units
+        units = stringi::stri_unescape_unicode("km\\u00B2")
       )
     },
 
@@ -98,9 +98,9 @@ ExcludeResults <- R6::R6Class(
         id = self$id,
         name = self$exclude$name,
         status = self$status,
-        total_amount = self$exclude$variable$total,
+        total_amount = calculate_variable_area_km2(self$exclude$variable),
         solution_held = self$held,
-        units = self$exclude$variable$units,
+        units = stringi::stri_unescape_unicode("km\\u00B2"),
         provenance = self$exclude$variable$provenance$get_widget_data(),
         type = "exclude_results"
       )

@@ -30,7 +30,6 @@ dependencies:
       - IncludeSetting-class.js
       - ExcludeSetting-class.js
       - MultiThemeSetting-class.js
-      - SingleThemeSetting-class.js
       - WeightSetting-class.js
       - label-text.js
       - utils.js

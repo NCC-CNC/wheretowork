@@ -370,7 +370,9 @@ Exclude <- R6::R6Class(
         status = self$status,
         mandatory = self$mandatory,
         provenance = self$variable$provenance$get_widget_data(),
-        overlap = self$overlap
+        overlap = self$overlap,
+        total_amount = calculate_variable_area_km2(self$variable),
+        units = stringi::stri_unescape_unicode("km\\u00B2")
       )
     },
 

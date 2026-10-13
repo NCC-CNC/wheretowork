@@ -12,6 +12,14 @@ class MultiThemeLayer {
     feature_provenance,
     units
   ) {
+    // normalize per-feature arguments so a theme with a single feature
+    // (whose values arrive from R as unboxed scalars) works identically
+    // to a theme with multiple features
+    feature_id = toArray(feature_id);
+    feature_name = toArray(feature_name);
+    feature_visible = toArray(feature_visible);
+    feature_hidden = toArray(feature_hidden);
+
     // class fields
     /// internal variables
     this.id = id;
@@ -208,6 +216,11 @@ class MultiThemeLayer {
   /* update HTML elements */
   /* update methods */
   updateSetting(setting, value) {
+    // per-feature settings can arrive as a scalar for a single-feature
+    // theme, so normalize to an array before dispatching
+    if (setting === "feature_visible") {
+      value = toArray(value);
+    }
     if (setting === "name") {
       this.updateName(value);
     } else if (setting === "visible") {
