@@ -95,7 +95,7 @@ Depends:
 License: file LICENSE + LICENSE.note
 Encoding: UTF-8
 Language: en-US
-URL: https://NCC-CNC.github.io/wheretowork/
+URL: https://ncc-cnc.github.io/wheretowork
 BugReports: https://github.com/NCC-CNC/wheretowork/issues
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)

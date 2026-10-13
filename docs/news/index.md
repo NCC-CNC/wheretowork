@@ -1,0 +1,195 @@
+# Changelog
+
+## wheretowork 1.3.0
+
+#### New features
+
+- Added “Satellite with labels” and “Topography” basemaps. The “Gray
+  scale” and “Monochrome” basemaps now accept a CARTO API key via the
+  `CARTO_API_KEY` environmental variable
+  ([\#433](https://github.com/NCC-CNC/wheretowork/issues/433)).
+- Selecting an area budget below the area of enabled includes now shows
+  a prompt on “Optimize” to adjust the settings
+  ([\#346](https://github.com/NCC-CNC/wheretowork/issues/346)).
+- Includes and excludes now show their total area in km² in the new
+  solution sidebar, calculated from the planning unit areas, and the
+  solution results show the actual area selected, accounting for
+  overlapping includes and excludes
+  ([\#346](https://github.com/NCC-CNC/wheretowork/issues/346),
+  [\#461](https://github.com/NCC-CNC/wheretowork/issues/461)).
+- Added the number of goals met to the solution summary
+  ([\#322](https://github.com/NCC-CNC/wheretowork/issues/322),
+  [\#463](https://github.com/NCC-CNC/wheretowork/issues/463)).
+
+#### Minor changes and bug fixes
+
+- Themes containing a single feature are now displayed as multi-feature
+  themes, so the feature name is shown within the theme
+  ([\#343](https://github.com/NCC-CNC/wheretowork/issues/343)).
+- Fixed solutions exceeding the area budget for irregularly sized
+  planning unit polygons
+  ([\#444](https://github.com/NCC-CNC/wheretowork/issues/444)).
+- Fixed project import failing for layers with all zero values
+  ([\#443](https://github.com/NCC-CNC/wheretowork/issues/443)).
+- Fixed a JavaScript console error when selecting “upload shapefile” as
+  the import method
+  ([\#241](https://github.com/NCC-CNC/wheretowork/issues/241)).
+- Increased the file upload and `future` package size limits to 4GB to
+  support large projects
+  ([\#440](https://github.com/NCC-CNC/wheretowork/issues/440)).
+
+#### Infrastructure changes
+
+- Partner groups now only see their own built-in projects
+  ([\#437](https://github.com/NCC-CNC/wheretowork/issues/437)).
+- Cleaned up the Dockerfile to resolve build warnings
+  ([\#447](https://github.com/NCC-CNC/wheretowork/issues/447)).
+- Replaced the tracked `.env` file with a `.env.example` template; copy
+  it to `.env` to configure Docker Compose
+  ([\#456](https://github.com/NCC-CNC/wheretowork/issues/456)).
+
+## wheretowork 1.2.7
+
+#### Minor changes and bug fixes
+
+- Special characters (e.g., é, è, ê, à, ç, ô, î, ù, ë, ï, œ, æ) are now
+  supported in the layer display name (table of contents, new solution,
+  solution results).
+
+## wheretowork 1.2.6
+
+#### Minor changes and bug fixes
+
+- Rasters are pre-reprojected to EPSG:3857 directly before being added
+  to Leaflet maps to avoid display issues.
+
+## wheretowork 1.2.5
+
+#### Infrastrucure changes
+
+- Updated to rocker/shiny:4.4.1 AS base in Dockerfile. This uses Ubuntu
+  LTS 22.04 which aligns with our GitHub Actions ubuntu-runner.
+
+## wheretowork 1.2.4
+
+#### Minor changes and bug fixes
+
+- Updated Gurobi to version 12.0.0
+- Replaced gurobi.loc file to the new Gurobi Gives Back free version
+
+## wheretowork 1.2.3
+
+#### Minor changes and bug fixes
+
+- Added `data_prep_date` attribute on `write_project`
+- Solution setting tab names back to “single goals” and “group goal”.
+- Fixed update solution bug (multi-theme and single-theme status logic).
+- Thousand comma separated values in charts and tables.
+- Activated the pointer cursor on the colour picker. Thanks
+  [@XavierCLL](https://github.com/XavierCLL).
+- Adjusted tooltip position of solution charts. Thanks
+  [@XavierCLL](https://github.com/XavierCLL).
+
+## wheretowork 1.1.3
+
+#### Minor changes and bug fixes
+
+- fixed shapefile uploads, bug
+  [\#396](https://github.com/NCC-CNC/wheretowork/issues/396)
+
+## wheretowork 1.1.2
+
+#### Minor changes and bug fixes
+
+- New `downloadable` field for `Features`, `Weights`, `Includes`,
+  `Excludes` and `Solutions`. When `downloadable` is set to `FALSE`, the
+  spatial layer will not be available for export. Sensitive layers not
+  to be downloaded can be explicitly set in the [Where To Work data prep
+  workflow](https://github.com/NCC-CNC/wtw-data-prep).
+
+## wheretowork 1.0.2
+
+#### Minor changes and bug fixes
+
+- Multiple layer download bug fix, issue
+  [\#391](https://github.com/NCC-CNC/wheretowork/issues/391).
+
+## wheretowork 1.0.1
+
+#### Minor changes and bug fixes
+
+- Updated wheretowork pkgdown site
+
+## wheretowork 1.0.0
+
+#### Notice
+
+- Official Where To Work version 1.
+
+#### Minor changes and bug fixes
+
+- Boundary data required for spatial clustering has changed to the
+  prioritizr 8.0.4 format. This includes a better approach for rescaling
+  data to avoid numerical issues during optimization. Earlier versions
+  of the package recommended the use of the
+  [`scales::rescale()`](https://scales.r-lib.org/reference/rescale.html)
+  to rescale such data. Now we use
+  [`prioritizr::rescale_matrix()`](https://prioritizr.net/reference/rescale_matrix.html)
+  function to rescale boundary length data.
+- Where To Work can still load older boundary data generated from
+  previous projects, however it is recommended that new projects prep
+  data with prioritizr \>= 8.0.4 and wheretowork 1.0.0.
+- The `renv.lock` file only includes application dependencies from
+  Imports, Depends and LinksTo found within the DESCRIPTION file. It
+  does not include the Suggests packages needed for development. This
+  reduces the bloat on deployment and installing wheretowork for data
+  prep. The steps to contribute to package development include cloning
+  wheretowork, running
+  [`renv::restore()`](https://rstudio.github.io/renv/reference/restore.html),
+  and then manually
+  [`renv::install`](https://rstudio.github.io/renv/reference/install.html)
+  the Suggests packages referencing the correct version. Example
+  `renv::install(testthat@3.3.2.1.1)`. Gurobi is not a CRAN package.
+  Follow the gurobi installation guide found on the prioritizr.net
+  article:
+  <https://prioritizr.net/articles/gurobi_installation_guide.html>.
+
+#### Major changes
+
+- Requires R version 4.4.1
+- Migrated from raster package to terra package.
+- Updated all CRAN package dependencies to latest version as of August,
+  2024.
+- Updated REMOTE leaflet package dependency to latest version as of
+  August, 2024.
+- Added backwards compatibility for boundary data.
+- Removed
+  [`leaflet.extras2::addHistory`](https://trafficonese.github.io/leaflet.extras2/reference/addHistory.html)
+  button. This feature is not compatible with Shiny \>= 1.7.0 when they
+  removed the bundled copy of fontawesome to the fontawesome package.
+- Updated license agreement.
+- Updated `renv.lock` file only records application dependencies from
+  Imports, Depends and LinksTo.
+
+#### Minor changes and bug fixes
+
+- The `write_project` function now includes the wheretowork and
+  prioritizr package version number to the `attribute.yaml`.
+- The `read_project` function checks if the prioritizr version number
+  does not exist or is \< version 8.0.4. If true, then `update_bm`
+  method is called on the Dataset class to update the boundary data to
+  the new format.
+- Replaced pryr with lobstr for tracking memory usage.
+- Removed `readNamedRaster`, this function was never called.
+- Removed raster layer names as a .txt in `writeNamedRaster` function.
+  The
+  [`terra::writeRaster`](https://rspatial.github.io/terra/reference/writeRaster.html)
+  function by default keeps layer names.
+
+#### Infrastrucure changes
+
+- Updated to rocker/shiny:4.4.0 AS base in Dockerfile.
+
+## wheretowork 0.0.0.9000
+
+- Initial package version.
