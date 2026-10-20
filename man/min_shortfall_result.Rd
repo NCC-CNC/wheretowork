@@ -26,7 +26,9 @@ min_shortfall_result(
   time_limit_2 = .Machine$integer.max,
   verbose = FALSE,
   id = uuid::UUIDgenerate(),
-  try_gurobi = FALSE
+  try_gurobi = FALSE,
+  weight_importance = 0.25,
+  min_budget_proportion = 0.99
 )
 }
 \arguments{
@@ -88,6 +90,15 @@ displayed when generating solutions. Defaults to \code{FALSE}.}
 
 \item{try_gurobi}{\code{logical} value indicating if the Gurobi solver should be
 used when generating solutions. Defaults to \code{FALSE}.}
+
+\item{weight_importance}{\code{numeric} total relative importance of the
+weights compared with the goals (which have an importance of 1).
+Must be greater than 0 and no more than 1. Defaults to 0.25.}
+
+\item{min_budget_proportion}{\code{numeric} minimum proportion of the area
+budget that the solution must use when weights are enabled and the goals
+cannot all be met (ranging between 0 and 1), or as much as is feasible.
+Defaults to 0.99.}
 }
 \value{
 A \link{Solution} object containing the solution.
@@ -95,6 +106,17 @@ A \link{Solution} object containing the solution.
 \description{
 Create a new \link{Result} object by generating a prioritization
 using the minimum shortfall formulation of the reserve selection problem.
+}
+\details{
+If any weights are enabled, then the goals (minimum shortfall objective)
+and each weight (maximum weighted sum objective) are combined using the
+reference point approach (see \code{\link[prioritizr:add_ref_point_approach]{prioritizr::add_ref_point_approach()}}).
+The goals have an importance of 1, and \code{weight_importance} is shared among
+the weights in proportion to their factors. Each weight is rescaled by its
+total. The best value for the goals is stored in \code{cache}. If the goals can
+all be met within the area budget, then solutions must meet them;
+otherwise solutions must use at least \code{min_budget_proportion} of the
+area budget.
 }
 \examples{
 # find data file paths

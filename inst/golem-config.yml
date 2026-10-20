@@ -35,6 +35,16 @@ default:
   solver_time_limit_1: 3600 # one hour for generating initial solution
   solver_time_limit_2: 300 # 5 minutes for spatial clustering optimization
 
+  ## total relative importance of the weights compared with the goals
+  ## (which have a relative importance of 1) when using an area budget,
+  ## must be greater than 0 and less than or equal to 1
+  weight_importance: 0.25
+
+  ## minimum proportion of the area budget that solutions must use
+  ## (when weights are enabled and the goals cannot all be met within the
+  ## area budget)
+  min_budget_proportion: 0.99
+
   ## time out (seconds) for worker processes
   ## i.e. maximum time that worker process should remain active after
   ## contacting controller process
