@@ -77,6 +77,8 @@ server_generate_new_solution <- quote({
     curr_name <- trimws(input$newSolutionPane_settings_name)
     curr_gap_1 <- get_golem_config("solver_gap_1")
     curr_gap_2 <- get_golem_config("solver_gap_2")
+    curr_weight_importance <- get_golem_config("weight_importance")
+    curr_min_budget_proportion <- get_golem_config("min_budget_proportion")
     curr_verbose <- get_golem_config("verbose")
     curr_color <- scales::alpha(input$newSolutionPane_settings_color, 0.8)
     curr_type <- app_data$ss$get_parameter("budget_parameter")$status
@@ -191,61 +193,47 @@ server_generate_new_solution <- quote({
 
     ## generate result using asynchronous task
     app_data$task <- future::future(packages = "wheretowork", seed = NULL, {
+      ### arguments shared by both formulations
+      curr_args <- list(
+        id = curr_id,
+        area_data = curr_area_data,
+        boundary_data = curr_boundary_data,
+        theme_data = curr_theme_data,
+        weight_data = curr_weight_data,
+        include_data = curr_include_data,
+        exclude_data = curr_exclude_data,
+        theme_settings = curr_theme_settings,
+        weight_settings = curr_weight_settings,
+        include_settings = curr_include_settings,
+        exclude_settings = curr_exclude_settings,
+        parameters = curr_parameters,
+        overlap = curr_overlap,
+        gap_1 = curr_gap_1,
+        gap_2 = curr_gap_2,
+        boundary_gap = curr_boundary_gap,
+        cache = curr_cache,
+        time_limit_1 = curr_time_limit_1,
+        time_limit_2 = curr_time_limit_2,
+        verbose = curr_verbose,
+        try_gurobi = try_gurobi
+      )
       ### main processing
-      if (curr_type) {
+      if (!curr_type) {
+        #### if no budget specified, then use the min set formulation
+        r <- try(do.call(min_set_result, curr_args), silent = TRUE)
+      } else {
         #### if budget specified, then use the min shortfall formulation
         r <- try(
-          min_shortfall_result(
-            id = curr_id,
-            area_budget_proportion = curr_area_budget,
-            area_data = curr_area_data,
-            boundary_data = curr_boundary_data,
-            theme_data = curr_theme_data,
-            weight_data = curr_weight_data,
-            include_data = curr_include_data,
-            exclude_data = curr_exclude_data,
-            theme_settings = curr_theme_settings,
-            weight_settings = curr_weight_settings,
-            include_settings = curr_include_settings,
-            exclude_settings = curr_exclude_settings,
-            parameters = curr_parameters,
-            overlap = curr_overlap,
-            gap_1 = curr_gap_1,
-            gap_2 = curr_gap_2,
-            boundary_gap = curr_boundary_gap,
-            cache = curr_cache,
-            time_limit_1 = curr_time_limit_1,
-            time_limit_2 = curr_time_limit_2,
-            verbose = curr_verbose,
-            try_gurobi = try_gurobi
-          ),
-          silent = TRUE
-        )
-      } else {
-        #### else, then use the min set formulation
-        r <- try(
-          min_set_result(
-            id = curr_id,
-            area_data = curr_area_data,
-            boundary_data = curr_boundary_data,
-            theme_data = curr_theme_data,
-            weight_data = curr_weight_data,
-            include_data = curr_include_data,
-            exclude_data = curr_exclude_data,
-            theme_settings = curr_theme_settings,
-            weight_settings = curr_weight_settings,
-            include_settings = curr_include_settings,
-            exclude_settings = curr_exclude_settings,
-            parameters = curr_parameters,
-            overlap = curr_overlap,
-            gap_1 = curr_gap_1,
-            gap_2 = curr_gap_2,
-            boundary_gap = curr_boundary_gap,
-            cache = curr_cache,
-            time_limit_1 = curr_time_limit_1,
-            time_limit_2 = curr_time_limit_2,
-            verbose = curr_verbose,
-            try_gurobi = try_gurobi
+          do.call(
+            min_shortfall_result,
+            append(
+              curr_args,
+              list(
+                area_budget_proportion = curr_area_budget,
+                weight_importance = curr_weight_importance,
+                min_budget_proportion = curr_min_budget_proportion
+              )
+            )
           ),
           silent = TRUE
         )
