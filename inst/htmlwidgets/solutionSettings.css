@@ -10,3 +10,8 @@
   --border: black;
   --symbol-border: #D3D3D3;
 }
+
+/* background color for solution layers in order to identify it from other layers */
+div:has(> div.solution-layer) {
+  background-color: #e9ecef;
+}
