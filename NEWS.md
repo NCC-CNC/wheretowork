@@ -24,6 +24,10 @@ solution was generated with a different spatial clustering setting.
 ### Infrastructure changes
 - Updated to prioritizr 9.0.1 (and terra 1.9-50) for multi-objective
 optimization (#446).
+- Docker images are now built and pushed to Docker Hub by a GitHub Actions
+workflow, replacing the deprecated Docker Hub automated builds. Pushes to
+`dev` and `master` update the `dev` and `latest` tags, and `vX.Y.Z` tags
+create `release-X.Y.Z` images (#476).
 
 # wheretowork 1.3.0
 
