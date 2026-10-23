@@ -10,7 +10,7 @@ solutions.
 
 Useful links:
 
-- <https://NCC-CNC.github.io/wheretowork/>
+- <https://ncc-cnc.github.io/wheretowork>
 
 - Report bugs at <https://github.com/NCC-CNC/wheretowork/issues>
 

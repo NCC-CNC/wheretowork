@@ -1,3 +1,30 @@
+# wheretowork 1.3.1
+
+### New features
+- Area budget solutions now use multi-objective optimization to account for
+Weights, with the Goals and each Weight as separate objectives combined using
+the reference point approach. Weights are no longer applied as hard
+constraints, so positive and negative Weights can be combined with an area
+budget without making the problem infeasible. Negative Weights no longer
+severely restrict the area selected, since solutions must use at least 99% of
+the area budget when the Goals cannot all be met within it (set by
+`min_budget_proportion` in the app configuration). When the Goals can all be
+met within the area budget, solutions must meet all of the Goals, but do not
+need to use all of the area budget. Each Weight is measured as
+the proportion of its total held in the solution. As with no area budget, the
+factors set the relative importance of the Weights compared with each other,
+and the Weights together have a fixed importance (a quarter of that of the
+Goals, set by `weight_importance` in the app configuration), so enabling many
+Weights does not override the Goals (#323, #414, #446).
+
+### Minor changes and bug fixes
+- Fixed spatial clustering having no effect on area budget solutions after a
+solution was generated with a different spatial clustering setting.
+
+### Infrastructure changes
+- Updated to prioritizr 9.0.1 (and terra 1.9-50) for multi-objective
+optimization (#446).
+
 # wheretowork 1.3.0
 
 ### New features
