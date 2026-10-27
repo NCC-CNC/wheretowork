@@ -78,6 +78,10 @@ server_generate_new_solution <- quote({
     curr_gap_1 <- get_golem_config("solver_gap_1")
     curr_gap_2 <- get_golem_config("solver_gap_2")
     curr_weight_importance <- get_golem_config("weight_importance")
+    if (app_data$ss$get_parameter("weight_importance_parameter")$status) {
+      curr_weight_importance <-
+        app_data$ss$get_parameter("weight_importance_parameter")$value / 100
+    }
     curr_min_budget_proportion <- get_golem_config("min_budget_proportion")
     curr_verbose <- get_golem_config("verbose")
     curr_color <- scales::alpha(input$newSolutionPane_settings_color, 0.8)

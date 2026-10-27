@@ -551,7 +551,7 @@ min_shortfall_result <- function(area_budget_proportion,
       add_wtw_solver(
         try_gurobi = try_gurobi, verbose = verbose,
         gap = gap_2, time_limit = time_limit_2,
-        start_solution = pmax(initial_solution, locked_in)
+        start_solution = initial_solution
       )
 
     ### add locked in constraints if needed

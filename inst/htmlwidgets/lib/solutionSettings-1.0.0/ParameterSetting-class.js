@@ -83,9 +83,11 @@ class ParameterSetting {
      createFile(this.el.querySelector(".file-container")); 
     }
 
-    /// show slider if budget or spatial parameter
-    let sliders = ["budget_parameter", "spatial_parameter"] 
-    if (status && sliders.includes(this.id)) { 
+    /// show slider if budget, weight importance, or spatial parameter
+    let sliders = [
+      "budget_parameter", "weight_importance_parameter", "spatial_parameter"
+    ]
+    if (status && sliders.includes(this.id)) {
       //// show slider
       this.value_container_el.style.display = "block";
       if (this.has_ref) {
@@ -133,7 +135,7 @@ class ParameterSetting {
         }
         /// hide slider if needed
         if (that.hide) {
-          /// show slider if budget or spatial parameter
+          /// show slider if budget, weight importance, or spatial parameter
           if (checked && sliders.includes(id)) {
             //// show slider
             that.value_container_el.style.display = "block";
@@ -169,6 +171,9 @@ class ParameterSetting {
         } else {
           els.forEach((x) => x.setAttribute("disabled", ""));
         }
+
+        //// update settings that depend on this setting
+        that.updateDependentSettings();
       });
     }
 
@@ -269,8 +274,10 @@ class ParameterSetting {
       }
       
       if (this.hide) {
-        /// show slider if budget or spatial parameter
-        const sliders = ["budget_parameter", "spatial_parameter"] 
+        /// show slider if budget, weight importance, or spatial parameter
+        const sliders = [
+          "budget_parameter", "weight_importance_parameter", "spatial_parameter"
+        ]
         if (this.status_el.checked && sliders.includes(this.id)) {
           /// show slider
           this.value_container_el.style.display = "block";
@@ -296,6 +303,20 @@ class ParameterSetting {
       els.forEach((x) => x.removeAttribute("disabled"));
     } else {
       els.forEach((x) => x.setAttribute("disabled", ""));
+    }
+
+    // update settings that depend on this setting
+    this.updateDependentSettings();
+  }
+
+  updateDependentSettings() {
+    // only show weight importance setting when the area budget is used,
+    // because it only applies to solutions with an area budget
+    if (this.id === "budget_parameter") {
+      let el = document.getElementById("setting-weight_importance_parameter");
+      if (el) {
+        el.style.display = this.status_el.checked ? "" : "none";
+      }
     }
   }
 

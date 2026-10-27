@@ -13,9 +13,12 @@ met within the area budget, solutions must meet all of the Goals, but do not
 need to use all of the area budget. Each Weight is measured as
 the proportion of its total held in the solution. As with no area budget, the
 factors set the relative importance of the Weights compared with each other,
-and the Weights together have a fixed importance (a quarter of that of the
-Goals, set by `weight_importance` in the app configuration), so enabling many
-Weights does not override the Goals (#323, #414, #446).
+and the Weights together have a fixed importance (by default a quarter of that
+of the Goals), so enabling many Weights does not override the Goals (#323,
+#414, #446).
+- Added a "Weight importance" setting, shown when the area budget is turned on,
+to set how important the Weights are compared with the Goals. When turned off,
+the default (`weight_importance` in the app configuration) is used.
 
 ### Minor changes and bug fixes
 - Fixed spatial clustering having no effect on area budget solutions after a

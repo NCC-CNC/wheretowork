@@ -316,7 +316,7 @@ enc2ascii <- function(x) {
 #'
 #' @noRd
 add_wtw_solver <- function(x, try_gurobi, ...) {
-  if (try_gurobi) {
+  if (isTRUE(try_gurobi)) {
     prioritizr::add_gurobi_solver(x, ...)
   } else {
     prioritizr::add_cbc_solver(x, ...)
