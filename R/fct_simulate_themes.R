@@ -81,8 +81,8 @@ simulate_themes <- function(dataset, n_single_themes, n_multi_themes,
   ## select names
   st_idx <- sample.int(nrow(tn), n_single_themes)
   st_names <- tn$feature[st_idx]
-  ## set index names
-  st_index <- make_valid_names(st_names)
+  ## set index names (ASCII, like column names in real data)
+  st_index <- make_valid_names(enc2ascii(st_names))
   ## generate themes
   st <- list()
   for (i in seq_len(n_single_themes)) {
@@ -174,7 +174,7 @@ simulate_themes <- function(dataset, n_single_themes, n_multi_themes,
     ### simulate underyling data for features within the theme
     curr_tn_names <-
       sample(tn$feature[tn$theme == mt_names[i]], mt_n_features[i])
-    curr_tn_index <- make_valid_names(curr_tn_names)
+    curr_tn_index <- make_valid_names(enc2ascii(curr_tn_names))
     ### simulate features within the theme
     
     if (is.na(continuous)) {
