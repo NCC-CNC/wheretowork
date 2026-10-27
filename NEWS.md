@@ -28,6 +28,10 @@ optimization (#446).
 workflow, replacing the deprecated Docker Hub automated builds. Pushes to
 `dev` and `master` update the `dev` and `latest` tags, and `vX.Y.Z` tags
 create `release-X.Y.Z` images (#476).
+- Fixed R CMD check halting at the DESCRIPTION check in the GitHub Actions
+workflows, since R 4.4 no longer accepts `_R_CHECK_LICENSE_: "maybe"`. Also
+fixed an intermittent test failure for categorical variables when simulated
+data skipped a category.
 
 # wheretowork 1.3.0
 

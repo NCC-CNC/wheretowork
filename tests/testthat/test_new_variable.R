@@ -100,12 +100,11 @@ test_that("new_variable_from_auto (categorical)", {
   expect_identical(x$dataset, d)
   expect_equal(x$total, terra::global(rd[[1]], fun="sum", na.rm=TRUE)[[1]]) # equal but not identical
   expect_identical(x$units, "ha")
+  # simulated categories can leave gaps, so use values present in the data
+  v <- sort(terra::unique(rd[[1]])[[1]])
   expect_equal(
     x$legend,
-    new_categorical_legend(
-      seq_len(terra::global(rd[[1]], fun="max", na.rm=TRUE)[[1]]),
-      color_palette("viridis", terra::global(rd[[1]], fun="max", na.rm=TRUE)[[1]])
-    )
+    new_categorical_legend(v, color_palette("viridis", length(v)))
   )
 })
 
