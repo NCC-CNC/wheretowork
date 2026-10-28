@@ -127,7 +127,8 @@ class SolutionSettings {
     // parameters
     const parameter_panel = this.container.querySelector(".parameters");
     this.parameters.forEach((x) => parameter_panel.appendChild(x.render()));
-    
+    this.parameters.forEach((x) => x.updateDependentSettings());
+
     // disable settings parameter need be
     for (let i of this.parameters) {
       if (i.disable){

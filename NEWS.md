@@ -1,3 +1,43 @@
+# wheretowork 1.3.1
+
+### New features
+- Area budget solutions now use multi-objective optimization to account for
+Weights, with the Goals and each Weight as separate objectives combined using
+the reference point approach. Weights are no longer applied as hard
+constraints, so positive and negative Weights can be combined with an area
+budget without making the problem infeasible. Negative Weights no longer
+severely restrict the area selected, since solutions must use at least 99% of
+the area budget when the Goals cannot all be met within it (set by
+`min_budget_proportion` in the app configuration). When the Goals can all be
+met within the area budget, solutions must meet all of the Goals, but do not
+need to use all of the area budget. Each Weight is measured as
+the proportion of its total held in the solution. As with no area budget, the
+factors set the relative importance of the Weights compared with each other,
+and the Weights together have a fixed importance (by default a quarter of that
+of the Goals), so enabling many Weights does not override the Goals (#323,
+#414, #446).
+- Added a "Weight importance" setting, shown when the area budget is turned on,
+to set how important the Weights are compared with the Goals. When turned off,
+the default (`weight_importance` in the app configuration) is used.
+
+### Minor changes and bug fixes
+- Fixed spatial clustering having no effect on area budget solutions after a
+solution was generated with a different spatial clustering setting.
+
+### Infrastructure changes
+- Updated to prioritizr 9.0.1 (and terra 1.9-50) for multi-objective
+optimization (#446).
+- Docker images are now built and pushed to Docker Hub by a GitHub Actions
+workflow, replacing the deprecated Docker Hub automated builds. Pushes to
+`dev` and `master` update the `dev` and `latest` tags, and `vX.Y.Z` tags
+create `release-X.Y.Z` images (#476).
+- Fixed R CMD check halting at the DESCRIPTION check in the GitHub Actions
+workflows, since R 4.4 no longer accepts `_R_CHECK_LICENSE_: "maybe"`. Also
+fixed an intermittent test failure for categorical variables when simulated
+data skipped a category.
+- Fixed intermittent test failures when simulated theme names contained
+accented characters (#482).
+
 # wheretowork 1.3.0
 
 ### New features

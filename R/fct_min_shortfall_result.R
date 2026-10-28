@@ -12,7 +12,29 @@ NULL
 #'   This should be a proportion (with values ranging between 0 and 1)
 #'   indicating the maximum spatial extent of the solution.
 #'
+#' @param weight_importance `numeric` total relative importance of the
+#'   weights compared with the goals (which have an importance of 1).
+#'   Must be greater than 0 and no more than 1. Defaults to 0.25.
+#'
+#' @param min_budget_proportion `numeric` minimum proportion of the area
+#'   budget that the solution must use when weights are enabled and the goals
+#'   cannot all be met (ranging between 0 and 1), or as much as is feasible.
+#'   Defaults to 0.99.
+#'
 #' @inherit min_set_result return
+#'
+#' @details
+#' If any weights are enabled, then the goals (minimum shortfall objective)
+#' and each weight (maximum weighted sum objective) are combined using the
+#' reference point approach (see [prioritizr::add_ref_point_approach()]).
+#' The goals have an importance of 1, and `weight_importance` is shared among
+#' the weights in proportion to their factors. Each weight is rescaled by its
+#' total. The best value for each weight is calculated by solving its problem
+#' with proportion decisions, subject to the same constraints as the
+#' solution. The best value for the goals is stored in `cache`. If the goals can
+#' all be met within the area budget, then solutions must meet them;
+#' otherwise solutions must use at least `min_budget_proportion` of the
+#' area budget.
 #'
 #' @examples
 #' # find data file paths
@@ -68,7 +90,7 @@ NULL
 #'   name = "Protected areas", variable = v5,
 #'   status = FALSE, id = "I1"
 #' )
-#' 
+#'
 #' # create an excluded using a variable
 #' e <- new_exclude(
 #'   name = "Expensive areas", variable = v6,
@@ -128,7 +150,9 @@ min_shortfall_result <- function(area_budget_proportion,
                                  time_limit_2 = .Machine$integer.max,
                                  verbose = FALSE,
                                  id = uuid::UUIDgenerate(),
-                                 try_gurobi = FALSE) {
+                                 try_gurobi = FALSE,
+                                 weight_importance = 0.25,
+                                 min_budget_proportion = 0.99) {
 
   # validate arguments
   assertthat::assert_that(
@@ -195,7 +219,17 @@ min_shortfall_result <- function(area_budget_proportion,
     ## cache
     inherits(cache, "cachem"),
     ## try_gurobi
-    assertthat::is.flag(try_gurobi)
+    assertthat::is.flag(try_gurobi),
+    ## weight_importance
+    assertthat::is.number(weight_importance),
+    assertthat::noNA(weight_importance),
+    isTRUE(weight_importance > 0),
+    isTRUE(weight_importance <= 1),
+    ## min_budget_proportion
+    assertthat::is.number(min_budget_proportion),
+    assertthat::noNA(min_budget_proportion),
+    isTRUE(min_budget_proportion >= 0),
+    isTRUE(min_budget_proportion <= 1)
   )
   if (nrow(weight_settings) > 0) {
     assertthat::assert_that(
@@ -256,51 +290,24 @@ min_shortfall_result <- function(area_budget_proportion,
   locked_out <- budget_info$locked_out
 
   # calculate weight data
-  ## process weights with positive factors
-  wn_pos_idx <- which(weight_settings$status & (weight_settings$factor > 0))
-  if (length(wn_pos_idx) > 0) {
-    ### add these weights as features
-    features <- rbind(
-      features,
-      data.frame(
-        id = max(features$id) + seq_along(wn_pos_idx),
-        name = weight_settings$id[wn_pos_idx],
-        stringsAsFactors = FALSE
-      )
-    )
-    ### add these weights to rij data
-    wn_pos_data <- weight_data[wn_pos_idx, , drop = FALSE]
-    for (i in seq_len(nrow(wn_pos_data))) {
-      wn_pos_data[i, ] <- scales::rescale(wn_pos_data[i, ], to = c(0.01, 100))
-    }
-    rij_data <- rbind(rij_data, wn_pos_data)
-    ### add these weights to targets
-    targets <- dplyr::bind_rows(
-      targets,
-      tibble::tibble(
-        feature = weight_settings$id[wn_pos_idx],
-        type = "absolute",
-        sense = ">=",
-        target = c(
-          Matrix::rowSums(wn_pos_data) *
-          (weight_settings$factor[wn_pos_idx] / 100)
-        )
-      )
-    )
+  ## each weight is an objective (not a constraint), #414 and #446
+  wn_idx <- which(
+    weight_settings$status & (abs(weight_settings$factor) > 1e-10)
+  )
+  ## skip weights with only zero values
+  wn_idx <- wn_idx[
+    Matrix::rowSums(abs(weight_data[wn_idx, , drop = FALSE])) > 1e-10
+  ]
+  wn_data <- weight_data[wn_idx, , drop = FALSE]
+  ## scale values to avoid numerical issues
+  for (i in seq_len(nrow(wn_data))) {
+    wn_data[i, ] <- wn_data[i, ] * (100 / max(abs(wn_data[i, ])))
   }
-  ## process weights with negative factors
-  wn_neg_idx <- which(weight_settings$status & (weight_settings$factor < 0))
-  if (length(wn_neg_idx) > 0) {
-    ### add these weights to rij data
-    wn_neg_data <- weight_data[wn_neg_idx, , drop = FALSE]
-    for (i in seq_len(nrow(wn_neg_data))) {
-      wn_neg_data[i, ] <- scales::rescale(wn_neg_data[i, ], to = c(0.01, 100))
-    }
-    wn_neg_thresholds <- c(
-      Matrix::rowSums(wn_neg_data) *
-      (1 - abs(weight_settings$factor[wn_neg_idx] / 100))
-    )
-  }
+  ## negative weights are multiplied by -1 so high values are avoided
+  wn_sign <- sign(weight_settings$factor[wn_idx])
+  ## share the total weight importance in proportion to the factors
+  wn_importance <- abs(weight_settings$factor[wn_idx])
+  wn_importance <- weight_importance * wn_importance / sum(wn_importance)
 
   # extract cost and budget values calculated above
   cost <- budget_info$cost
@@ -322,7 +329,11 @@ min_shortfall_result <- function(area_budget_proportion,
       includes = include_settings,
       excludes = exclude_settings,
       overlap = overlap,
-      area_budget_proportion = area_budget_proportion
+      area_budget_proportion = area_budget_proportion,
+      ## spatial clustering reduces the budget for the initial solution
+      initial_budget = initial_budget,
+      weight_importance = weight_importance,
+      min_budget_proportion = min_budget_proportion
     )
   )
 
@@ -333,8 +344,19 @@ min_shortfall_result <- function(area_budget_proportion,
       Matrix::colSums(theme_data) > 0 |
       Matrix::colSums(weight_data) > 0 |
       Matrix::colSums(include_data) > 0 |
-      Matrix::colSums(exclude_data) > 0  
+      Matrix::colSums(exclude_data) > 0
     )
+    ## calculate minimum budget so weights cannot reduce the area, #446,
+    ## bounded so that the problem is always feasible
+    initial_avail_cost <- cost[initial_pu_idx][!locked_out[initial_pu_idx]]
+    initial_min_budget <- 0
+    if (length(initial_avail_cost) > 0) {
+      initial_min_budget <- min(
+        min_budget_proportion * initial_budget,
+        initial_budget - max(initial_avail_cost),
+        sum(initial_avail_cost)
+      )
+    }
     ## generate initial prioritization problem with subset of planning units
     ## this is needed to prevent CBC from crashing, #158
     ## this prioritization just aims to maximize feature representation given
@@ -347,46 +369,151 @@ min_shortfall_result <- function(area_budget_proportion,
       ) %>%
       prioritizr::add_min_shortfall_objective(budget = initial_budget) %>%
       prioritizr::add_manual_targets(targets) %>%
-      prioritizr::add_binary_decisions() %>%
-      #### set solver
-      {if (try_gurobi) 
-        prioritizr::add_gurobi_solver(
-          ., verbose = verbose, gap = gap_1, time_limit = time_limit_1
-        ) 
-        else
-          prioritizr::add_cbc_solver(
-            ., verbose = verbose, gap = gap_1, time_limit = time_limit_1
-        )
-      }      
-    
-    ## add locked in constraints if needed
-    if (any(locked_in[initial_pu_idx])) {
-      initial_problem <-
-        initial_problem %>%
-        prioritizr::add_locked_in_constraints(locked_in[initial_pu_idx])
-    }
-    ## add locked out constraints if needed
-    if (any(locked_out[initial_pu_idx])) {
-      initial_problem <-
-        initial_problem %>%
-        prioritizr::add_locked_out_constraints(locked_out[initial_pu_idx])
-    }    
-    ### add linear constraints if needed
-    if (length(wn_neg_idx) > 0) {
-      for (i in seq_len(nrow(wn_neg_data))) {
-        initial_problem <- prioritizr::add_linear_constraints(
-          initial_problem,
-          threshold = wn_neg_thresholds[i],
-          sense = "<=",
-          data = wn_neg_data[i, initial_pu_idx]
+      prioritizr::add_binary_decisions()
+
+    ## define functions to add constraints, so that the problems used to
+    ## calculate the best value for each weight have the same constraints
+    ## as the initial problem
+    ### add locked in/out constraints if needed
+    add_locked_constraints <- function(x) {
+      if (any(locked_in[initial_pu_idx])) {
+        x <- prioritizr::add_locked_in_constraints(
+          x, locked_in[initial_pu_idx]
         )
       }
+      if (any(locked_out[initial_pu_idx])) {
+        x <- prioritizr::add_locked_out_constraints(
+          x, locked_out[initial_pu_idx]
+        )
+      }
+      x
     }
-    ## solve problem to generate solution if needed
+    ### if all goals can be met, then add constraints to meet them,
+    ### otherwise add the minimum budget constraint if needed
+    add_goal_or_budget_constraints <- function(x, goals_met) {
+      if (goals_met) {
+        for (i in seq_len(nrow(targets))) {
+          x <- prioritizr::add_linear_constraints(
+            x,
+            threshold = floor(targets$target[[i]] * 1e+3) / 1e+3,
+            sense = ">=",
+            data = as.numeric(rij_data[i, initial_pu_idx])
+          )
+        }
+      } else if (initial_min_budget > 1e-5) {
+        x <- prioritizr::add_cost_constraints(
+          x, budget = initial_min_budget, sense = ">="
+        )
+      }
+      x
+    }
+
+    ## add locked in/out constraints
+    initial_problem <- add_locked_constraints(initial_problem)
+
+    ## if no weights are enabled, then just solve the primary problem
+    if (length(wn_idx) == 0) {
+      initial_problem <- add_wtw_solver(
+        initial_problem, try_gurobi = try_gurobi, verbose = verbose,
+        gap = gap_1, time_limit = time_limit_1
+      )
+      initial_raw_solution <-
+        prioritizr::solve.ConservationProblem(initial_problem, run_checks = FALSE)
+    } else {
+      ### solve primary problem for its best value,
+      ### cached since it does not depend on the weights
+      primary_key <- digest::digest(
+        list(
+          "primary", targets, initial_pu_idx, locked_in[initial_pu_idx],
+          locked_out[initial_pu_idx], initial_budget
+        )
+      )
+      if (!isTRUE(cache$exists(primary_key))) {
+        primary_solution <- prioritizr::solve.ConservationProblem(
+          add_wtw_solver(
+            initial_problem, try_gurobi = try_gurobi, verbose = verbose,
+            gap = gap_1, time_limit = time_limit_1
+          ),
+          run_checks = FALSE
+        )
+        cache$set(primary_key, attr(primary_solution, "objective")[[1]])
+      }
+      primary_best <- cache$get(primary_key)
+      ### if all goals can be met, then require them (and no minimum budget),
+      ### otherwise require the minimum budget
+      goals_met <- primary_best < 1e-5
+      initial_problem <- add_goal_or_budget_constraints(
+        initial_problem, goals_met
+      )
+      ### create an objective for each weight, without decisions so that
+      ### they can be used with binary or proportion decisions
+      weight_objectives <- lapply(seq_along(wn_idx), function(i) {
+        suppressMessages(suppressWarnings(
+          prioritizr::problem(
+            x = cost[initial_pu_idx],
+            features = data.frame(id = 1, name = weight_settings$id[wn_idx[i]]),
+            rij_matrix = wn_sign[i] * wn_data[i, initial_pu_idx, drop = FALSE]
+          ) %>%
+          prioritizr::add_max_wtd_sum_objective(budget = NULL)
+        ))
+      })
+      ### create a problem for each weight (constraints are in the primary)
+      weight_problems <- lapply(
+        weight_objectives, prioritizr::add_binary_decisions
+      )
+      names(weight_problems) <- paste0("weight_", seq_along(wn_idx))
+      ### calculate the best value for each weight, subject to the same
+      ### constraints as the initial problem, using proportion decisions
+      ### so that the value is never lower than the best value with binary
+      ### decisions (which would bias the solution against the weight), #446
+      weight_best <- vapply(
+        seq_along(weight_objectives), FUN.VALUE = numeric(1), function(i) {
+          p <-
+            weight_objectives[[i]] %>%
+            prioritizr::add_cost_constraints(
+              budget = initial_budget, sense = "<="
+            ) %>%
+            add_locked_constraints() %>%
+            add_goal_or_budget_constraints(goals_met) %>%
+            prioritizr::add_proportion_decisions() %>%
+            add_wtw_solver(
+              try_gurobi = try_gurobi, verbose = verbose,
+              gap = 0, time_limit = time_limit_1
+            )
+          s <- prioritizr::solve.ConservationProblem(p, run_checks = FALSE)
+          attr(s, "objective")[[1]]
+        }
+      )
+      ### worst primary value is a 100% shortfall for every target, and the
+      ### worst value for each weight is set so that best - worst is its
+      ### total, so that each weight is rescaled by its total
+      weight_total <- Matrix::rowSums(abs(wn_data))
+      mo_best <- c(primary_best, weight_best)
+      mo_worst <- c(nrow(targets), weight_best - weight_total)
+      ### combine problems using the reference point approach
+      mo_problem <-
+        do.call(
+          prioritizr::multi_problem,
+          append(list(primary = initial_problem), weight_problems)
+        ) %>%
+        prioritizr::add_ref_point_approach(
+          weights = c(1, wn_importance),
+          best = mo_best,
+          worst = mo_worst,
+          verbose = verbose
+        ) %>%
+        add_wtw_solver(
+          try_gurobi = try_gurobi, verbose = verbose,
+          gap = gap_1, time_limit = time_limit_1
+        )
+      ### solve problem
+      initial_raw_solution <- prioritizr::solve.MultiConservationProblem(
+        mo_problem, run_checks = FALSE
+      )
+    }
+    ## generate solution with all planning units
     initial_solution <- rep(0, length(cost))
-    initial_solution[initial_pu_idx] <- c(
-      prioritizr::solve.ConservationProblem(initial_problem, run_checks = FALSE)
-    )
+    initial_solution[initial_pu_idx] <- c(initial_raw_solution)
     ## store solution in cache
     cache$set(key, initial_solution)
   }
@@ -449,19 +576,12 @@ min_shortfall_result <- function(area_budget_proportion,
         )
       ) %>%
       prioritizr::add_binary_decisions() %>%
-      #### set solver
-      {if (try_gurobi) 
-        prioritizr::add_gurobi_solver(
-          ., verbose = verbose, gap = gap_2, time_limit = time_limit_2,
-          start_solution = pmax(initial_solution, locked_in)
-        ) 
-        else
-          prioritizr::add_cbc_solver(
-            ., verbose = verbose, gap = gap_2, time_limit = time_limit_2,
-            start_solution = pmax(initial_solution, locked_in)
-        )
-      }      
-    
+      add_wtw_solver(
+        try_gurobi = try_gurobi, verbose = verbose,
+        gap = gap_2, time_limit = time_limit_2,
+        start_solution = initial_solution
+      )
+
     ### add locked in constraints if needed
     if (any(locked_in)) {
       main_problem <-
@@ -474,14 +594,23 @@ min_shortfall_result <- function(area_budget_proportion,
         main_problem %>%
         prioritizr::add_locked_out_constraints(locked_out)
     }    
-    ### add linear constraints if needed
-    if (length(wn_neg_idx) > 0) {
-      for (i in seq_len(nrow(wn_neg_data))) {
+    ### add constraints so spatial clustering does not compromise the weights
+    for (i in seq_along(wn_idx)) {
+      wn_initial <- sum(initial_solution * wn_data[i, ])
+      if (wn_sign[i] > 0) {
         main_problem <- prioritizr::add_linear_constraints(
           main_problem,
-          threshold = wn_neg_thresholds[i],
+          threshold = floor(wn_initial * 1e+3) / 1e+3,
+          sense = ">=",
+          data = wn_data[i, ]
+        )
+      } else if (initial_budget > 1e-5) {
+        main_problem <- prioritizr::add_linear_constraints(
+          main_problem,
+          threshold =
+            ceiling(wn_initial * (total_budget / initial_budget) * 1e+3) / 1e+3,
           sense = "<=",
-          data = wn_neg_data[i, ]
+          data = wn_data[i, ]
         )
       }
     }
