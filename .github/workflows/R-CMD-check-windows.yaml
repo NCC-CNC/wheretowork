@@ -3,10 +3,11 @@
 on:
   schedule:
     - cron: 0 0 * * 1 # schedule to run at midnight on Monday each week
-  push: # trigger on push
+  push: # trigger on push (dev included so PRs into dev can reuse its package cache)
     branches:
       - main
       - master
+      - dev
   pull_request: # trigger on PR
     branches:
       - main
@@ -14,6 +15,10 @@ on:
       - dev
 
 name: Windows
+
+concurrency: # cancel superseded runs for the same PR/branch
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   R-CMD-check:
@@ -26,31 +31,40 @@ jobs:
       matrix:
         config:
           - {os: windows-latest, r: '4.4.1'}
-          
+
     env:
       _R_REMOTES_NO_ERRORS_FROM_WARNINGS_: true
       _R_CHECK_FORCE_SUGGESTS_: false
       _R_CHECK_TIMINGS_: 10
       _R_CHECK_CRAN_INCOMING_REMOTE_: false
       _R_CHECK_LICENSE_: false
+      # restore from Posit Package Manager instead of CRAN so that most locked
+      # versions install as Windows binaries (CRAN only has binaries for the
+      # current versions); the dated snapshot matches most of renv.lock, and
+      # anything not found there falls back to latest (building from source if
+      # needed), so update the date if renv.lock gets a bulk upgrade
+      RENV_CONFIG_REPOS_OVERRIDE: https://packagemanager.posit.co/cran/2024-08-20,https://packagemanager.posit.co/cran/latest
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       CI: true
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
 
       - uses: r-lib/actions/setup-r@v2
         with:
           r-version: ${{ matrix.config.r }}
+          use-public-rspm: true
 
       - uses: r-lib/actions/setup-pandoc@v2
 
       - name: Install dependencies
+        uses: r-lib/actions/setup-renv@v2
+        with:
+          bypass-cache: never # save the package cache even if the check fails
+
+      - name: Install check dependencies
         run: |
-          options(install.packages.compile.from.source = "always")
-          options(pkgType = "source")
-          install.packages(c("renv", "remotes", "testthat", "rvest"))
-          renv::restore()
+          install.packages(c("remotes", "testthat", "rvest"))
           remotes::install_cran("rcmdcheck")
           remotes::install_cran("covr")
         shell: Rscript {0}
@@ -61,7 +75,7 @@ jobs:
           pkgs <- installed.packages()[, "Package"]
           sessioninfo::session_info(pkgs, include_base = TRUE)
         shell: Rscript {0}
-        
+
       - name: Check
         run: |
           rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran", "--no-build-vignettes", "--no-multiarch"), error_on = "warning", check_dir = "check")
@@ -74,7 +88,7 @@ jobs:
 
       - name: Upload check results
         if: failure()
-        uses: actions/upload-artifact@main
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ runner.os }}-r${{ matrix.config.r }}-results
           path: check

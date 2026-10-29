@@ -1,12 +1,13 @@
 # For help debugging build failures open an issue on the RStudio community with the 'github-actions' tag.
 # https://community.rstudio.com/new-topic?category=Package%20development&tags=github-actions
-on: 
+on:
   schedule:
     - cron: 0 0 * * 1 # schedule to run at midnight on Monday each week
-  push: # trigger on push
+  push: # trigger on push (dev included so PRs into dev can reuse its package cache)
     branches:
       - main
       - master
+      - dev
   pull_request: # trigger on PR
     branches:
       - main
@@ -15,10 +16,14 @@ on:
 
 name: Ubuntu
 
+concurrency: # cancel superseded runs for the same PR/branch
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   R-CMD-check:
     runs-on: ${{ matrix.config.os }}
-    
+
     name: ${{ matrix.config.os }} (${{ matrix.config.r }})
 
     strategy:
@@ -26,7 +31,7 @@ jobs:
       matrix:
         config:
           - {os: ubuntu-22.04, r: '4.4.1'}
-    
+
     env:
       _R_REMOTES_NO_ERRORS_FROM_WARNINGS_: true
       _R_CHECK_FORCE_SUGGESTS_: false
@@ -37,7 +42,7 @@ jobs:
       CI: true
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
 
       - uses: r-lib/actions/setup-r@v2
         with:
@@ -50,10 +55,14 @@ jobs:
           sudo apt-get -y install libcurl4-openssl-dev coinor-libsymphony-dev coinor-libcbc-dev coinor-libclp-dev libudunits2-dev libgdal-dev libgeos-dev libproj-dev libharfbuzz-dev libfribidi-dev libuv1-dev libglpk-dev
 
       - name: Install dependencies
+        uses: r-lib/actions/setup-renv@v2
+        with:
+          bypass-cache: never # save the package cache even if the check fails
+
+      - name: Install check dependencies
         run: |
           options(install.packages.compile.from.source = "never")
-          install.packages(c("renv", "remotes", "testthat", "rvest"))
-          renv::restore()
+          install.packages(c("remotes", "testthat", "rvest"))
           remotes::install_cran("rcmdcheck")
           remotes::install_cran("covr")
           remotes::install_bioc("lpsymphony")
@@ -65,7 +74,7 @@ jobs:
           pkgs <- installed.packages()[, "Package"]
           sessioninfo::session_info(pkgs, include_base = TRUE)
         shell: Rscript {0}
-        
+
       - name: Check
         run: |
           rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran", "--no-build-vignettes"), error_on = "warning", check_dir = "check")
@@ -73,7 +82,7 @@ jobs:
 
       - name: Upload check results
         if: failure()
-        uses: actions/upload-artifact@main
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ runner.os }}-r${{ matrix.config.r }}-results
           path: check
