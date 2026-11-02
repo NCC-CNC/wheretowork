@@ -31,10 +31,10 @@ NULL
 #' the weights in proportion to their factors. Each weight is rescaled by its
 #' total in planning units that are not locked out. The best value for each
 #' weight is calculated by solving its problem with proportion decisions,
-#' subject to the same constraints as the solution. The best value for the goals is stored in `cache`. If the goals can
-#' all be met within the area budget, then solutions must meet them;
-#' otherwise solutions must use at least `min_budget_proportion` of the
-#' area budget.
+#' subject to the same constraints as the solution. The best value for the
+#' goals is stored in `cache`. If the goals can all be met within the area
+#' budget, then solutions must meet them; otherwise solutions must use at
+#' least `min_budget_proportion` of the area budget.
 #'
 #' @examples
 #' # find data file paths
