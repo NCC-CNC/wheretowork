@@ -29,12 +29,12 @@ NULL
 #' reference point approach (see [prioritizr::add_ref_point_approach()]).
 #' The goals have an importance of 1, and `weight_importance` is shared among
 #' the weights in proportion to their factors. Each weight is rescaled by its
-#' total. The best value for each weight is calculated by solving its problem
-#' with proportion decisions, subject to the same constraints as the
-#' solution. The best value for the goals is stored in `cache`. If the goals can
-#' all be met within the area budget, then solutions must meet them;
-#' otherwise solutions must use at least `min_budget_proportion` of the
-#' area budget.
+#' total in planning units that are not locked out. The best value for each
+#' weight is calculated by solving its problem with proportion decisions,
+#' subject to the same constraints as the solution. The best value for the
+#' goals is stored in `cache`. If the goals can all be met within the area
+#' budget, then solutions must meet them; otherwise solutions must use at
+#' least `min_budget_proportion` of the area budget.
 #'
 #' @examples
 #' # find data file paths
@@ -294,9 +294,11 @@ min_shortfall_result <- function(area_budget_proportion,
   wn_idx <- which(
     weight_settings$status & (abs(weight_settings$factor) > 1e-10)
   )
-  ## skip weights with only zero values
+  ## skip weights with only zero values in planning units not locked out
   wn_idx <- wn_idx[
-    Matrix::rowSums(abs(weight_data[wn_idx, , drop = FALSE])) > 1e-10
+    Matrix::rowSums(
+      abs(weight_data[wn_idx, !locked_out, drop = FALSE])
+    ) > 1e-10
   ]
   wn_data <- weight_data[wn_idx, , drop = FALSE]
   ## scale values to avoid numerical issues
@@ -486,8 +488,9 @@ min_shortfall_result <- function(area_budget_proportion,
       )
       ### worst primary value is a 100% shortfall for every target, and the
       ### worst value for each weight is set so that best - worst is its
-      ### total, so that each weight is rescaled by its total
-      weight_total <- Matrix::rowSums(abs(wn_data))
+      ### total in planning units not locked out, so that each weight is
+      ### rescaled by the total available for selection
+      weight_total <- Matrix::rowSums(abs(wn_data[, !locked_out, drop = FALSE]))
       mo_best <- c(primary_best, weight_best)
       mo_worst <- c(nrow(targets), weight_best - weight_total)
       ### combine problems using the reference point approach
