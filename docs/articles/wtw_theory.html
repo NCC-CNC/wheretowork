@@ -21,7 +21,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">wheretowork</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -413,14 +413,49 @@ actual area of each planning unit. That way <em>Where to Work</em> knows
 how much area budget it is using based on the planning units selected.
 This means we cannot incorporate the Weights into the planning unit
 costs as we did for the minimum set problem.</p>
-<p>Instead, the Weights are added as additional Goals to the
-conservation problem. The Goal is calculated as the Weight factor
-(converted to a proportion) multiplied by the sum of the Weights values
-across all planning units. When finding a solution, <em>Where to
-Work</em> will try and meet the Weight Goals just like any other Goal,
-so the final solution should prefer planning units that contain a larger
-amount of the Weight (<strong>note that weights are not currently
-clipped to Themes, see #323</strong>).</p>
+<p>Instead, <em>Where to Work</em> uses <a href="https://prioritizr.net/reference/approaches.html" class="external-link">multi-objective
+optimization</a>. The Goals form the primary objective (minimizing the
+shortfall as described above), and each Weight forms an additional
+objective that maximizes the total amount of the Weight in the solution
+(or, for negative Weights, minimizes it). These objectives are combined
+using the <a href="https://prioritizr.net/reference/add_ref_point_approach.html" class="external-link">reference
+point approach</a>, which finds a solution that is as close as possible
+to the best possible value of every objective. The Goals are given a
+relative importance of 1, and the Weights together are given a relative
+importance of 0.25 (set by <code>weight_importance</code> in the app
+configuration). This is shared among the Weights in proportion to their
+factors (ignoring the sign), in the same way that the factors are
+combined for the minimum set problem above: the factors set the relative
+importance of the Weights compared with each other, a single Weight has
+the same influence whatever the size of its factor (only the sign
+matters), and enabling more Weights does not increase their combined
+influence, so the Weights cannot override the Goals. The objectives are
+rescaled before they are combined: the Goals relative to the number of
+Goals, and each Weight relative to its total. This means that the units
+of a Weight do not matter, and each Weight is valued by the proportion
+of its total held in the solution (as shown in the solution results), so
+a Weight with similar values everywhere cannot outweigh the Goals for
+only a small gain. Because Weights are objectives rather than hard
+constraints, they can never make the problem impossible to solve, and
+positive and negative Weights can be used together. Since the Goals are
+more important than the Weights, a Weight is unlikely to take area
+budget away from Goals that have not been met.</p>
+<p>The reference point approach also requires the best possible value of
+each objective. For the Weights, these are calculated directly from the
+area budget, Includes and Excludes. For the Goals, the best value
+requires an additional optimization run, which is cached and re-used, so
+changing only the Weights (and not the Goals, Includes, Excludes or area
+budget) is faster than the first run.</p>
+<p>When the Goals cannot all be met within the area budget, solutions
+are also required to use at least 99% of the area budget (set by
+<code>min_budget_proportion</code> in the app configuration), or as
+close to this as possible given the planning unit sizes and Excludes.
+This means that Weights can change which planning units are selected,
+but cannot reduce the area selected. When the Goals can all be met
+within the area budget, solutions are instead required to meet all of
+the Goals, but are not required to use all of the area budget. This
+means that Weights can change which planning units are selected, but
+cannot reduce the Goals met.</p>
 <p>Note that under both area-budget and non-area-budget scenarios,
 <em>Where to Work</em> will report the area of each Weight in the
 results summary.</p>

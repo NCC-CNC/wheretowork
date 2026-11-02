@@ -41,3 +41,4 @@ docker-compose.yml
 restart.txt
 logs
 ^vignettes/articles$
+^\.claude$

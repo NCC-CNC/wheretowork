@@ -23,12 +23,12 @@ Source:
 
 Hanson JO, Schuster R, Bennett J, Vincent J (2026). *wheretowork:
 Interactive Systematic Conservation Planning Application*. R package
-version 1.3.0, <https://ncc-cnc.github.io/wheretowork>.
+version 1.3.1, <https://ncc-cnc.github.io/wheretowork>.
 
     @Manual{,
       title = {wheretowork: Interactive Systematic Conservation Planning Application},
       author = {Jeffrey O Hanson and Richard Schuster and Joseph Bennett and Jaimie Vincent},
       year = {2026},
-      note = {R package version 1.3.0},
+      note = {R package version 1.3.1},
       url = {https://ncc-cnc.github.io/wheretowork},
     }

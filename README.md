@@ -7,7 +7,7 @@
 [![R-CMD-check-Ubuntu](https://img.shields.io/github/actions/workflow/status/ncc-cnc/wheretowork/R-CMD-check-ubuntu.yaml?branch=master&label=Ubuntu)](https://github.com/NCC-CNC/wheretowork/actions)
 [![R-CMD-check-Windows](https://img.shields.io/github/actions/workflow/status/ncc-cnc/wheretowork/R-CMD-check-windows.yaml?branch=master&label=Windows)](https://github.com/NCC-CNC/wheretowork/actions)
 [![Docker
-Status](https://img.shields.io/docker/cloud/build/naturecons/wheretowork?label=Docker%20build)](https://hub.docker.com/r/naturecons/wheretowork)
+Status](https://img.shields.io/github/actions/workflow/status/ncc-cnc/wheretowork/docker.yaml?branch=master&label=Docker%20build)](https://hub.docker.com/r/naturecons/wheretowork)
 [![Coverage
 Status](https://codecov.io/github/NCC-CNC/wheretowork/coverage.svg?branch=master)](https://codecov.io/github/NCC-CNC/wheretowork?branch=master)
 

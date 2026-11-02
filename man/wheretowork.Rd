@@ -21,7 +21,7 @@ run_app()
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://NCC-CNC.github.io/wheretowork/}
+  \item \url{https://ncc-cnc.github.io/wheretowork}
   \item Report bugs at \url{https://github.com/NCC-CNC/wheretowork/issues}
 }
 

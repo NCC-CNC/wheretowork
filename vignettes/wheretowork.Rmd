@@ -172,6 +172,10 @@ The settings are used to customize the prioritization process. Unlike the Themes
 
 The area budget specifies the maximum spatial extent for the solution (as a percentage of the study area). This is the largest area that the solution can prioritize. Critically, specifying a total area budget means that the tool can generate prioritizations that do not meet the Goals for all Themes. If the area budget setting is turned off, the solution will always meet the Goals (or it will return an error pop-up if this is not possible).
 
+#### Weight importance
+
+The Weight importance setting is only shown when the area budget setting is turned on. It specifies how important the Weights are compared with the Goals (as a percentage). Higher values mean that the Weights have more influence on the solution, at the expense of meeting the Goals. At 100%, the Weights together are as important as the Goals. If this setting is turned off, a default value of 25% is used.
+
 #### Spatial clustering
 
 The spatial clustering parameter controls how important it is for solutions to select planning units that are sited next to each other. Put simply, the spatial clustering process aims to promote selection of neighboring planning units that contain a greater number of rarer features (see below for more detailed description). This parameter performs a similar role to the _Boundary Length Modifier_ (BLM) parameter in Marxan [@r1]. Here, the spatial clustering parameter is a percentage that describes how much additional cost is permissible (i.e. in terms of total area budget or selected Weights) when trying to reduce spatial fragmentation. For example, a greater parameter value means that a greater additional cost is permitted and so a greater level of spatial clustering may be achieved.

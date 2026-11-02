@@ -148,14 +148,15 @@
     },
     "Rcpp": {
       "Package": "Rcpp",
-      "Version": "1.0.13",
+      "Version": "1.1.2",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
+        "R",
         "methods",
         "utils"
       ],
-      "Hash": "f27411eb6d9c3dada5edd444b8416675"
+      "Hash": "f481f89daa906a34eab8ef8658c8a89c"
     },
     "RcppArmadillo": {
       "Package": "RcppArmadillo",
@@ -1275,7 +1276,7 @@
     },
     "prioritizr": {
       "Package": "prioritizr",
-      "Version": "8.0.4",
+      "Version": "9.0.1",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -1285,24 +1286,21 @@
         "R6",
         "Rcpp",
         "RcppArmadillo",
-        "ape",
         "assertthat",
         "cli",
         "exactextractr",
-        "igraph",
         "magrittr",
         "methods",
         "parallel",
-        "raster",
         "rlang",
         "sf",
-        "slam",
         "terra",
         "tibble",
+        "units",
         "utils",
         "withr"
       ],
-      "Hash": "7feebf1a0769200ac65d642dcf458879"
+      "Hash": "04463114ea0eab3977b6364b4fb113ea"
     },
     "processx": {
       "Package": "processx",
@@ -1753,15 +1751,16 @@
     },
     "terra": {
       "Package": "terra",
-      "Version": "1.7-78",
+      "Version": "1.9-50",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
         "R",
         "Rcpp",
-        "methods"
+        "methods",
+        "stats"
       ],
-      "Hash": "8f020def0792119cb98bd8f696dab22d"
+      "Hash": "e64a4216e400db78db4f6ed2d72695f4"
     },
     "tibble": {
       "Package": "tibble",
@@ -1822,14 +1821,14 @@
     },
     "units": {
       "Package": "units",
-      "Version": "0.8-5",
+      "Version": "1.0-1",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
         "R",
         "Rcpp"
       ],
-      "Hash": "119d19da480e873f72241ff6962ffd83"
+      "Hash": "14743a941151a12449e8af67497c7b96"
     },
     "utf8": {
       "Package": "utf8",

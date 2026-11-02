@@ -49,12 +49,15 @@ test_that("SpatRaster (standard boundary format, continuous)", {
   x$dataset$spatial_data <- d$spatial_data
   x$dataset$attribute_data <- d$attribute_data
   x$dataset$boundary_data <- d$boundary_data
-  ## themes
+  ## themes (write_project() converts names to ASCII)
   for (i in seq_along(x$themes)) {
     x$themes[[i]]$id <- sim_themes[[i]]$id
+    sim_themes[[i]]$name <- enc2ascii(sim_themes[[i]]$name)
     for (j in seq_along(x$themes[[i]]$feature)) {
       x$themes[[i]]$feature[[j]]$id <- sim_themes[[i]]$feature[[j]]$id
       x$themes[[i]]$feature[[j]]$pane <- sim_themes[[i]]$feature[[j]]$pane
+      sim_themes[[i]]$feature[[j]]$name <-
+        enc2ascii(sim_themes[[i]]$feature[[j]]$name)
     }
   }
   ## weights
@@ -163,12 +166,15 @@ test_that("SpatRaster (standard boundary format, categorical, manual legend)", {
   x$dataset$spatial_data <- d$spatial_data
   x$dataset$attribute_data <- d$attribute_data
   x$dataset$boundary_data <- d$boundary_data
-  ## themes
+  ## themes (write_project() converts names to ASCII)
   for (i in seq_along(x$themes)) {
     x$themes[[i]]$id <- sim_themes[[i]]$id
+    sim_themes[[i]]$name <- enc2ascii(sim_themes[[i]]$name)
     for (j in seq_along(x$themes[[i]]$feature)) {
       x$themes[[i]]$feature[[j]]$id <- sim_themes[[i]]$feature[[j]]$id
       x$themes[[i]]$feature[[j]]$pane <- sim_themes[[i]]$feature[[j]]$pane
+      sim_themes[[i]]$feature[[j]]$name <-
+        enc2ascii(sim_themes[[i]]$feature[[j]]$name)
     }
   }
   ## weights
@@ -242,12 +248,15 @@ test_that("SpatRaster (standard boundary format, continous & categorical)", {
   x$dataset$spatial_data <- d$spatial_data
   x$dataset$attribute_data <- d$attribute_data
   x$dataset$boundary_data <- d$boundary_data
-  ## themes
+  ## themes (write_project() converts names to ASCII)
   for (i in seq_along(x$themes)) {
     x$themes[[i]]$id <- sim_themes[[i]]$id
+    sim_themes[[i]]$name <- enc2ascii(sim_themes[[i]]$name)
     for (j in seq_along(x$themes[[i]]$feature)) {
       x$themes[[i]]$feature[[j]]$id <- sim_themes[[i]]$feature[[j]]$id
       x$themes[[i]]$feature[[j]]$pane <- sim_themes[[i]]$feature[[j]]$pane
+      sim_themes[[i]]$feature[[j]]$name <-
+        enc2ascii(sim_themes[[i]]$feature[[j]]$name)
     }
   }
   ## weights
@@ -314,12 +323,15 @@ test_that("sf (standard boundary format)", {
   x$dataset$spatial_data <- d$spatial_data
   x$dataset$attribute_data <- d$attribute_data
   x$dataset$boundary_data <- d$boundary_data
-  ## themes
+  ## themes (write_project() converts names to ASCII)
   for (i in seq_along(x$themes)) {
     x$themes[[i]]$id <- sim_themes[[i]]$id
+    sim_themes[[i]]$name <- enc2ascii(sim_themes[[i]]$name)
     for (j in seq_along(x$themes[[i]]$feature)) {
       x$themes[[i]]$feature[[j]]$id <- sim_themes[[i]]$feature[[j]]$id
       x$themes[[i]]$feature[[j]]$pane <- sim_themes[[i]]$feature[[j]]$pane
+      sim_themes[[i]]$feature[[j]]$name <-
+        enc2ascii(sim_themes[[i]]$feature[[j]]$name)
     }
   }
   ## weights
@@ -386,12 +398,15 @@ test_that("SpatRaster (Marxan boundary format)", {
   x$dataset$spatial_data <- d$spatial_data
   x$dataset$attribute_data <- d$attribute_data
   x$dataset$boundary_data <- d$boundary_data
-  ## themes
+  ## themes (write_project() converts names to ASCII)
   for (i in seq_along(x$themes)) {
     x$themes[[i]]$id <- sim_themes[[i]]$id
+    sim_themes[[i]]$name <- enc2ascii(sim_themes[[i]]$name)
     for (j in seq_along(x$themes[[i]]$feature)) {
       x$themes[[i]]$feature[[j]]$id <- sim_themes[[i]]$feature[[j]]$id
       x$themes[[i]]$feature[[j]]$pane <- sim_themes[[i]]$feature[[j]]$pane
+      sim_themes[[i]]$feature[[j]]$name <-
+        enc2ascii(sim_themes[[i]]$feature[[j]]$name)
     }
   }
   ## weights
@@ -458,12 +473,15 @@ test_that("sf (Marxan boundary format)", {
   x$dataset$spatial_data <- d$spatial_data
   x$dataset$attribute_data <- d$attribute_data
   x$dataset$boundary_data <- d$boundary_data
-  ## themes
+  ## themes (write_project() converts names to ASCII)
   for (i in seq_along(x$themes)) {
     x$themes[[i]]$id <- sim_themes[[i]]$id
+    sim_themes[[i]]$name <- enc2ascii(sim_themes[[i]]$name)
     for (j in seq_along(x$themes[[i]]$feature)) {
       x$themes[[i]]$feature[[j]]$id <- sim_themes[[i]]$feature[[j]]$id
       x$themes[[i]]$feature[[j]]$pane <- sim_themes[[i]]$feature[[j]]$pane
+      sim_themes[[i]]$feature[[j]]$name <-
+        enc2ascii(sim_themes[[i]]$feature[[j]]$name)
     }
   }
   ## weights
@@ -530,12 +548,15 @@ test_that("default spatial, boundary, attribute paths", {
   x$dataset$spatial_data <- d$spatial_data
   x$dataset$attribute_data <- d$attribute_data
   x$dataset$boundary_data <- d$boundary_data
-  ## themes
+  ## themes (write_project() converts names to ASCII)
   for (i in seq_along(x$themes)) {
     x$themes[[i]]$id <- sim_themes[[i]]$id
+    sim_themes[[i]]$name <- enc2ascii(sim_themes[[i]]$name)
     for (j in seq_along(x$themes[[i]]$feature)) {
       x$themes[[i]]$feature[[j]]$id <- sim_themes[[i]]$feature[[j]]$id
       x$themes[[i]]$feature[[j]]$pane <- sim_themes[[i]]$feature[[j]]$pane
+      sim_themes[[i]]$feature[[j]]$name <-
+        enc2ascii(sim_themes[[i]]$feature[[j]]$name)
     }
   }
   ## weights

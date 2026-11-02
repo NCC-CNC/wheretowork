@@ -300,3 +300,25 @@ enc2ascii <- function(x) {
     x
   }
 }
+
+#' Add solver
+#'
+#' Add a solver to a prioritization problem, using Gurobi if requested
+#' and CBC otherwise.
+#'
+#' @param x [prioritizr::problem()] or [prioritizr::multi_problem()] object.
+#'
+#' @param try_gurobi `logical` value indicating if Gurobi should be used.
+#'
+#' @param ... arguments passed to the solver.
+#'
+#' @return An updated version of `x` with the solver added.
+#'
+#' @noRd
+add_wtw_solver <- function(x, try_gurobi, ...) {
+  if (isTRUE(try_gurobi)) {
+    prioritizr::add_gurobi_solver(x, ...)
+  } else {
+    prioritizr::add_cbc_solver(x, ...)
+  }
+}
