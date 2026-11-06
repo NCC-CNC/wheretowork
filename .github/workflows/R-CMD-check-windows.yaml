@@ -57,17 +57,71 @@ jobs:
 
       - uses: r-lib/actions/setup-pandoc@v2
 
-      - name: Install dependencies
-        uses: r-lib/actions/setup-renv@v2
+      # renv restore and caching, done here rather than with
+      # r-lib/actions/setup-renv so that the package cache is saved even if the
+      # check fails, but never after a partial (failed) restore
+      - name: Set renv cache location
+        run: echo "RENV_PATHS_ROOT=${{ runner.temp }}/renv" >> "$GITHUB_ENV"
+        shell: bash
+
+      - name: Restore package cache
+        id: renv-cache
+        uses: actions/cache/restore@v4
         with:
-          bypass-cache: never # save the package cache even if the check fails
-          cache-version: 1 # bump to discard a broken package cache
+          path: |
+            ${{ runner.temp }}/renv
+            renv/library
+          # bump v1 to discard a broken package cache
+          key: renv-v1-${{ runner.os }}-r${{ matrix.config.r }}-${{ hashFiles('renv.lock') }}
+          restore-keys: renv-v1-${{ runner.os }}-r${{ matrix.config.r }}-
+
+      - name: Install dependencies
+        id: renv-restore
+        run: |
+          # retry once to ride out network errors; packages already installed
+          # by the first attempt are skipped
+          for (attempt in 1:2) {
+            ok <- tryCatch({
+              if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
+              renv::restore(prompt = FALSE)
+              TRUE
+            }, error = function(e) {
+              message("renv::restore() failed: ", conditionMessage(e))
+              FALSE
+            })
+            if (ok) break
+            if (attempt == 2) stop("renv::restore() failed twice")
+            Sys.sleep(30)
+          }
+        shell: Rscript {0}
+
+      - name: Save package cache
+        if: always() && steps.renv-restore.outcome == 'success' && steps.renv-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            ${{ runner.temp }}/renv
+            renv/library
+          key: ${{ steps.renv-cache.outputs.cache-primary-key }}
 
       - name: Install check dependencies
         run: |
+          pkgs <- c("remotes", "testthat", "rvest", "rcmdcheck", "covr")
+          missing_pkgs <- function() {
+            pkgs[!nzchar(vapply(pkgs, function(p) system.file(package = p), character(1)))]
+          }
           install.packages(c("remotes", "testthat", "rvest"))
-          remotes::install_cran("rcmdcheck")
-          remotes::install_cran("covr")
+          try(remotes::install_cran("rcmdcheck"))
+          try(remotes::install_cran("covr"))
+          # retry once to ride out network errors (install.packages() only warns
+          # when a package fails to install, so check what is missing)
+          if (length(missing_pkgs())) {
+            Sys.sleep(30)
+            install.packages(missing_pkgs())
+          }
+          if (length(missing_pkgs())) {
+            stop("failed to install: ", paste(missing_pkgs(), collapse = ", "))
+          }
         shell: Rscript {0}
 
       - name: Session information
