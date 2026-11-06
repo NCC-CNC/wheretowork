@@ -59,8 +59,11 @@ COPY R /app/R
 COPY .Rbuildignore /app
 COPY DESCRIPTION /app
 COPY NAMESPACE /app
+# dependencies are already installed by renv::restore() above, so skip
+# dependency resolution (which queries the GitHub API for each Remotes entry
+# and can fail on unauthenticated rate limits)
 RUN cd /app && \
-    Rscript -e 'remotes::install_local(upgrade = "never")'
+    Rscript -e 'remotes::install_local(upgrade = "never", dependencies = FALSE)'
 
 # set command
 CMD ["/bin/bash"]

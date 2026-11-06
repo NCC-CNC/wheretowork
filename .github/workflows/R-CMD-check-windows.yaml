@@ -61,6 +61,7 @@ jobs:
         uses: r-lib/actions/setup-renv@v2
         with:
           bypass-cache: never # save the package cache even if the check fails
+          cache-version: 1 # bump to discard a broken package cache
 
       - name: Install check dependencies
         run: |
