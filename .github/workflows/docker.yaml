@@ -29,7 +29,7 @@ jobs:
     name: build and push
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Image tags
         id: meta
@@ -53,6 +53,22 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and push
+        id: build
+        continue-on-error: true # retried once below to ride out network errors
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          platforms: linux/amd64
+          push: ${{ steps.meta.outputs.tags != '' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      # same inputs as above; layers that built before the failure are reused
+      # from the builder, so the retry resumes where the first attempt failed
+      - name: Build and push (retry)
+        if: steps.build.outcome == 'failure'
         uses: docker/build-push-action@v6
         with:
           context: .

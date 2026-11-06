@@ -1,12 +1,13 @@
 # For help debugging build failures open an issue on the RStudio community with the 'github-actions' tag.
 # https://community.rstudio.com/new-topic?category=Package%20development&tags=github-actions
-on: 
+on:
   schedule:
     - cron: 0 0 * * 1 # schedule to run at midnight on Monday each week
-  push: # trigger on push
+  push: # trigger on push (dev included so PRs into dev can reuse its package cache)
     branches:
       - main
       - master
+      - dev
   pull_request: # trigger on PR
     branches:
       - main
@@ -15,10 +16,14 @@ on:
 
 name: Ubuntu
 
+concurrency: # cancel superseded runs for the same PR/branch
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   R-CMD-check:
     runs-on: ${{ matrix.config.os }}
-    
+
     name: ${{ matrix.config.os }} (${{ matrix.config.r }})
 
     strategy:
@@ -26,37 +31,111 @@ jobs:
       matrix:
         config:
           - {os: ubuntu-22.04, r: '4.4.1'}
-    
+
     env:
       _R_REMOTES_NO_ERRORS_FROM_WARNINGS_: true
       _R_CHECK_FORCE_SUGGESTS_: false
       _R_CHECK_TIMINGS_: 10
       _R_CHECK_CRAN_INCOMING_REMOTE_: false
       _R_CHECK_LICENSE_: false
+      # restore from Posit Package Manager instead of CRAN so that locked
+      # versions install as Ubuntu binaries (CRAN only serves source on Linux);
+      # the dated snapshot matches most of renv.lock, and anything not found
+      # there falls back to latest (building from source if needed), so update
+      # the date if renv.lock gets a bulk upgrade
+      RENV_CONFIG_REPOS_OVERRIDE: https://packagemanager.posit.co/cran/__linux__/jammy/2024-08-20,https://packagemanager.posit.co/cran/__linux__/jammy/latest
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       CI: true
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
 
       - uses: r-lib/actions/setup-r@v2
         with:
           r-version: ${{ matrix.config.r }}
+          use-public-rspm: true
 
       - uses: r-lib/actions/setup-pandoc@v2
 
       - name: Install system dependencies
         run: |
-          sudo apt-get -y install libcurl4-openssl-dev coinor-libsymphony-dev coinor-libcbc-dev coinor-libclp-dev libudunits2-dev libgdal-dev libgeos-dev libproj-dev libharfbuzz-dev libfribidi-dev libuv1-dev libglpk-dev
+          pkgs="libcurl4-openssl-dev coinor-libsymphony-dev coinor-libcbc-dev coinor-libclp-dev libudunits2-dev libgdal-dev libgeos-dev libproj-dev libharfbuzz-dev libfribidi-dev libuv1-dev libglpk-dev"
+          # retry once (with a fresh package index) to ride out mirror errors
+          sudo apt-get -y install $pkgs || {
+            sleep 30
+            sudo apt-get update
+            sudo apt-get -y install $pkgs
+          }
+
+      # renv restore and caching, done here rather than with
+      # r-lib/actions/setup-renv so that the package cache is saved even if the
+      # check fails, but never after a partial (failed) restore
+      - name: Set renv cache location
+        run: echo "RENV_PATHS_ROOT=${{ runner.temp }}/renv" >> "$GITHUB_ENV"
+        shell: bash
+
+      - name: Restore package cache
+        id: renv-cache
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            ${{ runner.temp }}/renv
+            renv/library
+          # bump v1 to discard a broken package cache
+          key: renv-v1-${{ runner.os }}-r${{ matrix.config.r }}-${{ hashFiles('renv.lock') }}
+          restore-keys: renv-v1-${{ runner.os }}-r${{ matrix.config.r }}-
 
       - name: Install dependencies
+        id: renv-restore
+        run: |
+          # retry once to ride out network errors; packages already installed
+          # by the first attempt are skipped
+          for (attempt in 1:2) {
+            ok <- tryCatch({
+              if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
+              renv::restore(prompt = FALSE)
+              TRUE
+            }, error = function(e) {
+              message("renv::restore() failed: ", conditionMessage(e))
+              FALSE
+            })
+            if (ok) break
+            if (attempt == 2) stop("renv::restore() failed twice")
+            Sys.sleep(30)
+          }
+        shell: Rscript {0}
+
+      - name: Save package cache
+        if: always() && steps.renv-restore.outcome == 'success' && steps.renv-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            ${{ runner.temp }}/renv
+            renv/library
+          key: ${{ steps.renv-cache.outputs.cache-primary-key }}
+
+      - name: Install check dependencies
         run: |
           options(install.packages.compile.from.source = "never")
-          install.packages(c("renv", "remotes", "testthat", "rvest"))
-          renv::restore()
-          remotes::install_cran("rcmdcheck")
-          remotes::install_cran("covr")
-          remotes::install_bioc("lpsymphony")
+          pkgs <- c("remotes", "testthat", "rvest", "rcmdcheck", "covr", "lpsymphony")
+          missing_pkgs <- function() {
+            pkgs[!nzchar(vapply(pkgs, function(p) system.file(package = p), character(1)))]
+          }
+          install.packages(c("remotes", "testthat", "rvest"))
+          try(remotes::install_cran("rcmdcheck"))
+          try(remotes::install_cran("covr"))
+          try(remotes::install_bioc("lpsymphony"))
+          # retry once to ride out network errors (install.packages() only warns
+          # when a package fails to install, so check what is missing)
+          if (length(missing_pkgs())) {
+            Sys.sleep(30)
+            cran_missing <- setdiff(missing_pkgs(), "lpsymphony")
+            if (length(cran_missing)) install.packages(cran_missing)
+            if ("lpsymphony" %in% missing_pkgs()) try(remotes::install_bioc("lpsymphony"))
+          }
+          if (length(missing_pkgs())) {
+            stop("failed to install: ", paste(missing_pkgs(), collapse = ", "))
+          }
         shell: Rscript {0}
 
       - name: Session information
@@ -65,7 +144,7 @@ jobs:
           pkgs <- installed.packages()[, "Package"]
           sessioninfo::session_info(pkgs, include_base = TRUE)
         shell: Rscript {0}
-        
+
       - name: Check
         run: |
           rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran", "--no-build-vignettes"), error_on = "warning", check_dir = "check")
@@ -73,7 +152,7 @@ jobs:
 
       - name: Upload check results
         if: failure()
-        uses: actions/upload-artifact@main
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ runner.os }}-r${{ matrix.config.r }}-results
           path: check
