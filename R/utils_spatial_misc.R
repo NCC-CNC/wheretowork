@@ -228,3 +228,135 @@ calculate_variable_area_km2 <- function(x) {
   areas <- x$dataset$get_planning_unit_areas()
   sum(areas[which(values > 0)]) * 1e-6
 }
+
+#' Coordinate reference system unit conversion factor
+#'
+#' Calculate the number of meters in one linear unit of the coordinate
+#' reference system of spatial data (e.g. 0.3048 for international feet).
+#'
+#' @param x [sf::st_sf()] or [terra::rast()] object.
+#'
+#' @details
+#' This function is only intended for projected coordinate reference systems.
+#' If the coordinate reference system does not have defined linear units,
+#' then the spatial data are assumed to be in meters and a value of 1 is
+#' returned.
+#'
+#' @return `numeric` value.
+#'
+#' @noRd
+crs_units_to_m <- function(x) {
+  # assert argument is valid
+  assertthat::assert_that(inherits(x, c("sf", "SpatRaster")))
+  # extract coordinate reference system
+  if (inherits(x, "SpatRaster")) {
+    crs <- sf::st_crs(terra::crs(x))
+  } else {
+    crs <- sf::st_crs(x)
+  }
+  assertthat::assert_that(
+    !isTRUE(sf::st_is_longlat(crs)),
+    msg = "coordinate reference system must not be geographic"
+  )
+  # extract units
+  crs_units <- crs$ud_unit
+  # return conversion factor
+  if (is.null(crs_units)) {
+    return(1)
+  }
+  as.numeric(units::set_units(crs_units, "m", mode = "standard"))
+}
+
+#' Is geographic?
+#'
+#' Check if spatial data have a geographic (longitude/latitude) coordinate
+#' reference system.
+#'
+#' @param x [sf::st_sf()] or [terra::rast()] object.
+#'
+#' @return `logical` value.
+#'
+#' @noRd
+is_geographic <- function(x) {
+  # assert argument is valid
+  assertthat::assert_that(inherits(x, c("sf", "SpatRaster")))
+  # check coordinate reference system
+  if (inherits(x, "SpatRaster")) {
+    out <- terra::is.lonlat(x)
+  } else {
+    out <- sf::st_is_longlat(x)
+  }
+  isTRUE(out)
+}
+
+#' Calculate boundary matrix
+#'
+#' Calculate a boundary matrix for planning units.
+#'
+#' @param x [sf::st_sf()] or [terra::rast()] object.
+#'
+#' @details
+#' The boundary matrix is calculated using [prioritizr::boundary_matrix()],
+#' such that the diagonal contains the total perimeter of each planning unit
+#' and the off-diagonal cells contain the length of the shared boundary
+#' between each pair of planning units.
+#' Lengths are always expressed in meters, regardless of the units of the
+#' coordinate reference system (e.g. meters or feet).
+#' For data with a geographic (longitude/latitude) coordinate reference
+#' system, lengths are calculated geodesically.
+#' This follows the same rule as boundary data supplied in project files.
+#'
+#' @return [Matrix::sparseMatrix()] object with a row and column for each
+#'   planning unit (or cell for raster data).
+#'
+#' @noRd
+calculate_boundary_matrix <- function(x) {
+  # assert argument is valid
+  assertthat::assert_that(inherits(x, c("sf", "SpatRaster")))
+  # calculate boundary matrix
+  bm <- prioritizr::boundary_matrix(x)
+  # if vector data, then lengths are already in meters
+  # (calculated geodesically for geographic data)
+  if (inherits(x, "sf")) {
+    return(bm)
+  }
+  # if projected raster data, then convert lengths from CRS units to meters
+  if (!is_geographic(x)) {
+    return(bm * crs_units_to_m(x))
+  }
+  # if geographic raster data, then calculate geodesic lengths of cell edges
+  ## calculate latitudes of the edges between rows (top edge of first row
+  ## to bottom edge of last row)
+  n_rows <- terra::nrow(x)
+  x_min <- terra::xmin(x)
+  x_res <- terra::xres(x)
+  edge_y <- terra::ymax(x) - ((seq_len(n_rows + 1) - 1) * terra::yres(x))
+  ## calculate length of cell edges along parallels (i.e. top and bottom edges)
+  parallel_length <- terra::distance(
+    cbind(x_min, edge_y), cbind(x_min + x_res, edge_y),
+    lonlat = TRUE, pairwise = TRUE
+  )
+  ## calculate length of cell edges along meridians (i.e. left and right edges)
+  meridian_length <- terra::distance(
+    cbind(x_min, edge_y[-(n_rows + 1)]), cbind(x_min, edge_y[-1]),
+    lonlat = TRUE, pairwise = TRUE
+  )
+  ## update boundary lengths
+  bm <- methods::as(bm, "TsparseMatrix")
+  row_i <- terra::rowFromCell(x, bm@i + 1)
+  row_j <- terra::rowFromCell(x, bm@j + 1)
+  bm@x <- ifelse(
+    bm@i == bm@j,
+    ## diagonal: total perimeter of cell
+    (2 * meridian_length[row_i]) +
+      parallel_length[row_i] + parallel_length[row_i + 1],
+    ifelse(
+      row_i == row_j,
+      ## cells in same row share an edge along a meridian
+      meridian_length[row_i],
+      ## cells in different rows share an edge along a parallel
+      parallel_length[pmax(row_i, row_j)]
+    )
+  )
+  methods::as(bm, "CsparseMatrix")
+}

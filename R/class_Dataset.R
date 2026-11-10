@@ -410,17 +410,44 @@ Dataset <- R6::R6Class(
     #' @description
     #' Get area values.
     #' These are calculated once and then cached.
-    #' @return `numeric` vector of values.
+    #' Areas are always returned in square meters, regardless of the
+    #' units of the coordinate reference system.
+    #' For raster data with a geographic (longitude/latitude) coordinate
+    #' reference system, cell areas are calculated geodesically
+    #' (see [terra::cellSize()]).
+    #' For raster data with a projected coordinate reference system,
+    #' cell areas are calculated from the resolution and converted from the
+    #' units of the coordinate reference system.
+    #' For vector data, areas are calculated using [sf::st_area()].
+    #' If the coordinate reference system has no defined units, then
+    #' the spatial data are assumed to be in meters.
+    #' @return `numeric` vector of values (m^2).
     get_planning_unit_areas = function() {
       if (is.null(self$planning_unit_areas)) {
         self$import()
         idx <- self$attribute_data[["_index"]]
         if (inherits(self$spatial_data, "SpatRaster")) {
-          self$planning_unit_areas <-
-            rep(prod(terra::res(self$spatial_data)), length(idx))
+          if (isTRUE(terra::is.lonlat(self$spatial_data))) {
+            ## geographic coordinates, so cell areas vary by latitude
+            self$planning_unit_areas <- terra::cellSize(
+              self$spatial_data[[1]], mask = FALSE, unit = "m"
+            )[idx][[1]]
+          } else {
+            ## projected coordinates, so convert cell area to m^2
+            self$planning_unit_areas <- rep(
+              prod(terra::res(self$spatial_data)) *
+                (crs_units_to_m(self$spatial_data) ^ 2),
+              length(idx)
+            )
+          }
         } else {
-          self$planning_unit_areas <-
-            as.numeric(sf::st_area(self$spatial_data[idx, ]))
+          ## sf::st_area() returns areas in the units of the CRS
+          ## (or m^2 for geographic coordinates)
+          self$planning_unit_areas <- as.numeric(
+            units::set_units(
+              sf::st_area(self$spatial_data[idx, ]), "m^2", mode = "standard"
+            )
+          )
         }
       }
       self$planning_unit_areas
@@ -686,15 +713,8 @@ new_dataset_from_auto <- function(x, id = uuid::UUIDgenerate()) {
   
   # build boundary data
   bm <- try({
-    # re-project sf if CRS is not projected. only used for generating boundary
-    if (inherits(spatial_data, "sf") && (sf::st_is_longlat(spatial_data))) {
-      bm_spatial_data  <- sf::st_transform(spatial_data, 3857)
-    } else {
-      bm_spatial_data <- spatial_data
-    }
     # prepare boundary data
-    str_tree <- inherits(x, "sf") && !identical(Sys.info()[["sysname"]], "Darwin")
-    bm <- prioritizr::boundary_matrix(bm_spatial_data)
+    bm <- calculate_boundary_matrix(spatial_data)
     if (inherits(x, "SpatRaster")) {
       bm <- bm[attribute_data[["_index"]], attribute_data[["_index"]]]
     }
