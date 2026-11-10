@@ -68,28 +68,17 @@ server_verify_manual_uploads <- quote({
     shinyFeedback::hideFeedback(inputId = "importModal_manual_spatial_file")
     ## validate file format
     if (!isTRUE(v)) {
-      # Error message
-      if (startsWith(v, "Error")) {
-        ### display feedback on file input
-        shinyFeedback::showFeedbackDanger(
-          inputId = "importModal_manual_spatial_file",
-          text = v
-        )
-        ### update variable to indicate no valid configuration file
-        app_data$spatial_path <- NULL
-        ### disable import button
-        disable_html_element("importModal_manual_button")
-        ## exit
-        return()
-      }
-      # Warning message - user can continue
-      if (startsWith(v, "Warning")) {
-        ### display feedback on file input
-        shinyFeedback::showFeedbackWarning(
-          inputId = "importModal_manual_spatial_file",
-          text = v
-        )      
-      }
+      ### display feedback on file input
+      shinyFeedback::showFeedbackDanger(
+        inputId = "importModal_manual_spatial_file",
+        text = v
+      )
+      ### update variable to indicate no valid configuration file
+      app_data$spatial_path <- NULL
+      ### disable import button
+      disable_html_element("importModal_manual_button")
+      ## exit
+      return()
     }
     ### update app state given valid configuration file
     if (any(endsWith(f, ".shp"))) {

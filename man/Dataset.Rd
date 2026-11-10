@@ -284,12 +284,23 @@ Get attribute names.
 \subsection{Method \code{get_planning_unit_areas()}}{
 Get area values.
 These are calculated once and then cached.
+Areas are always returned in square meters, regardless of the
+units of the coordinate reference system.
+For raster data with a geographic (longitude/latitude) coordinate
+reference system, cell areas are calculated geodesically
+(see \code{\link[terra:cellSize]{terra::cellSize()}}).
+For raster data with a projected coordinate reference system,
+cell areas are calculated from the resolution and converted from the
+units of the coordinate reference system.
+For vector data, areas are calculated using \code{\link[sf:geos_measures]{sf::st_area()}}.
+If the coordinate reference system has no defined units, then
+the spatial data are assumed to be in meters.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Dataset$get_planning_unit_areas()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
-\code{numeric} vector of values.
+\code{numeric} vector of values (m^2).
 }
 }
 \if{html}{\out{<hr>}}
