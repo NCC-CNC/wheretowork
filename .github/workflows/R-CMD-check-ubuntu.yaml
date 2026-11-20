@@ -59,7 +59,7 @@ jobs:
 
       - name: Install system dependencies
         run: |
-          pkgs="libcurl4-openssl-dev coinor-libsymphony-dev coinor-libcbc-dev coinor-libclp-dev libudunits2-dev libgdal-dev libgeos-dev libproj-dev libharfbuzz-dev libfribidi-dev libuv1-dev libglpk-dev"
+          pkgs="libcurl4-openssl-dev coinor-libcbc-dev coinor-libclp-dev libudunits2-dev libgdal-dev libgeos-dev libproj-dev libharfbuzz-dev libfribidi-dev libuv1-dev libglpk-dev"
           # retry once (with a fresh package index) to ride out mirror errors
           sudo apt-get -y install $pkgs || {
             sleep 30
@@ -117,21 +117,18 @@ jobs:
       - name: Install check dependencies
         run: |
           options(install.packages.compile.from.source = "never")
-          pkgs <- c("remotes", "testthat", "rvest", "rcmdcheck", "covr", "lpsymphony")
+          pkgs <- c("remotes", "testthat", "rvest", "rcmdcheck", "covr")
           missing_pkgs <- function() {
             pkgs[!nzchar(vapply(pkgs, function(p) system.file(package = p), character(1)))]
           }
           install.packages(c("remotes", "testthat", "rvest"))
           try(remotes::install_cran("rcmdcheck"))
           try(remotes::install_cran("covr"))
-          try(remotes::install_bioc("lpsymphony"))
           # retry once to ride out network errors (install.packages() only warns
           # when a package fails to install, so check what is missing)
           if (length(missing_pkgs())) {
             Sys.sleep(30)
-            cran_missing <- setdiff(missing_pkgs(), "lpsymphony")
-            if (length(cran_missing)) install.packages(cran_missing)
-            if ("lpsymphony" %in% missing_pkgs()) try(remotes::install_bioc("lpsymphony"))
+            install.packages(missing_pkgs())
           }
           if (length(missing_pkgs())) {
             stop("failed to install: ", paste(missing_pkgs(), collapse = ", "))
