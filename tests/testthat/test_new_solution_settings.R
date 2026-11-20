@@ -706,12 +706,13 @@ test_that("update solution settings", {
   ## create themes using the features
   t1 <- new_theme("Species", f1, id = "T1")
   t2 <- new_theme("Ecoregions", list(f2, f3), id = "T2")
-  ## create parameter
+  ## create parameters
+  p0 <- new_parameter("Weight importance", value = 25, id = "P0")
   p1 <- new_parameter("Spatial clustering", value = 90, id = "P1")
   ## create solution setting
   x <- new_solution_settings(
     themes = list(t1, t2), weights = list(w), includes = list(incl),
-    excludes = list(e), parameters = list(p1)
+    excludes = list(e), parameters = list(p0, p1)
   )
   ## create a weight using dataset
   w <- new_weight(
@@ -748,7 +749,9 @@ test_that("update solution settings", {
   p1 <- new_parameter("Spatial clustering", value = 45, id = "P1")  
   
   ## create setting list
-  setting_list <- list(themes = list(t1, t2), weights = list(w), 
+  ## note that parameters are matched by name, so settings saved without
+  ## a parameter (e.g., before it was added) can still be used
+  setting_list <- list(themes = list(t1, t2), weights = list(w),
     includes = list(incl), excludes = list(e), parameters = list(p1))
   ## update solution settings
   x$update_ss(setting_list)
@@ -761,5 +764,6 @@ test_that("update solution settings", {
   expect_identical(x$weights[[1]]$factor, 90)
   expect_identical(x$includes[[1]]$status, FALSE)
   expect_identical(x$excludes[[1]]$status, FALSE)
-  expect_identical(x$parameters[[1]]$value, 45)
+  expect_identical(x$parameters[[1]]$value, 25)
+  expect_identical(x$parameters[[2]]$value, 45)
 })

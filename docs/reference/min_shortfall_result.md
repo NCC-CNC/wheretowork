@@ -30,7 +30,9 @@ min_shortfall_result(
   time_limit_2 = .Machine$integer.max,
   verbose = FALSE,
   id = uuid::UUIDgenerate(),
-  try_gurobi = FALSE
+  try_gurobi = FALSE,
+  weight_importance = 0.25,
+  min_budget_proportion = 0.99
 )
 ```
 
@@ -142,11 +144,36 @@ min_shortfall_result(
   `logical` value indicating if the Gurobi solver should be used when
   generating solutions. Defaults to `FALSE`.
 
+- weight_importance:
+
+  `numeric` total relative importance of the weights compared with the
+  goals (which have an importance of 1). Must be greater than 0 and no
+  more than 1. Defaults to 0.25.
+
+- min_budget_proportion:
+
+  `numeric` minimum proportion of the area budget that the solution must
+  use when weights are enabled and the goals cannot all be met (ranging
+  between 0 and 1), or as much as is feasible. Defaults to 0.99.
+
 ## Value
 
 A
 [Solution](https://ncc-cnc.github.io/wheretowork/reference/Solution.md)
 object containing the solution.
+
+## Details
+
+If any weights are enabled, then the goals (minimum shortfall objective)
+and each weight (maximum weighted sum objective) are combined using the
+reference point approach (see
+[`prioritizr::add_ref_point_approach()`](https://prioritizr.net/reference/add_ref_point_approach.html)).
+The goals have an importance of 1, and `weight_importance` is shared
+among the weights in proportion to their factors. Each weight is
+rescaled by its total. The best value for the goals is stored in
+`cache`. If the goals can all be met within the area budget, then
+solutions must meet them; otherwise solutions must use at least
+`min_budget_proportion` of the area budget.
 
 ## Examples
 

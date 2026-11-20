@@ -62,6 +62,25 @@ import_data <- function(x, mode) {
       id = "budget_parameter"
     )
 
+  weight_importance_parameter <-
+    wheretowork::new_parameter(
+      name = "Weight importance",
+      status = FALSE,
+      value = round(get_golem_config("weight_importance") * 100),
+      min_value = 1,
+      max_value = 100,
+      step_value = 1,
+      units = "%",
+      hide = TRUE,
+      disable = FALSE,
+      tool_tip =
+        "Specify how important the Weights are compared with the Goals when a
+        budget is specified (as a percentage). Higher values mean the Weights
+        have more influence on the solution, at the expense of meeting the
+        Goals. When turned off, a default value is used.",
+      id = "weight_importance_parameter"
+    )
+
   boundary_gap_parameter <-
     wheretowork::new_parameter(
       name = "Spatial clustering",
@@ -129,9 +148,9 @@ import_data <- function(x, mode) {
     weights = app_data$weights,
     includes = app_data$includes,
     excludes = app_data$excludes,
-    parameters = list(area_budget_parameter, boundary_gap_parameter, 
-                      solution_layer_parameter, overlap_parameter, 
-                      fileinput_parameter)
+    parameters = list(area_budget_parameter, weight_importance_parameter,
+                      boundary_gap_parameter, solution_layer_parameter,
+                      overlap_parameter, fileinput_parameter)
   )
   
   # store  data
