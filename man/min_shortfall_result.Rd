@@ -112,13 +112,15 @@ If any weights are enabled, then the goals (minimum shortfall objective)
 and each weight (maximum weighted sum objective) are combined using the
 reference point approach (see \code{\link[prioritizr:add_ref_point_approach]{prioritizr::add_ref_point_approach()}}).
 The goals have an importance of 1, and \code{weight_importance} is shared among
-the weights in proportion to their factors. Each weight is rescaled by its
-total in planning units that are not locked out. The best value for each
-weight is calculated by solving its problem with proportion decisions,
-subject to the same constraints as the solution. The best value for the
-goals is stored in \code{cache}. If the goals can all be met within the area
-budget, then solutions must meet them; otherwise solutions must use at
-least \code{min_budget_proportion} of the area budget.
+the weights in proportion to their factors. Each objective is rescaled
+using its best and worst possible values, which are calculated by
+\code{\link[prioritizr:add_ref_point_approach]{prioritizr::add_ref_point_approach()}} subject to the same constraints as
+the solution. This requires additional optimization runs for each
+objective, so solutions take longer to generate as more weights are
+enabled. The goals are first solved alone to find out if they can all be
+met within the area budget, and this result is stored in \code{cache}. If they
+can, then solutions must meet them; otherwise solutions must use at least
+\code{min_budget_proportion} of the area budget.
 }
 \examples{
 # find data file paths
