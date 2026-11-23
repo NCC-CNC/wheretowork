@@ -733,7 +733,7 @@ test_that("weight_importance", {
   )
 })
 
-test_that("objective scaling values are cached", {
+test_that("primary problem result is cached", {
   skip_on_ci()
   # create object
   x <- create_weight_test_inputs(c(50, -50))
@@ -746,7 +746,7 @@ test_that("objective scaling values are cached", {
   # run tests
   expect_is(r1, "Result")
   expect_is(r2, "Result")
-  ## solution and best value for the primary problem
+  ## solution and the primary problem's result
   expect_equal(n1, 2)
   ## only a new solution is cached, since the primary problem is reused
   expect_equal(n2, 3)
