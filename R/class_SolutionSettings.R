@@ -355,10 +355,16 @@ SolutionSettings <- R6::R6Class(
         self$excludes[[i]]$set_setting("status", value$excludes[[i]]$status)
       })
       # update parameter settings status and value
-      lapply(seq_along(value$parameters), function(i) {
-        self$parameters[[i]]$set_setting("status", value$parameters[[i]]$status)
-        self$parameters[[i]]$set_setting("value", value$parameters[[i]]$value)
-      })      
+      ## matched by name, so settings saved before a parameter was added
+      ## can still be used
+      parameter_names <- vapply(self$parameters, `[[`, character(1), "name")
+      lapply(value$parameters, function(x) {
+        i <- which(parameter_names == x$name)
+        if (length(i) == 1) {
+          self$parameters[[i]]$set_setting("status", x$status)
+          self$parameters[[i]]$set_setting("value", x$value)
+        }
+      })
     },
       
     #' @description
