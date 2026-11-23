@@ -117,13 +117,12 @@ jobs:
       - name: Install check dependencies
         run: |
           options(install.packages.compile.from.source = "never")
-          pkgs <- c("remotes", "testthat", "rvest", "rcmdcheck", "covr")
+          pkgs <- c("remotes", "testthat", "rvest", "rcmdcheck")
           missing_pkgs <- function() {
             pkgs[!nzchar(vapply(pkgs, function(p) system.file(package = p), character(1)))]
           }
           install.packages(c("remotes", "testthat", "rvest"))
           try(remotes::install_cran("rcmdcheck"))
-          try(remotes::install_cran("covr"))
           # retry once to ride out network errors (install.packages() only warns
           # when a package fails to install, so check what is missing)
           if (length(missing_pkgs())) {
@@ -158,11 +157,3 @@ jobs:
         if: always()
         run: find check -name 'testthat.Rout*' -exec cat '{}' \; || true
         shell: bash
-
-      - name: Test coverage
-        run: covr::codecov()
-        shell: Rscript {0}
-        # don't fail the check if the Codecov upload fails
-        continue-on-error: true
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
