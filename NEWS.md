@@ -10,8 +10,9 @@ severely restrict the area selected, since solutions must use at least 99% of
 the area budget when the Goals cannot all be met within it (set by
 `min_budget_proportion` in the app configuration). When the Goals can all be
 met within the area budget, solutions must meet all of the Goals, but do not
-need to use all of the area budget. Each Weight is measured as
-the proportion of its total held in the solution. As with no area budget, the
+need to use all of the area budget. Each objective is rescaled using its best
+and worst possible values given the area budget, Includes and Excludes. As
+with no area budget, the
 factors set the relative importance of the Weights compared with each other,
 and the Weights together have a fixed importance (by default a quarter of that
 of the Goals), so enabling many Weights does not override the Goals (#323,
