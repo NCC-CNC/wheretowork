@@ -65,7 +65,7 @@ fr <- new_feature_results(f, held = 0.8)
 # print object
 print(fr)
 #> FeatureResults
-#>   id:      282ce07f-70f1-4f4e-8eb8-32d055c14562
+#>   id:      a39eda7b-cb3d-46a5-ab4e-0c8468128fec
 #>   status: TRUE
 #>   current: 0
 #>   goal: 0.2

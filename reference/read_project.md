@@ -128,14 +128,14 @@ print(x)
 #> $dataset
 #> Dataset
 #>   paths:
-#>     spatial: /tmp/RtmpiCuWTj/temp_libpath51b21a80aa17/wheretowork/extdata/projects/sim_raster/sim_raster_spatial.tif
-#>     attribute: /tmp/RtmpiCuWTj/temp_libpath51b21a80aa17/wheretowork/extdata/projects/sim_raster/sim_raster_attribute.csv.gz
-#>     boundary: /tmp/RtmpiCuWTj/temp_libpath51b21a80aa17/wheretowork/extdata/projects/sim_raster/sim_raster_boundary.csv.gz
+#>     spatial: /tmp/RtmpqwxAqW/temp_libpath530240a470f5/wheretowork/extdata/projects/sim_raster/sim_raster_spatial.tif
+#>     attribute: /tmp/RtmpqwxAqW/temp_libpath530240a470f5/wheretowork/extdata/projects/sim_raster/sim_raster_attribute.csv.gz
+#>     boundary: /tmp/RtmpqwxAqW/temp_libpath530240a470f5/wheretowork/extdata/projects/sim_raster/sim_raster_boundary.csv.gz
 #> 
 #> $themes
 #> $themes[[1]]
 #> Theme
-#>   id:        0d082c21-8df7-4648-a51b-834374517e05
+#>   id:        47cc0bf7-709c-42b1-8ebb-4552a54bccdb
 #>   name:      Brown-necked Parrot (Brown-necked)
 #>   feature: 
 #>     Brown-necked Parrot (Brown-necked) habitat [status: TRUE, current: 0.81, goal: 0.62]
@@ -143,7 +143,7 @@ print(x)
 #> 
 #> $themes[[2]]
 #> Theme
-#>   id:        b5d6791f-08f1-4517-8424-0faad59a705c
+#>   id:        bb783262-b704-414d-8948-f0ed3f286572
 #>   name:      Gough Island Finch
 #>   feature: 
 #>     Gough Island Finch habitat [status: TRUE, current: 0.83, goal: 0.54]
@@ -151,7 +151,7 @@ print(x)
 #> 
 #> $themes[[3]]
 #> Theme
-#>   id:        62b42177-9f10-40d2-b180-e02e9850694b
+#>   id:        c9ef03de-527f-43a5-a480-edbab2fd53ae
 #>   name:      Manus Boobook
 #>   feature: 
 #>     Manus Boobook habitat [status: TRUE, current: 0.79, goal: 0.5]
@@ -159,7 +159,7 @@ print(x)
 #> 
 #> $themes[[4]]
 #> Theme
-#>   id:        f4aa4ac1-8beb-4664-81c4-a0b9715a8cfd
+#>   id:        c8e0f48a-f1d4-43ba-86e4-d369a82536b3
 #>   name:      Flufftails
 #>   feature: 
 #>     Red-chested Flufftail [status: TRUE, current: 0.81, goal: 0.7]
@@ -183,7 +183,7 @@ print(x)
 #> 
 #> $themes[[5]]
 #> Theme
-#>   id:        815c52b5-5057-4797-89f2-ff4ed0c543df
+#>   id:        d6529ee3-33fd-4c9a-b0d8-3a6dffe79678
 #>   name:      Todies
 #>   feature: 
 #>     Puerto Rican Tody [status: TRUE, current: 0.79, goal: 0.6]
@@ -195,10 +195,10 @@ print(x)
 #> $weights
 #> $weights[[1]]
 #> Weight
-#>   id:       e663aecc-077d-4ba4-8edd-d9e3d1b7ceae
+#>   id:       c4b441ec-d97b-468f-8e13-a022ca2bba25
 #>   name:     Population count
 #>   variable: .../sim_raster_spatial.tif#Population_count [total: 174.9 ha]
-#>   pane:  d0878796-462a-4104-8bfd-b8d4886fe4b9-Population_count
+#>   pane:  ccd9925c-380b-43d6-b34d-14fd99c1964e-Population_count
 #>   current:  0.8
 #>   visible:  TRUE
 #>   invisible:  NA
@@ -210,10 +210,10 @@ print(x)
 #> 
 #> $weights[[2]]
 #> Weight
-#>   id:       00ec5c09-83b2-4b04-bc55-474ce489fdbd
+#>   id:       cc5344d5-f36c-4681-b47c-9e2e72711b24
 #>   name:     Transportation network
 #>   variable: .../sim_raster_spatial.tif#Transportation_network [total: 140.56 ha]
-#>   pane:  68d5fa04-3eac-4aa1-a60a-27b3dfc346c6-Transportation_network
+#>   pane:  85cb9cff-e8e6-42ff-8c75-f97c4731ba23-Transportation_network
 #>   current:  0.82
 #>   visible:  TRUE
 #>   invisible:  NA
@@ -225,10 +225,10 @@ print(x)
 #> 
 #> $weights[[3]]
 #> Weight
-#>   id:       bb08bcb0-71a2-4c84-9f27-c63a0d5e34ab
+#>   id:       c9dbb05b-ba7a-492d-b84b-be1dc9698343
 #>   name:     Sea level rise
 #>   variable: .../sim_raster_spatial.tif#Sea_level_rise [total: 144.44 ha]
-#>   pane:  04caba0a-fdaa-4b35-b899-195cc7c086c9-Sea_level_rise
+#>   pane:  77bb96c3-6eba-4b88-a971-d4aeab16d3fa-Sea_level_rise
 #>   current:  0.79
 #>   visible:  TRUE
 #>   invisible:  NA
@@ -242,10 +242,10 @@ print(x)
 #> $includes
 #> $includes[[1]]
 #> Include
-#>   id:       ff01a79a-3af2-465a-b5e0-a2bc983aed94
+#>   id:       84f11bf6-dd1a-477f-9c20-d81c9f8183e4
 #>   name:     Protected landscapes
 #>   variable: .../sim_raster_spatial.tif#Protected_landscapes [total: 182 ]
-#>   pane:  a7707d89-1024-45ac-b026-a895bd16eb06-Protected_landscapes
+#>   pane:  79395b62-497e-4e43-9331-d44d083fb4eb-Protected_landscapes
 #>   visible:  TRUE
 #>   invisible:  NA
 #>   loaded:  TRUE
@@ -256,10 +256,10 @@ print(x)
 #> 
 #> $includes[[2]]
 #> Include
-#>   id:       eeb5ae09-52cf-4037-abbb-eeb63346065a
+#>   id:       fd78d6d4-0a39-448f-a313-75dc9e742c10
 #>   name:     OECM areas
 #>   variable: .../sim_raster_spatial.tif#OECM_areas [total: 157 ]
-#>   pane:  ff5e0e40-129a-489b-95fb-173f62fca369-OECM_areas
+#>   pane:  eda5ded5-0d6e-42e6-aae1-ec889af0f897-OECM_areas
 #>   visible:  TRUE
 #>   invisible:  NA
 #>   loaded:  TRUE

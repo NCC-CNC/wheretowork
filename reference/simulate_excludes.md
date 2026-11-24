@@ -57,10 +57,10 @@ x <- simulate_excludes(dataset = d, n = 2)
 print(x)
 #> [[1]]
 #> Exclude
-#>   id:       35ce49a1-efc7-4961-b3e0-57522907f402
+#>   id:       12555d2e-08ff-4cd8-ae20-012aa69324d0
 #>   name:     Uplands
 #>   variable: .../sim_raster_spatial.tif#Uplands [total: 134 ]
-#>   pane:  bce89a73-b958-48cd-87a2-152b9327026d-Uplands
+#>   pane:  01a86c09-2186-408e-89a0-143776a232f8-Uplands
 #>   visible:  TRUE
 #>   invisible:  NA
 #>   loaded:  TRUE
@@ -71,10 +71,10 @@ print(x)
 #> 
 #> [[2]]
 #> Exclude
-#>   id:       c8559429-4a23-417a-b995-f62235428c19
+#>   id:       ca9edead-0e9a-4afa-8e10-d55467abb44e
 #>   name:     Expensive land
 #>   variable: .../sim_raster_spatial.tif#Expensive_land [total: 142 ]
-#>   pane:  c1ef236d-2a32-406f-957a-8f1309057c48-Expensive_land
+#>   pane:  9f8b2588-db1b-4734-8769-a52d97a4e8fb-Expensive_land
 #>   visible:  TRUE
 #>   invisible:  NA
 #>   loaded:  TRUE

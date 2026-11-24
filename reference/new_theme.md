@@ -75,7 +75,7 @@ x <- new_theme(name = "Intact Alvar", feature = f)
 # print object
 print(x)
 #> Theme
-#>   id:        e02c031a-1161-4219-9deb-93e0c35b3b09
+#>   id:        fb8126c6-4c3e-4f88-bd98-d244089940da
 #>   name:      Intact Alvar
 #>   feature: 
 #>     Intact Alvar map [status: TRUE, current: 0, goal: 0.2]

@@ -79,7 +79,7 @@ x <- simulate_themes(data = d, n_single_themes = 3, n_multi_themes = 2)
 print(x)
 #> [[1]]
 #> Theme
-#>   id:        fc819f16-4bbc-4360-b292-04c717d3edea
+#>   id:        e94fc5dd-0cd3-45d0-a1bb-1de47581dc27
 #>   name:      Drab Seedeater
 #>   feature: 
 #>     Drab Seedeater habitat [status: TRUE, current: 0.3, goal: 0.83]
@@ -87,7 +87,7 @@ print(x)
 #> 
 #> [[2]]
 #> Theme
-#>   id:        adac5ea4-574f-481c-86ed-0319e927a0c9
+#>   id:        1bd0fb10-1bbc-49bb-8608-27678a5c7f47
 #>   name:      Melodious Warbler
 #>   feature: 
 #>     Melodious Warbler habitat [status: TRUE, current: 0.35, goal: 0.69]
@@ -95,7 +95,7 @@ print(x)
 #> 
 #> [[3]]
 #> Theme
-#>   id:        735ef8a7-6fa3-4b70-b2d0-97a7a5c27874
+#>   id:        5bacd7ac-0b95-4d49-b5d8-f01a8a4dbaf0
 #>   name:      Eurasian Blue Tit
 #>   feature: 
 #>     Eurasian Blue Tit habitat [status: TRUE, current: 0.55, goal: 0.81]
@@ -103,7 +103,7 @@ print(x)
 #> 
 #> [[4]]
 #> Theme
-#>   id:        ff33da89-445d-47b2-ba6a-6b745c14b01b
+#>   id:        f2925564-a4e9-4061-a9ce-48c9c8f11eeb
 #>   name:      Leafbirds
 #>   feature: 
 #>     Blue-winged Leafbird (Javan) [status: TRUE, current: 0.3, goal: 0.58]
@@ -121,7 +121,7 @@ print(x)
 #> 
 #> [[5]]
 #> Theme
-#>   id:        a3f215ec-b115-4a64-aed5-a4f53c54f334
+#>   id:        0f0cd330-ad1b-4857-82b1-3763ebaecedf
 #>   name:      Ground Babblers and Allies
 #>   feature: 
 #>     Horsfield's Babbler (Hartert's) [status: TRUE, current: 0.41, goal: 0.69]

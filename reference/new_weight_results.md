@@ -65,10 +65,10 @@ wr <- new_weight_results(w, 80)
 # print object
 print(w)
 #> Weight
-#>   id:       423212b9-0b75-4886-ae86-8f4740ca665a
+#>   id:       2e7aa396-f1b2-4c23-a8aa-042619553b6c
 #>   name:     NDVI
 #>   variable: .../sim_raster_spatial.tif#Brown_necked_Parrot_Brown_necked_ [total: 483 ]
-#>   pane:  ff36558b-54d1-4866-9b13-b4d87e1f2fe1-Brown_necked_Parrot_Brown_necked_
+#>   pane:  749c5f30-e6a3-43d4-90e5-1e44ac9d1064-Brown_necked_Parrot_Brown_necked_
 #>   current:  0
 #>   visible:  TRUE
 #>   invisible:  NA

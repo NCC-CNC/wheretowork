@@ -126,10 +126,10 @@ w <- new_include(name = "Protected areas", variable = v)
 # print object
 print(w)
 #> Include
-#>   id:       42b7e74d-7260-4d92-9cd8-31b8a15e21ca
+#>   id:       61a0d5de-6751-4bc7-adae-dbb64c2b642d
 #>   name:     Protected areas
 #>   variable: .../sim_raster_spatial.tif#Brown_necked_Parrot_Brown_necked_ [total: 483 ]
-#>   pane:  5d81ae88-7d9f-43f8-9100-ad2a40274acf-Brown_necked_Parrot_Brown_necked_
+#>   pane:  46f1fe4f-fbab-4a04-a3a9-aa8be6dcc2f5-Brown_necked_Parrot_Brown_necked_
 #>   visible:  TRUE
 #>   invisible:  NA
 #>   loaded:  TRUE

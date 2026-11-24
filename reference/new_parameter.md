@@ -101,7 +101,7 @@ p <- new_parameter(name = "Spatial clustering")
 # print object
 print(p)
 #> Parameter
-#>   id:       951dcea9-53b7-4d4e-b288-1455bff2ae70
+#>   id:       a03b740f-db18-4d30-a970-51168c5a293f
 #>   name:     Spatial clustering
 #>   status:   TRUE
 #>   value:   0 

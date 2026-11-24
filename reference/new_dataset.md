@@ -88,7 +88,7 @@ d <- new_dataset(f1, f2, f3)
 print(d)
 #> Dataset
 #>   paths:
-#>     spatial: /tmp/RtmpiCuWTj/temp_libpath51b21a80aa17/wheretowork/extdata/projects/sim_raster/sim_raster_spatial.tif
-#>     attribute: /tmp/RtmpiCuWTj/temp_libpath51b21a80aa17/wheretowork/extdata/projects/sim_raster/sim_raster_attribute.csv.gz
-#>     boundary: /tmp/RtmpiCuWTj/temp_libpath51b21a80aa17/wheretowork/extdata/projects/sim_raster/sim_raster_boundary.csv.gz
+#>     spatial: /tmp/RtmpqwxAqW/temp_libpath530240a470f5/wheretowork/extdata/projects/sim_raster/sim_raster_spatial.tif
+#>     attribute: /tmp/RtmpqwxAqW/temp_libpath530240a470f5/wheretowork/extdata/projects/sim_raster/sim_raster_attribute.csv.gz
+#>     boundary: /tmp/RtmpqwxAqW/temp_libpath530240a470f5/wheretowork/extdata/projects/sim_raster/sim_raster_boundary.csv.gz
 ```

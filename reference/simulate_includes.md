@@ -57,10 +57,10 @@ x <- simulate_includes(dataset = d, n = 2)
 print(x)
 #> [[1]]
 #> Include
-#>   id:       f880f442-14f3-4c10-93d0-aa3ae7c3a305
+#>   id:       55e5df4d-4d05-464b-a254-27e557a73917
 #>   name:     OECM areas
 #>   variable: .../sim_raster_spatial.tif#OECM_areas [total: 168 ]
-#>   pane:  e4db752e-91d4-4402-93e3-a642cc7b8ca2-OECM_areas
+#>   pane:  c45483fd-d065-41a7-88b0-5d26c671af31-OECM_areas
 #>   visible:  TRUE
 #>   invisible:  NA
 #>   loaded:  TRUE
@@ -71,10 +71,10 @@ print(x)
 #> 
 #> [[2]]
 #> Include
-#>   id:       2b57fba7-6e84-4d1a-9908-a4ba8870c72a
+#>   id:       ae246093-d951-4ba6-8a96-6732ab09fff4
 #>   name:     Special Protection Area
 #>   variable: .../sim_raster_spatial.tif#Special_Protection_Area [total: 156 ]
-#>   pane:  a73f87e9-e77a-44b5-b291-2d8e358d1da7-Special_Protection_Area
+#>   pane:  07c1028a-0546-4a8d-8ac7-1d59d3138ecf-Special_Protection_Area
 #>   visible:  TRUE
 #>   invisible:  NA
 #>   loaded:  TRUE

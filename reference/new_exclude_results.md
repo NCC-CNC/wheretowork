@@ -65,7 +65,7 @@ exclr <- new_exclude_results(excl, 80)
 # print object
 print(exclr)
 #> ExcludeResults
-#>   id:      8bcc4faa-0025-4a3b-8274-ddf46346b983
+#>   id:      272b9c9f-4fd9-4649-9180-8168746e78dd
 #>   status: FALSE
 #>   held: 80
 #>   exclude: Highways [status: FALSE]

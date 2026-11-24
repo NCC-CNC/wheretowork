@@ -42,7 +42,7 @@ find_projects(d)
 #> # A tibble: 3 × 3
 #>   path                                                              name  status
 #>   <chr>                                                             <chr> <lgl> 
-#> 1 /tmp/RtmpiCuWTj/temp_libpath51b21a80aa17/wheretowork/extdata/pro… Exam… TRUE  
-#> 2 /tmp/RtmpiCuWTj/temp_libpath51b21a80aa17/wheretowork/extdata/pro… Exam… TRUE  
-#> 3 /tmp/RtmpiCuWTj/temp_libpath51b21a80aa17/wheretowork/extdata/pro… Sout… TRUE  
+#> 1 /tmp/RtmpqwxAqW/temp_libpath530240a470f5/wheretowork/extdata/pro… Exam… TRUE  
+#> 2 /tmp/RtmpqwxAqW/temp_libpath530240a470f5/wheretowork/extdata/pro… Exam… TRUE  
+#> 3 /tmp/RtmpqwxAqW/temp_libpath530240a470f5/wheretowork/extdata/pro… Sout… TRUE  
 ```

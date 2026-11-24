@@ -126,10 +126,10 @@ e <- new_exclude(name = "Protected areas", variable = v)
 # print object
 print(e)
 #> Exclude
-#>   id:       5022eff5-3194-4d97-b3a0-9eed38736f86
+#>   id:       4a033c9a-7304-41e9-9781-90064fbd9c88
 #>   name:     Protected areas
 #>   variable: .../sim_raster_spatial.tif#Brown_necked_Parrot_Brown_necked_ [total: 483 ]
-#>   pane:  3c6e5569-d0b5-46c1-93a9-e2f0a0cda751-Brown_necked_Parrot_Brown_necked_
+#>   pane:  eaf92593-01d0-4691-87c7-fd2cc9724420-Brown_necked_Parrot_Brown_necked_
 #>   visible:  TRUE
 #>   invisible:  NA
 #>   loaded:  TRUE

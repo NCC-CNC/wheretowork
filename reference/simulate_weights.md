@@ -61,10 +61,10 @@ x <- simulate_weights(dataset = d, n = 2)
 print(x)
 #> [[1]]
 #> Weight
-#>   id:       b42bb6da-ccfa-4c80-b2a3-7a6009ce58cc
+#>   id:       e701bdc0-a154-4318-9350-7a202a7ebd1c
 #>   name:     Transportation network
 #>   variable: .../sim_raster_spatial.tif#Transportation_network [total: 133.47 ha]
-#>   pane:  a8f3fea9-1888-4a12-97d5-de36704499c8-Transportation_network
+#>   pane:  ee472820-6458-4939-81fa-0a8d0b8521dc-Transportation_network
 #>   current:  0.38
 #>   visible:  TRUE
 #>   invisible:  NA
@@ -76,10 +76,10 @@ print(x)
 #> 
 #> [[2]]
 #> Weight
-#>   id:       e3566a05-44af-4e86-b85d-e7e7798e4a4b
+#>   id:       8fcb68e5-6476-458c-8c1b-6fd8d489084c
 #>   name:     Population count
 #>   variable: .../sim_raster_spatial.tif#Population_count [total: 153.48 ha]
-#>   pane:  e25e8e9f-6f4e-4092-9115-01c898829837-Population_count
+#>   pane:  cd560da1-c469-4b69-acd6-cc933e9aac0b-Population_count
 #>   current:  0.41
 #>   visible:  TRUE
 #>   invisible:  NA

@@ -71,5 +71,5 @@ thr <- new_theme_results(th, fr)
 # print object
 print(thr)
 #> ThemeResults
-#>   id:      87ac9cbf-22e2-4f31-b773-6b64042ae61c
+#>   id:      0937b97e-c608-467a-9fee-2694f0431c30
 ```
