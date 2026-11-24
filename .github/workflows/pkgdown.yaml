@@ -47,6 +47,15 @@ jobs:
           remotes::install_cran("pkgdown")
         shell: Rscript {0}
 
+      # Regenerate man/ from the roxygen comments so the reference pages
+      # always match the code, even if man/ wasn't rebuilt before committing.
+      # roxygen2 is not in renv.lock; pin it to the RoxygenNote in DESCRIPTION.
+      - name: Document
+        run: |
+          remotes::install_version("roxygen2", "7.3.2", upgrade = "never")
+          roxygen2::roxygenise()
+        shell: Rscript {0}
+
       - name: Build site
         run: |
           pkgdown::build_site_github_pages(
