@@ -1,0 +1,48 @@
+# Find projects
+
+Find project files in a directory.
+
+## Usage
+
+``` r
+find_projects(x, user_groups = "public")
+```
+
+## Arguments
+
+- x:
+
+  `character` directory path.
+
+- user_groups:
+
+  `character` vector of project group names available that can be
+  imported. Defaults to `"public"`.
+
+## Value
+
+[`tibble::tibble()`](https://tibble.tidyverse.org/reference/tibble.html)
+object containing the configuration files and names of projects found in
+the directory.
+
+## Details
+
+Projects that are missing user group information are automatically
+assigned to the `"private"` user group. Additionally, note that
+`"admin"` is a special user group that can access all projects.
+
+## Examples
+
+``` r
+# find directory with built-in projects
+d <- system.file("extdata", "projects", package = "wheretowork")
+
+# list projects in directory
+find_projects(d)
+#> # A tibble: 3 × 3
+#>   path                                                              name  status
+#>   <chr>                                                             <chr> <lgl> 
+#> 1 /tmp/RtmpiCuWTj/temp_libpath51b21a80aa17/wheretowork/extdata/pro… Exam… TRUE  
+#> 2 /tmp/RtmpiCuWTj/temp_libpath51b21a80aa17/wheretowork/extdata/pro… Exam… TRUE  
+#> 3 /tmp/RtmpiCuWTj/temp_libpath51b21a80aa17/wheretowork/extdata/pro… Sout… TRUE  
+```

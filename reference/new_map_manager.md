@@ -1,0 +1,105 @@
+# New map manager
+
+Create a new
+[MapManager](https://ncc-cnc.github.io/wheretowork/reference/MapManager.md)
+object.
+
+## Usage
+
+``` r
+new_map_manager(layers, order = rev(seq_along(layers)))
+```
+
+## Arguments
+
+- layers:
+
+  `list` of
+  [Theme](https://ncc-cnc.github.io/wheretowork/reference/Theme.md)
+  and/or
+  [Weight](https://ncc-cnc.github.io/wheretowork/reference/Weight.md)
+  objects.
+
+- order:
+
+  `numeric` vector containing a value for each element in `layers`.
+  These values indicate the order each layer should appear on them map.
+  A value of 1 indicates that a layer should appear beneath every other
+  layer. Defaults to an integer sequence of numbers based on the number
+  of elements in `layers`.
+
+## Value
+
+A
+[MapManager](https://ncc-cnc.github.io/wheretowork/reference/MapManager.md)
+object.
+
+## Examples
+
+``` r
+# create dataset
+# find data file paths
+f1 <- system.file(
+  "extdata", "projects", "sim_raster", "sim_raster_spatial.tif",
+  package = "wheretowork"
+)
+f2 <- system.file(
+  "extdata",  "projects", "sim_raster", "sim_raster_attribute.csv.gz",
+  package = "wheretowork"
+)
+f3 <- system.file(
+  "extdata",  "projects", "sim_raster", "sim_raster_boundary.csv.gz",
+  package = "wheretowork"
+)
+
+# create new dataset
+d <- new_dataset(f1, f2, f3)
+
+# create variables
+v1 <- new_variable_from_auto(dataset = d, index = 1)
+v2 <- new_variable_from_auto(dataset = d, index = 2)
+v3 <- new_variable_from_auto(dataset = d, index = 3)
+v4 <- new_variable_from_auto(dataset = d, index = 4)
+
+# create a weight using a variable
+w <- new_weight(
+  name = "Human Footprint Index", variable = v1,
+  factor = -90, status = FALSE, id = "W1"
+)
+
+# create features using variables
+f1 <- new_feature(
+  name = "Possum", variable = v2,
+  goal = 0.2, status = FALSE, current = 0.5, id = "F1"
+)
+f2 <- new_feature(
+  name = "Forests", variable = v3,
+  goal = 0.3, status = FALSE, current = 0.9, id = "F2"
+)
+f3 <- new_feature(
+  name = "Shrubs", variable = v4,
+  goal = 0.6, status = TRUE, current = 0.4, id = "F3"
+)
+
+# create themes using the features
+t1 <- new_theme("Species", f1, id = "T1")
+t2 <- new_theme("Ecoregions", list(f2, f3), id = "T2")
+
+# create a map manager for the themes and weight
+mm <- new_map_manager(layers = list(t1, t2, w))
+
+# print object
+print(mm)
+#> MapManager
+#>   layers: 
+#>     Species:
+#>       Possum [status: FALSE, current: 0.5, goal: 0.2]
+#>         variable: .../sim_raster_spatial.tif#Gough_Island_Finch [total: 25747.97 ]
+#>     Ecoregions:
+#>       Forests [status: FALSE, current: 0.9, goal: 0.3]
+#>         variable: .../sim_raster_spatial.tif#Manus_Boobook [total: 23474.88 ]
+#>       Shrubs [status: TRUE, current: 0.4, goal: 0.6]
+#>         variable: .../sim_raster_spatial.tif#Red_chested_Flufftail [total: 322.75 ]
+#>     Human Footprint Index [status: FALSE, current: 0, factor: -90]
+#>       variable: .../sim_raster_spatial.tif#Brown_necked_Parrot_Brown_necked_ [total: 483 ]
+```
