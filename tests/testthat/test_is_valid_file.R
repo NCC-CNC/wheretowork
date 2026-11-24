@@ -29,12 +29,45 @@ test_that("spatial file (vector)", {
     "extdata", "projects", "sim_vector", "sim_vector_spatial.shx",
     package = "wheretowork"
   )
-  # WGS84. is_valid_spatial_file output only TRUE with a projected CRS
   f4 <- system.file(
     "extdata", "projects", "sim_vector", "sim_vector_spatial.prj",
     package = "wheretowork"
   )
-  expect_false(isTRUE(is_valid_spatial_file(c(f1, f2, f3, f4))))
+  # note that data are in WGS84 (longitude/latitude)
+  expect_true(isTRUE(is_valid_spatial_file(c(f1, f2, f3, f4))))
+})
+
+test_that("spatial file (raster, longitude/latitude)", {
+  # create data
+  r <- terra::rast(
+    nrows = 2, ncols = 3, xmin = 0, xmax = 3, ymin = 50, ymax = 52,
+    crs = "EPSG:4326", vals = seq_len(6)
+  )
+  f <- tempfile(fileext = ".tif")
+  terra::writeRaster(r, f)
+  # run tests
+  expect_true(isTRUE(is_valid_spatial_file(f)))
+  # clean up
+  unlink(f)
+})
+
+test_that("spatial file (raster, missing CRS)", {
+  # create data
+  ## note that extent is outside longitude/latitude range, because
+  ## otherwise terra assumes a geographic CRS when reading the data
+  r <- terra::rast(
+    nrows = 2, ncols = 3, xmin = 0, xmax = 300, ymin = 0, ymax = 200,
+    crs = "", vals = seq_len(6)
+  )
+  f <- tempfile(fileext = ".tif")
+  suppressWarnings(terra::writeRaster(r, f))
+  # run tests
+  expect_identical(
+    is_valid_spatial_file(f),
+    "Error: coordinate reference system must be defined"
+  )
+  # clean up
+  unlink(f)
 })
 
 test_that("attribute file", {
