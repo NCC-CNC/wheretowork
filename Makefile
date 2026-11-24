@@ -11,7 +11,7 @@ clean:
 
 # R package development commands
 ## build docs and run tests
-all: man readme test check spellcheck
+all: man test check spellcheck
 
 ## build docs
 man:
@@ -39,10 +39,6 @@ prod-data:
 	cp -R inst/extdata/projects/sim_raster3 /opt/wheretowork/projects
 	cp -R inst/extdata/projects/sim_vector /opt/wheretowork/projects
 	cp -R inst/extdata/projects/sim_vector2 /opt/wheretowork/projects
-
-## reubild readme
-readme:
-	R --slave -e "rmarkdown::render('README.Rmd')"
 
 ## run tests
 test:
@@ -122,4 +118,4 @@ reset:
 snapshot:
 	R -e "renv::snapshot()"
 
-.PHONY: clean data readme test check install man spellcheck examples site quicksite snapshot deploy demo demo-kill image debug snapshot vigns
+.PHONY: clean data test check install man spellcheck examples site quicksite snapshot deploy demo demo-kill image debug snapshot vigns
