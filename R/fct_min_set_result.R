@@ -379,7 +379,8 @@ min_set_result <- function(area_data,
       weights = weight_settings,
       includes = include_settings,
       excludes = exclude_settings,
-      overlap = overlap
+      overlap = overlap,
+      try_gurobi = try_gurobi
     )
   )
 

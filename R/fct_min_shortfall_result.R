@@ -337,7 +337,8 @@ min_shortfall_result <- function(area_budget_proportion,
       ## spatial clustering reduces the budget for the initial solution
       initial_budget = initial_budget,
       weight_importance = weight_importance,
-      min_budget_proportion = min_budget_proportion
+      min_budget_proportion = min_budget_proportion,
+      try_gurobi = try_gurobi
     )
   )
 
@@ -401,7 +402,7 @@ min_shortfall_result <- function(area_budget_proportion,
       primary_key <- digest::digest(
         list(
           "primary", targets, initial_pu_idx, locked_in[initial_pu_idx],
-          locked_out[initial_pu_idx], initial_budget
+          locked_out[initial_pu_idx], initial_budget, try_gurobi
         )
       )
       if (!isTRUE(cache$exists(primary_key))) {
