@@ -19,6 +19,15 @@ server_update_map <- quote({
     ## specify dependencies
     shiny::req(input$mapManagerPane_settings)
 
+    ## ignore stale order updates (e.g., layers re-ordered in the widget while
+    ## a new solution is being added to the map), see #465
+    if (
+      identical(input$mapManagerPane_settings$setting, "order") &&
+      length(input$mapManagerPane_settings$value) != length(app_data$mm$layers)
+    ) {
+      return()
+    }
+
     ## generate leaflet proxy
     map <- leaflet::leafletProxy("map")
     
@@ -27,6 +36,14 @@ server_update_map <- quote({
       "const mapSpinner = document.createElement('div');
       mapSpinner.classList.add('map-spinner');
       document.body.appendChild(mapSpinner);"
+    )
+    ## ensure map spinner is removed, even if an error occurs
+    on.exit(
+      shinyjs::runjs(
+        "const mapSpinner = document.querySelector('.map-spinner');
+         if (mapSpinner) mapSpinner.remove();"
+      ),
+      add = TRUE
     )
 
     ## update map manager
@@ -86,12 +103,7 @@ server_update_map <- quote({
     ## update map
     app_data$mm$update_map(map)
     ## delete the oldest loaded and invisible map pane
-    app_data$mm$delete_sinlge_map_pane(map) 
-    ## remove map spinner
-    shinyjs::runjs(
-      "const mapSpinner = document.querySelector('.map-spinner');
-       mapSpinner.remove();"
-    )    
+    app_data$mm$delete_sinlge_map_pane(map)
   })
 
   # update map based on hide button
