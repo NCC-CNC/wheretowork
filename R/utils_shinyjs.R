@@ -119,3 +119,35 @@ removeMapPane <- function(id) {
   )
   invisible(TRUE)
 }
+
+#' Reset a loading button
+#'
+#' Reset a [shinyFeedback::loadingButton()] and re-enable it.
+#'
+#' @param inputId HTML element id.
+#'
+#' @return Invisible `TRUE`.
+#'
+#' @noRd
+reset_loading_button <- function(inputId) {
+  shinyFeedback::resetLoadingButton(inputId)
+  enable_html_element(inputId)
+  invisible(TRUE)
+}
+
+#' Reset new solution inputs
+#'
+#' Reset the start button and re-enable the input widgets in the
+#' new solution pane (e.g. after solution generation fails or is stopped),
+#' so that the user can try again.
+#'
+#' @return Invisible `TRUE`.
+#'
+#' @noRd
+reset_new_solution_inputs <- function() {
+  reset_loading_button("newSolutionPane_settings_start_button")
+  enable_html_element("newSolutionPane_settings_name")
+  enable_html_element("newSolutionPane_settings_color")
+  enable_html_element("newSolutionPane_settings_gurobi")
+  invisible(TRUE)
+}

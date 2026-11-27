@@ -40,9 +40,7 @@ import_data <- function(x, mode) {
 
   # create parameters
   area_ref_value <- sum(app_data$dataset$get_planning_unit_areas()) / 100
-  area_ref_value <- as.numeric(
-    units::set_units(units::set_units(area_ref_value, "m^2"), "km^2")
-  )
+  area_ref_value <- m2_to_km2(area_ref_value)
   area_budget_parameter <-
     wheretowork::new_parameter(
       name = "Total area budget",

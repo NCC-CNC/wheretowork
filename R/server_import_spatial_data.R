@@ -36,20 +36,11 @@ server_import_spatial_data <- quote({
     ## verify that at least one theme is selected
     if (!any(settings_data$type == "theme")) {
       ### create alert
-      shinyalert::shinyalert(
-        title = "Oops...",
-        type = "error",
-        closeOnEsc = TRUE,
-        closeOnClickOutside = TRUE,
-        html = FALSE,
-        showCancelButton = FALSE,
-        showConfirmButton = TRUE,
-        confirmButtonCol = "#337ab7",
-        text = "Error: at least one theme must be selected",
+      show_error_alert(
+        text = "Error: at least one theme must be selected"
       )
       ### reset import button
-      shinyFeedback::resetLoadingButton("importModal_spatial_button")
-      enable_html_element("importModal_spatial_button")
+      reset_loading_button("importModal_spatial_button")
       ### exit
       return()
     }
@@ -63,20 +54,11 @@ server_import_spatial_data <- quote({
     ## throw error if import failed needed
     if (inherits(rd, "try-error")) {
       ### create alert
-      shinyalert::shinyalert(
-        title = "Oops...",
-        type = "error",
-        closeOnEsc = TRUE,
-        closeOnClickOutside = TRUE,
-        html = FALSE,
-        showCancelButton = FALSE,
-        showConfirmButton = TRUE,
-        confirmButtonCol = "#337ab7",
-        text = "Error: not valid ESRI Shapefile format",
+      show_error_alert(
+        text = "Error: not valid ESRI Shapefile format"
       )
       ### reset import button
-      shinyFeedback::resetLoadingButton("importModal_spatial_button")
-      enable_html_element("importModal_spatial_button")
+      reset_loading_button("importModal_spatial_button")
       ### exit
       return()
     }
@@ -90,15 +72,7 @@ server_import_spatial_data <- quote({
     )
     if (any(ad)) {
       ### display error message on import alert
-      shinyalert::shinyalert(
-        title = "Oops...",
-        type = "error",
-        closeOnEsc = TRUE,
-        closeOnClickOutside = TRUE,
-        html = FALSE,
-        showCancelButton = FALSE,
-        showConfirmButton = TRUE,
-        confirmButtonCol = "#337ab7",
+      show_error_alert(
         text = paste0(
           "Error: ESRI Shapefile has missing (NA / NULL) values in the ",
           "column(s): ",
@@ -111,8 +85,7 @@ server_import_spatial_data <- quote({
         )
       )
       ### reset import button
-      shinyFeedback::resetLoadingButton("importModal_spatial_button")
-      enable_html_element("importModal_spatial_button")
+      reset_loading_button("importModal_spatial_button")
       ### exit
       return()
     }

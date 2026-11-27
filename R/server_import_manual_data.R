@@ -16,11 +16,7 @@ server_import_manual_data <- quote({
   # set behavior for importing data using the manual option
   shiny::observeEvent(input$importModal_manual_button, {
     ## validation
-    if (
-      !is.character(app_data$configuration_path) ||
-      !is.character(app_data$spatial_path) ||
-      !is.character(app_data$attribute_path) ||
-      !is.character(app_data$boundary_path)) {
+    if (!manual_uploads_ready(app_data)) {
       return()
     }
 
@@ -41,83 +37,13 @@ server_import_manual_data <- quote({
 
     ## throw error if needed
     if (inherits(x, c("try-error", "error"))) {
-
-      ## try to parse project author details
-      project_config <- try(
-        yaml::read_yaml(app_data$configuration_path), silent = TRUE
+      ## display error and reset import button
+      show_import_error(
+        x = x,
+        configuration_path = app_data$configuration_path,
+        button_id = "importModal_manual_button",
+        output = output
       )
-      if (inherits(project_config, "try-error")) {
-          project_author_name <- get_golem_config("default_project_name")
-          project_author_email <- get_golem_config("default_project_email")
-      } else {
-        if (assertthat::is.string(project_config$author_name) &&
-            assertthat::is.string(project_config$author_email)) {
-          project_author_name <- project_config$author_name
-          project_author_email <- project_config$author_email
-        } else {
-          project_author_name <- get_golem_config("default_project_name")
-          project_author_email <- get_golem_config("default_project_email")
-        }
-      }
-
-      ## prepare download link
-      output$importModal_log_link <- shiny::downloadHandler(
-        filename = function() {
-          paste0(
-            tools::file_path_sans_ext(basename(app_data$configuration_path)),
-            "_log.zip"
-          )
-        },
-        content = function(con) {
-          # create temporary directory to assemble zip file
-          td <- tempfile()
-          dir.create(td, showWarnings = FALSE, recursive = FALSE)
-          # save log file to temporary directory
-          writeLines(error_log(x), file.path(td, "error-log.txt"))
-          # copy confgiuration file to temporary directory
-          file.copy(app_data$configuration_path, td)
-          # zip files
-          withr::with_dir(td, utils::zip(con, files = dir(td)))
-        }
-      )
-
-      ## display error message
-      shinyalert::shinyalert(
-        title = "Oops...",
-        type = "error",
-        closeOnEsc = TRUE,
-        closeOnClickOutside = TRUE,
-        html = TRUE,
-        showCancelButton = FALSE,
-        showConfirmButton = TRUE,
-        confirmButtonCol = "#337ab7",
-        text = htmltools::tags$span(
-          htmltools::tags$span(
-            paste0(
-              "Something went wrong when importing this project. ",
-              "This is likely due to a mistake in the project data. ",
-              "To resolve this issue, please download the error log "
-            ),
-            .noWS = "outside"
-          ),
-          shiny::downloadLink(
-            outputId = "importModal_log_link",
-            label = "(download here)"
-          ),
-          htmltools::tags$span(
-            paste0(" and email it to ", project_author_name, " "),
-            .noWS = "outside"
-          ),
-          htmltools::tags$a(
-            paste0("(", project_author_email, ")"),
-            href = paste0("mailto:", project_author_email)
-          )
-        )
-      )
-
-      ## reset import button
-      shinyFeedback::resetLoadingButton("importModal_manual_button")
-      enable_html_element("importModal_manual_button")
 
       ## exit
       return()

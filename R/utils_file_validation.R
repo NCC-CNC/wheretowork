@@ -209,3 +209,23 @@ is_valid_boundary_file <- function(x) {
   # return success
   TRUE
 }
+
+#' Manual uploads ready?
+#'
+#' Check if all the files required to import a project using the manual
+#' upload option have been uploaded and validated.
+#'
+#' @param app_data `reactivevalues` or `list` containing the app state,
+#'   with the `configuration_path`, `spatial_path`, `attribute_path`, and
+#'   `boundary_path` elements set to `character` file paths once the
+#'   corresponding files have been validated.
+#'
+#' @return `logical` value.
+#'
+#' @noRd
+manual_uploads_ready <- function(app_data) {
+  is.character(app_data$configuration_path) &&
+    is.character(app_data$spatial_path) &&
+    is.character(app_data$attribute_path) &&
+    is.character(app_data$boundary_path)
+}

@@ -229,6 +229,17 @@ calculate_variable_area_km2 <- function(x) {
   sum(areas[which(values > 0)]) * 1e-6
 }
 
+#' Convert square meters to square kilometers
+#'
+#' @param x `numeric` area value(s) (m^2).
+#'
+#' @return `numeric` area value(s) (km^2).
+#'
+#' @noRd
+m2_to_km2 <- function(x) {
+  as.numeric(units::set_units(units::set_units(x, "m^2"), "km^2"))
+}
+
 #' Coordinate reference system unit conversion factor
 #'
 #' Calculate the number of meters in one linear unit of the coordinate
