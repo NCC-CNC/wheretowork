@@ -37,6 +37,11 @@ is_valid_configuration_file <- function(x) {
     return("Error: YAML file is missing data")
   }
 
+  # check if YAML file contains at least one theme
+  if (length(f$themes) == 0) {
+    return("Error: YAML file must contain at least one theme")
+  }
+
   # return success
   TRUE
 }

@@ -107,6 +107,11 @@ read_project <- function(path,
     stop("configuration file is not a valid YAML file.")
   }
 
+  # verify that project contains at least one theme
+  if (length(x$themes) == 0) {
+    stop("configuration file must contain at least one theme.")
+  }
+
   # determine if advanced mode
   if (identical(mode, "project")) {
     adv_mode <- identical(x$mode, "advanced")
