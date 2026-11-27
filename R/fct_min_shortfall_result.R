@@ -550,28 +550,50 @@ min_shortfall_result <- function(area_budget_proportion,
         prioritizr::add_locked_out_constraints(locked_out)
     }    
     ### add constraints so spatial clustering does not compromise the weights
+    ### (recording them so the solution can be checked against them)
+    wn_con_idx <- integer(0)
+    wn_con_threshold <- numeric(0)
+    wn_con_sense <- character(0)
     for (i in seq_along(wn_idx)) {
       wn_initial <- sum(initial_solution * wn_data[i, ])
       if (wn_sign[i] > 0) {
-        main_problem <- prioritizr::add_linear_constraints(
-          main_problem,
-          threshold = floor(wn_initial * 1e+3) / 1e+3,
-          sense = ">=",
-          data = wn_data[i, ]
-        )
+        wn_threshold <- floor(wn_initial * 1e+3) / 1e+3
+        wn_sense <- ">="
       } else if (initial_budget > 1e-5) {
-        main_problem <- prioritizr::add_linear_constraints(
-          main_problem,
-          threshold =
-            ceiling(wn_initial * (total_budget / initial_budget) * 1e+3) / 1e+3,
-          sense = "<=",
-          data = wn_data[i, ]
-        )
+        wn_threshold <-
+          ceiling(wn_initial * (total_budget / initial_budget) * 1e+3) / 1e+3
+        wn_sense <- "<="
+      } else {
+        next
       }
+      main_problem <- prioritizr::add_linear_constraints(
+        main_problem,
+        threshold = wn_threshold,
+        sense = wn_sense,
+        data = wn_data[i, ]
+      )
+      wn_con_idx <- c(wn_con_idx, i)
+      wn_con_threshold <- c(wn_con_threshold, wn_threshold)
+      wn_con_sense <- c(wn_con_sense, wn_sense)
     }
     ### generate solution
     main_solution <-
       c(prioritizr::solve.ConservationProblem(main_problem, run_checks = FALSE))
+    ### if the solver reached its time limit without finding a valid solution,
+    ### then it can return values that do not meet the constraints,
+    ### so fall back to the initial solution (which always meets them), #469
+    if (
+      !solution_meets_constraints(
+        main_solution,
+        rbind(rij_data, cost, wn_data[wn_con_idx, , drop = FALSE]),
+        c(main_targets$target, total_budget, wn_con_threshold),
+        c(main_targets$sense, "<=", wn_con_sense)
+      ) ||
+      any(main_solution[locked_in] < 0.5) ||
+      any(main_solution[locked_out] > 0.5)
+    ) {
+      main_solution <- initial_solution
+    }
   } else {
     ### if the boundary_gap setting is very low,
     ### then we will just use the initial solution because the

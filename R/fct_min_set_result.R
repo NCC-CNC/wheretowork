@@ -547,6 +547,21 @@ min_set_result <- function(area_data,
     ### generate solution
     main_solution <-
       c(prioritizr::solve.ConservationProblem(main_problem, run_checks = FALSE))
+    ### if the solver reached its time limit without finding a valid solution,
+    ### then it can return values that do not meet the constraints,
+    ### so fall back to the initial solution (which always meets them), #469
+    if (
+      !solution_meets_constraints(
+        main_solution,
+        rbind(theme_data, cost),
+        c(targets$target, max_cost),
+        c(targets$sense, "<=")
+      ) ||
+      any(main_solution[locked_in] < 0.5) ||
+      any(main_solution[locked_out] > 0.5)
+    ) {
+      main_solution <- initial_solution
+    }
   } else {
     ### if the boundary_gap setting is very low,
     ### then we will just use the initial solution because the

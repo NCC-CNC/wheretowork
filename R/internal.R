@@ -322,3 +322,31 @@ add_wtw_solver <- function(x, try_gurobi, ...) {
     prioritizr::add_cbc_solver(x, ...)
   }
 }
+
+#' Check solution meets constraints
+#'
+#' Check that a solution meets a set of linear constraints, allowing for
+#' small numerical differences. This is used to check that the solution from
+#' the spatial clustering pass is valid, because a solver that reaches its
+#' time limit without finding a feasible solution can return values
+#' that do not meet the constraints (#469).
+#'
+#' @param solution `numeric` vector with the solution values for each
+#'   planning unit.
+#'
+#' @param data `matrix` or `Matrix` object with a row for each constraint
+#'   and a column for each planning unit.
+#'
+#' @param threshold `numeric` vector with the threshold for each constraint.
+#'
+#' @param sense `character` vector with the sense for each constraint
+#'   (`">="` or `"<="`).
+#'
+#' @return A `logical` value indicating if all constraints are met.
+#'
+#' @noRd
+solution_meets_constraints <- function(solution, data, threshold, sense) {
+  held <- as.numeric(data %*% solution)
+  tol <- 1e-6 * pmax(1, abs(threshold))
+  all(ifelse(sense == ">=", held >= threshold - tol, held <= threshold + tol))
+}

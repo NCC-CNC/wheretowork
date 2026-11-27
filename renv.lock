@@ -1409,20 +1409,20 @@
     },
     "rcbc": {
       "Package": "rcbc",
-      "Version": "0.1.0.9001",
+      "Version": "0.1.0.9003",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteUsername": "dirkschumacher",
       "RemoteRepo": "rcbc",
       "RemoteRef": "master",
-      "RemoteSha": "5b07318af004fe849d47613c16446412daf22e16",
+      "RemoteSha": "e13c476d4733dd5cfdf30d2c7eddc31455a7067c",
       "Requirements": [
         "Matrix",
         "assertthat",
         "methods"
       ],
-      "Hash": "3f56b2d4bf8f319c1d2a7bd9428e92ef"
+      "Hash": "400e9c3d4a9a5398609174340f1da060"
     },
     "readxl": {
       "Package": "readxl",
