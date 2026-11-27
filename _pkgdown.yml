@@ -3,6 +3,10 @@ url: https://ncc-cnc.github.io/wheretowork
 template:
   bootstrap: 5
 
+footer:
+  components:
+    developed_by: Developed by Nature Conservancy of Canada and Carleton University. Written by Jeff Hanson.
+
 navbar:
   components:
     articles:

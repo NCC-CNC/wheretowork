@@ -27,19 +27,16 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Jeffrey O Hanson \email{jeffrey.hanson@uqconnect.edu.au} (\href{https://orcid.org/0000-0002-4716-6134}{ORCID})
+\strong{Maintainer}: Shaun Astbury \email{shaun.astbury@natureconservancy.ca}
 
 Authors:
 \itemize{
-  \item Richard Schuster \email{richard.schuster@glel.carleton.ca} (\href{https://orcid.org/0000-0003-3191-7869}{ORCID})
+  \item Jeffrey O Hanson \email{jeffrey.hanson@uqconnect.edu.au} (\href{https://orcid.org/0000-0002-4716-6134}{ORCID})
+  \item Richard Schuster \email{richard.schuster@natureconservancy.ca} (\href{https://orcid.org/0000-0003-3191-7869}{ORCID})
   \item Joseph Bennett
   \item Jaimie Vincent
-}
-
-Other contributors:
-\itemize{
-  \item Dan Wismer \email{dan.wismer@natureconservancy.ca} [contributor]
-  \item Marc Edwards \email{marc.edwards@natureconservancy.ca} [contributor]
+  \item Dan Wismer
+  \item Marc Edwards \email{marc.edwards@natureconservancy.ca}
 }
 
 }

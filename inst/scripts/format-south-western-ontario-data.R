@@ -335,6 +335,6 @@ write_project(
   attribute_path = "inst/extdata/projects/south_western_ontario/south_western_ontario_attribute.csv.gz",
   boundary_path = "inst/extdata/projects/south_western_ontario/south_western_ontario_boundary.csv.gz",
   mode = "advanced",
-  author_name = "Dan Wismer", 
-  author_email = "daniel.wismer@natureconservancy.ca" 
+  author_name = "Richard Schuster", 
+  author_email = "richard.schuster@natureconservancy.ca" 
 )
