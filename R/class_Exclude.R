@@ -111,7 +111,7 @@ Exclude <- R6::R6Class(
         assertthat::is.flag(status),
         assertthat::noNA(status),
         #### overlap
-        assertthat::is.string(name),
+        assertthat::is.string(overlap),
         !assertthat::noNA(overlap) # must be NA
       )
       ### set fields

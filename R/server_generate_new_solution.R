@@ -32,11 +32,7 @@ server_generate_new_solution <- quote({
       app_data$new_solution_id <- NULL
 
       ## reset buttons and input widgets
-      shinyFeedback::resetLoadingButton("newSolutionPane_settings_start_button")
-      enable_html_element("newSolutionPane_settings_start_button")
-      enable_html_element("newSolutionPane_settings_name")
-      enable_html_element("newSolutionPane_settings_color")
-      enable_html_element("newSolutionPane_settings_gurobi")
+      reset_new_solution_inputs()
       shinyjs::disable("newSolutionPane_settings_stop_button")
     }
   })
@@ -111,25 +107,9 @@ server_generate_new_solution <- quote({
         "please enable at least one Theme and try again."
       )
       ### display modal
-      shinyalert::shinyalert(
-        title = "Oops",
-        text = msg,
-        size = "s",
-        closeOnEsc = TRUE,
-        closeOnClickOutside = TRUE,
-        type = "error",
-        showConfirmButton = TRUE,
-        confirmButtonText = "OK",
-        timer = 0,
-        confirmButtonCol = "#0275d8",
-        animation = TRUE
-      )
+      show_error_alert(msg)
       ### reset buttons
-      shinyFeedback::resetLoadingButton("newSolutionPane_settings_start_button")
-      enable_html_element("newSolutionPane_settings_start_button")
-      enable_html_element("newSolutionPane_settings_name")
-      enable_html_element("newSolutionPane_settings_color")
-      enable_html_element("newSolutionPane_settings_gurobi")
+      reset_new_solution_inputs()
       ## exit
       return()
     }
@@ -152,11 +132,8 @@ server_generate_new_solution <- quote({
         ### calculate real areas (in km2) for the budget and selected
         ### includes, so the user can see the numbers behind the error
         curr_km2_units <- stringi::stri_unescape_unicode("km\\u00B2")
-        curr_to_km2 <- function(x) {
-          as.numeric(units::set_units(units::set_units(x, "m^2"), "km^2"))
-        }
-        curr_budget_area <- curr_to_km2(sum(curr_area_data) * curr_area_budget)
-        curr_locked_in_area <- curr_to_km2(
+        curr_budget_area <- m2_to_km2(sum(curr_area_data) * curr_area_budget)
+        curr_locked_in_area <- m2_to_km2(
           sum(curr_area_data[curr_budget_info$locked_in])
         )
         ### identify error message to show
@@ -168,25 +145,9 @@ server_generate_new_solution <- quote({
           "of the Includes."
         )
         ### display modal
-        shinyalert::shinyalert(
-          title = "Oops",
-          text = msg,
-          size = "s",
-          closeOnEsc = TRUE,
-          closeOnClickOutside = TRUE,
-          type = "error",
-          showConfirmButton = TRUE,
-          confirmButtonText = "OK",
-          timer = 0,
-          confirmButtonCol = "#0275d8",
-          animation = TRUE
-        )
+        show_error_alert(msg)
         ### reset buttons
-        shinyFeedback::resetLoadingButton("newSolutionPane_settings_start_button")
-        enable_html_element("newSolutionPane_settings_start_button")
-        enable_html_element("newSolutionPane_settings_name")
-        enable_html_element("newSolutionPane_settings_color")
-        enable_html_element("newSolutionPane_settings_gurobi")
+        reset_new_solution_inputs()
         ## exit
         return()
       }
@@ -321,24 +282,9 @@ server_generate_new_solution <- quote({
         cli::rule()
       }
       ### display modal
-      shinyalert::shinyalert(
-        title = "Oops",
-        text = msg,
-        size = "s",
-        closeOnEsc = TRUE,
-        closeOnClickOutside = TRUE,
-        type = "error",
-        showConfirmButton = TRUE,
-        confirmButtonText = "OK",
-        timer = 0,
-        confirmButtonCol = "#0275d8",
-        animation = TRUE
-      )
+      show_error_alert(msg)
       ### reset button
-      shinyFeedback::resetLoadingButton("newSolutionPane_settings_start_button")
-      enable_html_element("newSolutionPane_settings_color")
-      enable_html_element("newSolutionPane_settings_name")
-      enable_html_element("newSolutionPane_settings_gurobi")
+      reset_new_solution_inputs()
       ## exit
       return()
     }

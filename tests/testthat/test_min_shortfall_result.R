@@ -615,7 +615,12 @@ create_weight_test_inputs <- function(factors) {
 }
 
 # helper function to run min_shortfall_result with weight test inputs
+## optimality gaps match the app (see inst/golem-config.yml), and the time
+## limits are short so that a hard instance cannot stall the test suite
 run_weight_test <- function(x, area_budget_proportion, cache, boundary_gap = 0,
+                            gap_1 = get_golem_config("solver_gap_1"),
+                            gap_2 = get_golem_config("solver_gap_2"),
+                            time_limit_1 = 60, time_limit_2 = 60,
                             ...) {
   min_shortfall_result(
     id = "R1",
@@ -633,6 +638,10 @@ run_weight_test <- function(x, area_budget_proportion, cache, boundary_gap = 0,
     parameters = x$ss$parameters,
     boundary_gap = boundary_gap,
     cache = cache,
+    gap_1 = gap_1,
+    gap_2 = gap_2,
+    time_limit_1 = time_limit_1,
+    time_limit_2 = time_limit_2,
     ...
   )
 }
@@ -711,8 +720,14 @@ test_that("weight_importance", {
   # create object
   ## note that the area budget is too small to meet the goals
   x <- create_weight_test_inputs(c(100))
-  r1 <- run_weight_test(x, 0.1, cachem::cache_mem(), weight_importance = 0.01)
-  r2 <- run_weight_test(x, 0.1, cachem::cache_mem(), weight_importance = 1)
+  ## a tight gap is used so that the comparisons between solutions are
+  ## not obscured by the solver stopping early
+  r1 <- run_weight_test(
+    x, 0.1, cachem::cache_mem(), weight_importance = 0.01, gap_1 = 0.01
+  )
+  r2 <- run_weight_test(
+    x, 0.1, cachem::cache_mem(), weight_importance = 1, gap_1 = 0.01
+  )
   # run tests
   ts <- x$ss$get_theme_settings()
   td <- x$ss$get_theme_data()

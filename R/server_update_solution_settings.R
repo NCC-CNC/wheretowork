@@ -40,19 +40,7 @@ server_update_solution_settings <- quote({
         "optimization run."
        )
        ### display error modal
-       shinyalert::shinyalert(
-         title = "Oops",
-         text = msg,
-         size = "s",
-         closeOnEsc = TRUE,
-         closeOnClickOutside = TRUE,
-         type = "error",
-         showConfirmButton = TRUE,
-         confirmButtonText = "OK",
-         timer = 0,
-         confirmButtonCol = "#0275d8",
-         animation = TRUE
-       )
+       show_error_alert(msg)
      } else {
       ### update theme status
       vapply(app_data$themes, FUN.VALUE = logical(1), function(x) {
