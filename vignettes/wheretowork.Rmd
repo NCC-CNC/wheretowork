@@ -30,7 +30,7 @@ The tool is available as an online web application. For the best experience, it 
 
 ## Code availability
 
-All code for the *Where to Work* tool is publicly available on GitHub (https://github.com/NCC-CNC/wheretowork). If you find problems with the *Where to Work* tool you can submit an issue (also known as a ticket) on the online bug tracker (https://github.com/NCC-CNC/wheretowork/issues). If you are not familiar with GitHub, please feel free to get in touch via email (please context dan.wismer@natureconservancy.ca or marc.edwards@natureconservancy.ca).
+All code for the *Where to Work* tool is publicly available on GitHub (https://github.com/NCC-CNC/wheretowork). If you find problems with the *Where to Work* tool you can submit an issue (also known as a ticket) on the online bug tracker (https://github.com/NCC-CNC/wheretowork/issues). If you are not familiar with GitHub, please feel free to get in touch via email (please contact shaun.astbury@natureconservancy.ca or marc.edwards@natureconservancy.ca).
 
 # Terminology and concepts
 

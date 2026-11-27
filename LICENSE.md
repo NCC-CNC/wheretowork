@@ -34,7 +34,7 @@ END OF TERMS AND CONDITIONS
 
 COPYRIGHT NOTICE:
 
-Copyright © 2022 J Hanson, R Schuster, J Bennett, J Vincent, D Wismer, M Edwards
+Copyright © 2022-2026 J Hanson, R Schuster, J Bennett, J Vincent, D Wismer, M Edwards, S Astbury
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to  use, copy, modify, merge, publish,  or distribute, for non-commercial academic and research purposes only, copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

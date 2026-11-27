@@ -201,4 +201,7 @@ questions about using this application, please contact [Dr. Richard
 Schuster](https://www.richard-schuster.com/)
 (<richard.schuster@natureconservancy.ca>) or [Prof. Joe
 Bennett](https://carleton.ca/bennett-lab/lab-members/)
-([JosephBennett@cunet.carleton.ca](mailto:mailto:JosephBennett@cunet.carleton.ca)).
+([JosephBennett@cunet.carleton.ca](mailto:JosephBennett@cunet.carleton.ca)).
+For technical questions about the application itself, please contact
+the developer, Shaun Astbury
+([shaun.astbury@natureconservancy.ca](mailto:shaun.astbury@natureconservancy.ca)).

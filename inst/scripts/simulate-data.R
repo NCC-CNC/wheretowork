@@ -174,8 +174,8 @@ write_project(
     "inst/extdata/projects/sim_raster4/sim_raster4_boundary.csv.gz",
   mode = "advanced",
   user_groups = "admin",
-  author_name = "Dan Wismer",
-  author_email = "daniel.wismer@natureconservancy.ca"
+  author_name = "Richard Schuster",
+  author_email = "richard.schuster@natureconservancy.ca"
 )
 
 
